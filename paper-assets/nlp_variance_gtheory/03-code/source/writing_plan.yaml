@@ -1,0 +1,473 @@
+meta:
+  venue: AAAI 2027
+  track: main
+  template: templates/latex/aaai2026/
+  template_note: "AAAI 2027 模板尚未发布，复用 AAAI 2026 模板（aaai2026.sty）。待官方发布后替换 sty/bst 文件"
+  page_limit: 7
+  references_page: unlimited
+  deadline: "2026-07-28"
+  abstract_deadline: "2026-07-21"
+  core_claim: >
+    MC and free-form LLM benchmarks have fundamentally different variance structures:
+    item selection drives 42-49% on MC tasks but only 12% on GSM8K, where model (15%)
+    and prompt (12%) emerge as major sources. Multi-facet G-theory design needs only
+    72 items for G≥0.80 vs 631 for single-condition evaluation — an 8.8× efficiency gap.
+  created_at: "2026-05-21T18:00:00Z"
+  approved_at: "2026-05-21T19:00:00Z"
+  director_adjustments: >
+    Display items 9→7: fig4 (temperature heatmap) + fig5 (single vs cross) 移入 Appendix。
+    无独立 Discussion 节。Fine-tuning + Mesting 定位 + practical adoption 全放 Conclusion 末段。
+  experiment_status: >
+    ~70% complete. Core data: exp-001 (4-model MMLU, 345,600 records) ✅,
+    exp-001b (resampling stability) ✅, exp-002 (4-model × 4-benchmark, 921,600 records) ✅.
+    8-model × 5-benchmark expansion in progress (MATH + InternLM + DeepSeek + OLMo + Yi).
+  patch_plan: >
+    初稿基于 4-model 数据。Results/Tables 留 [PLACEHOLDER] 标记，
+    8×5 全量数据到齐后 Patch 填入并更新所有数字。
+
+paper_outline:
+  - section: abstract
+    word_budget: 150
+    core_bullets:
+      - "Problem: LLM evaluation results vary across reproductions but sources interact — no unified factorial attribution exists across benchmarks"
+      - "Method: G-theory crossed design, 4 models × 4 benchmarks × 200 items × 6 prompts × 6 seeds × 3 temps × 4 orderings (1.27M records)"
+      - "Finding 1: Format-conditional variance dichotomy — MC benchmarks item-dominated (42-49%), free-form reasoning shows model (15%) + prompt (12%) as major sources"
+      - "Finding 2: BF16≈FP16 (<0.1% interaction under binary scoring); precision separability is metric-conditional"
+      - "Finding 3: 8.8× design efficiency gap — multi-facet 72 items vs single-condition 631 items for G≥0.80; IRT's 116 items → G=0.424"
+      - "Release: open-source G-theory pipeline + D-study budget calculator"
+    dependencies: [experiments, method]
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - >
+        Hook: "On MC tasks, item selection drives 42-49% of evaluation variance while prompt wording
+        is negligible (<1%); on reasoning tasks like GSM8K, prompt wording alone accounts for 12% —
+        more than item selection. A reproducibility budget for MMLU will systematically undercount
+        the sources that matter for GSM8K."
+      - >
+        Gap: Every prior study isolates at most two variance sources — precision OR prompt OR seed —
+        implicitly assuming separability. Mesting (2026) applied G-theory to 5 methodology facets on
+        a single benchmark; Yuan (2025) documented infrastructure variance without factorial attribution;
+        IRT-based approaches (Polo et al. 2024) ignore prompt/seed/ordering facets entirely.
+      - >
+        Insight: Variance structure is format-conditional. MC benchmarks (MMLU, ARC, HellaSwag) share
+        item-dominated structure; free-form reasoning (GSM8K) shows qualitatively different structure
+        where model ability and prompt wording emerge. This is not a gradient — it is a dichotomy.
+      - >
+        Contributions (3+toolkit):
+        C1. Format-conditional variance structure with model×item (34%) as hidden second-largest source;
+        C2. Precision separability confirmation (BF16≈FP16, <0.1%) with metric qualification;
+        C3. First empirical quantification of multi-facet reliability cost — 8.8× design efficiency gap;
+        Toolkit: open-source G-theory pipeline + D-study budget calculator.
+    dependencies: [experiments, method]
+    figures: [fig1_cross_benchmark]
+    citation_hints:
+      - "Mesting 2026 — G-theory predecessor (methodology only, single benchmark)"
+      - "Yuan et al. 2025 — infrastructure variance (no factorial attribution)"
+      - "Brittlebench 2026 — prompt sensitivity (fixed hardware)"
+      - "Sclar et al. 2024 ICLR — prompt formatting swing"
+      - "Polo et al. 2024 — tinyBenchmarks IRT"
+      - "Bouthillier et al. 2021 — ANOVA variance decomposition in ML"
+
+  - section: related_work
+    word_budget: 600
+    core_bullets:
+      - >
+        Cluster 1 — Variance decomposition in ML/NLP evaluation:
+        Bouthillier et al. (2021) ANOVA template for ML benchmarks;
+        Mesting (2026) G-theory with 5 facets (judge=43.8%, prompt×judge=12.4%) on single benchmark;
+        Kunievsky & Evans (2025) intent/articulation/model uncertainty decomposition.
+        Our extension: infrastructure crossing + cross-benchmark + model-as-facet.
+      - >
+        Cluster 2 — Infrastructure & prompt variance (isolated-factor studies):
+        Yuan (2025) up to 9% accuracy from precision/GPU; Messina & Scotta (2026) background
+        temperature formalization; ThinkingMachines (2025) batch-invariant kernels;
+        Brittlebench (2026) 50% from prompt perturbation; Sclar et al. (2024) 76% formatting swing.
+        Gap: no factorial crossing of infrastructure × methodology.
+      - >
+        Cluster 3 — IRT & efficient benchmarking:
+        Lalor et al. (2019), Rodriguez et al. (2021), Polo et al. (2024) tinyBenchmarks.
+        IRT models item difficulty but ignores prompt/seed/ordering facets →
+        systematically underestimates item requirements for multi-facet reliability.
+      - >
+        Cluster 4 — Binary data & psychometrics foundations:
+        Shavelson & Webb (1991), Brennan (2001 Ch.12), Mushquash & O'Connor (2006),
+        Jiang & Skorupski (2017) logistic-link G-theory. Grounds our methodological defense.
+      - >
+        Positioning vs Mesting: we fix judge to isolate other factors (Mesting's judge=43.8%
+        would dominate); multi-benchmark reveals format-conditional structure Mesting cannot see.
+    dependencies: [introduction]
+    citation_hints:
+      - "Bouthillier et al. 2021 JMLR"
+      - "Shavelson & Webb 1991 — G-theory canonical"
+      - "Brennan 2001 — G-theory textbook"
+      - "Henderson et al. 2018 — deep RL reproducibility"
+      - "Dodge et al. 2020 EMNLP — fine-tuning instability"
+      - "Dehghani et al. 2021 — benchmark lottery"
+      - "Biderman et al. 2024 — evaluation reproducibility"
+      - "Jiang & Skorupski 2017 — logistic-link G-theory"
+
+  - section: method
+    word_budget: 1200
+    core_bullets:
+      - >
+        §3.1 G-Theory Background:
+        Universe of admissible observations; G-study = variance decomposition via Henderson Method I;
+        D-study = decision projections (how reliability changes with design modifications).
+        Key distinction from ANOVA: D-study enables prospective design optimization.
+      - >
+        §3.2 Experimental Design (MMLU, exp-001):
+        Fully crossed p × M × π × s × τ × o × δ design.
+        p=item (200, stratified 10 subjects × 20), M=model (4: Llama-3.1-8B, Gemma-2-9B,
+        Mistral-7B, Qwen3-8B), π=precision (BF16/FP16/FP32 with V0 enforce_eager),
+        s=seed (6), τ=temperature (0.0/0.3/0.7), o=ordering (4 ABCD rotations),
+        δ=prompt (6 paraphrases). 345,600 records.
+      - >
+        §3.3 Cross-Benchmark Extension (exp-002):
+        4 benchmarks (MMLU/ARC-Challenge/HellaSwag/GSM8K) × 4 models.
+        Reduced design: BF16 only × 2 temperatures (0.0/0.7) × 6 prompts × 6 seeds × 4 orderings.
+        921,600 records. Explicitly described as "reduced crossing."
+        [PLACEHOLDER: 8 models × 5 benchmarks when expansion complete]
+      - >
+        §3.4 Evaluation Protocol:
+        Generation-based scoring (not log-likelihood, per Hua et al. 2025);
+        dual metrics (binary_correct + text_exact_match);
+        default vLLM 0.9.2 settings (no batch-invariant kernels) reflecting practitioner conditions.
+      - >
+        §3.5 Binary Data Assumptions (addresses R1-N1):
+        (a) Simulation-based validation: probit latent → binary, binary ρ=0.732 ≈ continuous ρ=0.741 (Δ=0.009);
+        (b) GLMM complementary analysis: marginal logit ANOVA preserves all 7 rankings (ρ=1.0);
+        VB GLMM shows reversal attributable to model underspecification;
+        (c) Bernoulli-adjusted decomposition: item_id% stable across accuracy range (r=-0.048);
+        (d) Henderson I unbiased for balanced designs (Brennan Ch.12).
+      - >
+        §3.6 Model-as-Facet Justification (addresses R1-N2):
+        Purposive sample from 4 major architecture families, treated as quasi-random.
+        D-study prediction validated out-of-sample: 3-model predicted G=0.816 for n=4, actual=0.820 (Δ=0.004).
+        LOMO: all 3-model subsets preserve item_id dominance + model×item as #2.
+        [PLACEHOLDER: 8-model strengthens to ~0.893]
+    dependencies: []
+    tables: [tab1_design_matrix]
+    figures: [fig2_design_diagram]
+    registry_refs: [exp001_llama, exp001_gemma, exp001_mistral, exp001_qwen, exp002_multi_benchmark]
+    notation_table:
+      p: "item (object of measurement)"
+      M: "model (crossed quasi-random facet)"
+      π: "numerical precision (BF16/FP16/FP32)"
+      s: "random seed"
+      τ: "sampling temperature"
+      o: "answer option ordering"
+      δ: "prompt template"
+      σ²_x: "variance component for facet x"
+      G: "generalizability coefficient (reliability for relative decisions)"
+      Φ: "dependability coefficient (reliability for absolute decisions)"
+
+  - section: experiments
+    word_budget: 1400
+    core_bullets:
+      - >
+        §4.1 Single-Model Baseline (Llama, 239,200 records):
+        item_id=61.1% dominates; residual=19.5%; all infrastructure/methodology main effects <1%.
+        Temperature×item (6.9%) and precision×item (7.2%) are item-conditional.
+        Text-exact-match: temperature dominates (79.7%), G=0.007 — unreliable at T>0.
+      - >
+        §4.2 Cross-Model Variance Decomposition (4 models, 345,600 records):
+        item_id drops 61%→42.1% [36.0-48.8%]; model×item=33.6% [28.4-37.9%] emerges as #2.
+        Item difficulty rankings are model-specific. G_item=0.820 [0.782-0.861].
+        D-study validated: 3-model predicted 0.816, actual 0.820 (Δ=0.004).
+        Forward: 5→0.848, 8→0.893, G≥0.90 requires ~10 models.
+        Per-model interaction: Mistral 29.25% > Qwen 27.11% > Gemma 23.95% > Llama 19.69%.
+      - >
+        §4.3 Format-Conditional Variance Structure [CORE — Claim 1]:
+        MC benchmarks: MMLU item_id=42%, ARC=49%, HellaSwag=45%; model×item=32-38%.
+        Free-form: GSM8K item_id=12%, model=15%, prompt=12%, model×prompt=9%.
+        Qualitative structural shift between evaluation formats. Not a continuous gradient.
+        [PLACEHOLDER: + MATH data, + 8-model expansion]
+      - >
+        §4.4 Precision Separability [Claim 2]:
+        BF16≈FP16 (Δ=0.23pp accuracy); excluding FP32, precision effect 0.0006%.
+        FP32 anomaly is vLLM enforce_eager artifact, not fundamental.
+        Binary scoring: precision×methodology <0.1%. Text-exact-match: precision×temperature=1.3%.
+        Separability is metric-conditional. Scope: numerical precision on single GPU architecture.
+      - >
+        §4.5 Design-Dependent Reproducibility Budgets [Claim 3]:
+        Multi-facet (432 conditions/item): G=0.918 at 200 items, G≥0.80 at 72 items.
+        Single-condition (1×1×1×1): G=0.559 at 200 items, G≥0.80 at 631 items.
+        IRT's 116 items → G=0.424 under single-condition.
+        Ratio ~8.8× (stable: CV=1.9% across subset sizes 50-200).
+        Key insight: investing in evaluation conditions > adding items.
+      - >
+        §4.6 Robustness Package (condensed):
+        Item resampling (exp-001b): item_id% CV=2.7%, G_item CV=0.5%.
+        REML vs Henderson I: <0.5pp on all components.
+        Bootstrap ≈ jackknife: CI width ratio 0.96-1.04.
+        Fixed vs random facets: G_item Δ=0.37pp.
+        LOMO: item_id + model×item dominance stable across all 3-model subsets.
+        Null simulation: observed/Bernoulli ratio=1.0008 (737.5× over null).
+      - "[PLACEHOLDER] §4.7 Extended Results: 8-model × 5-benchmark — Patch when data ready"
+    dependencies: []
+    tables: [tab2_cross_model_variance, tab3_cross_benchmark, tab4_dstudy_budgets]
+    figures: [fig1_cross_benchmark, fig3_dstudy_curves]
+    registry_refs: [exp001_llama, exp001b_resampling, exp001_gemma, exp001_mistral, exp001_qwen, exp002_multi_benchmark]
+
+  - section: conclusion
+    word_budget: 350
+    core_bullets:
+      - >
+        Summary: Three findings — (1) format-conditional variance dichotomy between MC and free-form
+        benchmarks; (2) precision separability under binary scoring; (3) 8.8× design efficiency gap
+        from multi-facet evaluation.
+      - >
+        Practical implication: MC and free-form evaluations require fundamentally different
+        reproducibility strategies. Investing in evaluation conditions (prompts, seeds) is more
+        efficient than adding items.
+      - >
+        Limitations (3 points, brief):
+        (1) Open-weight models only — API models have opaque infrastructure (complementary to Mesting);
+        (2) Single GPU architecture for precision facet — hardware crossing is future work;
+        (3) Separability scope limited to binary scoring on knowledge-retrieval benchmarks.
+      - "Future work: multi-hardware crossing, judge-as-facet extension, cross-lingual benchmarks"
+      - >
+        Conclusion 末段 (per Director): Fine-tuning preliminary observation (2-3 sentences if exp-006 data),
+        positioning vs Mesting (complementary scope), practical adoption guidance (D-study calculator usage).
+
+    dependencies: [experiments, method]
+
+# === MAIN TEXT DISPLAY ITEMS (7) ===
+# fig1_cross_benchmark (Introduction) + fig2_design_diagram (Method) + fig3_dstudy_curves (Experiments)
+# tab1_design_matrix (Method) + tab2_cross_model_variance + tab3_cross_benchmark + tab4_dstudy_budgets (Experiments)
+
+visualization_plan:
+  # --- MAIN TEXT (3 figures) ---
+  - fig_id: fig1_cross_benchmark
+    type: statistical
+    tool: matplotlib
+    location: main
+    description: "Cross-benchmark format-conditional variance decomposition — stacked bars showing MC vs free-form dichotomy"
+    narrative_intent: >
+      MC benchmarks (MMLU/ARC/HellaSwag) share item-dominated variance (42-49%) while
+      GSM8K shows qualitatively different structure where model (15%) and prompt (12%)
+      emerge as major sources — proving variance structure is format-conditional.
+    design_notes:
+      - "Pattern A: regime bands separating MC (left 3) from free-form (right) with vertical dashed line + 'MC' / 'Free-form' labels"
+      - "Stacked bars: item_id=blue, model:item=orange, model=green, prompt=red, residual=gray. Consistent palette across all figures"
+      - "Annotate dominant component % values directly on bars"
+      - "Reference idiom: Mesting 2026 / Brittlebench 2026 stacked-bar variance decomposition"
+    data_source: "registry: exp002_multi_benchmark"
+    placement: introduction
+    aspect_ratio: "16:9"
+
+  - fig_id: fig2_design_diagram
+    type: conceptual
+    tool: paperbanana
+    location: main
+    description: "G-theory crossed experimental design diagram — facets, levels, crossing structure"
+    narrative_intent: >
+      Our design crosses infrastructure (precision) with methodology (prompt/seed/temp/ordering)
+      and measurement (item) facets, with model as a crossed quasi-random facet — showing how
+      the fully crossed structure enables simultaneous estimation of all main effects and interactions.
+    design_notes:
+      - "Central: 7 facet boxes arranged in a hub layout (item in center, others radiating)"
+      - "Lines connecting all crossed facets; thickness proportional to observed interaction magnitude"
+      - "Each box lists levels (e.g., Model: Llama/Gemma/Mistral/Qwen)"
+      - "Bottom: total records count and benchmark labels"
+    data_source: "manual"
+    placement: method
+    aspect_ratio: "16:9"
+
+  - fig_id: fig3_dstudy_curves
+    type: statistical
+    tool: matplotlib
+    location: main
+    description: "D-study projection curves — G coefficient vs item count for multi-facet, single-condition, and IRT"
+    narrative_intent: >
+      Multi-facet design reaches G≥0.80 at only 72 items while single-condition needs 631 —
+      an 8.8× efficiency gap. IRT's 116-item recommendation yields G=0.424 under typical practice,
+      far below reliable. Investing in evaluation conditions is more efficient than adding items.
+    design_notes:
+      - "Pattern B: horizontal dashed line at G=0.80 threshold labeled 'Reliability threshold'"
+      - "Three curves: multi-facet (solid blue, reaches 0.80 at 72), single-condition (dashed red, reaches 0.80 at 631)"
+      - "IRT marker: vertical dotted line at x=116 with annotation 'IRT recommendation → G=0.424'"
+      - "Pattern C: annotate intersection points (72 items, 631 items) with callout boxes"
+      - "Shaded gray region below 0.80 labeled 'Below reliability threshold'"
+      - "X-axis: 0-700 items; Y-axis: 0-1.0 G coefficient"
+    data_source: "registry: exp001_llama (D-study from cross-model analysis)"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+  # --- APPENDIX (2 figures, per Director) ---
+  - fig_id: fig4_temperature_heatmap
+    type: statistical
+    tool: matplotlib
+    location: appendix
+    description: "Temperature × metric reliability heatmap — binary vs text-exact-match at 3 temperatures"
+    narrative_intent: >
+      Binary scoring degrades gracefully with temperature (G: 0.760→0.549) while text-exact-match
+      is unreliable at any T>0 (G=0.007) — reproducibility budgets must be metric-conditional.
+    design_notes:
+      - "2×3 heatmap: rows=metrics (binary, text-exact-match), columns=temperatures (0.0, 0.3, 0.7)"
+      - "Diverging colormap (RdYlGn) centered at G=0.80 using TwoSlopeNorm"
+      - "Cell values annotated in bold; black text on light cells, white on dark"
+      - "Column header: temperature values; row header: metric names"
+    data_source: "registry: exp001_llama (temperature-stratified G analysis)"
+    placement: appendix
+    aspect_ratio: "3:2"
+
+  - fig_id: fig5_single_vs_cross
+    type: statistical
+    tool: matplotlib
+    location: appendix
+    description: "Single-model vs cross-model MMLU variance shift — paired stacked bars with annotations"
+    narrative_intent: >
+      When model is added as a crossed facet, item_id drops from 61% to 42% and model×item (34%)
+      emerges as the second-largest source — item difficulty rankings are substantially model-specific,
+      and single-model G-studies overestimate item dominance.
+    design_notes:
+      - "Two side-by-side stacked bars: 'Single-model (Llama)' vs 'Cross-model (4 models)'"
+      - "Arrow annotation: item_id 61%→42% with '↓19pp' label"
+      - "New component highlight: model×item bar segment with '34% (NEW)' callout"
+      - "Same color palette as fig1_cross_benchmark for consistency"
+      - "Compact: single-column width figure"
+    data_source: "registry: exp001_llama (single-model + cross-model analysis)"
+    placement: appendix
+    aspect_ratio: "3:4"
+
+table_plan:
+  - table_id: tab1_design_matrix
+    caption: "Experimental design: facets, levels, and conditions across studies"
+    placement: method
+    type: configuration
+    columns: ["Facet", "Levels", "exp-001 (MMLU)", "exp-002 (4 benchmarks)"]
+    data_source: "registry: exp001_llama, exp002_multi_benchmark"
+    notes: >
+      Addresses R1-W3. Rows: Model, Item, Prompt, Seed, Temperature, Ordering, Precision.
+      Show which are fully crossed vs reduced. Total records per study.
+
+  - table_id: tab2_cross_model_variance
+    caption: "G-theory variance decomposition on MMLU (4 models × 200 items, 345,600 records)"
+    placement: experiments
+    type: statistics
+    columns: ["Component", "Variance %", "95% Bootstrap CI", "Interpretation"]
+    data_source: "registry: exp001_llama (cross-model Henderson I analysis)"
+    notes: >
+      All systematic components + residual. Bold top-2 (item_id, model×item).
+      Include G_item=0.820 [0.782-0.861] below table.
+
+  - table_id: tab3_cross_benchmark
+    caption: "Format-conditional variance structure across benchmarks (top-5 components, %)"
+    placement: experiments
+    type: comparison
+    columns: ["Component", "MMLU", "ARC", "HellaSwag", "GSM8K"]
+    data_source: "registry: exp002_multi_benchmark"
+    notes: >
+      Core table for Claim 1. Visual grouping: MC benchmarks | Free-form.
+      Bold dominant component per benchmark.
+      [PLACEHOLDER: add MATH column + 8-model rows when data ready]
+
+  - table_id: tab4_dstudy_budgets
+    caption: "D-study reproducibility budgets: minimum items for G≥0.80 under different designs"
+    placement: experiments
+    type: comparison
+    columns: ["Evaluation Design", "Conditions/item", "Min items (G≥0.80)", "G at 200 items", "G at IRT's 116 items"]
+    data_source: "registry: exp001_llama (D-study projections)"
+    notes: >
+      Rows: Multi-facet (6×6×3×4=432), Partial (2×2×1×1=4), Single-condition (1×1×1×1=1), IRT baseline.
+      Core table for Claim 3. Report ratio ~8.8× in caption or footnote.
+
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "LLM evaluation reproducibility, variance decomposition, G-theory"
+    - "Prompt sensitivity, benchmark robustness, efficient evaluation"
+  micro_clusters:
+    - cluster_name: "G-theory & Variance Decomposition"
+      search_queries:
+        - "generalizability theory LLM evaluation variance"
+        - "variance decomposition machine learning benchmarks ANOVA"
+        - "measurement error NLP evaluation reproducibility"
+      must_cite:
+        - "Mesting 2026 — hidden measurement error, G-theory 5 facets"
+        - "Bouthillier et al. 2021 JMLR — ML benchmark variance via ANOVA"
+        - "Shavelson & Webb 1991 — G-theory primer (canonical)"
+        - "Brennan 2001 — G-theory textbook (Ch.12 binary data)"
+        - "Kunievsky & Evans 2025 — intent/articulation decomposition"
+      target_count: 8
+
+    - cluster_name: "Infrastructure Variance"
+      search_queries:
+        - "numerical precision LLM inference nondeterminism GPU"
+        - "floating point reproducibility neural network inference"
+      must_cite:
+        - "Yuan et al. 2025 — LayerCast, up to 9% accuracy variation"
+        - "Messina & Scotta 2026 — background temperature formalization"
+        - "ThinkingMachines 2025 — batch-invariant kernels"
+      target_count: 5
+
+    - cluster_name: "Prompt Sensitivity & Methodology"
+      search_queries:
+        - "prompt sensitivity LLM evaluation benchmark robustness"
+        - "prompt formatting accuracy variation large language model"
+        - "seed sensitivity LLM evaluation"
+      must_cite:
+        - "Brittlebench 2026 — 50% variance from prompt perturbation"
+        - "Sclar et al. 2024 ICLR — up to 76% accuracy swing from formatting"
+        - "Hua et al. 2025 EMNLP — scoring artifact in prompt sensitivity"
+        - "Bui et al. 2025 — seed sensitivity in fine-tuning"
+      target_count: 6
+
+    - cluster_name: "IRT & Efficient Benchmarking"
+      search_queries:
+        - "item response theory NLP evaluation LLM"
+        - "efficient benchmarking subsampling adaptive testing"
+        - "tinyBenchmarks IRT language model"
+      must_cite:
+        - "Polo et al. 2024 — tinyBenchmarks IRT subsampling"
+        - "Lalor et al. 2019 NAACL — IRT in NLP"
+        - "Rodriguez et al. 2021 ACL — IRT evaluation for NLP"
+        - "Perlitz et al. 2023 — efficient benchmarking"
+      target_count: 6
+
+    - cluster_name: "Reproducibility & Evaluation Design"
+      search_queries:
+        - "deep learning reproducibility benchmark design"
+        - "evaluation reproducibility LLM best practices"
+      must_cite:
+        - "Henderson et al. 2018 — deep RL reproducibility"
+        - "Dodge et al. 2020 EMNLP — fine-tuning instability"
+        - "Biderman et al. 2024 — evaluation reproducibility lessons"
+        - "Dehghani et al. 2021 — benchmark lottery"
+      target_count: 5
+
+    - cluster_name: "Binary Data & Psychometrics"
+      search_queries:
+        - "generalizability theory binary dichotomous data"
+        - "GLMM binary response educational measurement"
+      must_cite:
+        - "Jiang & Skorupski 2017 — logistic-link generalized G-theory"
+        - "Mushquash & O'Connor 2006 — binary data G-theory"
+        - "Shavelson et al. 1989 — binary response G-theory"
+      target_count: 5
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - abstract
+  - conclusion
+
+# Review issues addressed in plan:
+# R1-N1 (binary data): §3.5 Binary Data Assumptions subsection
+# R1-N2 (model count): §3.6 Model-as-Facet Justification + 8-model expansion placeholder
+# R2-N1 (gradient overclaim): Reframed as format-conditional dichotomy (D010), not gradient
+# R1-W1 (D-study validation): Progressive validation in §4.5 (ratio CV=1.9%)
+# R1-W2 (post-hoc ordering): Permutation test + format dichotomy framing
+# R1-W3 (design matrix): tab1_design_matrix explicitly
+# R1-W4 (ordering on GSM8K): Disclose in §3.3
+# R1-W5 (seed at T=0): Temperature-stratified analysis in §4.6
+# R2-W1 (IRT comparison): Reframed as "first empirical quantification of multi-facet reliability cost"
+# R2-W2 (no universal recipe): Recalibrated — "benchmark-conditional budgets" not "no recipe"
+# R2-W3 (vs Mesting): Explicit positioning in Related Work §Cluster 1
+# R2-W4 (missing literature): Added psychometrics cluster + GLMM refs
+# R2-W5 (fine-tuning scope): Compressed to 2-3 sentences in Conclusion

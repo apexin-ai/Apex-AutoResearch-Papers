@@ -1,0 +1,116 @@
+{
+  "datasets": {
+    "mmlu_4model": {
+      "accuracy": 0.7015,
+      "p_1_minus_p": 0.209411,
+      "total_variance": 0.209412,
+      "ceiling_ratio": 1.000003,
+      "item_id_pct_raw": 42.07,
+      "item_id_pct_adjusted": 42.07,
+      "model_item_pct_raw": 33.64,
+      "combined_item_difficulty_pct": 75.71,
+      "note": "4 models fully crossed; item_id + model:item_id = combined item difficulty"
+    },
+    "mmlu_exp001b_baseline": {
+      "accuracy": 0.6814,
+      "p_1_minus_p": 0.217094,
+      "total_variance_per_obs": 0.217094,
+      "ceiling_ratio": 0.999999,
+      "item_id_pct_raw": 61.08,
+      "item_id_pct_adjusted": 61.08,
+      "note": "6-facet design including precision; item_id% lower due to precision:item_id absorbing ~4%"
+    }
+  },
+  "resampling_samples": {
+    "sample1": {
+      "accuracy": 0.7207,
+      "p_1_minus_p": 0.201292,
+      "total_variance_per_obs": 0.201309,
+      "ceiling_ratio": 1.000088,
+      "item_id_pct_raw": 75.88,
+      "item_id_pct_adjusted": 75.88,
+      "G_item": 0.7588
+    },
+    "sample2": {
+      "accuracy": 0.6211,
+      "p_1_minus_p": 0.235335,
+      "total_variance_per_obs": 0.235329,
+      "ceiling_ratio": 0.999977,
+      "item_id_pct_raw": 75.38,
+      "item_id_pct_adjusted": 75.38,
+      "G_item": 0.7538
+    },
+    "sample3": {
+      "accuracy": 0.6858,
+      "p_1_minus_p": 0.215478,
+      "total_variance_per_obs": 0.215466,
+      "ceiling_ratio": 0.999943,
+      "item_id_pct_raw": 72.18,
+      "item_id_pct_adjusted": 72.18,
+      "G_item": 0.7218
+    }
+  },
+  "bernoulli_verification": {
+    "description": "For binary 0/1 data, total observed variance = p(1-p) by definition. All ceiling ratios should be ~1.0.",
+    "ceiling_ratios": {
+      "mmlu_4model": 1.000003,
+      "exp001b_baseline": 0.999999,
+      "exp001b_sample1": 1.000088,
+      "exp001b_sample2": 0.999977,
+      "exp001b_sample3": 0.999943
+    },
+    "mean_ratio": 1.000002
+  },
+  "per_model_bernoulli": {
+    "model_accuracies": {
+      "gemma-2-9b-it": 0.7311,
+      "llama-3.1-8b-instruct": 0.7108,
+      "mistral-7b-instruct-v0.3": 0.6376,
+      "qwen3-8b": 0.7263
+    },
+    "model_ceilings": {
+      "gemma-2-9b-it": 0.196582,
+      "llama-3.1-8b-instruct": 0.205549,
+      "mistral-7b-instruct-v0.3": 0.231071,
+      "qwen3-8b": 0.198774
+    },
+    "mean_ceiling": 0.207994,
+    "interaction_contribution_raw": {
+      "gemma-2-9b-it": 23.95,
+      "llama-3.1-8b-instruct": 19.69,
+      "mistral-7b-instruct-v0.3": 29.25,
+      "qwen3-8b": 27.11
+    },
+    "interaction_contribution_adjusted": {
+      "gemma-2-9b-it": 25.34,
+      "llama-3.1-8b-instruct": 19.92,
+      "mistral-7b-instruct-v0.3": 26.33,
+      "qwen3-8b": 28.37
+    },
+    "adjustment_note": "Adjusted = raw * (mean_ceiling / model_ceiling). Normalizes for per-model Bernoulli scaling.",
+    "finding": "After adjustment, ranking shifts slightly but gradient persists. Mistral: 29.25% raw -> 26.33% adjusted. Gradient is NOT purely a Bernoulli artifact."
+  },
+  "stability_across_accuracy": {
+    "accuracy_range": [
+      0.6211,
+      0.7207
+    ],
+    "item_id_pct_range": [
+      72.18,
+      75.88
+    ],
+    "item_id_pct_cv": 2.69,
+    "correlation_accuracy_vs_item_pct": -0.0481,
+    "regression_slope": -1.91,
+    "regression_intercept": 75.77,
+    "interpretation": "Across accuracy range 0.62-0.72, item_id% varies 72.2-75.9% (CV=2.69%). The low CV indicates item difficulty structure is stable regardless of accuracy level."
+  },
+  "theoretical_argument": {
+    "key_insight": "For binary (0/1) data, total observed variance equals p(1-p) exactly. Therefore, variance component PERCENTAGES are already Bernoulli-adjusted: each component's % = component_variance / p(1-p) * 100. Comparing percentages across datasets with different accuracy levels is inherently free from Bernoulli scaling artifacts.",
+    "implication": "The reviewer's concern about Bernoulli ceiling p(1-p) affecting comparisons is valid for absolute variance values but not for percentage decompositions. Our reported percentages already account for accuracy-dependent scaling.",
+    "empirical_confirmation": "Across 3 resampled MMLU subsets (accuracy 0.62-0.72), item_id% = 72-76% with CV=2.7%. This stability confirms that the observed variance structure reflects genuine item difficulty heterogeneity, not Bernoulli mechanical scaling."
+  },
+  "cross_benchmark_available": false,
+  "note": "Full cross-benchmark analysis pending exp-002 completion. Current analysis uses MMLU with different accuracy subsets to demonstrate Bernoulli adjustment.",
+  "conclusion": "Bernoulli ceiling p(1-p) fully determines total variance for binary items. Percentage decompositions are inherently ceiling-adjusted. Empirically, item_id% is stable (CV=2.7%) across accuracy levels 0.62-0.72, and per-model interaction patterns persist after Bernoulli adjustment. The observed item difficulty gradient is structural, not an artifact of accuracy levels."
+}

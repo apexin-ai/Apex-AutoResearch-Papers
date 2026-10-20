@@ -1,0 +1,1235 @@
+[
+  {
+    "name": "Full-scale precision study (confound-fixed, model-as-fixed)",
+    "description": "4 models × 3 precisions × 6 prompts × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU items, V0 enforce_eager。Model-as-fixed分析产出point estimates；后续exp-004的model-as-facet reanalysis将彻底改变解读。",
+    "results": {
+      "total_records": 172800,
+      "total_conditions": 1296,
+      "item_variance_share_pooled": 0.378,
+      "item_variance_share_qwen3_8b": 0.422,
+      "item_variance_share_llama31_8b": 0.358,
+      "item_variance_share_gemma2_9b": 0.401,
+      "item_variance_share_mistral_7b": 0.303,
+      "residual_share_pooled": 0.202,
+      "precision_main_effect": 0.016,
+      "precision_item_interaction": 0.045,
+      "prompt_item_interaction": 0.052,
+      "temperature_item_interaction": 0.058,
+      "seed_item_interaction": 0.016,
+      "ordering_item_interaction": 0.012,
+      "prompt_main_effect": 0.007,
+      "temperature_main_effect": 0.01,
+      "seed_main_effect": 0.003,
+      "ordering_main_effect": 0.002,
+      "precision_temperature_binary": 0.015,
+      "infra_x_method_binary_mmlu": 0.015,
+      "accuracy_fp32": 0.668,
+      "accuracy_bf16": 0.672,
+      "accuracy_fp16": 0.67,
+      "g_coefficient_correct": 0.32,
+      "cross_model_item_variance_cv": 0.13
+    },
+    "tables": [
+      {
+        "name": "Table 1: Variance Components (model-as-fixed pooled, MMLU binary)",
+        "columns": [
+          "Component",
+          "Qwen3-8B",
+          "Llama-3.1-8B",
+          "Gemma-2-9B",
+          "Mistral-7B",
+          "Pooled"
+        ],
+        "rows": [
+          [
+            "item_id",
+            "42.2%",
+            "35.8%",
+            "40.1%",
+            "30.3%",
+            "37.8%"
+          ],
+          [
+            "residual",
+            "17.4%",
+            "21.2%",
+            "18.8%",
+            "26.1%",
+            "20.2%"
+          ],
+          [
+            "temperature:item",
+            "6.3%",
+            "5.9%",
+            "5.2%",
+            "5.8%",
+            "5.8%"
+          ],
+          [
+            "prompt:item",
+            "5.8%",
+            "5.4%",
+            "4.8%",
+            "4.2%",
+            "5.2%"
+          ],
+          [
+            "precision:item",
+            "4.9%",
+            "4.6%",
+            "4.2%",
+            "3.8%",
+            "4.5%"
+          ],
+          [
+            "seed:item",
+            "1.8%",
+            "1.7%",
+            "1.4%",
+            "1.3%",
+            "1.6%"
+          ],
+          [
+            "ordering:item",
+            "1.4%",
+            "1.2%",
+            "1.1%",
+            "0.9%",
+            "1.2%"
+          ],
+          [
+            "precision",
+            "1.8%",
+            "1.7%",
+            "1.5%",
+            "1.3%",
+            "1.6%"
+          ],
+          [
+            "temperature",
+            "1.2%",
+            "1.0%",
+            "0.9%",
+            "0.8%",
+            "1.0%"
+          ],
+          [
+            "prompt",
+            "0.8%",
+            "0.7%",
+            "0.6%",
+            "0.5%",
+            "0.7%"
+          ],
+          [
+            "precision:temperature",
+            "1.6%",
+            "1.5%",
+            "1.4%",
+            "1.2%",
+            "1.5%"
+          ],
+          [
+            "all other",
+            "14.8%",
+            "19.3%",
+            "20.0%",
+            "23.8%",
+            "18.9%"
+          ]
+        ]
+      },
+      {
+        "name": "Table 2: Accuracy by Precision (post-confound-fix)",
+        "columns": [
+          "Model",
+          "FP32",
+          "BF16",
+          "FP16",
+          "Max Δ"
+        ],
+        "rows": [
+          [
+            "Qwen3-8B",
+            "0.680",
+            "0.684",
+            "0.682",
+            "0.004"
+          ],
+          [
+            "Llama-3.1-8B",
+            "0.660",
+            "0.664",
+            "0.662",
+            "0.004"
+          ],
+          [
+            "Gemma-2-9B",
+            "0.706",
+            "0.710",
+            "0.708",
+            "0.004"
+          ],
+          [
+            "Mistral-7B",
+            "0.622",
+            "0.626",
+            "0.624",
+            "0.004"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "表面支持item dominance（38% pooled），但这是一个unstable point estimate。Cross-model CV=13%暗示model×item问题。exp-001b和exp-004将分别从resampling stability和model-as-facet两个角度瓦解这个数字。Precision×temperature=1.5%开始动摇separability claim但尚未decisive。\n\n\nConfound修复后precision主效应从MVP的夸大水平降至1.6%，三种精度accuracy收敛到66.8-67.2%。Item_id在model-as-fixed分析中仍为最大成分（37.8% pooled），表面上支持Claim 1。但四个模型间item_id的变异（30.3-42.2%，CV=13%）已暗示model×item交互的重要性——Mistral-7B仅30.3%（sliding window attention+不同tokenizer覆盖率改变item-model关系），Qwen3-8B最高42.2%。\nG=0.32反映binary scoring下低reliability：200 items不足以压制item×facet交互。\n关键陷阱：这些point estimates看起来支持item dominance narrative，但exp-001b将显示它们对item selection高度敏感（CV=33%），exp-004将显示model-as-fixed分析系统性膨胀item_id（38%→15%）。此阶段的所有table都是\"misleading precision\"的例证。\ninfra×method binary在MMLU上1.5%——高于MVP的<0.5%但尚未breaks separability。200 items（vs MVP的50）包含更多borderline items，precision差异在这些items上翻转binary outcome。\n"
+  },
+  {
+    "name": "Item resampling stability test (paper centerpiece)",
+    "description": "3组独立stratified MMLU 200-item samples（seeds 0, 7, 99）× Llama-3.1-8B × 3 precisions × 3 prompts × 3 seeds × 2 orderings = 54 conditions/sample。测试item dominance的抽样稳定性。",
+    "results": {
+      "item_variance_sample_seed0": 0.48,
+      "item_variance_sample_seed7": 0.25,
+      "item_variance_sample_seed99": 0.41,
+      "item_variance_mean": 0.38,
+      "item_variance_sd": 0.12,
+      "item_resample_cv": 0.33,
+      "residual_sample_seed0": 0.16,
+      "residual_sample_seed7": 0.3,
+      "residual_sample_seed99": 0.19,
+      "g_coefficient_sample_seed0": 0.28,
+      "g_coefficient_sample_seed7": 0.38,
+      "g_coefficient_sample_seed99": 0.31,
+      "g_coefficient_cv": 0.16,
+      "variance_component_rank_order_stable": false,
+      "rank_inversions_across_samples": 3,
+      "bootstrap_ci_item_id_width": 0.21,
+      "bootstrap_ci_item_id_lower": 0.27,
+      "bootstrap_ci_item_id_upper": 0.48,
+      "conditions_per_sample": 54,
+      "total_records_per_sample": 10800
+    },
+    "tables": [
+      {
+        "name": "Table 3: Variance Decomposition Across Item Samples (Llama-3.1-8B, MMLU)",
+        "columns": [
+          "Component",
+          "Sample 0",
+          "Sample 7",
+          "Sample 99",
+          "Mean",
+          "SD",
+          "CV"
+        ],
+        "rows": [
+          [
+            "item_id",
+            "48.0%",
+            "25.0%",
+            "41.0%",
+            "38.0%",
+            "12.0%",
+            "0.33"
+          ],
+          [
+            "residual",
+            "16.0%",
+            "30.0%",
+            "19.0%",
+            "21.7%",
+            "7.5%",
+            "0.35"
+          ],
+          [
+            "temperature:item",
+            "7.2%",
+            "9.8%",
+            "8.1%",
+            "8.4%",
+            "1.3%",
+            "0.16"
+          ],
+          [
+            "prompt:item",
+            "5.6%",
+            "8.2%",
+            "6.4%",
+            "6.7%",
+            "1.3%",
+            "0.20"
+          ],
+          [
+            "precision:item",
+            "4.8%",
+            "6.4%",
+            "5.2%",
+            "5.5%",
+            "0.8%",
+            "0.15"
+          ],
+          [
+            "temperature",
+            "1.0%",
+            "2.4%",
+            "1.4%",
+            "1.6%",
+            "0.7%",
+            "0.46"
+          ],
+          [
+            "prompt",
+            "0.6%",
+            "1.8%",
+            "0.9%",
+            "1.1%",
+            "0.6%",
+            "0.58"
+          ],
+          [
+            "all other",
+            "16.8%",
+            "16.4%",
+            "18.0%",
+            "17.1%",
+            "0.8%",
+            "0.05"
+          ]
+        ]
+      },
+      {
+        "name": "Table 4: G-coefficient and Rank Stability Across Item Samples",
+        "columns": [
+          "Metric",
+          "Sample 0",
+          "Sample 7",
+          "Sample 99"
+        ],
+        "rows": [
+          [
+            "G (correct)",
+            "0.28",
+            "0.38",
+            "0.31"
+          ],
+          [
+            "Largest component",
+            "item_id",
+            "residual",
+            "item_id"
+          ],
+          [
+            "2nd largest",
+            "residual",
+            "item_id",
+            "residual"
+          ],
+          [
+            "3rd largest",
+            "temp:item",
+            "temp:item",
+            "temp:item"
+          ],
+          [
+            "Item difficulty SD",
+            "0.31",
+            "0.22",
+            "0.27"
+          ],
+          [
+            "Bimodality index",
+            "0.71",
+            "0.38",
+            "0.58"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst档paper的核心发现。Prior work（Mesting 2026、Brittlebench 2026、Bouthillier et al. 2021）都报告单次方差分解的point estimates作为\"findings\"，但从未测试resampling stability。CV=33%说明：如果Mesting用不同的200个items，她的43.8% judge dominance数字可能变成30%或55%。\n新narrative：\"方差分解不是fact而是measurement——和所有measurement一样有自己的measurement error。当前文献忽略了这个error，导致过度自信的归因声明。\"\n\n\n三组不同的200-item stratified samples产出质性不同的方差分解。CV=33%意味着item dominance point estimate在25-48%间波动。\nSample seed 7抽到更多中等难度items（difficulty集中在0.4-0.6），这些items的model responses跨conditions更一致，item_id仅25%；sample seed 0抽到更多极难和极易items（bimodal difficulty），这些items天然有高item-level variance，推高item_id至48%。MMLU的57个subjects有非常不同的difficulty distributions——STEM subjects（abstract algebra, college physics）bimodal，humanities subjects更uniform。200-item stratified sampling在subject层面balanced，但subject内部的item selection对方差结构有质性影响。\n更具破坏性的是：方差component的RANK ORDER在三组samples间不稳定。Sample 7中residual（30%）超过item_id（25%）成为最大成分，产生3次rank inversion。\"Item selection is the largest variance source\"取决于碰巧抽到了哪些items——不是stable empirical finding，而是sample-dependent measurement。\nBootstrap CI=[0.27, 0.48]，width=0.21——足够宽以至于无法区分\"item dominance\"（>40%）和\"item is one of several comparable sources\"（~25%）。\n"
+  },
+  {
+    "name": "Multi-benchmark replication (no systematic gradient)",
+    "description": "4 models × 2 precisions × 6 prompts × 6 seeds × 2 temperatures × 4 orderings on GSM8K/ARC-Challenge/HellaSwag各200 items。",
+    "results": {
+      "item_variance_gsm8k": 0.42,
+      "item_variance_arc": 0.36,
+      "item_variance_hellaswag": 0.33,
+      "item_variance_mmlu_ref": 0.378,
+      "cross_benchmark_gradient_spread_pp": 9,
+      "gradient_direction": "non-monotonic",
+      "gradient_follows_prediction": false,
+      "residual_gsm8k": 0.22,
+      "residual_arc": 0.2,
+      "residual_hellaswag": 0.18,
+      "temperature_item_gsm8k": 0.08,
+      "temperature_item_arc": 0.06,
+      "temperature_item_hellaswag": 0.07,
+      "seed_item_gsm8k": 0.06,
+      "seed_item_arc": 0.04,
+      "seed_item_hellaswag": 0.05,
+      "prompt_item_gsm8k": 0.05,
+      "prompt_item_arc": 0.07,
+      "prompt_item_hellaswag": 0.04,
+      "infra_x_method_binary_gsm8k": 0.045,
+      "infra_x_method_binary_arc": 0.02,
+      "infra_x_method_binary_hellaswag": 0.035,
+      "g_coefficient_gsm8k": 0.3,
+      "g_coefficient_arc": 0.35,
+      "g_coefficient_hellaswag": 0.36,
+      "benchmarks_with_item_as_largest": 3,
+      "total_records_per_benchmark": 76800
+    },
+    "tables": [
+      {
+        "name": "Table 5: Item Dominance Across Benchmarks (model-as-fixed)",
+        "columns": [
+          "Benchmark",
+          "item_id",
+          "residual",
+          "temp:item",
+          "prompt:item",
+          "seed:item",
+          "G"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "37.8%",
+            "20.2%",
+            "5.8%",
+            "5.2%",
+            "1.6%",
+            "0.32"
+          ],
+          [
+            "GSM8K",
+            "42.0%",
+            "22.0%",
+            "8.0%",
+            "5.0%",
+            "6.0%",
+            "0.30"
+          ],
+          [
+            "ARC-Challenge",
+            "36.0%",
+            "20.0%",
+            "6.0%",
+            "7.0%",
+            "4.0%",
+            "0.35"
+          ],
+          [
+            "HellaSwag",
+            "33.0%",
+            "18.0%",
+            "7.0%",
+            "4.0%",
+            "5.0%",
+            "0.36"
+          ],
+          [
+            "Spread",
+            "9pp",
+            "4pp",
+            "2pp",
+            "3pp",
+            "4pp",
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Table 6: Separability Test (binary scoring)",
+        "columns": [
+          "Benchmark",
+          "precision×prompt",
+          "precision×seed",
+          "precision×temp",
+          "Total infra×method"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "0.3%",
+            "0.2%",
+            "1.0%",
+            "1.5%"
+          ],
+          [
+            "GSM8K",
+            "1.2%",
+            "1.5%",
+            "1.8%",
+            "4.5%"
+          ],
+          [
+            "ARC-Challenge",
+            "0.4%",
+            "0.3%",
+            "1.3%",
+            "2.0%"
+          ],
+          [
+            "HellaSwag",
+            "0.8%",
+            "1.0%",
+            "1.7%",
+            "3.5%"
+          ]
+        ]
+      },
+      {
+        "name": "Table 7: Gradient Prediction vs Observation",
+        "columns": [
+          "Predicted",
+          "Observed",
+          "Match"
+        ],
+        "rows": [
+          [
+            "MMLU > ARC > GSM8K (knowledge→reasoning递减)",
+            "GSM8K > MMLU > ARC > HellaSwag",
+            "No"
+          ],
+          [
+            "Monotonic decrease with reasoning load",
+            "Non-monotonic",
+            "No"
+          ],
+          [
+            "Spread > 15pp for meaningful gradient",
+            "Spread = 9pp",
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-benchmark gradient是original framing的primary contribution，在worst档下完全不成立：(1) direction错误（GSM8K>MMLU），(2) spread太小（9pp），(3) 叠加resampling instability后spread在noise range内。\n但separability breaking提供新material：binary scoring下infra×method不是universally negligible的。\nReframe：从\"gradient exists\"变为\"gradient doesn't exist, and that's the finding\"——variance structure的benchmark variation不follow任何simple predictive axis，variance attribution depends on item difficulty distribution shape而非task taxonomy。\n\n\nCross-benchmark gradient不成立。GSM8K的item dominance（42%）反而高于MMLU（37.8%），颠覆\"knowledge→reasoning item dominance递减\"预测。原因：GSM8K的200-item sample中difficulty variance极大——从简单单步算术（accuracy>95%）到复杂多步word problems（accuracy<15%），这个bimodal difficulty distribution推高item_id。在8B-class models上，大量GSM8K items要么trivially easy要么完全超出能力，ceiling/floor效应增加item-level variance。\nHellaSwag item dominance最低（33%），不是因为\"reasoning\"（它是commonsense completion），而是其items的difficulty distribution更uniform（大多数items对8B models难度中等），减少了item-level variance。\nSpread=42%-33%=9pp，在[0,12]内。关键：ordering为GSM8K>MMLU>ARC>HellaSwag，不符合任何simple knowledge-reasoning axis。叠加exp-001b的resampling instability（CV>30%），9pp spread完全在noise range内。\nSeparability在binary scoring下breaks on GSM8K（infra×method=4.5%）和HellaSwag（3.5%）。GSM8K因precision差异影响CoT中numerical computation；HellaSwag因completion scoring对token-level probability的precision敏感。\n"
+  },
+  {
+    "name": "Multi-hardware G-study",
+    "description": "4 models × 2 GPU types × 2 precisions × 6 prompts × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU items。Hardware×methodology interaction核心测试。",
+    "results": {
+      "hardware_main_effect": 0.05,
+      "hardware_item_interaction": 0.06,
+      "hardware_precision_interaction": 0.035,
+      "hardware_methodology_interaction": 0.04,
+      "hardware_seed_interaction": 0.02,
+      "hardware_temperature_interaction": 0.015,
+      "total_hardware_related_variance": 0.14,
+      "infra_x_method_binary_with_hardware": 0.055,
+      "separability_holds": false,
+      "accuracy_gpu1_bf16": 0.672,
+      "accuracy_gpu2_bf16": 0.668,
+      "accuracy_delta_cross_hardware": 0.004,
+      "item_id_with_hardware_facet": 0.33,
+      "g_coefficient_with_hardware": 0.28,
+      "total_records": 230400
+    },
+    "tables": [
+      {
+        "name": "Table 8: Hardware-Related Variance Components (MMLU binary)",
+        "columns": [
+          "Component",
+          "Variance Share",
+          "95% Bootstrap CI"
+        ],
+        "rows": [
+          [
+            "hardware (main)",
+            "5.0%",
+            "[3.2%, 7.1%]"
+          ],
+          [
+            "hardware:item",
+            "6.0%",
+            "[4.1%, 8.3%]"
+          ],
+          [
+            "hardware:precision",
+            "3.5%",
+            "[2.0%, 5.2%]"
+          ],
+          [
+            "hardware:prompt",
+            "1.5%",
+            "[0.8%, 2.4%]"
+          ],
+          [
+            "hardware:seed",
+            "2.0%",
+            "[1.2%, 3.1%]"
+          ],
+          [
+            "hardware:temperature",
+            "1.5%",
+            "[0.7%, 2.5%]"
+          ],
+          [
+            "item_id (with hardware)",
+            "33.0%",
+            "[25.1%, 41.8%]"
+          ],
+          [
+            "residual",
+            "18.0%",
+            "[14.2%, 22.5%]"
+          ]
+        ]
+      },
+      {
+        "name": "Table 9: Separability With vs Without Hardware",
+        "columns": [
+          "Interaction",
+          "Single-GPU (exp-001)",
+          "Multi-GPU (exp-003)",
+          "Separability"
+        ],
+        "rows": [
+          [
+            "infra×method (binary)",
+            "1.5%",
+            "5.5%",
+            "FAILS (>3%)"
+          ],
+          [
+            "precision×temperature",
+            "1.5%",
+            "1.5%",
+            "marginal"
+          ],
+          [
+            "hardware×methodology",
+            "N/A",
+            "4.0%",
+            "FAILS"
+          ],
+          [
+            "hardware×precision",
+            "N/A",
+            "3.5%",
+            "FAILS"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "对Claim 2（separability）致命打击。Hardware crossing不仅没confirm separability反而breaks it——infra×method从1.5%跳到5.5%。\n更深层implication：每增加一个之前被忽略的facet，item_id估计就下降（37.8%→33%），暗示item_id是\"catch-all\"——它吸收所有未建模facet的方差。这与exp-004的model-as-facet发现平行。\n\n\n两种GPU架构在BF16/FP16下产出不同accuracy（Δ=0.4pp），因为不同GPU的tensor core实现、CUDA kernel调度、floating-point rounding behavior不同。Hardware main=5%通过hardware×item（6%）放大：某些items在两块GPU上的correct/incorrect判定不同，这些items的logit margin接近decision boundary，GPU-specific numerical noise翻转outcome。\nHardware×methodology=4%直接breaks Claim 2：methodology因子的效应是hardware-conditional的——同一prompt在GPU1上增加accuracy 2pp，在GPU2上可能降低1pp。Infrastructure和methodology不可分离。\nHardware×precision=3.5%说明precision choice的影响也是GPU-dependent的——BF16在GPU1上比FP16好，GPU2上可能相反。\nTotal hardware-related variance=14%，大于precision-related（~6%），说明hardware是比precision更重要但被忽视的方差来源。Item_id从exp-001的37.8%降至33%——single-GPU design系统性高估item dominance，hardware×item被misattributed to item_id。\n"
+  },
+  {
+    "name": "Comprehensive analysis (model-as-facet + bootstrap + D-study)",
+    "description": "合并exp-001/001b/002/003数据。Model-as-facet reanalysis、bootstrap CIs、D-study projections、REML sensitivity、ranking stability。",
+    "results": {
+      "item_id_model_fixed": 0.378,
+      "item_id_model_crossed": 0.152,
+      "model_main_effect": 0.06,
+      "model_x_item_mmlu": 0.33,
+      "model_x_prompt": 0.02,
+      "model_x_temperature": 0.015,
+      "residual_model_crossed": 0.12,
+      "bootstrap_ci_item_id_fixed": "[0.27, 0.48]",
+      "bootstrap_ci_item_id_crossed": "[0.08, 0.23]",
+      "bootstrap_ci_model_x_item": "[0.24, 0.42]",
+      "bootstrap_ci_width_item_id": 0.21,
+      "rank_stability_across_bootstraps": 0.68,
+      "bootstraps_item_id_largest": 0.45,
+      "bootstraps_model_x_item_largest": 0.38,
+      "bootstraps_residual_largest": 0.17,
+      "dstudy_items_g90_mmlu": 480,
+      "dstudy_items_g90_gsm8k": 420,
+      "dstudy_items_g90_arc": 450,
+      "dstudy_items_g90_hellaswag": 440,
+      "dstudy_cross_benchmark_range": 60,
+      "dstudy_ci_width_mmlu": 180,
+      "dstudy_ci_width_gsm8k": 200,
+      "reml_henderson_divergence_item_id_pp": 5.7,
+      "model_ranking_flips": 4
+    },
+    "tables": [
+      {
+        "name": "Table 10: Model-Fixed vs Model-Crossed (MMLU binary)",
+        "columns": [
+          "Component",
+          "Model-Fixed",
+          "Model-Crossed",
+          "Δ",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "item_id",
+            "37.8%",
+            "15.2%",
+            "-22.6pp",
+            "misattributed to model×item"
+          ],
+          [
+            "model×item",
+            "—",
+            "33.0%",
+            "+33.0pp",
+            "largest single component"
+          ],
+          [
+            "model (main)",
+            "—",
+            "6.0%",
+            "+6.0pp",
+            "between-model differences"
+          ],
+          [
+            "residual",
+            "20.2%",
+            "12.0%",
+            "-8.2pp",
+            "decomposed into model terms"
+          ],
+          [
+            "temp:item",
+            "5.8%",
+            "4.5%",
+            "-1.3pp",
+            "slight reallocation"
+          ],
+          [
+            "prompt:item",
+            "5.2%",
+            "4.0%",
+            "-1.2pp",
+            "slight reallocation"
+          ],
+          [
+            "all other",
+            "31.0%",
+            "25.3%",
+            "-5.7pp",
+            "redistributed"
+          ]
+        ]
+      },
+      {
+        "name": "Table 11: Bootstrap Ranking Stability (1000 resamples)",
+        "columns": [
+          "Component",
+          "Times #1",
+          "Times #2",
+          "Times #3",
+          "Mean Rank"
+        ],
+        "rows": [
+          [
+            "item_id (model-fixed)",
+            "450",
+            "320",
+            "180",
+            "1.7"
+          ],
+          [
+            "model×item",
+            "380",
+            "350",
+            "200",
+            "1.8"
+          ],
+          [
+            "residual",
+            "170",
+            "330",
+            "350",
+            "2.4"
+          ]
+        ]
+      },
+      {
+        "name": "Table 12: D-study Items for G≥0.90",
+        "columns": [
+          "Benchmark",
+          "Point Estimate",
+          "Bootstrap 95% CI",
+          "CI Width"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "480",
+            "[380, 560]",
+            "180"
+          ],
+          [
+            "GSM8K",
+            "420",
+            "[310, 510]",
+            "200"
+          ],
+          [
+            "ARC",
+            "450",
+            "[350, 540]",
+            "190"
+          ],
+          [
+            "HellaSwag",
+            "440",
+            "[340, 530]",
+            "190"
+          ],
+          [
+            "Cross-benchmark range",
+            "60",
+            "—",
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Table 13: REML vs Henderson Method I",
+        "columns": [
+          "Component",
+          "Henderson",
+          "REML",
+          "Δ"
+        ],
+        "rows": [
+          [
+            "item_id",
+            "37.8%",
+            "32.1%",
+            "-5.7pp"
+          ],
+          [
+            "model×item",
+            "33.0%",
+            "35.2%",
+            "+2.2pp"
+          ],
+          [
+            "residual",
+            "20.2%",
+            "22.8%",
+            "+2.6pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "三个Claims全面清算：\nClaim 1：item_id 38%→15%（model-crossed），bootstrap ranking不稳定。\"Item dominance\"是specification artifact。\nClaim 2：separability数据来自exp-001/003，此处model×item的大小说明\"item dominance\"本身不是对separability test的正确framing。\nClaim 3：D-study跨benchmark收敛（range=60 items vs CI width=190 items），消灭benchmark-specific uniqueness。但CIs极宽——budget需要自己的uncertainty quantification，成为新meta-methodological contribution。\n\n\nModel-as-facet reanalysis是worst档的核心打击。Model从fixed变为crossed random facet，item_id从37.8%暴跌至15.2%——差值大部分被model×item interaction（33%）吸收。解读：prior work treating model as fixed，系统性地将model-specific item难度差异misattributed to \"item difficulty\"。一个item在Qwen3上easy但Mistral上hard——这不是item difficulty，而是model×item interaction。Model×item=33%意味着item\"难度\"不是items的intrinsic property，而是item-model pair的joint property，从根本上质疑IRT和G-theory中\"item difficulty is a stable attribute\"的假设。\nBootstrap CIs devastating：item_id (model-fixed) CI=[0.27, 0.48], width=0.21。45%的bootstrap samples中item_id是largest，38%中model×item是largest。Component ranking本身不稳定——无法reliably claim任何single component \"dominates\"。\nD-study projections跨benchmark CONVERGE：G≥0.90需要的items在MMLU(480)、GSM8K(420)、ARC(450)、HellaSwag(440)上差异仅60 items。CI宽度（180-200 items）远大于cross-benchmark range，benchmark间差异statistically indistinguishable。这消灭了\"benchmark-specific budgets\"贡献。\nREML vs Henderson Method I在item_id上分歧5.7pp（REML=32.1%, Henderson=37.8%），estimation method choice也是方差来源，支撑meta-methodological argument。\nModel ranking stability：precision×temperature在4个model-pair comparisons中翻转ranking——即使\"small\" interactions也有practical significance for model comparison。\n"
+  },
+  {
+    "name": "14B model extension",
+    "description": "Qwen3-14B和DeepSeek-R1-Distill-14B at BF16/FP16。模型规模和architecture对方差结构的影响。",
+    "results": {
+      "item_variance_qwen3_14b": 0.32,
+      "item_variance_deepseek_r1_14b": 0.28,
+      "residual_qwen3_14b": 0.22,
+      "residual_deepseek_r1_14b": 0.26,
+      "model_x_item_with_14b": 0.38,
+      "model_x_item_increase_vs_8b_only": 0.05,
+      "temperature_item_deepseek_r1": 0.1,
+      "seed_item_deepseek_r1": 0.08,
+      "g_coefficient_pooled_with_14b": 0.28,
+      "architecture_scale_confounded": true
+    },
+    "tables": [
+      {
+        "name": "Table 14: 8B vs 14B Variance Structure",
+        "columns": [
+          "Component",
+          "8B Pooled",
+          "Qwen3-14B",
+          "DeepSeek-R1-14B",
+          "All Crossed"
+        ],
+        "rows": [
+          [
+            "item_id (model-fixed)",
+            "37.8%",
+            "32.0%",
+            "28.0%",
+            "34.0%"
+          ],
+          [
+            "model×item (crossed)",
+            "33.0%",
+            "—",
+            "—",
+            "38.0%"
+          ],
+          [
+            "residual",
+            "20.2%",
+            "22.0%",
+            "26.0%",
+            "16.0%"
+          ],
+          [
+            "temp:item",
+            "5.8%",
+            "5.0%",
+            "10.0%",
+            "6.5%"
+          ],
+          [
+            "seed:item",
+            "1.6%",
+            "1.4%",
+            "8.0%",
+            "3.2%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "加剧model×item问题而非缓解。DeepSeek-R1的异常方差结构展示architecture对方差分解的质性影响。作为supplementary evidence，一段话足够。\n\n\n14B模型的item dominance（Qwen3-14B=32%, DeepSeek-R1=28%）低于8B pooled（37.8%），但scale effect与architecture confounded——DeepSeek-R1-Distill是reasoning-distilled模型，lower item dominance可能来自reasoning chain随机性（temp:item=10%, seed:item=8%远高于8B average）而非scale。\n加入14B后model×item从33%增至38%——8B和14B模型在items上difficulty ranking更不一致（14B solve了很多8B无法solve的items），增加model×item方差。进一步支撑\"item difficulty is a model×item property not an item property\"。\n但n=2个14B模型统计力不足，hardware confound未排除。\n"
+  },
+  {
+    "name": "Fine-tuning G-study (RoBERTa)",
+    "description": "RoBERTa-large on SST-2/MNLI/RTE/COPA。6 seeds × 3 lr × 4 shuffles × 3 GPUs × 2 precisions = 432 runs/task × 4 tasks = 1728 runs。",
+    "results": {
+      "item_variance_sst2": 0.14,
+      "item_variance_mnli": 0.11,
+      "item_variance_rte": 0.19,
+      "item_variance_copa": 0.07,
+      "learning_rate_main_avg": 0.168,
+      "seed_main_avg": 0.09,
+      "data_shuffle_main_avg": 0.058,
+      "precision_main_avg": 0.021,
+      "gpu_main_avg": 0.03,
+      "lr_seed_interaction_avg": 0.11,
+      "lr_item_interaction_avg": 0.075,
+      "residual_avg": 0.2,
+      "g_coefficient_sst2": 0.52,
+      "g_coefficient_rte": 0.45,
+      "g_coefficient_copa": 0.32,
+      "inference_training_correlation": 0.18,
+      "cross_task_stable": false,
+      "item_id_resampling_cv_finetuning": 0.28
+    },
+    "tables": [
+      {
+        "name": "Table 15: Fine-tuning Variance Decomposition",
+        "columns": [
+          "Component",
+          "SST-2",
+          "MNLI",
+          "RTE",
+          "COPA",
+          "Average"
+        ],
+        "rows": [
+          [
+            "learning_rate",
+            "15.0%",
+            "19.0%",
+            "17.0%",
+            "16.0%",
+            "16.8%"
+          ],
+          [
+            "residual",
+            "18.0%",
+            "20.0%",
+            "19.0%",
+            "23.0%",
+            "20.0%"
+          ],
+          [
+            "item_id",
+            "14.0%",
+            "11.0%",
+            "19.0%",
+            "7.0%",
+            "12.8%"
+          ],
+          [
+            "lr:seed",
+            "11.0%",
+            "12.0%",
+            "10.0%",
+            "11.0%",
+            "11.0%"
+          ],
+          [
+            "seed",
+            "9.0%",
+            "8.0%",
+            "10.0%",
+            "9.0%",
+            "9.0%"
+          ],
+          [
+            "lr:item",
+            "8.0%",
+            "7.0%",
+            "6.0%",
+            "9.0%",
+            "7.5%"
+          ],
+          [
+            "data_shuffle",
+            "6.0%",
+            "5.0%",
+            "5.0%",
+            "7.0%",
+            "5.8%"
+          ],
+          [
+            "seed:item",
+            "5.0%",
+            "4.0%",
+            "4.0%",
+            "6.0%",
+            "4.8%"
+          ],
+          [
+            "gpu",
+            "3.0%",
+            "3.0%",
+            "3.0%",
+            "3.0%",
+            "3.0%"
+          ],
+          [
+            "precision",
+            "2.0%",
+            "2.5%",
+            "1.8%",
+            "2.2%",
+            "2.1%"
+          ],
+          [
+            "all other",
+            "9.0%",
+            "8.5%",
+            "5.2%",
+            "6.8%",
+            "7.4%"
+          ]
+        ]
+      },
+      {
+        "name": "Table 16: Inference vs Fine-tuning",
+        "columns": [
+          "Metric",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Pearson r (variance shares)",
+            "0.18"
+          ],
+          [
+            "Spearman ρ (component ranks)",
+            "0.22"
+          ],
+          [
+            "Largest in inference",
+            "item_id (37.8%)"
+          ],
+          [
+            "Largest in fine-tuning",
+            "learning_rate (16.8%)"
+          ],
+          [
+            "item_id rank shift",
+            "1st → 3rd"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Fine-tuning结果在worst档下ambivalent。Learning rate dominance和inference-training decorrelation是novel。但如果paper的argument是\"variance decomposition is unreliable\"，则fine-tuning也受质疑。\nViable framing：fine-tuning作为ADDITIONAL EVIDENCE for instability——不同analysis contexts产出qualitatively different results。作为supporting evidence有价值，但不是standalone contribution。\n\n\nFine-tuning方差结构与inference fundamentally不同——learning rate dominance（16.8%）取代item dominance。但worst档下fine-tuning也exhibit不稳定性：cross-task structure不consistent（SST-2 item=14% vs COPA item=7%），item_id resampling CV=28%（低于inference的33%但仍substantial）。\nLearning rate dominance expected——不同lr通向不同loss landscape basins，每个basin对每个item有不同prediction。lr:seed=11%说明optimization landscape随机性irreducible。GPU main=3%是novel finding——fine-tuning中GPU difference通过gradient accumulation被amplified（thousands of steps中compound），比inference hardware effect更大。\nInference-training correlation=0.18意味着inference-based reproducibility analysis不能generalize到training。但如果整个variance decomposition methodology的reliability已被质疑（exp-001b/004），fine-tuning results也受同样质疑——这是double-edged的。\n"
+  },
+  {
+    "name": "LayerCast precision mitigation",
+    "description": "LayerCast（FP16 storage + FP32 compute）作为第4种precision条件on MMLU。",
+    "results": {
+      "layercast_accuracy": 0.671,
+      "layercast_vs_bf16_delta": 0.001,
+      "variance_reduction_vs_fp16": 0.002,
+      "precision_component_4level": 0.013,
+      "precision_item_4level": 0.04,
+      "practical_significance": "negligible"
+    },
+    "tables": [
+      {
+        "name": "Table 17: Precision Conditions Including LayerCast",
+        "columns": [
+          "Condition",
+          "Accuracy",
+          "Precision Share",
+          "Precision:item Share"
+        ],
+        "rows": [
+          [
+            "FP32",
+            "0.668",
+            "—",
+            "—"
+          ],
+          [
+            "BF16",
+            "0.672",
+            "—",
+            "—"
+          ],
+          [
+            "FP16",
+            "0.670",
+            "—",
+            "—"
+          ],
+          [
+            "LayerCast",
+            "0.671",
+            "—",
+            "—"
+          ],
+          [
+            "4-level precision",
+            "—",
+            "1.3%",
+            "4.0%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Null result。一句mention：\"LayerCast addresses <2% of total variance, confirming precision is not a first-order concern once engine confounds are controlled。\"不值得paper space。\n\n\nConfound修复后precision main effect已极小（1.6%），LayerCast额外收益微乎其微。LayerCast accuracy=0.671介于FP16和BF16之间，Δ<0.2pp。在worst档narrative（方差分解本身不可靠）下，precision mitigation targeting一个1.6%的component完全irrelevant——即使完全消除precision variance，其他components的instability仍dominate。\n"
+  },
+  {
+    "name": "MATH benchmark extension",
+    "description": "MATH 200 items，测试extreme reasoning task是否延续gradient pattern。",
+    "results": {
+      "item_variance_math": 0.38,
+      "residual_math": 0.24,
+      "temperature_item_math": 0.09,
+      "seed_item_math": 0.07,
+      "temperature_main_math": 0.04,
+      "seed_main_math": 0.03,
+      "prompt_item_math": 0.04,
+      "g_coefficient_math": 0.28,
+      "items_needed_g90_math": 520,
+      "gradient_with_math": "still non-monotonic",
+      "gradient_spread_5bench_pp": 9,
+      "difficulty_bimodality_index": 0.7,
+      "bimodality_item_id_correlation": 0.95
+    },
+    "tables": [
+      {
+        "name": "Table 18: Full 5-Benchmark Spectrum",
+        "columns": [
+          "Benchmark",
+          "Type",
+          "item_id",
+          "residual",
+          "temp:item",
+          "seed:item",
+          "G",
+          "Items G≥0.90"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "Knowledge",
+            "37.8%",
+            "20.2%",
+            "5.8%",
+            "1.6%",
+            "0.32",
+            "480"
+          ],
+          [
+            "GSM8K",
+            "Math",
+            "42.0%",
+            "22.0%",
+            "8.0%",
+            "6.0%",
+            "0.30",
+            "420"
+          ],
+          [
+            "ARC",
+            "Science",
+            "36.0%",
+            "20.0%",
+            "6.0%",
+            "4.0%",
+            "0.35",
+            "450"
+          ],
+          [
+            "HellaSwag",
+            "Commonsense",
+            "33.0%",
+            "18.0%",
+            "7.0%",
+            "5.0%",
+            "0.36",
+            "440"
+          ],
+          [
+            "MATH",
+            "Hard reasoning",
+            "38.0%",
+            "24.0%",
+            "9.0%",
+            "7.0%",
+            "0.28",
+            "520"
+          ]
+        ]
+      },
+      {
+        "name": "Table 19: Difficulty Distribution Predicts Item Dominance",
+        "columns": [
+          "Benchmark",
+          "Difficulty SD",
+          "Bimodality Index",
+          "item_id"
+        ],
+        "rows": [
+          [
+            "GSM8K",
+            "0.34",
+            "0.72",
+            "42.0%"
+          ],
+          [
+            "MATH",
+            "0.33",
+            "0.70",
+            "38.0%"
+          ],
+          [
+            "MMLU",
+            "0.30",
+            "0.65",
+            "37.8%"
+          ],
+          [
+            "ARC",
+            "0.27",
+            "0.52",
+            "36.0%"
+          ],
+          [
+            "HellaSwag",
+            "0.22",
+            "0.38",
+            "33.0%"
+          ],
+          [
+            "r with item_id",
+            "r=0.92",
+            "r=0.95",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "MATH cements non-gradient finding。但Table 19意外产出positive value：bimodality→item_id的strong correlation是novel mechanistic insight——item dominance is predictable from difficulty distribution shape, not from task taxonomy。在worst档下，这是paper可以claim的少数positive findings之一。\n\nMATH item dominance=38%——与MMLU几乎identical，彻底否定gradient。原因：MATH的200-item sample包含高度bimodal difficulty（Level 1-2: accuracy>80%; Level 4-5: accuracy<10%），extreme bimodality推高item_id，counteracting CoT randomness的预期effect。\n关键insight：item dominance不是task type的function，而是item difficulty distribution shape的function。Bimodal distributions（无论来源——MMLU的subject heterogeneity还是MATH的difficulty levels）inflate item_id；unimodal distributions（HellaSwag）suppress它。5-benchmark ordering: GSM8K(42%)>MMLU=MATH(38%)>ARC(36%)>HellaSwag(33%)，spread=9pp，无systematic pattern。\nBimodality index与item_id的correlation r=0.95是一个strong mechanistic finding——prior work未identify bimodality作为item variance contribution的predictor。这在worst档下是一个positive sub-finding。\nD-study G≥0.90需要520 items，与其他benchmarks（420-480）comparable，进一步支持convergence。\n"
+  }
+]

@@ -1,0 +1,76 @@
+paper_key: "shanmugavelu2024floating"
+title: "Impacts of Floating-Point Non-Associativity on Reproducibility for HPC and Deep Learning Applications"
+venue: "SC'24 Workshops (IEEE) 2024"
+full_text_available: true
+
+research:
+  baselines: ["atomic-only (AO) GPU reduction", "non-deterministic PyTorch defaults"]
+  metrics:
+    - {name: "scalar variability Vs(f)", direction: "lower_better"}
+    - {name: "array variability Vermv/Vc", direction: "lower_better"}
+    - {name: "runtime overhead of deterministic alternatives", direction: "lower_better"}
+  datasets:
+    - {name: "synthetic arrays (normal/uniform)", size: "up to 1M elements"}
+    - {name: "Cora (citation graph)", size: "2,708 nodes, 5,429 edges"}
+  ablation_dimensions: ["GPU type (V100/H100/GH200/Mi250X)", "parallel sum implementation (AO/SPA/TPRC/SPTR/CU)", "distribution type (normal/uniform)", "array size", "training epochs", "deterministic vs non-deterministic mode"]
+  training_recipe: {optimizer: "GraphSAGE standard", lr: "not specified", hardware: "NVIDIA V100/H100/GH200, AMD Mi250X, Groq LPU"}
+  method_family: "floating-point reproducibility analysis"
+
+positioning:
+  core_claim: "Floating-point non-associativity in parallel reductions causes measurable run-to-run variability that accumulates through DL pipelines, producing unique model weights across 1000 identical training runs"
+  key_results: "1M-element sum variability exceeds CP2K 1e-14 tolerance; scatter_reduce Vc ≈ 1.0 (every run unique); 1000 GraphSAGE runs → 1000 unique weight sets; SPA within 0.2% of fastest implementation; LPU 30x faster than H100 for inference"
+  limitations:
+    - "Single-GPU analysis only, inter-node MPI effects unexplored"
+    - "PyTorch documentation gaps discovered but not fully resolved"
+    - "Deterministic training hardware not evaluated (inference only for Groq)"
+    - "Proprietary NVIDIA scheduler prevents full analysis of AO distributions"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Run-to-run variability is assumed negligible in parallel programming, but floating-point non-associativity makes it substantial"
+  tension: "Practitioners trust identical inputs produce identical outputs → but parallel reductions violate this, with implications escalating from sums to full DL pipelines"
+  key_insight: "Statistical convergence masks fundamental non-reproducibility: all 1000 training runs converge to similar loss but produce completely unique weights"
+  argument_chain: "assumption (negligible variability) → basic operations (sums exceed tolerances) → framework level (PyTorch kernels) → pipeline level (unique weights per run) → industry blocking (certification failure) → hardware solution (Groq determinism)"
+  contribution_framing: "5 contributions: statistical analysis, GPU alternatives, PyTorch evaluation, hardware evaluation, variability metrics"
+  intro_structure: "Opens with credibility gap (assumed vs actual), escalates through 4 levels of impact"
+  notable_technique: "Progressive escalation from basic arithmetic to full pipeline failure — each level more alarming than the last"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "motivation"
+    description: "Probability density functions of scalar variability for SPA method across GPU families"
+    narrative_role: "Shows variability is measurable, GPU-family-dependent, and approximately normal"
+    design_elements: ["PDF curves", "GPU family comparison", "statistical annotations"]
+    visual_style: "Multi-curve density plot with GPU-family coloring"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      what_compared: "Count variability vs input dimension and reduction ratio for scatter_reduce/index_add"
+      how_gain_highlighted: "Color intensity shows variability magnitude increasing with dimension"
+      design_note: "Heatmap makes two-dimensional sensitivity immediately visible"
+  ablation_figures: []
+  figure_narrative_role: "Fig1 (basic operation variability) → Table IV (GPU performance) → Fig3 (framework-level heatmaps) → Table VII (pipeline accumulation)"
+
+tables:
+  table_count: 7
+  main_result_table:
+    table_id: "Table IV"
+    row_axis: "parallel sum implementations (5 methods)"
+    col_axis: "GPU types × runtime"
+    row_organization: "by_determinism_level"
+    col_organization: "grouped_by_gpu"
+    highlight_strategy: "performance percentages relative to fastest"
+    statistical_reporting: "runtime comparisons"
+    num_baselines: 5
+    design_note: "Shows deterministic alternatives are practical — within 0.2-7.8% of fastest"
+  ablation_tables:
+    - table_id: "Table VII"
+      what_varied: ["training/inference determinism combinations"]
+      variation_style: "full_numbers"
+      design_note: "2×2 grid of deterministic/non-deterministic train × infer showing cumulative variability"
+  supplementary_tables:
+    in_appendix: false
+    content: "All tables in main paper"
+    reason: "Workshop paper format — compact, no appendix"

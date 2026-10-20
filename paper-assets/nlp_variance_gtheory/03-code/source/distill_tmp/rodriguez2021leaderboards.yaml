@@ -1,0 +1,26 @@
+paper_key: "rodriguez2021leaderboards"
+title: "Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards?"
+venue: "ACL 2021"
+full_text_available: false
+
+research:
+  baselines: ["standard aggregate-score leaderboards"]
+  metrics:
+    - {name: "item difficulty (IRT)", direction: "N/A"}
+    - {name: "item discrimination (IRT)", direction: "higher_better"}
+    - {name: "ranking stability", direction: "higher_better"}
+  datasets:
+    - {name: "multiple NLP benchmarks (not specified in abstract)", size: "N/A"}
+  ablation_dimensions: ["IRT model complexity"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "IRT-based leaderboard analysis"
+
+positioning:
+  core_claim: "Bayesian IRT leaderboards that model item difficulty and discrimination can identify annotation errors, detect overfitting, and guide annotation priorities"
+  key_results: "N/A (abstract level)"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,85 @@
+{
+  "experiment": "exp-002 (+ optional exp-001)",
+  "test_statistic": "spearman_rho",
+  "n_benchmarks": 5,
+  "n_permutations": 120,
+  "benchmark_order_hypothesis": [
+    "mmlu",
+    "arc",
+    "hellaswag",
+    "gsm8k",
+    "math"
+  ],
+  "benchmarks_used": [
+    "mmlu",
+    "arc",
+    "hellaswag",
+    "gsm8k",
+    "math"
+  ],
+  "benchmark_stats": {
+    "arc": {
+      "item_id_pct": 48.89986395195155,
+      "model_item_pct": 38.19723003554425,
+      "n_obs": 230400,
+      "accuracy": 0.8178298611111111
+    },
+    "gsm8k": {
+      "item_id_pct": 11.990200787528359,
+      "model_item_pct": 12.093403522004287,
+      "n_obs": 230400,
+      "accuracy": 0.5557638888888888
+    },
+    "hellaswag": {
+      "item_id_pct": 44.46529444603867,
+      "model_item_pct": 32.30561962034519,
+      "n_obs": 230400,
+      "accuracy": 0.7079513888888889
+    },
+    "math": {
+      "item_id_pct": 0.0,
+      "model_item_pct": 28.351153115121768,
+      "n_obs": 84000,
+      "accuracy": 0.2621785714285714
+    },
+    "mmlu": {
+      "item_id_pct": 41.54706618382246,
+      "model_item_pct": 32.810330873372344,
+      "n_obs": 230400,
+      "accuracy": 0.7002473958333333
+    }
+  },
+  "item_id_gradient": {
+    "observed_values": [
+      41.5471,
+      48.8999,
+      44.4653,
+      11.9902,
+      0.0
+    ],
+    "observed_rho": -0.7,
+    "p_value": 0.116667,
+    "n_extreme": 14,
+    "significant_at_0.05": false,
+    "kendall_tau": -0.6,
+    "kendall_p": 0.233333,
+    "direction": "decreasing"
+  },
+  "model_item_gradient": {
+    "observed_values": [
+      32.8103,
+      38.1972,
+      32.3056,
+      12.0934,
+      28.3512
+    ],
+    "observed_rho": -0.8,
+    "p_value": 0.958333,
+    "n_extreme": 115,
+    "significant_at_0.05": false,
+    "kendall_tau": -0.6,
+    "kendall_p": 0.233333,
+    "direction": "increasing"
+  },
+  "interpretation": "Spearman rho measures rank correlation between benchmark position (knowledge-retrieval -> reasoning) and variance component percentage. P-value from exact permutation test over all k! orderings. For 5 benchmarks, k! = 120."
+}

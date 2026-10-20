@@ -1,0 +1,66 @@
+{
+  "forward_prediction_error": 0.035,
+  "design": "recommended_3x3 (3 prompts × 3 seeds)",
+  "note": "For multi-benchmark studies (arc/hellaswag/gsm8k/math), model×item variance is excluded (model fixed). MMLU is single-model study with precision facet at 1 level.",
+  "formula": "G(n) = tau*n / (tau*n + N*delta_per_item); n = G*N*delta / [(1-G)*tau]",
+  "N_study": 200,
+  "benchmarks": {
+    "mmlu": {
+      "sigma2_item": 0.1271120031,
+      "sigma2_delta_3x3": 0.028219303,
+      "n_items_at_G800": 178,
+      "n_items_at_G765": 145,
+      "n_items_at_G835": 225,
+      "n_items_at_G800_with_pessimistic_components": 219,
+      "delta_n_pessimistic": 41,
+      "pct_increase_pessimistic": 23.0
+    },
+    "arc": {
+      "sigma2_item": 0.0671248004,
+      "sigma2_delta_3x3": 0.0043732951,
+      "n_items_at_G800": 53,
+      "n_items_at_G765": 43,
+      "n_items_at_G835": 66,
+      "n_items_at_G800_with_pessimistic_components": 66,
+      "delta_n_pessimistic": 13,
+      "pct_increase_pessimistic": 24.5
+    },
+    "hellaswag": {
+      "sigma2_item": 0.0705466971,
+      "sigma2_delta_3x3": 0.0071180116,
+      "n_items_at_G800": 81,
+      "n_items_at_G765": 66,
+      "n_items_at_G835": 103,
+      "n_items_at_G800_with_pessimistic_components": 100,
+      "delta_n_pessimistic": 19,
+      "pct_increase_pessimistic": 23.5
+    },
+    "gsm8k": {
+      "sigma2_item": 0.0421014063,
+      "sigma2_delta_3x3": 0.0152824766,
+      "n_items_at_G800": 291,
+      "n_items_at_G765": 237,
+      "n_items_at_G835": 368,
+      "n_items_at_G800_with_pessimistic_components": 358,
+      "delta_n_pessimistic": 67,
+      "pct_increase_pessimistic": 23.0
+    },
+    "math": {
+      "sigma2_item": 0.0497668223,
+      "sigma2_delta_3x3": 0.0136237725,
+      "n_items_at_G800": 220,
+      "n_items_at_G765": 179,
+      "n_items_at_G835": 278,
+      "n_items_at_G800_with_pessimistic_components": 271,
+      "delta_n_pessimistic": 51,
+      "pct_increase_pessimistic": 23.2
+    }
+  },
+  "summary": {
+    "mean_delta_n": 38.2,
+    "max_delta_n": 67,
+    "min_delta_n": 13,
+    "pct_increase_all_benchmarks": 22.9,
+    "interpretation": "A |ΔG|=0.035 estimation error translates to ~23% budget increase across all benchmarks. The percentage is constant because the G-formula ratio (0.800/0.200)×(0.235/0.765)=1.229 is independent of variance components. Absolute Δn ranges from 13 to 67 items depending on benchmark difficulty heterogeneity."
+  }
+}

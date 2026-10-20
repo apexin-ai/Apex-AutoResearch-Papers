@@ -1,0 +1,4 @@
+\section{Limitations}
+\label{sec:limitations}
+
+Our findings are bounded by three scope constraints. First, the model sample comprises four open-weight 7--9B parameter models from four architecture families; the results do not generalize to API-based models, larger models, or fine-tuned variants. Second, all experiments run on single-GPU inference (NVIDIA RTX PRO 6000); multi-GPU tensor parallelism introduces additional numerical non-associativity that our design does not capture. Third, the benchmark sample covers three multiple-choice and one free-form task; other evaluation formats such as code generation, long-form text production, and multi-turn dialogue may exhibit different variance structures.

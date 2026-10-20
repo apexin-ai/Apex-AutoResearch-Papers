@@ -1,0 +1,55 @@
+{
+  "name": "cross_model_3way_bf16",
+  "n_records": 259200,
+  "n_cells": 1296,
+  "items_per_cell": 200,
+  "facets": [
+    "model",
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering"
+  ],
+  "n_levels": {
+    "model": 3,
+    "temperature": 3,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4
+  },
+  "factor_levels": {
+    "model": [
+      "gemma-2-9b-it",
+      "llama-3.1-8b-instruct",
+      "mistral-7b-instruct-v0.3"
+    ],
+    "temperature": [
+      0.0,
+      0.3,
+      0.7
+    ],
+    "prompt_template": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "seed": [
+      42,
+      123,
+      456,
+      789,
+      1024,
+      2048
+    ],
+    "ordering": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "fully_crossed": true
+}

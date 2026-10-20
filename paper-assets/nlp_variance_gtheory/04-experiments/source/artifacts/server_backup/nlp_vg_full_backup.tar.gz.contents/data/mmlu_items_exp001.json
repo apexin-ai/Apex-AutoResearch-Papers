@@ -1,0 +1,2402 @@
+[
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | Every nonzero free abelian group has an infinite number of bases. Statement 2 | Every free abelian group of rank at least 2 has an infinite number of bases.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_81"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the maximum possible order for an element of S_n for n = 10.",
+    "choices": [
+      "6",
+      "12",
+      "30",
+      "105"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_14"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_3"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | Q is an extension field of Z_2. Statement 2 | Every non-constant polynomial over a field has a zero in some extension field.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_94"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the degree for the given field extension Q(sqrt(2), sqrt(3)) over Q.",
+    "choices": [
+      "0",
+      "4",
+      "2",
+      "6"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_35"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "If (G, .) is a group such that (ab)^-1 = a^-1b^-1, for all a, b in G, then G is a/an",
+    "choices": [
+      "commutative semi group",
+      "abelian group",
+      "non-abelian group",
+      "None of these"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_31"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | The image of a group of 6 elements under a homomorphism may have 12 elements. Statement 2 | There is a homomorphism of some group of 6 elements into some group of 12 elements.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_28"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Compute the product in the given ring. (2,3)(3,5) in Z_5 x Z_9",
+    "choices": [
+      "(1,1)",
+      "(3,1)",
+      "(1,6)",
+      "(3,6)"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_17"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "The polynomial x^3 + 2x^2 + 2x + 1 can be factored into linear factors in Z_7[x]. Find this factorization.",
+    "choices": [
+      "(x − 2)(x + 2)(x − 1)",
+      "(x + 1)(x + 4)(x − 2)",
+      "(x + 1)(x − 4)(x − 2)",
+      "(x - 1)(x − 4)(x − 2)"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_13"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | If H and K are subgroups of a group G, then |HK| = |H||K|/|H intersection K|. Statement 2 | A group of order 2p where p is an odd prime is cyclic or isomorphic to D_p.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_86"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | There exists a free abelian group of every positive integer rank. Statement 2 | A finitely generated abelian group is free abelian if its Betti number equals the number of elements in some generating set.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_69"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "If A = {1, 2, 3} then relation S = {(1, 1), (2, 2)} is",
+    "choices": [
+      "symmetric only",
+      "anti-symmetric only",
+      "both symmetric and anti-symmetric",
+      "an equivalence relation"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_11"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | In a group (ab)^{-2} = b^{-2}a^{-2}. Statement 2 | In a group (ab)^n = a^nb^n.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_75"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the degree for the given field extension Q(sqrt(2)) over Q.",
+    "choices": [
+      "0",
+      "2",
+      "1",
+      "3"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_54"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].",
+    "choices": [
+      "2x^2 + 5",
+      "6x^2 + 4x + 6",
+      "0",
+      "x^2 + 1"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_4"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Determine whether the polynomial in Z[x] satisfies an Eisenstein criterion for irreducibility over Q. 8x^3 + 6x^2 - 9x + 24",
+    "choices": [
+      "Yes, with p=2.",
+      "Yes, with p=3.",
+      "Yes, with p=5.",
+      "No."
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_27"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | The homomorphic image of a cyclic group is cyclic. Statement 2 | The homomorphic image of an Abelian group is Abelian.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_29"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "How many homomorphisms are there of Z into Z_2?",
+    "choices": [
+      "1",
+      "2",
+      "infinitely many",
+      "0"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_64"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the characteristic of the ring Z x Z.",
+    "choices": [
+      "0",
+      "3",
+      "12",
+      "30"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_77"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the degree for the given field extension Q(sqrt(2)*sqrt(3)) over Q.",
+    "choices": [
+      "0",
+      "4",
+      "2",
+      "6"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_71"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Which of the following ions CANNOT be used as a dopant in germanium to make an n-type semiconductor?",
+    "choices": [
+      "As",
+      "P",
+      "Sb",
+      "B"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_25"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The speed of light inside of a nonmagnetic dielectric material with a dielectric constant of 4.0 is",
+    "choices": [
+      "1.2 * 10^9 m/s",
+      "3.0 * 10^8 m/s",
+      "1.5 * 10^8 m/s",
+      "1.0 * 10^8 m/s"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_91"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The driver of a police car hears an echo of the car’s siren from a wall toward which the car is moving with a speed of 3.5 m/s. If the speed of sound is 350 m/s and the frequency of the siren is 600 Hz, the driver hears the echo at a frequency nearest to which of the following?",
+    "choices": [
+      "588 Hz",
+      "594 Hz",
+      "600 Hz",
+      "612 Hz"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_83"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The emission spectrum of the doubly ionized lithium atom Li++ (Z = 3, A = 7) is identical to that of a hydrogen atom in which all the wavelengths are",
+    "choices": [
+      "decreased by a factor of 9",
+      "decreased by a factor of 49",
+      "decreased by a factor of 81",
+      "increased by a factor of 9"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_89"
+  },
+  {
+    "subject": "college_physics",
+    "question": "By definition, the electric displacement current through a surface S is proportional to the",
+    "choices": [
+      "rate of change of the electric flux through S",
+      "electric flux through S",
+      "time integral of the magnetic flux through S",
+      "rate of change of the magnetic flux through S"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_69"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A net force F_A acts on object A, and a net force F_B acts on object B. The mass of object B is twice the mass of object A, and the acceleration of object B is twice that of object A. Which of the following is true of forces F_A and F_B?",
+    "choices": [
+      "F_B = 1/4 F_A",
+      "F_B = 1/2 F_A",
+      "F_B = 2F_A",
+      "F_B = 4F_A"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_53"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A proton moves in the +z-direction after being accelerated from rest through a potential difference V. The proton then passes through a region with a uniform electric field E in the +x-direction and a uniform magnetic field B in the +y-direction, but the proton’s trajectory is not affected. If the experiment were repeated using a potential difference of 2V, the proton would then be",
+    "choices": [
+      "deflected in the +x-direction",
+      "deflected in the -x-direction",
+      "deflected in the +y-direction",
+      "deflected in the -y-direction"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_28"
+  },
+  {
+    "subject": "college_physics",
+    "question": "If the absolute temperature of a blackbody is increased by a factor of 3, the energy radiated per second per unit area does which of the following?",
+    "choices": [
+      "Decreases by a factor of 81.",
+      "Decreases by a factor of 9.",
+      "Increases by a factor of 9.",
+      "Increases by a factor of 81."
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_57"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The mean kinetic energy of the conduction electrons in metals is ordinarily much higher than kT because",
+    "choices": [
+      "electrons have many more degrees of freedom than atoms do",
+      "the electrons and the lattice are not in thermal equilibrium",
+      "the electrons form a degenerate Fermi gas",
+      "electrons in metals are highly relativistic"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_75"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A student makes 10 one-second measurements of the disintegration of a sample of a long-lived radioactive isotope and obtains the following values: 3, 0, 2, 1, 2, 4, 0, 1, 2, 5. How long should the student count to establish the rate to an uncertainty of 1 percent?",
+    "choices": [
+      "80 s",
+      "160 s",
+      "2,000 s",
+      "5,000 s"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_35"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The quantum efficiency of a photon detector is 0.1. If 100 photons are sent into the detector, one after the other, the detector will detect photons",
+    "choices": [
+      "an average of 10 times, with an rms deviation of about 4",
+      "an average of 10 times, with an rms deviation of about 3",
+      "an average of 10 times, with an rms deviation of about 1",
+      "an average of 10 times, with an rms deviation of about 0.1"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_0"
+  },
+  {
+    "subject": "college_physics",
+    "question": "White light is normally incident on a puddle of water (index of refraction 1.33). A thin (500 nm) layer of oil (index of refraction 1.5) floats on the surface of the puddle. Of the following, the most strongly reflected wavelength is",
+    "choices": [
+      "500 nm",
+      "550 nm",
+      "600 nm",
+      "650 nm"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_97"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Characteristic X rays, appearing as sharp lines on a continuous background, are produced when high-energy electrons bombard a metal target. Which of the following processes results in the characteristic X rays?",
+    "choices": [
+      "Electrons producing Čerenkov radiation",
+      "Electrons colliding with phonons in the metal",
+      "Electrons filling inner shell vacancies that are created in the metal atoms",
+      "Electrons combining with protons to form neutrons"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_20"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Under ideal conditions, the electric and magnetic fields inside a superconductor are zero. Maxwell’s equations imply that which of the following must be true just outside the surface of the superconductor?",
+    "choices": [
+      "B = 0",
+      "B is perpendicular to the surface.",
+      "B is tangential to the surface.",
+      "B is time independent."
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_54"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A uniform solid disk starts from rest and rolls down an inclined plane without slipping. After some time, what fraction of the disk’s total kinetic energy is rotational kinetic energy?",
+    "choices": [
+      "1/4",
+      "1/3",
+      "1/2",
+      "2/3"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_43"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Protons used in cancer therapy are typically accelerated to about 0.6c . How much work must be done on a particle of mass m in order for it to reach this speed, assuming it starts at rest?",
+    "choices": [
+      "0.25mc^2",
+      "0.60mc^2",
+      "0.67mc^2",
+      "1.25mc^2"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_19"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A rod measures 1.00 m in its rest system. How fast must an observer move parallel to the rod to measure its length to be 0.80 m?",
+    "choices": [
+      "0.50c",
+      "0.60c",
+      "0.70c",
+      "0.80c"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_27"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The primary source of the Sun’s energy is a series of thermonuclear reactions in which the energy produced is c^2 times the mass difference between",
+    "choices": [
+      "two hydrogen atoms and one helium atom",
+      "four hydrogen atoms and one helium atom",
+      "six hydrogen atoms and two helium atoms",
+      "three helium atoms and one carbon atom"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_13"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The coefficient of static friction between a small coin and the surface of a turntable is 0.30. The turntable rotates at 33.3 revolutions per minute. What is the maximum distance from the center of the turntable at which the coin will not slide?",
+    "choices": [
+      "0.024 m",
+      "0.048 m",
+      "0.121 m",
+      "0.242 m"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_11"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A tube of water is traveling at 1/2 c relative to the lab frame when a beam of light traveling in the same direction as the tube enters it. What is the speed of light in the water relative to the lab frame? (The index of refraction of water is 4/3.)",
+    "choices": [
+      "1/2 c",
+      "2/3 c",
+      "5/6 c",
+      "10/11 c"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_48"
+  },
+  {
+    "subject": "world_religions",
+    "question": "What is the meaning of the Punjabi word \"Sikh\"?",
+    "choices": [
+      "Disciple",
+      "Faithful",
+      "Devotee",
+      "Enlightened"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_24"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Where is the largest network of Confucian shrines in the world?",
+    "choices": [
+      "Indonesia",
+      "China",
+      "Korea",
+      "Singapore"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_91"
+  },
+  {
+    "subject": "world_religions",
+    "question": " During what Japanese festival do the spirits of deceased family members return to receive ritual offerings of food made by their loved ones?",
+    "choices": [
+      "Obon",
+      "Mikoshi",
+      "Omizutori",
+      "Tanabata"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_88"
+  },
+  {
+    "subject": "world_religions",
+    "question": " The Communidades de Base is associated with which of the following?",
+    "choices": [
+      "Bishop Oscar Romero",
+      "Resistance and renewal",
+      "Dignity of all human beings",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_154"
+  },
+  {
+    "subject": "world_religions",
+    "question": "How many female renouncers were under the tutelage of Chandanbala?",
+    "choices": [
+      "36,000",
+      "12,000",
+      "24,000",
+      "7,000"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_67"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Which tradition is known to promote \"gradual enlightenment\"?",
+    "choices": [
+      "Bushido",
+      "Shinto",
+      "Nichiren",
+      "Soto Zen"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_11"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Which of the following does the Qur'an permit?",
+    "choices": [
+      "Honor Killing",
+      "Stoning",
+      "Adultery",
+      "Polygyny"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_117"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Which deity is the Roman counterpart to the Greek god Zeus?",
+    "choices": [
+      "Jupiter",
+      "Juno",
+      "Dionysius",
+      "Neptune"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_137"
+  },
+  {
+    "subject": "world_religions",
+    "question": " After the Bar Kochba revolt, where were the two main centres for Jewish development?",
+    "choices": [
+      "Palestine and Babylonia",
+      "Babylonia and Europe",
+      "Palestine and Spain",
+      "Spain and France"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_31"
+  },
+  {
+    "subject": "world_religions",
+    "question": " The Tibetan Book of the Dead is also known as which of the following?",
+    "choices": [
+      "Bardo Thodol",
+      "Bardo Ngawang",
+      "Bardo Gyaltsen",
+      "Bardo Chogye"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_96"
+  },
+  {
+    "subject": "world_religions",
+    "question": " The socio-political alliance between the kshatriyas and the shramanas was rooted in their shared opposition to which of the following?",
+    "choices": [
+      "Brahminic orthodoxy",
+      "Legalistic asceticism",
+      "Bhakti devotionals",
+      "Unorthodox practices"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_20"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Which term in the dharma texts of the classical period denotes the four stages of life?",
+    "choices": [
+      "Kama",
+      "Samnyasin",
+      "Ashramas",
+      "Arthas"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_141"
+  },
+  {
+    "subject": "world_religions",
+    "question": "How many Jinas have appeared during our age?",
+    "choices": [
+      "7",
+      "42",
+      "24",
+      "13"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_75"
+  },
+  {
+    "subject": "world_religions",
+    "question": " What are the rabbinical commentaries produced after the Mishnah called?",
+    "choices": [
+      "Septuagint",
+      "Talmud",
+      "Yeshiva",
+      "Gemarah"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_160"
+  },
+  {
+    "subject": "world_religions",
+    "question": "What is seen by Europeans, and many Muslims, as the symbol of Islam?",
+    "choices": [
+      "The Hijab",
+      "The Crescent",
+      "The Minaret",
+      "The Qur'an"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_158"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Ghosa, Apala and Lopamurda, all named in the early Vedas, are which of the following?",
+    "choices": [
+      "Female princesses",
+      "Female warriors",
+      "Female goddesses",
+      "Female poets"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_92"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Which are the synoptic Gospels?",
+    "choices": [
+      "Peter, John, Mark",
+      "Matthew, Mark, John",
+      "Matthew, Mark, Luke",
+      "John, Luke, Mark"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_147"
+  },
+  {
+    "subject": "world_religions",
+    "question": "The widely adored Egyptian goddess Hathor was depicted as which of the following?",
+    "choices": [
+      "Serpent",
+      "Eagle",
+      "Cheetah",
+      "Cow"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_49"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Pure Land Buddhism belongs to which school?",
+    "choices": [
+      "Vajrayana",
+      "Theravada",
+      "Mahayana",
+      "Mahavira"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_17"
+  },
+  {
+    "subject": "world_religions",
+    "question": "According to the Japanese origin myth, who gives birth to Amaterasu from his left eye?",
+    "choices": [
+      "Es",
+      "Izanagi",
+      "Izanami",
+      "Kami"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_169"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Within the United Nations, real power is located in",
+    "choices": [
+      "the Security Council.",
+      "the Chamber of Deputies.",
+      "the Council of Ministers.",
+      "the Secretariat."
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_29"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "In what way did the George W Bush administration change the direction of US foreign policy?",
+    "choices": [
+      "It criticized international organizations, rather than trying to strengthen them",
+      "It expanded NATO to include former Soviet states",
+      "It focused on a more personal style of leadership",
+      "It increased international support for the United States"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_98"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "The trade-off between defense and social spending is often referred to as a choice between",
+    "choices": [
+      "bread and butter.",
+      "war and peace.",
+      "guns and butter.",
+      "bombs and books."
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_37"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "How did the Cold War context shape US perceptions of the Third World?",
+    "choices": [
+      "The US ignored the Third World",
+      "Local developments were viewed through a geopolitical lens",
+      "The US unreservedly supported decolonization",
+      "None of the above"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_10"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What, according to Systemic theories, is the primary determinant of a state's foreign policy?",
+    "choices": [
+      "The character of a state's leader",
+      "The distribution of power in the international system",
+      "The distribution of power within a state's governmental system",
+      "A state's political ideology"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_12"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "The departments of the executive branch that assist the president in designing and carrying out U.S. foreign policy are known as",
+    "choices": [
+      "the United Nations.",
+      "the National Security Council.",
+      "the State Department.",
+      "the National Security Agency."
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_48"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "How many major powers are there in a multipolar system?",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "3 or more"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_35"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Why did Lincoln oppose the southward expansion of the US?",
+    "choices": [
+      "It would have drained the US economically",
+      "It would have involved compromising opposition to slavery",
+      "It would have increased immigration to the US",
+      "None of the above"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_58"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "The government body formed to coordinate American foreign and military policy is known as",
+    "choices": [
+      "the National Security Council.",
+      "the Pentagon.",
+      "the Defense Policy Institute.",
+      "the Joint Chiefs of Staff."
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_81"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "During the early years of his administration, Reagan's foreign and defense policies emphasized",
+    "choices": [
+      "nuclear disarmament.",
+      "détente.",
+      "anticommunism.",
+      "international free trade."
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_46"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was the significance of the Truman Doctrine?",
+    "choices": [
+      "It indicated the special place of Greece and Turkey in American interests",
+      "It was Truman's first statement on European affairs",
+      "It indicated US reluctance to get involved in incidents outside of its immediate sphere of influence",
+      "It indicated that the US would now view all local revolts through a geopolitical lens"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_20"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "The Vietnam War can be understood as",
+    "choices": [
+      "a war that deeply divided the United States and fostered cynicism toward the American government.",
+      "an example of the doctrine of containment, because U.S. involvement was designed to prevent the fall of South Vietnam to the communists.",
+      "an example of how even a great power may not be able to prevail against a determined enemy unless there is a clear objective and the national will to do so.",
+      "All of the above are true."
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_47"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Which of these is not a component of the 'American Creed'?",
+    "choices": [
+      "Liberty",
+      "Equality",
+      "Autocracy",
+      "Individualism"
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_45"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What are the key elements of the Liberal approach to US foreign policy?",
+    "choices": [
+      "Promotion of Democracy, free-trade and international institutions",
+      "Alliances, diplomacy and protectionism",
+      "The balance of power, self-sufficiency and prudence",
+      "None of the above"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_26"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "The importance of oil in shaping U.S. foreign policy helps to highlight",
+    "choices": [
+      "the importance of military superiority.",
+      "how the importance of oil is often overexaggerated.",
+      "the increasing importance of economic instruments of foreign policy.",
+      "the need to drill for domestic sources."
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_85"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was the Clinton Administration's policy on the Russian economy?",
+    "choices": [
+      "The US inhibited the marketization of the Russian economy",
+      "The US promoted the marketization of the Russian economy",
+      "The US supported public ownership of natural resources",
+      "None, the US was only concerned with security issues"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_34"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Which of the following points supports the argument for American unilateralism?",
+    "choices": [
+      "Benevolent hegemony",
+      "Ineffectiveness of multilateralism",
+      "American power",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_89"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "How do Ideational approaches to US foreign policy during the Cold War differ from Realist accounts of the same period?",
+    "choices": [
+      "They place greater emphasis on economic factors",
+      "They place greater emphasis on material interests and power",
+      "They place greater emphasis on ideology and beliefs",
+      "They place greater emphasis on geopolitics"
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_87"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What drives US foreign policy according to the Marxist perspective?",
+    "choices": [
+      "Economic protectionism",
+      "Class consciousness",
+      "The search for new markets",
+      "Superstructure"
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_82"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "In American government, the power to declare war rests with",
+    "choices": [
+      "the president of the United States.",
+      "the secretary of defense.",
+      "the chairman of the Joint Chiefs of Staff.",
+      "Congress."
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_9"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 75-year-old woman comes to the office because she has band-like, burning pain in her right upper abdomen extending from the epigastrium around to the midline of the back. Physical examination discloses no abdominal tenderness to palpation. Findings on ultrasonography of the gallbladder are normal. Serum amylase concentration is within the reference range. Which of the following is the most likely diagnosis?",
+    "choices": [
+      "Acalculous cholecystitis",
+      "Chronic relapsing pancreatitis",
+      "Diverticulitis of the cecum",
+      "Herpes zoster"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_87"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A healthy 2-year-old girl is brought to the office for a routine well-child visit. The child was weaned at 6 months of age and began to walk at 10 months of age. On physical examination, she has mild bowlegs (10-degree genu varum). Which of the following is the most appropriate management to recommend at this time?",
+    "choices": [
+      "Increased intake of vitamin D",
+      "A special exercise program",
+      "Surgical correction",
+      "No treatment is needed at this time"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_125"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 19-year-old college student comes to the physician because of vaginal irritation and pain with urination for 5 days. Two weeks ago, she had streptococcal pharyngitis treated with amoxicillin. She has been sexually active with two partners over the past year; she uses condoms for contraception. Her last menstrual period was 1 week ago. Her temperature is 37.2°C (99°F), and blood pressure is 90/60 mm Hg. Pelvic examination shows erythema of the vulva and vagina and a thick white vaginal discharge. The pH of the discharge is 4. Which of the following is the most likely cause of these findings?",
+    "choices": [
+      "Bacterial vaginosis",
+      "Candidiasis",
+      "Chlamydia trachomatis infection",
+      "Escherichia coli infection"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_83"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 32-year-old man comes to the physician because he has had difficulty focusing on tasks at work and at home during the past 2 months. He works as an automobile mechanic. He has had a lot of energy for work but often is distracted to the point that he does not complete assigned tasks. He frequently stops working on his own tasks to attempt to develop greater efficiency in his shop. He states that he is delighted with his newfound energy and reports that he now needs only 4 hours of sleep nightly. He has no history of psychiatric illness. He always performed well in school. He has a history of drinking alcohol excessively and using methamphetamines and cocaine during his 20s, but he has not consumed alcohol or used illicit drugs for the past 3 years. His temperature is 37°C (98.6°F), pulse is 60/min, and blood pressure is 125/80 mm Hg. Physical examination shows no abnormalities. On mental status examination, he describes his mood as \"good.\" He has a labile affect. His speech is rapid in rate but normal in rhythm, and his thought process is organized. Short- and long-term memory are intact. Attention and concentration are fair; he makes no errors when performing serial sevens, and he can repeat seven digits forward and five in reverse sequence. He has had no delusions or hallucinations. Which of the following is the most likely diagnosis?",
+    "choices": [
+      "Antisocial personality disorder",
+      "Attention-deficit/hyperactivity disorder",
+      "Bipolar disorder",
+      "Borderline personality disorder"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_236"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 16-month-old girl is brought to the emergency department by emergency medical technicians because of a generalized tonic-clonic seizure that began 25 minutes ago and has continued despite administration of 0.5 mg/kg rectal diazepam 10 minutes ago. The patient was at home at the time of the seizure. In the emergency department, she is given an additional 0.5 mg/kg dose of diazepam intravenously and the convulsion terminates. Within 2 minutes, her oxygen saturation drops to 75% and she appears cyanotic. Respirations are 10/min and shallow. She receives bag-valve-mask ventilation, followed by intubation and mechanical ventilation. Medical history is unremarkable. She takes no medications. Temperature is 39.1°C (102.5°F). Which of the following is the most likely underlying cause of the patient's respiratory insufficiency?",
+    "choices": [
+      "Airway occlusion",
+      "Encephalitis",
+      "Medication-induced suppression of central respiratory drive",
+      "Meningitis"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_194"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A previously healthy 27-year-old man comes to the physician 4 weeks after noticing three nontender lesions on his penis. He says they have not changed in size. He is sexually active with multiple male and female partners and uses condoms inconsistently. He takes no medications. He drinks two to five beers on social occasions. He occasionally smokes marijuana. His temperature is 36.9°C (98.4°F). There is no lymphadenopathy. Examination shows three sessile, flesh-colored lesions on the shaft of the penis that are 10 mm in diameter. On application of a dilute solution of acetic acid, the lesions turn white. The remainder of the examination shows no abnormalities. Which of the following is the most appropriate next step in management?",
+    "choices": [
+      "Oral acyclovir therapy",
+      "Oral doxycycline therapy",
+      "Intramuscular penicillin therapy",
+      "Cryotherapy"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_138"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 16-year-old male is brought to the emergency department with sudden-onset swelling of the right knee. He denies any trauma. Past medical history reveals cystic fibrosis. Examination of the knee reveals fluctuance on palpation of the joint but no increased warmth; mild restriction in range of motion due to the swelling is also noted. Numerous bruises are noted in various stages of resolution. Further history reveals easy bruising and bleeding from the gums over the past month. The most likely explanation for these findings is",
+    "choices": [
+      "acquired factor VIII deficiency",
+      "diffuse intravascular coagulation secondary to infection",
+      "hypocomplementemia",
+      "malabsorption of vitamins A, D, E, and K"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_112"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 15-year-old male presents to the office with the complaint of painless swelling in the left testicle that has varied in size over the past several months. There is no history of trauma. The lesion transilluminates well, and no inguinal nodes are palpable. Findings from a testicular scan are normal. The most appropriate management includes",
+    "choices": [
+      "injection with a sclerosing agent",
+      "needle aspiration",
+      "needle biopsy",
+      "surgical repair"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_166"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 3-year-old white girl is brought to the office by her parents for a follow-up visit 48 hours after receiving a 5-TU PPD skin test. The test was done as part of a routine screening for enrollment in a homeless shelter. Physical examination shows 10 mm of induration at the puncture site; the examination is otherwise normal. The parents tell you they are shocked by this finding since both of their skin tests were nonreactive. They say they were born in this country and tell you that their daughter has always been in good health. She has not had much medical care in the past 2 years but she has been healthy. Until moving into this shelter they had been \"squatters\" in vacant buildings. Which of the following is the most appropriate step at this time?",
+    "choices": [
+      "Call her previous physician to obtain more history",
+      "Order a chest x-ray",
+      "Order a test for HIV antibody",
+      "Repeat the PPD skin test"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_28"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "In a cohort study of elderly women, the relative risk ratio for hip fractures among those who exercise regularly is 1.2 (95% confidence interval of 1.1 to 1.8). Which of the following is the most appropriate conclusion about the effect of regular exercise on the risk for hip fracture?",
+    "choices": [
+      "Statistically nonsignificant increase in risk",
+      "Statistically nonsignificant overall decrease in risk",
+      "Statistically significant overall decrease in risk",
+      "Statistically significant overall increase in risk"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_117"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 5-year-old boy is admitted to the hospital because of a 1-week history of fever and increasingly severe abdominal discomfort. At the age of 7 months, he was treated for osteomyelitis caused by Aspergillus fumigatus. He has been admitted to the hospital three times during the past 4 years for severe pneumonia. He appears moderately ill. His temperature is 39°C (102.2°F). Abdominal examination shows an enlarged, tender liver. Ultrasonography of the abdomen shows an intrahepatic abscess. Culture of the abscess fluid grows Staphylococcus aureus. Further analysis shows failure of the neutrophils to undergo an oxidative burst when exposed to S. aureus. This patient has an increased susceptibility to infection as a result of which of the following abnormalities?",
+    "choices": [
+      "Failure of leukocytes to migrate between endothelial cells",
+      "Failure of leukocytes to roll along the endothelial surface",
+      "Inability of leukocytes to ingest microorganisms",
+      "Inability of leukocytes to kill intracellular microorganisms"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_16"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A study is designed to evaluate the feasibility of acupuncture in children with chronic headaches. Sixty children with chronic headaches are recruited for the study. In addition to their usual therapy, all children are treated with acupuncture three times a week for 2 months. Which of the following best describes this study design?",
+    "choices": [
+      "Case-control",
+      "Case series",
+      "Crossover",
+      "Cross-sectional"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_161"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 1-year-old male is brought to the emergency department with blistered fresh burns over his hands and feet in a stocking and glove distribution. His mother reports that he was accidentally burned when he turned on the hot water in the bathtub while she was answering the telephone in the bedroom. In addition to debridement of the burns, pain management, a thorough history and physical examination, and baseline laboratory studies, the most appropriate next step is to",
+    "choices": [
+      "administer a 5% albumin infusion",
+      "administer intravenous steroids",
+      "contact child protective services",
+      "discharge the patient home with his parents"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_205"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 14-year-old girl is brought to the physician after her mother learned that she began having sexual intercourse with various partners 1 month ago. She does not use condoms or other contraception. The mother is concerned about her behavior. The patient's parents separated 3 months ago. She had been an honor student and excelled in sports and leadership positions at school before the separation. Since the separation, however, she has become sullen, defiant, and rebellious. She has begun smoking cigarettes, disobeying her curfew, and being truant from school. This patient is most likely using which of the following defense mechanisms?",
+    "choices": [
+      "Acting out",
+      "Displacement",
+      "Projection",
+      "Reaction formation"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_137"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 35-year-old man comes to the office for follow-up of sarcoidosis. His only new complaint is pain in his legs that increases with weight-bearing. He has been taking glucocorticoid therapy for the past 6 months. Vital signs now are temperature 37.0°C (98.6°F), pulse 78/min, respirations 14/min, and blood pressure 110/70 mm Hg. The patient is thin and is in no acute distress. Auscultation of the chest discloses scattered bilateral basilar crackles. There is mild left hip pain present with both active and passive range of motion. Dorsalis pedis pulse is intact. Neurologic examination is normal. Which of the following is the most likely cause of this patient's symptoms?",
+    "choices": [
+      "Avascular necrosis of the femoral head",
+      "Herniated nucleus pulposus",
+      "Narrowing of the hip joint",
+      "Osteoporosis"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_33"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 64-year-old male presents to the emergency room with a bloody nose that has been dripping out his nares for the past 2 hours. He denies any trauma, recent upper respiratory illness, or history of prior bloody nose. Past medical history is unremarkable, and he takes no medications. He has a blood pressure of 180/90 mmHg. Examination of the nasal passages reveals that the site of the bleeding is on the septal mucosa of the right naris. The most appropriate next step in management includes",
+    "choices": [
+      "anterior packing",
+      "placing an ice compress over the nose",
+      "catheter balloon tamponade",
+      "pinching the nares together for 5 minutes"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_108"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A previously healthy 24-year-old woman who is a college student comes to the office because of a 6-month history of abdominal bloating, upper abdominal discomfort, and constipation. The symptoms are more severe when she is preparing for examinations but improve after bowel movements. She takes no medications. She does not smoke or use illicit drugs. She drinks alcoholic beverages occasionally. She is 160 cm (5 ft 3 in) tall and weighs 57 kg (125 lb); BMI is 22 kg/m2 . Her pulse is 72/min, and blood pressure is 100/72 mm Hg. Physical examination, including digital rectal examination, shows no other abnormalities. A complete blood count and serum electrolyte concentrations are within the reference ranges. A urease breath test result is negative. Upper and lower endoscopies show no abnormalities. Which of the following is the most appropriate pharmacotherapy for this patient?",
+    "choices": [
+      "Azathioprine",
+      "Infliximab",
+      "Lubiprostone",
+      "Mesalamine"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_255"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 15-year-old girl is brought to the physician 3 months after she had a blood pressure of 150/95 mm Hg at a routine examination prior to participation in school sports. She is asymptomatic and has no history of serious illness. Twelve months ago, she was diagnosed with a urinary tract infection and treated with oral trimethoprim-sulfamethoxazole. She currently takes no medications. Subsequent blood pressure measurements on three separate occasions since the last visit have been: 155/94 mm Hg, 145/90 mm Hg, and 150/92 mm Hg. She is at the 50th percentile for height and 95th percentile for weight. Her blood pressure today is 150/90 mm Hg confirmed by a second measurement, pulse is 80/min, and respirations are 12/min. Examination shows no other abnormalities. Her hematocrit is 40%. Urinalysis is within normal limits. Cardiac and renal ultrasonography shows no abnormalities. Which of the following is the most appropriate next step in management?",
+    "choices": [
+      "Exercise and weight reduction program",
+      "Measurement of urine catecholamine concentrations",
+      "Measurement of urine corticosteroid concentrations",
+      "Captopril therapy"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_202"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A new severe respiratory illness caused by a newly identified virus is discovered. Which of the following properties of a killed vaccine relative to a live vaccine is the most appropriate rationale for developing a killed vaccine for this illness?",
+    "choices": [
+      "Avoids the concern for reversion to virulence",
+      "Develops more rapid protective immunity",
+      "Is less likely to require subsequent boosters for lifelong immunity",
+      "Is most likely to generate mucosal immunity"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_234"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 23-year-old woman with bone marrow failure is treated with a large dose of rabbit antithymocyte globulin. Ten days later, she develops fever, lymphadenopathy, arthralgias, and erythema on her hands and feet. Which of the following is the most likely cause of these symptoms?",
+    "choices": [
+      "Cytokine secretion by natural killer cells",
+      "Eosinophil degranulation",
+      "Immune complex deposition in tissues",
+      "Polyclonal T-lymphocyte activation"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_73"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "John is playing a game in which he tries to obtain the highest number possible. He must put the symbols +, $\\times$, and - (plus, times, and minus) in the following blanks, using each symbol exactly once:\\[2 \\underline{\\hphantom{8}} 4 \\underline{\\hphantom{8}} 6 \\underline{\\hphantom{8}} 8.\\] John cannot use parentheses or rearrange the numbers. What is the highest possible number that John could obtain?",
+    "choices": [
+      "22",
+      "46",
+      "100",
+      "99"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_135"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "What is $$\\frac{-\\frac{18}{7}}{-\\frac{6}{5}}?$$",
+    "choices": [
+      "\\frac{7}{15}",
+      "\\frac{15}{7}",
+      "\\frac{15}{8}",
+      "\\frac{15}{11}"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_71"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "The school principal has to have three different teachers speak at the graduation ceremony—one as the opener, one as the name-reader, and one as the closer. There are 85 teachers on staff. How many possible speaking lineups can the principal have?",
+    "choices": [
+      "592,620",
+      "592,704",
+      "614,125",
+      "614,126"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_126"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "A coat has a list price of $325.00. During November, it did not sell, and the merchant marked it down 20 percent. Then in December, she marked it down an additional 10 percent. What would a Christmas shopper in December pay for the coat in dollars?",
+    "choices": [
+      "$227.50",
+      "$234.00",
+      "$286.00",
+      "$290.00"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_134"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "If the parabola $y_1 = x^2 + 2x + 7$ and the line $y_2 = 6x + b$ intersect at only one point, what is the value of $b$?",
+    "choices": [
+      "7",
+      "3",
+      "12",
+      "4"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_219"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "(i + 1)(5 – 5i)(5 + 5i) =",
+    "choices": [
+      "50 + 50i",
+      "50 – 50i",
+      "25 + 25i",
+      "25 – 25i"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_204"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Six 6-sided dice are rolled. What is the probability that three of the dice show prime numbers and the rest show composite numbers?",
+    "choices": [
+      "\\frac{125}{2916}",
+      "\\frac{5}{16}",
+      "\\frac{5}{54}",
+      "\\frac{5}{55}"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_185"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "If $a=7$ and $b=13$, what is the number of even positive integers less than $ab$?",
+    "choices": [
+      "45",
+      "46",
+      "90",
+      "180"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_112"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "How many positive 4-digit integers have only odd digits?",
+    "choices": [
+      "100",
+      "999",
+      "625",
+      "500"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_70"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Compute the area of the triangle whose altitudes have lengths 10, 12, and 15.",
+    "choices": [
+      "56\\sqrt{15}",
+      "240\\sqrt{7}",
+      "60\\sqrt{7}",
+      "240\\sqrt{7}/7"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_260"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "As the tides change, the water level in a bay varies sinusoidally. At high tide today at 8 A.M., the water level was 15 feet; at low tide, 6 hours later at 2 P.M., it was 3 feet. How fast, in feet per hour, was the water level dropping at noon today?",
+    "choices": [
+      "3",
+      "π\\sqrt{3}/2",
+      "3\\sqrt{3}",
+      "π\\sqrt{3}"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_252"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "What is the smallest prime whose digits sum to $19$?",
+    "choices": [
+      "5",
+      "11",
+      "17",
+      "199"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_46"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Carlos Montado was born on Saturday, November 9, 2002. On what day of the week will Carlos be 706 days old? (Spell out the entire day of the week.)",
+    "choices": [
+      "Friday",
+      "Thursday",
+      "Wednesday",
+      "Tuesday"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_24"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Find $b$ if $\\log_{b}343=-\\frac{3}{2}$.",
+    "choices": [
+      "3",
+      "\\frac{1}{49}",
+      "\\frac{1}{7}",
+      "7"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_56"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "February of 2011 has 28 days and March has 31 days. On what day of the week will next month, April, begin?",
+    "choices": [
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_78"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "How many palindromes (arrangements reading the same forward as backward) of 2 letters or more, containing the letter M, can be formed by rearranging any subset of the letters MISSISSIPPI?",
+    "choices": [
+      "89",
+      "66",
+      "86",
+      "2012"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_81"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "What is the range of the function y = 5 + 3 * sin(pi – x)?",
+    "choices": [
+      "–3 ≤ y ≤ 3",
+      "–2 ≤ y ≤ 8",
+      "0 ≤ y ≤ 6",
+      "2 ≤ y ≤ 8"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_216"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "What is the smallest positive integer with factors of 16, 15, and 12?",
+    "choices": [
+      "12",
+      "22",
+      "840",
+      "240"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_32"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "If matrix A has dimensions 2 × 7 and matrix B has dimensions 7 × 5, what are the dimensions of the product matrix AB?",
+    "choices": [
+      "2 × 2",
+      "2 × 5",
+      "5 × 2",
+      "7 × 7"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_197"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "A bin has 5 green balls and $k$ purple balls in it, where $k$ is an unknown positive integer. A ball is drawn at random from the bin. If a green ball is drawn, the player wins 2 dollars, but if a purple ball is drawn, the player loses 2 dollars. If the expected amount won for playing the game is 50 cents, then what is $k$?",
+    "choices": [
+      "6",
+      "12",
+      "3",
+      "4"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_195"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Based on the paper “Click Trajectories: End-to-End Analysis of the Spam Value Chain”, which of the following statements are true? “Spammers” here refer to operators of various parts of the “spam value chain.”",
+    "choices": [
+      "Spammers run their spam-advertised web sites on compromised user machines that are part of a botnet.",
+      "Spammers need to register domain names in order for their spam-based advertisements to be effective.",
+      "There is a high cost for spammers to switch acquiring banks.",
+      "B and C"
+    ],
+    "answer_idx": 3,
+    "item_id": "computer_security_76"
+  },
+  {
+    "subject": "computer_security",
+    "question": "A special tool is necessary for entering the network which is _______________ that helps the anonymous internet users to access into the Tor’s network and use various Tor services.",
+    "choices": [
+      "Opera browser",
+      "Firefox",
+      "Chrome",
+      "Tor browser"
+    ],
+    "answer_idx": 3,
+    "item_id": "computer_security_59"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Which of the following are benefits of penetration testing?",
+    "choices": [
+      "Results are often reproducible",
+      "Full evidence of security: a clean test means a secure system",
+      "Compositionality of security properties means tested components are secure even if others change",
+      "Makes an adversarial neural network converge more quickly"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_67"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Suppose Unix did not provide a way of passing file descriptors between processes, but still allowed inheriting file descriptors from a parent on fork and exec. What aspects of the OKWS design would break without file descriptor passing?\n1. It would be impossible for services to get a TCP connection to the client web browser.\n2. It would be impossible for okd to run as a non-root user.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_32"
+  },
+  {
+    "subject": "computer_security",
+    "question": "The openSSL implementation described in “Remote Timing Attacks are Practical” (by Brumley and Boneh) uses the following performance optimizations: Chinese Remainder (CR), Montgomery Representation (MR), Karatsuba Multiplication (KM), and Repeated squaring and Sliding windows (RS). Which of the following options would close the timing channel attack described in the paper if you turned the listed optimizations off?\n1. CR and MR\n2. CR",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_70"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Assume that a TLS connection has been established successfully between a client and a server. Establishing the session included checking the server certificate and executing a DiffieHelmann exchange, but the client did not provide a client certificate. Further, assume that the client and server are honest, that the client and server don’t leak their keys, and that the cryptography is good. Which of the following attacks does TLS protect against?\n1. An attacker replaying bytes that a client sent earlier.\n2. An attacker impersonating the server.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_1"
+  },
+  {
+    "subject": "computer_security",
+    "question": "The stack is memory for storing",
+    "choices": [
+      "Local variables",
+      "Program code",
+      "Dynamically linked libraries",
+      "Global variables"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_87"
+  },
+  {
+    "subject": "computer_security",
+    "question": "How is IP address spoofing detected?",
+    "choices": [
+      "Installing and configuring a IDS that can read the IP header",
+      "Comparing the TTL values of the actual and spoofed addresses",
+      "Implementing a firewall to the network",
+      "Identify all TCP sessions that are initiated but does not complete successfully"
+    ],
+    "answer_idx": 1,
+    "item_id": "computer_security_92"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Which of the following is not a security exploit?",
+    "choices": [
+      "Eavesdropping",
+      "Cross-site scripting",
+      "Authentication",
+      "SQL Injection"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_14"
+  },
+  {
+    "subject": "computer_security",
+    "question": "1. _________ framework made cracking of vulnerabilities easy like point and click.",
+    "choices": [
+      ".Net",
+      "Metasploit",
+      "Zeus",
+      "Ettercap"
+    ],
+    "answer_idx": 1,
+    "item_id": "computer_security_68"
+  },
+  {
+    "subject": "computer_security",
+    "question": "The four Primary Security Principles related to messages are",
+    "choices": [
+      "Confidentiality, Integrity, Non repudiation and Authentication",
+      "Confidentiality, Access Control, Integrity, Non repudiation",
+      "Authentication, Authorization, Availability, Integrity",
+      "Availability, Authorization, Confidentiality, Integrity"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_96"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Which of the following is an authentication method?",
+    "choices": [
+      "Secret question",
+      "Biometric",
+      "SMS code",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "computer_security_34"
+  },
+  {
+    "subject": "computer_security",
+    "question": "The ______________ can cost you money, by sending text messages from your mobile phone numbers.",
+    "choices": [
+      "IM – Trojans",
+      "Backdoor Trojans",
+      "SMS Trojan",
+      "Ransom Trojan"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_98"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Let suppose a search box of an application can take at most 200 words, and you’ve inserted more than that and pressed the search button; the system crashes. Usually this is because of limited __________",
+    "choices": [
+      "buffer",
+      "external storage",
+      "processing power",
+      "local storage"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_82"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Which of the following are most vulnerable to injection attacks?",
+    "choices": [
+      "Session IDs",
+      "Registry keys",
+      "Network communications",
+      "SQL queries based on user input"
+    ],
+    "answer_idx": 3,
+    "item_id": "computer_security_43"
+  },
+  {
+    "subject": "computer_security",
+    "question": "A packet filter firewall filters at the",
+    "choices": [
+      "Application or transport",
+      "Data link layer",
+      "Physical Layer",
+      "Network or transport layer"
+    ],
+    "answer_idx": 3,
+    "item_id": "computer_security_37"
+  },
+  {
+    "subject": "computer_security",
+    "question": "What are the types of scanning?",
+    "choices": [
+      "Port, network, and services",
+      "Network, vulnerability, and port ",
+      "Passive, active, and interactive",
+      "Server, client, and network"
+    ],
+    "answer_idx": 1,
+    "item_id": "computer_security_55"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Which of the following is not a transport layer vulnerability?",
+    "choices": [
+      "Mishandling of undefined, poorly defined variables",
+      "The Vulnerability that allows “fingerprinting” & other enumeration of host information",
+      "Overloading of transport-layer mechanisms",
+      "Unauthorized network access"
+    ],
+    "answer_idx": 3,
+    "item_id": "computer_security_20"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Encapsulating Security Payload (ESP) belongs to which Internet Security Protocol?",
+    "choices": [
+      "Secure Socket Layer Protocol",
+      "Secure IP Protocol",
+      "Secure Http Protocol",
+      "Transport Layer Security Protocol"
+    ],
+    "answer_idx": 1,
+    "item_id": "computer_security_58"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Which of the following styles of fuzzer is more likely to explore paths covering every line of code in the following program?",
+    "choices": [
+      "Generational",
+      "Blackbox",
+      "Whitebox",
+      "Mutation-based"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_0"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Which of the following ideas is not associated with the stance of situation ethics?",
+    "choices": [
+      "Anything goes",
+      "Principled relativism",
+      "The end justifies the means",
+      "No choice"
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_134"
+  },
+  {
+    "subject": "philosophy",
+    "question": "The morality that Gauthier describes as facing a foundational crisis essentially involves:",
+    "choices": [
+      "enlightened egoism.",
+      "pure altruism.",
+      "justified constraint.",
+      "prima facie duties."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_256"
+  },
+  {
+    "subject": "philosophy",
+    "question": " According to Socrates, the task of the wise and virtuous person is not simply to learn various examples of just or virtuous actions but to learn the essence of justice or virtue, because:",
+    "choices": [
+      "by knowing enough examples of justice or virtue, we will live a worthwhile life even if we do not know what makes them examples of justice or virtue.",
+      "knowledge of individual examples alone would not prepare someone for situations of justice or virtue to which the examples do not immediately apply.",
+      "what makes an action just or virtuous can be known only by asking people for their opinions and respecting each answer as equally valuable.",
+      "justice and virtue are universal goals of all human beings, even if people do not always agree on how to achieve those ends."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_91"
+  },
+  {
+    "subject": "philosophy",
+    "question": "In Aquinas’s view, acts of prudence are solely about matters of:",
+    "choices": [
+      "pleasure.",
+      "desire.",
+      "moral virtue.",
+      "piety."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_259"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Gauthier claims that there is nothing for practical rationality to be besides:",
+    "choices": [
+      "moral justification.",
+      "deliberative justification.",
+      "epistemic justification.",
+      "an illusion."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_54"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Rawls claims that a conception of justice should be justified by:",
+    "choices": [
+      "deducing it from self-evident premises.",
+      "direct acquaintance via moral intuition.",
+      "the mutual support of many considerations, which it fits into one coherent view.",
+      "none of the above."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_152"
+  },
+  {
+    "subject": "philosophy",
+    "question": "According to Brandt’s theory, an ideal moral rule is one that would:",
+    "choices": [
+      "maximize positive utility, ignoring negative utility.",
+      "minimize negative utility, ignoring positive utility.",
+      "maximize utility, with both positive and negative utilities being counted.",
+      "take no account of either positive or negative utility."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_101"
+  },
+  {
+    "subject": "philosophy",
+    "question": "According to Hume, justice:",
+    "choices": [
+      "has no value.",
+      "has value in part because it is useful to society.",
+      "has value solely because it is useful to society.",
+      "has value solely because it is useful to the agent."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_78"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Hobbes claims that all of the laws of nature can be summarized in the precept:",
+    "choices": [
+      "maximize happiness.",
+      "never treat another person as a means to your ends.",
+      "do not do to another what you would not have done to yourself.",
+      "practice virtue in all that you do."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_191"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Bentham claims that actions are right or wrong in virtue of:",
+    "choices": [
+      "the motives behind them.",
+      "their consequences.",
+      "both a and b.",
+      "neither a nor b."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_82"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Brandt claims that whether a moral code is ideal depends in part on:",
+    "choices": [
+      "the complexity of the rules.",
+      "how many people would likely violate it.",
+      "the costs of its restrictions, in terms of the guilt it induces.",
+      "all of the above."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_276"
+  },
+  {
+    "subject": "philosophy",
+    "question": "According to Moore, “pleasure is good” means the same thing as:",
+    "choices": [
+      "“pleasure is desired.”",
+      "“pleasure is pleasant.”",
+      "“we desire to desire pleasure.”",
+      "none of the above."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_271"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Aesthetics deals with objects that are_____.",
+    "choices": [
+      "essential to our existence",
+      "unimportant to most people",
+      "not essential to our existence",
+      "rarely viewed"
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_0"
+  },
+  {
+    "subject": "philosophy",
+    "question": "According to Feinberg, a good moral education:",
+    "choices": [
+      "will make no use of pleasure or pain as sanctions.",
+      "will be based entirely on the use of pleasure and pain as sanctions.",
+      "will produce someone who does the right thing out of deference to authority.",
+      "will produce someone who does the right thing simply because it is right."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_306"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Mill argues that virtue:",
+    "choices": [
+      "is not desirable.",
+      "is desirable only as a means to one’s own happiness.",
+      "is desirable only as a means to the happiness of others.",
+      "is desirable as part of one’s happiness."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_165"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Which method is most commonly associated with a lack of informed consent?",
+    "choices": [
+      "Qualitative content analysis",
+      "In-depth interviewing",
+      "Covert observation",
+      "Structured interviewing"
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_250"
+  },
+  {
+    "subject": "philosophy",
+    "question": "According to Kant, morality requires us to:",
+    "choices": [
+      "perform the action that leads to the greatest total happiness.",
+      "act only on maxims that we can will to become universal laws.",
+      "behave only in such a way as a perfectly virtuous person would behave.",
+      "place the interests of others above the interests of ourselves."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_9"
+  },
+  {
+    "subject": "philosophy",
+    "question": "\"Is there anything you would be willing to die for?\" is a philosophical question insofar as:",
+    "choices": [
+      "it does not have any right or wrong answer because it is a meaningless question.",
+      "it is a meaningless question because everyone could have a different answer to it.",
+      "it forces us to articulate and justify our beliefs about what we know and ought to do.",
+      "it is more concerned with one's religious beliefs than with factual claims about the world."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_57"
+  },
+  {
+    "subject": "philosophy",
+    "question": "When it comes to defining good, Moore claims that many past philosophers are guilty of:",
+    "choices": [
+      "begging the question.",
+      "circular reasoning.",
+      "the naturalistic fallacy.",
+      "the ad hominem fallacy."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_185"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Moral theories that say that the rightness of actions depends solely on their consequences are _____.",
+    "choices": [
+      "deontological",
+      "virtue oriented",
+      "consequentialist",
+      "egoistic"
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_157"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following drugs may be used to enhance gastric motility?",
+    "choices": [
+      "Adrenaline.",
+      "Ditropan.",
+      "Erythromycin.",
+      "Carbemazepine."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_122"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Lactate and hydrogen ions leave the muscle:",
+    "choices": [
+      "via a cotransport mechanism with carnosine.",
+      "via an active transport mechanism.",
+      "via a protein transporter molecule.",
+      "by simple diffusion."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_29"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The creatine kinase reaction is:",
+    "choices": [
+      "irreversible.",
+      "slow compared with glycolysis.",
+      "not activated until all the ATP has been used up.",
+      "inhibited by low pH in the muscle."
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_123"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "A normal heart rate for an adult at rest is:",
+    "choices": [
+      "60-80 bpm.",
+      "60-100 bpm.",
+      "60-90 bpm.",
+      "60-110 bpm."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_40"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "How much toothpaste is recommended for cleaning teeth?",
+    "choices": [
+      "A smear.",
+      "A pea-sized amount.",
+      "The length of the toothbrush.",
+      "Half an inch."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_43"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The transcription of DNA to a molecule of messenger RNA occurs:",
+    "choices": [
+      "on the ribosomes.",
+      "in the cytosol.",
+      "in the nucleus.",
+      "only during cell division."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_248"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The normal respiratory rate for an adult male is:",
+    "choices": [
+      "10-12 breaths per minute.",
+      "8-10 breaths per minute.",
+      "20-22 breaths per minute.",
+      "14-16 breaths per minute."
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_35"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "A palpable left parasternal impulse suggests which abnormality?",
+    "choices": [
+      "Right ventricular hypertrophy",
+      "Aortic stenosis",
+      "Aortic regurgitation",
+      "Left ventricular hypertrophy"
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_64"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "In hypovolaemic shock, what percentage of blood can be lost before it is reflected in changes in heart rate and blood pressure?",
+    "choices": [
+      "5%",
+      "10%",
+      "20%",
+      "30%"
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_65"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following is true of the assessment of power in the arms?",
+    "choices": [
+      "Grade 3/5 (MRC scale) represents movement of the arm only when gravity is eliminated",
+      "Flexion at the elbow is produced by the triceps muscle",
+      "The root value of shoulder abduction is C5",
+      "Grade 1/5 power represents no movement or muscle contraction"
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_243"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following is true about the rectal examination?",
+    "choices": [
+      "If the patient refuses a chaperone the doctor can overrule them",
+      "The rectal examination is of no value in a neurological examination",
+      "The optimum position of the patient is on their right side with their knees extended",
+      "The rectal examination is indicated for the assessment of some gastrointestinal disorders"
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_84"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Who is the publication Your guide to the NHS written for?",
+    "choices": [
+      "GPs.",
+      "Patient lobby groups.",
+      "The general public.",
+      "Patients admitted to hospital."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_135"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Who has legal responsibility for a patient's care during hospital admission, stay, and discharge?",
+    "choices": [
+      "The named nurse.",
+      "The named consultant.",
+      "The ward manager.",
+      "The GP."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_216"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The synthesis of glucose from lactate, glycerol, or amino acids is called:",
+    "choices": [
+      "glycogenolysis.",
+      "glycolysis.",
+      "lipolysis.",
+      "gluconeogenesis."
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_108"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "A 67-year-old man, three hours post-transurethral resection of prostate with irrigation, has a blocked catheter. Which solution should be used to complete bladder washout?",
+    "choices": [
+      "Solution R.",
+      "Normal saline.",
+      "Solution G.",
+      "Any of the above."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_102"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Prior to undergoing a painful procedure, a patient should be informed about what to expect and how their pain will be controlled, as this is associated with:",
+    "choices": [
+      "a reduction in anxiety and perceived pain intensity.",
+      "an increased use of analgesia.",
+      "a decrease in the frequency of pain-related problems such as nausea and vomiting.",
+      "an increased urine output."
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_159"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following is true in peripheral neuropathy?",
+    "choices": [
+      "Sensory loss is demonstrated in a stocking distribution",
+      "The tone is increased bilaterally in the legs",
+      "Reflexes are very brisk with reinforcement",
+      "Weakness is more marked proximally than distally"
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_204"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The β-oxidation of a molecule of palmitic acid, CH3(CH2)14CO2H:",
+    "choices": [
+      "yields 8 molecules of acetyl-CoA and some ATP and water.",
+      "yields 16 molecules of acetyl-CoA only.",
+      "yields carbon dioxide and water only.",
+      "does not involve oxygen."
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_191"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Why should careful consideration be given to providing people aged over 65 with information sources that are internet based?",
+    "choices": [
+      "They may have difficulty reading the screen.",
+      "Less than 30% of people over 65 years have access to the internet.",
+      "The internet is aimed at younger people.",
+      "They may not be able to type."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_224"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The patient's self-report of pain is important because health care staff:",
+    "choices": [
+      "can overestimate the intensity of the patient's pain.",
+      "underestimate the intensity of the patient's pain.",
+      "do not possess an objective way of assessing pain.",
+      "can use the information to prescribe and administer the least possible amount of pain relief."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_264"
+  },
+  {
+    "subject": "international_law",
+    "question": "Is the ICJ hostile to the idea that an armed attack may arise through a series of lower intensity, yet cumulative, instances of armed force?",
+    "choices": [
+      "The ICJ was not hostile to the accumulation theory",
+      "The concept of an armed attack refers to a single attack, not multiple smaller instances of armed force",
+      "In the Nicaragua case the ICJ dismissed the accumulation theory",
+      "The ICJ has never addressed this issue"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_57"
+  },
+  {
+    "subject": "international_law",
+    "question": "What dimension did the Kadi judgment introduce with respect to the incorporation of UN Security Council resolutions?",
+    "choices": [
+      "The Kadi judgment demanded that UNSC resolutions are construed in accordance with human rights",
+      "The Kadi judgment demanded that all UNSC resolutions be incorporated without any further implementing legislation",
+      "The Kadi judgment required that important UNSC resolutions be transformed and not merely incorporated",
+      "The Kadi judgment claimed that UNSC resolutions are not binding if they violate human rights"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_15"
+  },
+  {
+    "subject": "international_law",
+    "question": "What was the outcome before the European Court of Human Rights in the Al-Adsani case?",
+    "choices": [
+      "The Court held that the right to a fair trial trumped the privilege of immunity",
+      "The Court held that immunity trumped the right to a fair trial",
+      "The Court held that immunities were not in conflict with the right to a fair trial",
+      "The Court held that human rights considerations prevailed over all other contrary rules of international law, including most immunities"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_31"
+  },
+  {
+    "subject": "international_law",
+    "question": "Are all acts of State organs attributed to the State under the law international responsibility?",
+    "choices": [
+      "The conduct of any State organ shall be considered an act of that State, even in the case that this conduct was unauthorized or ultra vires",
+      "Only the conduct of the higher echelons of the government of State shall be attributable to it",
+      "The conduct of any State organs shall be considered an act of that State, provided that it is intra vires",
+      "Only the conduct of the executive branch of the State shall be considered an act of that State."
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_28"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the meaning of international legal personality?",
+    "choices": [
+      "It means that only States are considered subjects of international law",
+      "It means having rights and duties under international law and a capacity to enforce these by or against the relevant actor",
+      "It means that an entity may challenge the authority of States",
+      "It is a term that is meant to denote legal, as opposed, to physical persons under international law"
+    ],
+    "answer_idx": 1,
+    "item_id": "international_law_8"
+  },
+  {
+    "subject": "international_law",
+    "question": "What does it mean for a State to be sovereign?",
+    "choices": [
+      "Sovereignty means being recognised by all other States",
+      "Sovereignty means to be able to enter into treaties and join the UN",
+      "Sovereignty means freedom to determine one's own affairs without external interference",
+      "Sovereignty means possessing the right to defend oneself"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_43"
+  },
+  {
+    "subject": "international_law",
+    "question": "In what way is Responsibility to Protect (R2P) different from humanitarian intervention?",
+    "choices": [
+      "R2P is essentially the same as humanitarian intervention",
+      "R2P requires a call for assistance by the State in distress",
+      "R2P is less arbitrary because it requires some UNSC input and its primary objective is to avert a humanitarian crisis",
+      "R2P always involves armed force, whereas humanitarian intervention does not"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_2"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is an 'internationally wrongful conduct'?",
+    "choices": [
+      "An international wrongful conduct is an action or omission which is in breach of a rule of international criminal law",
+      "An international wrongful conduct is every breach of an international obligation of the State, whether attributable to it or not",
+      "An internationally wrongful conduct consists of an action or omission attributable to the State, which constitutes a breach of an international obligation of the State",
+      "An internationally wrongful conduct is the conduct that cannot be excused on grounds of necessity, force majeure etc."
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_75"
+  },
+  {
+    "subject": "international_law",
+    "question": "The European Convention on Human Rights is predominantly concerned with which of the following?",
+    "choices": [
+      "Economic and social rights",
+      "Environmental rights",
+      "Civil and political rights",
+      "Economic freedom"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_70"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is a 'treaty' according to the Vienna Convention on the Law of Treaties (VCLT)?",
+    "choices": [
+      "Treaties are all agreements concluded between States, international organizations and non-State entities (e.g. corporations)",
+      "Treaties are agreements concluded between States in written form and governed by international law",
+      "Treaties are both the written and oral agreements between States",
+      "Treaties are agreements concluded between States in written form governed either by international or domestic law"
+    ],
+    "answer_idx": 1,
+    "item_id": "international_law_29"
+  },
+  {
+    "subject": "international_law",
+    "question": "Which State ordinarily exercises jurisdiction in respect of crimes committed on board vessels?",
+    "choices": [
+      "The coastal State",
+      "The flag State",
+      "All States enjoy such jurisdiction",
+      "The International Tribunal for the Law of the Sea"
+    ],
+    "answer_idx": 1,
+    "item_id": "international_law_0"
+  },
+  {
+    "subject": "international_law",
+    "question": "Which of the following is a treaty-based human rights mechanism?",
+    "choices": [
+      "The UN Human Rights Committee",
+      "The UN Human Rights Council",
+      "The UN Universal Periodic Review",
+      "The UN special mandates"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_9"
+  },
+  {
+    "subject": "international_law",
+    "question": "What was the consequence from the absence of implementing legislation in the Tin Council case?",
+    "choices": [
+      "The International Tin Council was headquartered in London and hence the absence of implementing legislation was inconsequential",
+      "The constitutive treaties of international organisations are subject to the doctrine of incorporation",
+      "The absence of implementing legislation with respect to the Council's founding treaty meant that individuals did not derive rights and duties from it in the English legal system",
+      "The absence of implementing legislation in England in respect of an international organisation is inconsequential under international law"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_90"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the protective principle of jurisdiction?",
+    "choices": [
+      "It is jurisdiction based on the harm to national interests by conduct committed abroad",
+      "It is jurisdiction in order to protect one's nationals abroad",
+      "It is jurisdiction in order to protect international human rights",
+      "It is jurisdiction based on the nationality of the offender"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_80"
+  },
+  {
+    "subject": "international_law",
+    "question": "Which is a 'rock' under the UN Convention of the Law of the Sea (UNCLOS)?",
+    "choices": [
+      "Rocks are the islands that are less than 10 square miles",
+      "Rocks are the islands that do not have any maritime zone",
+      "Rocks are the islands which cannot sustain human habitation or economic life of their own and according to article 121 (3) have no Exclusive Economic Zone or continental shelf.",
+      "Rocks are the small islands that can sustain human habitation"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_7"
+  },
+  {
+    "subject": "international_law",
+    "question": "When a reservation is considered as invalid under the law of treaties?",
+    "choices": [
+      "A reservation is invalid when the majority of the State parties objects to it",
+      "A reservation is invalid only when an international tribunal says so",
+      "A reservation is invalid only when is incompatible with a peremptory norm of international law (jus cogens)",
+      "A reservation is invalid when it is incompatible with the object and purpose of the treaty"
+    ],
+    "answer_idx": 3,
+    "item_id": "international_law_115"
+  },
+  {
+    "subject": "international_law",
+    "question": "Which of these statements best describes the UK Constitution?",
+    "choices": [
+      "The UK Constitution's only source of power is that of the sovereign",
+      "The UK Constitution gives the judiciary the power to overturn acts of parliament",
+      "The UK Constitution is uncodified and can be found in a number of sources",
+      "The UK Constitution is based on a Bill of Rights"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_4"
+  },
+  {
+    "subject": "international_law",
+    "question": "When does an illegal act of violence on the high seas fall short of qualifying as piracy?",
+    "choices": [
+      "When it is committed against a public vessel of another State",
+      "When it is committed for 'private ends'",
+      "When it is committed by a warship even when its crew has mutinied and taken control of the ship",
+      "When it is not committed against another vessel and when it is not committed for 'private ends'"
+    ],
+    "answer_idx": 3,
+    "item_id": "international_law_110"
+  },
+  {
+    "subject": "international_law",
+    "question": "How can customary law be related to treaty provisions?",
+    "choices": [
+      "Treaties may only codify customary law",
+      "Customary law is a different source of international and it cannot be embodied in treaties",
+      "Treaties may 1) codify customary law, 2) 'crystallise' customary law, 3) lead to the emergence of customary law",
+      "Customary law can emerge only from few multilateral treaties"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_42"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the meaning of implied authorisation?",
+    "choices": [
+      "Presumption of Security Council approval of armed force when a State has been forewarned",
+      "Implicit authorisation on the basis of a specific number of votes by UNSC members",
+      "Presumption that all unlawful attacks will be subject to armed force by a resolution of the UNSC",
+      "In cases of repeated unlawful attacks the UNSC shall authorise neighbouring States to take whatever measures they deem necessary to rectify the situation"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_65"
+  }
+]

@@ -1,0 +1,198 @@
+{
+  "description": "G_model: model as object of measurement (G-theory perspective flip)",
+  "formula": "G_model = \u03c3\u00b2(model) / [\u03c3\u00b2(model) + \u03c3\u00b2_rel_M]",
+  "formula_detail": "\u03c3\u00b2_rel_M = \u03c3\u00b2(m\u00d7i)/n_i + \u03c3\u00b2(m\u00d7p)/n_p + \u03c3\u00b2(m\u00d7s)/n_s + \u03c3\u00b2(m\u00d7t)/n_t + \u03c3\u00b2(m\u00d7o)/n_o + \u03c3\u00b2(residual)/(n_i\u00b7n_p\u00b7n_s\u00b7n_t\u00b7n_o). All higher-order interactions (m\u00d7i\u00d7p, m\u00d7i\u00d7s, etc.) are confounded with residual in this single-observation-per-cell design.",
+  "assumption": "Random model assumption (generalizing beyond the 8 tested models)",
+  "data_source": "exp-002 variance components via Henderson Type-I ANOVA, 8 models \u00d7 200 items \u00d7 6 prompts \u00d7 6 seeds \u00d7 2 temps \u00d7 4 orderings",
+  "facet_levels": {
+    "n_items": 200,
+    "n_prompts": 6,
+    "n_seeds": 6,
+    "n_temps": 2,
+    "n_orderings": 4,
+    "total_conditions_per_model": 57600
+  },
+  "benchmarks": {
+    "MMLU": {
+      "variance_components_used": {
+        "sigma2_model": 0.0065213123,
+        "sigma2_model_item": 0.0695501891,
+        "sigma2_model_prompt": 0.0036708012,
+        "sigma2_model_seed": 6.88512e-05,
+        "sigma2_model_temp": 0.0001007978,
+        "sigma2_model_ordering": 6.40528e-05,
+        "sigma2_residual": 0.0575714452
+      },
+      "n_items": 200,
+      "n_prompts": 6,
+      "n_seeds": 6,
+      "n_temps": 2,
+      "n_orderings": 4,
+      "sigma2_model": 0.0065213123,
+      "sigma2_rel_M": 0.0010384379,
+      "sigma2_rel_M_breakdown": {
+        "sigma2_model_item_over_n_i": 0.0003477509,
+        "sigma2_model_prompt_over_n_p": 0.0006118002,
+        "sigma2_model_seed_over_n_s": 1.14752e-05,
+        "sigma2_model_temp_over_n_t": 5.03989e-05,
+        "sigma2_model_ordering_over_n_o": 1.60132e-05,
+        "sigma2_residual_over_product": 9.995e-07
+      },
+      "sigma2_rel_M_pct_breakdown": {
+        "model_x_item": 33.49,
+        "model_x_prompt": 58.92,
+        "model_x_seed": 1.11,
+        "model_x_temp": 4.85,
+        "model_x_ordering": 1.54,
+        "residual": 0.1
+      },
+      "G_model": 0.8626,
+      "G_item_random_model": 0.8962
+    },
+    "ARC": {
+      "variance_components_used": {
+        "sigma2_model": 0.0054499659,
+        "sigma2_model_item": 0.0597623659,
+        "sigma2_model_prompt": 0.0141751724,
+        "sigma2_model_seed": 2.69593e-05,
+        "sigma2_model_temp": 1.65634e-05,
+        "sigma2_model_ordering": 0.0,
+        "sigma2_residual": 0.0273654728
+      },
+      "n_items": 200,
+      "n_prompts": 6,
+      "n_seeds": 6,
+      "n_temps": 2,
+      "n_orderings": 4,
+      "sigma2_model": 0.0054499659,
+      "sigma2_rel_M": 0.0026745906,
+      "sigma2_rel_M_breakdown": {
+        "sigma2_model_item_over_n_i": 0.0002988118,
+        "sigma2_model_prompt_over_n_p": 0.0023625287,
+        "sigma2_model_seed_over_n_s": 4.4932e-06,
+        "sigma2_model_temp_over_n_t": 8.2817e-06,
+        "sigma2_model_ordering_over_n_o": 0.0,
+        "sigma2_residual_over_product": 4.751e-07
+      },
+      "sigma2_rel_M_pct_breakdown": {
+        "model_x_item": 11.17,
+        "model_x_prompt": 88.33,
+        "model_x_seed": 0.17,
+        "model_x_temp": 0.31,
+        "model_x_ordering": 0.0,
+        "residual": 0.02
+      },
+      "G_model": 0.6708,
+      "G_item_random_model": 0.8917
+    },
+    "HellaSwag": {
+      "variance_components_used": {
+        "sigma2_model": 0.0110182355,
+        "sigma2_model_item": 0.0741053211,
+        "sigma2_model_prompt": 0.000387514,
+        "sigma2_model_seed": 4.71108e-05,
+        "sigma2_model_temp": 8.87438e-05,
+        "sigma2_model_ordering": 0.0,
+        "sigma2_residual": 0.0440750888
+      },
+      "n_items": 200,
+      "n_prompts": 6,
+      "n_seeds": 6,
+      "n_temps": 2,
+      "n_orderings": 4,
+      "sigma2_model": 0.0110182355,
+      "sigma2_rel_M": 0.0004881012,
+      "sigma2_rel_M_breakdown": {
+        "sigma2_model_item_over_n_i": 0.0003705266,
+        "sigma2_model_prompt_over_n_p": 6.45857e-05,
+        "sigma2_model_seed_over_n_s": 7.8518e-06,
+        "sigma2_model_temp_over_n_t": 4.43719e-05,
+        "sigma2_model_ordering_over_n_o": 0.0,
+        "sigma2_residual_over_product": 7.652e-07
+      },
+      "sigma2_rel_M_pct_breakdown": {
+        "model_x_item": 75.91,
+        "model_x_prompt": 13.23,
+        "model_x_seed": 1.61,
+        "model_x_temp": 9.09,
+        "model_x_ordering": 0.0,
+        "residual": 0.16
+      },
+      "G_model": 0.9576,
+      "G_item_random_model": 0.8716
+    },
+    "GSM8K": {
+      "variance_components_used": {
+        "sigma2_model": 0.0268400916,
+        "sigma2_model_item": 0.036345528,
+        "sigma2_model_prompt": 0.021308241,
+        "sigma2_model_seed": 2.30489e-05,
+        "sigma2_model_temp": 0.0002267272,
+        "sigma2_model_ordering": 0.0,
+        "sigma2_residual": 0.0996441838
+      },
+      "n_items": 200,
+      "n_prompts": 6,
+      "n_seeds": 6,
+      "n_temps": 2,
+      "n_orderings": 4,
+      "sigma2_model": 0.0268400916,
+      "sigma2_rel_M": 0.0038520362,
+      "sigma2_rel_M_breakdown": {
+        "sigma2_model_item_over_n_i": 0.0001817276,
+        "sigma2_model_prompt_over_n_p": 0.0035513735,
+        "sigma2_model_seed_over_n_s": 3.8415e-06,
+        "sigma2_model_temp_over_n_t": 0.0001133636,
+        "sigma2_model_ordering_over_n_o": 0.0,
+        "sigma2_residual_over_product": 1.7299e-06
+      },
+      "sigma2_rel_M_pct_breakdown": {
+        "model_x_item": 4.72,
+        "model_x_prompt": 92.19,
+        "model_x_seed": 0.1,
+        "model_x_temp": 2.94,
+        "model_x_ordering": 0.0,
+        "residual": 0.04
+      },
+      "G_model": 0.8745,
+      "G_item_random_model": 0.8629
+    },
+    "MATH": {
+      "variance_components_used": {
+        "sigma2_model": 0.0176297619,
+        "sigma2_model_item": 0.0357840757,
+        "sigma2_model_prompt": 0.0034490834,
+        "sigma2_model_seed": 1.49585e-05,
+        "sigma2_model_temp": 7.27458e-05,
+        "sigma2_model_ordering": 0.0,
+        "sigma2_residual": 0.0908925174
+      },
+      "n_items": 200,
+      "n_prompts": 6,
+      "n_seeds": 6,
+      "n_temps": 2,
+      "n_orderings": 4,
+      "sigma2_model": 0.0176297619,
+      "sigma2_rel_M": 0.0007942116,
+      "sigma2_rel_M_breakdown": {
+        "sigma2_model_item_over_n_i": 0.0001789204,
+        "sigma2_model_prompt_over_n_p": 0.0005748472,
+        "sigma2_model_seed_over_n_s": 2.4931e-06,
+        "sigma2_model_temp_over_n_t": 3.63729e-05,
+        "sigma2_model_ordering_over_n_o": 0.0,
+        "sigma2_residual_over_product": 1.578e-06
+      },
+      "sigma2_rel_M_pct_breakdown": {
+        "model_x_item": 22.53,
+        "model_x_prompt": 72.38,
+        "model_x_seed": 0.31,
+        "model_x_temp": 4.58,
+        "model_x_ordering": 0.0,
+        "residual": 0.2
+      },
+      "G_model": 0.9569,
+      "G_item_random_model": 0.888
+    }
+  },
+  "interpretation": "G_model measures how reliably the evaluation design distinguishes between models. Under the full design (6 prompts \u00d7 6 seeds \u00d7 2 temps \u00d7 4 orderings \u00d7 200 items), G_model ranges from 0.6708 (ARC) to 0.9576 (HellaSwag). ARC and GSM8K have low G_model primarily because model\u00d7prompt interaction is very large (88% and 92% of relative error respectively), meaning prompt template choice substantially changes model rankings. HellaSwag and MATH achieve G_model > 0.95, indicating robust model differentiation. Contrast with G_item (0.86\u20130.90 across all benchmarks): item difficulty measurement is consistently reliable, but model ranking reliability varies dramatically by benchmark. The practical implication: for benchmarks with large model\u00d7prompt interactions (ARC, GSM8K), single-prompt evaluations cannot reliably rank models."
+}

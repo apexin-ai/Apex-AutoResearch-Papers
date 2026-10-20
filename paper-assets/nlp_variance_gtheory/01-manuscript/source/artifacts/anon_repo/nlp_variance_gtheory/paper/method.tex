@@ -1,0 +1,105 @@
+\section{Method and Experimental Design}
+\label{sec:method}
+
+\subsection{Generalizability Theory}
+\label{sec:gtheory}
+
+Generalizability theory (G-theory) treats each measurement as one observation from a universe of admissible conditions defined by the crossed facets of an evaluation design \cite{shavelson1991generalizability, brennan2001generalizability}. The \emph{object of measurement} is the entity whose consistency is of interest. In our setting, test items ($p$) serve as the object of measurement, and the goal is to determine how reliably item-level scores generalize across the methodological conditions under which they are collected.
+
+A \emph{G-study} decomposes total observed variance into components $\sigma^2_x$ for each facet $x$ and their interactions. Each component quantifies how much variability that source contributes to the overall measurement. Large interaction components (e.g., $\sigma^2_{pM}$ for item-by-model) indicate that facets do not affect items uniformly but instead create differential difficulty profiles. We estimate variance components via Henderson Method~I, an unbiased ANOVA-based estimator for balanced designs \cite[Ch.~3]{brennan2001generalizability}, with 1,000-resample bootstrap confidence intervals \cite{efron1993bootstrap} (item-level resampling with replacement, preserving the fully-crossed structure across all other facets) \cite{li2023bootstrap}.
+
+A \emph{D-study} projects the generalizability coefficient under hypothetical designs with different numbers of conditions per facet:
+\begin{equation}
+G_\text{item} = \frac{\sigma^2_p}{\sigma^2_p + \sigma^2_\text{rel}}
+\label{eq:gcoeff}
+\end{equation}
+where $\sigma^2_\text{rel} = \sum_i \sigma^2_{p \times f_i} / n_{f_i} + \sigma^2_\text{residual} / \prod_i n_{f_i}$ aggregates all item-by-facet interaction variances, each divided by the number of conditions for the corresponding facets \cite[Ch.~4]{brennan2001generalizability}. A D-study projects reliability for a test averaging over $n_p$ items via
+\begin{equation}
+G(n_p) = \frac{n_p \, \sigma^2_p}{n_p \, \sigma^2_p + \sigma^2_\text{rel}}
+\label{eq:dstudy}
+\end{equation}
+enabling independent verification of all budget projections in Table~\ref{tab:dstudy}. This prospective capability distinguishes G-theory from classical ANOVA: rather than only attributing variance post hoc, a D-study enables optimization of evaluation designs \emph{before} data collection \cite{shavelson1989gtheory}. Figure~\ref{fig:dstudy_curves} illustrates the practical impact: multi-facet designs achieve $G \geq 0.80$ with 55 items versus 552 under single-condition protocols. We define \emph{item-related variance} as the sum of the item main effect ($\sigma^2_p$) and the model$\times$item interaction ($\sigma^2_{pM}$). The latter captures differential item functioning (DIF): items whose difficulty ranking changes across models \cite[Ch.~4]{brennan2001generalizability}. Because DIF is operationally an item-level property (it reflects model-specific item difficulty profiles rather than a global model ability shift); aggregating $\sigma^2_p + \sigma^2_{pM}$ provides a unified measure of item-driven variance. We report unbundled components throughout to ensure transparency.\footnote{Notation: $p$ = item, $M$ = model, $\pi$ = precision, $\delta$ = prompt, $s$ = seed, $\tau$ = temperature, $o$ = ordering, $\sigma^2_x$ = variance component for source $x$.}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig3_dstudy_curves}
+\caption{D-study projection: the full multi-facet design (blue, 1,296 conditions; theoretical upper bound, impractical for routine use) reaches $G \geq 0.80$ at 55 items versus 552 under single-condition protocols (red). The recommended 3$\times$3 design achieves 178 items (3.1$\times$ reduction).}
+\label{fig:dstudy_curves}
+\end{figure}
+
+\subsection{Experimental Design: MMLU}
+\label{sec:exp001}
+
+We design a fully crossed factorial experiment (exp-001) that simultaneously varies seven facets of LLM evaluation on MMLU. Table~\ref{tab:design_matrix} summarizes the complete design matrix.
+
+\paragraph{Facets.} Items ($p$): 200 MMLU questions via stratified sampling across 10 subjects (20 per subject, four domains: STEM, humanities, social sciences, professional; coefficient of variation [CV] = 3.1\%). Models ($M$): eight open-weight 7--9B instruction-tuned models (Table~\ref{tab:model_ids}), treated as a quasi-random facet (\S\ref{sec:model_facet}). Numerical precision ($\pi$): BFloat16 (BF16), Float16 (FP16), Float32 (FP32). Prompt template ($\delta$): six surface perturbations \cite{sclar2024formatting} varying layout and wording (Appendix~\ref{app:models}). Random seed ($s$): six fixed values (42, 123, 256, 512, 1024, 2048). Sampling temperature ($\tau$): 0.0, 0.3, 0.7. Answer ordering ($o$): four permutations of few-shot demonstrations \cite{pezeshkpour2024ordering}.
+
+\paragraph{Sample sizes.} The cross-model BF16 balanced subset yields 460,800 records (8 models $\times$ 200 items $\times$ 6 prompts $\times$ 6 seeds $\times$ 2 temperatures $\times$ 4 orderings). A single-model analysis (Llama) spans all three precisions, yielding 259,200 binary observations across 1,296 fully balanced conditions. The BF16 subset serves as the primary cross-model sample because BF16 is the standard inference precision for these architectures.
+
+\begin{table}[t]
+\centering
+\caption{Fully crossed G-theory design. Exp-001 evaluates MMLU across all facet levels; exp-002 extends to five benchmarks with reduced crossing. $^\dagger$BF16 balanced subset (2 temperatures: 0.0, 0.7) for cross-model analysis; the full single-model design uses all 3 levels.}
+\label{tab:design_matrix}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrr}
+\toprule
+Facet & Levels & exp-001 & exp-002 \\
+\midrule
+Item ($p$) & Stratified sample & 200 & 200$\times$5 \\
+Model ($M$) & 8 architecture families & 8 & 8 \\
+Precision ($\pi$) & BF16 / FP16 / FP32 & 3 & 1 \\
+Prompt ($\delta$) & Paraphrases & 6 & 6 \\
+Seed ($s$) & Fixed set & 6 & 6 \\
+Temperature ($\tau$) & 0.0 / 0.3 / 0.7 & 3 & 2 \\
+Ordering ($o$) & Demo permutations & 4 & 4 \\
+\midrule
+\multicolumn{2}{l}{Total records} & 460,800$^\dagger$ & 2,304,000 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+
+\subsection{Cross-Benchmark Extension}
+\label{sec:exp002}
+
+Exp-002 extends to five benchmarks: MMLU \cite{hendrycks2021mmlu}, ARC-Challenge \cite{clark2018arc}, HellaSwag \cite{zellers2019hellaswag} (MC), GSM8K \cite{cobbe2021gsm8k}, and MATH \cite{hendrycks2021math} (FF). The design crosses 8 models $\times$ BF16 $\times$ 2 temperatures (0.0, 0.7) $\times$ 6 prompts $\times$ 6 seeds $\times$ 4 orderings $\times$ 200 items, totaling 2,304,000 records. This reduced crossing fixes precision at BF16 to concentrate power on format differences. Ordering operates only on MMLU ($\sigma^2_{\text{ordering}} = 0$ for other benchmarks, retained for design balance). Subset analysis confirms this preserves the full design's variance structure ($\Delta G = 0.0008$; Appendix~\ref{app:robustness}).
+
+
+\subsection{Evaluation Protocol}
+\label{sec:protocol}
+
+All evaluations use generation-based scoring (free-text response with answer extraction) rather than log-likelihood ranking, following \citet{hua2025flaw}. Binary correctness (1/0) is the primary metric; text-exact-match is secondary. Inference uses vLLM~0.9.2 without batch-invariant kernels, preserving CUDA-level nondeterminism as a measurable variance source \cite{messina2026background, thinkingmachines2025batch}. Few-shot protocols: 5-shot MMLU/ARC, 4-shot MATH, 8-shot GSM8K, 10-shot HellaSwag.
+
+\subsection{Binary Data Assumptions}
+\label{sec:binary}
+
+Standard G-theory assumes continuous data \cite{shavelson1991generalizability}; our binary scores violate this. Henderson Method~I produces unbiased estimates for balanced designs regardless of distribution \cite[Ch.~12]{brennan2001generalizability}, and restricted maximum likelihood (REML) differs by $<$0.5pp. A probit simulation, generalized linear mixed model (GLMM) complement ($\rho = 1.0$), and accuracy-range analysis confirm robustness (Appendix~\ref{app:robustness}).
+
+All findings in this paper are conditional on binary correctness scoring. Changing the scoring metric can fundamentally reshape variance structure: text-exact-match scoring collapses $G_\text{item}$ from 0.936 to 0.007 (\S\ref{sec:single_model}), and partial-credit scoring on GSM8K reduces $G_\text{item}$ from 0.86 to 0.77 (mean $\Delta G = -0.135$; Appendix~\ref{app:robustness}). Readers should not assume that the variance decomposition or D-study budgets reported here transfer to non-binary rubrics.
+
+\subsection{Model Facet Specification}
+
+\begin{table}[t]
+\centering
+\caption{Models used in all experiments. RMS = RMSNorm, LN = LayerNorm.}
+\label{tab:model_ids}
+\scriptsize
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}llrl@{}}
+\toprule
+Short name & Family & Params & Norm \\
+\midrule
+Llama-3.1-8B & Llama-3 & 8B & RMS \\
+Gemma-2-9B & Gemma-2 & 9B & RMS \\
+Mistral-7B-v0.3 & Mistral & 7B & RMS \\
+Qwen3-8B & Qwen-3 & 8B & RMS \\
+Yi-1.5-9B & Yi-1.5 & 9B & RMS \\
+OLMo-2-7B & OLMo-2 & 7B & RMS \\
+InternLM2.5-7B & InternLM-2 & 7B & RMS \\
+DeepSeek-7B & DeepSeek & 7B & RMS \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+Our target universe comprises open-weight, instruction-tuned models in the 7--9B parameter range (Table~\ref{tab:model_ids}); results may not generalize to API-based, base, or $>$9B models. The eight models are treated as a quasi-random facet \cite{meredith1993measurement, putnick2016measurement}. We report $G$ under random-model assumptions, the more conservative specification: treating models as fixed yields $G_\text{fixed}$ 0.951--0.990 vs.\ $G_\text{random}$ 0.863--0.896 (increase of 0.077--0.113; Table~\ref{tab:fixed_vs_random}), because model$\times$item interaction (15--36\% across benchmarks) enters relative error variance. Consequently, D-study budgets are upper bounds. Leave-one-model-out (LOMO) analysis preserves component rankings across all five benchmarks (Appendix~\ref{app:robustness}); four-model subset checks match within $|\Delta G| = 0.035$ (\S\ref{sec:dstudy_budgets}).
+\label{sec:model_facet}

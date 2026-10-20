@@ -1,0 +1,83 @@
+{
+  "analysis": "Fixed vs Random Model Sensitivity Analysis for G-theory",
+  "description": "When model is treated as FIXED (not generalizing beyond these 8 models), sigma2(model:item)/n_model is removed from relative error variance delta, because model-specific item difficulty differences are systematic (known), not random error.",
+  "facet_levels": {
+    "n_model": 8,
+    "n_temperature": 2,
+    "n_prompt_template": 6,
+    "n_seed": 6,
+    "n_ordering": 4
+  },
+  "benchmarks": {
+    "mmlu": {
+      "sigma_item": 0.0872124597,
+      "sigma_model_item": 0.0695501891,
+      "delta_random": 0.0101037526,
+      "delta_fixed": 0.0014099790,
+      "g_random": 0.8962,
+      "g_fixed": 0.9841,
+      "delta_g": 0.0879,
+      "n_random_g80": 1,
+      "n_fixed_g80": 1,
+      "n_model": 8
+    },
+    "arc": {
+      "sigma_item": 0.0671248004,
+      "sigma_model_item": 0.0597623659,
+      "delta_random": 0.0081485167,
+      "delta_fixed": 0.0006782209,
+      "g_random": 0.8917,
+      "g_fixed": 0.9900,
+      "delta_g": 0.0983,
+      "n_random_g80": 1,
+      "n_fixed_g80": 1,
+      "n_model": 8
+    },
+    "hellaswag": {
+      "sigma_item": 0.0705466971,
+      "sigma_model_item": 0.0741053211,
+      "delta_random": 0.0103926834,
+      "delta_fixed": 0.0011295183,
+      "g_random": 0.8716,
+      "g_fixed": 0.9842,
+      "delta_g": 0.1127,
+      "n_random_g80": 1,
+      "n_fixed_g80": 1,
+      "n_model": 8
+    },
+    "gsm8k": {
+      "sigma_item": 0.0421014063,
+      "sigma_model_item": 0.0363455280,
+      "delta_random": 0.0066918949,
+      "delta_fixed": 0.0021487039,
+      "g_random": 0.8629,
+      "g_fixed": 0.9514,
+      "delta_g": 0.0886,
+      "n_random_g80": 1,
+      "n_fixed_g80": 1,
+      "n_model": 8
+    },
+    "math": {
+      "sigma_item": 0.0497668223,
+      "sigma_model_item": 0.0357840757,
+      "delta_random": 0.0062747668,
+      "delta_fixed": 0.0018017574,
+      "g_random": 0.8880,
+      "g_fixed": 0.9651,
+      "delta_g": 0.0770,
+      "n_random_g80": 1,
+      "n_fixed_g80": 1,
+      "n_model": 8
+    }
+  },
+  "summary": {
+    "mean_g_random": 0.8821,
+    "mean_g_fixed": 0.9750,
+    "mean_delta_g": 0.0929,
+    "max_delta_g": 0.1127,
+    "max_delta_g_benchmark": "hellaswag",
+    "min_delta_g": 0.0770,
+    "min_delta_g_benchmark": "math",
+    "conclusion": "Treating models as fixed inflates G coefficients by 0.077-0.113 (mean +0.093) across all 5 benchmarks. The model:item interaction is the largest error component (14.6%-36.0% of total variance), so its inclusion in delta is consequential. Under the fixed-model assumption, all G values exceed 0.95, obscuring the substantial model-dependent item difficulty variation that real-world benchmark users face when selecting models. The random-model treatment is more conservative and appropriate when findings should generalize to models beyond the specific 8 tested."
+  }
+}

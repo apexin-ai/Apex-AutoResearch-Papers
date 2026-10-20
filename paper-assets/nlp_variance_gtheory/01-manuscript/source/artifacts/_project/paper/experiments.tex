@@ -1,0 +1,144 @@
+\section{Experiments}
+
+We apply the G-theory framework from Section~3 to a fully crossed evaluation design spanning multiple models, benchmarks, and methodological facets. All experiments use open-weight 7--9B parameter models evaluated with vLLM on a single A100-80GB GPU. Binary correctness (1/0) serves as the primary outcome measure throughout.
+
+\subsection{Single-Model Baseline}
+
+We first establish the variance structure within a single model (Llama-3.1-8B-Instruct) on MMLU to isolate methodological facet contributions before introducing cross-model variation.
+
+\paragraph{Design.} The G-study crosses six facets: 200 items $\times$ 3 numerical precisions (FP16, BF16, FP32) $\times$ 6 prompt templates $\times$ 6 random seeds $\times$ 3 temperature levels (0.0, 0.3, 0.7) $\times$ 4 answer orderings, yielding 239,200 binary observations. Variance components are estimated via Henderson Method~I with bootstrap confidence intervals (1,000 resamples).
+
+\paragraph{Results.} Under binary scoring, item difficulty (\texttt{item\_id}) accounts for 61.1\% of total variance, with the residual term contributing 19.5\%. All main facet effects are negligible ($<$1\% each): prompt template 0.3\%, temperature 0.2\%, precision 0.1\%, seed $<$0.1\%, ordering $<$0.1\%. The interesting structure appears in item-conditional interactions: precision$\times$item contributes 7.2\%, temperature$\times$item 6.9\%, and prompt$\times$item 5.7\%. This pattern indicates that methodological choices do not shift performance uniformly across items; instead, specific items are differentially sensitive to specific facets.
+
+The resulting generalizability coefficient is $G_\text{item} = 0.918$, indicating that 200 items under multi-facet conditions produce highly reliable rankings. A D-study projection shows $G \geq 0.80$ is achievable with as few as 72 items in this multi-facet design.
+
+For text-exact-match scoring (requiring verbatim string matches), the variance structure shifts dramatically: temperature dominates at 79.7\% of variance, and $G_\text{item}$ collapses to 0.007. This metric-conditional divergence motivates our exclusive use of binary correctness for the remaining analyses.
+
+\subsection{Cross-Model Variance}
+
+We extend the single-model design to four models: Llama-3.1-8B-Instruct, Gemma-2-9B-it, Mistral-7B-Instruct-v0.3, and Qwen3-8B. A balanced BF16 subset (345,600 records) serves as the primary analysis sample, chosen because BF16 is the standard inference precision for these architectures.
+
+\paragraph{Results.} Table~\ref{tab:cross_model} presents the variance decomposition. Introducing model as a facet reshapes the structure: item difficulty drops from 61.1\% to 42.1\% [36.0--48.8\%], while model$\times$item interaction emerges as the second-largest component at 33.6\% [28.4--37.9\%]. The model main effect contributes only 0.7\%, confirming that models differ not in overall ability level but in \emph{which items} they find difficult.
+
+\begin{table}[t]
+\centering
+\caption{Variance decomposition for the cross-model MMLU design (4 models, BF16, 345,600 records). Components estimated via Henderson Method~I with 1,000-resample bootstrap CIs. $G_\text{item} = 0.820$ [0.782--0.861].}
+\label{tab:cross_model}
+\small
+\begin{tabular}{lrl}
+\toprule
+Component & Var.\% & 95\% CI \\
+\midrule
+\textbf{item\_id} & \textbf{42.1} & [36.0--48.8] \\
+\underline{model$\times$item} & \underline{33.6} & [28.4--37.9] \\
+residual & 19.5 & [17.2--21.8] \\
+precision$\times$item & 1.3 & [0.8--1.9] \\
+model & 0.7 & [0.2--1.5] \\
+prompt$\times$item & 0.6 & [0.3--1.0] \\
+temperature$\times$item & 0.6 & [0.3--1.0] \\
+seed$\times$item & 0.4 & [0.1--0.8] \\
+ordering$\times$item & 0.3 & [0.1--0.6] \\
+all others & $<$0.1 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The per-model decomposition of interaction magnitude reveals meaningful asymmetry: Mistral concentrates 29.3\% of the total model$\times$item variance, followed by Qwen (27.1\%), Gemma (24.0\%), and Llama (19.7\%). This ordering suggests that instruction-tuning strategies and pretraining data composition produce model-specific item difficulty profiles.
+
+\paragraph{D-study validation.} To test whether G-theory projections generalize beyond the training sample, we estimate a D-study on 3-model subsets and predict the 4-model coefficient. The predicted $G = 0.816$ for $n_\text{model} = 4$ closely matches the observed $G = 0.820$ ($\Delta = 0.004$). Forward projections indicate $G = 0.848$ at 5 models, $G = 0.893$ at 8 models, and $G \geq 0.90$ requires approximately 10 models.
+
+\subsection{Format-Conditional Variance Structure}
+\label{sec:format_conditional}
+
+The preceding analyses use only MMLU, a multiple-choice benchmark. We now test whether the item-dominated variance structure generalizes across evaluation formats by extending to four benchmarks spanning two response formats.
+
+\paragraph{Design.} The expanded design (exp-002) crosses 4 models $\times$ 4 benchmarks $\times$ BF16 $\times$ 2 temperatures (0.0, 0.7) $\times$ 6 prompts $\times$ 6 seeds $\times$ 4 orderings $\times$ 200 items per benchmark, totaling 921,600 records. The benchmarks include three multiple-choice tasks (MMLU, ARC-Challenge, HellaSwag) and one free-form generation task (GSM8K). For free-form tasks, the ordering facet permutes few-shot exemplar sequences rather than answer options.
+
+% [PLACEHOLDER: expand to 8 models × 5 benchmarks (+ MATH) when data ready]
+
+\paragraph{Results.} Table~\ref{tab:cross_benchmark} reveals a qualitative structural shift between formats. For all three multiple-choice benchmarks, item difficulty is the dominant component (MMLU 42\%, ARC 49\%, HellaSwag 45\%), and model$\times$item interaction is the second largest (32--38\%). This structure is consistent with the cross-model analysis in Section~4.2.
+
+GSM8K exhibits a fundamentally different variance profile. Item difficulty accounts for only 12\% of variance. Instead, model (15\%), prompt template (12\%), and model$\times$prompt interaction (9\%) become the leading components. The residual term absorbs 35\% of variance, indicating substantial unexplained variation from seed and temperature effects in free-form generation.
+
+\begin{table}[t]
+\centering
+\caption{Format-conditional variance structure across four benchmarks (exp-002, 921,600 records). Top-5 components plus residual per benchmark. MC = multiple-choice, FF = free-form.}
+\label{tab:cross_benchmark}
+\small
+\begin{tabular}{l rrrr}
+\toprule
+ & \multicolumn{3}{c}{MC} & FF \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-5}
+Component & MMLU & ARC & Hella. & GSM8K \\
+\midrule
+\textbf{item\_id} & \textbf{42} & \textbf{49} & \textbf{45} & 12 \\
+model$\times$item & 34 & 32 & 38 & 8 \\
+\textbf{model} & 1 & 1 & 1 & \textbf{15} \\
+prompt & $<$1 & $<$1 & $<$1 & 12 \\
+model$\times$prompt & $<$1 & $<$1 & $<$1 & 9 \\
+residual & 19 & 15 & 13 & 35 \\
+\bottomrule
+\end{tabular}
+% [PLACEHOLDER: add MATH column + 8-model rows when data ready]
+\end{table}
+
+This dichotomy is not a continuous gradient. The gap between the lowest MC item dominance (MMLU, 42\%) and GSM8K (12\%) represents a qualitative shift in what drives evaluation variance. In multiple-choice settings, the item pool determines reliability; in free-form settings, prompt design and model selection dominate. Figure~\ref{fig:cross_benchmark} visualizes this structural contrast.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig1_cross_benchmark}
+\caption{Variance decomposition by benchmark format. Multiple-choice benchmarks (MMLU, ARC, HellaSwag) share an item-dominated structure, while free-form GSM8K distributes variance across model, prompt, and interaction components.}
+\label{fig:cross_benchmark}
+\end{figure}
+
+\subsection{Precision Separability}
+
+Prior work has identified numerical precision as a potential source of evaluation variance \cite{yuan2025layercast}. Our multi-facet design allows us to isolate the precision contribution while controlling for all other facets simultaneously.
+
+Under binary scoring with BF16 and FP16, the mean accuracy difference is 0.23 percentage points. After excluding FP32, the precision main effect drops to 0.0006\% of total variance. The FP32 anomaly traces to a vLLM implementation detail (\texttt{enforce\_eager} mode required for FP32 inference), not a fundamental precision effect.
+
+Precision does not interact with other methodological facets under binary scoring: all precision$\times$methodology interactions contribute $<$0.1\% of variance. Under text-exact-match scoring, however, a precision$\times$temperature interaction emerges at 1.3\%, consistent with the metric-conditional pattern observed in Section~4.1. The practical implication is clear: for standard binary evaluation at BF16/FP16, numerical precision is a negligible variance source that need not be controlled. This finding is specific to single-GPU inference and does not address multi-GPU tensor parallelism, where numerical non-associativity introduces additional variance sources \cite{shanmugavelu2024floating}.
+
+\subsection{Design-Dependent Reproducibility Budgets}
+
+The previous sections establish that item selection and model$\times$item interaction dominate evaluation variance. A natural question follows: how many items does a given evaluation design need to achieve a target reliability? We address this through D-study projections that translate variance components into concrete item budgets.
+
+Table~\ref{tab:dstudy} compares four evaluation designs at the $G \geq 0.80$ threshold. The multi-facet design (432 conditions per item: 3 precisions $\times$ 6 prompts $\times$ 6 seeds $\times$ 4 orderings) achieves $G = 0.918$ at 200 items and requires only 72 items for $G \geq 0.80$. A single-condition design (one fixed prompt, seed, ordering, and precision per item) reaches only $G = 0.559$ at 200 items and requires 631 items for the same threshold. The ratio between these budgets is 8.8$\times$, and this ratio remains stable across subset sizes from 50 to 200 items (CV = 1.9\%).
+
+\begin{table}[t]
+\centering
+\caption{D-study reproducibility budgets under different evaluation designs. The multi-facet design requires $8.8\times$ fewer items than single-condition evaluation to reach $G \geq 0.80$.}
+\label{tab:dstudy}
+\small
+\begin{tabular}{lcrrr}
+\toprule
+Design & Cond./item & $n_{G \geq 0.80}$ & $G_{200}$ & $G_{116}$ \\
+\midrule
+Multi-facet & 432 & \textbf{72} & \textbf{0.918} & \textbf{0.882} \\
+Partial (4 cond.) & 4 & 189 & 0.810 & 0.721 \\
+Single-condition & 1 & 631 & 0.559 & 0.424 \\
+\midrule
+IRT baseline & \multicolumn{1}{c}{---} & 116 & --- & 0.424$^\dagger$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\scriptsize $^\dagger$\,PSN-IRT item count of 116 \cite{zhou2026irt} evaluated under single-condition protocol yields $G = 0.424$. See text for interpretation.}
+\end{table}
+
+The comparison with IRT-based efficient benchmarking is instructive. \citet{zhou2026irt} use IRT to select 116 informative items from MMLU, optimizing for item discrimination. When we evaluate these 116 items under single-condition protocols, the resulting $G = 0.424$ falls well below the reliability threshold. This is not a failure of IRT item selection; rather, it reflects that IRT optimizes a different objective (latent trait estimation) that does not account for methodological facet variance. Under the multi-facet design, 116 items yield $G = 0.882$, confirming that the reliability gap is driven by evaluation design, not item quality.
+
+Figure~\ref{fig:dstudy} plots the D-study projection curves for each design. The multi-facet curve saturates rapidly (diminishing returns beyond $\sim$150 items), while the single-condition curve rises slowly and does not reach $G = 0.80$ within typical benchmark sizes.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig3_dstudy_curves}
+\caption{D-study projection curves for three evaluation designs. The multi-facet design ($8.8\times$ fewer items) reaches $G \geq 0.80$ at 72 items; the single-condition design requires 631 items. The shaded band shows 95\% bootstrap CIs.}
+\label{fig:dstudy}
+\end{figure}
+
+\subsection{Robustness Checks}
+
+We conduct six robustness analyses to verify that the reported variance structures are not artifacts of specific analytical choices. \textbf{Item resampling} (exp-001b): three independent 200-item samples drawn from the full MMLU pool yield item difficulty variance shares of 59.8\%, 61.4\%, and 62.1\% (CV = 2.7\%) and $G_\text{item}$ values with CV = 0.5\%. \textbf{Estimator robustness}: REML and Henderson Method~I differ by $<$0.5 percentage points on all components. \textbf{CI method}: bootstrap and jackknife confidence intervals agree closely (width ratio 0.96--1.04 across components). \textbf{Facet specification}: treating facets as fixed vs.\ random changes $G_\text{item}$ by only 0.37 percentage points. \textbf{Leave-one-model-out (LOMO)}: all three-model subsets preserve the item + model$\times$item dominance pattern (item\_id 39--45\%, model$\times$item 32--37\%, $G_\text{item}$ 0.747--0.793). \textbf{Null calibration}: a Bernoulli simulation with matched item difficulties produces a variance ratio of 1.0008 relative to observed data, confirming that the decomposition does not introduce systematic bias on binary outcomes.
+
+% [PLACEHOLDER: §4.7 Extended Results — 8-model × 5-benchmark expansion]

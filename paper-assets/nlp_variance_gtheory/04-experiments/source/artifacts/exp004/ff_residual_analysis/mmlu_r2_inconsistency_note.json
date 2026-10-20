@@ -1,0 +1,44 @@
+{
+  "issue": "MMLU FF residual R² inconsistency between scatter plot (0.347) and regression table (0.377)",
+  "date_identified": "2026-05-22",
+  "root_cause": "Table (appendix.tex Tab.ff_residual) copied R²(full) into the R²(diff only) column for ALL three MC benchmarks. FF benchmarks are correct.",
+  "ground_truth_from_json": {
+    "mmlu": {
+      "R2_full": 0.3769,
+      "R2_difficulty_only": 0.3471,
+      "table_R2_full": "0.377 (correct)",
+      "table_R2_diff_only": "0.377 (WRONG, should be 0.347)"
+    },
+    "arc": {
+      "R2_full": 0.2212,
+      "R2_difficulty_only": 0.2037,
+      "table_R2_full": "0.221 (correct)",
+      "table_R2_diff_only": "0.221 (WRONG, should be 0.204)"
+    },
+    "hellaswag": {
+      "R2_full": 0.1563,
+      "R2_difficulty_only": 0.1401,
+      "table_R2_full": "0.156 (correct)",
+      "table_R2_diff_only": "0.156 (WRONG, should be 0.140)"
+    },
+    "gsm8k": {
+      "R2_full": 0.468,
+      "R2_difficulty_only": 0.449,
+      "table_correct": true
+    },
+    "math": {
+      "R2_full": 0.856,
+      "R2_difficulty_only": 0.845,
+      "table_correct": true
+    }
+  },
+  "scatter_plot_value": "0.347 = difficulty_only_R2 (CORRECT)",
+  "table_value": "0.377 = R2_full, mislabeled as R²(diff only) (WRONG)",
+  "affected_file": "docs/paper/appendix.tex, line 184 (MMLU), also lines 185-186 (ARC, HellaSwag)",
+  "fix": {
+    "line_184": "MMLU & 0.377 & 0.347 & $<$0.001 \\\\",
+    "line_185": "ARC & 0.221 & 0.204 & $<$0.001 \\\\",
+    "line_186": "HellaSwag & 0.156 & 0.140 & $<$0.001 \\\\",
+    "also_check": "appendix.tex line 172 mentions 'mean 0.25' for MC — this uses full R² mean (0.251), which is fine if the sentence refers to R²(full). But if it claims to refer to diff-only, update to 0.230."
+  }
+}

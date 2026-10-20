@@ -1,0 +1,47 @@
+paper_key: "magnusson2023reproducibility"
+title: "Reproducibility in NLP: What Have We Learned from the Checklist?"
+venue: "Findings of ACL 2023"
+full_text_available: false
+
+research:
+  baselines: ["pre-checklist submission practices (before 2020)", "checklist non-respondents"]
+  metrics:
+    - {name: "reporting frequency (pre/post checklist)", direction: "higher_better"}
+    - {name: "acceptance rate by checklist compliance", direction: "higher_better"}
+    - {name: "reviewer-rated reproducibility score", direction: "higher_better"}
+  datasets:
+    - {name: "NLP Reproducibility Checklist responses", size: "10,405 anonymous responses"}
+  ablation_dimensions: ["checklist item type", "data collection vs non-data papers", "code open-sourcing", "temporal trend (pre/post 2020)"]
+  training_recipe: {optimizer: "N/A (meta-analysis)", lr: "N/A", hardware: "N/A"}
+  method_family: "meta-analysis of reproducibility practices"
+
+positioning:
+  core_claim: "The NLP Reproducibility Checklist measurably improved reporting practices, but code sharing remains at only 46% and data-gathering papers face systematic acceptance penalties"
+  key_results: "Code open-sourcing → +8% reproducibility score; data-gathering papers → -5% acceptance rate and -2% reproducibility rating; improved reporting of efficiency/hyperparameters post-checklist"
+  limitations:
+    - "Analysis of checklist responses, not actual reproduction attempts"
+    - "Cannot distinguish genuine from aspirational checklist responses"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Scientific progress in NLP rests on reproducibility — the checklist was introduced in 2020, but has it worked?"
+  tension: "Checklist exists but no one has analyzed whether it actually improved practices"
+  key_insight: "Code sharing is the single strongest predictor of reproducibility (+8%), yet only 46% of submissions claim to open-source"
+  argument_chain: "motivation (reproducibility matters) → data (10,405 responses) → findings (improved reporting, code gap) → recommendations (delayed code submission, data collection checklists)"
+  contribution_framing: "First large-scale analysis of the checklist + concrete recommendations"
+  intro_structure: "N/A (PDF not parseable)"
+  notable_technique: "N/A"
+
+figures:
+  figure_count: 0
+  figure1: {type: "N/A"}
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: 0
+  main_result_table: {table_id: "N/A"}
+  ablation_tables: []
+  supplementary_tables: {in_appendix: false, content: "N/A", reason: "N/A"}

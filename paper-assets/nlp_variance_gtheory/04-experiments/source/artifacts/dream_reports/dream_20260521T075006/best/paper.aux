@@ -1,0 +1,171 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sclar2024}
+\citation{yuan2025}
+\citation{mesting2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{bouthillier2021}
+\citation{henderson2018}
+\citation{dodge2020}
+\citation{sellam2022}
+\citation{bui2025}
+\citation{sclar2024}
+\citation{lu2022}
+\citation{pezeshkpour2024}
+\citation{brittlebench2026}
+\citation{yuan2025}
+\citation{messina2026}
+\citation{mesting2026}
+\citation{lalor2019}
+\citation{rodriguez2021}
+\citation{polo2024}
+\citation{vania2021}
+\citation{kunievsky2025}
+\citation{dehghani2021}
+\citation{biderman2024}
+\citation{hua2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition in ML evaluation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM evaluation sensitivity.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{G-theory in NLP evaluation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT-based evaluation.}{2}{section*.4}\protected@file@percent }
+\citation{shavelson1991,brennan2001}
+\citation{jiang2017}
+\citation{mushquash2006}
+\@writefile{toc}{\contentsline {paragraph}{Alternative frameworks.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background: Generalizability Theory}{3}{section.3}\protected@file@percent }
+\newlabel{eq:gmodel}{{1}{3}{Background: Generalizability Theory}{equation.1}{}}
+\newlabel{eq:gcoeff}{{2}{3}{Background: Generalizability Theory}{equation.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Design}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Models}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Benchmarks}{3}{subsection.4.2}\protected@file@percent }
+\citation{yuan2025}
+\citation{hua2025}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Single-model vs.\ cross-model variance decomposition on MMLU (200 items, 4 models). Cross-model analysis treats model as a crossed random facet.}}{4}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:single-cross}{{1}{4}{Single-model vs.\ cross-model variance decomposition on MMLU (200 items, 4 models). Cross-model analysis treats model as a crossed random facet}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Facet Design}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Inference}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Scale}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}MMLU Variance Decomposition}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:mmlu}{{5.1}{4}{MMLU Variance Decomposition}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-model interaction magnitude on MMLU. Models with lower accuracy show larger model$\times $item interactions.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:permodel}{{2}{5}{Per-model interaction magnitude on MMLU. Models with lower accuracy show larger model$\times $item interactions}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Precision effects with and without FP32. The FP32 anomaly is entirely a vLLM \texttt  {enforce\_eager} artifact.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:bf16fp16}{{3}{5}{Precision effects with and without FP32. The FP32 anomaly is entirely a vLLM \texttt {enforce\_eager} artifact}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{BF16 vs.\ FP16 sensitivity.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-model-out stability.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Item Resampling Stability}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:resampling}{{5.2}{5}{Item Resampling Stability}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Benchmark Variance Gradient}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:gradient}{{5.3}{5}{Cross-Benchmark Variance Gradient}{subsection.5.3}{}}
+\citation{messina2026}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Leave-one-model-out $\ensuremath  {G}_\text  {item}$ stability. All subsets maintain $\ensuremath  {G}>0.80$ and item\_id dominance.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:lomo}{{4}{6}{Leave-one-model-out $\Gcoeff _\text {item}$ stability. All subsets maintain $\Gcoeff >0.80$ and item\_id dominance}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Item resampling stability across three independent 200-item stratified draws on MMLU. CV $<$ 6\% for all components.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:resampling}{{5}{6}{Item resampling stability across three independent 200-item stratified draws on MMLU. CV $<$ 6\% for all components}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{MMLU design comparability.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$\ensuremath  {G}_\text  {item}$ across benchmarks.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Hardware$\times $Methodology Separability}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:hardware}{{5.4}{6}{Hardware$\times $Methodology Separability}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-benchmark variance decomposition (4 models, binary scoring). Item\_id and model$\times $item form a monotonic gradient aligned with task reasoning complexity. All values in \%.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:gradient}{{6}{7}{Cross-benchmark variance decomposition (4 models, binary scoring). Item\_id and model$\times $item form a monotonic gradient aligned with task reasoning complexity. All values in \%}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Hardware$\times $methodology interaction terms (MMLU, 4 models, 2 GPUs). Binary scoring shows negligible interactions; text-exact-match is 4$\times $ larger but still $<$1\%.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:hardware}{{7}{7}{Hardware$\times $methodology interaction terms (MMLU, 4 models, 2 GPUs). Binary scoring shows negligible interactions; text-exact-match is 4$\times $ larger but still $<$1\%}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}IRT vs.\ G-Theory Item Requirements}{7}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:irt}{{5.5}{7}{IRT vs.\ G-Theory Item Requirements}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}D-Study Reproducibility Budgets}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:dstudy}{{5.6}{7}{D-Study Reproducibility Budgets}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Full-benchmark projections.}{7}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces IRT vs.\ G-theory item requirements for $\ensuremath  {G}\geq 0.80$. G-theory requires 3.6--4.6$\times $ more items because it accounts for facet$\times $item interactions that IRT ignores. $\ensuremath  {G}$@IRT shows G-theory reliability at IRT's recommended item count.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:irt}{{8}{8}{IRT vs.\ G-theory item requirements for $\Gcoeff \geq 0.80$. G-theory requires 3.6--4.6$\times $ more items because it accounts for facet$\times $item interactions that IRT ignores. $\Gcoeff $@IRT shows G-theory reliability at IRT's recommended item count}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces D-study reproducibility budgets for target $\ensuremath  {G}$ values. Practical configurations fix precision and temperature.}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:dstudy}{{9}{8}{D-study reproducibility budgets for target $\Gcoeff $ values. Practical configurations fix precision and temperature}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Robustness Analyses}{8}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:robustness}{{5.7}{8}{Robustness Analyses}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap confidence intervals.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary data validation.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fixed vs.\ random facet sensitivity.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{REML confirmation.}{8}{section*.25}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Bootstrap 95\% CIs on key variance components across benchmarks.}}{9}{table.caption.21}\protected@file@percent }
+\newlabel{tab:bootstrap}{{10}{9}{Bootstrap 95\% CIs on key variance components across benchmarks}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Sensitivity to fixed vs.\ random facet classification on MMLU. All scenarios within $<$3\% of baseline.}}{9}{table.caption.24}\protected@file@percent }
+\newlabel{tab:fixedrandom}{{11}{9}{Sensitivity to fixed vs.\ random facet classification on MMLU. All scenarios within $<$3\% of baseline}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Logprob scoring.}{9}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Power analysis.}{9}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Higher-order interactions.}{9}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Model Scale Extension}{9}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:scale}{{5.8}{9}{Model Scale Extension}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}LayerCast Precision Mitigation}{9}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:layercast}{{5.9}{9}{LayerCast Precision Mitigation}{subsection.5.9}{}}
+\citation{dodge2020}
+\citation{bui2025}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Logprob variance decomposition across benchmarks. The gradient is preserved, with uniformly higher item\_id than binary scoring.}}{10}{table.caption.27}\protected@file@percent }
+\newlabel{tab:logprob}{{12}{10}{Logprob variance decomposition across benchmarks. The gradient is preserved, with uniformly higher item\_id than binary scoring}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces 14B vs.\ 7--9B variance structure comparison on MMLU. All deltas within bootstrap CIs.}}{10}{table.caption.30}\protected@file@percent }
+\newlabel{tab:scale}{{13}{10}{14B vs.\ 7--9B variance structure comparison on MMLU. All deltas within bootstrap CIs}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Implications for Benchmark Design}{10}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Fine-Tuning Variance Structure}{10}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:finetune}{{6.2}{10}{Fine-Tuning Variance Structure}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Practical Recommendations}{10}{subsection.6.3}\protected@file@percent }
+\citation{mesting2026}
+\citation{jiang2017,mushquash2006}
+\citation{mesting2026}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Fine-tuning variance decomposition (RoBERTa-large, 4 tasks). Seed replaces item\_id as the dominant source, scaling inversely with dataset size.}}{11}{table.caption.31}\protected@file@percent }
+\newlabel{tab:finetune}{{14}{11}{Fine-tuning variance decomposition (RoBERTa-large, 4 tasks). Seed replaces item\_id as the dominant source, scaling inversely with dataset size}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Compute Budget}{11}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Limitations}{11}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model scope.}{11}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary data.}{11}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hardware coverage.}{11}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge exclusion.}{11}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample size for gradient.}{11}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{biderman2024}{{1}{2024}{{Biderman et~al.}}{{}}}
+\bibcite{bouthillier2021}{{2}{2021}{{Bouthillier et~al.}}{{}}}
+\bibcite{brennan2001}{{3}{2001}{{Brennan}}{{}}}
+\bibcite{brittlebench2026}{{4}{2026}{{Brittlebench}}{{}}}
+\bibcite{bui2025}{{5}{2025}{{Bui et~al.}}{{}}}
+\bibcite{dehghani2021}{{6}{2021}{{Dehghani et~al.}}{{}}}
+\bibcite{dodge2020}{{7}{2020}{{Dodge et~al.}}{{}}}
+\bibcite{henderson2018}{{8}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{hua2025}{{9}{2025}{{Hua et~al.}}{{}}}
+\bibcite{jiang2017}{{10}{2017}{{Jiang \& Skorupski}}{{}}}
+\bibcite{kunievsky2025}{{11}{2025}{{Kunievsky \& Evans}}{{}}}
+\bibcite{lalor2019}{{12}{2019}{{Lalor et~al.}}{{}}}
+\bibcite{lu2022}{{13}{2022}{{Lu et~al.}}{{}}}
+\bibcite{messina2026}{{14}{2026}{{Messina \& Scotta}}{{}}}
+\bibcite{mesting2026}{{15}{2026}{{Mesting}}{{}}}
+\bibcite{mushquash2006}{{16}{2006}{{Mushquash \& O'Connor}}{{}}}
+\bibcite{perlitz2023}{{17}{2023}{{Perlitz et~al.}}{{}}}
+\bibcite{pezeshkpour2024}{{18}{2024}{{Pezeshkpour \& Hruschka}}{{}}}
+\bibcite{polo2024}{{19}{2024}{{Polo et~al.}}{{}}}
+\bibcite{rodriguez2021}{{20}{2021}{{Rodriguez et~al.}}{{}}}
+\bibcite{sclar2024}{{21}{2024}{{Sclar et~al.}}{{}}}
+\bibcite{sellam2022}{{22}{2022}{{Sellam et~al.}}{{}}}
+\bibcite{shavelson1991}{{23}{1991}{{Shavelson \& Webb}}{{}}}
+\bibcite{shavelson1989}{{24}{1989}{{Shavelson et~al.}}{{}}}
+\bibcite{vania2021}{{25}{2021}{{Vania et~al.}}{{}}}
+\bibcite{yuan2025}{{26}{2025}{{Yuan et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Experimental Details}{14}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Cross-Benchmark $\ensuremath  {G}_\text  {item}$ and D-Study Validation}{14}{subsection.A.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces $\ensuremath  {G}_\text  {item}$ and D-study out-of-sample validation across benchmarks.}}{14}{table.caption.38}\protected@file@percent }
+\newlabel{tab:gitem-cross}{{15}{14}{$\Gcoeff _\text {item}$ and D-study out-of-sample validation across benchmarks}{table.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Single-GPU vs.\ Cross-GPU Stability}{14}{subsection.A.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Single-GPU vs.\ cross-GPU variance decomposition stability on MMLU.}}{14}{table.caption.39}\protected@file@percent }
+\newlabel{tab:crossgpu-stability}{{16}{14}{Single-GPU vs.\ cross-GPU variance decomposition stability on MMLU}{table.caption.39}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Binary Data Null Simulation}{14}{subsection.A.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Observed vs.\ null-simulation item\_id on MMLU, validating that item variance is not a Bernoulli artifact.}}{14}{table.caption.40}\protected@file@percent }
+\newlabel{tab:nullsim}{{17}{14}{Observed vs.\ null-simulation item\_id on MMLU, validating that item variance is not a Bernoulli artifact}{table.caption.40}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}LayerCast Precision Effect}{14}{subsection.A.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}MATH D-Study Budget}{14}{subsection.A.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces LayerCast (FP16 storage + FP32 compute) precision effect on Llama-3.1-8B, MMLU.}}{15}{table.caption.41}\protected@file@percent }
+\newlabel{tab:layercast}{{18}{15}{LayerCast (FP16 storage + FP32 compute) precision effect on Llama-3.1-8B, MMLU}{table.caption.41}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces MATH-specific D-study reproducibility budgets.}}{15}{table.caption.42}\protected@file@percent }
+\newlabel{tab:math-dstudy}{{19}{15}{MATH-specific D-study reproducibility budgets}{table.caption.42}{}}
+\gdef \@abspage@last{15}

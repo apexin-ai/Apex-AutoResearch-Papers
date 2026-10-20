@@ -1,0 +1,67 @@
+[
+  {
+    "item_id": "gsm8k_train_3092",
+    "benchmark": "gsm8k",
+    "question": "A hardware store sold 10 graphics cards, 14 hard drives, 8 CPUs, and 4 pairs of RAM in one week. The graphics cards cost $600 each, hard drives cost $80 each, CPUs cost $200 each, and RAM cost $60 for each pair. How much money did the store earn this week?",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "8960",
+    "metadata": {
+      "n_steps": 5,
+      "difficulty": "hard(5-6)",
+      "raw_answer": "It earned 10*600 = <<10*600=6000>>6000 dollars by selling graphics cards\nIt earned 14*80 = <<14*80=1120>>1120 dollars by selling hard drives\nIt earned 8*200 = <<8*200=1600>>1600 dollars by selling CPUs\nIt earned 4*60 = <<4*60=240>>240 dollars by selling RAM\nOverall it earned 6000+1120+1600+240 = <<6000+1120+1600+240=8960>>8960 dollars this week\n#### 8960"
+    }
+  },
+  {
+    "item_id": "gsm8k_train_4965",
+    "benchmark": "gsm8k",
+    "question": "John buys 2 shirts. The first shirt costs $6 more than the second shirt. If the first shirt costs $15, how much, in dollars, did the shirts cost in total?",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "24",
+    "metadata": {
+      "n_steps": 2,
+      "difficulty": "easy(1-2)",
+      "raw_answer": "The second shirt is 15-6=<<15-6=9>>9 dollars.\nBoth shirts cost 15+9=<<15+9=24>>24 dollars.\n#### 24"
+    }
+  },
+  {
+    "item_id": "gsm8k_train_214",
+    "benchmark": "gsm8k",
+    "question": "In 6 months Bella and Bob will be celebrating their 4th anniversary.  How many months ago did they celebrate their 2nd anniversary?",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "18",
+    "metadata": {
+      "n_steps": 4,
+      "difficulty": "medium(3-4)",
+      "raw_answer": "First, we find their current point in time be realizing that 4 years is 4 sets of 12 months, meaning at that anniversary they will have been together 4*12=<<4*12=48>>48 months\nThen, we subtract their 6 month difference, finding they are at 48-6=<<48-6=42>>42 months into their relationship.\nSince 2 years would be 2*12=<<2*12=24>>24 months into the relationship.\nWe take the larger number, 42, and subtract the smaller number, 24 to find the difference in months, meaning it is 42-24= <<42-24=18>>18 months\n#### 18"
+    }
+  },
+  {
+    "item_id": "gsm8k_train_3147",
+    "benchmark": "gsm8k",
+    "question": "Peter needs to buy birdseed to last a week. He knows that each parakeet eats 2 grams a day. His parrots eat 14 grams a day. His finches eat half of what a parakeet eats. If he has 3 parakeets, 2 parrots and 4 finches, how many grams of birdseed does he need to buy?",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "266",
+    "metadata": {
+      "n_steps": 7,
+      "difficulty": "very_hard(7+)",
+      "raw_answer": "His parakeets eat 6 grams a day, because three parakeets times two grams each equals 6 grams.\nHis parrots will eat 28 grams a day because two parrots times 14 grams equals <<2*14=28>>28 grams.\nEach finch will eat 1 gram a day, because they eat half of what a parakeet does and 1/2 of 2 equals one.\nHis finches will eat 4 grams a day because four finches times 1 gram equals 4 grams.\nHis birds eat 38 grams a day because 6 plus 28 plus 4 equals <<6+28+4=38>>38\nEach week has 7 days\nTherefore, in a week he will need 266 grams because 7 times 38 equals <<7*38=266>>266.\n#### 266"
+    }
+  },
+  {
+    "item_id": "gsm8k_train_928",
+    "benchmark": "gsm8k",
+    "question": "In a glee club, there are two times as many female than male members. How many female members are there if there are 18 members in the club?",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "12",
+    "metadata": {
+      "n_steps": 3,
+      "difficulty": "medium(3-4)",
+      "raw_answer": "The club has a female group which has twice as many members as the male group, so there are 2+1=<<2+1=3>>3 groups in the club.\nThere are 18 members in the club, which means there are 18/3 = <<18/3=6>>6 members per group.\nSince the number of female members consists of two groups, then there are 6 * 2 = <<6*2=12>>12 female members in the club.\n#### 12"
+    }
+  }
+]

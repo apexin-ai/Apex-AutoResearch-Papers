@@ -1,0 +1,950 @@
+{
+  "method": "Cohen's kappa",
+  "condition": "baseline (T=0, P=1, S=42, O=1)",
+  "benchmarks": {
+    "mmlu": {
+      "n_models": 8,
+      "n_pairs": 28,
+      "n_items": 200,
+      "mean_kappa": 0.4606,
+      "min_kappa": 0.2409,
+      "max_kappa": 0.6115,
+      "fleiss_kappa": 0.4558,
+      "pairs": [
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.2409,
+          "po": 0.63,
+          "pe": 0.5126
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3402,
+          "po": 0.68,
+          "pe": 0.515
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Gemma-2-9B",
+          "kappa": 0.341,
+          "po": 0.68,
+          "pe": 0.5144
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.3447,
+          "po": 0.715,
+          "pe": 0.5651
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3714,
+          "po": 0.725,
+          "pe": 0.5625
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3964,
+          "po": 0.745,
+          "pe": 0.5775
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.4078,
+          "po": 0.735,
+          "pe": 0.5525
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.4255,
+          "po": 0.72,
+          "pe": 0.5126
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4312,
+          "po": 0.75,
+          "pe": 0.5605
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.4416,
+          "po": 0.725,
+          "pe": 0.5075
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4573,
+          "po": 0.735,
+          "pe": 0.5117
+        },
+        {
+          "model_a": "Qwen3-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4658,
+          "po": 0.785,
+          "pe": 0.5975
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.471,
+          "po": 0.785,
+          "pe": 0.5936
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.4739,
+          "po": 0.79,
+          "pe": 0.6008
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.4739,
+          "po": 0.79,
+          "pe": 0.6008
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.4749,
+          "po": 0.765,
+          "pe": 0.5525
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.4886,
+          "po": 0.775,
+          "pe": 0.56
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4903,
+          "po": 0.77,
+          "pe": 0.5487
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.5,
+          "po": 0.81,
+          "pe": 0.62
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.5014,
+          "po": 0.77,
+          "pe": 0.5388
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.5056,
+          "po": 0.785,
+          "pe": 0.5651
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.5183,
+          "po": 0.795,
+          "pe": 0.5744
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.519,
+          "po": 0.81,
+          "pe": 0.605
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.5211,
+          "po": 0.765,
+          "pe": 0.5093
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.5443,
+          "po": 0.82,
+          "pe": 0.605
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.5575,
+          "po": 0.815,
+          "pe": 0.5819
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.5814,
+          "po": 0.825,
+          "pe": 0.5819
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.6115,
+          "po": 0.84,
+          "pe": 0.5882
+        }
+      ]
+    },
+    "arc": {
+      "n_models": 8,
+      "n_pairs": 28,
+      "n_items": 200,
+      "mean_kappa": 0.3764,
+      "min_kappa": 0.0416,
+      "max_kappa": 0.7408,
+      "fleiss_kappa": 0.3312,
+      "pairs": [
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.0416,
+          "po": 0.53,
+          "pe": 0.5096
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.0768,
+          "po": 0.555,
+          "pe": 0.518
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.1185,
+          "po": 0.585,
+          "pe": 0.5292
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.1221,
+          "po": 0.58,
+          "pe": 0.5216
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.1412,
+          "po": 0.595,
+          "pe": 0.5284
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.147,
+          "po": 0.595,
+          "pe": 0.5252
+        },
+        {
+          "model_a": "Qwen3-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.1497,
+          "po": 0.6,
+          "pe": 0.5296
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.2647,
+          "po": 0.68,
+          "pe": 0.5648
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.2888,
+          "po": 0.705,
+          "pe": 0.5852
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.2947,
+          "po": 0.71,
+          "pe": 0.5888
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Gemma-2-9B",
+          "kappa": 0.3089,
+          "po": 0.715,
+          "pe": 0.5876
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3253,
+          "po": 0.775,
+          "pe": 0.6665
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.352,
+          "po": 0.725,
+          "pe": 0.5756
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.3828,
+          "po": 0.79,
+          "pe": 0.6597
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.4283,
+          "po": 0.745,
+          "pe": 0.554
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.432,
+          "po": 0.785,
+          "pe": 0.6215
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.4341,
+          "po": 0.81,
+          "pe": 0.6642
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.4883,
+          "po": 0.845,
+          "pe": 0.6971
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.4976,
+          "po": 0.82,
+          "pe": 0.6417
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.5003,
+          "po": 0.85,
+          "pe": 0.6998
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.5154,
+          "po": 0.885,
+          "pe": 0.7627
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.5317,
+          "po": 0.875,
+          "pe": 0.7331
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.5621,
+          "po": 0.865,
+          "pe": 0.6917
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.5848,
+          "po": 0.9,
+          "pe": 0.7591
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.5868,
+          "po": 0.905,
+          "pe": 0.7701
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.602,
+          "po": 0.89,
+          "pe": 0.7236
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.6211,
+          "po": 0.875,
+          "pe": 0.6701
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.7408,
+          "po": 0.93,
+          "pe": 0.7299
+        }
+      ]
+    },
+    "gsm8k": {
+      "n_models": 8,
+      "n_pairs": 28,
+      "n_items": 200,
+      "mean_kappa": 0.3346,
+      "min_kappa": 0.1165,
+      "max_kappa": 0.5897,
+      "fleiss_kappa": 0.3092,
+      "pairs": [
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.1165,
+          "po": 0.545,
+          "pe": 0.485
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.1675,
+          "po": 0.565,
+          "pe": 0.4775
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.1872,
+          "po": 0.585,
+          "pe": 0.4894
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.2105,
+          "po": 0.595,
+          "pe": 0.487
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.2145,
+          "po": 0.6,
+          "pe": 0.4908
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.2204,
+          "po": 0.595,
+          "pe": 0.4805
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.2214,
+          "po": 0.745,
+          "pe": 0.6725
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.2296,
+          "po": 0.6,
+          "pe": 0.4808
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.2409,
+          "po": 0.61,
+          "pe": 0.4862
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.2731,
+          "po": 0.625,
+          "pe": 0.4841
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.2914,
+          "po": 0.75,
+          "pe": 0.6472
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Gemma-2-9B",
+          "kappa": 0.298,
+          "po": 0.64,
+          "pe": 0.4872
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3431,
+          "po": 0.775,
+          "pe": 0.6575
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.352,
+          "po": 0.755,
+          "pe": 0.6219
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.3562,
+          "po": 0.67,
+          "pe": 0.4874
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3693,
+          "po": 0.81,
+          "pe": 0.6988
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.381,
+          "po": 0.775,
+          "pe": 0.6365
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.3866,
+          "po": 0.785,
+          "pe": 0.6495
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.3898,
+          "po": 0.8,
+          "pe": 0.6722
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.3902,
+          "po": 0.69,
+          "pe": 0.4916
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.4038,
+          "po": 0.845,
+          "pe": 0.74
+        },
+        {
+          "model_a": "Qwen3-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4146,
+          "po": 0.85,
+          "pe": 0.7437
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.4186,
+          "po": 0.71,
+          "pe": 0.5012
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.4298,
+          "po": 0.77,
+          "pe": 0.5966
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.4703,
+          "po": 0.825,
+          "pe": 0.6696
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.4983,
+          "po": 0.805,
+          "pe": 0.6113
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.5034,
+          "po": 0.855,
+          "pe": 0.708
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.5897,
+          "po": 0.85,
+          "pe": 0.6344
+        }
+      ]
+    },
+    "hellaswag": {
+      "n_models": 6,
+      "n_pairs": 15,
+      "n_items": 200,
+      "mean_kappa": 0.3318,
+      "min_kappa": 0.0977,
+      "max_kappa": 0.4818,
+      "fleiss_kappa": 0.3337,
+      "pairs": [
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.0977,
+          "po": 0.62,
+          "pe": 0.5789
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.1079,
+          "po": 0.665,
+          "pe": 0.6245
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.1341,
+          "po": 0.7,
+          "pe": 0.6536
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.2247,
+          "po": 0.77,
+          "pe": 0.7034
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.2397,
+          "po": 0.765,
+          "pe": 0.6909
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3384,
+          "po": 0.7,
+          "pe": 0.5465
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.3531,
+          "po": 0.695,
+          "pe": 0.5285
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Gemma-2-9B",
+          "kappa": 0.3754,
+          "po": 0.715,
+          "pe": 0.5437
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.3977,
+          "po": 0.72,
+          "pe": 0.5352
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.4021,
+          "po": 0.745,
+          "pe": 0.5735
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.42,
+          "po": 0.75,
+          "pe": 0.569
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.4626,
+          "po": 0.78,
+          "pe": 0.5907
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.4707,
+          "po": 0.795,
+          "pe": 0.6127
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.4713,
+          "po": 0.765,
+          "pe": 0.5555
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.4818,
+          "po": 0.785,
+          "pe": 0.5851
+        }
+      ]
+    },
+    "math": {
+      "n_models": 8,
+      "n_pairs": 28,
+      "n_items": 200,
+      "mean_kappa": 0.3256,
+      "min_kappa": 0.0138,
+      "max_kappa": 0.6066,
+      "fleiss_kappa": 0.3246,
+      "pairs": [
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.0138,
+          "po": 0.66,
+          "pe": 0.6552
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.1415,
+          "po": 0.53,
+          "pe": 0.4526
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.1592,
+          "po": 0.655,
+          "pe": 0.5897
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.2091,
+          "po": 0.64,
+          "pe": 0.5448
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.2108,
+          "po": 0.57,
+          "pe": 0.4552
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.2256,
+          "po": 0.74,
+          "pe": 0.6642
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.2343,
+          "po": 0.81,
+          "pe": 0.7518
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Mistral-7B",
+          "kappa": 0.2393,
+          "po": 0.68,
+          "pe": 0.5794
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.2487,
+          "po": 0.66,
+          "pe": 0.5474
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Gemma-2-9B",
+          "kappa": 0.2789,
+          "po": 0.7,
+          "pe": 0.5839
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.2965,
+          "po": 0.715,
+          "pe": 0.5949
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.3092,
+          "po": 0.695,
+          "pe": 0.5585
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3198,
+          "po": 0.64,
+          "pe": 0.4708
+        },
+        {
+          "model_a": "Mistral-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.3232,
+          "po": 0.755,
+          "pe": 0.638
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.3304,
+          "po": 0.7,
+          "pe": 0.552
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.3397,
+          "po": 0.66,
+          "pe": 0.485
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.353,
+          "po": 0.71,
+          "pe": 0.5517
+        },
+        {
+          "model_a": "DeepSeek-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.3644,
+          "po": 0.775,
+          "pe": 0.646
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Llama-3.1-8B",
+          "kappa": 0.384,
+          "po": 0.71,
+          "pe": 0.5292
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.3943,
+          "po": 0.725,
+          "pe": 0.546
+        },
+        {
+          "model_a": "Qwen3-8B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4099,
+          "po": 0.695,
+          "pe": 0.4831
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4101,
+          "po": 0.715,
+          "pe": 0.5169
+        },
+        {
+          "model_a": "OLMo-2-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.4202,
+          "po": 0.695,
+          "pe": 0.474
+        },
+        {
+          "model_a": "Llama-3.1-8B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.4268,
+          "po": 0.765,
+          "pe": 0.59
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "InternLM2.5-7B",
+          "kappa": 0.464,
+          "po": 0.74,
+          "pe": 0.515
+        },
+        {
+          "model_a": "Gemma-2-9B",
+          "model_b": "Yi-1.5-9B",
+          "kappa": 0.4788,
+          "po": 0.755,
+          "pe": 0.5299
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "OLMo-2-7B",
+          "kappa": 0.5253,
+          "po": 0.775,
+          "pe": 0.526
+        },
+        {
+          "model_a": "InternLM2.5-7B",
+          "model_b": "Qwen3-8B",
+          "kappa": 0.6066,
+          "po": 0.8,
+          "pe": 0.4915
+        }
+      ]
+    }
+  }
+}

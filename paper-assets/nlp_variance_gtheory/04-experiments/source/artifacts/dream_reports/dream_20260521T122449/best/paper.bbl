@@ -1,0 +1,145 @@
+\begin{thebibliography}{25}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bouthillier et~al.(2021)]{bouthillier2021accounting}
+Xavier Bouthillier et~al.
+\newblock Accounting for variance in machine learning benchmarks.
+\newblock \emph{JMLR}, 2021.
+
+\bibitem[Brennan(2001)]{brennan2001generalizability}
+Robert~L Brennan.
+\newblock \emph{Generalizability Theory}.
+\newblock Springer, 2001.
+
+\bibitem[{BrittleBench Team}(2026)]{brittlebench2026}
+{BrittleBench Team}.
+\newblock {BrittleBench}: Quantifying prompt sensitivity in {LLM} evaluation.
+\newblock \emph{Preprint}, 2026.
+
+\bibitem[Bui et~al.(2025)]{bui2025seed}
+Anh Bui et~al.
+\newblock Extreme seed sensitivity in fine-tuning.
+\newblock \emph{Preprint}, 2025.
+
+\bibitem[Clark et~al.(2018)]{clark2018think}
+Peter Clark et~al.
+\newblock Think you have solved question answering? try {ARC}.
+\newblock \emph{Preprint}, 2018.
+
+\bibitem[Cobbe et~al.(2021)]{cobbe2021training}
+Karl Cobbe et~al.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{Preprint}, 2021.
+
+\bibitem[Dehghani et~al.(2021)]{dehghani2021benchmark}
+Mostafa Dehghani et~al.
+\newblock The benchmark lottery.
+\newblock \emph{Preprint}, 2021.
+
+\bibitem[Dodge et~al.(2020)Dodge, Ilharco, Schwartz, Farhadi, Hajishirzi, and
+  Smith]{dodge2020finetuning}
+Jesse Dodge, Gabriel Ilharco, Roy Schwartz, Ali Farhadi, Hannaneh Hajishirzi,
+  and Noah~A Smith.
+\newblock Fine-tuning pretrained language models: Weight initializations, data
+  orders, and early stopping.
+\newblock In \emph{EMNLP}, 2020.
+
+\bibitem[Henderson et~al.(2018)]{henderson2018deep}
+Peter Henderson et~al.
+\newblock Deep reinforcement learning that matters.
+\newblock In \emph{AAAI}, 2018.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{a}})]{hendrycks2021math}
+Dan Hendrycks et~al.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock 2021{\natexlab{a}}.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{b}})]{hendrycks2021measuring}
+Dan Hendrycks et~al.
+\newblock Measuring massive multitask language understanding.
+\newblock 2021{\natexlab{b}}.
+
+\bibitem[Hua et~al.(2025)]{hua2025emnlp}
+Xinyu Hua et~al.
+\newblock Much ado about prompting: Evaluation artifacts from scoring method
+  choice.
+\newblock In \emph{EMNLP}, 2025.
+
+\bibitem[Kunievsky and Evans(2025)]{kunievsky2025decomposition}
+Alex Kunievsky and Owain Evans.
+\newblock Decomposing {LLM} evaluation variance: Intent, articulation, and
+  model uncertainty.
+\newblock \emph{Preprint}, 2025.
+
+\bibitem[Lalor et~al.(2019)Lalor, Wu, and Yu]{lalor2019learning}
+John~P Lalor, Hao Wu, and Hong Yu.
+\newblock Learning latent parameters without human response patterns: Item
+  response theory with artificial crowds.
+\newblock In \emph{NAACL}, 2019.
+
+\bibitem[Messina and Scotta(2026)]{messina2026background}
+Alberto Messina and Andrea Scotta.
+\newblock Background temperature estimation for {LLM} reproducibility.
+\newblock \emph{TMLR}, 2026.
+
+\bibitem[Mesting(2026)]{mesting2026reliability}
+Florian Mesting.
+\newblock Reliability of {LLM} evaluation: A generalizability theory
+  perspective.
+\newblock \emph{Preprint}, 2026.
+
+\bibitem[Polo et~al.(2024)]{polo2024tinybenchmarks}
+Felipe~Maia Polo et~al.
+\newblock {tinyBenchmarks}: Evaluating {LLMs} with fewer examples.
+\newblock \emph{Preprint}, 2024.
+
+\bibitem[Rodriguez et~al.(2021)Rodriguez, Barrow, Hoyle, Lalor, Jia, and
+  Boyd-Graber]{rodriguez2021evaluation}
+Pedro Rodriguez, Joe Barrow, Alexander~Miserlis Hoyle, John~P Lalor, Robin Jia,
+  and Jordan Boyd-Graber.
+\newblock Evaluation examples are not equally informative: How should that
+  change {NLP} leaderboards?
+\newblock In \emph{ACL}, 2021.
+
+\bibitem[Sclar et~al.(2024)Sclar, Choi, Tsvetkov, and
+  Suhr]{sclar2024quantifying}
+Melanie Sclar, Yejin Choi, Yulia Tsvetkov, and Alane Suhr.
+\newblock Quantifying language models' sensitivity to spurious features in
+  prompt design with a focus on {LLMs}.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Sellam et~al.(2022)]{sellam2022multberts}
+Thibault Sellam et~al.
+\newblock {MultiBERTs}: {BERT} reproductions for robustness analysis.
+\newblock \emph{ICLR}, 2022.
+
+\bibitem[Shavelson and Webb(1991)]{shavelson1991generalizability}
+Richard~J Shavelson and Noreen~M Webb.
+\newblock \emph{Generalizability Theory: A Primer}.
+\newblock Sage, 1991.
+
+\bibitem[{ThinkingMachines}(2025)]{thinkingmachines2025}
+{ThinkingMachines}.
+\newblock 80 out of 1000: Batch invariance failures in {LLM} inference.
+\newblock \emph{Preprint}, 2025.
+
+\bibitem[Vania et~al.(2021)]{vania2021comparing}
+Clara Vania et~al.
+\newblock Comparing test sets with item response theory.
+\newblock In \emph{ACL}, 2021.
+
+\bibitem[Yuan et~al.(2025)]{yuan2025llminference}
+Zhiqiang Yuan et~al.
+\newblock On the reproducibility of {LLM} inference.
+\newblock \emph{Preprint}, 2025.
+
+\bibitem[Zellers et~al.(2019)]{zellers2019hellaswag}
+Rowan Zellers et~al.
+\newblock {HellaSwag}: Can a machine really finish your sentence?
+\newblock In \emph{ACL}, 2019.
+
+\end{thebibliography}

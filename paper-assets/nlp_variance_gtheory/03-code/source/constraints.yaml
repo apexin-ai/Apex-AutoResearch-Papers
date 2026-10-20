@@ -1,0 +1,9 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-22 10:20 UTC
+  summary: 所有新增引用必须经 citation verification worker 核实后才能写入 bib 文件，Paper Agent 不得自行编造
+    bib 条目
+  scope: all
+  reason: 累计 5/6 个新引用存在幻觉（标题错、作者错、完全不存在）。M028 + M029。审稿报告推荐的文献信息也可能有误，必须从 arXiv/Scholar
+    原始页面核实。

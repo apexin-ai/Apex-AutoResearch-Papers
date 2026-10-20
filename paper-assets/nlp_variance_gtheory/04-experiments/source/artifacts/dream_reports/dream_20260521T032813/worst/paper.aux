@@ -1,0 +1,116 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{mizrahi2024state}
+\citation{sclar2024quantifying}
+\citation{yuan2025llm}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shavelson1991generalizability}
+\citation{brennan2001generalizability}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition in ML evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM evaluation sensitivity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item Response Theory in NLP evaluation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation benchmarks and meta-evaluation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory Framework}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MMLU full crossing (exp-001).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-benchmark extension (exp-002).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hardware pseudo-replication (exp-003).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model-as-facet reanalysis (exp-004).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-tuning G-study (exp-006).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Supplementary experiments.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Models and Benchmarks}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Variance Estimation and Inference}{3}{subsection.3.4}\protected@file@percent }
+\citation{mesting2026generalizability}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Single-model variance decomposition on MMLU (200 items, binary scoring). Percentages of total variance. Item difficulty appears dominant at 53--59\%{}.}}{4}{table.caption.14}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:single_model}{{1}{4}{Single-model variance decomposition on MMLU (200 items, binary scoring). Percentages of total variance. Item difficulty appears dominant at 53--59\pct {}}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Single-Model Analysis: A Misleading Baseline}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:single_model}{{4.1}{4}{Single-Model Analysis: A Misleading Baseline}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Model-as-facet variance decomposition on MMLU (binary scoring). Model$\times $item interaction (31.2\%{}) is the \textbf  {largest single source}, exceeding item ID (22.4\%{}). Bootstrap 95\%{} CIs overlap.}}{4}{table.caption.15}\protected@file@percent }
+\newlabel{tab:model_facet}{{2}{4}{Model-as-facet variance decomposition on MMLU (binary scoring). Model$\times $item interaction (31.2\pct {}) is the \textbf {largest single source}, exceeding item ID (22.4\pct {}). Bootstrap 95\pct {} CIs overlap}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The Reveal: Model$\times $Item Interaction Dominates}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:model_facet}{{4.2}{4}{The Reveal: Model$\times $Item Interaction Dominates}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Model-as-facet variance decomposition across benchmarks (binary scoring, top sources). No systematic gradient; structure is benchmark-specific.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{3}{5}{Model-as-facet variance decomposition across benchmarks (binary scoring, top sources). No systematic gradient; structure is benchmark-specific}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{A Bernoulli artifact caveat.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Benchmark-Specific Variance Structure}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:benchmarks}{{4.3}{5}{Benchmark-Specific Variance Structure}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Infrastructure$\times $methodology interactions (\%{} of total variance). Separability fails on 2/4 benchmarks under binary scoring ($>$1\%{} threshold). Text-match scoring amplifies interactions.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:separability}{{4}{5}{Infrastructure$\times $methodology interactions (\pct {} of total variance). Separability fails on 2/4 benchmarks under binary scoring ($>$1\pct {} threshold). Text-match scoring amplifies interactions}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Separability Failure}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:separability}{{4.4}{5}{Separability Failure}{subsection.4.4}{}}
+\citation{polo2024tinybenchmarks}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces D-study projections for $\ensuremath  {G}\geq 0.90$ (binary scoring). Current practice uses $\sim $200 items, 1 prompt, 1 seed. Required budgets are 5--10$\times $ larger and benchmark-specific.}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:dstudy}{{5}{6}{D-study projections for $\Gcoeff \geq 0.90$ (binary scoring). Current practice uses $\sim $200 items, 1 prompt, 1 seed. Required budgets are 5--10$\times $ larger and benchmark-specific}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hardware.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Reproducibility Budgets Are Impractical}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:dstudy}{{4.5}{6}{Reproducibility Budgets Are Impractical}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Item requirements: G-theory vs.\ IRT-based subsampling (MMLU, binary). The 12.7$\times $ discrepancy reflects G-theory's accounting for protocol facets that IRT ignores.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:gtheory_irt}{{6}{6}{Item requirements: G-theory vs.\ IRT-based subsampling (MMLU, binary). The 12.7$\times $ discrepancy reflects G-theory's accounting for protocol facets that IRT ignores}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}G-theory vs.\ IRT: A 12.7$\times $ Discrepancy}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:gtheory_irt}{{4.6}{6}{G-theory vs.\ IRT: A 12.7$\times $ Discrepancy}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Fine-tuning variance decomposition (\%{}). Large datasets (SST-2, MNLI) are item-dominated; small datasets (RTE, COPA) are seed-dominated. Different hierarchy from inference.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:finetuning}{{7}{7}{Fine-tuning variance decomposition (\pct {}). Large datasets (SST-2, MNLI) are item-dominated; small datasets (RTE, COPA) are seed-dominated. Different hierarchy from inference}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Fine-Tuning Variance Structure}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:finetuning}{{4.7}{7}{Fine-Tuning Variance Structure}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Implications for Evaluation Practice}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Methodological Considerations}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:sensitivity}{{5.2}{7}{Methodological Considerations}{subsection.5.2}{}}
+\citation{brennan2001generalizability}
+\citation{lalor2019learning}
+\bibstyle{plain}
+\bibcite{biderman2024lessons}{1}
+\bibcite{bouthillier2021accounting}{2}
+\bibcite{brennan2001generalizability}{3}
+\bibcite{dehghani2021benchmark}{4}
+\bibcite{dodge2020finetuning}{5}
+\bibcite{henderson2018deep}{6}
+\bibcite{lalor2019learning}{7}
+\bibcite{lu2022fantastically}{8}
+\bibcite{mesting2026generalizability}{9}
+\bibcite{mizrahi2024state}{10}
+\bibcite{perlitz2023efficient}{11}
+\bibcite{pezeshkpour2024largelanguagemodelsensitivity}{12}
+\bibcite{polo2024tinybenchmarks}{13}
+\bibcite{rodriguez2021evaluation}{14}
+\bibcite{sclar2024quantifying}{15}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{sellam2022multberts}{16}
+\bibcite{shavelson1991generalizability}{17}
+\bibcite{vania2021comparing}{18}
+\bibcite{yuan2025llm}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Item Resampling Stability}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:resampling}{{A}{10}{Item Resampling Stability}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Variance decomposition stability across three independent 200-item MMLU samples (Llama, binary scoring). Item ID ranges 12.5pp across draws.}}{10}{table.caption.24}\protected@file@percent }
+\newlabel{tab:resampling}{{8}{10}{Variance decomposition stability across three independent 200-item MMLU samples (Llama, binary scoring). Item ID ranges 12.5pp across draws}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Accuracy Summary}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:accuracy}{{B}{10}{Accuracy Summary}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Accuracy by precision (pooled across models, prompts, seeds, temperatures, orderings).}}{10}{table.caption.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}G-Coefficients by Benchmark and Metric}{10}{appendix.C}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces G-coefficients at 200 items.}}{10}{table.caption.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Bootstrap CI Widths}{11}{appendix.D}\protected@file@percent }
+\newlabel{app:ci}{{D}{11}{Bootstrap CI Widths}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Bootstrap 95\%{} CI widths (pp) for major variance sources.}}{11}{table.caption.27}\protected@file@percent }
+\newlabel{tab:ci_widths}{{11}{11}{Bootstrap 95\pct {} CI widths (pp) for major variance sources}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Methodological Sensitivity Analyses}{11}{appendix.E}\protected@file@percent }
+\newlabel{app:sensitivity}{{E}{11}{Methodological Sensitivity Analyses}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Sensitivity of results to analytic choices.}}{11}{table.caption.28}\protected@file@percent }
+\newlabel{tab:sensitivity}{{12}{11}{Sensitivity of results to analytic choices}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Fine-Tuning vs.\ Inference Comparison}{11}{appendix.F}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Variance hierarchy comparison (rank ordering of sources).}}{11}{table.caption.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {G}14B Model Extension}{12}{appendix.G}\protected@file@percent }
+\newlabel{app:14b}{{G}{12}{14B Model Extension}{appendix.G}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {H}MATH Benchmark}{12}{appendix.H}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces MATH variance decomposition (200 items, binary scoring, 2 models).}}{12}{table.caption.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I}LayerCast Precision Mitigation}{12}{appendix.I}\protected@file@percent }
+\gdef \@abspage@last{12}

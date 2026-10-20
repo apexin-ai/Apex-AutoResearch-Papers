@@ -1,0 +1,90 @@
+{
+  "observed_top3": [
+    "item_id",
+    "model:item_id",
+    "residual"
+  ],
+  "observed_top3_pct": [
+    37.88,
+    30.21,
+    25.01
+  ],
+  "n_simulations": 100,
+  "grand_mean_accuracy": 0.645736,
+  "design": {
+    "model": 8,
+    "temperature": 2,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "with_residual": {
+    "exact_top3_match_pct": 0.0,
+    "top3_set_match_pct": 100.0,
+    "top1_match_pct": 0.0,
+    "kendall_tau_mean": 0.8139,
+    "kendall_tau_std": 0.059,
+    "note": "Residual inflated on binary scale (absorbs Bernoulli within-cell noise)"
+  },
+  "excluding_residual": {
+    "observed_top2": [
+      "item_id",
+      "model:item_id"
+    ],
+    "exact_top2_match_pct": 48.0,
+    "top1_match_pct": 48.0,
+    "kendall_tau_mean": 0.8143,
+    "kendall_tau_std": 0.0649,
+    "note": "Systematic component ranking (excluding Bernoulli-inflated residual)"
+  },
+  "top3_components_frequency": {
+    "item_id": {
+      "rank1": 0,
+      "rank2": 48,
+      "rank3": 52
+    },
+    "model:item_id": {
+      "rank1": 0,
+      "rank2": 52,
+      "rank3": 48
+    },
+    "residual": {
+      "rank1": 100,
+      "rank2": 0,
+      "rank3": 0
+    }
+  },
+  "top2_no_residual_frequency": {
+    "item_id": {
+      "rank1": 48,
+      "rank2": 52
+    },
+    "model:item_id": {
+      "rank1": 52,
+      "rank2": 48
+    }
+  },
+  "mean_pct_across_sims": {
+    "residual": {"mean": 47.55, "std": 1.44},
+    "model:item_id": {"mean": 23.94, "std": 1.2},
+    "item_id": {"mean": 23.9, "std": 2.15},
+    "model": {"mean": 1.76, "std": 1.01},
+    "model:prompt_template": {"mean": 1.0, "std": 0.27},
+    "prompt_template:item_id": {"mean": 0.75, "std": 0.06},
+    "temperature:item_id": {"mean": 0.41, "std": 0.06},
+    "seed:item_id": {"mean": 0.37, "std": 0.03},
+    "ordering:item_id": {"mean": 0.22, "std": 0.02},
+    "model:temperature": {"mean": 0.03, "std": 0.01},
+    "prompt_template": {"mean": 0.03, "std": 0.05},
+    "model:seed": {"mean": 0.02, "std": 0.01},
+    "model:ordering": {"mean": 0.02, "std": 0.01},
+    "temperature": {"mean": 0.01, "std": 0.03}
+  },
+  "interpretation": {
+    "key_finding": "Top-3 SET {item_id, model:item_id, residual} is recovered in 100% of simulations. However, exact ORDERING differs: residual is always #1 on binary scale due to Bernoulli noise absorption, whereas observed data shows item_id > model:item_id > residual.",
+    "residual_inflation": "Binary probit simulation inflates residual from observed 25.0% to simulated 47.5%, while compressing item_id (37.9% -> 23.9%) and model:item_id (30.2% -> 23.9%). This is the known Bernoulli ceiling effect.",
+    "systematic_ranking": "Excluding residual, item_id and model:item_id are ALWAYS the top 2 systematic sources (100%), competing at ~50/50 for #1 vs #2 position. The observed item_id > model:item_id ordering is recovered 48% of the time.",
+    "implication": "The binary simulation confirms that Henderson I reliably identifies the CORRECT SET of dominant variance sources even on binary data, but the within-set ordering is distorted by Bernoulli residual inflation. The real data's ranking (item_id > model:item_id > residual) reflects genuine item difficulty structure that is strong enough to overcome the Bernoulli floor."
+  }
+}

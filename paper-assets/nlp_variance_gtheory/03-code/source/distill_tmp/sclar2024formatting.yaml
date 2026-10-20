@@ -1,0 +1,84 @@
+paper_key: "sclar2024formatting"
+title: "Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines: ["random format selection", "fixed single format", "naive sampling"]
+  metrics:
+    - {name: "accuracy spread (max-min across formats)", direction: "lower_better"}
+    - {name: "model comparison reversal probability", direction: "lower_better"}
+    - {name: "format identification accuracy (PCA)", direction: "N/A"}
+  datasets:
+    - {name: "SuperNaturalInstructions (53 tasks)", size: "1000 samples/task, 19 MC + 34 classification"}
+  ablation_dimensions: ["model size (7B/13B/70B)", "instruction tuning", "few-shot count (1/5)", "atomic format features (separators/spacing/casing/enumeration)"]
+  training_recipe: {optimizer: "N/A (inference only)", lr: "N/A", hardware: "not specified"}
+  method_family: "prompt sensitivity analysis + multi-armed bandit format search"
+
+positioning:
+  core_claim: "Prompt formatting alone causes up to 76 accuracy points variance and format performance correlates weakly between models, invalidating single-format comparison methodology"
+  key_results: "Max spread 76pp (LLaMA-2-13B), median spread 7.5pp, 14.1% model comparison reversal probability, GPT-3.5 median spread 6.4pp"
+  limitations:
+    - "Classification tasks only, not open-ended generation"
+    - "Fixed few-shot example selection and ordering"
+    - "Grammar requires manual instantiation per domain"
+    - "English-only prompts"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM adoption requires accurate performance characterization, yet formatting sensitivity is unquantified"
+  tension: "Field assumes formatting is noise-free → shows up to 76pp variance, meaning prior comparisons may be invalid"
+  key_insight: "Weak cross-model format correlation (Section 4) — no single 'best format' exists, invalidating fixed-format benchmarking"
+  argument_chain: "problem (formatting ignored) → quantification (76pp spread) → cross-model analysis (weak correlation) → practical tool (FormatSpread) → recommendations (report ranges)"
+  contribution_framing: "3 contributions: quantification, cross-model analysis, FormatSpread algorithm"
+  intro_structure: "7 paragraphs: adoption context → problem identification → key finding preview → gap statement → motivation (confounding) → solution intro → significance"
+  notable_technique: "Opens with concrete shocking number (76pp) in abstract, uses Figure 1 as immediate visual proof before any methodology"
+
+figures:
+  figure_count: 10
+  figure1:
+    type: "motivation"
+    description: "Single task showing accuracy range 0.043-0.826 across minor format changes on LLaMA-2-7B"
+    narrative_role: "Immediate visual shock — establishes the problem before methodology"
+    design_elements: ["before/after format examples", "accuracy numbers overlaid", "single task for clarity"]
+    visual_style: "Side-by-side prompt templates with accuracy annotations, clean minimal layout"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Spread across model sizes, instruction tuning, few-shot counts"
+      how_gain_highlighted: "Three subplots showing spread persists across all conditions"
+      design_note: "Paired comparison layout (7B vs 13B, base vs instruct, 1-shot vs 5-shot)"
+    - figure_id: "Figure 4"
+      viz_type: "heatmap"
+      what_compared: "Model comparison reversal probability across format pairs"
+      how_gain_highlighted: "Color intensity shows probability magnitude"
+      design_note: "Heatmap makes cross-model instability immediately visible"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "boxplot"
+      dimensions_varied: ["separator S1", "spacing C", "casing F", "enumeration"]
+      design_note: "Boxplots per atomic feature showing individual contribution to spread"
+  figure_narrative_role: "Fig1 (shock) → Fig2 (persistence across conditions) → Fig4 (cross-model invalidity) → Fig6 (atomic decomposition) → Fig10 (FormatSpread efficiency)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "task examples with atomic format changes"
+    col_axis: "format A accuracy, format B accuracy, difference"
+    row_organization: "by_feature_type"
+    col_organization: "flat"
+    highlight_strategy: "raw numbers, no bold/underline"
+    statistical_reporting: "single-run accuracy values"
+    num_baselines: 0
+    design_note: "Qualitative evidence table — shows concrete examples rather than aggregate statistics"
+  ablation_tables:
+    - table_id: "Table 6"
+      what_varied: ["six atomic format feature sets"]
+      variation_style: "full_numbers"
+      design_note: "Median spread + percentage of tasks with weak/strong effects per feature"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full task list, grammar specification, extended results per model"
+    reason: "Core story is about the phenomenon, detailed per-task results support but don't drive the narrative"

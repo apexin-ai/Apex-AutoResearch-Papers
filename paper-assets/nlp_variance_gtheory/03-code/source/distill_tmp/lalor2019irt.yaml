@@ -1,0 +1,48 @@
+paper_key: "lalor2019irt"
+title: "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds"
+venue: "EMNLP-IJCNLP 2019"
+full_text_available: false
+
+research:
+  baselines: ["IRT with human response patterns", "random training data sampling", "curriculum learning baselines"]
+  metrics:
+    - {name: "Pearson/Spearman correlation (human vs machine IRT params)", direction: "higher_better"}
+    - {name: "task accuracy after difficulty-based filtering", direction: "higher_better"}
+  datasets:
+    - {name: "SNLI (natural language inference)", size: "standard split"}
+    - {name: "SST (sentiment analysis)", size: "standard split"}
+  ablation_dimensions: ["crowd composition (number/type of DNN models)", "IRT model type (1PL/2PL/3PL)", "training data filtering threshold"]
+  training_recipe: {optimizer: "not specified from abstract", lr: "not specified", hardware: "not specified"}
+  method_family: "IRT with artificial crowds / psychometric NLP"
+
+positioning:
+  core_claim: "IRT parameters learned from artificial crowds of DNNs correlate medium-to-large with human-derived parameters and enable effective difficulty-based training data filtering"
+  key_results: "Medium to large positive correlations between human and machine IRT parameters; difficulty-based filtering outperforms baseline sampling methods"
+  limitations:
+    - "Limited to two NLP tasks"
+    - "Correlation is medium-to-large, not perfect — systematic discrepancies exist"
+    - "Artificial crowd composition affects parameter quality"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "IRT requires expensive human response data — can we replace it with machine response patterns?"
+  tension: "IRT is powerful for item analysis but human annotation cost is prohibitive at scale"
+  key_insight: "DNN model ensembles can serve as proxy 'test-takers' whose response patterns correlate meaningfully with human patterns"
+  argument_chain: "problem (human IRT cost) → proposal (artificial crowds) → validation (human-machine correlation) → application (training data filtering) → discrepancy analysis"
+  contribution_framing: "3 contributions: method (artificial crowds for IRT), validation (correlation study), application (data filtering)"
+  intro_structure: "N/A (PDF not parseable)"
+  notable_technique: "N/A"
+
+figures:
+  figure_count: 0
+  figure1: {type: "N/A"}
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: 0
+  main_result_table: {table_id: "N/A"}
+  ablation_tables: []
+  supplementary_tables: {in_appendix: false, content: "N/A", reason: "N/A"}

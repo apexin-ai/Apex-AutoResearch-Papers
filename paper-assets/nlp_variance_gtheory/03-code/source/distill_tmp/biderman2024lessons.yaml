@@ -1,0 +1,25 @@
+paper_key: "biderman2024lessons"
+title: "Lessons from the Trenches on Reproducible Evaluation of Language Models"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["ad-hoc evaluation scripts", "non-standardized evaluation setups"]
+  metrics:
+    - {name: "cross-implementation agreement", direction: "higher_better"}
+    - {name: "evaluation sensitivity to setup choices", direction: "lower_better"}
+  datasets:
+    - {name: "multiple LLM benchmarks (via lm-eval harness)", size: "60+ tasks"}
+  ablation_dimensions: ["prompt template", "few-shot selection", "evaluation framework version", "tokenization differences"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "evaluation reproducibility / evaluation infrastructure"
+
+positioning:
+  core_claim: "Model evaluation is highly sensitive to setup details (prompt templates, few-shot selection, framework versions), and the lm-eval harness addresses this through standardized, reproducible evaluation"
+  key_results: "N/A (abstract level)"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

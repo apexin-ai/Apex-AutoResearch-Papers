@@ -1,0 +1,82 @@
+[
+  {
+    "item_id": "hellaswag_train_2304",
+    "benchmark": "hellaswag",
+    "question": "Several shots are shown of soccer players. a group of news casters",
+    "choices": [
+      "are outside talking about the game.",
+      "finish and then begin talking.",
+      "are shown informing the players on the field.",
+      "calm down and talk before a goalie with a little girl plays soccer."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Cricket"
+    }
+  },
+  {
+    "item_id": "hellaswag_train_3519",
+    "benchmark": "hellaswag",
+    "question": "Helicopter is in the air landing in a mountain leaving people in the top of the mountain. People are inside the helicopter talking between them. people",
+    "choices": [
+      "are riding in the helicopter inside the mountain.",
+      "are jumping off a building just through the ledge.",
+      "build a fire in a pit of water.",
+      "start going down the slope snowboarding in the mountain."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Skiing"
+    }
+  },
+  {
+    "item_id": "hellaswag_train_13081",
+    "benchmark": "hellaswag",
+    "question": "People are playing dodge ball in a gym. they",
+    "choices": [
+      "start throwing the balls at each other.",
+      "lob darts at each other.",
+      "dodge baskets and try to get at each other.",
+      "hit the ball between two poles to each other."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Dodgeball"
+    }
+  },
+  {
+    "item_id": "hellaswag_train_20247",
+    "benchmark": "hellaswag",
+    "question": "[header] How to understand personal finance basics [title] Gather your financial statements and information. [step] Creating a budget is one of the most important aspects of personal finance. A solid budget allows you to plan for how you'll spend the money you bring in each month and illustrates your spending patterns.",
+    "choices": [
+      "Be as detailed as possible and make sure your monthly spending are consistent, not just the monthly activities. To begin with, start by looking over your financial statements and research possible financial partners.",
+      "To begin, gather all the financial information you can, including bank statements, pay stubs, credit card bills, utility bills, investment account statements, and any other information you can think of. [substeps] Most people make monthly budgets so your goal is to figure out how much you make in a month and what your monthly expenses are.",
+      "A budget is a visual and quantifiable picture of your life. [substeps] Financial statements can help you determine your income and expenditures.",
+      "You can set your own budget for each month, but take stock of how much money you put into various areas of your life. If you have significant accounts where you can store expenses, you may want to diversify a bit."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Finance and Business"
+    }
+  },
+  {
+    "item_id": "hellaswag_train_10779",
+    "benchmark": "hellaswag",
+    "question": "Wo kids are playing footbal on a park. Man is slowly walking on a path. two blonde kids",
+    "choices": [
+      "are start playing footbal in the park.",
+      "are playing with a ball in a green grassy field.",
+      "are running and playing hopscotch on grass and in the dirt.",
+      "both have logos on their neck and speak to the man."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Playing kickball"
+    }
+  }
+]

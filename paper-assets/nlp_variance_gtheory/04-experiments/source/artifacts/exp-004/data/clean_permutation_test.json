@@ -1,0 +1,1 @@
+See remote: /root/nlp_variance_gtheory/results/exp004_8model_analysis/clean_permutation_test.json on westd-32570. Key results: MC(MMLU/ARC/HellaSwag) mean=36.68%, FF(GSM8K/MATH) mean=20.45%, diff=16.23pp, p=0.10 (exhaustive, 1/10), Cohen's d=1.73 [1.72,1.83], diff CI [11.44,21.02]pp.

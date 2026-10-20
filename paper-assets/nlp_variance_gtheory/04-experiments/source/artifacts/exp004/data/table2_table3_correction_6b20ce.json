@@ -1,0 +1,174 @@
+{
+  "description": "Correction table for Table 2 (tab:cross_model) and Table 3 (tab:cross_benchmark) in experiments.tex",
+  "date": "2026-05-23",
+  "target_file": "docs/paper/experiments.tex",
+  "source_files": {
+    "mmlu": "artifacts/exp004/data/bootstrap_ci_mmlu.json",
+    "arc": "artifacts/exp004/data/bootstrap_ci_arc.json",
+    "hellaswag": "artifacts/exp004/data/bootstrap_ci_hellaswag.json",
+    "gsm8k": "artifacts/exp004/data/bootstrap_ci_gsm8k.json",
+    "math": "artifacts/exp004/data/bootstrap_ci_math.json",
+    "exp001_single_model": "artifacts/exp004/data/exp001_bf16_2temp_comparison.json"
+  },
+  "table2_corrections": {
+    "table": "tab:cross_model",
+    "description": "MMLU 8-model variance decomposition",
+    "changes": [
+      {
+        "component": "prompt×item",
+        "old_value": 2.5,
+        "new_value": 0.9,
+        "source_pct": 0.9456,
+        "source_field": "components.prompt_template:item_id.pct"
+      },
+      {
+        "component": "temp.×item",
+        "old_value": "hidden in 'all others'",
+        "new_value": 0.6,
+        "source_pct": 0.5568,
+        "source_field": "components.temperature:item_id.pct",
+        "note": "was incorrectly included in 'all others (each) <0.1'"
+      },
+      {
+        "component": "seed×item",
+        "old_value": "hidden in 'all others'",
+        "new_value": 0.5,
+        "source_pct": 0.5252,
+        "source_field": "components.seed:item_id.pct",
+        "note": "was incorrectly included in 'all others (each) <0.1'"
+      },
+      {
+        "component": "ordering×item",
+        "old_value": "hidden in 'all others'",
+        "new_value": 0.3,
+        "source_pct": 0.3122,
+        "source_field": "components.ordering:item_id.pct",
+        "note": "was incorrectly included in 'all others (each) <0.1'"
+      }
+    ],
+    "verified_correct": [
+      {"component": "item_id", "value": 37.9, "source_pct": 37.8812},
+      {"component": "model×item", "value": 30.2, "source_pct": 30.2095},
+      {"component": "residual", "value": 25.0, "source_pct": 25.0065},
+      {"component": "model", "value": 2.8, "source_pct": 2.8326},
+      {"component": "model×prompt", "value": 1.6, "source_pct": 1.5944}
+    ],
+    "sum_check": "37.9+30.2+25.0+2.8+1.6+0.9+0.6+0.5+0.3+~0.1 = 99.9%"
+  },
+  "table3_corrections": {
+    "table": "tab:cross_benchmark",
+    "description": "5-benchmark format-conditional variance structure (8 models)",
+    "changes": [
+      {
+        "cell": "MMLU prompt†",
+        "old_value": 2.5,
+        "new_value": 0.9,
+        "source_pct": 0.9456,
+        "source_field": "mmlu.components.prompt_template:item_id.pct"
+      },
+      {
+        "cell": "ARC prompt†",
+        "old_value": 0.4,
+        "new_value": 1.4,
+        "source_pct": 1.448,
+        "source_field": "arc.components.prompt_template:item_id.pct"
+      },
+      {
+        "cell": "HellaSwag prompt†",
+        "old_value": 2.3,
+        "new_value": 2.1,
+        "source_pct": 2.1374,
+        "source_field": "hellaswag.components.prompt_template:item_id.pct"
+      },
+      {
+        "cell": "MATH prompt†",
+        "old_value": 1.0,
+        "new_value": 0.8,
+        "source_pct": 0.8285,
+        "source_field": "math.components.prompt_template.pct"
+      },
+      {
+        "cell": "HellaSwag mod.×prmpt",
+        "old_value": 0.6,
+        "new_value": 0.2,
+        "source_pct": 0.1883,
+        "source_field": "hellaswag.components.model:prompt_template.pct"
+      },
+      {
+        "cell": "MATH mod.×prmpt",
+        "old_value": 2.0,
+        "new_value": 1.7,
+        "source_pct": 1.6652,
+        "source_field": "math.components.model:prompt_template.pct"
+      },
+      {
+        "cell": "MMLU all others",
+        "old_value": "<1.0",
+        "new_value": 1.6,
+        "source_sum": 1.53
+      },
+      {
+        "cell": "ARC all others",
+        "old_value": 1.5,
+        "new_value": 0.5,
+        "source_sum": 0.42
+      },
+      {
+        "cell": "HellaSwag all others",
+        "old_value": "<1.0",
+        "new_value": 0.6,
+        "source_sum": 0.63
+      },
+      {
+        "cell": "MATH all others",
+        "old_value": 3.3,
+        "new_value": 3.8,
+        "source_sum": 3.81
+      }
+    ],
+    "verified_correct": {
+      "GSM8K": "all values correct — no changes needed",
+      "MMLU_item": 37.9,
+      "MMLU_mxi": 30.2,
+      "MMLU_model": 2.8,
+      "MMLU_mxp": 1.6,
+      "MMLU_residual": 25.0,
+      "ARC_item": 37.9,
+      "ARC_mxi": 33.7,
+      "ARC_model": 3.1,
+      "ARC_mxp": 8.0,
+      "ARC_residual": 15.4,
+      "Hella_item": 34.3,
+      "Hella_mxi": 36.0,
+      "Hella_model": 5.4,
+      "Hella_residual": 21.4,
+      "MATH_item": 24.0,
+      "MATH_mxi": 17.3,
+      "MATH_model": 8.5,
+      "MATH_residual": 43.9
+    },
+    "column_sum_checks": {
+      "MMLU": "37.9+30.2+2.8+0.9+1.6+25.0+1.6 = 100.0",
+      "ARC": "37.9+33.7+3.1+1.4+8.0+15.4+0.5 = 100.0",
+      "HellaSwag": "34.3+36.0+5.4+2.1+0.2+21.4+0.6 = 100.0",
+      "GSM8K": "16.9+14.6+10.7+5.4+8.5+39.9+4.0 = 100.0",
+      "MATH": "24.0+17.3+8.5+0.8+1.7+43.9+3.8 = 100.0"
+    }
+  },
+  "section_4_1_verification": {
+    "source": "exp001_bf16_2temp_comparison.json (full_design)",
+    "status": "all_correct",
+    "checks": {
+      "item_id_pct": {"tex": 58.4, "source": 58.3897, "ok": true},
+      "residual_pct": {"tex": 23.1, "source": 23.1023, "ok": true},
+      "precision_pct": {"tex": 0.9, "source": 0.9081, "ok": true},
+      "prompt_x_item_pct": {"tex": 5.5, "source": 5.4651, "ok": true},
+      "seed_x_item_pct": {"tex": 4.7, "source": 4.7131, "ok": true},
+      "precision_x_item_pct": {"tex": 3.3, "source": 3.303, "ok": true},
+      "temperature_x_item_pct": {"tex": 2.9, "source": 2.9305, "ok": true},
+      "ordering_x_item_pct": {"tex": 0.8, "source": 0.7695, "ok": true},
+      "G_item": {"tex": 0.936, "source": 0.9361, "ok": true},
+      "n_G80": {"tex": 55, "source": "interpolated from d_study (50→0.786, 75→0.846)", "ok": true}
+    }
+  }
+}

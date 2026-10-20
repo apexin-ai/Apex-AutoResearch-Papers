@@ -1,0 +1,404 @@
+[
+  {
+    "name": "exp-001 Full-Scale Precision Study (MMLU)",
+    "description": "4 models × 3 precisions × 6 prompts × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU items. Gemma-2-9B-IT fails during FP16 runs (known from registry: exp001_gemma FAILED). Qwen3-8B produces sporadic decoding anomalies under FP32 at T=0.7, requiring partial reruns. Final dataset covers 3 models (Llama, Mistral, Qwen) with Gemma fully excluded, yielding 3 × 1296 = 3888 conditions × 200 items = 777,600 records.\n",
+    "results": {
+      "total_records": 777600,
+      "models_completed": 3,
+      "models_excluded": 1,
+      "conditions_per_model": 1296,
+      "items_per_condition": 200,
+      "overall_accuracy_llama": 0.681,
+      "overall_accuracy_mistral": 0.623,
+      "overall_accuracy_qwen": 0.704,
+      "accuracy_bfloat16_pooled": 0.68,
+      "accuracy_float16_pooled": 0.678,
+      "accuracy_float32_pooled": 0.611,
+      "float32_degradation_pp": 6.8,
+      "null_predictions_pct": 0.03,
+      "item_id_pct_llama_single": 0.561,
+      "item_id_pct_mistral_single": 0.534,
+      "item_id_pct_qwen_single": 0.589,
+      "residual_pct_llama_single": 0.182,
+      "residual_pct_mistral_single": 0.197,
+      "residual_pct_qwen_single": 0.168,
+      "g_coeff_binary_llama_200item": 0.362,
+      "g_coeff_binary_mistral_200item": 0.338,
+      "g_coeff_binary_qwen_200item": 0.371,
+      "g_coeff_text_match_llama_200item": 0.968,
+      "precision_x_temperature_text_match_llama_pct": 1.5,
+      "precision_x_temperature_text_match_mistral_pct": 1.8
+    },
+    "tables": [
+      {
+        "name": "Table 1: Single-Model Variance Decomposition (MMLU, 200 items, binary scoring)",
+        "description": "Rows: variance sources (item_id, prompt, seed, temperature, ordering, precision, all 2-way interactions, residual). Columns: Llama, Mistral, Qwen, Pooled. Shows item_id dominant at 53-59% across all 3 models. Residual inflated at 17-20%. Precision×temperature interaction 0.3-0.5% under binary, 1.5-1.8% under text_match.\n"
+      },
+      {
+        "name": "Table 2: Accuracy Summary by Precision × Temperature × Model",
+        "description": "3×3×3 table. FP32 degradation visible across all models (5.5-8.5pp). Temperature effect modest (T=0.0 vs T=0.7: 2-3pp). Cross-model accuracy spread: 8pp.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Data collection succeeds for 3/4 models. Per-model G-studies replicate MVP item dominance finding. However, item-level correlation between models is only r=0.71-0.78 (not r=0.90+), foreshadowing large model×item interaction in the facet reanalysis. The single-model framing looks solid at this stage but will collapse in exp-004.\n\n\nSingle-model analyses replicate MVP findings: item_id dominates at 53-59% per model, consistent with Bernoulli variance spread across 200 items of heterogeneous difficulty. FP32 degradation (~6.8pp) replicates the V0 enforce_eager-controlled pattern from bf16_eager_disentangle. These per-model results look encouraging — item dominance appears stable. But this is misleading: the residual component (17-20%) is inflated because model×item interaction is confounded with residual when model is not a facet. The true picture emerges only in exp-004 reanalysis. Gemma exclusion reduces the model universe from 4 to 3, weakening generalizability claims and inviting reviewer criticism about restricted model coverage. Qwen FP32 anomalies at T=0.7 suggest architecture-specific precision sensitivity, foreshadowing the idiosyncratic variance patterns that dominate the worst-tier narrative.\n"
+  },
+  {
+    "name": "exp-001b Item Resampling Stability",
+    "description": "3 independent stratified 200-item MMLU samples (seeds 0, 7, 99) × Llama × 3 precisions × 3 prompts × 3 seeds × 2 orderings = 54 conditions per sample. Tests whether item_id dominance percentage is stable across item draws.\n",
+    "results": {
+      "total_records_per_sample": 10800,
+      "total_records": 32400,
+      "item_id_pct_sample_seed0": 0.541,
+      "item_id_pct_sample_seed7": 0.612,
+      "item_id_pct_sample_seed99": 0.487,
+      "item_id_range_pp": 12.5,
+      "residual_pct_range": [
+        0.155,
+        0.221
+      ],
+      "g_coeff_binary_seed0": 0.341,
+      "g_coeff_binary_seed7": 0.389,
+      "g_coeff_binary_seed99": 0.312,
+      "g_coeff_range_pp": 7.7,
+      "item_difficulty_mean_seed0": 0.683,
+      "item_difficulty_mean_seed7": 0.671,
+      "item_difficulty_mean_seed99": 0.698,
+      "item_difficulty_sd_seed0": 0.284,
+      "item_difficulty_sd_seed7": 0.301,
+      "item_difficulty_sd_seed99": 0.262
+    },
+    "tables": [
+      {
+        "name": "Table 3: Variance Decomposition Stability Across Item Samples",
+        "description": "Rows: variance sources. Columns: Sample A (seed0), Sample B (seed7), Sample C (seed99), Range. Item_id ranges 48.7-61.2%. Residual ranges 15.5-22.1%. Prompt×item ranges 4.8-7.2%. Instability is systematic, not random.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Item dominance magnitude is sample-dependent, with a 12.5pp range across three draws. This is a serious threat to the headline claim. The Bernoulli variance mechanism (MD1) explains ~60% of the cross-sample variation. Combined with the model×item interaction finding from exp-004, the \"item dominance\" narrative becomes untenable as a clean headline. The paper must reframe: item_id is large but its magnitude is unstable and partly mechanical; the more interesting finding is what happens when model is added as a facet.\n\n\nThe 12.5pp range in item_id percentage across three samples (48.7-61.2%) is uncomfortably wide. This is driven by differential item difficulty variance: sample seed99 has lower difficulty SD (0.262 vs 0.301), mechanically reducing Bernoulli p(1-p) spread and thus item_id's share. This directly validates the MD1 concern — item_id percentage is partly a mechanical artifact of the item difficulty distribution in the sample, not a stable psychometric property. The instability makes it impossible to report a single \"item_id = X%\" headline number with confidence. In the worst tier, this is compounded by the fact that model×item interaction (not measurable in single-model exp-001b) will further erode whatever item_id estimate survives. Bootstrap CIs on item_id will be wide (±6-8pp per sample), and the cross-sample range exceeds the within-sample CI, indicating genuine instability rather than sampling noise alone.\n"
+  },
+  {
+    "name": "exp-002 Multi-Benchmark Replication",
+    "description": "3 models (Gemma excluded) × 2 precisions (BF16/FP16) × 6 prompts × 6 seeds × 2 temperatures × 4 orderings × 200 items each on GSM8K, ARC-Challenge, HellaSwag. Reduced crossing (2×2 vs 3×3). Tests cross-benchmark gradient hypothesis.\n",
+    "results": {
+      "total_records_gsm8k": 172800,
+      "total_records_arc": 172800,
+      "total_records_hellaswag": 172800,
+      "models_completed_gsm8k": 3,
+      "models_completed_arc": 2,
+      "models_completed_hellaswag": 3,
+      "benchmarks_with_complete_data": 3,
+      "item_id_pct_gsm8k_pooled": 0.143,
+      "seed_pct_gsm8k": 0.089,
+      "temperature_pct_gsm8k": 0.112,
+      "prompt_pct_gsm8k": 0.067,
+      "seed_x_item_pct_gsm8k": 0.138,
+      "temperature_x_item_pct_gsm8k": 0.124,
+      "residual_pct_gsm8k": 0.247,
+      "precision_x_temperature_gsm8k_binary_pct": 3.2,
+      "g_coeff_binary_gsm8k_200item": 0.198,
+      "item_id_pct_arc_pooled": 0.472,
+      "seed_pct_arc": 0.018,
+      "temperature_pct_arc": 0.031,
+      "prompt_pct_arc": 0.093,
+      "residual_pct_arc": 0.196,
+      "precision_x_temperature_arc_binary_pct": 0.4,
+      "g_coeff_binary_arc_200item": 0.311,
+      "item_id_pct_hellaswag_pooled": 0.387,
+      "seed_pct_hellaswag": 0.042,
+      "temperature_pct_hellaswag": 0.058,
+      "prompt_pct_hellaswag": 0.121,
+      "precision_x_prompt_hellaswag_binary_pct": 3.8,
+      "residual_pct_hellaswag": 0.203,
+      "g_coeff_binary_hellaswag_200item": 0.274,
+      "cross_benchmark_gradient_pp": 5.1,
+      "item_id_ordering_by_benchmark": "ARC(47.2%) > HellaSwag(38.7%) > MMLU(~55%) > GSM8K(14.3%)",
+      "gradient_correlation_with_task_type": -0.12,
+      "direct_infra_x_method_binary_gsm8k": 3.2,
+      "direct_infra_x_method_binary_hellaswag": 3.8,
+      "direct_infra_x_method_binary_arc": 0.4,
+      "direct_infra_x_method_text_match_gsm8k": 7.4,
+      "direct_infra_x_method_text_match_hellaswag": 5.9,
+      "benchmarks_separability_fails_binary": 2
+    },
+    "tables": [
+      {
+        "name": "Table 4: Variance Decomposition Across Benchmarks (Single-Model Pooled, Binary Scoring)",
+        "description": "Rows: 10 variance sources. Columns: MMLU, GSM8K, ARC-Challenge, HellaSwag. No systematic gradient visible. Item_id ranges from 14.3% (GSM8K) to 55%+ (MMLU). Residual uniformly large (19-25%). Interaction terms vary idiosyncratically.\n"
+      },
+      {
+        "name": "Table 5: Infrastructure × Methodology Interactions (Binary + Text Match)",
+        "description": "All 2-way infra×method interactions per benchmark under both scoring metrics. Binary: GSM8K 3.2%, HellaSwag 3.8%, ARC 0.4%, MMLU 0.3%. Text match: GSM8K 7.4%, HellaSwag 5.9%. Separability fails on 2/4 benchmarks under binary.\n"
+      },
+      {
+        "name": "Table 6: G-coefficients by Benchmark and Metric",
+        "description": "Binary G: MMLU 0.36, ARC 0.31, HellaSwag 0.27, GSM8K 0.20. Text match G: MMLU 0.97, GSM8K 0.88, ARC 0.91, HellaSwag 0.93. Binary G is poor everywhere; text match is acceptable but variable.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "The gradient narrative is dead. Variance structure is idiosyncratic per benchmark and not predictable from task type alone. This is actually a finding — \"variance structure is benchmark-specific\" — but it is a negative finding relative to the original framing. Separability fails on 2 benchmarks under binary scoring, undermining the confirmatory null that was supposed to validate isolated-factor studies. The paper must pivot: instead of \"here's a gradient that explains everything,\" the message becomes \"nothing is simple, everything interacts, and you cannot generalize reproducibility findings across benchmarks.\"\n\n\nThe cross-benchmark gradient hypothesis collapses. The item_id ordering is MMLU(55%) > ARC(47%) > HellaSwag(39%) > GSM8K(14%), which does not follow any coherent task taxonomy. ARC (science reasoning) has higher item_id than HellaSwag (commonsense), despite commonsense items being more \"knowledge-like.\" GSM8K's low item_id (14.3%) is expected — math reasoning items have high seed×item and temperature×item interactions because chain-of-thought generation introduces stochastic branching at each reasoning step. But HellaSwag's intermediate position and ARC's high position are not predicted by any task-type theory. The correlation between task-type ranking and item_id ranking is near zero (r=-0.12), destroying the \"knowledge→reasoning gradient\" narrative.\nSeparability fails on GSM8K (precision×temperature = 3.2% under binary) and HellaSwag (precision×prompt = 3.8%). The GSM8K failure is interpretable: at T=0.7, floating-point non-associativity in the softmax creates different token selection paths across precisions, and for multi-step reasoning, these divergences compound. The HellaSwag failure is less interpretable — precision×prompt interaction suggests that certain prompt framings expose precision-dependent attention patterns in the commonsense completion task. Neither failure was predicted by the MVP data (which showed separability under binary scoring on MMLU). This means the Claim 2 separability result is benchmark-conditional in a way that undermines confident generalization.\nThe residual components are large everywhere (19.6-24.7%), foreshadowing the model×item interaction that will emerge when model is treated as a facet in exp-004.\n"
+  },
+  {
+    "name": "exp-003 Multi-Hardware G-Study",
+    "description": "Multi-GPU type crossing to test hardware × methodology interaction. In the worst tier, second GPU type is unavailable (Manager cannot allocate datacenter GPU within timeline). Fallback: run on westd-32570 only with 2 GPU instances (same architecture) as pseudo-replication. Limited to same RTX PRO 6000 hardware.\n",
+    "results": {
+      "hardware_types_obtained": 1,
+      "second_gpu_available": false,
+      "fallback_design": "2 instances of RTX PRO 6000 (same arch, different physical units)",
+      "gpu_instance_x_method_interaction_pct": 0.08,
+      "gpu_instance_x_item_pct": 0.03,
+      "alt_second_gpu_type": "A100-80GB (if obtained)",
+      "alt_gpu_x_method_binary_pct": 2.4,
+      "alt_gpu_x_prompt_pct": 1.8,
+      "alt_gpu_x_temperature_pct": 0.9,
+      "alt_gpu_x_item_pct": 3.1,
+      "total_records_fallback": 777600,
+      "experiment_status": "degraded — same-architecture pseudo-replication only"
+    },
+    "tables": [
+      {
+        "name": "Table 7a (fallback): Same-Architecture GPU Pseudo-Replication",
+        "description": "Variance decomposition showing gpu_instance contributes <0.1% across all interactions. Demonstrates within-architecture reproducibility is high but says nothing about cross-architecture effects. Footnote: \"True hardware crossing requires heterogeneous GPU architectures; this analysis uses same-architecture replication only.\"\n"
+      },
+      {
+        "name": "Table 7b (alt): Cross-Architecture Variance Decomposition (if A100 obtained)",
+        "description": "GPU type as additional facet. GPU×prompt 1.8%, GPU×temperature 0.9%, GPU×item 3.1%. All exceed the 1% threshold used in MVP. Separability assumption for hardware is violated.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-003 either provides no useful data (fallback) or actively harmful data (alt). The fallback forces explicit scoping to single-architecture, which reviewers will flag. The alt scenario compounds the worst-tier narrative by adding yet another interacting facet. Either way, Claim 2 (separability) is damaged. The paper must reframe \"infrastructure\" as \"numerical precision\" only and acknowledge hardware as an uncontrolled confound.\n\n\nIn the worst tier, exp-003 fails its primary objective. Two scenarios: (A) Hardware unavailable: Manager cannot allocate a second GPU architecture within the AAAI timeline. The fallback pseudo-replication (two physical units of RTX PRO 6000) shows near-zero cross-unit variance (0.08%), which is expected — same architecture, same drivers, same CUDA version. This tells us nothing about true hardware×methodology interaction. The \"infrastructure\" facet remains limited to \"numerical precision on a single GPU architecture,\" severely weakening Claim 2. (B) Hardware obtained but interaction is large: if an A100 is obtained, the GPU×method interaction reaches 2.4% under binary scoring (driven by different CUDA kernel implementations for attention between Ampere and Ada Lovelace). GPU×item interaction is even larger (3.1%), meaning hardware affects items differentially — some items are hardware-sensitive while others are not. This breaks the \"precision only\" scoping assumption and means the paper must either include hardware as a full facet (requiring much more analysis) or explicitly scope the study to single-architecture inference. Either outcome damages the paper.\n"
+  },
+  {
+    "name": "exp-004 Comprehensive Analysis",
+    "description": "Combined analysis of exp-001/001b/002/003 data. This is where the worst-tier narrative crystallizes. Model-as-facet reanalysis, bootstrap CIs, D-study projections, and all methodological defense analyses.\n",
+    "results": {
+      "item_id_pct_mmlu_model_as_facet": 0.224,
+      "model_pct_mmlu": 0.068,
+      "model_x_item_pct_mmlu": 0.312,
+      "prompt_x_item_pct_mmlu_model_facet": 0.048,
+      "temperature_x_item_pct_mmlu_model_facet": 0.052,
+      "residual_pct_mmlu_model_facet": 0.119,
+      "item_id_drop_from_single_to_facet_pp": 33.6,
+      "model_x_item_is_largest_source": true,
+      "item_id_pct_gsm8k_model_as_facet": 0.091,
+      "model_x_item_pct_gsm8k": 0.287,
+      "seed_x_item_pct_gsm8k_model_facet": 0.112,
+      "bootstrap_ci_item_id_mmlu_model_facet": [
+        0.148,
+        0.301
+      ],
+      "bootstrap_ci_model_x_item_mmlu": [
+        0.238,
+        0.387
+      ],
+      "bootstrap_ci_width_item_id_pp": 15.3,
+      "bootstrap_ci_width_model_x_item_pp": 14.9,
+      "bootstrap_ci_overlap_item_id_model_x_item": true,
+      "bootstrap_ci_item_id_gsm8k": [
+        0.041,
+        0.142
+      ],
+      "bootstrap_ci_model_x_item_gsm8k": [
+        0.209,
+        0.364
+      ],
+      "d_study_items_for_g90_mmlu_binary": 1400,
+      "d_study_items_for_g90_gsm8k_binary": 2000,
+      "d_study_items_for_g90_arc_binary": 980,
+      "d_study_items_for_g90_hellaswag_binary": 1200,
+      "d_study_items_for_g90_mmlu_text_match": 45,
+      "d_study_range_across_benchmarks": "45–2000 items",
+      "d_study_prompts_for_g90_mmlu_binary": 8,
+      "d_study_seeds_for_g90_mmlu_binary": 4,
+      "d_study_budget_mmlu_total_conditions": 44800,
+      "reml_vs_henderson_max_diff_pp": 3.8,
+      "reml_vs_henderson_rank_order_preserved": false,
+      "g_coeff_logprob_mmlu": 0.412,
+      "logprob_item_id_pct": 0.483,
+      "logprob_model_x_item_pct": 0.198,
+      "precision_x_temp_alters_rankings": true,
+      "ranking_instability_fraction": 0.22,
+      "three_way_interactions_total_pct": 0.042,
+      "irt_recommended_items_mmlu": 110,
+      "gtheory_recommended_items_mmlu": 1400,
+      "ratio_gtheory_to_irt": 12.7,
+      "min_detectable_interaction_pct": 1.2,
+      "power_for_2pct_interaction": 0.89,
+      "fixed_vs_random_max_diff_pp": 7.2,
+      "temperature_fixed_changes_item_id_by_pp": 4.1,
+      "bernoulli_variance_correlation_with_item_id": 0.83,
+      "mechanical_share_of_item_id": 0.61,
+      "bootstrap_jackknife_ci_ratio": 1.34,
+      "jackknife_ci_width_item_id_pp": 11.4,
+      "mmlu_3x3_vs_2x2_item_id_diff_pp": 4.7,
+      "mmlu_3x3_vs_2x2_changes_rank_order": false,
+      "g_coeff_binary_mmlu_14k_items_projected": 0.891,
+      "g_coeff_binary_mmlu_14k_items_ci": [
+        0.847,
+        0.934
+      ],
+      "compute_cost_recommended_budget_mmlu_usd": 4200,
+      "compute_cost_recommended_budget_gsm8k_usd": 11500
+    },
+    "tables": [
+      {
+        "name": "Table 8: Model-as-Facet Variance Decomposition (MMLU, binary scoring)",
+        "description": "The central table of the paper. Rows: item_id (22.4%), model (6.8%), model×item (31.2%), prompt×item (4.8%), temp×item (5.2%), precision×item (2.1%), seed (0.4%), prompt (1.2%), temperature (2.8%), precision (4.3%), 3-way+ interactions (4.2%), residual (11.9%). Model×item is largest. Bold. Adjacent column: bootstrap 95% CI for each. CIs on item_id and model×item overlap.\n"
+      },
+      {
+        "name": "Table 9: Model-as-Facet Variance Decomposition Across Benchmarks",
+        "description": "Same format as Table 8 but columns = MMLU, GSM8K, ARC, HellaSwag. Model×item is largest or co-largest on MMLU (31.2%) and GSM8K (28.7%). On ARC, item_id remains largest (34.1%) with model×item at 22.3%. HellaSwag: prompt×item (18.9%) competes with model×item (21.7%). No consistent pattern across benchmarks.\n"
+      },
+      {
+        "name": "Table 10: D-Study Projections for G≥0.90 (Binary Scoring)",
+        "description": "Rows: MMLU, GSM8K, ARC, HellaSwag. Columns: required items, prompts, seeds, total conditions, estimated GPU-hours, USD cost. Items range 980-2000. GSM8K marked \"exceeds available test items.\" Total costs: $4.2K-$11.5K per benchmark.\n"
+      },
+      {
+        "name": "Table 11: G-theory vs IRT Item Recommendations",
+        "description": "Comparison table. IRT (tinyBenchmarks): 110 items. G-theory: 1400 items. Ratio: 12.7×. Explanation: IRT assumes fixed protocol; G-theory targets cross-protocol reliability. Both are \"correct\" for different reliability definitions.\n"
+      },
+      {
+        "name": "Table 12: Bootstrap CI Widths by Variance Source and Benchmark",
+        "description": "All variance sources × all benchmarks. CI widths range 3-16pp. Sources with CI >12pp highlighted. Item_id and model×item exceed 12pp on all benchmarks. Precision main effect CIs are tighter (3-5pp). Message: only main effects can be estimated precisely; interactions and item-dependent sources are noisy.\n"
+      },
+      {
+        "name": "Table 13: Methodological Sensitivity Analyses Summary",
+        "description": "Rows: REML vs Henderson, Fixed vs Random, Binary vs TextMatch, 3×3 vs 2×2, Bootstrap vs Jackknife. Columns: max difference (pp), rank order preserved (Y/N), conclusion. Two of five analyses show >5pp sensitivity. Overall: results are moderately robust but not insensitive to analytic choices.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-004 reveals that the entire single-model analysis framework was misleading. Model×item interaction (31.2%) — not item difficulty — is the dominant variance source when models are properly crossed. This is the worst-tier's central finding and it is genuinely novel and surprising. However, the wide bootstrap CIs, the Bernoulli mechanical artifact, and the benchmark-idiosyncratic patterns make the paper very hard to write cleanly. Every claim requires heavy qualification. The D-study budgets are impractically large and benchmark-specific, providing no actionable \"recipe.\" The G-theory vs IRT comparison is the strongest standalone contribution but is a methods comparison, not an empirical finding. The narrative must shift to: \"evaluation is harder than you think, and here's exactly why.\"\n\n\nThe model-as-facet reanalysis is the earthquake. When model is added as a crossed facet to the MMLU G-study, item_id drops from ~55.8% (single-model) to 22.4%, while model×item interaction emerges at 31.2% — the LARGEST single variance source. This happens because different models find different items difficult: an item that Llama gets right 95% of the time, Mistral may get right only 40% of the time. This differential item functioning (DIF) was hidden in single-model analyses where it was confounded with the residual. The 33.6pp drop in item_id is dramatic and changes the entire paper narrative.\nBootstrap CIs are wide (15.3pp for item_id, 14.9pp for model×item) and the two CIs overlap, meaning we cannot even definitively say which is larger. This is driven by item-level resampling with only 200 items — each bootstrap resample has ~127 unique items (Euler's formula), and the item×model interaction is sensitive to which items are included. The width exceeds 12pp on all benchmarks, making confident rank-ordering of variance sources impossible on most benchmarks.\nD-study projections are dire: achieving G≥0.90 under binary scoring requires 1400 items on MMLU, 2000 on GSM8K (practically unreachable — GSM8K only has 1319 test items), and 980-1200 on ARC/HellaSwag. These budgets are 3-10× larger than MVP estimates because model×item interaction adds a variance source that cannot be reduced by prompt/seed averaging — only item expansion helps. The cross-benchmark range (45-2000 items) is so large that no single recommendation is actionable.\nThe G-theory vs IRT comparison reveals a 12.7× discrepancy (tinyBenchmarks: 110 items; G-theory: 1400 items). This is because IRT ignores prompt/seed/temperature/ ordering facets entirely — it assumes a single fixed evaluation protocol. The G-theory budget accounts for reproducibility across ALL facets, making it much larger. This is actually a strong finding: IRT-based subsampling produces reliable rankings only within a fixed protocol, not across protocols.\nFixed vs random sensitivity analysis (MD2) shows a 7.2pp maximum change when temperature is treated as fixed vs random. Temperature has only 2-3 design points, making the random assumption dubious. But the fixed treatment changes item_id by 4.1pp, which is large enough to affect conclusions. This is a genuine methodological vulnerability with no clean resolution.\nThe Bernoulli correlation analysis (MD1) confirms that 61% of item_id's magnitude is mechanically driven by item difficulty spread through p(1-p). This is damning: more than half of the \"headline finding\" (item dominance) is a statistical artifact of using binary scoring on items with heterogeneous difficulty. The text_match metric does not suffer from this, but text_match has different (and less dramatic) variance structure.\nEven projecting to 14K items (full MMLU), binary G reaches only 0.891 [0.847, 0.934], still below 0.90 with a CI that includes values as low as 0.847. This means even full MMLU may not provide reliable binary-scored evaluation when considering all facets — a provocative but hard-to-communicate finding.\n"
+  },
+  {
+    "name": "exp-005 14B Model Extension",
+    "description": "Qwen3-14B and DeepSeek-R1-Distill-14B at BF16/FP16. Tests scale effects. Depends on exp-003 (hardware). In worst tier, hardware issues cascade.\n",
+    "results": {
+      "hardware_obtained": false,
+      "experiment_status": "blocked — requires ≥48GB VRAM datacenter GPU not available",
+      "alt_single_gpu_status": "attempted on westd-32570 (96GB) with reduced design",
+      "alt_total_records": 28800,
+      "alt_qwen14b_accuracy": 0.738,
+      "alt_deepseek_r1_distill_accuracy": 0.712,
+      "alt_item_id_pct_qwen14b": 0.501,
+      "alt_item_id_pct_deepseek_r1": 0.423,
+      "alt_cross_scale_item_correlation": 0.64,
+      "alt_model_x_item_estimated": "not estimable with 2-model design"
+    },
+    "tables": [
+      {
+        "name": "Table A1 (Appendix): 14B Model Accuracy Summary",
+        "description": "Minimal 2×2 table (2 models × 2 precisions). Qwen3-14B: 73.8%, DeepSeek-R1-Distill: 71.2%. Noted as \"reduced design, insufficient for G-theory analysis.\"\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-005 is the clearest casualty of the worst tier. It either doesn't run or produces too little data to support claims. Relegated to a brief appendix mention or dropped entirely. The cross-scale correlation finding (r=0.64) is interesting but requires follow-up work with more models and a full crossing design.\n\n\nexp-005 is either blocked entirely (no datacenter GPU) or runs on the single available GPU with a severely reduced design. Even if it runs, 2 models is insufficient to estimate model×item interaction as a random effect — you need ≥3 for meaningful variance component estimation. The cross-scale item difficulty correlation (r=0.64 between 8B and 14B models) is lower than within-scale correlation (r=0.71-0.78 among 8B models), suggesting that scale increases model×item interaction further. This is consistent with the worst-tier narrative (larger models have more distinct item-level competence profiles) but the evidence is too thin to make claims. The experiment contributes almost nothing to the paper in the worst tier.\n"
+  },
+  {
+    "name": "exp-006 Fine-Tuning G-Study",
+    "description": "RoBERTa-large on SST-2/MNLI/RTE/COPA. 6 seeds × 3 learning rates × 4 data shuffles × 3 GPUs × 2 precisions = 432 runs/task × 4 tasks = 1,728 total runs. Independent of inference experiments. Tests fine-tuning variance hierarchy.\n",
+    "results": {
+      "total_runs_completed": 1614,
+      "total_runs_planned": 1728,
+      "failure_rate": 0.066,
+      "failed_config": "lr=5e-4 × fp16 on RTE/COPA (small datasets, unstable)",
+      "item_id_pct_sst2": 0.312,
+      "seed_pct_sst2": 0.089,
+      "lr_pct_sst2": 0.143,
+      "data_shuffle_pct_sst2": 0.034,
+      "gpu_pct_sst2": 0.002,
+      "precision_pct_sst2": 0.018,
+      "seed_x_lr_pct_sst2": 0.112,
+      "residual_pct_sst2": 0.178,
+      "g_coeff_sst2": 0.487,
+      "item_id_pct_mnli": 0.401,
+      "lr_pct_mnli": 0.098,
+      "seed_pct_mnli": 0.067,
+      "seed_x_item_pct_mnli": 0.134,
+      "residual_pct_mnli": 0.156,
+      "g_coeff_mnli": 0.534,
+      "item_id_pct_rte": 0.187,
+      "seed_pct_rte": 0.203,
+      "lr_pct_rte": 0.178,
+      "seed_x_lr_pct_rte": 0.156,
+      "residual_pct_rte": 0.214,
+      "g_coeff_rte": 0.298,
+      "item_id_pct_copa": 0.134,
+      "seed_pct_copa": 0.241,
+      "lr_pct_copa": 0.198,
+      "residual_pct_copa": 0.267,
+      "g_coeff_copa": 0.213,
+      "inference_vs_finetuning_rank_correlation": 0.31,
+      "dominant_source_inference": "item_id (or model×item)",
+      "dominant_source_finetuning": "item_id on large datasets; seed on small datasets"
+    },
+    "tables": [
+      {
+        "name": "Table 14: Fine-Tuning Variance Decomposition Across Tasks",
+        "description": "Rows: seed, learning_rate, data_shuffle, gpu, precision, item_id, seed×lr, seed×item, residual. Columns: SST-2, MNLI, RTE, COPA. Clear split between large-dataset (item-dominated) and small-dataset (seed-dominated) patterns.\n"
+      },
+      {
+        "name": "Table 15: Inference vs Fine-Tuning Variance Hierarchy Comparison",
+        "description": "Side-by-side ranking of variance sources. Inference: item_id > model×item > residual > temperature×item > prompt×item. Fine-tuning: item_id > seed×lr > seed > lr > residual. Different hierarchies, different implications.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-006 produces a valid standalone result (fine-tuning variance hierarchy differs from inference) but its contribution to the main paper is ambiguous. It supports the worst-tier message (\"nothing generalizes across paradigms\") but also weakens coherence — the paper is already struggling to find a unifying narrative, and adding a disconnected fine-tuning analysis makes it more scattered. Recommend relegating to a 1-page appendix or splitting into a separate short paper.\n\n\nFine-tuning variance hierarchy differs substantially from inference. On large datasets (SST-2, MNLI), item_id is still the largest source (31-40%) but learning rate and seed×learning_rate interactions are substantial (10-14%), which have no analogue in inference. On small datasets (RTE: 277 items; COPA: 100 items), seed becomes dominant (20-24%) because the training dynamics are chaotic with few examples — small perturbations in initialization cascade through training.\nGPU and precision contribute negligibly to fine-tuning variance (<2% combined), which contrasts with the 4-7% precision contribution in inference. This is because fine-tuning aggregates over many gradient steps, averaging out per-forward-pass precision effects.\nThe cross-paradigm rank correlation (r=0.31) between inference and fine-tuning variance hierarchies means the findings do NOT transfer. A reviewer cannot extrapolate from our inference G-study to fine-tuning practice, and we cannot extrapolate from exp-006 back to inference. This supports the worst-tier narrative (\"nothing generalizes\") but also means exp-006 is somewhat disconnected from the paper's main story. It becomes an appendix-level extension rather than a core contribution.\nThe 6.6% run failure rate (NaN loss on high-lr×fp16 combinations with small datasets) is a methodological nuisance. These failures are informative (they show that some precision×hyperparameter combinations are unstable) but create missing cells in the G-theory design, requiring imputation or reduced analysis.\n"
+  },
+  {
+    "name": "exp-007 LayerCast Precision Mitigation",
+    "description": "LayerCast (FP16 storage + FP32 compute) as additional precision condition on MMLU. Tests whether this mixed-precision strategy reduces variance from the precision facet.\n",
+    "results": {
+      "total_records": 43200,
+      "layercast_accuracy": 0.6482,
+      "layercast_vs_fp32_gap_pp": 4.88,
+      "layercast_vs_bf16_gap_pp": -3.62,
+      "precision_variance_with_layercast_pct": 5.1,
+      "layercast_item_level_correlation_with_bf16": 0.87,
+      "layercast_item_level_correlation_with_fp32": 0.72,
+      "variance_reduction_from_layercast": "none — adds variance rather than reducing it"
+    },
+    "tables": [
+      {
+        "name": "Table A2 (Appendix): LayerCast Variance Impact",
+        "description": "4-row precision comparison (FP32, FP16, BF16, LayerCast) with accuracy, item-level correlation with BF16, and precision facet variance contribution. LayerCast is intermediate but not a clean fix.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-007 is a minor negative result. LayerCast doesn't serve as a precision mitigation strategy in this context. Useful as a 1-paragraph appendix note showing that mixed-precision approaches don't simplify the variance picture. Low priority for inclusion in the worst-tier paper.\n\n\nLayerCast does not cleanly reduce variance because it creates a hybrid precision regime that behaves differently from both pure FP32 and pure FP16/BF16. The storage-in-FP16, compute-in-FP32 approach means attention computations use FP32 but weight quantization noise from FP16 storage propagates through. The result is an accuracy level between FP32 and BF16 (64.8%), but with item-level patterns that don't correlate perfectly with either pure precision. Adding LayerCast as a 4th precision level actually INCREASES precision facet variance (from 4.3% to 5.1%) because it adds another distinct level rather than collapsing precision differences. This is a negative result for the mitigation narrative but a positive result for the worst-tier message: precision effects are complex and non-monotonic, and simple mitigation strategies don't work as advertised.\n"
+  },
+  {
+    "name": "exp-008 MATH Benchmark Extension",
+    "description": "MATH benchmark (200 items) with chain-of-thought reasoning. Tests whether reasoning-heavy tasks with long generation have qualitatively different variance structure.\n",
+    "results": {
+      "total_records": 115200,
+      "models_completed": 2,
+      "overall_accuracy_llama": 0.341,
+      "overall_accuracy_qwen": 0.428,
+      "accuracy_range_across_conditions": 0.187,
+      "item_id_pct_math": 0.118,
+      "seed_pct_math": 0.134,
+      "temperature_pct_math": 0.156,
+      "prompt_pct_math": 0.087,
+      "seed_x_item_pct_math": 0.168,
+      "temperature_x_item_pct_math": 0.143,
+      "precision_x_temperature_pct_math_binary": 4.7,
+      "residual_pct_math": 0.194,
+      "g_coeff_binary_math_200item": 0.152,
+      "d_study_items_for_g90_math_binary": "not achievable within MATH test set size",
+      "avg_generation_length_tokens": 487,
+      "generation_length_cv": 0.68,
+      "accuracy_conditional_on_cot_length": "non-monotonic — medium length CoT has highest accuracy"
+    },
+    "tables": [
+      {
+        "name": "Table A3 (Appendix): MATH Variance Decomposition",
+        "description": "Seed×item (16.8%) and temperature×item (14.3%) dominate. Item_id is only 11.8%. Precision×temperature is 4.7%. G=0.152. The most extreme interaction-dominated pattern in the study.\n"
+      },
+      {
+        "name": "Table A4: Accuracy Range by Model Across Conditions (MATH)",
+        "description": "2 models × min/max/range across all conditions. Llama: 22.5-52.8% (range 30.3pp). Qwen: 31.2-58.4% (range 27.2pp). Demonstrates that single-run MATH evaluation is unreliable.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "MATH is the poster child for the worst-tier narrative: everything interacts, nothing is stable, and single-run evaluation is meaningless. But with only 2 models and a reduced design, the evidence is thin. The extreme interaction dominance is compelling but also predictable (CoT reasoning is inherently stochastic). The finding reinforces the \"no gradient\" message — MATH is not simply \"one step further\" on a knowledge→reasoning continuum; it has a qualitatively different variance structure that shares nothing with MMLU or ARC. Best used as a dramatic closing example in the paper rather than a core analysis.\n\nMATH represents the extreme end of the worst-tier pattern. Item_id is only 11.8% — the lowest of any benchmark — because chain-of-thought generation introduces massive stochastic branching. Each reasoning step is a decision point where temperature and seed can send the model down different solution paths. The seed×item (16.8%) and temperature×item (14.3%) interactions are the dominant sources, meaning the same item can be solved or not depending on the random seed and temperature — an extreme form of the model×item interaction pattern.\nThe 18.7pp accuracy range across conditions for the same model on the same items is striking: the \"same\" evaluation can produce 34.1% or 52.8% accuracy for Llama on MATH depending on prompt/seed/temperature. This makes any single-run MATH evaluation essentially meaningless for fine-grained model comparison.\nSeparability fails catastrophically: precision×temperature interaction is 4.7% under binary scoring, the highest of any benchmark. This is because FP16/BF16 rounding in the softmax creates different token selections at each reasoning step, and at higher temperatures these divergences compound over 400+ tokens of chain-of-thought.\nG=0.152 for 200 items under binary scoring is the lowest across all benchmarks. D-study projections show G≥0.90 is not achievable within MATH's test set (5000 items) because the dominant variance sources (seed×item, temperature×item) cannot be reduced by adding items — they require averaging over many seeds and temperatures per item, which is computationally expensive.\nMistral's exclusion (accuracy <10%, effectively random guessing on MATH) further reduces model coverage to 2, making model-as-facet analysis impossible on this benchmark.\n"
+  }
+]

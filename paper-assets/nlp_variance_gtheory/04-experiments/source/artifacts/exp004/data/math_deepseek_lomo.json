@@ -1,0 +1,17 @@
+{
+  "benchmark": "math",
+  "with_deepseek": {
+    "n_models": 8,
+    "item_id_pct": 24.0268,
+    "g_item": 0.888034
+  },
+  "without_deepseek": {
+    "n_models": 7,
+    "item_id_pct": 26.4785,
+    "g_item": 0.888941
+  },
+  "delta_item_pct": 2.4518,
+  "delta_g_item": 0.000907,
+  "models_excluded": ["deepseek"],
+  "note": "LOMO: Leave-One-Model-Out removing DeepSeek-7B from 8-model MATH Henderson I. G_item uses D-study formula consistent with math_8model_verified.json."
+}

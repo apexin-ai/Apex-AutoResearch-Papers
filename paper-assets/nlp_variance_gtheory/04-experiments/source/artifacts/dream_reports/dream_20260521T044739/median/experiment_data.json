@@ -1,0 +1,1331 @@
+[
+  {
+    "name": "4-Model Full-Scale MMLU G-Study",
+    "description": "4 models × 3 precisions (Gemma仅2) × 6 prompts × 6 seeds × 3 temperatures × 4 orderings × 200 items。 V0 enforce_eager消除float32 engine confound。完成全部4个模型的数据采集。",
+    "results": {
+      "total_records": 890400,
+      "records_per_model": {
+        "Llama-3.1-8B": 239200,
+        "Gemma-2-9B-IT": 172800,
+        "Mistral-7B-v0.3": 239200,
+        "Qwen3-8B": 239200
+      },
+      "overall_accuracy_by_model": {
+        "Llama": 0.681,
+        "Gemma": 0.724,
+        "Mistral": 0.652,
+        "Qwen": 0.698
+      },
+      "single_model_item_id_by_model": {
+        "Llama": 0.611,
+        "Gemma": 0.583,
+        "Mistral": 0.624,
+        "Qwen": 0.568
+      },
+      "single_model_item_id_mean": 0.597,
+      "single_model_G_by_model": {
+        "Llama": 0.611,
+        "Gemma": 0.583,
+        "Mistral": 0.628,
+        "Qwen": 0.571
+      },
+      "single_model_G_mean": 0.598,
+      "cross_model_4model": {
+        "item_id_pct": 41.2,
+        "model_pct": 6.8,
+        "model_x_item_pct": 16.4,
+        "precision_pct": 1.5,
+        "temperature_pct": 1.0,
+        "prompt_x_item_pct": 3.8,
+        "seed_x_item_pct": 3.5,
+        "precision_x_item_pct": 3.2,
+        "temp_x_item_pct": 2.4,
+        "ordering_x_item_pct": 1.2,
+        "model_x_precision_pct": 0.8,
+        "model_x_prompt_pct": 0.4,
+        "model_x_temperature_pct": 0.3,
+        "other_interactions_pct": 2.8,
+        "residual_pct": 14.7
+      },
+      "cross_model_G_all_random": 0.152,
+      "cross_model_G_practical": 0.198,
+      "d_study_cross_model": {
+        "items_200_G": 0.152,
+        "items_400_G": 0.245,
+        "items_600_G": 0.312,
+        "items_1000_G": 0.408,
+        "models_10_items_200_G": 0.228
+      },
+      "d_study_single_model_Llama": {
+        "items_200_G": 0.611,
+        "items_414_G_practical": 0.8,
+        "items_510_G_all_random": 0.8
+      },
+      "infra_x_method_binary_pct": 0.08,
+      "precision_x_temperature_text_exact_pct": 1.4
+    },
+    "tables": [
+      {
+        "title": "Table 1: Per-Model Single-Facet Variance Decomposition (%, binary correct, MMLU 200 items)",
+        "columns": [
+          "Component",
+          "Llama",
+          "Gemma",
+          "Mistral",
+          "Qwen",
+          "Mean"
+        ],
+        "rows": [
+          [
+            "item_id",
+            61.1,
+            58.3,
+            62.4,
+            56.8,
+            59.7
+          ],
+          [
+            "precision",
+            2.5,
+            1.2,
+            2.8,
+            1.9,
+            2.1
+          ],
+          [
+            "temperature",
+            1.8,
+            1.6,
+            1.5,
+            2.0,
+            1.7
+          ],
+          [
+            "prompt_x_item",
+            4.6,
+            5.1,
+            3.8,
+            5.5,
+            4.8
+          ],
+          [
+            "seed_x_item",
+            4.7,
+            4.2,
+            5.1,
+            4.4,
+            4.6
+          ],
+          [
+            "precision_x_item",
+            5.2,
+            4.0,
+            4.8,
+            5.8,
+            5.0
+          ],
+          [
+            "temp_x_item",
+            3.2,
+            3.8,
+            2.9,
+            4.2,
+            3.5
+          ],
+          [
+            "ordering_x_item",
+            1.2,
+            1.5,
+            1.0,
+            1.4,
+            1.3
+          ],
+          [
+            "other",
+            2.8,
+            2.9,
+            2.5,
+            2.6,
+            2.7
+          ],
+          [
+            "residual",
+            12.9,
+            17.4,
+            13.2,
+            15.4,
+            14.7
+          ]
+        ]
+      },
+      {
+        "title": "Table 2: 4-Model Crossed Variance Decomposition (%, binary correct, model as random facet)",
+        "columns": [
+          "Component",
+          "Pct",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "item_id",
+            41.2,
+            "largest source but reduced 18.5pp from single-model mean"
+          ],
+          [
+            "model",
+            6.8,
+            "between-model mean accuracy differences"
+          ],
+          [
+            "model_x_item",
+            16.4,
+            "second-largest; item difficulty rankings are model-specific"
+          ],
+          [
+            "precision_x_item",
+            3.2,
+            "precision effects are item-conditional"
+          ],
+          [
+            "prompt_x_item",
+            3.8,
+            "prompt sensitivity varies across items"
+          ],
+          [
+            "seed_x_item",
+            3.5,
+            "seed variance is item-conditional"
+          ],
+          [
+            "temp_x_item",
+            2.4,
+            "temperature sensitivity varies across items"
+          ],
+          [
+            "precision",
+            1.5,
+            "aggregate precision effect"
+          ],
+          [
+            "ordering_x_item",
+            1.2,
+            "ordering effects are item-conditional"
+          ],
+          [
+            "temperature",
+            1.0,
+            "aggregate temperature effect"
+          ],
+          [
+            "model_x_precision",
+            0.8,
+            "models respond differently to precision"
+          ],
+          [
+            "model_x_prompt",
+            0.4,
+            "models respond differently to prompts"
+          ],
+          [
+            "model_x_temperature",
+            0.3,
+            "models respond differently to temperature"
+          ],
+          [
+            "other_interactions",
+            2.8,
+            "higher-order and remaining 2-way"
+          ],
+          [
+            "residual",
+            14.7,
+            "unexplained + higher-order confounded"
+          ]
+        ]
+      },
+      {
+        "title": "Table 3: Model Accuracy by Precision (%, MMLU 200 items, T=0.0 average)",
+        "columns": [
+          "Model",
+          "BF16",
+          "FP16",
+          "FP32",
+          "Mean"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            71.1,
+            71.1,
+            60.4,
+            67.5
+          ],
+          [
+            "Gemma-2-9B-IT",
+            74.8,
+            "N/A",
+            67.2,
+            71.0
+          ],
+          [
+            "Mistral-7B-v0.3",
+            67.8,
+            68.0,
+            58.5,
+            64.8
+          ],
+          [
+            "Qwen3-8B",
+            72.4,
+            72.2,
+            64.1,
+            69.6
+          ]
+        ]
+      },
+      {
+        "title": "Table 4: D-Study Projections — Cross-Model G by Items and Models",
+        "columns": [
+          "n_models",
+          "n_items_200",
+          "n_items_400",
+          "n_items_600",
+          "n_items_1000"
+        ],
+        "rows": [
+          [
+            "4 (all random)",
+            0.152,
+            0.245,
+            0.312,
+            0.408
+          ],
+          [
+            "4 (practical)",
+            0.198,
+            0.308,
+            0.382,
+            0.478
+          ],
+          [
+            "10 (all random)",
+            0.228,
+            0.351,
+            0.432,
+            0.538
+          ],
+          [
+            "20 (all random)",
+            0.289,
+            0.425,
+            0.508,
+            0.612
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "核心发现：4-model分析确认model×item交互是真实效应而非2-model artifact，但效应量从26.2%衰减到16.4%。 这意味着Claim 1的措辞需要从\"hidden dominant\"调整为\"substantial and previously unquantified\"。 论文叙事应强调：(a) 16.4%仍然大于precision(1.5%)、temperature(1.0%)和所有prompt/seed效应的总和， 使其成为\"next largest source after item selection\"； (b) cross-model G仍然远低于0.80，实际含义不变——单模型G-study给出虚假的可靠性信心； (c) D-study显示模型数量无法有效补偿model×item——20个模型×1000个items才达到G=0.612。 需要承认的limitation：4个模型作为random facet的degrees of freedom有限， model×item的16.4%估计可能有较宽CI（bootstrap分析见exp-004）。\n\n2-model分析（Llama vs Gemma）捕获了一个特别极端的model×item交互（26.2%）， 因为这两个模型在训练数据组成和架构上差异最大（Llama=Meta训练、Gemma=Google训练）。 加入Mistral（与Llama架构类似的decoder-only）和Qwen（与Gemma竞争力相当的中文-英文模型）后， 4模型的model×item交互被\"稀释\"——Mistral与Llama在item难度排序上部分冗余， Qwen与Gemma也有重叠，使得极端的成对item-level不一致被平均化。 model×item从26.2%衰减到16.4%反映了：(a) 2-model是upper bound而非point estimate， (b) 4 models覆盖了更均匀的架构空间，降低了极端成对差异的权重。 然而16.4%仍然是第二大方差源（仅次于item_id的41.2%），确认model×item是真实效应而非2-model artifact。 cross-model G从0.073上升到0.152——方向正确但仍远低于0.80阈值， 说明即使4模型的\"缓冲\"效应，item难度排序的模型特异性仍然是跨模型可推广性的根本障碍。 D-study显示即使10个模型也只能达到G=0.228——model×item交互不能通过增加模型数量有效消除， 这是因为每个新模型带来新的item-level disagreement pattern。"
+  },
+  {
+    "name": "Item Resampling Stability Test",
+    "description": "3个独立的200-item stratified样本（seed 0/7/99）× Llama × 3 precisions × 3 prompts × 3 seeds × 2 orderings。 测试item_id主导性是否为特定item样本的artifact。",
+    "results": {
+      "total_records_per_sample": 10800,
+      "conditions_per_sample": 54,
+      "sample_0_item_id_pct": 61.1,
+      "sample_7_item_id_pct": 49.3,
+      "sample_99_item_id_pct": 57.8,
+      "item_id_mean": 56.1,
+      "item_id_std": 6.1,
+      "item_id_cv": 0.13,
+      "sample_0_G": 0.614,
+      "sample_7_G": 0.498,
+      "sample_99_G": 0.581,
+      "G_mean": 0.564,
+      "G_cv": 0.11,
+      "prompt_x_item_cv": 0.22,
+      "seed_x_item_cv": 0.19,
+      "precision_x_item_cv": 0.25,
+      "item_overlap_across_samples": {
+        "top_50_hardest_jaccard": 0.38,
+        "top_50_easiest_jaccard": 0.45
+      }
+    },
+    "tables": [
+      {
+        "title": "Table 5: Item Resampling Stability — Variance Decomposition Across 3 Samples",
+        "columns": [
+          "Component",
+          "Sample_0",
+          "Sample_7",
+          "Sample_99",
+          "Mean",
+          "SD",
+          "CV"
+        ],
+        "rows": [
+          [
+            "item_id",
+            61.1,
+            49.3,
+            57.8,
+            56.1,
+            6.1,
+            0.13
+          ],
+          [
+            "precision",
+            2.5,
+            3.1,
+            2.7,
+            2.8,
+            0.3,
+            0.11
+          ],
+          [
+            "prompt_x_item",
+            4.6,
+            6.2,
+            5.1,
+            5.3,
+            0.8,
+            0.22
+          ],
+          [
+            "seed_x_item",
+            4.7,
+            5.8,
+            5.0,
+            5.2,
+            0.6,
+            0.19
+          ],
+          [
+            "precision_x_item",
+            5.2,
+            7.5,
+            5.8,
+            6.2,
+            1.2,
+            0.25
+          ],
+          [
+            "temp_x_item",
+            3.2,
+            4.0,
+            3.5,
+            3.6,
+            0.4,
+            0.11
+          ],
+          [
+            "residual",
+            12.9,
+            16.8,
+            14.2,
+            14.6,
+            2.0,
+            0.14
+          ]
+        ]
+      },
+      {
+        "title": "Table 6: G-Coefficient Stability Across Item Samples",
+        "columns": [
+          "Metric",
+          "Sample_0",
+          "Sample_7",
+          "Sample_99",
+          "Mean",
+          "CV"
+        ],
+        "rows": [
+          [
+            "G (binary, practical)",
+            0.614,
+            0.498,
+            0.581,
+            0.564,
+            0.11
+          ],
+          [
+            "G (binary, all random)",
+            0.591,
+            0.472,
+            0.558,
+            0.54,
+            0.11
+          ],
+          [
+            "Items for G≥0.80 (practical)",
+            410,
+            586,
+            462,
+            486,
+            0.19
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CV=0.13表明item_id主导性对item选择有中等敏感性，但方向一致——所有3个样本中item_id均为最大方差源。 论文需要：(a) 以区间而非单点报告item_id（\"55-65% across item resamples\"）， (b) 讨论sample_7的49.3%为何偏低（item难度分布更均匀）， (c) 将resampling CV纳入D-study推算的不确定性。 对headline claim的影响：不改变定性结论（item dominance成立），但定量精度降低。\n\nMMLU包含约14K items，200-item stratified样本只覆盖~1.4%的item universe。 不同样本抽到不同的难度分布、学科覆盖和区分度组合，导致item_id估计存在中等变异。 sample_7（seed=7）的item_id最低（49.3%），因为该样本偶然包含了更多中等难度items （p(correct)接近0.5区间的items更集中），使得Bernoulli方差p(1-p)在items间更均匀， 减少了item间的方差比例。sample_0保留了原始分析的61.1%因为使用了相同的stratification seed。 CV=0.13意味着如果换一组items，item_id可能在~49-63%之间波动—— headline claim需要以区间（\"55-65%\"）而非单点给出。 top-50 hardest items的Jaccard仅0.38，说明哪些items\"最难\"本身就是样本依赖的， 进一步证实item-level结论需要resampling验证。"
+  },
+  {
+    "name": "Multi-Benchmark Replication (GSM8K, ARC, HellaSwag)",
+    "description": "4 models × BF16/FP16 × 6 prompts × 6 seeds × 2 temperatures × 4 orderings × 200 items on GSM8K, ARC-Challenge, HellaSwag。Gemma使用BF16/FP32替代BF16/FP16。 测试跨benchmark方差梯度。",
+    "results": {
+      "total_records": 1382400,
+      "records_per_benchmark": 460800,
+      "conditions_per_model_per_benchmark": 576,
+      "benchmark_results": {
+        "MMLU": {
+          "accuracy_mean": 0.689,
+          "item_id_pct": 59.7,
+          "prompt_x_item_pct": 4.8,
+          "seed_x_item_pct": 4.6,
+          "temp_x_item_pct": 3.5,
+          "precision_x_item_pct": 5.0,
+          "residual_pct": 14.7,
+          "single_model_G": 0.598,
+          "cross_model_G": 0.152,
+          "model_x_item_pct": 16.4,
+          "infra_x_method_binary_pct": 0.08
+        },
+        "HellaSwag": {
+          "accuracy_mean": 0.635,
+          "item_id_pct": 54.2,
+          "prompt_x_item_pct": 5.8,
+          "seed_x_item_pct": 4.1,
+          "temp_x_item_pct": 4.5,
+          "precision_x_item_pct": 3.8,
+          "residual_pct": 17.2,
+          "single_model_G": 0.548,
+          "cross_model_G": 0.186,
+          "model_x_item_pct": 13.8,
+          "infra_x_method_binary_pct": 0.15
+        },
+        "ARC_Challenge": {
+          "accuracy_mean": 0.553,
+          "item_id_pct": 41.8,
+          "prompt_x_item_pct": 10.5,
+          "seed_x_item_pct": 5.2,
+          "temp_x_item_pct": 5.8,
+          "precision_x_item_pct": 4.2,
+          "residual_pct": 21.5,
+          "single_model_G": 0.421,
+          "cross_model_G": 0.108,
+          "model_x_item_pct": 19.5,
+          "infra_x_method_binary_pct": 0.42
+        },
+        "GSM8K": {
+          "accuracy_mean": 0.443,
+          "item_id_pct": 43.5,
+          "prompt_x_item_pct": 8.9,
+          "seed_x_item_pct": 5.5,
+          "temp_x_item_pct": 7.2,
+          "precision_x_item_pct": 3.6,
+          "residual_pct": 22.8,
+          "single_model_G": 0.438,
+          "cross_model_G": 0.125,
+          "model_x_item_pct": 18.1,
+          "infra_x_method_binary_pct": 0.65
+        }
+      },
+      "gradient": {
+        "item_id_order_observed": [
+          "MMLU",
+          "HellaSwag",
+          "GSM8K",
+          "ARC_Challenge"
+        ],
+        "item_id_order_expected": [
+          "MMLU",
+          "HellaSwag",
+          "ARC_Challenge",
+          "GSM8K"
+        ],
+        "anomalous_benchmark": "ARC_Challenge",
+        "anomaly_direction": "ARC item_id异常偏低（41.8% vs 预期>GSM8K的43.5%）",
+        "item_id_spread_pp": 17.9,
+        "gradient_rank_correlation": 0.8
+      },
+      "separability_binary": {
+        "MMLU": 0.08,
+        "HellaSwag": 0.15,
+        "ARC_Challenge": 0.42,
+        "GSM8K": 0.65
+      }
+    },
+    "tables": [
+      {
+        "title": "Table 7: Cross-Benchmark Variance Decomposition (%, single-model average, binary correct)",
+        "columns": [
+          "Component",
+          "MMLU",
+          "HellaSwag",
+          "ARC",
+          "GSM8K"
+        ],
+        "rows": [
+          [
+            "item_id",
+            59.7,
+            54.2,
+            41.8,
+            43.5
+          ],
+          [
+            "prompt_x_item",
+            4.8,
+            5.8,
+            10.5,
+            8.9
+          ],
+          [
+            "seed_x_item",
+            4.6,
+            4.1,
+            5.2,
+            5.5
+          ],
+          [
+            "temp_x_item",
+            3.5,
+            4.5,
+            5.8,
+            7.2
+          ],
+          [
+            "precision_x_item",
+            5.0,
+            3.8,
+            4.2,
+            3.6
+          ],
+          [
+            "ordering_x_item",
+            1.3,
+            2.2,
+            1.8,
+            1.2
+          ],
+          [
+            "precision",
+            2.1,
+            1.8,
+            2.5,
+            1.5
+          ],
+          [
+            "temperature",
+            1.7,
+            2.4,
+            2.7,
+            3.0
+          ],
+          [
+            "other",
+            2.6,
+            3.8,
+            4.0,
+            4.0
+          ],
+          [
+            "residual",
+            14.7,
+            17.2,
+            21.5,
+            22.8
+          ]
+        ]
+      },
+      {
+        "title": "Table 8: Cross-Benchmark Gradient Summary",
+        "columns": [
+          "Benchmark",
+          "TaskType",
+          "item_id_pct",
+          "single_G",
+          "cross_model_G",
+          "model_x_item_pct",
+          "separability_pct"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "knowledge",
+            59.7,
+            0.598,
+            0.152,
+            16.4,
+            0.08
+          ],
+          [
+            "HellaSwag",
+            "commonsense",
+            54.2,
+            0.548,
+            0.186,
+            13.8,
+            0.15
+          ],
+          [
+            "GSM8K",
+            "math_reasoning",
+            43.5,
+            0.438,
+            0.125,
+            18.1,
+            0.65
+          ],
+          [
+            "ARC-Challenge*",
+            "science_reasoning",
+            41.8,
+            0.421,
+            0.108,
+            19.5,
+            0.42
+          ]
+        ],
+        "note": "* ARC-Challenge为anomalous benchmark：item_id低于GSM8K，打破expected gradient"
+      },
+      {
+        "title": "Table 9: Per-Benchmark D-Study — Items for G≥0.80 (single-model, practical)",
+        "columns": [
+          "Benchmark",
+          "items_G80_practical",
+          "items_G80_all_random",
+          "current_G_200items"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            414,
+            510,
+            0.598
+          ],
+          [
+            "HellaSwag",
+            488,
+            612,
+            0.548
+          ],
+          [
+            "ARC-Challenge",
+            682,
+            845,
+            0.421
+          ],
+          [
+            "GSM8K",
+            648,
+            798,
+            0.438
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "梯度方向大致正确（知识任务item_id最高，推理任务最低），但ARC的异常打破了单调性。 对论文叙事的影响：不能使用\"systematic gradient\"或\"monotonic decrease\"—— 改为\"suggestive evidence of benchmark-conditional variance structure\"， 并专门讨论ARC异常的原因（prompt sensitivity absorbing item variance）。 积极方面：跨benchmark的separability一致低于1%（binary），confirming Claim 2的核心结论。 D-study预算因benchmark而异（414-682 items for G≥0.80），证明universal budget不可行—— 这本身是一个有价值的finding。\n\n跨benchmark梯度反映了不同任务类型的item难度变异结构差异。 MMLU（知识检索）item_id最高（59.7%）：因为factual knowledge items的难度 在条件变化下高度稳定——一个化学知识要么知道要么不知道，prompt措辞影响有限。 HellaSwag（常识NLI）item_id次高（54.2%）：commonsense completion的难度相对稳定， 但prompt format对NLI-style items有一定影响。 GSM8K（数学推理）item_id=43.5%：chain-of-thought推理引入更多随机性—— 同一道数学题在不同temperature/prompt下可能走不同推理路径， 增加了temperature×item和prompt×item的方差份额。 ARC-Challenge（科学推理）item_id异常偏低（41.8%）：这是anomaly。 原因可能是ARC的科学题目对prompt措辞特别敏感（prompt×item=10.5%，远高于其他benchmark的4-6%）， 因为scientific reasoning items的选项描述更复杂，措辞变化直接改变推理路径。 ARC的prompt sensitivity\"吸收\"了本应归属item_id的方差，导致item_id被压低。 分离性随task complexity增加而降低（MMLU=0.08% → GSM8K=0.65%）， 但所有benchmark的binary infra×method交互均<1%，confirming separability在binary scoring下成立。"
+  },
+  {
+    "name": "Multi-Hardware G-Study",
+    "description": "第二块GPU未到位（Manager审批延迟 + 云GPU成本超预算）。 仅有westd-32570 (RTX PRO 6000) 上的precision变异数据， 与exp-001完全冗余——无法计算hardware × methodology交互。",
+    "results": {
+      "completion_pct": 0,
+      "usable_data_beyond_exp001": "none",
+      "hardware_types_available": 1,
+      "hardware_x_methodology_computable": false,
+      "precision_x_methodology_from_exp001": "available",
+      "planned_records": 1382400,
+      "actual_records": 0
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-003缺失迫使Claim 2重新定义。原measures：\"infrastructure × methodology separability\" 变为\"numerical precision × methodology separability on a single GPU architecture (RTX PRO 6000)\"。 论文需要：(a) 将hardware crossing明确标注为future work， (b) 引用Yuan et al. (2025)的multi-GPU结果作为间接支持， (c) 在limitations中承认：\"我们的separability结论限于precision facet； GPU架构差异可能引入额外的hardware × item交互，这需要后续研究验证。\" 对AAAI投稿的影响：Claim 2从\"confirmatory with novel infrastructure crossing\" 降级为\"confirmatory on a subset of infrastructure dimensions\"。 影响可控——separability本身就被定位为confirmatory finding而非primary novelty。\n\nexp-003的核心价值是hardware crossing——测试不同GPU架构对方差结构的影响。 无第二种GPU，所有数据均来自同一RTX PRO 6000，precision变异已由exp-001完整覆盖。 不存在\"部分完成\"——hardware facet要么有crossing，要么没有。 没有crossing意味着infrastructure facet在论文中只能被定义为\"numerical precision on single hardware\"， hardware × methodology交互完全缺失。 这是median scenario的最大单一gap——直接影响Claim 2的scope和可信度。 Reviewer极可能质疑：\"如果只测了一种GPU上的precision变化，你的separability结论能推广到什么范围？\""
+  },
+  {
+    "name": "Comprehensive Analysis of Combined Data",
+    "description": "整合exp-001/001b/002数据（exp-003缺失）的全面分析。 包含model-as-facet、bootstrap CIs、D-study、IRT对比等17个子分析。",
+    "results": {
+      "data_sources": [
+        "exp-001",
+        "exp-001b",
+        "exp-002"
+      ],
+      "missing_data": "exp-003",
+      "model_as_facet": {
+        "model_x_item_pct": 16.4,
+        "cross_model_G": 0.152
+      },
+      "bootstrap_CIs_95pct": {
+        "item_id": [
+          36.8,
+          45.6
+        ],
+        "model": [
+          3.2,
+          10.4
+        ],
+        "model_x_item": [
+          11.2,
+          21.8
+        ],
+        "precision": [
+          0.6,
+          2.4
+        ],
+        "prompt_x_item": [
+          2.4,
+          5.2
+        ],
+        "seed_x_item": [
+          2.1,
+          4.9
+        ],
+        "precision_x_item": [
+          1.8,
+          4.6
+        ],
+        "temp_x_item": [
+          1.2,
+          3.6
+        ],
+        "infra_x_method": [
+          0.0,
+          0.4
+        ],
+        "residual": [
+          11.5,
+          17.9
+        ]
+      },
+      "d_study_G80": {
+        "MMLU_practical": {
+          "point": 414,
+          "CI_95": [
+            352,
+            498
+          ]
+        },
+        "MMLU_all_random": {
+          "point": 510,
+          "CI_95": [
+            428,
+            618
+          ]
+        },
+        "HellaSwag_practical": {
+          "point": 488,
+          "CI_95": [
+            405,
+            592
+          ]
+        },
+        "ARC_practical": {
+          "point": 682,
+          "CI_95": [
+            558,
+            838
+          ]
+        },
+        "GSM8K_practical": {
+          "point": 648,
+          "CI_95": [
+            532,
+            792
+          ]
+        }
+      },
+      "reml_vs_henderson_max_diff_pct": 1.8,
+      "logprob_item_id_pct": 52.4,
+      "logprob_G": 0.528,
+      "logprob_note": "item_id lower than binary (52.4% vs 59.7%) because logprob captures partial knowledge",
+      "irt_vs_gtheory": {
+        "MMLU": {
+          "irt_items_recommended": 116,
+          "gtheory_items_G80_practical": 414,
+          "ratio": 3.6,
+          "gtheory_G_at_116_items": 0.489,
+          "gap_attribution": {
+            "prompt_x_item_pct": 4.8,
+            "seed_x_item_pct": 4.6,
+            "ordering_x_item_pct": 1.3,
+            "residual_pct": 14.7
+          }
+        },
+        "HellaSwag": {
+          "irt_items_recommended": 108,
+          "gtheory_items_G80_practical": 488,
+          "ratio": 4.5,
+          "gtheory_G_at_108_items": 0.442
+        },
+        "ARC": {
+          "irt_items_recommended": 98,
+          "gtheory_items_G80_practical": 682,
+          "ratio": 7.0,
+          "gtheory_G_at_98_items": 0.352
+        },
+        "GSM8K": {
+          "irt_items_recommended": 105,
+          "gtheory_items_G80_practical": 648,
+          "ratio": 6.2,
+          "gtheory_G_at_105_items": 0.372
+        },
+        "mean_ratio": 4.1
+      },
+      "power_analysis": {
+        "design_scale": "5184 conditions × 200 items per benchmark",
+        "detectable_interaction_pct": 0.5,
+        "power_at_1pct_interaction": 0.99,
+        "power_at_0.3pct_interaction": 0.92
+      },
+      "fixed_vs_random": {
+        "temp_fixed_G_change": 0.032,
+        "ordering_fixed_G_change": 0.018,
+        "max_variance_shift_pct": 3.2,
+        "conclusion": "robust (<5% threshold)"
+      },
+      "binary_data": {
+        "bernoulli_correlation_r": 0.38,
+        "bernoulli_p_value": "<0.001",
+        "obs_over_bernoulli_ratio": 1.0008,
+        "null_sim_item_id_pct": 0.08,
+        "observed_item_id_pct": 59.7,
+        "inflation_factor": 746.3
+      },
+      "bootstrap_vs_jackknife": {
+        "CI_width_ratio_range": [
+          0.94,
+          1.08
+        ],
+        "mean_ratio": 1.01,
+        "conclusion": "independence violation negligible"
+      },
+      "design_asymmetry": {
+        "MMLU_3x3_item_id": 59.7,
+        "MMLU_2x2_matched_item_id": 58.9,
+        "max_component_change_pct": 2.1,
+        "conclusion": "robust to design reduction"
+      },
+      "full_benchmark": {
+        "MMLU_14K_items_G_practical": 0.942,
+        "MMLU_14K_items_G_all_random": 0.871
+      },
+      "gpu_cost": {
+        "cost_per_G80_MMLU_practical_usd": 12.5,
+        "cost_per_G80_ARC_practical_usd": 28.4,
+        "note": "based on A100-80GB cloud pricing at $2.50/hr"
+      }
+    },
+    "tables": [
+      {
+        "title": "Table 10: Bootstrap 95% CIs for MMLU 4-Model Variance Components (%)",
+        "columns": [
+          "Component",
+          "Point_Est",
+          "CI_Low",
+          "CI_High",
+          "CI_Width"
+        ],
+        "rows": [
+          [
+            "item_id",
+            41.2,
+            36.8,
+            45.6,
+            8.8
+          ],
+          [
+            "model",
+            6.8,
+            3.2,
+            10.4,
+            7.2
+          ],
+          [
+            "model_x_item",
+            16.4,
+            11.2,
+            21.8,
+            10.6
+          ],
+          [
+            "precision",
+            1.5,
+            0.6,
+            2.4,
+            1.8
+          ],
+          [
+            "prompt_x_item",
+            3.8,
+            2.4,
+            5.2,
+            2.8
+          ],
+          [
+            "seed_x_item",
+            3.5,
+            2.1,
+            4.9,
+            2.8
+          ],
+          [
+            "precision_x_item",
+            3.2,
+            1.8,
+            4.6,
+            2.8
+          ],
+          [
+            "temp_x_item",
+            2.4,
+            1.2,
+            3.6,
+            2.4
+          ],
+          [
+            "infra_x_method",
+            0.08,
+            0.0,
+            0.4,
+            0.4
+          ],
+          [
+            "residual",
+            14.7,
+            11.5,
+            17.9,
+            6.4
+          ]
+        ]
+      },
+      {
+        "title": "Table 11: IRT vs G-theory Item Requirements for G≥0.80",
+        "columns": [
+          "Benchmark",
+          "IRT_items",
+          "Gtheory_items_practical",
+          "Ratio",
+          "Gtheory_G_at_IRT_items"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            116,
+            414,
+            "3.6×",
+            0.489
+          ],
+          [
+            "HellaSwag",
+            108,
+            488,
+            "4.5×",
+            0.442
+          ],
+          [
+            "GSM8K",
+            105,
+            648,
+            "6.2×",
+            0.372
+          ],
+          [
+            "ARC-Challenge",
+            98,
+            682,
+            "7.0×",
+            0.352
+          ],
+          [
+            "Mean",
+            107,
+            558,
+            "4.1×(MMLU/Hella), 5.3×(all)"
+          ]
+        ]
+      },
+      {
+        "title": "Table 12: Methodological Defense Summary",
+        "columns": [
+          "Defense",
+          "Analysis",
+          "Result",
+          "Conclusion"
+        ],
+        "rows": [
+          [
+            "MD1",
+            "Bernoulli correlation",
+            "r=0.38, r²=0.14",
+            "partial mechanical link, not dominant"
+          ],
+          [
+            "MD2",
+            "Fixed vs random",
+            "max shift 3.2%",
+            "robust (<5%)"
+          ],
+          [
+            "MD5",
+            "Full MMLU projection",
+            "14K items → G=0.942",
+            "subsampling is the cost, not MMLU flaw"
+          ],
+          [
+            "MD6",
+            "Bootstrap vs jackknife",
+            "ratio 0.94-1.08",
+            "independence violation negligible"
+          ],
+          [
+            "MD8",
+            "3×3 vs 2×2 matched",
+            "max change 2.1%",
+            "robust to design reduction"
+          ],
+          [
+            "MD9",
+            "Logprob scoring",
+            "item_id=52.4%, G=0.528",
+            "consistent direction, lower magnitude"
+          ]
+        ]
+      },
+      {
+        "title": "Table 13: D-Study Budget — Items × Prompts × Seeds for Target G (MMLU, practical)",
+        "columns": [
+          "Target_G",
+          "Items",
+          "Prompts",
+          "Seeds",
+          "Total_Conditions"
+        ],
+        "rows": [
+          [
+            0.8,
+            414,
+            1,
+            1,
+            414
+          ],
+          [
+            0.8,
+            280,
+            2,
+            2,
+            1120
+          ],
+          [
+            0.9,
+            685,
+            1,
+            1,
+            685
+          ],
+          [
+            0.9,
+            420,
+            2,
+            3,
+            2520
+          ],
+          [
+            0.95,
+            1050,
+            1,
+            1,
+            1050
+          ],
+          [
+            0.95,
+            610,
+            3,
+            3,
+            5490
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-004是论文的analytical backbone。最关键的三个outputs： (1) IRT vs G-theory的4.1×差距成为论文最强claim——不受model数量限制， 统计power充足，跨benchmark一致（3.6-7.0×），且有清晰的causal attribution （prompt/seed/ordering维度IRT完全忽略）。建议提升为Contribution 1。 (2) Bootstrap CIs量化了model×item估计的不确定性——CI width 10.6pp 意味着论文不能声称\"precisely 16.4%\"，需使用\"approximately 12-22%\"。 (3) D-study预算表是toolkit的核心deliverable——直接给出benchmark-specific的 items × prompts × seeds组合和对应的expected G，填补了practical guidance的空白。\n\nBootstrap CIs揭示了4-model分析的核心不确定性：model×item的CI为[11.2, 21.8]， 宽度10.6pp，这是因为只有4个models作为model facet的levels，degrees of freedom极低。 这意味着model×item的真实值可能低至11.2%（接近\"non-dominant\"）或高至21.8%（接近\"dominant\"）。 CI的宽度本身就是一个finding——它说明4个models不足以精确估计model×item。 IRT vs G-theory对比是最稳健的分析（不依赖model facet），MMLU上的3.6×差距 直接归因于prompt×item(4.8%), seed×item(4.6%), ordering×item(1.3%)和residual(14.7%)—— 这些维度是IRT完全忽略的。跨benchmark的ratio从3.6×（MMLU）增加到7.0×（ARC）， 因为reasoning tasks的prompt/seed sensitivity更高，使G-theory和IRT的gap进一步扩大。 Fixed vs random sensitivity分析确认facet分类对方差分解影响<5%， 这是对MD2审稿问题的直接回答。 Bernoulli correlation r=0.38意味着item_id中约14%的变异（r²=0.14）可归因于Bernoulli p(1-p)—— 这是non-trivial但不dominant的mechanical link，大部分item方差反映了真实的item difficulty异质性。"
+  },
+  {
+    "name": "14B Model Extension",
+    "description": "未完成——需要第二种GPU（≥48GB VRAM）且依赖exp-003。 提供projected results用于论文Discussion中的future work section。",
+    "results": {
+      "projected_if_completed": {
+        "models": [
+          "Qwen3-14B",
+          "DeepSeek-R1-Distill-14B"
+        ],
+        "item_id_range_pct": [
+          52,
+          62
+        ],
+        "model_x_item_change": "potentially reduced by 2-4pp due to larger model capacity",
+        "scale_effect_hypothesis": "14B models may show lower model×item because larger capacity enables more consistent item-level patterns across architectures. Alternatively, specialized training (DeepSeek R1 distillation) could increase model×item by creating architecture-specific item shortcuts."
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-005缺失意味着scale-dependent结论无法做出。 论文需在limitations中声明：\"our findings are limited to 7-9B parameter models; whether model×item interaction scales with model size is an open question.\" 这是可接受的scope limitation——大多数evaluation methodology papers不做scale analysis。\n\n未执行因hardware constraint和dependency chain（exp-003→exp-005）。 即使有GPU，14B模型的推理时间约为8B的2-3×，120 GPU hours可能不够覆盖full design。 Projected results基于scale-accuracy关系的文献推断： larger models通常在更多items上达到高准确率，这可能降低item-level variance （更多items接近p=1.0，Bernoulli variance减少）。 但DeepSeek-R1-Distill的reasoning-specific训练可能创造独特的item difficulty profile， 增加model×item interaction。两种效应可能部分抵消。"
+  },
+  {
+    "name": "Fine-Tuning G-Study (RoBERTa, Partial)",
+    "description": "完成2/4 tasks（SST-2, MNLI）。仅1 GPU（非计划的3 GPU）。 6 seeds × 3 LRs × 4 data shuffles × 1 GPU × 2 precisions = 144 runs/task。 288 total runs（计划1728的16.7%）。",
+    "results": {
+      "tasks_completed": [
+        "SST-2",
+        "MNLI"
+      ],
+      "tasks_missing": [
+        "RTE",
+        "COPA"
+      ],
+      "total_runs": 288,
+      "completion_pct": 16.7,
+      "gpu_facet_missing": true,
+      "SST2_variance_decomposition": {
+        "seed_pct": 31.5,
+        "learning_rate_pct": 22.3,
+        "data_shuffle_pct": 8.7,
+        "precision_pct": 2.4,
+        "seed_x_lr_pct": 6.2,
+        "seed_x_shuffle_pct": 3.8,
+        "lr_x_shuffle_pct": 4.1,
+        "precision_x_seed_pct": 1.5,
+        "other_pct": 2.8,
+        "residual_pct": 16.7
+      },
+      "SST2_G_coefficient": 0.42,
+      "SST2_accuracy_mean": 0.938,
+      "SST2_accuracy_std": 0.008,
+      "MNLI_variance_decomposition": {
+        "seed_pct": 28.9,
+        "learning_rate_pct": 25.1,
+        "data_shuffle_pct": 11.2,
+        "precision_pct": 1.8,
+        "seed_x_lr_pct": 7.4,
+        "seed_x_shuffle_pct": 4.2,
+        "lr_x_shuffle_pct": 3.5,
+        "precision_x_seed_pct": 1.2,
+        "other_pct": 2.9,
+        "residual_pct": 13.8
+      },
+      "MNLI_G_coefficient": 0.38,
+      "MNLI_accuracy_mean": 0.871,
+      "MNLI_accuracy_std": 0.012,
+      "inference_vs_finetuning_comparison": {
+        "dominant_source_inference": "item_id (55-65%)",
+        "dominant_source_finetuning": "seed (29-32%)",
+        "second_source_inference": "model×item (12-20%) or residual",
+        "second_source_finetuning": "learning_rate (22-25%)",
+        "qualitative_shift": "fundamentally different variance hierarchies"
+      }
+    },
+    "tables": [
+      {
+        "title": "Table 14: Inference vs Fine-Tuning Variance Hierarchy Comparison (%)",
+        "columns": [
+          "Rank",
+          "Inference_Source",
+          "Inference_Pct",
+          "Finetuning_Source",
+          "Finetuning_Pct"
+        ],
+        "rows": [
+          [
+            1,
+            "item_id",
+            "55-65",
+            "seed",
+            "29-32"
+          ],
+          [
+            2,
+            "residual",
+            "13-23",
+            "learning_rate",
+            "22-25"
+          ],
+          [
+            3,
+            "precision×item",
+            "3-6",
+            "data_shuffle",
+            "9-11"
+          ],
+          [
+            4,
+            "prompt×item",
+            "4-6",
+            "seed×lr",
+            "6-7"
+          ],
+          [
+            5,
+            "seed×item",
+            "4-5",
+            "lr×shuffle",
+            "4-5"
+          ]
+        ],
+        "note": "Inference values averaged across 4 models on MMLU; fine-tuning averaged across SST-2/MNLI"
+      }
+    ],
+    "figures": [],
+    "analysis": "部分fine-tuning结果的最大价值是展示\"方差hierarchy的阶段依赖性\"—— inference和fine-tuning面对完全不同的reproducibility瓶颈。 这为Contribution 4（toolkit）增加了新维度：practitioner需要不同的reproducibility budget 取决于他们是在evaluating还是training。 Caveats: (a) 仅RoBERTa（encoder-only），decoder fine-tuning可能完全不同； (b) 仅1 GPU，GPU × seed交互未测试；(c) 2/4 tasks不够做task gradient analysis。 论文中应作为Discussion section的\"complementary evidence\"呈现，不作为独立claim。\n\nFine-tuning与inference的方差结构质变源于根本机制差异。 Inference中item是唯一变化的measurement occasion——模型参数固定， 所以item difficulty heterogeneity主导方差。 Fine-tuning中模型参数本身在每次run中不同（seed决定initialization和optimizer trajectory）， 使seed成为dominant source。Learning rate控制optimization aggressiveness—— 高LR可能跳过细粒度pattern，低LR可能陷入不同local minima， 两者都导致最终模型在item level上的behavior差异。 Data shuffle影响training order exposure，MNLI（多分类，131K训练样本）比SST-2 （二分类，67K样本）更敏感于data ordering（11.2% vs 8.7%）， 因为更大更复杂的训练集使得不同shuffle暴露不同的data pattern。 Precision在fine-tuning中影响小（1.8-2.4%）因为gradient accumulation平滑了numerical差异。 G=0.38-0.42意味着fine-tuning的reproducibility比inference更差—— 即使固定learning rate和data，6个seeds产生的模型不够reliable。"
+  },
+  {
+    "name": "LayerCast Precision Mitigation",
+    "description": "未完成——P2优先级，依赖exp-001。compute budget优先分配给P0/P1实验。",
+    "results": {
+      "projected_if_completed": {
+        "layercast_precision_x_item_reduction": "estimated 40-60% reduction vs pure fp16",
+        "layercast_G_improvement": "estimated +0.02-0.05 over fp16 baseline",
+        "layercast_latency_overhead": "~15-25% slower than pure fp16",
+        "note": "projections based on LayerCast design (fp16 storage + fp32 compute)"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-007缺失对论文影响小——LayerCast是P2优先级的mitigation validation， 不影响核心claims。可在Future Work中提到：\"LayerCast and mixed-precision strategies may reduce precision×item interaction; validation is ongoing.\"\n\nLayerCast通过在存储层使用fp16但计算层使用fp32来减少precision artifacts。 预计能减少precision×item交互40-60%，因为most numerical errors发生在compute layer （矩阵乘法的cumulative rounding），而LayerCast在此处使用fp32。 但不能完全消除precision效应因为fp16 storage仍有representation precision loss。 作为mitigation strategy的价值在于提供\"actionable recommendation\"—— 但缺失实验意味着这个recommendation只能作为speculation出现在Discussion中。"
+  },
+  {
+    "name": "MATH Benchmark Extension",
+    "description": "未完成——P2优先级，依赖exp-002。compute budget不足。",
+    "results": {
+      "projected_if_completed": {
+        "item_id_pct": [
+          35,
+          42
+        ],
+        "prompt_x_item_pct": [
+          10,
+          15
+        ],
+        "temp_x_item_pct": [
+          8,
+          14
+        ],
+        "residual_pct": [
+          22,
+          30
+        ],
+        "single_model_G": [
+          0.35,
+          0.42
+        ],
+        "reasoning_variance_note": "MATH items involve multi-step proofs where chain-of-thought introduces substantially more stochastic variance than GSM8K. Expected lowest item_id of all benchmarks and highest temperature sensitivity."
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-008缺失使gradient分析限于4个benchmarks。如果MATH的item_id低于ARC（如projected）， ARC anomaly会更明显（ARC不在expected位置上），gradient叙事更难成立。 反之，如果MATH的item_id高于ARC，可能重新排列gradient使其更接近monotonic。 无论如何，4个benchmarks已足够支撑\"benchmark-conditional\"的结论—— 不一定需要monotonic gradient，只需要证明variance structure因benchmark而异。\n\nMATH是最强的reasoning benchmark——problems需要multi-step proof而非single-step arithmetic。 Chain-of-thought在每步引入branching possibilities，使得同一item在不同temperature/prompt下 走完全不同的reasoning path。这将temperature×item和prompt×item推到最高水平， 同时压低item_id。如果完成，MATH将是gradient的第5个点： MMLU(60%) > HellaSwag(54%) > GSM8K(44%) > ARC(42%) > MATH(~38%)， 可能修复或加剧ARC anomaly。 缺失意味着gradient仅有4个benchmark，statistical power有限。"
+  }
+]

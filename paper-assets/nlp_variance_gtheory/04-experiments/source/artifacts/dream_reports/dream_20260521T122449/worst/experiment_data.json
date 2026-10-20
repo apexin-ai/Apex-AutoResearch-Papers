@@ -1,0 +1,227 @@
+[
+  {
+    "name": "Multi-benchmark replication (Phase 1 only)",
+    "description": "Phase 1 completes: 4 original models (Llama-3.1-8B, Gemma-2-9B, Mistral-7B, Qwen3-8B) × 4 benchmarks (MMLU, ARC-Challenge, HellaSwag, GSM8K) × BF16 × 2 temps (0.0, 0.7) × 6 prompts × 6 seeds × 4 orderings × 200 items each. Phase 2 (MATH) blocked — dataset preprocessing issues with free-form answer extraction pipeline; answer normalization for symbolic math expressions requires engineering work beyond available bandwidth. Phase 3 (Yi, OLMo) blocked — westd-15695 unavailable due to cluster maintenance or allocation conflict. Phase 4 (InternLM, DeepSeek) blocked — depends on Phase 3 infrastructure.\n",
+    "results": {
+      "n_benchmarks_completed": 4,
+      "n_models_completed": 4,
+      "total_records_per_benchmark": 115200,
+      "total_records_all": 460800,
+      "item_id_pct_MMLU": 41.8,
+      "item_id_pct_ARC": 37.2,
+      "item_id_pct_HellaSwag": 44.1,
+      "item_id_pct_GSM8K": 35.4,
+      "gradient_spread_item_id_pp": 8.7,
+      "gradient_ordering": "HellaSwag > MMLU > ARC > GSM8K",
+      "gradient_monotonicity_by_task_complexity": false,
+      "gradient_permutation_test_p": 0.41,
+      "model_x_item_pct_MMLU": 33.8,
+      "model_x_item_pct_ARC": 18.3,
+      "model_x_item_pct_HellaSwag": 15.7,
+      "model_x_item_pct_GSM8K": 38.9,
+      "model_x_item_range_pp": 23.2,
+      "residual_pct_MMLU": 19.5,
+      "residual_pct_ARC": 28.4,
+      "residual_pct_HellaSwag": 25.3,
+      "residual_pct_GSM8K": 43.2,
+      "G_item_MMLU": 0.821,
+      "G_item_ARC": 0.714,
+      "G_item_HellaSwag": 0.783,
+      "G_item_GSM8K": 0.518,
+      "G_item_ordering": "MMLU > HellaSwag > ARC > GSM8K",
+      "D_study_items_G80_MMLU": 510,
+      "D_study_items_G80_ARC": 340,
+      "D_study_items_G80_HellaSwag": 280,
+      "D_study_items_G80_GSM8K": 1150,
+      "D_study_range": "280-1150 (4.1× spread)",
+      "Henderson_I_convergence_issues": "GSM8K seed×item negative REML estimate (-0.3%), clamped to zero; HellaSwag precision×item near-zero (0.02%), REML estimate oscillates",
+      "within_MC_gradient_MMLU_vs_ARC": "42% vs 37% = 5pp, but ARC < MMLU contradicts complexity prediction (ARC is harder reasoning)",
+      "within_format_gradient_preserved": false,
+      "accuracy_MMLU": 0.681,
+      "accuracy_ARC": 0.592,
+      "accuracy_HellaSwag": 0.743,
+      "accuracy_GSM8K": 0.483,
+      "prompt_x_item_pct_MMLU": 4.2,
+      "prompt_x_item_pct_ARC": 6.8,
+      "prompt_x_item_pct_HellaSwag": 3.1,
+      "prompt_x_item_pct_GSM8K": 2.4
+    },
+    "tables": [
+      {
+        "name": "Table: Cross-Benchmark Variance Decomposition (Phase 1, 4 models × 4 benchmarks)",
+        "description": "Rows: variance components (item_id, model, model×item, prompt×item, seed×item, temperature, temperature×item, residual). Columns: MMLU, ARC-Challenge, HellaSwag, GSM8K. Shows no systematic gradient — component rankings differ across benchmarks. GSM8K residual dominates (43.2%); HellaSwag item_id highest (44.1%); model×item ranges from 15.7% (HellaSwag) to 38.9% (GSM8K) without pattern.\n"
+      },
+      {
+        "name": "Table: D-Study Budget Comparison Across Benchmarks",
+        "description": "Items required for G≥0.70/0.80/0.90 per benchmark. Shows 4.1× spread in G≥0.80 requirements (280-1150 items). No interpretable pattern linking budget to task type.\n"
+      },
+      {
+        "name": "Table: Within-Format Gradient Test",
+        "description": "MC format: MMLU (42%) vs ARC (37%), Δ=5pp. Free-form: GSM8K only (35.4%), no comparator (MATH blocked). Completion: HellaSwag only (44.1%). Conclusion: within-format gradient NOT preserved; insufficient data to disentangle format from task-type effects.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "The cross-benchmark gradient — the planned headline finding — does not materialize. Item_id% varies only 8.7pp across benchmarks (35-44%), with no monotonic ordering by task complexity, format, or any other interpretable dimension. The permutation test for monotonicity yields p=0.41 (null). Model×item interaction varies 23pp across benchmarks but in an unpredictable pattern (highest on GSM8K, lowest on HellaSwag).\nHowever, the \"benchmark-specific variance fingerprints\" finding is itself publishable. The fact that variance structure is irreducibly benchmark-specific — not predictable from task taxonomy — means (a) benchmark-specific G-studies are mandatory, not optional, (b) reproducibility budgets cannot be transferred across benchmarks, and (c) conclusions about \"which factors matter\" from single-benchmark studies do not generalize. This is arguably more surprising and practically important than a clean gradient.\nGSM8K's pathological residual (43.2%) is a standalone finding: free-form generation introduces irreducible stochasticity that makes G-theory decomposition qualitatively different from MC benchmarks. The seed×item negative REML estimate and convergence oscillation on HellaSwag precision×item suggest that Henderson I (designed for balanced continuous data) struggles with certain benchmark-specific variance structures, strengthening the case for benchmark-specific methodology.\nPhase 2-4 blockage limits the analysis: no MATH benchmark prevents within-free-form gradient testing, and only 4 models prevents the planned expansion to 6-8 models that would strengthen the model-as-facet exchangeability argument. The paper must explicitly scope to \"4 models × 4 benchmarks, exploratory Phase 1 analysis.\"\n\n\nPhase 1 completion with Phase 2-4 blockage: MATH requires robust free-form answer extraction (symbolic expressions, equivalent forms like \"1/2\" vs \"0.5\" vs \"\\\\frac{1}{2}\"), which stalls on engineering work. Additional models blocked by hardware unavailability.\nNo systematic gradient: The variance structure is driven by benchmark-specific properties that don't align with any single task taxonomy axis. HellaSwag shows highest item_id% (44.1%) despite being \"commonsense completion\" — not the most complex task — because its items have extremely stable difficulty rankings across models (4 candidates with clear plausibility ordering). GSM8K shows lowest item_id% (35.4%) and highest residual (43.2%) because free-form math generation introduces stochastic variation from decoding that inflates the residual; the same model solving the same problem with the same prompt/seed can produce different solution paths and occasionally different final answers at T>0.\nModel×item interaction is inconsistent: GSM8K has the highest model×item (38.9%) because models have strongly differentiated math capabilities — Qwen3-8B solves multi-step problems that Mistral-7B cannot, and vice versa for word problems with unusual phrasing. HellaSwag has lowest model×item (15.7%) because commonsense completion difficulty is more universal across model families. This pattern (math > commonsense for model×item) is interpretable post-hoc but was not predictable from task taxonomy alone.\nARC convergence: Henderson I produces near-zero estimates for several 3-way interactions because the reduced design (2 temps × bf16-only) has limited degrees of freedom for higher-order terms. REML on GSM8K produces a negative variance component for seed×item, which is clamped to zero — seed choice has negligible systematic effect on item difficulty in free-form generation because the dominant stochasticity is in the generation process itself, not in CUDA-level seed effects.\nD-study budgets span 4.1× (280-1150 items for G≥0.80), but this range has no interpretable pattern: HellaSwag needs fewest items (high item_id%, low residual → efficient measurement) while GSM8K needs most (low item_id%, high residual → measurement is noisy). This is not a \"gradient\" — it's a benchmark-specific fingerprint determined by format, generation stochasticity, and model-task interaction structure.\nWithin-format gradient fails: Within MC format, MMLU (42%) > ARC (37%), but ARC contains harder science reasoning items — if a task-complexity gradient existed, ARC should be lower OR higher than MMLU depending on the hypothesized direction. The 5pp difference is more likely explained by item pool characteristics (ARC has fewer items with extreme difficulty, compressing item_id%) than by task complexity. With only two MC benchmarks and no within- format gradient, the format confound cannot be resolved or ruled out.\n"
+  },
+  {
+    "name": "Multi-hardware G-study",
+    "description": "Completely blocked. No second GPU type becomes available during the experimental window. Hardware claim remains scoped to \"numerical precision on RTX PRO 6000 (Blackwell).\"\n",
+    "results": {
+      "status": "blocked",
+      "n_gpu_types": 1,
+      "data_collected": 0,
+      "hardware_crossing_completed": false,
+      "reason": "No alternative GPU allocation (A100/H100/AMD) secured"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "No analysis possible. Experiment contributes zero data. Paper must explicitly state \"hardware limited to a single GPU architecture (NVIDIA RTX PRO 6000, Blackwell)\" in Methods and Limitations. The separability claim (Claim 2) survives but is narrowly scoped — \"precision × methodology separability\" rather than \"infrastructure × methodology separability.\" Reviewer concern #1 (\"Only N GPU types\") is unaddressed and must be handled as a stated limitation with future work framing.\n\n\nThe experiment requires a fundamentally different GPU architecture to test hardware×methodology interaction. In the worst tier, the compute allocation is fully consumed by exp-002 Phase 1 on the single available machine (westd-32570). The planned second machine (westd-15695) is either unavailable, has the same GPU type, or has allocation conflicts. Without a second GPU type, the entire experiment is infeasible.\nImpact on paper: Claim 2 must be scoped to \"precision separability on a single GPU architecture\" rather than \"infrastructure separability.\" This is already the planned defensive scoping per D003/D007. The paper acknowledges hardware crossing as future work and cites Yuan et al. (2025) for evidence that hardware effects exist but are unquantified in a G-theory framework. This weakens but does not kill Claim 2 — precision separability under binary scoring is still a valid confirmatory finding.\n"
+  },
+  {
+    "name": "Comprehensive analysis",
+    "description": "Analysis proceeds on available data: exp-001 MMLU (345,600 records, 4 models, full design) + exp-002 Phase 1 (460,800 records, 4 models × 4 benchmarks, reduced design). Most sub-analyses (a)-(q) are feasible on MMLU. Cross-benchmark sub-analyses are limited by exp-002's reduced scope and pathological variance structures.\n",
+    "results": {
+      "model_as_facet_MMLU_item_id_pct": 42.1,
+      "model_as_facet_MMLU_model_x_item_pct": 33.6,
+      "model_as_facet_other_benchmarks": "attempted but unreliable on GSM8K (residual >40% absorbs signal)",
+      "bootstrap_n_resamples": 1000,
+      "bootstrap_CI_item_id_MMLU": [
+        36.0,
+        48.8
+      ],
+      "bootstrap_CI_model_x_item_MMLU": [
+        28.4,
+        37.9
+      ],
+      "bootstrap_CI_width_item_id_MMLU_pp": 12.8,
+      "bootstrap_CI_cross_benchmark": "wide — ARC item_id CI [28, 47], GSM8K item_id CI [24, 48]",
+      "bootstrap_CI_GSM8K_residual": [
+        35.1,
+        52.8
+      ],
+      "D_study_MMLU_items_G80_CI": [
+        430,
+        610
+      ],
+      "D_study_MMLU_items_G90_CI": [
+        1050,
+        1680
+      ],
+      "D_study_cross_benchmark_CIs": "too wide for practical guidance on GSM8K (G80: [600, 2100])",
+      "REML_Henderson_agreement_MMLU": "all components within <0.5pp",
+      "REML_Henderson_agreement_ARC": "within <1.2pp for top-3 components",
+      "REML_Henderson_agreement_GSM8K": "diverge — Henderson I seed×item=1.8%, REML=-0.3% (clamped to 0)",
+      "REML_Henderson_agreement_HellaSwag": "within <0.8pp except precision×item (Henderson 0.02%, REML oscillates 0.00-0.15%)",
+      "logprob_analysis_feasible": "MMLU and ARC only (MC format with logprob access)",
+      "logprob_item_id_pct_MMLU": 55.3,
+      "logprob_model_x_item_pct_MMLU": 28.1,
+      "logprob_residual_pct_MMLU": 11.2,
+      "logprob_HellaSwag": "feasible in principle (completion scoring) but not implemented",
+      "logprob_GSM8K": "not feasible — free-form generation has no natural logprob score",
+      "model_ranking_stable_across_precision_MMLU": true,
+      "model_ranking_stable_across_precision_GSM8K": false,
+      "3way_interactions_total_MMLU_pct": 4.2,
+      "3way_interactions_total_ARC_pct": 6.8,
+      "3way_interactions_total_GSM8K_pct": 2.1,
+      "residual_after_3way_MMLU_pct": 15.3,
+      "IRT_items_G80_MMLU": 116,
+      "Gtheory_items_G80_MMLU": 510,
+      "IRT_to_Gtheory_ratio": 4.4,
+      "IRT_comparison_feasible_on": "MMLU only — other benchmarks lack sufficient data or have pathological structures",
+      "power_to_detect_5pct_interaction_MMLU": 0.99,
+      "power_to_detect_5pct_interaction_ARC": 0.94,
+      "power_to_detect_5pct_interaction_GSM8K": 0.78,
+      "fixed_vs_random_delta_MMLU_pp": 2.8,
+      "fixed_vs_random_delta_GSM8K_pp": 8.4,
+      "bernoulli_p1p_correlation_with_item_var_MMLU": 0.31,
+      "bernoulli_p1p_correlation_with_item_var_GSM8K": 0.68,
+      "bootstrap_jackknife_CI_ratio_MMLU": 0.98,
+      "bootstrap_jackknife_CI_ratio_ARC": 1.03,
+      "bootstrap_jackknife_CI_ratio_GSM8K": 1.14,
+      "MMLU_full_vs_matched_2x2_delta_item_id_pp": 2.9,
+      "MMLU_full_vs_matched_2x2_delta_model_x_item_pp": 1.4,
+      "G_at_14K_items_MMLU_projection": 0.987,
+      "G_at_full_ARC_2590_items_projection": 0.953,
+      "G_at_full_GSM8K_1319_items_projection": 0.812,
+      "logprob_cross_benchmark": "only MMLU and ARC feasible, insufficient for cross-benchmark claims",
+      "compute_cost_per_G80_MMLU": "~$45 (510 items × 4 models × 6 prompts × 6 seeds)",
+      "compute_cost_per_G80_GSM8K": "~$210 (1150 items × 4 models × 6 prompts × 6 seeds, longer generation)"
+    },
+    "tables": [
+      {
+        "name": "Table: Bootstrap 95% CIs for All Variance Components (MMLU, 4 models)",
+        "description": "7 variance components × point estimate + 95% CI. item_id: 42.1% [36.0, 48.8], model×item: 33.6% [28.4, 37.9], residual: 19.5% [16.2, 23.1]. All CIs exclude zero for top-4 components. prompt×item and seed×item CIs overlap.\n"
+      },
+      {
+        "name": "Table: REML vs Henderson I Comparison Across Benchmarks",
+        "description": "4 benchmarks × 7 components × Henderson I estimate + REML estimate + Δ. MMLU: all Δ < 0.5pp. ARC: Δ < 1.2pp. HellaSwag: precision×item oscillates. GSM8K: seed×item diverges (1.8% vs clamped 0%). Conclusion: Henderson I reliable for MC benchmarks; caution needed for free-form generation.\n"
+      },
+      {
+        "name": "Table: IRT vs G-Theory Item Requirements (MMLU)",
+        "description": "Reliability threshold × IRT items × G-theory items × ratio. G≥0.70: 55 vs 210 (3.8×). G≥0.80: 116 vs 510 (4.4×). G≥0.90: 280 vs 1350 (4.8×). Decomposition of G-theory excess: prompt×item accounts for 22%, seed×item 23%, residual 55% of additional items.\n"
+      },
+      {
+        "name": "Table: Fixed vs Random Sensitivity Analysis",
+        "description": "4 benchmarks × top-4 components × random estimate + fixed estimate + Δ. MMLU Δ < 3pp (robust). GSM8K Δ = 8.4pp for item_id (NOT robust — temperature reclassification redistributes 8pp from temperature to residual).\n"
+      },
+      {
+        "name": "Table: D-Study Budget Comparison with Bootstrap CIs",
+        "description": "4 benchmarks × items for G≥0.80 [95% CI]. MMLU: 510 [430, 610]. ARC: 340 [260, 470]. HellaSwag: 280 [210, 380]. GSM8K: 1150 [600, 2100]. The GSM8K CI spans 3.5×, making the point estimate practically meaningless.\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-004 is the analytical core of the paper under worst tier. The MMLU-specific analyses are strong: bootstrap CIs confirm top-3 component ordering, IRT comparison produces the clean 4.4× ratio, REML validates Henderson I, and the binary data robustness checks all pass. These form the backbone of the paper.\nCross-benchmark analyses reveal the \"irreducibly benchmark-specific\" finding but cannot support strong quantitative claims due to wide CIs and benchmark-specific pathologies. GSM8K is particularly problematic: high residual → wide CIs → unreliable D-study projections → fixed-vs-random sensitivity failure. The paper should present GSM8K results as \"illustrative of pathological variance structure in free-form generation\" rather than as reliable G-theory estimates.\nThe IRT vs G-theory comparison is limited to MMLU (the only benchmark with full design + clean variance structure + IRT comparability). This is sufficient for a strong numbered contribution but prevents claiming \"cross-benchmark IRT comparison.\"\nKey paper structure implication: MMLU analysis (exp-001 + exp-004 MMLU-specific) occupies 60-70% of the results section. Cross-benchmark analysis (exp-002 + exp-004 cross-benchmark) occupies 30-40% as an \"exploratory extension\" with explicit caveats about reduced design, limited benchmarks, and pathological structures.\n\n\nMMLU analyses are strong and largely replicate exp-001 findings with bootstrap CIs and additional robustness checks. The IRT vs G-theory comparison (4.4× item ratio) is clean on MMLU and becomes a primary contribution.\nCross-benchmark analyses are degraded by three compounding factors: (1) Only 4 benchmarks (no MATH) with only 4 models — limited statistical power for cross-benchmark generalizations and wide bootstrap CIs. (2) GSM8K's pathological variance structure (residual >40%, negative REML estimates) makes several analyses unreliable or uninterpretable on that benchmark. The high residual means G-theory components are estimated with low precision, widening CIs and making D-study projections impractical (CI for G80 items: [600, 2100]). (3) Fixed-vs-random sensitivity analysis fails on GSM8K (Δ>5pp), meaning the methodological choice of treating temperature as random vs fixed materially affects results — another benchmark-specific pathology.\nREML diverges from Henderson I on GSM8K because the balanced design assumption is stressed by near-zero or negative components. Henderson I is unbiased for balanced designs but produces interpretable results even when components are near-zero; REML tries to find ML estimates and can produce negative values that must be clamped. This divergence is itself a finding: Henderson I is reliable for well-behaved MC benchmarks but may be problematic for free-form generation benchmarks.\nThe logprob analysis cannot extend beyond MC formats (MMLU, ARC) because free-form and completion tasks lack a natural single-token probability score. This means the \"Evaluation Metrics\" claim in the title is only partially supported, and the title may need adjustment per MD9.\nBootstrap vs jackknife agreement is good on MMLU/ARC (ratio 0.98-1.03) but marginal on GSM8K (ratio 1.14), suggesting bootstrap CIs on GSM8K are slightly anti-conservative due to non-independence in the stochastic generation process.\n"
+  },
+  {
+    "name": "14B model extension",
+    "description": "Blocked. Depends on exp-003 (hardware) which is blocked, and requires ≥48GB VRAM GPUs not currently allocated. No 14B model data is collected.\n",
+    "results": {
+      "status": "blocked",
+      "n_14B_models_tested": 0,
+      "scale_analysis_completed": false,
+      "reason": "Depends on exp-003 (blocked); requires high-VRAM GPU not available"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "No analysis possible. Limitation statement: \"Our analysis is limited to 7-9B parameter open-weight models. Whether variance structure changes with model scale is an important open question — larger models may show reduced model×item interaction if they converge toward similar capability profiles, or increased interaction if scale enables more specialized item-level behaviors.\"\n\n\nexp-005 has two blocking dependencies: (1) it was designed to run on datacenter GPUs at BF16/FP16 after exp-003 establishes the multi-hardware baseline, and (2) 14B models require ≥48GB VRAM for comfortable inference with vLLM, which is available on the existing RTX PRO 6000 (96GB) but the GPU budget is fully consumed by exp-002 Phase 1. Even if the hardware dependency were relaxed, the compute hours (100h) compete directly with exp-002's needs. Under worst-tier resource constraints, P1 experiments are systematically deprioritized in favor of P0 experiments.\nImpact on paper: The \"model scale\" dimension is entirely absent. The paper must state \"all models are 7-9B parameter scale\" as a limitation. This is defensible — the paper studies variance structure, not scaling laws — but reviewers may flag it. The planned comparison between dense (Qwen3-14B) and reasoning-distilled (DeepSeek-R1-Distill-14B) architectures is lost. This comparison would have been interesting for the model×item interaction analysis (does distillation change the interaction pattern?) but is not essential for the core claims.\n"
+  },
+  {
+    "name": "Fine-tuning G-study",
+    "description": "Blocked by compute reallocation. The 1,728 fine-tuning runs (432 per task × 4 tasks) require ~200 GPU hours on westd-32570, which is fully allocated to exp-002 Phase 1 and exp-001 post-processing. Even partial completion (1 task) would consume 50+ hours.\n",
+    "results": {
+      "status": "blocked",
+      "n_finetuning_runs_completed": 0,
+      "tasks_completed": 0,
+      "reason": "GPU budget fully consumed by P0 experiments (exp-002 Phase 1)"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "No analysis possible. The fine-tuning extension is entirely absent from the paper. Per existing framing directives, this was already downgraded to Discussion section. Cite Bui et al. (2025) for evidence that fine-tuning variance structure differs substantially (RTES variance=18.22 for RoBERTa on COPA) and position as motivated future work.\n\n\nexp-006 is independent (no experimental dependencies) but competes for the same GPU resource. Under worst-tier constraints, exp-002 Phase 1 alone consumes 200-250 GPU hours (4 models × 4 benchmarks × ~15h per model-benchmark combination with the full prompt/seed/ordering crossing). With exp-001 post-processing reruns and validation checks, the total GPU budget is exhausted before exp-006 can start.\nEven if exp-006 were partially completed (e.g., SST-2 only), the results would be insufficient for even a Discussion-section preliminary observation — a single fine-tuning task cannot support variance structure comparison between inference and fine-tuning paradigms.\nImpact on paper: Fine-tuning analysis is mentioned as future work in Discussion. The paper explicitly qualifies: \"Our analysis addresses inference-time evaluation only. Fine-tuning variance structure — where learning rate, data order, and seed interact with task-specific loss landscapes — is a qualitatively different problem that we leave for future work.\" Per D006 Dream #3 directive, fine-tuning was already downgraded to Discussion-section preliminary observation, so blockage has minimal impact on paper structure.\n"
+  },
+  {
+    "name": "LayerCast precision study",
+    "description": "Deprioritized (P2). Not started due to GPU budget exhaustion from P0 experiments. LayerCast (FP16 storage + FP32 compute) as a variance mitigation strategy is not tested.\n",
+    "results": {
+      "status": "blocked",
+      "layercast_tested": false,
+      "variance_reduction_quantified": false,
+      "reason": "P2 priority; GPU budget exhausted by P0 experiments"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "No analysis possible. Minimal impact on paper — precision is already shown to be negligible under binary scoring. LayerCast is mentioned as a potential mitigation for text-exact-match scoring in the Discussion section.\n\n\nexp-007 is the lowest-priority experiment (P2) and depends on exp-001 being complete (it is). However, the 30 GPU hours required compete with exp-002 Phase 1 needs. Under worst-tier constraints, all discretionary GPU budget is consumed by the P0 pipeline. Additionally, the scientific value of LayerCast testing is reduced once BF16-vs-FP16 sensitivity analysis (already completed in exp-001) shows BF16≈FP16 (Δ=0.23pp) — if standard precision choices don't matter, testing a mixed-precision strategy is low priority.\nImpact on paper: No variance mitigation strategy is tested. The paper's D-study budgets address \"how many items/prompts/seeds\" but not \"how to reduce precision variance.\" This is consistent with the finding that precision contributes <0.1% variance under binary scoring — there is nothing to mitigate. The paper can note: \"LayerCast and other mixed-precision strategies may be relevant for text-exact-match scoring where precision×temperature interaction is detectable (1.3%).\"\n"
+  },
+  {
+    "name": "MATH benchmark (merged into exp-002 Phase 2)",
+    "description": "Blocked. MATH was merged into exp-002 as the 5th benchmark in Phase 2, which is blocked by answer extraction pipeline issues. Free-form symbolic math answer normalization (handling equivalent forms: \"1/2\", \"0.5\", \"\\\\frac{1}{2}\", \"0.500\") requires engineering work that stalls.\n",
+    "results": {
+      "status": "blocked",
+      "math_items_collected": 0,
+      "answer_extraction_pipeline_status": "incomplete — symbolic normalization handles ~70% of MATH answers correctly, remaining 30% require regex/sympy extensions",
+      "reason": "Merged into exp-002 Phase 2; blocked by answer normalization engineering"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "No analysis possible. The paper's cross-benchmark analysis is limited to 4 benchmarks (MMLU, ARC, HellaSwag, GSM8K) spanning 3 formats (MC, completion, free-form) but with only 1-2 benchmarks per format. Within-format gradient testing is limited to MC (MMLU vs ARC = 2 data points). The \"benchmark-specific fingerprints\" finding survives but is less compelling without a within-format comparator for free-form tasks.\n\nMATH benchmark presents unique data engineering challenges compared to MC benchmarks (MMLU, ARC, HellaSwag) and even compared to GSM8K (which has simpler numerical answers). MATH answers include symbolic expressions, fractions, roots, and multiple equivalent forms that require robust normalization. The extraction pipeline handles simple numerical answers (GSM8K-style) but fails on ~30% of MATH items where the answer is symbolic. Building a robust sympy-based normalization pipeline is estimated at 20-30 engineering hours — work that is deprioritized under worst-tier constraints where the focus is on completing Phase 1 analysis and writing.\nImpact on paper: The absence of MATH critically undermines the within-format gradient test. With only GSM8K as a free-form benchmark, the within-format gradient analysis has no free-form comparator. The paper cannot distinguish whether GSM8K's low item_id% (35.4%) is due to free-form format, mathematical reasoning task type, or stochastic generation. This ambiguity is a significant limitation for the \"benchmark-specific fingerprints\" framing — without MATH, the paper cannot determine whether the fingerprint is driven by format or task content within the free-form category.\nThe paper addresses this by: (a) acknowledging the limitation explicitly, (b) noting that MATH's absence prevents within-free-form gradient testing, and (c) framing MATH as the highest-priority extension for future work. The \"benchmark-specific fingerprints\" claim is still supported by the MC benchmarks (MMLU vs ARC have different structures despite same format) and the cross-format comparison (MC vs completion vs free-form), but the within-format argument is weaker.\n"
+  }
+]

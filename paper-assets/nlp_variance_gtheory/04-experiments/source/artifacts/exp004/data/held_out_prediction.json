@@ -1,0 +1,544 @@
+{
+  "description": "Held-out cross-benchmark G_item prediction experiment",
+  "source_data": "exp-002 8-model variance components (Henderson Type-I, random model)",
+  "facet_levels": {
+    "n_models": 8,
+    "n_prompts": 6,
+    "n_seeds": 6,
+    "n_temps": 2,
+    "n_orderings": 4,
+    "n_items": 200
+  },
+  "method": {
+    "approach": "Transfer variance component proportions from source to target total variance",
+    "formula": "predicted_sigma2_k(target) = proportion_k(source) * total_variance(target)",
+    "note": "Total variance cancels in the G_item ratio: predicted_G(target) = G(source). This is a mathematical identity \u2014 the prediction reduces to asserting that the target has the same variance structure as the source. Prediction errors therefore equal |G(source) - G(target)|, testing whether G_item values are similar across benchmarks."
+  },
+  "benchmarks": {
+    "MMLU": {
+      "format": "MC",
+      "total_variance": 0.230226254,
+      "actual_G_item": 0.896176,
+      "variance_components_abs": {
+        "item": 0.0872124597,
+        "model": 0.0065213123,
+        "model_item": 0.0695501891,
+        "model_prompt": 0.0036708012,
+        "model_seed": 6.88512e-05,
+        "model_temp": 0.0001007978,
+        "model_ordering": 6.40528e-05,
+        "prompt_item": 0.0021769413,
+        "seed_item": 0.001209092,
+        "temp_item": 0.0012818778,
+        "ordering_item": 0.0007188472,
+        "residual": 0.0575714452
+      },
+      "variance_proportions": {
+        "item": 0.378943,
+        "model": 0.028335,
+        "model_item": 0.302199,
+        "model_prompt": 0.01595,
+        "model_seed": 0.000299,
+        "model_temp": 0.000438,
+        "model_ordering": 0.000278,
+        "prompt_item": 0.009459,
+        "seed_item": 0.005254,
+        "temp_item": 0.00557,
+        "ordering_item": 0.003123,
+        "residual": 0.250151
+      }
+    },
+    "ARC": {
+      "format": "MC",
+      "total_variance": 0.1771825345,
+      "actual_G_item": 0.891748,
+      "variance_components_abs": {
+        "item": 0.0671248004,
+        "model": 0.0054499659,
+        "model_item": 0.0597623659,
+        "model_prompt": 0.0141751724,
+        "model_seed": 2.69593e-05,
+        "model_temp": 1.65634e-05,
+        "model_ordering": 0.0,
+        "prompt_item": 0.0025655713,
+        "seed_item": 0.0002977664,
+        "temp_item": 0.0003782411,
+        "ordering_item": 0.0,
+        "residual": 0.0273654728
+      },
+      "variance_proportions": {
+        "item": 0.378888,
+        "model": 0.030762,
+        "model_item": 0.33733,
+        "model_prompt": 0.080012,
+        "model_seed": 0.000152,
+        "model_temp": 9.3e-05,
+        "model_ordering": 0.0,
+        "prompt_item": 0.014481,
+        "seed_item": 0.001681,
+        "temp_item": 0.002135,
+        "ordering_item": 0.0,
+        "residual": 0.154465
+      }
+    },
+    "HellaSwag": {
+      "format": "MC",
+      "total_variance": 0.2058356365,
+      "actual_G_item": 0.871599,
+      "variance_components_abs": {
+        "item": 0.0705466971,
+        "model": 0.0110182355,
+        "model_item": 0.0741053211,
+        "model_prompt": 0.000387514,
+        "model_seed": 4.71108e-05,
+        "model_temp": 8.87438e-05,
+        "model_ordering": 0.0,
+        "prompt_item": 0.004399445,
+        "seed_item": 0.000496811,
+        "temp_item": 0.0005886942,
+        "ordering_item": 0.0,
+        "residual": 0.0440750888
+      },
+      "variance_proportions": {
+        "item": 0.34287,
+        "model": 0.053551,
+        "model_item": 0.360165,
+        "model_prompt": 0.001883,
+        "model_seed": 0.000229,
+        "model_temp": 0.000431,
+        "model_ordering": 0.0,
+        "prompt_item": 0.021382,
+        "seed_item": 0.002415,
+        "temp_item": 0.002861,
+        "ordering_item": 0.0,
+        "residual": 0.214213
+      }
+    },
+    "GSM8K": {
+      "format": "FF",
+      "total_variance": 0.2497718596,
+      "actual_G_item": 0.862852,
+      "variance_components_abs": {
+        "item": 0.0421014063,
+        "model": 0.0268400916,
+        "model_item": 0.036345528,
+        "model_prompt": 0.021308241,
+        "model_seed": 2.30489e-05,
+        "model_temp": 0.0002267272,
+        "model_ordering": 0.0,
+        "prompt_item": 0.0076536034,
+        "seed_item": 0.0005097925,
+        "temp_item": 0.0014897687,
+        "ordering_item": 0.0,
+        "residual": 0.0996441838
+      },
+      "variance_proportions": {
+        "item": 0.178288,
+        "model": 0.113661,
+        "model_item": 0.153914,
+        "model_prompt": 0.090235,
+        "model_seed": 9.8e-05,
+        "model_temp": 0.00096,
+        "model_ordering": 0.0,
+        "prompt_item": 0.032411,
+        "seed_item": 0.002159,
+        "temp_item": 0.006309,
+        "ordering_item": 0.0,
+        "residual": 0.421967
+      }
+    },
+    "MATH": {
+      "format": "FF",
+      "total_variance": 0.2071307857,
+      "actual_G_item": 0.888034,
+      "variance_components_abs": {
+        "item": 0.0497668223,
+        "model": 0.0176297619,
+        "model_item": 0.0357840757,
+        "model_prompt": 0.0034490834,
+        "model_seed": 1.49585e-05,
+        "model_temp": 7.27458e-05,
+        "model_ordering": 0.0,
+        "prompt_item": 0.0059255092,
+        "seed_item": 0.0003153339,
+        "temp_item": 0.0014443229,
+        "ordering_item": 0.0,
+        "residual": 0.0908925174
+      },
+      "variance_proportions": {
+        "item": 0.242416,
+        "model": 0.085875,
+        "model_item": 0.174306,
+        "model_prompt": 0.016801,
+        "model_seed": 7.3e-05,
+        "model_temp": 0.000354,
+        "model_ordering": 0.0,
+        "prompt_item": 0.028863,
+        "seed_item": 0.001536,
+        "temp_item": 0.007035,
+        "ordering_item": 0.0,
+        "residual": 0.442741
+      }
+    }
+  },
+  "pairwise_predictions": [
+    {
+      "source": "MMLU",
+      "target": "ARC",
+      "type": "within-MC",
+      "predicted_G": 0.896176,
+      "actual_G": 0.891748,
+      "abs_error": 0.004428,
+      "pct_error": 0.5
+    },
+    {
+      "source": "MMLU",
+      "target": "HellaSwag",
+      "type": "within-MC",
+      "predicted_G": 0.896176,
+      "actual_G": 0.871599,
+      "abs_error": 0.024577,
+      "pct_error": 2.82
+    },
+    {
+      "source": "MMLU",
+      "target": "GSM8K",
+      "type": "cross-format",
+      "predicted_G": 0.896176,
+      "actual_G": 0.862852,
+      "abs_error": 0.033324,
+      "pct_error": 3.86
+    },
+    {
+      "source": "MMLU",
+      "target": "MATH",
+      "type": "cross-format",
+      "predicted_G": 0.896176,
+      "actual_G": 0.888034,
+      "abs_error": 0.008142,
+      "pct_error": 0.92
+    },
+    {
+      "source": "ARC",
+      "target": "MMLU",
+      "type": "within-MC",
+      "predicted_G": 0.891748,
+      "actual_G": 0.896176,
+      "abs_error": 0.004428,
+      "pct_error": 0.49
+    },
+    {
+      "source": "ARC",
+      "target": "HellaSwag",
+      "type": "within-MC",
+      "predicted_G": 0.891748,
+      "actual_G": 0.871599,
+      "abs_error": 0.020149,
+      "pct_error": 2.31
+    },
+    {
+      "source": "ARC",
+      "target": "GSM8K",
+      "type": "cross-format",
+      "predicted_G": 0.891748,
+      "actual_G": 0.862852,
+      "abs_error": 0.028896,
+      "pct_error": 3.35
+    },
+    {
+      "source": "ARC",
+      "target": "MATH",
+      "type": "cross-format",
+      "predicted_G": 0.891748,
+      "actual_G": 0.888034,
+      "abs_error": 0.003714,
+      "pct_error": 0.42
+    },
+    {
+      "source": "HellaSwag",
+      "target": "MMLU",
+      "type": "within-MC",
+      "predicted_G": 0.871599,
+      "actual_G": 0.896176,
+      "abs_error": 0.024577,
+      "pct_error": 2.74
+    },
+    {
+      "source": "HellaSwag",
+      "target": "ARC",
+      "type": "within-MC",
+      "predicted_G": 0.871599,
+      "actual_G": 0.891748,
+      "abs_error": 0.020149,
+      "pct_error": 2.26
+    },
+    {
+      "source": "HellaSwag",
+      "target": "GSM8K",
+      "type": "cross-format",
+      "predicted_G": 0.871599,
+      "actual_G": 0.862852,
+      "abs_error": 0.008747,
+      "pct_error": 1.01
+    },
+    {
+      "source": "HellaSwag",
+      "target": "MATH",
+      "type": "cross-format",
+      "predicted_G": 0.871599,
+      "actual_G": 0.888034,
+      "abs_error": 0.016435,
+      "pct_error": 1.85
+    },
+    {
+      "source": "GSM8K",
+      "target": "MMLU",
+      "type": "cross-format",
+      "predicted_G": 0.862852,
+      "actual_G": 0.896176,
+      "abs_error": 0.033324,
+      "pct_error": 3.72
+    },
+    {
+      "source": "GSM8K",
+      "target": "ARC",
+      "type": "cross-format",
+      "predicted_G": 0.862852,
+      "actual_G": 0.891748,
+      "abs_error": 0.028896,
+      "pct_error": 3.24
+    },
+    {
+      "source": "GSM8K",
+      "target": "HellaSwag",
+      "type": "cross-format",
+      "predicted_G": 0.862852,
+      "actual_G": 0.871599,
+      "abs_error": 0.008747,
+      "pct_error": 1.0
+    },
+    {
+      "source": "GSM8K",
+      "target": "MATH",
+      "type": "within-FF",
+      "predicted_G": 0.862852,
+      "actual_G": 0.888034,
+      "abs_error": 0.025182,
+      "pct_error": 2.84
+    },
+    {
+      "source": "MATH",
+      "target": "MMLU",
+      "type": "cross-format",
+      "predicted_G": 0.888034,
+      "actual_G": 0.896176,
+      "abs_error": 0.008142,
+      "pct_error": 0.91
+    },
+    {
+      "source": "MATH",
+      "target": "ARC",
+      "type": "cross-format",
+      "predicted_G": 0.888034,
+      "actual_G": 0.891748,
+      "abs_error": 0.003714,
+      "pct_error": 0.42
+    },
+    {
+      "source": "MATH",
+      "target": "HellaSwag",
+      "type": "cross-format",
+      "predicted_G": 0.888034,
+      "actual_G": 0.871599,
+      "abs_error": 0.016435,
+      "pct_error": 1.89
+    },
+    {
+      "source": "MATH",
+      "target": "GSM8K",
+      "type": "within-FF",
+      "predicted_G": 0.888034,
+      "actual_G": 0.862852,
+      "abs_error": 0.025182,
+      "pct_error": 2.92
+    }
+  ],
+  "leave_one_out": [
+    {
+      "held_out": "MMLU",
+      "source_benchmarks": [
+        "ARC",
+        "HellaSwag",
+        "GSM8K",
+        "MATH"
+      ],
+      "avg_proportions": {
+        "item": 0.285615,
+        "model": 0.070962,
+        "model_item": 0.256429,
+        "model_prompt": 0.047233,
+        "model_seed": 0.000138,
+        "model_temp": 0.00046,
+        "model_ordering": 0.0,
+        "prompt_item": 0.024284,
+        "seed_item": 0.001948,
+        "temp_item": 0.004585,
+        "ordering_item": 0.0,
+        "residual": 0.308346
+      },
+      "predicted_G": 0.880259,
+      "actual_G": 0.896176,
+      "abs_error": 0.015917,
+      "pct_error": 1.78
+    },
+    {
+      "held_out": "ARC",
+      "source_benchmarks": [
+        "MMLU",
+        "HellaSwag",
+        "GSM8K",
+        "MATH"
+      ],
+      "avg_proportions": {
+        "item": 0.285629,
+        "model": 0.070355,
+        "model_item": 0.247646,
+        "model_prompt": 0.031217,
+        "model_seed": 0.000175,
+        "model_temp": 0.000546,
+        "model_ordering": 7e-05,
+        "prompt_item": 0.023029,
+        "seed_item": 0.002841,
+        "temp_item": 0.005444,
+        "ordering_item": 0.000781,
+        "residual": 0.332268
+      },
+      "predicted_G": 0.881686,
+      "actual_G": 0.891748,
+      "abs_error": 0.010062,
+      "pct_error": 1.13
+    },
+    {
+      "held_out": "HellaSwag",
+      "source_benchmarks": [
+        "MMLU",
+        "ARC",
+        "GSM8K",
+        "MATH"
+      ],
+      "avg_proportions": {
+        "item": 0.294634,
+        "model": 0.064658,
+        "model_item": 0.241937,
+        "model_prompt": 0.050749,
+        "model_seed": 0.000155,
+        "model_temp": 0.000461,
+        "model_ordering": 7e-05,
+        "prompt_item": 0.021304,
+        "seed_item": 0.002657,
+        "temp_item": 0.005262,
+        "ordering_item": 0.000781,
+        "residual": 0.317331
+      },
+      "predicted_G": 0.887896,
+      "actual_G": 0.871599,
+      "abs_error": 0.016297,
+      "pct_error": 1.87
+    },
+    {
+      "held_out": "GSM8K",
+      "source_benchmarks": [
+        "MMLU",
+        "ARC",
+        "HellaSwag",
+        "MATH"
+      ],
+      "avg_proportions": {
+        "item": 0.335779,
+        "model": 0.049631,
+        "model_item": 0.2935,
+        "model_prompt": 0.028661,
+        "model_seed": 0.000188,
+        "model_temp": 0.000329,
+        "model_ordering": 7e-05,
+        "prompt_item": 0.018546,
+        "seed_item": 0.002721,
+        "temp_item": 0.0044,
+        "ordering_item": 0.000781,
+        "residual": 0.265392
+      },
+      "predicted_G": 0.88708,
+      "actual_G": 0.862852,
+      "abs_error": 0.024228,
+      "pct_error": 2.81
+    },
+    {
+      "held_out": "MATH",
+      "source_benchmarks": [
+        "MMLU",
+        "ARC",
+        "HellaSwag",
+        "GSM8K"
+      ],
+      "avg_proportions": {
+        "item": 0.319747,
+        "model": 0.056577,
+        "model_item": 0.288402,
+        "model_prompt": 0.04702,
+        "model_seed": 0.000194,
+        "model_temp": 0.000481,
+        "model_ordering": 7e-05,
+        "prompt_item": 0.019433,
+        "seed_item": 0.002877,
+        "temp_item": 0.004219,
+        "ordering_item": 0.000781,
+        "residual": 0.260199
+      },
+      "predicted_G": 0.883442,
+      "actual_G": 0.888034,
+      "abs_error": 0.004592,
+      "pct_error": 0.52
+    }
+  ],
+  "summary": {
+    "within_MC_MAPE": 1.85,
+    "within_MC_n_pairs": 6,
+    "within_FF_MAPE": 2.88,
+    "within_FF_n_pairs": 2,
+    "cross_format_MAPE": 1.88,
+    "cross_format_n_pairs": 12,
+    "all_pairwise_MAPE": 1.97,
+    "leave_one_out_MAPE": 1.62,
+    "rank_correlation_LOO": {
+      "spearman_rho": -0.9,
+      "p_value": 0.0374
+    },
+    "rank_correlation_pairwise_avg": {
+      "spearman_rho": -1.0,
+      "p_value": 0.0
+    },
+    "actual_G_ranking": {
+      "GSM8K": 1,
+      "HellaSwag": 2,
+      "MATH": 3,
+      "ARC": 4,
+      "MMLU": 5
+    },
+    "predicted_G_ranking_LOO": {
+      "MMLU": 1,
+      "ARC": 2,
+      "MATH": 3,
+      "GSM8K": 4,
+      "HellaSwag": 5
+    },
+    "g_item_range": {
+      "min": 0.8629,
+      "max": 0.8962,
+      "range": 0.0333,
+      "mean": 0.8821,
+      "cv_pct": 1.44
+    },
+    "mathematical_note": "predicted_G(target|source) = G(source) because TV(target) cancels in the G_item ratio. This identity means pairwise prediction errors are simply |G(source) - G(target)|.",
+    "conclusion": "Proportional transfer yields predicted_G(target) = G(source) (total variance cancels in the ratio), so prediction errors directly measure inter-benchmark G_item similarity. All 5 benchmarks cluster in a narrow G_item band (0.863\u20130.896, range=0.033, CV=1.4%), producing low absolute errors (overall MAPE=2.0%, LOO MAPE=1.6%). However, LOO rank correlation is strongly negative (rho=-0.90), because averaging the other 4 benchmarks' structures systematically inverts the ranking: the benchmark with the highest actual G is predicted lowest (its complement has the lowest mean), and vice versa. Within-MC MAPE (1.9%) vs cross-format MAPE (1.9%): no clear format-driven difference, suggesting the narrow G_item range is not format-dependent. Key insight: item measurement reliability (G_item \u2248 0.88) is a robust property across these 5 benchmarks, but the STRUCTURE of variance (which components dominate) differs substantially \u2014 the similar G_item values arise from different variance compositions, not from shared structure."
+  }
+}

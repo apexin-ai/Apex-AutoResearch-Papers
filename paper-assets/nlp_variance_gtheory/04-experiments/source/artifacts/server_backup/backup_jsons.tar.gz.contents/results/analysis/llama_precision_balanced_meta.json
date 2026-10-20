@@ -1,0 +1,53 @@
+{
+  "name": "llama_precision_balanced",
+  "n_records": 115200,
+  "n_cells": 576,
+  "items_per_cell": 200,
+  "facets": [
+    "precision",
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering"
+  ],
+  "n_levels": {
+    "precision": 2,
+    "temperature": 2,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4
+  },
+  "factor_levels": {
+    "precision": [
+      "bfloat16",
+      "float32"
+    ],
+    "temperature": [
+      0.3,
+      0.7
+    ],
+    "prompt_template": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "seed": [
+      42,
+      123,
+      456,
+      789,
+      1024,
+      2048
+    ],
+    "ordering": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "fully_crossed": true
+}

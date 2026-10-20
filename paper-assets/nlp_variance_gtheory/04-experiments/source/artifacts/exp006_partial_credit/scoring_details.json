@@ -1,0 +1,45 @@
+{
+  "binary_scoring": "Exact numerical match: correct field (0/1)",
+  "partial_credit_scoring": "Arithmetic step verification: parse CoT for 'A op B = C' patterns, verify each calculation, partial_score = n_correct_steps / n_total_steps. Falls back to binary if no steps extractable.",
+  "truncation": "Text truncated at first answer marker (####/The answer is/The final answer is) to avoid multi-problem contamination from high-temp generation.",
+  "limitations": "Simple regex cannot parse multi-operand expressions (e.g., '4 + 6 + 18 = 28' gets parsed as '6 + 18 = 28' and marked incorrect). This introduces noise but is acceptable for a pilot.",
+  "examples": [
+    {
+      "item_id": "gsm8k_91",
+      "condition": "t=0.0,p=1,s=42,o=1",
+      "correct": 1,
+      "partial_score": 0.6667,
+      "n_steps": 3,
+      "n_correct": 2,
+      "step_details": [true, true, false],
+      "text_preview": "Cindy has 4 pets.\nMarcia has 4 + 2 = 6 pets.\nJan has 6 * 3 = 18 pets.\nThe total number of pets is 4 + 6 + 18 = 28.\nThe answer is 28.",
+      "gold_answer": "28",
+      "predicted_answer": "28",
+      "note": "Multi-operand '4 + 6 + 18 = 28' parsed as '6 + 18 = 28' (incorrect). Regex limitation."
+    },
+    {
+      "item_id": "gsm8k_649",
+      "condition": "t=0.0,p=1,s=42,o=1",
+      "correct": 0,
+      "partial_score": 1.0,
+      "n_steps": 2,
+      "n_correct": 2,
+      "text_preview": "70 * 2000 = 140000 (correct), 140000 + 20000 = 160000 (correct). But final answer wrong (160000 vs 162000) — reasoning error in problem setup, not arithmetic.",
+      "gold_answer": "162000",
+      "predicted_answer": "160000",
+      "note": "Correct arithmetic but wrong problem setup → binary=0, partial=1.0. Shows how partial credit captures reasoning quality separately from final correctness."
+    },
+    {
+      "item_id": "gsm8k_796",
+      "condition": "t=0.0,p=1,s=42,o=1",
+      "correct": 0,
+      "partial_score": 1.0,
+      "n_steps": 4,
+      "n_correct": 4,
+      "text_preview": "All arithmetic correct (200+20=220, 220+20=240, 240+20=260, 260*4000=1040000) but model only sums salary for final month instead of all 3 months. binary=0, partial=1.0.",
+      "gold_answer": "2880000",
+      "predicted_answer": "1040000",
+      "note": "Model's arithmetic is flawless but logical setup is wrong."
+    }
+  ]
+}

@@ -1,0 +1,2102 @@
+{
+  "abstract_algebra": {
+    "1": [
+      {
+        "question": "Statement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Find the characteristic of the ring 2Z.",
+        "choices": [
+          "0",
+          "3",
+          "12",
+          "30"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Statement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Statement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.",
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "answer_idx": 1
+      }
+    ],
+    "2": [
+      {
+        "question": "Statement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Statement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Find the characteristic of the ring 2Z.",
+        "choices": [
+          "0",
+          "3",
+          "12",
+          "30"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.",
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Statement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "3": [
+      {
+        "question": "Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.",
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Find the characteristic of the ring 2Z.",
+        "choices": [
+          "0",
+          "3",
+          "12",
+          "30"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Statement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Statement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Statement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "4": [
+      {
+        "question": "Statement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Statement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Find the characteristic of the ring 2Z.",
+        "choices": [
+          "0",
+          "3",
+          "12",
+          "30"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Statement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.",
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.",
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "answer_idx": 1
+      }
+    ]
+  },
+  "college_physics": {
+    "1": [
+      {
+        "question": "For which of the following thermodynamic processes is the increase in the internal energy of an ideal gas equal to the heat added to the gas?",
+        "choices": [
+          "Constant temperature",
+          "Constant volume",
+          "Constant pressure",
+          "Adiabatic"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "The muon decays with a characteristic lifetime of about 10^-6 second into an electron, a muon neutrino, and an electron antineutrino. The muon is forbidden from decaying into an electron and just a single neutrino by the law of conservation of",
+        "choices": [
+          "charge",
+          "mass",
+          "energy and momentum",
+          "lepton number"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "One end of a Nichrome wire of length 2L and cross-sectional area A is attached to an end of another Nichrome wire of length L and cross- sectional area 2A. If the free end of the longer wire is at an electric potential of 8.0 volts, and the free end of the shorter wire is at an electric potential of 1.0 volt, the potential at the junction of the two wires is most nearly equal to",
+        "choices": [
+          "2.4 V",
+          "3.3 V",
+          "4.5 V",
+          "5.7 V"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "2": [
+      {
+        "question": "One end of a Nichrome wire of length 2L and cross-sectional area A is attached to an end of another Nichrome wire of length L and cross- sectional area 2A. If the free end of the longer wire is at an electric potential of 8.0 volts, and the free end of the shorter wire is at an electric potential of 1.0 volt, the potential at the junction of the two wires is most nearly equal to",
+        "choices": [
+          "2.4 V",
+          "3.3 V",
+          "4.5 V",
+          "5.7 V"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "For which of the following thermodynamic processes is the increase in the internal energy of an ideal gas equal to the heat added to the gas?",
+        "choices": [
+          "Constant temperature",
+          "Constant volume",
+          "Constant pressure",
+          "Adiabatic"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "The muon decays with a characteristic lifetime of about 10^-6 second into an electron, a muon neutrino, and an electron antineutrino. The muon is forbidden from decaying into an electron and just a single neutrino by the law of conservation of",
+        "choices": [
+          "charge",
+          "mass",
+          "energy and momentum",
+          "lepton number"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "3": [
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "The muon decays with a characteristic lifetime of about 10^-6 second into an electron, a muon neutrino, and an electron antineutrino. The muon is forbidden from decaying into an electron and just a single neutrino by the law of conservation of",
+        "choices": [
+          "charge",
+          "mass",
+          "energy and momentum",
+          "lepton number"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "For which of the following thermodynamic processes is the increase in the internal energy of an ideal gas equal to the heat added to the gas?",
+        "choices": [
+          "Constant temperature",
+          "Constant volume",
+          "Constant pressure",
+          "Adiabatic"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "One end of a Nichrome wire of length 2L and cross-sectional area A is attached to an end of another Nichrome wire of length L and cross- sectional area 2A. If the free end of the longer wire is at an electric potential of 8.0 volts, and the free end of the shorter wire is at an electric potential of 1.0 volt, the potential at the junction of the two wires is most nearly equal to",
+        "choices": [
+          "2.4 V",
+          "3.3 V",
+          "4.5 V",
+          "5.7 V"
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "4": [
+      {
+        "question": "For which of the following thermodynamic processes is the increase in the internal energy of an ideal gas equal to the heat added to the gas?",
+        "choices": [
+          "Constant temperature",
+          "Constant volume",
+          "Constant pressure",
+          "Adiabatic"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "One end of a Nichrome wire of length 2L and cross-sectional area A is attached to an end of another Nichrome wire of length L and cross- sectional area 2A. If the free end of the longer wire is at an electric potential of 8.0 volts, and the free end of the shorter wire is at an electric potential of 1.0 volt, the potential at the junction of the two wires is most nearly equal to",
+        "choices": [
+          "2.4 V",
+          "3.3 V",
+          "4.5 V",
+          "5.7 V"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "The muon decays with a characteristic lifetime of about 10^-6 second into an electron, a muon neutrino, and an electron antineutrino. The muon is forbidden from decaying into an electron and just a single neutrino by the law of conservation of",
+        "choices": [
+          "charge",
+          "mass",
+          "energy and momentum",
+          "lepton number"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "A refracting telescope consists of two converging lenses separated by 100 cm. The eye-piece lens has a focal length of 20 cm. The angular magnification of the telescope is",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "20"
+        ],
+        "answer_idx": 0
+      }
+    ]
+  },
+  "world_religions": {
+    "1": [
+      {
+        "question": "What is the Second Gem in Buddhism?",
+        "choices": [
+          "The Dharma",
+          "The Sangha",
+          "The Buddha",
+          "The Bodhisattva"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How can the Upanishads be characterized?",
+        "choices": [
+          "Ritual texts",
+          "Philosophical texts",
+          "Hymns",
+          "Origin stories"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": " Which Japanese government promoted a kind of national cult based on the emperor and his associations with kami?",
+        "choices": [
+          "Honen",
+          "Tanaka",
+          "Tokugawa",
+          "Meiji"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": " In which dynasty was the \"Mandate of Heaven\" developed to legitimatize the new rulers?",
+        "choices": [
+          "Shang",
+          "Zhou",
+          "Han",
+          "Xia"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": " What is the sign of the covenant for Jewish males?",
+        "choices": [
+          "The rainbow",
+          "Circumcision",
+          "A son",
+          "Bar mitzvah"
+        ],
+        "answer_idx": 1
+      }
+    ],
+    "2": [
+      {
+        "question": " In which dynasty was the \"Mandate of Heaven\" developed to legitimatize the new rulers?",
+        "choices": [
+          "Shang",
+          "Zhou",
+          "Han",
+          "Xia"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "What is the Second Gem in Buddhism?",
+        "choices": [
+          "The Dharma",
+          "The Sangha",
+          "The Buddha",
+          "The Bodhisattva"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How can the Upanishads be characterized?",
+        "choices": [
+          "Ritual texts",
+          "Philosophical texts",
+          "Hymns",
+          "Origin stories"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": " What is the sign of the covenant for Jewish males?",
+        "choices": [
+          "The rainbow",
+          "Circumcision",
+          "A son",
+          "Bar mitzvah"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": " Which Japanese government promoted a kind of national cult based on the emperor and his associations with kami?",
+        "choices": [
+          "Honen",
+          "Tanaka",
+          "Tokugawa",
+          "Meiji"
+        ],
+        "answer_idx": 3
+      }
+    ],
+    "3": [
+      {
+        "question": " What is the sign of the covenant for Jewish males?",
+        "choices": [
+          "The rainbow",
+          "Circumcision",
+          "A son",
+          "Bar mitzvah"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "How can the Upanishads be characterized?",
+        "choices": [
+          "Ritual texts",
+          "Philosophical texts",
+          "Hymns",
+          "Origin stories"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "What is the Second Gem in Buddhism?",
+        "choices": [
+          "The Dharma",
+          "The Sangha",
+          "The Buddha",
+          "The Bodhisattva"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": " Which Japanese government promoted a kind of national cult based on the emperor and his associations with kami?",
+        "choices": [
+          "Honen",
+          "Tanaka",
+          "Tokugawa",
+          "Meiji"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": " In which dynasty was the \"Mandate of Heaven\" developed to legitimatize the new rulers?",
+        "choices": [
+          "Shang",
+          "Zhou",
+          "Han",
+          "Xia"
+        ],
+        "answer_idx": 1
+      }
+    ],
+    "4": [
+      {
+        "question": "What is the Second Gem in Buddhism?",
+        "choices": [
+          "The Dharma",
+          "The Sangha",
+          "The Buddha",
+          "The Bodhisattva"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": " In which dynasty was the \"Mandate of Heaven\" developed to legitimatize the new rulers?",
+        "choices": [
+          "Shang",
+          "Zhou",
+          "Han",
+          "Xia"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "How can the Upanishads be characterized?",
+        "choices": [
+          "Ritual texts",
+          "Philosophical texts",
+          "Hymns",
+          "Origin stories"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": " Which Japanese government promoted a kind of national cult based on the emperor and his associations with kami?",
+        "choices": [
+          "Honen",
+          "Tanaka",
+          "Tokugawa",
+          "Meiji"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": " What is the sign of the covenant for Jewish males?",
+        "choices": [
+          "The rainbow",
+          "Circumcision",
+          "A son",
+          "Bar mitzvah"
+        ],
+        "answer_idx": 1
+      }
+    ]
+  },
+  "us_foreign_policy": {
+    "1": [
+      {
+        "question": "How did NSC-68 change U.S. strategy?",
+        "choices": [
+          "It globalized containment.",
+          "It militarized containment.",
+          "It called for the development of the hydrogen bomb.",
+          "All of the above"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "How did Donald Trump attack globalization in the 2016 campaign?",
+        "choices": [
+          "Globalization had made men like him too rich",
+          "Globalization only benefited certain American states, such as New York",
+          "Liberal elites had encouraged globalization, while 'ordinary Americans' lost jobs because of it",
+          "Globalization encouraged damaging trade wars"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How do Defensive Realism and Offensive Realism differ in their explanation of state behaviour?",
+        "choices": [
+          "Defensive realists place greater emphasis on the role of international institutions",
+          "Defensive realists place less emphasis on geographical factors",
+          "Offensive realists give more priority to the national interest than Defensive realists.",
+          "Defensive realists believe states are security maximizers, while Offensive realists believe states to be power maximizers"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "The realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as",
+        "choices": [
+          "terrorism policy.",
+          "economic policy.",
+          "foreign policy.",
+          "international policy."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How did the 2008 financial crisis affect America's international reputation?",
+        "choices": [
+          "It damaged support for the US model of political economy and capitalism",
+          "It created anger at the United States for exaggerating the crisis",
+          "It increased support for American global leadership under President Obama",
+          "It reduced global use of the US dollar"
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "2": [
+      {
+        "question": "The realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as",
+        "choices": [
+          "terrorism policy.",
+          "economic policy.",
+          "foreign policy.",
+          "international policy."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How did NSC-68 change U.S. strategy?",
+        "choices": [
+          "It globalized containment.",
+          "It militarized containment.",
+          "It called for the development of the hydrogen bomb.",
+          "All of the above"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "How did Donald Trump attack globalization in the 2016 campaign?",
+        "choices": [
+          "Globalization had made men like him too rich",
+          "Globalization only benefited certain American states, such as New York",
+          "Liberal elites had encouraged globalization, while 'ordinary Americans' lost jobs because of it",
+          "Globalization encouraged damaging trade wars"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How did the 2008 financial crisis affect America's international reputation?",
+        "choices": [
+          "It damaged support for the US model of political economy and capitalism",
+          "It created anger at the United States for exaggerating the crisis",
+          "It increased support for American global leadership under President Obama",
+          "It reduced global use of the US dollar"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How do Defensive Realism and Offensive Realism differ in their explanation of state behaviour?",
+        "choices": [
+          "Defensive realists place greater emphasis on the role of international institutions",
+          "Defensive realists place less emphasis on geographical factors",
+          "Offensive realists give more priority to the national interest than Defensive realists.",
+          "Defensive realists believe states are security maximizers, while Offensive realists believe states to be power maximizers"
+        ],
+        "answer_idx": 3
+      }
+    ],
+    "3": [
+      {
+        "question": "How did the 2008 financial crisis affect America's international reputation?",
+        "choices": [
+          "It damaged support for the US model of political economy and capitalism",
+          "It created anger at the United States for exaggerating the crisis",
+          "It increased support for American global leadership under President Obama",
+          "It reduced global use of the US dollar"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How did Donald Trump attack globalization in the 2016 campaign?",
+        "choices": [
+          "Globalization had made men like him too rich",
+          "Globalization only benefited certain American states, such as New York",
+          "Liberal elites had encouraged globalization, while 'ordinary Americans' lost jobs because of it",
+          "Globalization encouraged damaging trade wars"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How did NSC-68 change U.S. strategy?",
+        "choices": [
+          "It globalized containment.",
+          "It militarized containment.",
+          "It called for the development of the hydrogen bomb.",
+          "All of the above"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "How do Defensive Realism and Offensive Realism differ in their explanation of state behaviour?",
+        "choices": [
+          "Defensive realists place greater emphasis on the role of international institutions",
+          "Defensive realists place less emphasis on geographical factors",
+          "Offensive realists give more priority to the national interest than Defensive realists.",
+          "Defensive realists believe states are security maximizers, while Offensive realists believe states to be power maximizers"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "The realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as",
+        "choices": [
+          "terrorism policy.",
+          "economic policy.",
+          "foreign policy.",
+          "international policy."
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "4": [
+      {
+        "question": "How did NSC-68 change U.S. strategy?",
+        "choices": [
+          "It globalized containment.",
+          "It militarized containment.",
+          "It called for the development of the hydrogen bomb.",
+          "All of the above"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "The realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as",
+        "choices": [
+          "terrorism policy.",
+          "economic policy.",
+          "foreign policy.",
+          "international policy."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How did Donald Trump attack globalization in the 2016 campaign?",
+        "choices": [
+          "Globalization had made men like him too rich",
+          "Globalization only benefited certain American states, such as New York",
+          "Liberal elites had encouraged globalization, while 'ordinary Americans' lost jobs because of it",
+          "Globalization encouraged damaging trade wars"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How do Defensive Realism and Offensive Realism differ in their explanation of state behaviour?",
+        "choices": [
+          "Defensive realists place greater emphasis on the role of international institutions",
+          "Defensive realists place less emphasis on geographical factors",
+          "Offensive realists give more priority to the national interest than Defensive realists.",
+          "Defensive realists believe states are security maximizers, while Offensive realists believe states to be power maximizers"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "How did the 2008 financial crisis affect America's international reputation?",
+        "choices": [
+          "It damaged support for the US model of political economy and capitalism",
+          "It created anger at the United States for exaggerating the crisis",
+          "It increased support for American global leadership under President Obama",
+          "It reduced global use of the US dollar"
+        ],
+        "answer_idx": 0
+      }
+    ]
+  },
+  "professional_medicine": {
+    "1": [
+      {
+        "question": "A 36-year-old male presents to the office with a 3-week history of low back pain. He denies any recent trauma but says that he climbs in and out of his truck numerous times a day for his job. Examination of the patient in the prone position reveals a deep sacral sulcus on the left, a posterior inferior lateral angle on the right, and a lumbosacral junction that springs freely on compression. The most likely diagnosis is",
+        "choices": [
+          "left-on-left sacral torsion",
+          "left-on-right sacral torsion",
+          "right unilateral sacral flexion",
+          "right-on-right sacral torsion"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 22-year-old male marathon runner presents to the office with the complaint of right-sided rib pain when he runs long distances. Physical examination reveals normal heart and lung findings and an exhalation dysfunction at ribs 4-5 on the right. Which of the following muscles or muscle groups will be most useful in correcting this dysfunction utilizing a direct method?",
+        "choices": [
+          "anterior scalene",
+          "latissimus dorsi",
+          "pectoralis minor",
+          "quadratus lumborum"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "A 44-year-old man comes to the office because of a 3-day history of sore throat, nonproductive cough, runny nose, and frontal headache. He says the headache is worse in the morning and ibuprofen does provide some relief. He has not had shortness of breath. Medical history is unremarkable. He takes no medications other than the ibuprofen for pain. Vital signs are temperature 37.4°C (99.4°F), pulse 88/min, respirations 18/min, and blood pressure 120/84 mm Hg. Examination of the nares shows erythematous mucous membranes. Examination of the throat shows erythema and follicular lymphoid hyperplasia on the posterior oropharynx. There is no palpable cervical adenopathy. Lungs are clear to auscultation. Which of the following is the most likely cause of this patient's symptoms?",
+        "choices": [
+          "Allergic rhinitis",
+          "Epstein-Barr virus",
+          "Mycoplasma pneumoniae",
+          "Rhinovirus"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A previously healthy 32-year-old woman comes to the physician 8 months after her husband was killed in a car crash. Since that time, she has had a decreased appetite and difficulty falling asleep. She states that she is often sad and cries frequently. She has been rechecking the door lock five times before leaving her house and has to count exactly five pieces of toilet paper before she uses it. She says that she has always been a perfectionist but these urges and rituals are new. Pharmacotherapy should be targeted to which of the following neurotransmitters?",
+        "choices": [
+          "Dopamine",
+          "Glutamate",
+          "Norepinephrine",
+          "Serotonin"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 42-year-old man comes to the office for preoperative evaluation prior to undergoing adrenalectomy scheduled in 2 weeks. One month ago, he received care in the emergency department for pain over his right flank following a motor vehicle collision. At that time, blood pressure was 160/100 mm Hg and CT scan of the abdomen showed an incidental 10-cm left adrenal mass. Results of laboratory studies, including complete blood count, serum electrolyte concentrations, and liver function tests, were within the reference ranges. The patient otherwise had been healthy and had never been told that he had elevated blood pressure. He takes no medications. A follow-up visit in the office 2 weeks ago disclosed elevated urinary normetanephrine and metanephrine and plasma aldosterone concentrations. The patient was referred to a surgeon, who recommended the adrenalectomy. Today, vital signs are temperature 36.6°C (97.9°F), pulse 100/min, respirations 14/min, and blood pressure 170/95 mm Hg. Physical examination discloses no significant findings. Initial preoperative preparation should include treatment with which of the following?",
+        "choices": [
+          "Labetalol",
+          "A loading dose of potassium chloride",
+          "Nifedipine",
+          "Phenoxybenzamine"
+        ],
+        "answer_idx": 3
+      }
+    ],
+    "2": [
+      {
+        "question": "A previously healthy 32-year-old woman comes to the physician 8 months after her husband was killed in a car crash. Since that time, she has had a decreased appetite and difficulty falling asleep. She states that she is often sad and cries frequently. She has been rechecking the door lock five times before leaving her house and has to count exactly five pieces of toilet paper before she uses it. She says that she has always been a perfectionist but these urges and rituals are new. Pharmacotherapy should be targeted to which of the following neurotransmitters?",
+        "choices": [
+          "Dopamine",
+          "Glutamate",
+          "Norepinephrine",
+          "Serotonin"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 36-year-old male presents to the office with a 3-week history of low back pain. He denies any recent trauma but says that he climbs in and out of his truck numerous times a day for his job. Examination of the patient in the prone position reveals a deep sacral sulcus on the left, a posterior inferior lateral angle on the right, and a lumbosacral junction that springs freely on compression. The most likely diagnosis is",
+        "choices": [
+          "left-on-left sacral torsion",
+          "left-on-right sacral torsion",
+          "right unilateral sacral flexion",
+          "right-on-right sacral torsion"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 22-year-old male marathon runner presents to the office with the complaint of right-sided rib pain when he runs long distances. Physical examination reveals normal heart and lung findings and an exhalation dysfunction at ribs 4-5 on the right. Which of the following muscles or muscle groups will be most useful in correcting this dysfunction utilizing a direct method?",
+        "choices": [
+          "anterior scalene",
+          "latissimus dorsi",
+          "pectoralis minor",
+          "quadratus lumborum"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "A 42-year-old man comes to the office for preoperative evaluation prior to undergoing adrenalectomy scheduled in 2 weeks. One month ago, he received care in the emergency department for pain over his right flank following a motor vehicle collision. At that time, blood pressure was 160/100 mm Hg and CT scan of the abdomen showed an incidental 10-cm left adrenal mass. Results of laboratory studies, including complete blood count, serum electrolyte concentrations, and liver function tests, were within the reference ranges. The patient otherwise had been healthy and had never been told that he had elevated blood pressure. He takes no medications. A follow-up visit in the office 2 weeks ago disclosed elevated urinary normetanephrine and metanephrine and plasma aldosterone concentrations. The patient was referred to a surgeon, who recommended the adrenalectomy. Today, vital signs are temperature 36.6°C (97.9°F), pulse 100/min, respirations 14/min, and blood pressure 170/95 mm Hg. Physical examination discloses no significant findings. Initial preoperative preparation should include treatment with which of the following?",
+        "choices": [
+          "Labetalol",
+          "A loading dose of potassium chloride",
+          "Nifedipine",
+          "Phenoxybenzamine"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 44-year-old man comes to the office because of a 3-day history of sore throat, nonproductive cough, runny nose, and frontal headache. He says the headache is worse in the morning and ibuprofen does provide some relief. He has not had shortness of breath. Medical history is unremarkable. He takes no medications other than the ibuprofen for pain. Vital signs are temperature 37.4°C (99.4°F), pulse 88/min, respirations 18/min, and blood pressure 120/84 mm Hg. Examination of the nares shows erythematous mucous membranes. Examination of the throat shows erythema and follicular lymphoid hyperplasia on the posterior oropharynx. There is no palpable cervical adenopathy. Lungs are clear to auscultation. Which of the following is the most likely cause of this patient's symptoms?",
+        "choices": [
+          "Allergic rhinitis",
+          "Epstein-Barr virus",
+          "Mycoplasma pneumoniae",
+          "Rhinovirus"
+        ],
+        "answer_idx": 3
+      }
+    ],
+    "3": [
+      {
+        "question": "A 42-year-old man comes to the office for preoperative evaluation prior to undergoing adrenalectomy scheduled in 2 weeks. One month ago, he received care in the emergency department for pain over his right flank following a motor vehicle collision. At that time, blood pressure was 160/100 mm Hg and CT scan of the abdomen showed an incidental 10-cm left adrenal mass. Results of laboratory studies, including complete blood count, serum electrolyte concentrations, and liver function tests, were within the reference ranges. The patient otherwise had been healthy and had never been told that he had elevated blood pressure. He takes no medications. A follow-up visit in the office 2 weeks ago disclosed elevated urinary normetanephrine and metanephrine and plasma aldosterone concentrations. The patient was referred to a surgeon, who recommended the adrenalectomy. Today, vital signs are temperature 36.6°C (97.9°F), pulse 100/min, respirations 14/min, and blood pressure 170/95 mm Hg. Physical examination discloses no significant findings. Initial preoperative preparation should include treatment with which of the following?",
+        "choices": [
+          "Labetalol",
+          "A loading dose of potassium chloride",
+          "Nifedipine",
+          "Phenoxybenzamine"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 22-year-old male marathon runner presents to the office with the complaint of right-sided rib pain when he runs long distances. Physical examination reveals normal heart and lung findings and an exhalation dysfunction at ribs 4-5 on the right. Which of the following muscles or muscle groups will be most useful in correcting this dysfunction utilizing a direct method?",
+        "choices": [
+          "anterior scalene",
+          "latissimus dorsi",
+          "pectoralis minor",
+          "quadratus lumborum"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "A 36-year-old male presents to the office with a 3-week history of low back pain. He denies any recent trauma but says that he climbs in and out of his truck numerous times a day for his job. Examination of the patient in the prone position reveals a deep sacral sulcus on the left, a posterior inferior lateral angle on the right, and a lumbosacral junction that springs freely on compression. The most likely diagnosis is",
+        "choices": [
+          "left-on-left sacral torsion",
+          "left-on-right sacral torsion",
+          "right unilateral sacral flexion",
+          "right-on-right sacral torsion"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 44-year-old man comes to the office because of a 3-day history of sore throat, nonproductive cough, runny nose, and frontal headache. He says the headache is worse in the morning and ibuprofen does provide some relief. He has not had shortness of breath. Medical history is unremarkable. He takes no medications other than the ibuprofen for pain. Vital signs are temperature 37.4°C (99.4°F), pulse 88/min, respirations 18/min, and blood pressure 120/84 mm Hg. Examination of the nares shows erythematous mucous membranes. Examination of the throat shows erythema and follicular lymphoid hyperplasia on the posterior oropharynx. There is no palpable cervical adenopathy. Lungs are clear to auscultation. Which of the following is the most likely cause of this patient's symptoms?",
+        "choices": [
+          "Allergic rhinitis",
+          "Epstein-Barr virus",
+          "Mycoplasma pneumoniae",
+          "Rhinovirus"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A previously healthy 32-year-old woman comes to the physician 8 months after her husband was killed in a car crash. Since that time, she has had a decreased appetite and difficulty falling asleep. She states that she is often sad and cries frequently. She has been rechecking the door lock five times before leaving her house and has to count exactly five pieces of toilet paper before she uses it. She says that she has always been a perfectionist but these urges and rituals are new. Pharmacotherapy should be targeted to which of the following neurotransmitters?",
+        "choices": [
+          "Dopamine",
+          "Glutamate",
+          "Norepinephrine",
+          "Serotonin"
+        ],
+        "answer_idx": 3
+      }
+    ],
+    "4": [
+      {
+        "question": "A 36-year-old male presents to the office with a 3-week history of low back pain. He denies any recent trauma but says that he climbs in and out of his truck numerous times a day for his job. Examination of the patient in the prone position reveals a deep sacral sulcus on the left, a posterior inferior lateral angle on the right, and a lumbosacral junction that springs freely on compression. The most likely diagnosis is",
+        "choices": [
+          "left-on-left sacral torsion",
+          "left-on-right sacral torsion",
+          "right unilateral sacral flexion",
+          "right-on-right sacral torsion"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A previously healthy 32-year-old woman comes to the physician 8 months after her husband was killed in a car crash. Since that time, she has had a decreased appetite and difficulty falling asleep. She states that she is often sad and cries frequently. She has been rechecking the door lock five times before leaving her house and has to count exactly five pieces of toilet paper before she uses it. She says that she has always been a perfectionist but these urges and rituals are new. Pharmacotherapy should be targeted to which of the following neurotransmitters?",
+        "choices": [
+          "Dopamine",
+          "Glutamate",
+          "Norepinephrine",
+          "Serotonin"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 22-year-old male marathon runner presents to the office with the complaint of right-sided rib pain when he runs long distances. Physical examination reveals normal heart and lung findings and an exhalation dysfunction at ribs 4-5 on the right. Which of the following muscles or muscle groups will be most useful in correcting this dysfunction utilizing a direct method?",
+        "choices": [
+          "anterior scalene",
+          "latissimus dorsi",
+          "pectoralis minor",
+          "quadratus lumborum"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "A 44-year-old man comes to the office because of a 3-day history of sore throat, nonproductive cough, runny nose, and frontal headache. He says the headache is worse in the morning and ibuprofen does provide some relief. He has not had shortness of breath. Medical history is unremarkable. He takes no medications other than the ibuprofen for pain. Vital signs are temperature 37.4°C (99.4°F), pulse 88/min, respirations 18/min, and blood pressure 120/84 mm Hg. Examination of the nares shows erythematous mucous membranes. Examination of the throat shows erythema and follicular lymphoid hyperplasia on the posterior oropharynx. There is no palpable cervical adenopathy. Lungs are clear to auscultation. Which of the following is the most likely cause of this patient's symptoms?",
+        "choices": [
+          "Allergic rhinitis",
+          "Epstein-Barr virus",
+          "Mycoplasma pneumoniae",
+          "Rhinovirus"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "A 42-year-old man comes to the office for preoperative evaluation prior to undergoing adrenalectomy scheduled in 2 weeks. One month ago, he received care in the emergency department for pain over his right flank following a motor vehicle collision. At that time, blood pressure was 160/100 mm Hg and CT scan of the abdomen showed an incidental 10-cm left adrenal mass. Results of laboratory studies, including complete blood count, serum electrolyte concentrations, and liver function tests, were within the reference ranges. The patient otherwise had been healthy and had never been told that he had elevated blood pressure. He takes no medications. A follow-up visit in the office 2 weeks ago disclosed elevated urinary normetanephrine and metanephrine and plasma aldosterone concentrations. The patient was referred to a surgeon, who recommended the adrenalectomy. Today, vital signs are temperature 36.6°C (97.9°F), pulse 100/min, respirations 14/min, and blood pressure 170/95 mm Hg. Physical examination discloses no significant findings. Initial preoperative preparation should include treatment with which of the following?",
+        "choices": [
+          "Labetalol",
+          "A loading dose of potassium chloride",
+          "Nifedipine",
+          "Phenoxybenzamine"
+        ],
+        "answer_idx": 3
+      }
+    ]
+  },
+  "high_school_mathematics": {
+    "1": [
+      {
+        "question": "Five thousand dollars compounded annually at an $x\\%$ interest rate takes six years to double. At the same interest rate, how many years will it take $\\$300$ to grow to $\\$9600$?",
+        "choices": [
+          "12",
+          "1",
+          "30",
+          "5"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Ten students take a biology test and receive the following scores: 45, 55, 50, 70, 65, 80, 40, 90, 70, 85. What is the mean of the students’ test scores?",
+        "choices": [
+          "55",
+          "60",
+          "62",
+          "65"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Simplify and write the result with a rational denominator: $$\\sqrt{\\sqrt[3]{\\sqrt{\\frac{1}{729}}}}$$",
+        "choices": [
+          "\\frac{3\\sqrt{3}}{3}",
+          "\\frac{1}{3}",
+          "\\sqrt{3}",
+          "\\frac{\\sqrt{3}}{3}"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "The variable $x$ varies directly as the square of $y$, and $y$ varies directly as the cube of $z$. If $x$ equals $-16$ when $z$ equals 2, what is the value of $x$ when $z$ equals $\\frac{1}{2}$?",
+        "choices": [
+          "-1",
+          "16",
+          "-\\frac{1}{256}",
+          "\\frac{1}{16}"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)",
+        "choices": [
+          "3",
+          "15",
+          "6",
+          "5"
+        ],
+        "answer_idx": 1
+      }
+    ],
+    "2": [
+      {
+        "question": "The variable $x$ varies directly as the square of $y$, and $y$ varies directly as the cube of $z$. If $x$ equals $-16$ when $z$ equals 2, what is the value of $x$ when $z$ equals $\\frac{1}{2}$?",
+        "choices": [
+          "-1",
+          "16",
+          "-\\frac{1}{256}",
+          "\\frac{1}{16}"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Five thousand dollars compounded annually at an $x\\%$ interest rate takes six years to double. At the same interest rate, how many years will it take $\\$300$ to grow to $\\$9600$?",
+        "choices": [
+          "12",
+          "1",
+          "30",
+          "5"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Ten students take a biology test and receive the following scores: 45, 55, 50, 70, 65, 80, 40, 90, 70, 85. What is the mean of the students’ test scores?",
+        "choices": [
+          "55",
+          "60",
+          "62",
+          "65"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)",
+        "choices": [
+          "3",
+          "15",
+          "6",
+          "5"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Simplify and write the result with a rational denominator: $$\\sqrt{\\sqrt[3]{\\sqrt{\\frac{1}{729}}}}$$",
+        "choices": [
+          "\\frac{3\\sqrt{3}}{3}",
+          "\\frac{1}{3}",
+          "\\sqrt{3}",
+          "\\frac{\\sqrt{3}}{3}"
+        ],
+        "answer_idx": 3
+      }
+    ],
+    "3": [
+      {
+        "question": "Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)",
+        "choices": [
+          "3",
+          "15",
+          "6",
+          "5"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Ten students take a biology test and receive the following scores: 45, 55, 50, 70, 65, 80, 40, 90, 70, 85. What is the mean of the students’ test scores?",
+        "choices": [
+          "55",
+          "60",
+          "62",
+          "65"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Five thousand dollars compounded annually at an $x\\%$ interest rate takes six years to double. At the same interest rate, how many years will it take $\\$300$ to grow to $\\$9600$?",
+        "choices": [
+          "12",
+          "1",
+          "30",
+          "5"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Simplify and write the result with a rational denominator: $$\\sqrt{\\sqrt[3]{\\sqrt{\\frac{1}{729}}}}$$",
+        "choices": [
+          "\\frac{3\\sqrt{3}}{3}",
+          "\\frac{1}{3}",
+          "\\sqrt{3}",
+          "\\frac{\\sqrt{3}}{3}"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "The variable $x$ varies directly as the square of $y$, and $y$ varies directly as the cube of $z$. If $x$ equals $-16$ when $z$ equals 2, what is the value of $x$ when $z$ equals $\\frac{1}{2}$?",
+        "choices": [
+          "-1",
+          "16",
+          "-\\frac{1}{256}",
+          "\\frac{1}{16}"
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "4": [
+      {
+        "question": "Five thousand dollars compounded annually at an $x\\%$ interest rate takes six years to double. At the same interest rate, how many years will it take $\\$300$ to grow to $\\$9600$?",
+        "choices": [
+          "12",
+          "1",
+          "30",
+          "5"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "The variable $x$ varies directly as the square of $y$, and $y$ varies directly as the cube of $z$. If $x$ equals $-16$ when $z$ equals 2, what is the value of $x$ when $z$ equals $\\frac{1}{2}$?",
+        "choices": [
+          "-1",
+          "16",
+          "-\\frac{1}{256}",
+          "\\frac{1}{16}"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Ten students take a biology test and receive the following scores: 45, 55, 50, 70, 65, 80, 40, 90, 70, 85. What is the mean of the students’ test scores?",
+        "choices": [
+          "55",
+          "60",
+          "62",
+          "65"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Simplify and write the result with a rational denominator: $$\\sqrt{\\sqrt[3]{\\sqrt{\\frac{1}{729}}}}$$",
+        "choices": [
+          "\\frac{3\\sqrt{3}}{3}",
+          "\\frac{1}{3}",
+          "\\sqrt{3}",
+          "\\frac{\\sqrt{3}}{3}"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)",
+        "choices": [
+          "3",
+          "15",
+          "6",
+          "5"
+        ],
+        "answer_idx": 1
+      }
+    ]
+  },
+  "computer_security": {
+    "1": [
+      {
+        "question": "_____________ can modify data on your system – so that your system doesn’t run correctly or you can no longer access specific data, or it may even ask for ransom in order to give your access.",
+        "choices": [
+          "IM – Trojans",
+          "Backdoor Trojans",
+          "Trojan-Downloader",
+          "Ransom Trojan"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "The ____________ is anything which your search engine cannot search.",
+        "choices": [
+          "Haunted web",
+          "World Wide Web",
+          "Surface web",
+          "Deep Web"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Exploitation of the Heartbleed bug permits",
+        "choices": [
+          "overwriting cryptographic keys in memory",
+          "a kind of code injection",
+          "a read outside bounds of a buffer",
+          "a format string attack"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "What is ethical hacking?",
+        "choices": [
+          "\"Hacking\" ethics so they justify unintended selfish behavior",
+          "Hacking systems (e.g., during penetration testing) to expose vulnerabilities so they can be fixed, rather than exploited",
+          "Hacking into systems run by those whose ethics you disagree with",
+          "A slang term for rapid software development, e.g., as part of hackathons"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "SHA-1 has a message digest of",
+        "choices": [
+          "160 bits",
+          "512 bits",
+          "628 bits",
+          "820 bits"
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "2": [
+      {
+        "question": "What is ethical hacking?",
+        "choices": [
+          "\"Hacking\" ethics so they justify unintended selfish behavior",
+          "Hacking systems (e.g., during penetration testing) to expose vulnerabilities so they can be fixed, rather than exploited",
+          "Hacking into systems run by those whose ethics you disagree with",
+          "A slang term for rapid software development, e.g., as part of hackathons"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "_____________ can modify data on your system – so that your system doesn’t run correctly or you can no longer access specific data, or it may even ask for ransom in order to give your access.",
+        "choices": [
+          "IM – Trojans",
+          "Backdoor Trojans",
+          "Trojan-Downloader",
+          "Ransom Trojan"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "The ____________ is anything which your search engine cannot search.",
+        "choices": [
+          "Haunted web",
+          "World Wide Web",
+          "Surface web",
+          "Deep Web"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "SHA-1 has a message digest of",
+        "choices": [
+          "160 bits",
+          "512 bits",
+          "628 bits",
+          "820 bits"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Exploitation of the Heartbleed bug permits",
+        "choices": [
+          "overwriting cryptographic keys in memory",
+          "a kind of code injection",
+          "a read outside bounds of a buffer",
+          "a format string attack"
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "3": [
+      {
+        "question": "SHA-1 has a message digest of",
+        "choices": [
+          "160 bits",
+          "512 bits",
+          "628 bits",
+          "820 bits"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "The ____________ is anything which your search engine cannot search.",
+        "choices": [
+          "Haunted web",
+          "World Wide Web",
+          "Surface web",
+          "Deep Web"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "_____________ can modify data on your system – so that your system doesn’t run correctly or you can no longer access specific data, or it may even ask for ransom in order to give your access.",
+        "choices": [
+          "IM – Trojans",
+          "Backdoor Trojans",
+          "Trojan-Downloader",
+          "Ransom Trojan"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Exploitation of the Heartbleed bug permits",
+        "choices": [
+          "overwriting cryptographic keys in memory",
+          "a kind of code injection",
+          "a read outside bounds of a buffer",
+          "a format string attack"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "What is ethical hacking?",
+        "choices": [
+          "\"Hacking\" ethics so they justify unintended selfish behavior",
+          "Hacking systems (e.g., during penetration testing) to expose vulnerabilities so they can be fixed, rather than exploited",
+          "Hacking into systems run by those whose ethics you disagree with",
+          "A slang term for rapid software development, e.g., as part of hackathons"
+        ],
+        "answer_idx": 1
+      }
+    ],
+    "4": [
+      {
+        "question": "_____________ can modify data on your system – so that your system doesn’t run correctly or you can no longer access specific data, or it may even ask for ransom in order to give your access.",
+        "choices": [
+          "IM – Trojans",
+          "Backdoor Trojans",
+          "Trojan-Downloader",
+          "Ransom Trojan"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "What is ethical hacking?",
+        "choices": [
+          "\"Hacking\" ethics so they justify unintended selfish behavior",
+          "Hacking systems (e.g., during penetration testing) to expose vulnerabilities so they can be fixed, rather than exploited",
+          "Hacking into systems run by those whose ethics you disagree with",
+          "A slang term for rapid software development, e.g., as part of hackathons"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "The ____________ is anything which your search engine cannot search.",
+        "choices": [
+          "Haunted web",
+          "World Wide Web",
+          "Surface web",
+          "Deep Web"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Exploitation of the Heartbleed bug permits",
+        "choices": [
+          "overwriting cryptographic keys in memory",
+          "a kind of code injection",
+          "a read outside bounds of a buffer",
+          "a format string attack"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "SHA-1 has a message digest of",
+        "choices": [
+          "160 bits",
+          "512 bits",
+          "628 bits",
+          "820 bits"
+        ],
+        "answer_idx": 0
+      }
+    ]
+  },
+  "philosophy": {
+    "1": [
+      {
+        "question": "According to Moore’s “ideal utilitarianism,” the right action is the one that brings about the greatest amount of:",
+        "choices": [
+          "pleasure.",
+          "happiness.",
+          "good.",
+          "virtue."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "The study of reality in the broadest sense, an inquiry into the elemental nature of the universe and the things in it, is known as _____.",
+        "choices": [
+          "metaphysics",
+          "epistemology",
+          "quantum physics",
+          "axiology"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Before Tolstoy's Christian conversion, what was his perspective on the meaning of life?",
+        "choices": [
+          "optimist",
+          "satisfied",
+          "nominally religious",
+          "pessimist"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "According to d'Holbach, people always act according to _____.",
+        "choices": [
+          "free choices",
+          "dictates of the soul",
+          "necessary natural laws",
+          "undetermined will"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Psychological egoism is:",
+        "choices": [
+          "an ethical theory about how we ought to behave.",
+          "a generalization concerning the way people tend to behave.",
+          "a claim about human nature and the ways people are capable of behaving.",
+          "none of the above."
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "2": [
+      {
+        "question": "According to d'Holbach, people always act according to _____.",
+        "choices": [
+          "free choices",
+          "dictates of the soul",
+          "necessary natural laws",
+          "undetermined will"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "According to Moore’s “ideal utilitarianism,” the right action is the one that brings about the greatest amount of:",
+        "choices": [
+          "pleasure.",
+          "happiness.",
+          "good.",
+          "virtue."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "The study of reality in the broadest sense, an inquiry into the elemental nature of the universe and the things in it, is known as _____.",
+        "choices": [
+          "metaphysics",
+          "epistemology",
+          "quantum physics",
+          "axiology"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Psychological egoism is:",
+        "choices": [
+          "an ethical theory about how we ought to behave.",
+          "a generalization concerning the way people tend to behave.",
+          "a claim about human nature and the ways people are capable of behaving.",
+          "none of the above."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Before Tolstoy's Christian conversion, what was his perspective on the meaning of life?",
+        "choices": [
+          "optimist",
+          "satisfied",
+          "nominally religious",
+          "pessimist"
+        ],
+        "answer_idx": 3
+      }
+    ],
+    "3": [
+      {
+        "question": "Psychological egoism is:",
+        "choices": [
+          "an ethical theory about how we ought to behave.",
+          "a generalization concerning the way people tend to behave.",
+          "a claim about human nature and the ways people are capable of behaving.",
+          "none of the above."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "The study of reality in the broadest sense, an inquiry into the elemental nature of the universe and the things in it, is known as _____.",
+        "choices": [
+          "metaphysics",
+          "epistemology",
+          "quantum physics",
+          "axiology"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "According to Moore’s “ideal utilitarianism,” the right action is the one that brings about the greatest amount of:",
+        "choices": [
+          "pleasure.",
+          "happiness.",
+          "good.",
+          "virtue."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Before Tolstoy's Christian conversion, what was his perspective on the meaning of life?",
+        "choices": [
+          "optimist",
+          "satisfied",
+          "nominally religious",
+          "pessimist"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "According to d'Holbach, people always act according to _____.",
+        "choices": [
+          "free choices",
+          "dictates of the soul",
+          "necessary natural laws",
+          "undetermined will"
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "4": [
+      {
+        "question": "According to Moore’s “ideal utilitarianism,” the right action is the one that brings about the greatest amount of:",
+        "choices": [
+          "pleasure.",
+          "happiness.",
+          "good.",
+          "virtue."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "According to d'Holbach, people always act according to _____.",
+        "choices": [
+          "free choices",
+          "dictates of the soul",
+          "necessary natural laws",
+          "undetermined will"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "The study of reality in the broadest sense, an inquiry into the elemental nature of the universe and the things in it, is known as _____.",
+        "choices": [
+          "metaphysics",
+          "epistemology",
+          "quantum physics",
+          "axiology"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Before Tolstoy's Christian conversion, what was his perspective on the meaning of life?",
+        "choices": [
+          "optimist",
+          "satisfied",
+          "nominally religious",
+          "pessimist"
+        ],
+        "answer_idx": 3
+      },
+      {
+        "question": "Psychological egoism is:",
+        "choices": [
+          "an ethical theory about how we ought to behave.",
+          "a generalization concerning the way people tend to behave.",
+          "a claim about human nature and the ways people are capable of behaving.",
+          "none of the above."
+        ],
+        "answer_idx": 2
+      }
+    ]
+  },
+  "clinical_knowledge": {
+    "1": [
+      {
+        "question": "What is the difference between a male and a female catheter?",
+        "choices": [
+          "Male and female catheters are different colours.",
+          "Male catheters are longer than female catheters.",
+          "Male catheters are bigger than female catheters.",
+          "Female catheters are longer than male catheters."
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Glycolysis is the name given to the pathway involving the conversion of:",
+        "choices": [
+          "glycogen to glucose-1-phosphate.",
+          "glycogen or glucose to fructose.",
+          "glycogen or glucose to pyruvate or lactate.",
+          "glycogen or glucose to pyruvate or acetyl CoA."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How many attempts should you make to cannulate a patient before passing the job on to a senior colleague, according to the medical knowledge of 2020?",
+        "choices": [
+          "4",
+          "3",
+          "2",
+          "1"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "In the assessment of the hand function which of the following is true?",
+        "choices": [
+          "Abduction of the thumb is supplied by spinal root T2",
+          "Opposition of the thumb by opponens policis is supplied by spinal root T1",
+          "Finger adduction is supplied by the median nerve",
+          "Finger abduction is mediated by the palmar interossei"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "The energy for all forms of muscle contraction is provided by:",
+        "choices": [
+          "ATP.",
+          "ADP.",
+          "phosphocreatine.",
+          "oxidative phosphorylation."
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "2": [
+      {
+        "question": "In the assessment of the hand function which of the following is true?",
+        "choices": [
+          "Abduction of the thumb is supplied by spinal root T2",
+          "Opposition of the thumb by opponens policis is supplied by spinal root T1",
+          "Finger adduction is supplied by the median nerve",
+          "Finger abduction is mediated by the palmar interossei"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "What is the difference between a male and a female catheter?",
+        "choices": [
+          "Male and female catheters are different colours.",
+          "Male catheters are longer than female catheters.",
+          "Male catheters are bigger than female catheters.",
+          "Female catheters are longer than male catheters."
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Glycolysis is the name given to the pathway involving the conversion of:",
+        "choices": [
+          "glycogen to glucose-1-phosphate.",
+          "glycogen or glucose to fructose.",
+          "glycogen or glucose to pyruvate or lactate.",
+          "glycogen or glucose to pyruvate or acetyl CoA."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "The energy for all forms of muscle contraction is provided by:",
+        "choices": [
+          "ATP.",
+          "ADP.",
+          "phosphocreatine.",
+          "oxidative phosphorylation."
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How many attempts should you make to cannulate a patient before passing the job on to a senior colleague, according to the medical knowledge of 2020?",
+        "choices": [
+          "4",
+          "3",
+          "2",
+          "1"
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "3": [
+      {
+        "question": "The energy for all forms of muscle contraction is provided by:",
+        "choices": [
+          "ATP.",
+          "ADP.",
+          "phosphocreatine.",
+          "oxidative phosphorylation."
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Glycolysis is the name given to the pathway involving the conversion of:",
+        "choices": [
+          "glycogen to glucose-1-phosphate.",
+          "glycogen or glucose to fructose.",
+          "glycogen or glucose to pyruvate or lactate.",
+          "glycogen or glucose to pyruvate or acetyl CoA."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "What is the difference between a male and a female catheter?",
+        "choices": [
+          "Male and female catheters are different colours.",
+          "Male catheters are longer than female catheters.",
+          "Male catheters are bigger than female catheters.",
+          "Female catheters are longer than male catheters."
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "How many attempts should you make to cannulate a patient before passing the job on to a senior colleague, according to the medical knowledge of 2020?",
+        "choices": [
+          "4",
+          "3",
+          "2",
+          "1"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "In the assessment of the hand function which of the following is true?",
+        "choices": [
+          "Abduction of the thumb is supplied by spinal root T2",
+          "Opposition of the thumb by opponens policis is supplied by spinal root T1",
+          "Finger adduction is supplied by the median nerve",
+          "Finger abduction is mediated by the palmar interossei"
+        ],
+        "answer_idx": 1
+      }
+    ],
+    "4": [
+      {
+        "question": "What is the difference between a male and a female catheter?",
+        "choices": [
+          "Male and female catheters are different colours.",
+          "Male catheters are longer than female catheters.",
+          "Male catheters are bigger than female catheters.",
+          "Female catheters are longer than male catheters."
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "In the assessment of the hand function which of the following is true?",
+        "choices": [
+          "Abduction of the thumb is supplied by spinal root T2",
+          "Opposition of the thumb by opponens policis is supplied by spinal root T1",
+          "Finger adduction is supplied by the median nerve",
+          "Finger abduction is mediated by the palmar interossei"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "Glycolysis is the name given to the pathway involving the conversion of:",
+        "choices": [
+          "glycogen to glucose-1-phosphate.",
+          "glycogen or glucose to fructose.",
+          "glycogen or glucose to pyruvate or lactate.",
+          "glycogen or glucose to pyruvate or acetyl CoA."
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "How many attempts should you make to cannulate a patient before passing the job on to a senior colleague, according to the medical knowledge of 2020?",
+        "choices": [
+          "4",
+          "3",
+          "2",
+          "1"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "The energy for all forms of muscle contraction is provided by:",
+        "choices": [
+          "ATP.",
+          "ADP.",
+          "phosphocreatine.",
+          "oxidative phosphorylation."
+        ],
+        "answer_idx": 0
+      }
+    ]
+  },
+  "international_law": {
+    "1": [
+      {
+        "question": "What is the judge ad hoc?",
+        "choices": [
+          "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
+          "Judge ad hoc is the member of the bench of the ICJ with a casting vote",
+          "Judge ad hoc is a surrogate judge, in case a judge is disqualified or passes away",
+          "Judge ad hoc is the judge that each party will always nominate in every contentious case"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How the consent to be bound of a State may be expressed?",
+        "choices": [
+          "The consent of a State to be bound is expressed only by ratification",
+          "The consent of a state to be bound by a treaty may be expressed by signature, ratification, acceptance, approval or accession",
+          "The consent of a State to be bound is expressed by signature",
+          "The consent of a State to be bound is expressed by whatever means they choose"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "When 'consent' can serve as a circumstance precluding the wrongfulness of a State conduct?",
+        "choices": [
+          "Consent can serve as a circumstance precluding the wrongfulness whenever it is given",
+          "Consent can never serve as a circumstance precluding wrongfulness",
+          "Consent can serve as a circumstance precluding wrongfulness, provided the consent is valid and to the extent that the conduct remains within the limits of the consent given",
+          "Consent can always serve as a circumstance precluding wrongfulness, no matter which organ of the State gives it"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Would a reservation to the definition of torture in the ICCPR be acceptable in contemporary practice?",
+        "choices": [
+          "This is an acceptable reservation if the reserving country's legislation employs a different definition",
+          "This is an unacceptable reservation because it contravenes the object and purpose of the ICCPR",
+          "This is an unacceptable reservation because the definition of torture in the ICCPR is consistent with customary international law",
+          "This is an acceptable reservation because under general international law States have the right to enter reservations to treaties"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "What types of force does Article 2(4) of the UN Charter prohibit?",
+        "choices": [
+          "Article 2(4) encompasses only armed force",
+          "Article 2(4) encompasses all types of force, including sanctions",
+          "Article 2(4) encompasses all interference in the domestic affairs of States",
+          "Article 2(4) encompasses force directed only against a State's territorial integrity"
+        ],
+        "answer_idx": 0
+      }
+    ],
+    "2": [
+      {
+        "question": "Would a reservation to the definition of torture in the ICCPR be acceptable in contemporary practice?",
+        "choices": [
+          "This is an acceptable reservation if the reserving country's legislation employs a different definition",
+          "This is an unacceptable reservation because it contravenes the object and purpose of the ICCPR",
+          "This is an unacceptable reservation because the definition of torture in the ICCPR is consistent with customary international law",
+          "This is an acceptable reservation because under general international law States have the right to enter reservations to treaties"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "What is the judge ad hoc?",
+        "choices": [
+          "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
+          "Judge ad hoc is the member of the bench of the ICJ with a casting vote",
+          "Judge ad hoc is a surrogate judge, in case a judge is disqualified or passes away",
+          "Judge ad hoc is the judge that each party will always nominate in every contentious case"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How the consent to be bound of a State may be expressed?",
+        "choices": [
+          "The consent of a State to be bound is expressed only by ratification",
+          "The consent of a state to be bound by a treaty may be expressed by signature, ratification, acceptance, approval or accession",
+          "The consent of a State to be bound is expressed by signature",
+          "The consent of a State to be bound is expressed by whatever means they choose"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "What types of force does Article 2(4) of the UN Charter prohibit?",
+        "choices": [
+          "Article 2(4) encompasses only armed force",
+          "Article 2(4) encompasses all types of force, including sanctions",
+          "Article 2(4) encompasses all interference in the domestic affairs of States",
+          "Article 2(4) encompasses force directed only against a State's territorial integrity"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "When 'consent' can serve as a circumstance precluding the wrongfulness of a State conduct?",
+        "choices": [
+          "Consent can serve as a circumstance precluding the wrongfulness whenever it is given",
+          "Consent can never serve as a circumstance precluding wrongfulness",
+          "Consent can serve as a circumstance precluding wrongfulness, provided the consent is valid and to the extent that the conduct remains within the limits of the consent given",
+          "Consent can always serve as a circumstance precluding wrongfulness, no matter which organ of the State gives it"
+        ],
+        "answer_idx": 2
+      }
+    ],
+    "3": [
+      {
+        "question": "What types of force does Article 2(4) of the UN Charter prohibit?",
+        "choices": [
+          "Article 2(4) encompasses only armed force",
+          "Article 2(4) encompasses all types of force, including sanctions",
+          "Article 2(4) encompasses all interference in the domestic affairs of States",
+          "Article 2(4) encompasses force directed only against a State's territorial integrity"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "How the consent to be bound of a State may be expressed?",
+        "choices": [
+          "The consent of a State to be bound is expressed only by ratification",
+          "The consent of a state to be bound by a treaty may be expressed by signature, ratification, acceptance, approval or accession",
+          "The consent of a State to be bound is expressed by signature",
+          "The consent of a State to be bound is expressed by whatever means they choose"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "What is the judge ad hoc?",
+        "choices": [
+          "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
+          "Judge ad hoc is the member of the bench of the ICJ with a casting vote",
+          "Judge ad hoc is a surrogate judge, in case a judge is disqualified or passes away",
+          "Judge ad hoc is the judge that each party will always nominate in every contentious case"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "When 'consent' can serve as a circumstance precluding the wrongfulness of a State conduct?",
+        "choices": [
+          "Consent can serve as a circumstance precluding the wrongfulness whenever it is given",
+          "Consent can never serve as a circumstance precluding wrongfulness",
+          "Consent can serve as a circumstance precluding wrongfulness, provided the consent is valid and to the extent that the conduct remains within the limits of the consent given",
+          "Consent can always serve as a circumstance precluding wrongfulness, no matter which organ of the State gives it"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "Would a reservation to the definition of torture in the ICCPR be acceptable in contemporary practice?",
+        "choices": [
+          "This is an acceptable reservation if the reserving country's legislation employs a different definition",
+          "This is an unacceptable reservation because it contravenes the object and purpose of the ICCPR",
+          "This is an unacceptable reservation because the definition of torture in the ICCPR is consistent with customary international law",
+          "This is an acceptable reservation because under general international law States have the right to enter reservations to treaties"
+        ],
+        "answer_idx": 1
+      }
+    ],
+    "4": [
+      {
+        "question": "What is the judge ad hoc?",
+        "choices": [
+          "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
+          "Judge ad hoc is the member of the bench of the ICJ with a casting vote",
+          "Judge ad hoc is a surrogate judge, in case a judge is disqualified or passes away",
+          "Judge ad hoc is the judge that each party will always nominate in every contentious case"
+        ],
+        "answer_idx": 0
+      },
+      {
+        "question": "Would a reservation to the definition of torture in the ICCPR be acceptable in contemporary practice?",
+        "choices": [
+          "This is an acceptable reservation if the reserving country's legislation employs a different definition",
+          "This is an unacceptable reservation because it contravenes the object and purpose of the ICCPR",
+          "This is an unacceptable reservation because the definition of torture in the ICCPR is consistent with customary international law",
+          "This is an acceptable reservation because under general international law States have the right to enter reservations to treaties"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "How the consent to be bound of a State may be expressed?",
+        "choices": [
+          "The consent of a State to be bound is expressed only by ratification",
+          "The consent of a state to be bound by a treaty may be expressed by signature, ratification, acceptance, approval or accession",
+          "The consent of a State to be bound is expressed by signature",
+          "The consent of a State to be bound is expressed by whatever means they choose"
+        ],
+        "answer_idx": 1
+      },
+      {
+        "question": "When 'consent' can serve as a circumstance precluding the wrongfulness of a State conduct?",
+        "choices": [
+          "Consent can serve as a circumstance precluding the wrongfulness whenever it is given",
+          "Consent can never serve as a circumstance precluding wrongfulness",
+          "Consent can serve as a circumstance precluding wrongfulness, provided the consent is valid and to the extent that the conduct remains within the limits of the consent given",
+          "Consent can always serve as a circumstance precluding wrongfulness, no matter which organ of the State gives it"
+        ],
+        "answer_idx": 2
+      },
+      {
+        "question": "What types of force does Article 2(4) of the UN Charter prohibit?",
+        "choices": [
+          "Article 2(4) encompasses only armed force",
+          "Article 2(4) encompasses all types of force, including sanctions",
+          "Article 2(4) encompasses all interference in the domestic affairs of States",
+          "Article 2(4) encompasses force directed only against a State's territorial integrity"
+        ],
+        "answer_idx": 0
+      }
+    ]
+  }
+}

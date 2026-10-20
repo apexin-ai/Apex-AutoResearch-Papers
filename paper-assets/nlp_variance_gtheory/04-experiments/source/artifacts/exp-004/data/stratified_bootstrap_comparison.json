@@ -1,0 +1,105 @@
+{
+  "benchmark": "mmlu",
+  "n_subjects": 10,
+  "subjects": [
+    "abstract_algebra",
+    "clinical_knowledge",
+    "college_physics",
+    "computer_security",
+    "high_school_mathematics",
+    "international_law",
+    "philosophy",
+    "professional_medicine",
+    "us_foreign_policy",
+    "world_religions"
+  ],
+  "items_per_subject": 20,
+  "n_bootstrap": 1000,
+  "seed": 42,
+  "point_estimates": {
+    "g_item": 0.896176,
+    "item_id_pct": 37.8812,
+    "total_variance": 0.230226254
+  },
+  "simple": {
+    "g_item": {
+      "value": 0.896176,
+      "ci_lower": 0.874248,
+      "ci_upper": 0.913732,
+      "ci_width": 0.039484
+    },
+    "item_id_pct": {
+      "value": 37.8812,
+      "ci_lower": 33.0499,
+      "ci_upper": 42.4259,
+      "ci_width": 9.376
+    }
+  },
+  "stratified": {
+    "g_item": {
+      "value": 0.896176,
+      "ci_lower": 0.873799,
+      "ci_upper": 0.914844,
+      "ci_width": 0.041045
+    },
+    "item_id_pct": {
+      "value": 37.8812,
+      "ci_lower": 32.91,
+      "ci_upper": 42.5719,
+      "ci_width": 9.6619
+    }
+  },
+  "comparison": {
+    "g_item_ci_width_change_pct": 3.9535,
+    "item_id_pct_ci_width_change_pct": 3.0493,
+    "all_components": {
+      "item_id": {
+        "simple_ci_width": 9.376,
+        "stratified_ci_width": 9.6619,
+        "change_pct": 3.0493
+      },
+      "model:item_id": {
+        "simple_ci_width": 6.3916,
+        "stratified_ci_width": 6.3578,
+        "change_pct": -0.5288
+      },
+      "residual": {
+        "simple_ci_width": 4.1771,
+        "stratified_ci_width": 4.2257,
+        "change_pct": 1.1635
+      },
+      "model": {
+        "simple_ci_width": 2.6035,
+        "stratified_ci_width": 2.3326,
+        "change_pct": -10.4052
+      },
+      "model:prompt_template": {
+        "simple_ci_width": 0.8728,
+        "stratified_ci_width": 0.7656,
+        "change_pct": -12.2823
+      },
+      "prompt_template:item_id": {
+        "simple_ci_width": 0.2407,
+        "stratified_ci_width": 0.233,
+        "change_pct": -3.199
+      },
+      "temperature:item_id": {
+        "simple_ci_width": 0.3789,
+        "stratified_ci_width": 0.3943,
+        "change_pct": 4.0644
+      },
+      "seed:item_id": {
+        "simple_ci_width": 0.2394,
+        "stratified_ci_width": 0.2083,
+        "change_pct": -12.9908
+      },
+      "ordering:item_id": {
+        "simple_ci_width": 0.1322,
+        "stratified_ci_width": 0.1251,
+        "change_pct": -5.3707
+      }
+    },
+    "conclusion": "stratification has minimal impact on CI (<10% change)"
+  },
+  "runtime_seconds": 109.3
+}

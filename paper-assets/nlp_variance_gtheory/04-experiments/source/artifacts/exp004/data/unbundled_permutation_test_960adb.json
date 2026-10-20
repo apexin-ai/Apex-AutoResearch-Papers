@@ -1,0 +1,38 @@
+{
+  "unbundled_item_id_pct": {
+    "mmlu": 37.9,
+    "arc": 37.9,
+    "hellaswag": 34.3,
+    "gsm8k": 16.9,
+    "math": 24.0
+  },
+  "permutation_test": {
+    "observed_diff": 16.25,
+    "n_permutations": 10,
+    "n_extreme": 1,
+    "p_value": 0.1,
+    "all_permutation_diffs": [
+      16.25,
+      12.8333,
+      9.8333,
+      9.8333,
+      7.6667,
+      4.6667,
+      4.6667,
+      1.75,
+      1.25,
+      1.25
+    ]
+  },
+  "cohens_d": {
+    "point": 4.838,
+    "ci_item_level": [
+      2.3211,
+      8.1949
+    ],
+    "n_bootstrap": 10000,
+    "mc_mean": 36.7,
+    "ff_mean": 20.45,
+    "s_pooled": 3.3588
+  }
+}

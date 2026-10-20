@@ -1,0 +1,22 @@
+{
+  "pairs": [
+    {
+      "model_a": "Qwen2.5-7B",
+      "model_b": "Qwen2.5-72B",
+      "pearson_r": 0.428,
+      "pearson_p": 2.58e-10,
+      "spearman_rho": 0.571,
+      "spearman_p": 1.06e-18,
+      "n_items": 200
+    },
+    {
+      "model_a": "Qwen2.5-3B",
+      "model_b": "Qwen2.5-72B",
+      "pearson_r": 0.4498,
+      "pearson_p": 2.35e-11,
+      "spearman_rho": 0.5086,
+      "spearman_p": 1.49e-14,
+      "n_items": 200
+    }
+  ]
+}

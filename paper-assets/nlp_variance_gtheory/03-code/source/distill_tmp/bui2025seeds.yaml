@@ -1,0 +1,46 @@
+paper_key: "bui2025seeds"
+title: "Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning Large Language Models"
+venue: "IJCNLP 2025"
+full_text_available: false
+
+research:
+  baselines: [fine-tuned LLMs (specific models unspecified in abstract)]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+    - {name: "consistency (prediction stability)", direction: "higher_better"}
+  datasets:
+    - {name: "GLUE", size: "standard"}
+    - {name: "SuperGLUE", size: "standard"}
+  ablation_dimensions: [random_seed, macro_vs_micro_level]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "fine-tuning variance / seed sensitivity"
+
+positioning:
+  core_claim: "Random seeds cause significant variance at both macro (accuracy/F1 fluctuation) and micro (individual prediction instability) levels during LLM fine-tuning"
+  key_results: "Significant variance at both levels (specific numbers from abstract only)"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "N/A"
+  hook: "N/A"
+  tension: "N/A"
+  key_insight: "N/A"
+  argument_chain: "N/A"
+  contribution_framing: "N/A"
+  intro_structure: "N/A"
+  notable_technique: "N/A"
+
+figures:
+  figure_count: 0
+  figure1: {type: "N/A", description: "N/A", narrative_role: "N/A", design_elements: [], visual_style: "N/A"}
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: 0
+  main_result_table: {table_id: "N/A", row_axis: "N/A", col_axis: "N/A", row_organization: "N/A", col_organization: "N/A", highlight_strategy: "N/A", statistical_reporting: "N/A", num_baselines: 0, design_note: "N/A"}
+  ablation_tables: []
+  supplementary_tables: {in_appendix: false, content: "N/A", reason: "N/A"}

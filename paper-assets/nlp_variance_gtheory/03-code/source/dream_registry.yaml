@@ -1,0 +1,182 @@
+dreams:
+  dream_20260520T190053:
+    dream_id: dream_20260520T190053
+    project: nlp_variance_gtheory
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key questions: (1) Is the "item dominance" finding (58.4%) novel enough
+      for AAAI, or will reviewers dismiss it as obvious? (2) Does the separability
+      result (direct infra×method <0.5%) constitute a strong enough contribution,
+      or is it a null result? (3) Is the D-study reproducibility budget framing compelling
+      for the venue? (4) float32 engine confound — does it undermine credibility?
+      (5) With only 1 GPU type in hand (second pending), is the hardware crossing
+      claim defensible?'
+    what_if: []
+    pid: 200100
+    chat_id: oc_117593098ee414309ced84ea501938c9
+    card_message_id: om_x100b6fd40093dca8b2123c7a4365a77
+    started_at: '2026-05-20T19:00:53+00:00'
+    updated_at: '2026-05-20T19:52:01+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 8ebeb3e753a19ac0895376147128ab78231673922deddf07cd87ed7407b39514
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260520T222113:
+    dream_id: dream_20260520T222113
+    project: nlp_variance_gtheory
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Re-dream after major framing revision addressing all 9 structural issues
+      from first dream. Key changes: (1) infrastructure crossing reframed as confirmatory
+      null, not primary novelty; (2) cross-benchmark variance gradient is now the
+      primary finding; (3) item dominance acknowledged as psychometrically expected,
+      contribution is quantification+gradient; (4) model treated as crossed facet
+      in analysis; (5) bibliography expanded to 25+ refs; (6) 4 figures planned; (7)
+      "fully crossed" qualified; (8) "diagnostic tool" either substantiated with code
+      release or reframed. Verify whether these framing changes address the weak reject
+      scores from first dream.'
+    what_if: []
+    pid: 218666
+    chat_id: oc_117593098ee414309ced84ea501938c9
+    card_message_id: om_x100b6fd7736fcca0b2e1158ff486830
+    started_at: '2026-05-20T22:21:13+00:00'
+    updated_at: '2026-05-20T23:54:48+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 1b76ae542c0566cfad10ff532635640126a54933dffca06b17f2abec130ffb80
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T032813:
+    dream_id: dream_20260521T032813
+    project: nlp_variance_gtheory
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 245606
+    chat_id: oc_117593098ee414309ced84ea501938c9
+    card_message_id: om_x100b6fd3f2286cecb375d50c4152613
+    started_at: '2026-05-21T03:28:13+00:00'
+    updated_at: '2026-05-21T04:36:06+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: db5bddb38c1e2b1299aac02f669c68d3605f2346e4982cda6889d2028c4b42df
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T044739:
+    dream_id: dream_20260521T044739
+    project: nlp_variance_gtheory
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Re-dream #3 after major improvements: (1) Cross-model G-study reveals
+      model×item=26.2% as second-largest source, G collapses 0.611→0.073 — strongest
+      finding so far; (2) 6 methodological robustness analyses completed (Bernoulli
+      non-artifact, fixed/random insensitive, bootstrap=jackknife, temperature stratification,
+      D-study verified, IRT vs G-theory 4× gap); (3) Added 4th contribution: practitioner
+      toolkit (open-source G-theory pipeline + D-study calculator); (4) 5 concrete
+      figures planned; (5) 9 Methodological Defenses (MD1-MD9) explicitly addressing
+      every Dream #2 reviewer concern; (6) Claim 1 upgraded from "item dominance"
+      to "model-conditional item dominance" based on actual 2-model data; (7) IRT
+      vs G-theory comparison as standalone contribution. Key question: do these changes
+      push median above weak accept and worst above borderline?'
+    what_if: []
+    pid: 255692
+    chat_id: oc_117593098ee414309ced84ea501938c9
+    card_message_id: om_x100b6fdca82d1cf8b161d857eb4cb57
+    started_at: '2026-05-21T04:47:39+00:00'
+    updated_at: '2026-05-21T06:09:58+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d96444ffa1bd4c3a7b8d4c3e3c6fdc7896284eebf39fc383244486585df5320d
+    review_quality:
+      best: simulated
+      worst: simulated
+  dream_20260521T075006:
+    dream_id: dream_20260521T075006
+    project: nlp_variance_gtheory
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Re-dream #4 after: (1) Actual 4-model data now available — item_id=42.1%,
+      model×item=33.6%, G_item=0.820, D-study prediction validated Δ=0.004; (2) Major
+      framing revision per D006: recentered on model×item + IRT comparison as primary
+      contributions, infrastructure→"precision separability" secondary, positioned
+      as empirical extension of Mesting not new framework, removed unsupported "first"
+      claims; (3) Two new robustness analyses: BF16-vs-FP16 shows precision→0.0006%
+      without FP32, leave-one-model-out G_item spread=0.023; (4) 6 new bibliography
+      entries addressing all-tier missing related work (Sclar''24, Kunievsky''25,
+      Bui''25, binary G-theory literature); (5) Fine-tuning downgraded to Discussion
+      observation; (6) Practitioner toolkit now concretely defined. Key question:
+      do these changes push best≥7/10, median≥borderline accept, worst≥5/10?'
+    what_if: []
+    pid: 280882
+    chat_id: oc_117593098ee414309ced84ea501938c9
+    card_message_id: om_x100b6fdfdc3c148cb141a81936ca00f
+    started_at: '2026-05-21T07:50:06+00:00'
+    updated_at: '2026-05-21T08:56:47+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: c8639cfd7624e03f5541f0d7d30eaabefbe2d68f2e500373ff0ab51a4d4cdafb
+    review_quality:
+      median: simulated
+      worst: simulated
+  dream_20260521T122449:
+    dream_id: dream_20260521T122449
+    project: nlp_variance_gtheory
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 323051
+    chat_id: oc_117593098ee414309ced84ea501938c9
+    card_message_id: om_x100b6fdbd7ece4a8b4c848b67cda3e4
+    started_at: '2026-05-21T12:24:49+00:00'
+    updated_at: '2026-05-21T13:53:22+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 04a39c0b063446037efd1dd0b37cca13a1350b8548ce7c5e7e7d3fb8c9f20dc6
+    review_quality:
+      best: simulated
+      median: simulated

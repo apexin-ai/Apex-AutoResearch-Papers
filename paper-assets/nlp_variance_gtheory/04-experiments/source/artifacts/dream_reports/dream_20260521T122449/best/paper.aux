@@ -1,0 +1,141 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sclar2024quantifying}
+\citation{yuan2025llminference}
+\citation{thinkingmachines2025}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{mesting2026reliability}
+\citation{lalor2019learning,polo2024tinybenchmarks}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{bouthillier2021accounting}
+\citation{henderson2018deep}
+\citation{dodge2020finetuning}
+\citation{sellam2022multberts}
+\citation{dehghani2021benchmark}
+\citation{sclar2024quantifying}
+\citation{hua2025emnlp}
+\citation{yuan2025llminference}
+\citation{brittlebench2026}
+\citation{messina2026background}
+\citation{kunievsky2025decomposition}
+\citation{mesting2026reliability}
+\citation{mesting2026reliability}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance in ML evaluation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM evaluation variance.}{2}{section*.2}\protected@file@percent }
+\citation{lalor2019learning}
+\citation{rodriguez2021evaluation}
+\citation{vania2021comparing}
+\citation{polo2024tinybenchmarks}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{brennan2001generalizability}
+\citation{hendrycks2021measuring}
+\citation{clark2018think}
+\citation{zellers2019hellaswag}
+\citation{cobbe2021training}
+\citation{hendrycks2021math}
+\@writefile{toc}{\contentsline {paragraph}{G-theory in LLM evaluation.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT approaches to LLM evaluation.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory Background}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:gtheory}{{1}{3}{Generalizability Theory Background}{equation.1}{}}
+\newlabel{eq:gcoeff}{{2}{3}{Generalizability Theory Background}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Binary data.}{3}{section*.5}\protected@file@percent }
+\citation{hua2025emnlp}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Facets.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Estimation.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cross-Benchmark Variance Decomposition}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:crossbenchmark}{{4.1}{4}{Cross-Benchmark Variance Decomposition}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-benchmark variance decomposition (Henderson I, 7 models $\times $ BF16). Percentages denote proportion of total variance. $G_{\text  {item}}$ is the generalizability coefficient for item scores across models. D-study reports minimum items for $G \geq 0.80$.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:crossbenchmark}{{1}{5}{Cross-benchmark variance decomposition (Henderson I, 7 models $\times $ BF16). Percentages denote proportion of total variance. $G_{\text {item}}$ is the generalizability coefficient for item scores across models. D-study reports minimum items for $G \geq 0.80$}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Gradient monotonicity tests. The permutation test assesses whether the observed ordering of item$_{\text  {id}}$\% across five benchmarks could arise by chance (5,000 permutations).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:monotonicity}{{2}{5}{Gradient monotonicity tests. The permutation test assesses whether the observed ordering of item$_{\text {id}}$\% across five benchmarks could arise by chance (5,000 permutations)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Gradient Monotonicity}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:gradient}{{4.2}{5}{Gradient Monotonicity}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Format confound analysis.}{5}{section*.10}\protected@file@percent }
+\citation{messina2026background}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces IRT vs.\ G-theory item requirements for $G \geq 0.80$ across benchmarks. ``G at IRT items'' reports the G-theory reliability coefficient when using only the IRT-recommended number of items.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:irt}{{3}{6}{IRT vs.\ G-theory item requirements for $G \geq 0.80$ across benchmarks. ``G at IRT items'' reports the G-theory reliability coefficient when using only the IRT-recommended number of items}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Precision Separability}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:separability}{{4.3}{6}{Precision Separability}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}IRT vs.\ G-Theory Item Requirements}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:irt}{{4.4}{6}{IRT vs.\ G-Theory Item Requirements}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Confidence Intervals on Variance Components}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:cis}{{4.5}{6}{Confidence Intervals on Variance Components}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Bootstrap 95\% CIs (1,000 resamples) on the top-2 variance components. ``Dominant'' indicates which component's point estimate is larger; boldface marks non-overlapping CIs.}}{7}{table.4}\protected@file@percent }
+\newlabel{tab:bootstrap}{{4}{7}{Bootstrap 95\% CIs (1,000 resamples) on the top-2 variance components. ``Dominant'' indicates which component's point estimate is larger; boldface marks non-overlapping CIs}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces D-study item budgets by target $G$ and benchmark. All projections assume 6 prompts, 6 seeds, 2 orderings, $T=0.0$, all facets random except temperature (fixed).}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:dstudy}{{5}{7}{D-study item budgets by target $G$ and benchmark. All projections assume 6 prompts, 6 seeds, 2 orderings, $T=0.0$, all facets random except temperature (fixed)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}D-Study Reproducibility Budgets}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:dstudy}{{4.6}{7}{D-Study Reproducibility Budgets}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical recommendations.}{7}{section*.11}\protected@file@percent }
+\citation{brennan2001generalizability}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Methodological robustness summary (selected from 17 analyses).}}{8}{table.6}\protected@file@percent }
+\newlabel{tab:robustness}{{6}{8}{Methodological robustness summary (selected from 17 analyses)}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Methodological Robustness}{8}{section.5}\protected@file@percent }
+\newlabel{sec:robustness}{{5}{8}{Methodological Robustness}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{REML cross-validation.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Logprob continuous metric.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GLMM complementary analysis.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical power.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Design reduction sensitivity.}{8}{section*.16}\protected@file@percent }
+\citation{polo2024tinybenchmarks}
+\citation{mesting2026reliability}
+\citation{polo2024tinybenchmarks}
+\citation{sclar2024quantifying}
+\citation{sclar2024quantifying}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why variance structure is benchmark-conditional.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for evaluation practice.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Positioning relative to prior work.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Limitations and Future Work}{9}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:limitations}{{6.1}{9}{Limitations and Future Work}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Infrastructure scope.}{9}{section*.20}\protected@file@percent }
+\citation{dodge2020finetuning,bui2025seed}
+\citation{mesting2026reliability}
+\bibdata{references}
+\bibcite{bouthillier2021accounting}{{1}{2021}{{Bouthillier et~al.}}{{}}}
+\bibcite{brennan2001generalizability}{{2}{2001}{{Brennan}}{{}}}
+\bibcite{brittlebench2026}{{3}{2026}{{BrittleBench Team}}{{}}}
+\bibcite{bui2025seed}{{4}{2025}{{Bui et~al.}}{{}}}
+\bibcite{clark2018think}{{5}{2018}{{Clark et~al.}}{{}}}
+\bibcite{cobbe2021training}{{6}{2021}{{Cobbe et~al.}}{{}}}
+\bibcite{dehghani2021benchmark}{{7}{2021}{{Dehghani et~al.}}{{}}}
+\bibcite{dodge2020finetuning}{{8}{2020}{{Dodge et~al.}}{{Dodge, Ilharco, Schwartz, Farhadi, Hajishirzi, and Smith}}}
+\bibcite{henderson2018deep}{{9}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{hendrycks2021math}{{10}{2021{a}}{{Hendrycks et~al.}}{{}}}
+\bibcite{hendrycks2021measuring}{{11}{2021{b}}{{Hendrycks et~al.}}{{}}}
+\bibcite{hua2025emnlp}{{12}{2025}{{Hua et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Model scale.}{10}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-tuning variance.}{10}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge facet.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\bibcite{kunievsky2025decomposition}{{13}{2025}{{Kunievsky and Evans}}{{}}}
+\bibcite{lalor2019learning}{{14}{2019}{{Lalor et~al.}}{{Lalor, Wu, and Yu}}}
+\bibcite{messina2026background}{{15}{2026}{{Messina and Scotta}}{{}}}
+\bibcite{mesting2026reliability}{{16}{2026}{{Mesting}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{17}{2024}{{Polo et~al.}}{{}}}
+\bibcite{rodriguez2021evaluation}{{18}{2021}{{Rodriguez et~al.}}{{Rodriguez, Barrow, Hoyle, Lalor, Jia, and Boyd-Graber}}}
+\bibcite{sclar2024quantifying}{{19}{2024}{{Sclar et~al.}}{{Sclar, Choi, Tsvetkov, and Suhr}}}
+\bibcite{sellam2022multberts}{{20}{2022}{{Sellam et~al.}}{{}}}
+\bibcite{shavelson1991generalizability}{{21}{1991}{{Shavelson and Webb}}{{}}}
+\bibcite{thinkingmachines2025}{{22}{2025}{{ThinkingMachines}}{{}}}
+\bibcite{vania2021comparing}{{23}{2021}{{Vania et~al.}}{{}}}
+\bibcite{yuan2025llminference}{{24}{2025}{{Yuan et~al.}}{{}}}
+\bibcite{zellers2019hellaswag}{{25}{2019}{{Zellers et~al.}}{{}}}
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Full D-Study Budget Tables}{11}{appendix.A}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces D-study item requirements: practical (temperature fixed) vs.\ all-random facet projections for $G \geq 0.80$.}}{11}{table.7}\protected@file@percent }
+\newlabel{tab:dstudy_full}{{7}{11}{D-study item requirements: practical (temperature fixed) vs.\ all-random facet projections for $G \geq 0.80$}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Model Accuracy Summary}{12}{appendix.B}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Model accuracy on GSM8K (200-item subsample, BF16, averaged across prompts and seeds).}}{12}{table.8}\protected@file@percent }
+\newlabel{tab:model_accuracy}{{8}{12}{Model accuracy on GSM8K (200-item subsample, BF16, averaged across prompts and seeds)}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Three-Way Interaction Analysis}{12}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Logprob Analysis Details}{12}{appendix.D}\protected@file@percent }
+\gdef \@abspage@last{12}

@@ -1,0 +1,140 @@
+\relax 
+\citation{mizrahi2024state}
+\citation{yuan2025precisionpitfalls}
+\citation{biderman2024lessons}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{mesting2026gtheory}
+\citation{bouthillier2021accounting}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{mizrahi2024state}
+\citation{lu2022fantastically}
+\citation{pezeshkpour2024largelanguagemodelsensitivity}
+\citation{yuan2025precisionpitfalls}
+\citation{biderman2024lessons}
+\citation{bouthillier2021accounting}
+\citation{henderson2018deep}
+\citation{mesting2026gtheory}
+\citation{lalor2019learning}
+\citation{rodriguez2021evaluation}
+\citation{polo2024tinybenchmarks}
+\citation{perlitz2023efficient}
+\citation{dodge2020fine}
+\citation{sellam2022multiberts}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance sources in LLM evaluation.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition frameworks.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item-level analysis and efficient evaluation.}{2}{}\protected@file@percent }
+\citation{brennan2001generalizability}
+\@writefile{toc}{\contentsline {paragraph}{Training-time variance.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory Framework}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Facets.}{3}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Per-model MMLU accuracy by precision and temperature (averaged over 6 prompts, 6 seeds, 4 orderings). fp32 degradation is consistent across models ($\sim $8 pp).}}{4}{}\protected@file@percent }
+\newlabel{tab:accuracy_mmlu}{{1}{4}{}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scoring metrics.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model-as-facet analysis.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Resampling stability.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Analysis Pipeline}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment 1: Full-Scale MMLU Precision Study}{4}{}\protected@file@percent }
+\newlabel{sec:exp1}{{4.1}{4}{}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Accuracy results.}{4}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Single-model variance decomposition on MMLU (binary scoring, \%). Item selection is the dominant variance source across all three models.}}{5}{}\protected@file@percent }
+\newlabel{tab:gstudy_mmlu}{{2}{5}{}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resampling stability across three independent 200-item MMLU draws (Llama, 54 conditions/sample). Conclusions are robust across item draws.}}{5}{}\protected@file@percent }
+\newlabel{tab:resample}{{3}{5}{}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{G-coefficients.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experiment 2: Item Resampling Stability}{5}{}\protected@file@percent }
+\newlabel{sec:exp1b}{{4.2}{5}{}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-benchmark single-model variance decomposition (binary, 3-model average, \%). Item dominance weakens systematically on reasoning tasks.}}{6}{}\protected@file@percent }
+\newlabel{tab:crossbench}{{4}{6}{}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces G-coefficients by benchmark and scoring metric (200 items). Reliability is both benchmark-specific and metric-dependent.}}{6}{}\protected@file@percent }
+\newlabel{tab:gcoeff_bench}{{5}{6}{}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiment 3: Multi-Benchmark Replication}{6}{}\protected@file@percent }
+\newlabel{sec:exp2}{{4.3}{6}{}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-benchmark variance gradient.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark-specific reliability.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-benchmark accuracy.}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-benchmark accuracy by model (bf16, all-condition average).}}{7}{}\protected@file@percent }
+\newlabel{tab:acc_bench}{{6}{7}{}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Hardware effect summary (2-model balanced MMLU design). Aggregate effects are negligible; item-level effects are detectable.}}{7}{}\protected@file@percent }
+\newlabel{tab:hardware}{{7}{7}{}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Experiment 4: Multi-Hardware G-Study}{7}{}\protected@file@percent }
+\newlabel{sec:exp3}{{4.4}{7}{}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experiment 5: Comprehensive Model-as-Facet Analysis}{7}{}\protected@file@percent }
+\newlabel{sec:exp4}{{4.5}{7}{}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model-as-facet reanalysis.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap confidence intervals.}{7}{}\protected@file@percent }
+\citation{polo2024tinybenchmarks}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Model-as-facet variance decomposition across benchmarks (binary, \%). On GSM8K, model$\times $item overtakes item\_id.}}{8}{}\protected@file@percent }
+\newlabel{tab:maf}{{8}{8}{}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Bootstrap 95\% CIs on item\_id and model$\times $item (\%). CIs overlap on GSM8K, indicating statistical ambiguity in the dominant variance source.}}{8}{}\protected@file@percent }
+\newlabel{tab:ci}{{9}{8}{}{table.9}{}}
+\newlabel{sec:dstudy}{{4.5}{8}{}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{D-study projections.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{G-theory vs.\ IRT comparison.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Methodological defense results.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Scale Validation: 14B Models}{8}{}\protected@file@percent }
+\newlabel{sec:scale}{{4.6}{8}{}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces D-study projections: items required for target $G$ (binary, 6 prompts $\times $ 6 seeds averaged). Budgets are benchmark-specific.}}{9}{}\protected@file@percent }
+\newlabel{tab:dstudy}{{10}{9}{}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Methodological defense results.}}{9}{}\protected@file@percent }
+\newlabel{tab:defense}{{11}{9}{}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Fine-Tuning G-Study}{9}{}\protected@file@percent }
+\newlabel{sec:finetuning}{{4.7}{9}{}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance hierarchy inversion.}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}LayerCast Precision Study}{9}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Inference vs.\ fine-tuning variance hierarchy (\%). The variance structure inverts: item dominance gives way to training stochasticity.}}{10}{}\protected@file@percent }
+\newlabel{tab:finetune}{{12}{10}{}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}MATH Benchmark Extension}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item and model$\times $item jointly dominate.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Separability is benchmark-conditional.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{No universal reproducibility recipe.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference vs.\ fine-tuning.}{10}{}\protected@file@percent }
+\citation{brennan2001generalizability}
+\bibdata{references}
+\bibstyle{aaai25}
+\bibcite{biderman2024lessons}{{1}{2024}{{Biderman et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Extended Results}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MATH variance structure.}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Extended D-study (5 benchmarks).}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{8B vs.\ 14B variance structure.}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LayerCast comparison.}{11}{}\protected@file@percent }
+\bibcite{bouthillier2021accounting}{{2}{2021}{{Bouthillier et~al.}}{{}}}
+\bibcite{brennan2001generalizability}{{3}{2001}{{Brennan}}{{}}}
+\bibcite{dehghani2021benchmark}{{4}{2021}{{Dehghani et~al.}}{{}}}
+\bibcite{dodge2020fine}{{5}{2020}{{Dodge et~al.}}{{}}}
+\bibcite{henderson2018deep}{{6}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{hua2025emnlp}{{7}{2025}{{Hua et~al.}}{{}}}
+\bibcite{lalor2019learning}{{8}{2019}{{Lalor et~al.}}{{}}}
+\bibcite{lu2022fantastically}{{9}{2022}{{Lu et~al.}}{{}}}
+\bibcite{mesting2026gtheory}{{10}{2026}{{Mesting}}{{}}}
+\bibcite{mizrahi2024state}{{11}{2024}{{Mizrahi et~al.}}{{}}}
+\bibcite{perlitz2023efficient}{{12}{2023}{{Perlitz et~al.}}{{}}}
+\bibcite{pezeshkpour2024largelanguagemodelsensitivity}{{13}{2024}{{Pezeshkpour \& Hruschka}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{14}{2024}{{Polo et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces MATH vs.\ GSM8K vs.\ MMLU (single-model avg, binary, \%).}}{12}{}\protected@file@percent }
+\newlabel{tab:math_compare}{{13}{12}{}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Items for $G\geq 0.90$ (binary) across 5 benchmarks.}}{12}{}\protected@file@percent }
+\newlabel{tab:dstudy_ext}{{14}{12}{}{table.14}{}}
+\bibcite{rodriguez2021evaluation}{{15}{2021}{{Rodriguez et~al.}}{{}}}
+\bibcite{sellam2022multiberts}{{16}{2022}{{Sellam et~al.}}{{}}}
+\bibcite{shavelson1991generalizability}{{17}{1991}{{Shavelson \& Webb}}{{}}}
+\bibcite{vania2021comparing}{{18}{2021}{{Vania et~al.}}{{}}}
+\bibcite{yuan2025precisionpitfalls}{{19}{2025}{{Yuan et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces 8B vs.\ 14B variance structure (MMLU, single-model, binary, \%).}}{13}{}\protected@file@percent }
+\newlabel{tab:scale}{{15}{13}{}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces LayerCast vs.\ standard precisions (Llama, MMLU).}}{13}{}\protected@file@percent }
+\newlabel{tab:layercast}{{16}{13}{}{table.16}{}}
+\gdef \@abspage@last{13}

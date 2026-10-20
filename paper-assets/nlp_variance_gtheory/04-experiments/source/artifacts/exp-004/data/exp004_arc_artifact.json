@@ -1,0 +1,1 @@
+{"experiment":"exp-004","analysis":"8model_henderson_i_gstudy_arc","benchmark":"arc","n_models":8,"n_observations":460800,"G_item":0.891748,"G_item_ci":[0.856544,0.918306],"min_items_G_0.80":98,"server":"westd-32570","path":"results/exp004_8model_analysis/per_benchmark_gstudy_arc.json"}

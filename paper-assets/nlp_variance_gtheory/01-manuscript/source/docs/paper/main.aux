@@ -1,0 +1,1413 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sclar2024formatting,brittlebench2026}
+\citation{pezeshkpour2024ordering}
+\citation{yuan2025layercast}
+\citation{dodge2020finetuning,bui2025seeds}
+\citation{bouthillier2021accounting}
+\citation{messing2026hidden}
+\citation{polo2024tinybenchmarks,lalor2019irt,zhou2026irt}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN@col{2}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{bouthillier2021accounting}
+\citation{yuan2025layercast}
+\citation{sclar2024formatting}
+\citation{brittlebench2026}
+\citation{pezeshkpour2024ordering}
+\citation{bui2025seeds}
+\citation{messina2026background}
+\citation{madaan2024quantifying}
+\citation{liang2023helm,gao2024lmeval}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of the G-theory evaluation pipeline. A factorial design crossing seven facets across eight models and five benchmarks produces 2.3M binary records. G-study variance decomposition via Henderson Method~I reveals that item difficulty (34--38\%) and model$\times $item interaction (30--36\%) together dominate in MC benchmarks. D-study projections translate variance components into design-dependent item budgets: a 3-prompt $\times $ 3-seed design achieves $G \geq 0.80$ with 178 items (3.1$\times $ reduction). Three contributions emerge: reproducibility budgets (C1), dominant item-level variance (C2), and format-associated variance patterns (C3).}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{Overview of the G-theory evaluation pipeline. A factorial design crossing seven facets across eight models and five benchmarks produces 2.3M binary records. G-study variance decomposition via Henderson Method~I reveals that item difficulty (34--38\%) and model$\times $item interaction (30--36\%) together dominate in MC benchmarks. D-study projections translate variance components into design-dependent item budgets: a 3-prompt $\times $ 3-seed design achieves $G \geq 0.80$ with 178 items (3.1$\times $ reduction). Three contributions emerge: reproducibility budgets (C1), dominant item-level variance (C2), and format-associated variance patterns (C3)}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN@col{2}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\citation{lalor2019irt,rodriguez2021leaderboards}
+\citation{polo2024tinybenchmarks}
+\citation{zhou2026irt}
+\citation{perlitz2023efficient}
+\citation{kipnis2025metabench}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{mushquash2006gtheory,jiang2018bayesian}
+\citation{holland1993dif,clauser1998dif}
+\citation{kearns2026construct}
+\citation{ye2025psychometrics}
+\citation{messing2026hidden}
+\citation{bouthillier2021accounting}
+\citation{messing2026hidden}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces D-study projections for MMLU (single-model baseline). A recommended 3-prompt $\times $ 3-seed design reduces the budget from 552 to 178 items for $G \geq 0.80$; the full multi-facet design (1,296 conditions, theoretical upper bound) reduces further to 55 items.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:teaser}{{2}{3}{D-study projections for MMLU (single-model baseline). A recommended 3-prompt $\times $ 3-seed design reduces the budget from 552 to 178 items for $G \geq 0.80$; the full multi-facet design (1,296 conditions, theoretical upper bound) reduces further to 55 items}{figure.caption.2}{}}
+\@LN{146}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Variance Sources in LLM Evaluation.}{3}{section*.3}\protected@file@percent }
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@writefile{toc}{\contentsline {paragraph}{IRT and Efficient Benchmarking.}{3}{section*.5}\protected@file@percent }
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Scope comparison with prior multi-facet variance studies. Our work uniquely combines broad facet crossing, multi-benchmark coverage, and D-study budget projections.}}{3}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:method_comparison}{{3}{3}{Scope comparison with prior multi-facet variance studies. Our work uniquely combines broad facet crossing, multi-benchmark coverage, and D-study budget projections}{figure.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning relative to prior multi-facet variance studies. ``--'' = not addressed.}}{3}{table.caption.7}\protected@file@percent }
+\newlabel{tab:positioning}{{1}{3}{Positioning relative to prior multi-facet variance studies. ``--'' = not addressed}{table.caption.7}{}}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@writefile{toc}{\contentsline {paragraph}{G-Theory and Positioning.}{3}{section*.6}\protected@file@percent }
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{brennan2001generalizability}
+\citation{efron1993bootstrap}
+\citation{li2023bootstrap}
+\citation{brennan2001generalizability}
+\citation{shavelson1989gtheory}
+\citation{brennan2001generalizability}
+\citation{sclar2024formatting}
+\citation{pezeshkpour2024ordering}
+\@LN@col{1}
+\@LN{206}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method and Experimental Design}{4}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Method and Experimental Design}{section.3}{}}
+\@LN{207}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:gtheory}{{3.1}{4}{Generalizability Theory}{subsection.3.1}{}}
+\@LN{208}{3}
+\@LN{209}{3}
+\@LN{210}{3}
+\@LN{211}{3}
+\@LN{212}{3}
+\@LN{213}{3}
+\@LN{214}{3}
+\@LN{215}{3}
+\@LN{216}{3}
+\@LN{217}{3}
+\@LN{218}{3}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\newlabel{eq:gcoeff}{{1}{4}{Generalizability Theory}{equation.1}{}}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\newlabel{eq:dstudy}{{2}{4}{Generalizability Theory}{equation.2}{}}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces D-study projection: the full multi-facet design (blue, 1,296 conditions; theoretical upper bound, impractical for routine use) reaches $G \geq 0.80$ at 55 items versus 552 under single-condition protocols (red). The recommended 3$\times $3 design achieves 178 items (3.1$\times $ reduction).}}{4}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:dstudy_curves}{{4}{4}{D-study projection: the full multi-facet design (blue, 1,296 conditions; theoretical upper bound, impractical for routine use) reaches $G \geq 0.80$ at 55 items versus 552 under single-condition protocols (red). The recommended 3$\times $3 design achieves 178 items (3.1$\times $ reduction)}{figure.caption.8}{}}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design: MMLU}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:exp001}{{3.2}{4}{Experimental Design: MMLU}{subsection.3.2}{}}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@writefile{toc}{\contentsline {paragraph}{Facets.}{4}{section*.9}\protected@file@percent }
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\citation{hendrycks2021mmlu}
+\citation{clark2018arc}
+\citation{zellers2019hellaswag}
+\citation{cobbe2021gsm8k}
+\citation{hendrycks2021math}
+\citation{hua2025flaw}
+\citation{messina2026background,thinkingmachines2025batch}
+\citation{shavelson1991generalizability}
+\citation{brennan2001generalizability}
+\citation{meredith1993measurement,putnick2016measurement}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Fully crossed G-theory design. Exp-001 evaluates MMLU across all facet levels; exp-002 extends to five benchmarks with reduced crossing. $^\dagger $BF16 balanced subset (2 temperatures: 0.0, 0.7) for cross-model analysis; the full single-model design uses all 3 levels.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:design_matrix}{{2}{5}{Fully crossed G-theory design. Exp-001 evaluates MMLU across all facet levels; exp-002 extends to five benchmarks with reduced crossing. $^\dagger $BF16 balanced subset (2 temperatures: 0.0, 0.7) for cross-model analysis; the full single-model design uses all 3 levels}{table.caption.11}{}}
+\@LN{279}{4}
+\@LN{280}{4}
+\@LN{281}{4}
+\@LN{282}{4}
+\@LN{283}{4}
+\@writefile{toc}{\contentsline {paragraph}{Sample sizes.}{5}{section*.10}\protected@file@percent }
+\@LN{284}{4}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@LN{288}{4}
+\@LN{289}{4}
+\@LN{290}{4}
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cross-Benchmark Extension}{5}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:exp002}{{3.3}{5}{Cross-Benchmark Extension}{subsection.3.3}{}}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{5}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:protocol}{{3.4}{5}{Evaluation Protocol}{subsection.3.4}{}}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Models used in all experiments. RMS = RMSNorm, LN = LayerNorm.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:model_ids}{{3}{5}{Models used in all experiments. RMS = RMSNorm, LN = LayerNorm}{table.caption.12}{}}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Binary Data Assumptions}{5}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:binary}{{3.5}{5}{Binary Data Assumptions}{subsection.3.5}{}}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Model Facet Specification}{5}{subsection.3.6}\protected@file@percent }
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Single-model variance decomposition (Llama-3.1-8B, MMLU). Item difficulty dominates (58.4\%); all main facet effects are $<$1\%. Item-conditional interactions total 17.2\%.}}{6}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:single_model_var}{{5}{6}{Single-model variance decomposition (Llama-3.1-8B, MMLU). Item difficulty dominates (58.4\%); all main facet effects are $<$1\%. Item-conditional interactions total 17.2\%}{figure.caption.13}{}}
+\@LN{355}{5}
+\newlabel{sec:model_facet}{{3.6}{6}{Model Facet Specification}{table.caption.12}{}}
+\@LN{356}{5}
+\@LN{357}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{6}{section.4}\protected@file@percent }
+\@LN{358}{5}
+\@LN{359}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Single-Model Baseline}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:single_model}{{4.1}{6}{Single-Model Baseline}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{6}{section*.14}\protected@file@percent }
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{6}{section*.15}\protected@file@percent }
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Variance}{6}{subsection.4.2}\protected@file@percent }
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LOMO stability across five benchmarks (8 models $\times $ 5 benchmarks = 40 subsets).}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:lomo_full}{{4}{6}{LOMO stability across five benchmarks (8 models $\times $ 5 benchmarks = 40 subsets)}{table.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Item variance share (\%) by model and benchmark. MC benchmarks (left) show higher item variance (46--62\%) than FF benchmarks (right, 18--32\%) across all eight models.}}{6}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:item_heatmap}{{6}{6}{Item variance share (\%) by model and benchmark. MC benchmarks (left) show higher item variance (46--62\%) than FF benchmarks (right, 18--32\%) across all eight models}{figure.caption.17}{}}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Exploratory: Format-Associated Variance Patterns}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:format_conditional}{{4.3}{6}{Exploratory: Format-Associated Variance Patterns}{subsection.4.3}{}}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\citation{yuan2025layercast}
+\citation{shanmugavelu2024floating}
+\citation{zhou2026irt}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Variance decomposition for the cross-model MMLU design (8 models, BF16, 460,800 records). Components estimated via Henderson Method~I. $G_\text  {item} = 0.896$.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:cross_model}{{5}{7}{Variance decomposition for the cross-model MMLU design (8 models, BF16, 460,800 records). Components estimated via Henderson Method~I. $G_\text {item} = 0.896$}{table.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Item difficulty heterogeneity ($\text  {std}(p_i)$) versus \texttt  {item\_id} variance share across five benchmarks. MC benchmarks (filled) exhibit higher difficulty dispersion and item variance than FF benchmarks (open). Spearman $\rho = 0.82$.}}{7}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:difficulty_scatter}{{7}{7}{Item difficulty heterogeneity ($\text {std}(p_i)$) versus \texttt {item\_id} variance share across five benchmarks. MC benchmarks (filled) exhibit higher difficulty dispersion and item variance than FF benchmarks (open). Spearman $\rho = 0.82$}{figure.caption.19}{}}
+\@LN{408}{6}
+\@LN{409}{6}
+\@LN{410}{6}
+\@LN{411}{6}
+\@LN{412}{6}
+\@LN{413}{6}
+\@LN{414}{6}
+\@LN{415}{6}
+\@LN{416}{6}
+\@LN{417}{6}
+\@LN{418}{6}
+\@LN{419}{6}
+\@LN{420}{6}
+\@LN{421}{6}
+\@LN{422}{6}
+\@LN{423}{6}
+\@LN{424}{6}
+\@LN{425}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Precision Separability}{7}{subsection.4.4}\protected@file@percent }
+\@LN{426}{6}
+\@LN{427}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Format-associated variance structure across five benchmarks (exp-002, 8 models). Variance components (\%) per benchmark; MC = multiple-choice, FF = free-form. Bold = dominant non-residual component. $^\dagger $For MC, reports prompt$\times $item interaction (prompt main effect $<$1\%); for FF, reports prompt main effect (item-conditional interactions absorbed into residual).}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{6}{7}{Format-associated variance structure across five benchmarks (exp-002, 8 models). Variance components (\%) per benchmark; MC = multiple-choice, FF = free-form. Bold = dominant non-residual component. $^\dagger $For MC, reports prompt$\times $item interaction (prompt main effect $<$1\%); for FF, reports prompt main effect (item-conditional interactions absorbed into residual)}{table.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Variance decomposition (Henderson Method~I) across five benchmarks and eight models. Multiple-choice benchmarks share an item-dominated structure; HellaSwag is the exception where model$\times $item (36.0\%) exceeds item difficulty (34.3\%). Free-form benchmarks (GSM8K, MATH) distribute variance across item, model, and interaction components with no single dominant source.}}{7}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:cross_benchmark}{{8}{7}{Variance decomposition (Henderson Method~I) across five benchmarks and eight models. Multiple-choice benchmarks share an item-dominated structure; HellaSwag is the exception where model$\times $item (36.0\%) exceeds item difficulty (34.3\%). Free-form benchmarks (GSM8K, MATH) distribute variance across item, model, and interaction components with no single dominant source}{figure.caption.21}{}}
+\@LN{428}{6}
+\@LN{429}{6}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@LN{433}{6}
+\@LN{434}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Design-Dependent Reproducibility Budgets}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:dstudy_budgets}{{4.5}{7}{Design-Dependent Reproducibility Budgets}{subsection.4.5}{}}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@LN{442}{6}
+\citation{zhou2026irt}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces D-study reproducibility budgets under different evaluation designs (single-model, MMLU). Total evals = items $\times $ conditions.}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:dstudy}{{7}{8}{D-study reproducibility budgets under different evaluation designs (single-model, MMLU). Total evals = items $\times $ conditions}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Intermediate D-study designs ordered by increasing conditions per item. $G_{200}$ and $n_{G \geq 0.80}$ are D-study projections from exp-001 variance components.}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:intermediate_dstudy}{{8}{8}{Intermediate D-study designs ordered by increasing conditions per item. $G_{200}$ and $n_{G \geq 0.80}$ are D-study projections from exp-001 variance components}{table.caption.23}{}}
+\@LN{443}{7}
+\@LN{444}{7}
+\@LN{445}{7}
+\@LN{446}{7}
+\@LN{447}{7}
+\@LN{448}{7}
+\@LN{449}{7}
+\@LN{450}{7}
+\@LN{451}{7}
+\@LN{452}{7}
+\@LN{453}{7}
+\@LN{454}{7}
+\@LN{455}{7}
+\@LN{456}{7}
+\@LN{457}{7}
+\@LN{458}{7}
+\@LN{459}{7}
+\@LN{460}{7}
+\@LN{461}{7}
+\@LN{462}{7}
+\@LN{463}{7}
+\@LN{464}{7}
+\@LN{465}{7}
+\@writefile{toc}{\contentsline {paragraph}{Projection assumptions.}{8}{section*.25}\protected@file@percent }
+\@LN{466}{7}
+\@LN{467}{7}
+\@LN{468}{7}
+\@LN{469}{7}
+\@LN{470}{7}
+\@LN{471}{7}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-model D-study reproducibility budgets with 95\% bootstrap CIs. $n_{G \geq 0.80}$: items needed. Multi = multi-facet (2,304 cond.); Total = items $\times $ 2,304. Single = single-condition (total evals = item count).}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:dstudy_cross}{{9}{8}{Cross-model D-study reproducibility budgets with 95\% bootstrap CIs. $n_{G \geq 0.80}$: items needed. Multi = multi-facet (2,304 cond.); Total = items $\times $ 2,304. Single = single-condition (total evals = item count)}{table.caption.24}{}}
+\@LN{472}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Scale Validation}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:scale_validation}{{4.6}{8}{Scale Validation}{subsection.4.6}{}}
+\@LN{473}{7}
+\@LN{474}{7}
+\@LN{475}{7}
+\@LN{476}{7}
+\@LN{477}{7}
+\@LN{478}{7}
+\@LN{479}{7}
+\@LN{480}{7}
+\@LN{481}{7}
+\@LN{482}{7}
+\@LN{483}{7}
+\@LN{484}{7}
+\@LN{485}{7}
+\@writefile{toc}{\contentsline {paragraph}{Robustness checks.}{8}{section*.26}\protected@file@percent }
+\@LN{486}{7}
+\@LN{487}{7}
+\@LN{488}{7}
+\@LN{489}{7}
+\@LN{490}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{8}{Conclusion}{section.5}{}}
+\@LN{491}{7}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\bibdata{references}
+\bibcite{bi2024deepseek}{{1}{2024}{{Bi et~al.}}{{Bi, Chen, Chen et~al.}}}
+\bibcite{bouthillier2021accounting}{{2}{2021}{{Bouthillier et~al.}}{{Bouthillier, Delaunay, Bronzi, Trofimov, Nichyporuk, Szeto, Sepahvand, Raff, Madan, Voleti, Kahou, Michalski, Arbel, Pal, Varoquaux, and Vincent}}}
+\bibcite{brennan2001generalizability}{{3}{2001}{{Brennan}}{{}}}
+\bibcite{bui2025seeds}{{4}{2025}{{Bui et~al.}}{{Bui, Savova, and Wang}}}
+\bibcite{cai2024internlm2}{{5}{2024}{{Cai et~al.}}{{Cai, Cao, Chen et~al.}}}
+\bibcite{clark2018arc}{{6}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
+\bibcite{clauser1998dif}{{7}{1998}{{Clauser and Mazor}}{{}}}
+\bibcite{cobbe2021gsm8k}{{8}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{dodge2020finetuning}{{9}{2020}{{Dodge et~al.}}{{Dodge, Ilharco, Schwartz, Farhadi, Hajishirzi, and Smith}}}
+\bibcite{efron1993bootstrap}{{10}{1993}{{Efron and Tibshirani}}{{}}}
+\bibcite{gao2024lmeval}{{11}{2023}{{Gao et~al.}}{{Gao, Tow, Abbasi, Biderman, Black, DiPofi, Foster, Golber, Hsu, Le~Noac'h, Li, McDonell, Muennighoff, Ocqueteau, Phang, Reynolds, Schoelkopf, Skowron, Sutawika, Tang, Thite, Wang, Wang, and Zou}}}
+\bibcite{grattafiori2024llama3}{{12}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri et~al.}}}
+\bibcite{thinkingmachines2025batch}{{13}{2025}{{He and {Thinking Machines Lab}}}{{}}}
+\bibcite{hendrycks2021mmlu}{{14}{2021{a}}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
+\bibcite{hendrycks2021math}{{15}{2021{b}}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt}}}
+\bibcite{holland1993dif}{{16}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{hua2025flaw}{{17}{2025}{{Hua et~al.}}{{Hua, Tang, Gu, Gu, Wong, and Qin}}}
+\bibcite{jiang2023mistral}{{18}{2023}{{Jiang et~al.}}{{Jiang, Sablayrolles, Mensch et~al.}}}
+\bibcite{jiang2018bayesian}{{19}{2018}{{Jiang and Skorupski}}{{}}}
+\bibcite{kearns2026construct}{{20}{2026}{{Kearns}}{{}}}
+\@LN@col{1}
+\@LN{508}{8}
+\@LN{509}{8}
+\@LN{510}{8}
+\@LN{511}{8}
+\@LN{512}{8}
+\@LN{513}{8}
+\@LN{514}{8}
+\@LN{515}{8}
+\@LN{516}{8}
+\@LN{517}{8}
+\@LN{518}{8}
+\@LN{519}{8}
+\@LN{520}{8}
+\@LN{521}{8}
+\@LN{522}{8}
+\@LN{523}{8}
+\@LN{524}{8}
+\@LN{525}{8}
+\@LN{526}{8}
+\@LN{527}{8}
+\@LN{528}{8}
+\@LN{529}{8}
+\@LN{530}{8}
+\@LN{531}{8}
+\@LN{532}{8}
+\@LN{533}{8}
+\@LN{534}{8}
+\@LN{535}{8}
+\@LN{536}{8}
+\@LN{537}{8}
+\@LN{538}{8}
+\@LN{539}{8}
+\@LN{540}{8}
+\@LN{541}{8}
+\@LN{542}{8}
+\@LN{543}{8}
+\@LN{544}{8}
+\@LN{545}{8}
+\@LN{546}{8}
+\@LN{547}{8}
+\@LN{548}{8}
+\@LN{549}{8}
+\@LN{550}{8}
+\@LN{551}{8}
+\@LN{552}{8}
+\@LN{553}{8}
+\@LN{554}{8}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN@col{2}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\bibcite{kipnis2025metabench}{{21}{2025}{{Kipnis et~al.}}{{Kipnis, Voudouris, Schulze~Buschoff, and Schulz}}}
+\bibcite{lalor2019irt}{{22}{2019}{{Lalor et~al.}}{{Lalor, Wu, and Yu}}}
+\bibcite{li2023bootstrap}{{23}{2023}{{Li}}{{}}}
+\bibcite{liang2023helm}{{24}{2023}{{Liang et~al.}}{{Liang, Bommasani, Lee, Tsipras, Soylu, Yasunaga, Zhang, Narayanan, Wu, Kumar et~al.}}}
+\bibcite{madaan2024quantifying}{{25}{2024}{{Madaan et~al.}}{{Madaan, Singh, Schaeffer, Poulton, Koyejo, Stenetorp, Narang, and Hupkes}}}
+\bibcite{polo2024tinybenchmarks}{{26}{2024}{{Maia~Polo et~al.}}{{Maia~Polo, Weber, Choshen, Sun, Xu, and Yurochkin}}}
+\bibcite{meredith1993measurement}{{27}{1993}{{Meredith}}{{}}}
+\bibcite{messina2026background}{{28}{2026}{{Messina and Scotta}}{{}}}
+\bibcite{messing2026hidden}{{29}{2026}{{Messing}}{{}}}
+\bibcite{mushquash2006gtheory}{{30}{2006}{{Mushquash and O'Connor}}{{}}}
+\bibcite{perlitz2023efficient}{{31}{2023}{{Perlitz et~al.}}{{Perlitz, Bandel, Gera, Arviv, Ein-Dor, Shnarch, Slonim, Shmueli-Scheuer, and Choshen}}}
+\bibcite{pezeshkpour2024ordering}{{32}{2024}{{Pezeshkpour and Hruschka}}{{}}}
+\bibcite{putnick2016measurement}{{33}{2016}{{Putnick and Bornstein}}{{}}}
+\bibcite{riviere2024gemma2}{{34}{2024}{{Riviere et~al.}}{{Riviere, Pathak, Sessa et~al.}}}
+\bibcite{rodriguez2021leaderboards}{{35}{2021}{{Rodriguez et~al.}}{{Rodriguez, Barrow, Hoyle, Lalor, Jia, and Boyd-Graber}}}
+\bibcite{brittlebench2026}{{36}{2026}{{Romanou et~al.}}{{Romanou, Ibrahim, Ross, Shaib, Oktar, Bell, Ovalle, Dodge, Bosselut, Sinha, and Williams}}}
+\bibcite{sclar2024formatting}{{37}{2024}{{Sclar et~al.}}{{Sclar, Choi, Tsvetkov, and Suhr}}}
+\bibcite{shanmugavelu2024floating}{{38}{2024}{{Shanmugavelu et~al.}}{{Shanmugavelu, Taillefumier, Culver, Hernandez, Coletti, and Sedova}}}
+\bibcite{shavelson1991generalizability}{{39}{1991}{{Shavelson and Webb}}{{}}}
+\bibcite{shavelson1989gtheory}{{40}{1989}{{Shavelson et~al.}}{{Shavelson, Webb, and Rowley}}}
+\bibcite{olmo2025olmo2}{{41}{2025}{{{Team OLMo} et~al.}}{{{Team OLMo}, Walsh, Soldaini et~al.}}}
+\bibcite{tuerlinckx2006glmm}{{42}{2006}{{Tuerlinckx et~al.}}{{Tuerlinckx, Rijmen, Verbeke, and De~Boeck}}}
+\bibcite{yang2025qwen3}{{43}{2025}{{Yang et~al.}}{{Yang, Li, Yang et~al.}}}
+\bibcite{ye2025psychometrics}{{44}{2025}{{Ye et~al.}}{{Ye, Jin, Xie, Zhang, and Song}}}
+\bibcite{young2024yi}{{45}{2024}{{Young et~al.}}{{Young, Chen, Li et~al.}}}
+\@LN@col{1}
+\@LN{613}{9}
+\@LN{614}{9}
+\@LN{615}{9}
+\@LN{616}{9}
+\@LN{617}{9}
+\@LN{618}{9}
+\@LN{619}{9}
+\@LN{620}{9}
+\@LN{621}{9}
+\@LN{622}{9}
+\@LN{623}{9}
+\@LN{624}{9}
+\@LN{625}{9}
+\@LN{626}{9}
+\@LN{627}{9}
+\@LN{628}{9}
+\@LN{629}{9}
+\@LN{630}{9}
+\@LN{631}{9}
+\@LN{632}{9}
+\@LN{633}{9}
+\@LN{634}{9}
+\@LN{635}{9}
+\@LN{636}{9}
+\@LN{637}{9}
+\@LN{638}{9}
+\@LN{639}{9}
+\@LN{640}{9}
+\@LN{641}{9}
+\@LN{642}{9}
+\@LN{643}{9}
+\@LN{644}{9}
+\@LN{645}{9}
+\@LN{646}{9}
+\@LN{647}{9}
+\@LN{648}{9}
+\@LN{649}{9}
+\@LN{650}{9}
+\@LN{651}{9}
+\@LN{652}{9}
+\@LN{653}{9}
+\@LN{654}{9}
+\@LN{655}{9}
+\@LN{656}{9}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN@col{2}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\bibcite{yuan2025layercast}{{46}{2025}{{Yuan et~al.}}{{Yuan, Li, Ding, Xie, Li, Zhao, Wan, Shi, Hu, and Liu}}}
+\bibcite{zellers2019hellaswag}{{47}{2019}{{Zellers et~al.}}{{Zellers, Holtzman, Bisk, Farhadi, and Choi}}}
+\bibcite{zhou2026irt}{{48}{2026}{{Zhou et~al.}}{{Zhou, Huang, Zhao, Han, Wang, Chen, Yang, Bao, Dong, Xu, Zhu, Cao, and Zhao}}}
+\citation{jiang2018bayesian,tuerlinckx2006glmm}
+\citation{brennan2001generalizability}
+\@LN@col{1}
+\@LN{721}{10}
+\@LN{722}{10}
+\@LN{723}{10}
+\@LN{724}{10}
+\@LN{725}{10}
+\@LN{726}{10}
+\@LN{727}{10}
+\@LN{728}{10}
+\@LN{729}{10}
+\@LN{730}{10}
+\@LN{731}{10}
+\@LN{732}{10}
+\@LN{733}{10}
+\@LN{734}{10}
+\@LN{735}{10}
+\@LN{736}{10}
+\@LN{737}{10}
+\@LN{738}{10}
+\@LN{739}{10}
+\@LN{740}{10}
+\@LN{741}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Robustness Analyses}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:robustness}{{A}{11}{Additional Robustness Analyses}{appendix.A}{}}
+\@LN{742}{10}
+\@LN{743}{10}
+\@LN{744}{10}
+\@writefile{toc}{\contentsline {paragraph}{GLMM complement.}{11}{section*.29}\protected@file@percent }
+\@LN{745}{10}
+\@LN{746}{10}
+\@LN{747}{10}
+\@LN{748}{10}
+\@LN{749}{10}
+\@LN{750}{10}
+\@LN{751}{10}
+\@LN{752}{10}
+\@writefile{toc}{\contentsline {paragraph}{Accuracy-range stability.}{11}{section*.30}\protected@file@percent }
+\@LN{753}{10}
+\@LN{754}{10}
+\@LN{755}{10}
+\@LN{756}{10}
+\@LN{757}{10}
+\@writefile{toc}{\contentsline {paragraph}{Estimator robustness.}{11}{section*.31}\protected@file@percent }
+\@LN{758}{10}
+\@LN{759}{10}
+\@LN{760}{10}
+\@LN{761}{10}
+\@LN{762}{10}
+\@LN{763}{10}
+\@LN{764}{10}
+\@LN{765}{10}
+\@LN{766}{10}
+\@LN{767}{10}
+\@LN{768}{10}
+\@LN{769}{10}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Probit simulation.}{11}{section*.32}\protected@file@percent }
+\@LN{770}{10}
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@writefile{toc}{\contentsline {paragraph}{CI method comparison.}{11}{section*.33}\protected@file@percent }
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\citation{holland1993dif,clauser1998dif}
+\@LN@col{1}
+\@LN{821}{11}
+\@writefile{toc}{\contentsline {paragraph}{Facet specification sensitivity.}{12}{section*.34}\protected@file@percent }
+\@LN{822}{11}
+\@LN{823}{11}
+\@LN{824}{11}
+\@LN{825}{11}
+\@LN{826}{11}
+\@LN{827}{11}
+\@LN{828}{11}
+\@LN{829}{11}
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-model-out (LOMO).}{12}{section*.35}\protected@file@percent }
+\@LN{830}{11}
+\@LN{831}{11}
+\@LN{832}{11}
+\@LN{833}{11}
+\@LN{834}{11}
+\@LN{835}{11}
+\@LN{836}{11}
+\@LN{837}{11}
+\@LN{838}{11}
+\@LN{839}{11}
+\@writefile{toc}{\contentsline {paragraph}{Inter-model agreement.}{12}{section*.36}\protected@file@percent }
+\@LN{840}{11}
+\@LN{841}{11}
+\@LN{842}{11}
+\@LN{843}{11}
+\@LN{844}{11}
+\@LN{845}{11}
+\@LN{846}{11}
+\@LN{847}{11}
+\@LN{848}{11}
+\@LN{849}{11}
+\@LN{850}{11}
+\@LN{851}{11}
+\@LN{852}{11}
+\@LN{853}{11}
+\newlabel{sec:partial_credit}{{A}{12}{Scoring metric sensitivity}{section*.37}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scoring metric sensitivity.}{12}{section*.37}\protected@file@percent }
+\@LN{854}{11}
+\@LN{855}{11}
+\@LN{856}{11}
+\@LN{857}{11}
+\@LN{858}{11}
+\@LN{859}{11}
+\@LN{860}{11}
+\@LN{861}{11}
+\@LN{862}{11}
+\@LN{863}{11}
+\@LN{864}{11}
+\@LN{865}{11}
+\@LN{866}{11}
+\@LN{867}{11}
+\@LN{868}{11}
+\@LN{869}{11}
+\@LN{870}{11}
+\@LN@col{2}
+\@LN{871}{11}
+\@LN{872}{11}
+\@LN{873}{11}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@writefile{toc}{\contentsline {paragraph}{Facet specification sensitivity: random vs.\ fixed model.}{12}{section*.38}\protected@file@percent }
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN{882}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Generalizability coefficients under random vs.\ fixed model facet specification across five benchmarks.}}{12}{table.caption.39}\protected@file@percent }
+\newlabel{tab:fixed_vs_random}{{10}{12}{Generalizability coefficients under random vs.\ fixed model facet specification across five benchmarks}{table.caption.39}{}}
+\@writefile{toc}{\contentsline {paragraph}{Null calibration.}{12}{section*.40}\protected@file@percent }
+\@LN{883}{11}
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@writefile{toc}{\contentsline {paragraph}{Reduced crossing validation.}{12}{section*.41}\protected@file@percent }
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN@col{1}
+\@LN{912}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Projection Validation Details}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:dstudy_cross}{{B}{13}{Projection Validation Details}{appendix.B}{}}
+\@writefile{toc}{\contentsline {paragraph}{Internal consistency check.}{13}{section*.42}\protected@file@percent }
+\@LN{913}{12}
+\@LN{914}{12}
+\@LN{915}{12}
+\@LN{916}{12}
+\@LN{917}{12}
+\@LN{918}{12}
+\@LN{919}{12}
+\@LN{920}{12}
+\@LN{921}{12}
+\@LN{922}{12}
+\@LN{923}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Internal consistency: four-model subset vs.\ eight-model $G_\text  {item}$. FF subsets underestimate actual $G$ (conservative); MC shows mixed directions with small deviations.}}{13}{table.caption.43}\protected@file@percent }
+\newlabel{tab:forward_pred}{{11}{13}{Internal consistency: four-model subset vs.\ eight-model $G_\text {item}$. FF subsets underestimate actual $G$ (conservative); MC shows mixed directions with small deviations}{table.caption.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Effect of $|\Delta G| = 0.035$ estimation error on item budgets. The $\sim $23\% increase is consistent across benchmarks.}}{13}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:budget_sensitivity}{{9}{13}{Effect of $|\Delta G| = 0.035$ estimation error on item budgets. The $\sim $23\% increase is consistent across benchmarks}{figure.caption.44}{}}
+\newlabel{app:budget_sensitivity}{{B}{13}{Budget sensitivity to estimation error}{section*.45}{}}
+\@writefile{toc}{\contentsline {paragraph}{Budget sensitivity to estimation error.}{13}{section*.45}\protected@file@percent }
+\@LN{924}{12}
+\@LN{925}{12}
+\@LN{926}{12}
+\@LN{927}{12}
+\@LN{928}{12}
+\@LN{929}{12}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\newlabel{app:cross_benchmark_transfer}{{B}{13}{Cross-benchmark $G$ stability}{section*.46}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-benchmark $G$ stability.}{13}{section*.46}\protected@file@percent }
+\@LN{933}{12}
+\@LN{934}{12}
+\@LN{935}{12}
+\@LN@col{2}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@LN{950}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Format-Associated Variance: Per-Benchmark Details}{13}{appendix.C}\protected@file@percent }
+\newlabel{app:format_details}{{C}{13}{Format-Associated Variance: Per-Benchmark Details}{appendix.C}{}}
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN{953}{12}
+\@writefile{toc}{\contentsline {paragraph}{MC benchmark exceptions.}{13}{section*.47}\protected@file@percent }
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@LN{962}{12}
+\@writefile{toc}{\contentsline {paragraph}{FF benchmark patterns.}{13}{section*.48}\protected@file@percent }
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN{974}{12}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\@writefile{toc}{\contentsline {paragraph}{Difficulty dispersion as variance predictor.}{13}{section*.49}\protected@file@percent }
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\citation{grattafiori2024llama3}
+\citation{riviere2024gemma2}
+\citation{jiang2023mistral}
+\citation{yang2025qwen3}
+\citation{young2024yi}
+\citation{olmo2025olmo2}
+\citation{cai2024internlm2}
+\citation{bi2024deepseek}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Item-level bootstrap stability.}{14}{section*.50}\protected@file@percent }
+\@LN{985}{13}
+\@LN{986}{13}
+\@LN{987}{13}
+\@LN{988}{13}
+\@LN{989}{13}
+\@LN{990}{13}
+\@LN{991}{13}
+\@LN{992}{13}
+\@LN{993}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Cross-Benchmark Difficulty Heterogeneity}{14}{appendix.D}\protected@file@percent }
+\newlabel{app:difficulty_scatter}{{D}{14}{Cross-Benchmark Difficulty Heterogeneity}{appendix.D}{}}
+\@LN{994}{13}
+\@LN{995}{13}
+\@LN{996}{13}
+\@LN{997}{13}
+\@LN{998}{13}
+\@LN{999}{13}
+\@LN{1000}{13}
+\@LN{1001}{13}
+\@LN{1002}{13}
+\@LN{1003}{13}
+\@LN{1004}{13}
+\@LN{1005}{13}
+\@LN{1006}{13}
+\@LN{1007}{13}
+\@LN{1008}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {E}MMLU Subject-Level Variance Decomposition}{14}{appendix.E}\protected@file@percent }
+\newlabel{app:subject_gstudy}{{E}{14}{MMLU Subject-Level Variance Decomposition}{appendix.E}{}}
+\@LN{1009}{13}
+\@LN{1010}{13}
+\@LN{1011}{13}
+\@LN{1012}{13}
+\@LN{1013}{13}
+\@LN{1014}{13}
+\@LN{1015}{13}
+\@LN{1016}{13}
+\@LN{1017}{13}
+\@LN{1018}{13}
+\@LN{1019}{13}
+\@LN{1020}{13}
+\@LN{1021}{13}
+\@LN{1022}{13}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN{1025}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {F}FF Residual Variance Analysis}{14}{appendix.F}\protected@file@percent }
+\newlabel{app:ff_residual}{{F}{14}{FF Residual Variance Analysis}{appendix.F}{}}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Subject-level variance decomposition within MMLU (20 items per subject, 8 models, 2,304 conditions per item). Sorted by $G_\text  {item}$ descending.}}{14}{table.caption.51}\protected@file@percent }
+\newlabel{tab:subject_gstudy}{{12}{14}{Subject-level variance decomposition within MMLU (20 items per subject, 8 models, 2,304 conditions per item). Sorted by $G_\text {item}$ descending}{table.caption.51}{}}
+\@LN{1033}{13}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN{1036}{13}
+\@LN{1037}{13}
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Item-level residual variance regression. Difficulty$^2$ = quadratic (inverted-U) term reflecting the Bernoulli $p(1{-}p)$ ceiling. GSM8K additionally tests n\_steps and answer\_length (both $p > 0.38$).}}{14}{table.caption.52}\protected@file@percent }
+\newlabel{tab:ff_residual}{{13}{14}{Item-level residual variance regression. Difficulty$^2$ = quadratic (inverted-U) term reflecting the Bernoulli $p(1{-}p)$ ceiling. GSM8K additionally tests n\_steps and answer\_length (both $p > 0.38$)}{table.caption.52}{}}
+\@LN{1051}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Model and Prompt Details}{14}{appendix.G}\protected@file@percent }
+\newlabel{app:models}{{G}{14}{Model and Prompt Details}{appendix.G}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{14}{section*.53}\protected@file@percent }
+\@LN{1052}{13}
+\@LN{1053}{13}
+\@LN{1054}{13}
+\@LN{1055}{13}
+\@LN{1056}{13}
+\@LN{1057}{13}
+\citation{brittlebench2026}
+\@LN@col{1}
+\@LN{1058}{14}
+\@LN{1059}{14}
+\@LN{1060}{14}
+\@LN{1061}{14}
+\@LN{1062}{14}
+\@LN{1063}{14}
+\@LN{1064}{14}
+\@writefile{toc}{\contentsline {paragraph}{Prompt templates.}{15}{section*.54}\protected@file@percent }
+\@LN{1065}{14}
+\@LN{1066}{14}
+\@LN{1067}{14}
+\@LN{1068}{14}
+\@LN{1069}{14}
+\@LN{1070}{14}
+\@LN{1071}{14}
+\@LN{1072}{14}
+\@LN{1073}{14}
+\@LN{1074}{14}
+\@LN{1075}{14}
+\@LN{1076}{14}
+\@LN{1077}{14}
+\@LN{1078}{14}
+\@LN{1079}{14}
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@LN{1082}{14}
+\@LN{1083}{14}
+\@LN{1084}{14}
+\@LN{1085}{14}
+\@LN{1086}{14}
+\@LN{1087}{14}
+\@LN{1088}{14}
+\@LN{1089}{14}
+\@LN{1090}{14}
+\@LN{1091}{14}
+\@LN{1092}{14}
+\@LN{1093}{14}
+\@LN{1094}{14}
+\@LN{1095}{14}
+\@LN{1096}{14}
+\@LN{1097}{14}
+\@LN{1098}{14}
+\@LN{1099}{14}
+\@LN{1100}{14}
+\@LN{1101}{14}
+\@LN{1102}{14}
+\@LN{1103}{14}
+\@LN{1104}{14}
+\@LN{1105}{14}
+\@LN@col{2}
+\@LN{1106}{14}
+\@LN{1107}{14}
+\@LN{1108}{14}
+\@LN{1109}{14}
+\@LN{1110}{14}
+\@LN{1111}{14}
+\@LN{1112}{14}
+\@LN{1113}{14}
+\@LN{1114}{14}
+\@LN{1115}{14}
+\@LN{1116}{14}
+\@LN{1117}{14}
+\@LN{1118}{14}
+\@LN{1119}{14}
+\@LN{1120}{14}
+\@LN{1121}{14}
+\@LN{1122}{14}
+\@LN{1123}{14}
+\@LN{1124}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Software Environment}{15}{appendix.H}\protected@file@percent }
+\newlabel{app:software}{{H}{15}{Software Environment}{appendix.H}{}}
+\@LN{1125}{14}
+\@LN{1126}{14}
+\@LN{1127}{14}
+\@LN{1128}{14}
+\@LN{1129}{14}
+\@LN{1130}{14}
+\@LN{1131}{14}
+\@LN{1132}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Use of AI Assistance}{15}{appendix.I}\protected@file@percent }
+\@LN{1133}{14}
+\@LN{1134}{14}
+\gdef \@abspage@last{15}

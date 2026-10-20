@@ -1,0 +1,1100 @@
+# Review Issues Tracker — nlp_variance_gtheory
+# Round 1-11 | Updated: 2026-05-25 Round 11 report synthesis
+
+issues:
+  # === ROUND 1-5 RESOLVED (compact) ===
+
+  - id: "R1-N1"
+    summary: "Binary data G-theory 理论辩护"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "四重验证 + Henderson I justification。"
+    resolution_round: 2
+
+  - id: "R1-N2"
+    summary: "4→8 模型扩展"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "8-model 完成。"
+    resolution_round: 2
+
+  - id: "INT-001"
+    summary: "η²/Henderson I 混用"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "Henderson I 统一。"
+    resolution_round: 1
+
+  - id: "INT-002"
+    summary: "HellaSwag 温度不一致"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "2-temp 修复。"
+    resolution_round: 1
+
+  - id: "INT-003"
+    summary: "G_item formula bug"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "修复验证。"
+    resolution_round: 1
+
+  - id: "FR2-W2"
+    summary: "'Hidden' overclaim"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 2
+    resolution: "标题改 Reproducibility Budgets。"
+    resolution_round: 2
+
+  - id: "FR2-W3"
+    summary: "可复现性缺陷"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 2
+    resolution: "Appendix 补全。"
+    resolution_round: 2
+
+  - id: "FR2-W5"
+    summary: "D-study CI 缺失"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 2
+    resolution: "Bootstrap CI。"
+    resolution_round: 2
+
+  - id: "FR2-W6"
+    summary: "遗漏 Madaan et al."
+    category: writing
+    severity: critical
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 2
+    resolution: "已引用。"
+    resolution_round: 2
+
+  - id: "FR3-N1"
+    summary: "AAAI→ACL 模板"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    resolution: "ACL 2023 切换。"
+    resolution_round: 3
+
+  - id: "FR4-MF1"
+    summary: "Format claim benchmark-level 统计功效不足 (n=5, p=0.10)"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 6
+    resolution: "D022→D023: Round 5 合并为 corollary; Round 6 nuclear removal — 从 Abstract/Contributions 完全移除, 降级为 §4.3 exploratory observation。"
+    resolution_round: 6
+
+  - id: "FR4-MF2"
+    summary: "Item-related bundling Abstract 信息不对称"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 4
+    resolution: "Abstract 并列 bundled+unbundled。"
+    resolution_round: 4
+
+  - id: "FR4-MF3"
+    summary: "Binary scoring FF variance 混淆因素"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 6
+    resolution: "Round 5: §3.5 统一 caveat。Round 6: partial-credit pilot on GSM8K。"
+    resolution_round: 6
+
+  - id: "FR4-SF1"
+    summary: "Trivial explanation 未充分排除"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 4
+    resolution: "双重反驳。"
+    resolution_round: 4
+
+  - id: "FR4-SF2"
+    summary: "Target universe 定义模糊"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 4
+    resolution: "§3.5 明确 target universe。"
+    resolution_round: 4
+
+  - id: "FR4-SF3"
+    summary: "Reduced crossing 验证仅 MMLU"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 6
+    resolution: "Limitations 强化 FF transferability assumption。"
+    resolution_round: 5
+
+  - id: "FR4-SF4"
+    summary: "DeepSeek MATH 排除影响"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    resolution: "MATH 数据确认完整，升级为 8-model。"
+    resolution_round: 5
+
+  - id: "FR4-SF5"
+    summary: "Bootstrap 未 respect stratified design"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 4
+    resolution: "Stratified vs simple CI 差异 <4%。"
+    resolution_round: 4
+
+  - id: "FR4-SF6"
+    summary: "References 格式 + double-blind"
+    category: format
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 4
+    resolution: "varannot 合规; 8 个引用幻觉修正。"
+    resolution_round: 4
+
+  - id: "FR4-SF7"
+    summary: "遗漏 4 篇相关工作"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 4
+    resolution: "3 篇加入 Related Work。"
+    resolution_round: 4
+
+  - id: "FR5-N1"
+    summary: "Format-associated claim 呈现层级与统计功效不匹配"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 6
+    resolution: "D022→D023: Round 5 合并 corollary; Round 6 nuclear removal。"
+    resolution_round: 6
+
+  - id: "FR5-N2"
+    summary: "D-study budget 跨 benchmark/跨 item-sample 验证仅限 MMLU"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 6
+    resolution: "Round 5: bootstrap CI 加入。Round 6: forward prediction 4→8 model validation。"
+    resolution_round: 6
+
+  - id: "FR5-N3"
+    summary: "Binary scoring confound 未统一讨论"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "§3.5 统一 binary scoring caveat。"
+    resolution_round: 5
+
+  - id: "FR5-W1"
+    summary: "Model exchangeability temporal correlation"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "Limitations 补充 temporal correlation 限制。"
+    resolution_round: 5
+
+  - id: "FR5-W2"
+    summary: "Reduced crossing validation 仅 MMLU (FF 未覆盖)"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 6
+    resolution: "Limitations 强化 FF transferability assumption。"
+    resolution_round: 5
+
+  - id: "FR5-W3"
+    summary: "Scale validation 语言过强"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "'scale-robust' → 'consistent within Qwen2.5 3B-7B range'。"
+    resolution_round: 5
+
+  - id: "FR5-W4"
+    summary: "Few-shot example selection 未作为 facet 交叉"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "Limitations 补充 example identity facet 遗漏讨论。"
+    resolution_round: 5
+
+  - id: "FR5-W5"
+    summary: "DeepSeek MATH 排除原因未说明"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "数据确认完整，升级为 8-model。"
+    resolution_round: 5
+
+  - id: "FR5-W6"
+    summary: "Conclusion 过于简短"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "扩展 practical implications。"
+    resolution_round: 5
+
+  - id: "FR5-W7"
+    summary: "遗漏相关工作 (6 篇)"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "6 篇全部验证真实并添加。"
+    resolution_round: 5
+
+  # === ROUND 6+ ISSUES ===
+
+  - id: "FR6-N1"
+    summary: "Quasi-random model facet: 8 purposively selected models 作为 random facet 辩护不充分"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "R1 N1 critical; R2 AGREE with nuance。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "两位 Reviewer 独立再次提出。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R1 W3 warning + R8-R2 AGREE (partial)。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W8 (bootstrap CI 仅 item-level) + R9-R2 W7 (model main effect 2.8% 同质性)。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 W2 + R10-R2 W5。强共识。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 W3 + R2 AGREE。引用 Meredith(1993)/Putnick(2016) 不恰当（measurement invariance 非 facet sampling）；LOMO/four-model subset 是 within-sample stability，非 out-of-sample；FF 7.3% error (MATH) 非 trivial。R2 确认 random>fixed 保守性论证有效但核心问题未变。"
+    action_items:
+      - round: 6
+        action: "§3.6 完全重写: conservatism argument + LOMO + Cohen's κ"
+        assigned_to: "Paper Agent"
+        status: done
+      - round: 8
+        action: "§3.2 更精确定义 target universe"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 10
+        action: "获取至少一个 cross-family validation point（如 Llama-3 70B）"
+        assigned_to: "Paper Agent"
+        status: open
+      - round: 11
+        action: "替换 Meredith(1993)/Putnick(2016) 为 Brennan(2001 Ch.4-5) 关于 facet universe definition；明确讨论 exchangeability 假设的可检验条件；单独讨论 FF benchmarks 较大预测偏差 (7.3%)"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-N2"
+    summary: "Format-associated pattern 统计功效不足但叙事权重过高"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 11
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "强共识。D023 nuclear removal 执行。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "已从 Contributions 移除，§4.3 仍占完整 section。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R1 W2 + R8-R2 W5。共识。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W6 + R9-R2 W3。强共识。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 W4 + R10-R2 W2。强共识。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 W1 critical + R11-R2 W4 warning。核心问题：§5 Conclusion 写 'format-dependent...motivating per-format budget calibration' 完全去掉了 exploratory 限定词；Table 9 按 MC/FF 分列将 p=0.10 观察升级为 prescriptive budget。R1 要求 Conclusion 保留 exploratory + Table 9 加注。R2 建议压缩 §4.3，R1 REBUT 认为描述性价值足够——存在分歧。"
+    action_items:
+      - round: 8
+        action: "§4.3 明确讨论 prompt semantics 和 ordering 非对称性作为 confound"
+        assigned_to: "Paper Agent"
+        status: done
+      - round: 10
+        action: "§4.3 正文压缩至 1 段核心发现"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "§5 Conclusion 保留 'exploratory/preliminary' 限定词；Table 9 加注 'based on n=5 benchmarks; format-specific calibration requires replication'；C3 降级标注 'preliminary/exploratory'"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-N3"
+    summary: "D-study projection 外推假设（variance component invariance）未充分讨论"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "R1 N3 critical; R2 AGREE。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "item pool/model/temporal invariance 威胁仍未充分讨论。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R1 N2 critical + R8-R2 AGREE。强共识。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W2 + R9-R1 W3。强共识。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 W2 再次触及。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 W4 + R2 AGREE。§4.5 仅一句话 'All projections assume the 2024-2025 model generation'。Scale validation (§4.6) 仅检验参数规模，无时间维度证据。两位均要求讨论哪些方差分量最可能随模型代际变化。"
+    action_items:
+      - round: 9
+        action: "将 Table 8 重标为 'internal consistency check'"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "增加一段讨论方差分量 temporal stability：model×item 是否随模型同质化下降？对预算的影响方向？"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-N4"
+    summary: "与 Messing (2026) 的增量贡献界定不充分"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 6
+        reviewers: [2]
+        note: "R2 N1 critical; R1 REBUT。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "分歧持续。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "分歧持续（3 轮）。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "4 轮持续分歧。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "5 轮持续分歧。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W12 + Q4 指出 Table 1 positioning 对比不公平（Messing: judge-based single benchmark vs 本文: generation-based 5 benchmarks），facet 定义和评测范式不同。R1 AGREE 需加 caveats。R2 整体评价中认为 D-study 和 IRT 互补性是最有价值贡献。"
+    action_items:
+      - round: 8
+        action: "强化 D-study budget 的 practical framing"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 10
+        action: "将 IRT+G-theory 互补性提升至 Contributions"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "Table 1 caption 加注评测范式差异（judge-based vs generation-based）"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-N5"
+    summary: "'10× fewer items' / '3.1× item reduction' framing 隐藏总评估量增长"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 6
+        reviewers: [2]
+        note: "R2 N3 critical; R1 REBUT。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "强共识。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "强共识。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R2 W1 Must-Fix + R9-R1 W9 → 共识 Should-Fix。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R2 W1 + R10-R1 AGREE。强共识。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W1 critical + R1 AGREE。Abstract 仅报 item reduction，full multi-facet total evals 从 552→71,280 (129×)。推荐 3×3 设计 §4.5 已披露 2.9× overhead 但 abstract/Figure 1 未提。R1 认为 severity 介于 critical/warning 之间，因正文已披露且 3×3 的 2.9× overhead 可接受。"
+    action_items:
+      - round: 10
+        action: "Abstract 和 C1 对称呈现 item reduction 和 total evaluation increase"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "Abstract 中对推荐的 3×3 设计同时报告 item reduction (3.1×) 和 total evaluation overhead (2.9×)"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-W1"
+    summary: "Item-related variance bundling 解释性问题"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    resolution: "§4.3 bundled/unbundled 对比已完成。连续三轮未被提及。"
+    resolution_round: 8
+
+  - id: "FR6-W2"
+    summary: "模型范围 7-9B instruction-tuned, 标题/Abstract 未对齐限定"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 11
+        reviewers: []
+        note: "模型范围限定已充分（标题含 '7–9B Instruction-Tuned Models'）。Binary scoring 限定见 FR6-W6。"
+    resolution: "标题已含 '7–9B Instruction-Tuned Models'，模型范围限定充分。"
+    resolution_round: 11
+
+  - id: "FR6-W3"
+    summary: "Reduced crossing validation 仅 MMLU，FF 未验证"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 8
+    resolution: "§4.3 design asymmetry confound 已讨论。已被 FR6-N2 和 FR6-N3 吸收。"
+    resolution_round: 9
+
+  - id: "FR6-W4"
+    summary: "200-item stratified sample 代表性 (10/57 subjects)"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    resolution: "CV=3.1% resampling stability + subject-level G-study (Appendix E) 充分缓解。连续两轮未提及。"
+    resolution_round: 9
+
+  - id: "FR6-W5"
+    summary: "FF benchmarks 高 residual variance (40-44%) 归因不充分"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "R1-W6, R2-W2。共识。"
+      - round: 7
+        reviewers: [2]
+        note: "R7-R2 W5。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R2 N3 critical + R8-R1 AGREE。"
+      - round: 9
+        reviewers: [1]
+        note: "R9-R1 Q5。Appendix F residual regression 部分回应。"
+      - round: 10
+        reviewers: []
+        note: "Round 10 未直接提及。Appendix F 分析可能已充分缓解。"
+      - round: 11
+        reviewers: []
+        note: "Round 11 未直接提及。Appendix F (Table 11) Bernoulli variance ceiling 分析 (R²=0.47-0.86) 和 §4.3 讨论似已充分缓解。连续两轮未提及，考虑标注可能已修复。"
+    action_items:
+      - round: 8
+        action: "分析 item-level features 与 residual magnitude 的相关性"
+        assigned_to: "Paper Agent"
+        status: done
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-W6"
+    summary: "所有发现仅限 binary scoring — title/abstract scope 未限定"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 6
+        reviewers: [2]
+        note: "R2-W4; R1 AGREE。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "共识。Partial-credit pilot 显示方差结构根本性改变。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R1 W1 + R8-R2 AGREE。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W4 + R9-R2 AGREE。强共识。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R2 N2 critical + R10-R1 AGREE。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W2 critical + R1 AGREE。强共识。Title 暗示通用 LLM 评测。Text-exact-match G 0.936→0.007，partial-credit G 0.86→0.77。R1 补充：MC benchmarks 的 binary scoring 是标准做法，问题主要在 FF benchmarks。R2 指出对 code generation/open-ended QA/rubric-based evaluation 不适用。两位建议：title 加限定语或 abstract 明确声明 scope。"
+    action_items:
+      - round: 8
+        action: "§4.4 或 §5 增加独立段落讨论 partial-credit implications"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 10
+        action: "Abstract 首处 binary scoring scope 声明"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "Title 考虑加 'under Binary Correctness Scoring' 或 abstract 首段明确限定 scope；§3.5 增加不适用场景列表 (LLM-as-judge, continuous metrics, preference ranking)"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-W7"
+    summary: "Abstract 数字过密 (>20 个数值)"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 7
+        reviewers: []
+        note: "Round 7 未再提及。"
+      - round: 8
+        reviewers: []
+        note: "Round 8 未再提及。"
+      - round: 9
+        reviewers: [2]
+        note: "R9-R2 W5 Should-Fix。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R2 M1 + R10-R1 AGREE。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W10 minor + R1 REBUT。分歧：R2 认为 20+ 数值影响可读性；R1 认为 methods paper 惯例允许高数值密度。"
+    action_items:
+      - round: 10
+        action: "精简 Abstract 至 3-4 个关键数字"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-W8"
+    summary: "遗漏 Mizrahi (2024) TACL, HELM (2023), measurement invariance 文献"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 6
+    resolution: "Round 6 遗漏已补。"
+    resolution_round: 7
+
+  - id: "FR6-M1"
+    summary: "Table 3 'Prompt' 行 MC vs FF 报告量不一致, caption 不清晰"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 6
+    last_seen_round: 11
+    mentions:
+      - round: 8
+        reviewers: []
+        note: "Round 8 未直接提及。"
+      - round: 9
+        reviewers: []
+        note: "Round 9 未提及。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R2 M2 + R10-R1 AGREE。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W5 warning + R1 AGREE。同一行 'prompt†' 对 MC 报 prompt×item interaction 对 FF 报 prompt main effect。建议拆两行或用不同标注。"
+    action_items:
+      - round: 11
+        action: "Table 6 拆 prompt_main / prompt×item 为两行，或用更清晰标注区分"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR6-M2"
+    summary: "Abstract 'no unified factorial framework exists' 过于绝对"
+    category: framing
+    severity: info
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 6
+    resolution: "Round 7 未再提及。已改为更精确措辞。"
+    resolution_round: 7
+
+  # === ROUND 7 ISSUES ===
+
+  - id: "FR7-M1"
+    summary: "Anonymous (2025) arXiv:2601.00822 匿名性风险"
+    category: format
+    severity: info
+    status: open
+    first_raised_round: 7
+    last_seen_round: 9
+    mentions:
+      - round: 8
+        reviewers: []
+        note: "Round 8 未提及。"
+      - round: 9
+        reviewers: [2]
+        note: "R9-R2 W8 Minor。"
+      - round: 10
+        reviewers: []
+        note: "Round 10 未提及。"
+      - round: 11
+        reviewers: []
+        note: "Round 11 未提及。连续两轮未提及。"
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR7-M2"
+    summary: "Section 4.2 '(1.1 c.u., 1.0)' 含义不明"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 11
+        reviewers: []
+        note: "Round 11 未提及。连续四轮未提及，可能已修复或不再相关。"
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR7-M3"
+    summary: "建议补充引用: Gao et al. (2024) lm-eval-harness, Cardinet et al. (2010)"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 7
+    last_seen_round: 11
+    mentions:
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R1 建议 Cardinet et al. (2010)。"
+      - round: 9
+        reviewers: []
+        note: "论文已引用 Cardinet et al. (2010)。"
+      - round: 10
+        reviewers: [2]
+        note: "R10-R2 W4：缺 lm-evaluation-harness 整合讨论。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W8 建议补充 MMLU-Redux (Gema 2024)、MMLU-Pro (Wang 2024)、contamination 文献。R1 部分同意：contamination 文献应补，MMLU-Redux/Pro 非必需。R11-R1 建议补充 Cronbach et al. (1972) G-theory 奠基文献。"
+    action_items:
+      - round: 10
+        action: "Related Work 增加 evaluation harness 整合讨论"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "补充 Cronbach et al. (1972)；考虑补充 MMLU-Redux (Gema 2024) 和 contamination 检测文献"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  # === ROUND 8 ISSUES ===
+
+  - id: "FR8-N1"
+    summary: "Henderson Method I binary validation: probit ρ=0.73 仅中等，缺 bias/RMSE 报告"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 8
+    last_seen_round: 11
+    mentions:
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R1 N1 critical; R8-R2 REBUT。分歧。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W1。共识：方法论前提成立但报告完整性需补充。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 N2 critical + R10-R2 AGREE with nuance。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 Q2 间接触及。R2 回应：ρ=0.732 支持 ranking recovery 但不支持精确定量估计。论文已论证 binary 产生 conservative budgets (+36%)，误差方向安全。定量精度存疑但实践建议不危险。"
+    action_items:
+      - round: 9
+        action: "补充 full difficulty quintile 的 bias/RMSE 分解"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 10
+        action: "从 probit continuous components 计算 D-study projections 比较"
+        assigned_to: "Main Agent"
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR8-W1"
+    summary: "Data contamination 作为 model×item interaction 混淆变量未讨论"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 8
+    last_seen_round: 11
+    mentions:
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R2 W1 + R8-R1 AGREE。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W5 + R9-R2 部分 AGREE。"
+      - round: 10
+        reviewers: []
+        note: "Limitations 已含 contamination 讨论。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 M4 + R2 W8。Limitations 提及 contamination 但未引用检测文献。R1 补充：contamination 使所有模型答对的 items 的 model×item=0，可能系统性低估 clean benchmarks 上的 model×item。"
+    action_items:
+      - round: 9
+        action: "Limitations 补引 contamination 检测文献"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "讨论 contamination 对 model×item 估计的方向性影响（可能低估）"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR8-W2"
+    summary: "C2 (precision separability) 与 C1 并列 overclaiming"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 8
+    last_seen_round: 9
+    mentions:
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R2 W2 + R8-R1 部分同意。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W7 + R9-R2 W2。强共识。"
+      - round: 10
+        reviewers: []
+        note: "C1 sub-finding 处理。"
+      - round: 11
+        reviewers: []
+        note: "Round 11 未提及。连续两轮未提及。"
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR8-W3"
+    summary: "ARC model×prompt 异常 (8.0%) 未讨论"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 8
+    last_seen_round: 10
+    resolution: "§4.3 已讨论 ARC anomaly 及可能原因。"
+    resolution_round: 10
+
+  - id: "FR8-W4"
+    summary: "Conclusion 过于简短，缺 practical implications"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 8
+    last_seen_round: 11
+    mentions:
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R2 W4 + R8-R1 AGREE。"
+      - round: 9
+        reviewers: [2]
+        note: "R9-R2 W6 Minor。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R2 W3 + R10-R1 部分 REBUT。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W6 warning + R1 部分 REBUT。分歧：R2 要求扩展至 2-3 段含 adoption pathway、future work、IRT 集成路径；R1 认为 8 页限制下简洁合理，但同意可加 1-2 句 adoption pathway。"
+    action_items:
+      - round: 10
+        action: "Conclusion 扩展至 2-3 段"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "至少增加 1-2 句 practical adoption pathway（如 benchmark 开发者如何集成 G-theory pipeline）"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR8-W5"
+    summary: "Bootstrap CI 仅 item-level resampling，未纳入 model-level uncertainty"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 8
+    last_seen_round: 11
+    mentions:
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R1 W4 + R8-R2 AGREE。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9-R1 W8 + R9-R2 AGREE。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 N2 触及。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 W2 critical + R2 AGREE with nuance。Table 9 CI 仅反映 item-level resampling。LOMO max|ΔG|=0.030 → ~23% 预算变动。两者从未联合量化。R2 补充：n_model=8 做 model-level bootstrap 方差极大，更实用做法是报告 sensitivity band（Appendix B Figure 9 框架）。"
+    action_items:
+      - round: 10
+        action: "CI 报告中明确标注 'item-sampling variability conditional on these 8 models'"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "Table 9 标题/脚注标注 CI 仅反映 item-level variability；正文讨论 combined uncertainty 量级 (item CI ~20% + model uncertainty ~23%)"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR8-M1"
+    summary: "建议补充引用: contamination, DynaBench, Saxon (2024), Alzahrani (2024)"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 8
+    last_seen_round: 9
+    mentions:
+      - round: 11
+        reviewers: []
+        note: "Round 11 未直接提及。部分已被 FR7-M3 和 FR8-W1 吸收。"
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  # === ROUND 9 ISSUES ===
+
+  - id: "FR9-N1"
+    summary: "Partial-credit pilot 仅 GSM8K 单一 benchmark，泛化性未验证"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 9
+    last_seen_round: 11
+    mentions:
+      - round: 9
+        reviewers: [1]
+        note: "R9-R1 Q3。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 W3 + R10-R2 AGREE。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 W5 warning + R2 W7 warning + 双向 AGREE。GSM8K 唯一的 partial-credit 证据。论文应限定为 'GSM8K step-level partial credit 下初步观察到'，非泛化到所有 partial-credit 方案。R1 补充 MATH 的 \\boxed{} 格式也支持 partial credit 但未分析。"
+    action_items:
+      - round: 10
+        action: "§3.5 将 'do not transfer' 改为 'preliminary evidence suggests limited transferability'"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "明确限定为 'GSM8K step-level partial credit 下初步观察到'；讨论 binary→partial-credit 对 model×item 主导结论的影响"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  # === ROUND 10 ISSUES ===
+
+  - id: "FR10-N1"
+    summary: "D-study item budget 公式不完整——Equation 1 不含 n_p，核心贡献不可独立验证"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 10
+    last_seen_round: 11
+    mentions:
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 N1 critical + R10-R2 AGREE。"
+      - round: 11
+        reviewers: []
+        note: "Round 11 未直接提及。论文当前版本已含 Equation 2 (D-study projection with n_p) 并标注 'enabling independent verification of all budget projections in Table 7'。可能已修复。"
+    action_items:
+      - round: 10
+        action: "§3.1 补充完整 D-study 投影公式含 n_p"
+        assigned_to: "Paper Agent"
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR10-W1"
+    summary: "G_item 测量 item 难度可靠性而非模型比较可靠性——概念鸿沟未讨论"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 10
+    last_seen_round: 11
+    mentions:
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10-R1 W1 + R10-R2 AGREE。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W3 critical + R1 W6 warning + 双向 AGREE。强共识（R2 建议从 should-fix 升级为 near-critical）。G_item 衡量 item-level 跨条件泛化，但用户关心 model ranking reliability。σ²_model 仅 2.8%，G_model 可能远低于 G_item=0.896。间接证据（LOMO, κ）不直接回答 model ranking stability。R1 解释：当 model×item >> model (30-36% vs 3-5%)，model ranking stability 会低于 G_item 暗示的水平。两位建议：增加 G_model 计算或 Kendall's W / bootstrap ranking consistency 分析。"
+    action_items:
+      - round: 10
+        action: "§4.5 或 Discussion 增加 G_model 计算结果"
+        assigned_to: "Paper Agent"
+        status: in_progress
+      - round: 11
+        action: "补充 model ranking stability 分析（Kendall's W 或 bootstrap 排名一致性）；讨论 G_item≥0.80 蕴含 model ranking reliability 的条件"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  # === ROUND 11 NEW ISSUES ===
+
+  - id: "FR11-M1"
+    summary: "Abstract 约 201 词，超 EMNLP 2026 的 200 词限制"
+    category: format
+    severity: warning
+    status: open
+    first_raised_round: 11
+    last_seen_round: 11
+    mentions:
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W9 minor + R1 AGREE。EMNLP 2026 硬性限制 abstract ≤ 200 words。"
+    action_items:
+      - round: 11
+        action: "Abstract 删减至 ≤ 200 words"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR11-M2"
+    summary: "main.tex \\enlargethispage{1\\baselineskip} 排版 hack"
+    category: format
+    severity: info
+    status: open
+    first_raised_round: 11
+    last_seen_round: 11
+    mentions:
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R2 W11 minor + R1 AGREE（实际投稿常见，不违反 page limit 即可）。"
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  - id: "FR11-M3"
+    summary: "'quasi-random facet' 非 G-theory 标准术语"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 11
+    last_seen_round: 11
+    mentions:
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11-R1 M3 + R2 AGREE。Brennan (2001) 用 'random'/'fixed' 二分法。应用标准术语并解释 purposive selection 按 random 处理的理由。"
+    action_items:
+      - round: 11
+        action: "将 'quasi-random facet' 改为标准术语 'treated as random' 并引用 Brennan (2001 Ch.4)"
+        assigned_to: "Paper Agent"
+        status: open
+    resolution: ""
+    resolution_round: null

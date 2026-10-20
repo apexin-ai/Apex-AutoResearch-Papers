@@ -1,0 +1,79 @@
+paper_key: "hua2025flaw"
+title: "Flaw or Artifact? Rethinking Prompt Sensitivity in Evaluating LLMs"
+venue: "EMNLP 2025"
+full_text_available: true
+
+research:
+  baselines: [LLaMA-3.1-8B, Qwen2-7B, Gemma-2-9B, Ministral-8B, GPT-4o-mini, GPT-4.1-mini, Gemini-2.0-Flash]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "Spearman rank correlation across prompts", direction: "higher_better"}
+    - {name: "standard deviation across prompts", direction: "lower_better"}
+  datasets:
+    - {name: "ARC-Challenge", size: "standard"}
+    - {name: "GPQA-Diamond", size: "standard"}
+    - {name: "OpenbookQA", size: "standard"}
+    - {name: "NarrativeQA", size: "standard"}
+    - {name: "MATH", size: "standard"}
+    - {name: "SimpleQA", size: "standard"}
+  ablation_dimensions: [evaluation_method (heuristic vs LLM-judge), prompt_template (12 variants), judge_model (GPT-4o vs Gemini)]
+  training_recipe: {optimizer: "N/A (inference-only)", lr: "N/A", hardware: "API-based"}
+  method_family: "evaluation methodology critique"
+
+positioning:
+  core_claim: "LLM prompt sensitivity is largely an artifact of heuristic evaluation methods (regex matching, log-likelihood scoring), not an inherent model flaw — LLM-as-a-Judge reduces measured sensitivity dramatically"
+  key_results: "ARC-Challenge Spearman correlation: heuristic 0.30 → LLM-judge 0.95; Gemma-2 accuracy std: 0.28 → 0.005"
+  limitations:
+    - "Limited to 12 prompt templates (verified stability with 100+ on ARC)"
+    - "Human study with only 3 undergraduate annotators"
+    - "Computational constraints limited model/benchmark coverage"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Challenges widely accepted finding that LLMs are highly prompt-sensitive — frames the entire literature as potentially misled by evaluation artifacts"
+  tension: "Widespread reports of prompt sensitivity create concerns about LLM reliability, but what if the measurement tool is broken rather than the model?"
+  key_insight: "Revealed in experiment section — switching from heuristic to LLM-judge evaluation collapses measured sensitivity (e.g., 0.30→0.95 rank correlation), showing sensitivity was in the ruler, not the model"
+  argument_chain: "problem (reported prompt sensitivity) → hypothesis (evaluation artifact vs model flaw) → controlled experiment (same prompts, different evaluators) → validation (human agreement with LLM-judge)"
+  contribution_framing: "3 contributions: (1) systematic comparison showing artifact dominance, (2) LLM-judge as robust alternative, (3) human validation"
+  intro_structure: "4 paragraphs: (1) LLM evaluation importance, (2) prior work on prompt sensitivity, (3) challenge — is it real or artifact?, (4) contributions"
+  notable_technique: "Uses a single dramatic example (Gemma accuracy 0.25→0.90 range) as hook, then systematically demolishes the premise across all benchmarks"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "motivation"
+    description: "Shows how heuristic evaluation fails to match 'Fifty years' variants while LLM-judge recognizes semantic equivalence across diverse prompt phrasings"
+    narrative_role: "Immediately establishes the artifact hypothesis with a concrete, visceral example"
+    design_elements: ["side-by-side comparison", "concrete text examples", "pass/fail annotation"]
+    visual_style: "Text-based example with colored pass/fail indicators, clean layout"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "Mean accuracy and std across 6 datasets, heuristic vs LLM-judge"
+      how_gain_highlighted: "Error bars dramatically shrink under LLM-judge evaluation"
+      design_note: "Paired bars with error bars make the artifact claim visually immediate"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation example) → Figure 2 (systematic results) → Tables (detailed numbers)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "datasets"
+    col_axis: "evaluation_method"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold emphasis on dramatic improvements"
+    statistical_reporting: "Spearman rank correlations"
+    num_baselines: 7
+    design_note: "Clean comparison of heuristic vs LLM-judge per dataset, making the improvement impossible to miss"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["judge_model"]
+      variation_style: "full_numbers"
+      design_note: "Shows robustness across different LLM judges"
+  supplementary_tables:
+    in_appendix: true
+    content: "Human annotation details and extended template analysis"
+    reason: "Core claim requires only the main comparison; human validation supports but doesn't drive the narrative"

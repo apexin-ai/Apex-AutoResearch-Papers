@@ -1,0 +1,142 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sclar2024quantifying}
+\citation{thinkingmachines2025}
+\citation{yuan2025}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{mesting2026}
+\citation{bouthillier2021accounting}
+\citation{lalor2019learning,rodriguez2021evaluation,polo2024tinybenchmarks}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{sclar2024quantifying}
+\citation{brittlebench2026}
+\citation{yuan2025}
+\citation{thinkingmachines2025}
+\citation{messina2026}
+\citation{bouthillier2021accounting}
+\citation{mesting2026}
+\citation{kunievsky2025}
+\citation{mesting2026}
+\citation{lalor2019learning,rodriguez2021evaluation,vania2021comparing}
+\citation{polo2024tinybenchmarks}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance sources in LLM evaluation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition frameworks.}{2}{section*.2}\protected@file@percent }
+\citation{dodge2020finetuning}
+\citation{sellam2022multibertsmultibert}
+\citation{bui2025}
+\citation{henderson2018deep}
+\citation{dehghani2021benchmark}
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\@writefile{toc}{\contentsline {paragraph}{IRT and item-level analysis.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility and fine-tuning instability.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory Background}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Object of measurement.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Facets.}{3}{section*.6}\protected@file@percent }
+\citation{mesting2026}
+\citation{hua2025emnlp}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scoring metrics.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Infrastructure.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Design balance.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Estimation.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Design decisions.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment 1: MMLU Precision Study}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:mmlu}{{4.1}{4}{Experiment 1: MMLU Precision Study}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Variance decomposition: single-model (mean of 4 models) vs.\ crossed 4-model design on MMLU (200 items). REML confirmation column shows maximum deviation from Henderson I estimates.}}{5}{table.caption.13}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:variance_decomp}{{1}{5}{Variance decomposition: single-model (mean of 4 models) vs.\ crossed 4-model design on MMLU (200 items). REML confirmation column shows maximum deviation from Henderson I estimates}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-model interaction magnitude on MMLU. Models sorted by decreasing interaction.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:per_model_interaction}{{2}{5}{Per-model interaction magnitude on MMLU. Models sorted by decreasing interaction}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{D-study validation.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Precision Sensitivity}{5}{subsubsection.4.1.1}\protected@file@percent }
+\newlabel{sec:precision}{{4.1.1}{5}{Precision Sensitivity}{subsubsection.4.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experiment 1b: Item Resampling Stability}{5}{subsection.4.2}\protected@file@percent }
+\citation{polo2024tinybenchmarks}
+\citation{polo2024tinybenchmarks}
+\citation{polo2024tinybenchmarks}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces D-study out-of-sample validation. Each row excludes one model; 3-model subsets predict 4-model $G_{\text  {item}}$.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:dstudy_validation}{{3}{6}{D-study out-of-sample validation. Each row excludes one model; 3-model subsets predict 4-model $G_{\text {item}}$}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Precision effect with and without FP32. FP32 anomaly attributed to vLLM \texttt  {enforce\_eager} artifact.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:precision}{{4}{6}{Precision effect with and without FP32. FP32 anomaly attributed to vLLM \texttt {enforce\_eager} artifact}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiment 2: Cross-Benchmark Variance Structure}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:cross_bench}{{4.3}{6}{Experiment 2: Cross-Benchmark Variance Structure}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmark-specific reproducibility budgets.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Separability across benchmarks.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Experiment 3: IRT vs.\ G-theory Comparison}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-benchmark variance decomposition (4 models, crossed design). Benchmarks sorted by descending item dominance. All values in \%; 95\% bootstrap CIs available in supplement.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{5}{7}{Cross-benchmark variance decomposition (4 models, crossed design). Benchmarks sorted by descending item dominance. All values in \%; 95\% bootstrap CIs available in supplement}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces D-study budgets: items needed for target $G$ (practical configuration with precision and temperature fixed). IRT comparison column from \citet  {polo2024tinybenchmarks} methodology.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:dstudy_budgets}{{6}{7}{D-study budgets: items needed for target $G$ (practical configuration with precision and temperature fixed). IRT comparison column from \citet {polo2024tinybenchmarks} methodology}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experiment 4: Multi-Hardware G-study}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Experiment 5: Model Scale Extension}{7}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces IRT vs.\ G-theory item requirements for reliable measurement. G-theory accounts for prompt, seed, and ordering dimensions invisible to IRT. $G$@IRT: G-coefficient at IRT-recommended item count.}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:irt_comparison}{{7}{8}{IRT vs.\ G-theory item requirements for reliable measurement. G-theory accounts for prompt, seed, and ordering dimensions invisible to IRT. $G$@IRT: G-coefficient at IRT-recommended item count}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Hardware crossing variance decomposition (MMLU, partial: 3/4 models on A100). CI widths wider due to reduced data.}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:hardware}{{8}{8}{Hardware crossing variance decomposition (MMLU, partial: 3/4 models on A100). CI widths wider due to reduced data}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Comprehensive Analysis}{8}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Higher-order interactions.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Power analysis.}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fixed vs.\ random facet sensitivity.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model ranking stability.}{8}{section*.27}\protected@file@percent }
+\citation{bui2025}
+\citation{mesting2026}
+\citation{lalor2019learning}
+\citation{jiang2017logistic}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Methodological robustness summary.}}{9}{table.caption.29}\protected@file@percent }
+\newlabel{tab:robustness}{{9}{9}{Methodological robustness summary}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{Methodological robustness.}{9}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark-conditional variance structure.}{9}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for evaluation practice.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-tuning variance.}{9}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Separability and its limits.}{9}{section*.33}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{bouthillier2021accounting}{{1}{2021}{{Bouthillier et~al.}}{{}}}
+\bibcite{brennan2001generalizability}{{2}{2001}{{Brennan}}{{}}}
+\bibcite{brittlebench2026}{{3}{2026}{{Brittlebench}}{{}}}
+\bibcite{bui2025}{{4}{2025}{{Bui et~al.}}{{}}}
+\bibcite{dehghani2021benchmark}{{5}{2021}{{Dehghani et~al.}}{{}}}
+\bibcite{dodge2020finetuning}{{6}{2020}{{Dodge et~al.}}{{}}}
+\bibcite{henderson2018deep}{{7}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{hua2025emnlp}{{8}{2025}{{Hua et~al.}}{{}}}
+\bibcite{jiang2017logistic}{{9}{2017}{{Jiang and Skorupski}}{{}}}
+\bibcite{kunievsky2025}{{10}{2025}{{Kunievsky and Evans}}{{}}}
+\bibcite{lalor2019learning}{{11}{2019}{{Lalor et~al.}}{{}}}
+\bibcite{lu2022option}{{12}{2022}{{Lu et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\bibcite{messina2026}{{13}{2026}{{Messina and Scotta}}{{}}}
+\bibcite{mesting2026}{{14}{2026}{{Mesting}}{{}}}
+\bibcite{mushquash2006}{{15}{2006}{{Mushquash and O'Connor}}{{}}}
+\bibcite{perlitz2023efficient}{{16}{2023}{{Perlitz et~al.}}{{}}}
+\bibcite{pezeshkpour2024option}{{17}{2024}{{Pezeshkpour and Hruschka}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{18}{2024}{{Polo et~al.}}{{}}}
+\bibcite{rodriguez2021evaluation}{{19}{2021}{{Rodriguez et~al.}}{{}}}
+\bibcite{sclar2024quantifying}{{20}{2024}{{Sclar et~al.}}{{}}}
+\bibcite{sellam2022multibertsmultibert}{{21}{2022}{{Sellam et~al.}}{{}}}
+\bibcite{shavelson1991generalizability}{{22}{1991}{{Shavelson and Webb}}{{}}}
+\bibcite{shavelson1989binary}{{23}{1989}{{Shavelson et~al.}}{{}}}
+\bibcite{thinkingmachines2025}{{24}{2025}{{ThinkingMachines}}{{}}}
+\bibcite{vania2021comparing}{{25}{2021}{{Vania et~al.}}{{}}}
+\bibcite{yuan2025}{{26}{2025}{{Yuan et~al.}}{{}}}
+\bibcite{biderman2024lessons}{{27}{2024}{{Biderman et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}HellaSwag Anomaly}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:hellaswag}{{A}{11}{HellaSwag Anomaly}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Supplementary Tables}{12}{appendix.B}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Item resampling stability (Llama, single-model, 3 independent 200-item stratified samples).}}{12}{table.caption.36}\protected@file@percent }
+\newlabel{tab:resampling}{{10}{12}{Item resampling stability (Llama, single-model, 3 independent 200-item stratified samples)}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces 8B vs 14B variance structure comparison on MMLU.}}{12}{table.caption.37}\protected@file@percent }
+\newlabel{tab:scale}{{11}{12}{8B vs 14B variance structure comparison on MMLU}{table.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Fine-tuning variance decomposition: RoBERTa-large, 4 tasks, 1,728 total runs.}}{12}{table.caption.38}\protected@file@percent }
+\newlabel{tab:finetuning}{{12}{12}{Fine-tuning variance decomposition: RoBERTa-large, 4 tasks, 1,728 total runs}{table.caption.38}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces LayerCast precision comparison on MMLU (Llama, single-model).}}{13}{table.caption.39}\protected@file@percent }
+\newlabel{tab:layercast}{{13}{13}{LayerCast precision comparison on MMLU (Llama, single-model)}{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces GPU cost projections for achieving $G \geq 0.80$ (practical configuration).}}{13}{table.caption.40}\protected@file@percent }
+\newlabel{tab:gpu_cost}{{14}{13}{GPU cost projections for achieving $G \geq 0.80$ (practical configuration)}{table.caption.40}{}}
+\gdef \@abspage@last{13}

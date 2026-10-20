@@ -1,0 +1,112 @@
+[
+  {
+    "item_id": "arc_train_554",
+    "benchmark": "arc_challenge",
+    "question": "What do the Milky Way Galaxy and other galaxies in the universe have in common?",
+    "choices": [
+      "They are similar in shape.",
+      "They rotate in the same direction.",
+      "They contain the same number of stars.",
+      "They have similar elements."
+    ],
+    "answer_idx": 3,
+    "answer": "D",
+    "metadata": {
+      "n_choices": 4,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  {
+    "item_id": "arc_train_758",
+    "benchmark": "arc_challenge",
+    "question": "Due to the increasing average temperature of the atmosphere, polar ice sheets melt at a greater rate than they form. Which of these will be an effect of the continued melting of polar ice?",
+    "choices": [
+      "A major reservoir of fresh water will decrease.",
+      "Plant life will increase due to higher sea levels.",
+      "Water runoff will cause an increase in ocean salinity.",
+      "Ocean temperature will decrease with the addition of cold water."
+    ],
+    "answer_idx": 0,
+    "answer": "A",
+    "metadata": {
+      "n_choices": 4,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  {
+    "item_id": "arc_train_52",
+    "benchmark": "arc_challenge",
+    "question": "A student accidentally drops a test tube that breaks when it hits the floor. Which method is the best way to retrieve the broken glass?",
+    "choices": [
+      "pick up the pieces with a paper towel",
+      "use a chemical spill kit",
+      "use a dustpan and broom",
+      "pick up the pieces by hand"
+    ],
+    "answer_idx": 2,
+    "answer": "C",
+    "metadata": {
+      "n_choices": 4,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  {
+    "item_id": "arc_train_503",
+    "benchmark": "arc_challenge",
+    "question": "Why are different stars seen during different seasons?",
+    "choices": [
+      "Some stars shine brighter during different seasons.",
+      "The Sun shines on different stars during different seasons.",
+      "Earth changes position in its orbit during different seasons.",
+      "The Moon changes position in its orbit during different seasons."
+    ],
+    "answer_idx": 2,
+    "answer": "C",
+    "metadata": {
+      "n_choices": 4,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  {
+    "item_id": "arc_train_215",
+    "benchmark": "arc_challenge",
+    "question": "Which characteristic of the asthenosphere helps explain the evidence of crustal-plate motion?",
+    "choices": [
+      "the magnetic properties",
+      "the semiliquid physical state",
+      "the ability to deflect solar winds",
+      "the ability to absorb heat energy"
+    ],
+    "answer_idx": 1,
+    "answer": "B",
+    "metadata": {
+      "n_choices": 4,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "analysis": "math_8model_henderson_i",
+  "n_models": 8,
+  "n_observations": 460800,
+  "models": [
+    "DeepSeek-7B",
+    "Gemma-2-9B",
+    "InternLM2.5-7B",
+    "Llama-3.1-8B",
+    "Mistral-7B-v0.3",
+    "OLMo-2-7B",
+    "Qwen3-8B",
+    "Yi-1.5-9B"
+  ],
+  "n_levels": {
+    "model": 8,
+    "temperature": 2,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "grand_mean_accuracy": 0.28582,
+  "variance_components": {
+    "residual": {"estimate": 0.0908925174, "pct": 43.88},
+    "item_id": {"estimate": 0.0497668223, "pct": 24.03},
+    "model:item_id": {"estimate": 0.0357840757, "pct": 17.28},
+    "model": {"estimate": 0.0176297619, "pct": 8.51},
+    "prompt_template:item_id": {"estimate": 0.0059255092, "pct": 2.86},
+    "model:prompt_template": {"estimate": 0.0034490834, "pct": 1.67},
+    "prompt_template": {"estimate": 0.0017161557, "pct": 0.83},
+    "temperature:item_id": {"estimate": 0.0014443229, "pct": 0.70},
+    "seed:item_id": {"estimate": 0.0003153339, "pct": 0.15},
+    "model:temperature": {"estimate": 7.27458e-05, "pct": 0.04},
+    "temperature": {"estimate": 6.75769e-05, "pct": 0.03},
+    "temperature:prompt_template": {"estimate": 4.22987e-05, "pct": 0.02}
+  },
+  "total_variance": 0.2071307857,
+  "G_item": 0.888034,
+  "comparison_7model": {
+    "prev_item_id_pct": 26.48,
+    "curr_item_id_pct": 24.03,
+    "change_pp": -2.45
+  },
+  "source": "copied from server /root/nlp_variance_gtheory/results/exp004_8model_analysis/math_8model_verified.json",
+  "verified_date": "2026-05-22"
+}

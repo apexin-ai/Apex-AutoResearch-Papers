@@ -1,0 +1,80 @@
+paper_key: "zhou2026irt"
+title: "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"
+venue: "AAAI 2026 (Oral)"
+full_text_available: true
+
+research:
+  baselines: ["Traditional IRT (MLE, MCMC, VI, VIBO)", "Deep-IRT (1PL)"]
+  metrics:
+    - {name: "prediction accuracy (ACC/F1/AUC)", direction: "higher_better"}
+    - {name: "Kendall tau (rank stability)", direction: "higher_better"}
+    - {name: "Local Efficiency Headroom (LEH)", direction: "higher_better"}
+    - {name: "Fisher information", direction: "higher_better"}
+    - {name: "human preference alignment (Kendall tau)", direction: "higher_better"}
+  datasets:
+    - {name: "11 LLM benchmarks (MMLU, ARC-C, HellaSwag, etc.)", size: "41,871 items total"}
+  ablation_dimensions: ["IRT model architecture (MLE/MCMC/VI/Deep-IRT/PSN-IRT)", "item selection strategy (random/Fisher)", "number of selected items", "semantic embedding variants", "GNN neighborhood aggregation"]
+  training_recipe: {optimizer: "Adam", lr: "0.003", hardware: "not specified"}
+  method_family: "neural IRT / psychometric benchmark analysis"
+
+positioning:
+  core_claim: "PSN-IRT reveals systematic deficiencies in mainstream LLM benchmarks (insufficient difficulty ceiling, item saturation, guessing effects) and enables smaller, more human-aligned benchmarks via Fisher-information item selection"
+  key_results: "ACC 0.7998, Kendall tau 1.0000, 1000 Fisher-selected items achieve 0.9048 tau with human preference"
+  limitations:
+    - "Semantic embedding variants did not yield significant improvements"
+    - "GNN neighborhood aggregation dilutes unique statistical signals"
+    - "Limited to 12 models for IRT calibration"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "LLM benchmarks are ubiquitous but show inconsistent rankings and poor model separability"
+  tension: "Leaderboards contradict each other → need principled diagnostic framework beyond raw scores"
+  key_insight: "Five empirical findings (Section 5): difficulty ceiling, saturation, guessing, contamination — all quantified through IRT lens"
+  argument_chain: "problem (inconsistent rankings) → framework (PSN-IRT) → diagnostic findings (5 deficiencies) → practical fix (Fisher item selection) → validation (human alignment)"
+  contribution_framing: "3 numbered contributions: framework proposal, benchmark analysis, efficient benchmarking"
+  intro_structure: "5 paragraphs: importance → problem → IRT as tool → PSN-IRT proposal → validation preview"
+  notable_technique: "Figure 1 uses real leaderboard screenshots to ground the inconsistency problem concretely"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Real leaderboard comparison showing same models ranked differently across platforms"
+    narrative_role: "Concrete evidence of the problem — not hypothetical"
+    design_elements: ["real screenshots", "highlighted ranking discrepancies", "multiple platforms compared"]
+    visual_style: "Side-by-side leaderboard extracts with annotation arrows"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "distribution plots"
+      what_compared: "Psychometric property distributions across 11 benchmarks"
+      how_gain_highlighted: "Shows variance in item quality across benchmarks"
+      design_note: "Multi-panel distributions reveal heterogeneous benchmark quality"
+  ablation_figures: []
+  figure_narrative_role: "Fig1 (problem) → Fig2 (method architecture) → Fig3 (diagnostic distributions) → Tables (quantitative results)"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (IRT variants)"
+    col_axis: "ACC, F1, AUC, Kendall tau"
+    row_organization: "by_category (traditional vs deep)"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "point estimates"
+    num_baselines: 5
+    design_note: "Compact comparison emphasizing rank stability (Kendall tau 1.0000 is striking)"
+  ablation_tables:
+    - table_id: "Table 5"
+      what_varied: ["benchmark aggregated ranking scores"]
+      variation_style: "full_numbers"
+      design_note: "Benchmark quality ranking — which benchmarks measure best"
+    - table_id: "Table 6"
+      what_varied: ["number of Fisher-selected items"]
+      variation_style: "full_numbers"
+      design_note: "Efficiency curve showing 1000 items achieve near-full alignment"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-benchmark IRT parameter distributions, extended model comparisons"
+    reason: "Main paper focuses on framework + 5 findings; per-benchmark details support but don't drive"

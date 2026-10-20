@@ -1,0 +1,122 @@
+paper:
+  title: ''
+  version: 27
+  generated_at: '2026-05-22T07:51:47.714505+00:00'
+claims:
+- id: C001
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Six prompt templates follow surface perturbation design inspired by BrittleBench,
+    varying option layout, instruction wording, and answer prompt cue for MC; chain-of-thought
+    elicitation for FF
+  type: methodological
+  evidence:
+  - exp_id: exp_001
+    detail: prompt template design from experimental protocol
+  decisions: []
+  deprecated: false
+- id: C002
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 200 MMLU items via purposive stratified sampling across 10 subjects (4 STEM,
+    2 humanities, 2 social sciences, 2 professional), 20 per subject, deterministic
+    seed=42
+  type: methodological
+  evidence:
+  - exp_id: exp_001
+    detail: item sampling protocol
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Reduced crossing preserves variance structure: delta G = 0.0008 between full
+    6-facet and BF16×2temp subset'
+  type: quantitative
+  evidence:
+  - exp_id: exp_001
+    detail: BF16×2temp subset vs full crossing comparison, G=0.9361 vs 0.9369
+  decisions: []
+  deprecated: false
+- id: C004
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: BF16×2temp subset G=0.9369 vs full 6-facet G=0.9361, diff 0.0008; item% increases
+    58.4→68.5% due to precision component removal (~4.5%); all non-precision components
+    differ <2pp
+  type: quantitative
+  evidence:
+  - exp_id: exp_001
+    detail: Full crossing (259,200 records) vs BF16×2temp subset (57,600 records)
+      comparison
+  decisions: []
+  deprecated: false
+- id: C005
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Qwen2.5-3B: accuracy 0.682, item_id 75.3%, item_related 88.9%, G=0.963'
+  type: quantitative
+  evidence:
+  - exp_id: exp_scale_3b
+    detail: Qwen2.5-3B-Instruct MMLU BF16×2t G-study
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Qwen2.5-7B: accuracy 0.742, item_id 73.4%, item_related 90.2%, G=0.956'
+  type: quantitative
+  evidence:
+  - exp_id: exp_scale_7b
+    detail: Qwen2.5-7B-Instruct MMLU BF16×2t G-study
+  decisions: []
+  deprecated: false
+- id: C007
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Qwen2.5-3B: accuracy 0.682, item_id 75.3%, prompt:item 8.8%, G=0.963'
+  type: quantitative
+  evidence:
+  - exp_id: exp_scale_3b
+    detail: Qwen2.5-3B-Instruct MMLU BF16x2t G-study
+  decisions: []
+  deprecated: false
+- id: C008
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Qwen2.5-7B: accuracy 0.742, item_id 73.4%, prompt:item 12.2%, G=0.956'
+  type: quantitative
+  evidence:
+  - exp_id: exp_scale_7b
+    detail: Qwen2.5-7B-Instruct MMLU BF16x2t G-study
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 8/8
+  claims: 8
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 8
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-22T07:51:47.714530+00:00'

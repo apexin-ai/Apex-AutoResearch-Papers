@@ -1,0 +1,81 @@
+paper_key: "polo2024tinybenchmarks"
+title: "tinyBenchmarks: evaluating LLMs with fewer examples"
+venue: "ICML 2024"
+full_text_available: true
+
+research:
+  baselines: ["full benchmark evaluation", "stratified random sampling (Perlitz 2023)", "K-Means on correctness patterns", "K-Means on IRT parameters"]
+  metrics:
+    - {name: "absolute estimation error (%)", direction: "lower_better"}
+    - {name: "Spearman rank correlation", direction: "higher_better"}
+  datasets:
+    - {name: "MMLU", size: "14,042 examples, 57 subscenarios"}
+    - {name: "Open LLM Leaderboard", size: "6 scenarios, ~29K examples"}
+    - {name: "HELM Lite v1.0.0", size: "10 scenarios, ~10K examples"}
+    - {name: "AlpacaEval 2.0", size: "805 examples"}
+  ablation_dimensions: ["number of evaluation examples (10-500)", "example selection strategy (random/correctness/IRT)", "temporal distribution shift", "model specialization shift", "estimator type (p-IRT/gp-IRT)"]
+  training_recipe: {optimizer: "N/A (IRT calibration)", lr: "N/A", hardware: "GPU cluster for 395 LLM evaluations"}
+  method_family: "IRT-based efficient benchmarking"
+
+positioning:
+  core_claim: "100 curated IRT-selected examples are sufficient to estimate LLM performance on full benchmarks within ~2% error, enabling 100-160x cost reduction"
+  key_results: "MMLU 100 examples → 1.9% error (140x reduction), Open LLM Leaderboard 30 examples sufficient, worst case ≤4% on MMLU"
+  limitations:
+    - "Severe distribution shifts could increase errors"
+    - "Rapid capability increases may cause extrapolation failures"
+    - "Correctness-based clustering vulnerable to domain specialization"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Evaluating single LLMs requires 4K+ GPU hours or $10K+ API costs, compounded by repeated evaluation during development"
+  tension: "Comprehensive evaluation is computationally prohibitive → need principled reduction without losing fidelity"
+  key_insight: "IRT-based latent structure of evaluation examples is more stable across model distributions than correctness patterns, enabling robust extrapolation"
+  argument_chain: "cost problem → simple approaches (random sampling) → limitations → IRT-based selection → robustness across distribution shifts → released tinyBenchmarks"
+  contribution_framing: "Method + released artifacts (tiny benchmark versions + evaluation tools)"
+  intro_structure: "Opens with cost urgency → related work (IRT in NLP, active testing) → 3 evaluation strategies → roadmap"
+  notable_technique: "Figure 1 as proof-of-concept: predicted vs true accuracy scatter plot immediately demonstrates feasibility before methodology"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "teaser_result"
+    description: "Scatter plot of predicted vs true MMLU accuracy using 100 curated examples, showing 1.9% average error"
+    narrative_role: "Immediate proof that the approach works — reader convinced before reading methodology"
+    design_elements: ["scatter with identity line", "error annotation", "recent LLMs highlighted"]
+    visual_style: "Clean scatter plot with diagonal reference, colored points for model recency"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Estimation error vs number of examples across 4 benchmarks × 2 LLM splits (random/recent)"
+      how_gain_highlighted: "Convergence to ~2% error at 100 examples shown across all conditions"
+      design_note: "Multi-panel grid (4 columns × 2 rows) with consistent axes for comparison"
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "Predicted vs true performance per benchmark for recent LLMs"
+      how_gain_highlighted: "Tight clustering around identity line"
+      design_note: "Validation of main claim with temporal distribution shift"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["selection strategy (random/correctness/IRT) under specialization shift"]
+      design_note: "Shows IRT robustness vs correctness-based degradation under domain shift"
+  figure_narrative_role: "Fig1 (proof) → Fig3 (convergence curves) → Fig4 (robustness) → Fig5 (ablation under shift)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "N/A (figure-driven paper)"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "mean estimation error across models"
+    num_baselines: 3
+    design_note: "Paper is figure-driven — main results in plots not tables"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-scenario error breakdowns, additional model splits"
+    reason: "Core story is the aggregate finding; per-scenario details in appendix"

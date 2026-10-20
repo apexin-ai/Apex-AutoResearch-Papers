@@ -1,0 +1,102 @@
+{
+  "investigation_date": "2026-05-23",
+  "investigator": "worker",
+
+  "Q1_code": {
+    "code_location": "No persistent code. Partial-credit scoring was implemented inline during worker session (worker_analysis_gsm8k_partial_credit_pilot_20260522T135301). Methodology documented in artifacts/exp006_partial_credit/scoring_details.json.",
+    "supports_multi_model": false,
+    "hardcoded_model": "Not hardcoded to Llama per se, but the regex was designed and tested only on Llama-3.1-8B-Instruct output format.",
+    "scoring_method": "Regex-based arithmetic step verification: parse 'A op B = C' patterns from generated_text, verify each calculation, partial_score = n_correct_steps / n_total_steps. Falls back to binary if no steps extractable.",
+    "existing_infrastructure": {
+      "variance_decomposition.py": "src/analysis/variance_decomposition.py — supports response_var='correct' or 'text_exact_match', but NOT 'partial_score'. Would need a new option or wrapper.",
+      "bootstrap_ci": "Already built into variance_decomposition.py (1000 iterations default)."
+    },
+    "changes_needed": [
+      "1. Extract inline partial-credit scoring code into a reusable function/script (e.g., src/analysis/partial_credit_scorer.py)",
+      "2. Adapt regex for calculator notation: most non-Llama models use '<<4+2=6>>6' format (from GSM8K few-shot examples), while pilot regex targets 'A + B = C' plain format. Need dual-pattern matching.",
+      "3. Add 'partial_score' as response_var option in variance_decomposition.py, or write a preprocessing step that adds partial_score column to JSONL before feeding to existing pipeline.",
+      "4. Write a batch runner script that loops over 8 model JSONL files."
+    ],
+    "regex_format_risk": "Critical: 6 of 8 models use <<A+B=C>>D calculator notation in generated_text (DeepSeek, Gemma, Mistral, Qwen, InternLM, Yi). Llama and OLMo use mixed/plain format. The pilot regex was only validated on Llama plain format. Regex must be extended to parse both.",
+    "effort_estimate": "2-3 hours: ~1h to refactor scoring code + adapt regex for calculator notation, ~0.5h to integrate with variance_decomposition.py, ~0.5h for batch runner, ~0.5h testing on sample data from each model."
+  },
+
+  "Q2_data": {
+    "models_with_gsm8k_data": [
+      {"short_name": "llama", "model_id": "meta-llama/Llama-3.1-8B-Instruct", "file": "/root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl", "records": 57600, "size_mb": 76.4},
+      {"short_name": "gemma", "model_id": "google/gemma-2-9b-it", "file": "/root/nlp_variance_gtheory/results/exp002/gemma_gsm8k.jsonl", "records": 57600, "size_mb": 50.3},
+      {"short_name": "mistral", "model_id": "mistralai/Mistral-7B-Instruct-v0.3", "file": "/root/nlp_variance_gtheory/results/exp002/mistral_gsm8k.jsonl", "records": 57600, "size_mb": 71.6},
+      {"short_name": "qwen", "model_id": "Qwen/Qwen3-8B", "file": "/root/nlp_variance_gtheory/results/exp002/qwen_gsm8k.jsonl", "records": 57600, "size_mb": 76.3},
+      {"short_name": "deepseek", "model_id": "deepseek-ai/deepseek-llm-7b-chat", "file": "/root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl", "records": 57600, "size_mb": 53.6},
+      {"short_name": "internlm", "model_id": "internlm/internlm2_5-7b-chat", "file": "/root/nlp_variance_gtheory/results/exp002/internlm_gsm8k.jsonl", "records": 57600, "size_mb": 62.0},
+      {"short_name": "olmo", "model_id": "allenai/OLMo-2-1124-7B-Instruct", "file": "/root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl", "records": 57600, "size_mb": 53.7},
+      {"short_name": "yi", "model_id": "01-ai/Yi-1.5-9B-Chat", "file": "/root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl", "records": 57600, "size_mb": 67.0}
+    ],
+    "models_missing_data": [],
+    "total_records": 460800,
+    "note_model_list_differs": "Task specified Qwen2.5-7B-Instruct and Falcon-11B; actual data has Qwen3-8B, OLMo-2-7B, Yi-1.5-9B, DeepSeek-7B instead.",
+    "requires_raw_text": true,
+    "raw_text_available": {
+      "all_8_models": true,
+      "field_name": "generated_text",
+      "verified_fields_per_record": ["condition_id", "item_id", "benchmark", "model", "precision", "temperature", "prompt_template", "seed", "ordering", "generated_text", "predicted_answer", "gold_answer", "correct", "text_exact_match", "latency_ms", "answer_logprob", "top_logprobs"]
+    },
+    "cot_format_by_model": {
+      "llama": "Plain: '4 + 2 = 6 pets'",
+      "gemma": "Calculator: '4 + 2 = <<4+2=6>>6 pets'",
+      "mistral": "Calculator: '4 + 2 = <<4+2=6>>6 pets'",
+      "qwen": "Calculator: '4 + 2 = <<4+2=6>>6'",
+      "deepseek": "Calculator: '4+2=<<4+2=6>>6'",
+      "internlm": "Calculator: '4 + 2 = <<4+2=6>>6'",
+      "olmo": "Mixed: plain for inline, calculator for some steps",
+      "yi": "Calculator: '4+2=<<4+2=6>>6'"
+    }
+  },
+
+  "Q3_time": {
+    "scoring_type": "cpu",
+    "scoring_detail": "Pure regex parsing of generated_text for arithmetic step patterns. No LLM-as-judge, no GPU needed for scoring.",
+    "estimated_gpu_hours": 0,
+    "estimated_cpu_minutes": 40,
+    "breakdown": {
+      "per_model": {
+        "load_jsonl": "~30s (50-80MB file)",
+        "regex_scoring": "~30s (57,600 records × regex matching)",
+        "variance_decomposition": "~1min (ANOVA on 57,600 obs × 6 facets)",
+        "bootstrap_1000": "~3min (1000 bootstrap iterations)",
+        "total_per_model": "~5min"
+      },
+      "total_8_models": "~40min CPU (can be parallelized across models)",
+      "code_prep_time": "2-3 hours (refactor code + adapt regex)"
+    },
+    "needs_rerun_inference": false,
+    "rerun_time_if_needed": "Not needed. All 8 models × 57,600 GSM8K records with generated_text already exist on server.",
+    "reference_inference_time": "Original exp002: 4 models × 4 benchmarks in ~5h on 4 GPUs. Per model per benchmark ≈ 20min. But inference is NOT needed here."
+  },
+
+  "Q4_risk": {
+    "most_likely_outcome": "a",
+    "outcome_descriptions": {
+      "a": "All models: partial G < binary G (consistent with pilot, strengthens claim)",
+      "b": "Some models: partial G ≈ binary G (split, needs explanation)",
+      "c": "Some models: partial G > binary G (reversal, weakens claim)"
+    },
+    "reasoning": {
+      "why_a_is_likely": "The mechanism is structural: partial credit adds within-item variance (continuous 0-1 vs. binary 0/1), which inflates residual and interaction terms at the expense of main effects. This is a mathematical property of finer-grained scoring, not model-specific. The pilot's prompt_template collapse (25.5% → 1.2%) reflects binary scoring's artificial inflation of prompt effects through item-level floor/ceiling effects — this should generalize.",
+      "why_magnitude_may_vary": "Step extraction rate depends on CoT format. Models using calculator notation (<<A+B=C>>D) may have higher/lower extraction rates than Llama's plain format. Models with lower GSM8K accuracy have more wrong answers, potentially more interesting partial-credit distributions.",
+      "why_b_is_possible": "Models with very high accuracy (most items correct under most conditions) would show ceiling effects even in partial credit, yielding G_partial ≈ G_binary. Qwen3-8B and Gemma-2-9B may have higher GSM8K accuracy than Llama.",
+      "why_c_is_unlikely": "Would require partial credit to reduce item-level variance relative to other facets — hard to construct a mechanism for this. Only possible if the regex systematically assigns uniform partial scores across items (collapsing item discrimination)."
+    },
+    "narrative_impact": {
+      "outcome_a": "Cleanly supports Section 5's 'scoring rubric reshapes variance structure' claim. Can report mean ± SD of G_binary - G_partial across 8 models. Strengthens generalizability argument substantially.",
+      "outcome_b": "Still publishable but requires nuance: 'partial credit effects are model-conditional, potentially correlated with model accuracy or CoT style.' Could actually be MORE interesting — shows scoring × model interaction.",
+      "outcome_c": "Would force significant rewriting of the partial-credit narrative. But extremely unlikely given the mathematical structure of the problem."
+    },
+    "additional_risks": [
+      "Regex validity: the biggest practical risk is that the regex fails silently on calculator-notation models, producing degenerate partial scores (all fallback to binary). Would look like outcome (b) but actually be a bug. Mitigation: validate step extraction rate per model before running variance decomposition.",
+      "Step count distribution: some models may produce very few parseable steps (mean <2), making partial_score almost binary anyway. Check extraction stats per model first.",
+      "Design balance: all 8 models share the same crossed design (2 temp × 6 prompt × 6 seed × 4 ordering × 200 items = 57,600), so no balance issues."
+    ],
+    "recommendation": "Go. Data infrastructure is fully ready (460,800 records with generated_text, zero rerun needed). Main work is code refactoring (~3h). Risk profile is favorable: outcome (a) is most likely and strengthens the paper; outcome (b) would be an interesting finding in itself; outcome (c) is near-impossible. The regex adaptation for calculator notation is the only real blocker — validate extraction rates before full run."
+  }
+}

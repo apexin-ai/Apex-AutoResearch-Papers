@@ -1,0 +1,70 @@
+paper_key: "generalizit2024"
+title: "GeneralizIT: A Python Solution for Generalizability Theory Computations"
+venue: "arXiv 2024"
+full_text_available: true
+
+research:
+  baselines: [gtheory (R), EduG, SAS VARCOMP, SPSS VARCOMP, G_String_MV]
+  metrics:
+    - {name: "Eρ² (generalizability coefficient)", direction: "higher_better"}
+    - {name: "Φ (dependability coefficient)", direction: "higher_better"}
+    - {name: "variance components (σ²)", direction: "N/A"}
+  datasets:
+    - {name: "education/psychology measurement data", size: "balanced designs"}
+  ablation_dimensions: [design_type (crossed vs nested), facet_count, D-study level combinations]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "standard Python"}
+  method_family: "generalizability theory / psychometric tools"
+
+positioning:
+  core_claim: "First Python-native G-theory package — enables variance component estimation, generalizability/dependability coefficients, and D-studies for fully crossed and nested designs"
+  key_results: "Supports: variance components via ANOVA/REML, Eρ² and Φ coefficients, D-studies for design optimization, confidence intervals"
+  limitations:
+    - "Balanced designs only — no missing data"
+    - "Nested designs limited to 2 facets"
+    - "No unbalanced design support"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "G-theory is powerful but inaccessible — existing tools require R, SAS, or proprietary software"
+  tension: "Python dominates data science but lacks G-theory implementation, creating a barrier for interdisciplinary researchers"
+  key_insight: "Clean API design: 4-line workflow (initialize → calculate → coefficients → D-study) makes G-theory accessible to Python users"
+  argument_chain: "need (G-theory inaccessible in Python) → implementation (GeneralizIT) → API design → validation (matches existing tools) → comparison table"
+  contribution_framing: "1 contribution: first Python-native G-theory package with full G/D-study support"
+  intro_structure: "3 paragraphs: (1) classical test theory limitations, (2) G-theory advantages, (3) Python gap"
+  notable_technique: "Uses a comparison table (6 tools) to position the package; emphasizes accessibility over novelty"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "G-theory workflow: G-study (variance estimation) → D-study (design optimization)"
+    narrative_role: "Introduces G-theory concepts visually for non-specialist readers"
+    design_elements: ["workflow diagram", "formula annotations"]
+    visual_style: "Simple flow diagram with mathematical notation"
+  result_figures:
+    - figure_id: "D-study visualization"
+      viz_type: "line_plot"
+      what_compared: "Eρ² and Φ across different facet level combinations"
+      how_gain_highlighted: "Shows how adding raters/items improves reliability"
+      design_note: "Practical design optimization made visual"
+  ablation_figures: []
+  figure_narrative_role: "Concept introduction → D-study optimization curves"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Tool comparison table"
+    row_axis: "tools (6 packages)"
+    col_axis: "features (language, missing data, unbalanced, D-studies)"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "checkmark for supported features"
+    statistical_reporting: "N/A (feature comparison)"
+    num_baselines: 6
+    design_note: "Checkmark comparison table is standard for software papers"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "Software paper — all details in main text"

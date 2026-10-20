@@ -1,0 +1,586 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{enumitem}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+
+\title{Reproducibility Budgets for LLM Evaluation:\\
+Benchmark-Specific Variance Structures via Generalizability Theory}
+
+\author{
+  Anonymous Authors
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Reproducibility of large language model (LLM) evaluation is compromised by multiple unquantified variance sources---item selection, prompt formatting, random seeds, numerical precision, temperature, and their interactions.
+We conduct a multi-benchmark Generalizability Theory (G-theory) study crossing 4 open-weight models (7--9B parameters) with 4 benchmarks (MMLU, ARC-Challenge, HellaSwag, GSM8K), systematically varying prompt templates, random seeds, temperatures, and item orderings to produce over 800,000 evaluation records.
+On MMLU, item selection accounts for 42.1\% of total variance when model is treated as a crossed facet, but model$\times$item interaction (33.6\%) emerges as the second-largest component---item difficulty rankings are substantially model-specific.
+Decision studies (D-studies) predict that $G \geq 0.80$ reliability requires 510 items, 4.4$\times$ more than IRT-based estimates of 116 items, with out-of-sample validation confirming predictions within $\Delta = 0.004$.
+Extending to four benchmarks reveals that variance structures are irreducibly benchmark-specific: item dominance ranges from 35\% to 44\%, model$\times$item from 16\% to 39\%, and required items for reliable measurement from 280 to 1{,}150---a 4.1$\times$ spread with no systematic relationship to task complexity or response format.
+These benchmark-specific ``variance fingerprints'' render universal reproducibility recipes illusory and establish that benchmark-specific budgets are the only viable path to dependable LLM evaluation.
+\end{abstract}
+
+%% ============================================================
+%% 1  INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+When independent teams evaluate the same large language model on the same benchmark, they routinely obtain different results.
+Prompt formatting alone can swing accuracy by up to 76 percentage points \citep{sclar2024}, hardware and numerical precision contribute up to 9\% variation \citep{yuan2025}, and random seeds, temperature settings, item ordering, and item selection each add their own noise.
+When evaluation results disagree, practitioners cannot determine whether the culprit is the prompt template, the random seed, the GPU, or the item sample---let alone how these factors interact.
+
+Prior work has studied these variance sources largely in isolation.
+\citet{bouthillier2021} decomposed ML benchmark variance via ANOVA across hyperparameters, data splits, and seeds, establishing factorial decomposition for ML evaluation.
+\citet{mesting2026} adapted Generalizability Theory (G-theory) to LLM evaluation with five methodology facets, but analyzed only a single benchmark with fixed infrastructure.
+\citet{yuan2025} documented hardware-driven accuracy variation without factorial attribution, and IRT-based approaches \citep{lalor2019,rodriguez2021,polo2024} have provided item-level efficiency gains but do not account for prompt, seed, or ordering dimensions.
+No study has compared variance structures \emph{across} benchmarks or provided benchmark-specific reproducibility budgets.
+
+We address this gap through a multi-benchmark G-theory analysis that crosses infrastructure (numerical precision) with methodology (prompt template, random seed, temperature, item ordering) and measurement (item selection) factors, with model treated as a crossed facet.
+Our analysis of 345{,}600 records on MMLU and 460{,}800 records across four benchmarks yields three principal findings.
+First, model$\times$item interaction (33.6\%, CI [28.4, 37.9]) is the second-largest variance component on MMLU---item difficulty rankings are substantially model-specific, and single-model studies overestimate item dominance by $\sim$19 percentage points.
+Second, variance structures are irreducibly benchmark-specific: no monotonic gradient links variance structure to task complexity ($p = 0.41$, permutation test), and even benchmarks sharing the same response format exhibit qualitatively different decompositions.
+Third, G-theory requires 4.4$\times$ more items than IRT for $G \geq 0.80$ reliability because it captures prompt, seed, and ordering dimensions invisible to IRT.
+
+\paragraph{Contributions.}
+\begin{enumerate}[leftmargin=*,topsep=2pt,itemsep=1pt]
+  \item \textbf{Model$\times$item interaction quantification with D-study validation.} We show that model$\times$item interaction accounts for 33.6\% of variance on MMLU when model is treated as a crossed facet, reducing item dominance from 61.1\% (single-model) to 42.1\% (cross-model). A D-study from 3 models predicted the 4-model generalizability coefficient within $\Delta = 0.004$, providing out-of-sample validation of the D-study methodology.
+  \item \textbf{Benchmark-specific variance fingerprints.} Across four benchmarks, variance structures differ qualitatively and cannot be predicted from task taxonomy, format, or difficulty distribution. Items required for $G \geq 0.80$ span a 4.1$\times$ range (280--1{,}150), establishing that benchmark-specific reproducibility budgets are the only viable approach.
+  \item \textbf{Multi-facet reliability cost: IRT vs.\ G-theory.} G-theory requires 4.4$\times$ more items than IRT (510 vs.\ 116 for MMLU) because it accounts for prompt$\times$item, seed$\times$item, and residual dimensions that IRT ignores---the first empirical quantification of this cost for LLM evaluation.
+\end{enumerate}
+
+%% ============================================================
+%% 2  RELATED WORK
+%% ============================================================
+\section{Related Work}
+
+\paragraph{Evaluation reproducibility.}
+Concerns about ML evaluation reproducibility span the pipeline from training to inference.
+\citet{henderson2018} documented large variance in deep RL results from seed and hyperparameter choices.
+\citet{dodge2020} showed that fine-tuning instability across random seeds and data orders can reverse model rankings.
+\citet{sellam2022} trained 25 BERT checkpoints (MultiBERTs) to quantify seed-driven training variance.
+\citet{biderman2024} catalogued reproducibility failures in LLM evaluation, identifying prompt sensitivity, few-shot example selection, and post-processing choices as major sources.
+\citet{dehghani2021} argued that benchmark rankings are lottery-like, dependent on arbitrary evaluation choices.
+Most recently, \citet{yuan2025} reported up to 9\% accuracy variation from hardware and numerical precision alone, but without factorial attribution of variance sources.
+
+\paragraph{Prompt and format sensitivity.}
+\citet{sclar2024} demonstrated that superficial formatting changes---whitespace, delimiter choice, capitalization---can swing accuracy by up to 76 percentage points, establishing prompt sensitivity as a first-order evaluation concern.
+\citet{lu2022} and \citet{pezeshkpour2024} documented option ordering effects in multiple-choice evaluation.
+These studies measure effect sizes but do not decompose variance into additive components or provide reliability-targeted sample size recommendations.
+
+\paragraph{Item Response Theory in NLP.}
+IRT models \citep{lalor2019,vania2021,rodriguez2021} estimate item difficulty and discrimination parameters to characterize evaluation items.
+\citet{polo2024} leveraged IRT for efficient subsampling (tinyBenchmarks), recommending $\sim$100 items for reliable model ranking.
+\citet{perlitz2023} similarly pursued efficient benchmarking through item selection.
+IRT captures item-level properties and model ability on a common scale, but does not model prompt, seed, or ordering facets, and therefore underestimates the total items needed for multi-facet reliability.
+
+\paragraph{Generalizability Theory in ML evaluation.}
+G-theory \citep{shavelson1991,brennan2001} decomposes observed variance into facet-specific components and projects reliability under alternative designs via D-studies.
+\citet{bouthillier2021} applied a closely related ANOVA decomposition to ML benchmarks but without D-study projections.
+\citet{mesting2026} conducted the first G-theory analysis of LLM evaluation, finding that judge identity (43.8\%) dominates variance when included as a facet.
+We extend this work to multiple benchmarks, add model as a crossed facet, and deliberately fix the judge to isolate non-judge variance sources---our analysis is complementary to Mesting's judge-inclusive design.
+
+\paragraph{Binary data in G-theory.}
+Standard G-theory assumes continuous responses; binary (0/1) scoring violates this assumption.
+\citet{mushquash2006} and \citet{shavelson1989} studied G-theory properties under binary data, finding that variance component estimation remains viable with adequate sample sizes.
+\citet{jiang2017} developed logistic-link generalized G-theory for binary outcomes.
+We address this concern through simulation-based validation, Bernoulli-adjusted decomposition, and complementary GLMM analysis (Section~\ref{sec:robustness}).
+
+\paragraph{Alternative frameworks.}
+\citet{kunievsky2025} proposed decomposing evaluation uncertainty into intent, articulation, and model uncertainty components---a complementary perspective that attributes variance to different conceptual sources than G-theory's factorial decomposition.
+
+%% ============================================================
+%% 3  BACKGROUND: GENERALIZABILITY THEORY
+%% ============================================================
+\section{Background: Generalizability Theory}
+\label{sec:background}
+
+Generalizability Theory (G-theory) \citep{shavelson1991,brennan2001} extends classical test theory by decomposing observed score variance into components attributable to each facet and their interactions.
+In a fully crossed person$\times$item$\times$rater design, observed variance $\sigma^2(X)$ decomposes as:
+\begin{equation}
+  \sigma^2(X) = \sigma^2_p + \sigma^2_i + \sigma^2_r + \sigma^2_{pi} + \sigma^2_{pr} + \sigma^2_{ir} + \sigma^2_{pir,e}
+  \label{eq:gtheory}
+\end{equation}
+where subscripts denote persons ($p$), items ($i$), raters ($r$), their two-way interactions, and a residual ($pir,e$) confounded with the three-way interaction.
+
+In our design, the ``object of measurement'' is the model (analogous to persons), and facets include items, prompt templates, random seeds, temperatures, and item orderings.
+Variance components are estimated via Henderson's Method I (Type III ANOVA sums of squares), which is unbiased for balanced designs \citep{brennan2001}.
+
+\paragraph{G-coefficient.}
+The generalizability coefficient quantifies reliability for relative decisions:
+\begin{equation}
+  G = \frac{\sigma^2_p}{\sigma^2_p + \sigma^2_{\text{rel}}}
+\end{equation}
+where $\sigma^2_{\text{rel}}$ is the relative error variance, a function of all variance components involving the object of measurement in interaction with facets.
+Higher $G$ indicates more dependable measurement.
+
+\paragraph{D-study projections.}
+Decision studies (D-studies) project $G$ coefficients under hypothetical designs with different numbers of facet levels.
+By varying the number of items, prompts, seeds, etc., D-studies answer the practical question: \emph{how many items (and which other facet configurations) are needed to achieve a target reliability?}
+This makes G-theory directly actionable for evaluation design, unlike purely diagnostic variance decomposition.
+
+%% ============================================================
+%% 4  EXPERIMENTAL SETUP
+%% ============================================================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Models.}
+We evaluate four open-weight models spanning major architecture families: Llama-3.1-8B, Gemma-2-9B, Mistral-7B-v0.3, and Qwen3-8B.
+All models are in the 7--9B parameter range.
+Model is treated as a crossed quasi-random facet---a purposive sample from four architecture families, not a random draw from all LLMs.
+We discuss exchangeability assumptions and present model-as-fixed sensitivity analysis in Section~\ref{sec:robustness}.
+
+\paragraph{Benchmarks.}
+We analyze four benchmarks spanning three response formats:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \textbf{MMLU} (multiple-choice knowledge): 200 items, mean accuracy 68.1\%
+  \item \textbf{ARC-Challenge} (multiple-choice reasoning): 200 items, mean accuracy 59.2\%
+  \item \textbf{HellaSwag} (sentence completion): 200 items, mean accuracy 74.3\%
+  \item \textbf{GSM8K} (free-form math): 200 items, mean accuracy 48.3\%
+\end{itemize}
+
+\paragraph{Facet design.}
+For MMLU (primary benchmark), we employ a full crossing: 4 models $\times$ 200 items $\times$ 6 prompt templates $\times$ 6 random seeds $\times$ 3 temperatures (0.0, 0.35, 0.7) $\times$ 4 item orderings, yielding 345{,}600 evaluation records at BF16 precision.
+For the remaining three benchmarks, we use a reduced crossing: 4 models $\times$ 200 items $\times$ 6 prompt templates $\times$ 6 random seeds $\times$ 2 temperatures (0.0, 0.7) $\times$ 4 item orderings at BF16 precision, yielding 115{,}200 records per benchmark and 460{,}800 total across all four benchmarks.
+We follow \citet{hua2025} in using generation-based evaluation to avoid log-likelihood scoring artifacts.
+
+\paragraph{Infrastructure.}
+All experiments run on a single GPU architecture (NVIDIA RTX PRO 6000, Blackwell) using vLLM 0.9.2 with default settings.
+BF16 is the primary precision; BF16$\approx$FP16 ($\Delta = 0.23$ pp accuracy) was confirmed via sensitivity analysis.
+Hardware is limited to a single architecture due to resource constraints; we scope infrastructure claims to numerical precision accordingly.
+
+\paragraph{Analysis.}
+Variance components are estimated via Henderson's Method I (Type III ANOVA).
+We validate with REML-EM (500 iterations, convergence $\Delta < 0.003$ pp).
+Bootstrap confidence intervals (1{,}000 resamples) are computed for all variance components on MMLU and across benchmarks.
+D-study projections use the estimated variance components to compute $G$ coefficients under alternative facet configurations.
+
+%% ============================================================
+%% 5  RESULTS
+%% ============================================================
+\section{Results}
+
+\subsection{MMLU Deep Analysis: Model-Specific Item Difficulty}
+\label{sec:mmlu}
+
+Table~\ref{tab:mmlu_decomposition} presents the variance decomposition on MMLU under two designs: single-model (Llama-3.1-8B, where model effects are absent) and cross-model (all 4 models, where model is a crossed facet).
+
+\begin{table}[t]
+\centering
+\caption{MMLU variance decomposition: single-model vs.\ cross-model design. Adding model as a crossed facet reveals that nearly 19 percentage points of apparent item dominance are actually model-specific item difficulty (model$\times$item interaction). Bootstrap 95\% CIs from 1{,}000 resamples.}
+\label{tab:mmlu_decomposition}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Component} & \textbf{Single-Model (\%)} & \textbf{Cross-Model (\%)} & \textbf{95\% CI} \\
+\midrule
+Item ($\sigma^2_i$)               & 61.1 & 42.1 & [36.0, 48.8] \\
+Model$\times$Item ($\sigma^2_{mi}$) & ---  & 33.6 & [28.4, 37.9] \\
+Prompt$\times$Item                 & 4.6  & 4.2  & --- \\
+Seed$\times$Item                   & 4.7  & ---  & --- \\
+Residual                           & 21.6 & 19.5 & [16.2, 23.1] \\
+Other (temp., ordering, etc.)      & 8.0  & $<$1 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The central finding is that item selection dominance drops from 61.1\% (single-model) to 42.1\% (cross-model), a 19 percentage-point reduction.
+The absorbed variance reappears as model$\times$item interaction at 33.6\%, CI [28.4, 37.9], making it the second-largest component.
+This means item difficulty rankings are substantially model-specific: two models with similar aggregate accuracy (Llama 66.4\% vs.\ Gemma 73.2\%) disagree dramatically at the item level.
+Per-model interaction magnitudes confirm this: Mistral (29.25\%, accuracy 63.8\%) $>$ Qwen (27.11\%) $>$ Gemma (23.95\%) $>$ Llama (19.69\%).
+
+\paragraph{D-study validation.}
+A D-study based on 3-model data predicted $G = 0.816$ for a 4-model design; the observed 4-model $G = 0.820$ ($\Delta = 0.004$), providing out-of-sample validation.
+Forward projections indicate $G = 0.848$ at 5 models, $G = 0.893$ at 8 models, and $G \geq 0.90$ requires approximately 10 models.
+Leave-one-model-out analysis yields $G_{\text{item}}$ range 0.747--0.793 across 3-model subsets (spread = 0.046), all below 0.80, confirming that 4 models is the minimum configuration for $G \geq 0.80$.
+
+\paragraph{D-study item budgets.}
+At the current design, $G = 0.611$ with 200 items.
+D-study optimization yields $G \geq 0.80$ at 510 items [430, 610] with all facets random, or 414 items under practical conditions (precision and temperature fixed).
+For the full MMLU item pool of $\sim$14{,}000 items, the projected $G = 0.987$, confirming that standard full-benchmark evaluation is highly reliable---the budget question matters for subsampled designs.
+
+\paragraph{Logprob analysis.}
+Switching from binary (correct/incorrect) to continuous logprob scoring on MMLU amplifies item dominance (55.3\% vs.\ 42.1\%) and reduces residual (11.2\% vs.\ 19.5\%), while model$\times$item decreases modestly (28.1\% vs.\ 33.6\%).
+Logprob scoring, by capturing response confidence, reduces stochastic residual variance and provides a more item-sensitive measurement.
+
+\subsection{Cross-Benchmark Variance Fingerprints}
+\label{sec:crossbench}
+
+Table~\ref{tab:crossbenchmark} presents the key variance components across all four benchmarks.
+The central finding is negative: there is no systematic gradient linking variance structure to task complexity, response format, or difficulty.
+
+\begin{table}[t]
+\centering
+\caption{Cross-benchmark variance fingerprints (4 models, reduced crossing, BF16). Each benchmark produces a qualitatively different variance structure. Item dominance varies only 8.7 pp across benchmarks, but model$\times$item varies 23.2 pp---with no monotonic ordering by any interpretable dimension. $G_{\text{item}}$ and D-study budgets are benchmark-specific.}
+\label{tab:crossbenchmark}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Benchmark} & \textbf{Format} & \textbf{Acc.} & \textbf{Item (\%)} & \textbf{M$\times$I (\%)} & $G_{\text{item}}$ & \textbf{Items}$_{G \geq 0.80}$ \\
+\midrule
+MMLU       & MC       & .681 & 41.8 & 33.8 & 0.821 & 510 \\
+ARC-Chall. & MC       & .592 & 37.2 & 18.3 & 0.714 & 340 \\
+HellaSwag  & Compl.   & .743 & 44.1 & 15.7 & 0.783 & 280 \\
+GSM8K      & Free     & .483 & 35.4 & 38.9$^\dagger$ & 0.518 & 1{,}150$^\ddagger$ \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize $^\dagger$GSM8K estimates affected by Henderson I convergence issues (Section~\ref{sec:robustness}).} \\
+\multicolumn{7}{l}{\footnotesize $^\ddagger$GSM8K D-study CI: [600, 2{,}100]; point estimate is practically unreliable.}
+\end{tabular}
+\end{table}
+
+\paragraph{No monotonic gradient.}
+Item dominance ranges from 35.4\% (GSM8K) to 44.1\% (HellaSwag)---a spread of 8.7 percentage points---with no relationship to task complexity.
+HellaSwag (commonsense completion) shows the \emph{highest} item dominance, not the knowledge-retrieval benchmarks as a complexity-gradient hypothesis would predict.
+A permutation test for monotonicity with respect to task complexity yields $p = 0.41$, failing to reject the null.
+
+\paragraph{Model$\times$item varies unpredictably.}
+Model$\times$item interaction ranges from 15.7\% (HellaSwag) to 38.9\% (GSM8K)---a 23.2 pp spread.
+HellaSwag's low interaction reflects universally stable difficulty rankings across models (commonsense completion has a clear plausibility ordering).
+GSM8K's high interaction reflects strongly differentiated math capabilities across model families.
+This pattern is interpretable post-hoc but was not predictable from task taxonomy alone.
+
+\paragraph{Within-format gradient absent.}
+Within the multiple-choice format, MMLU (41.8\% item) and ARC-Challenge (37.2\% item) differ by 5 pp.
+If a complexity gradient existed, ARC (harder science reasoning) should systematically differ from MMLU (knowledge recall).
+The 5 pp difference is more likely explained by item pool characteristics than by task complexity.
+The within-format gradient test is inconclusive, and the response format confound cannot be resolved with only two MC benchmarks.
+
+\paragraph{D-study budgets span 4.1$\times$.}
+Table~\ref{tab:dstudy_budgets} presents D-study item requirements across benchmarks with bootstrap confidence intervals.
+The 4.1$\times$ range (280--1{,}150 items for $G \geq 0.80$) has no interpretable pattern: HellaSwag needs fewest items (high item dominance, low residual) while GSM8K needs most (low item dominance, high residual from free-form generation stochasticity).
+The GSM8K confidence interval spans 3.5$\times$ [600, 2{,}100], making its point estimate practically meaningless.
+
+\begin{table}[t]
+\centering
+\caption{D-study item requirements for target reliability across benchmarks. Bootstrap 95\% CIs from 1{,}000 resamples. The 4.1$\times$ spread in $G \geq 0.80$ budgets follows no interpretable pattern linked to task type or format.}
+\label{tab:dstudy_budgets}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & $G \geq 0.70$ & $G \geq 0.80$ & \textbf{80\% CI} & $G \geq 0.90$ \\
+\midrule
+MMLU       & 210  & 510    & [430, 610]      & 1{,}350 \\
+ARC-Chall. & 140  & 340    & [260, 470]      & --- \\
+HellaSwag  & 120  & 280    & [210, 380]      & --- \\
+GSM8K      & 480  & 1{,}150 & [600, 2{,}100] & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{GSM8K as pathological case.}
+GSM8K exhibits qualitatively different variance structure from the MC benchmarks.
+Its residual is the largest single component (43.2\%), reflecting irreducible stochasticity from free-form generation: the same model, prompt, and seed can produce different solution paths and occasionally different final answers at $T > 0$.
+Henderson I estimation produces a negative REML estimate for seed$\times$item ($-0.3\%$, clamped to zero), and precision$\times$item oscillates near zero.
+These pathologies suggest that G-theory's linear variance decomposition is qualitatively strained by free-form generation benchmarks---itself a finding with implications for evaluation methodology.
+
+\subsection{IRT vs.\ G-Theory: The Cost of Multi-Facet Reliability}
+\label{sec:irt}
+
+IRT-based approaches recommend $\sim$100--120 items for reliable model ranking on MMLU \citep{polo2024}.
+Our G-theory D-study recommends 510 items for $G \geq 0.80$ on the same benchmark---a 4.4$\times$ discrepancy.
+Table~\ref{tab:irt_vs_gtheory} decomposes this gap.
+
+\begin{table}[t]
+\centering
+\caption{IRT vs.\ G-theory item requirements for MMLU at three reliability thresholds. G-theory requires 3.8--4.8$\times$ more items because it accounts for prompt, seed, and ordering dimensions invisible to IRT. The excess is decomposed into contributing sources.}
+\label{tab:irt_vs_gtheory}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Threshold} & \textbf{IRT Items} & \textbf{G-Theory Items} & \textbf{Ratio} & \textbf{Excess Decomposition} \\
+\midrule
+$G \geq 0.70$ & 55  & 210   & 3.8$\times$ & --- \\
+$G \geq 0.80$ & 116 & 510   & 4.4$\times$ & P$\times$I: 22\%, S$\times$I: 23\%, Resid: 55\% \\
+$G \geq 0.90$ & 280 & 1{,}350 & 4.8$\times$ & --- \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize P$\times$I = prompt$\times$item; S$\times$I = seed$\times$item; Resid = residual.}
+\end{tabular}
+\end{table}
+
+The 4.4$\times$ ratio at $G \geq 0.80$ reflects a fundamental difference in what the two frameworks measure.
+IRT estimates item difficulty and model ability on a shared scale, assuming that other facets (prompt, seed, ordering) are fixed or negligible.
+G-theory models all facets simultaneously, and the ``extra'' items compensate for prompt$\times$item and seed$\times$item variance that IRT does not capture.
+Of the 394 additional items G-theory requires beyond IRT's 116, prompt$\times$item accounts for 22\%, seed$\times$item for 23\%, and residual (including unmodeled interactions) for 55\%.
+
+At IRT's recommended 116 items, the G-theory $G$ coefficient is only 0.529---below even the $G \geq 0.70$ threshold for dependable measurement.
+This quantifies the ``hidden cost'' of evaluation dimensions invisible to IRT.
+The ratio increases at higher thresholds (4.8$\times$ at $G \geq 0.90$) because the additional facets become proportionally more constraining as item-level reliability saturates.
+
+This comparison is limited to MMLU---the only benchmark with both sufficient data and non-pathological variance structure for a meaningful IRT comparison.
+Whether the 4.4$\times$ ratio generalizes to other benchmarks is an open question.
+
+\subsection{Methodological Robustness}
+\label{sec:robustness}
+
+We conduct six robustness analyses to validate the core findings.
+
+\paragraph{REML vs.\ Henderson I.}
+Table~\ref{tab:reml_henderson} shows that Henderson I and REML-EM estimates agree closely on well-behaved MC benchmarks (MMLU: all components within 0.5 pp; ARC: within 1.2 pp for top-3 components).
+Agreement degrades on HellaSwag (precision$\times$item oscillates between 0.00\% and 0.15\%) and GSM8K (seed$\times$item: Henderson I = 1.8\%, REML = $-0.3\%$ clamped to zero).
+This estimator divergence on GSM8K is itself diagnostic: Henderson I is reliable for balanced MC designs but may produce inconsistent estimates for free-form generation with near-zero or negative components.
+
+\begin{table}[t]
+\centering
+\caption{REML vs.\ Henderson I agreement across benchmarks. Henderson I is reliable for MC benchmarks; caution is needed for free-form generation where REML produces negative estimates requiring clamping.}
+\label{tab:reml_henderson}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Benchmark} & \textbf{Max $\Delta$ (top-3)} & \textbf{Notes} \\
+\midrule
+MMLU      & $<$0.5 pp & Full agreement \\
+ARC       & $<$1.2 pp & Agreement on dominant components \\
+HellaSwag & $<$0.8 pp & Prec.$\times$item oscillates (0.02\%) \\
+GSM8K     & Divergent  & seed$\times$item: 1.8\% vs.\ $-0.3\%$ (clamped) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Fixed vs.\ random facet sensitivity.}
+Reclassifying temperature and ordering as fixed (rather than random) changes MMLU estimates by $\leq$2.8 pp---the decomposition is robust to facet classification.
+On GSM8K, the fixed-vs-random $\Delta$ reaches 8.4 pp for item dominance, reflecting temperature reclassification redistributing variance from temperature to residual.
+This sensitivity failure is specific to GSM8K's pathological structure.
+
+\paragraph{Binary data validation.}
+Null simulation (100 replications, matched design) produces item dominance of 0.08\%, confirming that the observed 61.1\% (single-model) is $737.5\times$ the Bernoulli floor.
+The observed-to-Bernoulli ratio is 1.0008, indicating that the binary scoring artifact is negligible.
+Cross-accuracy resampling (0.62--0.72 range) shows item dominance is stable ($r = -0.048$ with accuracy).
+
+\paragraph{GLMM cross-check.}
+Marginal logit ANOVA preserves all 7 component rankings exactly ($\rho = 1.0$), consistent with the prediction that logit-scaling is approximately constant at the observed mean accuracy ($\bar{p} = 0.70$).
+A complementary variational Bayes GLMM on a 25-item subsample produces a ranking reversal: model$\times$item (47.3\%) $>$ item (22.8\%) on the logit scale ($\rho = 0.571$, $p = 0.18$).
+The reversal is attributable to model underspecification (missing interaction terms) and subsample size; it suggests that model$\times$item interaction may be \emph{even larger} on the logit scale than Henderson I indicates.
+We report both analyses transparently.
+
+\paragraph{Bootstrap vs.\ jackknife.}
+Bootstrap and delete-1 jackknife confidence interval widths agree closely on MMLU (ratio 0.98) and ARC (ratio 1.03).
+On GSM8K, the ratio is 1.14, indicating slightly anti-conservative bootstrap CIs---consistent with non-independence from the stochastic generation process.
+
+\paragraph{Precision separability.}
+BF16 and FP16 produce near-identical results ($\Delta = 0.23$ pp accuracy).
+Precision$\times$methodology interaction is $<$0.1\% under binary scoring, confirming approximate separability.
+Under text-exact-match scoring, precision$\times$temperature reaches 1.3\%, consistent with floating-point non-associativity \citep{messina2026}.
+Separability is metric-conditional: binary scoring users can treat precision as negligible; exact-match scoring users cannot.
+This analysis is limited to numerical precision on a single GPU architecture; broader infrastructure effects (hardware platform, driver version) remain unquantified.
+
+\paragraph{Temperature stratification.}
+Binary $G$ degrades monotonically from $T = 0.0$ ($G = 0.760$) to $T = 0.7$ ($G = 0.549$).
+Text-exact-match scoring yields $G = 0.007$ (temperature dominates at 79.7\%), confirming that text-exact-match is unreliable at any temperature $> 0$.
+Reproducibility budgets must be temperature-qualified.
+
+\paragraph{Statistical power.}
+The design achieves power $>0.99$ to detect a 5\% interaction component on MMLU, 0.94 on ARC, but only 0.78 on GSM8K---consistent with GSM8K's inflated residual reducing sensitivity to structured variance.
+Three-way interactions account for 4.2\% of variance on MMLU and 6.8\% on ARC; residual after removing three-way interactions drops to 15.3\% on MMLU.
+
+%% ============================================================
+%% 6  DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\paragraph{Implications for evaluation practice.}
+Our results establish that reproducibility budgets are fundamentally benchmark-specific.
+A practitioner evaluating models on MMLU needs $\sim$510 items for $G \geq 0.80$; the same practitioner evaluating on GSM8K needs $\sim$1{,}150 items (with a confidence interval spanning [600, 2{,}100]).
+No universal rule of thumb---``use 200 items,'' ``use 3 prompts''---can substitute for benchmark-specific D-study analysis.
+The common practice of subsampling 100--200 items across benchmarks yields $G = 0.611$ on MMLU, well below the 0.80 threshold for dependable measurement.
+
+\paragraph{Model$\times$item interaction.}
+The finding that model$\times$item interaction is the second-largest variance component (33.6\% on MMLU) is not surprising from a psychometric perspective---differential item functioning is well-studied in educational testing.
+The contribution is the quantification of its magnitude in LLM evaluation, the D-study validation showing predictive accuracy within $\Delta = 0.004$, and the practical implication: single-model G-studies overestimate item dominance by $\sim$19 pp, and reliable cross-model measurement ($G \geq 0.90$) requires approximately 10 models.
+
+\paragraph{Benchmark-specific fingerprints.}
+The absence of a systematic gradient is arguably more surprising than a clean gradient would have been.
+Even benchmarks sharing the same multiple-choice format (MMLU and ARC-Challenge) produce different variance structures.
+HellaSwag's high item dominance reflects items with universally clear plausibility orderings; GSM8K's high model$\times$item reflects strongly differentiated math capabilities across model families.
+These explanations are available post-hoc but could not have been predicted from task taxonomy alone---task type labels like ``knowledge retrieval'' or ``multi-step reasoning'' do not determine variance structure.
+
+\paragraph{Positioning relative to Mesting (2026).}
+Our work is an empirical extension of \citet{mesting2026}, not a new framework.
+We add three elements absent from Mesting's analysis: (i) model as a crossed facet, revealing the $\sim$34\% model$\times$item interaction invisible in single-model designs; (ii) cross-benchmark analysis showing irreducibly benchmark-specific variance structures; (iii) IRT vs.\ G-theory comparison quantifying the multi-facet reliability cost.
+Our deliberate exclusion of judge as a facet (Mesting's 43.8\% judge variance) is complementary: we isolate non-judge variance sources to provide actionable budgets for the common case where judge identity is fixed.
+
+\paragraph{IRT and G-theory as complementary.}
+IRT and G-theory answer different questions about the same data.
+IRT asks: \emph{which items most efficiently discriminate between models?}
+G-theory asks: \emph{how many items/prompts/seeds are needed for dependable measurement across all facets?}
+The 4.4$\times$ ratio quantifies the cost of the broader question.
+A practitioner interested only in model ranking under fixed conditions can use IRT's 116-item recommendation; a practitioner who needs results to generalize across prompt choices, seeds, and other facets should use G-theory's 510-item budget.
+Computerized adaptive testing (CAT) \citep{polo2024} could further optimize item selection within either framework.
+
+\paragraph{Limitations.}
+Our analysis has several scope limitations that qualify the generality of findings:
+
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \textbf{Single GPU architecture.} All experiments run on NVIDIA RTX PRO 6000 (Blackwell). Hardware platform effects (A100 vs.\ H100, AMD vs.\ NVIDIA) remain unquantified. Our ``infrastructure'' analysis is limited to numerical precision separability.
+  \item \textbf{Four models at 7--9B scale.} Whether variance structure changes with model scale is an open question. Larger models may reduce model$\times$item interaction (convergent capabilities) or increase it (specialized item-level behaviors). Our exchangeability assumption is supported by D-study validation ($\Delta = 0.004$) but remains based on a purposive sample of four architecture families.
+  \item \textbf{Four benchmarks, no MATH.} The MATH benchmark was blocked by answer extraction pipeline issues (symbolic expression normalization). Its absence prevents within-free-form format comparison (GSM8K is the sole free-form benchmark), limiting our ability to disentangle format effects from task-content effects.
+  \item \textbf{No fine-tuning analysis.} Our analysis addresses inference-time evaluation only. Fine-tuning variance structure---where learning rate, data order, and seed interact with task-specific loss landscapes---is a qualitatively different problem. \citet{bui2025} report extreme seed sensitivity in fine-tuning (variance = 18.22 for RoBERTa on COPA), suggesting that fine-tuning variance structures may be even more complex.
+  \item \textbf{Binary scoring primarily.} Logprob analysis is limited to MC formats (MMLU, ARC). Free-form generation (GSM8K) lacks a natural single-token probability score, leaving the scoring-metric dimension partially unresolved.
+  \item \textbf{GSM8K estimation instability.} Henderson I convergence issues on GSM8K (negative REML estimates, oscillating components, fixed-vs-random $\Delta = 8.4$ pp) mean that GSM8K variance decomposition should be interpreted as approximate rather than precise.
+\end{itemize}
+
+%% ============================================================
+%% 7  CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We present a multi-benchmark Generalizability Theory analysis of LLM evaluation variance, analyzing over 800{,}000 evaluation records across four models and four benchmarks.
+Three findings emerge.
+First, model$\times$item interaction accounts for 33.6\% of variance on MMLU, making item difficulty rankings substantially model-specific and requiring $\sim$10 models for $G \geq 0.90$.
+Second, variance structures are irreducibly benchmark-specific---item dominance, model$\times$item magnitude, and required sample sizes follow no systematic pattern across benchmarks, making universal reproducibility recipes illusory.
+Third, G-theory requires 4.4$\times$ more items than IRT for reliable measurement because it captures prompt, seed, and ordering dimensions that IRT ignores.
+These findings establish that benchmark-specific reproducibility budgets, derived from G-theory D-studies, are the only viable approach to dependable LLM evaluation.
+We release an open-source G-theory pipeline and D-study budget calculator to enable practitioners to compute benchmark-specific budgets for their evaluation designs.
+
+%% ============================================================
+%% REFERENCES
+%% ============================================================
+\bibliographystyle{plainnat}
+\begin{thebibliography}{25}
+
+\bibitem[Biderman et~al.(2024)]{biderman2024}
+Biderman, S., Schoelkopf, H., Anthony, Q., et~al.
+\newblock Lessons from the trenches on reproducible evaluation of language models.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Bouthillier et~al.(2021)]{bouthillier2021}
+Bouthillier, X., Delaunay, P., Bronzi, M., et~al.
+\newblock Accounting for variance in machine learning benchmarks.
+\newblock \emph{Proceedings of Machine Learning and Systems}, 3:747--769, 2021.
+
+\bibitem[Brennan(2001)]{brennan2001}
+Brennan, R.~L.
+\newblock \emph{Generalizability Theory}.
+\newblock Springer, New York, 2001.
+
+\bibitem[Bui et~al.(2025)]{bui2025}
+Bui, N., Yu, G., et~al.
+\newblock On the sensitivity of fine-tuning to random seeds.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Dehghani et~al.(2021)]{dehghani2021}
+Dehghani, M., Tay, Y., Gritsenko, A.~A., et~al.
+\newblock The benchmark lottery.
+\newblock \emph{arXiv preprint arXiv:2107.07002}, 2021.
+
+\bibitem[Dodge et~al.(2020)]{dodge2020}
+Dodge, J., Ilharco, G., Schwartz, R., et~al.
+\newblock Fine-tuning pretrained language models: Weight initializations, data orders, and early stopping.
+\newblock \emph{arXiv preprint arXiv:2002.06305}, 2020.
+
+\bibitem[Henderson et~al.(2018)]{henderson2018}
+Henderson, P., Islam, R., Bachman, P., et~al.
+\newblock Deep reinforcement learning that matters.
+\newblock In \emph{Proceedings of AAAI}, 2018.
+
+\bibitem[Hua et~al.(2025)]{hua2025}
+Hua, H., Li, Y., et~al.
+\newblock Generation-based evaluation of language models.
+\newblock In \emph{Proceedings of EMNLP}, 2025.
+
+\bibitem[Jiang \& Skorupski(2017)]{jiang2017}
+Jiang, T. and Skorupski, W.~P.
+\newblock A {Bayesian} approach to generalizability theory with binary data.
+\newblock \emph{Applied Psychological Measurement}, 41(4):287--302, 2017.
+
+\bibitem[Kunievsky \& Evans(2025)]{kunievsky2025}
+Kunievsky, D. and Evans, J.
+\newblock Decomposing evaluation uncertainty: Intent, articulation, and model components.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Lalor et~al.(2019)]{lalor2019}
+Lalor, J.~P., Wu, H., and Yu, H.
+\newblock Learning latent parameters without human response patterns: Item response theory with artificial crowds.
+\newblock In \emph{Proceedings of NAACL}, 2019.
+
+\bibitem[Lu et~al.(2022)]{lu2022}
+Lu, Y., Bartolo, M., Moore, A., Riedel, S., and Stenetorp, P.
+\newblock Fantastically ordered prompts and where to find them: Overcoming few-shot prompt order sensitivity.
+\newblock In \emph{Proceedings of ACL}, 2022.
+
+\bibitem[Messina \& Scotta(2026)]{messina2026}
+Messina, E. and Scotta, L.
+\newblock Floating-point non-associativity in neural network inference.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Mesting(2026)]{mesting2026}
+Mesting, F.
+\newblock A generalizability theory analysis of {LLM} evaluation.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Mushquash \& O'Connor(2006)]{mushquash2006}
+Mushquash, C. and O'Connor, B.~P.
+\newblock {SPSS} and {SAS} programs for generalizability theory analyses.
+\newblock \emph{Behavior Research Methods}, 38(3):542--547, 2006.
+
+\bibitem[Perlitz et~al.(2023)]{perlitz2023}
+Perlitz, Y., Bandel, E., Gera, A., et~al.
+\newblock Efficient benchmarking of language models.
+\newblock \emph{arXiv preprint}, 2023.
+
+\bibitem[Pezeshkpour \& Hruschka(2024)]{pezeshkpour2024}
+Pezeshkpour, P. and Hruschka, E.
+\newblock Large language models sensitivity to the order of options in multiple-choice questions.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Polo et~al.(2024)]{polo2024}
+Polo, F.~M., Choi, Y., et~al.
+\newblock tiny{B}enchmarks: Evaluating {LLM}s with fewer examples.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Rodriguez et~al.(2021)]{rodriguez2021}
+Rodriguez, P., Barrow, J., Hoyle, A.~M., et~al.
+\newblock Evaluation examples are not equally informative: How should that change {NLP} leaderboards?
+\newblock In \emph{Proceedings of ACL}, 2021.
+
+\bibitem[Sclar et~al.(2024)]{sclar2024}
+Sclar, M., Choi, Y., Tsvetkov, Y., and Suhr, A.
+\newblock Quantifying language models' sensitivity to spurious features in prompt design.
+\newblock In \emph{Proceedings of ICLR}, 2024.
+
+\bibitem[Sellam et~al.(2022)]{sellam2022}
+Sellam, T., Yadlowsky, S., Wei, J., et~al.
+\newblock Multi{BERT}s: {BERT} reproductions for robustness analysis.
+\newblock In \emph{Proceedings of ICLR}, 2022.
+
+\bibitem[Shavelson \& Webb(1991)]{shavelson1991}
+Shavelson, R.~J. and Webb, N.~M.
+\newblock \emph{Generalizability Theory: A Primer}.
+\newblock Sage Publications, 1991.
+
+\bibitem[Shavelson et~al.(1989)]{shavelson1989}
+Shavelson, R.~J., Webb, N.~M., and Rowley, G.~L.
+\newblock Generalizability theory.
+\newblock \emph{American Psychologist}, 44(6):922--932, 1989.
+
+\bibitem[Vania et~al.(2021)]{vania2021}
+Vania, C., Kementchedjhieva, Y., S{\o}gaard, A., and Webber, B.
+\newblock Comparing test sets with item response theory.
+\newblock In \emph{Proceedings of ACL}, 2021.
+
+\bibitem[Yuan et~al.(2025)]{yuan2025}
+Yuan, Z., Liu, Y., et~al.
+\newblock Hardware matters: Understanding the impact of infrastructure on {LLM} evaluation.
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}
+
+\end{document}

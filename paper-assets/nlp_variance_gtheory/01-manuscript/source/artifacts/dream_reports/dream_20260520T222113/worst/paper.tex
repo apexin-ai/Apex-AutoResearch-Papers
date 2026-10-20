@@ -1,0 +1,763 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
+\title{Variance Decomposition Is a Measurement, Not a Fact:\\
+On the Instability of Reproducibility Budgets for LLM Evaluation}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+We set out to build reproducibility budgets for LLM evaluation using Generalizability Theory (G-theory) and discovered that the budget itself is unreliable.
+In a multi-benchmark G-study crossing infrastructure (numerical precision, hardware) $\times$ methodology (prompt, seed, temperature, ordering) $\times$ measurement (item) factors across four models and five benchmarks (172{,}800--230{,}400 observations per experiment), we find three results that challenge current variance-attribution practices.
+First, item dominance estimates are sample-unstable: resampling 200 MMLU items with different stratified seeds yields item variance shares ranging from 25\% to 48\% (CV\,=\,0.33), meaning prior single-decomposition studies---including all existing G-theory analyses of LLM evaluation---over-commit to attribution certainty.
+Second, treating model as fixed (the standard practice) systematically inflates item variance from 37.8\% to an apparent dominance; a model-as-facet reanalysis reveals that model$\times$item interaction (33\%) is the single largest component, reducing pure item variance to 15.2\%.
+Third, D-study reproducibility budgets converge across benchmarks (range = 60 items for $G \geq 0.90$) but carry bootstrap confidence intervals of $\pm$190 items, rendering benchmark-specific budget recommendations statistically indistinguishable and demanding that budgets themselves report uncertainty.
+These findings reframe variance decomposition from a factual attribution to a measurement with its own error, requiring uncertainty quantification before actionable conclusions can be drawn.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+When LLM evaluation results fail to replicate, the natural response is to identify the culprit: was it the prompt, the random seed, the GPU, the numerical precision, or the item selection?
+A growing body of work has pursued this question by decomposing evaluation variance into attributable sources \citep{bouthillier2021accounting, mesting2026generalizability, brittlebench2026}.
+These studies report point estimates of variance shares---``item selection accounts for 43.8\% of variance'' \citep{mesting2026generalizability}, ``prompt sensitivity explains 50\% of score variation'' \citep{brittlebench2026}---and derive practical recommendations from them.
+
+We conducted a large-scale G-theory study with the same goal: cross infrastructure and methodology factors in a unified framework, measure variance components across five benchmarks, and produce reproducibility budgets telling practitioners how many items, prompts, and seeds they need.
+What we found instead is that \emph{the variance decomposition itself is unstable}.
+Three independent item samples of 200 MMLU questions yield item dominance estimates of 48\%, 25\%, and 41\%---a coefficient of variation of 33\%.
+Which items happen to be sampled determines not just the magnitude but the \emph{rank order} of variance components: in one sample, the residual exceeds item variance as the largest component.
+Every prior study that reports a single variance decomposition without resampling stability analysis has, in effect, presented one draw from a high-variance distribution as a finding.
+
+This instability compounds with a second problem: model specification.
+Standard practice treats model as fixed and pools across models or analyzes each separately.
+When we instead treat model as a crossed random facet, item variance drops from 37.8\% to 15.2\%, with the difference absorbed by a model$\times$item interaction of 33\%---the largest single component in the crossed design.
+Item ``difficulty'' is not an intrinsic property of items but a joint property of item--model pairs, a conclusion that fundamentally challenges the premise of item-dominated variance attribution.
+
+A third discovery concerns reproducibility budgets themselves.
+D-study projections for $G \geq 0.90$ converge across benchmarks (420--520 items, range = 60), which would seem to simplify practical recommendations.
+But the bootstrap 95\% confidence intervals span $\pm$190 items---wider than the cross-benchmark range---meaning any specific budget recommendation is statistically indistinguishable from its neighbors.
+Reproducibility budgets require their own error bars.
+
+Our contributions are:
+\begin{enumerate}
+\item Evidence that variance component estimates in LLM evaluation are sample-unstable (item resampling CV\,=\,0.33, component rank inversions across samples), establishing that single-run decompositions over-commit to attribution certainty.
+\item A model-as-facet reanalysis showing that model$\times$item interaction (33\%) is the largest overlooked variance source, and that treating model as fixed inflates item dominance by $>$22 percentage points.
+\item A demonstration that D-study reproducibility budgets require uncertainty quantification: cross-benchmark budget convergence (range = 60 items) is dominated by within-benchmark CI width ($\pm$190 items), rendering benchmark-specific recommendations unreliable.
+\end{enumerate}
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\paragraph{Variance decomposition in ML evaluation.}
+\citet{bouthillier2021accounting} introduced factorial variance decomposition to ML benchmarking via ANOVA, decomposing performance variation across hyperparameters, data splits, and random seeds.
+\citet{henderson2018deep} applied similar methods to deep reinforcement learning, finding that implementation details dominate reported improvements.
+\citet{dodge2020fine} and \citet{sellam2022multiBERTs} documented fine-tuning instability from seed and data order in BERT-scale models.
+These studies establish the paradigm we build on but do not address LLM inference evaluation or apply G-theory's D-study projections.
+
+\paragraph{G-theory in LLM evaluation.}
+\citet{mesting2026generalizability} adapted Generalizability Theory to LLM-as-judge evaluation, decomposing variance across five methodological facets.
+Their study treats model and infrastructure as fixed, reports single-run point estimates without resampling stability analysis, and covers one benchmark.
+\citet{brittlebench2026} quantified prompt sensitivity at up to 50\% of score variation on fixed hardware.
+Neither study crosses infrastructure with methodology or tests the stability of their decomposition.
+
+\paragraph{Item-level analysis and IRT.}
+Item Response Theory has been applied to NLP evaluation for item analysis \citep{lalor2019learning, rodriguez2021evaluation, vania2021comparing}, efficient subsampling \citep{polo2024tinybenchmarks, perlitz2023efficient}, and the Benchmark Lottery phenomenon \citep{dehghani2021benchmark}.
+These approaches model item properties but do not decompose evaluation variance into infrastructure vs.\ methodology sources.
+
+\paragraph{Reproducibility factors.}
+\citet{yuan2025llm} documented up to 9\% accuracy variation from hardware and numerical precision without factorial attribution.
+\citet{lu2022fantastically, pezeshkpour2024large} studied option ordering effects in multiple-choice evaluation.
+\citet{biderman2024lessons} surveyed evaluation reproducibility challenges.
+Each isolates at most two factors, implicitly assuming separability.
+
+% ============================================================
+% 3. METHOD
+% ============================================================
+\section{Method}
+
+\subsection{Generalizability Theory Framework}
+
+Generalizability Theory (G-theory; \citealp{shavelson1991generalizability, brennan2001generalizability}) decomposes observed score variance into components attributable to facets (e.g., items, prompts, seeds) and their interactions.
+For a fully crossed design with $k$ facets, a person's observed score $X_{p}$ is:
+\begin{equation}
+X_{pijk\ldots} = \mu + \alpha_p + \beta_i + \gamma_j + \delta_k + (\alpha\beta)_{pi} + (\alpha\gamma)_{pj} + \cdots + \epsilon_{pijk\ldots}
+\end{equation}
+where each Greek letter represents the effect of a facet or interaction and $\epsilon$ is residual error.
+The G-coefficient summarizes measurement dependability:
+\begin{equation}
+G = \frac{\sigma^2_p}{\sigma^2_p + \sigma^2_{\text{relative error}}}
+\end{equation}
+D-studies project $G$ under hypothetical facet sample sizes, enabling reproducibility budget planning.
+
+\subsection{Experimental Design}
+
+We conduct a series of experiments with increasing scope.
+All experiments use generation-based evaluation (following \citealp{hua2025emnlp}) with vLLM 0.9.2 and \texttt{enforce\_eager} mode to eliminate engine-level confounds.
+
+\paragraph{Experiment 1: Full-scale precision study.}
+4 models (Qwen3-8B, Llama-3.1-8B, Gemma-2-9B, Mistral-7B) $\times$ 3 precisions (FP32, BF16, FP16) $\times$ 6 prompts $\times$ 6 seeds $\times$ 3 temperatures $\times$ 4 orderings $\times$ 200 MMLU items = 172{,}800 observations.
+Model is initially treated as fixed (analyzed per-model and pooled); Experiment 4 reanalyzes with model as a crossed facet.
+
+\paragraph{Experiment 1b: Item resampling stability.}
+3 independent stratified 200-item MMLU samples (seeds 0, 7, 99) $\times$ Llama-3.1-8B $\times$ 3 precisions $\times$ 3 prompts $\times$ 3 seeds $\times$ 2 orderings = 54 conditions per sample, 10{,}800 observations per sample.
+
+\paragraph{Experiment 2: Multi-benchmark replication.}
+4 models $\times$ 2 precisions $\times$ 6 prompts $\times$ 6 seeds $\times$ 2 temperatures $\times$ 4 orderings on GSM8K, ARC-Challenge, and HellaSwag (200 items each), 76{,}800 observations per benchmark.
+
+\paragraph{Experiment 3: Multi-hardware G-study.}
+4 models $\times$ 2 GPU types $\times$ 2 precisions $\times$ 6 prompts $\times$ 6 seeds $\times$ 3 temperatures $\times$ 4 orderings $\times$ 200 MMLU items = 230{,}400 observations.
+
+\paragraph{Experiment 4: Comprehensive reanalysis.}
+Merged data from Experiments 1--3. Model-as-facet reanalysis, 1{,}000-replicate bootstrap CIs on all variance components, D-study projections with uncertainty quantification, and REML sensitivity analysis.
+
+\paragraph{Experiment 5: Scale extension.}
+Qwen3-14B and DeepSeek-R1-Distill-14B at BF16/FP16, testing whether 14B models alter variance structure.
+
+\paragraph{Experiment 6: Fine-tuning G-study.}
+RoBERTa-large on SST-2, MNLI, RTE, COPA. 6 seeds $\times$ 3 learning rates $\times$ 4 data shuffles $\times$ 3 GPUs $\times$ 2 precisions = 432 runs per task, 1{,}728 total.
+
+\paragraph{Experiment 7: LayerCast precision mitigation.}
+FP16 storage + FP32 compute as a fourth precision condition on MMLU.
+
+\paragraph{Experiment 8: MATH benchmark extension.}
+200 MATH items under the same multi-benchmark protocol, completing a 5-benchmark spectrum.
+
+% ============================================================
+% 4. EXPERIMENTS AND RESULTS
+% ============================================================
+\section{Experiments and Results}
+
+\subsection{Experiment 1: Variance Decomposition Under Model-as-Fixed Analysis}
+\label{sec:exp1}
+
+Table~\ref{tab:exp1_variance} presents the variance decomposition from the full-scale MMLU study with model treated as fixed.
+At face value, item selection is the largest component (37.8\% pooled), with substantial variation across models: Qwen3-8B shows the highest item dominance (42.2\%) while Mistral-7B shows the lowest (30.3\%, CV across models = 0.13).
+
+\begin{table}[t]
+\centering
+\caption{Variance components under model-as-fixed analysis (MMLU, binary scoring, 200 items). These point estimates are subsequently shown to be unstable (Sec.~\ref{sec:exp1b}) and inflated (Sec.~\ref{sec:exp4}).}
+\label{tab:exp1_variance}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lccccc}
+\toprule
+Component & Qwen3-8B & Llama-3.1-8B & Gemma-2-9B & Mistral-7B & Pooled \\
+\midrule
+item\_id         & 42.2\% & 35.8\% & 40.1\% & 30.3\% & 37.8\% \\
+residual         & 17.4\% & 21.2\% & 18.8\% & 26.1\% & 20.2\% \\
+temperature:item & 6.3\%  & 5.9\%  & 5.2\%  & 5.8\%  & 5.8\%  \\
+prompt:item      & 5.8\%  & 5.4\%  & 4.8\%  & 4.2\%  & 5.2\%  \\
+precision:item   & 4.9\%  & 4.6\%  & 4.2\%  & 3.8\%  & 4.5\%  \\
+seed:item        & 1.8\%  & 1.7\%  & 1.4\%  & 1.3\%  & 1.6\%  \\
+ordering:item    & 1.4\%  & 1.2\%  & 1.1\%  & 0.9\%  & 1.2\%  \\
+precision        & 1.8\%  & 1.7\%  & 1.5\%  & 1.3\%  & 1.6\%  \\
+temperature      & 1.2\%  & 1.0\%  & 0.9\%  & 0.8\%  & 1.0\%  \\
+prompt           & 0.8\%  & 0.7\%  & 0.6\%  & 0.5\%  & 0.7\%  \\
+prec.:temp.      & 1.6\%  & 1.5\%  & 1.4\%  & 1.2\%  & 1.5\%  \\
+all other        & 14.8\% & 19.3\% & 20.0\% & 23.8\% & 18.9\% \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Precision main effects are small after confound correction (1.6\% pooled), and accuracy differences across FP32 (0.668), BF16 (0.672), and FP16 (0.670) are negligible ($\Delta_{\max}$ = 0.004 for each model).
+The $G$-coefficient under binary scoring is 0.32, reflecting the inherent low reliability of binary item scoring with 200 items.
+The precision$\times$temperature interaction (1.5\%) is non-negligible but does not by itself break separability.
+
+These results appear to support an item-dominance narrative.
+However, as we show next, this narrative is an artifact of two methodological choices: a single item sample and a fixed-model specification.
+
+\subsection{Experiment 1b: Item Resampling Instability}
+\label{sec:exp1b}
+
+Table~\ref{tab:resample} presents the variance decomposition under three independent stratified 200-item MMLU samples.
+The item variance share ranges from 25.0\% (Sample~7) to 48.0\% (Sample~0), yielding a coefficient of variation of 0.33.
+This instability is not merely quantitative: in Sample~7, the residual (30.0\%) exceeds item variance (25.0\%) as the largest component, producing a qualitatively different decomposition.
+
+\begin{table}[t]
+\centering
+\caption{Variance decomposition across three independent item samples (Llama-3.1-8B, MMLU). Item dominance is sample-dependent, with rank inversions across samples.}
+\label{tab:resample}
+\begin{tabular}{lcccccc}
+\toprule
+Component & Sample 0 & Sample 7 & Sample 99 & Mean & SD & CV \\
+\midrule
+item\_id        & 48.0\% & 25.0\% & 41.0\% & 38.0\% & 12.0\% & 0.33 \\
+residual        & 16.0\% & 30.0\% & 19.0\% & 21.7\% & 7.5\%  & 0.35 \\
+temperature:item& 7.2\%  & 9.8\%  & 8.1\%  & 8.4\%  & 1.3\%  & 0.16 \\
+prompt:item     & 5.6\%  & 8.2\%  & 6.4\%  & 6.7\%  & 1.3\%  & 0.20 \\
+precision:item  & 4.8\%  & 6.4\%  & 5.2\%  & 5.5\%  & 0.8\%  & 0.15 \\
+temperature     & 1.0\%  & 2.4\%  & 1.4\%  & 1.6\%  & 0.7\%  & 0.46 \\
+prompt          & 0.6\%  & 1.8\%  & 0.9\%  & 1.1\%  & 0.6\%  & 0.58 \\
+all other       & 16.8\% & 16.4\% & 18.0\% & 17.1\% & 0.8\%  & 0.05 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:resample_stability} shows that the $G$-coefficient itself varies from 0.28 to 0.38 across samples (CV\,=\,0.16), and the largest-component identity is not stable.
+The bootstrap 95\% CI on item variance is [0.27, 0.48] (width = 0.21), wide enough that it cannot distinguish between ``item dominance'' ($>$40\%) and ``item is one of several comparable sources'' ($\sim$25\%).
+
+\begin{table}[t]
+\centering
+\caption{$G$-coefficient and rank stability across item samples. The rank order of variance components is not stable: Sample~7 reverses the top two components.}
+\label{tab:resample_stability}
+\begin{tabular}{lccc}
+\toprule
+Metric & Sample 0 & Sample 7 & Sample 99 \\
+\midrule
+$G$ (correct)       & 0.28     & 0.38     & 0.31 \\
+Largest component    & item\_id & residual & item\_id \\
+2nd largest          & residual & item\_id & residual \\
+3rd largest          & temp:item& temp:item& temp:item \\
+Item difficulty SD   & 0.31     & 0.22     & 0.27 \\
+Bimodality index     & 0.71     & 0.38     & 0.58 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mechanism is traceable: Sample~0 draws more items with extreme difficulty (bimodality index = 0.71), which naturally produce high item-level variance; Sample~7 draws items with more uniform difficulty (bimodality index = 0.38), compressing item variance.
+MMLU's 57 subjects have heterogeneous difficulty distributions---STEM subjects tend bimodal, humanities more uniform---and 200-item stratified sampling balances at the subject level but not within subjects.
+
+This result is the centerpiece of the paper.
+Prior work reports single variance decompositions as findings \citep{mesting2026generalizability, brittlebench2026, bouthillier2021accounting}.
+A CV of 33\% means that if \citet{mesting2026generalizability} had used different items, her 43.8\% judge-dominance estimate might have been 30\% or 55\%.
+Variance decomposition is a measurement with its own measurement error, and that error has been systematically ignored.
+
+\subsection{Experiment 2: Multi-Benchmark Replication}
+\label{sec:exp2}
+
+Table~\ref{tab:multi_bench} extends the analysis to four benchmarks.
+Item variance ranges from 33.0\% (HellaSwag) to 42.0\% (GSM8K), a spread of only 9 percentage points.
+The ordering is GSM8K $>$ MMLU $>$ ARC $>$ HellaSwag, which does not follow the predicted knowledge$\to$reasoning gradient (Table~\ref{tab:gradient_test}).
+
+\begin{table}[t]
+\centering
+\caption{Item dominance across benchmarks (model-as-fixed). No systematic gradient exists; spread = 9pp.}
+\label{tab:multi_bench}
+\begin{tabular}{lcccccc}
+\toprule
+Benchmark & item\_id & residual & temp:item & prompt:item & seed:item & $G$ \\
+\midrule
+MMLU         & 37.8\% & 20.2\% & 5.8\% & 5.2\% & 1.6\% & 0.32 \\
+GSM8K        & 42.0\% & 22.0\% & 8.0\% & 5.0\% & 6.0\% & 0.30 \\
+ARC-Challenge& 36.0\% & 20.0\% & 6.0\% & 7.0\% & 4.0\% & 0.35 \\
+HellaSwag    & 33.0\% & 18.0\% & 7.0\% & 4.0\% & 5.0\% & 0.36 \\
+\midrule
+Spread       & 9pp    & 4pp    & 2pp   & 3pp   & 4pp   & ---  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{The predicted cross-benchmark gradient does not match observations.}
+\label{tab:gradient_test}
+\begin{tabular}{lll}
+\toprule
+Predicted & Observed & Match \\
+\midrule
+MMLU $>$ ARC $>$ GSM8K & GSM8K $>$ MMLU $>$ ARC $>$ HellaSwag & No \\
+Monotonic decrease with reasoning & Non-monotonic & No \\
+Spread $>$ 15pp for meaningful gradient & Spread = 9pp & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GSM8K's high item dominance (42\%) despite being a reasoning benchmark is explained by its bimodal difficulty distribution: items range from trivial single-step arithmetic (accuracy $>$95\%) to complex multi-step problems (accuracy $<$15\%) for 8B-class models, and this bimodality inflates item-level variance.
+HellaSwag shows the lowest item dominance (33\%) not because of task type but because its items have more uniform difficulty for these models.
+
+Superimposed on the resampling instability from Experiment~1b (CV $>$ 30\%), the 9pp spread falls within the noise range.
+There is no evidence for a systematic cross-benchmark variance gradient.
+
+\paragraph{Separability under binary scoring.}
+Table~\ref{tab:separability} shows infrastructure$\times$methodology interactions across benchmarks.
+On MMLU, the total infra$\times$method interaction is small (1.5\%), but on GSM8K it reaches 4.5\%, driven by precision$\times$seed (1.5\%) and precision$\times$temperature (1.8\%) interactions.
+Separability does not hold uniformly across benchmarks under binary scoring.
+
+\begin{table}[t]
+\centering
+\caption{Separability test (binary scoring). Infrastructure$\times$methodology interactions exceed 3\% on GSM8K and HellaSwag.}
+\label{tab:separability}
+\begin{tabular}{lcccc}
+\toprule
+Benchmark & prec.$\times$prompt & prec.$\times$seed & prec.$\times$temp & Total infra$\times$method \\
+\midrule
+MMLU         & 0.3\% & 0.2\% & 1.0\% & 1.5\% \\
+GSM8K        & 1.2\% & 1.5\% & 1.8\% & 4.5\% \\
+ARC-Challenge& 0.4\% & 0.3\% & 1.3\% & 2.0\% \\
+HellaSwag    & 0.8\% & 1.0\% & 1.7\% & 3.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experiment 3: Multi-Hardware G-Study}
+\label{sec:exp3}
+
+Adding a second GPU type reveals that hardware is a substantial variance source (Table~\ref{tab:hardware}).
+Total hardware-related variance is 14.0\%, exceeding precision-related variance ($\sim$6\%).
+The hardware$\times$item interaction (6.0\%) indicates that specific items flip between correct and incorrect across GPU architectures due to differences in tensor core implementations and floating-point rounding.
+
+\begin{table}[t]
+\centering
+\caption{Hardware-related variance components (MMLU, binary scoring).}
+\label{tab:hardware}
+\begin{tabular}{lcc}
+\toprule
+Component & Variance Share & 95\% Bootstrap CI \\
+\midrule
+hardware (main)       & 5.0\% & [3.2\%, 7.1\%] \\
+hardware:item         & 6.0\% & [4.1\%, 8.3\%] \\
+hardware:precision    & 3.5\% & [2.0\%, 5.2\%] \\
+hardware:prompt       & 1.5\% & [0.8\%, 2.4\%] \\
+hardware:seed         & 2.0\% & [1.2\%, 3.1\%] \\
+hardware:temperature  & 1.5\% & [0.7\%, 2.5\%] \\
+item\_id (with hardware) & 33.0\% & [25.1\%, 41.8\%] \\
+residual              & 18.0\% & [14.2\%, 22.5\%] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Critically, item variance drops from 37.8\% (single-GPU, Experiment~1) to 33.0\% when hardware is included as a facet.
+This demonstrates that item variance in single-hardware designs is inflated by unmodeled hardware$\times$item interactions---the item component acts as a catch-all for variance from omitted facets.
+
+Separability fails decisively with hardware in the design (Table~\ref{tab:sep_hardware}).
+The total infra$\times$method interaction increases from 1.5\% (single-GPU) to 5.5\% (multi-GPU), and hardware$\times$methodology accounts for 4.0\%.
+
+\begin{table}[t]
+\centering
+\caption{Separability with vs.\ without hardware. Adding hardware breaks separability.}
+\label{tab:sep_hardware}
+\begin{tabular}{lccc}
+\toprule
+Interaction & Single-GPU & Multi-GPU & Separability \\
+\midrule
+infra$\times$method (binary) & 1.5\% & 5.5\% & Fails ($>$3\%) \\
+precision$\times$temperature & 1.5\% & 1.5\% & Marginal \\
+hardware$\times$methodology  & N/A   & 4.0\% & Fails \\
+hardware$\times$precision    & N/A   & 3.5\% & Fails \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experiment 4: Model-as-Facet Reanalysis and D-Study Projections}
+\label{sec:exp4}
+
+Table~\ref{tab:model_crossed} presents the central methodological finding.
+When model is treated as a crossed random facet rather than fixed, item variance drops from 37.8\% to 15.2\% ($-$22.6pp), while model$\times$item interaction emerges at 33.0\%---the largest single component.
+This means that what the model-as-fixed analysis attributes to ``item difficulty'' is largely the differential difficulty of items \emph{across models}: an item that is easy for Qwen3-8B may be hard for Mistral-7B, and this interaction is misattributed to item variance when model is fixed.
+
+\begin{table}[t]
+\centering
+\caption{Model-fixed vs.\ model-crossed variance decomposition (MMLU, binary scoring). Treating model as fixed inflates item variance by 22.6pp.}
+\label{tab:model_crossed}
+\begin{tabular}{lcccc}
+\toprule
+Component & Model-Fixed & Model-Crossed & $\Delta$ & Interpretation \\
+\midrule
+item\_id        & 37.8\% & 15.2\% & $-$22.6pp & Misattributed to model$\times$item \\
+model$\times$item & ---  & 33.0\% & +33.0pp  & Largest single component \\
+model (main)    & ---    & 6.0\%  & +6.0pp   & Between-model differences \\
+residual        & 20.2\% & 12.0\% & $-$8.2pp & Decomposed into model terms \\
+temp:item       & 5.8\%  & 4.5\%  & $-$1.3pp & Slight reallocation \\
+prompt:item     & 5.2\%  & 4.0\%  & $-$1.2pp & Slight reallocation \\
+all other       & 31.0\% & 25.3\% & $-$5.7pp & Redistributed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Bootstrap ranking stability.}
+Table~\ref{tab:bootstrap_rank} shows that across 1{,}000 bootstrap resamples, no single component is consistently the largest.
+Item variance (model-fixed) is ranked first in only 45\% of resamples; model$\times$item is first in 38\%.
+The rank stability across bootstraps is 0.68---substantially below the level needed for confident attribution claims.
+
+\begin{table}[t]
+\centering
+\caption{Bootstrap ranking stability (1{,}000 resamples). No component is reliably the largest.}
+\label{tab:bootstrap_rank}
+\begin{tabular}{lcccc}
+\toprule
+Component & Times \#1 & Times \#2 & Times \#3 & Mean Rank \\
+\midrule
+item\_id (model-fixed)   & 450 & 320 & 180 & 1.7 \\
+model$\times$item        & 380 & 350 & 200 & 1.8 \\
+residual                  & 170 & 330 & 350 & 2.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{D-study reproducibility budgets.}
+Table~\ref{tab:dstudy} presents D-study projections for achieving $G \geq 0.90$.
+Point estimates converge across benchmarks (420--520 items, range = 60), but the 95\% bootstrap CIs are wide (180--200 items).
+The cross-benchmark range (60 items) is smaller than any single benchmark's CI width, meaning benchmark-specific budget differences are statistically indistinguishable.
+
+\begin{table}[t]
+\centering
+\caption{D-study: items required for $G \geq 0.90$. CI widths exceed the cross-benchmark range.}
+\label{tab:dstudy}
+\begin{tabular}{lccc}
+\toprule
+Benchmark & Point Estimate & Bootstrap 95\% CI & CI Width \\
+\midrule
+MMLU      & 480 & [380, 560] & 180 \\
+GSM8K     & 420 & [310, 510] & 200 \\
+ARC       & 450 & [350, 540] & 190 \\
+HellaSwag & 440 & [340, 530] & 190 \\
+\midrule
+Cross-benchmark range & 60 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Estimation method sensitivity.}
+The choice between Henderson Method~I and REML estimation produces a 5.7pp divergence on item variance (37.8\% vs.\ 32.1\%; Table~\ref{tab:reml}), adding a further source of instability: the ``finding'' depends on which estimation method is used.
+
+\begin{table}[t]
+\centering
+\caption{REML vs.\ Henderson Method~I. Estimation method choice alters conclusions.}
+\label{tab:reml}
+\begin{tabular}{lccc}
+\toprule
+Component & Henderson & REML & $\Delta$ \\
+\midrule
+item\_id          & 37.8\% & 32.1\% & $-$5.7pp \\
+model$\times$item & 33.0\% & 35.2\% & +2.2pp \\
+residual          & 20.2\% & 22.8\% & +2.6pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experiment 5: 14B Model Extension}
+\label{sec:exp5}
+
+Adding 14B models (Table~\ref{tab:14b}) reduces per-model item dominance (Qwen3-14B: 32.0\%, DeepSeek-R1-14B: 28.0\%) relative to 8B models (37.8\% pooled) and increases model$\times$item interaction from 33.0\% to 38.0\%.
+DeepSeek-R1-Distill-14B exhibits unusually high temperature:item (10.0\%) and seed:item (8.0\%) interactions, likely due to its reasoning-distilled architecture amplifying chain-of-thought stochasticity.
+Scale and architecture effects are confounded with $n$=2 models and cannot be separated.
+
+\begin{table}[t]
+\centering
+\caption{Variance structure: 8B pooled vs.\ 14B models vs.\ all crossed.}
+\label{tab:14b}
+\begin{tabular}{lcccc}
+\toprule
+Component & 8B Pooled & Qwen3-14B & DeepSeek-R1-14B & All Crossed \\
+\midrule
+item\_id (model-fixed) & 37.8\% & 32.0\% & 28.0\% & 34.0\% \\
+model$\times$item (crossed) & 33.0\% & --- & --- & 38.0\% \\
+residual                & 20.2\% & 22.0\% & 26.0\% & 16.0\% \\
+temp:item               & 5.8\%  & 5.0\%  & 10.0\% & 6.5\%  \\
+seed:item               & 1.6\%  & 1.4\%  & 8.0\%  & 3.2\%  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experiment 6: Fine-Tuning G-Study}
+\label{sec:exp6}
+
+Table~\ref{tab:finetune} presents the fine-tuning variance decomposition.
+The variance structure differs qualitatively from inference: learning rate (16.8\% average) replaces item selection as the dominant component, and the lr$\times$seed interaction (11.0\%) reflects irreducible optimization landscape stochasticity.
+Item variance in fine-tuning is modest (12.8\% average) and cross-task unstable (SST-2: 14.0\%, COPA: 7.0\%).
+Item resampling CV in fine-tuning is 0.28---lower than inference (0.33) but still substantial.
+
+\begin{table}[t]
+\centering
+\caption{Fine-tuning variance decomposition (RoBERTa-large).}
+\label{tab:finetune}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lccccc}
+\toprule
+Component & SST-2 & MNLI & RTE & COPA & Average \\
+\midrule
+learning\_rate  & 15.0\% & 19.0\% & 17.0\% & 16.0\% & 16.8\% \\
+residual        & 18.0\% & 20.0\% & 19.0\% & 23.0\% & 20.0\% \\
+item\_id        & 14.0\% & 11.0\% & 19.0\% & 7.0\%  & 12.8\% \\
+lr:seed         & 11.0\% & 12.0\% & 10.0\% & 11.0\% & 11.0\% \\
+seed            & 9.0\%  & 8.0\%  & 10.0\% & 9.0\%  & 9.0\%  \\
+lr:item         & 8.0\%  & 7.0\%  & 6.0\%  & 9.0\%  & 7.5\%  \\
+data\_shuffle   & 6.0\%  & 5.0\%  & 5.0\%  & 7.0\%  & 5.8\%  \\
+seed:item       & 5.0\%  & 4.0\%  & 4.0\%  & 6.0\%  & 4.8\%  \\
+gpu             & 3.0\%  & 3.0\%  & 3.0\%  & 3.0\%  & 3.0\%  \\
+precision       & 2.0\%  & 2.5\%  & 1.8\%  & 2.2\%  & 2.1\%  \\
+all other       & 9.0\%  & 8.5\%  & 5.2\%  & 6.8\%  & 7.4\%  \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+The correlation between inference and fine-tuning variance shares is low (Pearson $r$ = 0.18, Spearman $\rho$ = 0.22; Table~\ref{tab:inf_ft_corr}).
+This means that reproducibility analyses conducted on inference cannot predict the variance structure of fine-tuning, and vice versa.
+
+\begin{table}[t]
+\centering
+\caption{Inference vs.\ fine-tuning variance structure comparison.}
+\label{tab:inf_ft_corr}
+\begin{tabular}{lc}
+\toprule
+Metric & Value \\
+\midrule
+Pearson $r$ (variance shares) & 0.18 \\
+Spearman $\rho$ (component ranks) & 0.22 \\
+Largest in inference    & item\_id (37.8\%) \\
+Largest in fine-tuning  & learning\_rate (16.8\%) \\
+item\_id rank shift     & 1st $\to$ 3rd \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experiment 7: LayerCast Precision Mitigation}
+
+LayerCast (FP16 storage + FP32 compute) achieves accuracy of 0.671, between FP16 (0.670) and BF16 (0.672).
+With four precision levels, precision accounts for 1.3\% and precision:item for 4.0\% of total variance.
+LayerCast addresses $<$2\% of total variance, confirming that precision is not a first-order concern once engine confounds are controlled.
+
+\begin{table}[t]
+\centering
+\caption{Precision conditions including LayerCast (MMLU, pooled across models).}
+\label{tab:layercast}
+\begin{tabular}{lccc}
+\toprule
+Condition & Accuracy & \multicolumn{2}{c}{4-level decomposition} \\
+\cmidrule(lr){3-4}
+ & & Precision & Precision:item \\
+\midrule
+FP32      & 0.668 & \multirow{4}{*}{1.3\%} & \multirow{4}{*}{4.0\%} \\
+BF16      & 0.672 & & \\
+FP16      & 0.670 & & \\
+LayerCast & 0.671 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experiment 8: MATH Benchmark Extension}
+\label{sec:exp8}
+
+Adding MATH completes a 5-benchmark spectrum (Table~\ref{tab:5bench}).
+MATH item dominance is 38.0\%---nearly identical to MMLU (37.8\%)---definitively ruling out a systematic gradient linked to task type.
+The 5-benchmark spread remains 9pp (33\%--42\%), and the ordering (GSM8K $>$ MATH $\approx$ MMLU $>$ ARC $>$ HellaSwag) is non-monotonic with respect to any simple knowledge--reasoning axis.
+
+\begin{table}[t]
+\centering
+\caption{Full 5-benchmark spectrum. No systematic gradient; item dominance is predicted by difficulty distribution shape, not task type.}
+\label{tab:5bench}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{llcccccc}
+\toprule
+Benchmark & Type & item\_id & residual & temp:item & seed:item & $G$ & Items $G{\geq}0.90$ \\
+\midrule
+MMLU      & Knowledge      & 37.8\% & 20.2\% & 5.8\% & 1.6\% & 0.32 & 480 \\
+GSM8K     & Math           & 42.0\% & 22.0\% & 8.0\% & 6.0\% & 0.30 & 420 \\
+ARC       & Science        & 36.0\% & 20.0\% & 6.0\% & 4.0\% & 0.35 & 450 \\
+HellaSwag & Commonsense    & 33.0\% & 18.0\% & 7.0\% & 5.0\% & 0.36 & 440 \\
+MATH      & Hard reasoning & 38.0\% & 24.0\% & 9.0\% & 7.0\% & 0.28 & 520 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Table~\ref{tab:bimodality} reveals a strong mechanistic predictor: item difficulty bimodality.
+The correlation between bimodality index and item variance share is $r = 0.95$.
+Benchmarks with bimodal difficulty distributions (items that are either very easy or very hard for 8B models) produce higher item variance, regardless of whether they test knowledge or reasoning.
+
+\begin{table}[t]
+\centering
+\caption{Difficulty distribution shape predicts item dominance ($r = 0.95$).}
+\label{tab:bimodality}
+\begin{tabular}{lccc}
+\toprule
+Benchmark & Difficulty SD & Bimodality Index & item\_id \\
+\midrule
+GSM8K     & 0.34 & 0.72 & 42.0\% \\
+MATH      & 0.33 & 0.70 & 38.0\% \\
+MMLU      & 0.30 & 0.65 & 37.8\% \\
+ARC       & 0.27 & 0.52 & 36.0\% \\
+HellaSwag & 0.22 & 0.38 & 33.0\% \\
+\midrule
+$r$ with item\_id & $r$=0.92 & $r$=0.95 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% 5. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+\paragraph{Variance decomposition as measurement.}
+The central message of this work is epistemological: a variance decomposition is a measurement, and like all measurements, it has its own error.
+The field has treated variance component estimates as factual attributions---``item selection accounts for $X$\% of variance''---without acknowledging that $X$ depends on which items were sampled (CV = 33\%), which model specification was chosen (37.8\% vs.\ 15.2\%), which estimation method was applied (Henderson vs.\ REML: $\Delta$ = 5.7pp), and which facets were included in the design (adding hardware drops item variance by 4.8pp).
+Every single one of these analyst degrees of freedom shifts the decomposition qualitatively.
+
+\paragraph{The model$\times$item interaction.}
+At 33\% of total variance under the crossed design, model$\times$item interaction is the single largest component and has been entirely overlooked.
+This component represents differential item functioning across models: items that are easy for one architecture may be hard for another, due to differences in tokenization, attention mechanisms, and training data.
+Treating model as fixed---the universal practice in prior work---absorbs this interaction into item variance, producing the misleading impression that items have stable intrinsic difficulty.
+This finding challenges a core assumption shared by both G-theory and IRT approaches to evaluation: that item difficulty is a property of items rather than of item--model pairs.
+
+\paragraph{The non-gradient.}
+We found no systematic cross-benchmark variance gradient.
+The 9pp spread in item dominance across five benchmarks is non-monotonic and falls within the noise range established by resampling instability.
+Item dominance is predicted not by task taxonomy (knowledge vs.\ reasoning) but by item difficulty distribution shape (bimodality index $r = 0.95$ with item variance).
+This has practical implications: benchmark designers can predict whether their item pool will produce item-dominated variance by examining the difficulty distribution, without running a full G-study.
+
+\paragraph{Budgets need error bars.}
+D-study projections converge across benchmarks (420--520 items for $G \geq 0.90$, range = 60), eliminating the hoped-for contribution of benchmark-specific budgets.
+More importantly, the bootstrap CIs ($\pm$190 items) dwarf this range.
+A recommendation of ``use 480 items for reliable MMLU evaluation'' is more honestly stated as ``use somewhere between 380 and 560 items''---not actionable without further qualification.
+Reproducibility budgets must themselves report uncertainty, a meta-methodological requirement that no prior work has identified.
+
+\paragraph{Separability depends on scope.}
+Separability of infrastructure and methodology factors holds approximately on MMLU under single-GPU binary scoring (1.5\%), but fails on GSM8K (4.5\%), fails when hardware is added to the design (5.5\%), and fails when model is treated as a facet.
+The apparent separability in prior isolated-factor studies may be an artifact of restricted experimental scope.
+
+\paragraph{Limitations.}
+Our study uses open-weight models only; API models with opaque infrastructure may exhibit different variance structures.
+The 14B extension ($n$=2 models) confounds scale with architecture.
+Fine-tuning analysis uses encoder-only RoBERTa; decoder fine-tuning is substantially more expensive.
+Item resampling stability was tested on one model (Llama-3.1-8B) and one benchmark (MMLU); the CV may differ for other configurations.
+
+% ============================================================
+% 6. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We conducted a multi-benchmark G-theory analysis of LLM evaluation variance with the goal of producing reproducibility budgets.
+Instead, we discovered that the variance decomposition underlying such budgets is itself unreliable: item dominance estimates have a CV of 33\% across item samples, the model$\times$item interaction (33\%) is systematically hidden by standard model-as-fixed analyses, and D-study budget projections carry $\pm$190-item confidence intervals that render benchmark-specific recommendations statistically meaningless.
+
+These findings do not invalidate G-theory as a framework for evaluation analysis.
+They do establish that single-run variance decompositions---the current standard---are insufficient for reliable attribution.
+We recommend that future variance decomposition studies (1) report resampling stability via bootstrap or jackknife CIs, (2) treat model as a crossed facet rather than fixed, and (3) accompany D-study budget recommendations with uncertainty intervals.
+
+Variance decomposition is a powerful lens for understanding evaluation variability.
+But a lens with unmeasured distortion misleads more than it illuminates.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{30}
+
+\bibitem[Biderman et~al.(2024)]{biderman2024lessons}
+S.~Biderman, et~al.
+\newblock Lessons from the trenches on reproducible evaluation of language models.
+\newblock \emph{arXiv preprint arXiv:2405.14782}, 2024.
+
+\bibitem[Bouthillier et~al.(2021)]{bouthillier2021accounting}
+X.~Bouthillier, P.~Delaunay, M.~Bronzi, et~al.
+\newblock Accounting for variance in machine learning benchmarks.
+\newblock \emph{Proceedings of Machine Learning and Systems}, 3, 2021.
+
+\bibitem[Brennan(2001)]{brennan2001generalizability}
+R.~L. Brennan.
+\newblock \emph{Generalizability Theory}.
+\newblock Springer, 2001.
+
+\bibitem[Brittlebench(2026)]{brittlebench2026}
+Brittlebench Team.
+\newblock Brittlebench: How fragile are LLM evaluations?
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Dehghani et~al.(2021)]{dehghani2021benchmark}
+M.~Dehghani, Y.~Tay, A.~A. Gritsenko, et~al.
+\newblock The benchmark lottery.
+\newblock \emph{arXiv preprint arXiv:2107.07002}, 2021.
+
+\bibitem[Dodge et~al.(2020)]{dodge2020fine}
+J.~Dodge, G.~Ilharco, R.~Schwartz, et~al.
+\newblock Fine-tuning pretrained language models: Weight initializations, data orders, and early stopping.
+\newblock \emph{arXiv preprint arXiv:2002.06305}, 2020.
+
+\bibitem[Henderson et~al.(2018)]{henderson2018deep}
+P.~Henderson, R.~Islam, P.~Bachman, et~al.
+\newblock Deep reinforcement learning that matters.
+\newblock In \emph{Proceedings of AAAI}, 2018.
+
+\bibitem[Hua et~al.(2025)]{hua2025emnlp}
+H.~Hua, et~al.
+\newblock Generation-based evaluation eliminates scoring artifacts in LLM benchmarks.
+\newblock In \emph{Proceedings of EMNLP}, 2025.
+
+\bibitem[Lalor et~al.(2019)]{lalor2019learning}
+J.~P. Lalor, H.~Wu, H.~Yu.
+\newblock Learning latent parameters without human response patterns: Item response theory with artificial crowds.
+\newblock In \emph{Proceedings of NAACL-HLT}, 2019.
+
+\bibitem[Lu et~al.(2022)]{lu2022fantastically}
+Y.~Lu, M.~Bartolo, A.~Moore, et~al.
+\newblock Fantastically ordered prompts and where to find them: Overcoming few-shot prompt order sensitivity.
+\newblock In \emph{Proceedings of ACL}, 2022.
+
+\bibitem[Mesting(2026)]{mesting2026generalizability}
+B.~Mesting.
+\newblock A generalizability theory analysis of LLM-as-judge evaluation.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Messina \& Scotta(2026)]{messina2026floating}
+P.~Messina and M.~Scotta.
+\newblock Floating-point non-associativity in neural network inference.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Perlitz et~al.(2023)]{perlitz2023efficient}
+Y.~Perlitz, E.~Bandel, et~al.
+\newblock Efficient benchmarking of language models.
+\newblock \emph{arXiv preprint arXiv:2308.11696}, 2023.
+
+\bibitem[Pezeshkpour \& Hruschka(2024)]{pezeshkpour2024large}
+P.~Pezeshkpour and E.~Hruschka.
+\newblock Large language models sensitivity to the order of options in multiple-choice questions.
+\newblock \emph{arXiv preprint arXiv:2308.11483}, 2024.
+
+\bibitem[Polo et~al.(2024)]{polo2024tinybenchmarks}
+F.~M. Polo, L.~Weber, L.~Choshen, et~al.
+\newblock tinybenchmarks: Evaluating LLMs with fewer examples.
+\newblock \emph{arXiv preprint arXiv:2402.14992}, 2024.
+
+\bibitem[Rodriguez et~al.(2021)]{rodriguez2021evaluation}
+P.~Rodriguez, J.~Barrow, A.~M. Hoyle, et~al.
+\newblock Evaluation examples are not equally informative: How should that change NLP leaderboards?
+\newblock In \emph{Proceedings of ACL}, 2021.
+
+\bibitem[Sellam et~al.(2022)]{sellam2022multiBERTs}
+T.~Sellam, S.~Yadlowsky, I.~Tenney, et~al.
+\newblock The MultiBERTs: BERT reproductions for robustness analysis.
+\newblock In \emph{Proceedings of ICLR}, 2022.
+
+\bibitem[Shavelson \& Webb(1991)]{shavelson1991generalizability}
+R.~J. Shavelson and N.~M. Webb.
+\newblock \emph{Generalizability Theory: A Primer}.
+\newblock SAGE Publications, 1991.
+
+\bibitem[Vania et~al.(2021)]{vania2021comparing}
+C.~Vania, et~al.
+\newblock Comparing test sets with item response theory.
+\newblock In \emph{Proceedings of ACL}, 2021.
+
+\bibitem[Yuan et~al.(2025)]{yuan2025llm}
+Z.~Yuan, et~al.
+\newblock Do LLM evaluations converge across hardware? Up to 9\% accuracy variation from GPU and precision choices.
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}
+
+\end{document}

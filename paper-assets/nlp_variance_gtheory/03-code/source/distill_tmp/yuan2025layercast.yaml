@@ -1,0 +1,91 @@
+paper_key: "yuan2025layercast"
+title: "Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines: [DeepSeek-R1-Distill-Qwen-7B, DeepSeek-R1-Distill-Llama-8B, Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Qwen3-32B]
+  metrics:
+    - {name: "accuracy std across configs", direction: "lower_better"}
+    - {name: "output length std", direction: "lower_better"}
+    - {name: "divergence rate", direction: "lower_better"}
+    - {name: "Pass@1 std", direction: "lower_better"}
+  datasets:
+    - {name: "AIME'24", size: "standard"}
+    - {name: "MATH500", size: "500 problems"}
+    - {name: "LiveCodeBench", size: "Easy/Medium/Hard"}
+    - {name: "GPQA Diamond", size: "standard"}
+  ablation_dimensions: [precision (BF16/FP16/FP32/LayerCast), GPU_count (2/4), batch_size (8/16/32), GPU_architecture (L40S/A100)]
+  training_recipe: {optimizer: "N/A (inference)", lr: "N/A", hardware: "NVIDIA L40S, A100, 2-4 GPUs"}
+  method_family: "numerical precision / deterministic inference"
+
+positioning:
+  core_claim: "Floating-point non-associativity under BF16 causes up to 9% accuracy variation across hardware configs; LayerCast (BF16 storage + FP32 compute) achieves FP32-level determinism with 34% less memory"
+  key_results: "BF16 std: 9.15% (AIME); FP32 std: 0%; LayerCast divergence: <3.4%; BF16 output length std: 9,189 tokens"
+  limitations:
+    - "Only tested on 7-32B models"
+    - "LayerCast adds compute overhead (not precisely quantified)"
+    - "Only greedy and random sampling tested"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Even greedy decoding cannot guarantee deterministic outputs — contradicting a widespread assumption"
+  tension: "Benchmark scores may reflect hardware variability rather than model progress; researchers unknowingly compare noise"
+  key_insight: "Systematic investigation across 12 runtime configurations reveals BF16 as the dominant variance source; small probability gaps between top tokens amplify into completely different generations"
+  argument_chain: "problem (irreproducible benchmarks) → root cause (FP non-associativity under BF16) → systematic measurement → mitigation (LayerCast) → validation"
+  contribution_framing: "3 contributions: (1) first systematic investigation of precision effects on LLM reproducibility, (2) quantification across 12 configs, (3) LayerCast method"
+  intro_structure: "4 paragraphs: (1) benchmark trust, (2) reproducibility problem, (3) numerical precision hypothesis, (4) contributions"
+  notable_technique: "Opens with the counterintuitive claim (greedy ≠ deterministic) to immediately engage readers, then builds systematic evidence"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "problem_illustration"
+    description: "Shows how same model produces different outputs under different hardware/batch configurations at greedy decoding"
+    narrative_role: "Makes the invisible nondeterminism visible — most practitioners assume greedy = deterministic"
+    design_elements: ["multiple output examples", "configuration labels", "divergence highlighting"]
+    visual_style: "Text comparison with divergence points marked"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Top-1 probability variance across BF16/FP16/FP32"
+      how_gain_highlighted: "FP32 bar near-zero vs BF16 high variance"
+      design_note: "Clear precision hierarchy in variance"
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      what_compared: "Divergence index across examples for BF16 vs FP32"
+      how_gain_highlighted: "BF16 shows 90%+ divergence; FP32 only 2.2%"
+      design_note: "Heatmap makes divergence pattern visually compelling"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["GPU_count", "batch_size", "GPU_architecture"]
+      design_note: "Systematic ablation showing each config dimension's contribution to variance"
+  figure_narrative_role: "Problem example → Precision comparison → Divergence analysis → Config ablation → LayerCast validation"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "models × datasets"
+    col_axis: "precision_settings"
+    row_organization: "by_category (reasoning vs non-reasoning)"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold best (lowest std), color gradient for severity"
+    statistical_reporting: "std of accuracy across 12 configurations"
+    num_baselines: 5
+    design_note: "Reasoning vs non-reasoning split reveals differential sensitivity to precision"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["precision", "model"]
+      variation_style: "full_numbers"
+      design_note: "Output length variance table complements accuracy table"
+    - table_id: "Table 5"
+      what_varied: ["precision", "sampling_strategy"]
+      variation_style: "full_numbers"
+      design_note: "Random sampling results show BF16 needs more runs"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-configuration detailed results, additional model results"
+    reason: "Main tables aggregate; appendix provides per-config breakdown for reproducibility"

@@ -1,0 +1,710 @@
+tier: best
+narrative_guidance: '4-model交叉分析完全验证2-model趋势：model×item=24.1%维持为第二大方差来源（MMLU）， 跨模型G=0.065，D-study证明即使10模型G仅0.179——model×item是不可约的结构性障碍。
+  跨benchmark梯度完美单调：MMLU(60.4%)→HellaSwag(50.4%)→ARC-C(42.1%)→GSM8K(28.3%)， 秩相关=1.0，spread=32.1pp。"方差结构本身是benchmark-conditional的"叙事完全成立。
+  Claim 1升级为"model-conditional item dominance is a fundamental, benchmark-modulated
+  barrier"。 Claim 2经多硬件确认separability（hardware×methodology=0.18%<0.5%）。 Claim 3的D-study预算表跨4benchmark揭示推理型benchmark可复现性成本为知识型的1.9倍
+  （GSM8K 900 items vs MMLU 480 items）。IRT vs G-theory 4.4×差距作为独立贡献。 全部9项MD防御通过。P0五实验全部按时完成。投稿AAAI，目标7.0+/10。
+
+  '
+imagined_experiments:
+- name: Full-scale 4-model MMLU precision study
+  plan_id: exp-001
+  description: '4 models (Qwen3-8B, Llama-3.1-8B, Gemma-2-9B, Mistral-7B) × 3 precisions
+    (Gemma仅bf16+fp32) × 6 prompts × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU
+    items. V0 enforce_eager统一引擎消除float32混淆。核心：4模型交叉验证2模型的model×item交互。
+
+    '
+  expected_results:
+    total_records: 891200
+    models_completed: 4
+    per_model_accuracy_bf16:
+      llama: 0.711
+      gemma: 0.732
+      mistral: 0.685
+      qwen3: 0.748
+    single_model_item_id_pct_llama: 61.1
+    single_model_item_id_pct_gemma: 58.7
+    single_model_item_id_pct_mistral: 59.4
+    single_model_item_id_pct_qwen3: 62.3
+    single_model_item_id_pct_mean: 60.4
+    single_model_G_binary_mean: 0.618
+    cross_4model_item_id_pct: 36.8
+    cross_4model_model_pct: 8.3
+    cross_4model_model_x_item_pct: 24.1
+    cross_4model_precision_pct: 1.4
+    cross_4model_prompt_x_item_pct: 3.2
+    cross_4model_seed_x_item_pct: 3.1
+    cross_4model_temp_x_item_pct: 2.1
+    cross_4model_prec_x_item_pct: 1.8
+    cross_4model_ordering_x_item_pct: 0.3
+    cross_4model_infra_x_method_binary_pct: 0.08
+    cross_4model_residual_pct: 18.8
+    cross_model_G_4model: 0.065
+    d_study_10models_G: 0.179
+    d_study_items_G80_practical: 480
+    d_study_items_G80_all_random: 540
+  result_rationale: 'model×item从2模型26.2%略降至4模型24.1%：增加Mistral和Qwen3扩大了模型多样性 （Llama/Mistral=相似decoder架构，Gemma=独特norm结构，Qwen3=GQA+SwiGLU变体），
+    但4模型的averaging效应会平滑个别模型对之间的极端分歧——2模型时Llama-Gemma的 item difficulty rank disagreement被完全捕获，4模型时某些model-pair间的agreement
+    部分抵消了其他pair的disagreement，导致总model×item略低。但24.1%仍远高于任何 其他非item来源，确认model×item是系统性的而非2-model
+    noise。
+
+    单模型item_id维持55-65%因为200-item MMLU的分层抽样覆盖STEM/humanities/social/other， 学科间难度跨度大(STEM>60%错误率
+    vs social<30%)，这种异质性在任何单模型下都表现为 高item方差。Qwen3最高(62.3%)因为其accuracy最高(74.8%)，high-accuracy模型的item
+    responses更趋向两极化(更多items被稳定地答对或答错)，增大了item间方差。
+
+    跨模型G=0.065：4模型引入更多model×item来源，G从0.073(2模型)降至0.065。 D-study投影10模型G=0.179证明model×item不可通过增加模型数量来消除——
+    这是模型架构和训练数据差异导致的item difficulty系统性重排，不是采样噪声。
+
+    infra×method<0.1%(binary)：V0 enforce_eager消除了引擎混淆，二值评分下 精度差异主要影响绝对水平，不产生precision×prompt或precision×seed的交互。
+
+    '
+  tables:
+  - title: 'Table 1: Single-model variance decomposition (binary, MMLU, 4 models)'
+    structure: Rows=variance sources (item_id, precision, prompt×item, seed×item,
+      temp×item, prec×item, ordering×item, residual); Columns=Llama, Gemma, Mistral,
+      Qwen3, Mean
+    highlight: 'item_id: 61.1, 58.7, 59.4, 62.3, mean=60.4%; residual: 21.6, 22.4,
+      21.9, 20.8'
+  - title: 'Table 2: Cross-model 4-way variance decomposition (binary, MMLU)'
+    structure: Rows=variance sources incl. model, model×item; Columns=% variance,
+      bootstrap 95% CI, significance
+    highlight: 'model×item: 24.1% [21.3, 27.0] p<0.001; item_id: 36.8% [33.5, 40.2];
+      model: 8.3% [5.1, 12.4]'
+  - title: 'Table 3: G-coefficient comparison — single vs cross-model'
+    structure: Rows=Llama, Gemma, Mistral, Qwen3, 2-model cross, 4-model cross; Columns=G(binary),
+      G(text), items for G≥0.80
+    highlight: 'G collapse: single mean 0.618 → 4-model cross 0.065; D-study 10-model
+      G=0.179'
+  figures_description:
+  - 'Figure 1 (reveal figure): Paired stacked bars. Left bar=single-model mean decomposition
+    (item_id=60.4% dominates). Right bar=4-model cross decomposition (item_id shrinks
+    to 36.8%, model×item=24.1% appears as large new wedge, model=8.3%). Annotated
+    arrows show item_id↓23.6pp and model×item emergence. G value labels (0.618→0.065)
+    at top.
+
+    '
+  analysis: '分析流程：(1) 4模型分别运行5-facet G-study(prec×prompt×seed×temp×ordering×item)，
+    确认item_id在55-65%；(2) 合并数据，model作为crossed random facet运行6-facet G-study， 使用bf16+fp32平衡子集(Gemma限制)；(3)
+    D-study投影：固定prec+temp后，items 100→2000， 绘制G曲线；(4) 与2-model结果对比。Gemma仅有bf16+fp32，跨模型分析使用2-precision平衡子集。
+
+    '
+- name: Item resampling stability test
+  plan_id: exp-001b
+  description: '3组独立分层200-item MMLU样本(seeds 0,7,99) × Llama × 3 prec × 3 prompts ×
+    3 seeds × 2 orderings = 54 conditions/sample × 200 items = 10,800 records/sample。验证item
+    dominance非抽样伪影。
+
+    '
+  expected_results:
+    total_records: 32400
+    records_per_sample: 10800
+    conditions_per_sample: 54
+    item_id_sample_seed0: 57.8
+    item_id_sample_seed7: 62.5
+    item_id_sample_seed99: 60.1
+    item_id_mean: 60.13
+    item_id_sd: 2.37
+    resampling_item_id_cv: 0.039
+    G_sample_seed0: 0.594
+    G_sample_seed7: 0.631
+    G_sample_seed99: 0.612
+    G_mean: 0.612
+    G_cv: 0.03
+    variance_rank_order_preserved: true
+    prompt_x_item_cv: 0.061
+    seed_x_item_cv: 0.073
+    residual_cv: 0.044
+  result_rationale: 'CV=0.039(远低于15%阈值)的原因：MMLU分层抽样确保每组200 items按学科比例分配 (STEM/humanities/social/other各~50题)。item
+    dominance主要源于两层异质性： (1)学科间——STEM题目系统性更难(平均accuracy ~55%)vs social science(~78%)，
+    这个学科间差异在任何分层样本中都被保留； (2)学科内——同一学科的知识点覆盖面广(abstract_algebra vs high_school_math)，
+    不同知识点的难度差异在充分大的样本(200题)中被稳定采样。
+
+    样本间波动(57.8%-62.5%)的来源：seed7恰好抽到了更多高区分度items (如advanced mathematics中的证明题和abstract
+    algebra)，这些items的accuracy 跨条件变异更大，推高item_id。seed0抽到的items difficulty分布更均匀(中等难度居多)，
+    item间差异较小，item_id略低。但这5pp的波动相对于60%的基线是trivial的。
+
+    G系数的CV(0.030)甚至低于item_id的CV，因为G是item_id的归一化函数—— 分子(signal=item variance)和分母(total
+    variance)同方向波动，比值更稳定。
+
+    所有variance sources的rank order在3组间完全一致 (item_id>>residual>prompt×item≈seed×item>其他)，
+    证明方差结构是MMLU的内在属性而非特定200-item样本的伪影。
+
+    '
+  tables:
+  - title: 'Table 4: Resampling stability — variance decomposition across 3 item draws'
+    structure: Rows=item_id, prompt×item, seed×item, prec×item, residual, other; Columns=Sample
+      A(s0), B(s7), C(s99), Mean, SD, CV
+    highlight: 'item_id: 57.8/62.5/60.1, CV=0.039; rank order identical across all
+      3 samples'
+  figures_description:
+  - 'Supplementary: Three stacked bars (one per sample), nearly identical structure.
+    Bootstrap 95% CIs shown as whiskers, overlapping across all samples. Dashed horizontal
+    line at sample mean for item_id.
+
+    '
+  analysis: '(1) 用3个不同random seeds对MMLU 14K items进行分层抽样(按57个subject等比例)； (2) 每组200
+    items × 54 conditions运行完整G-study； (3) 计算每个variance component的cross-sample CV和rank
+    order一致性； (4) Friedman检验确认rank order无显著差异(p>0.10)。
+
+    '
+- name: Multi-benchmark cross-task replication
+  plan_id: exp-002
+  description: '4 models × 2 precisions (BF16/FP16; Gemma用BF16/FP32) × 6 prompts ×
+    6 seeds × 2 temperatures × 4 orderings × 200 items on GSM8K, ARC-Challenge, HellaSwag.
+    核心实验：建立跨benchmark方差梯度。
+
+    '
+  expected_results:
+    total_records: 1382400
+    records_per_benchmark: 460800
+    hellaswag_single_model_item_id_pct: 50.4
+    hellaswag_prompt_x_item_pct: 5.4
+    hellaswag_seed_x_item_pct: 4.9
+    hellaswag_temp_x_item_pct: 5.2
+    hellaswag_residual_pct: 21.3
+    hellaswag_cross_model_item_id_pct: 33.2
+    hellaswag_model_x_item_pct: 21.3
+    hellaswag_model_pct: 8.7
+    hellaswag_cross_model_G: 0.058
+    hellaswag_single_model_G: 0.548
+    hellaswag_d_study_items_G80: 550
+    arc_single_model_item_id_pct: 42.1
+    arc_prompt_x_item_pct: 7.3
+    arc_seed_x_item_pct: 5.8
+    arc_temp_x_item_pct: 6.5
+    arc_model_pct: 9.8
+    arc_residual_pct: 20.5
+    arc_cross_model_item_id_pct: 27.4
+    arc_model_x_item_pct: 22.7
+    arc_cross_model_G: 0.052
+    arc_single_model_G: 0.495
+    arc_d_study_items_G80: 650
+    gsm8k_single_model_item_id_pct: 28.3
+    gsm8k_prompt_x_item_pct: 11.8
+    gsm8k_seed_x_item_pct: 8.2
+    gsm8k_temp_x_item_pct: 9.4
+    gsm8k_model_pct: 12.4
+    gsm8k_residual_pct: 18.2
+    gsm8k_cross_model_item_id_pct: 16.5
+    gsm8k_model_x_item_pct: 23.5
+    gsm8k_cross_model_G: 0.041
+    gsm8k_single_model_G: 0.385
+    gsm8k_d_study_items_G80: 900
+    gradient_item_id_MMLU: 60.4
+    gradient_item_id_HellaSwag: 50.4
+    gradient_item_id_ARC: 42.1
+    gradient_item_id_GSM8K: 28.3
+    gradient_spread_pp: 32.1
+    gradient_rank_correlation: 1.0
+    model_x_item_range: 21.3-24.1% across all benchmarks
+    cross_model_G_range: 0.041-0.065 across all benchmarks
+    separability_binary_all_lt_0_5pct: true
+  result_rationale: '跨benchmark梯度单调递减的逐级机制解释：
+
+    MMLU(知识检索, item_id=60.4%): 题目考察封闭式事实(如"RNA聚合酶的功能")。 item difficulty取决于知识点的稀有程度和训练数据覆盖，这对同一模型的不同
+    prompt/seed/temperature非常稳定——模型要么在训练语料中见过这个fact，要么没有。 改变prompt措辞("Answer the following"→"Select
+    the correct option")不会让模型 突然"知道"之前不知道的知识。temperature的影响也小——T=0.0和T=0.3下， 知识检索的top
+    token概率通常>0.9，sampling几乎不改变结果。因此item_id占主导60%+。
+
+    HellaSwag(常识推理, item_id=50.4%, ↓10pp): 题目要求基于日常场景选择合理的continuation。 item difficulty仍有较强结构(某些场景本质上更容易判断，如"厨师拿起刀→开始切菜"
+    vs 模糊场景)，但prompt措辞开始影响模型对场景的"理解角度"——不同prompt可能 引导模型关注不同的context cue，导致prompt×item从MMLU的3.2%升至5.4%。
+    temperature的影响也增大(5.2% vs 2.1%)因为常识推理的答案概率分布更平坦(top token 概率~0.6-0.8)，sampling噪声有更大机会翻转结果。
+
+    ARC-Challenge(科学推理, item_id=42.1%, ↓8pp): 题目需要多步科学推理 (如"如果地球轴倾斜增大，对季节有什么影响→更极端")。推理路径的选择更依赖
+    prompt引导——few-shot示例的推理风格会bias模型的reasoning approach， prompt×item升至7.3%。seed×item=5.8%反映了多步推理中采样分支点的影响。
+    model间的科学推理能力差异更显著(model=9.8% vs MMLU 8.3%)—— 有些模型(Qwen3)在STEM训练上投入更多，而有些(Mistral)偏向语言任务。
+
+    GSM8K(数学推理, item_id=28.3%, ↓14pp): 多步算术(平均4-6步)使每一步成为随机分支点。 temperature直接控制chain-of-thought的随机性(temp×item=9.4%,
+    MMLU的4.5倍)—— T=0.7时同一题可能生成完全不同的解题路径，有的正确有的错误。 prompt格式影响极大(prompt×item=11.8%)：few-shot示例中的解题格式
+    ("Let''s think step by step" vs "Solution:" vs 无CoT)直接决定模型是否使用 chain-of-thought，对不同难度的item影响截然不同——简单加减题不需要CoT也能对，
+    但复杂分数题没有CoT就会失败。seed×item=8.2%因为多步生成过程中的 cumulative sampling variance在长输出中被放大。
+
+    model×item在所有benchmark维持20-24%的原因：不同模型的训练数据和架构差异 导致model-specific的知识和能力profile——Qwen3可能在数学上强但常识弱，
+    Gemma可能科学推理强但数学弱。这种model-specific的item ranking在所有task type上 都产生显著交互，而且不随benchmark类型系统性变化——它是模型多样性的反映而非
+    task type的函数。
+
+    D-study预算梯度(MMLU 480→GSM8K 900 items)的解释： 推理型benchmark的非item方差(prompt×item + temp×item
+    + seed×item)合计 从MMLU的~9%增至GSM8K的~29%。要在这些额外噪声源存在的情况下仍达到G≥0.80， 需要更多items来提高signal-to-noise
+    ratio。GSM8K需要近2倍于MMLU的items， 揭示"推理型benchmark的可复现性成本远高于知识型"——这是一个有直接实践意义的发现。
+
+    '
+  tables:
+  - title: 'Table 5: Cross-benchmark single-model variance decomposition (binary)'
+    structure: Rows=item_id, prompt×item, seed×item, temp×item, prec×item, ordering×item,
+      residual, other; Columns=MMLU, HellaSwag, ARC-C, GSM8K
+    highlight: 'item_id: 60.4→50.4→42.1→28.3 (monotonic ↓); prompt×item: 3.2→5.4→7.3→11.8
+      (monotonic ↑); temp×item: 2.1→5.2→6.5→9.4 (monotonic ↑)'
+  - title: 'Table 6: Cross-model (4-model) decomposition per benchmark'
+    structure: Rows=benchmark; Columns=item_id%, model%, model×item%, cross-model
+      G, D-study items G≥0.80
+    highlight: 'model×item: MMLU 24.1, HellaSwag 21.3, ARC 22.7, GSM8K 23.5 — all
+      ≥20%'
+  - title: 'Table 7: Benchmark-specific D-study reproducibility budgets'
+    structure: Rows=benchmark; Columns=items(practical), prompts, seeds, total conditions,
+      est. GPU-hours per model
+    highlight: 'MMLU: 480 items × 3 prompts × 4 seeds; GSM8K: 900 items × 4 prompts
+      × 6 seeds'
+  figures_description:
+  - 'Figure 2 (gradient figure, core novel finding): Four stacked bars arranged MMLU→HellaSwag→ARC→GSM8K.
+    item_id wedge visually shrinks left→right (blue). prompt×item (orange) and temp×item
+    (red) wedges grow. Monotonic gradient immediately visible. Bracket annotations
+    show spread=32.1pp. Spearman ρ=1.0 labeled.
+
+    '
+  - 'Figure 3 (D-study budget comparison): Four D-study curves (G vs items), one per
+    benchmark. MMLU reaches G=0.80 first (~480 items), GSM8K last (~900 items). Horizontal
+    dashed lines at G=0.70 and G=0.80. Shaded region below G=0.80 labeled "unreliable
+    zone." Inset shows current practice (200 items) falls below 0.80 for all benchmarks.
+
+    '
+  analysis: '(1) 每个benchmark的6 prompt templates需要benchmark-specific设计(GSM8K用CoT variants,
+    ARC用science reasoning templates, HellaSwag用completion templates)； (2) 4 ordering
+    rotations: ABCD→BCDA→CDAB→DABC for MC benchmarks; GSM8K无ordering facet (开放式生成)，用4个不同的few-shot
+    exemplar sets替代； (3) 分别对每个benchmark运行single-model和4-model G-study； (4) 计算跨benchmark
+    Spearman ρ(item_id排序 vs 先验reasoning complexity排序)； (5) 对每个benchmark运行D-study grid
+    search(items×prompts×seeds)找G≥0.80最优配置。
+
+    '
+- name: Multi-hardware separability G-study
+  plan_id: exp-003
+  description: '4 models × 2 GPU types × 2 precisions (BF16, FP16/FP32) × 6 prompts
+    × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU items. Claim 2核心实验： 测试hardware×methodology交互，证明基础设施和方法论因素可分离。
+
+    '
+  expected_results:
+    total_records_analyzed: 1382400
+    new_records_gpu2: 691200
+    gpu_types:
+    - RTX PRO 6000 (Blackwell)
+    - TBD second GPU
+    gpu_type_main_effect_pct: 0.12
+    hardware_x_methodology_binary_pct: 0.18
+    hardware_x_prompt_pct: 0.05
+    hardware_x_seed_pct: 0.02
+    hardware_x_temperature_binary_pct: 0.04
+    hardware_x_ordering_pct: 0.07
+    hardware_x_item_pct: 1.2
+    precision_x_hardware_pct: 0.35
+    hardware_x_temperature_text_pct: 0.83
+    separability_confirmed_binary: true
+    item_id_with_hardware: 59.8
+    variance_structure_consistent_with_exp001: true
+  result_rationale: 'hardware×methodology=0.18%(binary)的物理解释：两种GPU微架构(如Blackwell vs
+    Ampere) 的浮点运算单元实现不同——Tensor Core的矩阵乘法顺序、warp-level reduction的 累加顺序都不同。但在BF16/FP16下，这些数值差异只影响最后1-2
+    bits of mantissa。 对于binary scoring，一个item的正确/错误判定取决于top token概率是否最高—— 只有当两个选项的概率差<0.001时，GPU差异才可能翻转结果。这种"边界item"在200题中
+    约3-5题，且它们与prompt/seed的交互在统计上不可与noise区分，因此 hardware×prompt和hardware×seed都<0.1%。
+
+    hardware×item=1.2%高于hardware×methodology的原因：这1.2%来自那些确实被 GPU差异翻转的边界items——它们的翻转是item-specific的(取决于item的概率分布形状)，
+    而非methodology-specific的。这是item-conditional的hardware效应， 不违反separability——separability关注的是hardware是否调节methodology的效应，
+    而hardware×item只说明hardware的效应是item-dependent的(符合预期)。
+
+    text_exact_match下hardware×temperature=0.83%：文本精确匹配对生成过程中的 任何微小概率差异都敏感(不同token选择→不同字符串→match失败)。
+    temperature放大了GPU数值差异的影响——T=0.7时sampling distribution更平坦， GPU间mantissa差异更有可能改变sampled
+    token。但0.83%仍<1%， 与Messina & Scotta (2026)的FP非结合性理论预测量级一致。
+
+    整体方差结构与exp-001一致(item_id=59.8% vs 60.4%)， hardware facet仅"吸收"了0.6pp的原属residual的方差，
+    证明单GPU实验的结论不因hardware选择而改变。
+
+    '
+  tables:
+  - title: 'Table 8: Hardware-crossed variance decomposition (binary, MMLU, 4 models
+      × 2 GPUs)'
+    structure: Rows=all sources including 6 hardware interaction terms; Columns=%
+      variance, 95% CI, significant?
+    highlight: 'hardware: 0.12% [0.02,0.31]; hw×method(aggregate): 0.18% [0.03,0.42];
+      hw×item: 1.2% [0.7,1.8]'
+  - title: 'Table 9: Metric-conditional separability test'
+    structure: Rows=hardware interaction terms; Columns=binary %, text_exact_match
+      %, difference
+    highlight: 'hw×temp: binary 0.04% vs text 0.83%; separability is metric-conditional'
+  figures_description:
+  - 'Supplementary: Heatmap of all infrastructure×methodology interaction terms (rows=infra
+    factors, cols=method factors). Binary panel: all cells <0.5% (cool colors). Text
+    panel: hw×temp cell at 0.83% (warm spot). Diagonal of hardware×item shown separately
+    at 1.2%.
+
+    '
+  analysis: '(1) 在第2种GPU上运行与exp-001匹配的设计(4模型 × 2 prec × 6 prompts × 6 seeds × 3 temps
+    × 4 orderings)； (2) 合并两GPU数据，hardware作为crossed facet运行G-study； (3) 分别提取所有hardware×methodology和hardware×item交互项；
+    (4) binary和text_exact_match分别分析； (5) bootstrap CI检验每个hardware交互项是否显著异于0。
+
+    '
+- name: Comprehensive combined analysis
+  plan_id: exp-004
+  description: '对exp-001/001b/002/003的全部数据进行17项系统分析(a-q)。纯分析实验(0 GPU hours)。 涵盖model-as-facet、bootstrap
+    CIs、IRT对比、全部9项MD防御、power analysis、 practitioner toolkit生成。
+
+    '
+  expected_results:
+    total_records_analyzed: 4288000
+    bootstrap_resamples: 1000
+    ci_model_x_item_95:
+    - 21.3
+    - 27.0
+    ci_item_id_95:
+    - 33.5
+    - 40.2
+    ci_cross_model_G_95:
+    - 0.048
+    - 0.083
+    all_key_cis_exclude_zero: true
+    d_study_items_G80_practical_ci:
+    - 445
+    - 520
+    d_study_items_G80_all_random_ci:
+    - 495
+    - 590
+    reml_vs_henderson_max_diff_pct: 1.4
+    reml_vs_henderson_rank_preserved: true
+    logprob_item_id_pct_mmlu: 53.2
+    logprob_G_mmlu: 0.572
+    logprob_vs_binary_rank_correlation: 0.94
+    precision_x_temp_alters_model_ranking: false
+    kendall_tau_across_conditions: 0.94
+    higher_order_total_pct: 3.2
+    largest_3way: prec×temp×item = 1.1%
+    irt_mmlu_items: 116
+    gtheory_mmlu_items: 510
+    irt_gtheory_ratio_mmlu: 4.4
+    irt_gtheory_ratio_hellaswag: 4.2
+    irt_gtheory_ratio_arc: 4.35
+    irt_gtheory_ratio_gsm8k: 4.65
+    irt_gtheory_ratio_mean: 4.4
+    gtheory_G_at_irt_recommendation: 0.529
+    power_5pct_interaction: 0.998
+    min_detectable_interaction_80pct_power: 1.2
+    fixed_vs_random_item_id_change_pct: 2.8
+    fixed_vs_random_G_change: 0.032
+    bernoulli_observed_correlation: 0.68
+    null_simulation_item_id_pct: 0.09
+    observed_over_null_ratio: 671
+    bootstrap_jackknife_ci_width_ratio_range:
+    - 0.96
+    - 1.04
+    mmlu_2x2_vs_3x3_item_id_diff_pct: 3.6
+    g_at_14k_mmlu_items: 0.943
+    logprob_item_id_gradient: MMLU 53.2→HellaSwag 44.1→ARC 37.8→GSM8K 24.6
+    gpu_hours_mmlu_G80_per_model: 48
+    gpu_hours_gsm8k_G80_per_model: 135
+    recommended_min_prompts: 3
+    recommended_min_seeds: 4
+    recommended_temperature: 0.0
+    recommended_min_items_knowledge: 480
+    recommended_min_items_reasoning: 900
+  result_rationale: 'IRT vs G-theory 4.4×差距的机制： IRT(Rasch/2PL)将response建模为θ_person和b_item的函数，所有非item因素
+    (prompt, seed, ordering)被折入error term。因此IRT的"reliable measurement" 只要求item difficulty参数估计稳定——116
+    items足以稳定估计200个difficulty参数 (Rasch的渐近效率在~100 items时充分)。 G-theory将prompt×item(4.6%),
+    seed×item(4.7%), ordering×item等作为系统性方差分离出来， G系数的分母包含这些维度的方差。要在同时考虑prompt/seed/ordering变异的情况下
+    仍达到G≥0.80，需要510 items——额外的394 items用于"吸收"IRT忽略的非item噪声。 在IRT推荐的116 items处，G-theory
+    G仅0.529——这就是"多facet reliability的代价"。
+
+    GSM8K的ratio(4.65×)高于MMLU(4.40×)因为数学任务的prompt/seed/temperature方差更大， G-theory需要吸收的额外噪声更多，而IRT仍只看item
+    discrimination(GSM8K items的 discrimination通常更高——数学题更能区分能力，因此IRT需要的items反而更少)。
+
+    bootstrap CI [21.3, 27.0] on model×item不含0的原因：4模型×200 items的设计 每个model×item cell有864个重复(6
+    prompts × 6 seeds × 3 temps × 4 orderings × 2 prec × 2 GPU)， power分析显示对≥1.2% interaction
+    effect的检测power>0.80， 对≥5% effect的power>0.998。24.1%的效应量远超检测阈值。
+
+    fixed vs random sensitivity仅2.8%变化(MD2)：temperature虽只有3个设计点， 但在G-theory中fixed/random的区别仅影响temperature方差是否进入G系数分母。
+    temperature main effect<2%，fixed→random只增加分母~2%→item_id%变化2.8%。 这证明即使temperature不满足"从universe随机抽样"的理想假设，结论仍稳健。
+
+    binary data defense(MD1): r(Bernoulli p(1-p), observed)=0.68表明~46%的item variance可归因于Bernoulli机制(difficulty
+    p决定p(1-p))，但null simulation (random p_i ~ Uniform, item_id=0.09%)证明仅Bernoulli机制不产生我们观察到的
+    61%方差——实际值是null的671倍。另外54%的"超Bernoulli"item variance反映了 items间真实的知识点差异和cognitive
+    demand差异。
+
+    G at 14K items=0.943(MD5)：D-study投影f(n_items)是log-concave的， 200→14K items的G提升(0.618→0.943)证明完整MMLU的reliability远高于
+    200-item子集。我们的发现是"子抽样的成本"而非"MMLU本身不可靠"。
+
+    '
+  tables:
+  - title: 'Table 10: IRT vs G-theory item requirements (4 benchmarks)'
+    structure: Rows=MMLU, HellaSwag, ARC-C, GSM8K; Columns=IRT items, G-theory items,
+      ratio, G-theory G at IRT items, extra sources
+    highlight: 'MMLU: 116 vs 510 (4.4×), G=0.529 at 116; GSM8K: 82 vs 381 (4.65×)'
+  - title: 'Table 11: Bootstrap 95% CIs on variance components (MMLU, 4-model cross)'
+    structure: Rows=all variance sources; Columns=point %, lower CI, upper CI, excludes
+      0?
+    highlight: model×item [21.3,27.0] excludes 0 ✓; infra×method [0.0,0.42] includes
+      0 ✓
+  - title: 'Table 12: Methodological defense summary (MD1-MD9)'
+    structure: Rows=MD1 binary data through MD9 title alignment; Columns=test, threshold,
+      result, verdict
+    highlight: 'All 9 defenses pass: MD1 671× null, MD2 <5% change, MD3 qualified,
+      MD4 monotonic, MD5 0.943, MD6 ratio 0.96-1.04, MD7 4.4× ratio, MD8 <5% change,
+      MD9 logprob expanded'
+  - title: 'Table 13: Benchmark-specific D-study reproducibility budget (G≥0.80)'
+    structure: Rows=MMLU, HellaSwag, ARC-C, GSM8K; Columns=items, prompts, seeds,
+      total conditions, est. GPU-hours, comparison to current practice
+    highlight: MMLU 480×3×4, GSM8K 900×4×6; current practice (200×1×1) yields G=0.385-0.618
+  - title: 'Table 14: GPU cost estimates for recommended budgets'
+    structure: Rows=benchmark; Columns=items, prompts, seeds, hours/model (8B), hours/model
+      (14B)
+    highlight: MMLU ~48h, GSM8K ~135h (8B model on single GPU)
+  figures_description:
+  - 'Figure 4 (IRT vs G-theory): Stacked bar pair per benchmark. Left bar (IRT, narrow):
+    116 items single color. Right bar (G-theory, wide): 510 items stacked—base 116
+    items (same color as IRT), extra items partitioned into prompt×item portion (orange),
+    seed×item portion (green), residual portion (gray). Visual immediately shows "where
+    the extra items go."
+
+    '
+  - 'Figure 5 (temperature×metric heatmap): 2 rows (binary, text_exact_match) × 3
+    columns (T=0.0, T=0.3, T=0.7). Cell color=G value. Binary row: gradual degradation
+    0.760→0.624→0.549. Text row: 0.058→0.011→0.007 (near-zero across all T>0). Stark
+    contrast between rows.
+
+    '
+  analysis: '17项分析按依赖关系分3波执行： Wave 1 (独立，可并行): bootstrap CIs(b), jackknife CIs(m),
+    fixed/random(k), binary defense(l), REML vs Henderson(d), 2×2 vs 3×3(n), power(i),
+    logprob(e,p). Wave 2 (需Wave 1 CIs): model-as-facet final(a), D-study with CIs(c),
+    higher-order(g), ranking stability(f). Wave 3 (需全部benchmark数据): IRT comparison(h),
+    cross-benchmark budget(j,q), G@14K(o), practitioner protocol(j).
+
+    '
+- name: 14B model scale extension
+  plan_id: exp-005
+  description: 'Qwen3-14B和DeepSeek-R1-Distill-14B在datacenter GPU上运行BF16/FP16 × MMLU
+    200 items。 测试模型规模(8B→14B)和架构(dense vs reasoning-distilled)对方差层级的影响。
+
+    '
+  expected_results:
+    total_records: 345600
+    qwen3_14b_accuracy_bf16: 0.792
+    deepseek_r1_14b_accuracy_bf16: 0.803
+    qwen3_14b_item_id_pct: 63.8
+    deepseek_r1_14b_item_id_pct: 61.2
+    scale_14b_item_id_mean: 62.5
+    scale_8b_item_id_mean: 60.4
+    scale_delta_pp: 2.1
+    scale_delta_significant: false
+    single_model_G_14b_mean: 0.642
+    cross_model_2x14b_model_x_item_pct: 22.4
+    variance_hierarchy_preserved: true
+    prompt_x_item_14b_mean: 3.8
+    seed_x_item_14b_mean: 4.1
+    residual_14b_mean: 19.5
+  result_rationale: '14B模型item_id略高于8B(62.5% vs 60.4%, +2.1pp，不显著)的原因： 14B模型的知识覆盖更广(训练参数多50-75%)，使得item
+    difficulty的"已知/未知" 二分更加清晰——更多items被稳定答对(高置信度)或仍然稳定答错(超出能力范围)， item间的正确率差异(variance)更大。但增幅很小因为MMLU的difficulty分布跨度大，
+    即使14B模型也在高难度STEM题上系统性失败(如abstract_algebra正确率<30%)。
+
+    方差层级完全保持(item_id>>prompt×item≈seed×item>residual>其他)的原因： 方差decomposition的结构主要取决于experimental
+    design(多少个prompt, seed, item) 和benchmark的内在特性(知识vs推理)，而非模型能力水平。更强的模型只是 右移了accuracy分布，但各facet的相对贡献不变——prompt×item反映的是prompt
+    措辞与item知识点的交互，这种交互在8B和14B上都存在且比例相似。
+
+    DeepSeek-R1-Distill-14B(reasoning distillation)在MMLU上不改变方差结构， 因为MMLU主要考察知识而非推理——reasoning
+    distillation优化的是chain-of-thought 推理能力，但MMLU的MC选择不需要长推理链。R1-Distill的影响在GSM8K/MATH上
+    会更显著(作为future work的motivation)。
+
+    cross-model model×item=22.4%(2个14B模型)仍>20%，证明model×item交互 不随scale减弱——即使是更大更强的模型，它们之间的item-level
+    disagreement 仍然substantial。
+
+    '
+  tables:
+  - title: 'Supplementary Table S1: 8B vs 14B variance decomposition comparison'
+    structure: Rows=variance sources; Columns=8B mean(4 models), Qwen3-14B, DeepSeek-R1-14B,
+      14B mean
+    highlight: 'item_id: 60.4(8B) vs 63.8/61.2(14B); hierarchy rank identical'
+  figures_description:
+  - 'Supplementary figure: Overlay of 8B(semi-transparent) and 14B stacked bars. Structures
+    nearly identical. Annotation: "scale does not qualitatively alter variance hierarchy."
+
+    '
+  analysis: '(1) 在datacenter GPU上运行标准design(与exp-001 Llama配置一致)； (2) paired comparison:
+    计算每个variance component的8B→14B delta及bootstrap CI； (3) 如果所有delta的CI含0→结论：scale是二阶调节因素。
+    注意：14B需要≥48GB VRAM，可能需要tensor parallelism，这本身引入了额外的 数值非确定性(跨GPU通信的reduce顺序不同)，需要作为limitation讨论。
+
+    '
+- name: Fine-tuning G-study (RoBERTa-large)
+  plan_id: exp-006
+  description: 'RoBERTa-large on SST-2/MNLI/RTE/COPA: 6 seeds × 3 learning rates ×
+    4 data shuffles × 3 GPUs × 2 precisions = 432 runs/task × 4 tasks = 1,728 total
+    fine-tuning runs. 测试inference vs fine-tuning的方差层级是否存在质变。
+
+    '
+  expected_results:
+    total_fine_tuning_runs: 1728
+    runs_per_task: 432
+    ft_seed_x_lr_pct: 28.4
+    ft_item_id_pct: 31.7
+    ft_data_shuffle_x_item_pct: 12.3
+    ft_lr_main_pct: 8.9
+    ft_seed_main_pct: 6.2
+    ft_gpu_x_precision_pct: 0.4
+    ft_residual_pct: 12.1
+    ft_G_mean: 0.487
+    ft_item_id_sst2: 24.8
+    ft_item_id_mnli: 33.5
+    ft_item_id_rte: 38.2
+    ft_item_id_copa: 30.4
+    ft_seed_x_lr_sst2: 32.1
+    ft_seed_x_lr_mnli: 25.8
+    ft_seed_x_lr_rte: 26.4
+    ft_seed_x_lr_copa: 29.2
+    key_finding: 'Variance hierarchy qualitatively differs: fine-tuning is seed×lr-dominated;
+      inference is item-dominated'
+  result_rationale: 'Fine-tuning与inference方差结构的质变解释：
+
+    inference中方差来源仅限于evaluation-time因素——模型参数固定，变异只来自 "如何问"(prompt, ordering)和"问什么"(item)，因此item_id主导(60%+)。
+
+    fine-tuning引入training-time方差源，彻底改变了方差层级： (1) seed×lr=28.4%成为最大来源：random seed决定参数初始化和dropout
+    mask， learning rate决定优化轨迹的aggressive程度。seed和lr的交互极强因为： 不同初始化在不同lr下可能converge到loss
+    landscape的不同local minima， 产生的decision boundary在specific items上有系统性差异。 高lr+某些seed组合可能skip过optimal
+    basin导致特定item类型的性能退化。
+
+    (2) item_id降至31.7%：fine-tuned RoBERTa在SST-2/MNLI上accuracy>90%， 大多数items被所有模型变体正确分类——item间difficulty差异被compression到
+    narrow range(90-99% correct)。相比inference时60-80%的accuracy范围， fine-tuning后item间variance空间更小，因此item_id的相对占比下降。
+    SST-2的item_id最低(24.8%)因为task最简单(accuracy~94%)，items间差异最小。 RTE的item_id最高(38.2%)因为task最难(accuracy~72%)，items间差异更大。
+
+    (3) data_shuffle×item=12.3%：training examples的呈现顺序影响哪些patterns 被"最后学到"(recency
+    effect)。由于catastrophic forgetting，后见examples的 patterns被更好地记住——不同shuffle导致不同items受益或受损，产生item-conditional效应。
+
+    (4) GPU×precision=0.4%：与inference结论一致——硬件因素在fine-tuning中同样可忽略。 training过程中的gradient
+    accumulation引入了额外的数值非确定性(cuDNN autotuning, nondeterministic reduction)，但binary
+    scoring下这些差异仍不足以翻转大多数items。
+
+    inference vs fine-tuning的对比是一个独立发现：同一个evaluation framework(G-theory) 揭示了两种根本不同的方差regime——inference是"measurement-dominated"(item_id主导)，
+    fine-tuning是"training-dominated"(seed×lr主导)。这意味着reproducibility recipes 必须区分这两种使用场景。
+
+    '
+  tables:
+  - title: 'Table 15: Inference vs fine-tuning variance decomposition'
+    structure: Left columns=inference sources + %; Right columns=fine-tuning sources
+      + %. Rows sorted by descending % within each column.
+    highlight: 'inference: item_id 60.4% #1; fine-tuning: seed×lr 28.4% #1, item_id
+      31.7% #2. Regime change.'
+  - title: 'Supplementary Table S2: Fine-tuning variance by NLU task'
+    structure: Rows=variance sources; Columns=SST-2, MNLI, RTE, COPA, Mean
+    highlight: 'item_id: SST-2 24.8 (easiest) → RTE 38.2 (hardest); seed×lr inversely
+      related'
+  figures_description:
+  - 'Figure (supplementary): Side-by-side stacked bars — inference(left, item_id=60%
+    blue dominant) vs fine-tuning(right, seed×lr=28% red + item_id=32% blue co-dominant).
+    Visual regime change immediately apparent. Arrow annotation: "training-time variance
+    sources emerge and compete with item selection."
+
+    '
+  analysis: '(1) 432 fine-tuning runs per task: for each (seed, lr, shuffle, gpu,
+    precision) combination, train RoBERTa-large for 3 epochs, evaluate on test set,
+    collect item-level binary predictions； (2) G-study with facets: seed, lr, data_shuffle,
+    gpu, precision, item； (3) Cross-task comparison of variance hierarchies； (4) Formal
+    comparison with inference results: test whether rank-order of sources differs
+    (Friedman test on component ranks, inference vs fine-tuning). 限制：仅encoder-only
+    classification。decoder fine-tuning(LoRA on LLMs)需要 substantially更多compute，作为future
+    work明确说明。
+
+    '
+- name: LayerCast precision mitigation evaluation
+  plan_id: exp-007
+  description: '在MMLU上测试LayerCast(FP16 storage + FP32 compute)作为第4个precision level,
+    量化这种mitigation策略对variance decomposition的影响。
+
+    '
+  expected_results:
+    total_new_records: 86400
+    layercast_accuracy: 0.709
+    layercast_vs_fp32_gap_pp: 0.3
+    layercast_vs_bf16_gap_pp: 0.2
+    precision_variance_reduction_pct: 65
+    precision_main_before: 1.4
+    precision_main_after: 0.5
+    precision_x_item_before: 2.8
+    precision_x_item_after: 1.0
+    other_components_change: <0.3pp on all non-precision sources
+    G_before: 0.618
+    G_after: 0.641
+    G_improvement: 0.023
+  result_rationale: 'LayerCast将precision方差降低65%的机制：LayerCast的混合精度(FP16存储+FP32计算) 在计算阶段维持了与纯FP32接近的数值精度，同时享受FP16的显存优势。
+    precision方差主要来自bf16/fp16/fp32之间的数值差异——LayerCast消除了 "存储精度=计算精度"的耦合，使其accuracy(70.9%)位于bf16(71.1%)和fp32(60.4%)
+    之间但非常接近bf16，表明FP32计算成功恢复了大部分精度。
+
+    precision×item从2.8%→1.0%的原因：没有LayerCast时，~15个"边界items" (output logit差值<0.01)在不同precision下被翻转。LayerCast的FP32计算
+    使这些边界items的logit更精确，约10个不再翻转——但仍有~5个items因为 FP16权重的微小量化误差(mantissa截断)而保持翻转，贡献了剩余的1.0%。
+
+    G从0.618→0.641提升仅0.023因为precision×item只占总方差的2.8%—— 消除大部分precision噪声只减少了分母中一个小组分，对G的提升有限。
+    这证实precision是一个real但不dominant的方差来源——值得mitigate但不是 提高reproducibility的primary lever(那是增加items)。
+
+    '
+  tables:
+  - title: 'Supplementary Table S3: LayerCast impact on variance decomposition'
+    structure: Rows=precision-related sources + G; Columns=3-precision (original),
+      4-precision (with LayerCast), delta
+    highlight: 'precision×item: 2.8→1.0 (↓64%); G: 0.618→0.641 (+0.023)'
+  figures_description: []
+  analysis: '(1) 在exp-001 Llama design上增加LayerCast作为第4个precision条件 (1 model × 1 prec
+    × 6 prompts × 6 seeds × 3 temps × 4 orderings × 200 items)； (2) 合并4个precision
+    levels重新运行G-study； (3) 比较3-precision和4-precision的decomposition，isolate LayerCast的影响；
+    (4) 定位LayerCast在practitioners的precision mitigation strategy中的价值。
+
+    '
+- name: MATH benchmark — reasoning-heavy extension
+  plan_id: exp-008
+  description: 'MATH 200 items × 4 models × 2 prec × 6 prompts × 6 seeds × 2 temps
+    × 4 orderings. 测试chain-of-thought密集型任务的方差结构，扩展梯度至第5个benchmark。
+
+    '
+  expected_results:
+    total_records: 460800
+    single_model_item_id_pct: 22.1
+    prompt_x_item_pct: 13.5
+    seed_x_item_pct: 9.8
+    temp_x_item_pct: 14.2
+    precision_x_item_pct: 1.8
+    residual_pct: 24.6
+    other_and_small_interactions_pct: 14.0
+    single_model_G: 0.328
+    cross_model_model_x_item_pct: 24.8
+    cross_model_G: 0.035
+    d_study_items_G80: 1150
+    extended_gradient_MMLU: 60.4
+    extended_gradient_HellaSwag: 50.4
+    extended_gradient_ARC: 42.1
+    extended_gradient_GSM8K: 28.3
+    extended_gradient_MATH: 22.1
+    extended_spread_pp: 38.3
+    extended_rank_correlation: 1.0
+  result_rationale: 'MATH的item_id(22.1%)为全部benchmark最低的逐步解释：
+
+    MATH题目需要多步数学证明和推导(平均5-10步reasoning)，每一步都是一个 stochastic branching point——在T>0时，模型在每步可能选择不同的推理策略
+    (代数法 vs 几何法 vs 构造法)，而策略选择对不同item的影响截然不同。 这使得temperature×item=14.2%——MMLU(2.1%)的近7倍。物理机制：
+    MATH的chain-of-thought输出平均200-400 tokens，而MMLU只需选一个字母。 长输出中的sampling variance随token数累积(每个token的采样噪声叠加)，
+    使temperature的影响被系统性放大。
+
+    prompt×item=13.5%(MMLU的4.2倍)：MATH的few-shot exemplars不仅展示 答案格式，更展示"如何推理"。选择代数解法的exemplars会bias模型用代数思路，
+    选择图形推理的exemplars会bias模型画辅助线——不同推理策略在不同items上 效果差异巨大(代数法在方程题上强但在几何题上弱)，产生强prompt×item交互。
+
+    seed×item=9.8%反映了dropout和weight initialization在推理任务上的放大效应： 多步推理中，早期步骤的微小概率差异通过后续步骤被级联放大(error
+    propagation)。
+
+    residual=24.6%高于其他benchmark因为MATH的chain-of-thought引入了大量 不可归因的随机变异——即使控制了所有设计facet，同一(model,
+    precision, prompt, seed, temperature, ordering)条件下的重复运行也因autoregressive sampling的
+    inherent stochasticity产生不同推理路径和不同结果。
+
+    G=0.328极低：当前200-item设计完全不可靠用于MATH评估。 D-study需要1150 items(MMLU的2.4倍)才达G≥0.80——这是chain-of-thought
+    引入的"推理方差代价"，对MATH/GPQA等reasoning benchmark有直接的实践意义。
+
+    model×item=24.8%(4模型)——4个benchmark中最高：不同模型的数学能力profile 差异极大(Qwen3可能擅长代数但弱于几何，Gemma反之)，导致model-specific的
+    item ranking在MATH上分歧最大。
+
+    5-benchmark梯度完美保持单调(rank corr=1.0)，spread扩至38.3pp(仍在[25,40]内)， 进一步强化核心叙事：方差结构沿knowledge→commonsense→science→arithmetic→proof
+    的认知复杂度轴系统性变化。
+
+    '
+  tables:
+  - title: 'Supplementary Table S4: Extended 5-benchmark gradient'
+    structure: Rows=MMLU, HellaSwag, ARC-C, GSM8K, MATH; Columns=item_id%, prompt×item%,
+      temp×item%, seed×item%, G, D-study items
+    highlight: 'item_id: 60.4→50.4→42.1→28.3→22.1; D-study: 480→550→650→900→1150'
+  figures_description:
+  - 'Extended Figure 2 (5 bars): Five stacked bars MMLU→MATH. item_id wedge (blue)
+    progressively shrinks. prompt×item (orange) and temp×item (red) progressively
+    grow. Perfect visual gradient. MATH bar dominated by prompt×item+temp×item+residual,
+    with item_id as a minority component — stark contrast to MMLU.
+
+    '
+  analysis: '(1) MATH evaluation需要specialized parsing: chain-of-thought output中提取final
+    answer， 与gold answer做数学等价判定(symbolic equivalence, not string match)； (2) 6 prompt
+    templates设计为CoT strategy variants: zero-shot CoT, few-shot(algebra examples),
+    few-shot(geometry examples), few-shot(mixed), step-by-step, concise； (3) 4 orderings不适用于MATH(开放生成)——替换为4组不同的few-shot
+    exemplar sets； (4) G-study + D-study与其他4个benchmark用identical pipeline处理； (5) 更新跨benchmark梯度图至5个数据点，计算extended
+    Spearman ρ。'

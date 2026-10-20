@@ -1,0 +1,47 @@
+paper_key: "pezeshkpour2024ordering"
+title: "Large Language Models Sensitivity to The Order of Options in Multiple-Choice Questions"
+venue: "NAACL 2024 Findings"
+full_text_available: false
+
+research:
+  baselines: ["standard option ordering (A/B/C/D)", "random permutation", "positional debiasing"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "accuracy variance across orderings", direction: "lower_better"}
+    - {name: "positional bias magnitude", direction: "lower_better"}
+  datasets:
+    - {name: "multiple MCQ benchmarks", size: "not specified in abstract"}
+  ablation_dimensions: ["option position (first/last/middle)", "top-k candidate placement", "zero-shot vs few-shot", "calibration technique"]
+  training_recipe: {optimizer: "N/A (inference only)", lr: "N/A", hardware: "not specified"}
+  method_family: "option ordering sensitivity analysis + calibration"
+
+positioning:
+  core_claim: "LLMs show 13-85% accuracy fluctuation from option reordering alone, driven by positional bias toward first/last options when uncertain between top candidates"
+  key_results: "13-85% accuracy range across benchmarks, up to 8pp improvement from calibration techniques"
+  limitations:
+    - "Limited to multiple-choice format"
+    - "Specific models not detailed in abstract"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "MCQ benchmarks assumed order-invariant but models show dramatic sensitivity"
+  tension: "Existing MCQ evaluations treat option ordering as irrelevant, masking systematic positional bias"
+  key_insight: "Bias amplified when top-2/3 candidates placed at first and last positions; mitigated by adjacent placement"
+  argument_chain: "problem (ordering sensitivity) → quantification (13-85%) → mechanism (positional bias) → mitigation (calibration +8pp)"
+  contribution_framing: "Identification of mechanism + practical calibration"
+  intro_structure: "N/A (PDF not parseable)"
+  notable_technique: "N/A"
+
+figures:
+  figure_count: 0
+  figure1: {type: "N/A"}
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: 0
+  main_result_table: {table_id: "N/A"}
+  ablation_tables: []
+  supplementary_tables: {in_appendix: false, content: "N/A", reason: "N/A"}

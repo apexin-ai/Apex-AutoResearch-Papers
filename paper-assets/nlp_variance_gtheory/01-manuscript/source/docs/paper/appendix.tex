@@ -1,0 +1,208 @@
+\appendix
+
+\section{Additional Robustness Analyses}
+\label{app:robustness}
+
+We report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.
+
+\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\rho = 1.0$) relative to Henderson Method~I \cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.
+
+\paragraph{Accuracy-range stability.} The \texttt{item\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.
+
+\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \cite[Ch.~12]{brennan2001generalizability}.
+
+\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\rho = 0.732$ between binary and continuous rankings, excluding residual; \texttt{item\_id} dominant in all 100 replications; top-5 ordering correct in 79\% of replications). Bias analysis by difficulty stratum shows $|\text{bias}| = 0.28$--$0.37$ for items with $p \in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This analysis covers the observed accuracy range ($p \in [0.3, 0.9]$); extreme-difficulty items ($p < 0.3$ or $p > 0.9$) are rare in our sample ($<$8\% of items) and may exhibit larger deviations. Henderson Method~I absorbs this Bernoulli-inherent variance into the residual, explaining inflated bias near medium difficulty; systematic component ordering is robustly recovered across all replications. Binary scoring inflates residual variance by absorbing the Bernoulli $p(1{-}p)$ ceiling, which enters $\sigma^2_\text{rel}$ and increases D-study item requirements. Within a matched probit simulation, binarization increases D-study budgets by approximately 36\% (99 $\to$ 135 items for $G \geq 0.80$), driven by residual inflation (16\% $\to$ 41\%) and item variance compression (50\% $\to$ 32\%). Facet$\times$item interactions (the components entering $\sigma^2_\text{rel}$) are best preserved under binarization (MAPE = 12.8\%, range 8.7--17.5\%), while residual variance inflates as expected from Bernoulli $p(1{-}p)$ noise (MAPE = 156\%). D-study budgets derived from binary data are therefore conservative: continuous-scored designs would require equal or fewer items for the same $G$ threshold. Null calibration (ratio $= 1.0008$) confirms that this conservatism does not distort relative component magnitudes.
+
+\paragraph{CI method comparison.} Bootstrap (1,000 item-level resamples with replacement) and delete-1 jackknife confidence intervals agree closely: width ratios range from 0.96 to 1.04 across all variance components. Bootstrap CIs capture item-sampling variability conditional on these 8 specific models; model-level stability is assessed separately via LOMO (below). The agreement indicates that the dependence structure introduced by item-level bootstrap resampling (which creates $\sim$127 unique items per 200-item resample) does not materially distort interval estimates. Stratified resampling by subject (10 subjects $\times$ 20 items) produces CIs within 4\% of simple item-level bootstrap, confirming that the within-subject dependence structure does not materially affect interval estimates.
+
+\paragraph{Facet specification sensitivity.} Treating temperature and ordering as fixed (rather than random) facets changes $G_\text{item}$ by only 0.37 percentage points (all-random: 0.820 vs.\ fixed temperature+ordering: 0.824). The small difference reflects the negligible temperature$\times$item (0.65\%) and ordering$\times$item (0.54\%) variance shares. The random-facet assumption is therefore robust to facet classification.
+
+\paragraph{Leave-one-model-out (LOMO).} Across all 40 leave-one-model-out subsets (8 models $\times$ 5 benchmarks), $G_\text{item}$ ranges from 0.833 to 0.919, with CV $\leq$ 1.25\% per benchmark. No single model removal changes $G$ by more than 0.030 (GSM8K, removing Gemma-2-9B). Item-related variance rankings are preserved in all 40 subsets. Table~\ref{tab:lomo_full} (main text) reports per-benchmark stability. This supports treating models as exchangeable within the target universe of 7--9B instruction-tuned models (\S\ref{sec:model_facet}).
+
+\paragraph{Inter-model agreement.} We computed pairwise Cohen's $\kappa$ and Fleiss' $\kappa$ across all model pairs on each benchmark. Mean pairwise $\kappa$ ranges from 0.326 (MATH) to 0.461 (MMLU); Fleiss' $\kappa$ ranges from 0.309 (GSM8K) to 0.456 (MMLU). HellaSwag uses six models ($\kappa = 0.332$) due to missing OLMo and Yi data. The fair-to-moderate agreement independently confirms that the model$\times$item interaction (15--36\% of variance across benchmarks) reflects genuine differential item functioning: models disagree substantially on which items are difficult, consistent with prior DIF findings in educational measurement \cite{holland1993dif, clauser1998dif}.
+
+\paragraph{Scoring metric sensitivity.}
+\label{sec:partial_credit}
+To probe metric conditionality, we compared binary correctness with step-level partial credit on GSM8K using the full 8-model crossed design (200 items, 2,304 conditions per item). Under partial credit, $G_\text{item}$ drops from 0.863 to 0.768, with residual variance rising from 39.9\% to 64.9\% and item variance falling from 16.9\% to 10.3\%. All eight models individually show $G_\text{partial} < G_\text{binary}$ (mean $\Delta G = -0.135$, range $-0.025$ to $-0.309$), with $\Delta G$ magnitude moderated by model accuracy: higher-accuracy models have fewer incorrect responses whose scores shift under partial credit (e.g., OLMo at 70.1\% accuracy shows $\Delta G = -0.025$, while Llama at 49.0\% shows $\Delta G = -0.309$). The mechanism is clear: 48.1\% of incorrect responses have numerically correct arithmetic steps but incorrect problem setup, receiving partial score $= 1.0$ despite binary score $= 0$; this compresses item discrimination and inflates residual variance. Binary scoring amplifies prompt sensitivity by collapsing reasoning quality into pass/fail, confirming that all findings in this paper are metric-conditional.
+
+\paragraph{Facet specification sensitivity: random vs.\ fixed model.} Table~\ref{tab:fixed_vs_random} reports per-benchmark generalizability coefficients under random and fixed model specifications. The consistent $\Delta G$ of 0.077--0.113 confirms that random-model budgets are strictly more conservative across all benchmarks.
+
+\begin{table}[h]
+\centering
+\caption{Generalizability coefficients under random vs.\ fixed model facet specification across five benchmarks.}
+\label{tab:fixed_vs_random}
+\scriptsize
+\begin{tabular}{lrrr}
+\toprule
+Benchmark & $G_\text{random}$ & $G_\text{fixed}$ & $\Delta G$ \\
+\midrule
+MMLU & 0.896 & 0.984 & $+$0.088 \\
+ARC & 0.892 & 0.990 & $+$0.098 \\
+HellaSwag & 0.872 & 0.984 & $+$0.113 \\
+GSM8K & 0.863 & 0.951 & $+$0.089 \\
+MATH & 0.888 & 0.965 & $+$0.077 \\
+\midrule
+Mean & 0.882 & 0.975 & $+$0.093 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Null calibration.} We generate 100 Bernoulli-distributed datasets with item difficulties matched to the empirical distribution but no systematic facet effects. The observed-to-null variance ratio is 1.0008, confirming that Henderson Method~I does not introduce systematic bias when applied to binary outcomes. The null simulation also verifies that the item variance share (58.4\%) is not an artifact of the Bernoulli $p(1{-}p)$ ceiling: the null produces item variance of 0.08\%, three orders of magnitude below the observed value. Across all 100 replications, the same three components (item, model$\times$item, residual) emerge as the top three (set consistency 100\%), with Kendall's $\tau = 0.81$ between binary and continuous rankings.
+
+\paragraph{Reduced crossing validation.} To verify that the reduced crossing in exp-002 (BF16 only $\times$ 2 temperatures) does not introduce confounding, we extracted the corresponding subset from the fully crossed exp-001 design. The generalizability coefficient differs by only 0.0008 ($G = 0.9361$ vs.\ $0.9369$), and all non-precision variance components differ by less than 2 percentage points. The 10pp increase in item variance share (58.4\% $\to$ 68.5\%) is fully explained by the removal of precision-related components ($\sim$4.5\% total), which redistributes across remaining sources. This confirms that the exp-002 design preserves the variance structure of the full crossing.
+
+\section{Projection Validation Details}
+\label{app:dstudy_cross}
+
+\paragraph{Internal consistency check.} Table~\ref{tab:forward_pred} reports consistency checks from four exp-001 models (DeepSeek, Llama, Mistral, Qwen3) to the full eight-model design across all five benchmarks. MC benchmarks show $|\Delta G| \leq 0.029$ ($<$3.5\% error), while FF benchmarks show larger deviations ($|\Delta G| \leq 0.065$, $\sim$7\%) due to limited model diversity in the four-model subset. FF predictions consistently underestimate actual $G$ (conservative); MC predictions show mixed directions with small deviations ($|\Delta G| \leq 0.029$).
+
+\begin{table}[h]
+\centering
+\caption{Internal consistency: four-model subset vs.\ eight-model $G_\text{item}$. FF subsets underestimate actual $G$ (conservative); MC shows mixed directions with small deviations.}
+\label{tab:forward_pred}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Benchmark & Predicted $G$ & Actual $G$ & $|\Delta G|$ & Error\% \\
+\midrule
+\multicolumn{5}{l}{\textit{Multiple-choice}} \\
+MMLU & 0.888 & 0.896 & 0.009 & 0.96 \\
+ARC & 0.904 & 0.892 & 0.012 & 1.38 \\
+HellaSwag & 0.901 & 0.872 & 0.029 & 3.33 \\
+\midrule
+\multicolumn{5}{l}{\textit{Free-form}} \\
+GSM8K & 0.803 & 0.863 & 0.059 & 6.88 \\
+MATH & 0.823 & 0.888 & 0.065 & 7.30 \\
+\midrule
+Mean & --- & --- & 0.035 & 3.97 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{budget_sensitivity_band}
+\caption{Effect of $|\Delta G| = 0.035$ estimation error on item budgets. The $\sim$23\% increase is consistent across benchmarks.}
+\label{fig:budget_sensitivity}
+\end{figure}
+
+\paragraph{Budget sensitivity to estimation error.}
+\label{app:budget_sensitivity}
+The effect of $|\Delta G| = 0.035$ estimation error on item budgets is shown in Figure~\ref{fig:budget_sensitivity}. The percentage increase is remarkably stable (23.0--24.5\%, mean 23.2\%), because the relative budget adjustment $\Delta n / n$ depends on the $G$-formula ratio rather than on absolute variance components. Absolute $\Delta n$ ranges from 13 (ARC) to 67 (GSM8K), scaling with the baseline budget.
+
+\paragraph{Cross-benchmark $G$ stability.}
+\label{app:cross_benchmark_transfer}
+$G_\text{item}$ values cluster in a narrow band across all five benchmarks (0.863--0.896, CV = 1.4\%), despite qualitatively different variance structures: MC benchmarks concentrate 68--72\% in item-related components while GSM8K disperses variance across item (17\%), model (11\%), and interaction (15\%) sources (Table~\ref{tab:cross_benchmark}). This stability implies that D-study budget recommendations calibrated on one benchmark provide reasonable order-of-magnitude guidance for others. However, the 0.033 range in $G_\text{item}$ translates to a 71--128 item range for multi-facet $G \geq 0.80$ (Table~\ref{tab:dstudy_cross}), and the variance compositions differ substantially; benchmark-specific G-studies remain necessary to identify dominant variance sources and optimize condition selection.
+
+\section{Format-Associated Variance: Per-Benchmark Details}
+\label{app:format_details}
+
+This section supplements the compressed format-associated analysis in \S\ref{sec:format_conditional} with per-benchmark details.
+
+\paragraph{MC benchmark exceptions.} HellaSwag is the sole MC case where model$\times$item slightly exceeds item (36.0\% vs.\ 34.3\%), though their sum (70.3\%) remains in the MC range (68--72\%). Among MC benchmarks, ARC-Challenge shows an anomalously high model$\times$prompt interaction (8.0\% vs.\ $<$2\% for MMLU and HellaSwag), suggesting that science-domain items are differentially sensitive to option formatting across model families.
+
+\paragraph{FF benchmark patterns.} Free-form benchmarks differ markedly from MC. On GSM8K, variance distributes across item (16.9\%), model$\times$item (14.6\%), model (10.7\%), and model$\times$prompt (8.5\%); prompt main effect is 5.4\%. MATH shows an intermediate pattern: item leads at 24.0\% with model$\times$item at 17.3\%, but residual variance is substantially larger (43.9\%). Item-level regression reveals that FF residual variance is predominantly explained by the Bernoulli variance ceiling $p(1{-}p)$ ($R^2 = 0.47$--$0.86$; Appendix~\ref{app:ff_residual}): medium-difficulty items maximize binary outcome variance regardless of facet structure, so the elevated FF residuals reflect measurement resolution rather than unmodeled substantive sources.
+
+\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\text{std}(p_i)$) strongly predicts item variance share ($\rho = 0.82$, $n = 5$ benchmarks; Appendix~\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\text{item}$ as low as 0.614, Appendix~\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.
+
+\paragraph{Item-level bootstrap stability.} Bootstrap resampling (1,000 item resamples per benchmark) confirms that the MC--FF separation is robust to item selection: 95\% CIs for item-related variance (item + model$\times$item) are [65.2, 75.0]\% (MC) and [28.0, 44.2]\% (FF), with no overlap (minimum gap 21.0 percentage points).
+
+\section{Cross-Benchmark Difficulty Heterogeneity}
+\label{app:difficulty_scatter}
+
+Item difficulty heterogeneity is shown in Figure~\ref{fig:difficulty_scatter} (main text). MC benchmarks cluster at higher dispersion ($0.27$--$0.31$) and higher item variance ($34$--$38\%$), while FF benchmarks occupy the lower-left region ($0.22$--$0.23$, $17$--$24\%$). The cross-benchmark Spearman $\rho = 0.82$ ($p = 0.089$, $n = 5$) is consistent in direction with the within-MMLU correlation ($\rho = 0.806$, $p = 0.005$, $n = 10$ subjects); these are independent analyses at different granularities (benchmarks vs.\ subjects within MMLU), providing multi-scale support for the item difficulty heterogeneity mechanism discussed in \S\ref{sec:format_conditional}.
+
+\section{MMLU Subject-Level Variance Decomposition}
+\label{app:subject_gstudy}
+
+Table~\ref{tab:subject_gstudy} reports per-subject variance decomposition for 10 MMLU subjects (20 items each, 8 models, 2,304 conditions per item). $G_\text{item}$ ranges from 0.614 (\texttt{high\_school\_mathematics}) to 0.930 (\texttt{international\_law}), with mean 0.843. Knowledge-intensive subjects (\texttt{international\_law}, \texttt{clinical\_knowledge}, \texttt{world\_religions}) show \texttt{item\_id} $>$ 40\%, while reasoning-heavy subjects (\texttt{high\_school\_mathematics}, \texttt{abstract\_algebra}) show model$\times$item $>$ \texttt{item\_id}, consistent with models differing more in reasoning strategies than in factual recall. The \texttt{high\_school\_mathematics} \texttt{item\_id} of 10.4\% referenced in \S\ref{sec:format_conditional} is the lowest across all subjects, below even GSM8K (16.9\%).
+
+\begin{table}[h]
+\centering
+\caption{Subject-level variance decomposition within MMLU (20 items per subject, 8 models, 2,304 conditions per item). Sorted by $G_\text{item}$ descending.}
+\label{tab:subject_gstudy}
+\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Subject & Acc. & item\% & mod.$\times$it.\% & $G_\text{item}$ \\
+\midrule
+international\_law & .717 & 44.4 & 24.1 & .930 \\
+clinical\_knowledge & .581 & 47.5 & 30.0 & .923 \\
+world\_religions & .826 & 42.2 & 27.1 & .910 \\
+computer\_security & .740 & 37.0 & 24.9 & .908 \\
+college\_physics & .436 & 31.6 & 30.1 & .876 \\
+philosophy & .782 & 33.0 & 36.1 & .868 \\
+abstract\_algebra & .457 & 24.1 & 32.8 & .822 \\
+us\_foreign\_policy & .864 & 20.4 & 36.9 & .802 \\
+professional\_medicine & .671 & 19.9 & 41.7 & .778 \\
+high\_school\_math & .385 & 10.4 & 41.9 & .614 \\
+\midrule
+Mean & --- & 31.1 & 32.6 & .843 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{FF Residual Variance Analysis}
+\label{app:ff_residual}
+
+To investigate whether the elevated residual variance in free-form benchmarks (GSM8K 39.9\%, MATH 43.9\%) reflects unmodeled substantive sources or measurement properties of binary scoring, we regress item-level residual variance on item characteristics across all five benchmarks (Table~\ref{tab:ff_residual}).
+
+The dominant predictor is the quadratic difficulty effect ($p < 10^{-5}$ on all benchmarks): items near $p = 0.5$ show maximal residual variance, while items near the floor or ceiling show minimal residual. This inverted-U pattern directly mirrors the Bernoulli variance ceiling $p(1{-}p)$. Item content features (number of reasoning steps, answer length) are not significant predictors for GSM8K ($p > 0.38$), confirming that the difficulty--residual relationship is statistical rather than content-driven.
+
+FF benchmarks show substantially higher $R^2$ (mean 0.66) than MC benchmarks (mean 0.25), consistent with FF items spanning a wider difficulty range. The MC--FF contrast in residual magnitude is therefore a mathematical consequence of the difficulty distribution under binary scoring, not evidence of additional unmodeled variance sources in free-form evaluation.
+
+\begin{table}[h]
+\centering
+\caption{Item-level residual variance regression. Difficulty$^2$ = quadratic (inverted-U) term reflecting the Bernoulli $p(1{-}p)$ ceiling. GSM8K additionally tests n\_steps and answer\_length (both $p > 0.38$).}
+\label{tab:ff_residual}
+\scriptsize
+\begin{tabular}{lrrr}
+\toprule
+Benchmark & $R^2$ (full) & $R^2$ (diff.\ only) & Diff.$^2$ $p$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Multiple-choice}} \\
+MMLU & 0.377 & 0.347 & $<$0.001 \\
+ARC & 0.221 & 0.204 & $<$0.001 \\
+HellaSwag & 0.156 & 0.140 & $<$0.001 \\
+\midrule
+\multicolumn{4}{l}{\textit{Free-form}} \\
+GSM8K & 0.468 & 0.449 & $<$0.001 \\
+MATH & 0.856 & 0.845 & $<$0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Model and Prompt Details}
+\label{app:models}
+
+\paragraph{Models.} See Table~\ref{tab:model_ids} (main text) for the eight models. Full HuggingFace identifiers: \texttt{meta-llama/Llama-3.1-8B-Instruct} \cite{grattafiori2024llama3}, \texttt{google/gemma-2-9b-it} \cite{riviere2024gemma2}, \texttt{mistralai/Mistral-7B-Instruct-v0.3} \cite{jiang2023mistral}, \texttt{Qwen/Qwen3-8B} \cite{yang2025qwen3}, \texttt{01-ai/Yi-1.5-9B-Chat} \cite{young2024yi}, \texttt{allenai/OLMo-2-1124-7B-Instruct} \cite{olmo2025olmo2}, \texttt{internlm/internlm2\_5-7b-chat} \cite{cai2024internlm2}, \texttt{deepseek-ai/deepseek-llm-7b-chat} \cite{bi2024deepseek}.
+
+\paragraph{Prompt templates.} Our six prompt templates follow a surface perturbation design inspired by BrittleBench \cite{brittlebench2026}. For multiple-choice benchmarks, templates vary along three dimensions: option layout (lettered vs.\ numbered), instruction wording (direct vs.\ contextual), and answer prompt cue. For free-form benchmarks, templates vary chain-of-thought elicitation strategy. All six templates are semantically equivalent: they request the same task with different surface forms, to isolate formatting effects from content effects. ARC-Challenge and HellaSwag use the same six surface patterns as MMLU with domain-appropriate system instructions; MATH mirrors the GSM8K pattern with \texttt{\textbackslash boxed\{\}} answer formatting.
+
+\smallskip\noindent\textit{MMLU templates (representative MC format):}
+\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}\setlength{\topsep}{0pt}
+\item \texttt{The following are multiple choice questions (with answers) about \{subject\}.\textbackslash n\textbackslash n\{question\}\textbackslash nA. ... D. ...\textbackslash nAnswer:}
+\item \texttt{Answer the following \{subject\} questions by selecting the correct option.\textbackslash nQuestion: \{question\}\textbackslash n(A) ... (B) ... (C) ... (D) ...\textbackslash nCorrect answer:}
+\item \texttt{Below are \{subject\} multiple-choice problems. Pick the right letter.\textbackslash nQ: \{question\}\textbackslash n~~A) ... B) ... C) ... D) ...\textbackslash nA:}
+\item \texttt{Answer the following \{subject\} question by selecting A, B, C, or D.\textbackslash n\{question\}\textbackslash n- A. ... - B. ... - C. ... - D. ...\textbackslash nAnswer:}
+\item \texttt{Below is a \{subject\} exam question with four possible answers. Choose the correct one.\textbackslash n\{question\}\textbackslash nOption A: ... Option B: ... Option C: ... Option D: ...\textbackslash nCorrect:}
+\item \texttt{Question (\{subject\}):\textbackslash n\{question\}\textbackslash nChoices: (A) ... (B) ... (C) ... (D) ...\textbackslash nYour answer:}
+\end{enumerate}
+
+\smallskip\noindent\textit{GSM8K templates (representative FF format):}
+\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}\setlength{\topsep}{0pt}
+\item \texttt{Solve the following math problem step by step.\textbackslash nQ: \{question\}\textbackslash nA: Let's think step by step.}
+\item \texttt{Answer the following math word problem. Show your work.\textbackslash nQuestion: \{question\}\textbackslash nSolution:}
+\item \texttt{Solve each problem below. Write your reasoning, then give the final answer after \#\#\#\#.\textbackslash nProblem: \{question\}\textbackslash nReasoning:}
+\item \texttt{You are a math tutor. Solve the problem and show your steps.\textbackslash n\{question\}\textbackslash nSteps:}
+\item \texttt{Work through this math question carefully.\textbackslash nQ: \{question\}\textbackslash nWork:}
+\item \texttt{Math problem:\textbackslash n\{question\}\textbackslash nLet's solve this step by step.}
+\end{enumerate}
+
+\section{Software Environment}
+\label{app:software}
+
+All experiments were conducted with Python~3.10, PyTorch~2.1, and CUDA~12.8 on a single NVIDIA RTX PRO 6000 GPU (96\,GB). Inference used vLLM~0.9.2 with HuggingFace Transformers~4.40. Variance component estimation used StatsModels~0.14 and SciPy~1.12. A full list of pinned dependencies is available in the released code repository.
+
+\section{Use of AI Assistance}
+We used Claude for coding, code drafting, debugging, and language polishing.

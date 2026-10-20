@@ -1,0 +1,26 @@
+paper_key: "zhang2025tbik"
+title: "Deterministic Inference across Tensor Parallel Sizes That Eliminates Training-Inference Mismatch"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["standard non-deterministic tensor parallel", "PyTorch deterministic mode"]
+  metrics:
+    - {name: "bit-wise reproducibility", direction: "higher_better"}
+    - {name: "probability divergence", direction: "lower_better"}
+    - {name: "runtime overhead", direction: "lower_better"}
+  datasets:
+    - {name: "LLM inference benchmarks", size: "not specified"}
+  ablation_dimensions: ["tensor parallel size", "batch size", "TP strategy (data/tensor/pipeline)"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "multi-GPU (vLLM + FSDP)"}
+  method_family: "deterministic distributed inference"
+
+positioning:
+  core_claim: "Tree-Based Invariant Kernels (TBIK) guarantee bit-wise identical results regardless of tensor parallel size by aligning intra/inter-GPU reduction orders via hierarchical binary tree"
+  key_results: "Zero probability divergence, bit-wise reproducibility across TP sizes"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

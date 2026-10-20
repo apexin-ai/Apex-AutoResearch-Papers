@@ -1,0 +1,125 @@
+{
+  "description": "Binary vs Continuous D-study budget comparison",
+  "data_source": "probit simulation TRUE_VC (continuous) + observed Henderson I (binary) + simulation oracle (binary, p=0.7)",
+  "design": {
+    "facets": ["precision", "temperature", "prompt_template", "seed", "ordering", "item_id"],
+    "facet_levels": {"precision": 3, "temperature": 3, "prompt_template": 6, "seed": 6, "ordering": 4},
+    "conditions_per_item": 1296,
+    "n_items_ref": 200
+  },
+  "formula": {
+    "G_item": "sigma2_item / (sigma2_item + sigma2_delta)",
+    "sigma2_delta": "sum(sigma2_{k x item} / n_k) + sigma2_residual / prod(n_k)",
+    "D_study": "G(n_items) = sigma2_item / (sigma2_item + delta_total / n_items)",
+    "delta_total": "n_ref * sigma2_delta",
+    "n_min_G80": "ceil(4 * delta_total / sigma2_item)"
+  },
+  "binary": {
+    "source": "observed Henderson I, single_model_6facet (259,200 records)",
+    "variance_components": {
+      "item_id": 0.1271120031,
+      "precision:item_id": 0.0071904578,
+      "temperature:item_id": 0.0063796481,
+      "prompt_template:item_id": 0.0118973392,
+      "seed:item_id": 0.0102602214,
+      "ordering:item_id": 0.0016752615,
+      "residual": 0.0502927384
+    },
+    "sigma2_delta_per_item": 0.008674,
+    "delta_total": 1.7348,
+    "G_at_current_design": 0.936121,
+    "n_items_for_G80": 55,
+    "dstudy_sweep": {
+      "10": 0.422875,
+      "25": 0.646869,
+      "50": 0.785575,
+      "75": 0.846046,
+      "100": 0.879912,
+      "150": 0.916603,
+      "200": 0.936121,
+      "300": 0.956487,
+      "500": 0.97343
+    }
+  },
+  "continuous": {
+    "source": "probit simulation TRUE_VC (latent continuous, 1296-condition matched design)",
+    "variance_components": {
+      "item_id": 0.500,
+      "precision:item_id": 0.070,
+      "temperature:item_id": 0.060,
+      "prompt_template:item_id": 0.050,
+      "seed:item_id": 0.030,
+      "ordering:item_id": 0.020,
+      "residual": 0.160
+    },
+    "sigma2_delta_per_item": 0.061790,
+    "delta_total": 12.358,
+    "G_at_current_design": 0.890012,
+    "n_items_for_G80": 99,
+    "dstudy_sweep": {
+      "10": 0.288051,
+      "25": 0.502856,
+      "50": 0.669200,
+      "75": 0.752136,
+      "100": 0.801821,
+      "150": 0.858536,
+      "200": 0.890012,
+      "300": 0.923884,
+      "500": 0.952896
+    }
+  },
+  "binary_oracle": {
+    "source": "probit simulation oracle (p=0.7, 10000 items, matched 1296-condition design)",
+    "note": "Fair within-simulation comparison with continuous TRUE_VC",
+    "variance_components_pct": {
+      "item_id": 32.1479,
+      "precision:item_id": 6.2756,
+      "temperature:item_id": 4.948,
+      "prompt_template:item_id": 4.4678,
+      "seed:item_id": 2.4918,
+      "ordering:item_id": 1.8267,
+      "residual": 40.9923
+    },
+    "sigma2_delta_per_item": 0.053894,
+    "delta_total": 10.779,
+    "G_at_current_design": 0.856425,
+    "n_items_for_G80": 135,
+    "dstudy_sweep": {
+      "10": 0.229732,
+      "25": 0.427139,
+      "50": 0.598594,
+      "75": 0.691059,
+      "100": 0.748901,
+      "150": 0.817309,
+      "200": 0.856425,
+      "300": 0.899472,
+      "500": 0.937156
+    }
+  },
+  "comparison": {
+    "primary": {
+      "description": "Continuous TRUE_VC vs Observed Binary (cross-source comparison)",
+      "continuous_n_items": 99,
+      "binary_n_items": 55,
+      "delta_n_items": 44,
+      "pct_difference": 80.0,
+      "direction": "continuous needs more items",
+      "interpretation": "The continuous latent scale (TRUE_VC) requires 80% more items than the observed binary data to reach G>=0.80. This is driven by the TRUE_VC's higher delta/tau ratio (0.124 vs 0.068): the simulation was designed with proportionally larger facet x item interactions relative to item_id than the real data exhibits. This comparison conflates the effect of binarization with the mismatch between simulation and observed variance structure."
+    },
+    "within_simulation": {
+      "description": "Continuous TRUE_VC vs Binary Oracle (fair within-simulation comparison)",
+      "continuous_n_items": 99,
+      "binary_oracle_n_items": 135,
+      "delta_n_items": 36,
+      "pct_difference": 36.4,
+      "direction": "binary oracle needs more items",
+      "interpretation": "Within the same simulation, binarization increases the D-study budget by 36.4%. Binarization inflates residual (16% -> 41%) and compresses item_id (50% -> 32.1%), worsening the delta/tau ratio from 0.124 to 0.168. This is the expected direction: Bernoulli noise degrades per-item reliability, requiring more items to achieve the same G threshold."
+    },
+    "delta_tau_ratios": {
+      "continuous_TRUE_VC": 0.1236,
+      "binary_oracle_p07": 0.1677,
+      "observed_binary_6facet": 0.0682
+    },
+    "key_finding": "The within-simulation comparison (fair) shows binarization costs +36% items. The observed binary data has a more favorable variance structure than the simulation predicts (delta/tau = 0.068 vs 0.124), so its D-study budget (55 items) is lower than both simulation conditions."
+  }
+}

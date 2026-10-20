@@ -1,0 +1,24 @@
+{
+  "file": "deepseek_math.jsonl",
+  "path": "/root/nlp_variance_gtheory/results/exp002/deepseek_math.jsonl",
+  "total_rows": 57600,
+  "valid_rows": 57600,
+  "null_correct": 0,
+  "null_generated_text": 0,
+  "empty_generated_text": 0,
+  "correct_distribution": {"0": 50988, "1": 6612},
+  "accuracy": 0.11479,
+  "design": {
+    "model": ["deepseek-ai/deepseek-llm-7b-chat"],
+    "n_items": 200,
+    "temperatures": [0.0, 0.7],
+    "prompt_templates": [1, 2, 3, 4, 5, 6],
+    "seeds": [42, 123, 456, 789, 1024, 2048],
+    "orderings": [1, 2, 3, 4]
+  },
+  "expected_rows": 57600,
+  "is_complete": true,
+  "completeness_check": "1 model × 200 items × 2 temps × 6 prompts × 6 seeds × 4 orderings = 57,600",
+  "previous_analysis_note": "Prior analysis reported 37,400/57,600 — this was INCORRECT. All 57,600 rows are valid with no nulls.",
+  "verified_date": "2026-05-22"
+}

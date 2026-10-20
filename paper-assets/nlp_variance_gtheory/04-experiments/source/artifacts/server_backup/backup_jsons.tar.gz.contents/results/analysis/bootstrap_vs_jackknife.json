@@ -1,0 +1,156 @@
+{
+  "bootstrap": {
+    "n_resamples": 1000,
+    "seed": 42,
+    "components": {
+      "item_id": {
+        "mean": 60.8968,
+        "ci_lower": 55.7581,
+        "ci_upper": 65.7811,
+        "ci_width": 10.023
+      },
+      "residual": {
+        "mean": 21.6001,
+        "ci_lower": 19.1505,
+        "ci_upper": 24.2692,
+        "ci_width": 5.1186
+      },
+      "precision": {
+        "mean": 1.2169,
+        "ci_lower": 0.6325,
+        "ci_upper": 1.9835,
+        "ci_width": 1.351
+      },
+      "temperature": {
+        "mean": 0.0774,
+        "ci_lower": 0.006,
+        "ci_upper": 0.2069,
+        "ci_width": 0.2009
+      },
+      "prompt_template": {
+        "mean": 0.0497,
+        "ci_lower": 0.0089,
+        "ci_upper": 0.1221,
+        "ci_width": 0.1132
+      },
+      "seed": {
+        "mean": 0.0389,
+        "ci_lower": 0.0026,
+        "ci_upper": 0.1515,
+        "ci_width": 0.1489
+      },
+      "ordering": {
+        "mean": 0.0037,
+        "ci_lower": 0.0003,
+        "ci_upper": 0.0126,
+        "ci_width": 0.0123
+      },
+      "precision:item_id": {
+        "mean": 4.1635,
+        "ci_lower": 3.2945,
+        "ci_upper": 5.1015,
+        "ci_width": 1.8069
+      },
+      "temperature:item_id": {
+        "mean": 1.833,
+        "ci_lower": 1.3867,
+        "ci_upper": 2.3242,
+        "ci_width": 0.9375
+      },
+      "prompt_template:item_id": {
+        "mean": 4.595,
+        "ci_lower": 3.5066,
+        "ci_upper": 5.8377,
+        "ci_width": 2.3311
+      },
+      "seed:item_id": {
+        "mean": 4.7291,
+        "ci_lower": 3.6214,
+        "ci_upper": 6.0242,
+        "ci_width": 2.4028
+      }
+    }
+  },
+  "jackknife": {
+    "n_items": 200,
+    "components": {
+      "item_id": {
+        "mean": 61.0802,
+        "ci_lower": 55.9161,
+        "ci_upper": 66.2443,
+        "ci_width": 10.3282,
+        "se": 2.6347
+      },
+      "residual": {
+        "mean": 21.5861,
+        "ci_lower": 18.9577,
+        "ci_upper": 24.2145,
+        "ci_width": 5.2568,
+        "se": 1.341
+      },
+      "precision": {
+        "mean": 1.1913,
+        "ci_lower": 0.5255,
+        "ci_upper": 1.8571,
+        "ci_width": 1.3316,
+        "se": 0.3397
+      },
+      "temperature": {
+        "mean": 0.0669,
+        "ci_lower": -0.0286,
+        "ci_upper": 0.1625,
+        "ci_width": 0.1911,
+        "se": 0.0487
+      },
+      "prompt_template": {
+        "mean": 0.0263,
+        "ci_lower": -0.022,
+        "ci_upper": 0.0746,
+        "ci_width": 0.0966,
+        "se": 0.0246
+      },
+      "seed": {
+        "mean": 0.0144,
+        "ci_lower": -0.0461,
+        "ci_upper": 0.0748,
+        "ci_width": 0.1208,
+        "se": 0.0308
+      },
+      "ordering": {
+        "mean": 0.0005,
+        "ci_lower": -0.0014,
+        "ci_upper": 0.0025,
+        "ci_width": 0.0039,
+        "se": 0.001
+      },
+      "precision:item_id": {
+        "mean": 4.1642,
+        "ci_lower": 3.2709,
+        "ci_upper": 5.0576,
+        "ci_width": 1.7867,
+        "se": 0.4558
+      },
+      "temperature:item_id": {
+        "mean": 1.8348,
+        "ci_lower": 1.3451,
+        "ci_upper": 2.3245,
+        "ci_width": 0.9794,
+        "se": 0.2499
+      },
+      "prompt_template:item_id": {
+        "mean": 4.5846,
+        "ci_lower": 3.4677,
+        "ci_upper": 5.7016,
+        "ci_width": 2.2339,
+        "se": 0.5699
+      },
+      "seed:item_id": {
+        "mean": 4.725,
+        "ci_lower": 3.5406,
+        "ci_upper": 5.9094,
+        "ci_width": 2.3688,
+        "se": 0.6043
+      }
+    }
+  }
+}

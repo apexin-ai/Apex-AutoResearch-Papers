@@ -1,0 +1,157 @@
+{
+  "description": "MAPE: binary vs continuous variance components from probit simulation",
+  "data_source": "binary_simulation_recovery_matched.json (p=0.7 oracle, 10000 items, 1296-condition design) vs TRUE_VC",
+  "scale": "percentage of total variance (both binary and continuous sum to 100%)",
+  "comparison": "within-simulation: binary oracle (p=0.7) vs continuous TRUE_VC (latent ground truth)",
+  "spearman_rho": {
+    "all_components": 0.7241,
+    "no_residual": 0.6817
+  },
+  "components": {
+    "item_id": {
+      "binary_pct": 32.1479,
+      "continuous_pct": 50.0,
+      "abs_error": 17.8521,
+      "pct_error": 35.7
+    },
+    "ordering": {
+      "binary_pct": 0.2247,
+      "continuous_pct": 1.0,
+      "abs_error": 0.7753,
+      "pct_error": 77.53
+    },
+    "ordering:item_id": {
+      "binary_pct": 1.8267,
+      "continuous_pct": 2.0,
+      "abs_error": 0.1733,
+      "pct_error": 8.67
+    },
+    "precision": {
+      "binary_pct": 1.8697,
+      "continuous_pct": 1.0,
+      "abs_error": 0.8697,
+      "pct_error": 86.97
+    },
+    "precision:item_id": {
+      "binary_pct": 6.2756,
+      "continuous_pct": 7.0,
+      "abs_error": 0.7244,
+      "pct_error": 10.35
+    },
+    "precision:ordering": {
+      "binary_pct": 0.5335,
+      "continuous_pct": 0.5,
+      "abs_error": 0.0335,
+      "pct_error": 6.7
+    },
+    "precision:prompt_template": {
+      "binary_pct": 0.3178,
+      "continuous_pct": 0.5,
+      "abs_error": 0.1822,
+      "pct_error": 36.44
+    },
+    "precision:seed": {
+      "binary_pct": 0.1144,
+      "continuous_pct": 0.5,
+      "abs_error": 0.3856,
+      "pct_error": 77.12
+    },
+    "precision:temperature": {
+      "binary_pct": 0.3316,
+      "continuous_pct": 0.5,
+      "abs_error": 0.1684,
+      "pct_error": 33.68
+    },
+    "prompt_template": {
+      "binary_pct": 1.0336,
+      "continuous_pct": 2.0,
+      "abs_error": 0.9664,
+      "pct_error": 48.32
+    },
+    "prompt_template:item_id": {
+      "binary_pct": 4.4678,
+      "continuous_pct": 5.0,
+      "abs_error": 0.5322,
+      "pct_error": 10.64
+    },
+    "prompt_template:ordering": {
+      "binary_pct": 0.1551,
+      "continuous_pct": 0.5,
+      "abs_error": 0.3449,
+      "pct_error": 68.98
+    },
+    "prompt_template:seed": {
+      "binary_pct": 0.2075,
+      "continuous_pct": 0.5,
+      "abs_error": 0.2925,
+      "pct_error": 58.5
+    },
+    "residual": {
+      "binary_pct": 40.9923,
+      "continuous_pct": 16.0,
+      "abs_error": 24.9923,
+      "pct_error": 156.2
+    },
+    "seed": {
+      "binary_pct": 0.0,
+      "continuous_pct": 1.0,
+      "abs_error": 1.0,
+      "pct_error": 100.0
+    },
+    "seed:item_id": {
+      "binary_pct": 2.4918,
+      "continuous_pct": 3.0,
+      "abs_error": 0.5082,
+      "pct_error": 16.94
+    },
+    "seed:ordering": {
+      "binary_pct": 0.6102,
+      "continuous_pct": 0.5,
+      "abs_error": 0.1102,
+      "pct_error": 22.04
+    },
+    "temperature": {
+      "binary_pct": 0.0029,
+      "continuous_pct": 1.0,
+      "abs_error": 0.9971,
+      "pct_error": 99.71
+    },
+    "temperature:item_id": {
+      "binary_pct": 4.948,
+      "continuous_pct": 6.0,
+      "abs_error": 1.052,
+      "pct_error": 17.53
+    },
+    "temperature:ordering": {
+      "binary_pct": 0.7539,
+      "continuous_pct": 0.5,
+      "abs_error": 0.2539,
+      "pct_error": 50.78
+    },
+    "temperature:prompt_template": {
+      "binary_pct": 0.4796,
+      "continuous_pct": 0.5,
+      "abs_error": 0.0204,
+      "pct_error": 4.08
+    },
+    "temperature:seed": {
+      "binary_pct": 0.2153,
+      "continuous_pct": 0.5,
+      "abs_error": 0.2847,
+      "pct_error": 56.94
+    }
+  },
+  "MAPE": {
+    "all_22_components": 49.26,
+    "dstudy_relevant_7": 36.58,
+    "dstudy_no_residual_6": 16.64,
+    "facet_x_item_5": 12.83,
+    "main_effects_5": 82.51,
+    "non_item_2way_10": 41.53
+  },
+  "max_error_component": "residual",
+  "max_error_pct": 156.2,
+  "min_error_component": "temperature:prompt_template",
+  "min_error_pct": 4.08,
+  "interpretation": "Binarization (probit model, p=0.7) distorts variance component magnitudes with overall MAPE=49.3% across all 22 components. The distortion is highly non-uniform: (1) Residual inflates from 16% to 41% (pct_error=156%), absorbing Bernoulli within-cell variance \u2014 this is the expected and dominant effect of binarization. (2) item_id compresses from 50% to 32% (pct_error=36%), as Bernoulli noise dilutes true item differences. (3) Facet \u00d7 item interactions are best preserved (MAPE=12.8%), ranging from 8.7% (ordering:item_id) to 17.5% (temperature:item_id). (4) Main effects have high MAPE=82.5% due to small absolute magnitudes and confounding with the grand mean under binarization. Despite magnitude distortion, the ranking of systematic components is preserved (Spearman \u03c1=0.68 excl. residual), supporting the use of Henderson I for identifying dominant variance sources in binary LLM evaluation data."
+}

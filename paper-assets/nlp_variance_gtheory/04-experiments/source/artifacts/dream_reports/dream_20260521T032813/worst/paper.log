@@ -1,0 +1,1168 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.5.2)  21 MAY 2026 04:23
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**paper.tex
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen149
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen150
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count283
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count284
+\leftroot@=\count285
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count286
+\DOTSCASE@=\count287
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen151
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count288
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count289
+\dotsspace@=\muskip17
+\c@parentequation=\count290
+\dspbrk@lvl=\count291
+\tag@help=\toks20
+\row@=\count292
+\column@=\count293
+\maxfields@=\count294
+\andhelp@=\toks21
+\eqnshift@=\dimen152
+\alignsep@=\dimen153
+\tagshift@=\dimen154
+\tagwidth@=\dimen155
+\totwidth@=\dimen156
+\lineht@=\dimen157
+\@envbody=\toks22
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen158
+\lightrulewidth=\dimen159
+\cmidrulewidth=\dimen160
+\belowrulesep=\dimen161
+\belowbottomsep=\dimen162
+\aboverulesep=\dimen163
+\abovetopsep=\dimen164
+\cmidrulesep=\dimen165
+\cmidrulekern=\dimen166
+\defaultaddspace=\dimen167
+\@cmidla=\count295
+\@cmidlb=\count296
+\@aboverulesep=\dimen168
+\@belowrulesep=\dimen169
+\@thisruleclass=\count297
+\@lastruleclass=\count298
+\@thisrulewidth=\dimen170
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip54
+\multirow@cntb=\count299
+\multirow@dima=\skip55
+\bigstrutjot=\dimen171
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks24
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen172
+\Gin@req@width=\dimen173
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count300
+\Gm@cntv=\count301
+\c@Gm@tempcnt=\count302
+\Gm@bindingoffset=\dimen174
+\Gm@wd@mp=\dimen175
+\Gm@odd@mp=\dimen176
+\Gm@even@mp=\dimen177
+\Gm@layoutwidth=\dimen178
+\Gm@layoutheight=\dimen179
+\Gm@layouthoffset=\dimen180
+\Gm@layoutvoffset=\dimen181
+\Gm@dimlist=\toks25
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen182
+\captionmargin=\dimen183
+\caption@leftmargin=\dimen184
+\caption@rightmargin=\dimen185
+\caption@width=\dimen186
+\caption@indent=\dimen187
+\caption@parindent=\dimen188
+\caption@hangindent=\dimen189
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count303
+\c@continuedfloat=\count304
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count305
+)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count306
+)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen190
+\Hy@linkcounter=\count307
+\Hy@pagecounter=\count308
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count309
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count310
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen191
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count311
+\Field@Width=\dimen192
+\Fld@charsize=\dimen193
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count312
+\c@Item=\count313
+\c@Hfootnote=\count314
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+\Fld@listcount=\count315
+\c@bookmark@seq@number=\count316
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip56
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen194
+\ar@mcellbox=\box55
+\extrarowheight=\dimen195
+\NC@list=\toks26
+\extratabsurround=\skip57
+\backup@length=\skip58
+\ar@cellbox=\box56
+)
+\TX@col@width=\dimen196
+\TX@old@table=\dimen197
+\TX@old@col=\dimen198
+\TX@target=\dimen199
+\TX@delta=\dimen256
+\TX@cols=\count317
+\TX@ftn=\toks27
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2025/02/26 v1.3c Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks28
+\XKV@tempa@toks=\toks29
+\XKV@tempb@toks=\toks30
+)
+\XKV@depth=\count318
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2025/02/21 v1.2a Trim and clip general TeX material
+
+(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box57
+)
+\tc@llx=\dimen257
+\tc@lly=\dimen258
+\tc@urx=\dimen259
+\tc@ury=\dimen260
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2025/02/26 v2.3 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen261
+\adjbox@Height=\dimen262
+\adjbox@Depth=\dimen263
+\adjbox@Totalheight=\dimen264
+\adjbox@pwidth=\dimen265
+\adjbox@pheight=\dimen266
+\adjbox@pdepth=\dimen267
+\adjbox@ptotalheight=\dimen268
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count319
+)
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box58
+\sift@deathcycles=\count320
+\@vwid@loff=\dimen269
+\@vwid@roff=\dimen270
+)
+==> First Aid for varwidth.sty applied!
+)
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 27
+.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count321
+)
+(./paper.aux)
+\openout1 = `paper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count322
+\scratchdimen=\dimen271
+\scratchbox=\box59
+\nofMPsegments=\count323
+\nofMParguments=\count324
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count325
+\MPscratchDim=\dimen272
+\MPnumerator=\count326
+\makeMPintoPDFobject=\count327
+\everyMPtoPDFconversion=\toks32
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 472.03123pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 652.70622pt, 71.13188pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=472.03123pt
+* \textheight=652.70622pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumntrue
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring OFF on input line 27.
+(./paper.out) (./paper.out)
+\@outlinefile=\write3
+\openout3 = `paper.out'.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \hbox (badness 1132) in paragraph at lines 34--35
+\T1/ptm/m/n/10.95 When LLM eval-u-a-tion re-sults fail to re-pro-duce,
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 34--35
+\T1/ptm/m/n/10.95 the stan-dard sus-pects are prompt phras-ing, ran-
+ []
+
+
+Underfull \hbox (badness 1173) in paragraph at lines 34--35
+\T1/ptm/m/n/10.95 theory) to de-com-pose eval-u-a-tion vari-ance across
+ []
+
+
+Underfull \hbox (badness 1152) in paragraph at lines 34--35
+\T1/ptm/m/n/10.95 in-fras-truc-ture (nu-mer-i-cal pre-ci-sion), method-ol-ogy
+ []
+
+
+Underfull \hbox (badness 4647) in paragraph at lines 38--40
+[]\T1/ptm/m/n/10.95 Variance struc-ture is benchmark-specific and
+ []
+
+
+Underfull \hbox (badness 2469) in paragraph at lines 38--40
+\T1/ptm/m/n/10.95 un-pre-dictable from task tax-on-omy: item dom-
+ []
+
+
+Underfull \hbox (badness 3460) in paragraph at lines 38--40
+\T1/ptm/m/n/10.95 i-nance ranges from 9.1% (GSM8K) to 34.1%
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--40
+\T1/ptm/m/n/10.95 (ARC), while model$\OMS/cmsy/m/n/10.95 ^^B$\T1/ptm/m/n/10.95 
+item in-ter-ac-tion ranges
+ []
+
+
+Underfull \hbox (badness 5696) in paragraph at lines 38--40
+\T1/ptm/m/n/10.95 from 21.7% (Hel-laSwag) to 31.2% (MMLU).
+ []
+
+
+Underfull \hbox (badness 3492) in paragraph at lines 38--40
+\T1/ptm/m/n/10.95 Infrastructure$\OMS/cmsy/m/n/10.95 ^^B$\T1/ptm/m/n/10.95 meth
+odology sep-a-ra-bil-ity fails on
+ []
+
+
+Underfull \hbox (badness 1803) in paragraph at lines 38--40
+\T1/ptm/m/n/10.95 2 of 4 bench-marks un-der bi-nary scor-ing. D-
+ []
+
+
+Underfull \hbox (badness 1616) in paragraph at lines 38--40
+\T1/ptm/m/n/10.95 study pro-jec-tions show that achiev-ing re-li-a-bil-ity
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+! Undefined control sequence.
+l.48 ...variance sources. Sclar et al.\ \shortcite
+                                                  {sclar2024quantifying} doc...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.48 ... formatting alone. Yuan et al.\ \shortcite
+                                                  {yuan2025llm} showed up to...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.48 ...ision. Pezeshkpour and Hruschka \shortcite
+                                                  {pezeshkpour2024largelangu...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 6173) in paragraph at lines 48--49
+[]\T1/ptm/m/n/10.95 Prior work has iso-lated in-di-vid-ual vari-ance
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 48--49
+\T1/ptm/m/n/10.95 sources. Sclar et al. sclar2024quantifying doc-
+ []
+
+
+Underfull \hbox (badness 6032) in paragraph at lines 48--49
+\T1/ptm/m/n/10.95 u-mented up to 50% ac-cu-racy vari-a-tion from
+ []
+
+
+Underfull \hbox (badness 1478) in paragraph at lines 48--49
+\T1/ptm/m/n/10.95 showed up to 9% vari-a-tion from hard-ware and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
+\T1/ptm/m/n/10.95 pezeshkpour2024largelanguagemodelsensitivity
+ []
+
+
+Underfull \hbox (badness 1616) in paragraph at lines 48--49
+\T1/ptm/m/n/10.95 im-plic-itly as-sumes that its fo-cal fac-tor op-er-ates
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 48--49
+\T1/ptm/m/n/10.95 in-de-pen-dently of others---an as-sump-tion we call
+ []
+
+! Undefined control sequence.
+l.50 ...eneralizability Theory (G-theory; \citealt
+                                                  {shavelson1991generalizabi...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+[]\T1/ptm/m/n/10.95 We ap-ply Gen-er-al-iz-abil-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+\T1/ptm/m/n/10.95 ity The-ory (G-theory; shavel-
+ []
+
+
+Overfull \hbox (7.91074pt too wide) in paragraph at lines 50--51
+\T1/ptm/m/n/10.95 son1991generalizability,brennan2001generalizability),
+ []
+
+
+Underfull \hbox (badness 6876) in paragraph at lines 50--51
+\T1/ptm/m/n/10.95 ob-ser-va-tions) and reduced-crossing de-signs on
+ []
+
+
+Underfull \vbox (badness 2608) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf
+-dist/fonts/enc/dvips/base/8r.enc}
+
+
+]
+Underfull \hbox (badness 1097) in paragraph at lines 58--59
+[]\T1/ptm/b/n/10.95 Inadequacy of cur-rent prac-tices\T1/ptm/m/n/10.95 : D-stud
+y
+ []
+
+
+Underfull \hbox (badness 5637) in paragraph at lines 58--59
+\T1/ptm/m/n/10.95 2,000 items per bench-mark un-der bi-nary
+ []
+
+
+Underfull \hbox (badness 1325) in paragraph at lines 58--59
+\T1/ptm/m/n/10.95 pling estimates---and that even full MMLU
+ []
+
+! Undefined control sequence.
+l.67 Bouthillier et al.\ \shortcite
+                                   {bouthillier2021accounting} decomposed ML...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.67 ... methodology. Henderson et al.\ \shortcite
+                                                  {henderson2018deep} docume...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.67 ...lures in deep RL. Dodge et al.\ \shortcite
+                                                  {dodge2020finetuning} and ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.67 ...0finetuning} and Sellam et al.\ \shortcite
+                                                  {sellam2022multberts} quan...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+ []\T1/ptm/b/n/10.95 Variance de-com-po-si-tion in ML eval-u-a-tion.[]
+ []
+
+
+Underfull \hbox (badness 5175) in paragraph at lines 67--68
+\T1/ptm/m/n/10.95 Bouthillier et al. bouthillier2021accounting de-
+ []
+
+
+Underfull \hbox (badness 1533) in paragraph at lines 67--68
+\T1/ptm/m/n/10.95 pa-ram-e-ters, data splits, and seeds via ANOVA,
+ []
+
+
+Underfull \hbox (badness 6125) in paragraph at lines 67--68
+\T1/ptm/m/n/10.95 ol-ogy. Hen-der-son et al. hen-der-son2018deep
+ []
+
+
+Underfull \hbox (badness 1454) in paragraph at lines 67--68
+\T1/ptm/m/n/10.95 doc-u-mented re-pro-ducibil-ity fail-ures in deep RL.
+ []
+
+
+Underfull \hbox (badness 2922) in paragraph at lines 67--68
+\T1/ptm/m/n/10.95 al. sel-lam2022multberts quan-ti-fied train-ing seed
+ []
+
+! Undefined control sequence.
+l.70 Sclar et al.\ \shortcite
+                             {sclar2024quantifying} showed prompt sensitivit...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.70 ...{} in accuracy. Mizrahi et al.\ \shortcite
+                                                  {mizrahi2024state} documen...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.70 ...ctors. Pezeshkpour and Hruschka \shortcite
+                                                  {pezeshkpour2024largelangu...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.70 ...odelsensitivity} and Lu et al.\ \shortcite
+                                                  {lu2022fantastically} stud...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.70 ... ordering effects. Yuan et al.\ \shortcite
+                                                  {yuan2025llm} analyzed har...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.70 ... and precision effects. Mesting \shortcite
+                                                  {mesting2026generalizabili...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+ []\T1/ptm/b/n/10.95 LLM eval-u-a-tion sen-si-tiv-ity.[] \T1/ptm/m/n/10.95 Scla
+r et al.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+\T1/ptm/m/n/10.95 sclar2024quantifying showed prompt sen-si-
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 70--71
+\T1/ptm/m/n/10.95 tiv-ity up to 50% in ac-cu-racy. Mizrahi et al.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+\T1/ptm/m/n/10.95 pezeshkpour2024largelanguagemodelsensitivity
+ []
+
+
+Underfull \hbox (badness 1552) in paragraph at lines 70--71
+\T1/ptm/m/n/10.95 and Lu et al. lu2022fantastically stud-ied op-tion
+ []
+
+
+Underfull \hbox (badness 1478) in paragraph at lines 70--71
+\T1/ptm/m/n/10.95 hard-ware and pre-ci-sion ef-fects. Mest-ing mest-
+ []
+
+! Undefined control sequence.
+l.73 Lalor et al.\ \shortcite
+                             {lalor2019learning} and Rodriguez et al.\ \shor...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.73 ...learning} and Rodriguez et al.\ \shortcite
+                                                  {rodriguez2021evaluation} ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.73 ...to NLP evaluation. Polo et al.\ \shortcite
+                                                  {polo2024tinybenchmarks} (...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.73 ...\sim$100 items. Perlitz et al.\ \shortcite
+                                                  {perlitz2023efficient} pur...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.76 Dehghani et al.\ \shortcite
+                                {dehghani2021benchmark} critiqued benchmark ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.76 ...rk dependence. Biderman et al.\ \shortcite
+                                                  {biderman2024lessons} arti...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.76 ...cible evaluation. Vania et al.\ \shortcite
+                                                  {vania2021comparing} compa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 5260) in paragraph at lines 76--77
+ []\T1/ptm/b/n/10.95 Evaluation bench-marks and meta-evaluation.[]
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 76--77
+\T1/ptm/m/n/10.95 bench-mark de-pen-dence. Bi-der-man et al. bi-der-
+ []
+
+
+Underfull \vbox (badness 8056) has occurred while \output is active []
+
+ [2]
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 10
+0.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
+ []\T1/ptm/b/n/10.95 Hardware pseudo-replication (exp-003).[] \T1/ptm/m/n/10.95
+ Two
+ []
+
+
+Underfull \hbox (badness 8000) in paragraph at lines 115--116
+ []\T1/ptm/b/n/10.95 Supplementary ex-per-i-ments.[] \T1/ptm/m/n/10.95 Item re-
+sam-pling
+ []
+
+
+Underfull \hbox (badness 1490) in paragraph at lines 115--116
+\T1/ptm/m/n/10.95 sam-ples. 14B model ex-ten-sion (exp-005): re-
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 115--116
+\T1/ptm/m/n/10.95 Distill-14B. Lay-er-Cast pre-ci-sion mit-i-ga-tion (exp-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+ []\T1/ptm/b/n/10.95 Models.[] \T1/ptm/m/n/10.95 Llama-3.1-8B-Instruct, Mistral
+-7B-
+ []
+
+
+Underfull \hbox (badness 3118) in paragraph at lines 120--121
+\T1/ptm/m/n/10.95 Instruct-v0.3, and Qwen3-8B for in-fer-ence ex-
+ []
+
+
+Underfull \hbox (badness 4072) in paragraph at lines 120--121
+\T1/ptm/m/n/10.95 per-i-ments. Gemma-2-9B-IT was planned but
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+ []\T1/ptm/b/n/10.95 Benchmarks.[] \T1/ptm/m/n/10.95 MMLU (knowl-edge), ARC-
+ []
+
+
+Underfull \hbox (badness 1377) in paragraph at lines 123--124
+\T1/ptm/m/n/10.95 Challenge (sci-ence rea-son-ing), Hel-laSwag (com-
+ []
+
+
+Underfull \hbox (badness 5345) in paragraph at lines 123--124
+\T1/ptm/m/n/10.95 mon-sense), GSM8K (math rea-son-ing), MATH
+ []
+
+
+Underfull \hbox (badness 1845) in paragraph at lines 127--128
+\T1/ptm/m/n/10.95 Variance com-po-nents are es-ti-mated via Hen-der-
+ []
+
+
+Underfull \hbox (badness 1314) in paragraph at lines 127--128
+\T1/ptm/m/n/10.95 con-fi-dence in-ter-vals (1,000 item-level re-sam-ples)
+ []
+
+[3]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 169.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 169.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 169.
+
+
+Underfull \vbox (badness 1057) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 204--205
+\T1/ptm/m/n/10.95 in-ter-ac-tion emerges at 31.2%---the largest sin-gle
+ []
+
+[4]
+Underfull \hbox (badness 1308) in paragraph at lines 220--220
+[]\T1/ptm/m/n/10.95 Table 3: |Model-as-facet vari-ance de-com-po-si-tion
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 247--248
+[]\T1/ptm/b/n/10.95 Item ID ranges wildly \T1/ptm/m/n/10.95 (9.1--34.1%). ARC-
+ []
+
+
+Underfull \hbox (badness 6658) in paragraph at lines 247--248
+\T1/ptm/m/n/10.95 Challenge shows the high-est item dom-i-nance
+ []
+
+
+Underfull \hbox (badness 1803) in paragraph at lines 249--250
+[]\T1/ptm/b/n/10.95 Interaction-dominated bench-marks dif-fer in
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 249--250
+\T1/ptm/b/it/10.95 which \T1/ptm/b/n/10.95 in-ter-ac-tions dom-i-nate. \T1/ptm/
+m/n/10.95 GSM8K shows
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 249--250
+\T1/ptm/m/n/10.95 of-thought branch-ing. Hel-laSwag shows large
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 249--250
+\T1/ptm/m/n/10.95 prompt$\OMS/cmsy/m/n/10.95 ^^B$\T1/ptm/m/n/10.95 item (18.9%)
+, sug-gest-ing prompt fram-
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 282--283
+[]\T1/ptm/m/n/10.95 The GSM8K fail-ure is mech-a-nis-ti-cally in-ter-
+ []
+
+[5]
+Underfull \hbox (badness 2443) in paragraph at lines 320--321
+\T1/ptm/m/n/10.95 mean-ing full MMLU may not pro-vide re-li-able
+ []
+
+
+Underfull \hbox (badness 1609) in paragraph at lines 322--323
+[]\T1/ptm/m/n/10.95 The pri-mary driver of these large bud-gets is
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 324.
+
+
+Underfull \hbox (badness 1048) in paragraph at lines 329--329
+[]\T1/ptm/m/n/10.95 Table 6: |Item re-quire-ments: G-theory vs. IRT-
+ []
+
+[6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--401
+[]\T1/ptm/b/n/10.95 Reproducibility find-ings gen-er-al-ize across
+ []
+
+
+Underfull \hbox (badness 1163) in paragraph at lines 400--401
+\T1/ptm/m/n/10.95 omy), mak-ing ``uni-ver-sal re-pro-ducibil-ity recipes''
+ []
+
+[7]
+Underfull \hbox (badness 1132) in paragraph at lines 430--431
+\T1/ptm/m/n/10.95 benchmark---budgets that are benchmark-specific,
+ []
+
+
+Underfull \hbox (badness 1584) in paragraph at lines 442--445
+\T1/ptm/m/n/10 on re-pro-ducible eval-u-a-tion of lan-guage mod-els.
+ []
+
+
+Underfull \hbox (badness 2126) in paragraph at lines 457--460
+[]\T1/ptm/m/n/10 M. De-hghani, et al.  The bench-mark lot-tery.
+ []
+
+[8] [9
+
+] [10
+
+] [11] [12] (./paper.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 56A8F490B55AFEC7838E704B249F3816;5231.
+ ) 
+Here is how much of TeX's memory you used:
+ 13801 strings out of 469438
+ 215127 string characters out of 5468411
+ 640961 words of memory out of 5000000
+ 42160 multiletter control sequences out of 15000+600000
+ 679390 words of font info for 115 fonts, out of 8000000 for 9000
+ 59 hyphenation exceptions out of 8191
+ 75i,12n,79p,804b,600s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr
+8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (12 pages, 191595 bytes).
+PDF statistics:
+ 344 PDF objects out of 1000 (max. 8388607)
+ 299 compressed objects within 3 object streams
+ 96 named destinations out of 1000 (max. 500000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
+

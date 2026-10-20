@@ -1,0 +1,34 @@
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_overview_pipeline}
+\caption{Overview of the G-theory evaluation pipeline. A factorial design crossing seven facets across eight models and five benchmarks produces 2.3M binary records. G-study variance decomposition via Henderson Method~I reveals that item difficulty (34--38\%) and model$\times$item interaction (30--36\%) together dominate in MC benchmarks. D-study projections translate variance components into design-dependent item budgets: a 3-prompt $\times$ 3-seed design achieves $G \geq 0.80$ with 178 items (3.1$\times$ reduction). Three contributions emerge: reproducibility budgets (C1), dominant item-level variance (C2), and format-associated variance patterns (C3).}
+\label{fig:overview}
+\end{figure*}
+
+\section{Introduction}
+\label{sec:introduction}
+
+LLM benchmarks are the standard mechanism for comparing language models. Evaluation results determine which models get deployed in production, which attract continued funding, and which top public leaderboards. A typical evaluation runs each model once under a fixed configuration (one prompt template, one random seed, one precision format) and treats the resulting score as a stable measure of model capability. This practice implicitly assumes that these design choices are inconsequential: that a different prompt wording, a different random seed, or a different answer ordering would yield essentially the same result.
+
+A growing body of evidence shows otherwise. Prompt reformatting (rewording instructions without altering their meaning) can shift accuracy by up to 76 percentage points \citep{sclar2024formatting, brittlebench2026}. Reordering answer options can reverse model rankings \citep{pezeshkpour2024ordering}. Numerical precision \citep{yuan2025layercast} and random seeds \citep{dodge2020finetuning, bui2025seeds} each contribute additional instability. However, each study examines one source in isolation, holding all others fixed. This piecemeal approach cannot answer the questions that matter most for benchmark design: when all sources vary simultaneously, which ones dominate? Do they interact, e.g., does a prompt change affect some models more than others? Does the answer depend on the benchmark format? Without a unified variance decomposition, benchmark developers cannot determine how many items are needed for reliable measurement, or whether current evaluations are measuring model ability or design noise.
+
+Three lines of prior work each address part of this puzzle (Figure~\ref{fig:method_comparison}): (i)~\emph{variance decomposition for ML}---\citet{bouthillier2021accounting} established ANOVA-based decomposition for hyperparameters and data splits, but not LLM evaluation facets; (ii)~\emph{G-theory for LLM evaluation}---\citet{messing2026hidden} decomposed five methodology facets, but on a single benchmark without infrastructure facets or cross-format comparison; (iii)~\emph{Item Response Theory (IRT) for item selection}---\citet{polo2024tinybenchmarks, lalor2019irt, zhou2026irt} optimize which items to include, but treat prompt, seed, and ordering as fixed, leaving their variance unmodeled.
+
+We provide that unified analysis. Applying Generalizability theory (G-theory) \citep{shavelson1991generalizability, brennan2001generalizability}, a psychometric framework that decomposes measurement variance into contributions from each design facet and their interactions, to a factorial design crossing seven facets across eight open-weight 7--9B models and five benchmarks (Figure~\ref{fig:overview}; ${\sim}$2.3M binary records), contrary to the prevailing focus on prompt and seed sensitivity, item difficulty is the largest variance component (34--38\% in multiple-choice [MC]), and the model$\times$item interaction is the second largest (30--36\% in MC, 15--17\% in free-form [FF]), exceeding every manipulated design factor by an order of magnitude and the model main effect by 7--11$\times$. Models disagree primarily on \emph{which specific questions} are difficult, rather than differing uniformly in overall ability. This finding has an immediate practical consequence: evaluation designs that average over multiple prompts and seeds absorb this interaction, achieving reliable measurement with a recommended 3-prompt $\times$ 3-seed protocol that reduces items by 3.1$\times$ (Figure~\ref{fig:teaser}). In an exploratory comparison ($n = 5$ benchmarks), item-related variance concentrates in multiple-choice benchmarks but disperses in free-form tasks, suggesting that reproducibility standards may need per-format calibration.
+
+Our contributions:
+\begin{enumerate}
+    \item \textbf{Design-dependent reproducibility budgets.} A recommended 3-prompt $\times$ 3-seed protocol achieves $G \geq 0.80$ with 178 MMLU items versus 552 under single-condition protocols (3.1$\times$ reduction; up to 10$\times$ under the full 1,296-condition design, a theoretical upper bound impractical for routine use). Cross-benchmark budgets range from 93--128 items (multi-facet) versus 1,078--2,768 (single-condition). These budgets complement IRT item selection (Table~\ref{tab:dstudy}).
+
+    \item \textbf{Dominant item-level variance.} Item difficulty is the largest single component in MC benchmarks (34--38\%), and the model$\times$item interaction is the second largest (30--36\% in MC, 15--17\% in FF), exceeding the model main effect by 7--11$\times$ and every manipulated design factor (prompt, seed, precision, ordering) by over an order of magnitude. This reveals item-dependent rather than global ability differences, stable under leave-one-model-out analysis and confirmed by inter-model agreement (Cohen's $\kappa = 0.33$--$0.46$).
+
+    \item \textbf{Format-associated variance patterns (exploratory).} Item-related variance (item difficulty + model$\times$item interaction) concentrates in multiple-choice benchmarks (68--72\%) but disperses in free-form benchmarks (31--41\%), driven by item difficulty heterogeneity ($\rho = 0.82$). This observation ($n = 5$, $p = 0.10$) warrants broader confirmation.
+\end{enumerate}
+We release an open-source G-theory pipeline and D-study budget calculator for evaluation design optimization.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig0_teaser_dstudy}
+\caption{D-study projections for MMLU (single-model baseline). A recommended 3-prompt $\times$ 3-seed design reduces the budget from 552 to 178 items for $G \geq 0.80$; the full multi-facet design (1,296 conditions, theoretical upper bound) reduces further to 55 items.}
+\label{fig:teaser}
+\end{figure}

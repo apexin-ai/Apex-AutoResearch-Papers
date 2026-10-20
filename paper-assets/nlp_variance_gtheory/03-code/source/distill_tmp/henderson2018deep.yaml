@@ -1,0 +1,27 @@
+paper_key: "henderson2018deep"
+title: "Deep Reinforcement Learning that Matters"
+venue: "AAAI 2018"
+full_text_available: false
+
+research:
+  baselines: ["DDPG", "TRPO", "PPO", "ACKTR", "SAC (various deep RL algorithms)"]
+  metrics:
+    - {name: "average return", direction: "higher_better"}
+    - {name: "cross-seed variance", direction: "lower_better"}
+    - {name: "cross-implementation variance", direction: "lower_better"}
+  datasets:
+    - {name: "MuJoCo continuous control environments", size: "multiple environments"}
+    - {name: "OpenAI Gym benchmarks", size: "standard"}
+  ablation_dimensions: ["random seed", "hyperparameters", "codebase/implementation", "network architecture", "reward scaling"]
+  training_recipe: {optimizer: "varies by algorithm", lr: "varies", hardware: "not specified"}
+  method_family: "reproducibility analysis in deep RL"
+
+positioning:
+  core_claim: "Non-determinism and intrinsic variance in deep RL make reported improvements difficult to interpret without significance testing and standardized reporting"
+  key_results: "N/A (abstract level)"
+  limitations: []
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

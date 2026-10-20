@@ -1,0 +1,88 @@
+paper_key: "brittlebench2026"
+title: "Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [GPT-5, Claude-4.5-Opus, Llama-3.1-8B, Llama-3.1-70B, Llama-3.3-70B, Qwen3-4B, Qwen3-8B, Qwen3-32B]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "brittleness score (Π)", direction: "lower_better"}
+    - {name: "variance attribution (V_data vs V_brittleness)", direction: "N/A"}
+  datasets:
+    - {name: "MMLU", size: "standard"}
+    - {name: "ARC", size: "standard"}
+    - {name: "TruthfulQA", size: "standard"}
+    - {name: "MathQA", size: "standard"}
+    - {name: "LogiQA", size: "standard"}
+    - {name: "GPQA", size: "standard"}
+  ablation_dimensions: [perturbation_type (5 categories), perturbation_intensity, compositional_perturbation, CoT_vs_direct, few-shot_vs_zero-shot]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "log-probability scoring + API"}
+  method_family: "robustness benchmarking / variance decomposition"
+
+positioning:
+  core_claim: "Semantics-preserving prompt perturbations degrade performance up to 12% and alter model rankings in 63% of cases; perturbation-induced variance accounts for ~50% of total variance in open-weight models"
+  key_results: "Up to 12% accuracy drop; 63% ranking changes; ~50% variance from perturbations; compositional perturbations up to 45% drop"
+  limitations:
+    - "Log-probability scoring for open models (potential artifact per Hua 2025)"
+    - "Limited to English benchmarks"
+    - "Perturbation taxonomy may not cover all realistic variations"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the observation that benchmark evaluations assume prompt stability, but real-world inputs vary naturally"
+  tension: "Standard benchmarks report single-prompt performance, masking fragility to surface-form changes"
+  key_insight: "Law of total variance decomposition: Var(Y) = Var_D(E_P[Y|D]) + E_D[Var_P(Y|D)] separates task difficulty from brittleness"
+  argument_chain: "problem (hidden brittleness) → framework (variance decomposition) → perturbation taxonomy → systematic evaluation → ranking instability finding"
+  contribution_framing: "3 contributions: (1) brittleness framework with variance decomposition, (2) perturbation taxonomy, (3) large-scale empirical evaluation"
+  intro_structure: "4 paragraphs: (1) benchmark reliance, (2) prompt sensitivity concern, (3) existing gaps, (4) contributions"
+  notable_technique: "Uses law of total variance to give mathematical precision to an intuitive concern; the 63% ranking change statistic is a powerful soundbite"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "Shows how semantics-preserving perturbations (typos, padding, paraphrasing) alter model outputs"
+    narrative_role: "Grounds abstract concept of brittleness in concrete examples"
+    design_elements: ["perturbation examples", "before/after comparison", "color-coded perturbation types"]
+    visual_style: "Text examples with highlighted perturbations and accuracy annotations"
+  result_figures:
+    - figure_id: "Variance attribution charts"
+      viz_type: "stacked_bar"
+      what_compared: "V_data vs V_brittleness across models and benchmarks"
+      how_gain_highlighted: "Shows commercial models have lower brittleness fraction (~25% vs ~50%)"
+      design_note: "Stacked bars with clear V_data/V_brittleness split across model columns"
+    - figure_id: "Ranking change analysis"
+      viz_type: "heatmap"
+      what_compared: "Model ranking stability across perturbation types"
+      how_gain_highlighted: "63% ranking change highlighted prominently"
+      design_note: "Heatmap makes ranking instability visually striking"
+  ablation_figures:
+    - figure_id: "Perturbation intensity curves"
+      viz_type: "line_plot"
+      dimensions_varied: ["perturbation_type", "intensity_level"]
+      design_note: "Line plots show non-linear degradation patterns"
+  figure_narrative_role: "Problem examples → Perturbation taxonomy → Variance decomposition → Ranking analysis → Intensity/compositional analysis"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models"
+    col_axis: "benchmarks × perturbation_types"
+    row_organization: "by_category (commercial vs open)"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold worst degradation"
+    statistical_reporting: "accuracy drop percentages"
+    num_baselines: 8
+    design_note: "Models grouped by commercial/open to highlight robustness gap"
+  ablation_tables:
+    - table_id: "CoT analysis table"
+      what_varied: ["CoT vs direct", "perturbation type"]
+      variation_style: "full_numbers"
+      design_note: "Shows CoT provides only marginal brittleness reduction (0.41pp)"
+  supplementary_tables:
+    in_appendix: true
+    content: "Semantic validation scores, per-perturbation detailed results, human annotation agreement"
+    reason: "Core claim needs only aggregate brittleness; validation details support methodology"

@@ -1,0 +1,2849 @@
+dream_id: dream_20260520T190053
+project: nlp_variance_gtheory
+venue: ''
+focus: 'Key questions: (1) Is the "item dominance" finding (58.4%) novel enough for
+  AAAI, or will reviewers dismiss it as obvious? (2) Does the separability result
+  (direct infra×method <0.5%) constitute a strong enough contribution, or is it a
+  null result? (3) Is the D-study reproducibility budget framing compelling for the
+  venue? (4) float32 engine confound — does it undermine credibility? (5) With only
+  1 GPU type in hand (second pending), is the hardware crossing claim defensible?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: exp-001修复float32 confound后item dominance依然稳固复现，多benchmark多GPU交叉验证全线通过，三条claim原封不动成立
+      key_assumptions:
+      - float32 confound是engine差异造成的伪影，统一vLLM V0 enforce_eager后precision主效应降至<0.5%，item_id方差占比维持或上升
+      - 第二块GPU及时到位，hardware作为facet可纳入完整交叉设计
+      - item dominance在GSM8K/ARC/HellaSwag上均复现（最大单一方差源）
+      - 4个模型间方差归因模式一致（item_id始终排第一），非Qwen3特例
+      number_ranges:
+        item_variance_share_mmlu:
+        - 0.48
+        - 0.65
+        item_variance_share_other_benchmarks:
+        - 0.35
+        - 0.6
+        direct_infra_method_interaction:
+        - 0.001
+        - 0.01
+        item_conditional_interactions_total:
+        - 0.08
+        - 0.18
+        precision_main_effect_after_fix:
+        - 0.001
+        - 0.005
+        hardware_main_effect:
+        - 0.002
+        - 0.015
+        g_current_practice:
+        - 0.25
+        - 0.4
+        g_optimized_triple_items:
+        - 0.85
+        - 0.95
+        cross_benchmark_replication_rate:
+        - 0.75
+        - 1.0
+        models_showing_consistent_pattern:
+        - 4
+        - 4
+      narrative_direction: 原始framing完全成立。'Item selection accounts for >50% of total
+        variance'作为headline数字直接用。三条claim无需削弱：(1) item dominance跨benchmark跨模型稳健；(2)
+        separability经多GPU验证，infrastructure和methodology可独立研究；(3) D-study budget表给出clear
+        actionable guidance。float32 confound的修复反而成为方法论贡献——展示engine配置对variance attribution的影响。AAAI投稿节奏正常。
+    median:
+      tier: median
+      meaning: item dominance复现但幅度下降或跨benchmark不一致，separability大体成立但存在局部例外，需要softening
+        claims并补充条件限定
+      key_assumptions:
+      - float32 confound修复后item_id方差占比下降10-15个百分点（部分'item dominance'被precision×item
+        interaction人为放大）
+      - 第二块GPU延迟或只能做reduced crossing，hardware facet数据不完整
+      - GSM8K等reasoning benchmark的方差结构与MMLU显著不同（residual/temperature占比更高，item dominance减弱）
+      - 4个模型中1-2个模型表现异常（如Gemma的prompt sensitivity异常高），方差归因不完全一致
+      number_ranges:
+        item_variance_share_mmlu:
+        - 0.32
+        - 0.48
+        item_variance_share_other_benchmarks:
+        - 0.2
+        - 0.4
+        direct_infra_method_interaction:
+        - 0.01
+        - 0.05
+        item_conditional_interactions_total:
+        - 0.1
+        - 0.25
+        precision_main_effect_after_fix:
+        - 0.003
+        - 0.015
+        hardware_main_effect:
+        - 0.005
+        - 0.03
+        g_current_practice:
+        - 0.35
+        - 0.55
+        g_optimized_triple_items:
+        - 0.75
+        - 0.9
+        cross_benchmark_replication_rate:
+        - 0.5
+        - 0.75
+        models_showing_consistent_pattern:
+        - 2
+        - 3
+      narrative_direction: Claim 1从'more than all others combined'降级为'single largest
+        source'，不再用58%作为headline，改用跨benchmark的range（如30-55%）。Claim 2的separability加条件限定：'at
+        the aggregate level for multiple-choice benchmarks'，承认reasoning tasks中temperature和seed的interaction更大。Claim
+        3的D-study budget表仍成立但效果量缩小——tripling items从10×变为3-5×优于tripling prompts。如果第二块GPU未到，hardware
+        facet降级为limitation而非contribution。论文重心从'surprising dominance'转向'benchmark-dependent
+        variance structure'——不同任务类型需要不同的reproducibility budget，这本身是novel finding。仍可投AAAI但需要更强的writing来sell
+        weaker numbers；准备ACL ARR作为backup。
+    worst:
+      tier: worst
+      meaning: float32修复后item dominance大幅缩水，residual或其他facet上升为主要来源，separability在部分条件下明显不成立，原始三条claim的核心叙事需要重构
+      key_assumptions:
+      - float32 confound修复后item_id方差占比跌至25%以下，residual成为最大成分（>25%），说明MVP的58%中有大量是confound
+        inflation
+      - 第二块GPU不可用，hardware crossing无法完成，Claim 2的'infrastructure vs methodology'分离无法实证
+      - GSM8K/MATH等benchmark上item dominance不成立——reasoning tasks中seed和temperature的方差远超item
+        selection
+      - 部分模型（如Mistral-7B）的方差结构与其他模型截然不同，无法做统一归因叙事
+      - D-study projections的G≥0.90需要不切实际的item数量（>1000），实用性存疑
+      number_ranges:
+        item_variance_share_mmlu:
+        - 0.18
+        - 0.32
+        item_variance_share_other_benchmarks:
+        - 0.1
+        - 0.25
+        direct_infra_method_interaction:
+        - 0.03
+        - 0.1
+        item_conditional_interactions_total:
+        - 0.15
+        - 0.35
+        precision_main_effect_after_fix:
+        - 0.01
+        - 0.04
+        hardware_main_effect:
+        - 0.02
+        - 0.06
+        g_current_practice:
+        - 0.4
+        - 0.6
+        g_optimized_triple_items:
+        - 0.6
+        - 0.8
+        cross_benchmark_replication_rate:
+        - 0.0
+        - 0.5
+        models_showing_consistent_pattern:
+        - 0
+        - 2
+      narrative_direction: 原始framing不成立，但不降venue——reframe为'variance structure is benchmark-conditional
+        and model-conditional'。新headline：evaluation variance的归因模式本身是unstable的，不同benchmark/model组合产生qualitatively不同的方差结构，这意味着没有universal
+        reproducibility recipe。核心contribution转为：(1) 展示G-theory framework如何诊断特定evaluation
+        pipeline的方差瓶颈（tool contribution）；(2) 证明'one-size-fits-all'的standardization策略（如固定prompt/seed）在异质benchmark上无效（negative但important
+        result）；(3) float32 engine confound的发现和修复本身就是方法论贡献——prior work中有多少结论受类似confound污染？这个reframe在AAAI
+        evaluation track仍有competitive的angle：不是告诉你该优化什么，而是告诉你为什么不存在统一答案。D-study从'prescriptive
+        budget'转为'diagnostic tool'。同时启动exp-006（fine-tuning G-study）作为独立贡献线，对冲inference-only故事的风险。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260520T190053/best/paper.pdf
+  imagined_experiments:
+  - name: Full-scale precision study with confound fix
+    plan_id: exp-001
+    description: '4 models × 3 precisions (FP32/BF16/FP16) × 6 prompts × 6 seeds ×
+      3 temperatures × 4 orderings × 200 MMLU items, 全部使用vLLM V0 enforce_eager消除engine差异。总条件数
+      4×3×6×6×3×4=5184 per item, 总记录 5184×200=1,036,800。
+
+      '
+    expected_results:
+      total_records: 1036800
+      conditions_per_model: 1296
+      overall_accuracy: 0.668
+      accuracy_fp32: 0.666
+      accuracy_bf16: 0.671
+      accuracy_fp16: 0.669
+      accuracy_spread_across_precisions: 0.005
+      item_id: 0.584
+      residual: 0.168
+      prompt_template_x_item_id: 0.061
+      temperature_x_item_id: 0.058
+      seed_x_item_id: 0.029
+      precision_x_item_id: 0.018
+      ordering_x_item_id: 0.014
+      prompt_template: 0.009
+      temperature: 0.007
+      ordering: 0.003
+      precision: 0.003
+      seed: 0.001
+      models_with_item_id_rank1: 4
+      item_id_range_across_models:
+      - 0.52
+      - 0.62
+      qwen3_8b_item_id: 0.598
+      llama31_8b_item_id: 0.571
+      gemma2_9b_item_id: 0.62
+      mistral_7b_item_id: 0.547
+      precision_main_effect_before_fix_mvp: 0.0087
+      precision_main_effect_after_fix: 0.003
+      precision_x_item_id_before_fix_mvp: 0.0724
+      precision_x_item_id_after_fix: 0.018
+      fp32_bf16_accuracy_gap_before_fix: 0.085
+      fp32_bf16_accuracy_gap_after_fix: 0.005
+      g_current_practice_1p1s200i: 0.34
+      g_6p6s200i: 0.72
+      g_6p6s200i_3t4o: 0.78
+    result_rationale: 'MVP中precision主效应0.87%和precision×item交互7.24%主要来自float32使用不同vLLM
+      engine路径（非V0时触发不同kernel）， 导致FP32准确率系统性偏低5.7pp。统一V0 enforce_eager后，三种精度走同一compute
+      path， FP32/BF16/FP16准确率差收敛至0.5pp以内（纯numerical noise水平）。precision主效应从0.87%降至~0.3%，
+      precision×item从7.24%降至~1.8%。这些被释放的方差份额主要回流到residual和item_id， 使item_id维持在~58%（与MVP一致，因为item
+      difficulty本身是真实信号，不受engine confound影响）。 4个模型均以item_id为rank-1组分，因为MMLU的item difficulty分布（从trivial到expert-level）
+      在所有7-9B模型上产生类似的accuracy ceiling/floor效应。Gemma-2略高因其instruction-tuned特性 使其对easy
+      items更稳定（floor更高），Mistral略低因其在部分domain上accuracy更平坦。 200 items（分层采样）比MVP的50 items提供更稳定的方差估计，置信区间收窄约50%。
+
+      '
+    tables:
+    - name: 'Table 1: Variance Component Estimates — MMLU 200 items, 4 models pooled'
+      columns:
+      - Component
+      - '% Variance'
+      - SE
+      - 95% CI Lower
+      - 95% CI Upper
+      - MVP (50 items)
+      rows:
+      - - item_id
+        - 58.4
+        - 2.1
+        - 54.3
+        - 62.5
+        - 58.4
+      - - residual
+        - 16.8
+        - 0.9
+        - 15.0
+        - 18.6
+        - 17.6
+      - - prompt×item
+        - 6.1
+        - 0.7
+        - 4.7
+        - 7.5
+        - 5.7
+      - - temp×item
+        - 5.8
+        - 0.6
+        - 4.6
+        - 7.0
+        - 6.9
+      - - seed×item
+        - 2.9
+        - 0.4
+        - 2.1
+        - 3.7
+        - 2.7
+      - - precision×item
+        - 1.8
+        - 0.3
+        - 1.2
+        - 2.4
+        - 7.2*
+      - - ordering×item
+        - 1.4
+        - 0.3
+        - 0.8
+        - 2.0
+        - —
+      - - prompt
+        - 0.9
+        - 0.3
+        - 0.3
+        - 1.5
+        - —
+      - - temperature
+        - 0.7
+        - 0.2
+        - 0.3
+        - 1.1
+        - —
+      - - precision
+        - 0.3
+        - 0.1
+        - 0.1
+        - 0.5
+        - 0.87*
+      - - ordering
+        - 0.3
+        - 0.1
+        - 0.1
+        - 0.5
+        - —
+      - - seed
+        - 0.1
+        - 0.05
+        - 0.0
+        - 0.2
+        - —
+    - name: 'Table 2: Per-Model item_id Variance Share'
+      columns:
+      - Model
+      - item_id %
+      - Next Largest
+      - Next %
+      rows:
+      - - Qwen3-8B
+        - 59.8
+        - residual
+        - 16.2
+      - - Llama-3.1-8B
+        - 57.1
+        - residual
+        - 17.8
+      - - Gemma-2-9B-IT
+        - 62.0
+        - residual
+        - 14.9
+      - - Mistral-7B-v0.3
+        - 54.7
+        - residual
+        - 18.5
+    figures_description:
+    - 'Fig 1: Stacked-bar variance decomposition — MVP (confounded) vs exp-001 (fixed),
+      side-by-side。左栏显示precision和precision×item的膨胀，右栏显示修复后两者坍缩，item_id占比不变。'
+    - 'Fig 2: 4-panel per-model stacked bars，展示item_id始终为rank-1的cross-model consistency。'
+    - 'Fig 3: FP32 vs BF16 accuracy scatter (per-item)，MVP中slope偏离1.0，exp-001中回归到~1.0。'
+    analysis: '核心发现：engine confound修复后item dominance完全稳健，precision主效应从0.87%降至0.3%。
+      这同时验证了Claim 1（item dominance）和提供了方法论贡献（engine配置对variance attribution的影响）。 4个模型一致性消除了"Qwen3特例"的concern。200
+      items分层采样提供了足够的statistical power。 Ordering facet新增后占比很小（~1.7% total含interaction），说明item
+      presentation order不是主要concern。
+
+      '
+  - name: Multi-benchmark replication
+    plan_id: exp-002
+    description: '4 models × 2 precisions (BF16/FP16) × 6 prompts × 6 seeds × 2 temperatures
+      × 4 orderings × 200 items, 分别在GSM8K、ARC-Challenge、HellaSwag上运行。每benchmark总记录
+      4×2×6×6×2×4×200=230,400。
+
+      '
+    expected_results:
+      gsm8k_overall_accuracy: 0.583
+      gsm8k_item_id: 0.487
+      gsm8k_residual: 0.214
+      gsm8k_temperature_x_item_id: 0.089
+      gsm8k_prompt_x_item_id: 0.072
+      gsm8k_seed_x_item_id: 0.041
+      gsm8k_precision_x_item_id: 0.012
+      gsm8k_ordering_x_item_id: 0.018
+      gsm8k_temperature: 0.024
+      gsm8k_prompt: 0.015
+      gsm8k_precision: 0.002
+      gsm8k_g_current_practice: 0.29
+      arc_overall_accuracy: 0.597
+      arc_item_id: 0.551
+      arc_residual: 0.182
+      arc_prompt_x_item_id: 0.068
+      arc_temperature_x_item_id: 0.054
+      arc_seed_x_item_id: 0.031
+      arc_precision_x_item_id: 0.014
+      arc_ordering_x_item_id: 0.016
+      arc_prompt: 0.011
+      arc_temperature: 0.008
+      arc_precision: 0.002
+      arc_g_current_practice: 0.32
+      hellaswag_overall_accuracy: 0.712
+      hellaswag_item_id: 0.527
+      hellaswag_residual: 0.195
+      hellaswag_prompt_x_item_id: 0.058
+      hellaswag_temperature_x_item_id: 0.062
+      hellaswag_seed_x_item_id: 0.033
+      hellaswag_precision_x_item_id: 0.011
+      hellaswag_ordering_x_item_id: 0.019
+      hellaswag_prompt: 0.008
+      hellaswag_temperature: 0.006
+      hellaswag_precision: 0.001
+      hellaswag_g_current_practice: 0.36
+      benchmarks_with_item_id_rank1: 4
+      item_id_range_across_benchmarks:
+      - 0.487
+      - 0.584
+      cross_benchmark_replication_rate: 1.0
+      models_showing_consistent_pattern: 4
+    result_rationale: 'GSM8K的item_id占比略低于MMLU（48.7% vs 58.4%），因为数学推理任务引入更多chain-of-thought随机性，
+      使residual和temperature×item交互膨胀。GSM8K中温度效应更大（temperature×item 8.9%）， 因为CoT生成路径对sampling
+      temperature更敏感——同一道数学题在不同温度下可能走完全不同的推理链。 但item_id仍然是rank-1组分，因为GSM8K的difficulty
+      gradient极陡（从单步算术到多步word problem）， 这种item-level variance在所有条件下都主导。ARC-Challenge的item_id（55.1%）接近MMLU，
+      因为科学推理题的difficulty分布类似（从factual recall到multi-hop inference）。 HellaSwag的item_id（52.7%）也稳健，因为commonsense
+      completion的item variance主要来自 distractor quality差异——有些items的wrong answers显而易见，有些几乎无法区分。
+      所有benchmark上precision主效应均<0.3%，确认engine confound fix的泛化性。 4/4 benchmark的item_id
+      rank-1复现率为100%，支撑"cross-benchmark replication rate = 1.0"。
+
+      '
+    tables:
+    - name: 'Table 3: Cross-Benchmark Variance Decomposition Summary'
+      columns:
+      - Benchmark
+      - item_id %
+      - Residual %
+      - Item-Conditional Total %
+      - Precision Main %
+      - G (current)
+      rows:
+      - - MMLU
+        - 58.4
+        - 16.8
+        - 16.1
+        - 0.3
+        - 0.34
+      - - GSM8K
+        - 48.7
+        - 21.4
+        - 23.2
+        - 0.2
+        - 0.29
+      - - ARC-Challenge
+        - 55.1
+        - 18.2
+        - 18.3
+        - 0.2
+        - 0.32
+      - - HellaSwag
+        - 52.7
+        - 19.5
+        - 18.3
+        - 0.1
+        - 0.36
+    - name: 'Table 4: GSM8K Per-Model Breakdown'
+      columns:
+      - Model
+      - item_id %
+      - temp×item %
+      - prompt×item %
+      - residual %
+      rows:
+      - - Qwen3-8B
+        - 51.2
+        - 8.1
+        - 6.8
+        - 19.8
+      - - Llama-3.1-8B
+        - 47.3
+        - 9.4
+        - 7.6
+        - 22.1
+      - - Gemma-2-9B-IT
+        - 50.8
+        - 8.5
+        - 6.9
+        - 20.3
+      - - Mistral-7B-v0.3
+        - 43.4
+        - 10.5
+        - 8.3
+        - 23.5
+    figures_description:
+    - 'Fig 4: 4-benchmark stacked-bar variance decomposition并排对比。item_id始终为最大色块，但GSM8K的residual和temperature×item色块明显更大。'
+    - 'Fig 5: Heatmap — benchmark × model × component，展示pattern consistency。色块深浅表示variance
+      share，item_id行始终最深。'
+    analysis: 'Item dominance在4个benchmark上全部复现（range 48.7%-58.4%），但幅度因task type有系统性差异：
+      generation-heavy tasks（GSM8K）因CoT随机性使residual膨胀，压缩item_id相对占比； classification-like
+      tasks（MMLU, ARC）的item_id更高。这个gradient本身是有趣的发现， 可在Discussion中展开。关键是即使在"worst
+      case"的GSM8K上，item_id仍是rank-1（48.7% > residual 21.4%）， headline claim成立。
+
+      '
+  - name: Multi-hardware G-study
+    plan_id: exp-003
+    description: '4 models × 2 GPU types (RTX PRO 6000 + second GPU) × 2 precisions
+      (BF16/FP16) × 6 prompts × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU
+      items。总记录 4×2×2×6×6×3×4×200=691,200。 核心目标：量化hardware主效应和hardware×methodology交互。
+
+      '
+    expected_results:
+      total_records: 691200
+      hardware_main_effect: 0.006
+      hardware_x_precision: 0.002
+      hardware_x_prompt: 0.001
+      hardware_x_temperature: 0.001
+      hardware_x_seed: 0.0005
+      hardware_x_ordering: 0.0003
+      hardware_x_item_id: 0.019
+      precision_x_prompt: 0.0008
+      precision_x_temperature: 0.0006
+      precision_x_seed: 0.0003
+      precision_x_ordering: 0.0002
+      direct_infra_method_interaction_total: 0.005
+      item_conditional_interactions_total: 0.142
+      item_id: 0.561
+      residual: 0.152
+      prompt_x_item: 0.059
+      temperature_x_item: 0.055
+      seed_x_item: 0.028
+      precision_x_item: 0.017
+      ordering_x_item: 0.013
+      hardware_x_item: 0.019
+      separability_ratio: 0.035
+      gpu1_gpu2_accuracy_correlation: 0.9987
+      max_accuracy_difference_any_condition: 0.018
+      mean_accuracy_difference: 0.004
+      g_current_practice: 0.33
+      g_full_design: 0.81
+    result_rationale: 'Hardware主效应0.6%反映两块GPU的微架构差异（不同SM count、memory bandwidth、kernel
+      scheduling）， 但这些差异是系统性的（固定偏移），不是随机的，所以主效应很小。hardware×item交互1.9%比hardware主效应大，
+      因为特定items（如需要长sequence generation的items）在不同GPU上因kernel tiling差异产生不同的numerical
+      path， 但这只影响边界case items。所有direct infra×method交互加总仅0.5%，因为infrastructure层（hardware
+      type, precision） 和methodology层（prompt, seed, temperature, ordering）作用于不同的computation
+      stages： precision/hardware影响numerical computation，prompt/seed/temperature影响token
+      sampling， 两者的交叉点（sampling受precision影响的程度）在logit空间中被softmax压缩到negligible水平。 Item-conditional
+      interactions总和14.2%远大于direct interactions 0.5%，验证了Claim 2的nuanced story： separability在aggregate成立，但两层都通过item
+      difficulty调节其效应。 GPU间accuracy correlation 0.9987说明hardware几乎不改变model ranking，只在individual
+      item level引入微小噪声。
+
+      '
+    tables:
+    - name: 'Table 5: Separability Test — Direct vs Item-Conditional Interactions'
+      columns:
+      - Interaction Type
+      - Components
+      - Total % Variance
+      - Interpretation
+      rows:
+      - - Direct Infra×Method
+        - hw×prompt, hw×temp, hw×seed, hw×ord, prec×prompt, prec×temp, prec×seed,
+          prec×ord
+        - 0.5
+        - Negligible — separability holds at aggregate
+      - - Infra×Item
+        - hw×item, prec×item
+        - 3.6
+        - Small but non-zero — hardware/precision effects are item-conditional
+      - - Method×Item
+        - prompt×item, temp×item, seed×item, ord×item
+        - 15.5
+        - Substantial — methodology effects are strongly item-conditional
+      - - Item Main
+        - item_id
+        - 56.1
+        - Dominant — item selection is the primary variance source
+    - name: 'Table 6: Hardware Agreement Matrix (per-model mean accuracy)'
+      columns:
+      - Model
+      - GPU1
+      - GPU2
+      - Difference
+      rows:
+      - - Qwen3-8B
+        - 0.671
+        - 0.668
+        - 0.003
+      - - Llama-3.1-8B
+        - 0.654
+        - 0.65
+        - 0.004
+      - - Gemma-2-9B-IT
+        - 0.689
+        - 0.684
+        - 0.005
+      - - Mistral-7B-v0.3
+        - 0.638
+        - 0.634
+        - 0.004
+    figures_description:
+    - 'Fig 6: Separability diagram — 两层圆（infra layer, method layer）通过item difficulty连接，直接交互箭头用虚线（<0.5%），item-conditional箭头用实线。'
+    - 'Fig 7: GPU1 vs GPU2 per-item accuracy scatter，近乎perfect diagonal，少数outlier
+      items标注。'
+    analysis: 'Separability成立：direct infra×method交互总和0.5%，远低于1%阈值。但不是trivial null
+      result—— item-conditional interactions（14.2%）提供了nuanced interpretation：infrastructure和methodology
+      不是完全独立的，而是通过item difficulty间接耦合。这比simple "separable/not separable"更有价值， 因为它解释了为什么isolated-factor
+      studies的结论在某些items上不泛化。 这同时支撑了Claim 2的两半："empirical license for isolated-factor
+      studies"（direct <0.5%） 和 "conclusions are conditional on item selection"（item-conditional
+      14.2%）。
+
+      '
+  - name: D-study reproducibility budget projections
+    plan_id: exp-004
+    description: '基于exp-001/002/003的合并variance component estimates，计算不同facet allocation下的G系数。
+      生成practitioner-facing budget tables和projection curves。纯计算，无GPU开销。
+
+      '
+    expected_results:
+      g_1prompt_1seed_200items_mmlu: 0.34
+      g_1prompt_1seed_200items_gsm8k: 0.29
+      g_1prompt_1seed_200items_arc: 0.32
+      g_1prompt_1seed_200items_hellaswag: 0.36
+      g_1prompt_1seed_600items_mmlu: 0.71
+      g_1prompt_1seed_1000items_mmlu: 0.82
+      g_1prompt_1seed_2000items_mmlu: 0.9
+      g_3prompt_1seed_200items_mmlu: 0.42
+      g_6prompt_1seed_200items_mmlu: 0.49
+      g_12prompt_1seed_200items_mmlu: 0.54
+      g_1prompt_3seed_200items_mmlu: 0.36
+      g_1prompt_6seed_200items_mmlu: 0.37
+      optimal_g90_items: 600
+      optimal_g90_prompts: 3
+      optimal_g90_seeds: 2
+      optimal_g90_total_conditions: 6
+      optimal_g90_total_evaluations: 3600
+      optimal_g95_items: 1200
+      optimal_g95_prompts: 4
+      optimal_g95_seeds: 3
+      optimal_g95_total_conditions: 12
+      optimal_g95_total_evaluations: 14400
+      marginal_g_per_100_items: 0.038
+      marginal_g_per_prompt: 0.025
+      marginal_g_per_seed: 0.005
+      items_vs_prompts_effectiveness_ratio: 10.2
+      items_vs_seeds_effectiveness_ratio: 51.0
+      gsm8k_optimal_g90_items: 800
+      gsm8k_optimal_g90_prompts: 3
+      gsm8k_optimal_g90_seeds: 2
+      arc_optimal_g90_items: 650
+      hellaswag_optimal_g90_items: 550
+    result_rationale: 'G系数由universe score variance与observed score variance的比值决定。因为item_id占总方差>50%，
+      增加item采样直接压缩最大的variance component，G提升最快。具体地，G ≈ σ²(τ) / [σ²(τ) + σ²(δ)/n_facets]，
+      当item_id是σ²(δ)的主要贡献者时，增加n_items的marginal return远超增加n_prompts或n_seeds。 数值上，从200到600
+      items（3×）使G从0.34升至0.71，而从1到3 prompts（3×）仅从0.34升至0.42。 这是因为prompt variance（含prompt×item）共计~7%，而item
+      variance 58%。 Seed几乎无效（G从0.34到0.37 at 6 seeds），因为seed的总方差贡献<3%（主要通过seed×item）。
+      G≥0.90需要~600 items + 3 prompts + 2 seeds = 3,600 evaluations。 当前标准practice（1
+      prompt, 1 seed, 200 items）的G < 0.40意味着evaluation结果的reliability 低于社会科学中"不可接受"的阈值（通常G≥0.80）。
+      GSM8K需要更多items（800 vs 600）达到G≥0.90，因为其residual更大（CoT随机性）， 需要更多items来平均掉item-level
+      noise。
+
+      '
+    tables:
+    - name: 'Table 7: Reproducibility Budget — MMLU (Items × Prompts × Seeds → G coefficient)'
+      columns:
+      - Items
+      - Prompts
+      - Seeds
+      - Total Evals
+      - G coeff
+      - Δ vs Current
+      rows:
+      - - 200
+        - 1
+        - 1
+        - 200
+        - 0.34
+        - baseline
+      - - 200
+        - 3
+        - 1
+        - 600
+        - 0.42
+        - '+0.08'
+      - - 200
+        - 6
+        - 1
+        - 1200
+        - 0.49
+        - '+0.15'
+      - - 200
+        - 6
+        - 6
+        - 7200
+        - 0.54
+        - '+0.20'
+      - - 600
+        - 1
+        - 1
+        - 600
+        - 0.71
+        - '+0.37'
+      - - 600
+        - 3
+        - 1
+        - 1800
+        - 0.82
+        - '+0.48'
+      - - 600
+        - 3
+        - 2
+        - 3600
+        - 0.9
+        - '+0.56'
+      - - 1000
+        - 3
+        - 2
+        - 6000
+        - 0.93
+        - '+0.59'
+      - - 1200
+        - 4
+        - 3
+        - 14400
+        - 0.95
+        - '+0.61'
+      - - 2000
+        - 4
+        - 3
+        - 24000
+        - 0.97
+        - '+0.63'
+    - name: 'Table 8: Cross-Benchmark Minimum Budget for G≥0.90'
+      columns:
+      - Benchmark
+      - Items
+      - Prompts
+      - Seeds
+      - Total Evals
+      - Cost Factor vs Current
+      rows:
+      - - MMLU
+        - 600
+        - 3
+        - 2
+        - 3600
+        - 18×
+      - - GSM8K
+        - 800
+        - 3
+        - 2
+        - 4800
+        - 24×
+      - - ARC-Challenge
+        - 650
+        - 3
+        - 2
+        - 3900
+        - 19.5×
+      - - HellaSwag
+        - 550
+        - 3
+        - 2
+        - 3300
+        - 16.5×
+    figures_description:
+    - 'Fig 8: D-study projection curves — G coefficient vs total evaluations，三条线分别对应
+      scale items only / scale prompts only / scale seeds only。Items线陡峭上升，prompts线平缓，seeds线几乎flat。'
+    - 'Fig 9: Iso-G contour plot（items × prompts平面，G值等高线），展示最优allocation路径沿items轴延伸。'
+    - 'Fig 10: 4-benchmark overlay projection curves，展示GSM8K需要更多evaluations但pattern一致。'
+    analysis: 'Claim 3的核心表格。Headline数字："tripling items is 10× more effective than
+      tripling prompts" 直接来自marginal effectiveness ratio 10.2:1。当前practice G<0.40的发现具有强policy
+      implication—— 意味着现有leaderboard结果的measurement reliability低于社会科学中最低标准。 600 items
+      + 3 prompts + 2 seeds的"recommended minimum"在计算成本上仅为full factorial的一小部分， 是actionable的建议。跨benchmark
+      budget差异（550-800 items for G≥0.90）提供task-specific guidance。
+
+      '
+  - name: 14B model extension
+    plan_id: exp-005
+    description: 'Qwen3-14B和DeepSeek-R1-Distill-14B × 2 precisions (BF16/FP16) × 6
+      prompts × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU items。每模型 2×6×6×3×4×200=172,800记录。
+
+      '
+    expected_results:
+      qwen3_14b_accuracy: 0.728
+      deepseek_r1_14b_accuracy: 0.714
+      qwen3_14b_item_id: 0.574
+      deepseek_r1_14b_item_id: 0.538
+      qwen3_14b_residual: 0.162
+      deepseek_r1_14b_residual: 0.198
+      deepseek_r1_14b_temperature_x_item: 0.082
+      scale_effect_on_item_id: within 8B model range
+      item_id_rank1_both_models: true
+      variance_pattern_consistent_with_8b: true
+      precision_main_effect_14b: 0.002
+    result_rationale: '14B模型的overall accuracy更高，但item difficulty的variance structure不会因scale改变——
+      easy items仍然easy，hard items仍然hard。Item_id占比略低于8B平均值（~55-57% vs ~58%）， 因为14B模型在medium-difficulty
+      items上表现更一致（ceiling effect压缩了item variance的上端）， 但差异不大。DeepSeek-R1-Distill的reasoning-distilled特性使其在CoT-heavy
+      items上产生更多 temperature×item交互（类似GSM8K的pattern），residual也略高，因为distillation引入的implicit
+      CoT 增加了generation-level stochasticity。关键是item_id在两个14B模型上仍为rank-1， 确认pattern不随model
+      scale改变。precision主效应在14B上同样negligible（0.2%）， 因为confound fix的原理（统一engine path）与model
+      size无关。
+
+      '
+    tables:
+    - name: 'Table 9: 14B vs 8B Variance Pattern Comparison'
+      columns:
+      - Component
+      - 8B Mean
+      - 8B Range
+      - Qwen3-14B
+      - DS-R1-14B
+      rows:
+      - - item_id
+        - 58.4
+        - 54.7–62.0
+        - 57.4
+        - 53.8
+      - - residual
+        - 16.8
+        - 14.9–18.5
+        - 16.2
+        - 19.8
+      - - temp×item
+        - 5.8
+        - 4.6–7.0
+        - 5.3
+        - 8.2
+      - - prompt×item
+        - 6.1
+        - 4.7–7.5
+        - 5.8
+        - 5.4
+      - - precision
+        - 0.3
+        - 0.1–0.5
+        - 0.2
+        - 0.2
+    figures_description:
+    - 'Fig 11: 6-model panel（4×8B + 2×14B）stacked bars，展示scale不改变variance hierarchy。'
+    analysis: 'Scale invariance确认：item dominance不是小模型artifacts。DeepSeek-R1-Distill的slightly不同的profile
+      （更高residual, 更高temp×item）提供了architecture effect的初步evidence， 但不改变core claim。这是P1实验，为paper增加robustness但非必需。
+
+      '
+  - name: Fine-tuning G-study
+    plan_id: exp-006
+    description: 'RoBERTa-large在SST-2/MNLI/RTE/COPA上fine-tuning。6 seeds × 3 learning
+      rates × 4 data shuffles × 3 GPUs × 2 precisions = 432 runs/task × 4 tasks =
+      1,728 total。
+
+      '
+    expected_results:
+      sst2_accuracy_mean: 0.948
+      sst2_item_id: 0.412
+      sst2_seed: 0.087
+      sst2_learning_rate: 0.063
+      sst2_data_shuffle: 0.042
+      sst2_seed_x_item: 0.098
+      sst2_lr_x_item: 0.074
+      sst2_residual: 0.131
+      sst2_gpu: 0.003
+      sst2_precision: 0.002
+      mnli_accuracy_mean: 0.876
+      mnli_item_id: 0.445
+      mnli_seed: 0.072
+      mnli_learning_rate: 0.081
+      mnli_data_shuffle: 0.038
+      mnli_seed_x_item: 0.091
+      mnli_residual: 0.142
+      rte_accuracy_mean: 0.743
+      rte_item_id: 0.368
+      rte_seed: 0.124
+      rte_learning_rate: 0.098
+      rte_data_shuffle: 0.067
+      rte_seed_x_item: 0.112
+      rte_residual: 0.158
+      copa_accuracy_mean: 0.682
+      copa_item_id: 0.382
+      copa_seed: 0.118
+      copa_learning_rate: 0.091
+      copa_residual: 0.167
+      item_id_rank1_all_tasks: true
+      seed_more_important_than_inference: true
+      infra_effects_negligible: true
+      fine_tuning_g_current_practice: 0.28
+    result_rationale: 'Fine-tuning与inference的关键区别：training seed和learning rate成为substantial
+      variance sources （combined 10-22%），因为它们影响optimization trajectory，不仅仅是sampling
+      randomness。 但item_id仍然是rank-1（37-45%），因为NLU tasks的item difficulty gradient——
+      从"I love this movie"(trivially positive)到需要subtle pragmatic inference的examples——
+      在所有training configurations下都产生consistent accuracy variation。 RTE的item_id最低（36.8%），因为小数据集（2.5K
+      training examples）使fine-tuning对seed更敏感， seed主效应膨胀到12.4%。这为paper提供了"inference
+      vs fine-tuning"的对比dimension： 两者都是item-dominant，但fine-tuning中training hyperparameters（seed,
+      LR）取代了 inference中的generation parameters（temperature, prompt）成为第二梯队的variance
+      sources。 GPU和precision主效应在fine-tuning中同样negligible（<0.5%），因为RoBERTa-large 对numerical
+      precision不敏感（unlike large generative models的autoregressive error accumulation）。
+
+      '
+    tables:
+    - name: 'Table 10: Fine-tuning vs Inference Variance Hierarchy'
+      columns:
+      - Rank
+      - Inference (MMLU)
+      - Fine-tuning (SST-2)
+      rows:
+      - - 1
+        - item_id (58.4%)
+        - item_id (41.2%)
+      - - 2
+        - residual (16.8%)
+        - residual (13.1%)
+      - - 3
+        - prompt×item (6.1%)
+        - seed×item (9.8%)
+      - - 4
+        - temp×item (5.8%)
+        - seed (8.7%)
+      - - 5
+        - seed×item (2.9%)
+        - lr×item (7.4%)
+      - - 6
+        - precision×item (1.8%)
+        - lr (6.3%)
+    figures_description:
+    - 'Fig 12: Inference vs Fine-tuning stacked bars并排，展示item_id在两个paradigm中均为rank-1但fine-tuning中seed/LR更prominent。'
+    - 'Fig 13: 4-task fine-tuning panel，展示dataset size对variance structure的调节效应（RTE
+      seed最大）。'
+    analysis: 'Fine-tuning G-study将paper从"inference evaluation reproducibility"扩展到"ML
+      reproducibility broadly"。 核心takeaway：item dominance是跨paradigm的（inference和fine-tuning），但second-tier
+      factors不同。 这是P1实验，为paper增加generality但AAAI投稿时可作为supplementary。
+
+      '
+  - name: LayerCast precision study
+    plan_id: exp-007
+    description: '在MMLU上测试LayerCast（FP16 storage + FP32 compute）作为额外precision condition。
+      4 models × 1 precision mode × 6 prompts × 6 seeds × 3 temperatures × 4 orderings
+      × 200 items = 172,800记录。
+
+      '
+    expected_results:
+      layercast_accuracy_mean: 0.67
+      layercast_vs_fp32_accuracy_diff: 0.004
+      layercast_vs_bf16_accuracy_diff: -0.001
+      layercast_item_agreement_with_fp32: 0.9991
+      layercast_item_agreement_with_bf16: 0.9994
+      layercast_added_variance_to_precision: 0.0004
+      layercast_throughput_vs_fp32: 1.38
+      layercast_throughput_vs_bf16: 0.91
+      layercast_precision_x_item_contribution: 0.009
+    result_rationale: 'LayerCast在存储时用FP16减少memory footprint，在compute时cast to FP32，
+      因此其numerical behavior几乎等同于纯FP32（computation path一致）， accuracy差异仅来自storage时的precision
+      loss（FP16 mantissa 10 bits vs FP32 23 bits）， 这对大部分weights来说negligible（在训练时weights就是从FP16/BF16来的）。
+      与BF16的差异更小（0.1pp），因为BF16的dynamic range与FP32一致（8-bit exponent）， 而FP16的range更窄但mantissa更宽，两者accuracy接近。
+      LayerCast对precision variance几乎没有增量贡献（0.04%），因为它本质上是FP32 compute的cheaper variant。
+      Throughput方面，LayerCast比FP32快38%（memory bandwidth节省），比BF16慢9%（需要cast操作）。 这个实验为paper提供了一个"practical
+      mitigation"故事：如果practitioner担心precision影响， LayerCast以minimal overhead提供FP32-level
+      behavior。
+
+      '
+    tables:
+    - name: 'Table 11: Precision Mode Comparison'
+      columns:
+      - Mode
+      - Accuracy
+      - item Agreement w/ FP32
+      - Throughput (tokens/s)
+      - VRAM (GB)
+      rows:
+      - - FP32
+        - 0.666
+        - 1.0
+        - 1820
+        - 31.2
+      - - BF16
+        - 0.671
+        - 0.9985
+        - 2760
+        - 15.8
+      - - FP16
+        - 0.669
+        - 0.9982
+        - 2810
+        - 15.6
+      - - LayerCast
+        - 0.67
+        - 0.9991
+        - 2510
+        - 16.1
+    figures_description:
+    - 'Fig 14: 4-precision mode accuracy distribution violin plots，展示LayerCast与FP32几乎identical
+      spread。'
+    analysis: 'P2实验。LayerCast结果进一步support precision不是major concern（在engine confound
+      fix后）。 可作为paper中"practical recommendation"段落的一条：对于追求最高reproducibility的场景， LayerCast提供了memory-efficient的FP32-equivalent选项。
+
+      '
+  - name: MATH benchmark extension
+    plan_id: exp-008
+    description: '4 models × 2 precisions (BF16/FP16) × 6 prompts × 6 seeds × 2 temperatures
+      × 4 orderings × 200 MATH items。 总记录 4×2×6×6×2×4×200=230,400。测试reasoning-heavy
+      task的variance structure。
+
+      '
+    expected_results:
+      math_overall_accuracy: 0.342
+      math_item_id: 0.421
+      math_residual: 0.248
+      math_temperature_x_item: 0.104
+      math_prompt_x_item: 0.068
+      math_seed_x_item: 0.052
+      math_temperature: 0.038
+      math_prompt: 0.021
+      math_precision: 0.002
+      math_precision_x_item: 0.008
+      math_ordering_x_item: 0.015
+      math_g_current_practice: 0.24
+      math_item_id_rank1: true
+      math_optimal_g90_items: 1100
+      math_optimal_g90_prompts: 4
+      math_optimal_g90_seeds: 3
+    result_rationale: 'MATH是所有benchmark中最challenging的（accuracy ~34%），其item difficulty分布极端——
+      从Level 1（algebra basics）到Level 5（competition math），跨越巨大的difficulty range。 Item_id仍为rank-1（42.1%）但低于MMLU，因为：(1)
+      lower overall accuracy增加了random guessing的比例， 膨胀residual到24.8%；(2) MATH的CoT generation比GSM8K更长更复杂（多步proof-like
+      reasoning）， 使temperature×item interaction达到10.4%——在高temperature下，长推理链的任何一步都可能diverge，
+      且这种sensitivity是item-specific的（Level 5 problems的长推理链比Level 1的短计算更sensitive）。
+      Temperature主效应也最高（3.8%），因为MATH的generation length使sampling temperature的cumulative
+      effect更显著。 G current practice仅0.24——所有benchmark中最低——意味着MATH evaluation的reproducibility最差。
+      达到G≥0.90需要1100 items + 4 prompts + 3 seeds，是MMLU所需的~3倍evaluation budget。 这个发现有strong
+      policy implication：reasoning benchmark的evaluation标准需要比classification benchmark更严格。
+
+      '
+    tables:
+    - name: 'Table 12: Full Cross-Benchmark Variance Summary (5 benchmarks)'
+      columns:
+      - Benchmark
+      - Accuracy
+      - item_id %
+      - Residual %
+      - Temp×Item %
+      - G (current)
+      - Items for G≥0.90
+      rows:
+      - - MMLU
+        - 0.668
+        - 58.4
+        - 16.8
+        - 5.8
+        - 0.34
+        - 600
+      - - ARC-Challenge
+        - 0.597
+        - 55.1
+        - 18.2
+        - 5.4
+        - 0.32
+        - 650
+      - - HellaSwag
+        - 0.712
+        - 52.7
+        - 19.5
+        - 6.2
+        - 0.36
+        - 550
+      - - GSM8K
+        - 0.583
+        - 48.7
+        - 21.4
+        - 8.9
+        - 0.29
+        - 800
+      - - MATH
+        - 0.342
+        - 42.1
+        - 24.8
+        - 10.4
+        - 0.24
+        - 1100
+    figures_description:
+    - 'Fig 15: 5-benchmark stacked bars排序by task difficulty，展示清晰的gradient：task越难→item_id越低、residual和temp×item越高。'
+    - 'Fig 16: D-study projection curves for 5 benchmarks overlay，MATH曲线最右（需最多evaluations达G≥0.90）。'
+    analysis: MATH提供了variance structure的"stress test"。Item_id在最extreme条件下仍为rank-1（42.1%），
+      但task difficulty明显调节了variance decomposition的profile。5个benchmark展现了清晰的gradient：
+      task difficulty ↑ → item_id share ↓, residual ↑, temperature×item ↑, G current
+      practice ↓。 这个gradient本身是publishable finding：它量化了为什么reasoning benchmark的evaluation更不稳定，
+      并给出了task-specific的reproducibility budget。
+  review_report: '---
+
+    dream_id: dream_20260520T190053
+
+    tier: best
+
+    overall_score: borderline
+
+    timestamp: 2026-05-20T19:37:05.298566+00:00
+
+    ---
+
+
+
+    # Dream Review Report
+
+
+    **Paper:** Reproducibility Budgets for LLM Evaluation: Testing the Separability
+    Assumption Between Infrastructure and Methodological Variance Sources via Generalizability
+    Theory
+
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Review Standard:** Top ML venue, ~25% acceptance rate, 6-point scale
+
+
+    ---
+
+
+    ## Reviewer Scores
+
+
+    | Reviewer | Focus | Initial Score | Post-Discussion |
+
+    |----------|-------|--------------|-----------------|
+
+    | R1 | Methods + Experiments | 4/6 (Weak Accept) | 4/6 (Weak Accept) |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 3/6 (Weak Reject) |
+
+    | **Consensus** | | | **3.5/6 (Borderline)** |
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper conducts a fully-crossed Generalizability Theory (G-theory) study unifying
+    infrastructure (hardware, precision) × methodology (prompt, seed, temperature,
+    ordering) × measurement (test items) factors in LLM evaluation. Across 6 models
+    (7–14B), 5 benchmarks, and 2M+ records, the authors report: (1) item selection
+    dominates variance (42–58%), (2) infrastructure–methodology separability holds
+    at aggregate (<0.5%) but is item-conditional (14.2%), and (3) current practices
+    yield G < 0.40 while D-study budgets show items are 10× more cost-effective than
+    prompts for reliability. A fine-tuning extension with RoBERTa-large shows item
+    dominance generalizes to training.
+
+
+    ---
+
+
+    ## Consolidated Strengths
+
+
+    **S1. Ambitious experimental scale and systematic design.**
+
+    Seven experiments totaling 2M+ evaluation records, building from single-benchmark
+    to cross-benchmark, cross-model, cross-hardware, and cross-paradigm coverage.
+    All 8 planned experiments are reflected in the paper. This is a serious empirical
+    effort.
+
+
+    **S2. Engine confound discovery is a genuine methodological contribution.**
+
+    The finding that vLLM routes FP32 through a different compute path (non-V0 engine),
+    inflating precision variance from 0.3% to 0.87% (main) and from 1.8% to 7.24%
+    (interaction) with an 8.5pp accuracy gap, is independently valuable. It serves
+    as a concrete cautionary tale for any study comparing precision modes and demonstrates
+    how infrastructure configuration can systematically bias variance attribution.
+
+
+    **S3. Nuanced two-level separability result.**
+
+    Rather than a simple binary answer, the separability test yields complementary
+    findings: aggregate separability holds (<0.5% direct interactions), licensing
+    isolated-factor studies, while item-conditional interactions (14.2%) warn that
+    such conclusions are contingent on item selection. This is more informative than
+    either finding alone.
+
+
+    **S4. D-study budgets are actionable.**
+
+    The budget tables (Table 7, Table 8) provide concrete, immediately usable guidance:
+    600 items + 3 prompts + 2 seeds → G ≥ 0.90 for MMLU. The 10:1 marginal effectiveness
+    ratio (items vs. prompts) is a memorable, practical takeaway. Cross-benchmark
+    budget differences (550–1100 items) provide task-specific guidance.
+
+
+    **S5. Cross-benchmark difficulty gradient.**
+
+    The systematic relationship between task difficulty and variance structure (item_id
+    decreases 58.4% → 42.1%, residual increases 16.8% → 24.8%, temp×item increases
+    5.8% → 10.4% as accuracy drops) quantifies why reasoning benchmarks are less reproducible.
+    This is a genuinely useful empirical finding.
+
+
+    ---
+
+
+    ## Consolidated Weaknesses
+
+
+    **W1. Incremental over Mesting et al. (2026) — the core methodological contribution
+    is an extension, not a new framework.** [Both reviewers, R2 primary]
+
+    Mesting et al. (2026) already applied G-theory to LLM evaluation with item, prompt,
+    judge, and temperature facets, finding judge dominance at 43.8%. This paper extends
+    that framework by adding infrastructure facets (hardware, precision). However,
+    these infrastructure facets turn out to contribute negligibly: hardware main effect
+    0.6%, precision main effect 0.3%. The extension is real but modest in substance
+    — the paper''s most important finding (item dominance) could plausibly have emerged
+    from a Mesting-style design without the infrastructure layer. The "first fully-crossed"
+    framing oversells what is fundamentally an incremental extension.
+
+
+    **W2. "Fully crossed" design is overstated.** [R1 primary]
+
+    The paper claims a fully-crossed design but the factorial structure is unbalanced:
+
+    - MMLU has the richest design (3 precisions, 3 temperatures, 4 orderings, 2 GPUs)
+
+    - Other benchmarks use reduced designs (2 precisions, 2 temperatures)
+
+    - Hardware crossing is only on MMLU (Exp. 3)
+
+    - 14B extension uses a reduced facet set
+
+    - Fine-tuning uses a completely different model/task family
+
+    Claims about cross-benchmark separability and scale invariance rest on narrower
+    evidence than the "fully crossed" framing implies. The paper should clearly delineate
+    which claims are supported by full crossing and which by partial designs.
+
+
+    **W3. Pooled-model analysis likely inflates item_id variance.** [R1 primary]
+
+    The primary analysis pools 4 models, treating them as exchangeable observations.
+    But model × item interactions (some items are harder for Mistral than Qwen3) get
+    absorbed into the item_id component, inflating its apparent dominance. The per-model
+    analysis (Table 2) partially addresses this (item_id range 54.7–62.0%), but should
+    be the primary presentation. The pooled analysis overstates the universality of
+    the 58.4% figure.
+
+
+    **W4. Item dominance is partially predictable from first principles.** [R2 primary]
+
+    Any assessment with a steep difficulty gradient (items ranging from trivial to
+    expert) will show item difficulty as the dominant variance source. The paper''s
+    own Discussion explains exactly why this must be so. While quantifying the magnitude
+    is useful, framing it as surprising ("researchers are optimizing the wrong knobs")
+    oversells the finding. A more measured framing — "item dominance is expected but
+    its magnitude (>50%) and the relative inefficiency of other interventions have
+    not been quantified" — would be more appropriate.
+
+
+    **W5. Separability threshold (0.5%) is arbitrary and the result is borderline.**
+    [R1 primary, R2 concurs]
+
+    The 0.5% threshold for "separability" is not justified from G-theory, psychometrics,
+    or any principled argument. The observed value (0.5%) lands exactly on the threshold
+    boundary, making the binary "separability holds" conclusion fragile. A bootstrap
+    confidence interval on the total direct interaction variance would be more informative.
+    The result should be presented as a continuous measure with uncertainty rather
+    than a pass/fail test.
+
+
+    **W6. D-study projections lack uncertainty quantification.** [R1 primary]
+
+    The budget recommendations (e.g., "600 items + 3 prompts + 2 seeds → G ≥ 0.90")
+    are point estimates derived from estimated variance components. No confidence
+    intervals or sensitivity analysis is provided for the projected G values. Given
+    that the input variance components have SEs of 0.1–2.1%, the projected G values
+    could shift meaningfully. The paper should propagate estimation uncertainty through
+    the D-study projections (e.g., via bootstrap).
+
+
+    **W7. Very sparse reference list (only 7 references).** [R2 primary, R1 concurs]
+
+    For a top ML venue, 7 references is far below expectations. Critical omissions
+    include:
+
+    - Classical G-theory: Brennan (2001) "Generalizability Theory," Shavelson & Webb
+    (1991) — foundational references for G-theory methodology
+
+    - ML variance decomposition: Bouthillier et al. (2021) "Accounting for Variance
+    in Machine Learning Benchmarks" — the closest ML-native predecessor, not cited
+
+    - IRT in NLP: Lalor et al. (2019), Rodriguez et al. (2021), Vania et al. (2021)
+    — item-level analysis frameworks directly relevant to the item dominance finding
+
+    - Ordering effects: Lu et al. (2022) — relevant to the ordering facet
+
+    - ML reproducibility: Henderson et al. (2018), Pineau et al. (2021) — broader
+    context
+
+    This is not a minor issue: the missing references include direct methodological
+    predecessors and would substantially change the novelty positioning.
+
+
+    **W8. Fine-tuning generalization is weak.** [Both reviewers]
+
+    The claim that "findings extend to fine-tuning settings" is based solely on RoBERTa-large
+    (355M, encoder-only) on 4 NLU classification tasks. This is a large architectural
+    and paradigm gap from the 7–14B decoder models used in inference experiments.
+    Fine-tuning a 7B+ decoder model with LoRA/QLoRA on a generation task would be
+    far more convincing as a generalization argument. As presented, this is a separate
+    (interesting) finding rather than evidence of generalization.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    **Q1.** How would the variance decomposition change if model were treated as a
+    random facet rather than pooling? Specifically, would model × item interactions
+    reduce the item_id share substantially?
+
+
+    **Q2.** Can you provide a direct numerical comparison with Mesting et al. (2026)
+    on overlapping facets (item, prompt, temperature)? This would clarify the incremental
+    contribution.
+
+
+    **Q3.** Would item dominance survive adding judge/scorer as a facet? Mesting found
+    judge at 43.8% — this could substantially alter the variance hierarchy. The paper
+    uses fixed generation-based scoring, which removes this source but also limits
+    comparability.
+
+
+    **Q4.** Can you provide bootstrap confidence intervals for the D-study G projections?
+    The headline recommendation (600/3/2 → G = 0.90) would be more credible with uncertainty
+    bounds.
+
+
+    **Q5.** What is the justification for the 0.5% separability threshold? Would results
+    change with 1% or 0.25%?
+
+
+    **Q6.** The MATH entry in Table 8 shows 1,100 items with "66× cost factor" but
+    1100 × 3 prompts × 2 seeds = 6,600 evaluations, not 13,200. Is this a typo, or
+    does MATH require more prompts/seeds?
+
+
+    **Q7.** How were the 6 prompt templates selected? Were they designed to maximize
+    diversity, or sampled from existing evaluation suites? The prompt × item interaction
+    (6.1%) depends critically on prompt diversity.
+
+
+    ---
+
+
+    ## Minor Issues
+
+
+    **M1.** Table 3 column headers are misaligned in the PDF — "item_id %" appears
+    to span the wrong column.
+
+
+    **M2.** The ThinkingMachines (2025) reference has placeholder arXiv ID "2501.xxxxx"
+    — needs the real ID.
+
+
+    **M3.** The abstract says "6 models" but the paper primarily analyzes 4 models
+    with 2 as extension. Should be clearer about primary vs. extension.
+
+
+    **M4.** The paper claims "over 2 million evaluation records" — the sum of stated
+    record counts (1,036,800 + 3×230,400 + 691,200 + 2×172,800 + 1,728 + 230,400 +
+    172,800) ≈ 3.17M. The "over 2 million" is an undercount of the actual total. Clarify.
+
+
+    **M5.** "LayerCast" is not a standard term — should be cited or defined more precisely.
+
+
+    **M6.** The D-study discussion mentions G ≥ 0.80 as the psychometric minimum but
+    doesn''t cite the source for this threshold (Nunnally & Bernstein 1994 or similar).
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    All 8 planned experiments from the design document are reflected in the paper:
+
+    - ✅ exp-001: Full-scale precision study (MMLU)
+
+    - ✅ exp-002: Multi-benchmark replication (GSM8K, ARC, HellaSwag)
+
+    - ✅ exp-003: Multi-hardware G-study
+
+    - ✅ exp-004: D-study projections
+
+    - ✅ exp-005: 14B model extension
+
+    - ✅ exp-006: Fine-tuning G-study
+
+    - ✅ exp-007: LayerCast precision study
+
+    - ✅ exp-008: MATH benchmark extension
+
+
+    Coverage is complete. However, several figures described in the experiment plan
+    (stacked-bar decompositions, heatmaps, scatter plots, D-study projection curves,
+    iso-G contour plots) are absent from the paper. The paper is table-heavy with
+    no figures, which significantly weakens communication of key results — particularly
+    the D-study projection curves (planned Fig 8–10) and the variance decomposition
+    comparisons (planned Fig 1, 4, 15) which would be far more effective visually
+    than as tables.
+
+
+    ---
+
+
+    ## Recommendation
+
+
+    **Consensus Score: 3.5/6 (Borderline — between Weak Reject and Weak Accept)**
+
+
+    **For acceptance, the paper would need:**
+
+    1. Reframe novelty claims to acknowledge extension-of-Mesting positioning honestly
+
+    2. Add per-model analysis as primary, pooled as secondary
+
+    3. Add uncertainty quantification to D-study projections
+
+    4. Substantially expand the reference list (add ≥15 missing key references)
+
+    5. Justify or remove the 0.5% separability threshold
+
+    6. Add figures — at minimum D-study projection curves and variance decomposition
+    stacked bars
+
+
+    **The paper''s core strengths** — the engine confound discovery, the nuanced separability
+    result, the cross-benchmark difficulty gradient, and the actionable D-study budgets
+    — represent genuine value. But the incremental positioning over Mesting et al.,
+    inflated novelty claims, methodological concerns (pooled analysis, arbitrary threshold,
+    no uncertainty propagation), and severely sparse references pull it below the
+    acceptance threshold in its current form.
+
+
+    **If revised to address the top 4 weaknesses**, this could become a solid Weak
+    Accept (4/6). The empirical effort is substantial and the practical recommendations
+    fill a real need. The revisions are achievable without new experiments.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260520T190053/median/paper.pdf
+  imagined_experiments:
+  - name: Full-scale Precision Study (Confound Fixed)
+    plan_id: exp-001
+    description: 4 models × 3 precisions × 6 prompts × 6 seeds × 3 temps × 4 orderings
+      × 200 MMLU items, all using V0 enforce_eager
+    expected_results:
+      total_conditions: 1296_per_model
+      total_records: 1036800
+      item_id_variance_share: 0.43
+      residual: 0.21
+      precision_main_effect: 0.008
+      precision_x_item: 0.032
+      temperature_x_item: 0.058
+      prompt_x_item: 0.062
+      seed_x_item: 0.024
+      ordering_main_effect: 0.004
+      prompt_main_effect: 0.012
+      temperature_main_effect: 0.015
+      item_conditional_interactions_total: 0.176
+      direct_infra_method_interaction: 0.003
+      g_coefficient_current_practice: 0.42
+      accuracy_bf16: 0.681
+      accuracy_fp16: 0.679
+      accuracy_fp32: 0.674
+      model_agreement: 3 of 4 models show item_id as largest; Gemma-2 shows elevated
+        prompt_x_item (~0.09) pulling item_id share to 0.36
+    result_rationale: 修复float32 confound后，MVP中precision=0.0087的main effect基本维持（因为BF16/FP16本身仍有差异），但precision×item从0.072骤降至0.032——MVP中float32使用了不同engine路径导致特定难题上的accuracy骤降，这部分interaction被消除。item_id纯方差从0.584降至0.43：原来的0.584中约有10-12pp是precision×item和temperature×item
+      interaction在单一precision条件下被吸收进item主效应（50 items时估计不稳定）。200 items的stratified sampling提供更稳定估计，residual从0.176升至0.21反映了更大item
+      pool中的unmodeled item×condition microvariance。Gemma-2-9B-IT因其instruction-tuning风格对prompt
+      wording异常敏感（已知其system prompt格式要求严格），prompt×item interaction偏高，拉低了该模型的item_id相对份额。整体G=0.42仍然很低，验证了current
+      practice不可靠的核心论点。
+    tables:
+    - 'Table 1: Variance component estimates (% of total) by model — 4×12 matrix showing
+      each component per model plus pooled'
+    - 'Table 2: Accuracy means by precision level per model — confirms confound fix
+      (三者差异<1pp vs MVP的8.5pp)'
+    - 'Table 3: Model-level G coefficients under current practice conditions'
+    figures_description:
+    - 'Fig 1: Stacked bar chart of variance components, 4 models side-by-side + pooled,
+      showing item_id consistently largest but varying 36-48%'
+    - 'Fig 2: Heatmap of item×precision interaction — showing which item difficulty
+      bins still show precision sensitivity after fix'
+    analysis: 'Two-way ANOVA确认precision main effect在fix后从显著(p<0.001, η²=0.009)降为边际(p=0.03,
+      η²=0.008)。Bootstrap CI for item_id share: [0.38, 0.48]。Gemma异常通过leave-one-model-out
+      sensitivity analysis量化——移除Gemma后pooled item_id升至0.46。'
+  - name: Multi-Benchmark Replication
+    plan_id: exp-002
+    description: 4 models × 2 precisions × 6 prompts × 6 seeds × 2 temps × 4 orderings
+      on GSM8K/ARC-C/HellaSwag (200 items each)
+    expected_results:
+      total_records_per_benchmark: 230400
+      gsm8k_item_id_share: 0.28
+      gsm8k_temperature_x_item: 0.12
+      gsm8k_seed_x_item: 0.08
+      gsm8k_residual: 0.27
+      gsm8k_prompt_main: 0.03
+      arc_challenge_item_id_share: 0.38
+      arc_challenge_residual: 0.22
+      arc_challenge_temperature_x_item: 0.07
+      hellaswag_item_id_share: 0.45
+      hellaswag_residual: 0.19
+      hellaswag_prompt_x_item: 0.05
+      cross_benchmark_item_dominance_as_largest: 3/4 benchmarks (GSM8K exception —
+        residual+temp×item jointly exceed item_id)
+      cross_benchmark_separability_holds: 3/4 benchmarks (direct infra×method < 0.02
+        everywhere)
+      g_gsm8k_current: 0.35
+      g_arc_current: 0.4
+      g_hellaswag_current: 0.48
+      replication_rate_item_as_single_largest: 0.625
+    result_rationale: GSM8K是reasoning task，CoT generation引入大量stochastic variance——temperature直接影响推理链的分支选择，且不同seed下同一难题可能走完全不同的推理路径，导致temperature×item和seed×item
+      interaction显著放大（合计0.20 vs MMLU的0.08）。residual也更高（0.27）因为generation过程本质上比MC selection更noisy。item_id仍有0.28但不再是单一最大源——residual(0.27)+temperature×item(0.12)合并后超过它。ARC-Challenge是science
+      MC，结构更接近MMLU但题目难度分布更极端（容易题ceiling effect），item_id=0.38。HellaSwag最接近MMLU pattern（都是MC、都是knowledge/commonsense），item_id=0.45。跨benchmark的核心发现：MC
+      benchmarks中item dominance稳健成立，但reasoning/generation benchmarks中variance structure根本不同——这本身成为novel
+      finding。Separability在所有benchmark都成立（direct interaction<0.02），因为hardware/precision
+      effects是low-level numerical的，与task type无关。
+    tables:
+    - 'Table 4: Cross-benchmark variance decomposition comparison — 4 benchmarks ×
+      top-8 components matrix'
+    - 'Table 5: Benchmark characteristics (task type, answer format, difficulty distribution)
+      vs variance structure mapping'
+    figures_description:
+    - 'Fig 3: Grouped stacked bars — 4 benchmarks side-by-side showing how variance
+      structure shifts from MC (item-dominated) to reasoning (residual/interaction-dominated)'
+    - 'Fig 4: Scatter plot of item difficulty vs item-level variance contribution
+      across benchmarks — showing ceiling/floor effects'
+    analysis: 'Kruskal-Wallis test on per-item variance contributions across benchmarks
+      confirms significant structural difference (H=47.3, p<0.001)。Permutation test
+      for ''item_id is single largest component'' yields replication probability 0.63
+      across random benchmark subsets。Key narrative shift: item dominance is benchmark-type-dependent,
+      strongest for knowledge MC tasks, weaker for reasoning generation tasks。'
+  - name: Multi-Hardware G-Study
+    plan_id: exp-003
+    description: 4 models × 2 GPU types × 2 precisions × 6 prompts × 6 seeds × 3 temps
+      × 4 orderings × 200 MMLU items
+    expected_results:
+      hardware_status: second GPU arrived late — only 2 models × reduced seeds(3)
+        completed on GPU-2
+      hardware_main_effect: 0.012
+      hardware_x_precision: 0.006
+      hardware_x_prompt: 0.002
+      hardware_x_item: 0.018
+      hardware_x_temperature: 0.003
+      total_hardware_related_variance: 0.041
+      direct_hardware_x_methodology_interaction: 0.005
+      separability_conclusion: holds at aggregate level — direct hardware×method <
+        1%
+      item_id_with_hardware_facet: 0.41
+      g_with_hardware_generalization: 0.38
+      completeness: partial — 2/4 models fully crossed, 2/4 models only on primary
+        GPU
+    result_rationale: 第二块GPU延迟到达，只能对Qwen3-8B和Llama-3.1-8B做完整crossing（reduced seeds=3以控制时间）。Hardware
+      main effect=0.012来自GPU间的kernel implementation差异（不同SM架构的floating-point rounding
+      path不同），但远小于item_id。hardware×item=0.018表明特定难题在不同GPU上表现不同——这是因为numerical edge
+      cases（接近decision boundary的logits）在不同GPU architecture上round differently。Direct
+      hardware×methodology interaction仅0.005，验证separability——但这个结论基于incomplete crossing需要谨慎表述。数据不完整意味着hardware
+      facet的估计CI较宽，论文中需作为limitation明确说明，但核心separability finding的方向性仍可支持。
+    tables:
+    - 'Table 6: Hardware facet variance components (with CI) — noting which estimates
+      are based on reduced crossing'
+    - 'Table 7: Separability test — direct interaction terms between hardware and
+      each methodology facet'
+    figures_description:
+    - 'Fig 5: Forest plot of hardware-related variance components with 95% bootstrap
+      CIs — showing most CIs include zero except hardware×item'
+    analysis: 'Mixed-effects model with GPU as random effect confirms hardware contributes
+      <2% unique variance。Acknowledge limitation: only 2 GPU types × partial model
+      crossing — separability conclusion is directional, not definitive。Frame as ''consistent
+      with separability'' rather than ''proves separability''。计划在camera-ready前补充完整数据。'
+  - name: D-Study Projections
+    plan_id: exp-004
+    description: Compute optimal measurement allocation from combined exp-001/002/003
+      variance components
+    expected_results:
+      g_current_practice_mmlu: 0.42
+      g_current_practice_gsm8k: 0.35
+      g_current_practice_pooled: 0.39
+      g_triple_items_mmlu: 0.82
+      g_triple_prompts_mmlu: 0.51
+      g_triple_seeds_mmlu: 0.44
+      g_optimal_600items_mmlu: 0.87
+      g_optimal_600items_3prompts_mmlu: 0.91
+      items_needed_for_g90_mmlu: 520
+      items_needed_for_g90_gsm8k: 780
+      items_needed_for_g90_hellaswag: 380
+      cost_ratio_items_vs_prompts_for_g90: 3.8
+      cost_ratio_items_vs_seeds_for_g90: 7.2
+      budget_table_achievable_g90: 600 items × 3 prompts × 2 seeds — feasible but
+        3× current practice
+    result_rationale: item_id占比从MVP的58%降至MMLU的43%、跨benchmark均值约35%，导致D-study中tripling
+      items的marginal gain缩小——从MVP预测的G提升0.35降至约0.25。具体来看：G(current)=0.42因为200 items在43%
+      item variance下仍然欠采样（需要~520 items才能让item sampling error降到可接受水平）。Triple items(600)→G=0.82而非MVP外推的0.90+，因为residual(0.21)设定了ceiling——即使无限items，residual
+      variance仍限制G上界约0.93。Triple prompts仅从0.42→0.51因为prompt-related variance(main+interactions)合计才~0.08，三倍prompt只压缩这小部分。Cost
+      ratio从MVP的'10×'降至3.8×：items仍是最cost-effective lever但优势缩小。GSM8K需要更多items(780)因为其residual更高且item
+      variance share更低——每增加一个item压缩的variance比例更小。这个'benchmark-dependent budget'本身成为实用贡献。
+    tables:
+    - 'Table 8: D-study projection matrix — rows=facet allocation scenarios, columns=benchmarks,
+      cells=projected G'
+    - 'Table 9: Practitioner budget table — ''to achieve G≥X on benchmark Y, sample
+      at least Z items with W prompts'''
+    - 'Table 10: Cost-effectiveness ratios — marginal G gain per additional level
+      of each facet'
+    figures_description:
+    - 'Fig 6: D-study curves — G vs number of items, with separate lines per benchmark,
+      horizontal reference at G=0.90'
+    - 'Fig 7: Allocation efficiency surface — 3D plot of items × prompts × projected
+      G, showing diminishing returns'
+    analysis: 'Sensitivity analysis: bootstrap resample variance components 1000×,
+      compute D-study projections for each → 95% CI on ''items needed for G≥0.90''
+      is [420, 680] for MMLU。Key message shift: ''tripling items is 3-5× more effective
+      than tripling prompts'' (down from ''10×'' in MVP)。仍然是strong practical recommendation但headline数字需要honest
+      reporting。'
+  - name: 14B Model Extension
+    plan_id: exp-005
+    description: Qwen3-14B and DeepSeek-R1-Distill-14B at BF16/FP16 on MMLU 200 items
+    expected_results:
+      qwen3_14b_item_id_share: 0.46
+      deepseek_r1_14b_item_id_share: 0.34
+      qwen3_14b_precision_main: 0.005
+      deepseek_r1_precision_main: 0.009
+      deepseek_r1_temperature_x_item: 0.11
+      scale_effect_on_variance_structure: mixed — dense 14B similar to 8B; reasoning-distilled
+        shows more temperature sensitivity
+      g_qwen3_14b_current: 0.47
+      g_deepseek_r1_14b_current: 0.38
+    result_rationale: Qwen3-14B作为dense model的scale-up版本，variance structure与8B系列相似但item_id略高(0.46)——更大模型对easy
+      items更consistently correct，使item difficulty gradient更极端，增加item方差贡献。DeepSeek-R1-Distill-14B是reasoning-distilled模型，其CoT倾向使temperature
+      sensitivity大幅升高（temperature×item=0.11），类似GSM8K的pattern——即使在MC task(MMLU)上，该模型也倾向于'思考'，引入generation-like
+      variance。这导致其item_id share仅0.34。这个发现支持'variance structure depends on model architecture,
+      not just task type'的扩展论点。Precision main effect在两个14B模型上都很小（dense model更稳定），验证separability在larger
+      scale也成立。
+    tables:
+    - 'Table 11: 8B vs 14B variance component comparison — paired by architecture
+      family'
+    figures_description:
+    - 'Fig 8: Paired bar chart — 8B vs 14B models showing variance structure shift
+      with scale'
+    analysis: 'Key finding: variance structure is jointly determined by task type
+      AND model architecture (specifically, reasoning-distilled models behave like
+      ''reasoning tasks'' even on MC benchmarks)。This adds nuance to the benchmark-dependent
+      story。'
+  - name: Fine-Tuning G-Study
+    plan_id: exp-006
+    description: 'RoBERTa-large on SST-2/MNLI/RTE/COPA: 6 seeds × 3 LR × 4 shuffles
+      × 3 GPUs × 2 precisions = 432 runs/task'
+    expected_results:
+      total_runs: 1728
+      sst2_seed_variance_share: 0.18
+      sst2_lr_variance_share: 0.31
+      sst2_item_id_variance_share: 0.22
+      sst2_shuffle_variance_share: 0.04
+      sst2_gpu_variance_share: 0.003
+      sst2_precision_variance_share: 0.006
+      sst2_residual: 0.15
+      sst2_seed_x_item: 0.05
+      rte_seed_variance_share: 0.28
+      rte_lr_variance_share: 0.22
+      rte_item_id_variance_share: 0.19
+      rte_seed_x_lr: 0.08
+      copa_instability: high residual (0.32) due to small dataset size
+      g_finetuning_current_practice: 0.52
+      g_finetuning_5seeds_3lr: 0.78
+      infra_method_separability_finetuning: holds — GPU×seed interaction < 0.5%
+    result_rationale: Fine-tuning的variance hierarchy与inference根本不同：learning rate成为dominant
+      factor(SST-2上0.31)因为它决定了optimization trajectory的convergence point——不同LR到达不同local
+      minima。Seed是第二大因素(0.18-0.28)因为weight initialization和data ordering jointly决定optimization
+      path。Item_id仍significant(0.19-0.22)但不再dominant——fine-tuning使模型适配了task distribution，减少了item
+      difficulty的极端效应。RTE上seed更重要(0.28)因为小数据集(2.5k training)使optimization对initialization更敏感。GPU
+      variance几乎为零(0.003)因为fine-tuning的随机性远大于hardware-level numerical差异。Data shuffle仅0.04——远低于预期，因为在足够epochs后shuffle的影响被averaged
+      out。核心对比：inference中item dominates(43%)，fine-tuning中LR+seed dominates(~50%)——practitioners需要不同的reproducibility
+      strategies for不同scenarios。
+    tables:
+    - 'Table 12: Fine-tuning variance decomposition — 4 tasks × top-8 components'
+    - 'Table 13: Inference vs fine-tuning variance hierarchy comparison'
+    - 'Table 14: Fine-tuning D-study — seeds and LR needed for G≥0.90'
+    figures_description:
+    - 'Fig 9: Side-by-side stacked bars — inference (MMLU) vs fine-tuning (SST-2)
+      variance decomposition showing inverted hierarchy'
+    - 'Fig 10: Fine-tuning D-study curves — G vs number of seeds, with LR as parameter'
+    analysis: The inverted hierarchy (item→LR+seed) between inference and fine-tuning
+      is a clean novel finding。It explains why the 'run 5 seeds and report mean±std'
+      convention exists for fine-tuning but not for inference evaluation。Separability
+      still holds in fine-tuning (GPU×methodology < 0.5%)，strengthening the cross-scenario
+      generalization of Claim 2。
+  - name: LayerCast Precision Study
+    plan_id: exp-007
+    description: LayerCast (FP16 storage + FP32 compute) as 4th precision condition
+      on MMLU
+    expected_results:
+      layercast_accuracy: 0.68
+      layercast_vs_fp32_accuracy_diff: 0.006
+      layercast_vs_bf16_accuracy_diff: -0.001
+      layercast_item_level_agreement_with_bf16: 0.94
+      precision_variance_with_layercast: 0.005
+      precision_x_item_with_layercast: 0.022
+      variance_reduction_vs_mixed_precision: 15-20% reduction in precision-related
+        variance components
+    result_rationale: LayerCast在FP16存储但FP32计算，理论上获得FP32的numerical stability同时保持FP16的memory
+      efficiency。实测accuracy接近BF16/FP16（差异<0.1pp）而非接近pure FP32——这是因为在confound-fixed设置下FP32本身的accuracy已与BF16接近（差异<1pp），LayerCast的'storage
+      in FP16'引入的quantization noise在compute阶段被FP32 accumulation部分补偿。Precision×item
+      interaction从0.032降至0.022——LayerCast减少了precision-sensitive items上的variance但未完全消除（weight
+      quantization仍在）。整体precision-related variance减少约18%，是有意义但非revolutionary的改进。作为mitigation
+      strategy，值得在discussion中推荐但不足以成为standalone contribution。
+    tables:
+    - 'Table 15: 4-level precision comparison (FP32/BF16/FP16/LayerCast) — accuracy
+      and variance metrics'
+    figures_description:
+    - 'Fig 11: Item-level accuracy correlation matrix across 4 precision conditions
+      — showing LayerCast clusters with BF16/FP16'
+    analysis: 'LayerCast provides modest variance reduction but does not fundamentally
+      change the story。Best framed as a practical recommendation in discussion: ''for
+      practitioners concerned about precision effects, LayerCast offers ~18% reduction
+      in precision-related variance at minimal memory cost''。'
+  - name: MATH Benchmark Extension
+    plan_id: exp-008
+    description: MATH 200 items — reasoning-heavy with CoT, testing item dominance
+      in extended generation
+    expected_results:
+      math_item_id_share: 0.22
+      math_temperature_main: 0.04
+      math_temperature_x_item: 0.15
+      math_seed_x_item: 0.11
+      math_residual: 0.3
+      math_prompt_x_item: 0.06
+      math_precision_main: 0.005
+      math_g_current: 0.3
+      math_items_for_g90: 950
+      item_dominance_holds: false
+      separability_holds: true
+    result_rationale: MATH是最极端的reasoning benchmark——每题需要多步推导，CoT generation在每一步都受temperature和seed影响。Temperature×item=0.15因为难题（Level
+      4-5）的solution path高度branching——temperature=0.7时可能走对路径，temperature=0.3时可能卡在suboptimal
+      path。Seed×item=0.11同理——不同seed改变了sampling trajectory。Residual高达0.30反映了即使fixed所有facets，generation的intrinsic
+      stochasticity（vLLM default设置下的CUDA nondeterminism在long generation中累积）。Item_id仅0.22——仍然是single
+      largest individual component但margin很小（vs residual 0.30如果将residual视为'unexplained'则item不是最大）。这是median档下GSM8K
+      pattern的加强版，确认了'reasoning tasks have fundamentally different variance structure'。Separability仍成立（precision/hardware与methodology无direct
+      interaction>1%）——numerical precision不影响推理策略选择，只影响individual token probabilities。G=0.30极低，需要~950
+      items才能达到G≥0.90——对MATH这样仅500题的benchmark来说实质上不可达，这本身是对当前evaluation practice的strong
+      critique。
+    tables:
+    - 'Table 16: MATH vs GSM8K vs MMLU variance structure comparison — progression
+      from MC to light-reasoning to heavy-reasoning'
+    figures_description:
+    - 'Fig 12: Variance structure gradient plot — x-axis = ''reasoning intensity''
+      (MMLU→ARC→GSM8K→MATH), y-axis = component shares, showing smooth transition
+      from item-dominated to residual/interaction-dominated'
+    analysis: 'MATH completes the picture: variance structure is a continuous function
+      of task reasoning demands。For MC knowledge tasks, item selection is the key
+      lever; for reasoning tasks, temperature control and massive item sampling are
+      both needed。The ''one-size-fits-all'' reproducibility budget is insufficient
+      — practitioners need task-type-specific guidance。This benchmark-dependency finding
+      becomes the paper''s central novel contribution under the median tier narrative。'
+  review_report: "---\ndream_id: dream_20260520T190053\ntier: median\noverall_score:\
+    \ borderline reject\ntimestamp: 2026-05-20T19:43:32.938686+00:00\n---\n\n# Dream\
+    \ Review Report\n\n**Paper:** Benchmark-Dependent Variance Structure in LLM Evaluation:\
+    \ A Generalizability Theory Analysis of Infrastructure and Methodological Reproducibility\n\
+    \n**Review mode:** full | **Reviewers:** R1 (Methods + Experiments), R2 (Novelty\
+    \ + Related Work)\n\n---\n\n## 1. Paper Summary\n\nThis paper applies Generalizability\
+    \ Theory (G-theory) to LLM evaluation, crossing infrastructure facets (hardware\
+    \ type, numerical precision) with methodology facets (prompt template, random\
+    \ seed, sampling temperature, option ordering) and item selection as the measurement\
+    \ facet. Across 6 models (4×8B, 2×14B), 5 benchmarks (MMLU, ARC-Challenge, HellaSwag,\
+    \ GSM8K, MATH), and over 1 million evaluation records, the paper reports three\
+    \ findings: (1) item selection is the single largest variance source on MC benchmarks\
+    \ (30–46%) but its dominance is benchmark-dependent, weakening on reasoning tasks;\
+    \ (2) infrastructure and methodology are approximately separable at the aggregate\
+    \ level (direct interaction <1%); (3) D-study projections yield task-specific\
+    \ reproducibility budgets (380–950 items for G≥0.90). A fine-tuning extension\
+    \ with RoBERTa-large shows the variance hierarchy inverts (LR and seed dominate).\
+    \ Eight experiments are presented across 13 pages with 15 tables and zero figures.\n\
+    \n---\n\n## 2. Roundtable: Independent Assessments\n\n### R1 — Methods and Experiments\
+    \ (Score: 4/6, Borderline Reject)\n\n**Strengths:**\n- Massive fully-crossed factorial\
+    \ design on MMLU (1,036,800 records) with systematic confound control (enforce_eager\
+    \ fix reducing the FP32 accuracy gap from 8.5pp to <1pp)\n- Cross-benchmark extension\
+    \ (Exp 2–3) revealing the variance gradient from item-dominated (HellaSwag 45%)\
+    \ to residual/interaction-dominated (MATH 30% residual) is methodologically sound\n\
+    - D-study projections with bootstrap CIs ([420, 680] for MMLU) provide genuine\
+    \ uncertainty quantification on a policy-relevant number\n- Fine-tuning extension\
+    \ adds conceptual value by demonstrating the inverted variance hierarchy\n- Statistical\
+    \ toolkit is appropriate: REML, bootstrap, Kruskal-Wallis, permutation tests\n\
+    \n**Major weaknesses:**\n1. **Model pooled rather than treated as a crossed random\
+    \ facet.** In G-theory, model (the object of measurement) should be treated as\
+    \ a facet. By pooling, model×item interactions get absorbed into the item_id component,\
+    \ inflating the headline 43% figure. The Gemma-2 sensitivity analysis (removing\
+    \ it raises pooled item_id to 46%) hints at this, but a proper model-as-facet\
+    \ analysis would separate model×item interaction and likely reduce item_id's share.\
+    \ This is a fundamental design choice that weakens the central claim.\n2. **Bootstrap\
+    \ CIs reported only for item_id in Table 1 ([38%, 48%]).** All other variance\
+    \ components in all tables lack uncertainty intervals. For a paper whose core\
+    \ claim rests on the relative magnitude of variance components, this is a serious\
+    \ gap — particularly for the separability claim (is 0.3% direct Infra×Method significantly\
+    \ different from 0?).\n3. **Arbitrary separability threshold.** The 1% threshold\
+    \ for \"approximate separability\" is not derived from G-theory or psychometric\
+    \ literature. The observed value (0.3–0.5%) lands comfortably below this threshold,\
+    \ but no sensitivity analysis examines what changes at 0.25% or 2%. A bootstrap\
+    \ CI on total direct interaction would be more informative than a pass/fail test.\n\
+    4. **D-study extrapolation beyond item universe.** MATH has 500 total items; the\
+    \ D-study recommends 950 items for G≥0.90. The paper notes this makes reliable\
+    \ evaluation \"effectively unattainable,\" which is fair, but the D-study formula\
+    \ assumes sampling from an infinite item universe. When the recommendation exceeds\
+    \ the actual item pool, the projection's validity breaks down — this limitation\
+    \ is acknowledged but under-discussed.\n\n**Moderate weaknesses:**\n- Only 2 GPU\
+    \ types with partial crossing (2/4 models fully crossed on hardware); 1 df for\
+    \ hardware main effect makes the separability test directional at best\n- Temperature\
+    \ levels differ across experiments (3 levels in Exp 1, 2 in Exp 2) without clear\
+    \ justification\n- All 3-way and higher interactions absorbed into residual (14.2–21%\
+    \ depending on experiment) without discussion of which higher-order terms might\
+    \ be substantively meaningful\n- Binary accuracy metric on MC tasks inflates item\
+    \ variance (items near 0 or 1 contribute little variation); log-likelihood or\
+    \ calibration-based metrics could yield different decompositions\n- Fine-tuning\
+    \ experiment uses only 2 precisions and 3 GPUs but claims to test separability\
+    \ generalization — this is a weaker test than the inference experiments\n\n###\
+    \ R2 — Novelty and Related Work (Score: 3/6, Weak Reject)\n\n**Strengths:**\n\
+    - The benchmark-dependent variance gradient (item_id declining from 45% on HellaSwag\
+    \ to 22% on MATH, with temperature×item and seed×item rising correspondingly)\
+    \ is a genuine quantitative contribution — it quantifies an intuition the field\
+    \ has had but never measured systematically\n- The two-level separability decomposition\
+    \ (aggregate <1% vs. item-conditional 14–18%) is more informative than a binary\
+    \ answer and the \"empirical license with caveats\" framing is mature\n- D-study\
+    \ budgets with cross-benchmark variation (380 items for HellaSwag vs. 950 for\
+    \ MATH) are immediately actionable for practitioners\n- The engine confound discovery\
+    \ (enforce_eager fix) is a standalone methodological contribution\n- The fine-tuning\
+    \ contrast (LR+seed dominate, explaining the \"5 seeds\" convention) adds structural\
+    \ insight\n\n**Major weaknesses:**\n1. **Incremental novelty over Mesting (2026).**\
+    \ The core methodological contribution is extending Mesting's G-theory framework\
+    \ by adding infrastructure facets. But these infrastructure facets contribute\
+    \ negligibly (hardware 1.2%, precision 0.8%, direct Infra×Method 0.3–0.5%). The\
+    \ paper's most impactful findings — item dominance, benchmark-dependent variance\
+    \ gradient, D-study budgets — would emerge from a Mesting-style design with fixed\
+    \ infrastructure. The \"first fully-crossed\" claim is technically true but the\
+    \ marginal value of crossing infrastructure with methodology is a confirmatory\
+    \ null result, not a breakthrough. The paper needs to reframe: the infrastructure\
+    \ extension is valuable as a confirmatory finding; the actual novelty is in the\
+    \ cross-benchmark gradient, D-study budgets, and confound fix.\n2. **Severely\
+    \ deficient bibliography.** Only 9 references for a 13-page top-venue submission.\
+    \ Critical omissions include:\n   - **Bouthillier et al. (2021, JMLR), \"Accounting\
+    \ for Variance in Machine Learning Benchmarks\"** — the closest ML-native predecessor,\
+    \ decomposing variance via ANOVA across hyperparameters, data splits, and seeds.\
+    \ Not citing it inflates the paper's apparent novelty.\n   - **IRT-based item\
+    \ analysis in NLP:** Lalor et al. (2019, NAACL), Rodriguez et al. (2021, ACL),\
+    \ Vania et al. (2021) — directly relevant to the item dominance finding. The paper\
+    \ claims item selection is under-studied, but IRT has been analyzing item-level\
+    \ properties for years.\n   - **Benchmark subsampling literature:** Polo et al.\
+    \ (2024, \"tinyBenchmarks\"), HELM-Lite, Perlitz et al. (2023) address the same\
+    \ practical question (how many items suffice?) from different angles. The D-study\
+    \ budgets should be contextualized against these.\n   - **Henderson et al. (2018),\
+    \ \"Deep Reinforcement Learning that Matters\"** — pioneering work on variance\
+    \ in ML evaluation.\n   - **Shavelson & Webb (1991)** and full Brennan (2001)\
+    \ textbook — canonical G-theory references that a G-theory paper must cite.\n\
+    \   - **Lu et al. (2022)** — ordering effects in MC evaluation, relevant to the\
+    \ ordering facet.\n3. **Item dominance is partially tautological.** Any assessment\
+    \ instrument with a wide difficulty range will show item variance as the dominant\
+    \ source — this is a well-known property in psychometrics (Brennan, 2001, Ch.\
+    \ 3). The paper's framing (\"researchers are optimizing the wrong knobs\") oversells\
+    \ a finding that is expected from measurement theory. The contribution is in quantifying\
+    \ the magnitude and its benchmark-dependence, but the paper should acknowledge:\
+    \ \"Item dominance is expected from measurement theory; what we contribute is\
+    \ its precise magnitude, systematic variation with task reasoning demands, and\
+    \ D-study implications.\"\n\n**Moderate weaknesses:**\n- Fine-tuning extension\
+    \ uses RoBERTa-large (355M, encoder-only, classification) — architecturally distant\
+    \ from the 7–14B decoder-only models in inference experiments. Fine-tuning a decoder\
+    \ model (e.g., Llama-8B with LoRA on a generation task) would make cross-paradigm\
+    \ generalization claims far more credible.\n- The \"fully crossed\" claim is overstated:\
+    \ only MMLU Exp 1 has the richest factorial design. Other benchmarks use reduced\
+    \ designs (2 precisions, 2 temperatures). Hardware crossing is partial (2/4 models).\
+    \ Cross-benchmark separability claims rest on narrower evidence than the framing\
+    \ suggests.\n- No figures at all — highly unusual for a top venue paper. D-study\
+    \ projection curves, stacked-bar variance decompositions, and the benchmark gradient\
+    \ would dramatically improve communication. The paper's 15 tables contain rich\
+    \ data that is hard to absorb in tabular form.\n\n---\n\n## 3. Roundtable: Cross-Sharing\
+    \ and Convergence\n\n### Areas of Agreement (both reviewers)\n1. **Model-as-facet\
+    \ treatment is the most fundamental methodological concern.** R1 identified it\
+    \ as a G-theory design flaw; R2 flagged it as inflating the headline item_id number.\
+    \ Both agree that a proper model-as-facet analysis would likely reduce item_id\
+    \ below 43% and reveal model×item interaction as a substantial component. This\
+    \ directly affects Claim 1.\n2. **The separability threshold is arbitrary and\
+    \ the test under-powered.** Both reviewers independently flagged the 1% threshold\
+    \ as unjustified and the hardware crossing as insufficient (2 GPU types, partial).\
+    \ The separability claim is directional evidence, not proof.\n3. **D-study budgets\
+    \ are the most actionable contribution.** Both reviewers rate the concrete, benchmark-specific\
+    \ reproducibility budgets as filling a genuine practical gap. The bootstrap CIs\
+    \ on MMLU items ([420, 680]) demonstrate honest uncertainty quantification (though\
+    \ CIs are needed for other benchmarks too).\n4. **The cross-benchmark variance\
+    \ gradient is a genuine empirical contribution.** Both agree the systematic relationship\
+    \ between task reasoning demands and variance structure (item dominance weakening,\
+    \ temperature/seed interactions strengthening) is informative and well-supported\
+    \ by data across 5 benchmarks.\n5. **The bibliography is far below top-venue standards.**\
+    \ R2 provided detailed missing references; R1 implicitly relied on broader knowledge\
+    \ that confirms these gaps.\n\n### Areas of Divergence\n- **Severity of novelty\
+    \ concern:** R2 weights the incremental novelty over Mesting more heavily (infrastructure\
+    \ extension is a near-null result) → 3/6. R1 is more willing to credit the experimental\
+    \ scale and scope → 4/6.\n- **Statistical vs. conceptual critique:** R1 focuses\
+    \ on the technical execution (CI coverage, REML specification, residual interpretation).\
+    \ R2 focuses on positioning and framing (overselling item dominance, missing related\
+    \ work, tautological aspects).\n- **Fine-tuning extension value:** R1 accepts\
+    \ it as an interesting conceptual addition. R2 considers the architectural mismatch\
+    \ (RoBERTa vs. decoder-only) a moderate weakness that undermines cross-paradigm\
+    \ claims.\n\n### Convergence\nAfter cross-sharing, both reviewers converge on:\
+    \ the paper presents a substantial empirical effort with real practical value,\
+    \ but the current version has (a) a fundamental G-theory design issue (model treatment),\
+    \ (b) severely inadequate related work, (c) framing that oversells the infrastructure\
+    \ contribution and item dominance finding, and (d) missing uncertainty quantification\
+    \ across most results. These issues are addressable without new experiments but\
+    \ require significant revision.\n\n---\n\n## 4. Consolidated Assessment\n\n###\
+    \ Overall Score: 4/6 (Borderline Reject)\n### Confidence: High\n\n### Recommendation:\
+    \ Borderline Reject\n\n### Verdict Summary\n\nThe paper tackles an important problem\
+    \ — understanding and quantifying variance sources in LLM evaluation — with impressive\
+    \ experimental scale (1M+ records, 8 experiments, 5 benchmarks, 6 models). The\
+    \ cross-benchmark variance gradient and task-specific D-study budgets are genuine\
+    \ contributions that would be useful to the community. The engine confound discovery\
+    \ (enforce_eager fix) is a practical contribution in its own right.\n\nHowever,\
+    \ the paper falls short of the acceptance threshold for three main reasons:\n\n\
+    1. **Methodological concern:** Model is pooled rather than treated as a G-theory\
+    \ facet, inflating the central item_id claim. For a paper whose entire framework\
+    \ is G-theory, this is a fundamental design choice that needs addressing.\n\n\
+    2. **Novelty and positioning:** The infrastructure extension — the claimed methodological\
+    \ advance over Mesting (2026) — yields near-null results (<1% variance). The paper's\
+    \ actual novelty (cross-benchmark gradient, D-study budgets, confound fix) does\
+    \ not depend on the infrastructure extension and needs honest reframing. The bibliography\
+    \ (9 references) is far below top-venue standards with critical omissions (Bouthillier\
+    \ et al., IRT literature, benchmark subsampling work).\n\n3. **Presentation:**\
+    \ 15 tables, 0 figures. Key uncertainty quantification (CIs) is reported for only\
+    \ one component in one table. The separability threshold is arbitrary. These are\
+    \ fixable but collectively reduce confidence in the claims.\n\n### Actionable\
+    \ Revisions (no new experiments needed)\n\n1. **Re-analyze with model as a crossed\
+    \ facet** — report model×item interaction separately; adjust item_id shares and\
+    \ D-study projections accordingly.\n2. **Add CIs to all variance component tables**\
+    \ — especially for the direct Infra×Method interaction term.\n3. **Expand bibliography\
+    \ to ≥25 references** — must include Bouthillier et al. (2021), IRT item analysis\
+    \ papers, tinyBenchmarks/HELM-Lite, Henderson et al. (2018), Shavelson & Webb\
+    \ (1991).\n4. **Add 3–4 figures** — D-study curves, stacked-bar variance decomposition\
+    \ across benchmarks, benchmark gradient visualization.\n5. **Reframe contributions\
+    \ honestly** — infrastructure separability as confirmatory null; item dominance\
+    \ as expected from measurement theory but newly quantified; cross-benchmark gradient\
+    \ as the primary novel finding.\n6. **Derive or justify the separability threshold**\
+    \ — or replace with bootstrap CI on total direct interaction.\n7. **Acknowledge\
+    \ item dominance tautology** — wide difficulty range → large item variance is\
+    \ psychometrically expected; the contribution is in quantifying its magnitude\
+    \ and benchmark-dependence.\n\n### Strengths Worth Preserving\n- The experimental\
+    \ scale and systematic confound control are genuinely impressive\n- The cross-benchmark\
+    \ variance gradient (MMLU→ARC→GSM8K→MATH) is a clean, well-supported finding\n\
+    - D-study budgets (380–950 items, 3–5× items-over-prompts ratio) fill a real practical\
+    \ gap\n- The fine-tuning contrast (inverted hierarchy) explains divergent reproducibility\
+    \ conventions\n- The conditional separability insight (aggregate-level separability\
+    \ vs. item-level interactions) is nuanced and useful\n\n---\n\n## 5. Scores\n\n\
+    | Criterion | R1 | R2 | Consolidated |\n|-----------|----|----|-------------|\n\
+    | Soundness | 4 | 4 | 4 |\n| Novelty | 4 | 3 | 3 |\n| Significance | 5 | 4 | 4\
+    \ |\n| Clarity | 3 | 3 | 3 |\n| **Overall** | **4** | **3** | **4** |\n\n**Overall:\
+    \ 4/6 — Borderline Reject.** Substantial empirical work with genuine practical\
+    \ value, but fundamental G-theory design issue, insufficient positioning against\
+    \ related work, and presentation gaps place it below the acceptance threshold.\
+    \ Addressable with revision; no new experiments required.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260520T190053/worst/paper.pdf
+  imagined_experiments:
+  - name: Full-scale precision study (float32 confound fixed)
+    plan_id: exp-001
+    description: '4 models × 3 precisions × 6 prompts × 6 seeds × 3 temperatures ×
+      4 orderings × 200 MMLU items，全部使用一致的vLLM V0 enforce_eager引擎消除float32 confound。
+
+      '
+    expected_results:
+      item_variance_share_overall: 0.24
+      item_variance_share_qwen3_8b: 0.28
+      item_variance_share_llama31_8b: 0.26
+      item_variance_share_gemma2_9b: 0.3
+      item_variance_share_mistral_7b: 0.14
+      residual_share_overall: 0.28
+      residual_share_mistral: 0.38
+      precision_main_effect: 0.015
+      precision_item_interaction: 0.035
+      prompt_item_interaction: 0.048
+      temperature_item_interaction: 0.055
+      seed_item_interaction: 0.018
+      prompt_main_effect: 0.008
+      temperature_main_effect: 0.012
+      seed_main_effect: 0.003
+      ordering_main_effect: 0.002
+      ordering_item_interaction: 0.015
+      accuracy_fp32: 0.67
+      accuracy_bf16: 0.672
+      accuracy_fp16: 0.671
+      g_coefficient_overall: 0.42
+      total_records: 172800
+      models_showing_item_dominant_pattern: 2
+    result_rationale: 'MVP中item_id=58.4%的大部分来自float32 engine confound的inflation——float32使用了
+      不同的vLLM backend（V1 vs V0），导致float32条件下accuracy系统性偏低（59.9% vs ~68.4%），这个precision主效应通过precision:item_id交互被分配到了item方差中。修复后
+      precision不再引入系统性偏差，三种精度的accuracy收敛到~67%，item_id的方差贡献大幅 缩水至~24%。residual上升到28%成为最大单一成分，因为：(1)
+      item_id不再吸收confound inflation的方差；(2) CUDA非确定性、vLLM调度随机性等不可归因的噪声被暴露。Mistral-7B
+      特别异常（item仅14%、residual达38%），因为其architecture（sliding window attention + 不同的tokenizer覆盖率）对MMLU
+      items的响应模式与其他三个模型质性不同——更多方差 落入不可解释的残差中。温度×item交互（5.5%）偏高是因为200个items中有约30%处于模型
+      决策边界，温度对这些borderline items的影响远大于确定性items。整体G=0.42仅略高于 MVP的0.357，因为residual主导意味着增加任何单一facet的level数都无法有效降低测量误差。
+
+      '
+    tables:
+    - name: 'Table 1: Variance Component Decomposition by Model (exp-001, MMLU)'
+      columns:
+      - Component
+      - Qwen3-8B
+      - Llama-3.1-8B
+      - Gemma-2-9B
+      - Mistral-7B
+      - Pooled
+      rows:
+      - - item_id
+        - 28.1%
+        - 25.7%
+        - 30.2%
+        - 13.8%
+        - 24.0%
+      - - residual
+        - 23.4%
+        - 26.1%
+        - 21.8%
+        - 38.2%
+        - 27.9%
+      - - temperature:item
+        - 6.2%
+        - 5.8%
+        - 4.8%
+        - 5.1%
+        - 5.5%
+      - - prompt:item
+        - 5.4%
+        - 5.1%
+        - 4.2%
+        - 3.6%
+        - 4.8%
+      - - precision:item
+        - 4.1%
+        - 3.8%
+        - 3.2%
+        - 2.8%
+        - 3.5%
+      - - seed:item
+        - 2.1%
+        - 1.9%
+        - 1.6%
+        - 1.4%
+        - 1.8%
+      - - ordering:item
+        - 1.8%
+        - 1.6%
+        - 1.2%
+        - 1.1%
+        - 1.5%
+      - - precision
+        - 1.8%
+        - 1.6%
+        - 1.4%
+        - 1.2%
+        - 1.5%
+      - - temperature
+        - 1.4%
+        - 1.2%
+        - 1.1%
+        - 0.9%
+        - 1.2%
+      - - prompt
+        - 0.9%
+        - 0.8%
+        - 0.7%
+        - 0.6%
+        - 0.8%
+      - - all other
+        - 24.8%
+        - 26.4%
+        - 29.8%
+        - 31.3%
+        - 26.5%
+    - name: 'Table 2: Accuracy by Precision Condition (post-fix)'
+      columns:
+      - Model
+      - FP32
+      - BF16
+      - FP16
+      - Max Δ
+      rows:
+      - - Qwen3-8B
+        - '0.681'
+        - '0.683'
+        - '0.682'
+        - '0.002'
+      - - Llama-3.1-8B
+        - '0.664'
+        - '0.666'
+        - '0.665'
+        - '0.002'
+      - - Gemma-2-9B
+        - '0.708'
+        - '0.710'
+        - '0.709'
+        - '0.002'
+      - - Mistral-7B
+        - '0.613'
+        - '0.615'
+        - '0.614'
+        - '0.002'
+    figures_description:
+    - Stacked bar chart对比MVP vs exp-001的方差分解，突出item_id从58.4%跌至24%、residual从17.6%升至28%的反转。四个模型并排展示，Mistral-7B的异常profile（低item、高residual）作为visual
+      focal point。
+    - 'Heatmap: 200 items × 4 models的accuracy standard deviation across conditions，展示item
+      difficulty的model-conditional pattern——同一item在不同模型上的方差排位不一致。'
+    analysis: '这是worst档的核心打击——item dominance大幅缩水后Claim 1的"58%"headline不成立。 但reframe路径清晰：confound发现本身是贡献（prior
+      work中有多少结论受类似confound 污染？），方差结构的model-conditional性质（Mistral vs others）成为新发现。residual
+      主导说明当前G-theory facet设计未能捕获全部系统性方差来源，这本身是diagnostic insight。 新叙事：item仍然是最大的可归因来源之一（24%），但不再是压倒性的——evaluation
+      variance 的归因结构比之前认为的更碎片化。
+
+      '
+  - name: Multi-benchmark replication (GSM8K, ARC-Challenge, HellaSwag)
+    plan_id: exp-002
+    description: '4 models × 2 precisions × 6 prompts × 6 seeds × 2 temperatures ×
+      4 orderings on GSM8K/ARC-Challenge/HellaSwag各200 items。
+
+      '
+    expected_results:
+      item_variance_share_gsm8k: 0.12
+      item_variance_share_arc: 0.22
+      item_variance_share_hellaswag: 0.18
+      residual_share_gsm8k: 0.35
+      residual_share_arc: 0.24
+      residual_share_hellaswag: 0.2
+      seed_item_interaction_gsm8k: 0.14
+      temperature_item_interaction_gsm8k: 0.18
+      temperature_main_effect_gsm8k: 0.08
+      seed_main_effect_gsm8k: 0.05
+      prompt_item_interaction_arc: 0.06
+      prompt_item_interaction_hellaswag: 0.04
+      g_coefficient_gsm8k: 0.38
+      g_coefficient_arc: 0.48
+      g_coefficient_hellaswag: 0.52
+      cross_benchmark_item_dominance_replication: 0
+      benchmarks_with_item_as_largest: 0
+      benchmarks_with_consistent_top3_components: 0
+    result_rationale: 'GSM8K是reasoning task，生成chain-of-thought过程中seed和temperature的随机性被
+      放大——每个decoding step的采样噪声累积到最终答案。因此seed:item（14%）和 temperature:item（18%）远超MMLU，而item_id本身仅12%，因为reasoning
+      tasks的难度 variance更多被seed/temperature的采样路径差异所遮蔽。residual在GSM8K上高达35%， 反映了CoT生成的内在不可控性。ARC-Challenge作为science
+      reasoning有中等item dominance（22%），介于MMLU和GSM8K之间——多数题目是知识检索而非推理链，但部分 题目需要multi-step推理引入额外方差。HellaSwag的item=18%、residual=20%反映了
+      commonsense completion task中completion长度和ambiguity的中间特性。关键发现： 没有任何一个benchmark的方差结构能复制MMLU的pattern——方差hierarchy是
+      benchmark-conditional的。GSM8K的top component是residual（35%），ARC的是 residual（24%），HellaSwag的是residual（20%）——在worst档下residual几乎总是
+      最大或接近最大的成分，说明当前facet设计systematically遗漏了某些重要方差来源。
+
+      '
+    tables:
+    - name: 'Table 3: Variance Component Ranking by Benchmark'
+      columns:
+      - Rank
+      - MMLU (exp-001)
+      - GSM8K
+      - ARC-Challenge
+      - HellaSwag
+      rows:
+      - - 1st
+        - residual (28%)
+        - residual (35%)
+        - residual (24%)
+        - residual (20%)
+      - - 2nd
+        - item_id (24%)
+        - temp:item (18%)
+        - item_id (22%)
+        - item_id (18%)
+      - - 3rd
+        - temp:item (5.5%)
+        - seed:item (14%)
+        - prompt:item (6%)
+        - temp:item (8%)
+      - - 4th
+        - prompt:item (4.8%)
+        - item_id (12%)
+        - temp:item (5%)
+        - prompt:item (4%)
+      - - 5th
+        - precision:item (3.5%)
+        - temp (8%)
+        - seed:item (4%)
+        - seed:item (3%)
+    - name: 'Table 4: Cross-benchmark Replication Summary'
+      columns:
+      - Pattern
+      - MMLU
+      - GSM8K
+      - ARC
+      - HellaSwag
+      - Replicated?
+      rows:
+      - - item_id > all others combined
+        - 'No'
+        - 'No'
+        - 'No'
+        - 'No'
+        - 0/4
+      - - item_id is largest component
+        - 'No'
+        - 'No'
+        - 'No'
+        - 'No'
+        - 0/4
+      - - residual < 20%
+        - 'No'
+        - 'No'
+        - 'No'
+        - 'No'
+        - 0/4
+      - - direct infra×method < 0.5%
+        - 'Yes'
+        - 'Yes'
+        - 'Yes'
+        - 'Yes'
+        - 4/4
+      - - seed main effect < 1%
+        - 'Yes'
+        - 'No'
+        - 'Yes'
+        - 'Yes'
+        - 3/4
+    figures_description:
+    - 4-panel stacked bar chart（一个benchmark一个panel），展示方差分解的qualitative差异。颜色编码一致以凸显同一component在不同benchmark上的rank变化。
+    - 'Radar/spider chart: 每个benchmark一条线，axes为top-5 variance components的share，展示方差profile的shape差异。'
+    analysis: '这是对Claim 1的致命打击：item dominance不仅在修复confound后缩水（exp-001）， 而且在MMLU以外的benchmark上根本不成立。GSM8K中seed和temperature的影响远超item
+      selection。但这恰恰支撑了reframe后的核心论点：方差结构是benchmark-conditional的， 不存在universal reproducibility
+      recipe。这个negative result在evaluation track 有价值——告诉社区"固定prompt/seed"在reasoning
+      tasks上不够，而"增加items"在 reasoning tasks上可能比MMLU上更无效。
+
+      '
+  - name: Multi-hardware G-study (BLOCKED)
+    plan_id: exp-003
+    description: '4 models × 2+ GPU types × 2 precisions × 6 prompts × 6 seeds × 3
+      temperatures × 4 orderings × 200 MMLU items。测试hardware×methodology交互。
+
+      '
+    expected_results:
+      status: blocked_no_second_gpu
+      hardware_main_effect: N/A
+      hardware_method_interaction: N/A
+      hardware_item_interaction: N/A
+      claim2_testable: false
+      fallback_evidence: single-GPU precision-only proxy
+    result_rationale: '第二块GPU不可用——Manager无法在timeline内提供第二种GPU类型。这是worst档的核心 假设之一。没有hardware
+      crossing，Claim 2的"infrastructure vs methodology" 分离无法实证，因为precision是infrastructure的一个proxy但不是全部。在单GPU上，
+      所有CUDA非确定性来自同一架构的同一driver stack，无法区分hardware-specific vs hardware-universal的方差。Claim
+      2必须降级为"precision vs methodology separability" 而非"infrastructure vs methodology
+      separability"，scope显著缩小。
+
+      '
+    tables: []
+    figures_description:
+    - 仅能展示exp-001中precision facet的方差贡献（~1.5% main effect），作为infrastructure的下界估计。附注说明这是单GPU结果，hardware
+      crossing是future work。
+    analysis: '这是structural blocker。paper必须在limitations中明确承认hardware crossing缺失， Claim
+      2的scope从"infrastructure"缩小到"numerical precision"。reviewer concern #1（"Only N
+      GPU types"）变得无法回应。reframe策略：将single-GPU作为"controlled baseline"，承认hardware是open
+      question，但argue precision已经是实践中最常见的 infrastructure变量。exp-006（fine-tuning）的hardware
+      crossing（如果能在不同GPU上 跑RoBERTa）可能部分弥补。
+
+      '
+  - name: D-study projections
+    plan_id: exp-004
+    description: '基于exp-001/002数据（exp-003 blocked）计算D-study optimal allocation projections。
+
+      '
+    expected_results:
+      g_current_practice_mmlu: 0.48
+      g_current_practice_gsm8k: 0.35
+      g_current_practice_arc: 0.45
+      g_current_practice_hellaswag: 0.5
+      g_triple_items_mmlu: 0.62
+      g_triple_items_gsm8k: 0.45
+      g_triple_items_arc: 0.58
+      g_triple_items_hellaswag: 0.64
+      items_needed_g90_mmlu: 850
+      items_needed_g90_gsm8k: 1400
+      items_needed_g90_arc: 700
+      items_needed_g90_hellaswag: 600
+      items_needed_g90_average: 888
+      optimal_allocation_varies_by_benchmark: true
+      universal_budget_exists: false
+      g_optimized_600items_3prompts_3seeds_mmlu: 0.72
+      g_optimized_600items_3prompts_3seeds_gsm8k: 0.55
+    result_rationale: '在worst档下，residual是最大方差成分（25-35%），而residual在G-theory中是不可 优化的——它代表未建模的交互和纯噪声。因此D-study
+      projections的上限被压低。 即使增加所有facet的level数，residual的floor意味着G=0.90需要极大的item数量来 压缩其他可归因方差。MMLU上G≥0.90需要~850
+      items因为residual=28%设置了noise floor；GSM8K更差（1400 items）因为residual=35%加上seed/temperature的高交互
+      意味着需要同时增加items和seeds/temperatures。关键发现：optimal allocation strategy在不同benchmark上qualitatively不同——MMLU上增加items最有效，GSM8K上
+      增加seeds/降低temperature同样重要。这直接支撑"no universal recipe"的论点， 但摧毁了Claim 3的prescriptive
+      budget叙事。D-study必须从"这是你的budget" 转为"这是为什么你需要benchmark-specific的budget"。
+
+      '
+    tables:
+    - name: 'Table 5: D-study G-coefficient Projections'
+      columns:
+      - Scenario
+      - MMLU
+      - GSM8K
+      - ARC
+      - HellaSwag
+      rows:
+      - - Current practice (200 items, 1 prompt, 1 seed)
+        - '0.48'
+        - '0.35'
+        - '0.45'
+        - '0.50'
+      - - Triple items (600)
+        - '0.62'
+        - '0.45'
+        - '0.58'
+        - '0.64'
+      - - Triple items + 3 prompts + 3 seeds
+        - '0.72'
+        - '0.55'
+        - '0.68'
+        - '0.74'
+      - - Items needed for G≥0.90 (optimal other facets)
+        - '850'
+        - '1400'
+        - '700'
+        - '600'
+      - - Items needed for G≥0.95
+        - '>2000'
+        - '>3000'
+        - '>1500'
+        - '>1200'
+    - name: 'Table 6: Optimal Facet Allocation (budget=1000 total conditions)'
+      columns:
+      - Facet
+      - MMLU optimal
+      - GSM8K optimal
+      - Divergence
+      rows:
+      - - items
+        - '500'
+        - '250'
+        - 2× difference
+      - - prompts
+        - '2'
+        - '4'
+        - 2× difference
+      - - seeds
+        - '1'
+        - '4'
+        - 4× difference
+      - - temperatures
+        - '1'
+        - 1 (fixed low)
+        - strategy differs
+    figures_description:
+    - 'D-study projection curves: x=items sampled, y=G coefficient，每个benchmark一条线。展示curves的shape差异——MMLU陡峭上升后plateau，GSM8K平坦上升。标注G=0.90的水平线和各benchmark达到它所需的item数。'
+    - 'Heatmap: optimal allocation grid（items × prompts × seeds），颜色=G coefficient，分panel
+      by benchmark。展示最优策略的benchmark-conditional性。'
+    analysis: 'Claim 3的prescriptive budget完全失效——不存在universal budget。但diagnostic framing仍有价值：D-study揭示了为什么GSM8K比MMLU更难达到可靠评估（residual
+      floor更高），以及为什么不同benchmark需要不同的优化策略。这对practitioners仍然 有用，只是从"照着这个budget做"变成了"你需要先诊断你的evaluation
+      pipeline的 方差结构，然后制定针对性策略"。这个reframe在evaluation track可以argue： 展示了为什么naive standardization（全部用同一个prompt/seed/item
+      count）是 insufficient的。
+
+      '
+  - name: 14B model extension (BLOCKED by exp-003)
+    plan_id: exp-005
+    description: 'Qwen3-14B和DeepSeek-R1-Distill-14B at BF16/FP16。测试模型规模对方差结构的影响。
+
+      '
+    expected_results:
+      status: blocked_by_exp003_and_hardware
+      item_variance_share_qwen3_14b: 0.2
+      item_variance_share_deepseek_r1_14b: 0.1
+      residual_share_deepseek_r1_14b: 0.42
+      reasoning_distilled_model_anomaly: true
+      scale_effect_on_variance_structure: inconclusive
+    result_rationale: 'exp-005依赖exp-003（需要multi-hardware数据），且需要≥48GB VRAM的GPU。在worst
+      档下即使能partial执行（单GPU、无hardware crossing），结果也problematic： DeepSeek-R1-Distill-14B作为reasoning-distilled模型会表现出极高的residual
+      （~42%）和极低的item dominance（~10%），因为其内部的reasoning chain引入了 类似GSM8K上观察到的seed/temperature敏感性。Qwen3-14B的item=20%介于8B和
+      DeepSeek之间。两个模型的方差结构差异进一步支撑model-conditional论点，但 without hardware crossing，scale效应和architecture效应无法分离。
+
+      '
+    tables:
+    - name: 'Table 7: 14B vs 8B Variance Structure Comparison (partial)'
+      columns:
+      - Component
+      - 8B pooled (exp-001)
+      - Qwen3-14B
+      - DeepSeek-R1-14B
+      rows:
+      - - item_id
+        - 24.0%
+        - 20.0%
+        - 10.0%
+      - - residual
+        - 27.9%
+        - 30.0%
+        - 42.0%
+      - - temp:item
+        - 5.5%
+        - 4.8%
+        - 12.0%
+      - - seed:item
+        - 1.8%
+        - 1.5%
+        - 8.5%
+    figures_description:
+    - 'Grouped bar chart: 8B pooled vs Qwen3-14B vs DeepSeek-R1-14B的top-5 variance
+      components，展示scale/architecture对方差profile的影响。DeepSeek的reasoning-distilled特性导致方差结构质性不同。'
+    analysis: '即使partial执行，DeepSeek-R1-14B的异常方差结构（residual=42%）进一步瓦解了 universal item
+      dominance叙事。但hardware confound无法排除（单GPU结果）， 且sample size=2个14B模型太少做scale-effect的causal
+      claim。reframe中作为 supplementary evidence用，不作为独立contribution。
+
+      '
+  - name: Fine-tuning G-study (RoBERTa)
+    plan_id: exp-006
+    description: 'RoBERTa-large on SST-2/MNLI/RTE/COPA。6 seeds × 3 learning rates
+      × 4 data shuffles × 3 GPUs × 2 precisions = 432 runs/task × 4 tasks = 1,728
+      runs。
+
+      '
+    expected_results:
+      item_variance_share_sst2: 0.15
+      item_variance_share_mnli: 0.12
+      item_variance_share_rte: 0.2
+      item_variance_share_copa: 0.08
+      learning_rate_main_effect_avg: 0.18
+      seed_main_effect_avg: 0.08
+      data_shuffle_main_effect_avg: 0.06
+      precision_main_effect_avg: 0.02
+      lr_seed_interaction_avg: 0.1
+      residual_avg: 0.22
+      g_coefficient_sst2: 0.55
+      g_coefficient_rte: 0.48
+      g_coefficient_copa: 0.35
+      training_vs_inference_variance_correlation: 0.15
+    result_rationale: 'Fine-tuning的方差结构与inference fundamentally不同。Learning rate是最大的
+      可归因方差来源（~18%），因为它直接控制模型converge到loss landscape的哪个 basin，不同basin对不同items的predictions质性不同。seed:lr交互高达10%因为
+      不同seed的weight initialization在不同lr下converge到不同local minima。 item_id在fine-tuning中方差占比更低（8-20%），因为fine-tuning本身改变了
+      model-item的关系——同一个item在不同training run中的难度会变（unlike inference where model weights
+      are fixed）。COPA尤其低（8%）因为dataset 只有400 items，且causal reasoning tasks的learning
+      dynamics更chaotic。 residual=22%反映了training过程中unmodeled的随机性（CUDA非确定性在训练中 比推理中更显著，因为每个gradient
+      step都累积噪声）。与inference方差结构 的correlation极低（r=0.15），说明inference-based的D-study budget不能
+      指导training-time的reproducibility。这个发现独立于inference story，可以 作为separate contribution线——即使inference的item
+      dominance不成立， fine-tuning的方差归因本身也是novel的。
+
+      '
+    tables:
+    - name: 'Table 8: Fine-tuning Variance Decomposition by Task'
+      columns:
+      - Component
+      - SST-2
+      - MNLI
+      - RTE
+      - COPA
+      - Average
+      rows:
+      - - learning_rate
+        - 16.0%
+        - 20.0%
+        - 18.0%
+        - 17.0%
+        - 17.8%
+      - - residual
+        - 20.0%
+        - 22.0%
+        - 21.0%
+        - 25.0%
+        - 22.0%
+      - - item_id
+        - 15.0%
+        - 12.0%
+        - 20.0%
+        - 8.0%
+        - 13.8%
+      - - lr:seed
+        - 10.0%
+        - 11.0%
+        - 9.0%
+        - 10.0%
+        - 10.0%
+      - - seed
+        - 8.0%
+        - 7.0%
+        - 9.0%
+        - 8.0%
+        - 8.0%
+      - - data_shuffle
+        - 7.0%
+        - 6.0%
+        - 5.0%
+        - 6.0%
+        - 6.0%
+      - - seed:item
+        - 5.0%
+        - 4.0%
+        - 4.0%
+        - 6.0%
+        - 4.8%
+      - - precision
+        - 2.0%
+        - 2.5%
+        - 1.8%
+        - 2.2%
+        - 2.1%
+      - - lr:item
+        - 8.0%
+        - 7.0%
+        - 6.0%
+        - 9.0%
+        - 7.5%
+      - - all other
+        - 9.0%
+        - 8.5%
+        - 6.2%
+        - 8.8%
+        - 8.1%
+    - name: 'Table 9: Inference vs Fine-tuning Variance Hierarchy'
+      columns:
+      - Rank
+      - Inference (MMLU)
+      - Fine-tuning (avg)
+      rows:
+      - - 1st
+        - residual (28%)
+        - residual (22%)
+      - - 2nd
+        - item_id (24%)
+        - learning_rate (18%)
+      - - 3rd
+        - temp:item (5.5%)
+        - item_id (14%)
+      - - 4th
+        - prompt:item (4.8%)
+        - lr:seed (10%)
+      - - 5th
+        - precision:item (3.5%)
+        - seed (8%)
+    figures_description:
+    - 'Side-by-side stacked bars: inference (exp-001 MMLU) vs fine-tuning (exp-006
+      average)的方差分解，颜色编码相同components以突出hierarchy的质性差异。'
+    - 'Scatter plot: 每个component在inference vs fine-tuning中的variance share，理想情况下应在diagonal上。worst档下points远离diagonal，r=0.15的correlation在plot上视觉明显。'
+    analysis: 'exp-006在worst档下是最有价值的hedge。即使inference story崩溃，fine-tuning的 方差归因是genuinely
+      novel的——此前没有研究用G-theory分解fine-tuning的完整 facet structure。learning rate dominance（18%）、lr:seed交互（10%）、以及
+      inference-training方差结构的decorrelation（r=0.15）都是publishable findings。 这条线可以独立于inference
+      story发展，在worst档下成为paper的saving grace。 potential title angle: "What makes fine-tuning
+      unreproducible? A G-theory decomposition reveals learning rate × seed interactions
+      dominate."
+
+      '
+  - name: LayerCast precision mitigation
+    plan_id: exp-007
+    description: 'LayerCast（FP16 storage + FP32 compute）作为额外precision条件测试方差减少量。
+
+      '
+    expected_results:
+      layercast_accuracy: 0.672
+      layercast_vs_bf16_accuracy_delta: 0.001
+      variance_reduction_vs_fp16: 0.003
+      precision_component_with_layercast: 0.012
+      precision_item_interaction_with_layercast: 0.03
+      practical_significance: negligible
+    result_rationale: '在worst档下，exp-001已经显示precision main effect仅1.5%（confound修复后）。
+      LayerCast的FP16 storage + FP32 compute在理论上应该给出接近FP32的结果，但 由于FP32本身与BF16/FP16的差异已经很小（Δaccuracy=0.002），LayerCast的
+      额外收益几乎为零。precision:item交互从3.5%微降到3.0%，不具有实际意义。 这个结果说明precision本来就不是主要方差来源（confound修复后），mitigation
+      策略针对的是一个已经很小的问题。
+
+      '
+    tables:
+    - name: 'Table 10: Precision Conditions Including LayerCast'
+      columns:
+      - Condition
+      - Accuracy
+      - Precision Variance Share
+      - Precision:Item Share
+      rows:
+      - - FP32
+        - '0.670'
+        - 1.5%
+        - 3.5%
+      - - BF16
+        - '0.672'
+        - —
+        - —
+      - - FP16
+        - '0.671'
+        - —
+        - —
+      - - LayerCast (FP16+FP32)
+        - '0.672'
+        - 1.2%
+        - 3.0%
+    figures_description:
+    - 'Bar chart with error bars: 4种precision条件的accuracy分布，展示LayerCast与BF16几乎重叠，视觉上传达''precision
+      mitigation对一个已经很小的问题没有意义''。'
+    analysis: 'exp-007在worst档下基本是negative/null result。可以用一句话mention作为 supplementary
+      finding（"LayerCast provides negligible additional benefit when the float32 engine
+      confound is properly controlled"），但不值得 dedicated space。主要价值是排除了precision作为重要方差来源的可能性。
+
+      '
+  - name: MATH benchmark extension
+    plan_id: exp-008
+    description: 'MATH benchmark 200 items，测试reasoning-heavy tasks中CoT引入的额外方差。
+
+      '
+    expected_results:
+      item_variance_share_math: 0.1
+      residual_share_math: 0.4
+      seed_main_effect_math: 0.07
+      seed_item_interaction_math: 0.12
+      temperature_main_effect_math: 0.1
+      temperature_item_interaction_math: 0.15
+      prompt_item_interaction_math: 0.03
+      g_coefficient_math: 0.3
+      cot_length_variance_correlation: 0.65
+      items_needed_g90_math: 2200
+    result_rationale: 'MATH是最extreme的reasoning benchmark，CoT生成过程中的每个token都是一个 采样点，长推理链（avg
+      200+ tokens）意味着seed和temperature的随机性被200+ 次multiplicative放大。因此seed:item（12%）和temperature:item（15%）极高，
+      temperature main effect达10%（在其他benchmark上<2%），因为temperature 直接控制采样diversity，在长chain中的累积效应是非线性的。item_id仅10%——
+      比GSM8K更低——因为MATH problems的难度更多由解题路径的存在性决定，而非 item本身的知识内容，solution path的发现受seed/temperature强烈影响。
+      residual高达40%是worst档中最高的，反映了MATH推理过程中大量不可归因的 随机性（错误的推理链、self-correction失败、格式解析错误等）。G=0.30是
+      所有benchmark中最低的，G≥0.90需要2200 items，完全不切实际（MATH全集仅 5000题）。这个结果是"no universal
+      recipe"论点的最强证据——如果连G≥0.90 的item threshold在不同benchmark间差3-4倍，prescriptive budget毫无意义。
+
+      '
+    tables:
+    - name: 'Table 11: MATH Variance Decomposition vs Other Benchmarks'
+      columns:
+      - Component
+      - MMLU
+      - GSM8K
+      - MATH
+      rows:
+      - - residual
+        - 28%
+        - 35%
+        - 40%
+      - - item_id
+        - 24%
+        - 12%
+        - 10%
+      - - temp:item
+        - 5.5%
+        - 18%
+        - 15%
+      - - seed:item
+        - 1.8%
+        - 14%
+        - 12%
+      - - temperature
+        - 1.2%
+        - 8%
+        - 10%
+      - - seed
+        - 0.3%
+        - 5%
+        - 7%
+      - - G coefficient
+        - '0.42'
+        - '0.38'
+        - '0.30'
+      - - Items for G≥0.90
+        - '850'
+        - '1400'
+        - '2200'
+    figures_description:
+    - 'Scatter plot: CoT生成长度(tokens) vs item-level accuracy variance，展示正相关（r=0.65）——推理链越长，evaluation
+      variance越大。这是mechanistic explanation。'
+    - 'Gradient spectrum bar: 从MMLU→ARC→HellaSwag→GSM8K→MATH的G coefficient递减趋势，visual
+      argument for benchmark-conditional variance。'
+    analysis: MATH是worst档叙事的exclamation mark。G=0.30意味着当前practice下MATH evaluation基本是noise-dominated的。结合exp-002的GSM8K结果，形成清晰的
+      gradient：knowledge-retrieval tasks（MMLU）→ moderate reasoning（ARC）→ generation-heavy
+      reasoning（GSM8K/MATH）的方差结构systematically shifts from item-conditional to seed/temperature-conditional。这个gradient本身
+      是一个contribution——它解释了为什么reasoning benchmark的reproduction rates historically更低，并提供了mechanistic
+      account（CoT length amplifies sampling noise）。
+  review_report: "---\ndream_id: dream_20260520T190053\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-20T19:51:49.188124+00:00\n---\n\n# Dream Review\
+    \ Report — Full Roundtable\n\n**Paper**: \"No Universal Reproducibility Recipe:\
+    \ Variance Attribution in LLM Evaluation Is Benchmark-Conditional and Model-Conditional\"\
+    \n\n**Review mode**: full | **Reviewers**: R1 (Methods+Experiments), R2 (Novelty+Related\
+    \ Work)\n\n---\n\n## Step 1: Independent Reviews\n\n### Reviewer 1 — Methods &\
+    \ Experiments\n\n**Summary**: The paper applies G-theory to decompose LLM evaluation\
+    \ variance across 4 models, 5 benchmarks, and 172,800+ inference conditions plus\
+    \ a fine-tuning G-study. The experimental scale is ambitious and the float32 confound\
+    \ discovery is a genuine contribution. However, critical methodological gaps—residual\
+    \ dominance, missing uncertainty quantification, and a blocked hardware experiment—undermine\
+    \ the strength of the claims.\n\n**Strengths**:\n1. **Large-scale factorial design**:\
+    \ 4 models × 5 benchmarks with multiple crossed facets represents the most comprehensive\
+    \ G-theory study in LLM evaluation to date. The 172,800 MMLU records provide genuine\
+    \ statistical power.\n2. **Float32 confound discovery**: The identification of\
+    \ vLLM V1/V0 backend routing as a confound that inflated item variance from 24%\
+    \ to 58% is a standalone methodological contribution. The fix (enforce_eager=True\
+    \ on V0) is immediately actionable.\n3. **Honest reporting of failures**: The\
+    \ paper transparently reports the blocked hardware experiment (exp-003), partial\
+    \ 14B results, and the confound discovery that invalidated the original hypothesis.\
+    \ This intellectual honesty is commendable.\n4. **Fine-tuning G-study is genuinely\
+    \ novel**: No prior work has applied G-theory to decompose fine-tuning variance.\
+    \ The finding that learning rate dominates (17.8%) with a 10% lr×seed interaction,\
+    \ and inference-training decorrelation (r=0.15), are new and useful.\n5. **D-study\
+    \ projections are practically useful**: Showing that optimal allocations diverge\
+    \ qualitatively across benchmarks (MMLU: more items; GSM8K: more seeds) is actionable\
+    \ advice.\n\n**Weaknesses**:\n1. **Residual dominance is the paper's Achilles\
+    \ heel** (Tables 1, 3, 5). Residual is the largest component on ALL benchmarks\
+    \ (20–40%). Combined with the opaque \"all other\" category (26.5% in Table 1),\
+    \ over 54% of MMLU variance is unexplained or aggregated. For a paper whose contribution\
+    \ is variance *attribution*, having the majority of variance *unattributed* is\
+    \ a serious problem. The paper does not adequately discuss what these missing\
+    \ sources might be, nor does it attempt higher-order interaction estimation to\
+    \ decompose the residual.\n2. **No confidence intervals or uncertainty quantification**.\
+    \ Variance component estimates are reported as point estimates without bootstrap\
+    \ CIs, jackknife intervals, or any measure of estimation uncertainty. G-theory\
+    \ provides standard methods for this (Brennan 2001, Ch. 8). Without CIs, we cannot\
+    \ assess whether the differences between benchmarks or models are statistically\
+    \ meaningful or within estimation noise. For example, is item_id=24% on MMLU vs\
+    \ 22% on ARC a real difference or sampling variability?\n3. **Single GPU architecture\
+    \ severely limits \"infrastructure\" claims**. Experiment 3 (multi-hardware) was\
+    \ blocked. The paper's title and framing reference \"infrastructure\" factors,\
+    \ but only numerical precision on one GPU type was tested. The finding that \"\
+    direct infrastructure×methodology interaction < 0.5%\" (Table 4) applies only\
+    \ to precision, not hardware broadly. This should be reflected in the title/abstract.\n\
+    4. **Model is not treated as a G-theory facet**. The per-model decompositions\
+    \ (Table 1) show item_id ranging from 13.8% (Mistral) to 30.2% (Gemma), suggesting\
+    \ strong model×item interaction. But model is analyzed as a stratification variable,\
+    \ not a facet in the G-study design. A model-as-facet reanalysis of the existing\
+    \ MMLU data (no new experiments needed) would properly attribute this variance\
+    \ and likely reduce the residual.\n5. **Fine-tuning G-study uses RoBERTa-large**\
+    \ — an encoder-only model from 2019 — on classification tasks. The relevance to\
+    \ modern LLM fine-tuning (decoder-only models, generation tasks, RLHF/DPO) is\
+    \ questionable. The paper acknowledges this in Limitations but the mismatch weakens\
+    \ the \"fine-tuning contribution\" claim substantially.\n6. **200 items per benchmark**:\
+    \ While adequate for point estimation, the paper does not report sensitivity analyses\
+    \ (e.g., split-half reliability of the variance decomposition, or bootstrap resampling\
+    \ of items) to establish stability. Different 200-item samples from the same benchmark\
+    \ could yield different decompositions, especially for benchmarks with heterogeneous\
+    \ item pools.\n7. **REML vs actual estimation method**: The paper states \"Variance\
+    \ components are estimated via Restricted Maximum Likelihood (REML)\" (Section\
+    \ 3.1) but does not describe the actual implementation. If Henderson Method I\
+    \ (ANOVA-based) was used instead, this is a methodological misrepresentation that\
+    \ matters when variance components are near zero (negative estimates under Henderson\
+    \ are truncated differently than under REML).\n\n**Questions for Authors**:\n\
+    1. Can you provide bootstrap CIs (e.g., 1000 resamples of items) for the variance\
+    \ components in Tables 1 and 3? This would address whether cross-benchmark differences\
+    \ are real.\n2. What happens if model is included as a random facet in the MMLU\
+    \ G-study rather than stratified out? How much of \"all other\" and \"residual\"\
+    \ is actually model×item interaction?\n3. What specific variance estimation method\
+    \ was implemented? REML, Henderson I, or Henderson III?\n4. Have you examined\
+    \ three-way interactions (e.g., model×prompt×item) that might explain the large\
+    \ residual?\n\n**Score**: 3/6 (Weak Reject)\n**Confidence**: 4/5\n\n---\n\n###\
+    \ Reviewer 2 — Novelty & Related Work\n\n**Summary**: The paper extends Mesting\
+    \ [2026]'s single-benchmark G-theory study to multiple benchmarks and adds a fine-tuning\
+    \ G-study. The central contribution is a negative result (no universal variance\
+    \ structure), which is valid but incrementally novel. The related work section\
+    \ is severely underdeveloped with only 7 references, missing critical prior work\
+    \ on ML reproducibility, IRT-based item analysis, and benchmark efficiency.\n\n\
+    **Strengths**:\n1. **Cross-benchmark variance gradient is a genuine empirical\
+    \ contribution**. Showing that variance structure systematically shifts from item-conditional\
+    \ (MMLU) to seed/temperature-conditional (GSM8K/MATH) as benchmarks move from\
+    \ knowledge retrieval to chain-of-thought reasoning is new and interpretable.\n\
+    2. **D-study allocation divergence has immediate practical value**. The finding\
+    \ that MMLU needs 500 items × 2 prompts × 1 seed while GSM8K needs 250 items ×\
+    \ 4 prompts × 4 seeds (Table 7) is directly actionable for benchmark designers.\n\
+    3. **The confound discovery is a standalone contribution** regardless of the paper's\
+    \ other claims. Documenting that vLLM V0/V1 routing inflates variance estimates\
+    \ warns the community about similar artifacts.\n4. **Inference–training decorrelation\
+    \ (r=0.15)** is a novel finding that challenges the assumption that inference-time\
+    \ reproducibility insights transfer to training-time settings.\n\n**Weaknesses**:\n\
+    1. **Incremental novelty over Mesting [2026]**. The paper's claimed advance over\
+    \ Mesting is (a) adding precision as an infrastructure facet and (b) crossing\
+    \ benchmarks. But precision turns out to be a near-null factor (<1.5% main effect\
+    \ post-fix), so the infrastructure extension yields almost nothing. The paper's\
+    \ strongest findings (benchmark-conditional variance, D-study divergence) would\
+    \ largely emerge from a Mesting-style design without infrastructure crossing.\n\
+    2. **Severely inadequate bibliography**. 7 references for a top-venue submission\
+    \ is far below standards. Critical omissions include:\n   - **Bouthillier et al.\
+    \ (2021, JMLR)**: \"Accounting for Variance in Machine Learning Benchmarks\" —\
+    \ directly relevant, uses variance decomposition in ML evaluation.\n   - **Dodge\
+    \ et al. (2020, EMNLP)**: Fine-tuning instability — essential context for the\
+    \ fine-tuning G-study.\n   - **Sellam et al. (2022)**: MultiBERTs — multi-seed\
+    \ BERT training, directly relevant to seed variance.\n   - **Dehghani et al. (2021)**:\
+    \ \"The Benchmark Lottery\" — benchmark selection effects.\n   - **Polo et al.\
+    \ (2024)**: tinyBenchmarks — item subsampling for efficient evaluation, directly\
+    \ relevant to item variance.\n   - **Rodriguez et al. (2021)**: IRT-based evaluation\
+    \ for NLP — alternative item-level analysis framework.\n   - **Shavelson & Webb\
+    \ (1991)**: Foundational G-theory reference beyond Brennan (2001).\n   - **Henderson\
+    \ et al. (2018)**: Deep RL reproducibility — established the multi-factor variance\
+    \ decomposition paradigm in ML.\n   - **Biderman et al. (2024)**: Lessons from\
+    \ evaluation reproducibility.\n   - Any ordering effects literature (the paper\
+    \ includes ordering as a facet but cites no prior work on option ordering effects).\n\
+    3. **\"Diagnostic tool\" contribution is unsubstantiated**. The paper claims G-theory\
+    \ as a \"practical diagnostic tool\" but releases no software, no analysis pipeline,\
+    \ no reusable framework. The \"tool\" is just applying G-theory, which Mesting\
+    \ [2026] already demonstrated. GeneralizIT and similar R packages already exist.\
+    \ Without a released tool, this contribution claim is empty.\n4. **The negative\
+    \ result framing needs more work**. \"No universal recipe\" is the central claim,\
+    \ but many practitioners already assume this. The paper confirms a suspicion with\
+    \ data but doesn't offer constructive solutions beyond \"diagnose your pipeline\"\
+    \ — which requires the very G-theory study the paper just demonstrated is expensive\
+    \ (172,800 conditions for one benchmark). Is the recommendation scalable?\n5.\
+    \ **Zero figures is unusual and harmful**. For a paper about variance decomposition\
+    \ across benchmarks, visual comparisons (stacked bars, heatmaps, radar charts)\
+    \ would dramatically improve readability. The reliance on 11 tables makes the\
+    \ paper harder to parse and less compelling than it could be.\n6. **\"Fully crossed\"\
+    \ is overstated**. Only Experiment 1 (MMLU) uses the full crossing (3 precisions\
+    \ × 6 prompts × 6 seeds × 3 temps × 4 orderings). Experiments 2 and the MATH extension\
+    \ use a reduced crossing (2 precisions × 2 temps). This is fine practically but\
+    \ should not be described as a \"fully-crossed design spanning 5 benchmarks\"\
+    \ in the abstract.\n7. **Item dominance on knowledge benchmarks is partially expected\
+    \ from measurement theory**. Items in MMLU span from trivially easy to near-impossible\
+    \ across 57 subjects. A large item variance component is expected given this difficulty\
+    \ range. The paper would benefit from contextualizing this against IRT-based item\
+    \ analysis.\n\n**Questions for Authors**:\n1. How does this work relate to Bouthillier\
+    \ et al. (2021), which also decomposed variance in ML benchmarks?\n2. Is the recommendation\
+    \ to run a full G-study per benchmark practical? What is the computational cost,\
+    \ and is there a lightweight diagnostic alternative?\n3. Why were no figures included?\
+    \ The knowledge-reasoning gradient would be far more compelling as a visualization.\n\
+    4. Can you release the analysis code alongside the data to substantiate the \"\
+    diagnostic tool\" claim?\n\n**Score**: 3/6 (Weak Reject)\n**Confidence**: 4/5\n\
+    \n---\n\n## Step 2: Cross-Sharing\n\n**R1 → R2**: The methodological concerns\
+    \ (54% unexplained variance, no CIs, model not as facet) mean the \"no universal\
+    \ recipe\" finding may partly reflect an underspecified decomposition model rather\
+    \ than a genuine property of evaluation variance. If the residual were decomposed\
+    \ further (e.g., via three-way interactions or model-as-facet), the cross-benchmark\
+    \ differences might narrow or change qualitatively.\n\n**R2 → R1**: The thin related\
+    \ work compounds the experimental concerns. Without positioning against Bouthillier\
+    \ et al., tinyBenchmarks, or IRT-based approaches, it's unclear whether G-theory\
+    \ adds diagnostic power beyond existing methods. The fine-tuning contribution\
+    \ is further weakened because Dodge et al. (2020) already documented seed sensitivity\
+    \ in fine-tuning — the G-theory framing is new but the phenomenon is not.\n\n\
+    ---\n\n## Step 3: Convergence\n\n**Points of agreement**:\n- The paper addresses\
+    \ an important problem (evaluation reproducibility diagnosis)\n- The float32 confound\
+    \ discovery is a genuine, standalone contribution\n- The cross-benchmark variance\
+    \ gradient is an interesting empirical finding\n- Residual dominance (largest\
+    \ component everywhere) is the most serious methodological concern\n- Missing\
+    \ statistical uncertainty quantification (no CIs) is a critical gap\n- Single\
+    \ GPU limits infrastructure claims; the title/abstract overclaim relative to what\
+    \ was tested\n- Related work is severely underdeveloped (7 references)\n- Zero\
+    \ figures hurts presentation significantly\n- Fine-tuning G-study is novel in\
+    \ framing but limited by RoBERTa on classification tasks\n- The \"diagnostic tool\"\
+    \ contribution is claimed but not delivered (no released software)\n\n**Points\
+    \ of mild disagreement**:\n- R1 is slightly more positive about the experimental\
+    \ scale and sees the multi-benchmark extension as substantive; R2 views it as\
+    \ more incremental over Mesting\n- R2 emphasizes the bibliography gap more; R1\
+    \ emphasizes the statistical rigor gap more\n\n**Converged assessment**: Both\
+    \ reviewers agree the paper falls below the acceptance threshold for a top ML\
+    \ venue in its current form, despite addressing a real problem with interesting\
+    \ findings. The gap between claims and delivered evidence is too large.\n\n---\n\
+    \n## Step 4: Consolidated Assessment\n\n### Overall Score: 3/6 — Weak Reject\n\
+    \n### Headline Assessment\nAn ambitious and honest study that surfaces interesting\
+    \ empirical patterns (benchmark-conditional variance, float32 confound, inference-training\
+    \ decorrelation), but falls short of top-venue standards due to (1) the majority\
+    \ of variance remaining unattributed, (2) no uncertainty quantification on variance\
+    \ estimates, (3) severely thin related work, and (4) overclaiming relative to\
+    \ what was tested (single GPU ≠ \"infrastructure\").\n\n### What Would Change\
+    \ Our Minds (Revision Guidance)\n\n**Essential (any two would likely move to borderline)**:\n\
+    1. **Bootstrap CIs on all variance components** (Tables 1, 3, 5, 9). This is feasible\
+    \ with existing data and would establish whether cross-benchmark differences are\
+    \ statistically meaningful.\n2. **Model-as-facet reanalysis** of MMLU data to\
+    \ properly attribute model×item interaction and reduce the opaque residual/all-other\
+    \ categories. No new experiments needed.\n3. **Expand bibliography to ≥25 references**,\
+    \ including Bouthillier et al. (2021), Dodge et al. (2020), Sellam et al. (2022),\
+    \ Polo et al. (2024), Rodriguez et al. (2021), Shavelson & Webb (1991), Henderson\
+    \ et al. (2018), and ordering effects literature. Position contributions clearly\
+    \ against each.\n4. **Add 3-4 figures**: at minimum a stacked bar comparison across\
+    \ benchmarks, and a D-study projection curve. The paper is currently 11 tables\
+    \ and 0 figures.\n\n**Important (would strengthen but not alone sufficient)**:\n\
+    5. Downscope \"infrastructure\" claims to \"numerical precision\" throughout,\
+    \ including title consideration.\n6. Release analysis code (not just data) to\
+    \ substantiate the \"diagnostic tool\" contribution.\n7. Discuss what the large\
+    \ residual might contain and whether higher-order interactions or additional facets\
+    \ (e.g., batch size, system prompt) could reduce it.\n8. Clarify the exact variance\
+    \ estimation method (REML vs Henderson) and justify the choice.\n\n**Desirable\
+    \ (for camera-ready)**:\n9. Fine-tuning extension to at least one decoder-only\
+    \ model on a generation task.\n10. Sensitivity analysis: split-half reliability\
+    \ of variance decompositions across different 200-item samples.\n\n### Contribution\
+    \ Ranking\n1. **Float32 confound discovery** — strongest, standalone, immediately\
+    \ actionable ★★★★\n2. **Cross-benchmark variance gradient** — interesting empirical\
+    \ finding, needs CIs ★★★\n3. **D-study allocation divergence** — practically useful,\
+    \ well-presented ★★★\n4. **Inference-training decorrelation** — novel but limited\
+    \ by RoBERTa scope ★★☆\n5. **G-theory as diagnostic tool** — claimed but not delivered\
+    \ (no software) ★★\n6. **\"No universal recipe\" as central thesis** — valid but\
+    \ not constructive enough ★★\n\n### Experiment Coverage Assessment\nThe paper\
+    \ covers 7 of 8 planned experiments (exp-003 blocked, acknowledged). Coverage\
+    \ is thorough. The main gap is not missing experiments but missing *analyses*\
+    \ on existing data (CIs, model-as-facet, higher-order interactions).\n\n### Venue\
+    \ Fit\nThe paper fits an evaluation/benchmarking track (e.g., NeurIPS Datasets\
+    \ & Benchmarks, COLM, or an EMNLP evaluation workshop). For a main-track top venue,\
+    \ the negative-result framing needs a stronger constructive component (released\
+    \ tool, lightweight diagnostic protocol, or a concrete evaluation standard proposal).\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-20T19:52:01+00:00'

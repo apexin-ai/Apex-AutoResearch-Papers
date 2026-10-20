@@ -1,0 +1,344 @@
+{
+  "qwen2.5_3b": {
+    "n_records": 57600,
+    "grand_mean": 0.682153,
+    "total_variance": 0.2177344806,
+    "components": {
+      "item_id": {
+        "estimate": 0.1640000149,
+        "pct": 75.3211
+      },
+      "residual": {
+        "estimate": 0.023992592,
+        "pct": 11.0192
+      },
+      "prompt_template:item_id": {
+        "estimate": 0.0192328398,
+        "pct": 8.8332
+      },
+      "ordering:item_id": {
+        "estimate": 0.0039321648,
+        "pct": 1.8059
+      },
+      "seed:item_id": {
+        "estimate": 0.0032876014,
+        "pct": 1.5099
+      },
+      "temperature:item_id": {
+        "estimate": 0.0031119691,
+        "pct": 1.4292
+      },
+      "prompt_template": {
+        "estimate": 0.0001013669,
+        "pct": 0.0466
+      },
+      "ordering": {
+        "estimate": 3.86798e-05,
+        "pct": 0.0178
+      },
+      "prompt_template:ordering": {
+        "estimate": 1.69514e-05,
+        "pct": 0.0078
+      },
+      "temperature:prompt_template": {
+        "estimate": 1.38441e-05,
+        "pct": 0.0064
+      },
+      "temperature:seed": {
+        "estimate": 6.0143e-06,
+        "pct": 0.0028
+      },
+      "temperature:ordering": {
+        "estimate": 4.421e-07,
+        "pct": 0.0002
+      },
+      "prompt_template:seed": {
+        "estimate": 0.0,
+        "pct": 0.0
+      },
+      "seed:ordering": {
+        "estimate": 0.0,
+        "pct": 0.0
+      },
+      "temperature": {
+        "estimate": 0.0,
+        "pct": 0.0
+      },
+      "seed": {
+        "estimate": 0.0,
+        "pct": 0.0
+      }
+    },
+    "G_item": 0.962578,
+    "sigma_tau": 0.1640000149,
+    "sigma_delta": 0.0063757402,
+    "delta_breakdown": {
+      "residual": {
+        "estimate": 0.023992592,
+        "divisor": 288,
+        "contribution": 8.33076e-05
+      },
+      "temperature:item_id": {
+        "estimate": 0.0031119691,
+        "divisor": 2,
+        "contribution": 0.0015559846
+      },
+      "prompt_template:item_id": {
+        "estimate": 0.0192328398,
+        "divisor": 6,
+        "contribution": 0.0032054733
+      },
+      "seed:item_id": {
+        "estimate": 0.0032876014,
+        "divisor": 6,
+        "contribution": 0.0005479336
+      },
+      "ordering:item_id": {
+        "estimate": 0.0039321648,
+        "divisor": 4,
+        "contribution": 0.0009830412
+      }
+    },
+    "d_study": {
+      "25": 0.76277,
+      "50": 0.865422,
+      "75": 0.906067,
+      "100": 0.927856,
+      "150": 0.950719,
+      "200": 0.962578,
+      "300": 0.974737,
+      "500": 0.984688
+    },
+    "item_related_pct": 88.8993,
+    "facet_ranking": [
+      "item_id",
+      "residual",
+      "prompt_template:item_id",
+      "ordering:item_id",
+      "seed:item_id",
+      "temperature:item_id",
+      "prompt_template",
+      "ordering",
+      "prompt_template:ordering",
+      "temperature:prompt_template",
+      "temperature:seed",
+      "temperature:ordering",
+      "prompt_template:seed",
+      "seed:ordering",
+      "temperature",
+      "seed"
+    ],
+    "variance_components_raw": {
+      "residual": 0.023992592,
+      "temperature:prompt_template": 1.38441e-05,
+      "temperature:seed": 6.0143e-06,
+      "temperature:ordering": 4.421e-07,
+      "temperature:item_id": 0.0031119691,
+      "prompt_template:seed": -1.05093e-05,
+      "prompt_template:ordering": 1.69514e-05,
+      "prompt_template:item_id": 0.0192328398,
+      "seed:ordering": -5.537e-06,
+      "seed:item_id": 0.0032876014,
+      "ordering:item_id": 0.0039321648,
+      "temperature": -1.32931e-05,
+      "prompt_template": 0.0001013669,
+      "seed": -1.33022e-05,
+      "ordering": 3.86798e-05,
+      "item_id": 0.1640000149
+    }
+  },
+  "qwen2.5_7b": {
+    "n_records": 57600,
+    "grand_mean": 0.741667,
+    "total_variance": 0.192394299,
+    "components": {
+      "item_id": {
+        "estimate": 0.1411668864,
+        "pct": 73.3737
+      },
+      "prompt_template:item_id": {
+        "estimate": 0.023479134,
+        "pct": 12.2037
+      },
+      "residual": {
+        "estimate": 0.0186840092,
+        "pct": 9.7113
+      },
+      "ordering:item_id": {
+        "estimate": 0.0056987505,
+        "pct": 2.962
+      },
+      "seed:item_id": {
+        "estimate": 0.0016864553,
+        "pct": 0.8766
+      },
+      "temperature:item_id": {
+        "estimate": 0.0015215524,
+        "pct": 0.7909
+      },
+      "prompt_template": {
+        "estimate": 9.72941e-05,
+        "pct": 0.0506
+      },
+      "prompt_template:ordering": {
+        "estimate": 4.07065e-05,
+        "pct": 0.0212
+      },
+      "temperature:seed": {
+        "estimate": 8.104e-06,
+        "pct": 0.0042
+      },
+      "temperature:prompt_template": {
+        "estimate": 7.6874e-06,
+        "pct": 0.004
+      },
+      "temperature:ordering": {
+        "estimate": 3.7193e-06,
+        "pct": 0.0019
+      },
+      "prompt_template:seed": {
+        "estimate": 0.0,
+        "pct": 0.0
+      },
+      "seed:ordering": {
+        "estimate": 0.0,
+        "pct": 0.0
+      },
+      "temperature": {
+        "estimate": 0.0,
+        "pct": 0.0
+      },
+      "seed": {
+        "estimate": 0.0,
+        "pct": 0.0
+      },
+      "ordering": {
+        "estimate": 0.0,
+        "pct": 0.0
+      }
+    },
+    "G_item": 0.956341,
+    "sigma_tau": 0.1411668864,
+    "sigma_delta": 0.0064446037,
+    "delta_breakdown": {
+      "residual": {
+        "estimate": 0.0186840092,
+        "divisor": 288,
+        "contribution": 6.4875e-05
+      },
+      "temperature:item_id": {
+        "estimate": 0.0015215524,
+        "divisor": 2,
+        "contribution": 0.0007607762
+      },
+      "prompt_template:item_id": {
+        "estimate": 0.023479134,
+        "divisor": 6,
+        "contribution": 0.003913189
+      },
+      "seed:item_id": {
+        "estimate": 0.0016864553,
+        "divisor": 6,
+        "contribution": 0.0002810759
+      },
+      "ordering:item_id": {
+        "estimate": 0.0056987505,
+        "divisor": 4,
+        "contribution": 0.0014246876
+      }
+    },
+    "d_study": {
+      "25": 0.732483,
+      "50": 0.845588,
+      "75": 0.891472,
+      "100": 0.916334,
+      "150": 0.942623,
+      "200": 0.956341,
+      "300": 0.970464,
+      "500": 0.982067
+    },
+    "item_related_pct": 90.2069,
+    "facet_ranking": [
+      "item_id",
+      "prompt_template:item_id",
+      "residual",
+      "ordering:item_id",
+      "seed:item_id",
+      "temperature:item_id",
+      "prompt_template",
+      "prompt_template:ordering",
+      "temperature:seed",
+      "temperature:prompt_template",
+      "temperature:ordering",
+      "prompt_template:seed",
+      "seed:ordering",
+      "temperature",
+      "seed",
+      "ordering"
+    ],
+    "variance_components_raw": {
+      "residual": 0.0186840092,
+      "temperature:prompt_template": 7.6874e-06,
+      "temperature:seed": 8.104e-06,
+      "temperature:ordering": 3.7193e-06,
+      "temperature:item_id": 0.0015215524,
+      "prompt_template:seed": -2.3233e-06,
+      "prompt_template:ordering": 4.07065e-05,
+      "prompt_template:item_id": 0.023479134,
+      "seed:ordering": -5.775e-06,
+      "seed:item_id": 0.0016864553,
+      "ordering:item_id": 0.0056987505,
+      "temperature": -8.6932e-06,
+      "prompt_template": 9.72941e-05,
+      "seed": -6.6013e-06,
+      "ordering": -2.89144e-05,
+      "item_id": 0.1411668864
+    }
+  },
+  "comparison": {
+    "item_related_3b": 88.8993,
+    "item_related_7b": 90.2069,
+    "item_related_8model_ref": 68.45,
+    "facet_ranking_3b": [
+      "item_id",
+      "residual",
+      "prompt_template:item_id",
+      "ordering:item_id",
+      "seed:item_id",
+      "temperature:item_id",
+      "prompt_template",
+      "ordering",
+      "prompt_template:ordering",
+      "temperature:prompt_template",
+      "temperature:seed",
+      "temperature:ordering",
+      "prompt_template:seed",
+      "seed:ordering",
+      "temperature",
+      "seed"
+    ],
+    "facet_ranking_7b": [
+      "item_id",
+      "prompt_template:item_id",
+      "residual",
+      "ordering:item_id",
+      "seed:item_id",
+      "temperature:item_id",
+      "prompt_template",
+      "prompt_template:ordering",
+      "temperature:seed",
+      "temperature:prompt_template",
+      "temperature:ordering",
+      "prompt_template:seed",
+      "seed:ordering",
+      "temperature",
+      "seed",
+      "ordering"
+    ],
+    "facet_ranking_consistent": false,
+    "G_item_3b": 0.962578,
+    "G_item_7b": 0.956341,
+    "G_item_ref": 0.937,
+    "conclusion": "3B item_related=88.9%, 7B item_related=90.2% (ref single-model ~68.5%). G_item: 3B=0.963, 7B=0.956 (ref ~0.937). Facet ranking consistent: False."
+  }
+}

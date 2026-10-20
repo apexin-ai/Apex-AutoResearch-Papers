@@ -1,0 +1,31 @@
+paper_key: "li2025atlas"
+title: "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["full static benchmark evaluation", "random item selection", "tinyBenchmarks"]
+  metrics:
+    - {name: "MAE (ability estimation)", direction: "lower_better"}
+    - {name: "item reduction ratio", direction: "higher_better"}
+    - {name: "item exposure rate", direction: "lower_better"}
+    - {name: "test overlap", direction: "lower_better"}
+  datasets:
+    - {name: "WinoGrande", size: "standard"}
+    - {name: "TruthfulQA", size: "standard"}
+    - {name: "HellaSwag", size: "5,608 items"}
+    - {name: "GSM8K", size: "standard"}
+    - {name: "ARC", size: "standard"}
+  ablation_dimensions: ["number of items selected", "item selection strategy (Fisher information)", "benchmark type"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "adaptive testing / computerized adaptive testing (CAT)"
+
+positioning:
+  core_claim: "ATLAS reduces required evaluation items by up to 90% via Fisher-information-guided adaptive item selection while revealing that 3-6% of benchmark items have negative discrimination (annotation errors)"
+  key_results: "HellaSwag: 42 items match full-bank estimate (0.154 MAE), 23-31% of models shift >10 rank positions under IRT vs raw scoring, item exposure <10%"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

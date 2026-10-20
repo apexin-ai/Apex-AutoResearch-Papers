@@ -1,0 +1,130 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{bouthillier2021accounting,mesting2026generalizability,brittlebench2026}
+\citation{mesting2026generalizability}
+\citation{brittlebench2026}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{bouthillier2021accounting}
+\citation{henderson2018deep}
+\citation{dodge2020fine}
+\citation{sellam2022multiBERTs}
+\citation{mesting2026generalizability}
+\citation{brittlebench2026}
+\citation{lalor2019learning,rodriguez2021evaluation,vania2021comparing}
+\citation{polo2024tinybenchmarks,perlitz2023efficient}
+\citation{dehghani2021benchmark}
+\citation{yuan2025llm}
+\citation{lu2022fantastically,pezeshkpour2024large}
+\citation{biderman2024lessons}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition in ML evaluation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{G-theory in LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item-level analysis and IRT.}{2}{section*.3}\protected@file@percent }
+\citation{shavelson1991generalizability,brennan2001generalizability}
+\citation{hua2025emnlp}
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility factors.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory Framework}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 1: Full-scale precision study.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 1b: Item resampling stability.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 2: Multi-benchmark replication.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 3: Multi-hardware G-study.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 4: Comprehensive reanalysis.}{3}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Variance components under model-as-fixed analysis (MMLU, binary scoring, 200 items). These point estimates are subsequently shown to be unstable (Sec.~\ref {sec:exp1b}) and inflated (Sec.~\ref {sec:exp4}).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:exp1_variance}{{1}{4}{Variance components under model-as-fixed analysis (MMLU, binary scoring, 200 items). These point estimates are subsequently shown to be unstable (Sec.~\ref {sec:exp1b}) and inflated (Sec.~\ref {sec:exp4})}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Experiment 5: Scale extension.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 6: Fine-tuning G-study.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 7: LayerCast precision mitigation.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 8: MATH benchmark extension.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment 1: Variance Decomposition Under Model-as-Fixed Analysis}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp1}{{4.1}{4}{Experiment 1: Variance Decomposition Under Model-as-Fixed Analysis}{subsection.4.1}{}}
+\citation{mesting2026generalizability,brittlebench2026,bouthillier2021accounting}
+\citation{mesting2026generalizability}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Variance decomposition across three independent item samples (Llama-3.1-8B, MMLU). Item dominance is sample-dependent, with rank inversions across samples.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:resample}{{2}{5}{Variance decomposition across three independent item samples (Llama-3.1-8B, MMLU). Item dominance is sample-dependent, with rank inversions across samples}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $G$-coefficient and rank stability across item samples. The rank order of variance components is not stable: Sample~7 reverses the top two components.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:resample_stability}{{3}{5}{$G$-coefficient and rank stability across item samples. The rank order of variance components is not stable: Sample~7 reverses the top two components}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experiment 1b: Item Resampling Instability}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp1b}{{4.2}{5}{Experiment 1b: Item Resampling Instability}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Item dominance across benchmarks (model-as-fixed). No systematic gradient exists; spread = 9pp.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:multi_bench}{{4}{6}{Item dominance across benchmarks (model-as-fixed). No systematic gradient exists; spread = 9pp}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces The predicted cross-benchmark gradient does not match observations.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:gradient_test}{{5}{6}{The predicted cross-benchmark gradient does not match observations}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiment 2: Multi-Benchmark Replication}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp2}{{4.3}{6}{Experiment 2: Multi-Benchmark Replication}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Separability under binary scoring.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Experiment 3: Multi-Hardware G-Study}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp3}{{4.4}{6}{Experiment 3: Multi-Hardware G-Study}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Separability test (binary scoring). Infrastructure$\times $methodology interactions exceed 3\% on GSM8K and HellaSwag.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:separability}{{6}{7}{Separability test (binary scoring). Infrastructure$\times $methodology interactions exceed 3\% on GSM8K and HellaSwag}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Hardware-related variance components (MMLU, binary scoring).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:hardware}{{7}{7}{Hardware-related variance components (MMLU, binary scoring)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experiment 4: Model-as-Facet Reanalysis and D-Study Projections}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp4}{{4.5}{7}{Experiment 4: Model-as-Facet Reanalysis and D-Study Projections}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap ranking stability.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{D-study reproducibility budgets.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Estimation method sensitivity.}{7}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Separability with vs.\ without hardware. Adding hardware breaks separability.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:sep_hardware}{{8}{8}{Separability with vs.\ without hardware. Adding hardware breaks separability}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Model-fixed vs.\ model-crossed variance decomposition (MMLU, binary scoring). Treating model as fixed inflates item variance by 22.6pp.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:model_crossed}{{9}{8}{Model-fixed vs.\ model-crossed variance decomposition (MMLU, binary scoring). Treating model as fixed inflates item variance by 22.6pp}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Experiment 5: 14B Model Extension}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:exp5}{{4.6}{8}{Experiment 5: 14B Model Extension}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Experiment 6: Fine-Tuning G-Study}{8}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:exp6}{{4.7}{8}{Experiment 6: Fine-Tuning G-Study}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Experiment 7: LayerCast Precision Mitigation}{8}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Bootstrap ranking stability (1{,}000 resamples). No component is reliably the largest.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:bootstrap_rank}{{10}{9}{Bootstrap ranking stability (1{,}000 resamples). No component is reliably the largest}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces D-study: items required for $G \geq 0.90$. CI widths exceed the cross-benchmark range.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:dstudy}{{11}{9}{D-study: items required for $G \geq 0.90$. CI widths exceed the cross-benchmark range}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Experiment 8: MATH Benchmark Extension}{9}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:exp8}{{4.9}{9}{Experiment 8: MATH Benchmark Extension}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition as measurement.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The model$\times $item interaction.}{9}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces REML vs.\ Henderson Method~I. Estimation method choice alters conclusions.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:reml}{{12}{10}{REML vs.\ Henderson Method~I. Estimation method choice alters conclusions}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Variance structure: 8B pooled vs.\ 14B models vs.\ all crossed.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:14b}{{13}{10}{Variance structure: 8B pooled vs.\ 14B models vs.\ all crossed}{table.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{The non-gradient.}{10}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Budgets need error bars.}{10}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Separability depends on scope.}{10}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.23}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{biderman2024lessons}{{1}{2024}{{Biderman et~al.}}{{}}}
+\bibcite{bouthillier2021accounting}{{2}{2021}{{Bouthillier et~al.}}{{}}}
+\bibcite{brennan2001generalizability}{{3}{2001}{{Brennan}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Fine-tuning variance decomposition (RoBERTa-large).}}{11}{table.14}\protected@file@percent }
+\newlabel{tab:finetune}{{14}{11}{Fine-tuning variance decomposition (RoBERTa-large)}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Inference vs.\ fine-tuning variance structure comparison.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:inf_ft_corr}{{15}{11}{Inference vs.\ fine-tuning variance structure comparison}{table.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}\protected@file@percent }
+\bibcite{brittlebench2026}{{4}{2026}{{Brittlebench}}{{}}}
+\bibcite{dehghani2021benchmark}{{5}{2021}{{Dehghani et~al.}}{{}}}
+\bibcite{dodge2020fine}{{6}{2020}{{Dodge et~al.}}{{}}}
+\bibcite{henderson2018deep}{{7}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{hua2025emnlp}{{8}{2025}{{Hua et~al.}}{{}}}
+\bibcite{lalor2019learning}{{9}{2019}{{Lalor et~al.}}{{}}}
+\bibcite{lu2022fantastically}{{10}{2022}{{Lu et~al.}}{{}}}
+\bibcite{mesting2026generalizability}{{11}{2026}{{Mesting}}{{}}}
+\bibcite{messina2026floating}{{12}{2026}{{Messina \& Scotta}}{{}}}
+\bibcite{perlitz2023efficient}{{13}{2023}{{Perlitz et~al.}}{{}}}
+\bibcite{pezeshkpour2024large}{{14}{2024}{{Pezeshkpour \& Hruschka}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{15}{2024}{{Polo et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Precision conditions including LayerCast (MMLU, pooled across models).}}{12}{table.16}\protected@file@percent }
+\newlabel{tab:layercast}{{16}{12}{Precision conditions including LayerCast (MMLU, pooled across models)}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Full 5-benchmark spectrum. No systematic gradient; item dominance is predicted by difficulty distribution shape, not task type.}}{12}{table.17}\protected@file@percent }
+\newlabel{tab:5bench}{{17}{12}{Full 5-benchmark spectrum. No systematic gradient; item dominance is predicted by difficulty distribution shape, not task type}{table.17}{}}
+\bibcite{rodriguez2021evaluation}{{16}{2021}{{Rodriguez et~al.}}{{}}}
+\bibcite{sellam2022multiBERTs}{{17}{2022}{{Sellam et~al.}}{{}}}
+\bibcite{shavelson1991generalizability}{{18}{1991}{{Shavelson \& Webb}}{{}}}
+\bibcite{vania2021comparing}{{19}{2021}{{Vania et~al.}}{{}}}
+\bibcite{yuan2025llm}{{20}{2025}{{Yuan et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Difficulty distribution shape predicts item dominance ($r = 0.95$).}}{13}{table.18}\protected@file@percent }
+\newlabel{tab:bimodality}{{18}{13}{Difficulty distribution shape predicts item dominance ($r = 0.95$)}{table.18}{}}
+\gdef \@abspage@last{13}

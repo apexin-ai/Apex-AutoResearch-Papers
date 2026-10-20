@@ -1,0 +1,26 @@
+paper_key: "song2025exploring"
+title: "Exploring LLM Autoscoring Reliability in Large-Scale Writing Assessments Using Generalizability Theory"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["human rater scoring", "single-rater reliability"]
+  metrics:
+    - {name: "G-coefficient (generalizability)", direction: "higher_better"}
+    - {name: "variance components (rater/task/interaction)", direction: "N/A"}
+    - {name: "inter-rater reliability", direction: "higher_better"}
+  datasets:
+    - {name: "AP Chinese Language and Culture Exam", size: "2 task types (story narration + email)"}
+  ablation_dimensions: ["rater type (human vs 7 LLMs)", "scoring dimension (holistic + 3 analytic)", "task type", "hybrid scoring combinations"]
+  training_recipe: {optimizer: "N/A (inference only)", lr: "N/A", hardware: "N/A"}
+  method_family: "generalizability theory for LLM-as-judge"
+
+positioning:
+  core_claim: "G-theory decomposition reveals human raters are more reliable overall but LLMs show reasonable consistency for story narration; hybrid human+AI scoring improves reliability"
+  key_results: "N/A (abstract level)"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

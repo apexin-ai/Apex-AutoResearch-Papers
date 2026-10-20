@@ -1,0 +1,43 @@
+{
+  "method": "item resample bootstrap, 1000 iterations, Henderson Method I",
+  "metric": "item_related_pct (= item_id_pct + model_x_item_pct)",
+  "results": {
+    "mmlu": {
+      "mean": 67.855,
+      "median": 67.8466,
+      "ci_lower": 65.2356,
+      "ci_upper": 70.5628,
+      "n_resamples": 1000
+    },
+    "arc": {
+      "mean": 71.3144,
+      "median": 71.3943,
+      "ci_lower": 67.1144,
+      "ci_upper": 75.0463,
+      "n_resamples": 1000
+    },
+    "hellaswag": {
+      "mean": 70.0239,
+      "median": 69.9685,
+      "ci_lower": 67.1455,
+      "ci_upper": 72.7497,
+      "n_resamples": 1000
+    },
+    "gsm8k": {
+      "mean": 31.2834,
+      "median": 31.4155,
+      "ci_lower": 27.972,
+      "ci_upper": 34.3851,
+      "n_resamples": 1000
+    },
+    "math": {
+      "mean": 41.0632,
+      "median": 41.0796,
+      "ci_lower": 37.9729,
+      "ci_upper": 44.2307,
+      "n_resamples": 1000
+    }
+  },
+  "mc_vs_ff_overlap": false,
+  "conclusion": "MC CIs [65.2-75.0%] vs FF CIs [28.0-44.2%], overlap=False"
+}

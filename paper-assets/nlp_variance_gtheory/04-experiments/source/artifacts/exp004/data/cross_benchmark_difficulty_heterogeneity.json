@@ -1,0 +1,51 @@
+{
+  "mmlu": {
+    "std_pi": 0.3112,
+    "mean_pi": 0.6457,
+    "n_items": 200,
+    "n_models": 8,
+    "item_id_pct": 37.88
+  },
+  "arc": {
+    "std_pi": 0.2737,
+    "mean_pi": 0.7725,
+    "n_items": 200,
+    "n_models": 8,
+    "item_id_pct": 37.88
+  },
+  "hellaswag": {
+    "std_pi": 0.2822,
+    "mean_pi": 0.7192,
+    "n_items": 200,
+    "n_models": 6,
+    "item_id_pct": 34.27
+  },
+  "gsm8k": {
+    "std_pi": 0.2203,
+    "mean_pi": 0.5819,
+    "n_items": 200,
+    "n_models": 8,
+    "item_id_pct": 16.86
+  },
+  "math": {
+    "std_pi": 0.2283,
+    "mean_pi": 0.2722,
+    "n_items": 200,
+    "n_models": 7,
+    "item_id_pct": 24.03
+  },
+  "_spearman": {
+    "rho": 0.8208,
+    "p_value": 0.0886
+  },
+  "_within_format": {
+    "mc_std_rank": ["mmlu", "hellaswag", "arc"],
+    "mc_item_rank": ["mmlu", "arc", "hellaswag"],
+    "mc_consistent": false,
+    "mc_spearman_rho": 0.0,
+    "ff_std_rank": ["math", "gsm8k"],
+    "ff_item_rank": ["math", "gsm8k"],
+    "ff_consistent": true,
+    "ff_spearman_rho": 1.0
+  }
+}

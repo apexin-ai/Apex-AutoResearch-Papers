@@ -1,0 +1,84 @@
+paper_key: "messina2026background"
+title: "Introducing Background Temperature to Characterise Hidden Randomness in LLMs"
+venue: "TMLR 2026"
+full_text_available: true
+
+research:
+  baselines: [GPT-4.1-nano, Gemini-2.0-flash, Grok-3-mini, Claude-Sonnet-4]
+  metrics:
+    - {name: "background temperature T_bg", direction: "lower_better"}
+    - {name: "exact-match rate at T=0", direction: "higher_better"}
+    - {name: "KS distance (divergence matching)", direction: "lower_better"}
+  datasets:
+    - {name: "TruthfulQA (first 200)", size: "200 prompts"}
+  ablation_dimensions: [reference_model (SmolLM3-3B vs Llama-3.2-3B-Instruct), temperature_grid (0 to 1.5), variability_metric]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "API-based (Azure, Google, Amazon Bedrock)"}
+  method_family: "nondeterminism quantification / background temperature"
+
+positioning:
+  core_claim: "Background temperature (T_bg) formalizes the effective randomness in LLM inference even at T=0 — empirically measurable via reference model calibration, revealing provider-specific nondeterminism levels (Claude: 0, GPT: 0.075, Gemini: 0.065)"
+  key_results: "Claude-Sonnet-4: T_bg=0; Grok-3-mini: T_bg=0.015; Gemini-2.0-flash: T_bg=0.065; GPT-4.1-nano: T_bg=0.075"
+  limitations:
+    - "Reference model selection depends on domain — needs industry consensus"
+    - "Limited prompt set (200) and token constraint (32)"
+    - "Estimates aggregate across inference environments"
+    - "Pilot-scale experiments only"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "LLMs produce different outputs at T=0 — but how much randomness is actually lurking?"
+  tension: "Nondeterminism is known but unquantified — providers don't report it, users can't measure it"
+  key_insight: "Reframes nondeterminism as an effective temperature: instead of binary (deterministic/not), quantifies HOW non-deterministic via calibrated reference matching"
+  argument_chain: "observation (T=0 nondeterminism) → formalization (T_bg definition) → measurement protocol (reference calibration) → pilot experiments → provider comparison"
+  contribution_framing: "4 contributions: (1) formal model, (2) T_bg definition, (3) practical measurement protocol, (4) pilot validation across providers"
+  intro_structure: "4 paragraphs: (1) LLM deployment, (2) nondeterminism problem, (3) need for quantification, (4) T_bg proposal"
+  notable_technique: "Elegant dimensional reduction — collapses multiple nondeterminism sources into a single interpretable number (equivalent temperature)"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "Reference calibration protocol: local model at known temperatures → distribution matching → T_bg estimation"
+    narrative_role: "Makes the measurement protocol visually clear"
+    design_elements: ["pipeline diagram", "distribution matching visualization", "temperature scale"]
+    visual_style: "Flow diagram with distribution plots at each stage"
+  result_figures:
+    - figure_id: "Provider comparison"
+      viz_type: "bar_chart"
+      what_compared: "T_bg across 4 LLM providers"
+      how_gain_highlighted: "Claude at 0 vs GPT at 0.075 — clear ranking"
+      design_note: "Simple bar chart with provider logos makes result immediately accessible"
+    - figure_id: "Calibration curves"
+      viz_type: "line_plot"
+      what_compared: "Variability metric distributions across temperature grid"
+      how_gain_highlighted: "Intersection point of test distribution with calibration curves identifies T_bg"
+      design_note: "Distribution matching visualization is the methodological centerpiece"
+  ablation_figures:
+    - figure_id: "Reference model comparison"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["reference_model (SmolLM vs Llama)"]
+      design_note: "Shows T_bg estimates are reasonably stable across reference models"
+  figure_narrative_role: "Protocol overview → Calibration curves → Provider comparison → Reference model sensitivity"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "test models (4 providers)"
+    col_axis: "reference models × T_bg estimates"
+    row_organization: "flat"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold lowest T_bg"
+    statistical_reporting: "point estimates with reference-averaged T̄_bg"
+    num_baselines: 4
+    design_note: "Clean 4×3 table — one glance shows provider ranking"
+  ablation_tables:
+    - table_id: "Variability metrics comparison"
+      what_varied: ["metric type (exact-match, edit distance, KL, entropy)"]
+      variation_style: "full_numbers"
+      design_note: "Shows convergence across different variability metrics"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-prompt T_bg distributions, additional metric results"
+    reason: "Main table shows aggregate; appendix provides prompt-level detail"

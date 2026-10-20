@@ -1,0 +1,131 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yuan2025}
+\citation{mizrahi2024}
+\citation{lu2022,pezeshkpour2024}
+\citation{shavelson1991,brennan2001}
+\citation{bouthillier2021}
+\citation{mesting2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{yuan2025}
+\citation{mizrahi2024}
+\citation{lu2022}
+\citation{pezeshkpour2024}
+\citation{biderman2024}
+\citation{shavelson1991,brennan2001}
+\citation{bouthillier2021}
+\citation{mesting2026}
+\citation{lalor2019,rodriguez2021,vania2021}
+\citation{polo2024}
+\citation{perlitz2023}
+\citation{dodge2020}
+\citation{sellam2022}
+\citation{henderson2018}
+\citation{dehghani2021}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance sources in LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generalizability Theory in NLP.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item-level analysis and efficient benchmarking.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training instability and reproducibility.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Framework and Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 1: Full-scale MMLU G-study.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 2: Item resampling stability.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 3: Multi-benchmark replication.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 4: Multi-hardware G-study.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 5: Combined analysis.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 6: 14B scale extension.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 7: Fine-tuning G-study.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 8: LayerCast mitigation.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 9: MATH extension.}{3}{section*.14}\protected@file@percent }
+\citation{brennan2001}
+\citation{yuan2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Models and Infrastructure}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Scoring Metrics}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}MMLU Variance Decomposition}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:mmlu}{{4.1}{4}{MMLU Variance Decomposition}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces MMLU variance decomposition (binary correct, model pooled, $N$=1,036,800).}}{4}{table.caption.15}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:mmlu_binary}{{1}{4}{MMLU variance decomposition (binary correct, model pooled, $N$=1,036,800)}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-model MMLU accuracy by precision (V0 enforce\_eager). All models show FP32 degradation.}}{4}{table.caption.17}\protected@file@percent }
+\newlabel{tab:precision_accuracy}{{2}{4}{Per-model MMLU accuracy by precision (V0 enforce\_eager). All models show FP32 degradation}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{FP32 degradation.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Item Resampling Stability}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:resampling}{{4.2}{4}{Item Resampling Stability}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resampling stability of key variance components across three independent 200-item stratified MMLU samples (Llama-3.1-8B).}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:resampling}{{3}{5}{Resampling stability of key variance components across three independent 200-item stratified MMLU samples (Llama-3.1-8B)}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Benchmark Variance Structure}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:crossbenchmark}{{4.3}{5}{Cross-Benchmark Variance Structure}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-benchmark variance decomposition (binary correct, model pooled). Benchmarks sorted by item dominance. 384,000 obs/benchmark (GSM8K, ARC, HellaSwag); 1,036,800 (MMLU).}}{5}{table.caption.19}\protected@file@percent }
+\newlabel{tab:crossbench}{{4}{5}{Cross-benchmark variance decomposition (binary correct, model pooled). Benchmarks sorted by item dominance. 384,000 obs/benchmark (GSM8K, ARC, HellaSwag); 1,036,800 (MMLU)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GSM8K infra$\times $method interaction breakdown (binary). Only GSM8K and MATH exceed 1\%; MMLU 0.4\%, ARC 0.5\%, HellaSwag 0.3\%.}}{5}{table.caption.20}\protected@file@percent }
+\newlabel{tab:gsm8k_infra}{{5}{5}{GSM8K infra$\times $method interaction breakdown (binary). Only GSM8K and MATH exceed 1\%; MMLU 0.4\%, ARC 0.5\%, HellaSwag 0.3\%}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Model-as-Facet Reanalysis}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:modelasfacet}{{4.4}{5}{Model-as-Facet Reanalysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Model-as-facet variance decomposition (binary correct) across five benchmarks. Model$\times $item captures model-specific item difficulty profiles.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:model_facet}{{6}{6}{Model-as-facet variance decomposition (binary correct) across five benchmarks. Model$\times $item captures model-specific item difficulty profiles}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Bootstrap 95\% CIs on key variance components (model-as-facet, 1,000 resamples).}}{6}{table.caption.23}\protected@file@percent }
+\newlabel{tab:bootstrap_ci}{{7}{6}{Bootstrap 95\% CIs on key variance components (model-as-facet, 1,000 resamples)}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap confidence intervals.}{6}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Hardware facet variance components (MMLU, 1,152,000 obs, 2 GPU types).}}{6}{table.caption.24}\protected@file@percent }
+\newlabel{tab:hardware}{{8}{6}{Hardware facet variance components (MMLU, 1,152,000 obs, 2 GPU types)}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Hardware Facet Analysis}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:hardware}{{4.5}{6}{Hardware Facet Analysis}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}D-Study Reproducibility Budgets}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:dstudy}{{4.6}{6}{D-Study Reproducibility Budgets}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces D-study projections: items needed for target $G$ (BF16, optimal prompt/seed). CIs from bootstrap.}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:dstudy}{{9}{7}{D-study projections: items needed for target $G$ (BF16, optimal prompt/seed). CIs from bootstrap}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Scoring metric comparison (MMLU, model-as-facet). Variance hierarchy depends qualitatively on the evaluation metric.}}{7}{table.caption.26}\protected@file@percent }
+\newlabel{tab:scoring}{{10}{7}{Scoring metric comparison (MMLU, model-as-facet). Variance hierarchy depends qualitatively on the evaluation metric}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Scoring Metric Sensitivity}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:metrics}{{4.7}{7}{Scoring Metric Sensitivity}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces REML vs.\ Henderson Method I (MMLU, binary).}}{7}{table.caption.27}\protected@file@percent }
+\newlabel{tab:reml}{{11}{7}{REML vs.\ Henderson Method I (MMLU, binary)}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces 8B vs.\ 14B variance decomposition (MMLU, model-as-facet, binary).}}{7}{table.caption.28}\protected@file@percent }
+\newlabel{tab:scale}{{12}{7}{8B vs.\ 14B variance decomposition (MMLU, model-as-facet, binary)}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Estimation Method Sensitivity}{7}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}14B Scale Extension}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:scale}{{4.9}{7}{14B Scale Extension}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Fine-tuning variance decomposition (RoBERTa-large, 432 runs/task).}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:finetune}{{13}{8}{Fine-tuning variance decomposition (RoBERTa-large, 432 runs/task)}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Fine-Tuning Variance Decomposition}{8}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:finetuning}{{4.10}{8}{Fine-Tuning Variance Decomposition}{subsection.4.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Precision Mitigation: LayerCast}{8}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:layercast}{{4.11}{8}{Precision Mitigation: LayerCast}{subsection.4.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces LayerCast comparison across precision modes (MMLU, binary).}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:layercast}{{14}{8}{LayerCast comparison across precision modes (MMLU, binary)}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Five-benchmark summary (model-as-facet, binary).}}{8}{table.caption.31}\protected@file@percent }
+\newlabel{tab:summary}{{15}{8}{Five-benchmark summary (model-as-facet, binary)}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Five-Benchmark Summary}{8}{subsection.4.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The variance structure is benchmark-conditional.}{8}{section*.32}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{biderman2024}{{1}{2024}{{Biderman et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Model-as-facet reframes prior work.}{9}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Separability requires qualification.}{9}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hardware is manageable.}{9}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metric dependence as a feature.}{9}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\bibcite{bouthillier2021}{{2}{2021}{{Bouthillier et~al.}}{{}}}
+\bibcite{brennan2001}{{3}{2001}{{Brennan}}{{}}}
+\bibcite{dehghani2021}{{4}{2021}{{Dehghani et~al.}}{{}}}
+\bibcite{dodge2020}{{5}{2020}{{Dodge et~al.}}{{}}}
+\bibcite{henderson2018}{{6}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{lalor2019}{{7}{2019}{{Lalor et~al.}}{{}}}
+\bibcite{lu2022}{{8}{2022}{{Lu et~al.}}{{}}}
+\bibcite{mesting2026}{{9}{2026}{{Mesting}}{{}}}
+\bibcite{mizrahi2024}{{10}{2024}{{Mizrahi et~al.}}{{}}}
+\bibcite{perlitz2023}{{11}{2023}{{Perlitz et~al.}}{{}}}
+\bibcite{pezeshkpour2024}{{12}{2024}{{Pezeshkpour and Hruschka}}{{}}}
+\bibcite{polo2024}{{13}{2024}{{Polo et~al.}}{{}}}
+\bibcite{rodriguez2021}{{14}{2021}{{Rodriguez et~al.}}{{}}}
+\bibcite{sellam2022}{{15}{2022}{{Sellam et~al.}}{{}}}
+\bibcite{shavelson1991}{{16}{1991}{{Shavelson and Webb}}{{}}}
+\bibcite{vania2021}{{17}{2021}{{Vania et~al.}}{{}}}
+\bibcite{yuan2025}{{18}{2025}{{Yuan et~al.}}{{}}}
+\gdef \@abspage@last{10}

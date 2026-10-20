@@ -1,0 +1,77 @@
+[
+  {
+    "item_id": "math_train_2917",
+    "benchmark": "math",
+    "question": "In an isosceles triangle, one of the angles opposite an equal side is $40^{\\circ}$. How many degrees are in the measure of the triangle's largest angle? [asy] draw((0,0)--(6,0)--(3,2)--(0,0)); label(\"$\\backslash$\",(1.5,1)); label(\"{/}\",(4.5,1));\nlabel(\"$40^{\\circ}$\",(.5,0),dir(45));\n[/asy]",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "100",
+    "metadata": {
+      "difficulty": 1,
+      "difficulty_str": "Level 1",
+      "subject": "Geometry",
+      "solution": "The two angles opposite the equal sides of an isosceles triangle are congruent, so in this case, both are $40^\\circ$. Since the three angles of a triangle add up to $180^\\circ$, the third angle in this triangle is $(180-40-40)^\\circ = \\boxed{100}^\\circ$.",
+      "raw_answer": "The two angles opposite the equal sides of an isosceles triangle are congruent, so in this case, both are $40^\\circ$. Since the three angles of a triangle add up to $180^\\circ$, the third angle in this triangle is $(180-40-40)^\\circ = \\boxed{100}^\\circ$."
+    }
+  },
+  {
+    "item_id": "math_train_6184",
+    "benchmark": "math",
+    "question": "What is the smallest prime factor of 1821?",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "3",
+    "metadata": {
+      "difficulty": 2,
+      "difficulty_str": "Level 2",
+      "subject": "Prealgebra",
+      "solution": "1821 is clearly not even, so 2 is not a factor. We find that 3 is a factor, since the sum of the digits of 1821 is $1 + 8 + 2 + 1 = 12$, which is divisible by 3. Since we want the smallest prime factor, we are done; our answer is $\\boxed{3}$.",
+      "raw_answer": "1821 is clearly not even, so 2 is not a factor. We find that 3 is a factor, since the sum of the digits of 1821 is $1 + 8 + 2 + 1 = 12$, which is divisible by 3. Since we want the smallest prime factor, we are done; our answer is $\\boxed{3}$."
+    }
+  },
+  {
+    "item_id": "math_train_19",
+    "benchmark": "math",
+    "question": "Three faucets fill a 100-gallon tub in 6 minutes.  How long, in seconds, does it take six faucets to fill a 25-gallon tub?  Assume that all faucets dispense water at the same rate.",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "45",
+    "metadata": {
+      "difficulty": 3,
+      "difficulty_str": "Level 3",
+      "subject": "Algebra",
+      "solution": "Since three faucets can fill a 100-gallon tub in 6 minutes, six can do it twice as fast, i.e. 3 minutes.  Additionally, the tub is a quarter the size and thus it will be filled four times as fast which gives $3/4$ minutes or $\\boxed{45}$ seconds.",
+      "raw_answer": "Since three faucets can fill a 100-gallon tub in 6 minutes, six can do it twice as fast, i.e. 3 minutes.  Additionally, the tub is a quarter the size and thus it will be filled four times as fast which gives $3/4$ minutes or $\\boxed{45}$ seconds."
+    }
+  },
+  {
+    "item_id": "math_train_5628",
+    "benchmark": "math",
+    "question": "The graph below shows the number of home runs in April for the top hitters in the league. What is the mean (average) number of home runs hit by these players?\n\n[asy]\ndraw((0,0)--(0,7)--(24,7)--(24,0)--cycle);\nlabel(\"KEY:\",(3,5));\nfill((3,2.5)..(3.5,2)..(3,1.5)..(2.5,2)..cycle);\nlabel(\"- one(1) baseball player\",(14,2));\n[/asy]\n\n\n[asy]\ndraw((18,0)--(0,0)--(0,18));\nlabel(\"6\",(3,-1));\nlabel(\"7\",(6,-1));\nlabel(\"8\",(9,-1));\nlabel(\"9\",(12,-1));\nlabel(\"10\",(15,-1));\nfill((3,.5)..(3.5,1)..(3,1.5)..(2.5,1)..cycle);\nfill((3,2)..(3.5,2.5)..(3,3)..(2.5,2.5)..cycle);\nfill((3,3.5)..(3.5,4)..(3,4.5)..(2.5,4)..cycle);\nfill((3,5)..(3.5,5.5)..(3,6)..(2.5,5.5)..cycle);\nfill((3,6.5)..(3.5,7)..(3,7.5)..(2.5,7)..cycle);\nfill((3,8)..(3.5,8.5)..(3,9)..(2.5,8.5)..cycle);\nfill((6,.5)..(6.5,1)..(6,1.5)..(5.5,1)..cycle);\nfill((6,2)..(6.5,2.5)..(6,3)..(5.5,2.5)..cycle);\nfill((6,3.5)..(6.5,4)..(6,4.5)..(5.5,4)..cycle);\nfill((6,5)..(6.5,5.5)..(6,6)..(5.5,5.5)..cycle);\nfill((9,.5)..(9.5,1)..(9,1.5)..(8.5,1)..cycle);\nfill((9,2)..(9.5,2.5)..(9,3)..(8.5,2.5)..cycle);\nfill((9,3.5)..(9.5,4)..(9,4.5)..(8.5,4)..cycle);\nfill((15,.5)..(15.5,1)..(15,1.5)..(14.5,1)..cycle);\nlabel(\"Number of Home Runs\",(9,-3));\npicture perpLabel;\nlabel(perpLabel,\"Number of Top Hitters\");\nadd(rotate(90)*perpLabel,(-1,9));\n[/asy]",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "7",
+    "metadata": {
+      "difficulty": 4,
+      "difficulty_str": "Level 4",
+      "subject": "Prealgebra",
+      "solution": "The mean number of home runs hit by these players is calculated by finding the total number of home runs and dividing that number by the total number of players. From the graph, we get that there is a total of $$6\\cdot6+7\\cdot 4+8\\cdot3+10=98$$ home runs among the top 14 hitters. Therefore, the mean number of home runs hit by these players is  $$\\frac{98}{14}=\\boxed{7}.$$",
+      "raw_answer": "The mean number of home runs hit by these players is calculated by finding the total number of home runs and dividing that number by the total number of players. From the graph, we get that there is a total of $$6\\cdot6+7\\cdot 4+8\\cdot3+10=98$$ home runs among the top 14 hitters. Therefore, the mean number of home runs hit by these players is  $$\\frac{98}{14}=\\boxed{7}.$$"
+    }
+  },
+  {
+    "item_id": "math_train_433",
+    "benchmark": "math",
+    "question": "A point $(x,y)$ is a distance of 12 units from the $x$-axis. It is a distance of 10 units from the point $(1,6)$. It is a distance $n$ from the origin. Given that $x>1$, what is $n$?",
+    "choices": null,
+    "answer_idx": null,
+    "answer": "15",
+    "metadata": {
+      "difficulty": 5,
+      "difficulty_str": "Level 5",
+      "subject": "Algebra",
+      "solution": "First, we know that this point is above the $x$-axis because it is closer to a point in the first quadrant than it is to the $x$-axis. Next, we know that $y=12$ from the given information. By the distance formula, we have the equation $\\sqrt{(x-1)^2+(12-6)^2}=10$. Solving, we have \\begin{align*}\n\\sqrt{(x-1)^2+(12-6)^2}=10 \\\\\nx^2-2x+1+36&=100 \\\\\nx^2-2x-63&=0 \\\\\n(x-9)(x+7)&=0\n\\end{align*}Thus, $x-9=0$ or $x+7=0$, so $x=9$ or $x=-7$. $x=9$ by the given conditions. Thus, our point is $(9,12)$ and is a distance of $\\sqrt{9^2+12^2}=15$ units from the origin. $n=\\boxed{15}$.",
+      "raw_answer": "First, we know that this point is above the $x$-axis because it is closer to a point in the first quadrant than it is to the $x$-axis. Next, we know that $y=12$ from the given information. By the distance formula, we have the equation $\\sqrt{(x-1)^2+(12-6)^2}=10$. Solving, we have \\begin{align*}\n\\sqrt{(x-1)^2+(12-6)^2}=10 \\\\\nx^2-2x+1+36&=100 \\\\\nx^2-2x-63&=0 \\\\\n(x-9)(x+7)&=0\n\\end{align*}Thus, $x-9=0$ or $x+7=0$, so $x=9$ or $x=-7$. $x=9$ by the given conditions. Thus, our point is $(9,12)$ and is a distance of $\\sqrt{9^2+12^2}=15$ units from the origin. $n=\\boxed{15}$."
+    }
+  }
+]

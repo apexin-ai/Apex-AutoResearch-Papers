@@ -1,0 +1,179 @@
+{
+  "source": "exp-001 single-model (Llama-3.1-8B-Instruct) MMLU, Henderson I 6-facet, 259200 records",
+  "method": "D-study with Spearman-Brown projection for item count",
+  "formula": "G(n) = tau*n / (tau*n + N_study*delta), delta = sum(vc_facet:item / n_facet) + residual / prod(n_facets)",
+  "N_study": 200,
+  "variance_components": {
+    "tau_item_id": 0.1271120031,
+    "precision_x_item": 0.0071904578,
+    "temperature_x_item": 0.0063796481,
+    "prompt_template_x_item": 0.0118973392,
+    "seed_x_item": 0.0102602214,
+    "ordering_x_item": 0.0016752615,
+    "residual": 0.0502927384
+  },
+  "note_on_precision_facet": "The original study has 6 facets including precision (FP16/BF16/FP32). For practical designs (rows 1-6), precision is fixed at 1 level (practitioners use one precision). The Full multi-facet row uses all 3 precision levels to match the study's full design.",
+  "designs": [
+    {
+      "name": "Single-condition (typical)",
+      "n_precision": 1,
+      "n_temperature": 1,
+      "n_prompt": 1,
+      "n_seed": 1,
+      "n_ordering": 1,
+      "total_conditions_per_item": 1,
+      "sigma_delta": 0.0876956664,
+      "g_at_200": 0.591748,
+      "n_for_g80": 552,
+      "g_projections": {
+        "25": 0.153391,
+        "50": 0.265983,
+        "75": 0.352143,
+        "100": 0.4202,
+        "150": 0.520866,
+        "200": 0.591748,
+        "300": 0.68496,
+        "500": 0.783722,
+        "1000": 0.878749
+      }
+    },
+    {
+      "name": "Minimal upgrade",
+      "n_precision": 1,
+      "n_temperature": 1,
+      "n_prompt": 2,
+      "n_seed": 1,
+      "n_ordering": 1,
+      "total_conditions_per_item": 2,
+      "sigma_delta": 0.0566006276,
+      "g_at_200": 0.691907,
+      "n_for_g80": 357,
+      "g_projections": {
+        "25": 0.21919,
+        "50": 0.359567,
+        "75": 0.45716,
+        "100": 0.528943,
+        "150": 0.627467,
+        "200": 0.691907,
+        "300": 0.771097,
+        "500": 0.848815,
+        "1000": 0.918226
+      }
+    },
+    {
+      "name": "Easy upgrade",
+      "n_precision": 1,
+      "n_temperature": 1,
+      "n_prompt": 2,
+      "n_seed": 2,
+      "n_ordering": 1,
+      "total_conditions_per_item": 4,
+      "sigma_delta": 0.0388973323,
+      "g_at_200": 0.765692,
+      "n_for_g80": 245,
+      "g_projections": {
+        "25": 0.290018,
+        "50": 0.449634,
+        "75": 0.550654,
+        "100": 0.620341,
+        "150": 0.710222,
+        "200": 0.765692,
+        "300": 0.830561,
+        "500": 0.890945,
+        "1000": 0.942328
+      }
+    },
+    {
+      "name": "Moderate",
+      "n_precision": 1,
+      "n_temperature": 1,
+      "n_prompt": 3,
+      "n_seed": 3,
+      "n_ordering": 1,
+      "total_conditions_per_item": 9,
+      "sigma_delta": 0.028219303,
+      "g_at_200": 0.818328,
+      "n_for_g80": 178,
+      "g_projections": {
+        "25": 0.360227,
+        "50": 0.529657,
+        "75": 0.628137,
+        "100": 0.692517,
+        "150": 0.771602,
+        "200": 0.818328,
+        "300": 0.871078,
+        "500": 0.918441,
+        "1000": 0.957487
+      }
+    },
+    {
+      "name": "Standard",
+      "n_precision": 1,
+      "n_temperature": 2,
+      "n_prompt": 4,
+      "n_seed": 4,
+      "n_ordering": 1,
+      "total_conditions_per_item": 32,
+      "sigma_delta": 0.0191665816,
+      "g_at_200": 0.868972,
+      "n_for_g80": 121,
+      "g_projections": {
+        "25": 0.453252,
+        "50": 0.623776,
+        "75": 0.713219,
+        "100": 0.768303,
+        "150": 0.832607,
+        "200": 0.868972,
+        "300": 0.908659,
+        "500": 0.943117,
+        "1000": 0.970726
+      }
+    },
+    {
+      "name": "Enhanced",
+      "n_precision": 1,
+      "n_temperature": 1,
+      "n_prompt": 6,
+      "n_seed": 6,
+      "n_ordering": 2,
+      "total_conditions_per_item": 72,
+      "sigma_delta": 0.0187991737,
+      "g_at_200": 0.87116,
+      "n_for_g80": 119,
+      "g_projections": {
+        "25": 0.458052,
+        "50": 0.628307,
+        "75": 0.717162,
+        "100": 0.771731,
+        "150": 0.835287,
+        "200": 0.87116,
+        "300": 0.910252,
+        "500": 0.944146,
+        "1000": 0.971271
+      }
+    },
+    {
+      "name": "Full multi-facet",
+      "n_precision": 3,
+      "n_temperature": 3,
+      "n_prompt": 6,
+      "n_seed": 6,
+      "n_ordering": 4,
+      "total_conditions_per_item": 1296,
+      "sigma_delta": 0.0086739169,
+      "g_at_200": 0.936121,
+      "n_for_g80": 55,
+      "g_projections": {
+        "25": 0.646869,
+        "50": 0.785575,
+        "75": 0.846046,
+        "100": 0.879912,
+        "150": 0.916603,
+        "200": 0.936121,
+        "300": 0.956487,
+        "500": 0.97343,
+        "1000": 0.986536
+      }
+    }
+  ]
+}

@@ -1,0 +1,3202 @@
+[
+  {
+    "item_id": "hellaswag_456",
+    "benchmark": "hellaswag",
+    "question": "The man then comes outside and starts talking about the snow holding a red plastic stick in his hand. with the stick",
+    "choices": [
+      "he begins to add and clip to the tire on his car.",
+      ", he proceeds to the car and start slicing the snow off of his windshield.",
+      "that is attached to an attached bucket he begins explaining how to sled and why he is being so paid for for his hard work.",
+      "he has some snow on his shovel to serve against the snow."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Removing ice from car"
+    }
+  },
+  {
+    "item_id": "hellaswag_1770",
+    "benchmark": "hellaswag",
+    "question": "A woman is sitting on the floor and speaking to the camera while moving her legs around. she",
+    "choices": [
+      "lays down and demonstrates how to perform a break dancing move.",
+      "holds up a bottle of cleaning solution and spray can and proceeds to sanitize her legs.",
+      "lifts up her dress, showing how it fitted.",
+      "continues to clean out a large black trash can a large large red bucket and moves around in the vacuum."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Breakdancing"
+    }
+  },
+  {
+    "item_id": "hellaswag_1206",
+    "benchmark": "hellaswag",
+    "question": "A young lady holds a blue glass and talks to the camera and shows a bottle of listerine and a mirror. we",
+    "choices": [
+      "see the woman puts on layer and wipes under her fingernails.",
+      "see the lady drink the listerine and swishes it in her mouth twice and spits in in the kitchen sink.",
+      "switch and the lady calls a curling machine.",
+      "then see her doing various roll ups and shows viewers how to use the products."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Gargling mouthwash"
+    }
+  },
+  {
+    "item_id": "hellaswag_1333",
+    "benchmark": "hellaswag",
+    "question": "A woman is riding a horses through a wooded area. Other people watch as she talks to them. he",
+    "choices": [
+      "horse nods and neighs as the woman smiles.",
+      "ends the video with him tightening his rope.",
+      "discusses her technique with her, then she is up on a horse.",
+      "saddles up an attack horse for a ride."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Horseback riding"
+    }
+  },
+  {
+    "item_id": "hellaswag_424",
+    "benchmark": "hellaswag",
+    "question": "Skaters are skateboarding during the day. now the same skaters",
+    "choices": [
+      "are skating during he night time.",
+      "are skateboarding at night, in intensely bright light of day.",
+      "are riding at night on residential streets with friends and families as they passes other skateboarders as they pass.",
+      "are skating on the day but in the night."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Skateboarding"
+    }
+  },
+  {
+    "item_id": "hellaswag_2003",
+    "benchmark": "hellaswag",
+    "question": "A boy walk in the room from the left doorway holding a red stuffed animal sits down at the table then put animal away. A girl walk in the room front the right doorway and sits down at the table. they",
+    "choices": [
+      "continue throughout the lesson until it ends.",
+      "talk and ride the monkey bars in the park.",
+      "continue to play with the animal.",
+      "begin arm wrestling and the girl wins."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Arm wrestling"
+    }
+  },
+  {
+    "item_id": "hellaswag_1203",
+    "benchmark": "hellaswag",
+    "question": "Marching band wering red uniforms are in street playing drums and doing a choreography. behind the band kids walking in circles",
+    "choices": [
+      "on an lewle line.",
+      "and end the band and leaving.",
+      "are doing a choreography.",
+      "in the street was a circle with a lot of marching band around it."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Drum corps"
+    }
+  },
+  {
+    "item_id": "hellaswag_3224",
+    "benchmark": "hellaswag",
+    "question": "Two women are seen looking at the camera with one speaking and holding a hair dryer. the woman",
+    "choices": [
+      "shows off the hair dryer while speaking and pointing to the woman in the chair.",
+      "turn the dryer on and begins pressing all the hair down into the dryer.",
+      "long the hair and then begin blow drying the hair with her hands.",
+      "then begins curling one part of the hair while the other shows her how to use the dryer."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Blow-drying hair"
+    }
+  },
+  {
+    "item_id": "hellaswag_650",
+    "benchmark": "hellaswag",
+    "question": "This woman is showing viewers how to get big bouncy curls using hot rollers. first she",
+    "choices": [
+      "takes a test, she shakes them to see how much they will like the curls.",
+      "applies her hair directly to the nape of her neck to away from the rollers.",
+      "pours liquid over her hair and pushes so hard it causes a pink head and the hair sticks then curls back in again.",
+      "lets the rollers heat up and she puts them onto her hair."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Removing curlers"
+    }
+  },
+  {
+    "item_id": "hellaswag_1249",
+    "benchmark": "hellaswag",
+    "question": "A close up of a person is seen grabbing cans and poking holes into them. The man then begins drinking out of the beers all at once. he",
+    "choices": [
+      "wipes down the cans with his hand and shows off the, \" claps \" sign.",
+      "finally jumps up and continues drinking making different shots as well as waving to the camera.",
+      "continues on drinking beer and hangs out with another person hanging out.",
+      "drops the beers down at the end while people watch him."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Drinking beer"
+    }
+  },
+  {
+    "item_id": "hellaswag_1702",
+    "benchmark": "hellaswag",
+    "question": "Man is in a workshop and puts a glove in his hand and grab a weld machine. Man start welding something in a metal table. the man",
+    "choices": [
+      "turn off the weld machine on to the table and put another on.",
+      "balances on a welder and move his hand.",
+      "is driveling in front of the workbench giving instructions on the, machine.",
+      "holds another tool and then keeps welding the metal."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Welding"
+    }
+  },
+  {
+    "item_id": "hellaswag_3003",
+    "benchmark": "hellaswag",
+    "question": "A lady speaks directly to the camera. The lady moves a shirt around on an ironing board. a lady",
+    "choices": [
+      "brushes a garment in a shop.",
+      "rubs wax onto a shirt.",
+      "gestures at her neck.",
+      "is ironing a button down shirt."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Ironing clothes"
+    }
+  },
+  {
+    "item_id": "hellaswag_2653",
+    "benchmark": "hellaswag",
+    "question": "There are two guys standing on a large blue mat in a gym and they are both wearing shorts and a pair of boxing gloves. the men",
+    "choices": [
+      "shake hands briefly and split up the room.",
+      "begin doing arm wrestling and follow through in a boxing match until one of the boxers flips out.",
+      "on the floor are fighting and they're using boxing gloves without backs up.",
+      "square up and they begin hitting and kicking at one another with brief moments of stopping in between their punches and their kicks."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Doing kickboxing"
+    }
+  },
+  {
+    "item_id": "hellaswag_7734",
+    "benchmark": "hellaswag",
+    "question": "[header] How to find a job as a preteen [title] Do extra chores. [step] This does depend on how cooperative your parents are, but if you are polite in asking and explain why you want the spending money, they're likely to listen. It's an easy way to make 10 or 20 bucks (or more, if your parents are generous).",
+    "choices": [
+      "You could give the whole bathroom a good scrub down, or vacuum and mop the entire house. [substeps] You could ask your mom which chores she hates doing the most, and pick those up for her.",
+      "Anything under 5 dollars (or less) earns your allowance. Here's how : [substeps] Watch a movie together at the end of the night.",
+      "[substeps] Keep some activities in mind when doing chores (e.g. going to the bathroom, doing homework at home, walking to and from school, etc.",
+      "[title] Invest in little toys for your little children. [step] As young as possible, buy baskets of tiny toy animals with fun stuff inside them or even a cat or dog with a loose ball inside so that you can look like a kid."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Work World"
+    }
+  },
+  {
+    "item_id": "hellaswag_1047",
+    "benchmark": "hellaswag",
+    "question": "A gymnast is patiently waiting to start his performance. He jumps on to the board and starts spinning really fast before he jumps off and walks around. he",
+    "choices": [
+      "take a breath and the audience claps for him before he jumps back on it and starts spinning again.",
+      "goes back and forth for some time and then takes off again.",
+      "goes to different places and comes back and does the same thing for three more times.",
+      "spins around to one side to catch his balance as he takes his time to prepare."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Using the pommel horse"
+    }
+  },
+  {
+    "item_id": "hellaswag_2492",
+    "benchmark": "hellaswag",
+    "question": "Several girls are then shown deep underwater doing a shimmy motion and then back stroking in the pool. one female",
+    "choices": [
+      "then begins breast stroking, waves to the camera and then gets out.",
+      "is now dipped underneath the water and water is being pumped out of her mouth thoroughly.",
+      "steps on while another kneels and flips to her back on the house while a male holds the woman down so she doesn't fall and hurts herself.",
+      "is joined by several others and they continue to email to various websites."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Swimming"
+    }
+  },
+  {
+    "item_id": "hellaswag_749",
+    "benchmark": "hellaswag",
+    "question": "Then he unscrews the base to level it out to his liking. Then he sits on the bike seat to achieve the best results. then he",
+    "choices": [
+      "is shown trying to model the seat with a different size of handle.",
+      "prepares an exercise equipment and goes front of the bike so he can talk to the camera.",
+      "adjusts the handle bars again and makes sure they are firmly in place.",
+      "stands up on his pedals, speeds off, and lands with his feet on the ground."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Fixing bicycle"
+    }
+  },
+  {
+    "item_id": "hellaswag_2524",
+    "benchmark": "hellaswag",
+    "question": "A grroup of men, boys, and girls are playing dodgeball on an indoor court. they",
+    "choices": [
+      "run back and forth, playing dodgeball by hitting the nets.",
+      "throw a series of balls at one another, trying to dodge and catch them.",
+      "run in circles, while one hops many times around the court.",
+      "bounce back and forth, trying to scoring."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Dodgeball"
+    }
+  },
+  {
+    "item_id": "hellaswag_920",
+    "benchmark": "hellaswag",
+    "question": "Then, you see them on the field playing a game and later talking a little bit about it. they each",
+    "choices": [
+      "walk between a row of trees towards a long line of machines.",
+      "bring yarn to knit and talk about it a little bit.",
+      "seem to recall their own memories of times they won medal and stare at their medals.",
+      "get in a car and, drive away and go to japan."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Hurling"
+    }
+  },
+  {
+    "item_id": "hellaswag_6278",
+    "benchmark": "hellaswag",
+    "question": "[header] How to be emo in middle school [title] Learn what it means to be emo. [step] Before you can become emo, you have to understand exactly what it means. \" emo \" is short for emotive, and people who consider themselves to be emo are usually in touch with their emotions.",
+    "choices": [
+      "They don't feel the need to hide how they feel, even when they are sad or angry. [substeps] While music, clothing, hair, and makeup can play a large role in being emo, being comfortable with your feelings and expressing them is the most important part.",
+      "This is an important step to emo, so have a good understanding of your gender. You don't have to have what everyone else has.",
+      "You don't need a dictionary dictionary and stick with the \" emotive \". Instead, learn what emotive means, like \" i am \", \" i am skinny \", \" i am strong and strong \", \" i'm confident in my body \", etc.",
+      "You can't be emo without being emo. [substeps] If you're emo, you want an emo vibe that's unique to you."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Youth"
+    }
+  },
+  {
+    "item_id": "hellaswag_1974",
+    "benchmark": "hellaswag",
+    "question": "Several shots are shown of people wandering on a beach that lead into clips of a soccer match and people celebrating. more people",
+    "choices": [
+      "are seen trying to play the game on the beach as well as running into others while the move forwards and backward and stop to speak to one another.",
+      "are seen dancing around as well as playing soccer and gesturing to the camera.",
+      "are shown doing various sports on a beach while taking photos and celebrating with others.",
+      "are seen playing soccer while hiding in a tent and later on being interviewed."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Beach soccer"
+    }
+  },
+  {
+    "item_id": "hellaswag_860",
+    "benchmark": "hellaswag",
+    "question": "He goes from the bottom up and grabs more paint on his tool. He is making progress across the wall pretty quickly the way he is doing it. he",
+    "choices": [
+      "is getting what looks to be expert help from someone and he is smiling a lot.",
+      "uses his tools to rip off the excess paint, then runs his back up along the wall.",
+      "makes it half way across the wall but the bottom of the wall is still white.",
+      "then brings the canvas a closer look."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Plastering"
+    }
+  },
+  {
+    "item_id": "hellaswag_711",
+    "benchmark": "hellaswag",
+    "question": "A man is interviewed while people watch or walk past in the background. Two men are interviewed in the same setting. a woman",
+    "choices": [
+      "is interviewed and two men are interviewed.",
+      "is interviewed while other people are interviewed.",
+      "talks to the camera.",
+      "is interviewed in the same setting."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Running a marathon"
+    }
+  },
+  {
+    "item_id": "hellaswag_2372",
+    "benchmark": "hellaswag",
+    "question": "A man is standing on a ladder next to a court. they",
+    "choices": [
+      "are using the roller skates to skate across the tiles.",
+      "talk about something, then begin playing a game of volley ball.",
+      "begin to play volleyball on the court.",
+      "put candles and wood on a table."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Volleyball"
+    }
+  },
+  {
+    "item_id": "hellaswag_5676",
+    "benchmark": "hellaswag",
+    "question": "[header] How to put a twitter badge on a website [title] Open 2 internet browser tabs on your computer. [step] In the first tab, login to your website's admin area. If you do not know html code, or you do not have access to the website's admin area, seek the help of your website's web developer.",
+    "choices": [
+      "[title] Check for a link to an existing website. [step] The link will be located in the banner or text field on your admin area.",
+      "[title] Type \" twitter \" in the top right corner of your web browser. [step] While this is probably not the best line of defense, it is still a good option for the website's layout.",
+      "[title] Access twitter's admin page. [step] At the top part of the page are three vertical links.",
+      "[title] Go to twitter.com in the second tab. [step] Sign into the twitter account that you want to post to your website."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Home and Garden"
+    }
+  },
+  {
+    "item_id": "hellaswag_1458",
+    "benchmark": "hellaswag",
+    "question": "A person wearing gloves is seen spreading food onto a plate followed by a large pastry and spreading butter on it. the person",
+    "choices": [
+      "bakes a piece of cake followed by multiple also together.",
+      "continues making layers and then undoes the cake and shows off the solid cake.",
+      "is then seen eating a bowl of food and helping others.",
+      "continues to spread food all around while the camera pans around chasing the food around with a spoon."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Making a cake"
+    }
+  },
+  {
+    "item_id": "hellaswag_6851",
+    "benchmark": "hellaswag",
+    "question": "[header] How to deal with dumb people [title] Lower your standards. [step] This one is tough, but very important. Part of the reason that you may find yourself constantly frustrated by the stupidity in the world is because you have unrealistic expectations.",
+    "choices": [
+      "Different people may have different backgrounds, different opinions or different priorities in their life. Remind yourself that the \" average \" person isn't going to meet your high expectations of how a person should think and act, and lower your standards accordingly.",
+      "If you got mad and you find out a new coworker or student is acting stupid, keep your lower standards going. \" stupid \" people are just that, stupid people.",
+      "In some situations, their arrogance stems from a lack of empathy for how they behave. Rank them on a pedestal of \" classy \" and' cool' (or just be indifferent), so that their behavior is inconsequential.",
+      "That is why it's important to understand why dumb people will not succeed at their career. [substeps] When a person's intelligence falls far below what he/she is supposed to be able to do, it makes him/her far too immature for his/her field or field."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Relationships"
+    }
+  },
+  {
+    "item_id": "hellaswag_2968",
+    "benchmark": "hellaswag",
+    "question": "A person is seen riding around on a dirt bike that leads into him speaking to the camera. He shows off his bike as well as camera and leads into several clips of him riding around. he",
+    "choices": [
+      "shows off his workout and pans around on the bike and his take on how to use it.",
+      "begins to ride around and show people he is skateboarding.",
+      "continues riding around then walks away.",
+      "continues to ride around on the track while also showing close ups of himself as well as the camera."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Doing motocross"
+    }
+  },
+  {
+    "item_id": "hellaswag_2420",
+    "benchmark": "hellaswag",
+    "question": "A stationary bike class is being held in a darkened room. The instructor points to the class. she",
+    "choices": [
+      "then explains the mechanics behind using the inet.",
+      "squats on the floor and starts moving her hand around before the class picks her up and places her on the left hip.",
+      "points to several people with their life parts strapped into hines.",
+      "leans back and speaks to the class."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Spinning"
+    }
+  },
+  {
+    "item_id": "hellaswag_827",
+    "benchmark": "hellaswag",
+    "question": "Man is on the 10 m trampoline and make a hand stand to make the jump to the pool. Woman is impressed siting by the pool and have her hands on her face. presentator",
+    "choices": [
+      "is talking about the argument between mike tyson of swansboro and smith of egg plants.",
+      "is sitting thng a round table.",
+      "is want to talk about the important part of this ad invest cyou and one person makes the jump to the pool.",
+      "is interviewing the man."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Plataform diving"
+    }
+  },
+  {
+    "item_id": "hellaswag_2783",
+    "benchmark": "hellaswag",
+    "question": "A man is seen speaking to the camera while people practice basketball drills intermittently. The man ties a rope around a ball and continues having him perform layups on the court. more clips",
+    "choices": [
+      "are shown of people receiving various awards and the word \" winner \" is shown on the screen.",
+      "are shown of them practicing while the man speaks to the camera.",
+      "are shown of the team performing professional basketball drills and announcers speaking to the camera.",
+      "are shown of the man speaking to the camera."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Layup drill in basketball"
+    }
+  },
+  {
+    "item_id": "hellaswag_7553",
+    "benchmark": "hellaswag",
+    "question": "[header] How to pack for el camino de santiago [title] Store your travel documents in a protective case. [step] If you're headed to spain from another country, you'll obviously need a passport or visa. You'll also want to carry a pilgrim credential to track your progress along the way.",
+    "choices": [
+      "For more information, check out : [substeps] Passports must be valid unless you are a u.s. citizen who is seeking to visit someone in another country.",
+      "Place these documents in a safe, secure environment in spain's central region. [substeps] Packing best if you don't have it already is imperative.",
+      "Put all travel documents in a plastic case that you have easy access to so they stay safe. [substeps] If you're not sure how to get a passport in your country, contact your local government.",
+      "As soon as you travel, make a note of any documents you want to bring along on your trip. [substeps] To prevent yourself from inadvertently carrying anything on the way to el camino, you should have a written copy of what you're carrying along with you."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Travel"
+    }
+  },
+  {
+    "item_id": "hellaswag_3074",
+    "benchmark": "hellaswag",
+    "question": "A field with many racing sail boats being rigged for a competition. a boy",
+    "choices": [
+      "is shown seated with several close ups of dart board exhibits.",
+      "stands with two playboys and hold a banner, tying a knot.",
+      "rolls his sail boat to the water and begins sailing in a competition.",
+      "rides his boat in a racing row boat doing jumps and tricks in pool decks during a race."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Sailing"
+    }
+  },
+  {
+    "item_id": "hellaswag_2220",
+    "benchmark": "hellaswag",
+    "question": "Hockey players are playing a hockey game on the ice. A crowd is watching them play. A man in yellow falls on the ice. a man in a suit",
+    "choices": [
+      "is talking to his team mates.",
+      "is showing off his dress as referee.",
+      "continues talking to the camera.",
+      "is talking to hockey players."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Playing ice hockey"
+    }
+  },
+  {
+    "item_id": "hellaswag_879",
+    "benchmark": "hellaswag",
+    "question": "Man is standing holding an harmonica while is playing the guitar and its reading the music sheet. man",
+    "choices": [
+      "is perusing the notes on his wrist sound proof nib.",
+      "is talking to the camera making mouthpiece and taking the elliptical.",
+      "is teaching how to play the harmonica in the key of a and its talking and playing the guitar.",
+      "is holding a person playing an acoustic guitar."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Playing harmonica"
+    }
+  },
+  {
+    "item_id": "hellaswag_1119",
+    "benchmark": "hellaswag",
+    "question": "She lays down and receives the piercing in her cheek, then sits up to wipe her face. when the video",
+    "choices": [
+      "ends, she shows an empty tray and a bottle of suntan lotion.",
+      "ends, two men re-roll all women over and rub them in a liquid to the piercing.",
+      "is over the closing captions are shown on the screen.",
+      "ends, the view cuts back and forth between camera and woman."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Getting a piercing"
+    }
+  },
+  {
+    "item_id": "hellaswag_2760",
+    "benchmark": "hellaswag",
+    "question": "Two people are sailing on boards out on a lake. one person",
+    "choices": [
+      "is seen sailing on their board until they fall off the board and into the water.",
+      "wraps a towel around his or her arm.",
+      "pulls their sail back and forth.",
+      "falls off and the other gets up quickly and jumps into the water."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Windsurfing"
+    }
+  },
+  {
+    "item_id": "hellaswag_2789",
+    "benchmark": "hellaswag",
+    "question": "She grabs a paper towel and wipes the sink. She turns on the water and wets the sink. She grabs another paper towel and wipes the sink. she",
+    "choices": [
+      "grabs a glass and wet it under the sink.",
+      "lathers up her hand and drains it.",
+      "finishes wiping the sink and speaks.",
+      "puts it under the faucet and rinses it off."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Cleaning sink"
+    }
+  },
+  {
+    "item_id": "hellaswag_161",
+    "benchmark": "hellaswag",
+    "question": "A person hangs onto the handles of a kite flying overhead. the kite",
+    "choices": [
+      "is flying in the air waving to the camera.",
+      "takes off on a bright course.",
+      "falls as the wind lessens.",
+      "moves away as the man is pushed back up by the water."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Kite flying"
+    }
+  },
+  {
+    "item_id": "hellaswag_160",
+    "benchmark": "hellaswag",
+    "question": "A woman in an orange shirt is sitting on an exercise machine. she",
+    "choices": [
+      "gets on the machine and starts riding it.",
+      "engages in some form of mount.",
+      "begins working out on the exercise machine.",
+      "is using a dodgeball machine."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Using the rowing machine"
+    }
+  },
+  {
+    "item_id": "hellaswag_1817",
+    "benchmark": "hellaswag",
+    "question": "A woman is seated at a table. she",
+    "choices": [
+      "is shown holding onto a pair of legs.",
+      "is holding a long stick.",
+      "is knitting with pink yarn and needles.",
+      "is playing a flute."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Knitting"
+    }
+  },
+  {
+    "item_id": "hellaswag_2247",
+    "benchmark": "hellaswag",
+    "question": "An old man with eyeglasses is standing in front of model tiles talking to the camera. a group of men in black",
+    "choices": [
+      "shirts are playing blue pool balls on a wooden court.",
+      "finish the professional city scene, the then they get off the stage in a cloud of shadow.",
+      "started to removed the first half of the carpet in the living room, then replaced it with lighter, newer carpet.",
+      "shirts on bicycles are on a greenish field do some karate moves and hit the wooden targets."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Installing carpet"
+    }
+  },
+  {
+    "item_id": "hellaswag_272",
+    "benchmark": "hellaswag",
+    "question": "A person is seen riding around on roller blades and performing a grind on a bar. several more clips",
+    "choices": [
+      "are shown of the boy riding around on the equipment as well as sit on the floor and play pool.",
+      "are shown of people driving around on machines with one person riding in front.",
+      "are shown of the athletes performing tricks in various stretches as well as throwing a ball off into the distance.",
+      "are shown of the person performing grinds with roller blades as well as other flips and tricks."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Rollerblading"
+    }
+  },
+  {
+    "item_id": "hellaswag_4080",
+    "benchmark": "hellaswag",
+    "question": "[header] How to preserve peppadews [title] Wash the peppadews. [step] Rinse the peppadews under running water, using your fingers to gently scrub away any dirt or debris. [substeps] Completely dry the peppadews with clean paper towels before continuing.",
+    "choices": [
+      "If your peppadews weren't washed, you may need to rinse them again if they get dirty after washing. Do not use bleach or other harsh chemicals if you're deciding to preserve them.",
+      "Do not leave the peppadews in the water for more than one day or they may become spoiled. Consider transplanting (covering, decolonizing, curing) the peppadews yourself.",
+      "[title] Package in freezer-safe bags. [step] Pack the whole peppadews in a thick resealable plastic bag labeled for freezer use.",
+      "[title] Run a rectangular ash pan under warm running water. [step] Once the peppadews are thoroughly coated, run them under water again to remove the dirt and debris."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Cars & Other Vehicles"
+    }
+  },
+  {
+    "item_id": "hellaswag_1634",
+    "benchmark": "hellaswag",
+    "question": "In the second round, the athlete with blue uniform rise successfully and kiss the bar of the weight, also the other athletes are successful. On the third round, the indian athlete let fall the weight. the athlete with red uniform",
+    "choices": [
+      "rise score, but he falls at the end.",
+      "is congratulated, then stand on the first place of the podium and talks.",
+      "raised and was released the weight bar, he and his other teammates then she jumped to the ground and watches.",
+      "and white uniform raised but, no weight, the blue uniform fell and also dropped the weight, then off the weight."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Snatch"
+    }
+  },
+  {
+    "item_id": "hellaswag_2259",
+    "benchmark": "hellaswag",
+    "question": "The person holds a blade to sharpen it. The person takes the belt off the machine. The person puts a new belt on the machine. the person",
+    "choices": [
+      "gets a green and yellow belt over the blue belt.",
+      "puts a new belt on the machine.",
+      "sharpents the blade on the second belt.",
+      "then puts the other belt on the machine."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Sharpening knives"
+    }
+  },
+  {
+    "item_id": "hellaswag_214",
+    "benchmark": "hellaswag",
+    "question": "Several men are seen hosting a news segment that leads into clips of people playing a game together and arguing with one another. More shots of people playing are shown as well as people celebrating and walking away. more shots",
+    "choices": [
+      "are shown of people dancing with one another and once again the same shots are shown in slow motion.",
+      "of people playing are shown while more paper towels are passed all around.",
+      "are shown of the hosts speaking to one another and people hitting the ball and walking away.",
+      "are shown of people running around the land as well as running onto a field with their hands up."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Cricket"
+    }
+  },
+  {
+    "item_id": "hellaswag_2792",
+    "benchmark": "hellaswag",
+    "question": "Man is smoking a cigarrette in a dark street. man",
+    "choices": [
+      "is wearing a white t shirt smoking a cigarrette and watching to the camera.",
+      "play a baton in the middle of street.",
+      "is in front of white houses dealnig light flashing.",
+      "is smoking a cigarette on the street next to a tree."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Smoking a cigarette"
+    }
+  },
+  {
+    "item_id": "hellaswag_2057",
+    "benchmark": "hellaswag",
+    "question": "A person is seen wearing gear and wandering around a grassy area. the man",
+    "choices": [
+      "drags a dog along with him in various scenes.",
+      "uses a tool to cut along the grass.",
+      "walks back and fourth while walking behind a car.",
+      "then stands next to a tree holding a surfboard and begins to rock back and fourth."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Cutting the grass"
+    }
+  },
+  {
+    "item_id": "hellaswag_2754",
+    "benchmark": "hellaswag",
+    "question": "A mom is sitting at the top of a slide with her little baby. She is contemplating going down for a while. she",
+    "choices": [
+      "climbs down and continues to fall down as they catch her.",
+      "slides down and the little baby follows at a faster speed.",
+      "finally slides down it with baby.",
+      "decides to do it instead."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Fun sliding down"
+    }
+  },
+  {
+    "item_id": "hellaswag_2664",
+    "benchmark": "hellaswag",
+    "question": "Man is mopping the floor in a laundry room. man",
+    "choices": [
+      "put carpet in the room and fold the carpet.",
+      "is mopping the room in a kitchen.",
+      "is holding the umbrella buting the floor.",
+      "squeeze out the mop in a bucket."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Mooping floor"
+    }
+  },
+  {
+    "item_id": "hellaswag_1441",
+    "benchmark": "hellaswag",
+    "question": "Three people go tubing down a rapid. they",
+    "choices": [
+      "check their phones and hand-held watch.",
+      "get stuck on the rocks, then push off and continue floating.",
+      "get out of the tubes, and wait for their turn.",
+      "go down the hills and into the river."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "River tubing"
+    }
+  },
+  {
+    "item_id": "hellaswag_364",
+    "benchmark": "hellaswag",
+    "question": "Two men perform a flip move on a playground that leads to one being dropped on the ground. the camera",
+    "choices": [
+      "follows the men down the path.",
+      "zooms in on the fallen man while they all laugh together.",
+      "rolls off and turns around on itself in slow motion.",
+      "follows one man to the ground, but is blocked by a garbage can and one man surrounds him with objects."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Doing a powerbomb"
+    }
+  },
+  {
+    "item_id": "hellaswag_2668",
+    "benchmark": "hellaswag",
+    "question": "The focus goes back to the snorkelers as they continue to explore the area with their flashlights. the outro video",
+    "choices": [
+      "shows the snorkeling results on the snorkelings.",
+      "shows the boxes added to the video to show a fun time on the snorkeling trip.",
+      "appears and it's the same blue picture as the intro and includes some contact information on the video and the credits begin to roll with the text scrolling from bottom to top.",
+      "leads into them walking around and surpassing some unfortunate individuals in the process."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Scuba diving"
+    }
+  },
+  {
+    "item_id": "hellaswag_2264",
+    "benchmark": "hellaswag",
+    "question": "The bowl is shown, then the hookah is filled with water by gloves. The hose is attached to the hookah. tobacco",
+    "choices": [
+      "is scrumed into the hookah, then the hookah is rolled up and lit.",
+      "is packed into the bowl, then covered with tin foil and punctured with a toothpick.",
+      "is hit with a needle, the man is smoking it, then he lights the hookah.",
+      "is added from a pipe, then salt is added by hand to the hookah."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Smoking hookah"
+    }
+  },
+  {
+    "item_id": "hellaswag_2109",
+    "benchmark": "hellaswag",
+    "question": "A camera shows a person riding around a dirt track on a bike moving at a quick speed. several more shots",
+    "choices": [
+      "are shown of people riding the dirt track on bikes while the camera captures them from several angles.",
+      "are shown of people riding around on bikes and speaking to one another.",
+      "are shown of people riding in different speeds and going over hills passing where there is much higher grass.",
+      "are shown of people riding around on the dirt track as well as riding on a stationary bike."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "BMX"
+    }
+  },
+  {
+    "item_id": "hellaswag_3037",
+    "benchmark": "hellaswag",
+    "question": "Two girls are inside a gym in a building. They are hitting a ball against the wall with racquets. they",
+    "choices": [
+      "crouch down a little as they kick the ball around and move their feet.",
+      "continue playing as a man joins in.",
+      "spin and dodge the ball in the air before finally throwing it back.",
+      "are twirling batons on their wrists."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Playing squash"
+    }
+  },
+  {
+    "item_id": "hellaswag_893",
+    "benchmark": "hellaswag",
+    "question": "We see kids with feet on skateboards. we",
+    "choices": [
+      "see the kids riding down the street from a skater pov.",
+      "see a boy rollerblading.",
+      "see a woman holding part of a hat.",
+      "see a kitchen and a doctor."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Longboarding"
+    }
+  },
+  {
+    "item_id": "hellaswag_1241",
+    "benchmark": "hellaswag",
+    "question": "As he does this he explains his methods. Using the same rag he moves to the other pane to clean the frame. finally",
+    "choices": [
+      ", he turns around and begins rubbing the umbrella on the window.",
+      ", the water sports appears and he sprays it with water before shooting his glass and setting it in the trashcan.",
+      "he cuts the tape on he window and gets a custom paste and paints the window with it.",
+      ", he ends by scrubbing the bottom right corner of the door."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Cleaning windows"
+    }
+  },
+  {
+    "item_id": "hellaswag_463",
+    "benchmark": "hellaswag",
+    "question": "A woman is seen speaking to the camera while holding up a contact lens. She moves her hands around while still speaking to the camera. she",
+    "choices": [
+      "holds open her eye and puts a contact in her eye.",
+      "touches her arm several times while she displays her eye's view.",
+      "puts the contact on her finger, then is seen putting her hands down.",
+      "shows and puts more contact lenses into her eyes."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Putting in contact lenses"
+    }
+  },
+  {
+    "item_id": "hellaswag_3005",
+    "benchmark": "hellaswag",
+    "question": "People are in a court room receiving awards. Woman is talking to the camera and people are in gym practicing fencing. people",
+    "choices": [
+      "are in stands lined up one side by side with spectators holding their flags or asking questions.",
+      "are practicing in ballroom practice.",
+      "are sitting on chairs behind he girls rpacticing fencing.",
+      "are playing lacrosse in the gym."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Doing fencing"
+    }
+  },
+  {
+    "item_id": "hellaswag_3106",
+    "benchmark": "hellaswag",
+    "question": "This woman is shown putting on her makeup while looking in the mirror. first she",
+    "choices": [
+      "begins to apply some more makeup and make eye shadow to her lashes to cover the marks.",
+      "makes her eyes up and winks at the camera.",
+      "puts foundation on her cheeks and then she places lip sticks over it.",
+      "takes her hair out and puts it in a ponytail."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Putting on makeup"
+    }
+  },
+  {
+    "item_id": "hellaswag_2058",
+    "benchmark": "hellaswag",
+    "question": "A woman is seen speaking to the camera that leads into clips of people riding in kayaks and camels wandering around. More clips are shown of people riding around the water in a kayak. the person",
+    "choices": [
+      "continues riding along the water while many fall off in the end and the camera pans around the camera.",
+      "continues speaking to the camera while more clips are shown of people riding themselves or leaving their raft to ride along the water.",
+      "continues riding all around the area as well as capturing their movements and laughing to the camera.",
+      "paddles themselves along the water with other people riding near him."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Kayaking"
+    }
+  },
+  {
+    "item_id": "hellaswag_6410",
+    "benchmark": "hellaswag",
+    "question": "[header] How to ready a young child for ballet class [title] Get a dance bag. [step] In most dance studios, they sell merchandise such as leotards, tights, shoes, and duffel bags. They come in all sizes, patterns, and prints so get one that is right for your child.",
+    "choices": [
+      "[substeps] Good sizes for your child can also take into account what activities you are doing in your classes each day. For example, if you are ballet class, coordinate what your child is doing each day to stay visible while practicing and engaging the extra time they get to practice and class.",
+      "If they are only in ballet, get a small bag that will hold their leotard, tights, ballet slippers, hair items, and spare shoes. If your child is in more than one dance genre (jazz, acro, musical theater, hip-hop, lyrical, tap, etc.",
+      "[substeps] You can either find a shoe or hat that matches your child. Schedule a dance class at your studio at least three weeks before the ballet performance.",
+      "The bag should include all the accessories so that your child can move around. [substeps] Try to buy a bag that is colourful and bright-coloured, so that your child can perspire from dancing in this bag."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Family Life"
+    }
+  },
+  {
+    "item_id": "hellaswag_519",
+    "benchmark": "hellaswag",
+    "question": "The man spins the blindfolded woman around while she's holding the bat in her hand. but",
+    "choices": [
+      "then she starts swinging the bat and the man moves out of the way.",
+      "instead of swinging her bat, the woman swings on the man's head.",
+      "the woman has other bat and it hits the man right in the face.",
+      "instead of using the bat to hit the man, he steps on the man's foot and she lets go that spins the girl around so she hits the man."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Hitting a pinata"
+    }
+  },
+  {
+    "item_id": "hellaswag_1463",
+    "benchmark": "hellaswag",
+    "question": "Several athletes compete for the javelin world championships. the russia dimitri",
+    "choices": [
+      "group is representing the rural tribes in the region.",
+      "measuring event in hungarian basketball corp has seen many real points.",
+      "is 3rd bronze medal in the competition.",
+      "goebaiboros we last finish the match with a parade in front of the west european championships."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Javelin throw"
+    }
+  },
+  {
+    "item_id": "hellaswag_3581",
+    "benchmark": "hellaswag",
+    "question": "[header] How to choose the best hair products for fine hair [title] Wash and condition fine hair with a hair thickening shampoo and conditioner. [step] Look for products that claim to add thickness, volume or body to fine or thin hair. [title] Choose styling products that are specifically designed for fine hair.",
+    "choices": [
+      "[step] A lot of these don't end up evenly distributed throughout coarse hair. Picking out products that say \" heat protection \" on the package will give you a great deal of easier hair to work with.",
+      "[step] Adding volume will help you to grow more effectively without looking boyish. [substeps] Ask your hair stylist about different styling products so you can discuss the products with them.",
+      "[step] At the very least, be sure to use a hair thinning shampoo and conditioner that will not cause your hair to break down as you work with your hair. [substeps] Products with ingredients such as curl enhancing or deep conditioning can help create weak-over roots if you've already tried several products.",
+      "[step] There are many fine hair products on the market, including mousses, gels, root lifts, sprays and serums. Look for tag words such as \" volumizing, \" \" thickening, \" \" bodifying \" and \" texturizing."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Personal Care and Style"
+    }
+  },
+  {
+    "item_id": "hellaswag_2503",
+    "benchmark": "hellaswag",
+    "question": "A female weight lifter bends at the knees. She lifts a barbell to her chest. she",
+    "choices": [
+      "then lifts it over her head before dropping it heavily to the ground.",
+      "lowers the barbell and stands, then sways.",
+      "lifts it over her head.",
+      "then lifts it over her head to her body."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Clean and jerk"
+    }
+  },
+  {
+    "item_id": "hellaswag_1736",
+    "benchmark": "hellaswag",
+    "question": "A man is seen moving a pool stick and begins hitting balls on a table. He stops to speak to the camera and continues hitting the balls around. he",
+    "choices": [
+      "continues to serve balls all around doing various tricks.",
+      "hits the balls one last time.",
+      "moves the balls all throughout the pool and finally hits a blue cue.",
+      "throws the ball in the end and begins talking to another man."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Playing pool"
+    }
+  },
+  {
+    "item_id": "hellaswag_8696",
+    "benchmark": "hellaswag",
+    "question": "[header] How to help a cat with ataxia [title] Administer prescribed medications. [step] In order for your cat to recover, you'll need to be diligent in your treatment. You should give your cat its prescribed medications on time every day, and follow the medication instructions to the letter.",
+    "choices": [
+      "You can administer medication directly to the cat or directly before it goes to bed. [substeps] Spaying, neutering, and doing surgery rarely cause ataxia.",
+      "Having a full supply of medication available as a supplement will help it return to health and function. [substeps] If given the medication, you should administer a single dose, spaced within 30 minutes of each feeding.",
+      "[substeps] If your cat refuses to take its medicine (or if the symptoms of ataxia are already quite advanced), your cat may need to be hospitalized and treated by the veterinarian. This way, the vet can administer drugs and fluids intravenously, and monitor your cat's progress.",
+      "You need to stay next to your vet so that they can provide you with reminder that it's their responsibility to give your cat the proper proper dosage. [substeps] You can offer your vet specific instructions if you give a medication to your cat."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Pets and Animals"
+    }
+  },
+  {
+    "item_id": "hellaswag_5213",
+    "benchmark": "hellaswag",
+    "question": "[header] How to cope before having your tonsils taken out [title] Ask your doctor how much it will hurt. [step] Many children have their tonsils out to prevent them from getting infected. While it is scary and uncomfortable, after you heal you will probably be sick much less often.",
+    "choices": [
+      "Having your tonsils removed will increase the amount of time you may need to replace them. Any possible complications related to the procedure will likely be very awkward for you.",
+      "The easiest way to see this information is to ask your doctor why that is. This will minimize the risk of your tonsils getting infected and making your taking procedure even harder.",
+      "[substeps] Your doctor will tell you and your parents about what medications you will get to make you sleep during the operation. When you wake up it will be over.",
+      "Talk to your doctor about whether or not getting your tonsils removed could damage them. [substeps] Tonsils are located in the inner ear lobe."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Health"
+    }
+  },
+  {
+    "item_id": "hellaswag_1043",
+    "benchmark": "hellaswag",
+    "question": "A playground is shown and a back yard as the camera pans over to a window on a roof. the video",
+    "choices": [
+      "shows various pictures on how to fix a roof and the man pans over the window again with material.",
+      "then goes back to the \" backyard \" and starts with this lone young boy using a small shovel to lift up the old roof.",
+      "ends with the man showing other children how to install some sort of roof using metal paper, hammers and metal bars.",
+      "returns to the man shoot while again the man is sitting."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Fixing the roof"
+    }
+  },
+  {
+    "item_id": "hellaswag_1950",
+    "benchmark": "hellaswag",
+    "question": "A woman sits behind a table dealing cards. She points at one of the cards. she",
+    "choices": [
+      "begins to draw, and deals the cards.",
+      "mashes the cards together towards the camera.",
+      "pulls a card out and sets it on top of the other cards.",
+      "walks back and glances at the camera in the end."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Playing blackjack"
+    }
+  },
+  {
+    "item_id": "hellaswag_8320",
+    "benchmark": "hellaswag",
+    "question": "[header] How to recognize a fake ralph lauren [title] Check the logo. [step] Ralph lauren shirts often contain a small stitched on graphic of a polo player riding a horse. On a fake ralph lauren, the mallet the rider holds will be more circular than rectangular.",
+    "choices": [
+      "Look closely at the logo to make sure that it is authentic. [substeps] For example, fake ralph lauren t-shirts from dr.",
+      "The tail will be difficult to see and the horse's right back leg will be bent. On a genuine product, the horse's tail is clearly visible and the right back leg is straight.",
+      "[substeps] Purchase a real ralph lauren print collar from a thrift or sporting goods store. This will give you the best possible appearance, but also make sure that it isn't too thick.",
+      "Read and check the logo to make sure it is a replica collar. [title] Determine if the polo is a bonnet."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Personal Care and Style"
+    }
+  },
+  {
+    "item_id": "hellaswag_1699",
+    "benchmark": "hellaswag",
+    "question": "A group of young women and men play a game of volleyball on the beach while wearing swimsuits and trunks. a group of woman and men",
+    "choices": [
+      "continue to run after each other while moving their arms and legs.",
+      "wears bikinis on a beach.",
+      "are playing volleyball, on the beach on an overcast day with all players approaching the ball to hit it.",
+      "enjoy a surf surf toss in the ocean, and watch a man of asian descent and two women of asian descent turn around on the seated it."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Playing beach volleyball"
+    }
+  },
+  {
+    "item_id": "hellaswag_9096",
+    "benchmark": "hellaswag",
+    "question": "[header] How to make oreo cookie balls [title] Place the cookies into a blender or food processor. [step] Don't take the cookies apart. Just place the entire cookie inside the blender/food processor.",
+    "choices": [
+      "[substeps] Make sure that you have coffee grounds or sugar on the side. For maximum, make sure that everything is touching the grinder.",
+      "Add the milk and water if you don't have a food processor or start the blender on low. [title] Blend for 1 minute, or until the mixture is stiff.",
+      "If the cookies don't fit in your blender/food processor, then you will need to blend them in batches. [substeps] If you don't have either of those, place the cookies into a plastic, resealable bag.",
+      "[title] Blend the ingredients on high until well blended. [step] If you don't have a food processor, go to a food processor and blend everything well."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Computers and Electronics"
+    }
+  },
+  {
+    "item_id": "hellaswag_3082",
+    "benchmark": "hellaswag",
+    "question": "Man is carrying an umbrella that is brown in color. woman",
+    "choices": [
+      "is holding a black umbrella.",
+      "is combing her hair in a nail salon.",
+      "is standing in a hallway next to a red door.",
+      "is sitting in a coffin holding a fur rug."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Hopscotch"
+    }
+  },
+  {
+    "item_id": "hellaswag_1406",
+    "benchmark": "hellaswag",
+    "question": "This video is a tutorial showing people how to ski correctly. first it",
+    "choices": [
+      "shows you, then some more individuals, and now this video is about skiing correctly.",
+      "tells you what environment you should ski in.",
+      "shows the slide slid to the left, then it slide to the right.",
+      "begins with first attempting to ski properly without falling and then gets the hang of it."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Skiing"
+    }
+  },
+  {
+    "item_id": "hellaswag_726",
+    "benchmark": "hellaswag",
+    "question": "She grabs a bottle of vinegar and pours it on top of the salad. She opens a bottle with her teeth and pours that onto the salad too. she",
+    "choices": [
+      "drops, paste, mayonnaise, lettuce and bread onto the lettuce and red tomato.",
+      "puts more dressing on the salad.",
+      "then pours the salad in another bottle and puts it on a plate next to her.",
+      "puts the lettuce on top of the salad."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Preparing salad"
+    }
+  },
+  {
+    "item_id": "hellaswag_7267",
+    "benchmark": "hellaswag",
+    "question": "[header] How to accentuate wavy hair [title] Wash your hair with a gentle shampoo. [step] Wavy hair tends to get frizzy and dry. Using a harsh shampoo can make these problems worse.",
+    "choices": [
+      "Run your hair under lukewarm or cool water for 15 minutes, then apply a leave-in conditioner and allow to dry. [substeps] Using shampoo too often can create frizz.",
+      "As much as possible, wash your hair once every two to three days. [title] Try to relax your hair once every two days with a diffuser.",
+      "Stick with a sulfate free shampoo or one with moisturizers. Sulfates are detergents that can strip natural oils from hair and cause frizz.",
+      "Instead, wash your hair with a healthy shampoo. [substeps] For frizzy hair, mix one part shampoo with two parts water."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Personal Care and Style"
+    }
+  },
+  {
+    "item_id": "hellaswag_3217",
+    "benchmark": "hellaswag",
+    "question": "A man kneels on a pad. the man",
+    "choices": [
+      "scrubs brushes and mops their roof.",
+      "then gets up and begins to kick the mat.",
+      "tattooing the opening wallpaper.",
+      "pulls the cord attached to the exercise machine repeatedly."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Kneeling"
+    }
+  },
+  {
+    "item_id": "hellaswag_1049",
+    "benchmark": "hellaswag",
+    "question": "A large fish is seen swimming under frozen water. A man creates a hole in the ice to catch the fish. he",
+    "choices": [
+      "catches it on a line, and pulls until he is able to get it through the hole.",
+      "throws it down the hole with dogs and the last image is taken at night.",
+      "puts the catch in his mouth and is shown smiling to the camera.",
+      "jams and seals the hole with a long piece of fishing paper."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Ice fishing"
+    }
+  },
+  {
+    "item_id": "hellaswag_1848",
+    "benchmark": "hellaswag",
+    "question": "Several people are walking down a subway and the train takes off. once there",
+    "choices": [
+      ", they begin to fall off their sides when a person comes along and paddles them back to the surface.",
+      ", several more clips are shown of men falling down throwing rocks as well as running to retrieve them and speaking to one another.",
+      "are less people, the man walks in and plugs up a vacuum and begins to clean.",
+      ", people are riding sleds and going down busy roads."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Vacuuming floor"
+    }
+  },
+  {
+    "item_id": "hellaswag_8983",
+    "benchmark": "hellaswag",
+    "question": "[header] How to remove shellac nail polish [title] Apply cuticle oil to your cuticles. [step] Rub cuticle oil into the skin around your nails. Do not wipe away the excess.",
+    "choices": [
+      "Simply wipe out the excess oil with a cuticle pusher or cotton swab. Leave the oil to rest for 10 to 15 minutes.",
+      "Instead, wipe the oil off with a soft cloth. [substeps] This method is also known as priming.",
+      "Use a cotton swab to remove the cuticle oil. [substeps] Try painting your cuticles lightly with the cuticle oil to avoid abrasions to the skin on your nails.",
+      "[substeps] Cuticle oil is a product designed to soften and moisturize your cuticles, and it can be found at any major drugstore. Applying it to your cuticles before removing the shellac nail polish will provide your skin with a protective layer against the harsh, drying acetone needed for this process."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Personal Care and Style"
+    }
+  },
+  {
+    "item_id": "hellaswag_2462",
+    "benchmark": "hellaswag",
+    "question": "They make another shot and the man in white begins to freak out. The man in black is excited and everyone starts hugging everyone else. we",
+    "choices": [
+      "then see their end screen.",
+      "see boys throw balls at each other and throw them behind the man that touches them.",
+      "see a man near the camera shake hands with two men.",
+      "see the ending title screen."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Beer pong"
+    }
+  },
+  {
+    "item_id": "hellaswag_319",
+    "benchmark": "hellaswag",
+    "question": "A child sitting at restaurant table places his hands in a dessert. the child",
+    "choices": [
+      "eats the dessert and by the camera stares off into the distance.",
+      "places the hands back into the dessert.",
+      "uses his hands to eat the food.",
+      "stands and walks towards the camera."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Having an ice cream"
+    }
+  },
+  {
+    "item_id": "hellaswag_1296",
+    "benchmark": "hellaswag",
+    "question": "The person shines her right boot in the electric buffer machine. The person switches feet and shines the other boot. the woman",
+    "choices": [
+      "lifts up her boot to show the polished finish.",
+      "removes her other shoe.",
+      "shines the left one.",
+      "puts her right foot into the harmonica machine."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Polishing shoes"
+    }
+  },
+  {
+    "item_id": "hellaswag_1532",
+    "benchmark": "hellaswag",
+    "question": "We see team of boaters in a competition in the sea. We see the race start and the boaters take off. They pass a small boat in the water. we",
+    "choices": [
+      "see sea life in a reef.",
+      "see one team up close.",
+      "watch as the boaters perform handstands in the river.",
+      "see the ending title screen on black."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Canoeing"
+    }
+  },
+  {
+    "item_id": "hellaswag_3120",
+    "benchmark": "hellaswag",
+    "question": "Four commentators sit at a table talking. a series of female contestants",
+    "choices": [
+      "presenting awards appear on the screen.",
+      "are shown trying to jump a hurdle while an audience watches, and the four commentators occasionally interject.",
+      "sign up with controlled and military style equipment to battle american war bloody fight.",
+      "are shown curling in front of a wall with votives around their back and a woman smiling at the mirror."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "High jump"
+    }
+  },
+  {
+    "item_id": "hellaswag_1132",
+    "benchmark": "hellaswag",
+    "question": "A man uses a brush on bundled wallpaper on the floor. the man",
+    "choices": [
+      "lifts the wallpaper and hands it to another man standing on a chair.",
+      "finishes by peeling down the wallpaper from the wall.",
+      "hove the wallpaper and brushes it out with a hand held sander.",
+      "continues to wax the wallpaper with a paintbrush and shaver intermittently."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Hanging wallpaper"
+    }
+  },
+  {
+    "item_id": "hellaswag_44",
+    "benchmark": "hellaswag",
+    "question": "There's a nbc news reporter wearing a red sweater and white shirt talking about dog grooming by scissor wizard a grooming company. the representative from the company",
+    "choices": [
+      "is talking about the services they offer and how those dogs participate in dog shows.",
+      "speaks to a woman sitting on a colorful conference room chair next to a brown dog kennel in front of them.",
+      "tells viewers about a dog grooming company, itv with a website.",
+      "in grey sweater and black pants talks about the procedures on grooming dogs in life and techniques."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Grooming dog"
+    }
+  },
+  {
+    "item_id": "hellaswag_6723",
+    "benchmark": "hellaswag",
+    "question": "[header] How to visit a catholic mass [title] Dress in formal clothing. [step] Mass is meant to be attended in your \". \" although you won't be turned away for wearing flip-flops and a football jersey, you might seem a little rude.",
+    "choices": [
+      "If your church hosts a service, dress in appropriate attire-preferably conservative. [substeps] The pastor should have open invitation cards.",
+      "People gravitate towards \" munchies. \" this goes for kids too, so pair your throwback leotard with sneakers and a casual running jacket.",
+      "At a minimum, wear a button-down shirt with slacks or a dress. Mass is a holy event, so dress modestly by covering your skin as much as possible.",
+      "Dress as soon as possible to avoid having to go anywhere waiting for a seat. [substeps] You might be around adults or children who won't want to sit if you're put off; at many churches, only men are allowed in the room."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Philosophy and Religion"
+    }
+  },
+  {
+    "item_id": "hellaswag_2560",
+    "benchmark": "hellaswag",
+    "question": "We see an empty auditorium and a title on the screen. we",
+    "choices": [
+      "see ballerinas dancing on a stage cut with scenes of a lady being interviewed.",
+      "see a man talking in a venue.",
+      "see a cowboy walk into a arena and grab his hands.",
+      "see a lady speaking with the camera."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Ballet"
+    }
+  },
+  {
+    "item_id": "hellaswag_1158",
+    "benchmark": "hellaswag",
+    "question": "The man covers the entire chest from the very top to the bottom with the spray varnish which is coming from a long hose attached to a metal pump. the man",
+    "choices": [
+      "plays the music cutting around different alifes of the product.",
+      "uses the hose on his legs and hands taking off the hose from the hose that is attached to the pump.",
+      "finishes spraying the chest and hangs the nozzle up and walks away as the camera focuses on the finished product.",
+      "continues plastering the chest and the adapting metal pump and then grabs another container of the paint and begins to use it to paint a height mirror them and use it to scrub excess paint off of it."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Painting furniture"
+    }
+  },
+  {
+    "item_id": "hellaswag_1088",
+    "benchmark": "hellaswag",
+    "question": "First he shows viewers how to properly do a crunch and his feet are apart, arms on his chest, and each time he goes up the elbows touch his legs. when he",
+    "choices": [
+      "gets to the end he faces right at the camera.",
+      "goes back he's smiling and holding his arms up stretching his body and looking into the camera.",
+      "finishes his basic crunch he is very pleased that his technique is finally working as the two men lead with a \" ooooo \".",
+      "'s done, he stands up and tells viewers more helpful information about how to have a good workout."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Doing crunches"
+    }
+  },
+  {
+    "item_id": "hellaswag_250",
+    "benchmark": "hellaswag",
+    "question": "An intro leads into a close up of a painting and a paintbrush swirling around and around. the hand holding the brush",
+    "choices": [
+      "dips it into paint and paints while the woman continues painting.",
+      "begins painting while standing next to a large piece of wood and pausing to wipe the brush on the canvas.",
+      "begins painting grass into the painting slowly down the picture.",
+      "is then seen using it to paint on the canvas causing it to move up and down and the logo continues flipping around but stops at the end."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Painting"
+    }
+  },
+  {
+    "item_id": "hellaswag_1211",
+    "benchmark": "hellaswag",
+    "question": "The boy begins playing the drums. The boy continues playing the drums as smoke effects begin to appear. the boy",
+    "choices": [
+      "then drops the drumsticks, poses, then walks off of the stage.",
+      "stops playing and finds himself on a long floor.",
+      "tries hard to keep the smoke inside but ends up coughing.",
+      "continues to play the drums with the rest of his hands as smoke begins to enter on his face."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Playing drums"
+    }
+  },
+  {
+    "item_id": "hellaswag_7069",
+    "benchmark": "hellaswag",
+    "question": "[header] How to make new year's resolutions [title] Be clear about what you want. [step] For example, if you want to take better care of yourself this year, what does that look like? Perhaps you are ready to quit smoking, to take on a consistent exercise regimen, or to eat healthier. [title] Understand why you want it.",
+    "choices": [
+      "[step] Why is it important to you to take better care of yourself? Perhaps you want to set a good example for your children or grandchildren. Maybe you're concerned about aging or hereditary diseases, and you're taking preventative measures.",
+      "[step] You're entitled to some particular things, and your resolution is to earn them. By this point, you may not have time for more important goals.",
+      "[step] You have spent a lot of time visualizing changes your life would make, and so you will want to focus on achieving those goals. The important thing is to be clear why you want something more than what you are asking of yourself.",
+      "[step] Before committing to change, be clear with yourself why you want to change your life. [substeps] What does this idea or concept mean? Is your goal a drastic change to your attitude or lifestyle? If yes, then not yet."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Holidays and Traditions"
+    }
+  },
+  {
+    "item_id": "hellaswag_1641",
+    "benchmark": "hellaswag",
+    "question": "Several people are seen playing a paintball match with one another and continuously moving around the forest and holding up a gun. the person",
+    "choices": [
+      "then runs through an area holding his gun up and shooting when a person arrives.",
+      "continues fighting in the end and throws the gun off into the distance and leaves a pile of leaves next to him.",
+      "shots down the video while moving around the woods.",
+      "fires the gun constantly with more shots being shown of people shooting off their back and hitting targets."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Paintball"
+    }
+  },
+  {
+    "item_id": "hellaswag_1566",
+    "benchmark": "hellaswag",
+    "question": "Michele now runs and jumps into a jumprope where she fails to successfully jump in the jump rope twice, both times looking embarrassed. the third time she",
+    "choices": [
+      "jumps in the high rope but instead of choosing to jump she falls onto the red dirt when she lands.",
+      "fails, again wonder if she did it right.",
+      "succeeds but isn't able to step through the rope.",
+      "prepares herself and runs towards the jump rope successfully jumping a couple times before being unable to do anymore."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Hula hoop"
+    }
+  },
+  {
+    "item_id": "hellaswag_182",
+    "benchmark": "hellaswag",
+    "question": "A group of people wearing swim caps move around a pool and toss a ball around with a man on the sides waving a flag. They play a game of water polo and throw the ball around to each other. one",
+    "choices": [
+      "throws the ball into the net and causes the people on the side to jump and cheer.",
+      "person wins the game knocking the other one into the water.",
+      "person keeps score and pretends to make a goal.",
+      "jumps through the net and makes it all the way to the other side."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Playing water polo"
+    }
+  },
+  {
+    "item_id": "hellaswag_409",
+    "benchmark": "hellaswag",
+    "question": "A group of boys are on the sidewalk of a street. They are bouncing around on stilts. they",
+    "choices": [
+      "continue talking as they bounce and walk.",
+      "have wrapping paper in their hands.",
+      "hit hoops each other as they walk.",
+      "bounce and flip over a wobbly bar onto a mat."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Powerbocking"
+    }
+  },
+  {
+    "item_id": "hellaswag_1758",
+    "benchmark": "hellaswag",
+    "question": "A man with a blue shirt, blue sweat pants and green socks is standing outside in a large field walking into a circle of cement. once the guy",
+    "choices": [
+      "is inside, he extends a hand and begins hitting a wall.",
+      "is inside, the man begins spinning in circles and putting the pipe in his mouth.",
+      "is on the circle, he begins walking around the circle to find his perfect spot.",
+      "has done some stretching the man starts using and picking up metal scraps."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Discus throw"
+    }
+  },
+  {
+    "item_id": "hellaswag_931",
+    "benchmark": "hellaswag",
+    "question": "A camera pans out of a dirt hole and shows a man placing it down next to a tree. the camera",
+    "choices": [
+      "pans back to an open road and more holes and fallen leaves laying on the ground.",
+      "pans around people playing and a pile of dirt.",
+      "then goes into a house and shows another man getting down on dirt.",
+      "pans around the tree and shows the man checking up on the dirt."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Spread mulch"
+    }
+  },
+  {
+    "item_id": "hellaswag_2046",
+    "benchmark": "hellaswag",
+    "question": "We see a person sharpen a knife on a sanding disc. The person touches it and turns it off. The person turns it on and then off off. we",
+    "choices": [
+      "see the person sharpening the knife on a cookie sheet.",
+      "see a man run in slow motion.",
+      "then see the title screen.",
+      "see the man talking to the camera."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Sharpening knives"
+    }
+  },
+  {
+    "item_id": "hellaswag_545",
+    "benchmark": "hellaswag",
+    "question": "Two men and two women are playing table soccer and showing the table. A man and a woman are in a living room playing table soccer. people",
+    "choices": [
+      "are in a comercial showing the socer table and playing.",
+      "standing around her and in the corner practicing table soccer.",
+      "are standing in street behind them watching.",
+      "are walking by the table wearing white bumper cars."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Table soccer"
+    }
+  },
+  {
+    "item_id": "hellaswag_1872",
+    "benchmark": "hellaswag",
+    "question": "A guy is standing behind a bar. The guy raises an empty glass. the guy",
+    "choices": [
+      "takes a drink from a martini glass.",
+      "throws a hat across the bar.",
+      "mixes alcohol, other liquids, and ice together.",
+      "finishes the glass while people watch."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Mixing drinks"
+    }
+  },
+  {
+    "item_id": "hellaswag_945",
+    "benchmark": "hellaswag",
+    "question": "A girl is jumping and swinging on balance bars. A woman in a black shirt is standing under her watching. she",
+    "choices": [
+      "flips over the bar and lands on her back.",
+      "helps her jump off and land on a mat.",
+      "then jumps and swings with her legs.",
+      "gives the young girl a high five."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Using uneven bars"
+    }
+  },
+  {
+    "item_id": "hellaswag_737",
+    "benchmark": "hellaswag",
+    "question": "He shows her something and she holds it in her hand. A man talks in front of a house. a man",
+    "choices": [
+      "climbs a ladder and looks at a roof.",
+      "cleans wine bottles with a cloth.",
+      "fills a plastic tub with clear liquid.",
+      "does stunts while riding a harmonica."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Roof shingle removal"
+    }
+  },
+  {
+    "item_id": "hellaswag_828",
+    "benchmark": "hellaswag",
+    "question": "A large group of people are seen standing around a table with one speaking to the camera. The people then assist one another putting ingredients into pans and flipping them around. the people",
+    "choices": [
+      "continue to mix ingredients together in pots and pans and finally eat all the food on the table.",
+      "then create a skillet with a cooking oil and saute it to the sides.",
+      "continue mixing the food together and finish by presenting it onto a plate.",
+      "hold salad tongs and continues serving and mixing all the way to the end."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Preparing pasta"
+    }
+  },
+  {
+    "item_id": "hellaswag_1510",
+    "benchmark": "hellaswag",
+    "question": "He uses a ruler to show more detailed and then moves the mower to the sidewalk to talk some more. he",
+    "choices": [
+      "then moves to the corner to talk again.",
+      "measures the mower's horsepower and bends down to finish his section of sidewalk.",
+      "continues to talk about what he is doing and shows two hands stopping to write something on the board from time to time.",
+      "starts mowing his lawn finally going up and down the lawn."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Mowing the lawn"
+    }
+  },
+  {
+    "item_id": "hellaswag_2918",
+    "benchmark": "hellaswag",
+    "question": "There is a lemonade stand set up where people are purchasing lemonade to donate money for a cause. One of the parents is talking to the news reporter about the fund raiser. three more parents",
+    "choices": [
+      "are seated at the fund raiser, chatting about the event, and a host is giving the clean-up materials required to make lemonade.",
+      "are seen speaking to the reporter that are standing by to participate in the event.",
+      "are standing are chatting as they sip lemonade.",
+      "are talking about how they donated the lemonade, to show their appreciation for their generosity."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Making a lemonade"
+    }
+  },
+  {
+    "item_id": "hellaswag_575",
+    "benchmark": "hellaswag",
+    "question": "A man is seen speaking to the camera that leads into several clips of a gym. Many people are seen performing gymnastics on a mat while the camera follows close behind. people",
+    "choices": [
+      "are seen jumping rope while others cheer on and stand around.",
+      "run up and down the course while being helped up and perform.",
+      "watch the people perform and come back to the man still speaking.",
+      "continue flipping around the gym while also stopping to speak to the camera."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Tumbling"
+    }
+  },
+  {
+    "item_id": "hellaswag_821",
+    "benchmark": "hellaswag",
+    "question": "A man is outside with two dogs on leashes. he",
+    "choices": [
+      "seems to be talking to the camera when suddenly the dogs start fighting and punching each other.",
+      "puts on a show with the trained dogs.",
+      "is brushing the dogs legs with the leashes.",
+      "is using frisbees from an assortment for the dogs."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Disc dog"
+    }
+  },
+  {
+    "item_id": "hellaswag_1944",
+    "benchmark": "hellaswag",
+    "question": "The woman then scrubs soap into her hands and continues to wash them off then taking a paper down and drying her hands and sink. the other",
+    "choices": [
+      "steps in to demonstrate how she washes her hands and ends by laughing to the camera.",
+      "woman does the same with the paper and cleaners the papers with a large towel and wipes them well with her hand.",
+      "woman takes a photo of the two baths with their pets and ends with the woman waving to the camera at the end.",
+      "woman adds polish to her hands and uses a pencil to draw around her nails."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Washing hands"
+    }
+  },
+  {
+    "item_id": "hellaswag_2951",
+    "benchmark": "hellaswag",
+    "question": "An intro appears showing empty glasses, a card that say's \"audi polo challenge 2014\", an audi flag blowing in the wind, close up shots of a white horse, people with drinks, cars driving, polo riders getting on their horses, and a large group of people near and in a tent both standing and sitting. the polo match",
+    "choices": [
+      "is shown again, the winner of the event is a black horse, and the stands are filled with cheering fans.",
+      "begins and the men are riding on hroses that are going very fast as they all attempt to hit the ball with their sticks.",
+      "is shown again in slow motion, but the people are now sitting and riding off the field.",
+      "is a series of riders competing together and their opponents throwing balls around the racetrack."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Playing polo"
+    }
+  },
+  {
+    "item_id": "hellaswag_2135",
+    "benchmark": "hellaswag",
+    "question": "A man seated in front of a tennis net turns around and faces his opponent, with a coach and camera man looking on. as they",
+    "choices": [
+      "are watching, the man doubles over in pain.",
+      "remain facing each other, the other begins to dribble while the man in front gets fet by the ball and the man behind him helps the man across the court.",
+      "both rise we see that they are actually heading to a table tennis game, the table on an actual tennis court.",
+      "continue to play, the goalie chops the goalie's head, then the man ends their tennis match and falls to the ground on top of his friend who cheers loudly."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Ping-pong"
+    }
+  },
+  {
+    "item_id": "hellaswag_2368",
+    "benchmark": "hellaswag",
+    "question": "A woman is shown speaking to the camera while holding a dart. pictures of a man",
+    "choices": [
+      "'s arms are shown as well as this dart.",
+      "with a bowflex in one ear and a dart in her other ear next to a dart board in a room.",
+      "playing darts appear and he is shaking in distress before returning to talking to the camera.",
+      "are shown and leads into her throwing darts."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Throwing darts"
+    }
+  },
+  {
+    "item_id": "hellaswag_3145",
+    "benchmark": "hellaswag",
+    "question": "Two people are seen standing when the man walks over and begins dancing with the woman. the couple",
+    "choices": [
+      "continue dancing and singing with one another dancing with one another holding onto one another and beginning to dance at a bit slower pace.",
+      "turn around three times and a man is again seen dancing with the people.",
+      "continues performing while the man guys stick their hands off into the foreground.",
+      "perform a routine on the stage moving each other all around and ends with them standing together."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Tango"
+    }
+  },
+  {
+    "item_id": "hellaswag_1270",
+    "benchmark": "hellaswag",
+    "question": "A woman is seen hosting a news segment with several bottles of sun screen laid out in front of her. various shots shots",
+    "choices": [
+      "of ingredients are shown around the woman as well as windows and a building.",
+      "are shown of people on the beach putting sun screen on and a skin doctor speaking to the camera.",
+      "of landscapes are shown with people sitting on chairs around them.",
+      "and people are then shown of sun screens and people preparing to live and experiencing the various sunrises and sunny days."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Applying sunscreen"
+    }
+  },
+  {
+    "item_id": "hellaswag_126",
+    "benchmark": "hellaswag",
+    "question": "A small boy wearing a blue and yellow hoodie and gray sweat pants in standing in an outdoor tennis court. he",
+    "choices": [
+      "then jumps onto a tennis ball that is positioned in between a set of net and a larger setting of tables on which are arranged various rackets and vegetables as well as various sticks.",
+      "is lifting a ball over his head to throw it at a birdie on a long wooden table in front of him.",
+      "lobs the ball back and forth onto the court then puts his hand down to record between his legs to record more practice kicks.",
+      "is holding a blue racket as he bounces the yellow and orange tennis ball on the court."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Tennis serve with ball bouncing"
+    }
+  },
+  {
+    "item_id": "hellaswag_2605",
+    "benchmark": "hellaswag",
+    "question": "A flyer for martial arts is displayed. the men",
+    "choices": [
+      "are fighting in martial arts style.",
+      "are lined up and talking, with one turning a disc.",
+      "get ready to arm wrestle and one of the men punches the other.",
+      "kneel on the ground and corner each other."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Capoeira"
+    }
+  },
+  {
+    "item_id": "hellaswag_335",
+    "benchmark": "hellaswag",
+    "question": "A woman is getting ready to bath her dog in her front yard. she",
+    "choices": [
+      "gets under the shower spray, kissing the dog on the face before stepping back out.",
+      "talks to the camera for a little while, then walks towards the shower.",
+      "allows the dog an electric bath, then she takes the dog outside.",
+      "takes a hose and wets the dog first."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Bathing dog"
+    }
+  },
+  {
+    "item_id": "hellaswag_6185",
+    "benchmark": "hellaswag",
+    "question": "[header] How to braid [title] Brush your hair. [step] Brush your hair so it is light and fluffy. You want to get rid of any knots so your braid is silky smooth! This also makes the braiding process easier, so make sure you do it.",
+    "choices": [
+      "[title] Take three to four inches (5 to 10 cm) of hair from the back of your head, comb it out, and place it in a braid holder. [step] Tie it up, and put it back in the holder.",
+      "If your hair is very tangled it may all drip down and you may not be able to braid it as neatly! [title] Wrap your hair. [step] With your hair in rollers, curl it around your finger so all the rollers are tucked into.",
+      "[title] Decide where the braid is going to be. [step] Is it going to be at the back of your head on a pony tail? Is it going to be at the side or lower down near your neck? Decide this to determine where and how it will look best.",
+      "[title] Wet your hair and fluff it up gently with your fingers so you have a nice, fluffy result. [step] It's probably easy to part with a little pull, but be careful not to."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Personal Care and Style"
+    }
+  },
+  {
+    "item_id": "hellaswag_4552",
+    "benchmark": "hellaswag",
+    "question": "[header] How to shrink your financial footprint [title] Look at this project in the same way as a weight loss diet. [step] Most people know that the best way to lose weight is to burn more calories than you take in; financial solvency comes when you spend less than you bring in. [title] Start with the low-hanging fruit.",
+    "choices": [
+      "[step] You may think that fruit can help eat healthier, but fruit can actually contribute to weight gain for many reasons. Getting large fruit will help you take a step back and balance your diet and your calorie intake.",
+      "[step] Eliminate the expenses that add no value to your life, such as late fees, unnecessary or duplicate purchases, excess interest on debt. [title] Spend your money on the things and experiences that truly enhance your quality of life.",
+      "[step] Since the trees are always chock full of fruit, when you first start shopping online, you'll find plenty of low-hanging fruit. Use an online food auction tool such as retailmenot and purchase your fruit.",
+      "[step] Even if you don't plan to cook it for the next six months, you'll need to add some weight-loss to the steer. When done properly, berries and nuts should be left whole and fresh, in small quantities to keep you consistently in good shape."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Finance and Business"
+    }
+  },
+  {
+    "item_id": "hellaswag_8988",
+    "benchmark": "hellaswag",
+    "question": "[header] How to stop scratching a mosquito bite [title] Scratch yourself near the itch. [step] Anyone who has ever had a broken bone and worn a cast knows, sometimes you just can't scratch an itch. One way to get some relief is to scratch someplace else on your body.",
+    "choices": [
+      "You can hit any mosquito bite on your foot, head, chest, arm, or thigh. In contrast, you can scratch anywhere else if your clothes contain any anti-itch products, white socks, or gloves.",
+      "Hand massage a mosquito bite area, use your fingers to scratch away any oils from your hands, rub any microscopic flakes of skin, the scratch marks and at the same time soothe the area. [substeps] If your bite is itchy for more than a few hours, wipe it with a washcloth and cool water.",
+      "This little mind trick relieves your body's desire to scratch without further inflaming the mosquito bite. [substeps] You can try scratching near the itch, such as in a large circle around the bite.",
+      "Take a hot dog, a hot water bottle, or even a tick off your foot that ticks off your entire body. [substeps] Note, that this method has no large colony of mosquitoes but a little self-soothing scrub."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Sports and Fitness"
+    }
+  },
+  {
+    "item_id": "hellaswag_1018",
+    "benchmark": "hellaswag",
+    "question": "The man shovels a long path of snow. The man turns around and shovels a long path of snow again. the man",
+    "choices": [
+      "takes the shovel and puts it on the floor and shovels again.",
+      "sits down to finish his snow walk.",
+      "kneels down and washes a sumo ski.",
+      "shovels snow for a third time."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Shoveling snow"
+    }
+  },
+  {
+    "item_id": "hellaswag_1366",
+    "benchmark": "hellaswag",
+    "question": "Pole vault is a sport where you run with a pole and stop and swing your body. a few women",
+    "choices": [
+      "go down a rock and stop.",
+      "watch from around a pole vault.",
+      "are in the wading pool.",
+      "are in the gym practicing to do this pole vault, trying to do their best."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Pole vault"
+    }
+  },
+  {
+    "item_id": "hellaswag_1110",
+    "benchmark": "hellaswag",
+    "question": "A man is seen speaking to the camera and leads into a girl jumping in front of him. More people take turns jumping into a pit in front of the man. the people",
+    "choices": [
+      "start jumping around one another and another walks into frame.",
+      "jump onto the walls in front of the camera making mishaps and spinning.",
+      "stream back and fourth in the end.",
+      "continue moving one after the other into the pit."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Triple jump"
+    }
+  },
+  {
+    "item_id": "hellaswag_2110",
+    "benchmark": "hellaswag",
+    "question": "An intro leads into clips of people riding surfboards on the water as well as jet skis. the camera",
+    "choices": [
+      "follows the girls as they slip and slide through rough waters and stop to do sunscreen on take breaks.",
+      "pans around the area and continues to show more clips of people surfing.",
+      "is panned around to show a wooden security fence along side the water.",
+      "captures several people riding tubing in the water while people stand in a long line and watch."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Surfing"
+    }
+  },
+  {
+    "item_id": "hellaswag_387",
+    "benchmark": "hellaswag",
+    "question": "A guy comes onto the screen to introduce a video about his character on a kids show. He begins to show several different clips from the show. he",
+    "choices": [
+      "explains another video that he and his friend play for fun while in a roller rink.",
+      "also comments about different aspects of the show while being interviewed.",
+      "continues to show how to properly paint the nails by using paintball guns.",
+      "then picks up some tagine and puts that on the screen, words flash across."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Doing karate"
+    }
+  },
+  {
+    "item_id": "hellaswag_2106",
+    "benchmark": "hellaswag",
+    "question": "A female gymnasts sits in a chair and waits for her turn. The female gymnasts stretches out her arms before the routine. a replay",
+    "choices": [
+      "begins and the female gymnast begins the routine.",
+      "is repeated in slow motion, with the weight lifting routine occurring in slow motion.",
+      "is then shown of the performance with her finishing the routine and cheering.",
+      "shows the highlights of the gymnasts routine on the double bars."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Using parallel bars"
+    }
+  },
+  {
+    "item_id": "hellaswag_2877",
+    "benchmark": "hellaswag",
+    "question": "The inside of the pumpkin gets sprayed with mold remover and patted dry. A candle is placed inside and lit and the lid is put back on. with the lights",
+    "choices": [
+      "turned on the fire begins to ignite the pumpkin.",
+      "turned down the jack o lantern can be viewed.",
+      "on and the pumpkin lit with its protective covering the oil is gently browned and the inside glows until the entire surface glows.",
+      "turned off, you can still see the wax on the pumpkin and the candle in tongs."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Carving jack-o-lanterns"
+    }
+  },
+  {
+    "item_id": "hellaswag_750",
+    "benchmark": "hellaswag",
+    "question": "A person is seen sitting on a stool and piecing together several parts of a bike. the person",
+    "choices": [
+      "disassembles and rearranges the bike.",
+      "then grabs a spare tire and continues grinding the tiny parts together.",
+      "continues piecing the bike together and pans around the finished product in the end.",
+      "continues piecing out the parts while looking off into the distance."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Assembling bicycle"
+    }
+  },
+  {
+    "item_id": "hellaswag_1584",
+    "benchmark": "hellaswag",
+    "question": "A man is outside in his yard. He is using a pressure washer to wash the leaves off his lawn. he",
+    "choices": [
+      "is spraying the leaves with the spray hose.",
+      "starts to have some feet sticking straight up out of a dirt barrel.",
+      "leaves them there up high as he stops to talk occasionally.",
+      "sprays them up and down, pushing them down an incline."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Blowing leaves"
+    }
+  },
+  {
+    "item_id": "hellaswag_3065",
+    "benchmark": "hellaswag",
+    "question": "A long rope is shown with a man tightening it and a woman walking across holding onto a man. More people attempt to walk the rope while others watch on the side. they",
+    "choices": [
+      "have helped one another in getting the rope across so far.",
+      "all seem to be stumped and come down crying and walking back in place.",
+      "are playing rock paper scissors and the man leads the group with his rope.",
+      "fall off continuously and end by sitting and eating on the ground."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Slacklining"
+    }
+  },
+  {
+    "item_id": "hellaswag_299",
+    "benchmark": "hellaswag",
+    "question": "A large, blue ball is tossed in the air. a child",
+    "choices": [
+      "runs to catch a blue, large ball.",
+      "is thrown onto the board.",
+      "flies off a bridge.",
+      "is then shown floating on a tube down a river."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Playing kickball"
+    }
+  },
+  {
+    "item_id": "hellaswag_666",
+    "benchmark": "hellaswag",
+    "question": "The woman are waving and a man behind the camera is asking them to wave, look and say hi at the camera. the camera man",
+    "choices": [
+      "is showing the waters depths growing ever so gradually while cars pass by in front of.",
+      "bends down and lifts up one of the soapy people, then back down using a bar to lift the hose.",
+      "zooms in on the women as the woman in the red jacket gives a thumbs up.",
+      "is then seen close up showing a shoe."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Camel ride"
+    }
+  },
+  {
+    "item_id": "hellaswag_2937",
+    "benchmark": "hellaswag",
+    "question": "A man walks onto a field before a crowd, holding a heavy ball into the air. he",
+    "choices": [
+      "does several flips, spinning and throwing the ball.",
+      "spins, then throws the ball as far as he can.",
+      "is seen sitting in a rink while others approach him.",
+      "swings at a yellow ball and goes down, making a goal."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Shot put"
+    }
+  },
+  {
+    "item_id": "hellaswag_2942",
+    "benchmark": "hellaswag",
+    "question": "A person's hands are seen attempting to solve a rubix cube while the end of a table is shown. the person",
+    "choices": [
+      "continues until they finish the cube and then shows his time on the screen.",
+      "grips the bar as well as the company logo and camera angles before finally solving the puzzle.",
+      "pushes a piece of paper down onto the table and mis-solves the rubix cube in a matter of seconds.",
+      "uses a tool to solve a rubix cube while the end of the table is shown."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Playing rubik cube"
+    }
+  },
+  {
+    "item_id": "hellaswag_8198",
+    "benchmark": "hellaswag",
+    "question": "[header] How to become a professional gamer [title] Play a multitude of games. [step] Unless you already excel at a game, you'll have to find which types of games that you enjoy playing. Some of the most popular kinds of games that exist include first-person shooters (fps), real-time strategies (rts), multiplayer online battle arenas (moba), card games, and fighting games.",
+    "choices": [
+      "While these games don't need to be complicated, they shouldn't be considered criminal games either. They's better to play the game safe than to engage yourself in criminal games.",
+      "[substeps] Go into a pc game and open it up, then click on create ultimate strategy (game store) at the upper left side. You'll find this in your current country page.",
+      "Try out different titles and determine which games you like the best. [substeps] Popular mobas include league of legends, dota 2, and heroes of the storm.",
+      "Once you've seen all of these are represented, this will inform you about which types of gamer you can choose. [substeps] There are 2 main types of online games."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Uncategorized"
+    }
+  },
+  {
+    "item_id": "hellaswag_3018",
+    "benchmark": "hellaswag",
+    "question": "A squirrel is standing on all fours at the edge of a couch. The squirrel leans into a coffee cup using its front limbs. the squirrel",
+    "choices": [
+      "pushes a rubix cube down, gets up, and begins picking up pieces using its front legs.",
+      "bobs his head in and out of the coffee cup.",
+      "brushes an egg which hangs off the coffee cup and onto the glass coffee cup.",
+      "then eats all the plastic wrap that is on the coffee while keeping one eye on the phone for a while."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Drinking coffee"
+    }
+  },
+  {
+    "item_id": "hellaswag_910",
+    "benchmark": "hellaswag",
+    "question": "People are pulled up a hill on a tug rope sitting on inter tubes. A family pulls their inter tubes along by hand and the top of the hill. a person",
+    "choices": [
+      "falls off of the hand and downhill.",
+      "falls off of the rope on the side along the side.",
+      "falls down and knocks off the tie.",
+      "sits in an inter tube at the top of a hill then rides down the slope laughing."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Snow tubing"
+    }
+  },
+  {
+    "item_id": "hellaswag_1834",
+    "benchmark": "hellaswag",
+    "question": "We see a lady and kids walking around in a living room. the people",
+    "choices": [
+      "take off a few discs and put them on the screen.",
+      "hall and take off their shoes.",
+      "make stacks of crushed ice and lay it in a bag.",
+      "begin to add ornments to the christmas tree."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Decorating the Christmas tree"
+    }
+  },
+  {
+    "item_id": "hellaswag_2332",
+    "benchmark": "hellaswag",
+    "question": "The boy quickly gets up and the boy who knocked the other boy down runs to the ball and picks up with his net at the end of the stick and starts running towards the goal while the referee runs with him. when the boy",
+    "choices": [
+      "has set his goal he runs to away from the goal but also turns towards the other side.",
+      "gets to the goal area he tosses the ball to another player and that player attempts to throw it into the goal and the players continue to look for the ball.",
+      "who knocked the downed player down bounds to get down the chalk board and he starts going straight up being double teamed by another player and throws the boy's phone into the area of the ball he was going to throw.",
+      "walks towards the goal, he and his team stop running and takes their turn."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Playing lacrosse"
+    }
+  },
+  {
+    "item_id": "hellaswag_1329",
+    "benchmark": "hellaswag",
+    "question": "A man in a green t-shirt talks to the camera while standing next to a rock climbing wall interspersed with still shots of the wall and the wall elements (ropes, labels). a man",
+    "choices": [
+      "is shown climbing the wall while strapped into a protective harness.",
+      "rolls cellophane in several layers along the wall along with a rod and grind of paper along the wall.",
+      "is sitting down in front of the wall on a wooden chair on the look-out board outside the rock climbing wall.",
+      "talks and numbers on a green wallphone as someone holds a pipe."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Rock climbing"
+    }
+  },
+  {
+    "item_id": "hellaswag_7",
+    "benchmark": "hellaswag",
+    "question": "A cartoon animation video is shown with people wandering around and rockets being shot. two men",
+    "choices": [
+      "fight robots of evil and ends with a to be continued.",
+      "are then shown in closeups shooting a shot put.",
+      "push a child in a speedboat in the water.",
+      "look in the cameraman's eye and smile."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Sumo"
+    }
+  },
+  {
+    "item_id": "hellaswag_2390",
+    "benchmark": "hellaswag",
+    "question": "A woman stands in front of a elliptical machine and starts talking to the camera. A row of treadmills is shown. a woman",
+    "choices": [
+      "begins doing sit ups on the machine.",
+      "walks down the stairs and poses for the camera.",
+      "sets the treadmill to free up her legs and starts riding them.",
+      "then demonstrates the exercise machine."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Elliptical trainer"
+    }
+  },
+  {
+    "item_id": "hellaswag_3603",
+    "benchmark": "hellaswag",
+    "question": "[header] How to prevent hair color from bleeding [title] Use conditioner to keep color dyes from bleeding onto lighter hair. [step] During the dyeing process, coat lighter hair in conditioner to protect it. The conditioner will act as a shield when you rinse the dye itself out, lessening the unwanted contact that the dye has with your hair.",
+    "choices": [
+      "[substeps] Make sure the conditioner is water-proof for water dyes, as water can increase dye absorption into your hair. Do not use \" water-proof \" conditioner as this can affect color oxidation, and water can halt dye absorption.",
+      "[title] Wait 24 hours before shampooing your hair after getting it dyed. [step] Washing it too early can dislodge the coloring agents.",
+      "[title] Apply a heat protectant product to ensure your hair does not get too dry. [step] The most effective, but sometimes needed, heat protectant formulations are laser hair straighteners, which shrink hair with a low heat setting.",
+      "[title] Always apply conditioner to your dyed hair immediately. [step] Doing so will promote the color to fade, lessening the time it needs to remain in your hair."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Personal Care and Style"
+    }
+  },
+  {
+    "item_id": "hellaswag_705",
+    "benchmark": "hellaswag",
+    "question": "The boy shows a container of wet wipes then opens it to pull one out. The boy wipes down the sole of the tennis shoe using the wet wipe towel. the boy",
+    "choices": [
+      "dries off the shoe using a towel.",
+      "shows a bottle of powder then places it in his shoe.",
+      "shows another container of wet wipes.",
+      "puts the wet wipe on top of the shoe then uses a rope to secure the shoe and then uses a brush to wet it."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Cleaning shoes"
+    }
+  },
+  {
+    "item_id": "hellaswag_1979",
+    "benchmark": "hellaswag",
+    "question": "A baby girl is sitting next to all of her toys eating an ice cream very messily. Her mom takes the ice cream away from her and she starts to cry . her mom",
+    "choices": [
+      "starts laughing and starts fighting with her later and ends by taking her show and the baby is smiling as she lights a new cigarette.",
+      "watches her while she eats while bells on the ice cream displays in smaller screen, and then fades.",
+      "begins messing with the camera lens in her right eye.",
+      "gives her back the ice cream and she is happy again, back to eating it."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Having an ice cream"
+    }
+  },
+  {
+    "item_id": "hellaswag_1155",
+    "benchmark": "hellaswag",
+    "question": "We approach a man on a sidewalk. we",
+    "choices": [
+      "see some components on the outside of a building with the title of a player.",
+      "then see the man at a ski lift a little boy.",
+      "see a man playing the accordion on the sidewalk as people walk past.",
+      "reengage in a game of arm wrestling."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Playing accordion"
+    }
+  },
+  {
+    "item_id": "hellaswag_2697",
+    "benchmark": "hellaswag",
+    "question": "Two people are seen riding down a road with a dog. one person",
+    "choices": [
+      "is riding a bike and the other a skateboard while the camera follows close behind.",
+      "is seen walking down the road alone.",
+      "spins around the dog while the other walks along behind.",
+      "chases the other down and shows clips of a dog running along the road."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Walking the dog"
+    }
+  },
+  {
+    "item_id": "hellaswag_2520",
+    "benchmark": "hellaswag",
+    "question": "Two young men holds axes in the woods. then",
+    "choices": [
+      ", the young men splits logs in the woods.",
+      ", the men gathers an ax that is long with a long handle, and then they says and laughing at it.",
+      "a young man puts his hands on the handle handles of a axe, then he puts he on the ground.",
+      ", one of the young men bring a dog while the other stand still, and then he create a fire."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Chopping wood"
+    }
+  },
+  {
+    "item_id": "hellaswag_2225",
+    "benchmark": "hellaswag",
+    "question": "Picture of supplies that are needed to do hairstyle . Separate hair into two parts down the middle. french braiding hair",
+    "choices": [
+      "from left to right all the way to the end.",
+      "is information about french hair.",
+      "is required for girls to have hair, and do it by hand.",
+      "on a back down using hand and forearm length scissors."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Braiding hair"
+    }
+  },
+  {
+    "item_id": "hellaswag_2376",
+    "benchmark": "hellaswag",
+    "question": "A black male then appears with a green sweater and black hat playing the sax. The man then lays the instrument across his lap and begins talking about what he is doing. after",
+    "choices": [
+      "he's finished talking, the look of amazement and disbelief then appears on his face as though he's confused or at least annoyed.",
+      "he is done talking, he then lays it on the drum.",
+      ", the guy plays some more before finally stopping to talk again.",
+      "he's finished, a band appear and they begin playing putting their hands out when they are done."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Playing saxophone"
+    }
+  },
+  {
+    "item_id": "hellaswag_2759",
+    "benchmark": "hellaswag",
+    "question": "He begins to tap his foot along with the beat of his tune, he starts to tap his left foot in a back and forth rhythm with his right foot. he",
+    "choices": [
+      "places his left hand on top of his right foot and begins to rhythmically dance.",
+      "finishes, and smiles at the camera.",
+      "finished and lowers his hands and give the woman a big handshake.",
+      "gets closer to the camera and begins to read from the paper that one hand is enclosed in the newspaper and the other is gripping the orange tissue on the tape as he continues to play the tune with his head thrown back."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Playing bagpipes"
+    }
+  },
+  {
+    "item_id": "hellaswag_2646",
+    "benchmark": "hellaswag",
+    "question": "A man plays bongos in an animated fashion while a woman next to him plays the keyboard and a man behind him plays guitar. a man next to him",
+    "choices": [
+      "plays bongos with an animated manner while the woman and the man play bongos together.",
+      "play bongos in sync with the drummer and a woman in front of him plays bongos in sequential style.",
+      "plays bongos and trimmers music boxes ad \" com com sequence \" that comes on from a computer keyboard.",
+      "begins to hit a stick against a metallic percussion instrument."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Playing congas"
+    }
+  },
+  {
+    "item_id": "hellaswag_2371",
+    "benchmark": "hellaswag",
+    "question": "The mayonnaise is spread on the toasted bread and then the ham is placed and then cheese, then mayo is spread again, then the bacon is added and then the lettuce and tomatoes. the person",
+    "choices": [
+      "then sprays the lettuce and tomato along the sandwich a little measuring cup from the counter top.",
+      "whisks the lettuce and mayo into a glass bowl in the kitchen.",
+      "spread the ham and the tomato on the bread.",
+      "put sticks on the sandwich then cut into four, then he placed fries on the plate and the sandwiches."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Making a sandwich"
+    }
+  },
+  {
+    "item_id": "hellaswag_2099",
+    "benchmark": "hellaswag",
+    "question": "There's a young man in a red shirt playing an acoustic guitar. he",
+    "choices": [
+      "strums the guitar using his pick and moves his fingers along the chords.",
+      "cleans and busts a window to play acoustic guitar.",
+      "starts singing and playing the saxophone.",
+      "starts to play the guitar."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Playing guitarra"
+    }
+  },
+  {
+    "item_id": "hellaswag_343",
+    "benchmark": "hellaswag",
+    "question": "Man is standing in front of a mirror spreading cream on his face. Man is kneeling and wash her face. the man",
+    "choices": [
+      "puts cream on her face and applies it on a hair rod.",
+      "is on top of mountain looking down because is makes snow self uses soap too wash to get the cream off.",
+      "smells his face with his hand.",
+      "grabs a green towel and wipe his face."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Washing face"
+    }
+  },
+  {
+    "item_id": "hellaswag_660",
+    "benchmark": "hellaswag",
+    "question": "A crowd is cheering in front of a stage. cheerleaders",
+    "choices": [
+      "come out and perform a routine on the stage.",
+      "run down the track toward the stage.",
+      "are on the stage playing drums.",
+      "glide down a path from a line."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Cheerleading"
+    }
+  },
+  {
+    "item_id": "hellaswag_3770",
+    "benchmark": "hellaswag",
+    "question": "[header] How to get organized for college or grad school [title] Read through your syllabi. [step] Each professor should provide you with a syllabus on the first day of class. The syllabus will list all the materials you need for each class in addition to a schedule of assignments with due dates.",
+    "choices": [
+      "[title] Confirm any assignments you need to do for upcoming classes. [step] If you haven't assigned a class on a given day, you should call the professor to confirm.",
+      "Look over the syllabus and make sure you are on track. Include the syllabi on these papers so you don't forget.",
+      "[substeps] Look up section headings and pages for upcoming quizzes and assignments, and when they're due meet up with teachers if you have the time. Some universities also publish a class schedule template in their website.",
+      "Carefully read over each syllabus as soon as you get it. Highlight the materials you need as well as other pertinent information, such as attendance and late work policies."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Education and Communications"
+    }
+  },
+  {
+    "item_id": "hellaswag_2932",
+    "benchmark": "hellaswag",
+    "question": "A bunch of men are inside a green colored gym. They are lobbing a tennis ball back and forth. they",
+    "choices": [
+      "are engaged in a game of tennis.",
+      "bounce the ball up and down on the trampoline as they go.",
+      "hit the ball up high into the air.",
+      "knock balls off the hoops into the spectators."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Playing badminton"
+    }
+  },
+  {
+    "item_id": "hellaswag_3236",
+    "benchmark": "hellaswag",
+    "question": "We see more asian art and a man with a sword followed by more art and landscapes. A statue sits outside surrounded by trees. we",
+    "choices": [
+      "see the man with a cello.",
+      "then see further images of dirt and castles.",
+      "see more landscapes and title screens.",
+      "see a letter on the screen and see people practicing martial arts and more images of paintings."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Tai chi"
+    }
+  },
+  {
+    "item_id": "hellaswag_3128",
+    "benchmark": "hellaswag",
+    "question": "A worker gives money to man who signs a paper. A man driving a yellow car is interviewed, then a reporter talks in a parking lot. men",
+    "choices": [
+      "make hockey goals on first white room while making activities with a goal on a blue table.",
+      "clean a yellow car in a parking lot.",
+      "arrive at the bungee jump holding kites.",
+      "put drops of water on paper, then paste a river on paper."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Hand car wash"
+    }
+  },
+  {
+    "item_id": "hellaswag_1385",
+    "benchmark": "hellaswag",
+    "question": "Two young girls stand in front of a fireplace holding violins. the girls",
+    "choices": [
+      "walk up and down the front of the room together.",
+      "begin playing a piece of music on the violins and then bow at the end.",
+      "play the cymbals and dance in unison.",
+      "reaches for the strings of the violin and begins to play it."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Playing violin"
+    }
+  },
+  {
+    "item_id": "hellaswag_1045",
+    "benchmark": "hellaswag",
+    "question": "A person in a bathroom, with one foot on top of a toilet cover rubs leg lube on their leg. the person",
+    "choices": [
+      "then begins to shave the length of their leg with a blue razor.",
+      "pulls the towel from the tap then picks up the solder and iron the other shoe and rubs the shoes to melt the wax.",
+      "puts the product in their mouth.",
+      "tips the toe of the shoe upwards and without a sock pulls the leg up."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Shaving legs"
+    }
+  },
+  {
+    "item_id": "hellaswag_1190",
+    "benchmark": "hellaswag",
+    "question": "A bearded man talks to the camera from close up. The man uses an electric razor to shave his beard. the man",
+    "choices": [
+      "speaks to the camera.",
+      "spits into a sink filled with and filter water and chews a pencil.",
+      "then scrubs his face with the razor.",
+      "stops shaving to talk to the camera."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Shaving"
+    }
+  },
+  {
+    "item_id": "hellaswag_1625",
+    "benchmark": "hellaswag",
+    "question": "The men then hit a ball all around the yard through stands sticking out and speak to one another while drinking water. the men",
+    "choices": [
+      "are in a race to score and everyone in stands runs over to beat them.",
+      "hit the ball a few more times and continue to speak to one another.",
+      "continue to speak while using all manner of beverages and drinking.",
+      "continue hitting the ball and are seen riding around with their dogs."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Croquet"
+    }
+  },
+  {
+    "item_id": "hellaswag_1962",
+    "benchmark": "hellaswag",
+    "question": "A man and a woman are playing rock paper scissors. The man gets on his knee and pulls out a ring. They hug next to the swimming pool. they",
+    "choices": [
+      "give each other a kiss.",
+      "finish and the girls comes over and hugs the man.",
+      "move on to the hand pool and they get back on their knees on the other side of the pool.",
+      "put guns in the camera's eyes."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Rock-paper-scissors"
+    }
+  },
+  {
+    "item_id": "hellaswag_7119",
+    "benchmark": "hellaswag",
+    "question": "[header] How to act like a businessman [title] Purchase a good suit. [step] Nothing is more important than a suit for business, and while it doesn't have to be costly, it should look smart. [substeps] Opt for navy or grey colored suits, as black suits can be associated with funerals.",
+    "choices": [
+      "Head to a thrift store, hit a mall, or cash shop and pick up some black designer suits. You don't have to be a barbie doll to jump right in.",
+      "Always get your suit tailored by a professional tailor, as this will ensure the suit fits properly and conforms to your body, which in turn makes it look more professional. A proper fit is the most important aspect of purchasing a suit.",
+      "Longer tops might be a better option for a business associate, as it has a timeless, sophisticated appearance. Go for fitted and chic suits that can be both casual and professional.",
+      "Blue suits can be great if you feel especially self-conscious about funeral clothing or funeral attire. Opt for a suit in a shade other than black (if you feel selfconscious about this, toss a grey suit over your striped suit)."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Food and Entertaining"
+    }
+  },
+  {
+    "item_id": "hellaswag_2650",
+    "benchmark": "hellaswag",
+    "question": "A man is seen holding up a piece of wood and rubbing it down while speaking to the camera and spraying down polish. the man",
+    "choices": [
+      "wipes down the polish with a rag while continuing to speak to the camera and holding up the piece of wood in the end.",
+      "continues to clean clothing with a brush while moving back and fourth on the wood.",
+      "rubs more polish all down his leg and continues pushing down the seat and speaking to the camera continuously.",
+      "uses the rag all over the wood as well as fingernails as well as more polish."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Polishing forniture"
+    }
+  },
+  {
+    "item_id": "hellaswag_805",
+    "benchmark": "hellaswag",
+    "question": "A man is shown working in an outdoor garden. he",
+    "choices": [
+      "is using tools as he works.",
+      "uses a large tool to bark out a few new leaves.",
+      "uses trowels and strikes a tree.",
+      "uses a sponge and a trowel to scrub down the side of a tree."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Trimming branches or hedges"
+    }
+  },
+  {
+    "item_id": "hellaswag_8321",
+    "benchmark": "hellaswag",
+    "question": "[header] How to call in sick when you just need a day off [title] Call your boss or supervisor early the next morning. [step] Don't delay--the sooner you tell your boss, the better. Additionally, you'll have a rather rough voice after waking up, giving you that added credibility.",
+    "choices": [
+      "Don't make calls when you've had a wonderful day. Even if you didn't finish it on time (try to be as friendly and upbeat as possible), do not feel as though you need to complain if it's been a good day.",
+      "[substeps] Even if your boss has an especially good day off, or you have something important to discuss, be sure to do it on a good day to avoid the call. [title] Set up a mobile phone plan with your coworkers if you need time off from work.",
+      "Plus, if you call early, you may be more likely to get your boss's voicemail or to catch your boss when he's off guard. If you call too late, then it'll look like you didn't really consider your boss's feelings.",
+      "[substeps] If at all possible, call earlier than you normally would. That way your boss may see your natural correctness, and you may pull off the prank better."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Home,Categories"
+    }
+  },
+  {
+    "item_id": "hellaswag_1340",
+    "benchmark": "hellaswag",
+    "question": "A man covered in tattoos stands in front of a young boy sitting in a tattoo chair and tattoos the boys forearm. the man",
+    "choices": [
+      "speeds up and removes butterfly tattoo covering.",
+      "stands over the boys arm with a metal tattoo tool and works on the boys arm, who is sitting in a black chair watching the tattoo being placed on the arm.",
+      "hands the young man a parchment and begins to pile up products and base materials over the tattoos until the video ends and shows the whole tattoo.",
+      "gently cuts the boys ear with a tool."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Getting a tattoo"
+    }
+  },
+  {
+    "item_id": "hellaswag_119",
+    "benchmark": "hellaswag",
+    "question": "An older women is shown sitting on a front step putting socks on with a small dog standing near her. she",
+    "choices": [
+      "goes back and forth putting on socks near the dog.",
+      "jumps up and down grabbing her socks rubbing on the dog from time to time.",
+      "then puts her shoe on the foot and the dog looks off into the distance.",
+      "brushes and walks with the dog very close."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Putting on shoes"
+    }
+  },
+  {
+    "item_id": "hellaswag_1108",
+    "benchmark": "hellaswag",
+    "question": "A group of people are seen sitting on a dock while another group rides away in a boat. the people",
+    "choices": [
+      "ride off a boat into the ocean while the camera captures them.",
+      "talk back and fourth while one man sits on a pair of skis.",
+      "ride all around the water on a raft while showing clips of people riding on the water.",
+      "continue riding along the water with the boat bumping into one another."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Waterskiing"
+    }
+  },
+  {
+    "item_id": "hellaswag_2902",
+    "benchmark": "hellaswag",
+    "question": "He starts on the wall and begins to explain what he is doing and why he is doing. once the grout",
+    "choices": [
+      "is in the wall he pushes the bar down and begins to move the whole wall.",
+      "becomes clear, he begins to incorporate more paint and places it in a box that is in the corner of the room.",
+      "is gone, he shows off the river spray he has made and then starts spraying a hole through the wall creating a cave like area.",
+      "begins to dry he informs you that you should wipe it down with a sponge various times."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Laying tile"
+    }
+  },
+  {
+    "item_id": "hellaswag_2843",
+    "benchmark": "hellaswag",
+    "question": "We see a girl in gold doing a baton routine. The girl does a flip. the girls",
+    "choices": [
+      "turns and does the side kick.",
+      "spoke and the girl in gold walked off stage.",
+      "jump and flip and almost falls.",
+      "spins repeatedly and catches her baton."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Baton twirling"
+    }
+  },
+  {
+    "item_id": "hellaswag_577",
+    "benchmark": "hellaswag",
+    "question": "A matador got knocked down by a bull and the bull injured him. another matador",
+    "choices": [
+      "helped him get away after he was gored in the neck.",
+      "on a red horse killed a bull and the bull ran after the matador.",
+      "lost his archery pole to a bull that knocked him to the ground.",
+      "is injured but is shot and the bull tries to eat him."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Bullfighting"
+    }
+  },
+  {
+    "item_id": "hellaswag_996",
+    "benchmark": "hellaswag",
+    "question": "We see a box on fabric. a person",
+    "choices": [
+      "rearranges a garment.",
+      "wraps the box in the fabric and ties it up.",
+      "cuts and skews a cotton ball.",
+      "cuts a seam in a red box."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Wrapping presents"
+    }
+  },
+  {
+    "item_id": "hellaswag_2315",
+    "benchmark": "hellaswag",
+    "question": "A small boy brushes his teeth at a bathroom sink. The boy stops brushing his teeth and starts manipulating the buttons on the electric toothbrush. the boy",
+    "choices": [
+      "rinses the toothbrush and his mouth with running tap water.",
+      "returns to brushing the buttons and stops to glower at the camera.",
+      "then picks up the razor and blows toothpaste down his chin.",
+      "then stops brushing and turns the savetop back off."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Brushing teeth"
+    }
+  },
+  {
+    "item_id": "hellaswag_1085",
+    "benchmark": "hellaswag",
+    "question": "A middle age man is standing over a pile of wood. the man",
+    "choices": [
+      "knells down to the wood.",
+      "then begins poking the wood and hammering it into place.",
+      "starts shakeling the wood.",
+      "grabs kindling and materials and begins using the wood on the log to build a fire."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Starting a campfire"
+    }
+  },
+  {
+    "item_id": "hellaswag_2740",
+    "benchmark": "hellaswag",
+    "question": "Two adults run in a wooden, hollow cylinder. An individual back flips off a boat. A female stands on waterboard that is on grass. people",
+    "choices": [
+      "are in teh car of cars.",
+      "jump, flip, and ride the waterboard.",
+      "are in a snow covered parking lot drawing shuffleboard lines in the snow.",
+      "jump off an inflated boat."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Wakeboarding"
+    }
+  },
+  {
+    "item_id": "hellaswag_777",
+    "benchmark": "hellaswag",
+    "question": "Clips of both of men talking and clips of them riding horses and wrangling calves play and rotate between the two of them. the outro video",
+    "choices": [
+      "finally comes through and it shows both men close up outside bouncing around.",
+      "begins and it shows a hanging banner at the arena that reads \" calgary stampede \", a woman riding a horse and holding a red flag that say's \" 1912-2012 calgary stampede \", and a calf is running across a dirt field.",
+      "ends with video credits as well as the change of language shown from the start of the video.",
+      "logo appears with infographic and blue paragraph saying down the line, \" viewers please find a property that would be willing to set up an interview with both of them, separately, by email, via texts and phone \" and pauses to let the others catch up and continues talking into the mic."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Calf roping"
+    }
+  },
+  {
+    "item_id": "hellaswag_32",
+    "benchmark": "hellaswag",
+    "question": "A man in brown jacket is pulling out an arrow from the target board, then he was talking to the camera, then he pull out his bow and started to use it with his bow to hit the target board, he fired his bows several times. the man",
+    "choices": [
+      "played paper if and shoot the arrows to hit the target, then he hang from the board with his bow and arrow.",
+      "went to the target board and talked to the camera.",
+      "eventually throw the arrow, but it flew into the gravel is near the targets.",
+      "have his bow as he talk to the camera, he pulled it out to show how to put with its flex, tighten, and notch that was attached to his bow."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Archery"
+    }
+  },
+  {
+    "item_id": "hellaswag_1851",
+    "benchmark": "hellaswag",
+    "question": "A soccer player is held back from kicking a soccer ball on a field by a referee on the field. two teams",
+    "choices": [
+      "kick the ball to one another, they are then able to grab onto the ball and hold onto it.",
+      "play soccer in an outdoor field in front of an audience, the black and white team makes a goal and celebrates by smiling and clapping each others hands and waiving at the audience.",
+      "huddle up holding a goal.",
+      "are curling on the sidelines."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Futsal"
+    }
+  },
+  {
+    "item_id": "hellaswag_2156",
+    "benchmark": "hellaswag",
+    "question": "A girl is seen listening to music and transitions into her performing a dance routine outside on a walk way. she",
+    "choices": [
+      "continues doing tricks, lifting her body around while looking to the camera and walking away.",
+      "does several back flips with a baton in her hands.",
+      "is then seen performing grip with a baton in various poses performing her routine.",
+      "continues dancing around while smiling to the camera and ends by walking away and giving two peace signs to the camera."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Zumba"
+    }
+  },
+  {
+    "item_id": "hellaswag_1991",
+    "benchmark": "hellaswag",
+    "question": "Woman is posing to a camera in a white room. man",
+    "choices": [
+      "is taking off his shirt showing a tattoo and taking out the needles.",
+      "is standing behind the wmoan cutting her hair with a scissor and the model is posing.",
+      "is standing in a room on stilts doling out tattoos.",
+      "is standing in a shower ina white room showing how to wash back the white clothes in front of the mirror."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Getting a haircut"
+    }
+  },
+  {
+    "item_id": "hellaswag_294",
+    "benchmark": "hellaswag",
+    "question": "A person is jumping rope on a white mat. A man is kneeling down on the ground in front of a red table. he",
+    "choices": [
+      "takes a large knife and begins sharpening it.",
+      "gets up and starts jumping rope.",
+      "does a forward flip over the table.",
+      "is throwing darts at a target."
+    ],
+    "answer_idx": 1,
+    "answer": "1",
+    "metadata": {
+      "activity_label": "Rope skipping"
+    }
+  },
+  {
+    "item_id": "hellaswag_2393",
+    "benchmark": "hellaswag",
+    "question": "The lady taps the puck with her stick before pushing it hard and pushing the puck across the court. the camera",
+    "choices": [
+      "gets itself angled to keep the puck from hitting the boy playing while playground equipment sits nearby.",
+      "zooms in on the puck and two women are standing next to it talking to each other.",
+      "zooms in on cupcake detail while the lady takes a breath.",
+      "follows the pucks which stops short and teeters before resting."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Shuffleboard"
+    }
+  },
+  {
+    "item_id": "hellaswag_566",
+    "benchmark": "hellaswag",
+    "question": "The chef demonstrates how to mix the butter and flour in a blender to blend the dough. Then she knead the dough together to make a rectangular roll. she",
+    "choices": [
+      "sprinkles some sugar on a parchment paper and rolls the dough in it and covers it before keeping it in the refrigerator.",
+      "adds the mixes of other ingredients into the dough.",
+      "rolls the dough around and makes a sandwich.",
+      "measures flour and dough and knits it into a plastic bag."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Baking cookies"
+    }
+  },
+  {
+    "item_id": "hellaswag_654",
+    "benchmark": "hellaswag",
+    "question": "A man performs a long jump at a judged professional sports event resulting in medals issued. a man",
+    "choices": [
+      "performs a long jump on a track and into a sandpit in front of judges and onlookers on the sidelines.",
+      "applauds for his run in australia at the olympic event.",
+      "on a weightlifting bar does a short jump.",
+      "grabs an edge of a bar to stabilize himself when a wrestler slams into him."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Long jump"
+    }
+  },
+  {
+    "item_id": "hellaswag_2446",
+    "benchmark": "hellaswag",
+    "question": "Children are picking up crabs in mud. the crabs",
+    "choices": [
+      "are being eaten by a peeler.",
+      "are cleaned off of the floor.",
+      "get stuck in the mud and the man jumps out pushing them away.",
+      "are put in a bucket."
+    ],
+    "answer_idx": 3,
+    "answer": "3",
+    "metadata": {
+      "activity_label": "Building sandcastles"
+    }
+  },
+  {
+    "item_id": "hellaswag_1942",
+    "benchmark": "hellaswag",
+    "question": "A man is indoors, talking and laughing as he holds a small bottle in his right hand. the man",
+    "choices": [
+      "then sprays down a wooden fence with a liquid.",
+      "then hits a ball with a stick far above his head several times.",
+      "brings the bottle closer to his mouth and laughs some more and then pours the liquid from the small bottle onto his mouth and begins to gargle until bubbles come out of his mouth.",
+      "squeezes the cork with his fingers, releases it into a cup with water, and the man laughs."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Gargling mouthwash"
+    }
+  },
+  {
+    "item_id": "hellaswag_672",
+    "benchmark": "hellaswag",
+    "question": "A man is seen kneeling over a bucket dipping clothes inside and washing. another man",
+    "choices": [
+      "is seen standing in front of a hose and dipping clothes underneath as well.",
+      "yells something to the camera while she continues to scrub the clothing down.",
+      "steps in and washes that bucket while still looking up and washing the bucket on his own and ends by speaking into a microphone.",
+      "is seen cleaning the bucket and laying it on a table."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Hand washing clothes"
+    }
+  },
+  {
+    "item_id": "hellaswag_78",
+    "benchmark": "hellaswag",
+    "question": "We see a chair with a pillow on it. a man holding a cat",
+    "choices": [
+      "does curling.",
+      "starts hitting objects on an item.",
+      "sits down on the chair.",
+      "is wrapping a box."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Clipping cat claws"
+    }
+  },
+  {
+    "item_id": "hellaswag_2633",
+    "benchmark": "hellaswag",
+    "question": "A man is seen playing a piano in the middle of a large city with others watching on the sides. people",
+    "choices": [
+      "give the man tips while he continues to play and others watch.",
+      "walk around the city and start walking around.",
+      "in the crowd watch as the man plays and dances along with the rhythm on the guitar.",
+      "are seen wandering around in the city with their phones turned off."
+    ],
+    "answer_idx": 0,
+    "answer": "0",
+    "metadata": {
+      "activity_label": "Playing piano"
+    }
+  },
+  {
+    "item_id": "hellaswag_2698",
+    "benchmark": "hellaswag",
+    "question": "The scene is of a neighborhood surrounded by tall trees and a pile of dead leaves next to a leaf catcher. a man holding a rattle",
+    "choices": [
+      "speeds around a target, then pulls back on a disc.",
+      "walks around a house, removes a toy cricket bat, and begins talking to the camera.",
+      "puts leaves in bags attached to a leaf catcher.",
+      "steers a small calf into a hold and ties a calf up."
+    ],
+    "answer_idx": 2,
+    "answer": "2",
+    "metadata": {
+      "activity_label": "Raking leaves"
+    }
+  }
+]

@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\graphicspath{{../../figures/paper/}}
+
+\title{Reproducibility Budgets for Open-Weight LLM Evaluation:\\A Generalizability Theory Study of 7--9B Instruction-Tuned Models}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+% === INTRODUCTION ===
+\input{introduction}
+
+% === RELATED WORK ===
+\input{related_work}
+
+% === METHOD ===
+\input{method}
+
+% === EXPERIMENTS ===
+\input{experiments}
+
+% === CONCLUSION ===
+\enlargethispage{1\baselineskip}
+\input{conclusion}
+
+% === LIMITATIONS ===
+\input{limitations}
+
+\bibliography{references}
+
+% === APPENDIX ===
+\input{appendix}
+
+\end{document}

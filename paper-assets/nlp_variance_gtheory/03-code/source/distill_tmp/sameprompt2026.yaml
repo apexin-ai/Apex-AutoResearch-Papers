@@ -1,0 +1,46 @@
+paper_key: "sameprompt2026"
+title: "Same Prompt, Different Outcomes: Evaluating the Reproducibility of Data Analysis by LLMs"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [Claude-Haiku-4.5, Claude-Opus-4.6, GPT-5-mini, GPT-5.2, Gemini-Flash-3, Gemini-Pro-3]
+  metrics:
+    - {name: "completion rate", direction: "higher_better"}
+    - {name: "concordance", direction: "higher_better"}
+    - {name: "validity", direction: "higher_better"}
+    - {name: "consistency", direction: "higher_better"}
+  datasets:
+    - {name: "data analysis tasks", size: "480 attempts (2 strategies × 6 models × 4 temps × 10 runs)"}
+  ablation_dimensions: [prompting_strategy (2), model (6), temperature (4)]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "API-based"}
+  method_family: "reproducibility evaluation"
+
+positioning:
+  core_claim: "LLM-conducted data analysis produces considerable variation even under identical configurations — must run multiple times and examine distribution"
+  key_results: "480 attempts reveal substantial variation in completion, concordance, validity, and consistency"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "N/A"
+  hook: "N/A"
+  tension: "N/A"
+  key_insight: "N/A"
+  argument_chain: "N/A"
+  contribution_framing: "N/A"
+  intro_structure: "N/A"
+  notable_technique: "N/A"
+
+figures:
+  figure_count: 0
+  figure1: {type: "N/A", description: "N/A", narrative_role: "N/A", design_elements: [], visual_style: "N/A"}
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: 0
+  main_result_table: {table_id: "N/A", row_axis: "N/A", col_axis: "N/A", row_organization: "N/A", col_organization: "N/A", highlight_strategy: "N/A", statistical_reporting: "N/A", num_baselines: 0, design_note: "N/A"}
+  ablation_tables: []
+  supplementary_tables: {in_appendix: false, content: "N/A", reason: "N/A"}

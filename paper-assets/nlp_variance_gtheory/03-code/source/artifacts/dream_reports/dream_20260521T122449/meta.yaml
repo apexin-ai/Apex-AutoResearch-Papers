@@ -1,0 +1,3535 @@
+dream_id: dream_20260521T122449
+project: nlp_variance_gtheory
+venue: ''
+focus: ''
+review_mode: simple
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Cross-benchmark gradient clear and monotonic; all three claims validated
+        with multi-benchmark + multi-model evidence; AAAI timeline feasible
+      key_assumptions:
+      - exp-002 completes Phase 1-3 (6+ models × 5 benchmarks) within 4 weeks
+      - Item_id% decreases monotonically from knowledge-retrieval (MMLU/ARC) to multi-step
+        reasoning (GSM8K/MATH), with ≥20pp spread
+      - Within-format gradient preserved (MMLU > ARC within MC format; GSM8K shows
+        lower item_id than HellaSwag), ruling out format confound as primary driver
+      - Model×item interaction increases correspondingly on reasoning benchmarks,
+        confirming model-conditional difficulty is task-type dependent
+      - Precision separability holds across all benchmarks under binary scoring (<1%)
+      - D-study budgets vary meaningfully across benchmarks (knowledge needs fewer
+        items than reasoning), enabling benchmark-specific practitioner guidance
+      number_ranges:
+        cross_benchmark_item_id_pct:
+        - MMLU ~42 → ARC ~35 → HellaSwag ~28 → GSM8K ~20 → MATH ~15
+        gradient_spread_item_id_pp:
+        - 20
+        - 30
+        gradient_monotonicity_perm_p:
+        - 0.001
+        - 0.05
+        model_x_item_range_pct:
+        - MMLU ~34 → MATH ~45-55
+        G_item_cross_model_range:
+        - MMLU 0.82 → MATH 0.60-0.70
+        n_models_completed:
+        - 6
+        - 8
+        n_benchmarks_completed:
+        - 5
+        - 5
+        within_format_gradient_preserved:
+        - true
+        precision_separability_all_benchmarks_binary:
+        - 0
+        - 1.0
+        D_study_items_G80_range_across_benchmarks:
+        - 300
+        - 800
+        exp002_phase_completion:
+        - Phase 1-3 done, Phase 4 partial
+      narrative_direction: 'Original framing holds — ''variance structure is benchmark-conditional,
+        no universal reproducibility recipe.'' Cross-benchmark gradient is the headline
+        finding with permutation-tested monotonicity. Three numbered claims intact.
+        Hook validated: single-benchmark G-studies (including our own exp-001) miss
+        the task-type dependence. Figures 1-5 all populated with multi-benchmark data.
+        AAAI submission on schedule.'
+    median:
+      tier: median
+      meaning: Gradient exists but noisy/non-monotonic; format confound partially
+        explanatory; claims require softened language and additional qualification
+      key_assumptions:
+      - exp-002 completes Phase 1-2 (4-5 models × 4-5 benchmarks) but Phase 3-4 delayed
+        or incomplete
+      - Item_id% varies across benchmarks (10-20pp spread) but ordering is not cleanly
+        monotonic — e.g., HellaSwag breaks the knowledge→reasoning gradient
+      - 'Format confound partially explains gradient: MC benchmarks cluster together
+        vs free-form, but within-format gradient is weak or absent'
+      - Model×item interaction increases on some reasoning benchmarks but not consistently
+      - Precision separability holds on 3-4 benchmarks but one benchmark shows unexpected
+        interaction (2-5%)
+      - D-study budgets vary but the variation is partially attributable to benchmark
+        design differences (item count, difficulty distribution) rather than task
+        type
+      number_ranges:
+        cross_benchmark_item_id_pct:
+        - MMLU ~42 → ARC ~38 → HellaSwag ~30 → GSM8K ~25-32
+        gradient_spread_item_id_pp:
+        - 10
+        - 20
+        gradient_monotonicity_perm_p:
+        - 0.05
+        - 0.25
+        model_x_item_range_pct:
+        - MMLU ~34 → GSM8K ~35-42
+        G_item_cross_model_range:
+        - MMLU 0.82 → GSM8K 0.70-0.78
+        n_models_completed:
+        - 4
+        - 6
+        n_benchmarks_completed:
+        - 4
+        - 5
+        within_format_gradient_preserved:
+        - weak or inconclusive
+        precision_separability_all_benchmarks_binary:
+        - 0
+        - 5.0
+        D_study_items_G80_range_across_benchmarks:
+        - 350
+        - 650
+        exp002_phase_completion:
+        - Phase 1-2 done, Phase 3 partial
+      narrative_direction: 'Reframe gradient from ''monotonic task-type dependence''
+        to ''benchmark-conditional variance structure with task-type as a partial
+        predictor.'' Claim 1 softened: ''item_id dominance and model×item interaction
+        magnitudes vary across benchmarks, with task complexity as one moderating
+        factor alongside format and difficulty distribution.'' Add explicit analysis
+        disentangling format vs task-type. Claim 2 adds caveat for anomalous benchmark.
+        Claim 3 strengthened — budget variation across benchmarks makes benchmark-specific
+        budgets even more necessary. Hook adjusted to ''variance structure varies
+        across benchmarks, but the gradient is partially confounded with evaluation
+        format.'' Contribution 1 reweighted toward model×item quantification (already
+        validated in exp-001) + benchmark variation (even if not monotonic). May need
+        supplementary experiments or extended analysis → consider ACL ARR October
+        cycle as insurance if AAAI writing timeline too tight.'
+    worst:
+      tier: worst
+      meaning: No systematic gradient; cross-benchmark variance structures are idiosyncratic;
+        must reframe paper around single-benchmark depth + taxonomy of benchmark-specific
+        structures
+      key_assumptions:
+      - exp-002 completes Phase 1 only (4 models × 3-4 benchmarks), Phase 2-4 blocked
+        by compute or data issues
+      - Item_id% does not vary systematically across benchmarks (<10pp spread), OR
+        gradient is entirely explained by format confound (MC vs free-form)
+      - Some benchmarks show pathological variance structures — e.g., GSM8K dominated
+        by residual (>40%) due to stochastic generation, or model×item interaction
+        negligible on ARC
+      - Model×item interaction magnitude is benchmark-specific but unpredictable from
+        task taxonomy
+      - One or more benchmarks show convergence issues with Henderson I (near-zero
+        components, negative REML estimates)
+      - D-study budgets are wildly different across benchmarks but without interpretable
+        pattern
+      number_ranges:
+        cross_benchmark_item_id_pct:
+        - MMLU ~42 → others scattered 30-45, no clear ordering
+        gradient_spread_item_id_pp:
+        - 0
+        - 10
+        gradient_monotonicity_perm_p:
+        - 0.25
+        - 1.0
+        model_x_item_range_pct:
+        - inconsistent, 15-40% across benchmarks without pattern
+        G_item_cross_model_range:
+        - MMLU 0.82 → others 0.50-0.85 without trend
+        n_models_completed:
+        - 4
+        - 5
+        n_benchmarks_completed:
+        - 3
+        - 4
+        within_format_gradient_preserved:
+        - false
+        precision_separability_all_benchmarks_binary:
+        - 0
+        - 8.0
+        D_study_items_G80_range_across_benchmarks:
+        - 200
+        - 1200
+        exp002_phase_completion:
+        - Phase 1 done only
+      narrative_direction: 'Abandon gradient as headline. Reframe paper around two
+        axes: (A) deep single-benchmark analysis (MMLU, exp-001 — already strong:
+        model×item quantification, D-study validation, IRT comparison, full robustness
+        package) + (B) ''benchmark-specific variance fingerprints'' — each benchmark
+        has a unique variance structure that cannot be predicted from task taxonomy
+        alone, making benchmark-specific G-studies mandatory rather than optional.
+        Hook flipped: ''not only is there no universal reproducibility recipe — there
+        is no universal variance structure, and even task-type taxonomy fails to predict
+        it.'' This is still a publishable finding (arguably more surprising than a
+        clean gradient), but requires rewriting intro and restructuring figures. Claim
+        1 narrowed to MMLU with exploratory multi-benchmark extension. Claim 2 unchanged
+        (precision separability on MMLU). Claim 3 strengthened — benchmark-specific
+        budgets are the ONLY viable approach. Primary contribution shifts from gradient
+        discovery to: (i) model×item interaction quantification with D-study validation,
+        (ii) IRT vs G-theory comparison, (iii) demonstration that variance structure
+        is irreducibly benchmark-specific. Same venue target (AAAI), but likely needs
+        ACL ARR timeline for rewriting.'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260521T122449/best/paper.pdf
+  imagined_experiments:
+  - name: Multi-benchmark replication (Phase 1-3 complete, Phase 4 partial)
+    plan_id: exp-002
+    description: '8 models × 5 benchmarks × BF16 × 2 temps × 6 prompts × 6 seeds ×
+      4 orderings × 200 items. Phase 1: 4 original models × 4 benchmarks (MMLU/ARC/HellaSwag/GSM8K)
+      on westd-32570. Phase 2: + MATH as 5th benchmark (all models). Phase 3: + Yi-1.5-9B,
+      OLMo-2-7B on all 5 benchmarks (westd-15695). Phase 4 (partial): + InternLM2.5-7B
+      started, DeepSeek-7B not yet launched.
+
+      '
+    expected_results:
+      phase_1_status: DONE — 4 models × 4 benchmarks complete
+      phase_2_status: DONE — MATH added for all 4 original + 2 new models
+      phase_3_status: DONE — Yi-1.5-9B and OLMo-2-7B complete on all 5 benchmarks
+      phase_4_status: PARTIAL — InternLM2.5-7B on 3/5 benchmarks; DeepSeek-7B not
+        started
+      n_models_completed: 7
+      n_benchmarks_completed: 5
+      total_records: 2016000
+      item_id_pct_MMLU: 42.1
+      item_id_pct_ARC: 35.8
+      item_id_pct_HellaSwag: 27.4
+      item_id_pct_GSM8K: 19.6
+      item_id_pct_MATH: 14.2
+      model_x_item_pct_MMLU: 33.6
+      model_x_item_pct_ARC: 37.2
+      model_x_item_pct_HellaSwag: 41.8
+      model_x_item_pct_GSM8K: 48.3
+      model_x_item_pct_MATH: 53.7
+      gradient_spread_item_id_pp: 27.9
+      gradient_monotonicity_perm_p: 0.008
+      gradient_direction: monotonically decreasing from knowledge-retrieval to multi-step
+        reasoning
+      within_MC_gradient_MMLU_vs_ARC: 42.1 → 35.8 (−6.3pp within MC format)
+      within_freeform_gradient_GSM8K_vs_MATH: 19.6 → 14.2 (−5.4pp within free-form)
+      within_format_gradient_preserved: true
+      HellaSwag_below_ARC: true
+      G_item_MMLU: 0.82
+      G_item_ARC: 0.776
+      G_item_HellaSwag: 0.714
+      G_item_GSM8K: 0.653
+      G_item_MATH: 0.612
+      D_study_items_G80_MMLU: 340
+      D_study_items_G80_ARC: 420
+      D_study_items_G80_HellaSwag: 510
+      D_study_items_G80_GSM8K: 660
+      D_study_items_G80_MATH: 780
+      precision_x_methodology_all_benchmarks: <0.8%
+      precision_separability_MMLU: 0.04
+      precision_separability_ARC: 0.02
+      precision_separability_HellaSwag: 0.06
+      precision_separability_GSM8K: 0.12
+      precision_separability_MATH: 0.09
+      accuracy_GSM8K_Qwen3_8B: 0.782
+      accuracy_GSM8K_Llama: 0.571
+      accuracy_GSM8K_Gemma: 0.624
+      accuracy_GSM8K_Mistral: 0.488
+      accuracy_GSM8K_Yi: 0.653
+      accuracy_GSM8K_OLMo: 0.412
+      accuracy_GSM8K_InternLM: 0.697
+      residual_pct_MMLU: 19.5
+      residual_pct_ARC: 21.3
+      residual_pct_HellaSwag: 24.6
+      residual_pct_GSM8K: 26.8
+      residual_pct_MATH: 27.4
+    result_rationale: '知识检索型基准（MMLU、ARC）的 item 难度在模型间相对一致——大多数模型要么"知道"某个事实要么不知道， 因此
+      item_id 主效应大（42%、36%），model×item 交互相对低（34%、37%）。随着任务从知识检索转向 多步推理（HellaSwag→GSM8K→MATH），正确率越来越依赖模型特有的推理策略和
+      chain-of-thought 能力， 而非共享的知识基础。不同模型在同一道推理题上的成败模式高度分化——Qwen3 擅长代数变换但 Mistral
+      擅长 几何推理——导致 model×item 交互急剧上升（48%→54%），item_id 主效应相应压缩（20%→14%）。 这在 G-theory
+      框架下表现为：推理基准的 item 难度排序更加 model-conditional，G_item 系数下降 （0.82→0.61），D-study 需要更多
+      item 才能达到同等信度（340→780）。
+
+      within-format gradient 得以保持的原因：即使在同为 MC 格式的 MMLU 和 ARC 中，ARC 的 item 涉及更多科学推理和因果判断（比
+      MMLU 的知识回忆要求更高），因此 item_id 下降 6pp。同理， MATH 比 GSM8K 需要更复杂的多步代数/几何推理，item_id 再下降
+      5pp。这说明梯度的主驱动力是 认知复杂度而非答题格式。HellaSwag（completion format）的 item_id 低于 ARC（MC
+      format） 但高于 GSM8K，也符合其任务特性——需要常识推理但不需要数学符号操作。
+
+      残差从 MMLU 的 19.5% 上升到 MATH 的 27.4%，反映推理型基准中更多的随机性来源—— 生成式回答的格式变异、chain-of-thought
+      的路径依赖性、以及 temperature 采样在长序列上的 累积效应都增加了不可归因的变异。
+
+      梯度单调性排列检验 p=0.008 (5000次排列)，在 α=0.01 水平显著，这是因为 7 个模型 × 5 个基准 提供了足够的统计功效，且效应量（27.9pp
+      spread）远超偶然波动。
+
+      '
+    tables:
+    - name: 'Table 3: Cross-Benchmark Variance Decomposition (Henderson I, 7 models
+        × BF16)'
+      columns:
+      - Component
+      - MMLU
+      - ARC
+      - HellaSwag
+      - GSM8K
+      - MATH
+      rows:
+      - - item_id (%)
+        - 42.1
+        - 35.8
+        - 27.4
+        - 19.6
+        - 14.2
+      - - model×item (%)
+        - 33.6
+        - 37.2
+        - 41.8
+        - 48.3
+        - 53.7
+      - - model (%)
+        - 0.5
+        - 0.8
+        - 1.2
+        - 2.4
+        - 3.1
+      - - prompt×item (%)
+        - 2.8
+        - 2.6
+        - 2.9
+        - 1.4
+        - 0.8
+      - - seed×item (%)
+        - 2.5
+        - 2.1
+        - 1.8
+        - 1.2
+        - 0.6
+      - - ordering×item (%)
+        - 0.6
+        - 0.4
+        - 0.3
+        - 0.1
+        - 0.1
+      - - residual (%)
+        - 19.5
+        - 21.3
+        - 24.6
+        - 26.8
+        - 27.4
+      - - G_item
+        - 0.82
+        - 0.776
+        - 0.714
+        - 0.653
+        - 0.612
+      - - D-study items (G≥0.80)
+        - 340
+        - 420
+        - 510
+        - 660
+        - 780
+    - name: 'Table 4: Gradient Monotonicity Test'
+      columns:
+      - Test
+      - Statistic
+      - p-value
+      - Conclusion
+      rows:
+      - - Permutation test (item_id% gradient)
+        - τ = −1.0 (perfect monotone)
+        - 0.008
+        - Reject H₀ at α=0.01
+      - - Within-MC (MMLU→ARC)
+        - Δ = −6.3pp
+        - 0.023
+        - Significant within format
+      - - Within-freeform (GSM8K→MATH)
+        - Δ = −5.4pp
+        - 0.031
+        - Significant within format
+    figures_description:
+    - 'Figure 1 (revised): Stacked-bar variance decomposition across 5 benchmarks,
+      ordered MMLU→ARC→HellaSwag→GSM8K→MATH. Clear visual gradient — item_id bars
+      shrink left-to-right while model×item bars grow. Annotated with G_item values
+      above each bar.'
+    - 'Figure 2: D-study projection curves for all 5 benchmarks — G vs item count.
+      MMLU curve crosses G=0.80 earliest (~340 items), MATH latest (~780). Shaded
+      bootstrap 95% CIs.'
+    - 'Figure S1: Within-format gradient scatter — item_id% vs task complexity index
+      (manual annotation) within MC and free-form subsets, with regression lines showing
+      gradient preserved within format.'
+    analysis: 'exp-002 Phase 1-3 完成的核心贡献是实证验证了 cross-benchmark variance gradient 的存在和单调性。
+      7 个模型 × 5 个基准的设计提供了足够的统计功效（Phase 4 的缺失不影响主结论）。 三个关键发现支撑论文叙事：(1) item_id% 从 42%→14%
+      的单调梯度，排列检验 p=0.008； (2) within-format gradient 排除格式混淆作为主驱动力；(3) D-study 预算在基准间变化
+      2.3 倍 （340→780 items），直接产出实用的 benchmark-specific 信度指南。 Phase 4 缺失 DeepSeek-7B
+      和 InternLM 部分数据不影响梯度结论——leave-one-model-out 分析 显示去掉任一模型后梯度方向和显著性不变（所有子集 p<0.05）。
+
+      '
+  - name: Multi-hardware G-study
+    plan_id: exp-003
+    description: '4 models × 2+ GPU types × 2 precisions (BF16, FP16) × 6 prompts
+      × 6 seeds × 3 temperatures × 4 orderings × 200 MMLU items. Tests hardware ×
+      methodology interaction.
+
+      '
+    expected_results:
+      status: planned — not executed within AAAI timeline
+      paper_treatment: Explicitly scoped as future work; Claim 2 narrowed to 'precision
+        separability'
+      rationale_for_skip: Second GPU type not available; Claim 2 already defensible
+        with precision-only scope
+      hypothetical_hardware_x_methodology_binary: 0.15
+      hypothetical_hardware_x_item: 0.8
+      hypothetical_hardware_main_effect: 0.3
+      hypothetical_total_hardware_variance: 1.25
+    result_rationale: '在 best 档下 exp-003 未执行，因为第二种 GPU 类型未到位。但这不影响论文投稿—— Claim 2 已从
+      "infrastructure separability" 缩窄为 "precision separability"（D003/D007 决议）， 仅基于
+      exp-001 的 BF16/FP16/FP32 交叉即可支撑。BF16-vs-FP16 灵敏度分析（排除 FP32 后 precision effect
+      从 0.4% 降至 0.0006%）已证明在单一 GPU 架构上精度几乎不影响二值评分结果。 审稿人可能追问 "hardware≠precision"，但论文已在
+      MD3 中预备了应对——明确说明 scope 限制并将 hardware crossing 列为 future work。如果假设执行了，预期硬件主效应
+      ~0.3%， hardware×item ~0.8%（不同 GPU 的数值调度差异在 item 层面累积）， hardware×methodology
+      <0.2%——与精度分离性一致。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'exp-003 在 best 档中属于 "nice-to-have" 而非 "必须完成"。论文通过三重防御策略处理其缺失： (1) 标题和正文中
+      "infrastructure" 全部替换为 "numerical precision"； (2) Discussion 中明确指出硬件交叉是自然延伸方向；
+      (3) exp-001 的 BF16≈FP16 (Δ=0.23pp) 结果本身已表明在同一 GPU 上精度不是主要变异源。
+
+      '
+  - name: Comprehensive analysis package
+    plan_id: exp-004
+    description: '对 exp-001 + exp-001b + exp-002 (Phase 1-3) 数据的全面分析。包含 17 个子分析项：
+      model-as-facet 再分析、bootstrap CI、D-study 投影、REML 比较、logprob 评分、 排名稳定性、高阶交互、IRT
+      对比、统计功效、固定/随机灵敏度、二值数据分析、 bootstrap/jackknife 比较、设计不对称灵敏度、全尺寸 G 投影、GPU 成本分析。
+
+      '
+    expected_results:
+      cross_model_item_id_range: 14.2% (MATH) — 42.1% (MMLU)
+      cross_model_model_x_item_range: 33.6% (MMLU) — 53.7% (MATH)
+      single_vs_cross_model_item_id_drop_MMLU: 19.0
+      single_vs_cross_model_item_id_drop_MATH: 38.8
+      bootstrap_CI_item_id_MMLU:
+      - 38.0
+      - 46.8
+      bootstrap_CI_model_x_item_MMLU:
+      - 28.4
+      - 37.9
+      bootstrap_CI_item_id_MATH:
+      - 10.1
+      - 18.6
+      bootstrap_CI_model_x_item_MATH:
+      - 47.8
+      - 59.1
+      CI_width_item_id_mean: 8.2
+      CI_width_model_x_item_mean: 10.4
+      all_CIs_non_overlapping_for_top2: true
+      D_study_items_G80_practical_MMLU: 340
+      D_study_items_G80_practical_MATH: 780
+      D_study_items_G80_all_random_MMLU: 510
+      D_study_items_G80_all_random_MATH: 1040
+      D_study_items_G90_MMLU_7models: 620
+      D_study_prediction_validation: '4-model G predicted from 3-model: Δ=0.004 (MMLU);
+        7-model predicted from 4-model: Δ<0.01 (cross-validated)'
+      REML_Henderson_max_diff_pp: 0.47
+      REML_Henderson_rank_correlation: 1.0
+      REML_convergence: 500 iterations, Δ<0.003pp final step
+      logprob_item_id_MMLU: 51.3
+      logprob_item_id_ARC: 44.7
+      logprob_model_x_item_MMLU: 28.4
+      logprob_gradient_preserved: true
+      logprob_gradient_monotonicity_p: 0.012
+      model_ranking_stable_across_conditions: true
+      kendall_tau_model_rank_MMLU: 0.94
+      precision_x_temp_alters_ranking: false
+      three_way_interactions_total: 2.8
+      residual_after_three_way: 16.7
+      largest_three_way: model×prompt×item = 1.2%
+      IRT_recommended_items_MMLU: 116
+      Gtheory_recommended_items_MMLU: 510
+      ratio_G_to_IRT_MMLU: 4.4
+      IRT_recommended_items_GSM8K: 84
+      Gtheory_recommended_items_GSM8K: 660
+      ratio_G_to_IRT_GSM8K: 7.9
+      at_IRT_items_G_coefficient_MMLU: 0.529
+      at_IRT_items_G_coefficient_GSM8K: 0.387
+      IRT_ignores_dimensions: prompt×item (2.8%), seed×item (2.5%), ordering×item
+        (0.6%), model×item (33.6%)
+      power_to_detect_5pct_interaction: 0.99
+      power_to_detect_1pct_interaction: 0.94
+      minimum_detectable_effect_80pct_power: 0.6
+      practitioner_guide_format: 'Lookup table: benchmark × target_G → (items, prompts,
+        seeds)'
+      temperature_recommendation: Fix T=0.0 for reproducibility (saves ~15% item budget)
+      fixed_facet_G_range:
+      - 0.611
+      - 0.664
+      fixed_random_max_diff: 5.3
+      fixed_random_conclusion: Robust — top-2 component ordering unchanged
+      bernoulli_p1p_correlation_with_item_var: 0.34
+      null_simulation_item_id: 0.08
+      obs_to_bernoulli_ratio: 1.0008
+      CI_width_ratio_boot_jack:
+      - 0.96
+      - 1.04
+      conclusion_bootstrap_valid: true
+      MMLU_3x3_vs_2x2_item_id_diff: 1.2
+      MMLU_3x3_vs_2x2_model_x_item_diff: 0.8
+      design_reduction_robust: true
+      G_14K_items_MMLU_all_random: 0.987
+      G_14K_items_MMLU_practical: 0.992
+      logprob_coverage: 5/5 benchmarks
+      supports_title_evaluation_metrics: true
+      cost_per_Gstudy_single_benchmark: ~$12-18 (consumer GPU rental)
+      cost_recommended_Dstudy_budget: $50-120 per benchmark depending on target G
+    result_rationale: 'exp-004 是纯分析实验（GPU hours = 0），在 best 档下全部 17 个子项均完成。核心发现：
+
+      (a-b) Bootstrap CI 表明 item_id 和 model×item 在所有基准上的 95% 区间不重叠—— MMLU 上 item_id
+      [38.0, 46.8] vs model×item [28.4, 37.9]，MATH 上则反转： item_id [10.1, 18.6] vs model×item
+      [47.8, 59.1]。这为 "反转" 提供了统计证据， 不仅仅是点估计的差异。CI 宽度 ~8-10pp 反映了 200 item 设计在 bootstrap
+      下的合理不确定性。
+
+      (c) D-study预测的 out-of-sample 验证是方法学亮点——3→4 模型预测误差仅 0.004， 4→7 模型预测误差 <0.01，证明
+      D-study 投影在此设计下可靠。
+
+      (d) REML 与 Henderson I 的一致性（<0.5pp, rank ρ=1.0）源于设计的近似平衡性—— Henderson I 在平衡设计下是无偏的（Brennan
+      Ch.3），而我们的设计仅因 Gemma FP16 缺失而 轻微不平衡，REML 的迭代校正效果极小。
+
+      (e) Logprob 连续指标上梯度同样单调（p=0.012），且 item_id% 普遍高于 binary（~+9pp）， 因为连续评分保留了更多
+      item 间难度差异信息。这支撑标题中的 "Evaluation Metrics" 声明。
+
+      (h) IRT vs G-theory 的比较是论文最强贡献之一。IRT 推荐 116 items（MMLU），此时 G-theory 的 G 仅 0.529——远低于
+      0.80 阈值。差异来源清晰：IRT 不考虑 prompt×item (2.8%)、 seed×item (2.5%) 和 model×item (33.6%)
+      维度。在 GSM8K 上这个差距更大（7.9×）， 因为推理基准的 model×item 交互更强，IRT 忽略的变异更多。
+
+      (i) 功效分析确认设计有 >99% 的功效检测 5% 交互效应，94% 检测 1% 效应—— 远超审稿人 "underpowered" 的担忧。这得益于
+      ~2M 条记录的大样本量。
+
+      (k-n) 四项灵敏度分析均返回 "robust" 结论，为方法学防御提供了完整证据链。
+
+      '
+    tables:
+    - name: 'Table 5: IRT vs G-theory Item Requirements Across Benchmarks'
+      columns:
+      - Benchmark
+      - IRT items (G≥0.80)
+      - G-theory items (G≥0.80, all random)
+      - Ratio
+      - G at IRT items
+      rows:
+      - - MMLU
+        - 116
+        - 510
+        - 4.4×
+        - 0.529
+      - - ARC
+        - 98
+        - 420
+        - 4.3×
+        - 0.512
+      - - HellaSwag
+        - 105
+        - 510
+        - 4.9×
+        - 0.478
+      - - GSM8K
+        - 84
+        - 660
+        - 7.9×
+        - 0.387
+      - - MATH
+        - 72
+        - 1040
+        - 14.4×
+        - 0.312
+    - name: 'Table 6: Bootstrap 95% CIs on Top-2 Variance Components'
+      columns:
+      - Benchmark
+      - item_id% [CI]
+      - model×item% [CI]
+      - Dominant source
+      rows:
+      - - MMLU
+        - 42.1 [38.0, 46.8]
+        - 33.6 [28.4, 37.9]
+        - item_id
+      - - ARC
+        - 35.8 [31.2, 40.7]
+        - 37.2 [32.8, 42.1]
+        - ≈tied
+      - - HellaSwag
+        - 27.4 [23.1, 32.0]
+        - 41.8 [36.5, 47.4]
+        - model×item
+      - - GSM8K
+        - 19.6 [15.4, 24.1]
+        - 48.3 [42.6, 53.8]
+        - model×item
+      - - MATH
+        - 14.2 [10.1, 18.6]
+        - 53.7 [47.8, 59.1]
+        - model×item
+    - name: 'Table 7: D-study Budget Lookup (Target G × Benchmark)'
+      columns:
+      - Target G
+      - MMLU
+      - ARC
+      - HellaSwag
+      - GSM8K
+      - MATH
+      rows:
+      - - G ≥ 0.80
+        - 340 items
+        - 420 items
+        - 510 items
+        - 660 items
+        - 780 items
+      - - G ≥ 0.90
+        - 620 items
+        - 780 items
+        - 940 items
+        - 1200 items
+        - 1450 items
+      - - G ≥ 0.95
+        - 1050 items
+        - 1300 items
+        - 1580 items
+        - 2020 items
+        - 2400 items
+    - name: 'Table S1: Methodological Robustness Summary (17 analyses)'
+      columns:
+      - Analysis
+      - Conclusion
+      - Key number
+      rows:
+      - - REML vs Henderson I
+        - Concordant
+        - max Δ = 0.47pp, rank ρ = 1.0
+      - - Fixed vs random facets
+        - Robust
+        - G range 0.611–0.664
+      - - Bootstrap vs jackknife CI
+        - Concordant
+        - width ratio 0.96–1.04
+      - - Null simulation (binary)
+        - Not artifact
+        - null item_id = 0.08% vs obs 42%
+      - - Design reduction (3×3→2×2)
+        - Robust
+        - item_id Δ = 1.2pp
+      - - Power (1% interaction)
+        - Adequate
+        - power = 0.94
+      - - Logprob gradient
+        - Preserved
+        - monotonicity p = 0.012
+    figures_description:
+    - 'Figure 4 (IRT vs G-theory): Side-by-side bar chart — left bar (IRT) vs right
+      bar (G-theory) for each benchmark, with stacked breakdown of where extra items
+      go (prompt×item, seed×item, model×item, residual). MATH shows 14.4× ratio —
+      the most dramatic visual.'
+    - 'Figure S2: Bootstrap CI forest plot for all variance components across 5 benchmarks.
+      Shows crossover point between item_id and model×item CIs at HellaSwag/ARC boundary.'
+    analysis: 'exp-004 将 exp-001 和 exp-002 的原始数据转化为可发表的证据包。最重要的输出是： (1) Table 6 的
+      CI 交叉——MMLU 上 item_id 显著 > model×item，MATH 上显著反转， HellaSwag/ARC 是交叉点（CI 重叠），这为
+      "benchmark-conditional variance hierarchy" 提供了严格的统计证据； (2) Table 5 的 IRT 对比——这是论文最可引用的单一结果，直接量化了忽略多面向变异的代价；
+      (3) 17 项灵敏度分析全部返回 "robust/concordant"，构成完整的方法学防御链， 预封堵了 Dream #2 识别的所有审稿问题。
+
+      '
+  - name: 14B model scale extension
+    plan_id: exp-005
+    description: 'Qwen3-14B 和 DeepSeek-R1-Distill-14B 在数据中心 GPU 上运行 BF16/FP16， 测试方差归因模式是否随模型规模和架构变化。
+
+      '
+    expected_results:
+      status: planned — not executed within AAAI timeline
+      paper_treatment: Listed as future work in Discussion; brief mention in Limitations
+      hypothetical_item_id_14B_MMLU: 39.5
+      hypothetical_model_x_item_14B: 35.8
+      hypothetical_gradient_preserved_at_14B: true
+      hypothetical_accuracy_improvement: +4-8pp over 7-9B counterparts
+    result_rationale: 'exp-005 在 best 档下未执行（需要 ≥48GB VRAM 的 GPU 且依赖 exp-003）。 但这对论文影响有限——7-9B
+      参数量级已覆盖了当前开源社区最常用的模型尺寸段。 如果执行，预期方差结构定性不变但定量微调：14B 模型的更高 accuracy 会略微压缩 item_id%
+      （更多 items 被所有模型答对，item 间变异减小），同时 model×item 因更强的特异化推理能力 而略增。梯度方向（知识→推理）不会因模型规模改变——这是任务类型的固有属性。
+      论文在 Discussion 中注明 "variance structure at 14B+ scale is a natural extension
+      that may reveal scale-conditional effects, particularly for reasoning benchmarks
+      where larger models show qualitatively different solution strategies."
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '不影响 AAAI 投稿。Reviewer concern #6 ("Missing scale validation") 的应对策略是
+      指出 7-9B 是当前 reproducibility 研究最相关的规模段（多数评估管线和 tinyBenchmarks 文献均在此规模），14B+ 是自然延伸但不影响核心
+      claims 的有效性。
+
+      '
+  - name: Fine-tuning G-study (RoBERTa)
+    plan_id: exp-006
+    description: 'RoBERTa-large 在 SST-2/MNLI/RTE/COPA 上的 fine-tuning G-study。 6 seeds
+      × 3 learning rates × 4 data shuffles × 3 GPUs × 2 precisions = 432 runs/task
+      × 4 tasks。
+
+      '
+    expected_results:
+      status: planned — not executed within AAAI timeline
+      paper_treatment: Downgraded to Discussion-section preliminary observation per
+        D006 directive
+      hypothetical_dominant_source_finetuning: seed (35-45%)
+      hypothetical_item_id_finetuning: 15-25%
+      hypothetical_lr_x_seed: 8-12%
+      hypothetical_data_shuffle_effect: 5-8%
+      hypothetical_precision_effect: <1%
+      hypothetical_contrast_with_inference: 'Fine-tuning: seed > item > lr×seed >
+        data_shuffle. Inference: item > model×item > residual > prompt×item. Completely
+        different variance hierarchies.
+
+        '
+    result_rationale: 'exp-006 在 best 档下未执行，且按 D006 指令已降级为 Discussion 的初步展望。 如果执行，fine-tuning
+      的方差层级预计与 inference 根本不同：训练随机种子通过 参数初始化和 mini-batch 采样顺序对最终模型产生级联影响，尤其在小数据集（RTE
+      2.5K、 COPA 400 训练样本）上，seed 效应可达 35-45%（Bui et al. 2025 报告 RoBERTa 在 COPA 上 RTES
+      variance=18.22）。Item 难度仍重要但被 seed 效应压缩到 15-25%。 Learning rate × seed 交互 (8-12%)
+      反映不同 lr 在不同初始化下的训练动力学差异—— 小 lr 对种子更稳定，大 lr 放大种子敏感性。精度效应在 fine-tuning 中同样微小 (<1%)，
+      因为梯度累积的数值差异在数千步训练中被 SGD 的随机性淹没。
+
+      论文仅在 Discussion 中提一句："Preliminary fine-tuning analysis (encoder-only,  not included
+      in main results) suggests a qualitatively different variance hierarchy  where
+      random seed dominates item selection — an expected reversal given the  stochastic
+      nature of gradient-based optimization."
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '明智地降级为 Discussion。encoder-only RoBERTa 的 fine-tuning 与 decoder LLM
+      的 inference 差异太大，混在同一篇论文中会分散叙事焦点。留作后续独立研究更合适。
+
+      '
+  - name: LayerCast precision mitigation
+    plan_id: exp-007
+    description: '测试 LayerCast (FP16 storage + FP32 compute) 作为额外精度条件在 MMLU 上的效果。
+
+      '
+    expected_results:
+      status: planned — not executed within AAAI timeline
+      paper_treatment: Not mentioned in paper
+      hypothetical_layercast_accuracy: ~0.1pp above FP16, ~0.1pp below FP32_V0
+      hypothetical_layercast_variance_reduction: precision×item drops from 1.98% to
+        ~0.3%
+      hypothetical_practical_value: Minimal — BF16≈FP16 already shows precision is
+        negligible
+    result_rationale: 'LayerCast 在 best 档下未执行，且不影响任何 claim。exp-001 已证明排除 FP32 后 BF16≈FP16
+      (Δ=0.23pp)，精度对二值评分结果的影响可忽略。LayerCast 作为一种 "混合精度推理" 策略理论上能进一步缩小精度差异，但当差异已经 <0.3pp
+      时， 这种缩小没有实际意义。如果执行，LayerCast 的 accuracy 会落在 FP16 和 FP32 之间， 因为它在计算关键层使用 FP32
+      精度但存储使用 FP16——减少了 FP32 enforce_eager 带来的 vLLM 引擎差异。precision×item 从 1.98% 降至
+      ~0.3% 反映混合精度 消除了纯 FP32 的系统性偏差但保留了极少量的层间精度传播差异。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'P2 优先级，不进入 AAAI 版本。即使执行，贡献也是增量性的—— 证实了一种具体的精度缓解策略有效，但不改变任何方差结构结论。
+
+      '
+  - name: MATH benchmark (merged into exp-002)
+    plan_id: exp-008
+    description: 'MATH benchmark 200 items。已合并入 exp-002 作为第 5 个 benchmark，不再是独立实验。
+
+      '
+    expected_results:
+      status: merged into exp-002 Phase 2
+      independent_status: N/A
+      see_also: exp-002 expected results for MATH-specific numbers
+      MATH_item_id_pct: 14.2
+      MATH_model_x_item_pct: 53.7
+      MATH_G_item: 0.612
+      MATH_D_study_items_G80: 780
+      MATH_overall_accuracy: 0.318
+      MATH_accuracy_range_across_models: 0.11 (OLMo) — 0.52 (Qwen3)
+    result_rationale: 'MATH 作为 exp-002 的第 5 个基准，是梯度最极端的端点。item_id 降至 14.2% 而 model×item
+      升至 53.7% 的原因在于 MATH 题目的解题路径高度多样——同一道代数证明题，不同模型可能 走完全不同的推导链（符号化简 vs 数值代入 vs 图形论证），成败模式几乎完全是
+      model-specific 的。 这也解释了模型间 accuracy 的极端分散（0.11-0.52）——MATH 是 7-9B 参数模型能力分化 最剧烈的基准。G_item=0.612
+      意味着 200 道 MATH 题在 7 个模型间的 item 难度一致性 远低于信度阈值——需要 780 道题才能达到 G≥0.80，是 MMLU 的
+      2.3 倍。 这直接产出实用指导："评估 LLM 的数学推理能力需要比知识检索多一倍以上的题目。"
+
+      '
+    tables: []
+    figures_description: []
+    analysis: MATH 数据完全在 exp-002 中收集和报告。作为梯度终点，它对论文叙事至关重要—— 没有 MATH，gradient spread
+      仅为 ~22pp (MMLU→GSM8K)，加入后扩展到 ~28pp， 增强了效应量和排列检验的显著性。
+  review_report: '---
+
+    dream_id: dream_20260521T122449
+
+    tier: best
+
+    overall_score: 7/10 — weak accept
+
+    timestamp: 2026-05-21T13:42:45.923137+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper**: Reproducibility Budgets for LLM Evaluation: A Generalizability Theory
+    Analysis of Variance Sources Across Benchmarks, Models, and Evaluation Metrics
+
+    **Venue**: AAAI (1-10 scale; exact rubric not publicly available for AAAI-26,
+    using standard AAAI conventions)
+
+    **Review mode**: simple (single reviewer, full coverage)
+
+    **Date**: 2026-05-21
+
+
+    ---
+
+
+    ## Summary
+
+
+    This paper applies Generalizability Theory (G-theory) to decompose variance in
+    LLM evaluation across five benchmarks (MMLU, ARC, HellaSwag, GSM8K, MATH), seven
+    open-weight models in the 7–9B parameter range, and multiple methodological facets:
+    prompt templates (6), random seeds (6), numerical precision (BF16/FP16), temperature
+    ({0.0, 0.7}), and option orderings (4). The resulting ~2M binary item-level records
+    are analyzed via Henderson Method I variance decomposition, yielding a fully crossed
+    G-study design. The paper advances three central claims: a monotonic cross-benchmark
+    variance gradient from item-dominated (knowledge-retrieval) to model×item-dominated
+    (reasoning) benchmarks; separability of numerical precision from methodology;
+    and a quantified gap between IRT and G-theory reliability estimates due to IRT''s
+    inability to capture prompt×item, seed×item, and ordering×item interactions.
+
+
+    The practical contribution is a set of Decision-study (D-study) budget tables
+    specifying the number of items, prompts, seeds, and orderings needed to achieve
+    target generalizability coefficients (G ≥ 0.80) for each benchmark. The paper
+    also reports 17 robustness analyses addressing the known tension between G-theory''s
+    normality assumptions and binary response data, including REML cross-validation,
+    null simulation, GLMM on a subsample, Bernoulli-adjusted coefficients, logprob
+    gradient analysis, bootstrap and jackknife confidence intervals, and design reduction
+    sensitivity tests.
+
+
+    The work positions itself as extending Mesting (2026), which applied G-theory
+    to a single benchmark with LLM-as-judge evaluation, by crossing benchmarks, fixing
+    the judge to generation-based scoring, and introducing the cross-benchmark gradient
+    as a new theoretical lens for understanding how task structure shapes evaluation
+    reliability.
+
+
+    ## Strengths
+
+
+    **S1 — Novel multi-benchmark G-theory application.** This is, to my knowledge,
+    the first study to apply G-theory across multiple LLM benchmarks in a single crossed
+    design. Prior work (Mesting, 2026) demonstrated G-theory''s utility on a single
+    benchmark with judge-based evaluation. By crossing five benchmarks, this paper
+    reveals structural differences in variance composition that are invisible in single-benchmark
+    analyses. The conceptual contribution — that the *type* of benchmark fundamentally
+    shapes which variance sources dominate — is well-motivated and extends the literature
+    meaningfully.
+
+
+    **S2 — The cross-benchmark gradient is the paper''s strongest finding.** The monotonic
+    drop in item_id variance from 42.1% (MMLU) to 14.2% (MATH), with a corresponding
+    rise in model×item from 33.6% to 53.7% (Table 1), is theoretically grounded and
+    empirically robust. The explanation is compelling: knowledge-retrieval items have
+    stable difficulty rankings across models (high item_id%), while reasoning items
+    elicit model-specific solution strategies (high model×item%). The within-format
+    gradient tests (Section 4.2) — MMLU→ARC within multiple-choice (Δ=−6.3pp, p=0.023)
+    and GSM8K→MATH within free-form (Δ=−5.4pp, p=0.031) — effectively rule out answer
+    format as the primary driver, strengthening the cognitive-structure interpretation.
+
+
+    **S3 — Unusually thorough robustness analysis.** The 17-analysis robustness package
+    (Section 5, Table 6) is exceptional for a conference paper. The binary data concern
+    — a legitimate methodological tension — is addressed from four complementary angles:
+    matched-design simulation, GLMM comparison, Bernoulli normalization, and logprob
+    gradient analysis. The REML cross-validation (Δ<0.47pp from Henderson I), bootstrap
+    CIs (Table 4), null simulation (item_id 0.08% under null vs. observed 42%), and
+    3×3→2×2 design reduction sensitivity test (Δ=1.2pp) collectively provide strong
+    evidence that the main findings are not artifacts of estimation choices. This
+    level of self-scrutiny is commendable.
+
+
+    **S4 — Actionable practical output.** The D-study budget tables (Table 5) translate
+    abstract variance components into concrete guidance: practitioners can look up
+    how many items, prompts, seeds, and orderings are needed for a target reliability
+    on each benchmark. The IRT comparison (Table 3) is particularly impactful — showing
+    that at IRT-recommended item counts, G-theory reliability is only 0.312–0.529
+    because IRT ignores prompt×item, seed×item, ordering×item, and model×item interaction
+    dimensions. This 3.6–14.4× gap is a quantified, citable result that challenges
+    current evaluation practice.
+
+
+    **S5 — Model as crossed quasi-random facet.** Treating model as a crossed rather
+    than fixed facet is methodologically important. The resulting 34% model×item interaction
+    — invisible in single-model G-studies — reveals that item difficulty rankings
+    are substantially model-dependent. The 19pp drop in item_id% from single-model
+    to cross-model analysis on MMLU (mentioned in Section 1) is a strong empirical
+    demonstration of why single-model reliability estimates are inflated.
+
+
+    **S6 — Writing quality.** The paper is clearly written, well-structured, and transparent
+    about its limitations. The Discussion section''s nuanced positioning relative
+    to Sclar et al. (2024) and Mesting (2026) avoids both overclaiming and excessive
+    hedging. Limitations are stated plainly in Section 6.1 rather than buried.
+
+
+    **S7 — Format confound controls.** The within-format gradient tests (Table 2)
+    are a methodologically clean way to address the obvious confound that answer format
+    (multiple-choice vs. free-form) varies across benchmarks. Demonstrating the gradient
+    within format categories substantially strengthens the cognitive-structure interpretation.
+
+
+    ## Weaknesses
+
+
+    **W1 — "Infrastructure" is overclaimed then narrowed.** The abstract frames the
+    study as "crossing infrastructure (numerical precision) with methodology," but
+    the actual infrastructure variation is limited to BF16 vs. FP16 on a single GPU
+    type. This is acknowledged in Section 6.1, but the abstract and contribution list
+    still frame Claim 2 (precision separability, <0.8% variance) as a major finding.
+    In practice, BF16 and FP16 differ by at most 0.23pp — a result that is unsurprising
+    given the minimal numerical difference between these formats. Meaningful infrastructure
+    variation would include GPU architecture, quantization levels (INT8, INT4), batching
+    strategies, or multi-GPU parallelism. I recommend the authors either reframe Claim
+    2 as a narrow negative result or explicitly state in the abstract that "infrastructure"
+    refers only to numerical precision on a single GPU.
+
+
+    **W2 — 200-item subsamples raise representativeness concerns.** Each benchmark
+    contributes only 200 randomly sampled items from pools ranging up to ~14K (MMLU).
+    No analysis of sampling variability is reported — the paper does not show how
+    variance component estimates change across different 200-item draws. This is consequential
+    because the D-study budgets (Table 5) are calibrated to these specific subsamples.
+    If item difficulty distributions in the 200-item samples are not representative,
+    the budget recommendations may be systematically biased. A split-half or repeated-subsampling
+    stability analysis would address this directly and should be feasible given the
+    available data.
+
+
+    **W3 — Model scale is narrow.** All seven models fall in the 7–9B parameter range.
+    Larger models (14B, 70B) may exhibit qualitatively different variance structures:
+    higher accuracy could compress item_id% (ceiling effects), while specialized reasoning
+    capabilities could amplify or dampen model×item%. The paper acknowledges this
+    limitation (Section 6.1), but it weakens the generalizability of the gradient
+    claim — the monotonic pattern may hold only within a specific scale regime. I
+    encourage the authors to include at least one model outside the 7–9B range in
+    a revision.
+
+
+    **W4 — Unbalanced factorial design.** InternLM2.5-7B covers only 3 of 5 benchmarks,
+    and DeepSeek-7B was not run at all. Henderson Method I assumes balanced designs;
+    while REML cross-validation shows small discrepancies (Δ<0.47pp, rank ρ=1.0),
+    the bias properties of Henderson I on unbalanced data are not fully characterized
+    in the paper. The authors should either complete the design or provide a more
+    thorough analysis of the impact of imbalance — for example, by re-running the
+    main analyses on the balanced subset (excluding InternLM) and comparing results.
+
+
+    **W5 — Judge facet is absent.** Mesting (2026) found judge choice accounts for
+    43.8% of variance. By fixing the evaluation paradigm to generation-based scoring,
+    this paper''s variance decomposition is conditional on that choice. The judge
+    facet is not merely a limitation — it may be the *dominant* variance source in
+    real-world LLM evaluation. The paper''s framing as providing comprehensive variance
+    decomposition is therefore incomplete in settings where LLM-as-judge evaluation
+    is used. This should be stated more prominently than the current brief mention
+    in Section 6.1.
+
+
+    **W6 — Binary data remains a methodological tension.** Despite four complementary
+    defenses (Section 3.1, Section 5), G-theory''s assumption of continuous, normally
+    distributed data is fundamentally violated by binary item scores. The matched-design
+    simulation uses a subsample; the GLMM comparison covers only 25 items; Bernoulli
+    normalization is heuristic; and logprob analysis changes the measurement model
+    from binary to continuous. Each defense is individually reasonable but none is
+    definitive. The paper is admirably transparent, but this remains the core methodological
+    risk. A full-scale GLMM analysis on all 200 items (computationally expensive but
+    feasible) would substantially strengthen the paper.
+
+
+    **W7 — Permutation test resolution is very low.** The monotonicity test (Kendall''s
+    τ on 5 benchmarks, Table 2) achieves τ=−1.0, p=0.008. However, with only 5 data
+    points, this test cannot detect non-trivial departures from monotonicity — any
+    single violation would push τ to −0.6 with p>0.05. The statistical significance
+    partly reflects the small sample size rather than strong evidence of strict monotonicity.
+    The authors should acknowledge this limitation more explicitly and consider whether
+    the within-format gradient tests (which are more targeted) are actually the stronger
+    evidence for the gradient claim.
+
+
+    **W8 — Temperature as a two-level factor.** Temperature is varied at only {0.0,
+    0.7}. Since 0.0 is deterministic, this is really a binary deterministic/stochastic
+    toggle rather than a characterization of temperature''s role. Values like 0.3,
+    0.5, and 1.0 would provide meaningful interpolation. The paper''s claim about
+    temperature variance contributions is based on an impoverished sampling of this
+    facet.
+
+
+    **W9 — D-study budgets lack uncertainty quantification.** Table 5 reports point
+    estimates (e.g., 340 items for MMLU at G≥0.80) without confidence intervals, even
+    though the underlying variance components have bootstrap CIs of ±8–10pp (Table
+    4). Propagating this uncertainty to D-study projections would likely yield wide
+    ranges, which practitioners need to make informed decisions. Presenting precise-looking
+    numbers without uncertainty risks overreliance on potentially unstable estimates.
+
+
+    ## Minor Issues
+
+
+    - Table 7 (Appendix A) has missing entries for ARC, HellaSwag, and GSM8K in the
+    "All random" column, without explanation.
+
+    - The paper claims an open-source G-theory pipeline will be released but provides
+    no repository link or anonymized reference.
+
+    - Several references cite "Preprint" without venue, making verification difficult
+    (BrittleBench Team 2026, Bui et al. 2025, Kunievsky and Evans 2025, Mesting 2026,
+    ThinkingMachines 2025, Yuan et al. 2025).
+
+    - The leave-one-model-out sensitivity analysis (which would demonstrate gradient
+    robustness to model selection) is not reported in the paper despite being referenced
+    in planning materials.
+
+    - Residual variance interpretation (Section 4.1, increasing from 19.5% to 27.4%)
+    invokes chain-of-thought path dependence and cumulative temperature effects without
+    empirical validation — this should be flagged as speculative.
+
+
+    ## Questions for Authors
+
+
+    1. **Sampling stability**: Have you examined how the variance component estimates
+    change across different random 200-item draws from each benchmark? If the item_id%
+    for MMLU shifts by, say, ±5pp across draws, the gradient claim becomes less robust.
+
+
+    2. **Unbalanced design impact**: If you restrict the analysis to the 5 or 6 models
+    that are fully balanced across all 5 benchmarks (excluding InternLM), do the main
+    findings — particularly the gradient monotonicity and the magnitude of model×item
+    — change meaningfully?
+
+
+    3. **D-study uncertainty**: Could you propagate the bootstrap CIs on variance
+    components into uncertainty ranges for the D-study budget recommendations? This
+    seems feasible given your existing bootstrap infrastructure.
+
+
+    4. **Scale sensitivity**: The gradient claim is tested on 7–9B models only. Do
+    you have any theoretical argument or preliminary evidence for whether the gradient
+    direction would be preserved at 70B scale, where accuracy distributions are substantially
+    different?
+
+
+    5. **Full GLMM**: The GLMM analysis in Section 5 covers only 25 items due to computational
+    cost. Have you considered running this on a larger subset (e.g., 100 items) to
+    provide a more definitive comparison with Henderson I estimates on binary data?
+
+
+    ## Experiment Coverage Assessment
+
+
+    Of the seven planned experiments (exp-002 through exp-008), only two were substantively
+    executed: exp-002 (multi-benchmark replication, mostly complete but with gaps
+    for InternLM and DeepSeek) and exp-004 (comprehensive analysis package, fully
+    complete with 17/17 sub-analyses). Three experiments that would have broadened
+    the paper''s scope were not run: exp-003 (multi-hardware G-study, which would
+    have supported a genuine infrastructure claim), exp-005 (14B model scale extension,
+    which would have tested scale generalizability), and exp-006 (fine-tuning G-study,
+    which would have introduced a qualitatively different evaluation context).
+
+
+    The impact on claims is asymmetric. Claim 1 (cross-benchmark gradient) is well-supported
+    by the executed experiments, modulo the model-scale concern. Claim 2 (precision
+    separability) is technically supported but the "infrastructure" framing is undermined
+    by exp-003''s absence — what was delivered is precision separability on a single
+    GPU, not infrastructure separability. Claim 3 (IRT vs. G-theory gap) is well-supported
+    and does not depend on the unexecuted experiments. The robustness of the overall
+    contribution would have been substantially enhanced by exp-003 and exp-005, but
+    the paper manages its scope limitations honestly.
+
+
+    ## Scores
+
+
+    | Dimension | Score |
+
+    |---|---|
+
+    | Soundness | 3/4 |
+
+    | Significance | 3/4 |
+
+    | Novelty | 3/4 |
+
+    | Clarity | 4/4 |
+
+    | Overall Recommendation | 7/10 |
+
+    | Confidence | 4/5 |
+
+
+    ## Overall Assessment
+
+
+    This is a well-executed study that makes a genuinely novel contribution: the cross-benchmark
+    variance gradient from item-dominated to model×item-dominated structure is theoretically
+    grounded, empirically supported by within-format controls, and practically useful
+    for understanding why different benchmarks have different reliability properties.
+    The D-study budget tables and the quantified IRT–G-theory gap provide immediately
+    actionable outputs for the evaluation community. The 17-analysis robustness package
+    demonstrates unusual methodological rigor for a conference paper, and the writing
+    is exemplary in its clarity and transparency.
+
+
+    The weaknesses are real but bounded. The "infrastructure" claim (Claim 2) is overclaimed
+    given the narrow BF16/FP16 variation and should be reframed. The 200-item subsampling,
+    7–9B model scale restriction, and unbalanced design introduce uncertainty about
+    the generalizability of the specific numbers reported, though the directional
+    findings (gradient, IRT gap) are likely robust. The binary data tension is the
+    deepest methodological concern — it is well-defended but not fully resolved, and
+    a full-scale GLMM comparison would strengthen the paper considerably.
+
+
+    My recommendation is **weak accept** (7/10). The paper is clearly above the AAAI
+    acceptance threshold: it introduces a novel analytical lens, reports a well-supported
+    primary finding, provides practical tools, and is transparent about limitations.
+    It does not reach strong accept because the scope narrowing (from planned experiments
+    to effectively two executed) leaves several natural extensions unaddressed, and
+    the infrastructure and scale claims are weaker than framed. A revision that completes
+    the factorial design, adds a subsampling stability analysis, propagates uncertainty
+    to D-study budgets, and reframes Claim 2 would elevate this to a strong accept.'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260521T122449/median/paper.pdf
+  imagined_experiments:
+  - name: Multi-Benchmark G-Study (Phase 1-2 + Phase 3 partial)
+    plan_id: exp-002
+    description: 'Phase 1 DONE: 4 original models × 4 benchmarks (MMLU/ARC-C/HellaSwag/GSM8K),
+      BF16 × 2 temps (0.0, 0.7) × 6 prompts × 6 seeds × 4 orderings × 200 items. Phase
+      2 DONE: 4 models × MATH (5th benchmark), same reduced design. Phase 3 partial:
+      Yi-1.5-9B completed on MMLU+ARC; OLMo-2-7B completed on MMLU. MMLU data reused
+      from exp-001 BF16 subset (no new collection needed). Total new data: ~1.10M
+      records (Phase 1-2) + ~173K (Phase 3 partial) = ~1.27M.
+
+      '
+    expected_results:
+      completion_status: Phase 1-2 done, Phase 3 ~20%
+      total_records_new: 1267200
+      total_records_with_exp001_mmlu_reuse: 1324800
+      n_models_primary: 4
+      n_models_total: 6
+      n_benchmarks: 5
+      gpu_hours_used: 258
+      per_benchmark_accuracy_bf16_mean:
+        MMLU:
+          overall: 0.711
+          Llama: 0.711
+          Gemma: 0.76
+          Qwen: 0.726
+          Mistral: 0.67
+          spread_pp: 9.0
+        ARC:
+          overall: 0.785
+          Llama: 0.79
+          Gemma: 0.848
+          Qwen: 0.818
+          Mistral: 0.682
+          spread_pp: 16.6
+        HellaSwag:
+          overall: 0.815
+          Llama: 0.812
+          Gemma: 0.852
+          Qwen: 0.838
+          Mistral: 0.758
+          spread_pp: 9.4
+        GSM8K:
+          overall: 0.645
+          Llama: 0.615
+          Gemma: 0.68
+          Qwen: 0.78
+          Mistral: 0.485
+          spread_pp: 29.5
+        MATH:
+          overall: 0.283
+          Llama: 0.218
+          Gemma: 0.278
+          Qwen: 0.352
+          Mistral: pending_phase2_tail
+          spread_pp_3model: 13.4
+      cross_model_variance_decomposition:
+        MMLU:
+          item_id: 42.1
+          model_x_item: 33.6
+          model: 3.8
+          prompt_x_item: 3.2
+          seed_x_item: 2.6
+          temperature_x_item: 1.2
+          prompt: 0.5
+          temperature: 0.2
+          seed: 0.1
+          model_x_prompt: 0.3
+          model_x_temperature: 0.1
+          ordering: 0.05
+          residual: 12.25
+        ARC:
+          item_id: 37.8
+          model_x_item: 34.5
+          model: 5.5
+          prompt_x_item: 3.8
+          seed_x_item: 2.3
+          temperature_x_item: 1.6
+          prompt: 0.9
+          temperature: 0.3
+          seed: 0.1
+          model_x_prompt: 0.5
+          model_x_temperature: 0.2
+          ordering: 0.1
+          residual: 12.4
+        HellaSwag:
+          item_id: 29.5
+          model_x_item: 32.8
+          model: 3.2
+          prompt_x_item: 6.2
+          seed_x_item: 4.5
+          temperature_x_item: 2.5
+          prompt: 1.8
+          temperature: 0.5
+          seed: 0.2
+          model_x_prompt: 0.8
+          model_x_temperature: 0.1
+          ordering: 0.1
+          residual: 17.8
+        GSM8K:
+          item_id: 31.2
+          model_x_item: 36.2
+          model: 10.5
+          prompt_x_item: 4.5
+          seed_x_item: 2.8
+          temperature_x_item: 1.8
+          prompt: 1.2
+          temperature: 0.4
+          seed: 0.2
+          model_x_prompt: 0.5
+          model_x_temperature: 0.3
+          ordering: 0.1
+          residual: 10.3
+        MATH_3model:
+          item_id: 25.8
+          model_x_item: 38.5
+          model: 6.5
+          prompt_x_item: 5.8
+          seed_x_item: 4.2
+          temperature_x_item: 2.8
+          prompt: 2.0
+          temperature: 0.8
+          seed: 0.3
+          model_x_prompt: 0.6
+          model_x_temperature: 0.2
+          ordering: 0.1
+          residual: 12.4
+      single_model_item_id_Llama:
+        MMLU: 65.2
+        ARC: 58.0
+        HellaSwag: 50.2
+        GSM8K: 56.5
+        MATH: 48.0
+      single_to_cross_item_id_drop_pp:
+        MMLU: -23.1
+        ARC: -20.2
+        HellaSwag: -20.7
+        GSM8K: -25.3
+        MATH: -22.2
+      item_id_by_hypothesized_complexity_order: MMLU(42.1) > ARC(37.8) > HellaSwag(29.5)
+        < GSM8K(31.2) > MATH(25.8)
+      gradient_break: HellaSwag(29.5) < GSM8K(31.2) — HellaSwag drops below GSM8K
+        despite lower task complexity
+      gradient_spread_pp: 16.3
+      gradient_monotonicity_permutation_p: 0.12
+      gradient_monotonicity_interpretation: Directional trend exists but not statistically
+        monotonic at α=0.05
+      format_confound:
+        MC_mean_item_id: 40.0
+        completion_item_id: 29.5
+        free_form_mean_item_id: 28.5
+        MC_vs_nonMC_gap_pp: 11.0
+        within_MC_gradient_pp: 4.3
+        within_free_form_gradient_pp: 5.4
+        within_format_conclusion: weak_or_inconclusive — direction consistent but
+          N=2 per format, insufficient for statistical test
+      G_item_cross_model:
+        MMLU: 0.82
+        ARC: 0.783
+        HellaSwag: 0.723
+        GSM8K: 0.736
+        MATH_3model: 0.698
+      D_study_items_G80:
+        MMLU: 414
+        ARC: 452
+        HellaSwag: 535
+        GSM8K: 488
+        MATH: 582
+      D_study_range: 414–582 items
+      per_model_interaction_pct:
+        MMLU:
+          Mistral: 29.25
+          Qwen: 27.11
+          Gemma: 23.95
+          Llama: 19.69
+        ARC:
+          Mistral: 32.8
+          Gemma: 25.5
+          Qwen: 23.2
+          Llama: 18.5
+        HellaSwag:
+          Mistral: 30.5
+          Llama: 26.2
+          Qwen: 24.8
+          Gemma: 18.5
+        GSM8K:
+          Mistral: 35.2
+          Llama: 30.5
+          Gemma: 22.8
+          Qwen: 11.5
+      phase3_5model_mmlu:
+        Yi_accuracy_bf16: 0.652
+        item_id_5model: 41.2
+        model_x_item_5model: 35.0
+        G_item_5model: 0.842
+        D_study_predicted_5model: 0.848
+        D_study_delta: 0.006
+        D_study_validation: 'Second out-of-sample validation: 4-model D-study predicted
+          G=0.848 for 5 models, observed 0.842, Δ=0.006'
+    result_rationale: 'Gradient exists but is noisy because HellaSwag (completion
+      format, 29.5%) drops below GSM8K (free-form math, 31.2%) in item_id%. The hypothesized
+      knowledge→reasoning gradient predicts HellaSwag should be intermediate between
+      ARC and GSM8K, but HellaSwag''s completion format drives its item_id lower than
+      expected: the 4-choice completion paradigm introduces more model-specific pattern-matching
+      variance (prompt×item 6.2%, seed×item 4.5%) than MC or free-form formats, compressing
+      the item_id share. GSM8K retains relatively high item_id (31.2%) because math
+      items have very clear universal difficulty structure — trivial arithmetic vs
+      impossible multi-step problems — creating a floor of item-driven variance that
+      persists even cross-model. The format confound is partial: MC benchmarks (MMLU
+      40.0%, ARC 37.8%) cluster 11pp above non-MC (29.0% mean), but within-format
+      gradients are only 4-5pp with N=2 per format, insufficient to disentangle format
+      from task-type. model×item ranges from 32.8% (HellaSwag) to 38.5% (MATH 3-model),
+      increasing on reasoning benchmarks but not consistently — HellaSwag''s model×item
+      (32.8%) is slightly below MMLU''s (33.6%), breaking the monotonic increase pattern.
+      GSM8K''s model main effect (10.5%) is 2.8× MMLU''s (3.8%), driven by Mistral''s
+      dramatically lower math performance (48.5% vs 78.0% for Qwen) — this large model
+      spread inflates the model component and correspondingly depresses residual (10.3%
+      vs 12.3% on MMLU). MATH (3-model preliminary) shows the lowest item_id (25.8%)
+      and highest model×item (38.5%), consistent with the gradient direction but the
+      3-model estimate has wider CI than 4-model benchmarks. The D-study validation
+      replicates: 4-model D-study predicted G=0.848 for 5 models on MMLU, observed
+      0.842 with Yi added (Δ=0.006), consistent with the exp-001 out-of-sample Δ=0.004.
+      D-study budgets vary from 414 (MMLU) to 582 (MATH) items for G≥0.80, but this
+      variation is partially confounded with benchmark design properties (item difficulty
+      distribution, accuracy floor effects) rather than purely task-type. HellaSwag''s
+      high budget (535) despite moderate item_id is driven by its large prompt×item
+      (6.2%) and seed×item (4.5%) which inflate the error term in the G-coefficient
+      denominator.
+
+      '
+    tables:
+    - name: 'Table: Cross-Benchmark Variance Decomposition (4 Models, BF16, Binary)'
+      columns:
+      - Source
+      - MMLU
+      - ARC
+      - HellaSwag
+      - GSM8K
+      - MATH†
+      rows:
+      - - item_id
+        - 42.1%
+        - 37.8%
+        - 29.5%
+        - 31.2%
+        - 25.8%
+      - - model×item
+        - 33.6%
+        - 34.5%
+        - 32.8%
+        - 36.2%
+        - 38.5%
+      - - model
+        - 3.8%
+        - 5.5%
+        - 3.2%
+        - 10.5%
+        - 6.5%
+      - - prompt×item
+        - 3.2%
+        - 3.8%
+        - 6.2%
+        - 4.5%
+        - 5.8%
+      - - seed×item
+        - 2.6%
+        - 2.3%
+        - 4.5%
+        - 2.8%
+        - 4.2%
+      - - temp×item
+        - 1.2%
+        - 1.6%
+        - 2.5%
+        - 1.8%
+        - 2.8%
+      - - residual
+        - 12.3%
+        - 12.4%
+        - 17.8%
+        - 10.3%
+        - 12.4%
+      - - other (main+2-way)
+        - 1.2%
+        - 2.1%
+        - 3.5%
+        - 2.7%
+        - 4.0%
+      note: †MATH uses 3-model preliminary data (Mistral pending). MMLU from exp-001
+        BF16 subset.
+    - name: 'Table: Gradient Summary and Format Confound'
+      columns:
+      - Benchmark
+      - Format
+      - item_id%
+      - model×item%
+      - G_item
+      - D-study G≥0.80
+      rows:
+      - - MMLU
+        - 4-choice MC
+        - 42.1%
+        - 33.6%
+        - '0.820'
+        - 414 items
+      - - ARC-C
+        - 4-choice MC
+        - 37.8%
+        - 34.5%
+        - '0.783'
+        - 452 items
+      - - GSM8K
+        - Free-form
+        - 31.2%
+        - 36.2%
+        - '0.736'
+        - 488 items
+      - - HellaSwag
+        - 4-choice completion
+        - 29.5%
+        - 32.8%
+        - '0.723'
+        - 535 items
+      - - MATH†
+        - Free-form
+        - 25.8%
+        - 38.5%
+        - '0.698'
+        - 582 items
+      note: 'Permutation test for monotonic decrease along hypothesized complexity
+        ordering: p=0.12'
+    - name: 'Table: Single-Model → Cross-Model item_id Drop'
+      columns:
+      - Benchmark
+      - Single (Llama)
+      - Cross (4-model)
+      - Δ (pp)
+      - model×item absorbed
+      rows:
+      - - MMLU
+        - 65.2%
+        - 42.1%
+        - '-23.1'
+        - 33.6%
+      - - ARC
+        - 58.0%
+        - 37.8%
+        - '-20.2'
+        - 34.5%
+      - - HellaSwag
+        - 50.2%
+        - 29.5%
+        - '-20.7'
+        - 32.8%
+      - - GSM8K
+        - 56.5%
+        - 31.2%
+        - '-25.3'
+        - 36.2%
+      - - MATH
+        - 48.0%
+        - 25.8%
+        - '-22.2'
+        - 38.5%
+    - name: 'Table: Per-Model Accuracy by Benchmark (BF16, T=0.0)'
+      columns:
+      - Model
+      - MMLU
+      - ARC
+      - HellaSwag
+      - GSM8K
+      - MATH
+      rows:
+      - - Llama-3.1-8B
+        - '0.711'
+        - '0.790'
+        - '0.812'
+        - '0.615'
+        - '0.218'
+      - - Gemma-2-9B
+        - '0.760'
+        - '0.848'
+        - '0.852'
+        - '0.680'
+        - '0.278'
+      - - Qwen3-8B
+        - '0.726'
+        - '0.818'
+        - '0.838'
+        - '0.780'
+        - '0.352'
+      - - Mistral-7B
+        - '0.670'
+        - '0.682'
+        - '0.758'
+        - '0.485'
+        - —
+      - - Yi-1.5-9B*
+        - '0.652'
+        - '0.735'
+        - —
+        - —
+        - —
+      note: '*Phase 3 partial. OLMo-2-7B completed MMLU only (0.618).'
+    figures_description:
+    - 'Stacked-bar chart (signature figure): 5-benchmark variance decomposition, ordered
+      by item_id descending. item_id in dark blue decreases left→right; model×item
+      in teal increases; prompt×item and seed×item in lighter shades grow for HellaSwag.
+      Format labels (MC / Completion / Free-form) annotated below benchmark names.
+      Clear visual: MC benchmarks have taller blue bars, non-MC have more teal.
+
+      '
+    - 'Scatter plot: item_id% vs hypothesized task-complexity rank, with MC benchmarks
+      as circles and free-form/completion as diamonds. Error bars from bootstrap CIs
+      (exp-004). Dotted line shows hypothesized monotonic decrease; actual data shows
+      the HellaSwag→GSM8K break. Shaded bands show format clusters (MC ~38-42%, non-MC
+      ~26-31%).
+
+      '
+    - 'Heatmap: per-model model×item interaction magnitude across 5 benchmarks, showing
+      Mistral''s interaction increasing dramatically on GSM8K (35.2%) while Qwen''s
+      decreases (11.5%), revealing model-specific benchmark sensitivity.
+
+      '
+    analysis: 'The gradient is the paper''s primary novel finding but requires careful
+      framing in median tier. The 16.3pp spread (MMLU 42.1% → MATH 25.8%) is real
+      but the non-monotonicity at HellaSwag→GSM8K (p=0.12) means the paper cannot
+      claim a ''systematic monotonic gradient.'' Instead: ''benchmark-conditional
+      variance structure with task-type as a partial predictor, confounded with evaluation
+      format.'' The MC/non-MC clustering (11pp gap) is the more defensible finding:
+      evaluation format partially determines variance structure independent of task
+      content. Within-format gradient is too weak to draw conclusions (4.3pp within
+      MC, 5.4pp within free-form, N=2 each). model×item as the second-largest source
+      is confirmed across ALL 5 benchmarks (32.8-38.5%), strengthening the exp-001
+      MMLU finding. D-study validation replicates with Yi (Δ=0.006). Precision separability
+      cannot be tested cross-benchmark (exp-002 is BF16-only) — this limits Claim
+      2 to MMLU evidence from exp-001. MATH 3-model data is preliminary; Mistral completion
+      would likely push MATH model×item above 40% given Mistral''s expected ~12% accuracy.
+      For AAAI: the gradient+format confound story is publishable with softened claims,
+      but the HellaSwag anomaly will draw reviewer scrutiny — prepare Discussion paragraph
+      explaining completion format''s effect on variance structure.
+
+      '
+  - name: Multi-Hardware G-Study
+    plan_id: exp-003
+    description: 'DESCOPED — hardware TBD. Predictions below are conditional on obtaining
+      a second GPU type (e.g., A100-80GB or H100). Design: 4 models × 2 GPU types
+      × 2 precisions (BF16, FP16) × 6 prompts × 6 seeds × 3 temperatures × 4 orderings
+      × 200 MMLU items.
+
+      '
+    expected_results:
+      status: descoped — no second GPU type available
+      total_records_if_run: 1152000
+      hardware_main_binary_pct: 0.3
+      hardware_x_precision_binary_pct: 0.8
+      hardware_x_item_binary_pct: 1.5
+      total_hardware_related_binary_pct: 3.2
+      cross_gpu_gap_bf16_mean_pp: 0.12
+      cross_gpu_gap_fp16_mean_pp: 0.65
+      model_ranking_preserved: true
+      item_id_with_hardware_binary_pct: 41.0
+    result_rationale: 'Hardware effects would be small (total ~3.2% binary) because
+      both GPU types implement identical IEEE 754 operations; differences arise from
+      CUDA kernel scheduling nondeterminism and memory subsystem timing. FP16 would
+      show 5× larger hardware sensitivity than BF16 (0.65pp vs 0.12pp cross-GPU gap)
+      because FP16''s narrower dynamic range makes accumulation order hardware-dependent.
+      This would strengthen Claim 2 by extending "precision separability" to "hardware
+      separability" — but the experiment is descoped because infrastructure claim
+      was already narrowed to precision per D003/D007. Without this experiment, Claim
+      2 remains scoped to "precision on single GPU architecture."
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Descoped. Paper must explicitly scope Claim 2: "numerical precision
+      separability on a single GPU architecture (RTX PRO 6000)." Hardware crossing
+      is natural future work. The BF16≈FP16 finding from exp-001 (Δ=0.23pp) provides
+      indirect evidence that hardware effects would be negligible for BF16, since
+      BF16''s 8-bit exponent provides hardware-independent dynamic range.
+
+      '
+  - name: Comprehensive Combined Analysis
+    plan_id: exp-004
+    description: 'Pure analysis (no GPU). Depends on exp-001 (DONE) + exp-002 (Phase
+      1-2 DONE). 17 sub-analyses covering bootstrap CIs, D-study projections, REML
+      comparison, IRT vs G-theory, logprob scoring, fixed-vs-random sensitivity, binary
+      data validation, power analysis, GPU cost, and practitioner toolkit.
+
+      '
+    expected_results:
+      model_as_facet_note: Already incorporated in exp-002 cross-model decomposition
+      bootstrap_CIs_95pct:
+        MMLU:
+          item_id:
+          - 36.0
+          - 48.8
+          model_x_item:
+          - 28.4
+          - 37.9
+          model:
+          - 1.2
+          - 7.5
+        ARC:
+          item_id:
+          - 31.5
+          - 44.2
+          model_x_item:
+          - 29.0
+          - 39.8
+          model:
+          - 2.0
+          - 10.2
+        HellaSwag:
+          item_id:
+          - 23.8
+          - 35.5
+          model_x_item:
+          - 27.5
+          - 38.2
+          model:
+          - 0.8
+          - 6.8
+        GSM8K:
+          item_id:
+          - 25.0
+          - 37.8
+          model_x_item:
+          - 30.5
+          - 41.8
+          model:
+          - 5.2
+          - 16.5
+        MATH_3model:
+          item_id:
+          - 19.2
+          - 33.0
+          model_x_item:
+          - 31.5
+          - 45.2
+          model:
+          - 2.5
+          - 11.5
+      gradient_endpoint_CI_overlap: MMLU lower bound (36.0) overlaps with GSM8K upper
+        bound (37.8) — gradient direction is robust (p=0.003 permutation) but magnitude
+        is imprecise
+      model_x_item_CI_width_note: Wide CIs (±5pp) on model×item reflect only 4 models;
+        8+ models would halve CI width
+      D_study_items_with_CI:
+        MMLU:
+          G80: 414
+          G80_CI:
+          - 350
+          - 490
+          G90: 510
+          G90_CI:
+          - 430
+          - 610
+          G95: 720
+        ARC:
+          G80: 452
+          G80_CI:
+          - 375
+          - 540
+          G90: 555
+          G90_CI:
+          - 465
+          - 665
+          G95: 780
+        HellaSwag:
+          G80: 535
+          G80_CI:
+          - 440
+          - 645
+          G90: 660
+          G90_CI:
+          - 545
+          - 795
+          G95: 930
+        GSM8K:
+          G80: 488
+          G80_CI:
+          - 400
+          - 590
+          G90: 600
+          G90_CI:
+          - 495
+          - 720
+          G95: 845
+        MATH:
+          G80: 582
+          G80_CI:
+          - 470
+          - 710
+          G90: 720
+          G90_CI:
+          - 585
+          - 875
+          G95: 1015
+      D_study_optimal_allocation:
+        MMLU:
+          items: 414
+          prompts: 3
+          seeds: 3
+          temps: 1
+        GSM8K:
+          items: 488
+          prompts: 4
+          seeds: 4
+          temps: 1
+      REML_vs_Henderson:
+        max_diff_pp: 0.45
+        rank_preserved_all_benchmarks: true
+        note: REML-EM (500 iter, Δ<0.003pp convergence) confirms Henderson I on all
+          benchmarks; balanced design makes Henderson I unbiased
+      logprob_scoring:
+        MMLU_item_id_logprob_pct: 55.2
+        MMLU_model_x_item_logprob_pct: 26.8
+        MMLU_G_logprob: 0.875
+        ARC_item_id_logprob_pct: 52.0
+        HellaSwag_item_id_logprob_pct: 42.5
+        GSM8K_logprob: not_applicable — free-form generation, no meaningful per-token
+          logprob
+        logprob_vs_binary_item_id_increase_pp: 10-13pp — continuous logprob captures
+          fine-grained difficulty
+      ranking_stability:
+        model_rank_flip_pct: 8.5
+        rank_flip_driver: temperature=0.7 conditions only
+        precision_causes_rank_flip: false
+        note: Llama-Mistral pair flips on 12% of T=0.7 conditions; all other pairs
+          stable
+      higher_order_interactions:
+        three_way_total_MMLU_pct: 2.8
+        three_way_total_GSM8K_pct: 4.2
+        note: Three-way interactions small but nonzero; model×prompt×item is largest
+          (1.5% MMLU, 2.2% GSM8K)
+      IRT_vs_Gtheory:
+        IRT_recommended_items_MMLU: 116
+        Gtheory_recommended_items_MMLU: 414
+        ratio_MMLU: 3.57
+        IRT_recommended_items_ARC: 105
+        Gtheory_recommended_items_ARC: 452
+        ratio_ARC: 4.3
+        IRT_recommended_items_HellaSwag: 98
+        Gtheory_recommended_items_HellaSwag: 535
+        ratio_HellaSwag: 5.46
+        IRT_recommended_items_GSM8K: 120
+        Gtheory_recommended_items_GSM8K: 488
+        ratio_GSM8K: 4.07
+        ratio_range: 3.6–5.5×
+        G_at_IRT_count_MMLU: 0.529
+        G_at_IRT_count_ARC: 0.498
+        G_at_IRT_count_HellaSwag: 0.412
+        G_at_IRT_count_GSM8K: 0.485
+        gap_explanation: G-theory accounts for prompt×item (3-6%), seed×item (2-5%),
+          and residual (10-18%) that IRT ignores
+      power_analysis:
+        min_detectable_interaction_pct: 1.2
+        power_at_2pct: 0.95
+        power_at_1pct: 0.72
+        note: 200 items × ~1150 conditions per benchmark provides >95% power for ≥2%
+          interactions
+      fixed_vs_random:
+        temperature_fixed_item_id_change_pp: 1.2
+        ordering_fixed_item_id_change_pp: 0.3
+        combined_max_change_pp: 1.8
+        qualitative_conclusions_preserved: true
+      binary_data_validation:
+        null_simulation_item_id_pct: 0.08
+        observed_item_id_pct: 42.1
+        ratio: 526.3
+        bernoulli_adjustment_preserves_ranking: true
+      bootstrap_vs_jackknife:
+        CI_width_ratio_range:
+        - 0.94
+        - 1.06
+        independence_violation: negligible
+      design_asymmetry:
+        MMLU_3x3_item_id: 42.1
+        MMLU_2x2_matched_item_id: 42.8
+        diff_pp: 0.7
+        conclusion: Reduced 2×2 design on MMLU reproduces full 3×3 within 1pp
+      G_full_benchmark:
+        MMLU_14042_items: 0.992
+        ARC_2590_items: 0.972
+        HellaSwag_10042_items: 0.988
+        GSM8K_1319_items: 0.938
+        MATH_5000_items: 0.955
+        note: Full benchmarks achieve G>0.93; subsampling to 200 items is the reliability
+          bottleneck
+      gpu_cost:
+        current_practice_per_model_usd: 2–5
+        D_study_recommended_per_model_usd: 80–250
+        cost_multiplier: 20–50×
+    result_rationale: 'Bootstrap CIs reveal that model×item is the most uncertain
+      component (±5pp) because 4 model levels yield only 3 df for variance estimation
+      — this is the fundamental statistical limitation of the current design. Gradient
+      endpoints overlap: MMLU lower CI (36.0%) meets GSM8K upper CI (37.8%), making
+      the gradient directionally robust (p=0.003) but imprecise in magnitude — the
+      paper must say "10-20pp spread" not "16.3pp." D-study CIs are correspondingly
+      wide: MMLU G≥0.80 requires 350-490 items depending on bootstrap sample. IRT
+      comparison is one of the strongest findings: the 3.6-5.5× item ratio is consistent
+      across all benchmarks and has a clean causal explanation (prompt×item + seed×item
+      + residual dimensions that IRT ignores). HellaSwag has the worst ratio (5.46×)
+      because its high prompt×item and seed×item inflate the G-theory budget disproportionately.
+      REML confirms Henderson I within 0.45pp across all benchmarks — methodological
+      choice is not a concern. Logprob scoring increases item_id to 52-55% because
+      the continuous signal captures fine-grained difficulty (items at 0.55 vs 0.65
+      logprob difficulty are distinguishable, unlike binary 1/1). Fixed vs random
+      sensitivity shows <2pp change, validating the mixed-model approach. Design asymmetry
+      check (MMLU 3×3 vs 2×2 matched) shows only 0.7pp difference, confirming exp-002''s
+      reduced design is adequate.
+
+      '
+    tables:
+    - name: 'Table: Bootstrap 95% CIs on Key Components (All Benchmarks)'
+      columns:
+      - Component
+      - MMLU
+      - ARC
+      - HellaSwag
+      - GSM8K
+      - MATH†
+      rows:
+      - - item_id
+        - '[36.0, 48.8]'
+        - '[31.5, 44.2]'
+        - '[23.8, 35.5]'
+        - '[25.0, 37.8]'
+        - '[19.2, 33.0]'
+      - - model×item
+        - '[28.4, 37.9]'
+        - '[29.0, 39.8]'
+        - '[27.5, 38.2]'
+        - '[30.5, 41.8]'
+        - '[31.5, 45.2]'
+      - - model
+        - '[1.2, 7.5]'
+        - '[2.0, 10.2]'
+        - '[0.8, 6.8]'
+        - '[5.2, 16.5]'
+        - '[2.5, 11.5]'
+      note: 1000 bootstrap resamples (item × condition). CI width driven by 4-model
+        limitation.
+    - name: 'Table: IRT vs G-Theory Item Requirements'
+      columns:
+      - Benchmark
+      - IRT items
+      - G-theory items (G≥0.80)
+      - Ratio
+      - G at IRT count
+      rows:
+      - - MMLU
+        - '116'
+        - '414'
+        - 3.57×
+        - '0.529'
+      - - ARC
+        - '105'
+        - '452'
+        - 4.30×
+        - '0.498'
+      - - HellaSwag
+        - '98'
+        - '535'
+        - 5.46×
+        - '0.412'
+      - - GSM8K
+        - '120'
+        - '488'
+        - 4.07×
+        - '0.485'
+      note: G-theory at IRT's recommended item count yields G=0.41-0.53 — far below
+        0.80 threshold
+    - name: 'Table: D-Study Benchmark-Specific Budgets (Practical: T fixed)'
+      columns:
+      - Benchmark
+      - G≥0.80
+      - G≥0.80 CI
+      - G≥0.90
+      - G≥0.90 CI
+      - G≥0.95
+      - Prompts
+      - Seeds
+      rows:
+      - - MMLU
+        - '414'
+        - '[350, 490]'
+        - '510'
+        - '[430, 610]'
+        - '720'
+        - '3'
+        - '3'
+      - - ARC
+        - '452'
+        - '[375, 540]'
+        - '555'
+        - '[465, 665]'
+        - '780'
+        - '3'
+        - '3'
+      - - HellaSwag
+        - '535'
+        - '[440, 645]'
+        - '660'
+        - '[545, 795]'
+        - '930'
+        - '4'
+        - '4'
+      - - GSM8K
+        - '488'
+        - '[400, 590]'
+        - '600'
+        - '[495, 720]'
+        - '845'
+        - '4'
+        - '4'
+      - - MATH
+        - '582'
+        - '[470, 710]'
+        - '720'
+        - '[585, 875]'
+        - '1015'
+        - '4'
+        - '4'
+    - name: 'Table: Scoring Metric Comparison (MMLU, 4-Model)'
+      columns:
+      - Source
+      - Binary
+      - Logprob
+      - Text-exact
+      rows:
+      - - item_id
+        - 42.1%
+        - 55.2%
+        - 3.1%
+      - - model×item
+        - 33.6%
+        - 26.8%
+        - 1.5%
+      - - prompt×item
+        - 3.2%
+        - 2.5%
+        - 34.5%
+      - - residual
+        - 12.3%
+        - 5.8%
+        - 38.2%
+      - - G_item
+        - '0.820'
+        - '0.875'
+        - '0.006'
+    - name: 'Table: Methodological Robustness Summary'
+      columns:
+      - Analysis
+      - Result
+      - Conclusion
+      rows:
+      - - REML vs Henderson I
+        - Max diff 0.45pp, all rankings preserved
+        - Henderson I adequate for balanced design
+      - - Fixed vs random (temp/ordering)
+        - Max change 1.8pp
+        - Conclusions robust to facet classification
+      - - Bootstrap vs jackknife CIs
+        - Width ratio 0.94–1.06
+        - Independence violation negligible
+      - - Design asymmetry (3×3 vs 2×2)
+        - Δ = 0.7pp on MMLU
+        - Reduced design adequate
+      - - Null simulation (binary)
+        - Obs/null ratio = 526×
+        - Binary G-theory findings are not artifact
+      - - Full-benchmark G projection
+        - G = 0.94–0.99 at full size
+        - Subsampling is the reliability bottleneck
+    figures_description:
+    - 'Forest plot: Bootstrap 95% CIs on item_id% across 5 benchmarks. Two visual
+      clusters: MC (MMLU, ARC) at 36-48% and non-MC (HellaSwag, GSM8K, MATH) at 19-38%.
+      Endpoint CIs overlap narrowly (MMLU lower vs GSM8K upper), annotated with p=0.003
+      directional test.
+
+      '
+    - 'D-study projection curves: G vs item count for each benchmark with shaded bootstrap
+      CI bands. Horizontal lines at G=0.80, 0.90. Shows benchmark-specific convergence
+      rates — MMLU crosses 0.80 earliest (~414), MATH latest (~582). IRT recommendation
+      (100-120 items) marked with vertical band showing G=0.41-0.53.
+
+      '
+    - 'Stacked bars: single-model (Llama) vs cross-model (4-model) decomposition for
+      each benchmark. Arrow annotations showing item_id drops (20-25pp) absorbed into
+      model×item. The "reveal" figure for Claim 1.
+
+      '
+    - 'Side-by-side: Binary vs logprob vs text-exact scoring metric comparison on
+      MMLU. Three very different stacked bars showing metric-conditional variance
+      structure.
+
+      '
+    - 'Heatmap: model×item interaction strength, 4 models × 5 benchmarks. Mistral
+      shows hot spots on GSM8K (35.2%) and ARC (32.8%); Qwen shows cold spot on GSM8K
+      (11.5%) reflecting superior math capability.
+
+      '
+    analysis: 'exp-004 is the analytical backbone of the paper. Five findings for
+      AAAI framing: (1) IRT vs G-theory ratio of 3.6-5.5× across all benchmarks —
+      this is the "cost of multi-facet reliability" contribution, now confirmed cross-benchmark.
+      (2) Bootstrap CIs show model×item uncertainty is the limiting factor; the paper
+      must honestly report that 4 models provides only rough magnitude estimates (±5pp).
+      (3) D-study budgets are benchmark-conditional with CIs that overlap substantially
+      (MMLU [350,490] vs GSM8K [400,590]) — the practical message is "400-600 items
+      for any benchmark" rather than sharply differentiated budgets. (4) Logprob scoring
+      strengthens the metric-conditional narrative: item_id rises from 42% to 55%
+      under continuous scoring, confirming that binary 0/1 compresses item-level information.
+      (5) All methodological robustness checks pass: REML, fixed-vs-random, bootstrap-vs-jackknife,
+      design asymmetry, null simulation. The paper''s Methodological Defense package
+      is complete.
+
+      '
+  - name: 14B Model Scale Extension
+    plan_id: exp-005
+    description: 'P1 priority. Blocked on exp-003 (descoped) — dependency can be removed
+      if run independently at BF16 only. Qwen3-14B + DeepSeek-R1-Distill-14B on MMLU
+      and GSM8K with reduced design: BF16 × 2 temps × 4 prompts × 4 seeds × 2 orderings
+      × 200 items.
+
+      '
+    expected_results:
+      status: planned — not started, blocked on hardware availability
+      qwen3_14b_mmlu_accuracy: 0.752
+      deepseek_r1_14b_mmlu_accuracy: 0.735
+      qwen3_14b_gsm8k_accuracy: 0.845
+      deepseek_r1_14b_gsm8k_accuracy: 0.812
+      mmlu_item_id_14b_2model: 38.5
+      mmlu_model_x_item_14b: 28.2
+      gsm8k_item_id_14b_2model: 28.5
+      gsm8k_model_x_item_14b: 35.8
+      variance_hierarchy_preserved: true
+      item_id_8b_vs_14b_diff_pp: -3.5
+      deepseek_r1_temp_sensitivity_elevated: true
+      deepseek_r1_temp_x_item_gsm8k: 8.5
+    result_rationale: '14B models would show ~3.5pp lower item_id than 8B because
+      higher capacity reduces floor effects — items impossible for 8B become solvable
+      at 14B, compressing between-item variance. model×item rises because dense (Qwen3-14B)
+      vs reasoning-distilled (DeepSeek-R1-Distill-14B) architectures create larger
+      model-specific item profiles: DeepSeek excels on multi-step reasoning items
+      (distilled from R1''s chain-of-thought traces), Qwen excels on factual knowledge.
+      DeepSeek shows elevated temperature×item on GSM8K (~8.5%) because reasoning-
+      distilled models produce branching chain-of-thought that is more sampling- sensitive.
+      Only 2 models limits statistical power — model×item estimates would have very
+      wide CIs. Position as Discussion-section scale validation, not a primary finding.
+      The practical implication: variance hierarchy is stable at 7-14B, suggesting
+      much larger models (70B+) would be needed to alter the structure.
+
+      '
+    tables:
+    - name: 'Table: 8B vs 14B Variance Structure (MMLU, BF16)'
+      columns:
+      - Source
+      - 8B (4 models)
+      - 14B (2 models)
+      - Δ
+      rows:
+      - - item_id
+        - 42.1%
+        - 38.5%
+        - -3.6pp
+      - - model×item
+        - 33.6%
+        - 28.2%
+        - -5.4pp
+      - - residual
+        - 12.3%
+        - 18.5%
+        - +6.2pp
+      note: 14B model×item appears lower than 8B but is confounded by N=2 models (high
+        residual absorbs signal)
+    figures_description:
+    - 'Paired bars: 8B vs 14B decomposition on MMLU and GSM8K, showing qualitative
+      stability.'
+    analysis: 'Useful for Discussion if compute permits, but not essential for AAAI
+      submission. The key finding (item_id stable, hierarchy preserved) is expected
+      from measurement theory — contribution is confirming the expectation empirically.
+      Low priority given timeline pressure.
+
+      '
+  - name: Fine-Tuning G-Study (RoBERTa)
+    plan_id: exp-006
+    description: 'P1 priority, independent of exp-003. RoBERTa-large on SST-2/MNLI/RTE/COPA.
+      6 seeds × 3 LRs × 4 data shuffles × 3 GPUs × 2 precisions = 432 runs/task ×
+      4 tasks = 1,728 fine-tuning runs. Validates whether variance hierarchy differs
+      between inference and fine-tuning.
+
+      '
+    expected_results:
+      status: planned — not started (200 GPU hours, P1)
+      total_fine_tuning_runs: 1728
+      variance_decomposition_summary:
+        SST2:
+          dominant: learning_rate (32%)
+          second: seed (24%)
+          third: data_shuffle (13%)
+          seed_x_lr: 11%
+          gpu: 0.3%
+          precision: 0.8%
+          residual: 18.9%
+        MNLI:
+          dominant: learning_rate (28%)
+          second: seed (22%)
+          third: data_shuffle (16%)
+          seed_x_lr: 12%
+          gpu: 0.4%
+          precision: 0.9%
+          residual: 20.7%
+        RTE:
+          dominant: data_shuffle (26%)
+          second: learning_rate (20%)
+          third: seed×lr (15%)
+          seed: 14%
+          gpu: 0.5%
+          precision: 1.0%
+          residual: 23.5%
+        COPA:
+          dominant: data_shuffle (30%)
+          second: seed (20%)
+          third: learning_rate (16%)
+          seed_x_lr: 12%
+          gpu: 0.4%
+          precision: 1.2%
+          residual: 20.4%
+      hierarchy_differs_from_inference: true
+      infrastructure_negligible_both_modes: true
+      rte_bimodal_seed_lr: true
+      rte_bimodal_gap_pp: 4.2
+    result_rationale: 'Fine-tuning variance is qualitatively different from inference:
+      hyperparameters (LR, seed, data shuffle) dominate instead of items. On large
+      datasets (SST-2, MNLI), learning rate dominates (28-32%) because the optimization
+      landscape is well-defined and LR determines convergence basin. On small datasets
+      (RTE 277 examples, COPA 400 examples), data shuffle dominates (26-30%) because
+      mini-batch composition has outsized influence with fewer training examples —
+      a single hard example in early batches steers the model into a different loss
+      basin. seed×LR interaction (11-15%) creates bimodal accuracy on RTE: two loss
+      basins separated by ~4pp, consistent with Dodge et al. (2020) and Bui et al.
+      (2025). GPU and precision effects remain negligible (<1.2%) — the infrastructure-is-negligible
+      finding generalizes from inference to fine-tuning. Frame as Discussion-section
+      preliminary finding showing G-theory generality. Explicit caveat: encoder-only
+      fine-tuning (RoBERTa) may not generalize to decoder fine-tuning.
+
+      '
+    tables:
+    - name: 'Table: Inference vs Fine-Tuning Variance Hierarchy'
+      columns:
+      - Rank
+      - Inference (MMLU)
+      - FT-Large (SST-2)
+      - FT-Small (RTE)
+      rows:
+      - - '#1'
+        - item_id (42%)
+        - learning_rate (32%)
+        - data_shuffle (26%)
+      - - '#2'
+        - model×item (34%)
+        - seed (24%)
+        - learning_rate (20%)
+      - - '#3'
+        - residual (12%)
+        - residual (19%)
+        - seed×lr (15%)
+      - - Infra total
+        - precision <0.5%
+        - gpu+prec 1.1%
+        - gpu+prec 1.5%
+    figures_description:
+    - 'Side-by-side stacked bars: inference (MMLU) vs fine-tuning (4 tasks), highlighting
+      the qualitative hierarchy shift. Item_id (blue) dominates inference; learning_rate
+      (orange) and data_shuffle (green) dominate fine-tuning.
+
+      '
+    analysis: 'Downgraded per Dream #3 directive to Discussion-section preliminary
+      observation. The finding that infrastructure is negligible in BOTH inference
+      and fine-tuning strengthens Claim 2, but this is encoder-only and cannot support
+      broad claims. If AAAI timeline is tight, this experiment is the first to cut.
+      Worth doing for ACL ARR October if time permits.
+
+      '
+  - name: LayerCast Precision Mitigation
+    plan_id: exp-007
+    description: 'P2 priority. LayerCast (FP16 storage + FP32 compute) as additional
+      precision condition on MMLU with 4 models.
+
+      '
+    expected_results:
+      status: planned — not started (30 GPU hours, P2)
+      layercast_accuracy: 0.713
+      layercast_vs_bf16_gap_pp: 0.2
+      precision_x_item_layercast_pct: 0.02
+      inference_overhead_pct: 18
+      g_coefficient_unchanged: true
+    result_rationale: 'LayerCast reduces precision×item from BF16''s already-negligible
+      0.04% (post BF16-vs-FP16 sensitivity analysis) to ~0.02% — the improvement is
+      unmeasurable in practice. With BF16≈FP16 (Δ=0.23pp from exp-001) and precision
+      contributing <0.1% of variance, any mitigation strategy provides diminishing
+      returns. The 18% inference overhead makes LayerCast cost-ineffective. Position
+      as 1-paragraph appendix material if run; otherwise not worth the GPU hours given
+      AAAI timeline.
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Lowest priority. Skip for AAAI unless reviewer explicitly asks about
+      precision mitigation strategies. The BF16-vs-FP16 sensitivity analysis from
+      exp-001 already shows precision is a non-issue for practical evaluation (0.0006%
+      variance after excluding FP32).
+
+      '
+  - name: MATH Benchmark
+    plan_id: exp-008
+    description: Merged into exp-002 Phase 2. All results included in exp-002 predictions
+      above.
+    expected_results:
+      status: merged_into_exp002
+      see: exp-002 MATH results (3-model preliminary)
+    result_rationale: No standalone experiment — MATH data collected as part of exp-002
+      Phase 2.
+    tables: []
+    figures_description: []
+    analysis: See exp-002.
+  review_report: '---
+
+    dream_id: dream_20260521T122449
+
+    tier: median
+
+    overall_score: 5/10 — Marginally Below Acceptance Threshold
+
+    timestamp: 2026-05-21T13:48:54.063362+00:00
+
+    ---
+
+
+    # Review Report: Reproducibility Budgets for LLM Evaluation
+
+
+    **Venue:** AAAI (confirmed from project context)
+
+    **Rating Scale:** AAAI 1-10 (10 = top 5% seminal, 7 = good accept, 5 = marginally
+    below threshold, 1 = trivial/wrong)
+
+
+    ---
+
+
+    ## Overall Recommendation
+
+
+    **Overall Score: 5 / 10 — Marginally Below Acceptance Threshold**
+
+
+    The paper addresses a timely and important problem (LLM evaluation reproducibility)
+    with a principled framework (G-theory). The core empirical contributions (Sections
+    4–5, based on 1.3M actual evaluation records) are solid and methodologically sound.
+    However, three significant issues push it below the AAAI acceptance line: (1)
+    three full sections present projected/hypothetical results from experiments that
+    were never executed; (2) the paper''s most ambitious claim — a systematic variance
+    gradient across benchmarks — fails its own monotonicity test (p=0.12); and (3)
+    the 4-model design produces wide confidence intervals (±5pp) on the key model×item
+    finding, limiting the precision of quantitative conclusions.
+
+
+    ---
+
+
+    ## Scores by Dimension
+
+
+    | Dimension | Score | Notes |
+
+    |-----------|-------|-------|
+
+    | Soundness | 6/10 | Core methodology correct; projected experiments and gradient
+    non-monotonicity weaken empirical claims |
+
+    | Significance | 6/10 | Important problem, practical D-study budgets are useful;
+    20–50× cost multiplier may discourage adoption |
+
+    | Novelty | 7/10 | Multi-benchmark G-theory with model as crossed facet is genuinely
+    new; IRT comparison is original |
+
+    | Clarity | 7/10 | Well-written, honest about limitations; tables are clear and
+    informative |
+
+    | **Overall** | **5/10** | Borderline — strong methodology undermined by projected
+    experiments and imprecise gradient claim |
+
+
+    ---
+
+
+    ## Summary
+
+
+    The paper applies Generalizability Theory to LLM evaluation across five benchmarks
+    (MMLU, ARC-Challenge, HellaSwag, GSM8K, MATH), crossing numerical precision with
+    methodology factors (prompt, seed, temperature, ordering) and treating model as
+    a crossed quasi-random facet. Using ~1.3M evaluation records from 4–6 models,
+    it reports three findings: (1) item difficulty (25.8–42.1%) and model×item interaction
+    (32.8–38.5%) jointly dominate variance but are benchmark-conditional; (2) numerical
+    precision is negligible under binary scoring (<0.1%); (3) D-study projections
+    yield benchmark-specific reproducibility budgets of 414–582 items for G≥0.80.
+    Additional analyses include bootstrap CIs, IRT vs. G-theory item requirements
+    (3.6–5.5× ratio), scoring metric comparisons, and six methodological robustness
+    checks. Sections 7–9 present projected (not executed) results for 14B model scale
+    extension, RoBERTa fine-tuning, and LayerCast precision mitigation.
+
+
+    ---
+
+
+    ## Strengths
+
+
+    ### S1: Scale and Rigor of Core Experiments
+
+    The multi-benchmark G-study (1.32M records across 5 benchmarks with balanced factorial
+    design) is among the largest variance decomposition studies in LLM evaluation.
+    The design carefully crosses infrastructure and methodology factors, and the reuse
+    of MMLU data from a prior experiment is transparently documented. The 258 GPU-hours
+    investment reflects genuine commitment to empirical thoroughness.
+
+
+    ### S2: D-Study Out-of-Sample Validation
+
+    The two-stage out-of-sample validation (3-model predicted G=0.816, observed 0.820
+    with Δ=0.004; 4-model predicted G=0.848, observed 0.842 with Δ=0.006) is rare
+    in this literature and provides genuine evidence that G-theory D-study projections
+    are reliable for measurement design. This is perhaps the paper''s strongest individual
+    contribution.
+
+
+    ### S3: IRT vs. G-Theory Comparison
+
+    The 3.6–5.5× item requirement ratio between G-theory and IRT is a clean, cross-benchmark
+    finding with a clear causal explanation: G-theory accounts for prompt×item (3.2–6.2%),
+    seed×item (2.3–4.5%), and residual (10.3–17.8%) dimensions that IRT treats as
+    fixed. This quantifies the "cost of multi-facet reliability" for the first time
+    across multiple benchmarks. The demonstration that G-theory at IRT''s recommended
+    item counts yields only G=0.41–0.53 is striking and practically important.
+
+
+    ### S4: Comprehensive Robustness Package
+
+    Six robustness checks (REML vs. Henderson I, fixed vs. random facet classification,
+    bootstrap vs. jackknife CIs, design asymmetry 3×3 vs. 2×2, null simulation for
+    binary data, full-benchmark G projection) all pass, and Table 9 presents these
+    concisely. The null simulation (obs/null ratio = 526×) is particularly important
+    for validating G-theory''s application to binary 0/1 data.
+
+
+    ### S5: Honest Reporting of Limitations
+
+    The paper transparently reports the gradient''s non-monotonicity (p=0.12), the
+    HellaSwag anomaly, the format confound, and the wide CIs from 4 models. This intellectual
+    honesty is commendable and builds trust in the reported findings.
+
+
+    ### S6: Model×Item Quantification
+
+    Demonstrating that model×item interaction is the second-largest variance source
+    across all five benchmarks (32.8–38.5%), and that single-model designs overestimate
+    item dominance by 20–25pp (Table 3), is a practically important finding. This
+    directly challenges single-model IRT/subsampling approaches.
+
+
+    ---
+
+
+    ## Weaknesses
+
+
+    ### W1 (Major): Projected Experiments Presented as Results
+
+    Sections 7 (14B Models), 8 (Fine-Tuning), and 9 (LayerCast) present results from
+    experiments that were never executed. While the word "project" is used, these
+    sections include specific numerical tables (Tables 10, 11) with variance decomposition
+    percentages, accuracy figures, and architectural comparisons — all hypothetical.
+    This is highly unusual for an empirical paper. These sections occupy ~2.5 pages
+    (19% of content pages) and create a hybrid between empirical study and speculative
+    analysis. At AAAI, reviewers expect reported results to be based on actual data.
+
+
+    **Recommendation:** Remove Sections 7–9 entirely and consolidate key hypotheses
+    into a focused "Future Work" paragraph. The paper would be stronger and more focused
+    as a ~9-page empirical study covering Sections 1–6 and 10–11.
+
+
+    ### W2 (Major): Gradient Non-Monotonicity Undermines Primary Claim
+
+    The paper''s most ambitious contribution is that variance structure varies systematically
+    across benchmarks along a knowledge→reasoning gradient. However:
+
+    - The permutation test rejects strict monotonicity (p=0.12)
+
+    - HellaSwag (29.5%) falls below GSM8K (31.2%) despite lower hypothesized task
+    complexity
+
+    - The format confound (MC 38–42% vs. non-MC 26–31%, 11pp gap) is an alternative
+    explanation
+
+    - Within-format gradients are only 4.3pp (MC) and 5.4pp (free-form) with N=2 per
+    format, insufficient for statistical testing
+
+    - Bootstrap CIs on gradient endpoints overlap (MMLU lower 36.0% vs. GSM8K upper
+    37.8%)
+
+
+    The paper honestly hedges this as "benchmark-conditional variance structure with
+    task-type as a partial predictor," but the hedged version is considerably less
+    novel than a systematic gradient. The format confound is really the more defensible
+    finding, but it''s presented as secondary.
+
+
+    ### W3 (Major): 4-Model Statistical Limitation
+
+    With only 4 primary models, the design has 3 degrees of freedom for model-related
+    variance estimation. This produces:
+
+    - ±5pp CIs on model×item (the second-largest component)
+
+    - Wide CIs on model main effect (e.g., [1.2, 7.5] for MMLU)
+
+    - Imprecise gradient magnitude ("10–20pp spread" rather than 16.3pp)
+
+
+    The paper acknowledges that 8+ models would halve CI width. Given that model×item
+    is the paper''s signature finding, this imprecision is a fundamental limitation.
+    The two extension models (Yi, OLMo) only partially address this, as they cover
+    only a subset of benchmarks.
+
+
+    ### W4 (Moderate): Limited Model Diversity
+
+    All primary models are 7–9B parameter open-weight instruction-tuned models from
+    the same generation. The variance structure could differ substantially for:
+
+    - Proprietary API models (GPT-4, Claude) with different inference stacks
+
+    - Much larger models (70B+) where floor effects are further reduced
+
+    - Base (non-instruction-tuned) models
+
+    - Reasoning models (o1-style) with fundamentally different inference
+
+
+    The quasi-random facet assumption is supported by the D-study validation, but
+    only within this narrow model population.
+
+
+    ### W5 (Moderate): MATH Preliminary Data
+
+    MATH uses only 3 models (Mistral pending), producing wider CIs than other benchmarks.
+    MATH appears at the extreme of the gradient (lowest item_id at 25.8%, highest
+    model×item at 38.5%), so imprecise estimates at this endpoint further weaken the
+    gradient claim. The paper marks this with a dagger (†) but the 3-model MATH data
+    still drives conclusions throughout.
+
+
+    ### W6 (Minor): Single GPU Architecture Scope
+
+    Precision separability (Claim 2) is confirmed only on RTX PRO 6000. While BF16≈FP16
+    (Δ=0.23pp) provides indirect evidence that hardware effects would be negligible,
+    the paper cannot claim "infrastructure separability" — only "precision separability
+    on a single architecture." This is honestly scoped in Section 6 but limits the
+    generality of Claim 2.
+
+
+    ### W7 (Minor): Cost Framing May Discourage Adoption
+
+    The 20–50× cost multiplier (from $2–5 to $80–250 per model) for D-study-recommended
+    designs is substantial. While the paper frames this as quantifying the "gap between
+    current practice and dependable measurement," the practical message may be that
+    reliable evaluation is prohibitively expensive. A more constructive framing would
+    emphasize what partial improvements (e.g., 3 prompts × 3 seeds on existing item
+    sets) buy in terms of reliability gain.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    Comparing the paper against the full experiment design:
+
+
+    | Experiment | Status | Paper Coverage | Assessment |
+
+    |-----------|--------|---------------|------------|
+
+    | exp-002 Multi-Benchmark G-Study | Phase 1-2 done, Phase 3 ~20% | Sections 3–4
+    (actual data) | ✓ Fully covered |
+
+    | exp-003 Multi-Hardware G-Study | Descoped | Section 6 (descoped, projections)
+    | ✓ Honestly reported |
+
+    | exp-004 Combined Analysis | Done (pure analysis) | Section 5 (actual analysis)
+    | ✓ Fully covered |
+
+    | exp-005 14B Scale Extension | Not started | Section 7 (projected) | ⚠ Hypothetical
+    results |
+
+    | exp-006 Fine-Tuning G-Study | Not started | Section 8 (projected) | ⚠ Hypothetical
+    results |
+
+    | exp-007 LayerCast | Not started | Section 9 (projected) | ⚠ Hypothetical results
+    |
+
+    | exp-008 MATH Benchmark | Merged into exp-002 | Included in Section 4 | ✓ Covered
+    |
+
+
+    All planned experiments are represented. The concern is that 3 unexecuted experiments
+    are presented with specific numerical results (Tables 10–11), which could mislead
+    readers despite the "projected" labeling.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. **Gradient vs. format:** If you had 4–5 benchmarks per format category, do
+    you believe the within-format gradient would reach significance? Or is format
+    the primary driver of variance structure differences?
+
+
+    2. **Model×item stability:** The model×item percentage ranges from 32.8% (HellaSwag)
+    to 38.5% (MATH). Given the ±5pp CIs, are these meaningfully different, or is model×item
+    essentially constant at ~35% across benchmarks?
+
+
+    3. **Projected experiments:** What is the justification for including projected
+    results with specific numerical tables rather than qualitative predictions in
+    a Future Work section? How were the projected numbers generated?
+
+
+    4. **200-item subsample:** Why 200 items per benchmark? The D-study shows G=0.94–0.99
+    at full benchmark size. Was the 200-item choice driven by compute constraints,
+    and would results change qualitatively with 500 items?
+
+
+    5. **Practitioner adoption:** The 20–50× cost multiplier is steep. Can you provide
+    intermediate recommendations (e.g., "2 prompts × 2 seeds with your existing item
+    set yields G≈X") to make the framework more adoptable?
+
+
+    ---
+
+
+    ## Minor Issues
+
+
+    - Table 2 orders benchmarks by item_id descending but places HellaSwag after GSM8K,
+    breaking the gradient ordering — consider reordering to match the hypothesized
+    complexity order to make the break visually apparent.
+
+    - The paper switches between "item difficulty" and "item_id" terminology — standardize.
+
+    - Several cited works are listed as "Preprint" (Brittlebench 2026, Mesting 2026,
+    Bui et al. 2025, Kunievsky & Evans 2025). Verify these are publicly accessible
+    and cite stable versions (arXiv IDs).
+
+    - Section 3.2 mentions "3 precisions × 3 temperatures" for the MMLU full design
+    but the paper''s primary analysis uses only BF16 × 2 temperatures — clarify which
+    data subset drives which results.
+
+    - The G-coefficient formula (Eq. 2) uses a simplified notation; consider showing
+    the full denominator with all error variance components for the specific design
+    used.
+
+
+    ---
+
+
+    ## Suggestions for Improvement
+
+
+    1. **Remove projected sections (7–9):** Replace with a concise Future Work section.
+    Focus the paper on its actual empirical strengths.
+
+    2. **Add more models:** Even 2–3 additional models on MMLU alone would substantially
+    tighten model×item CIs and strengthen the primary finding.
+
+    3. **Reframe Claim 1:** Lead with the format confound finding (11pp MC vs. non-MC
+    gap) as the primary result, with the task-type gradient as a secondary observation.
+    The format finding is more statistically robust.
+
+    4. **Add intermediate D-study recommendations:** Show what practitioners gain
+    from partial improvements (e.g., 2 prompts × 2 seeds on 200 items → G≈0.65) to
+    make the framework more approachable.
+
+    5. **Complete MATH data:** Adding Mistral''s MATH results would strengthen the
+    gradient endpoint and remove the preliminary caveat.
+
+
+    ---
+
+
+    ## Confidence
+
+
+    **Confidence: 4/5 — Confident but not certain.** I have substantial familiarity
+    with G-theory, variance decomposition methods, and LLM evaluation benchmarks.
+    I carefully read the full paper and assessed it against the experimental design.
+    My main uncertainty is whether the AAAI program committee would weight the projected
+    experiments as heavily as I do — some reviewers might view them as informative
+    extensions rather than unsupported speculation.
+
+
+    ---
+
+
+    ## Summary Assessment
+
+
+    A methodologically sound paper that makes genuine contributions (model×item quantification,
+    D-study validation, IRT comparison) but is weakened by projected/unexecuted experiments
+    presented as results, a primary gradient claim that fails its own statistical
+    test, and wide confidence intervals from a 4-model design. The paper would benefit
+    substantially from removing hypothetical sections, adding more models, and reframing
+    around the format confound as the primary finding. In its current form, it falls
+    just below the AAAI acceptance threshold but represents solid work that could
+    reach acceptance with targeted revisions.'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260521T122449/worst/paper.pdf
+  imagined_experiments:
+  - name: Multi-benchmark replication (Phase 1 only)
+    plan_id: exp-002
+    description: 'Phase 1 completes: 4 original models (Llama-3.1-8B, Gemma-2-9B,
+      Mistral-7B, Qwen3-8B) × 4 benchmarks (MMLU, ARC-Challenge, HellaSwag, GSM8K)
+      × BF16 × 2 temps (0.0, 0.7) × 6 prompts × 6 seeds × 4 orderings × 200 items
+      each. Phase 2 (MATH) blocked — dataset preprocessing issues with free-form answer
+      extraction pipeline; answer normalization for symbolic math expressions requires
+      engineering work beyond available bandwidth. Phase 3 (Yi, OLMo) blocked — westd-15695
+      unavailable due to cluster maintenance or allocation conflict. Phase 4 (InternLM,
+      DeepSeek) blocked — depends on Phase 3 infrastructure.
+
+      '
+    expected_results:
+      n_benchmarks_completed: 4
+      n_models_completed: 4
+      total_records_per_benchmark: 115200
+      total_records_all: 460800
+      item_id_pct_MMLU: 41.8
+      item_id_pct_ARC: 37.2
+      item_id_pct_HellaSwag: 44.1
+      item_id_pct_GSM8K: 35.4
+      gradient_spread_item_id_pp: 8.7
+      gradient_ordering: HellaSwag > MMLU > ARC > GSM8K
+      gradient_monotonicity_by_task_complexity: false
+      gradient_permutation_test_p: 0.41
+      model_x_item_pct_MMLU: 33.8
+      model_x_item_pct_ARC: 18.3
+      model_x_item_pct_HellaSwag: 15.7
+      model_x_item_pct_GSM8K: 38.9
+      model_x_item_range_pp: 23.2
+      residual_pct_MMLU: 19.5
+      residual_pct_ARC: 28.4
+      residual_pct_HellaSwag: 25.3
+      residual_pct_GSM8K: 43.2
+      G_item_MMLU: 0.821
+      G_item_ARC: 0.714
+      G_item_HellaSwag: 0.783
+      G_item_GSM8K: 0.518
+      G_item_ordering: MMLU > HellaSwag > ARC > GSM8K
+      D_study_items_G80_MMLU: 510
+      D_study_items_G80_ARC: 340
+      D_study_items_G80_HellaSwag: 280
+      D_study_items_G80_GSM8K: 1150
+      D_study_range: 280-1150 (4.1× spread)
+      Henderson_I_convergence_issues: GSM8K seed×item negative REML estimate (-0.3%),
+        clamped to zero; HellaSwag precision×item near-zero (0.02%), REML estimate
+        oscillates
+      within_MC_gradient_MMLU_vs_ARC: 42% vs 37% = 5pp, but ARC < MMLU contradicts
+        complexity prediction (ARC is harder reasoning)
+      within_format_gradient_preserved: false
+      accuracy_MMLU: 0.681
+      accuracy_ARC: 0.592
+      accuracy_HellaSwag: 0.743
+      accuracy_GSM8K: 0.483
+      prompt_x_item_pct_MMLU: 4.2
+      prompt_x_item_pct_ARC: 6.8
+      prompt_x_item_pct_HellaSwag: 3.1
+      prompt_x_item_pct_GSM8K: 2.4
+    result_rationale: 'Phase 1 completion with Phase 2-4 blockage: MATH requires robust
+      free-form answer extraction (symbolic expressions, equivalent forms like "1/2"
+      vs "0.5" vs "\\frac{1}{2}"), which stalls on engineering work. Additional models
+      blocked by hardware unavailability.
+
+      No systematic gradient: The variance structure is driven by benchmark-specific
+      properties that don''t align with any single task taxonomy axis. HellaSwag shows
+      highest item_id% (44.1%) despite being "commonsense completion" — not the most
+      complex task — because its items have extremely stable difficulty rankings across
+      models (4 candidates with clear plausibility ordering). GSM8K shows lowest item_id%
+      (35.4%) and highest residual (43.2%) because free-form math generation introduces
+      stochastic variation from decoding that inflates the residual; the same model
+      solving the same problem with the same prompt/seed can produce different solution
+      paths and occasionally different final answers at T>0.
+
+      Model×item interaction is inconsistent: GSM8K has the highest model×item (38.9%)
+      because models have strongly differentiated math capabilities — Qwen3-8B solves
+      multi-step problems that Mistral-7B cannot, and vice versa for word problems
+      with unusual phrasing. HellaSwag has lowest model×item (15.7%) because commonsense
+      completion difficulty is more universal across model families. This pattern
+      (math > commonsense for model×item) is interpretable post-hoc but was not predictable
+      from task taxonomy alone.
+
+      ARC convergence: Henderson I produces near-zero estimates for several 3-way
+      interactions because the reduced design (2 temps × bf16-only) has limited degrees
+      of freedom for higher-order terms. REML on GSM8K produces a negative variance
+      component for seed×item, which is clamped to zero — seed choice has negligible
+      systematic effect on item difficulty in free-form generation because the dominant
+      stochasticity is in the generation process itself, not in CUDA-level seed effects.
+
+      D-study budgets span 4.1× (280-1150 items for G≥0.80), but this range has no
+      interpretable pattern: HellaSwag needs fewest items (high item_id%, low residual
+      → efficient measurement) while GSM8K needs most (low item_id%, high residual
+      → measurement is noisy). This is not a "gradient" — it''s a benchmark-specific
+      fingerprint determined by format, generation stochasticity, and model-task interaction
+      structure.
+
+      Within-format gradient fails: Within MC format, MMLU (42%) > ARC (37%), but
+      ARC contains harder science reasoning items — if a task-complexity gradient
+      existed, ARC should be lower OR higher than MMLU depending on the hypothesized
+      direction. The 5pp difference is more likely explained by item pool characteristics
+      (ARC has fewer items with extreme difficulty, compressing item_id%) than by
+      task complexity. With only two MC benchmarks and no within- format gradient,
+      the format confound cannot be resolved or ruled out.
+
+      '
+    tables:
+    - name: 'Table: Cross-Benchmark Variance Decomposition (Phase 1, 4 models × 4
+        benchmarks)'
+      description: 'Rows: variance components (item_id, model, model×item, prompt×item,
+        seed×item, temperature, temperature×item, residual). Columns: MMLU, ARC-Challenge,
+        HellaSwag, GSM8K. Shows no systematic gradient — component rankings differ
+        across benchmarks. GSM8K residual dominates (43.2%); HellaSwag item_id highest
+        (44.1%); model×item ranges from 15.7% (HellaSwag) to 38.9% (GSM8K) without
+        pattern.
+
+        '
+    - name: 'Table: D-Study Budget Comparison Across Benchmarks'
+      description: 'Items required for G≥0.70/0.80/0.90 per benchmark. Shows 4.1×
+        spread in G≥0.80 requirements (280-1150 items). No interpretable pattern linking
+        budget to task type.
+
+        '
+    - name: 'Table: Within-Format Gradient Test'
+      description: 'MC format: MMLU (42%) vs ARC (37%), Δ=5pp. Free-form: GSM8K only
+        (35.4%), no comparator (MATH blocked). Completion: HellaSwag only (44.1%).
+        Conclusion: within-format gradient NOT preserved; insufficient data to disentangle
+        format from task-type effects.
+
+        '
+    figures_description:
+    - 'Stacked-bar variance decomposition across 4 benchmarks — the "anti-gradient"
+      figure. No systematic left-to-right ordering; bars show qualitatively different
+      component structures. GSM8K bar dominated by residual (gray, 43%); HellaSwag
+      dominated by item_id (blue, 44%); model×item (orange) varies 3× across benchmarks.
+      Horizontal dashed line at item_id=42% (MMLU reference) shows other benchmarks
+      scatter above and below without trend.
+
+      '
+    - 'D-study projection curves per benchmark (G vs item count, 4 panels or 4 lines
+      on one panel). Curves have wildly different slopes and asymptotes. GSM8K curve
+      is nearly flat — even 1000 items only reaches G≈0.75 because residual dominates.
+      HellaSwag curve rises steeply, crossing G=0.80 at ~280 items.
+
+      '
+    analysis: 'The cross-benchmark gradient — the planned headline finding — does
+      not materialize. Item_id% varies only 8.7pp across benchmarks (35-44%), with
+      no monotonic ordering by task complexity, format, or any other interpretable
+      dimension. The permutation test for monotonicity yields p=0.41 (null). Model×item
+      interaction varies 23pp across benchmarks but in an unpredictable pattern (highest
+      on GSM8K, lowest on HellaSwag).
+
+      However, the "benchmark-specific variance fingerprints" finding is itself publishable.
+      The fact that variance structure is irreducibly benchmark-specific — not predictable
+      from task taxonomy — means (a) benchmark-specific G-studies are mandatory, not
+      optional, (b) reproducibility budgets cannot be transferred across benchmarks,
+      and (c) conclusions about "which factors matter" from single-benchmark studies
+      do not generalize. This is arguably more surprising and practically important
+      than a clean gradient.
+
+      GSM8K''s pathological residual (43.2%) is a standalone finding: free-form generation
+      introduces irreducible stochasticity that makes G-theory decomposition qualitatively
+      different from MC benchmarks. The seed×item negative REML estimate and convergence
+      oscillation on HellaSwag precision×item suggest that Henderson I (designed for
+      balanced continuous data) struggles with certain benchmark-specific variance
+      structures, strengthening the case for benchmark-specific methodology.
+
+      Phase 2-4 blockage limits the analysis: no MATH benchmark prevents within-free-form
+      gradient testing, and only 4 models prevents the planned expansion to 6-8 models
+      that would strengthen the model-as-facet exchangeability argument. The paper
+      must explicitly scope to "4 models × 4 benchmarks, exploratory Phase 1 analysis."
+
+      '
+  - name: Multi-hardware G-study
+    plan_id: exp-003
+    description: 'Completely blocked. No second GPU type becomes available during
+      the experimental window. Hardware claim remains scoped to "numerical precision
+      on RTX PRO 6000 (Blackwell)."
+
+      '
+    expected_results:
+      status: blocked
+      n_gpu_types: 1
+      data_collected: 0
+      hardware_crossing_completed: false
+      reason: No alternative GPU allocation (A100/H100/AMD) secured
+    result_rationale: 'The experiment requires a fundamentally different GPU architecture
+      to test hardware×methodology interaction. In the worst tier, the compute allocation
+      is fully consumed by exp-002 Phase 1 on the single available machine (westd-32570).
+      The planned second machine (westd-15695) is either unavailable, has the same
+      GPU type, or has allocation conflicts. Without a second GPU type, the entire
+      experiment is infeasible.
+
+      Impact on paper: Claim 2 must be scoped to "precision separability on a single
+      GPU architecture" rather than "infrastructure separability." This is already
+      the planned defensive scoping per D003/D007. The paper acknowledges hardware
+      crossing as future work and cites Yuan et al. (2025) for evidence that hardware
+      effects exist but are unquantified in a G-theory framework. This weakens but
+      does not kill Claim 2 — precision separability under binary scoring is still
+      a valid confirmatory finding.
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'No analysis possible. Experiment contributes zero data. Paper must
+      explicitly state "hardware limited to a single GPU architecture (NVIDIA RTX
+      PRO 6000, Blackwell)" in Methods and Limitations. The separability claim (Claim
+      2) survives but is narrowly scoped — "precision × methodology separability"
+      rather than "infrastructure × methodology separability." Reviewer concern #1
+      ("Only N GPU types") is unaddressed and must be handled as a stated limitation
+      with future work framing.
+
+      '
+  - name: Comprehensive analysis
+    plan_id: exp-004
+    description: 'Analysis proceeds on available data: exp-001 MMLU (345,600 records,
+      4 models, full design) + exp-002 Phase 1 (460,800 records, 4 models × 4 benchmarks,
+      reduced design). Most sub-analyses (a)-(q) are feasible on MMLU. Cross-benchmark
+      sub-analyses are limited by exp-002''s reduced scope and pathological variance
+      structures.
+
+      '
+    expected_results:
+      model_as_facet_MMLU_item_id_pct: 42.1
+      model_as_facet_MMLU_model_x_item_pct: 33.6
+      model_as_facet_other_benchmarks: attempted but unreliable on GSM8K (residual
+        >40% absorbs signal)
+      bootstrap_n_resamples: 1000
+      bootstrap_CI_item_id_MMLU:
+      - 36.0
+      - 48.8
+      bootstrap_CI_model_x_item_MMLU:
+      - 28.4
+      - 37.9
+      bootstrap_CI_width_item_id_MMLU_pp: 12.8
+      bootstrap_CI_cross_benchmark: wide — ARC item_id CI [28, 47], GSM8K item_id
+        CI [24, 48]
+      bootstrap_CI_GSM8K_residual:
+      - 35.1
+      - 52.8
+      D_study_MMLU_items_G80_CI:
+      - 430
+      - 610
+      D_study_MMLU_items_G90_CI:
+      - 1050
+      - 1680
+      D_study_cross_benchmark_CIs: 'too wide for practical guidance on GSM8K (G80:
+        [600, 2100])'
+      REML_Henderson_agreement_MMLU: all components within <0.5pp
+      REML_Henderson_agreement_ARC: within <1.2pp for top-3 components
+      REML_Henderson_agreement_GSM8K: diverge — Henderson I seed×item=1.8%, REML=-0.3%
+        (clamped to 0)
+      REML_Henderson_agreement_HellaSwag: within <0.8pp except precision×item (Henderson
+        0.02%, REML oscillates 0.00-0.15%)
+      logprob_analysis_feasible: MMLU and ARC only (MC format with logprob access)
+      logprob_item_id_pct_MMLU: 55.3
+      logprob_model_x_item_pct_MMLU: 28.1
+      logprob_residual_pct_MMLU: 11.2
+      logprob_HellaSwag: feasible in principle (completion scoring) but not implemented
+      logprob_GSM8K: not feasible — free-form generation has no natural logprob score
+      model_ranking_stable_across_precision_MMLU: true
+      model_ranking_stable_across_precision_GSM8K: false
+      3way_interactions_total_MMLU_pct: 4.2
+      3way_interactions_total_ARC_pct: 6.8
+      3way_interactions_total_GSM8K_pct: 2.1
+      residual_after_3way_MMLU_pct: 15.3
+      IRT_items_G80_MMLU: 116
+      Gtheory_items_G80_MMLU: 510
+      IRT_to_Gtheory_ratio: 4.4
+      IRT_comparison_feasible_on: MMLU only — other benchmarks lack sufficient data
+        or have pathological structures
+      power_to_detect_5pct_interaction_MMLU: 0.99
+      power_to_detect_5pct_interaction_ARC: 0.94
+      power_to_detect_5pct_interaction_GSM8K: 0.78
+      fixed_vs_random_delta_MMLU_pp: 2.8
+      fixed_vs_random_delta_GSM8K_pp: 8.4
+      bernoulli_p1p_correlation_with_item_var_MMLU: 0.31
+      bernoulli_p1p_correlation_with_item_var_GSM8K: 0.68
+      bootstrap_jackknife_CI_ratio_MMLU: 0.98
+      bootstrap_jackknife_CI_ratio_ARC: 1.03
+      bootstrap_jackknife_CI_ratio_GSM8K: 1.14
+      MMLU_full_vs_matched_2x2_delta_item_id_pp: 2.9
+      MMLU_full_vs_matched_2x2_delta_model_x_item_pp: 1.4
+      G_at_14K_items_MMLU_projection: 0.987
+      G_at_full_ARC_2590_items_projection: 0.953
+      G_at_full_GSM8K_1319_items_projection: 0.812
+      logprob_cross_benchmark: only MMLU and ARC feasible, insufficient for cross-benchmark
+        claims
+      compute_cost_per_G80_MMLU: ~$45 (510 items × 4 models × 6 prompts × 6 seeds)
+      compute_cost_per_G80_GSM8K: ~$210 (1150 items × 4 models × 6 prompts × 6 seeds,
+        longer generation)
+    result_rationale: 'MMLU analyses are strong and largely replicate exp-001 findings
+      with bootstrap CIs and additional robustness checks. The IRT vs G-theory comparison
+      (4.4× item ratio) is clean on MMLU and becomes a primary contribution.
+
+      Cross-benchmark analyses are degraded by three compounding factors: (1) Only
+      4 benchmarks (no MATH) with only 4 models — limited statistical power for cross-benchmark
+      generalizations and wide bootstrap CIs. (2) GSM8K''s pathological variance structure
+      (residual >40%, negative REML estimates) makes several analyses unreliable or
+      uninterpretable on that benchmark. The high residual means G-theory components
+      are estimated with low precision, widening CIs and making D-study projections
+      impractical (CI for G80 items: [600, 2100]). (3) Fixed-vs-random sensitivity
+      analysis fails on GSM8K (Δ>5pp), meaning the methodological choice of treating
+      temperature as random vs fixed materially affects results — another benchmark-specific
+      pathology.
+
+      REML diverges from Henderson I on GSM8K because the balanced design assumption
+      is stressed by near-zero or negative components. Henderson I is unbiased for
+      balanced designs but produces interpretable results even when components are
+      near-zero; REML tries to find ML estimates and can produce negative values that
+      must be clamped. This divergence is itself a finding: Henderson I is reliable
+      for well-behaved MC benchmarks but may be problematic for free-form generation
+      benchmarks.
+
+      The logprob analysis cannot extend beyond MC formats (MMLU, ARC) because free-form
+      and completion tasks lack a natural single-token probability score. This means
+      the "Evaluation Metrics" claim in the title is only partially supported, and
+      the title may need adjustment per MD9.
+
+      Bootstrap vs jackknife agreement is good on MMLU/ARC (ratio 0.98-1.03) but marginal
+      on GSM8K (ratio 1.14), suggesting bootstrap CIs on GSM8K are slightly anti-conservative
+      due to non-independence in the stochastic generation process.
+
+      '
+    tables:
+    - name: 'Table: Bootstrap 95% CIs for All Variance Components (MMLU, 4 models)'
+      description: '7 variance components × point estimate + 95% CI. item_id: 42.1%
+        [36.0, 48.8], model×item: 33.6% [28.4, 37.9], residual: 19.5% [16.2, 23.1].
+        All CIs exclude zero for top-4 components. prompt×item and seed×item CIs overlap.
+
+        '
+    - name: 'Table: REML vs Henderson I Comparison Across Benchmarks'
+      description: '4 benchmarks × 7 components × Henderson I estimate + REML estimate
+        + Δ. MMLU: all Δ < 0.5pp. ARC: Δ < 1.2pp. HellaSwag: precision×item oscillates.
+        GSM8K: seed×item diverges (1.8% vs clamped 0%). Conclusion: Henderson I reliable
+        for MC benchmarks; caution needed for free-form generation.
+
+        '
+    - name: 'Table: IRT vs G-Theory Item Requirements (MMLU)'
+      description: 'Reliability threshold × IRT items × G-theory items × ratio. G≥0.70:
+        55 vs 210 (3.8×). G≥0.80: 116 vs 510 (4.4×). G≥0.90: 280 vs 1350 (4.8×). Decomposition
+        of G-theory excess: prompt×item accounts for 22%, seed×item 23%, residual
+        55% of additional items.
+
+        '
+    - name: 'Table: Fixed vs Random Sensitivity Analysis'
+      description: '4 benchmarks × top-4 components × random estimate + fixed estimate
+        + Δ. MMLU Δ < 3pp (robust). GSM8K Δ = 8.4pp for item_id (NOT robust — temperature
+        reclassification redistributes 8pp from temperature to residual).
+
+        '
+    - name: 'Table: D-Study Budget Comparison with Bootstrap CIs'
+      description: '4 benchmarks × items for G≥0.80 [95% CI]. MMLU: 510 [430, 610].
+        ARC: 340 [260, 470]. HellaSwag: 280 [210, 380]. GSM8K: 1150 [600, 2100]. The
+        GSM8K CI spans 3.5×, making the point estimate practically meaningless.
+
+        '
+    figures_description:
+    - 'Forest plot of variance component CIs across 4 benchmarks. Each benchmark is
+      a panel; within each panel, components are rows with point estimates (dots)
+      and 95% CI whiskers. Visually shows that CI widths vary dramatically across
+      benchmarks (tight on MMLU, wide on GSM8K) and component rankings are inconsistent.
+
+      '
+    - 'IRT vs G-theory comparison bar chart (MMLU only). Two bars per reliability
+      threshold (0.70, 0.80, 0.90). G-theory bar decomposed into sub-segments showing
+      which facets (prompt×item, seed×item, residual) account for the extra items
+      beyond IRT. Clear visual showing the "multi-facet reliability cost."
+
+      '
+    - 'D-study projection curves with 95% CI ribbons for 4 benchmarks (overlaid on
+      single panel). MMLU and HellaSwag curves rise steeply with narrow ribbons. GSM8K
+      curve is nearly flat with a wide ribbon that barely touches G=0.80 at n=1150.
+
+      '
+    analysis: 'exp-004 is the analytical core of the paper under worst tier. The MMLU-specific
+      analyses are strong: bootstrap CIs confirm top-3 component ordering, IRT comparison
+      produces the clean 4.4× ratio, REML validates Henderson I, and the binary data
+      robustness checks all pass. These form the backbone of the paper.
+
+      Cross-benchmark analyses reveal the "irreducibly benchmark-specific" finding
+      but cannot support strong quantitative claims due to wide CIs and benchmark-specific
+      pathologies. GSM8K is particularly problematic: high residual → wide CIs → unreliable
+      D-study projections → fixed-vs-random sensitivity failure. The paper should
+      present GSM8K results as "illustrative of pathological variance structure in
+      free-form generation" rather than as reliable G-theory estimates.
+
+      The IRT vs G-theory comparison is limited to MMLU (the only benchmark with full
+      design + clean variance structure + IRT comparability). This is sufficient for
+      a strong numbered contribution but prevents claiming "cross-benchmark IRT comparison."
+
+      Key paper structure implication: MMLU analysis (exp-001 + exp-004 MMLU-specific)
+      occupies 60-70% of the results section. Cross-benchmark analysis (exp-002 +
+      exp-004 cross-benchmark) occupies 30-40% as an "exploratory extension" with
+      explicit caveats about reduced design, limited benchmarks, and pathological
+      structures.
+
+      '
+  - name: 14B model extension
+    plan_id: exp-005
+    description: 'Blocked. Depends on exp-003 (hardware) which is blocked, and requires
+      ≥48GB VRAM GPUs not currently allocated. No 14B model data is collected.
+
+      '
+    expected_results:
+      status: blocked
+      n_14B_models_tested: 0
+      scale_analysis_completed: false
+      reason: Depends on exp-003 (blocked); requires high-VRAM GPU not available
+    result_rationale: 'exp-005 has two blocking dependencies: (1) it was designed
+      to run on datacenter GPUs at BF16/FP16 after exp-003 establishes the multi-hardware
+      baseline, and (2) 14B models require ≥48GB VRAM for comfortable inference with
+      vLLM, which is available on the existing RTX PRO 6000 (96GB) but the GPU budget
+      is fully consumed by exp-002 Phase 1. Even if the hardware dependency were relaxed,
+      the compute hours (100h) compete directly with exp-002''s needs. Under worst-tier
+      resource constraints, P1 experiments are systematically deprioritized in favor
+      of P0 experiments.
+
+      Impact on paper: The "model scale" dimension is entirely absent. The paper must
+      state "all models are 7-9B parameter scale" as a limitation. This is defensible
+      — the paper studies variance structure, not scaling laws — but reviewers may
+      flag it. The planned comparison between dense (Qwen3-14B) and reasoning-distilled
+      (DeepSeek-R1-Distill-14B) architectures is lost. This comparison would have
+      been interesting for the model×item interaction analysis (does distillation
+      change the interaction pattern?) but is not essential for the core claims.
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'No analysis possible. Limitation statement: "Our analysis is limited
+      to 7-9B parameter open-weight models. Whether variance structure changes with
+      model scale is an important open question — larger models may show reduced model×item
+      interaction if they converge toward similar capability profiles, or increased
+      interaction if scale enables more specialized item-level behaviors."
+
+      '
+  - name: Fine-tuning G-study
+    plan_id: exp-006
+    description: 'Blocked by compute reallocation. The 1,728 fine-tuning runs (432
+      per task × 4 tasks) require ~200 GPU hours on westd-32570, which is fully allocated
+      to exp-002 Phase 1 and exp-001 post-processing. Even partial completion (1 task)
+      would consume 50+ hours.
+
+      '
+    expected_results:
+      status: blocked
+      n_finetuning_runs_completed: 0
+      tasks_completed: 0
+      reason: GPU budget fully consumed by P0 experiments (exp-002 Phase 1)
+    result_rationale: 'exp-006 is independent (no experimental dependencies) but competes
+      for the same GPU resource. Under worst-tier constraints, exp-002 Phase 1 alone
+      consumes 200-250 GPU hours (4 models × 4 benchmarks × ~15h per model-benchmark
+      combination with the full prompt/seed/ordering crossing). With exp-001 post-processing
+      reruns and validation checks, the total GPU budget is exhausted before exp-006
+      can start.
+
+      Even if exp-006 were partially completed (e.g., SST-2 only), the results would
+      be insufficient for even a Discussion-section preliminary observation — a single
+      fine-tuning task cannot support variance structure comparison between inference
+      and fine-tuning paradigms.
+
+      Impact on paper: Fine-tuning analysis is mentioned as future work in Discussion.
+      The paper explicitly qualifies: "Our analysis addresses inference-time evaluation
+      only. Fine-tuning variance structure — where learning rate, data order, and
+      seed interact with task-specific loss landscapes — is a qualitatively different
+      problem that we leave for future work." Per D006 Dream #3 directive, fine-tuning
+      was already downgraded to Discussion-section preliminary observation, so blockage
+      has minimal impact on paper structure.
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'No analysis possible. The fine-tuning extension is entirely absent
+      from the paper. Per existing framing directives, this was already downgraded
+      to Discussion section. Cite Bui et al. (2025) for evidence that fine-tuning
+      variance structure differs substantially (RTES variance=18.22 for RoBERTa on
+      COPA) and position as motivated future work.
+
+      '
+  - name: LayerCast precision study
+    plan_id: exp-007
+    description: 'Deprioritized (P2). Not started due to GPU budget exhaustion from
+      P0 experiments. LayerCast (FP16 storage + FP32 compute) as a variance mitigation
+      strategy is not tested.
+
+      '
+    expected_results:
+      status: blocked
+      layercast_tested: false
+      variance_reduction_quantified: false
+      reason: P2 priority; GPU budget exhausted by P0 experiments
+    result_rationale: 'exp-007 is the lowest-priority experiment (P2) and depends
+      on exp-001 being complete (it is). However, the 30 GPU hours required compete
+      with exp-002 Phase 1 needs. Under worst-tier constraints, all discretionary
+      GPU budget is consumed by the P0 pipeline. Additionally, the scientific value
+      of LayerCast testing is reduced once BF16-vs-FP16 sensitivity analysis (already
+      completed in exp-001) shows BF16≈FP16 (Δ=0.23pp) — if standard precision choices
+      don''t matter, testing a mixed-precision strategy is low priority.
+
+      Impact on paper: No variance mitigation strategy is tested. The paper''s D-study
+      budgets address "how many items/prompts/seeds" but not "how to reduce precision
+      variance." This is consistent with the finding that precision contributes <0.1%
+      variance under binary scoring — there is nothing to mitigate. The paper can
+      note: "LayerCast and other mixed-precision strategies may be relevant for text-exact-match
+      scoring where precision×temperature interaction is detectable (1.3%)."
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'No analysis possible. Minimal impact on paper — precision is already
+      shown to be negligible under binary scoring. LayerCast is mentioned as a potential
+      mitigation for text-exact-match scoring in the Discussion section.
+
+      '
+  - name: MATH benchmark (merged into exp-002 Phase 2)
+    plan_id: exp-008
+    description: 'Blocked. MATH was merged into exp-002 as the 5th benchmark in Phase
+      2, which is blocked by answer extraction pipeline issues. Free-form symbolic
+      math answer normalization (handling equivalent forms: "1/2", "0.5", "\\frac{1}{2}",
+      "0.500") requires engineering work that stalls.
+
+      '
+    expected_results:
+      status: blocked
+      math_items_collected: 0
+      answer_extraction_pipeline_status: incomplete — symbolic normalization handles
+        ~70% of MATH answers correctly, remaining 30% require regex/sympy extensions
+      reason: Merged into exp-002 Phase 2; blocked by answer normalization engineering
+    result_rationale: 'MATH benchmark presents unique data engineering challenges
+      compared to MC benchmarks (MMLU, ARC, HellaSwag) and even compared to GSM8K
+      (which has simpler numerical answers). MATH answers include symbolic expressions,
+      fractions, roots, and multiple equivalent forms that require robust normalization.
+      The extraction pipeline handles simple numerical answers (GSM8K-style) but fails
+      on ~30% of MATH items where the answer is symbolic. Building a robust sympy-based
+      normalization pipeline is estimated at 20-30 engineering hours — work that is
+      deprioritized under worst-tier constraints where the focus is on completing
+      Phase 1 analysis and writing.
+
+      Impact on paper: The absence of MATH critically undermines the within-format
+      gradient test. With only GSM8K as a free-form benchmark, the within-format gradient
+      analysis has no free-form comparator. The paper cannot distinguish whether GSM8K''s
+      low item_id% (35.4%) is due to free-form format, mathematical reasoning task
+      type, or stochastic generation. This ambiguity is a significant limitation for
+      the "benchmark-specific fingerprints" framing — without MATH, the paper cannot
+      determine whether the fingerprint is driven by format or task content within
+      the free-form category.
+
+      The paper addresses this by: (a) acknowledging the limitation explicitly, (b)
+      noting that MATH''s absence prevents within-free-form gradient testing, and
+      (c) framing MATH as the highest-priority extension for future work. The "benchmark-specific
+      fingerprints" claim is still supported by the MC benchmarks (MMLU vs ARC have
+      different structures despite same format) and the cross-format comparison (MC
+      vs completion vs free-form), but the within-format argument is weaker.
+
+      '
+    tables: []
+    figures_description: []
+    analysis: No analysis possible. The paper's cross-benchmark analysis is limited
+      to 4 benchmarks (MMLU, ARC, HellaSwag, GSM8K) spanning 3 formats (MC, completion,
+      free-form) but with only 1-2 benchmarks per format. Within-format gradient testing
+      is limited to MC (MMLU vs ARC = 2 data points). The "benchmark-specific fingerprints"
+      finding survives but is less compelling without a within-format comparator for
+      free-form tasks.
+  review_report: '---
+
+    dream_id: dream_20260521T122449
+
+    tier: worst
+
+    overall_score: Findings (ACL ARR Overall = 3)
+
+    timestamp: 2026-05-21T13:53:09.726576+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper**: Reproducibility Budgets for LLM Evaluation: Benchmark-Specific Variance
+    Structures via Generalizability Theory
+
+    **Venue**: ACL ARR (1–5 scale per official review form)
+
+    **Review mode**: simple (single reviewer, full coverage)
+
+
+    ---
+
+
+    ## Summary
+
+
+    The paper applies Generalizability Theory (G-theory) to decompose variance in
+    LLM benchmark evaluation across multiple facets (item selection, prompt template,
+    random seed, temperature, item ordering) with model treated as a crossed facet.
+    The analysis covers 4 open-weight models (7–9B) on 4 benchmarks (MMLU, ARC-Challenge,
+    HellaSwag, GSM8K). Three main findings: (1) model×item interaction accounts for
+    33.6% of variance on MMLU, reducing apparent item dominance from 61% to 42%; (2)
+    variance structures are irreducibly benchmark-specific with no monotonic gradient;
+    (3) G-theory requires 4.4× more items than IRT for equivalent reliability because
+    it accounts for prompt, seed, and ordering facets invisible to IRT.
+
+
+    ---
+
+
+    ## Scores
+
+
+    | Dimension | Score | Label |
+
+    |-----------|-------|-------|
+
+    | **Soundness** | 3 | Acceptable |
+
+    | **Excitement** | 3 | Interesting |
+
+    | **Overall Assessment** | 3 | Findings |
+
+    | **Confidence** | 4 | Confident in evaluation |
+
+
+    ---
+
+
+    ## Strengths
+
+
+    **S1. Well-motivated research question with principled methodology.** The gap
+    between single-factor variance studies and multi-factor decomposition is real
+    and underexplored. G-theory is the right psychometric framework for this, and
+    the paper does a good job explaining it accessibly for an NLP audience (Section
+    3). The formalization of "reproducibility budgets" via D-studies is a genuinely
+    actionable contribution.
+
+
+    **S2. Thorough MMLU analysis with strong internal validation.** The MMLU analysis
+    is the paper''s backbone and it is convincing. The single-model vs. cross-model
+    comparison (Table 1) cleanly demonstrates how ~19pp of apparent item dominance
+    is actually model×item interaction. The D-study out-of-sample validation (3-model
+    prediction G=0.816 vs. observed 4-model G=0.820, Δ=0.004) is a compelling validation
+    that the variance component estimates have predictive value. Bootstrap CIs are
+    appropriately computed.
+
+
+    **S3. Impressive robustness section (Section 5.4).** Six distinct robustness checks
+    — REML vs. Henderson I, fixed-vs-random sensitivity, binary data simulation, GLMM
+    cross-check, bootstrap-vs-jackknife, precision separability — demonstrate serious
+    methodological care. The GLMM finding that model×item may be even larger on the
+    logit scale (47.3% vs 22.8% for item) is reported transparently despite complicating
+    the headline numbers.
+
+
+    **S4. Honest and thorough limitations.** The Limitations section is among the
+    most thorough I have seen. Single GPU architecture, four models at one scale,
+    no MATH benchmark, no fine-tuning analysis, binary scoring limitation, GSM8K estimation
+    instability — all are stated clearly. This level of transparency aids reproducibility
+    and scoping.
+
+
+    **S5. IRT vs. G-theory comparison (Section 5.3).** The 4.4× item requirement ratio
+    with decomposition of the excess into prompt×item (22%), seed×item (23%), and
+    residual (55%) is a clean, novel result with direct practical value. It quantifies
+    a "hidden cost" of evaluation that IRT-based efficiency approaches overlook.
+
+
+    ---
+
+
+    ## Weaknesses
+
+
+    **W1. Cross-benchmark claims rest on thin evidence (Major).** The "benchmark-specific
+    variance fingerprints" (Contribution 2) is based on only 4 benchmarks, with one
+    (GSM8K) exhibiting pathological estimation behavior. The permutation test for
+    monotonicity (p=0.41) has extremely low power with n=4. The claim that fingerprints
+    are "irreducibly benchmark-specific" and "cannot be predicted from task taxonomy,
+    format, or difficulty distribution" is too strong for 4 data points — especially
+    when only 2 share a format (MMLU and ARC, both MC), making format-vs-content disentanglement
+    impossible. The paper acknowledges this (Section 5.2, "within-format gradient
+    test is inconclusive"), but the abstract and contributions frame it as a firm
+    finding rather than an exploratory observation.
+
+
+    **W2. GSM8K results are unreliable and undermine 25% of the cross-benchmark analysis
+    (Major).** The paper commendably reports GSM8K''s pathologies: 43.2% residual,
+    negative REML estimates requiring clamping, Henderson I divergence, fixed-vs-random
+    Δ of 8.4pp, and a D-study CI spanning [600, 2100] (3.5× range). However, it still
+    includes GSM8K in Table 2 and Table 3 as if the estimates are comparable to MMLU/ARC/HellaSwag.
+    When the point estimate for items-at-G≥0.80 is "practically meaningless" (the
+    paper''s own words), should it appear in the main table informing practitioner
+    budgets? The GSM8K row inflates the apparent diversity of fingerprints — remove
+    it and the 4.1× spread in D-study budgets drops substantially. The paper should
+    more clearly separate reliable estimates (MC benchmarks) from illustrative-but-unreliable
+    estimates (GSM8K).
+
+
+    **W3. Model exchangeability assumption is weakly supported (Moderate).** Treating
+    4 purposively-selected models as a random sample from "the universe of LLMs" is
+    a strong assumption. The paper discusses this (Section 4, "purposive sample from
+    four architecture families") and presents fixed-vs-random sensitivity (≤2.8pp
+    on MMLU), but the leave-one-model-out analysis (G range 0.747–0.793, spread=0.046)
+    actually suggests non-trivial dependence on which models are included. With only
+    4 models, the model facet has very few degrees of freedom for estimating model×item
+    interaction — the 33.6% estimate could shift meaningfully with different or additional
+    models. The D-study projection to ~10 models for G≥0.90 is extrapolation well
+    beyond the data.
+
+
+    **W4. 200-item subsampling strategy underdiscussed (Moderate).** Each benchmark
+    uses only 200 items out of much larger pools (MMLU has ~14K, ARC ~2.6K, HellaSwag
+    ~10K, GSM8K ~1.3K). The paper does not describe the subsampling strategy — random?
+    stratified by difficulty or topic? This is critical because item-level variance
+    components depend on item pool composition. If the 200 items are not representative,
+    the variance decomposition may not generalize to the full benchmark. The projection
+    that G=0.987 at 14K items on MMLU (Section 5.1) assumes the variance structure
+    estimated on 200 items transfers, which is unvalidated.
+
+
+    **W5. IRT comparison limited to MMLU, generalization unknown (Moderate).** The
+    4.4× ratio (Contribution 3) is demonstrated only on MMLU — "the only benchmark
+    with both sufficient data and non-pathological variance structure for a meaningful
+    IRT comparison" (Section 5.3). This is an honest scoping, but it means the contribution
+    is a single-benchmark finding presented as a general principle. On benchmarks
+    where model×item interaction has a different structure (e.g., HellaSwag at 15.7%),
+    the ratio could be substantially different.
+
+
+    **W6. Reduced design for non-MMLU benchmarks creates an asymmetry (Minor).** MMLU
+    uses 3 temperatures × 4 orderings in the full crossing, while ARC/HellaSwag/GSM8K
+    use only 2 temperatures × 4 orderings. This means the variance components for
+    the reduced-design benchmarks have fewer degrees of freedom for temperature-related
+    interactions. The cross-benchmark comparison in Table 2 conflates benchmark-specific
+    variance structure with design-specific estimation precision. The paper should
+    acknowledge this asymmetry more explicitly.
+
+
+    **W7. No evaluation of practical adoption pathway (Minor).** The paper concludes
+    that "benchmark-specific reproducibility budgets are the only viable path" and
+    promises an "open-source G-theory pipeline and D-study budget calculator." But
+    the practical barrier to adoption is not the absence of a calculator — it is that
+    G-theory requires a full factorial experiment (multiple prompts × seeds × temperatures
+    × orderings) before any budget estimation can occur. This initial data collection
+    cost is not discussed. How many evaluation records does a practitioner need to
+    run a reliable G-study before they can compute their budget? The paper would benefit
+    from a "cost-of-entry" analysis.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. What is the item subsampling strategy for each benchmark? Were the 200 items
+    random, stratified, or selected by some other criterion? How sensitive are the
+    variance component estimates to alternative subsamplings?
+
+
+    2. Given that GSM8K''s D-study CI spans [600, 2100], would you consider presenting
+    GSM8K separately as a case study of G-theory''s limitations on free-form generation,
+    rather than as a peer entry in the cross-benchmark comparison tables?
+
+
+    3. For the IRT comparison (Section 5.3), the IRT item count of 116 comes from
+    which IRT model (1PL, 2PL, 3PL)? How does the ratio change across IRT specifications?
+
+
+    4. The GLMM cross-check on a 25-item subsample shows model×item > item on the
+    logit scale (47.3% vs 22.8%). This is a striking reversal. Have you attempted
+    the GLMM on the full 200 items? The 25-item result is acknowledged as potentially
+    affected by underspecification, but it raises the question of whether the Henderson
+    I probability-scale decomposition understates model×item.
+
+
+    5. How were the 6 prompt templates selected? Were they designed to span a diversity
+    axis, or drawn from existing templates? Prompt template is a fixed set in this
+    study — does the fixed-vs-random sensitivity analysis for prompts show comparable
+    stability to temperature?
+
+
+    ---
+
+
+    ## Missing Experiments (from review context)
+
+
+    The review context reveals a substantially more ambitious experimental plan than
+    what the paper delivers:
+
+
+    - **MATH benchmark**: Blocked by answer extraction pipeline issues. Its absence
+    prevents within-free-form format gradient testing and is the single most impactful
+    missing piece for Contribution 2.
+
+    - **Additional models (Yi, OLMo, InternLM, DeepSeek)**: Blocked by hardware unavailability.
+    Would have strengthened the model-as-facet exchangeability argument.
+
+    - **Multi-hardware G-study**: Completely blocked. Infrastructure claims remain
+    limited to numerical precision on a single GPU.
+
+    - **14B model extension**: Blocked. No model scale analysis.
+
+    - **Fine-tuning G-study**: Blocked by compute. Inference-only scope acknowledged.
+
+    - **LayerCast precision study**: Deprioritized. Minimal impact given BF16≈FP16
+    finding.
+
+
+    The paper honestly acknowledges most of these as limitations. The core MMLU analysis
+    and Phase 1 cross-benchmark data are sufficient for a contribution, but the gap
+    between planned scope and delivered scope is substantial — roughly 40–50% of the
+    planned experimental program was executed.
+
+
+    ---
+
+
+    ## Reproducibility Assessment
+
+
+    **Score: 3/5.** The paper describes the experimental design clearly (Section 4)
+    and promises open-source code and a D-study calculator. However, the 200-item
+    subsampling strategy is underdescribed, the specific prompt templates are not
+    listed, and the vLLM configuration ("default settings") lacks specificity. The
+    single-GPU setup is reproducible in principle but the specific hardware (RTX PRO
+    6000, Blackwell) is not widely available.
+
+
+    ---
+
+
+    ## Minor Issues
+
+
+    - Table 2 footnotes use † and ‡ but the symbols are small and easy to miss; consider
+    integrating caveats into the table caption.
+
+    - Section 5.1: "Per-model interaction magnitudes confirm this: Mistral (29.25%,
+    accuracy 63.8%) > Qwen (27.11%) > Gemma (23.95%) > Llama (19.69%)." — These percentages
+    do not sum to 100% and their interpretation is unclear. Are these per-model contributions
+    to the model×item component?
+
+    - The paper does not cite Mesting [2026] with a venue — if it is a preprint at
+    review time, the comparison in the Discussion should note this.
+
+    - Section 5.4, "Binary data validation": The observed-to-Bernoulli ratio of 1.0008
+    is reassuring but the null simulation uses a "matched design" — matched to what?
+    The design matching should be specified.
+
+
+    ---
+
+
+    ## Overall Assessment
+
+
+    This paper makes a solid methodological contribution by applying G-theory to multi-benchmark
+    LLM evaluation and producing actionable D-study budgets. The MMLU analysis is
+    thorough, well-validated, and produces genuinely novel findings (model×item interaction
+    at 33.6%, IRT vs. G-theory 4.4× ratio). The robustness analysis is exemplary.
+
+
+    However, the cross-benchmark analysis — which constitutes Contribution 2 and is
+    the paper''s differentiator from a single-benchmark study — rests on only 4 benchmarks
+    with one producing unreliable estimates. The "irreducibly benchmark-specific"
+    claim is directionally supported but statistically underpowered. The model facet
+    (4 models, purposive sample) is the thinnest part of the design, and the 200-item
+    subsampling strategy is underdescribed.
+
+
+    The paper is above the threshold for Findings: the methodology is sound, the MMLU
+    results are publishable, and the practical contribution (D-study budgets) has
+    value. For a main conference track, the cross-benchmark claims would need more
+    benchmarks (ideally 6–8 including MATH), more models (6+ with diversity in scale
+    and family), and reliable estimation across all included benchmarks. The current
+    version reads as a strong single-benchmark study (MMLU) with an exploratory multi-benchmark
+    extension — the framing should better reflect this asymmetry.
+
+
+    **Recommendation: Findings (Overall = 3).**
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-21T13:53:22+00:00'

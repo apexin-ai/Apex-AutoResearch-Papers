@@ -1,0 +1,82 @@
+paper_key: "mesting2026hidden"
+title: "Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [naive_CI, single_judge, single_prompt]
+  metrics:
+    - {name: "CI coverage rate", direction: "higher_better"}
+    - {name: "RMSE", direction: "lower_better"}
+    - {name: "Elo gaming surface", direction: "lower_better"}
+    - {name: "human agreement rate", direction: "higher_better"}
+  datasets:
+    - {name: "AILuminate safety", size: "141 items × 12 hazard categories"}
+    - {name: "MMLU", size: "200-item pool"}
+    - {name: "Chatbot Arena", size: "4,676 matches"}
+  ablation_dimensions: [judge_model (3), prompt_variant (5), temperature (3), replications (8), scoring_mode (Likert vs pairwise)]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "API-based, ~54K calls for full factorial"}
+  method_family: "generalizability theory / variance decomposition"
+
+positioning:
+  core_claim: "Standard LLM evaluation CIs omit 40-60% of actual uncertainty from judge/prompt/temperature variance — TEE framework (G-theory based) decomposes and corrects this, enabling honest CIs and cost-efficient design"
+  key_results: "Safety: judge choice = 43.8% variance; MMLU: TEE halves RMSE vs naive; Arena: naive 95% CI drops to 79% coverage, TEE maintains 95%; +7.9pp human agreement"
+  limitations:
+    - "Reasoning traces contribute to error but not attributed"
+    - "English-only, frontier models only"
+    - "High-ambiguity tasks (creative writing) untested"
+    - "Full factorial requires ~54K API calls"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Opens with the revelation that standard CIs in LLM evaluation systematically understate uncertainty — analogous to p-hacking"
+  tension: "Growing LLM evaluation ecosystem lacks measurement theory — hundreds of papers report CIs that ignore prompt/judge/temperature variance"
+  key_insight: "Adapts Generalizability Theory from psychometrics to LLM evaluation, showing that 'measurement error' from evaluation pipeline dwarfs sampling error"
+  argument_chain: "problem (hidden variance) → framework (TEE = G-theory adapted) → decomposition (REML estimation) → D-study projections → 3 domain demonstrations → practical workflow"
+  contribution_framing: "4 contributions: (1) TEE framework, (2) D-study cost optimization, (3) three domain demonstrations, (4) benchmark hacking analysis"
+  intro_structure: "5+ paragraphs: (1) evaluation crisis, (2) hidden measurement error analogy, (3) G-theory introduction, (4) TEE framework preview, (5) contributions list"
+  notable_technique: "Uses the p-hacking analogy to make psychometric theory feel urgent to ML audience; three diverse demonstrations (safety, academic benchmark, arena) establish generality"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "problem_illustration"
+    description: "Illustrates how standard CIs underestimate uncertainty by omitting pipeline variance components"
+    narrative_role: "Makes the invisible problem visible — shows the gap between reported and actual uncertainty"
+    design_elements: ["CI comparison", "variance decomposition visual", "before/after framing"]
+    visual_style: "Conceptual diagram with uncertainty bands, clean academic style"
+  result_figures:
+    - figure_id: "D-study projection figures"
+      viz_type: "line_plot"
+      what_compared: "RMSE reduction under different budget allocation strategies"
+      how_gain_highlighted: "TEE-guided allocation curve drops faster than naive"
+      design_note: "Cost-efficiency curves make the practical value immediately clear"
+  ablation_figures:
+    - figure_id: "Variance decomposition bar charts"
+      viz_type: "stacked_bar"
+      dimensions_varied: ["judge", "prompt", "temperature", "item", "interactions"]
+      design_note: "Stacked bars showing relative contribution of each variance source across domains"
+  figure_narrative_role: "Problem illustration → Framework diagram → Variance decomposition (3 domains) → D-study projections → Hacking surface analysis"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Domain comparison table"
+    row_axis: "domains (Safety, MMLU, Arena)"
+    col_axis: "variance_sources × interventions"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "dominant variance source highlighted per domain"
+    statistical_reporting: "variance percentages, RMSE, coverage rates"
+    num_baselines: 3
+    design_note: "Cross-domain table shows framework generality while domain-specific tables provide depth"
+  ablation_tables:
+    - table_id: "Budget allocation comparison"
+      what_varied: ["allocation strategy (naive vs TEE-guided)"]
+      variation_style: "full_numbers"
+      design_note: "Direct comparison of RMSE at equal cost makes practical value concrete"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full variance component estimates, sensitivity analyses under 5 misspecification scenarios, reporting checklist"
+    reason: "Main paper focuses on demonstrations and practical impact; technical details support reproducibility"

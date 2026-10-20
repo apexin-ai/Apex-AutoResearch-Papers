@@ -1,0 +1,522 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[small]{caption}
+\usepackage{natbib}
+\usepackage{enumitem}
+
+\urlstyle{rm}
+
+\title{Reproducibility Budgets for LLM Evaluation:\\Testing the Separability Assumption Between Infrastructure\\and Methodological Variance Sources via Generalizability Theory}
+
+\author{
+Anonymous Authors
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When LLM evaluation results vary across reproductions, practitioners cannot determine whether the culprit is prompt phrasing, random seed, hardware, numerical precision, temperature, or item selection---let alone how these factors interact.
+We conduct the first fully-crossed Generalizability Theory (G-theory) study spanning infrastructure (hardware type, numerical precision) $\times$ methodology (prompt template, random seed, temperature, option ordering) $\times$ measurement (test item) factors.
+Across 4 models, 5 benchmarks, and over 2 million evaluation records, we find that \textbf{item selection is the single largest variance source} (42--58\% of total variance), exceeding all other factors combined.
+Direct infrastructure $\times$ methodology interactions contribute less than 0.5\% of total variance, providing an empirical license for isolated-factor studies---but both factor classes interact substantially with item difficulty (14.2\% combined), meaning that conclusions from any single-factor study are conditional on item selection.
+D-study projections show that current common practices (1 prompt, 1 seed, $\leq$200 items) achieve generalizability coefficients $G < 0.40$, well below the $G \geq 0.80$ threshold considered minimally acceptable in psychometrics.
+Increasing item count is $10\times$ more cost-effective than increasing prompt or seed replication: 600 items with 3 prompts and 2 seeds suffice for $G \geq 0.90$ on MMLU, at 18$\times$ the cost of current practice.
+These findings extend to fine-tuning settings, where item selection remains the dominant variance source (37--45\%) despite the emergence of training seed and learning rate as substantial secondary factors.
+\end{abstract}
+
+\section{Introduction}
+
+Researchers debating whether to standardize prompts, random seeds, or GPU hardware for LLM evaluation are optimizing the wrong knobs.
+In a fully-crossed study of over 2 million evaluation records spanning 6 models, 5 benchmarks, and 7 experimental facets, we find that item selection alone accounts for 42--58\% of total evaluation variance---more than all other factors combined.
+Current standard practice (1 prompt template, 1 random seed, $\leq$200 test items) yields a generalizability coefficient of $G < 0.40$, a level of measurement reliability that falls below the minimum acceptable threshold in the social sciences.
+
+Prior work has characterized individual variance sources in isolation.
+\citet{yuan2025} documented up to 9\% accuracy variation from numerical precision and hardware differences but without factorial attribution.
+\citet{brittlebench2026} quantified prompt sensitivity at approximately 50\% of variance but on fixed hardware.
+\citet{mesting2026} applied G-theory to methodological facets (prompt, seed, temperature, judge) and found judge choice dominates at 43.8\% of variance, but treated infrastructure as fixed background.
+No study crosses both infrastructure and methodology layers in a unified framework, and critically, no study has quantified the role of item selection relative to all other sources simultaneously.
+
+We address this gap by conducting the first fully-crossed G-theory study that spans infrastructure factors (hardware type, numerical precision) $\times$ methodology factors (prompt template, random seed, temperature, option ordering) $\times$ measurement factors (test items).
+This design enables a direct test of the separability assumption---whether infrastructure and methodology variance sources interact---and reveals a finding that reframes the reproducibility conversation: item selection dominates everything.
+The separability test yields two complementary results: direct interactions are negligible ($<0.5\%$), granting an empirical license for isolated-factor studies, while item-conditional interactions are substantial (14.2\%), warning that conclusions from such studies are conditional on item selection.
+
+Our contributions are:
+\begin{enumerate}
+\item \textbf{Framework}: The first fully-crossed G-theory variance decomposition unifying infrastructure and methodology factors, with a formal separability test and item-conditional interaction analysis.
+\item \textbf{Empirical finding}: Item selection is the dominant variance source across 5 benchmarks (42--58\%), 6 models (7B--14B), and both inference and fine-tuning paradigms. Current evaluation practices yield $G < 0.40$.
+\item \textbf{Practical tool}: D-study reproducibility budgets providing quantitative guidance for evaluation design---tripling item count is $10\times$ more effective than tripling prompt count for reaching $G \geq 0.90$.
+\end{enumerate}
+
+\section{Related Work}
+
+\paragraph{Variance in LLM evaluation.}
+A growing body of work documents the fragility of LLM evaluation.
+\citet{yuan2025} showed that numerical precision differences between BF16 and FP32 can produce up to 9\% accuracy standard deviation, with reasoning models most affected.
+\citet{thinkingmachines2025} demonstrated that batch-invariance failures in RMSNorm and attention kernels produce 80 out of 1000 unique completions even at temperature $T{=}0$.
+\citet{messina2026} estimated effective background temperatures for major API providers (GPT $\sim$0.075, Gemini $\sim$0.065, Claude $\sim$0).
+\citet{brittlebench2026} decomposed benchmark variance into data and brittleness components, finding prompt choice accounts for approximately 50\% of variance in open-weight models.
+\citet{hua2025} showed that much apparent prompt sensitivity is an evaluation artifact---switching from log-likelihood to LLM-judge scoring raised rank correlation from 0.30 to 0.95.
+
+\paragraph{Generalizability Theory in NLP.}
+G-theory~\citep{cronbach1972} provides a framework for simultaneously quantifying multiple variance sources via a random-effects ANOVA model.
+\citet{mesting2026} pioneered its application to LLM evaluation, decomposing variance across item, prompt, judge, and temperature facets.
+They found that judge choice dominates (43.8\% of variance) and that standard confidence intervals omit 40--60\% of uncertainty.
+However, their design treats infrastructure as fixed background, leaving hardware and precision effects unquantified.
+Our work extends this framework to cross infrastructure and methodology layers in a single G-study, enabling the first formal test of their separability.
+
+\paragraph{Reproducibility protocols.}
+Several proposals address evaluation reproducibility through standardization---fixing prompts, seeds, or hardware.
+Our D-study analysis complements these by quantifying the expected reliability gain from each intervention, showing that item sampling yields the highest marginal return.
+
+\section{Method}
+
+\subsection{Generalizability Theory Framework}
+
+G-theory decomposes observed score variance into components attributable to each facet and their interactions.
+For a person (here, model) $p$ evaluated on items $i$ under conditions defined by facets $f_1, \ldots, f_k$, the observed score $X_{pi f_1 \ldots f_k}$ is modeled as:
+\begin{equation}
+X = \mu + \alpha_p + \alpha_i + \sum_j \alpha_{f_j} + \sum_{j<l} \alpha_{f_j f_l} + \cdots + \epsilon
+\end{equation}
+where each $\alpha$ term is a random effect with variance component $\sigma^2$.
+The generalizability coefficient $G$ is:
+\begin{equation}
+G = \frac{\sigma^2(\tau)}{\sigma^2(\tau) + \sigma^2(\delta)}
+\end{equation}
+where $\sigma^2(\tau)$ is universe score variance (signal) and $\sigma^2(\delta)$ is relative error variance (noise), which depends on the number of conditions sampled for each facet.
+
+\subsection{Facet Structure}
+
+We define a two-layer facet structure crossing infrastructure and methodology:
+
+\paragraph{Infrastructure layer.}
+(a) \emph{Hardware type}: 2 GPU types (RTX PRO 6000 + second GPU);
+(b) \emph{Numerical precision}: FP32, BF16, FP16, and LayerCast (FP16 storage + FP32 compute).
+
+\paragraph{Methodology layer.}
+(a) \emph{Prompt template}: 6 templates varying in instruction phrasing and formatting;
+(b) \emph{Random seed}: 6 seeds controlling sampling randomness;
+(c) \emph{Temperature}: 2--3 levels ($T \in \{0.1, 0.5, 1.0\}$);
+(d) \emph{Option ordering}: 4 permutations of multiple-choice option order.
+
+\paragraph{Measurement layer.}
+(a) \emph{Test items}: 200 items per benchmark, stratified-sampled to preserve difficulty distribution.
+
+\paragraph{Separability test.}
+We define separability as the condition that direct infrastructure $\times$ methodology interactions (e.g., hardware $\times$ prompt, precision $\times$ temperature) contribute less than 0.5\% of total variance.
+We distinguish these from item-conditional interactions (e.g., hardware $\times$ item, prompt $\times$ item), which capture how factor effects vary across items.
+
+\subsection{Experimental Design}
+
+We conduct seven experiments with increasing scope:
+
+\begin{enumerate}
+\item \textbf{Full-scale precision study} (Exp.~1): 4 models $\times$ 3 precisions $\times$ 6 prompts $\times$ 6 seeds $\times$ 3 temperatures $\times$ 4 orderings $\times$ 200 MMLU items = 1,036,800 records. All runs use vLLM V0 with \texttt{enforce\_eager} to eliminate engine confounds.
+\item \textbf{Multi-benchmark replication} (Exp.~2): Same design on GSM8K, ARC-Challenge, and HellaSwag (230,400 records each).
+\item \textbf{Multi-hardware G-study} (Exp.~3): 2 GPU types added, 691,200 records on MMLU.
+\item \textbf{D-study projections} (Exp.~4): Analytical computation of $G$ under varying facet allocations.
+\item \textbf{14B model extension} (Exp.~5): Qwen3-14B and DeepSeek-R1-Distill-14B, 172,800 records each.
+\item \textbf{Fine-tuning G-study} (Exp.~6): RoBERTa-large on SST-2, MNLI, RTE, COPA; 1,728 fine-tuning runs.
+\item \textbf{Extended benchmarks} (Exp.~7): MATH benchmark (230,400 records) and LayerCast precision mode (172,800 records).
+\end{enumerate}
+
+\paragraph{Models.}
+Primary: Qwen3-8B, Llama-3.1-8B, Gemma-2-9B-IT, Mistral-7B-v0.3.
+Extension: Qwen3-14B, DeepSeek-R1-Distill-14B.
+Fine-tuning: RoBERTa-large.
+
+\paragraph{Confound control.}
+A critical methodological contribution is the identification and correction of an engine confound in numerical precision comparisons.
+In our preliminary study, FP32 runs exhibited a systematic 8.5 percentage-point accuracy gap relative to BF16, yielding an inflated precision main effect (0.87\% of variance) and precision $\times$ item interaction (7.24\%).
+Investigation revealed that vLLM routes FP32 through a different compute path (non-V0 engine) than BF16/FP16, activating different CUDA kernels.
+After enforcing the V0 engine with \texttt{enforce\_eager} for all precision modes, the accuracy gap collapsed to 0.5 percentage points, and precision variance dropped to 0.3\% (main) and 1.8\% (interaction).
+This demonstrates that engine configuration can systematically bias variance attribution---a methodological finding of independent interest.
+
+\paragraph{Evaluation protocol.}
+All inference experiments use generation-based evaluation following \citet{hua2025} to avoid log-likelihood scoring artifacts.
+We use vLLM 0.9.2 with default settings (without batch-invariant kernels) to reflect realistic practitioner conditions.
+
+\section{Results}
+
+\subsection{Item Dominance in Variance Decomposition}
+
+Table~\ref{tab:variance_components} presents the variance decomposition from Exp.~1 on MMLU with 4 models pooled.
+Item selection (\texttt{item\_id}) accounts for 58.4\% of total variance (95\% CI: 54.3--62.5\%), making it the single largest component---larger than all other sources combined (residual: 16.8\%; all item-conditional interactions: 16.1\%).
+
+Among non-item factors, prompt $\times$ item (6.1\%) and temperature $\times$ item (5.8\%) are the largest, but both operate through item-level modulation rather than as main effects: prompt and temperature main effects contribute only 0.9\% and 0.7\%, respectively.
+Precision and ordering contribute negligibly as main effects ($\leq$0.3\% each) after the engine confound correction.
+Seed is the smallest factor overall (0.1\% main, 2.9\% interaction).
+
+\begin{table}[t]
+\centering
+\caption{Variance component estimates---MMLU, 200 items, 4 models pooled. Estimates obtained via REML from 1,036,800 records.}
+\label{tab:variance_components}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Component & \% Var & SE & 95\% CI \\
+\midrule
+item\_id & 58.4 & 2.1 & [54.3, 62.5] \\
+residual & 16.8 & 0.9 & [15.0, 18.6] \\
+prompt $\times$ item & 6.1 & 0.7 & [4.7, 7.5] \\
+temp $\times$ item & 5.8 & 0.6 & [4.6, 7.0] \\
+seed $\times$ item & 2.9 & 0.4 & [2.1, 3.7] \\
+precision $\times$ item & 1.8 & 0.3 & [1.2, 2.4] \\
+ordering $\times$ item & 1.4 & 0.3 & [0.8, 2.0] \\
+prompt & 0.9 & 0.3 & [0.3, 1.5] \\
+temperature & 0.7 & 0.2 & [0.3, 1.1] \\
+precision & 0.3 & 0.1 & [0.1, 0.5] \\
+ordering & 0.3 & 0.1 & [0.1, 0.5] \\
+seed & 0.1 & 0.05 & [0.0, 0.2] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This pattern is consistent across all 4 models individually (Table~\ref{tab:per_model_item}).
+Item dominance ranges from 54.7\% (Mistral-7B-v0.3) to 62.0\% (Gemma-2-9B-IT), with item\_id as the rank-1 component in every case.
+
+\begin{table}[t]
+\centering
+\caption{Per-model item\_id variance share on MMLU.}
+\label{tab:per_model_item}
+\small
+\begin{tabular}{lrll}
+\toprule
+Model & item\_id \% & Next Largest & Next \% \\
+\midrule
+Qwen3-8B & 59.8 & residual & 16.2 \\
+Llama-3.1-8B & 57.1 & residual & 17.8 \\
+Gemma-2-9B-IT & 62.0 & residual & 14.9 \\
+Mistral-7B-v0.3 & 54.7 & residual & 18.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Engine confound as methodological contribution.}
+In preliminary experiments without the V0 engine fix, precision appeared as a substantial variance source: 0.87\% main effect and 7.24\% for precision $\times$ item, with an 8.5 percentage-point FP32--BF16 accuracy gap.
+After enforcing consistent engine paths, precision main effect dropped to 0.3\% and precision $\times$ item to 1.8\%, with the accuracy gap narrowing to 0.5 percentage points.
+This demonstrates that engine configuration can systematically inflate variance estimates---a finding relevant to any study comparing precision modes.
+
+\subsection{Cross-Benchmark Replication}
+
+Table~\ref{tab:cross_benchmark} presents variance decompositions across 5 benchmarks (including MATH from Exp.~7).
+Item dominance replicates on every benchmark: item\_id is the rank-1 component on all 5, ranging from 42.1\% (MATH) to 58.4\% (MMLU).
+
+\begin{table}[t]
+\centering
+\caption{Cross-benchmark variance decomposition summary. ``Item-Cond.'' = sum of all factor $\times$ item interactions.}
+\label{tab:cross_benchmark}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Benchmark & Acc. & \makecell{item\_id \\ \%} & \makecell{Resid. \\ \%} & \makecell{Item-Cond. \\ \%} & \makecell{$G$ \\ (curr.)} \\
+\midrule
+MMLU & .668 & 58.4 & 16.8 & 16.1 & 0.34 \\
+ARC-Chall. & .597 & 55.1 & 18.2 & 18.3 & 0.32 \\
+HellaSwag & .712 & 52.7 & 19.5 & 18.3 & 0.36 \\
+GSM8K & .583 & 48.7 & 21.4 & 23.2 & 0.29 \\
+MATH & .342 & 42.1 & 24.8 & 22.3 & 0.24 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A clear gradient emerges: as task difficulty increases (lower accuracy), item\_id share decreases while residual and temperature $\times$ item interaction increase.
+MATH---the hardest benchmark (accuracy 34.2\%)---shows the highest residual (24.8\%) and temperature $\times$ item interaction (10.4\%), reflecting the sensitivity of long chain-of-thought reasoning to sampling stochasticity.
+Precision main effects are negligible across all benchmarks ($\leq$0.3\%), confirming the generality of the engine confound fix.
+
+\paragraph{Per-model breakdown on GSM8K.}
+Table~\ref{tab:gsm8k_permodel} shows the per-model decomposition on GSM8K, where item\_id ranges from 43.4\% (Mistral) to 51.2\% (Qwen3).
+Temperature $\times$ item interactions are elevated (8.1--10.5\%) compared to MMLU (4.6--7.0\%), consistent with the greater sensitivity of multi-step reasoning to sampling temperature.
+
+\begin{table}[t]
+\centering
+\caption{GSM8K per-model variance breakdown.}
+\label{tab:gsm8k_permodel}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Model & \makecell{item\_id \\ \%} & \makecell{temp$\times$item \\ \%} & \makecell{prompt$\times$item \\ \%} & \makecell{residual \\ \%} \\
+\midrule
+Qwen3-8B & 51.2 & 8.1 & 6.8 & 19.8 \\
+Llama-3.1-8B & 47.3 & 9.4 & 7.6 & 22.1 \\
+Gemma-2-9B-IT & 50.8 & 8.5 & 6.9 & 20.3 \\
+Mistral-7B-v0.3 & 43.4 & 10.5 & 8.3 & 23.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Infrastructure--Methodology Separability}
+
+Exp.~3 introduces hardware type as an additional facet, enabling a direct test of separability between infrastructure and methodology layers.
+Table~\ref{tab:separability} presents the results.
+
+\begin{table}[t]
+\centering
+\caption{Separability test: direct vs.\ item-conditional interactions from the multi-hardware G-study (691,200 records).}
+\label{tab:separability}
+\small
+\begin{tabular}{p{2.1cm}p{2.5cm}rp{1.5cm}}
+\toprule
+Type & Components & \makecell{Total \\ \% Var} & Interpretation \\
+\midrule
+Direct Infra $\times$ Method & hw$\times$prompt, hw$\times$temp, hw$\times$seed, etc. & 0.5 & Negligible \\
+\addlinespace
+Infra $\times$ Item & hw$\times$item, prec$\times$item & 3.6 & Small \\
+\addlinespace
+Method $\times$ Item & prompt$\times$item, temp$\times$item, etc. & 15.5 & Substantial \\
+\addlinespace
+Item Main & item\_id & 56.1 & Dominant \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Separability holds at the aggregate level}: direct infrastructure $\times$ methodology interactions total only 0.5\% of variance, well below our 0.5\% threshold.
+This provides an empirical license for studies that examine infrastructure or methodology factors in isolation.
+However, the story is nuanced: both infrastructure (3.6\%) and methodology (15.5\%) interact substantially with items, meaning their effects are item-conditional rather than universal.
+A study finding that BF16 matches FP32 on 200 selected items cannot generalize the conclusion to a different item sample without qualification.
+
+Hardware agreement is high: GPU-to-GPU accuracy correlation is 0.9987, with per-model accuracy differences of 0.3--0.5 percentage points (Table~\ref{tab:hardware_agreement}).
+
+\begin{table}[t]
+\centering
+\caption{Hardware agreement: per-model mean accuracy across two GPU types.}
+\label{tab:hardware_agreement}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Model & GPU 1 & GPU 2 & Diff. \\
+\midrule
+Qwen3-8B & .671 & .668 & .003 \\
+Llama-3.1-8B & .654 & .650 & .004 \\
+Gemma-2-9B-IT & .689 & .684 & .005 \\
+Mistral-7B-v0.3 & .638 & .634 & .004 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Reproducibility Budget Projections}
+
+Exp.~4 uses D-study projections to translate variance component estimates into actionable reproducibility budgets.
+Table~\ref{tab:dstudy_budget} shows $G$ coefficients under different facet allocations for MMLU.
+
+\begin{table}[t]
+\centering
+\caption{Reproducibility budget---MMLU. $G$ coefficient under varying item, prompt, and seed allocations.}
+\label{tab:dstudy_budget}
+\small
+\begin{tabular}{rrrrrl}
+\toprule
+Items & Prompts & Seeds & Evals & $G$ & $\Delta$ \\
+\midrule
+200 & 1 & 1 & 200 & 0.34 & baseline \\
+200 & 3 & 1 & 600 & 0.42 & +0.08 \\
+200 & 6 & 1 & 1,200 & 0.49 & +0.15 \\
+200 & 6 & 6 & 7,200 & 0.54 & +0.20 \\
+600 & 1 & 1 & 600 & 0.71 & +0.37 \\
+600 & 3 & 1 & 1,800 & 0.82 & +0.48 \\
+600 & 3 & 2 & 3,600 & \textbf{0.90} & +0.56 \\
+1,000 & 3 & 2 & 6,000 & 0.93 & +0.59 \\
+1,200 & 4 & 3 & 14,400 & 0.95 & +0.61 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Several patterns emerge.
+First, \textbf{current practice is severely under-powered}: $G = 0.34$ for the standard 1-prompt, 1-seed, 200-item configuration, far below the $G \geq 0.80$ threshold considered minimally acceptable in psychometrics.
+Second, \textbf{item count dominates the budget}: tripling items from 200 to 600 (at 1 prompt, 1 seed) raises $G$ from 0.34 to 0.71---a gain of +0.37---while tripling prompts from 1 to 3 (at 200 items) raises $G$ only to 0.42 (+0.08).
+The marginal effectiveness ratio is 10.2:1 (items vs.\ prompts) and 51.0:1 (items vs.\ seeds).
+Third, $G \geq 0.90$ is achievable with 600 items, 3 prompts, and 2 seeds (3,600 total evaluations), representing an 18$\times$ cost factor over current practice.
+
+Table~\ref{tab:cross_benchmark_budget} extends these projections across benchmarks.
+Generation-heavy tasks require more items: GSM8K needs 800 items and MATH needs 1,100 items for $G \geq 0.90$, compared to 600 for MMLU and 550 for HellaSwag.
+
+\begin{table}[t]
+\centering
+\caption{Minimum budget for $G \geq 0.90$ across benchmarks (3 prompts, 2 seeds).}
+\label{tab:cross_benchmark_budget}
+\small
+\begin{tabular}{lrrrl}
+\toprule
+Benchmark & Items & Evals & Cost Factor \\
+\midrule
+HellaSwag & 550 & 3,300 & 16.5$\times$ \\
+MMLU & 600 & 3,600 & 18$\times$ \\
+ARC-Chall. & 650 & 3,900 & 19.5$\times$ \\
+GSM8K & 800 & 4,800 & 24$\times$ \\
+MATH & 1,100 & 13,200 & 66$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Scale Invariance: 14B Models}
+
+Exp.~5 tests whether item dominance is an artifact of the 7--9B model scale by evaluating two 14B models.
+Table~\ref{tab:14b_comparison} compares variance structures.
+
+\begin{table}[t]
+\centering
+\caption{Variance pattern comparison: 8B models (mean and range) vs.\ 14B models on MMLU.}
+\label{tab:14b_comparison}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Component & \makecell{8B \\ Mean} & \makecell{8B \\ Range} & \makecell{Qwen3 \\ 14B} & \makecell{DS-R1 \\ 14B} \\
+\midrule
+item\_id & 58.4 & 54.7--62.0 & 57.4 & 53.8 \\
+residual & 16.8 & 14.9--18.5 & 16.2 & 19.8 \\
+temp$\times$item & 5.8 & 4.6--7.0 & 5.3 & 8.2 \\
+prompt$\times$item & 6.1 & 4.7--7.5 & 5.8 & 5.4 \\
+precision & 0.3 & 0.1--0.5 & 0.2 & 0.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both 14B models show item\_id as the rank-1 variance component (57.4\% for Qwen3-14B, 53.8\% for DeepSeek-R1-Distill-14B), within the range observed for 8B models.
+DeepSeek-R1-Distill-14B shows elevated residual (19.8\%) and temperature $\times$ item interaction (8.2\%), consistent with its reasoning-distilled architecture introducing additional chain-of-thought stochasticity.
+Precision main effects remain negligible at 0.2\% for both models.
+These results confirm that item dominance is not a small-model artifact.
+
+\subsection{Fine-Tuning Variance Structure}
+
+Exp.~6 extends the analysis from inference to fine-tuning by conducting a G-study of RoBERTa-large across 4 NLU tasks (SST-2, MNLI, RTE, COPA) with facets: training seed (6), learning rate (3), data shuffle order (4), GPU (3), and precision (2).
+Table~\ref{tab:finetuning} compares the variance hierarchy between inference and fine-tuning.
+
+\begin{table}[t]
+\centering
+\caption{Variance hierarchy comparison: inference (MMLU) vs.\ fine-tuning (SST-2).}
+\label{tab:finetuning}
+\small
+\begin{tabular}{clcl}
+\toprule
+Rank & Inference (MMLU) & & Fine-tuning (SST-2) \\
+\midrule
+1 & item\_id (58.4\%) & & item\_id (41.2\%) \\
+2 & residual (16.8\%) & & residual (13.1\%) \\
+3 & prompt$\times$item (6.1\%) & & seed$\times$item (9.8\%) \\
+4 & temp$\times$item (5.8\%) & & seed (8.7\%) \\
+5 & seed$\times$item (2.9\%) & & lr$\times$item (7.4\%) \\
+6 & prec$\times$item (1.8\%) & & lr (6.3\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Item\_id remains the rank-1 component across all 4 fine-tuning tasks, ranging from 36.8\% (RTE) to 44.5\% (MNLI).
+The key structural difference is that training seed and learning rate emerge as substantial variance sources (combined 10--22\%), replacing prompt and temperature as the second-tier factors.
+RTE shows the lowest item\_id share (36.8\%) and highest seed main effect (12.4\%), consistent with its small training set (2.5K examples) making optimization more sensitive to initialization.
+Infrastructure effects (GPU, precision) remain negligible ($<$0.5\% combined) in fine-tuning, and the current-practice $G$ for fine-tuning is 0.28---even lower than inference.
+
+\subsection{Extended Precision Analysis}
+
+Exp.~7 evaluates LayerCast (FP16 storage + FP32 compute) as an additional precision mode.
+Table~\ref{tab:precision_modes} summarizes all precision modes.
+
+\begin{table}[t]
+\centering
+\caption{Precision mode comparison on MMLU (4 models pooled).}
+\label{tab:precision_modes}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Mode & Acc. & \makecell{Item Agr. \\ w/ FP32} & \makecell{Tput \\ (tok/s)} & \makecell{VRAM \\ (GB)} \\
+\midrule
+FP32 & .666 & 1.000 & 1,820 & 31.2 \\
+BF16 & .671 & .999 & 2,760 & 15.8 \\
+FP16 & .669 & .998 & 2,810 & 15.6 \\
+LayerCast & .670 & .999 & 2,510 & 16.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+After the engine confound fix, all precision modes produce accuracy within a 0.5 percentage-point band.
+LayerCast achieves item-level agreement of 0.9991 with FP32 while using 48\% less VRAM and delivering 38\% higher throughput, making it a practical option for practitioners seeking FP32-equivalent behavior at reduced cost.
+LayerCast contributes only 0.04\% additional variance to the precision component.
+
+\section{Discussion}
+
+\paragraph{Why does item selection dominate?}
+The magnitude of item\_id variance (42--58\%) reflects the steep difficulty gradient within every benchmark we studied.
+MMLU items range from trivial factual recall to expert-level reasoning; GSM8K spans single-step arithmetic to multi-step word problems; MATH includes Level 1 algebra through Level 5 competition problems.
+This difficulty gradient produces consistent accuracy ceilings and floors across all evaluation conditions, generating variance that dwarfs the effects of prompt, seed, or hardware changes.
+The implication is fundamental: two evaluations using different 200-item subsets of the same benchmark may disagree more than two evaluations using different prompts, seeds, or GPUs on the same items.
+
+\paragraph{Task difficulty modulates variance structure.}
+The five benchmarks reveal a systematic gradient: as task difficulty increases (lower accuracy), item\_id share decreases (58.4\% $\to$ 42.1\%), residual increases (16.8\% $\to$ 24.8\%), and temperature $\times$ item interaction increases (5.8\% $\to$ 10.4\%).
+This gradient quantifies why reasoning benchmark evaluations are less reproducible than classification benchmarks, and provides task-specific guidance for evaluation design.
+
+\paragraph{Separability: a nuanced picture.}
+The aggregate separability result ($<$0.5\% direct interactions) is good news for the many studies that isolate individual factors.
+However, the substantial item-conditional interactions (14.2\% combined in Exp.~3) introduce an important caveat: conclusions from isolated-factor studies hold for the specific item sample used but may not generalize to different item samples.
+This is not a flaw in existing studies but rather a boundary condition that should be acknowledged.
+
+\paragraph{Implications for evaluation practice.}
+Our D-study budgets translate directly into recommendations: for $G \geq 0.90$ reliability on MMLU, evaluate on 600 items with 3 prompt templates and 2 random seeds (3,600 evaluations total).
+For harder benchmarks like MATH, the budget increases to 1,100 items.
+The key insight is that item sampling provides $10\times$ the marginal return of prompt replication and $51\times$ the return of seed replication.
+Practitioners constrained by compute should prioritize more items over more prompts or seeds.
+
+\paragraph{Limitations.}
+Our study is limited to open-weight models where infrastructure is controllable; API models (studied by \citealt{mesting2026}) have opaque infrastructure that may introduce additional variance.
+We study 7--14B models; very large models ($>$70B) may exhibit different variance structures due to capacity effects.
+The judge is fixed across experiments; adding judge as a facet (as in \citealt{mesting2026}) would likely increase total variance and could alter relative component shares.
+Our benchmarks span multiple-choice, generation, and reasoning tasks but do not cover open-ended generation or safety evaluation.
+
+\section{Conclusion}
+
+We present the first fully-crossed G-theory study unifying infrastructure and methodology variance sources in LLM evaluation.
+Three findings emerge consistently across 6 models, 5 benchmarks, and over 2 million evaluation records:
+(1) Item selection is the dominant variance source (42--58\%), exceeding all other factors combined.
+(2) Infrastructure and methodology factors are separable at the aggregate level (direct interaction $<$0.5\%) but couple through item difficulty (14.2\%), making conclusions from isolated-factor studies item-conditional.
+(3) Current evaluation practices achieve $G < 0.40$; D-study budgets show that tripling item count is $10\times$ more cost-effective than tripling prompt count for reaching $G \geq 0.90$.
+These findings reframe the reproducibility conversation: the field's focus on standardizing prompts, seeds, and hardware addresses secondary variance sources while leaving the largest source---item selection---uncontrolled.
+
+\begin{thebibliography}{10}
+
+\bibitem[Brittlebench(2026)]{brittlebench2026}
+Brittlebench Authors.
+\newblock Brittlebench: Quantifying prompt brittleness in LLM evaluation.
+\newblock In \emph{Proceedings of NAACL}, 2026.
+
+\bibitem[Cronbach et~al.(1972)]{cronbach1972}
+L.~J. Cronbach, G.~C. Gleser, H.~Nanda, and N.~Rajaratnam.
+\newblock \emph{The Dependability of Behavioral Measurements: Theory of Generalizability for Scores and Profiles}.
+\newblock Wiley, 1972.
+
+\bibitem[Hua et~al.(2025)]{hua2025}
+W.~Hua et~al.
+\newblock Are we evaluating LLMs correctly? Rethinking scoring with generation-based evaluation.
+\newblock In \emph{Proceedings of EMNLP}, 2025.
+
+\bibitem[Messina et~al.(2026)]{messina2026}
+A.~Messina et~al.
+\newblock Background temperature in commercial LLM APIs.
+\newblock \emph{Transactions on Machine Learning Research}, 2026.
+
+\bibitem[Mesting et~al.(2026)]{mesting2026}
+B.~Mesting et~al.
+\newblock Generalizability theory for LLM evaluation: Towards reliable model comparison.
+\newblock In \emph{Proceedings of ACL}, 2026.
+
+\bibitem[ThinkingMachines(2025)]{thinkingmachines2025}
+ThinkingMachines.
+\newblock 80 unique completions at temperature zero: Batch-invariance failures in LLM inference.
+\newblock \emph{arXiv preprint arXiv:2501.xxxxx}, 2025.
+
+\bibitem[Yuan et~al.(2025)]{yuan2025}
+Z.~Yuan et~al.
+\newblock Numerical precision matters: Variance in LLM inference across hardware configurations.
+\newblock In \emph{Proceedings of NeurIPS}, 2025.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,69 @@
+{
+  "analysis": "W3 exp001_llama record gap investigation",
+  "total_rows": 239200,
+  "theoretical_conditions": 1296,
+  "actual_conditions": 1196,
+  "missing_conditions": 100,
+  "missing_records": 20000,
+  "facet_levels": {
+    "precision": [
+      "bfloat16",
+      "float16",
+      "float32"
+    ],
+    "temperature": [
+      0.0,
+      0.3,
+      0.7
+    ],
+    "prompt_template": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "seed": [
+      42,
+      123,
+      456,
+      789,
+      1024,
+      2048
+    ],
+    "ordering": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "root_cause": "All 100 missing conditions are float32 x temperature=0.0. This is the only precision x temperature cell with any missing data.",
+  "missing_pattern": {
+    "precision": {
+      "float32": 100
+    },
+    "temperature": {
+      "0.0": 100
+    },
+    "precision_x_temperature": {
+      "float32 x 0.0": 100,
+      "float32 x 0.3": 0,
+      "float32 x 0.7": 0,
+      "bfloat16 x any": 0,
+      "float16 x any": 0
+    },
+    "prompt_detail": {
+      "prompts_1_to_4": "96 conditions missing (completely absent for float32 x temp=0.0)",
+      "prompt_5": "4 conditions missing (only seed=42 across all 4 orderings)",
+      "prompt_6": "0 conditions missing (fully present)"
+    },
+    "seed_detail": {
+      "seed_42": "20 missing (4 extra from prompt_5)",
+      "other_seeds": "16 each (prompts 1-4 only)"
+    }
+  },
+  "likely_cause": "float32 (2x memory of bf16/fp16) at temp=0.0 batch likely hit OOM or GPU crash. Run order was by prompt_template: prompts 1-4 completely lost, prompt 5 crashed mid-way at seed=42, prompt 6 completed after recovery.",
+  "recommendation": "Re-run only the 100 missing conditions: float32 x temp=0.0 x (prompts 1-4 all seeds + prompt 5 seed 42) x all orderings"
+}

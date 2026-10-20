@@ -1,0 +1,109 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition in ML evaluation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{G-theory in LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt and infrastructure sensitivity.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT-based evaluation.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-tuning instability.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Alternative frameworks.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generalizability Theory Background}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary data.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-benchmark G-study (Experiments 1--2).}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model as crossed quasi-random facet.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Design note.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Cross-Benchmark Variance Analysis}{4}{section.4}\protected@file@percent }
+\newlabel{sec:crossbench}{{4}{4}{Cross-Benchmark Variance Analysis}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Variance Decomposition Across Benchmarks}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-benchmark variance decomposition (4 models, BF16, binary scoring). Each cell shows percentage of total variance. $\dagger $MATH uses 3-model preliminary data.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:cross_decomp}{{1}{5}{Cross-benchmark variance decomposition (4 models, BF16, binary scoring). Each cell shows percentage of total variance. $\dagger $MATH uses 3-model preliminary data}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Gradient summary with evaluation format. $G_{\text  {item}}$ is the generalizability coefficient for item measurement; D-study reports items needed for $G \geq 0.80$. $\dagger $3-model preliminary data.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:gradient_format}{{2}{5}{Gradient summary with evaluation format. $G_{\text {item}}$ is the generalizability coefficient for item measurement; D-study reports items needed for $G \geq 0.80$. $\dagger $3-model preliminary data}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Evaluation Format as Partial Predictor}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Single-Model to Cross-Model Transition}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Item difficulty variance (\%) in single-model (Llama-3.1-8B) vs.\ cross-model (4-model) designs. The difference is absorbed by model$\times $item interaction.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:single_cross}{{3}{6}{Item difficulty variance (\%) in single-model (Llama-3.1-8B) vs.\ cross-model (4-model) designs. The difference is absorbed by model$\times $item interaction}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-model accuracy by benchmark (BF16, $T{=}0.0$). *Phase 3 partial; OLMo-2-7B completed MMLU only (0.618).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:model_accuracy}{{4}{6}{Per-model accuracy by benchmark (BF16, $T{=}0.0$). *Phase 3 partial; OLMo-2-7B completed MMLU only (0.618)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Per-Model Accuracy and Interaction Profiles}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}D-Study Out-of-Sample Validation}{6}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Combined Analysis and Robustness}{6}{section.5}\protected@file@percent }
+\newlabel{sec:combined}{{5}{6}{Combined Analysis and Robustness}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Bootstrap Confidence Intervals}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Bootstrap 95\% CIs on key variance components (\%). 1000 resamples (item $\times $ condition). $\dagger $3-model.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:bootstrap}{{5}{7}{Bootstrap 95\% CIs on key variance components (\%). 1000 resamples (item $\times $ condition). $\dagger $3-model}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces IRT vs.\ G-theory item requirements. G-theory targets $G \geq 0.80$; IRT uses standard reliability threshold.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:irt_gtheory}{{6}{7}{IRT vs.\ G-theory item requirements. G-theory targets $G \geq 0.80$; IRT uses standard reliability threshold}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}IRT vs.\ G-Theory Item Requirements}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Benchmark-Specific Reproducibility Budgets}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Scoring Metric Comparison}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces D-study benchmark-specific reproducibility budgets (temperature fixed). CIs from 1000 bootstrap resamples.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:dstudy_budgets}{{7}{8}{D-study benchmark-specific reproducibility budgets (temperature fixed). CIs from 1000 bootstrap resamples}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Scoring metric comparison on MMLU (4-model design).}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:scoring}{{8}{8}{Scoring metric comparison on MMLU (4-model design)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Methodological Robustness}{8}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Additional Analyses}{8}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Higher-order interactions.}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ranking stability.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full-benchmark G projections.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GPU cost implications.}{8}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Methodological robustness summary across all benchmarks.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:robustness}{{9}{9}{Methodological robustness summary across all benchmarks}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Hardware Crossing Analysis}{9}{section.6}\protected@file@percent }
+\newlabel{sec:hardware}{{6}{9}{Hardware Crossing Analysis}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scope limitation for Claim 2.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Projected results.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Scale Extension: 14B Models}{9}{section.7}\protected@file@percent }
+\newlabel{sec:14b}{{7}{9}{Scale Extension: 14B Models}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces 8B vs.\ 14B projected variance structure on MMLU (BF16). 14B uses 2-model design; higher residual reflects limited model sampling.}}{10}{table.10}\protected@file@percent }
+\newlabel{tab:14b}{{10}{10}{8B vs.\ 14B projected variance structure on MMLU (BF16). 14B uses 2-model design; higher residual reflects limited model sampling}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Inference vs.\ fine-tuning variance hierarchy (projected). Inference uses MMLU 4-model G-study; fine-tuning uses RoBERTa-large.}}{10}{table.11}\protected@file@percent }
+\newlabel{tab:finetune}{{11}{10}{Inference vs.\ fine-tuning variance hierarchy (projected). Inference uses MMLU 4-model G-study; fine-tuning uses RoBERTa-large}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Fine-Tuning Variance Structure}{10}{section.8}\protected@file@percent }
+\newlabel{sec:finetune}{{8}{10}{Fine-Tuning Variance Structure}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Precision Mitigation: LayerCast}{10}{section.9}\protected@file@percent }
+\newlabel{sec:layercast}{{9}{10}{Precision Mitigation: LayerCast}{section.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Discussion}{11}{section.10}\protected@file@percent }
+\newlabel{sec:discussion}{{10}{11}{Discussion}{section.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmark-conditional variance: implications.}{11}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model$\times $item: the hidden cost.}{11}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Comparison with Mesting (2026).}{11}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Comparison with Sclar et al.\ (2024).}{11}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{11}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{11}{section.11}\protected@file@percent }
+\newlabel{sec:conclusion}{{11}{11}{Conclusion}{section.11}{}}
+\bibcite{bouthillier2021}{1}
+\bibcite{brennan2001}{2}
+\bibcite{brittlebench2026}{3}
+\bibcite{bui2025}{4}
+\bibcite{dehghani2021}{5}
+\bibcite{dodge2020}{6}
+\bibcite{henderson2018}{7}
+\bibcite{hua2025}{8}
+\bibcite{jiang2017}{9}
+\bibcite{kunievsky2025}{10}
+\bibcite{lalor2019}{11}
+\bibcite{lu2022}{12}
+\bibcite{messina2026}{13}
+\bibcite{mesting2026}{14}
+\bibcite{mushquash2006}{15}
+\bibcite{perlitz2023}{16}
+\bibcite{pezeshkpour2024}{17}
+\bibcite{polo2024tinybenchmarks}{18}
+\bibcite{rodriguez2021}{19}
+\bibcite{sclar2024}{20}
+\bibcite{sellam2022}{21}
+\bibcite{shavelson1989}{22}
+\bibcite{shavelson1991}{23}
+\bibcite{vania2021}{24}
+\bibcite{yuan2025}{25}
+\bibcite{biderman2024}{26}
+\gdef \@abspage@last{13}

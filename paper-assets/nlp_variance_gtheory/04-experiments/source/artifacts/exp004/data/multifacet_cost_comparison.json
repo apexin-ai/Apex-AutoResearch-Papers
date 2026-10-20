@@ -1,0 +1,162 @@
+{
+  "description": "Multi-facet 3×3 vs single-condition inference cost comparison, based on exp-002 actual GPU timing data",
+  "source": "exp-002 wall-clock timing from 6 models (Qwen3-8B, Llama, Gemma-2-9B, Mistral, Deepseek-7B, InternLM2.5-7B) on H800/A800 GPUs with vLLM v0.9.2 batch inference, 288 conditions × 200 items = 57,600 evals per model-benchmark pair",
+  "gpu_info": "Single H800/A800 (94.97 GiB VRAM) per model, vLLM enforce_eager, bfloat16",
+  "designs": {
+    "multifacet_3x3": {
+      "description": "3 prompts × 3 seeds, D-study optimal for G≥0.80",
+      "items": 178,
+      "conditions": 9,
+      "total_evals_per_model_per_benchmark": 1602
+    },
+    "single_condition": {
+      "description": "1 prompt × 1 seed, requires more items for equivalent G≥0.80",
+      "items": 552,
+      "conditions": 1,
+      "total_evals_per_model_per_benchmark": 552
+    }
+  },
+  "per_benchmark": {
+    "MMLU": {
+      "type": "multiple_choice",
+      "avg_eval_time_ms": 28.1,
+      "avg_input_tokens_per_eval": 482,
+      "avg_output_tokens_per_eval": 14,
+      "source_models": 6,
+      "model_range_ms": [25.8, 32.6],
+      "multifacet_total_time_s": 45.0,
+      "multifacet_gpu_hours": 0.0125,
+      "single_total_time_s": 15.5,
+      "single_gpu_hours": 0.0043,
+      "ratio": 2.90
+    },
+    "ARC-Challenge": {
+      "type": "multiple_choice",
+      "avg_eval_time_ms": 24.2,
+      "avg_input_tokens_per_eval": 400,
+      "avg_output_tokens_per_eval": 14,
+      "source_models": 6,
+      "model_range_ms": [22.2, 28.5],
+      "multifacet_total_time_s": 38.8,
+      "multifacet_gpu_hours": 0.0108,
+      "single_total_time_s": 13.4,
+      "single_gpu_hours": 0.0037,
+      "ratio": 2.90
+    },
+    "HellaSwag": {
+      "type": "multiple_choice",
+      "avg_eval_time_ms": 36.2,
+      "avg_input_tokens_per_eval": 600,
+      "avg_output_tokens_per_eval": 14,
+      "source_models": 6,
+      "model_range_ms": [33.3, 41.1],
+      "multifacet_total_time_s": 58.0,
+      "multifacet_gpu_hours": 0.0161,
+      "single_total_time_s": 20.0,
+      "single_gpu_hours": 0.0056,
+      "ratio": 2.90
+    },
+    "GSM8K": {
+      "type": "free_form",
+      "avg_eval_time_ms": 149.2,
+      "avg_input_tokens_per_eval": 1066,
+      "avg_output_tokens_per_eval": 159,
+      "source_models": 5,
+      "model_range_ms": [115.2, 177.7],
+      "multifacet_total_time_s": 239.0,
+      "multifacet_gpu_hours": 0.0664,
+      "single_total_time_s": 82.4,
+      "single_gpu_hours": 0.0229,
+      "ratio": 2.90
+    },
+    "MATH": {
+      "type": "free_form",
+      "avg_eval_time_ms": 238.1,
+      "avg_input_tokens_per_eval": 1620,
+      "avg_output_tokens_per_eval": 278,
+      "source_models": 5,
+      "model_range_ms": [178.2, 310.4],
+      "multifacet_total_time_s": 381.4,
+      "multifacet_gpu_hours": 0.1059,
+      "single_total_time_s": 131.4,
+      "single_gpu_hours": 0.0365,
+      "ratio": 2.90
+    }
+  },
+  "aggregate_per_model_all_benchmarks": {
+    "multifacet_3x3": {
+      "total_evals": 8010,
+      "total_time_s": 762.2,
+      "total_gpu_hours": 0.212
+    },
+    "single_condition": {
+      "total_evals": 2760,
+      "total_time_s": 262.7,
+      "total_gpu_hours": 0.073
+    },
+    "ratio": 2.90
+  },
+  "api_cost_estimate": {
+    "note": "Hypothetical cost if evaluated via commercial API instead of local GPU",
+    "pricing_assumption": "$0.15/1M input tokens, $0.60/1M output tokens (GPT-4o-mini tier)",
+    "per_model_all_benchmarks": {
+      "multifacet_3x3": {
+        "total_input_tokens": 6672828,
+        "total_output_tokens": 767358,
+        "cost_usd": 1.46
+      },
+      "single_condition": {
+        "total_input_tokens": 2299536,
+        "total_output_tokens": 264408,
+        "cost_usd": 0.50
+      },
+      "ratio": 2.90
+    }
+  },
+  "summary": {
+    "eval_count_ratio": 2.90,
+    "gpu_hours_ratio": 2.90,
+    "item_count_ratio": 0.32,
+    "absolute_cost_is_small": true,
+    "multifacet_gpu_hours_per_model": 0.212,
+    "single_gpu_hours_per_model": 0.073,
+    "multifacet_marginal_cost_minutes": 8.3,
+    "key_insight": "The 3×3 design uses 2.9× more inference compute (12.7 min vs 4.4 min per model across 5 benchmarks on a single H800 GPU), but requires only 32% as many test items (178 vs 552). Both costs are negligible for 7B models with vLLM batch inference — the entire 3×3 evaluation suite completes in under 13 minutes per model on a single GPU.",
+    "when_multifacet_wins": "When per-item costs dominate: human annotation of ground truth, manual curation of specialized benchmarks, domain-expert evaluation rubrics, or when items are scarce (e.g., rare languages, niche domains). Also wins when diagnostic value matters — G-theory decomposes variance sources (prompt vs seed vs interaction), enabling targeted mitigation rather than brute-force item scaling.",
+    "when_single_wins": "When items are freely available (standard benchmarks like MMLU/GSM8K), inference budget is the binding constraint (e.g., evaluating 100+ models in a leaderboard), or when the evaluation infrastructure doesn't support multi-condition scheduling.",
+    "practical_recommendation": "For typical model evaluation (≤20 models × 5 benchmarks), the 3×3 multi-facet design adds only ~2.8 GPU-hours total overhead versus single-condition. This is a trivial cost for the diagnostic power gained: knowing that prompt variation contributes 15% of score variance (vs seed at 3%) is actionable intelligence that no amount of single-condition testing can provide."
+  },
+  "timing_details": {
+    "note": "Per-eval times derived from exp-002 wall-clock timing, averaged across models",
+    "mc_vs_ff_speedup": "MC benchmarks (MMLU/ARC/HellaSwag) are 4-10× faster per eval than free-form (GSM8K/MATH) due to shorter generation length",
+    "per_model_benchmark_timing": {
+      "MMLU": {
+        "qwen_s": 1589, "llama_s": 1485, "gemma_s": 1879,
+        "mistral_s": 1669, "deepseek_s": 1574, "internlm_s": 1522,
+        "conditions": 288, "items_per_condition": 200
+      },
+      "ARC": {
+        "qwen_s": 1343, "llama_s": 1278, "gemma_s": 1639,
+        "mistral_s": 1388, "deepseek_s": 1385, "internlm_s": 1322,
+        "conditions": 288, "items_per_condition": 200
+      },
+      "HellaSwag": {
+        "qwen_s": 2069, "llama_s": 1974, "gemma_s": 2370,
+        "mistral_s": 2128, "deepseek_s": 2054, "internlm_s": 1918,
+        "conditions": 288, "items_per_condition": 200
+      },
+      "GSM8K": {
+        "llama_s": 7728, "gemma_s": 10235, "mistral_s": 8624,
+        "deepseek_s": 9741, "internlm_s": 6636,
+        "conditions": 288, "items_per_condition": 200,
+        "note": "qwen excluded due to run failure"
+      },
+      "MATH": {
+        "llama_s": 12720, "gemma_s": 17880, "mistral_s": 11460,
+        "deepseek_s": 16241, "internlm_s": 10262,
+        "conditions": 288, "items_per_condition": 200,
+        "note": "llama/gemma/mistral timing estimated from jsonl timestamps and monitoring log"
+      }
+    }
+  }
+}

@@ -1,0 +1,2402 @@
+[
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | Every free abelian group is torsion free. Statement 2 | Every finitely generated torsion-free abelian group is a free abelian group.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_55"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | In a finite dimensional vector space every linearly independent set of vectors is contained in a basis. Statement 2 | If B_1 and B_2 are bases for the same vector space, then |B_1| = |B_2|.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_32"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | If a group has an element of order 15 it must have at least 8 elements of order 15. Statement 2 | If a group has more than 8 elements of order 15, it must have at least 16 elements of order 15.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_5"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | 4x - 2 is irreducible over Z. Statement 2 | 4x - 2 is irreducible over Q.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_56"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^2 + 1 in Z_2",
+    "choices": [
+      "0",
+      "1",
+      "0,1",
+      "2"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_96"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | For any two groups G and G', there exists a homomorphism of G into G'. Statement 2 | Every homomorphism is a one-to-one map.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_45"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | If H is a subgroup of a group G and a belongs to G, then aH = Ha. Statement 2 | If H is normal of G and a belongs to G, then ah = ha for all h in H.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_30"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5",
+    "choices": [
+      "0",
+      "1",
+      "0,1",
+      "0,4"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_2"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Compute the product in the given ring. (20)(-8) in Z_26",
+    "choices": [
+      "0",
+      "1",
+      "11",
+      "22"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_36"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | Every group of order 42 has a normal subgroup of order 7. Statement 2 | Every group of order 42 has a normal subgroup of order 8.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_26"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | Every solvable group is of prime-power order. Statement 2 | Every group of prime-power order is solvable.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_50"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Using Fermat's theorem, find the remainder of 3^47 when it is divided by 23.",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_72"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "The element (4, 2) of Z_12 x Z_8 has order",
+    "choices": [
+      "4",
+      "8",
+      "12",
+      "6"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_98"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Which of the following statements is true?",
+    "choices": [
+      "Every equivalence relation is a partial-ordering relation.",
+      "Number of relations form A = {x, y, z} to B= (1, 2), is 64.",
+      "Empty relation _ is reflexive",
+      "Properties of a relation being symmetric and being un-symmetric are negative of each other."
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_92"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | S_n is non-Abelian for all n >= 3. Statement 2 | If a is a permutation that is an m-cycle and b is a permutation that is an n-cycle, then |ab| = lcm(m,n).",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_76"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | If a R is an integral domain, then R[x] is an integral domain. Statement 2 | If R is a ring and f(x) and g(x) are in R[x], then deg (f(x)g(x)) = deg f(x) + deg g(x).",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_48"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | If H and K are subgroups of G and one of H or K is normal subgroup of G, then HK is a subgroup of G. Statement 2 | All groups of order p^2 where p is prime are Abelian.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_59"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "The polynomial x^4 + 4 can be factored into linear factors in Z_5[x]. Find this factorization.",
+    "choices": [
+      "(x − 2)(x + 2)(x − 1)(x + 1)",
+      "(x+1)^4",
+      "(x-1)(x+1)^3",
+      "(x-1)^3(x+1)"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_68"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | A homomorphism may have an empty kernel. Statement 2 | It is not possible to have a nontrivial homomorphism of some finite group into some infinite group.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_46"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the number of elements in the indicated cyclic group: The cyclic subgroup of Z_30 generated by 25.",
+    "choices": [
+      "25",
+      "5",
+      "6",
+      "30"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_97"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A nonrelativistic particle with a charge twice that of an electron moves through a uniform magnetic field. The field has a strength of π/4 tesla and is perpendicular to the velocity of the particle. What is the particle’s mass if it has a cyclotron frequency of 1,600 hertz?",
+    "choices": [
+      "2.5 * 10^-23 kg",
+      "1.2 * 10^-22 kg",
+      "3.3 * 10^-22 kg",
+      "5.0 * 10^-21 kg"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_98"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The sign of the charge carriers in a doped semiconductor can be deduced by measuring which of the following properties?",
+    "choices": [
+      "Magnetic susceptibility",
+      "Hall coefficient",
+      "Electrical resistivity",
+      "Thermal conductivity"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_24"
+  },
+  {
+    "subject": "college_physics",
+    "question": "White light is normally incident on a puddle of water (index of refraction 1.33). A thin (500 nm) layer of oil (index of refraction 1.5) floats on the surface of the puddle. Of the following, the most strongly reflected wavelength is",
+    "choices": [
+      "500 nm",
+      "550 nm",
+      "600 nm",
+      "650 nm"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_1"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A satellite of mass m orbits a planet of mass M in a circular orbit of radius R. The time required for one revolution is",
+    "choices": [
+      "independent of M",
+      "proportional to m^(1/2)",
+      "linear in R",
+      "proportional to R^(3/2)"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_101"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The rest mass of a particle with total energy 5.0 GeV and momentum 4.9 GeV/c is approximately",
+    "choices": [
+      "0.1 GeV/c^2",
+      "0.2 GeV/c^2",
+      "0.5 GeV/c^2",
+      "1.0 GeV/c^2"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_49"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Light of variable frequency shines on the metal surface of a photoelectric tube. Einstein’s theory of the photoelectric effect predicts that the",
+    "choices": [
+      "work function of the metal is proportional to the frequency",
+      "work function of the metal is proportional to the wavelength",
+      "current in the tube is a linear function of the wavelength",
+      "potential difference necessary to stop the emitted electrons is a linear function of the frequency above the threshold frequency"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_77"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Which of the following statements about bosons and/or fermions is true?",
+    "choices": [
+      "Bosons have symmetric wave functions and obey the Pauli exclusion principle.",
+      "Bosons have antisymmetric wave functions and do not obey the Pauli exclusion principle.",
+      "Fermions have symmetric wave functions and obey the Pauli exclusion principle.",
+      "Fermions have antisymmetric wave functions and obey the Pauli exclusion principle."
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_15"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Blue light of wavelength 480 nanometers is most strongly reflected off a thin film of oil on a glass slide when viewed near normal incidence. Assuming that the index of refraction of the oil is 1.2 and that of the glass is 1.6, what is the minimum thickness of the oil film (other than zero) ?",
+    "choices": [
+      "150 nm",
+      "200 nm",
+      "300 nm",
+      "400 nm"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_44"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Light of variable frequency shines on the metal surface of a photoelectric tube. Einstein’s theory of the photoelectric effect predicts that the",
+    "choices": [
+      "work function of the metal is proportional to the frequency",
+      "work function of the metal is proportional to the wavelength",
+      "current in the tube is a linear function of the wavelength",
+      "potential difference necessary to stop the emitted electrons is a linear function of the frequency above the threshold frequency"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_30"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The energy required to remove both electrons from the helium atom in its ground state is 79.0 eV. How much energy is required to ionize helium (i.e., to remove one electron)?",
+    "choices": [
+      "24.6 eV",
+      "39.5 eV",
+      "51.8 eV",
+      "54.4 eV"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_67"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A 10 kg box slides horizontally without friction at a speed of 1 m/s. At one point, a constant force is applied to the box in the direction of its motion. The box travels 5 m with the constant force applied. The force is then removed, leaving the box with a speed of 2 m/s. Which of the following gives the magnitude of the applied force?",
+    "choices": [
+      "1 N",
+      "2 N",
+      "3 N",
+      "4 N"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_76"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The best type of laser with which to do spectroscopy over a range of visible wavelengths is",
+    "choices": [
+      "a dye laser",
+      "a helium-neon laser",
+      "an excimer laser",
+      "a ruby laser"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_3"
+  },
+  {
+    "subject": "college_physics",
+    "question": "At 20°C, a pipe open at both ends resonates at a frequency of 440 hertz. At what frequency does the same pipe resonate on a particularly cold day when the speed of sound is 3 percent lower than it would be at 20°C ?",
+    "choices": [
+      "414 Hz",
+      "427 Hz",
+      "433 Hz",
+      "440 Hz"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_32"
+  },
+  {
+    "subject": "college_physics",
+    "question": "According to the BCS theory, the attraction between Cooper pairs in a superconductor is due to",
+    "choices": [
+      "the weak nuclear force",
+      "the strong nuclear force",
+      "vacuum polarization",
+      "interactions with the ionic lattice"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_65"
+  },
+  {
+    "subject": "college_physics",
+    "question": "De Broglie hypothesized that the linear momentum and wavelength of a free massive particle are related by which of the following constants?",
+    "choices": [
+      "Planck’s constant",
+      "Boltzmann’s constant",
+      "The Rydberg constant",
+      "The speed of light"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_8"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A magnetic field is directed perpendicular to the plane of a circular coil of area 0.2 m^2 and 250 turns. If the magnetic field is increased from 0.01 T to 0.06 T during a time interval of 0.25 s, the average induced EMF in the coil is",
+    "choices": [
+      "0.04 V",
+      "0.1 V",
+      "2.5 V",
+      "10 V"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_29"
+  },
+  {
+    "subject": "college_physics",
+    "question": "An airplane drops a payload while traveling due north, parallel to the ground, at a constant speed of 100 m/s. If air resistance is neglected, what is the velocity of the payload relative to the plane 4.0 s after it is released?",
+    "choices": [
+      "0",
+      "40 m/s down",
+      "80 m/s down",
+      "100 m/s north and 40 m/s down"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_99"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A meter stick with a speed of 0.8c moves past an observer. In the observer’s reference frame, how long does it take the stick to pass the observer ?",
+    "choices": [
+      "1.6 ns",
+      "2.5 ns",
+      "4.2 ns",
+      "6.9 ns"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_18"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The eigenvalues of a Hermitian operator are always",
+    "choices": [
+      "real",
+      "imaginary",
+      "degenerate",
+      "linear"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_52"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The sign of the charge carriers in a doped semiconductor can be deduced by measuring which of the following properties?",
+    "choices": [
+      "Specific heat",
+      "Thermal conductivity",
+      "Electrical resistivity",
+      "Hall coefficient"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_12"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Where did people believe in the goddess known as Holy Mother of Mount Fairy Peach?",
+    "choices": [
+      "China",
+      "Silla",
+      "Goguryeo",
+      "Joseon"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_61"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Which branch of Judaism founded by Zacharias Frankel is known for its \"Positive-Historical Judaism\"?",
+    "choices": [
+      "Conservative",
+      "Reformed",
+      "Reconstructionism",
+      "Orthodox"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_101"
+  },
+  {
+    "subject": "world_religions",
+    "question": " According to Hindu tradition, who is considered to be the ideal wife?",
+    "choices": [
+      "Sita",
+      "Rama",
+      "Kali",
+      "Durga"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_36"
+  },
+  {
+    "subject": "world_religions",
+    "question": " How many times a day is the Fatihah recited?",
+    "choices": [
+      "Exactly 17",
+      "At least 17",
+      "At least 13",
+      "Exactly 24"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_100"
+  },
+  {
+    "subject": "world_religions",
+    "question": "According to Hindu tradition, which age are we in currently?",
+    "choices": [
+      "Kali yuga",
+      "Maha yuga",
+      "Krita yuga",
+      "Satya yuga"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_33"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Which elephant-headed Hindu deity is often described as the most beloved?",
+    "choices": [
+      "Parvati",
+      "Ganesha",
+      "Vishnu",
+      "Sita"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_64"
+  },
+  {
+    "subject": "world_religions",
+    "question": "When was the current Dalai Lama born?",
+    "choices": [
+      "1935",
+      "2000",
+      "1965",
+      "1975"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_43"
+  },
+  {
+    "subject": "world_religions",
+    "question": "What does the phrase Guru-Panth mean within the Sikh traditions?",
+    "choices": [
+      "Community",
+      "Scripture",
+      "Worship",
+      "Apprenticeship"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_50"
+  },
+  {
+    "subject": "world_religions",
+    "question": " When was the first Buddhist temple constructed in Japan?",
+    "choices": [
+      "325 CE",
+      "119 CE",
+      "451 CE",
+      "596 CE"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_2"
+  },
+  {
+    "subject": "world_religions",
+    "question": "When was the State of Israel established?",
+    "choices": [
+      "1947",
+      "1948",
+      "1945",
+      "1949"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_132"
+  },
+  {
+    "subject": "world_religions",
+    "question": " What is the meaning ofsamyak jnanawithin the Jaina traditions?",
+    "choices": [
+      "Correct knowledge",
+      "Correct practice",
+      "Correct intiution",
+      "Correct belief"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_84"
+  },
+  {
+    "subject": "world_religions",
+    "question": " In Yiddish, what is the word for covenant?",
+    "choices": [
+      "Haggadah",
+      "Halakhah",
+      "Brit",
+      "Bris"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_125"
+  },
+  {
+    "subject": "world_religions",
+    "question": "What is a mohel?",
+    "choices": [
+      "A ritual circumciser",
+      "A type of oil lame",
+      "A teacher",
+      "A covenant"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_161"
+  },
+  {
+    "subject": "world_religions",
+    "question": " What is the title for the religious and administrative leaders who succeeded the Prophet?",
+    "choices": [
+      "Rasul",
+      "Nabi",
+      "Caliph",
+      "Mahdi"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_93"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Which monk developed Pure Land Buddhism as we know it today?",
+    "choices": [
+      "Genshin",
+      "Dogen",
+      "Honen",
+      "Shinran"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_52"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Which Christian denomination promotes a stripped-down Christianity?",
+    "choices": [
+      "Greek Orthodox",
+      "Roman Catholic",
+      "Puritans",
+      "Quakers"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_41"
+  },
+  {
+    "subject": "world_religions",
+    "question": " To whom is the Yoga Sutras attributed?",
+    "choices": [
+      "Madhva",
+      "Patanjali",
+      "Ramanuja",
+      "Aryabhatta"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_62"
+  },
+  {
+    "subject": "world_religions",
+    "question": " The Gospel of John is associated with which theological concept?",
+    "choices": [
+      "Incarnation",
+      "Logos of God",
+      "Jesus as messiah and saviour",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_129"
+  },
+  {
+    "subject": "world_religions",
+    "question": " The classic text Daodejing is known by what title in English?",
+    "choices": [
+      "Classic of Changes",
+      "Classic of the Way and Power",
+      "Classic of Women",
+      "Classic of Philosophy"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_153"
+  },
+  {
+    "subject": "world_religions",
+    "question": " What type of Buddhist organization is the Bodu Bala Sena?",
+    "choices": [
+      "Activist and militant organization in Sri Lanka",
+      "Ecumenical organization in India",
+      "Modern organization in the United States",
+      "Peacekeeping organization in Japan"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_85"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Intergovernmental organizations SELDOM do which of the following?",
+    "choices": [
+      "Provide strong enforcement",
+      "Monitor parties",
+      "Provide fora for discussion",
+      "Reduce transaction costs for agreements"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_31"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was 'democratic enlargement'?",
+    "choices": [
+      "A proposal for reform of the US system of government",
+      "A proposal for the extension of democratic rule globally",
+      "A proposal for the extension of free markets",
+      "Both b and c"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_96"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "The cooperative international organization of 185 countries designed to stabilize the exchange of currencies and the world economy is",
+    "choices": [
+      "the World Bank.",
+      "the United Nations.",
+      "UNICEF.",
+      "the International Monetary Fund."
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_76"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "How did the relationship between President and Congress develop under George H.W. Bush and Bill Clinton?",
+    "choices": [
+      "Congress asserted its primacy in foreign policy",
+      "US foreign policy became substantially decentralized",
+      "The Presidency welcomed the influence of Congress",
+      "None of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_88"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What has been an effective way of disbursing US foreign aid to encourage change in target states?",
+    "choices": [
+      "Conditional programs, such as the Millennium Challenge, that require change before receipt of aid",
+      "the use of intergovernmental organizations to monitor aid disbursement",
+      "withdrawal of aid for bad policies",
+      "None of the above, international aid never works"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_93"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "According to realists, what is the fundamental difference between the international system and the domestic system?",
+    "choices": [
+      "Armed conflict",
+      "Anarchy",
+      "Institutions",
+      "No common language"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_40"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "International trade will almost always benefit both countries, so why do countries try to protect their own firms from exposure to the world market?",
+    "choices": [
+      "Irrationality on the part of the leadership",
+      "Costs of free trade are concentrated, but benefits are dispersed",
+      "Regime type",
+      "International conflict prevents trade"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_17"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Why is there so much uncertainty over which states have nuclear weapons?",
+    "choices": [
+      "Leaders have incentives to lie",
+      "If leaders revealed their programs, they would be more likely to be attacked",
+      "Leaders will not always grant foreign monitors access to their nuclear programs",
+      "ALL of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_13"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was the Marshall plan?",
+    "choices": [
+      "A plan designed to aid the economy recovery of Europe",
+      "An attempt to diminish the potential attraction of the Soviet system to Europeans",
+      "An aid programme that embedded US influence in Europe",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_78"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "According to International Institutionalists, what problems have international institutions been designed to address?",
+    "choices": [
+      "War",
+      "Anarchy",
+      "Collective action and coordination problems",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_53"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What is meant by the phrase 'empire by invitation'?",
+    "choices": [
+      "Voluntary reliance on an external power for security",
+      "Willful openness to colonization",
+      "Cultural imperialism",
+      "Open advocacy of imperialism for economic gain"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_97"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was the Marshall Plan?",
+    "choices": [
+      "A plan that provided economic assistance to rebuild Europe.",
+      "A plan to provide aid to Greece and Turkey in their stand against Soviet and Soviet-assisted threats",
+      "A plan that provided Europe with military assistance to counter the Soviet threat",
+      "The plan designed to stop communism in Asia"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_51"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Which of the following is NOT a good predictor of which states will get nuclear weapons?",
+    "choices": [
+      "Receipt of sensitive nuclear assistance",
+      "Wealth/GDP",
+      "Rivalry with a nuclear state",
+      "Regime type"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_95"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What is the implication of American exceptionalism in terms of global economics?",
+    "choices": [
+      "It encourages the use of tariffs",
+      "It encourages nationalization",
+      "It encourages liberalization of global trade",
+      "It encourages redistribution of wealth"
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_61"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "In what sense might exceptionalism link isolationist and internationalist strategies?",
+    "choices": [
+      "Both encourage world government",
+      "Both focus on the decline of the American power",
+      "It doesn't - the two are fundamentally opposed",
+      "Both can be viewed as different means of achieving the same liberal ends"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_69"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was the key difference between US expansion pre- and post- 1865?",
+    "choices": [
+      "US expansion was based on territory rather than markets post-1865",
+      "US expansion was based on markets rather than territory post-1865",
+      "US expansion was limited to Latin America post-1865",
+      "US expansion ended after 1865"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_27"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What policies are part of a grand strategy of Offshore Balancing?",
+    "choices": [
+      "Maintaining a balance between the United States and other countries and not entering into alliances",
+      "Investing equally in domestic and international security with balanced protection against terrorism and other states",
+      "Embrace multi-polarity, show greater restraint internationally and require other states to meet their own security burdens.",
+      "Isolate the US from the international system and not seek global power"
+    ],
+    "answer_idx": 2,
+    "item_id": "us_foreign_policy_77"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What is direct diplomacy?",
+    "choices": [
+      "Members of Congress negotiating directly with foreign governments",
+      "Face-to-face meetings between state leaders",
+      "The president consulting Congress on foreign policy issues",
+      "Bilateral talks that do not involve a third-party negotiator"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_33"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was established at Bretton Woods in 1994 to stabilize the global economy?",
+    "choices": [
+      "The International Monetary Fund (IMF)",
+      "The US Dollar as the world's reserve currency",
+      "The General Agreement on Tariffs and Trade (GATT)",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_94"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Peace, commerce, and honest friendship with all nations, entangling alliances with none'. Identify the speaker.",
+    "choices": [
+      "James Madison",
+      "Abraham Lincoln",
+      "Woodrow Wilson",
+      "Thomas Jefferson"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_99"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 78-year-old woman is admitted to the hospital for replacement of her left knee joint due to degenerative joint disease. She has type 2 diabetes mellitus, a long history of hypertension, and chronic renal failure presumed secondary to diabetes mellitus and hypertension. Reversible causes of renal failure have been excluded. She underwent a tonsillectomy at age 9 years and a laparoscopic cholecystectomy at age 68 years. Serum creatinine concentration on admission was 6.0 mg/dL. Her current therapy includes a low-sodium, low-protein American Diabetes Association (ADA) diet, enalapril, and acetaminophen. She is a retired seamstress. She and her husband live on a farm 90 miles from the nearest dialysis facility. In considering longterm treatment options for this patient, which of the following is the most appropriate factor to consider?",
+    "choices": [
+      "Her eligibility to receive Medicare",
+      "Her history of an abdominal operation",
+      "Her history of arthritis",
+      "Her suitability for home dialysis"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_252"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 42-year-old man comes to the physician for a follow-up examination. Four months ago, he underwent repair of a Dupuytren contracture. Physical examination shows decreased range of motion in the affected hand. The patient is upset that his hand has not fully healed, and he files a malpractice suit against the physician. Which of the following is the most likely precipitating factor in this patient's decision to file a malpractice suit?",
+    "choices": [
+      "The patient's perception that the physician is incompetent",
+      "The patient's perception that the physician is uncaring",
+      "The patient's socioeconomic status",
+      "The physician's amount of experience in the medical field"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_46"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 15-year-old male is brought to the office with a 2-day history of painful swelling over the sacral prominence that began after a fall during a high school wrestling match. The patient has a low-grade fever. Examination reveals an erythematous, fluctuant, elevated mass with 3 midline pores. Rectal examination reveals no induration or pain. The most likely diagnosis is",
+    "choices": [
+      "anocutaneous fistula",
+      "coccygodynia",
+      "hidradenitis suppurativa",
+      "pilonidal abscess"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_177"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 10-year-old boy is brought for a follow-up examination 2 days after he was seen in the emergency department because of hives, hoarseness, and light-headedness. His symptoms began 15 minutes after he was stung by a bee and lasted approximately 60 minutes; they resolved before he was treated. He has been stung by bees three times over the past year, and each reaction has been more severe. Examination shows no abnormalities. Which of the following is the most appropriate recommendation to prevent future morbidity and mortality from this condition?",
+    "choices": [
+      "Avoid areas known to have bees",
+      "Avoid wearing colorful clothing outside",
+      "Carrying diphenhydramine tablets",
+      "Carrying self-injectable epinephrine"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_260"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 36-year-old man comes to the office because of headaches that began 2 weeks ago. The headaches are moderately severe, are present when he awakens in the morning, and are relieved with over-the-counter analgesics. He has no prior history of headaches. He tells you he was promoted to an upper-level managerial position in his accounting firm about 8 months ago, which necessitated relocating. Physical examination now discloses no abnormalities except for blurring of the optic disc margins bilaterally. Which of the following is the most appropriate next step?",
+    "choices": [
+      "Begin a trial of a β-blocking medication",
+      "Order CT scan of the head",
+      "Order EEG",
+      "Refer him for consultation with a neurologist"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_88"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 5-year-old girl is brought to the physician by her parents for evaluation of recurrent injuries. Her parents say that she started walking at the age of 14 months and since then has always seemed clumsier and had more injuries than other children. She has had increasingly frequent chest pain with exertion since starting a soccer program 3 months ago. She usually has pain or swelling of her knees or ankles after practice. She has been wearing glasses for 2 years. Her 16-year-old brother has required two operations for a severe rotator cuff injury he sustained while taking a shower, and she has a maternal cousin who died of a ruptured aortic aneurysm at the age of 26 years. Today, the patient walks with a limp. She is at the 99th percentile for height and 50th percentile for weight. A midsystolic click is heard at the apex. The left ankle is swollen and tender; range of motion is limited by pain. The joints of the upper and lower extremities are hypermobile, including 25 degrees of genu recurvatum, thumbs that may be extended to touch the forearms, and flexibility at the waist, with palms easily touching the floor with straight knees. Which of the following is the most appropriate next step in diagnosis?",
+    "choices": [
+      "Skeletal survey",
+      "Echocardiography",
+      "Bone scan",
+      "MRI of the shoulder"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_174"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 2-year-old boy is brought to the physician for a well-child examination. He was delivered at term after an uncomplicated pregnancy. His birth weight was 3500 g (7 lb 11 oz), and Apgar scores were 8 and 10 at 1 and 5 minutes, respectively. At the age of 15 months, physical examination showed no abnormalities, but he was not yet talking. Both of his parents had learning difficulties in school, and his mother stopped attending after the 10th grade. He has a maternal uncle with cognitive disabilities. He is at the 25th percentile for height, 15th percentile for weight, and 90th percentile for head circumference. He appears irritable, he resists making eye contact, and he is flapping his hands. Which of the following is the most likely cause of this patient's condition?",
+    "choices": [
+      "Frameshift mutation",
+      "Missense mutation",
+      "Nonsense mutation",
+      "Trinucleotide repeat expansion"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_62"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 37-year-old woman is brought to the emergency department 45 minutes after she was found unconscious on her apartment floor. Her coworkers became concerned when she did not arrive for work. On arrival, she is unable to provide a history. Her pulse is 96/min, respirations are 12/min, and blood pressure is 124/58 mm Hg. Examination shows erythema, warmth, and induration of the upper back, buttocks, and posterior thighs. Her serum creatine kinase activity is 10,300 U/L. Urine toxicology screening is positive for opiates and cocaine. Urine dipstick is strongly positive for blood. Microscopic examination of the urine shows pigmented granular casts and rare erythrocytes. This patient is at increased risk for which of the following conditions over the next 24 hours?",
+    "choices": [
+      "Acute respiratory distress syndrome",
+      "Acute tubular necrosis",
+      "Cerebral edema",
+      "Cerebral hemorrhage"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_135"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 27-year-old nurse comes to the emergency department because of nervousness, dizziness, palpitations, and excess perspiration for the past 3 hours. She has had similar episodes over the past 6 months. The symptoms improve following ingestion of orange juice or soft drinks. She says that she has had a great deal of stress. She has been drinking two alcoholic beverages daily for the past month; before this time, she seldom drank alcohol. Examination shows no abnormalities. Her serum glucose concentration is 30 mg/dL. Intravenous glucose is administered, and the patient's symptoms improve. Which of the following is the most appropriate next step in diagnosis?",
+    "choices": [
+      "Measurement of serum proinsulin and insulin antibodies",
+      "Measurement of serum cortisol and ACTH concentrations",
+      "Measurement of serum growth hormone and plasma somatomedin-C concentrations",
+      "Measurement of serum insulin and C-peptide concentrations"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_143"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 40-year-old woman comes to the physician because of a 6-month history of increased facial hair growth. Her last menstrual period was 4 months ago. She is 165 cm (5 ft 5 in) tall and weighs 70 kg (154 lb); BMI is 26 kg/m2 . Her pulse is 80/min, and blood pressure is 130/82 mm Hg. Physical examination shows temporal balding and coarse dark hair on the upper lip and chin. Pelvic examination shows clitoral enlargement. Her serum testosterone concentration is increased. Serum concentrations of androstenedione, dehydroepiandrosterone, and urinary 17-ketosteroids are within the reference ranges. Ultrasonography of the pelvis shows a 12-cm ovarian mass. Which of the following best describes this mass?",
+    "choices": [
+      "Granulosa tumor",
+      "Ovarian carcinoid",
+      "Sertoli-Leydig tumor",
+      "Teratoma"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_40"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 76-year-old man comes to the office because of early awakening at night. He has no difficulty falling asleep but routinely wakes up between 2:00 and 3:00 AM. The patient is a retired postal worker, and he has always been physically active. He has diabetes mellitus controlled by diet. The patient drinks one cup of coffee in the morning with breakfast and usually walks for exercise in the morning. Before retiring at night he has one alcoholic beverage. He has no history of depression, nightmares, or snoring and he takes no over-the-counter medications. His wife of 45 years is also in good health. Vital signs are temperature 37.1°C (98.8°F), pulse 96/min and regular, respirations 18/min, and blood pressure 135/90 mm Hg. Physical examination shows a well-nourished, well-developed man. He is not obese. Examination of the head and neck is normal; there are no bruits or jugular venous distention. Chest is clear, and heart is normal with S1 and S2. Abdomen is soft and nontender with active bowel sounds and no organomegaly. Rectal examination discloses no abnormalities. Which of the following is the most appropriate management of this patient's insomnia?",
+    "choices": [
+      "Advise the patient to discontinue his bedtime drink of alcohol",
+      "Advise the patient to read and snack in bed to relax",
+      "Prescribe a vigorous pre-bedtime exercise regimen",
+      "Prescribe sertraline"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_201"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 55-year-old man has had crushing substernal chest pain on exertion over the past 6 weeks. He had a myocardial infarction 2 months ago. He takes nitroglycerin as needed and one aspirin daily. He has smoked two packs of cigarettes daily for 30 years. Examination shows normal heart sounds and no carotid or femoral bruits. Treatment with a β-adrenergic blocking agent is most likely to improve his symptoms due to which of the following mechanisms?",
+    "choices": [
+      "Decreasing myocardial contractility",
+      "Dilating the coronary arteries",
+      "Peripheral vasodilation",
+      "Preventing fibrin and platelet plugs"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_197"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 22-year-old woman comes to the office because of urticaria. This is her first episode of urticaria and it has occurred and then resolved several times in the past week. The history and physical examination disclose no abnormalities. Which of the following is the most appropriate course of action?",
+    "choices": [
+      "Determine the serum IgE concentration",
+      "Determine the total eosinophil count",
+      "Refer her to an allergist",
+      "Treat the symptoms"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_256"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 28-year-old man comes to the office because he would like to quit smoking cigarettes. He says, \"I cannot go more than a day without cigarettes because I get so anxious and irritable. I even wake up at night to smoke.\" The patient began smoking cigarettes at age 12 years; he was smoking two packs of cigarettes daily by age 17 years, and he has not curtailed his use since that time. He does not drink alcoholic beverages or use illicit drugs. Medical history is remarkable for childhood febrile seizures. He takes no medications. Vital signs are normal. The patient is interested in using a nicotine patch and bupropion therapy because he says his friend found the treatments to be helpful. In combining these two therapies, this patient is at greatest risk for which of the following?",
+    "choices": [
+      "Hypertension",
+      "Polyuria",
+      "Renal insufficiency",
+      "The patient is at no increased risk"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_215"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 24-year-old man is brought to the emergency department 40 minutes after he was involved in a motor vehicle collision. He was the unrestrained driver. He is conscious. Physical examination shows numerous lacerations and ecchymoses over the face. His vision is normal. Ocular, facial, and lingual movements are intact. The gag reflex is present. Sensation to pinprick is absent over the right side of the face anterior to the right ear, extending down along the full extent of the mandible to the chin. Sensation also is absent over the right side of the tongue. X-rays of the skull show fractures of the orbit, zygomatic arch, and infratemporal fossa. The most likely cause of these findings is a fracture affecting which of the following locations?",
+    "choices": [
+      "Foramen lacerum",
+      "Foramen ovale",
+      "Foramen rotundum",
+      "Foramen spinosum"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_226"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 15-year-old girl is brought to the office by her mother because of abdominal pain and constipation for the past several weeks. Her mother says, \"She is getting almost all A's in school and she is on the track team.\" You ask the patient about her diet and she responds, \"I'm kind of a picky eater.\" She requests a laxative to help with her constipation. She is 158 cm (5 ft 2 in) tall and weighs 43 kg (95 lb); BMI is 18 kg/m2 . Pulse is 65/min. Specific additional history should be obtained regarding which of the following?",
+    "choices": [
+      "Color, caliber, and frequency of bowel movements",
+      "Exposure to sexually transmitted diseases",
+      "Family history of irritable bowel syndrome",
+      "Menstrual history"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_130"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 5-year-old boy returns to the office with his 19-year-old mother to discuss results of studies done to evaluate his behavior of eating dirt. The patient sits quietly while his mother answers questions about his health. She says her son seems healthy, although he does not seem to be as active as other children his age. He has said his head hurts three or four times during the past 2 weeks. He has not had fever, sweats, or chills. She says he has a good appetite but has had a habit of eating sand and dirt since age 3 years. She says, \"I don't know where he gets that habit. I used to eat dirt, but I stopped years ago. I try to stop him from eating dirt, but I'm not around much since I work two jobs.\" The patient takes no medications. Vaccinations are upto-date. Height, weight, and BMI are at the 50th percentile. Vital signs are normal. Physical examination discloses no abnormalities except for symmetrical nontender cervical adenopathy. Results of laboratory studies, including serum zinc, lead, and iron concentrations, are within the reference ranges. Serologic testing confirms toxoplasmosis. In addition to prescribing pyrimethamine and sulfadiazine therapy, which of the following is the most appropriate next step in management?",
+    "choices": [
+      "Prescribe fluoxetine",
+      "Prescribe methylphenidate",
+      "Prescribe risperidone",
+      "Refer the patient to a child psychiatrist"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_213"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 2-year-old boy is brought to the emergency department by his babysitter because of a 30-minute history of respiratory distress. The babysitter reports that she is 15 years old and has cared for the patient on numerous occasions during the past year. The child's mother, who is a single parent, is currently out of town for business but will return later tonight. The babysitter says, \"He has had a runny nose since I started babysitting yesterday, but this afternoon he awoke from a nap with a barking sound and he was breathing real heavy.\" She does not know the child's prior health history, nor does she know if the boy takes any medications on a regular basis. The child looks tired and sits upright on the babysitter's lap. He is obviously comfortable with his caregiver. Vital signs are temperature 38.7°C (101.7°F), pulse 110/min, respirations 28/min and labored, and blood pressure 85/50 mm Hg. Pulse oximetry on room air shows an oxygen saturation of 89%. Physical examination discloses inspiratory stridor. Neck is supple, tympanic membranes are normal, and there is a profuse nasal discharge. Examination of the pharynx discloses no abnormalities. Auscultation of the chest discloses equal air entry on both sides and no crackles. The remainder of the examination shows no abnormalities. Treatment with 40% oxygen via venturi mask and intravenous fluids is initiated. Despite continued supplemental oxygen and hydration, the child remains tachypneic and stridorous at rest. Oxygen saturation is now 93%. In addition to administering racemic epinephrine by nebulizer, which of the following is the most appropriate next step?",
+    "choices": [
+      "Intravenous aminophylline therapy",
+      "Intravenous antibiotic therapy",
+      "Intubation",
+      "Oral dexamethasone therapy"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_18"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 52-year-old woman has had dyspnea and hemoptysis for 1 month. She has a history of rheumatic fever as a child and has had a cardiac murmur since early adulthood. Her temperature is 36.7°C (98°F), pulse is 130/min and irregularly irregular, respirations are 20/min, and blood pressure is 98/60 mm Hg. Jugular venous pressure is not increased. Bilateral crackles are heard at the lung bases. There is an opening snap followed by a low-pitched diastolic murmur at the third left intercostal space. An x-ray of the chest shows left atrial enlargement, a straight left cardiac border, and pulmonary venous engorgement. Which of the following is the most likely explanation for these findings?",
+    "choices": [
+      "Aortic valve insufficiency",
+      "Aortic valve stenosis",
+      "Mitral valve insufficiency",
+      "Mitral valve stenosis"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_193"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 13-year-old girl is brought to the office for a health maintenance visit. She was diagnosed with Turner syndrome in infancy during a work-up for coarctation of the aorta. During today's visit, her mother reports that the girl has been talking about babies. You have been the patient's physician for the past 6 years and know she is prepubescent. It is most appropriate to counsel the patient that if she wishes to have a family she will need to do which of the following?",
+    "choices": [
+      "Adopt",
+      "Have amniocentesis if she gets pregnant",
+      "Have an operation",
+      "Receive genetic counseling"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_22"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Evaluate $\\log_8 2$.",
+    "choices": [
+      "\\frac{1}{4}",
+      "4",
+      "3",
+      "\\frac{1}{3}"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_186"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "A point $(x,y)$ is randomly picked from inside the rectangle with vertices $(0,0)$, $(3,0)$, $(3,2)$, and $(0,2)$. What is the probability that $x < y$?",
+    "choices": [
+      "\\frac{1}{12}",
+      "\\frac{1}{6}",
+      "\\frac{2}{3}",
+      "\\frac{1}{3}"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_68"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "John noticed that the angle formed by the minute hand and hour hand on a standard 12-hour clock was 110 degrees when he left home after 6 p.m.; it was also 110 degrees when he returned after 6 p.m. but before 7 p.m. that same night. If he left home for more than five minutes, for how many minutes was he away?",
+    "choices": [
+      "36",
+      "40",
+      "38",
+      "43"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_90"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "In parallelogram $ABCD$, angle $B$ measures $110^\\circ$. What is the number of degrees in the measure of angle $C$?",
+    "choices": [
+      "145",
+      "90",
+      "60",
+      "70"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_26"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "The length of a rectangle is twice its width. Given the length of the diagonal is $5\\sqrt{5}$, find the area of the rectangle.",
+    "choices": [
+      "2500",
+      "2",
+      "50",
+      "25"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_1"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "The maximum value of the function f (x) = xe^{–x} is",
+    "choices": [
+      "1/e",
+      "e",
+      "1",
+      "-1"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_239"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "The quadratic $2x^2+5x+12=19-7x$ has two solutions. What is the positive difference between these solutions?",
+    "choices": [
+      "2",
+      "\\sqrt{2}",
+      "5\\sqrt{2}",
+      "5"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_183"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Rowena can paint a room in $14$ hours, while Ruby can paint it in $6$ hours. If Rowena paints for $x$ hours and Ruby paints for $y$ hours, they will finish half of the painting, while if Rowena paints for $y$ hours and Ruby paints for $x$ hours they will paint the whole room. Find the ordered pair $(x,y)$.",
+    "choices": [
+      "(\\frac{11}{10}, \\frac{11}{10})",
+      "(\\frac{231}{20}, \\frac{21}{20})",
+      "(\\frac{231}{40}, \\frac{21}{40})",
+      "(1,1)"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_244"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "A right triangle has legs of length $6$ and $b$, and a hypotenuse of length $c$. The perimeter of the triangle is $18$. Compute $c$.",
+    "choices": [
+      "18",
+      "\\frac{15}{2}",
+      "8",
+      "6"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_168"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "How many distinct diagonals of a convex hexagon can be drawn?",
+    "choices": [
+      "6",
+      "8",
+      "9",
+      "36"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_155"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "For all real numbers $r$ and $s$, define the mathematical operation $\\#$ such that the following conditions apply: $r\\ \\#\\ 0 = r, r\\ \\#\\ s = s\\ \\#\\ r$, and $(r + 1)\\ \\#\\ s = (r\\ \\#\\ s) + s + 1$. What is the value of $11\\ \\#\\ 5$?",
+    "choices": [
+      "11",
+      "12",
+      "64",
+      "71"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_132"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Roslyn has twenty boxes. Thirteen of the boxes contain pencils, nine of the boxes contain pens, and three of the boxes contain neither pens nor pencils. How many boxes contain both pens and pencils?",
+    "choices": [
+      "5",
+      "2",
+      "13",
+      "139"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_69"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Given that $n > 1$, what is the smallest positive integer $n$ whose positive divisors have a product of $n^6$?",
+    "choices": [
+      "30",
+      "64",
+      "2048",
+      "60"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_11"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "What is the greatest common divisor of $2^{1001}-1$ and $2^{1012}-1$?",
+    "choices": [
+      "1",
+      "2049",
+      "2048",
+      "2047"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_251"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Four packages are delivered to four houses, one to each house. If these packages are randomly delivered, what is the probability that exactly two of them are delivered to the correct houses? Express your answer as a common fraction.",
+    "choices": [
+      "\\frac{1}{4}",
+      "\\frac{27}{128}",
+      "\\frac{1}{2}",
+      "\\frac{1}{9}"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_240"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "Three points are chosen randomly and independently on a circle. What is the probability that all three pairwise distances between the points are less than the radius of the circle?",
+    "choices": [
+      "\\frac{1}{20}",
+      "\\frac{1}{32}",
+      "\\frac{1}{12}",
+      "\\frac{1}{16}"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_147"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "If we express $3x^2 + x - 4$ in the form $a(x - h)^2 + k$, then what is $k$?",
+    "choices": [
+      "-\\frac{7}{12}",
+      "-7",
+      "49",
+      "-\\frac{49}{12}"
+    ],
+    "answer_idx": 3,
+    "item_id": "high_school_mathematics_148"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "The rate at which a purification process can remove contaminants from a tank of water is proportional to the amount of contaminant remaining. If 20% of the contaminant can be removed during the first minute of the process and 98% must be removed to make the water safe, approximately how long will the decontamination process take?",
+    "choices": [
+      "2 min",
+      "5 min",
+      "18 min",
+      "20 min"
+    ],
+    "answer_idx": 2,
+    "item_id": "high_school_mathematics_27"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "What is the 5th term in a series in which the first term is 2 and each subsequent term is −2 multiplied by the preceding term?",
+    "choices": [
+      "−16",
+      "32",
+      "−32",
+      "64"
+    ],
+    "answer_idx": 1,
+    "item_id": "high_school_mathematics_21"
+  },
+  {
+    "subject": "high_school_mathematics",
+    "question": "If f is a linear function with nonzero slope, and c < d, which of the following must be FALSE?",
+    "choices": [
+      "f (c) = f (d)",
+      "f (c) ≠ f (d)",
+      "f (c) > f (d)",
+      "f (c) < f (d)"
+    ],
+    "answer_idx": 0,
+    "item_id": "high_school_mathematics_266"
+  },
+  {
+    "subject": "computer_security",
+    "question": "A/an ___________ is a program that steals your logins & passwords for instant messaging applications.",
+    "choices": [
+      "IM – Trojans",
+      "Backdoor Trojans",
+      "Trojan-Downloader",
+      "Ransom Trojan"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_52"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Buffer-overflow may remain as a bug in apps if __________ are not done fully.",
+    "choices": [
+      "boundary hacks",
+      "memory checks",
+      "boundary checks",
+      "buffer checks"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_49"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Suppose you want to use fuzzing on a program to try to find memory errors; which of the following statements is true?",
+    "choices": [
+      "You should not use a grammar-based fuzzer, because its adherence to the grammar means it will not find memory errors",
+      "Compiling the program with address sanitizer (ASAN) will make errors harder to reproduce",
+      "Compiling the program with address sanitizer (ASAN) will make the source of a memory error easier to find",
+      "Fuzzing doesn't find memory errors, it finds crashes and hangs"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_28"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Why would a ping sweep be used?",
+    "choices": [
+      "To identify live systems",
+      "To locate live systems",
+      "To identify open ports",
+      "To locate firewalls"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_95"
+  },
+  {
+    "subject": "computer_security",
+    "question": "A _________________ may be a hidden part of a program, a separate infected program a Trojan in disguise of an executable or code in the firmware of any system’s hardware.",
+    "choices": [
+      "crypter",
+      "virus",
+      "backdoor",
+      "key-logger"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_91"
+  },
+  {
+    "subject": "computer_security",
+    "question": "When does a buffer overflow occur, generally speaking?",
+    "choices": [
+      "when writing to a pointer that has been freed",
+      "when copying a buffer from the stack to the heap",
+      "when a pointer is used to access memory not allocated to it",
+      "when the program notices a buffer has filled up, and so starts to reject requests"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_35"
+  },
+  {
+    "subject": "computer_security",
+    "question": "How does a buffer overflow on the stack facilitate running attacker-injected code?",
+    "choices": [
+      "By overwriting the return address to point to the location of that code",
+      "By writing directly to the instruction pointer register the address of the code",
+      "By writing directly to %eax the address of the code",
+      "By changing the name of the running executable, stored on the stack"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_60"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Based on the paper “SoK: SSL and HTTPS: Revisiting past challenges and evaluating certificates trust model enhancements”, which of the following statements are false?",
+    "choices": [
+      "Valid DV certificates provide more confidence to a user that she is connecting to the intended party than valid EV certificates.",
+      "OCSP stapling allows a server to prove to a browser that its certificate hasn’t been revoked.",
+      "DANE makes it difficult for an adversary to launch a SSL stripping attack.",
+      "Server key-pinning makes it harder for an adversary to convince a CA to mint a certificate for a site and launch an MITM attack on that site."
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_29"
+  },
+  {
+    "subject": "computer_security",
+    "question": "A session symmetric key between two parties is used",
+    "choices": [
+      "Only once",
+      "Twice",
+      "Multiple times",
+      "Conditions dependant"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_73"
+  },
+  {
+    "subject": "computer_security",
+    "question": "In MD-5 the length of the message digest is",
+    "choices": [
+      "160",
+      "128",
+      "64",
+      "54"
+    ],
+    "answer_idx": 1,
+    "item_id": "computer_security_16"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Which among them has the strongest wireless security?",
+    "choices": [
+      "WEP",
+      "WPA",
+      "WPA2",
+      "WPA3"
+    ],
+    "answer_idx": 3,
+    "item_id": "computer_security_31"
+  },
+  {
+    "subject": "computer_security",
+    "question": "MIT’s Kerberos KDC server has a maximum ticket lifetime of 24 hours (for most user principals). What ensures that an expired Kerberos ticket can no longer be used?",
+    "choices": [
+      "The Kerberos server (KDC) refuses to establish new connections between clients and servers for expired tickets.",
+      "When a client connects to a server, the server sets a 24-hour timer to terminate the connection, which ensures a client cannot remain connected past the ticket’s maximum lifetime.",
+      "When a client connects to a server, the server compares the ticket’s expiration time to the server’s current clock, and refuses to authenticate the user if the ticket expiration time is in the past.",
+      "When a client connects to a server, the server sends a query to the KDC to check if the ticket is still valid with respect to the KDC’s clock, and refuses to authenticate the user if the KDC reports that the ticket is expired."
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_2"
+  },
+  {
+    "subject": "computer_security",
+    "question": "The digest created by a hash function is normally called a",
+    "choices": [
+      "Modication detection code (MDC)",
+      "Modify authentication connection",
+      "Message authentication control",
+      "Message authentication cipher"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_61"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Applications developed by programming languages like ____ and ______ have this common buffer-overflow error.",
+    "choices": [
+      "C, Ruby",
+      "Python, Ruby",
+      "C, C++",
+      "Tcl, C#"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_50"
+  },
+  {
+    "subject": "computer_security",
+    "question": "How do you prevent SQL injection?",
+    "choices": [
+      "Escape queries",
+      "Interrupt requests",
+      "Merge tables",
+      "All of the above"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_18"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Let HH be a Merkle-Damgard hash function is H:X^{\\leq L} \\to TH:X^≤L  →T. Construct a MAC from this HH as follows: \\ \\ S(k,m) = H(k \\| m)  S(k,m)=H(k∥m). This mac is insecure because:",
+    "choices": [
+      "Given H(k \\| m)H(k∥m) anyone can compute H(w \\| k \\| m \\| \\text{PB})H(w∥k∥m∥PB) for any ww",
+      "Given H(k \\| m)H(k∥m) anyone can compute H(k \\| m \\| w)H(k∥m∥w) for any ww",
+      "Given H(k \\| m)H(k∥m) anyone can compute H(k \\| m \\| \\text{PB} \\| w)H(k∥m∥PB∥w) for any ww",
+      "Anyone can compute H( k \\| m )H(k∥m) for any mm"
+    ],
+    "answer_idx": 2,
+    "item_id": "computer_security_11"
+  },
+  {
+    "subject": "computer_security",
+    "question": "Assume that a TLS connection has been established successfully between a client and a server. Establishing the session included checking the server certificate and executing a DiffieHelmann exchange, but the client did not provide a client certificate. Further, assume that the client and server are honest, that the client and server don’t leak their keys, and that the cryptography is good. Which of the following attacks does TLS protect against?\n1. An attacker replacing bytes sent by a client with bytes of the attacker’s own choosing.\n2. An attacker reading the plaintext bytes sent by a client.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_44"
+  },
+  {
+    "subject": "computer_security",
+    "question": "____________ is also a part of darknet that is employed for transferring files anonymously.",
+    "choices": [
+      "Freenet",
+      "ARPANET",
+      "Stuxnet",
+      "Internet"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_7"
+  },
+  {
+    "subject": "computer_security",
+    "question": "In Message Condentiality, the transmitted message must make sense to only intended",
+    "choices": [
+      "Receiver",
+      "Sender",
+      "Modulor",
+      "Translator"
+    ],
+    "answer_idx": 0,
+    "item_id": "computer_security_3"
+  },
+  {
+    "subject": "computer_security",
+    "question": "______________ is a widespread app’s coding mistake made by developers which could be exploited by an attacker for gaining access or malfunctioning your system.",
+    "choices": [
+      "Memory leakage",
+      "Buffer-overrun",
+      "Less processing power",
+      "Inefficient programming"
+    ],
+    "answer_idx": 1,
+    "item_id": "computer_security_5"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Hume describes reason as:",
+    "choices": [
+      "cool and disengaged.",
+      "the source of all moral actions.",
+      "the first spring or impulse to desire.",
+      "all of the above."
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_286"
+  },
+  {
+    "subject": "philosophy",
+    "question": "In Augustine’s view, lying is:",
+    "choices": [
+      "often permissible if done for the right reasons.",
+      "not evil in itself, although it can have bad consequences.",
+      "permissible only in very rare circumstances.",
+      "never permissible."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_216"
+  },
+  {
+    "subject": "philosophy",
+    "question": "In the case of the debtors, the moral argument against imprisoning A relies on:",
+    "choices": [
+      "fear.",
+      "universalizability.",
+      "considerations of the consequences of doing so.",
+      "all of the above."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_77"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Nussbaum claims that recent anthropological work has shown that fear is:",
+    "choices": [
+      "partially learned and culturally variant.",
+      "universally experienced in roughly the same way.",
+      "not present in certain societies.",
+      "none of the above."
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_169"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Which of the following is not one of Ross’s prima facie duties?",
+    "choices": [
+      "Fidelity",
+      "Beneficence",
+      "Non-maleficence",
+      "Legality"
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_222"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Before his conversion, what was Tolstoy surrounded by?",
+    "choices": [
+      "what is considered complete happiness",
+      "things that no one would want",
+      "what is considered heavenly bliss",
+      "what is considered deep insight"
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_149"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Bentham claims that nature has placed mankind under two sovereign masters:",
+    "choices": [
+      "pain and pleasure.",
+      "good and evil.",
+      "God and the devil.",
+      "duty and self-interest."
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_180"
+  },
+  {
+    "subject": "philosophy",
+    "question": "In Aquinas’s view, man’s ultimate happiness consists in:",
+    "choices": [
+      "pleasure",
+      "acts of the moral virtues.",
+      "loving God.",
+      "contemplating God."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_50"
+  },
+  {
+    "subject": "philosophy",
+    "question": "According to Hobbes, the right of nature is:",
+    "choices": [
+      "an entitlement to the fruits of one’s labors.",
+      "a claim not to be harmed by others.",
+      "the right of the king to rule his subjects.",
+      "the liberty to use one’s powers to preserve one’s life."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_239"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Moore claims that there is no meaning in saying that pleasure is good, unless:",
+    "choices": [
+      "goodness and pleasure are the same thing.",
+      "good is something different than pleasure.",
+      "all good things are pleasant.",
+      "all pleasant things are good."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_155"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Anscombe claims that on Sidgwick’s view, the badness of an action must be estimated in light of:",
+    "choices": [
+      "its actual consequences.",
+      "its expected consequences.",
+      "whether it violates any duties.",
+      "whether it violates divine law."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_249"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Nagel claims that most skeptical arguments:",
+    "choices": [
+      "are the result of applying arbitrarily stringent standards.",
+      "are based on linguistic confusions.",
+      "are logically self-refuting.",
+      "grow from the consistent application of ordinary standards."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_5"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Anscombe claims that it is not profitable to do moral philosophy until we have an adequate philosophy of:",
+    "choices": [
+      "religion.",
+      "physics.",
+      "psychology.",
+      "art."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_11"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Aquinas claims that:",
+    "choices": [
+      "pleasure exists for its own sake.",
+      "pleasure exists for the sake of operation.",
+      "operation exists for the sake of pleasure.",
+      "both b and c."
+    ],
+    "answer_idx": 1,
+    "item_id": "philosophy_253"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Craig argues that the series of events in time cannot be actually infinite, so we know that _____.",
+    "choices": [
+      "the universe is finite in the past and began to exist",
+      "the universe is infinite in the past",
+      "the universe never is uncaused",
+      "the universe exists only in the mind"
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_252"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Descartes says that, for all he knows, he may be _____.",
+    "choices": [
+      "dreaming",
+      "a god",
+      "infallible",
+      "perfect"
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_211"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Descartes says that the chief characteristic of physical things is that _____.",
+    "choices": [
+      "they cannot be measured",
+      "science can study them",
+      "they do not have extension",
+      "they have extension"
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_111"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Taurek claims that:",
+    "choices": [
+      "the death of two people is always worse than the death of one.",
+      "the death of two people is sometimes less bad than the death of one.",
+      "the death of two people is always exactly as bad as the death of one.",
+      "the notion of the sum of two people’s losses should be rejected."
+    ],
+    "answer_idx": 3,
+    "item_id": "philosophy_133"
+  },
+  {
+    "subject": "philosophy",
+    "question": "Singer claims that his argument upsets the traditional distinction between:",
+    "choices": [
+      "duty and charity.",
+      "egoism and altruism.",
+      "rights and privileges.",
+      "positive and negative rights."
+    ],
+    "answer_idx": 0,
+    "item_id": "philosophy_16"
+  },
+  {
+    "subject": "philosophy",
+    "question": "According to Plato, we can attain knowledge only by seeing beyond this world of particular, changing objects to the true essences or Forms in terms of which things in this world are intelligible.  For example, we know what triangularity is not from comparing sensible triangles but by thinking of the ideal of triangularity in terms of which these sensible figures are recognized as triangles.  From this Plato concludes that all knowledge (as opposed to opinion) is innate, because:",
+    "choices": [
+      "from the moment we are born we know what things are in the world in terms of ideas that we get through our senses.",
+      "since we are born with senses (that is, our senses are innate), we can know things about the sensible world with certainty as long as we rely on the senses alone.",
+      "our knowledge of the world is not really of the sensible world itself but of the world grasped mathematically and ideally.",
+      "since our absolutely certain knowledge of things cannot be based on the changing things in sensible experience, it must merely be triggered by sensible experience."
+    ],
+    "answer_idx": 2,
+    "item_id": "philosophy_147"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "What is hypochlorhydria?",
+    "choices": [
+      "Increased amount of gastric acid.",
+      "Gastric ulceration.",
+      "Reduced amount of gastric acid.",
+      "Pernicious anaemia."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_101"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following is true of haematemesis?",
+    "choices": [
+      "A low blood pressure (<90mmHg systolic) and a tachycardia (>100/min) are worrying features",
+      "A pulse rate of 80/min in a patient taking Bisoprolol is reassuring",
+      "Abdominal pain is always present",
+      "An alcohol history is not essential"
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_222"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "A change in blood pressure is detected by the:",
+    "choices": [
+      "baroreceptors.",
+      "chemoreceptors.",
+      "vasomotor centre.",
+      "cardiovascular centre."
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_180"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Performance enhancing synthetic steroids are based on the structure of the hormone:",
+    "choices": [
+      "testosterone.",
+      "cortisol.",
+      "progesterone.",
+      "aldosterone."
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_47"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following is true in a sensory assessment of the arm?",
+    "choices": [
+      "It is acceptable to test pain with a venepuncture needle",
+      "Proprioception is appreciated via the same tracts as light touch",
+      "It is best to test vibration sense with a 256 Hz tuning fork",
+      "Impulses for pain travel principally up the dorsal columns"
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_234"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The blood glucose concentration during 80-90 minutes of intermittent high intensity exercise:",
+    "choices": [
+      "frequently rises by 1 - 3 mM.",
+      "remains relatively unchanged.",
+      "frequently falls by 1 - 3 mM.",
+      "falls to hypoglycaemic levels."
+    ],
+    "answer_idx": 0,
+    "item_id": "clinical_knowledge_235"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Insensible loss does not come from:",
+    "choices": [
+      "pyrexia.",
+      "using unhumidified oxygen.",
+      "excessive weight loss.",
+      "diarrhoea."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_127"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "The low intake of carbohydrate in the diet:",
+    "choices": [
+      "does not influence exercise performance in events lasting less than 10 minutes.",
+      "affects the resting muscle pH.",
+      "may impair high intensity exercise performance.",
+      "results in greater reliance on muscle glycogen during exercise."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_246"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which one of the following manoeuvres is not a central painful stimulus?",
+    "choices": [
+      "Supra-orbital ridge pressure.",
+      "Pressure on the little finger pulp.",
+      "Trapezius squeeze.",
+      "Sternal rub."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_82"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Glycogen breakdown in muscle initially results in the formation of:",
+    "choices": [
+      "glucose.",
+      "glucose-1-phosphate.",
+      "glucose-6-phosphate.",
+      "glucose-1,6-diphosphate."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_13"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Measuring the blood pressure in an arm that is above the level of the heart will:",
+    "choices": [
+      "accurately estimate the blood pressure.",
+      "overestimate the blood pressure.",
+      "cause an auscultatory gap.",
+      "underestimate the blood pressure."
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_254"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following is true in diplopia?",
+    "choices": [
+      "Diplopia can never occur if one eye is covered",
+      "The outer image is always the false image",
+      "A fourth nerve palsy occurs when the patient looks upwards",
+      "A sixth nerve palsy causes a divergent squint"
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_6"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "A keloid is:",
+    "choices": [
+      "evidence of infection.",
+      "a firm mass of scar tissue.",
+      "a fine, hairline scar.",
+      "formed if a wound drain is removed too soon."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_103"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "In all-out exercise such as sprinting the first fibre types to fatigue are the:",
+    "choices": [
+      "Type I fibres.",
+      "Type Ia fibres.",
+      "Type IIa fibres.",
+      "Type IIX fibres."
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_231"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following drugs is most commonly responsible for patients who present with acute confusion?",
+    "choices": [
+      "Heroin (opiates).",
+      "Ecstasy.",
+      "Alcohol.",
+      "Cannabis."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_171"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "What commonly causes skin excoriation?",
+    "choices": [
+      "A well-fitting pouch.",
+      "Changing the pouch every day.",
+      "Leakage of effluent onto peristomal skin.",
+      "The use of unscented soap to cleanse the skin."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_62"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Under what circumstances would you use antibiotics prior to catheterization?",
+    "choices": [
+      "If the patient has had a catheter in situ for a week.",
+      "If the patient does not have urinary tract infection.",
+      "If patient has an artificial heart valve.",
+      "If the patient requests them."
+    ],
+    "answer_idx": 2,
+    "item_id": "clinical_knowledge_186"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Embedded in the inner membrane of the mitochondrion are:",
+    "choices": [
+      "the enzymes of the tricarboxylic acid cycle (Krebs' cycle).",
+      "the components of the electron transport chain.",
+      "glycogen molecules.",
+      "triacylglycerol molecules."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_38"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following parameters are seen on typical neurological observation charts?",
+    "choices": [
+      "Urine output.",
+      "Temperature.",
+      "Central venous pressure.",
+      "Blood glucose."
+    ],
+    "answer_idx": 1,
+    "item_id": "clinical_knowledge_146"
+  },
+  {
+    "subject": "clinical_knowledge",
+    "question": "Which of the following is true of a lower motor neurone lesion in the arm?",
+    "choices": [
+      "It leads to increased tone in the arm (hypertonia)",
+      "Fasciculations are never seen",
+      "The reflexes are brisk",
+      "An ulna nerve palsy is an example of a lower motor neurone lesion"
+    ],
+    "answer_idx": 3,
+    "item_id": "clinical_knowledge_11"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the relationship between the formal sources of international law?",
+    "choices": [
+      "There is no hierarchy between the formal sources of international law",
+      "Treaties supersede custom",
+      "Custom supersedes treaties",
+      "General Principles of Law supersede both custom and treaties"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_40"
+  },
+  {
+    "subject": "international_law",
+    "question": "What kind of rights do coastal States enjoy over their continental shelf?",
+    "choices": [
+      "The coastal State enjoy ipso facto and ab initio sovereign rights over its continental shelf for the purpose of exploring it and exploiting its natural resources",
+      "The coastal State may exercise sovereign rights over its continental shelf only upon its declaration",
+      "The coastal State exercise sovereign rights over its continental shelf for the purpose of exploiting its fishing resources",
+      "The coastal State may exercise only limited rights over its continental shelf and only upon the consent of its neighbouring States"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_116"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is an act jure gestionis?",
+    "choices": [
+      "Acts jure gestionis are those undertaken by States in a private capacity",
+      "All purchases by the State are acts jure gestionis",
+      "All acts undertaken by State corporations are jure gestionis",
+      "All conduct undertaken by government officials in their free time is considered jus gestionis."
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_84"
+  },
+  {
+    "subject": "international_law",
+    "question": "Do individuals (physical) persons enjoy international legal personality in the same manner as States and international organisations?",
+    "choices": [
+      "Individuals enjoy international legal personality, but this is limited",
+      "Individuals enjoy unlimited international legal personality",
+      "Individuals do not enjoy any international legal personality",
+      "Individuals can only bring claims before international courts"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_17"
+  },
+  {
+    "subject": "international_law",
+    "question": "The enforcement mechanism of the International Covenant on Civil and Political Rights (and Protocol) consists of",
+    "choices": [
+      "A reporting mechanism only",
+      "Judgment of an international tribunal",
+      "Right to individual petition only",
+      "A reporting mechanism and right to individual petition"
+    ],
+    "answer_idx": 3,
+    "item_id": "international_law_54"
+  },
+  {
+    "subject": "international_law",
+    "question": "What are the criteria for statehood under the 1933 Montevideo Convention?",
+    "choices": [
+      "It requires that the entity in question is not an aggressor and that it is peaceful",
+      "It requires recognition by the majority of other nations",
+      "It requires a permanent population, a defined territory, a government and a capacity to enter into foreign relations",
+      "It requires stable and indissoluble borders as well as recognition"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_120"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the meaning of justiciability?",
+    "choices": [
+      "Justiciability refers to the possibility of enforcement of a particular right by the relevant rights holders",
+      "Justiciability refers to the just nature or cause of a particular right",
+      "Justiciability refers to the courts' assessment of whether the non-enforcement of a particular rights conforms to principles of justice",
+      "Justiciability refers to the obligation of a State to enforce a particular Right"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_1"
+  },
+  {
+    "subject": "international_law",
+    "question": "Who is a 'persistent objector'?",
+    "choices": [
+      "The State which persistently objects to the rule in question after its formation",
+      "The State which denies to be bound by the rule in question for a short period",
+      "The State which persistently and publicly objects to the formation of a rule of customary law from its outset",
+      "The State which accepts the formation of a rule of customary law but it retains objections as to its content"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_68"
+  },
+  {
+    "subject": "international_law",
+    "question": "When are countermeasures illegal?",
+    "choices": [
+      "Countermeasures are illegal when inter alia are disproportionate or in violation of a peremptory norm of international law (e.g. the use of force, human rights)",
+      "Countermeasures are illegal when they are taken in the course of an armed conflict",
+      "Countermeasures are illegal when they violate bilateral treaties",
+      "Countermeasures are illegal when the responsible State does not consent to them"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_99"
+  },
+  {
+    "subject": "international_law",
+    "question": "What does the principle 'pacta sunt servanda' mean?",
+    "choices": [
+      "Parties to a treaty should be cognizant of its terms and not misinterpret them",
+      "Parties to a treaty should safeguard the object and purpose of the treaty",
+      "Parties to a treaty should adhere to its terms in good faith",
+      "Parties to a treaty should not violate the most important provisions of the treaty"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_89"
+  },
+  {
+    "subject": "international_law",
+    "question": "Is recognition of governments prevalent in contemporary international practice?",
+    "choices": [
+      "Recognition of governments is very prevalent in contemporary practice",
+      "Recognition of governments has largely been replaced by functional Recognition",
+      "Government recognition is common in respect of rebel entities",
+      "Only democratic governments are recognised in contemporary practice"
+    ],
+    "answer_idx": 1,
+    "item_id": "international_law_86"
+  },
+  {
+    "subject": "international_law",
+    "question": "Are there any limits to the application of article 103 of the UN Charter?",
+    "choices": [
+      "No, there are no limits to article 103",
+      "Yes, Article 103 cannot trump multilateral treaties",
+      "Yes, article 103 of the UN Charter cannot trump jus cogens norms",
+      "Yes, when a case is submitted to the ICJ, article 103 ceases to have any effect"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_117"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the function of the contiguous zone?",
+    "choices": [
+      "The contiguous zone functions as security zone of the coastal State",
+      "The contiguous zone is a zone, in which the coastal State may explore and exploit its mineral resources",
+      "The contiguous zone is a zone in which the coastal State is permitted to prevent and punish infringements of customs, fiscal, immigration or sanitary laws",
+      "The contiguous zone is a zone in which the coastal State safeguards its archaeological and historical objects"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_48"
+  },
+  {
+    "subject": "international_law",
+    "question": "Which persons are considered as 'de facto' organs of the State under the law of international responsibility?",
+    "choices": [
+      "'De facto organs' are the individuals that are empowered by law to exercise elements of governmental authority",
+      "'De facto organs' are the persons, which are, in fact, acting on the instructions of, or under the direction or control of, that State in carrying out the conduct attributable to the State",
+      "'De facto organs' are the de jure organs of the State that act without due authority or ultra vires",
+      "'De facto organs' are the organs, whose acts or omission cannot be attributed to the State"
+    ],
+    "answer_idx": 1,
+    "item_id": "international_law_77"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the purpose of sovereign immunity?",
+    "choices": [
+      "The purpose of immunity is to protect foreign Heads of State from embarrassment",
+      "Immunity protects a State from being invaded by another",
+      "Immunity shields States from being sued in the courts of other States",
+      "The purpose of immunity is to offer impunity in respect of all crimes"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_60"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the fundamental prerequisite for the incorporation of custom under English law?",
+    "choices": [
+      "Custom is incorporated if it is not in conflict with existing legislation",
+      "Custom is superior to English law and is always incorporated",
+      "Custom must first be recognised by Parliament before the courts can bring it into the domestic sphere",
+      "Custom is incorporated with the passing of implementing legislation"
+    ],
+    "answer_idx": 0,
+    "item_id": "international_law_78"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the meaning of 'secondary rules' in the law of international responsibility?",
+    "choices": [
+      "Secondary rules are the rules of interpretation of international law, including the law of international responsibility",
+      "Secondary rules are the rules that govern the legal consequences arising from a breach of the primary rules, ie of the international obligations of the States",
+      "Secondary rules are the rules that govern exclusively the concept of attribution in the law of international responsibility",
+      "Secondary rules are the rules that govern exclusively the law of countermeasures"
+    ],
+    "answer_idx": 1,
+    "item_id": "international_law_96"
+  },
+  {
+    "subject": "international_law",
+    "question": "Which of the examples below has not been developed by the European Court of Human Rights as a situation where the state has a positive obligation to protect?",
+    "choices": [
+      "When the applicant is in the custody of the state",
+      "Where the state must investigate claims against it",
+      "The development of a legal framework to protect those within the state",
+      "To provide housing for all those homeless within a state"
+    ],
+    "answer_idx": 3,
+    "item_id": "international_law_49"
+  },
+  {
+    "subject": "international_law",
+    "question": "Should treaties assume a particular form?",
+    "choices": [
+      "Treaties should always be designated as such and assume a particular form",
+      "Treaties should always assume a particular form, no matter how they are designated",
+      "Treaties do not have to assume a particular form or designated as such",
+      "Treaties have to be designated as such, no matter what form they assume"
+    ],
+    "answer_idx": 2,
+    "item_id": "international_law_107"
+  },
+  {
+    "subject": "international_law",
+    "question": "What is the obligation of the peaceful settlement of disputes?",
+    "choices": [
+      "It is an obligation of result, that is, States are under a strict obligation to resolve their disputes as soon as possible",
+      "It is an obligation of conduct, ie States have an obligation to try to resolve their disputes through peaceful means. This does not entail an obligation to resolve their disputes",
+      "It is a peremptory norm of international law and all States have a legal interest to safeguard its application in any given dispute",
+      "It is an obligation which concerns solely international courts and tribunals"
+    ],
+    "answer_idx": 1,
+    "item_id": "international_law_5"
+  }
+]

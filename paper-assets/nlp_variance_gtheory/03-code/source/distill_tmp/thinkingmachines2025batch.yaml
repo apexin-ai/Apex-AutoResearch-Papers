@@ -1,0 +1,78 @@
+paper_key: "thinkingmachines2025batch"
+title: "Batch Invariance, Seed Locking, and Beyond: Countering Nondeterminism in LLM Inference"
+venue: "Technical Report 2025 (Thinking Machines Lab)"
+full_text_available: true
+
+research:
+  baselines: [Qwen3-8B, Qwen3-235B-A22B]
+  metrics:
+    - {name: "unique completions per 1000 identical requests", direction: "lower_better"}
+    - {name: "latency overhead", direction: "lower_better"}
+    - {name: "KL divergence (on-policy verification)", direction: "lower_better"}
+  datasets:
+    - {name: "vLLM serving benchmark", size: "1000 identical requests"}
+  ablation_dimensions: [kernel_type (RMSNorm/GEMM/attention), batch_invariant_vs_default, optimization_level]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "vLLM serving, GPU (unspecified)"}
+  method_family: "deterministic inference / batch-invariant kernels"
+
+positioning:
+  core_claim: "LLM inference nondeterminism primarily stems from batch-size-dependent kernel behavior (not thread-level non-associativity) — batch-invariant RMSNorm/GEMM/attention kernels restore determinism with 1.6-2.1× latency overhead"
+  key_results: "Default vLLM: 80/1000 unique completions → batch-invariant: 1000/1000 identical; latency: 1.6-2.1× overhead; RL on-policy KL: exactly 0"
+  limitations:
+    - "Only tested on Qwen models"
+    - "1.6-2.1× latency overhead may be impractical for production"
+    - "Requires vLLM-specific integration"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Even with T=0 and seed locking, the same model produces 80 different completions out of 1000 identical requests"
+  tension: "Common explanation (concurrent floating-point) is wrong — the real culprit is batch-size variation in serving systems"
+  key_insight: "The insight that batch size (not thread concurrency) drives nondeterminism reframes the entire problem — batch-invariant kernels provide a principled fix"
+  argument_chain: "observation (80 unique completions) → wrong hypothesis debunked (not thread concurrency) → root cause (batch-dependent kernels) → 3 kernel fixes → validation (1000/1000 identical) → application (on-policy RL)"
+  contribution_framing: "3 contributions: (1) correct diagnosis of batch-invariance as root cause, (2) batch-invariant kernel implementations, (3) on-policy RL demonstration"
+  intro_structure: "Blog-style: (1) shocking observation, (2) common misconception, (3) correct diagnosis, (4) solution, (5) validation"
+  notable_technique: "Debunks the dominant explanation before presenting the correct one — creates a 'aha' moment that makes the reader feel smarter"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Shows 80 unique completions from 1000 identical T=0 requests, with divergence beginning at specific token positions"
+    narrative_role: "Makes the severity of nondeterminism tangible with concrete numbers"
+    design_elements: ["completion tree visualization", "divergence point marking", "frequency counts"]
+    visual_style: "Tree/branching diagram showing output diversity from identical inputs"
+  result_figures:
+    - figure_id: "Kernel comparison"
+      viz_type: "bar_chart"
+      what_compared: "Default vs batch-invariant kernels on unique completion count"
+      how_gain_highlighted: "80 → 0 unique completions (1000/1000 identical)"
+      design_note: "Binary success metric makes the result dramatic"
+  ablation_figures:
+    - figure_id: "Latency overhead"
+      viz_type: "bar_chart"
+      dimensions_varied: ["kernel_type", "optimization_level"]
+      design_note: "Shows progressive optimization reducing overhead from 2.1× to 1.6×"
+  figure_narrative_role: "Problem (80 unique) → Root cause analysis → Solution validation → Application (RL)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Determinism results"
+    row_axis: "configuration"
+    col_axis: "metrics (unique completions, latency)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "bold perfect determinism"
+    statistical_reporting: "exact counts and latency measurements"
+    num_baselines: 2
+    design_note: "Minimal table — the result is binary (deterministic or not)"
+  ablation_tables:
+    - table_id: "Kernel-level ablation"
+      what_varied: ["RMSNorm", "GEMM", "attention"]
+      variation_style: "checkmark_grid"
+      design_note: "Shows each kernel's contribution to overall determinism"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A (blog-style technical report)"
+    reason: "N/A"

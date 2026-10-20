@@ -1,0 +1,38 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Variance Sources in LLM Evaluation.}
+\citet{bouthillier2021accounting} introduced ANOVA-based variance decomposition for ML reproducibility, establishing that design choices account for a substantial share of benchmark variance. Subsequent work isolated individual sources: \citet{yuan2025layercast} documented up to 9\% accuracy variation from numerical precision; \citet{sclar2024formatting} and BrittleBench \citep{brittlebench2026} found 50--76\% accuracy swings from prompt formatting; \citet{pezeshkpour2024ordering} and \citet{bui2025seeds} documented ordering and seed sensitivity. \citet{messina2026background} formalized CUDA nondeterminism from floating-point non-associativity. Each study holds other factors fixed, precluding interaction estimation. \citet{madaan2024quantifying} proposed per-factor metrics without crossing factors; holistic evaluation frameworks \citep{liang2023helm, gao2024lmeval} reduce implementation variance but do not decompose it. Our work crosses seven facets simultaneously, enabling interaction estimation and cross-format comparison (Figure~\ref{fig:method_comparison}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_method_comparison}
+\caption{Scope comparison with prior multi-facet variance studies. Our work uniquely combines broad facet crossing, multi-benchmark coverage, and D-study budget projections.}
+\label{fig:method_comparison}
+\end{figure}
+
+\paragraph{IRT and Efficient Benchmarking.}
+IRT models item difficulty and discrimination to optimize benchmark efficiency \citep{lalor2019irt, rodriguez2021leaderboards}. \citet{polo2024tinybenchmarks} and \citet{zhou2026irt} developed IRT-based subsampling for efficient evaluation; \citet{perlitz2023efficient} and \citet{kipnis2025metabench} explored related compression strategies. These approaches optimize item selection but do not model variance from prompt, seed, or ordering facets. IRT-selected items under a single methodological condition can therefore underestimate required item counts; our results show IRT's 116 items yield $G = 0.457$ single-condition but $G = 0.895$ multi-facet, demonstrating that item selection and protocol optimization are orthogonal.
+
+\paragraph{G-Theory and Positioning.}
+G-theory \cite{shavelson1991generalizability, brennan2001generalizability} provides the canonical framework for multi-facet reliability analysis, with extensions to binary data \cite{mushquash2006gtheory, jiang2018bayesian}. We operationalize differential item functioning \citep{holland1993dif, clauser1998dif} as model$\times$item interaction. Recent psychometric perspectives on LLM evaluation address construct validity \cite{kearns2026construct} and measurement properties \cite{ye2025psychometrics}. Closest to our work, \citet{messing2026hidden} applied G-theory to LLM evaluation, decomposing five methodology facets on a single benchmark (judge identity: 43.8\%). We extend this in three directions: (i) replacing judge identity with infrastructure facets and additional methodology facets; (ii) crossing facets across five benchmarks for cross-format comparison; and (iii) translating variance components into reproducibility budgets via D-study projections. Table~\ref{tab:positioning} summarizes these distinctions.
+
+\begin{table}[t]
+\centering
+\caption{Positioning relative to prior multi-facet variance studies. ``--'' = not addressed.}
+\label{tab:positioning}
+\scriptsize
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lccc@{}}
+\toprule
+ & \citet{bouthillier2021accounting} & \citet{messing2026hidden} & Ours \\
+\midrule
+Facets crossed & 4 & 5 & 7 \\
+Design & Factorial & Factorial & Factorial \\
+Method & ANOVA & G-theory & G-theory \\
+D-study budgets & -- & -- & \checkmark \\
+Models & ML models & 6 LLMs & 8 LLMs \\
+Benchmarks & 3 & 1 & 5 \\
+Cross-format & -- & -- & MC+FF \\
+\bottomrule
+\end{tabular*}
+\end{table}

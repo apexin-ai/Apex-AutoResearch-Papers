@@ -1,0 +1,1 @@
+{"experiment":"exp-004","analysis":"8model_henderson_i_gstudy_mmlu","benchmark":"mmlu","n_models":8,"n_observations":460800,"G_item":0.896176,"G_item_CI":{"ci_lower":0.874189,"ci_upper":0.915197},"grand_mean_accuracy":0.645736,"server_path":"westd-32570:/root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_mmlu.json"}

@@ -1,0 +1,602 @@
+[
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | Every nonzero free abelian group has an infinite number of bases. Statement 2 | Every free abelian group of rank at least 2 has an infinite number of bases.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_81"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the maximum possible order for an element of S_n for n = 10.",
+    "choices": [
+      "6",
+      "12",
+      "30",
+      "105"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_14"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_3"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | Q is an extension field of Z_2. Statement 2 | Every non-constant polynomial over a field has a zero in some extension field.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_94"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Find the degree for the given field extension Q(sqrt(2), sqrt(3)) over Q.",
+    "choices": [
+      "0",
+      "4",
+      "2",
+      "6"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_35"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "If (G, .) is a group such that (ab)^-1 = a^-1b^-1, for all a, b in G, then G is a/an",
+    "choices": [
+      "commutative semi group",
+      "abelian group",
+      "non-abelian group",
+      "None of these"
+    ],
+    "answer_idx": 1,
+    "item_id": "abstract_algebra_31"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | The image of a group of 6 elements under a homomorphism may have 12 elements. Statement 2 | There is a homomorphism of some group of 6 elements into some group of 12 elements.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 3,
+    "item_id": "abstract_algebra_28"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Compute the product in the given ring. (2,3)(3,5) in Z_5 x Z_9",
+    "choices": [
+      "(1,1)",
+      "(3,1)",
+      "(1,6)",
+      "(3,6)"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_17"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "The polynomial x^3 + 2x^2 + 2x + 1 can be factored into linear factors in Z_7[x]. Find this factorization.",
+    "choices": [
+      "(x − 2)(x + 2)(x − 1)",
+      "(x + 1)(x + 4)(x − 2)",
+      "(x + 1)(x − 4)(x − 2)",
+      "(x - 1)(x − 4)(x − 2)"
+    ],
+    "answer_idx": 2,
+    "item_id": "abstract_algebra_13"
+  },
+  {
+    "subject": "abstract_algebra",
+    "question": "Statement 1 | If H and K are subgroups of a group G, then |HK| = |H||K|/|H intersection K|. Statement 2 | A group of order 2p where p is an odd prime is cyclic or isomorphic to D_p.",
+    "choices": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "answer_idx": 0,
+    "item_id": "abstract_algebra_86"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Two identical satellites, A and B, are in circular orbits around Earth. The orbital radius of A is twice that of B. Which of the following gives the ratio of the angular momentum of A to the angular momentum of B?",
+    "choices": [
+      "4",
+      "2",
+      "sqrt(2)",
+      "1/sqrt(2)"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_94"
+  },
+  {
+    "subject": "college_physics",
+    "question": "By definition, the electric displacement current through a surface S is proportional to the",
+    "choices": [
+      "rate of change of the electric flux through S",
+      "electric flux through S",
+      "time integral of the magnetic flux through S",
+      "rate of change of the magnetic flux through S"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_69"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The coefficient of static friction between a small coin and the surface of a turntable is 0.30. The turntable rotates at 33.3 revolutions per minute. What is the maximum distance from the center of the turntable at which the coin will not slide?",
+    "choices": [
+      "0.024 m",
+      "0.048 m",
+      "0.121 m",
+      "0.242 m"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_11"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The mean kinetic energy of the conduction electrons in metals is ordinarily much higher than kT because",
+    "choices": [
+      "electrons have many more degrees of freedom than atoms do",
+      "the electrons and the lattice are not in thermal equilibrium",
+      "the electrons form a degenerate Fermi gas",
+      "electrons in metals are highly relativistic"
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_75"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Under ideal conditions, the electric and magnetic fields inside a superconductor are zero. Maxwell’s equations imply that which of the following must be true just outside the surface of the superconductor?",
+    "choices": [
+      "B = 0",
+      "B is perpendicular to the surface.",
+      "B is tangential to the surface.",
+      "B is time independent."
+    ],
+    "answer_idx": 2,
+    "item_id": "college_physics_54"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Excited states of the helium atom can be characterized as para- (antiparallel electron spins) and ortho- (parallel electron spins). The observation that an ortho- state has lower energy than the corresponding para- state can be understood in terms of which of the following?",
+    "choices": [
+      "The Heisenberg uncertainty principle",
+      "The Pauli exclusion principle",
+      "The Bohr model of the atom",
+      "Nuclear hyperfine coupling"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_4"
+  },
+  {
+    "subject": "college_physics",
+    "question": "The best type of laser with which to do spectroscopy over a range of visible wavelengths is",
+    "choices": [
+      "a dye laser",
+      "a helium-neon laser",
+      "an excimer laser",
+      "a ruby laser"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_3"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A rod measures 1.00 m in its rest system. How fast must an observer move parallel to the rod to measure its length to be 0.80 m?",
+    "choices": [
+      "0.50c",
+      "0.60c",
+      "0.70c",
+      "0.80c"
+    ],
+    "answer_idx": 1,
+    "item_id": "college_physics_27"
+  },
+  {
+    "subject": "college_physics",
+    "question": "A magnetic field is directed perpendicular to the plane of a circular coil of area 0.2 m^2 and 250 turns. If the magnetic field is increased from 0.01 T to 0.06 T during a time interval of 0.25 s, the average induced EMF in the coil is",
+    "choices": [
+      "0.04 V",
+      "0.1 V",
+      "2.5 V",
+      "10 V"
+    ],
+    "answer_idx": 3,
+    "item_id": "college_physics_29"
+  },
+  {
+    "subject": "college_physics",
+    "question": "Two simple pendulums A and B consist of identical masses suspended from strings of length L_A and L_B, respectively. The two pendulums oscillate in equal gravitational fields. If the period of pendulum B is twice the period of pendulum A, which of the following is true of the lengths of the two pendulums?",
+    "choices": [
+      "L_B = 4L_A",
+      "L_B = 2L_A",
+      "L_B = L_A",
+      "L_B = 1/2 L_A"
+    ],
+    "answer_idx": 0,
+    "item_id": "college_physics_64"
+  },
+  {
+    "subject": "world_religions",
+    "question": " The Communidades de Base is associated with which of the following?",
+    "choices": [
+      "Bishop Oscar Romero",
+      "Resistance and renewal",
+      "Dignity of all human beings",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "world_religions_154"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Guru Nanak used what term to denote the \"divine word\" as part of divine revelation?",
+    "choices": [
+      "Shabad",
+      "Khalse",
+      "Nam",
+      "Guru"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_6"
+  },
+  {
+    "subject": "world_religions",
+    "question": " With which branch of Islam are the Isma'ilis are associated?",
+    "choices": [
+      "The Sunni",
+      "The Shi'a",
+      "The Sufi",
+      "The Ahmadiyya"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_143"
+  },
+  {
+    "subject": "world_religions",
+    "question": "What does the phrase Guru-Panth mean within the Sikh traditions?",
+    "choices": [
+      "Community",
+      "Scripture",
+      "Worship",
+      "Apprenticeship"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_50"
+  },
+  {
+    "subject": "world_religions",
+    "question": "What has been a central focus of religious traditions in China and Korea?",
+    "choices": [
+      "Peace and harmony",
+      "Power and influence",
+      "Truth and love",
+      "Wisdom and ethics"
+    ],
+    "answer_idx": 0,
+    "item_id": "world_religions_166"
+  },
+  {
+    "subject": "world_religions",
+    "question": " Which Egyptian gods did Akhenaten make a determined effort to eliminate?",
+    "choices": [
+      "Shu and Set",
+      "Horus and Isis",
+      "Amun and Mut",
+      "Khonsu and Nekhbet"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_139"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Speaking in tongues is a feature of which Christian denomination?",
+    "choices": [
+      "Evangelicalism",
+      "Pietism",
+      "Pentecostalism",
+      "Fundamentalism"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_107"
+  },
+  {
+    "subject": "world_religions",
+    "question": "Which Guru was martyred when he refused to embrace Islam?",
+    "choices": [
+      "Guru Ram Das",
+      "Guru Tegh Bahadur",
+      "Guru Gobind Singh",
+      "Guru Har Rai"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_56"
+  },
+  {
+    "subject": "world_religions",
+    "question": " In Buddhism, what are ordained women known as?",
+    "choices": [
+      "Bhikshus",
+      "Bhikshunis",
+      "The Sangha",
+      "Arhats"
+    ],
+    "answer_idx": 1,
+    "item_id": "world_religions_114"
+  },
+  {
+    "subject": "world_religions",
+    "question": "When did the Babylonian captivity of \"Exile\" begin?",
+    "choices": [
+      "515 BCE",
+      "535 BCE",
+      "586 BCE",
+      "70 CE"
+    ],
+    "answer_idx": 2,
+    "item_id": "world_religions_150"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "How many major powers are there in a multipolar system?",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "3 or more"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_35"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What is the structure of the United Nations Security Council?",
+    "choices": [
+      "5 permanent members with veto power, 10 rotating members with no veto power",
+      "5 permanent members and 10 rotating members, all with veto power",
+      "10 permanent members with veto power, and 5 rotating members without veto power",
+      "15 permanent members with veto power"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_0"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What is meant by the phrase 'empire by invitation'?",
+    "choices": [
+      "Voluntary reliance on an external power for security",
+      "Willful openness to colonization",
+      "Cultural imperialism",
+      "Open advocacy of imperialism for economic gain"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_97"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was the significance of the Truman Doctrine?",
+    "choices": [
+      "It indicated the special place of Greece and Turkey in American interests",
+      "It was Truman's first statement on European affairs",
+      "It indicated US reluctance to get involved in incidents outside of its immediate sphere of influence",
+      "It indicated that the US would now view all local revolts through a geopolitical lens"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_20"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Which of the following points supports the argument for American unilateralism?",
+    "choices": [
+      "Benevolent hegemony",
+      "Ineffectiveness of multilateralism",
+      "American power",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_89"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was meant by the term 'New World Order'?",
+    "choices": [
+      "A new democratic internationalism led by the United States",
+      "A new balance of power between the US and China",
+      "A new global economic framework",
+      "A new era of globalization"
+    ],
+    "answer_idx": 0,
+    "item_id": "us_foreign_policy_54"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Which of the following are possible constraints on US foreign policy decision making?",
+    "choices": [
+      "Foreign policies of other states",
+      "International law",
+      "Intergovernmental organizations",
+      "All of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_43"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Why do Liberal Internationalists argue that international institutions are important to US grand strategy?",
+    "choices": [
+      "They allow the US to withdraw from the international arena",
+      "They serve American interests",
+      "The US is incapable of acting alone",
+      "None of the above"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_19"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "What was the key difference between US expansion pre- and post- 1865?",
+    "choices": [
+      "US expansion was based on territory rather than markets post-1865",
+      "US expansion was based on markets rather than territory post-1865",
+      "US expansion was limited to Latin America post-1865",
+      "US expansion ended after 1865"
+    ],
+    "answer_idx": 1,
+    "item_id": "us_foreign_policy_27"
+  },
+  {
+    "subject": "us_foreign_policy",
+    "question": "Why is there so much uncertainty over which states have nuclear weapons?",
+    "choices": [
+      "Leaders have incentives to lie",
+      "If leaders revealed their programs, they would be more likely to be attacked",
+      "Leaders will not always grant foreign monitors access to their nuclear programs",
+      "ALL of the above"
+    ],
+    "answer_idx": 3,
+    "item_id": "us_foreign_policy_13"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "During a study of renal glomeruli, a healthy animal kidney is kept in a vascular bath preparation at a constant afferent arterial pressure of 100 mm Hg. If the efferent arteriole is constricted with a vascular clamp, which of the following Starling forces is most likely to change in the glomeruli?",
+    "choices": [
+      "Decreased filtration coefficient (Kf)",
+      "Decreased hydrostatic pressure",
+      "Decreased oncotic pressure",
+      "Increased hydrostatic pressure"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_47"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 16-month-old girl is brought to the emergency department by emergency medical technicians because of a generalized tonic-clonic seizure that began 25 minutes ago and has continued despite administration of 0.5 mg/kg rectal diazepam 10 minutes ago. The patient was at home at the time of the seizure. In the emergency department, she is given an additional 0.5 mg/kg dose of diazepam intravenously and the convulsion terminates. Within 2 minutes, her oxygen saturation drops to 75% and she appears cyanotic. Respirations are 10/min and shallow. She receives bag-valve-mask ventilation, followed by intubation and mechanical ventilation. Medical history is unremarkable. She takes no medications. Temperature is 39.1°C (102.5°F). Which of the following is the most likely underlying cause of the patient's respiratory insufficiency?",
+    "choices": [
+      "Airway occlusion",
+      "Encephalitis",
+      "Medication-induced suppression of central respiratory drive",
+      "Meningitis"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_194"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 46-year-old man with Marfan syndrome, aortic insufficiency, and mitral regurgitation comes to the emergency department because he has had severe substernal chest pain for the past 3 hours. He describes the pain as tearing in quality and radiating to the neck. One week earlier he experienced similar but less severe chest pain and treated himself with aspirin. Which of the following is the most likely underlying cause for his worsening symptoms?",
+    "choices": [
+      "Acute bacterial endocarditis",
+      "Acute myocardial infarction",
+      "Dissection of the aorta",
+      "Esophageal reflux with spasm"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_49"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 22-year-old woman comes to the office because of a 3-day history of cold symptoms and a 1-week history of progressive fatigue. Six weeks ago, she received a kidney transplant from a living, related donor. Immediately after the operation, she received monoclonal anti-CD3 therapy. Current medications are azathioprine, cyclosporine, and prednisone. Her temperature is 39°C (102.2°F). Physical examination shows a well-healed surgical scar. Serum studies show that her urea nitrogen and creatinine concentrations have tripled. A diagnosis of allograft rejection is suspected. In addition, this patient's clinical presentation is best explained by an infection with which of the following agents?",
+    "choices": [
+      "Adenovirus",
+      "BK virus",
+      "Epstein-Barr virus",
+      "Herpes simplex virus"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_183"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 22-year-old male presents to the office with a 5-day history of diarrhea after completing his third course of antibiotics for mastoiditis. Physical examination reveals vague generalized abdominal pain on palpation. Culture on hektoen enteric agar is positive. The most likely etiologic agent causing the diarrhea is",
+    "choices": [
+      "Clostridium difficile",
+      "Entamoeba histolytica",
+      "Giardia lamblia",
+      "Salmonella typhi"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_176"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 37-year-old woman is brought to the emergency department 45 minutes after she was found unconscious on her apartment floor. Her coworkers became concerned when she did not arrive for work. On arrival, she is unable to provide a history. Her pulse is 96/min, respirations are 12/min, and blood pressure is 124/58 mm Hg. Examination shows erythema, warmth, and induration of the upper back, buttocks, and posterior thighs. Her serum creatine kinase activity is 10,300 U/L. Urine toxicology screening is positive for opiates and cocaine. Urine dipstick is strongly positive for blood. Microscopic examination of the urine shows pigmented granular casts and rare erythrocytes. This patient is at increased risk for which of the following conditions over the next 24 hours?",
+    "choices": [
+      "Acute respiratory distress syndrome",
+      "Acute tubular necrosis",
+      "Cerebral edema",
+      "Cerebral hemorrhage"
+    ],
+    "answer_idx": 1,
+    "item_id": "professional_medicine_135"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 13-year-old girl is brought to the office for a health maintenance visit. She was diagnosed with Turner syndrome in infancy during a work-up for coarctation of the aorta. During today's visit, her mother reports that the girl has been talking about babies. You have been the patient's physician for the past 6 years and know she is prepubescent. It is most appropriate to counsel the patient that if she wishes to have a family she will need to do which of the following?",
+    "choices": [
+      "Adopt",
+      "Have amniocentesis if she gets pregnant",
+      "Have an operation",
+      "Receive genetic counseling"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_22"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 43-year-old man with a history of self-mutilation comes to the emergency department because of pain in his right thigh and shaking chills during the past 3 days. He says he intentionally burned his right thigh several times with a cigarette lighter 6 days ago. This morning he soaked his thigh in a tub of hot water and massaged it, after which a large amount of \"greenish fluid\" drained from the wound sites. The patient normally takes lithium carbonate but stopped 3 months ago after he lost his job. Medical history is otherwise unremarkable. Vital signs are temperature 39.2°C (102.5°F), pulse 170/min, respirations 18/min, and blood pressure 120/60 mm Hg. Physical examination shows an edematous right lateral thigh with multiple burn sites with a white exudative appearance. There is erythema surrounding the burn areas with red streaks extending up the thigh. Palpation of the burn sites discloses fluctuance. Results of laboratory studies show a hemoglobin concentration of 14 g/dL and a leukocyte count of 19,000/mm3 . In addition to beginning antibiotic therapy, which of the following is the most appropriate next step?",
+    "choices": [
+      "Incision and drainage",
+      "Psychiatric consultation",
+      "Topical silver sulfadiazine",
+      "Transfer to a burn center"
+    ],
+    "answer_idx": 0,
+    "item_id": "professional_medicine_235"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 20-year-old man has had frequent upper respiratory tract infections over the past 4 years. He has daily purulent sputum and has noted decreased exercise tolerance over the past 2 years. He and his wife have been unable to conceive because of his low sperm count. Scattered expiratory wheezing and rhonchi are heard throughout both lung fields. An x-ray of the chest shows hyperinflation. Spirometry shows a decreased FEV1:FVC ratio. Which of the following is most likely to confirm the diagnosis?",
+    "choices": [
+      "Arterial blood gas analysis",
+      "Examination of sputum for eosinophils",
+      "Sweat chloride test",
+      "Sputum cytology"
+    ],
+    "answer_idx": 2,
+    "item_id": "professional_medicine_63"
+  },
+  {
+    "subject": "professional_medicine",
+    "question": "A 52-year-old woman has had dyspnea and hemoptysis for 1 month. She has a history of rheumatic fever as a child and has had a cardiac murmur since early adulthood. Her temperature is 36.7°C (98°F), pulse is 130/min and irregularly irregular, respirations are 20/min, and blood pressure is 98/60 mm Hg. Jugular venous pressure is not increased. Bilateral crackles are heard at the lung bases. There is an opening snap followed by a low-pitched diastolic murmur at the third left intercostal space. An x-ray of the chest shows left atrial enlargement, a straight left cardiac border, and pulmonary venous engorgement. Which of the following is the most likely explanation for these findings?",
+    "choices": [
+      "Aortic valve insufficiency",
+      "Aortic valve stenosis",
+      "Mitral valve insufficiency",
+      "Mitral valve stenosis"
+    ],
+    "answer_idx": 3,
+    "item_id": "professional_medicine_193"
+  }
+]

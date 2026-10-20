@@ -1,0 +1,73 @@
+paper_key: "saleva2025beyond"
+title: "Beyond Statistical Significance: Quantifying Uncertainty and Statistical Variability in Multilingual and Multitask NLP Evaluation"
+venue: "IJCNLP-AACL 2025"
+full_text_available: true
+
+research:
+  baselines: ["standard confidence intervals (bootstrap only)", "single-source variance estimation"]
+  metrics:
+    - {name: "F1 (QA, NER)", direction: "higher_better"}
+    - {name: "BLEU/ChrF++/COMET (MT)", direction: "higher_better"}
+    - {name: "variance components (nu/eta/sigma/tau)", direction: "N/A"}
+    - {name: "effect size", direction: "higher_better"}
+  datasets:
+    - {name: "XQuAD", size: "12 languages"}
+    - {name: "FLORES-200", size: "9 language pairs"}
+    - {name: "OpenNER 1.0", size: "61 datasets, 51 languages"}
+  ablation_dimensions: ["variance source (model-side vs data-side)", "aggregation function", "number of languages/tasks subsampled", "number of seeds (5) × bootstrap resamples (100)"]
+  training_recipe: {optimizer: "varies by task", lr: "varies", hardware: "not specified"}
+  method_family: "resampling-based variance decomposition"
+
+positioning:
+  core_claim: "Between-language/task variance dominates within-language uncertainty in multilingual benchmarks, and ignoring either model-side or data-side variability substantially underestimates overall uncertainty"
+  key_results: "Between-language SD 8.92-12.01 vs within-language 0.73-1.47 (QA); only 6/16 BLEU comparisons significant; effect sizes shrink dramatically under 10-dataset subsampling"
+  limitations:
+    - "Uneven language distribution across tasks"
+    - "Limited to three tasks"
+    - "Focus on human-annotated datasets only"
+    - "Methods may be slightly more involved than traditional approaches"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Multilingual NLP has expanded exponentially but no paper can evaluate on all languages — how generalizable are results?"
+  tension: "Binary 'A beats B' judgments ignore what drives observed differences, risking irreproducible conclusions"
+  key_insight: "Between-language variance dwarfs within-language uncertainty — aggregated rankings unstable under different task selections"
+  argument_chain: "problem (binary judgments) → framework (variance decomposition nu/eta/sigma/tau) → 3-task demonstration → finding (between > within) → recommendations"
+  contribution_framing: "Single unified contribution: resampling methods that decompose both model and data variance"
+  intro_structure: "5 sections within intro: evaluation paradigms, significance/effect sizes, data-side variability, model-side variability, summary with notation"
+  notable_technique: "Structured intro with explicit subsections mirrors the variance decomposition structure of the method itself"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "M×L leaderboard structure with R replications, showing aggregation patterns and variance estimation"
+    narrative_role: "Establishes notation and decomposition framework visually"
+    design_elements: ["matrix layout", "color-coded variance sources", "aggregation arrows"]
+    visual_style: "Schematic diagram with mathematical notation overlaid"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "Fig1 (framework) → Tables (all results) — minimal figure usage, table-heavy"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models"
+    col_axis: "variance components (nu, eta_total, sigma, tau)"
+    row_organization: "flat"
+    col_organization: "grouped_by_variance_component"
+    highlight_strategy: "no bold, asterisks for non-significant"
+    statistical_reporting: "variance estimates with decomposition"
+    num_baselines: 4
+    design_note: "Novel table structure — columns are variance components not performance metrics"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["pairwise model comparisons"]
+      variation_style: "full_numbers"
+      design_note: "Pairwise differences with uncertainty bands, asterisks for non-significant"
+  supplementary_tables:
+    in_appendix: true
+    content: "MT and NER detailed variance tables, subsampling experiments"
+    reason: "Main paper fits QA story; MT/NER extend but follow same pattern"

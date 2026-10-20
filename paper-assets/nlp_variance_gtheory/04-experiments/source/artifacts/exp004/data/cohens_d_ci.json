@@ -1,0 +1,66 @@
+{
+  "benchmark_level": {
+    "mc_values": [
+      68.1,
+      71.6,
+      70.3
+    ],
+    "ff_values": [
+      31.5,
+      41.3
+    ],
+    "mc_mean": 70.0,
+    "ff_mean": 36.4,
+    "s_pooled": 4.253625904253138,
+    "d_point": 7.899143167809811,
+    "d_ci_nct": [
+      -18.257418583505537,
+      36.51483716701107
+    ],
+    "d_ci_bootstrap": [
+      7.594508169899308,
+      64.72746689323024
+    ],
+    "n_bootstrap": 10000,
+    "df": 3,
+    "noncentrality_param": 8.653077795944498,
+    "note": "n1=3 (MC), n2=2 (FF); CI is wide due to small n"
+  },
+  "item_level_propagated": {
+    "d_point": 7.899143167809811,
+    "d_ci": [
+      4.25718615072426,
+      11.715347747589442
+    ],
+    "d_median": 6.565989325457789,
+    "method": "parametric_bootstrap_from_component_CIs",
+    "detail": "item_related% = item_id% + model:item_id%; SE estimated from 95% CI width; N(point, se^2) draws per benchmark; 10000 resamples",
+    "benchmark_item_related": {
+      "mmlu": {
+        "pct": 68.09,
+        "se": 2.89,
+        "group": "mc"
+      },
+      "arc": {
+        "pct": 71.61,
+        "se": 4.55,
+        "group": "mc"
+      },
+      "hellaswag": {
+        "pct": 70.28,
+        "se": 3.17,
+        "group": "mc"
+      },
+      "gsm8k": {
+        "pct": 31.41,
+        "se": 1.85,
+        "group": "ff"
+      },
+      "math": {
+        "pct": 41.3,
+        "se": 1.8,
+        "group": "ff"
+      }
+    }
+  }
+}
