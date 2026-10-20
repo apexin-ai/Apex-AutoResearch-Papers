@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89d8090ace1c8d49c705",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research mmlu cf ground truth",
+  "task_key": "worker_research_mmlu_cf_ground_truth_20260520T203721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_mmlu_cf_ground_truth_20260520T203721_result.json",
+    "occurrence": 1,
+    "bytes": 1113,
+    "sha256": "84e8c5dc405cbaf7fa273e82548c42d7479f38a0dd9284aeb807291b775a042e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个产出文件全部就绪：\n\n**核心发现**：\n\n1. **MMLU-CF 不可用作 ground truth** — 它是全新构建的数据集，不是 MMLU 的修改版，没有 item-level 映射。\n\n2. **主要 ground truth 来源**: Li et al. (EMNLP 2024 Findings) 的 Contamination_Detector，基于 Bing + Common Crawl web overlap 检测：\n   - 9,229 items 有标注（覆盖 METABENCH 12,508 items 的 73.8%）\n   - clean: 5,584 (60.5%)，input_and_label: 3,043 (33.0%)，input_only: 602 (6.5%)\n   - 已映射到 METABENCH item_id 格式（如 `abstract_algebra.1`）\n\n3. **替代来源**: Hidayat et al. n-gram 检测（46.6% 污染率）、Meta Llama 2 报告（16% 污染率）、Zhu et al. MinKProb 检测\n\n**产出文件** (`artifacts/`):\n- `mmlu_cf_ground_truth.csv` — 12,508 items 的 item-level 标签（9,229 有标注）\n- `mmlu_cf_analysis.md` — 完整调研报告\n- `mmlu_cf_analysis.json` — 机器可读摘要\n\n**主要局限**: Web overlap ≠ training data contamination。这是 proxy ground truth，不是精确标签。适合作为 DIF 验证的初步基准。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-mmlu-cf-ground-truth.md"
+}

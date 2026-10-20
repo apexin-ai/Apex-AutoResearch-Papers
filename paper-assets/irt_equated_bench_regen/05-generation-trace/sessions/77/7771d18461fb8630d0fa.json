@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7771d18461fb8630d0fa",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r18 restricted range rho",
+  "task_key": "worker_code_r18_restricted_range_rho_20260522T163431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r18_restricted_range_rho_20260522T163431_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "5f2c97da7c86d50a5b660e6f8ab6d955411645c13554f53f9fbe5d9f19eea6d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已注册在报告中。总结关键发现：\n\n**Full ρ = −0.587** (与预期的 −0.597 基本一致)。逐步去除 ceiling/floor items 后：\n\n| Range | ρ | p | N |\n|-------|---|---|---|\n| Full | −0.587 | <10⁻³⁰⁰ | 3918 |\n| Interior [0.1, 0.9] | −0.552 | 5×10⁻²⁶⁹ | 3380 |\n| Interior [0.2, 0.8] | −0.447 | 1×10⁻¹⁰⁸ | 2201 |\n| Interior [0.3, 0.7] | −0.325 | 4×10⁻³⁵ | 1370 |\n\nρ 随 range restriction 单调衰减（符合 range restriction attenuation 的统计预期），但即使在最严格的 [0.3, 0.7] 区间仍 p < 10⁻³⁴，远低于任何显著性阈值。Bootstrap 95% CI 均不含零。\n\nDecile 分析清晰展示单调梯度：hardest decile 93% focal-favoring → easiest decile 0.5% focal-favoring，中间 deciles 也呈连续递减而非仅在两端跳变。\n\n**结论：ceiling/floor effects alone cannot explain the difficulty–direction association.** 可在论文中用一句话报告 interior [0.1, 0.9] 的 ρ = −0.55 作为 robustness check。\n\n产出：\n- 脚本：`artifacts/r18_restricted_range_rho/restricted_rho_analysis.py`\n- 报告：`artifacts/r18_restricted_range_rho/restricted_rho_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r18-restricted-range-rho.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01cdc1763389346344ba",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code artifacts qc d011",
+  "task_key": "worker_code_artifacts_qc_d011_20260520T234539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_artifacts_qc_d011_20260520T234539_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "c1971ef8ec4f695f6bac0c5d77b3083061442364092681a5b262c7d72e740ffe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "QC 完成。结论：\n\n- **9/9 已完成实验**的 artifacts 完整（report + 数据 CSV 全在，非空，列名合理）\n- **2 个非终态实验**状态符合预期（plan_015 PREPARING+killed，plan_017 PREPARING）\n- **3 个 minor issues**：\n  1. `mmlu_cf_ground_truth` manifest 路径指向 `artifacts/` 根目录，实际在 `_project/data/`\n  2. `plan_001b` registry 缺 structured metrics（数据在 CSV 和 notes 里，只是没结构化）\n  3. `mvp_dif_power_sim_phase2` registry 缺 notes 字段\n\n均不影响数据完整性。报告已注册为 `art_20260520_cbdba2`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-artifacts-qc-d011.md"
+}

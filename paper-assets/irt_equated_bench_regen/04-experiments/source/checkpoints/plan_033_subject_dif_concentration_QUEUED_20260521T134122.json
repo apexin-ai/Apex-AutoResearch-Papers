@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_033_subject_dif_concentration",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:41:16.628Z",
+    "updated_at": "2026-05-21T13:41:22.119Z",
+    "hypothesis": "DIF 在 MMLU 57 个 subject 间分布不均匀，且 STEM vs Humanities 存在系统性差异。控制 item difficulty 和 discrimination 后，特定 subject 的 content 本身预测 DIF 概率——这说明 DIF 不仅由 psychometric properties 驱动，还受知识领域内容特征影响。同时，DIF 的方向（favor 2023 vs 2024）可能在不同领域呈现不同模式。",
+    "parent": "plan_001_real_data_dif_mmlu"
+  },
+  "timestamp": "2026-05-21T13:41:22.470038+00:00",
+  "trigger": "update_registry"
+}

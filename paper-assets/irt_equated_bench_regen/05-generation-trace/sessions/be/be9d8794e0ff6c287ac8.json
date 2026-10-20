@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be9d8794e0ff6c287ac8",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r14 exp4 gsm1k cooks",
+  "task_key": "worker_code_r14_exp4_gsm1k_cooks_20260522T121542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r14_exp4_gsm1k_cooks_20260522T121542_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "078a936d8162bfb09d6350357895c71465725d17a239e37fb5847e6d0e5c7005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**Cook's D 分布**：3/33 models 超过 4/N 阈值 (0.121)：\n- **Deepseek-math-7b-rl** (D=0.300) — 唯一 gap 为负且 dif_advantage 为正的 model，属于反方向异常点\n- **GPT-2-xl** (D=0.161) — 近零 gap 和近零 dif_advantage，floor effect\n- **Smaug-2-72B** (D=0.129) — 高 gap 但 dif_advantage 偏小\n\n**Leave-one-out**：所有 33 次 LOO 的 p 值均 < 0.05（range: 0.0015–0.0352）。移除最有影响力的 Deepseek-math-7b-rl 后 r 从 -0.478 降到 -0.373，p=0.035 仍显著。\n\n**移除全部 3 个 outlier 后**：r = -0.384, p = 0.036, N=30 — 仍显著。\n\n**结论**：r = -0.478 对 outlier removal 是 **robust** 的。相关性减弱但不消失。\n\n输出文件：\n- `artifacts/r14_sf9_gsm1k_cooks/cooks_d_report.md`\n- `artifacts/r14_sf9_gsm1k_cooks/cooks_d_results.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r14-exp4-gsm1k-cooks.md"
+}

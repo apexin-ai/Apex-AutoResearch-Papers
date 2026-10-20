@@ -1,0 +1,1118 @@
+{
+  "schema_version": "1.0",
+  "id": "a2c42b2034eaa07f1d99",
+  "project": "irt_equated_bench_regen",
+  "kind": "conversation",
+  "title": "code r16 random split null",
+  "task_key": "worker_code_r16_random_split_null_20260523T104440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_r16_random_split_null_20260523T104440.jsonl",
+    "occurrence": 1,
+    "bytes": 64850,
+    "sha256": "7e003faca093697b16a7cb82c7de7648b8fc9e57fccfbee8f412ecaf36a0f247"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T10:49:07.543182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix*.npz 2>/dev/null && ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv 2>/dev/null",
+              "description": "Check data files exist"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T10:49:07.543570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix.npz\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix_index.npz\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T10:49:07.543786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find MH-DIF implementation",
+              "prompt": "Search the project at /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen for existing Mantel-Haenszel DIF implementations. Look in:\n1. artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py\n2. artifacts/r22_within_arch_temporal/within_arch_temporal.py\n3. Any other Python files that implement MH statistics or delta_MH\n\nI need to understand how they compute MH-DIF with stratified total-score matching. Report the key function signatures and the core MH computation logic (the numpy/scipy code that computes the MH odds ratio and delta_MH). Be thorough - search for \"mantel\" \"haenszel\" \"delta_mh\" \"mh_stat\" patterns across all .py files."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T10:49:07.543975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen -type f -name \"*.py\" | head -20"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T10:49:07.544198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_A1_subject_heatmap.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_2_dose_response.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_4_downstream_impact.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_3_within_subject_matching.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_A3_rho_degradation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_A2_q3_distribution.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r16_dif_union.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r14_cooks_d_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r14_domain_profile.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/k3_power_simulation/k3_power_simulation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/intermediate/mf2_deff_estimation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/intermediate/plan_004_step3_gsm1k_dif_correlation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/intermediate/dif_power_simulation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/intermediate/plan_024_within_family.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/intermediate/\n…[truncated 587 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T10:49:07.544389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nrm = np.load('artifacts/response_matrix.npz', allow_pickle=True)\nprint('Response matrix keys:', list(rm.keys()))\nfor k in rm.keys():\n    print(f'  {k}: shape={rm[k].shape}, dtype={rm[k].dtype}')\nidx = np.load('artifacts/response_matrix_index.npz', allow_pickle=True)\nprint('Index keys:', list(idx.keys()))\nfor k in idx.keys():\n    print(f'  {k}: shape={idx[k].shape}, dtype={idx[k].dtype}')\n    if idx[k].ndim == 1 and len(idx[k]) < 10:\n        print(f'    values: {idx[k]}')\n    elif idx[k].ndim == 1:\n        print(f'    first 5: {idx[k][:5]}')\n\"\n",
+              "description": "Inspect response matrix structure"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T10:49:07.544547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "mantel|haenszel|delta_mh|mh_stat",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+              "type": "py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T10:49:07.544687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 63 files\nartifacts/difficulty_modeltype_interaction/interaction_analysis.py\nartifacts/k3_power_simulation/k3_power_simulation.py\nartifacts/r20_size_stratified_deff/size_stratified_deff.py\nartifacts/r19_semisynthetic_gradient/semisynthetic_gradient.py\nartifacts/r19_open_closed_dif/open_closed_dif_analysis.py\nartifacts/r19_temporal_granularity/temporal_granularity_analysis.py\nartifacts/r18_base_vs_instruct_dif/base_instruct_dif.py\nartifacts/r18_restricted_range_rho/restricted_rho_analysis.py\nartifacts/mf2_deff_estimation/mf2_deff_estimation_v3.py\nartifacts/_project/intermediate/mf2_deff_estimation.py\nartifacts/mf2_deff_estimation/mf2_deff_estimation.py\nartifacts/predictive_model/phase2_train.py\nartifacts/mf2_rho_degradation/run_simulation.py\nartifacts/sf1_cluster_bootstrap/run_bootstrap.py\nartifacts/sf8_power_sensitivity/sf8_power_sensitivity.py\nartifacts/plan_034_multi_subject_injection/plan_034_multi_subject_injection.py\nartifacts/plan_034/intermediate/plan_034_multi_subject_injection.py\nartifacts/plan_033_subject_dif_concentration/plan_033_subject_dif_concentration.py\nartifacts/plan_031_temporal_granularity/plan_031_temporal_granularity.py\nartifacts/plan_031_temporal_granularity/intermediate/plan_031_temporal_granularity.py\nartifacts/plan_028_multi_bench_dif/plan_028_multi_bench_dif.py\nartifacts/plan_028_multi_bench_dif/intermediate/plan_028_multi_bench_dif.py\nartifacts/plan_027_temporal_overlap/plan_027_temporal_overlap.py\nartifacts/plan_026/intermediate/plan_026_constat_dif_comparison.py\nartifacts/plan_026/plan_026_constat_dif_comparison.py\nartifacts/_project/intermediate/plan_024_within_family.py\nartifacts/plan_024/plan_024_within_family.py\nartifacts/plan_022/intermediate/plan_022_model_independence.py\nartifacts/plan_022/plan_022_model_independence.py\nartifacts/plan_023/intermediate/plan_023_item_characterization.py\nartifacts/plan_023/plan_023_item_characterization.py\nartifacts/plan_010/plan_010_arch_stratified_dif.py\nartifacts/_project/data/plan_020_circu\n…[truncated 1712 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T10:49:07.544881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T10:49:07.545015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T10:49:07.545139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_within_arch_temporal/within_arch_temporal.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T10:49:07.545255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/r22_within_arch_temporal/within_arch_temporal.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T10:49:07.545372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 artifacts/model_metadata.csv && echo \"---\" && python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('artifacts/model_metadata.csv')\nprint('Columns:', list(df.columns))\nprint('cohort_temporal values:', df['cohort_temporal'].value_counts().to_dict())\nprint('2023 count:', (df['cohort_temporal']==2023).sum())\n\"\n",
+              "description": "Check model metadata structure"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T10:49:07.545499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T10:49:07.545692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tmmlu_bootstrap_ci.py — MMLU bootstrap 95% CI for MH-DIF C%.\n4\t\n5\tVectorized total-score stratification (~100x faster than per-item rest-score).\n6\tFor J=12508, total-score ≈ rest-score (diff < 0.3pp); validated at startup.\n7\t\"\"\"\n8\t\n9\timport numpy as np\n10\timport pandas as pd\n11\tfrom scipy.stats import chi2 as chi2_dist\n12\tfrom scipy.sparse import load_npz\n13\tfrom pathlib import Path\n14\tfrom multiprocessing import Pool\n15\timport time\n16\timport warnings\n17\t\n18\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n19\t\n20\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/\"\n21\t            \"projects/irt_equated_bench_regen/artifacts\")\n22\tOUT = BASE / \"plan_028_bootstrap_ci\"\n23\tOUT.mkdir(exist_ok=True)\n24\t\n25\tN_BOOTSTRAP = 1000\n26\tN_CONTROL = 20\n27\tSEED = 42\n28\tN_STRATA = 5\n29\t\n30\t\n31\t# ════════════════════════════════════════════════════════════════════════\n32\t#  VECTORIZED MH-DIF (total-score stratification)\n33\t# ════════════════════════════════════════════════════════════════════════\n34\tdef mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):\n35\t    \"\"\"Fully vectorized MH-DIF → C%. Stratifies on total score (not rest).\"\"\"\n36\t    n_ref, J = X_ref.shape\n37\t    n_foc = X_foc.shape[0]\n38\t\n39\t    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n40\t    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n41\t    s_all = np.concatenate([tot_ref, tot_foc])\n42\t\n43\t    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n44\t    n_bins = len(edges) - 1\n45\t    if n_bins < 1:\n46\t        return 0.0\n47\t\n48\t    k_ref = np.digitize(tot_ref, edges[1:-1])\n49\t    k_foc = np.digitize(tot_foc, edges[1:-1])\n50\t\n51\t    n1 = np.zeros(n_bins, dtype=np.float64)\n52\t    n0 = np.zeros(n_bins, dtype=np.float64)\n53\t    A = np.zeros((n_bins, J), dtype=np.float64)\n54\t    C = np.zeros((n_bins, J), dtype=np.float64)\n55\t\n56\t    for k in range(n_bins):\n57\t        mr = (k_ref == k)\n58\t        mf = (k_foc == k)\n59\t        n1[k] = mr.sum()\n60\t        n0[k]\n…[truncated 11568 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T10:49:07.545889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_within_arch_temporal/within_arch_temporal.py"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T10:49:07.546060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"R22: Within-architecture temporal DIF analysis.\n3\t\n4\tGroups fine-grained families into architecture lineages (e.g., llama-2 + llama-3 → Llama),\n5\tthen runs MH-DIF within each lineage (2023 vs 2024) to rule out the confound that\n6\toverall temporal DIF is driven by cross-architecture differences.\n7\t\"\"\"\n8\t\n9\timport numpy as np\n10\timport pandas as pd\n11\tfrom scipy import sparse\n12\tfrom scipy.stats import chi2 as chi2_dist\n13\t\n14\tROOT = \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\"\n15\tOUT = f\"{ROOT}/r22_within_arch_temporal\"\n16\t\n17\tN_STRATA = 5\n18\tALPHA = 0.05\n19\tDELTA_THRESH = 1.5\n20\tMIN_PER_COHORT = 10\n21\t\n22\t# ── Architecture lineage mapping ────────────────────────────────────────────\n23\t# Maps fine-grained family → broad architecture lineage.\n24\t# Only families that appear in model_metadata.csv and have a cross-year counterpart.\n25\tARCH_LINEAGE = {\n26\t    \"llama-2\":    \"Llama\",\n27\t    \"codellama\":  \"Llama\",\n28\t    \"llama-3\":    \"Llama\",\n29\t    \"qwen\":       \"Qwen\",\n30\t    \"qwen-1.5\":   \"Qwen\",\n31\t    \"qwen-2\":     \"Qwen\",\n32\t    \"yi\":         \"Yi\",\n33\t    \"yi-1.5\":     \"Yi\",\n34\t    \"phi-2\":      \"Phi\",\n35\t    \"phi-3\":      \"Phi\",\n36\t}\n37\t\n38\t\n39\t# ── MH-DIF (vectorized, from r18) ──────────────────────────────────────────\n40\t\n41\tdef mh_dif_full(X_ref, X_foc, n_strata=N_STRATA):\n42\t    n_ref, J = X_ref.shape\n43\t    n_foc = X_foc.shape[0]\n44\t\n45\t    tot_ref = np.asarray(X_ref.sum(axis=1), dtype=np.float64).ravel()\n46\t    tot_foc = np.asarray(X_foc.sum(axis=1), dtype=np.float64).ravel()\n47\t    s_all = np.concatenate([tot_ref, tot_foc])\n48\t\n49\t    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n50\t    n_bins = len(edges) - 1\n51\t    if n_bins < 1:\n52\t        return 0.0, np.zeros(J), np.ones(J), np.zeros(J, dtype=bool)\n53\t\n54\t    k_ref = np.digitize(tot_ref, edges[1:-1])\n55\t    k_foc = np.digitize(tot_foc, edges[1:-1])\n56\t\n57\t    n1 = np.zeros(n_bins, dtype=np.float64)\n58\t \n…[truncated 7885 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T10:49:07.546218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "def.*mantel|def.*haenszel|def.*delta_mh|def.*mh_stat",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+              "type": "py",
+              "output_mode": "content",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T10:49:07.546345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/mf2_deff_estimation/mf2_deff_estimation.py:204:    out_cols = ['item_id', 'subject', 'icc', 'deff', 'delta_mh', 'se',\nartifacts/_project/intermediate/dif_phase2_simulation.py:58:    def mantel_haenszel_dif(responses, group, n_strata=N_STRATA):\nartifacts/dif_phase2_simulation.py:58:    def mantel_haenszel_dif(responses, group, n_strata=N_STRATA):\nartifacts/_project/intermediate/dif_power_simulation.py:57:def mantel_haenszel_dif(responses, group, n_strata=N_STRATA):\nartifacts/_project/intermediate/mf2_deff_estimation.py:204:    out_cols = ['item_id', 'subject', 'icc', 'deff', 'delta_mh', 'se',\nartifacts/k3_power_simulation/k3_power_simulation.py:56:def mantel_haenszel_dif(responses, group, n_strata):\nartifacts/dif_power_simulation.py:57:def mantel_haenszel_dif(responses, group, n_strata=N_STRATA):\nartifacts/sf8_power_sensitivity/sf8_power_sensitivity.py:82:def mantel_haenszel_dif(responses, group):"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T10:49:07.546481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dif_phase2_simulation.py"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T10:49:07.546729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tPhase 2: Semi-synthetic DIF power simulation using real MMLU IRT parameters\n3\tfrom PSN-IRT (4PL → 2PL: take a, b only).\n4\t\n5\tValidates Phase 1 findings (synthetic params) with real parameter distributions.\n6\tEach replication samples 200 items (w/o replacement) from the 14042-item MMLU pool.\n7\t\"\"\"\n8\t\n9\timport os\n10\timport sys\n11\timport time\n12\timport warnings\n13\timport numpy as np\n14\timport pandas as pd\n15\tfrom scipy import stats\n16\tfrom scipy.special import expit\n17\tfrom sklearn.metrics import roc_auc_score\n18\tfrom statsmodels.stats.multitest import multipletests\n19\timport matplotlib\n20\tmatplotlib.use(\"Agg\")\n21\timport matplotlib.pyplot as plt\n22\tfrom itertools import product\n23\t\n24\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n25\twarnings.filterwarnings(\"ignore\", category=FutureWarning)\n26\t\n27\tARTIFACTS_DIR = os.path.dirname(os.path.abspath(__file__))\n28\tN_ITEMS = 200\n29\tN_CONTAMINATED = 20\n30\tN_STRATA = 5\n31\tALPHA = 0.05\n32\tSEED = 42\n33\t\n34\t# Benchmark item counts (alphabetical order in PSN-IRT combine.csv)\n35\tBENCHMARK_SIZES = [\n36\t    (\"ARC-C\", 295), (\"BBH\", 6511), (\"Chinese SimpleQA\", 3000),\n37\t    (\"GPQA Diamond\", 198), (\"GSM8K\", 1319), (\"HellaSwag\", 10042),\n38\t    (\"HumanEval\", 164), (\"MATH\", 5000), (\"MBPP\", 500),\n39\t    (\"MMLU\", 14042), (\"TheoremQA\", 800),\n40\t]\n41\t\n42\tsys.path.insert(0, ARTIFACTS_DIR)\n43\ttry:\n44\t    from dif_power_simulation import (\n45\t        generate_responses, mantel_haenszel_dif,\n46\t        logistic_regression_dif, _batched_logistic_ll,\n47\t    )\n48\texcept ImportError:\n49\t    print(\"WARNING: Could not import from dif_power_simulation.py, using inline copies\")\n50\t    def generate_responses(theta, a, b, delta=None, contaminated_mask=None):\n51\t        b_adj = b.copy()\n52\t        if delta is not None and contaminated_mask is not None:\n53\t            b_adj[contaminated_mask] = b[contaminated_mask] - delta\n54\t        logit = a[np.newaxis, :] * (theta[:, np.newaxis] - b_adj[np.newaxis, :])\n55\t        prob = expit(logit)\n56\t \n…[truncated 23241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T10:49:07.546912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dif_power_simulation.py"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T10:49:07.547117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tDIF Power Monte Carlo Simulation for Benchmark Contamination Detection.\n3\t\n4\tSimulates 2PL IRT response data with injected contamination (DIF) on a subset\n5\tof items, then evaluates whether Mantel-Haenszel and Logistic Regression DIF\n6\tmethods can detect the contaminated items with sufficient statistical power.\n7\t\n8\tv2: BH correction, FPR>0.15 kill, GRAY zone, verdict column.\n9\t    Vectorized MH (no item loop) + batched IRLS LR for speed.\n10\t\"\"\"\n11\t\n12\timport os\n13\timport sys\n14\timport time\n15\timport warnings\n16\timport numpy as np\n17\timport pandas as pd\n18\tfrom scipy import stats\n19\tfrom scipy.special import expit\n20\tfrom sklearn.metrics import roc_auc_score\n21\tfrom statsmodels.stats.multitest import multipletests\n22\timport matplotlib\n23\tmatplotlib.use(\"Agg\")\n24\timport matplotlib.pyplot as plt\n25\tfrom itertools import product\n26\t\n27\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n28\twarnings.filterwarnings(\"ignore\", category=FutureWarning)\n29\t\n30\tARTIFACTS_DIR = os.path.dirname(os.path.abspath(__file__))\n31\tN_ITEMS = 200\n32\tN_CONTAMINATED = 20\n33\tN_STRATA = 5\n34\tALPHA = 0.05\n35\tSEED = 42\n36\t\n37\t# ─── Data Generation ────────────────────────────────────────────────────────\n38\t\n39\tdef generate_item_params(n_items, rng):\n40\t    a = rng.lognormal(mean=0.0, sigma=0.5, size=n_items)\n41\t    a = np.clip(a, 0.3, 2.5)\n42\t    b = rng.normal(0.0, 1.0, size=n_items)\n43\t    return a, b\n44\t\n45\t\n46\tdef generate_responses(theta, a, b, delta=None, contaminated_mask=None):\n47\t    b_adj = b.copy()\n48\t    if delta is not None and contaminated_mask is not None:\n49\t        b_adj[contaminated_mask] = b[contaminated_mask] - delta\n50\t    logit = a[np.newaxis, :] * (theta[:, np.newaxis] - b_adj[np.newaxis, :])\n51\t    prob = expit(logit)\n52\t    return (np.random.random(prob.shape) < prob).astype(np.int8)\n53\t\n54\t\n55\t# ─── Mantel-Haenszel DIF (vectorized across items) ────────────────────────\n56\t\n57\tdef mantel_haenszel_dif(responses, group, n_strata=N_STRATA):\n58\t    n_total, \n…[truncated 16312 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T10:49:07.547280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/k3_power_simulation/k3_power_simulation.py"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T10:49:07.547461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tK=3 vs K=5 Strata Power Simulation for MH-DIF Detection.\n3\t\n4\tTests whether K=3 strata provides adequate power for contamination detection,\n5\tsupporting the paper claim \"smaller corpora may suffice with K=3\".\n6\t\n7\tPSN-IRT empirical parameters: ā=1.2, b̄=-0.84\n8\tGrid: K∈{3,5} × N∈{40,60,80,100,200,500} × δ∈{0.6,0.8,1.0,1.2,1.4}\n9\t1000 replications per condition, MH-DIF only.\n10\t\"\"\"\n11\t\n12\timport os, sys, time, warnings\n13\timport numpy as np\n14\timport pandas as pd\n15\tfrom scipy import stats\n16\tfrom scipy.special import expit\n17\tfrom sklearn.metrics import roc_auc_score\n18\tfrom statsmodels.stats.multitest import multipletests\n19\tfrom itertools import product\n20\t\n21\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n22\t\n23\tOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n24\t\n25\tN_ITEMS = 200\n26\tN_CONTAMINATED = 20\n27\tALPHA = 0.05\n28\tSEED = 42\n29\t\n30\tA_MEAN = 1.2\n31\tB_MEAN = -0.84\n32\t\n33\tK_VALUES = [3, 5]\n34\tN_VALUES = [40, 60, 80, 100, 200, 500]\n35\tDELTA_VALUES = [0.6, 0.8, 1.0, 1.2, 1.4]\n36\t\n37\t\n38\tdef generate_item_params(n_items, rng):\n39\t    sigma_a = 0.4\n40\t    mu_a = np.log(A_MEAN) - sigma_a**2 / 2\n41\t    a = rng.lognormal(mean=mu_a, sigma=sigma_a, size=n_items)\n42\t    a = np.clip(a, 0.3, 2.5)\n43\t    b = rng.normal(B_MEAN, 1.0, size=n_items)\n44\t    return a, b\n45\t\n46\t\n47\tdef generate_responses(theta, a, b, delta=None, contaminated_mask=None, rng=None):\n48\t    b_adj = b.copy()\n49\t    if delta is not None and contaminated_mask is not None:\n50\t        b_adj[contaminated_mask] = b[contaminated_mask] - delta\n51\t    logit = a[np.newaxis, :] * (theta[:, np.newaxis] - b_adj[np.newaxis, :])\n52\t    prob = expit(logit)\n53\t    return (rng.random(prob.shape) < prob).astype(np.int8)\n54\t\n55\t\n56\tdef mantel_haenszel_dif(responses, group, n_strata):\n57\t    n_total, n_items = responses.shape\n58\t    total_score = responses.sum(axis=1).astype(float)\n59\t\n60\t    try:\n61\t        _, bin_edges = pd.qcut(total_score, q=n_strata, retbins=True, duplicates=\"drop\")\n62\t    ex\n…[truncated 11145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T10:49:07.547622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "def mantel_haenszel_dif|def mh_dif_full",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/sf8_power_sensitivity/sf8_power_sensitivity.py",
+              "output_mode": "content",
+              "context": "50"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T10:49:07.547783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32-    (\"MMLU\", 14042), (\"TheoremQA\", 800),\n33-]\n34-\n35-\n36-def load_mmlu_params():\n37-    csv_path = os.path.join(PROJECT_ARTIFACTS, \"psn_irt_item_parameters.csv\")\n38-    df = pd.read_csv(csv_path)\n39-    cumulative = np.cumsum([s for _, s in BENCHMARK_SIZES])\n40-    mmlu_idx = [name for name, _ in BENCHMARK_SIZES].index(\"MMLU\")\n41-    start = cumulative[mmlu_idx - 1] if mmlu_idx > 0 else 0\n42-    end = cumulative[mmlu_idx]\n43-    mmlu = df.iloc[start:end]\n44-    a = mmlu[\"discrimination\"].values.astype(np.float64)\n45-    b = mmlu[\"difficulty\"].values.astype(np.float64)\n46-    valid = (a > 0) & np.isfinite(a) & np.isfinite(b)\n47-    return a[valid], b[valid]\n48-\n49-\n50-def load_metabench_params():\n51-    csv_path = os.path.join(PROJECT_ARTIFACTS, \"_project/data/metabench_irt_params.csv\")\n52-    df = pd.read_csv(csv_path)\n53-    df = df[df[\"exclude\"] == False].copy()\n54-    a = df[\"disc\"].values.astype(np.float64)\n55-    b = df[\"diff\"].values.astype(np.float64)\n56-    valid = np.isfinite(a) & np.isfinite(b)\n57-    return a[valid], b[valid], len(df)\n58-\n59-\n60-def compute_descriptives(values, name):\n61-    return {\n62-        \"parameter\": name,\n63-        \"n\": len(values),\n64-        \"mean\": np.mean(values),\n65-        \"sd\": np.std(values, ddof=1),\n66-        \"min\": np.min(values),\n67-        \"q1\": np.percentile(values, 25),\n68-        \"median\": np.percentile(values, 50),\n69-        \"q3\": np.percentile(values, 75),\n70-        \"max\": np.max(values),\n71-        \"skewness\": stats.skew(values),\n72-        \"kurtosis\": stats.kurtosis(values),\n73-    }\n74-\n75-\n76-def generate_responses(theta, a, b):\n77-    logit = a[np.newaxis, :] * (theta[:, np.newaxis] - b[np.newaxis, :])\n78-    prob = expit(logit)\n79-    return (np.random.random(prob.shape) < prob).astype(np.int8)\n80-\n81-\n82:def mantel_haenszel_dif(responses, group):\n83-    n_total, n_items = responses.shape\n84-    total_score = responses.sum(axis=1).astype(float)\n85-    try:\n86-        _, bin_edges = pd.qcut(total_score\n…[truncated 1836 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T10:49:07.547937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf2_deff_estimation/mf2_deff_estimation.py",
+              "limit": "250"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T10:49:07.548124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tMF2: Design Effect (DEFF) Estimation\n3\tQuantifies non-independence within model families and adjusts DIF chi-squared.\n4\t\"\"\"\n5\timport numpy as np\n6\timport pandas as pd\n7\tfrom scipy import sparse\n8\tfrom scipy.stats import chi2\n9\tfrom pathlib import Path\n10\timport time\n11\t\n12\tROOT = Path(__file__).resolve().parent.parent.parent\n13\tARTIFACTS = ROOT / \"artifacts\"\n14\tOUT = ARTIFACTS / \"mf2_deff_estimation\"\n15\tOUT.mkdir(parents=True, exist_ok=True)\n16\t\n17\t\n18\tdef load_data():\n19\t    f = np.load(ARTIFACTS / \"response_matrix.npz\")\n20\t    X = sparse.csr_matrix((f['data'], f['indices'], f['indptr']), shape=tuple(f['shape']))\n21\t    idx = np.load(ARTIFACTS / \"response_matrix_index.npz\", allow_pickle=True)\n22\t    model_names = idx['model_names']\n23\t    item_ids = idx['item_ids']\n24\t\n25\t    meta = pd.read_csv(ARTIFACTS / \"plan_032_dif_cleaned_mmlu\" / \"cleaned_mmlu_analysis.csv\")\n26\t    dif = pd.read_csv(ARTIFACTS / \"plan_001\" / \"dif_results_temporal.csv\")\n27\t    return X, model_names, item_ids, meta, dif\n28\t\n29\t\n30\tdef filter_valid_models(meta, model_names):\n31\t    \"\"\"Exclude NaN family, 'unknown', and families with size < 2.\"\"\"\n32\t    fc = meta['family'].value_counts()\n33\t    valid_families = [f for f in fc[fc >= 2].index if f != 'unknown' and pd.notna(f)]\n34\t\n35\t    mask = meta['family'].isin(valid_families)\n36\t    valid_meta = meta.loc[mask].copy()\n37\t\n38\t    model_name_to_idx = {name: i for i, name in enumerate(model_names)}\n39\t    valid_indices = []\n40\t    valid_families_list = []\n41\t    valid_model_names_list = []\n42\t    for _, row in valid_meta.iterrows():\n43\t        m = row['model_name']\n44\t        if m in model_name_to_idx:\n45\t            valid_indices.append(model_name_to_idx[m])\n46\t            valid_families_list.append(row['family'])\n47\t            valid_model_names_list.append(m)\n48\t\n49\t    return (np.array(valid_indices), np.array(valid_families_list),\n50\t            valid_model_names_list, valid_families)\n51\t\n52\t\n53\tdef compute_icc_vectorized(X_valid, famil\n…[truncated 7803 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T10:49:07.548378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have a comprehensive view. Let me create a final summary report of all the MH-DIF implementations I've found:\n\n## Summary: Mantel-Haenszel DIF Implementations\n\nI've thoroughly searched the project and found **multiple complete MH-DIF implementations** using stratified total-score matching. Here are the key implementations:\n\n### 1. **Vectorized Bootstrap CI (mmlu_bootstrap_ci.py)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py`\n\n**Key Function:**\n```python\ndef mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Fully vectorized MH-DIF → C%. Stratifies on total score (not rest).\"\"\"\n```\n\n**Core MH Computation Logic (lines 34-101):**\n- **Stratification:** Uses `np.digitize()` to partition reference and focal groups by total score quantiles\n- **Contingency accumulation:** For each stratum k:\n  - `A[k]` = correct answers in reference group\n  - `C[k]` = correct answers in focal group  \n  - `B[k]` = n1 - A[k]` (incorrect in reference)\n  - `D[k]` = n0 - C[k]` (incorrect in focal)\n- **Odds ratio computation:**\n  ```python\n  Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)  # Sum over strata\n  Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n  ```\n- **Delta_MH calculation:**\n  ```python\n  delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n  ```\n  (The constant 2.35 = LN(8) is the ETS scaling factor)\n\n- **Chi-squared test statistic:**\n  ```python\n  EA = np.where(valid, n1[:, None] * m1 / Nk, 0)  # Expected A\n  sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n  sum_var = np.where(valid, n1[:, None] * n0[:, None] * m1 * m0 / (Nk**2 * Nk_m1), 0).sum(axis=0)\n  chi2_j = np.where(sum_var > 0, np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30), 0)\n  pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n  ```\n\n- **ETS Classification:** Items flagged as \"C\" if `|delta_j| >= 1.5 AND p < 0.05`\n\n---\n\n### 2. **Full Output MH-DI\n…[truncated 4254 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Agent",
+            "elapsed_ms": 4
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T10:49:07.548542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Response matrix keys: ['indices', 'indptr', 'format', 'shape', 'data']\n  indices: shape=(38654082,), dtype=int32\n  indptr: shape=(5228,), dtype=int32\n  format: shape=(), dtype=|S3\n  shape: shape=(2,), dtype=int64\n  data: shape=(38654082,), dtype=int8\nIndex keys: ['model_names', 'item_ids']\n  model_names: shape=(5227,), dtype=object\n    first 5: ['0-hero/Matter-0.1-7B' '0-hero/Matter-0.1-7B-DPO-preview'\n '0-hero/Matter-0.1-7B-boost' '0-hero/Matter-0.1-7B-boost-DPO'\n '0-hero/Matter-0.1-7B-boost-DPO-preview']\n  item_ids: shape=(12508,), dtype=object\n    first 5: ['abstract_algebra.1' 'abstract_algebra.10' 'abstract_algebra.100'\n 'abstract_algebra.11' 'abstract_algebra.12']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 4
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T10:49:07.548678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "model_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile\n0-hero/Matter-0.1-7B,unknown,unknown,unknown,unknown,0.661225,other,3\n0-hero/Matter-0.1-7B-DPO-preview,,unknown,unknown,DPO,0.661337,other,3\n0-hero/Matter-0.1-7B-boost,unknown,unknown,unknown,unknown,0.653422,other,3\n0-hero/Matter-0.1-7B-boost-DPO,,unknown,unknown,DPO,0.654941,other,3\n---\nColumns: ['model_name', 'family', 'release_year', 'release_half', 'training_method', 'accuracy', 'cohort_temporal', 'cohort_accuracy_quintile']\ncohort_temporal values: {'other': 3340, '2023': 1080, '2024': 807}\n2023 count: 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 3
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T10:49:07.548861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration",
+              "description": "Create output directory"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T10:49:07.548984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T10:49:07.549137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py",
+              "content": "\"\"\"\nRandom-split null distribution of |Δ_MH| for ETS threshold calibration.\n\nSplits the 2023 cohort (N=1080) into 540 ref + 540 foc 100 times,\ncomputes MH-DIF for all 12508 items per split, and characterises\nthe null distribution of |Δ_MH|.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse, stats\nfrom pathlib import Path\nimport time, sys\n\nROOT = Path(__file__).resolve().parent.parent.parent\nART  = ROOT / \"artifacts\"\nOUT  = ART / \"r16_threshold_calibration\"\n\nN_SPLITS   = 100\nN_STRATA   = 5\nSEED       = 42\n\n# ── load data ──────────────────────────────────────────────────────\n\ndef load_data():\n    rm = np.load(ART / \"response_matrix.npz\", allow_pickle=True)\n    X = sparse.csr_matrix((rm[\"data\"], rm[\"indices\"], rm[\"indptr\"]),\n                          shape=tuple(rm[\"shape\"]))\n    idx = np.load(ART / \"response_matrix_index.npz\", allow_pickle=True)\n    model_names = idx[\"model_names\"]\n    item_ids    = idx[\"item_ids\"]\n\n    meta = pd.read_csv(ART / \"model_metadata.csv\")\n    mask_2023 = meta[\"cohort_temporal\"].astype(str) == \"2023\"\n    models_2023 = set(meta.loc[mask_2023, \"model_name\"])\n\n    row_mask = np.array([m in models_2023 for m in model_names])\n    X_2023 = X[row_mask].toarray().astype(np.int8)\n    print(f\"2023 cohort: {X_2023.shape[0]} models × {X_2023.shape[1]} items\")\n    return X_2023, item_ids\n\n\n# ── vectorised MH-DIF (all items at once) ─────────────────────────\n\ndef mh_dif_vec(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Compute Δ_MH and p-value for every item, vectorised over items.\"\"\"\n    n_ref, J = X_ref.shape\n    n_foc    = X_foc.shape[0]\n\n    score_ref = X_ref.sum(axis=1)\n    score_foc = X_foc.sum(axis=1)\n    all_scores = np.concatenate([score_ref, score_foc])\n\n    quantiles = np.quantile(all_scores, np.linspace(0, 1, n_strata + 1))\n    quantiles[0]  -= 1\n    quantiles[-1] += 1\n    quantiles = np.unique(quantiles)\n    K = len(quantiles) - 1\n\n    strata_ref = np.digitize(score_ref, quantiles[1:])\n    strata_foc = np.digitize(score_foc, quantiles[1:])\n\n    # accumulate per-stratum statistics — shape (K, J)\n    Rj = np.zeros(J, dtype=np.float64)\n    Sj = np.zeros(J, dtype=np.float64)\n    sum_diff = np.zeros(J, dtype=np.float64)\n    sum_var  = np.zeros(J, dtype=np.float64)\n\n    for k in range(K):\n        r_mask = strata_ref == k\n        f_mask = strata_foc == k\n        n1 = r_mask.sum()\n        n0 = f_mask.sum()\n        if n1 == 0 or n0 == 0:\n            continue\n        Nk = n1 + n0\n        if Nk <= 1:\n            continue\n\n        A = X_ref[r_mask].sum(axis=0).astype(np.float64)  # (J,)\n        C = X_foc[f_mask].sum(axis=0).astype(np.float64)\n        B = n1 - A\n        D = n0 - C\n        m1 = A + C   # total correct in stratum\n        m0 = B + D   # total incorrect in stratum\n\n        Rj += (A * D) / Nk\n        Sj += (B * C) / Nk\n\n        EA = n1 * m1 / Nk\n        sum_diff += (A - EA)\n        sum_var  += (n1 * n0 * m1 * m0) / (Nk * Nk * (Nk - 1))\n\n    valid = (Rj > 0) & (Sj > 0)\n    alpha = np.ones(J, dtype=np.float64)\n    alpha[valid] = Rj[valid] / Sj[valid]\n\n    delta = np.zeros(J, dtype=np.float64)\n    finite = np.isfinite(np.log(alpha)) & valid\n    delta[finite] = -2.35 * np.log(alpha[finite])\n\n    chi2_val = np.zeros(J, dtype=np.float64)\n    ok = sum_var > 0\n    chi2_val[ok] = (np.maximum(np.abs(sum_diff[ok]) - 0.5, 0) ** 2) / sum_var[ok]\n    pval = np.ones(J, dtype=np.float64)\n    pval[ok] = 1.0 - stats.chi2.cdf(chi2_val[ok], df=1)\n\n    return delta, pval\n\n\n# ── main loop ──────────────────────────────────────────────────────\n\ndef run():\n    X, item_ids = load_data()\n    N, J = X.shape\n    half = N // 2\n    rng = np.random.default_rng(SEED)\n\n    abs_delta_all = np.zeros((N_SPLITS, J), dtype=np.float32)\n\n    t0 = time.time()\n    for i in range(N_SPLITS):\n        perm = rng.permutation(N)\n        X_ref = X[perm[:half]]\n        X_foc = X[perm[half:2*half]]\n        delta, pval = mh_dif_vec(X_ref, X_foc, N_STRATA)\n        abs_delta_all[i] = np.abs(delta).astype(np.float32)\n\n        if (i + 1) % 10 == 0:\n            elapsed = time.time() - t0\n            eta = elapsed / (i + 1) * (N_SPLITS - i - 1)\n            print(f\"  split {i+1}/{N_SPLITS}  elapsed={elapsed:.1f}s  ETA={eta:.1f}s\")\n\n    total_time = time.time() - t0\n    print(f\"Done: {N_SPLITS} splits in {total_time:.1f}s\")\n\n    # ── summary statistics ──\n    flat = abs_delta_all.ravel()\n    pcts = [50, 90, 95, 97.5, 99, 99.5, 99.9]\n    pct_vals = np.percentile(flat, pcts)\n\n    per_item_mean = abs_delta_all.mean(axis=0)\n    per_item_p95  = np.percentile(abs_delta_all, 95, axis=0)\n    per_item_max  = abs_delta_all.max(axis=0)\n\n    # fraction of (item, split) pairs exceeding ETS thresholds\n    frac_above_1_0 = (flat >= 1.0).mean()\n    frac_above_1_5 = (flat >= 1.5).mean()\n\n    # per-item: fraction of splits where |Δ_MH| >= 1.5\n    per_item_frac_c = (abs_delta_all >= 1.5).mean(axis=0)\n    n_items_ever_c  = (per_item_frac_c > 0).sum()\n\n    # ── save summary CSV ──\n    summary = pd.DataFrame({\n        \"percentile\": pcts,\n        \"abs_delta_mh\": pct_vals\n    })\n    summary.to_csv(OUT / \"random_split_summary.csv\", index=False)\n\n    # ── save per-item stats ──\n    item_stats = pd.DataFrame({\n        \"item_id\": item_ids,\n        \"mean_abs_delta\": per_item_mean,\n        \"p95_abs_delta\": per_item_p95,\n        \"max_abs_delta\": per_item_max,\n        \"frac_splits_above_1.5\": per_item_frac_c,\n    })\n    item_stats.to_csv(OUT / \"per_item_null_stats.csv\", index=False)\n\n    # ── histogram data (for plotting later) ──\n    hist_counts, hist_edges = np.histogram(flat, bins=200, range=(0, 3.0))\n    hist_df = pd.DataFrame({\n        \"bin_left\": hist_edges[:-1],\n        \"bin_right\": hist_edges[1:],\n        \"count\": hist_counts\n    })\n    hist_df.to_csv(OUT / \"null_histogram.csv\", index=False)\n\n    # ── report ──\n    report_lines = [\n        \"# Random-Split |Δ_MH| Null Distribution Report\",\n        \"\",\n        \"## Setup\",\n        f\"- Cohort: 2023 models (N = {N})\",\n        f\"- Items: J = {J}\",\n        f\"- Splits: {N_SPLITS} random permutations (each {half} ref vs {half} foc)\",\n        f\"- Strata: {N_STRATA} total-score quantile bins\",\n        f\"- Total (item × split) observations: {N_SPLITS * J:,}\",\n        f\"- Runtime: {total_time:.1f}s\",\n        \"\",\n        \"## Null Distribution Percentiles\",\n        \"\",\n        \"| Percentile | |Δ_MH| |\",\n        \"|------------|--------|\",\n    ]\n    for p, v in zip(pcts, pct_vals):\n        report_lines.append(f\"| {p}th | {v:.4f} |\")\n\n    report_lines += [\n        \"\",\n        \"## ETS Threshold Comparison\",\n        \"\",\n        f\"- Fraction of (item, split) with |Δ_MH| ≥ 1.0 (B threshold): {frac_above_1_0:.6f} ({frac_above_1_0*100:.4f}%)\",\n        f\"- Fraction of (item, split) with |Δ_MH| ≥ 1.5 (C threshold): {frac_above_1_5:.6f} ({frac_above_1_5*100:.4f}%)\",\n        f\"- Items that exceed |Δ_MH| ≥ 1.5 in at least one split: {n_items_ever_c} / {J} ({n_items_ever_c/J*100:.2f}%)\",\n        \"\",\n        \"## Interpretation\",\n        \"\",\n    ]\n\n    if pct_vals[pcts.index(95)] < 0.5:\n        report_lines.append(\n            f\"The 95th percentile of the null distribution is {pct_vals[pcts.index(95)]:.4f}, \"\n            f\"far below the ETS C-level threshold of 1.5. \"\n            f\"This confirms that the ETS 1.5 threshold is extremely conservative \"\n            f\"for LLM benchmark evaluation: under random splitting, virtually no items \"\n            f\"would be falsely flagged as showing large DIF.\"\n        )\n    elif pct_vals[pcts.index(95)] < 1.0:\n        report_lines.append(\n            f\"The 95th percentile is {pct_vals[pcts.index(95)]:.4f}, \"\n            f\"well below 1.5 but approaching the B-level threshold (1.0). \"\n            f\"The ETS C threshold remains conservative but the B threshold may be marginal.\"\n        )\n    else:\n        report_lines.append(\n            f\"The 95th percentile is {pct_vals[pcts.index(95)]:.4f}, \"\n            f\"approaching or exceeding the ETS thresholds. \"\n            f\"This suggests the ETS thresholds may be too liberal for LLM evaluation.\"\n        )\n\n    report_lines += [\n        \"\",\n        f\"The 99th percentile ({pct_vals[pcts.index(99)]:.4f}) and \"\n        f\"99.9th percentile ({pct_vals[pcts.index(99.9)]:.4f}) \"\n        f\"provide upper bounds on chance-level |Δ_MH| fluctuations.\",\n        \"\",\n        \"## Distribution Shape\",\n        \"\",\n        f\"- Mean |Δ_MH| across all observations: {flat.mean():.4f}\",\n        f\"- Median |Δ_MH|: {np.median(flat):.4f}\",\n        f\"- Std dev: {flat.std():.4f}\",\n        f\"- Skewness: {stats.skew(flat):.4f}\",\n        f\"- Max observed: {flat.max():.4f}\",\n        \"\",\n        \"The null distribution is right-skewed with most mass concentrated near zero, \"\n        \"consistent with well-behaved random assignment where group differences \"\n        \"are due purely to sampling variability.\",\n    ]\n\n    report_text = \"\\n\".join(report_lines) + \"\\n\"\n    (OUT / \"random_split_report.md\").write_text(report_text)\n    print(\"\\n\" + report_text)\n\n\nif __name__ == \"__main__\":\n    run()\n"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T10:49:07.549428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T10:49:07.549591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nfrom scipy import sparse, stats\nimport pandas as pd, time\n\nART = 'artifacts'\nrm = np.load(f'{ART}/response_matrix.npz', allow_pickle=True)\nX = sparse.csr_matrix((rm['data'], rm['indices'], rm['indptr']), shape=tuple(rm['shape']))\nidx = np.load(f'{ART}/response_matrix_index.npz', allow_pickle=True)\nmodel_names = idx['model_names']\n\nmeta = pd.read_csv(f'{ART}/model_metadata.csv')\nmask_2023 = meta['cohort_temporal'].astype(str) == '2023'\nmodels_2023 = set(meta.loc[mask_2023, 'model_name'])\nrow_mask = np.array([m in models_2023 for m in model_names])\nX_2023 = X[row_mask].toarray().astype(np.int8)\nprint(f'Shape: {X_2023.shape}')\n\nN, J = X_2023.shape\nhalf = N // 2\nrng = np.random.default_rng(42)\n\nt0 = time.time()\nfor i in range(5):\n    perm = rng.permutation(N)\n    X_ref = X_2023[perm[:half]]\n    X_foc = X_2023[perm[half:2*half]]\n\n    score_ref = X_ref.sum(axis=1)\n    score_foc = X_foc.sum(axis=1)\n    all_scores = np.concatenate([score_ref, score_foc])\n    quantiles = np.quantile(all_scores, np.linspace(0, 1, 6))\n    quantiles[0] -= 1; quantiles[-1] += 1\n    quantiles = np.unique(quantiles)\n    K = len(quantiles) - 1\n    strata_ref = np.digitize(score_ref, quantiles[1:])\n    strata_foc = np.digitize(score_foc, quantiles[1:])\n\n    Rj = np.zeros(J, dtype=np.float64)\n    Sj = np.zeros(J, dtype=np.float64)\n    for k in range(K):\n        r_mask = strata_ref == k\n        f_mask = strata_foc == k\n        n1 = r_mask.sum(); n0 = f_mask.sum()\n        if n1 == 0 or n0 == 0: continue\n        Nk = n1 + n0\n        if Nk <= 1: continue\n        A = X_ref[r_mask].sum(axis=0).astype(np.float64)\n        C = X_foc[f_mask].sum(axis=0).astype(np.float64)\n        B = n1 - A; D = n0 - C\n        Rj += (A * D) / Nk\n        Sj += (B * C) / Nk\n\n    elapsed = time.time() - t0\n    print(f'  split {i+1}: cumulative {elapsed:.2f}s')\n\nper_split = elapsed / 5\nprint(f'Per split: {per_split:.2f}s')\nprint(f'Estimated 100 splits: {per_split * 100:.1f}s')\n\"\n",
+              "description": "Benchmark 5 splits to estimate total runtime",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T10:49:07.549758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shape: (1080, 12508)\n  split 1: cumulative 0.03s\n  split 2: cumulative 0.05s\n  split 3: cumulative 0.07s\n  split 4: cumulative 0.10s\n  split 5: cumulative 0.12s\nPer split: 0.02s\nEstimated 100 splits: 2.3s"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T10:49:07.549914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 artifacts/r16_threshold_calibration/random_split_null.py",
+              "description": "Run full 100-split null distribution analysis",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T10:49:07.550068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2023 cohort: 1080 models × 12508 items\n  split 10/100  elapsed=0.3s  ETA=2.5s\n  split 20/100  elapsed=0.5s  ETA=2.1s\n  split 30/100  elapsed=0.8s  ETA=1.8s\n  split 40/100  elapsed=1.0s  ETA=1.5s\n  split 50/100  elapsed=1.3s  ETA=1.3s\n  split 60/100  elapsed=1.5s  ETA=1.0s\n  split 70/100  elapsed=1.8s  ETA=0.8s\n  split 80/100  elapsed=2.0s  ETA=0.5s\n  split 90/100  elapsed=2.3s  ETA=0.3s\n  split 100/100  elapsed=2.5s  ETA=0.0s\nDone: 100 splits in 2.5s\n\n# Random-Split |Δ_MH| Null Distribution Report\n\n## Setup\n- Cohort: 2023 models (N = 1080)\n- Items: J = 12508\n- Splits: 100 random permutations (each 540 ref vs 540 foc)\n- Strata: 5 total-score quantile bins\n- Total (item × split) observations: 1,250,800\n- Runtime: 2.5s\n\n## Null Distribution Percentiles\n\n| Percentile | |Δ_MH| |\n|------------|--------|\n| 50th | 0.2956 |\n| 90th | 0.7911 |\n| 95th | 0.9898 |\n| 97.5th | 1.1874 |\n| 99th | 1.4504 |\n| 99.5th | 1.6536 |\n| 99.9th | 2.1998 |\n\n## ETS Threshold Comparison\n\n- Fraction of (item, split) with |Δ_MH| ≥ 1.0 (B threshold): 0.048206 (4.8206%)\n- Fraction of (item, split) with |Δ_MH| ≥ 1.5 (C threshold): 0.008480 (0.8480%)\n- Items that exceed |Δ_MH| ≥ 1.5 in at least one split: 3717 / 12508 (29.72%)\n\n## Interpretation\n\nThe 95th percentile is 0.9898, well below 1.5 but approaching the B-level threshold (1.0). The ETS C threshold remains conservative but the B threshold may be marginal.\n\nThe 99th percentile (1.4504) and 99.9th percentile (2.1998) provide upper bounds on chance-level |Δ_MH| fluctuations.\n\n## Distribution Shape\n\n- Mean |Δ_MH| across all observations: 0.3740\n- Median |Δ_MH|: 0.2956\n- Std dev: 0.3205\n- Skewness: 1.7897\n- Max observed: 6.2475\n\nThe null distribution is right-skewed with most mass concentrated near zero, consistent with well-behaved random assignment where group differences are due purely to sampling variability."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T10:49:07.550256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la artifacts/r16_threshold_calibration/ && echo \"---\" && cat artifacts/r16_threshold_calibration/random_split_summary.csv",
+              "description": "Verify output files"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T10:49:07.550431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 740\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 23 10:47 .\ndrwxr-xr-x 105 ubuntu ubuntu  12288 May 23 10:45 ..\n-rw-r--r--   1 ubuntu ubuntu   3055 May 23 10:47 null_histogram.csv\n-rw-r--r--   1 ubuntu ubuntu 714221 May 23 10:47 per_item_null_stats.csv\n-rw-r--r--   1 ubuntu ubuntu   9317 May 23 10:46 random_split_null.py\n-rw-r--r--   1 ubuntu ubuntu   1419 May 23 10:47 random_split_report.md\n-rw-r--r--   1 ubuntu ubuntu    192 May 23 10:47 random_split_summary.csv\n---\npercentile,abs_delta_mh\n50.0,0.29556451737880707\n90.0,0.7910759568214418\n95.0,0.9898163795471193\n97.5,1.1874477803707113\n99.0,1.4503863203525544\n99.5,1.6536056780815103\n99.9,2.199819326400757"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T10:49:07.550596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py",
+              "offset": "110",
+              "limit": "60"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T10:49:07.550779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "110\t\n111\t# ── main loop ──────────────────────────────────────────────────────\n112\t\n113\tdef run():\n114\t    X, item_ids = load_data()\n115\t    N, J = X.shape\n116\t    half = N // 2\n117\t    rng = np.random.default_rng(SEED)\n118\t\n119\t    abs_delta_all = np.zeros((N_SPLITS, J), dtype=np.float32)\n120\t\n121\t    t0 = time.time()\n122\t    for i in range(N_SPLITS):\n123\t        perm = rng.permutation(N)\n124\t        X_ref = X[perm[:half]]\n125\t        X_foc = X[perm[half:2*half]]\n126\t        delta, pval = mh_dif_vec(X_ref, X_foc, N_STRATA)\n127\t        abs_delta_all[i] = np.abs(delta).astype(np.float32)\n128\t\n129\t        if (i + 1) % 10 == 0:\n130\t            elapsed = time.time() - t0\n131\t            eta = elapsed / (i + 1) * (N_SPLITS - i - 1)\n132\t            print(f\"  split {i+1}/{N_SPLITS}  elapsed={elapsed:.1f}s  ETA={eta:.1f}s\")\n133\t\n134\t    total_time = time.time() - t0\n135\t    print(f\"Done: {N_SPLITS} splits in {total_time:.1f}s\")\n136\t\n137\t    # ── summary statistics ──\n138\t    flat = abs_delta_all.ravel()\n139\t    pcts = [50, 90, 95, 97.5, 99, 99.5, 99.9]\n140\t    pct_vals = np.percentile(flat, pcts)\n141\t\n142\t    per_item_mean = abs_delta_all.mean(axis=0)\n143\t    per_item_p95  = np.percentile(abs_delta_all, 95, axis=0)\n144\t    per_item_max  = abs_delta_all.max(axis=0)\n145\t\n146\t    # fraction of (item, split) pairs exceeding ETS thresholds\n147\t    frac_above_1_0 = (flat >= 1.0).mean()\n148\t    frac_above_1_5 = (flat >= 1.5).mean()\n149\t\n150\t    # per-item: fraction of splits where |Δ_MH| >= 1.5\n151\t    per_item_frac_c = (abs_delta_all >= 1.5).mean(axis=0)\n152\t    n_items_ever_c  = (per_item_frac_c > 0).sum()\n153\t\n154\t    # ── save summary CSV ──\n155\t    summary = pd.DataFrame({\n156\t        \"percentile\": pcts,\n157\t        \"abs_delta_mh\": pct_vals\n158\t    })\n159\t    summary.to_csv(OUT / \"random_split_summary.csv\", index=False)\n160\t\n161\t    # ── save per-item stats ──\n162\t    item_stats = pd.DataFrame({\n163\t        \"item_id\": item_ids,\n164\t        \"mean_abs_delta\": per_item_mean,\n165\n…[truncated 219 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T10:49:07.550971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py",
+              "old_string": "    abs_delta_all = np.zeros((N_SPLITS, J), dtype=np.float32)\n\n    t0 = time.time()\n    for i in range(N_SPLITS):\n        perm = rng.permutation(N)\n        X_ref = X[perm[:half]]\n        X_foc = X[perm[half:2*half]]\n        delta, pval = mh_dif_vec(X_ref, X_foc, N_STRATA)\n        abs_delta_all[i] = np.abs(delta).astype(np.float32)",
+              "new_string": "    abs_delta_all = np.zeros((N_SPLITS, J), dtype=np.float32)\n    is_c_all      = np.zeros((N_SPLITS, J), dtype=bool)\n\n    t0 = time.time()\n    for i in range(N_SPLITS):\n        perm = rng.permutation(N)\n        X_ref = X[perm[:half]]\n        X_foc = X[perm[half:2*half]]\n        delta, pval = mh_dif_vec(X_ref, X_foc, N_STRATA)\n        ad = np.abs(delta)\n        abs_delta_all[i] = ad.astype(np.float32)\n        is_c_all[i] = (ad >= 1.5) & (pval < 0.05)"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T10:49:07.551157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T10:49:07.551292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py",
+              "old_string": "    # per-item: fraction of splits where |Δ_MH| >= 1.5\n    per_item_frac_c = (abs_delta_all >= 1.5).mean(axis=0)\n    n_items_ever_c  = (per_item_frac_c > 0).sum()",
+              "new_string": "    # per-item: fraction of splits where |Δ_MH| >= 1.5\n    per_item_frac_c = (abs_delta_all >= 1.5).mean(axis=0)\n    n_items_ever_c  = (per_item_frac_c > 0).sum()\n\n    # ETS C classification: |Δ_MH| >= 1.5 AND p < 0.05\n    c_rate_per_split = is_c_all.mean(axis=1)  # C% per split\n    mean_c_pct = c_rate_per_split.mean() * 100\n    frac_c_joint = is_c_all.mean()\n    per_item_frac_c_joint = is_c_all.mean(axis=0)\n    n_items_ever_c_joint  = (per_item_frac_c_joint > 0).sum()"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T10:49:07.551466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T10:49:07.551618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py",
+              "old_string": "        f\"- Items that exceed |Δ_MH| ≥ 1.5 in at least one split: {n_items_ever_c} / {J} ({n_items_ever_c/J*100:.2f}%)\",\n        \"\",\n        \"## Interpretation\",",
+              "new_string": "        f\"- Items that exceed |Δ_MH| ≥ 1.5 in at least one split: {n_items_ever_c} / {J} ({n_items_ever_c/J*100:.2f}%)\",\n        \"\",\n        \"### ETS C Classification (joint criterion: |Δ_MH| ≥ 1.5 AND p < 0.05)\",\n        \"\",\n        f\"- Mean null C% per split: {mean_c_pct:.4f}%\",\n        f\"- C% range across splits: [{c_rate_per_split.min()*100:.4f}%, {c_rate_per_split.max()*100:.4f}%]\",\n        f\"- Fraction of (item, split) classified C: {frac_c_joint:.6f} ({frac_c_joint*100:.4f}%)\",\n        f\"- Items classified C in at least one split: {n_items_ever_c_joint} / {J} ({n_items_ever_c_joint/J*100:.2f}%)\",\n        \"\",\n        \"## Interpretation\","
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T10:49:07.551823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T10:49:07.551980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py",
+              "old_string": "    if pct_vals[pcts.index(95)] < 0.5:\n        report_lines.append(\n            f\"The 95th percentile of the null distribution is {pct_vals[pcts.index(95)]:.4f}, \"\n            f\"far below the ETS C-level threshold of 1.5. \"\n            f\"This confirms that the ETS 1.5 threshold is extremely conservative \"\n            f\"for LLM benchmark evaluation: under random splitting, virtually no items \"\n            f\"would be falsely flagged as showing large DIF.\"\n        )\n    elif pct_vals[pcts.index(95)] < 1.0:\n        report_lines.append(\n            f\"The 95th percentile is {pct_vals[pcts.index(95)]:.4f}, \"\n            f\"well below 1.5 but approaching the B-level threshold (1.0). \"\n            f\"The ETS C threshold remains conservative but the B threshold may be marginal.\"\n        )\n    else:\n        report_lines.append(\n            f\"The 95th percentile is {pct_vals[pcts.index(95)]:.4f}, \"\n            f\"approaching or exceeding the ETS thresholds. \"\n            f\"This suggests the ETS thresholds may be too liberal for LLM evaluation.\"\n        )",
+              "new_string": "    p95 = pct_vals[pcts.index(95)]\n    p99 = pct_vals[pcts.index(99)]\n    report_lines.append(\n        f\"**P95 = {p95:.4f}** (vs ETS B = 1.0): under random splitting, ~5% of \"\n        f\"item-level |Δ_MH| values approach B-level magnitude purely by chance.\"\n    )\n    report_lines.append(\"\")\n    report_lines.append(\n        f\"**P99 = {p99:.4f}** (vs ETS C = 1.5): the null 99th percentile nearly reaches \"\n        f\"the C threshold, meaning ~1% of items can show |Δ_MH| ≥ 1.45 by sampling noise alone.\"\n    )\n    report_lines.append(\"\")\n    report_lines.append(\n        f\"**Null C% = {mean_c_pct:.4f}%** (joint criterion: |Δ_MH| ≥ 1.5 AND p < 0.05). \"\n        f\"The observed temporal C% is ~0.18% (2023→2024 within-year) and ~1.3% (2023 vs 2024 \"\n        f\"cross-year). The null C% provides the baseline false-positive rate for interpreting \"\n        f\"these observed rates.\"\n    )"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T10:49:07.552208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/random_split_null.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T10:49:07.552345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 artifacts/r16_threshold_calibration/random_split_null.py",
+              "description": "Re-run with joint C classification stats",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T10:49:07.552502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2023 cohort: 1080 models × 12508 items\n  split 10/100  elapsed=0.3s  ETA=2.4s\n  split 20/100  elapsed=0.5s  ETA=2.1s\n  split 30/100  elapsed=0.8s  ETA=1.8s\n  split 40/100  elapsed=1.0s  ETA=1.5s\n  split 50/100  elapsed=1.3s  ETA=1.3s\n  split 60/100  elapsed=1.5s  ETA=1.0s\n  split 70/100  elapsed=1.8s  ETA=0.8s\n  split 80/100  elapsed=2.0s  ETA=0.5s\n  split 90/100  elapsed=2.3s  ETA=0.3s\n  split 100/100  elapsed=2.5s  ETA=0.0s\nDone: 100 splits in 2.5s\n\n# Random-Split |Δ_MH| Null Distribution Report\n\n## Setup\n- Cohort: 2023 models (N = 1080)\n- Items: J = 12508\n- Splits: 100 random permutations (each 540 ref vs 540 foc)\n- Strata: 5 total-score quantile bins\n- Total (item × split) observations: 1,250,800\n- Runtime: 2.5s\n\n## Null Distribution Percentiles\n\n| Percentile | |Δ_MH| |\n|------------|--------|\n| 50th | 0.2956 |\n| 90th | 0.7911 |\n| 95th | 0.9898 |\n| 97.5th | 1.1874 |\n| 99th | 1.4504 |\n| 99.5th | 1.6536 |\n| 99.9th | 2.1998 |\n\n## ETS Threshold Comparison\n\n- Fraction of (item, split) with |Δ_MH| ≥ 1.0 (B threshold): 0.048206 (4.8206%)\n- Fraction of (item, split) with |Δ_MH| ≥ 1.5 (C threshold): 0.008480 (0.8480%)\n- Items that exceed |Δ_MH| ≥ 1.5 in at least one split: 3717 / 12508 (29.72%)\n\n### ETS C Classification (joint criterion: |Δ_MH| ≥ 1.5 AND p < 0.05)\n\n- Mean null C% per split: 0.6247%\n- C% range across splits: [0.0640%, 5.8523%]\n- Fraction of (item, split) classified C: 0.006247 (0.6247%)\n- Items classified C in at least one split: 3702 / 12508 (29.60%)\n\n## Interpretation\n\n**P95 = 0.9898** (vs ETS B = 1.0): under random splitting, ~5% of item-level |Δ_MH| values approach B-level magnitude purely by chance.\n\n**P99 = 1.4504** (vs ETS C = 1.5): the null 99th percentile nearly reaches the C threshold, meaning ~1% of items can show |Δ_MH| ≥ 1.45 by sampling noise alone.\n\n**Null C% = 0.6247%** (joint criterion: |Δ_MH| ≥ 1.5 AND p < 0.05). The observed temporal C% is ~0.18% (2023→2024 within-year) and ~1.3% (2023 vs 2024 cross-year). The null C% provides the basel\n…[truncated 524 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T10:49:07.552727+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。关键发现：\n\n**Null C% = 0.6247%** — 这是最重要的数字。在纯随机分组下，MH-DIF 联合标准（|Δ_MH| ≥ 1.5 且 p < 0.05）的 false positive rate 约 0.62%。\n\n对比已知观测值：\n- 2023 within-year C% (~0.18%) **低于** null → 2023 cohort 内部高度一致\n- 2024 cross-year C% (~1.3%) 约为 null 的 2× → 有信号但不极端\n\nP99 = 1.4504 几乎触及 ETS 1.5 阈值，说明在 N=540 per group 的 LLM 场景下，ETS C 阈值大致对应 null 分布的 99th percentile，并非「极端保守」。\n\n输出文件在 `artifacts/r16_threshold_calibration/`：\n- `random_split_null.py` — 分析脚本\n- `random_split_summary.csv` — 分位数汇总\n- `random_split_report.md` — 完整报告\n- `per_item_null_stats.csv` — 每个 item 的 null 统计\n- `null_histogram.csv` — 直方图数据"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r16_random_split_null_20260523T104440"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/conversations/code-r16-random-split-null.md"
+}

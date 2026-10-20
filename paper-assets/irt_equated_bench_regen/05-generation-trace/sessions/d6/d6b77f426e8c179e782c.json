@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6b77f426e8c179e782c",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper figure fig 2 dose response",
+  "task_key": "worker_paper_figure_fig_2_dose_response_20260520T234136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_2_dose_response_20260520T234136_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "0b44879463ed93169ee7f7dd685003e8bc99e31302224842e0efa806446ed474"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**产出文件**：\n- PDF: `figures/paper/fig_2_dose_response.pdf`\n- PNG: `figures/paper/fig_2_dose_response.png`\n- 脚本: `figures/paper/fig_2_dose_response.py`\n- Artifact ID: `art_20260520_993da9`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-2-dose-response.md"
+}

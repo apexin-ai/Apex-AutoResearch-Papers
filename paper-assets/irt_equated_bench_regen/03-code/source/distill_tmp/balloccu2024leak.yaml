@@ -1,0 +1,76 @@
+paper_key: "balloccu2024leak"
+title: "Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs"
+venue: "EACL 2024"
+full_text_available: true
+
+research:
+  baselines: [N/A - this is a survey/systematic review]
+  metrics:
+    - {name: "percentage of papers leaking data", direction: "informational"}
+    - {name: "total leaked samples", direction: "informational"}
+    - {name: "leak severity classification", direction: "informational"}
+  datasets:
+    - {name: "255 papers systematic review", size: "212 relevant papers"}
+    - {name: "263 unique contaminated benchmarks", size: "4.7M samples"}
+  ablation_dimensions: [temporal (pre/post API release), leak severity (low/moderate/high), reproducibility factors, fairness factors]
+  training_recipe: {optimizer: "N/A (systematic review)", lr: "N/A", hardware: "N/A"}
+  method_family: "systematic review / meta-analysis"
+
+positioning:
+  core_claim: "~42%的GPT-3.5/GPT-4评估论文通过web interface泄露数据到模型训练中，涉及263个benchmark共4.7M样本——这是一种被忽视的'indirect data leaking'现象"
+  key_results: "42% papers leaked via web interface; 263 datasets contaminated; 4.7M total samples; 53% high severity leaks; 91% reported prompts but only 53% provided code"
+  limitations:
+    - "Contaminated dataset list not fully conclusive"
+    - "Some experiments may have leaked data without publication"
+    - "API data policies changed over time"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Popular LLMs隐藏在API后，其细节未知，这对评估可信度提出了根本质疑"
+  tension: "用户通过web interface评估模型时，不知不觉地将benchmark数据泄露到模型训练中"
+  key_insight: "在Section 5.1揭示'indirect data leaking'概念：通过ChatGPT web interface交互的评估数据可被用于进一步训练模型"
+  argument_chain: "closed-source opacity → systematic review protocol → data leaking quantification → reproducibility audit → fairness audit → best practices"
+  contribution_framing: "4条贡献：systematic analysis → leaked data estimation → evaluation malpractices documentation → best practices"
+  intro_structure: "3段：closed-source问题 → indirect leaking概念 → 本文贡献"
+  notable_technique: "借用医学领域systematic review protocol（5个macro-steps），给CS论文分析赋予方法论严谨性"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "论文提交时间分布，垂直线标注2023年3月1日API发布"
+    narrative_role: "展示数据泄露的temporal分布，API发布前后的变化"
+    design_elements: ["时间线", "垂直分界线", "直方图"]
+    visual_style: "带时间标注的直方图"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "sankey diagram"
+      what_compared: "泄露严重程度分布"
+      how_gain_highlighted: "53%高严重度，视觉上占主导"
+      design_note: "Sankey图展示从论文到泄露程度的流动，直观展示严重性分布"
+    - figure_id: "Figure 3"
+      viz_type: "sankey diagram"
+      what_compared: "可复现性因素(prompt/code/sampling)"
+      how_gain_highlighted: "展示从prompt提供到code可用的逐步衰减"
+      design_note: "Sankey图适合展示多层因素间的关系"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (temporal) → Figure 2 (severity) → Figure 3 (reproducibility) → Figure 4 (fairness)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "NLP task categories"
+    col_axis: "leak severity levels"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "N/A (frequency counts)"
+    statistical_reporting: "counts and percentages"
+    num_baselines: 0
+    design_note: "按NLP任务分类展示泄露分布，QA和NLI最受影响"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "N/A"

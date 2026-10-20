@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f8d0c9910037d2df3c0",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 034 multi subject injection",
+  "task_key": "worker_code_plan_034_multi_subject_injection_20260521T154505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_034_multi_subject_injection_20260521T154505_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "bffcda10789d4cda3035d881c5203c100f380084f427bf4d359b9508bd88f892"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 034 完成。核心结果：\n\n**Proposition 1 的 validity boundary 在 k ≈ 5–10 个 subjects：**\n\n- **k ≤ 5**（≤ 8.8% subjects 被污染）：non-target ΔFPR < 0.007，与噪声无异。Proposition 1 实际成立。\n- **k = 10**（17.5%）：p ≥ 0.3 时 ΔFPR 开始显著（+0.026 ~ +0.069）。\n- **k = 20**（35.1%）：ΔFPR 大幅膨胀（p=0.5 时 +0.167，绝对 FPR 从 0.31 升到 0.49）。\n\n其他发现：\n- 低注入强度 p=0.1 在所有 k 值下都 robust（ΔFPR ≈ 0）\n- Target-subject TPR 随 k 增大而下降（matching variable 吸收了部分 DIF 信号）\n\n所有输出文件已保存并注册：脚本、3 个 CSV（target results / non-target FPR / summary）、report。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-034-multi-subject-injection.md"
+}

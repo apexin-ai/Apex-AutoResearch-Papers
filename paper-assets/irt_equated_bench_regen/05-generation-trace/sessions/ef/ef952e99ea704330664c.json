@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef952e99ea704330664c",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mf2 deff v3 cohort fix",
+  "task_key": "worker_code_mf2_deff_v3_cohort_fix_20260522T110522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf2_deff_v3_cohort_fix_20260522T110522_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "58b5981bf5219361930587823542d0db0461bd82ce8801084b3663efa96be379"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All validations pass:\n\n- **Valid models = 1884** < 1887 (3 models had no family match in response matrix)\n- **m̄_weighted (254.48) > m̄_simple (62.80)** — skewed family sizes confirmed\n- **Adjusted C%**: weighted = 13.51%, simple = 29.17% — both ≤ 31.3%\n- **Simple DEFF = 3.87** — falls in reviewer's expected 3–5 range\n\nKey changes from v2 (2118 models → 1884 ref+foc):\n| Variant | DEFF | Adjusted C% |\n|---------|------|------------|\n| v2 (all families) | — | 17.45% |\n| v3 weighted | 12.79 | 13.51% |\n| v3 simple | 3.87 | 29.17% |\n\nOutput files written to `artifacts/mf2_deff_estimation/`:\n- `mf2_deff_estimation_v3.py`\n- `deff_results.csv` (16 columns, both DEFF variants)\n- `deff_summary.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf2-deff-v3-cohort-fix.md"
+}

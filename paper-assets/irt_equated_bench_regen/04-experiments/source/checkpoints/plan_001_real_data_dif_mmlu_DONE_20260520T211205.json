@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan_001_real_data_dif_mmlu",
+  "project": "irt_equated_bench_regen",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:54:53.883Z",
+    "updated_at": "2026-05-20T21:12:05.153Z",
+    "hypothesis": "MH-DIF 在 METABENCH 真实 MMLU 数据（5227 模型 × 12508 items）上，用时间 cohort (2023 vs 2024) 和能力分位 cohort 分组时，ETS C 标记的 items 在 Li et al. clean items 中的 FPR ≤ 0.05，且 ETS C 标记在 contaminated items 中的比例显著高于 clean items。这验证 DIF 在真实数据上不会产生过多假阳性，且能捕捉到与 web-overlap 污染信号一致的差异性。",
+    "parent": "mvp_dif_power_sim_phase2",
+    "spec": {
+      "command": "python plan_001_analysis.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/response_matrix.npz + model_metadata.csv + item_metadata.csv + mmlu_li2024_proxy_labels.csv",
+      "data_count": "5227_models_x_12508_items",
+      "model_name": "N/A (MH-DIF statistical analysis)",
+      "seed": 42,
+      "checkpoint_source": "mvp_dif_power_sim_phase2 (MH-DIF methodology validated)",
+      "eval_data": "METABENCH MMLU 5227 models × 12508 items binary responses + Li et al. 2024 proxy labels (9229 items)"
+    },
+    "metrics": {
+      "temporal_ets_c_pct": 31.3,
+      "temporal_fpr_li_clean": 0.318,
+      "temporal_enrichment": 0.96,
+      "ability_ets_c_pct": 2.9,
+      "ability_fpr_li_clean": 0.027,
+      "ability_enrichment": 1.19,
+      "within_family_llama2v3_c_pct": 61.3,
+      "within_family_mistral_mixtral_c_pct": 38.7,
+      "domain_spearman_rho": 0.307,
+      "domain_spearman_p": 0.02,
+      "sanity_random_split_c_pct": 0.18,
+      "temporal_ability_jaccard": 0.014
+    },
+    "checkpoint_path": "artifacts/plan_001/",
+    "log_path": "logs/workers/worker_code_plan_001_dif_analysis_20260520T205627.log",
+    "conclusion": "negative",
+    "notes": "Temporal cohort DIF (2023 vs 2024): 31.3% ETS C, enrichment=0.96 — DIF detects systematic capability improvement, NOT contamination (clean and contaminated items flagged at equal rates). Ability cohort: 2.9% C, enrichment=1.19 — weak positive signal, FPR=2.7% well controlled. Within-family (Llama-2 vs 3): 61.3% C confirms ability confound dominates. Domain ρ=0.307 (p=0.02) consistent with capability-driven DIF. Sanity check passed (random split 0.18% C). Core finding: naive MH-DIF cannot distinguish contamination from genuine capability improvement without ability matching or IRT equating.",
+    "completed_at": "2026-05-20T21:12:05.153Z"
+  },
+  "timestamp": "2026-05-20T21:12:05.165863+00:00",
+  "trigger": "update_registry"
+}

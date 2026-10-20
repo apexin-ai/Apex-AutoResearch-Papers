@@ -1,0 +1,19 @@
+paper_key: "zhang2024gsm1k"
+title: "A Careful Examination of Large Language Model Performance on Grade School Arithmetic"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [GSM8k]
+  metrics:
+    - {name: "accuracy drop (GSM8k → GSM1k)", direction: "informational"}
+  datasets:
+    - {name: "GSM1k", size: "1000 problems mirroring GSM8k style"}
+    - {name: "GSM8k", size: "8,500 problems"}
+  ablation_dimensions: [model family (Phi, Mistral, etc.), model size]
+  training_recipe: {optimizer: "N/A (benchmark)", lr: "N/A", hardware: "N/A"}
+  method_family: "parallel benchmark for contamination detection"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

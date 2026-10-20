@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f89f5d7f03337ae4c552",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research ref audit websearch",
+  "task_key": "worker_research_ref_audit_websearch_20260522T033511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref_audit_websearch_20260522T033511_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "0dfb96388ddc127e474a43f3e7bfc9fc4e9ade8e2924da7be32451e38fa6cb91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/ref_audit_report.md`。\n\n关键发现：\n- **必须修复**: `habba2026growingpains` 的第一作者名为 \"Eliya\"（非 \"Eitam\"），第二作者为 \"Itay\"（非 \"Ido\"）\n- **格式问题**: arXiv 条目有两种格式混用（`@misc`+`eprint` vs `@article`+`journal`），建议统一为前者；ICLR/AAAI venue 命名各有 1 处不一致\n- 其余 4 个 entry（`kolen2014equating`, `zhu2026bhi`, `carlini2022quantifying`, `french2010hierarchical`）均验证通过\n- Director 指定的 key `french2010effect` 在 bib 中不存在，实际 key 为 `french2010hierarchical`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-websearch.md"
+}

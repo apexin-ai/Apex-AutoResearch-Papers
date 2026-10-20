@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "id": "c220b7406fb515f758a8",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code data audit abstract intro",
+  "task_key": "worker_code_data_audit_abstract_intro_20260523T191605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_audit_abstract_intro_20260523T191605.log",
+    "occurrence": 1,
+    "bytes": 838390,
+    "sha256": "a028d51a1a6c852818832c817e104ec734a739f35e9a75f98189f76d8e458034"
+  },
+  "statistics": {
+    "messages": 430,
+    "user_turns": 5,
+    "tool_calls": 139,
+    "roles": {
+      "log": 1,
+      "system": 126,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 139,
+      "tool_result": 139,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "c220b7406fb515f758a8-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "c220b7406fb515f758a8-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "c220b7406fb515f758a8-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "c220b7406fb515f758a8-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "c220b7406fb515f758a8-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "c220b7406fb515f758a8-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 217,
+      "chunks": [
+        {
+          "path": "c220b7406fb515f758a8-part-0002.json",
+          "message_count": 147
+        },
+        {
+          "path": "c220b7406fb515f758a8-part-0003.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-data-audit-abstract-intro.md"
+}

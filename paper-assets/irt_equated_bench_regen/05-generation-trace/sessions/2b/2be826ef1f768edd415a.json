@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2be826ef1f768edd415a",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code sf8 power sensitivity",
+  "task_key": "worker_code_sf8_power_sensitivity_20260521T201752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sf8_power_sensitivity_20260521T201752_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "39f110777fde81cf90b9d865e685111104e037b800019dddbbd151ce06272cdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 deliverables generated in `artifacts/sf8_power_sensitivity/`:\n\n| File | Content |\n|------|---------|\n| `param_descriptives.csv` | Descriptive stats for PSN-IRT (14,042 items) and MetaBench (12,508 items) |\n| `sensitivity_results.csv` | TPR/FPR across 6 discrimination levels, 1000 reps each |\n| `sf8_report.md` | Markdown report with tables and interpretation |\n| `sf8_power_sensitivity.py` | Reproduction script |\n\n**Key results**:\n\n- **Descriptives**: PSN-IRT MMLU has mean a=1.197 (SD=0.542), mean b=-0.838 (SD=0.790). MetaBench uses a different scale (mean disc=0.076) — different IRT calibration, not directly comparable.\n\n- **Sensitivity** (Δb=1.4 logit shift, N=80/group, 10% contamination):\n\n| a | TPR (ETS C) | 95% CI | FPR |\n|---|-------------|--------|-----|\n| 0.5 | 0.398 | [0.20, 0.60] | 0.033 |\n| 0.8 | 0.683 | [0.45, 0.90] | 0.036 |\n| 1.0 | 0.808 | [0.60, 0.95] | 0.038 |\n| 1.2 | 0.874 | [0.70, 1.00] | 0.038 |\n| 1.5 | 0.930 | [0.80, 1.00] | 0.038 |\n| 2.0 | 0.949 | [0.80, 1.00] | 0.037 |\n\nAll 3 validation checks pass: TPR monotonically increases with a, FPR <0.05 everywhere, and at a≈1.2 the TPR (0.874) is consistent with Phase 2's aggregate 0.68 (which mixes items across the full a distribution including low-discrimination items that drag the average down)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sf8-power-sensitivity.md"
+}

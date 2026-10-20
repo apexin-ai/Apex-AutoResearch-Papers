@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29565c08cc144d938dfc",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 018 threshold sensitivity",
+  "task_key": "worker_code_plan_018_threshold_sensitivity_20260521T031126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_018_threshold_sensitivity_20260521T031126_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "988f47bd4244adb734081520308c984a0b5ecd326787ba88b07fa7acaad97171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**Overall temporal DIF (12,508 items):**\n\n| Threshold | C% (uncorrected) | C% (BH-corrected) |\n|-----------|-------------------|--------------------|\n| 1.0 | 48.93% | 48.16% |\n| 1.5 | 31.32% | 31.30% |\n| 2.0 | 18.34% | 18.34% |\n| 2.5 | 10.22% | 10.22% |\n\n**关键发现：**\n- BH 校正影响极小（56.9% 的 tests 在 BH 下仍显著），因为大 DIF items 的 p-value 本身就很小\n- \">15% large DIF\" 结论在 threshold ≤ 2.0 下稳健成立；即使在极严格的 2.5 阈值下仍有 10.2% flagged\n- Within-family DIF 更高（threshold=1.5 时 50.1% uncorrected / 45.1% BH-corrected）\n- 审稿人关于阈值校准的质疑可回应：结论不依赖于 1.5 的具体选择\n\n产出已注册：报告 `art_20260521_1ac690`，脚本 `art_20260521_00bec4`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-018-threshold-sensitivity.md"
+}

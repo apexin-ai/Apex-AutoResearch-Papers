@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed16a7ab91c8e1a4a802",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r18 icc by family size",
+  "task_key": "worker_code_r18_icc_by_family_size_20260522T163330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r18_icc_by_family_size_20260522T163330_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "ec322953e1af6ddc540f53172fdcd496fe1e60a63e213750a857bc570f59e168"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。产出文件：\n\n- **脚本**: `artifacts/r18_icc_by_family_size/icc_family_analysis.py`\n- **报告**: `artifacts/r18_icc_by_family_size/icc_family_report.md`\n- **图表**: `artifacts/r18_icc_by_family_size/icc_vs_family_size.png/pdf`\n- **数据**: `artifacts/r18_icc_by_family_size/icc_family_results.csv`\n\n**结果与预期不同**：ICC 与 family size **无显著相关**（ρ = −0.009, p = 0.96）。大家族的 ICC 既不高也不低，稳定在 0.4–0.5 区间。但这恰好支持 simple-mean DEFF：\n\n- 既然 ICC ≈ 0.46 在所有 size 上基本恒定，那加权 m̄ = 254（被 Mistral/Llama 拉高）就是不合理的——它假设大家族贡献更多 clustering，但实际上大家族并不比小家族更 homogeneous\n- Simple m̄ = 63 → DEFF ≈ 29，weighted m̄ = 254 → DEFF ≈ 117，差 4 倍\n- 小家族 (m<10) 方差极大（SD=0.34），包含 near-clone 家族（wizardlm-2: r̄=0.99）和异质家族（olmo: r̄=0.11），这些在 simple mean 中被平均掉"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r18-icc-by-family-size.md"
+}

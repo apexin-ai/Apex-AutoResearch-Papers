@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b813b6b539cfb4f9193",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code e1 k3 power simulation",
+  "task_key": "worker_code_e1_k3_power_simulation_20260523T012752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1_k3_power_simulation_20260523T012752_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "d0d785d251643ebcfcf6d3bf80e814b269e0488b9cfefc46b242917cab027083"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。1000 replications × 60 conditions，7.4 分钟完成。\n\n**核心结论：K=3 和 K=5 的 power 本质上相同。**\n\n关键数据：\n- 所有 30 对 (K, N, δ) 条件下，K=3 vs K=5 的 TPR 差异均 < 0.02（在 Monte Carlo 噪声范围内）\n- 平均 TPR 差异 = +0.003（K=3 甚至略高，但不显著）\n- K=3 在大 N 时 FPR 反而更低（如 N=500/δ=1.4：K=3 FPR=0.018 vs K=5 FPR=0.024）\n\n**TPR≥0.5 达成条件**：\n- N≥100, δ≥1.4: TPR=0.571\n- N≥200, δ≥1.0: TPR=0.623\n- N≥500, δ≥0.8: TPR=0.826\n\n输出文件：\n- `artifacts/k3_power_simulation/k3_power_results.csv` — 60 行完整数据\n- `artifacts/k3_power_simulation/k3_power_report.md` — 含对比表和解读"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e1-k3-power-simulation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18fb4960ec46ba4a3dee",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 013 q3",
+  "task_key": "worker_code_plan_013_q3_20260520T221944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_013_q3_20260520T221944_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "5b1b612c24036d79990d3080c682efdd1ab8a01cb29cc9f4c22b46a896610cab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 013 完成。核心发现：\n\n**Q3 均值层面局部依赖很温和**：within-subject mean Q3 = 0.009，cross-subject = 0.003，差异仅 0.006。\n\n**但尾部效应显著**：11.3% 的 within-subject pairs 超过 |Q3| > 0.20 阈值，而 cross-subject 仅 2.2%（5 倍差异，Mann-Whitney p = 2.3e-9）。这说明同一 subject 内存在一批高度局部依赖的 item 对。\n\n**按 subject 分布不均**：\n- 最严重的是 moral_scenarios（34.2% pairs 超阈值），其次是 world_religions（18.0%）、marketing（17.5%）\n- 最轻的是 college_computer_science（7.7%）、professional_accounting（8.7%）\n\n**对 31% baseline FPR 的解释力**：局部依赖确实存在且 within-subject 显著高于 cross-subject，但均值层面温和（Δ=0.006），不太可能单独解释 31% FPR。更可能是与多维性等其他因素共同作用。报告建议考虑 bifactor/testlet 模型来处理 subject-level clustering。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-013-q3.md"
+}

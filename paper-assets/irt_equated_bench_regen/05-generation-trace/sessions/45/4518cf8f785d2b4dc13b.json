@@ -1,0 +1,321 @@
+{
+  "schema_version": "1.0",
+  "id": "4518cf8f785d2b4dc13b",
+  "project": "irt_equated_bench_regen",
+  "kind": "conversation",
+  "title": "code r14 exp1 domain profile",
+  "task_key": "worker_code_r14_exp1_domain_profile_20260522T115610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_r14_exp1_domain_profile_20260522T115610.jsonl",
+    "occurrence": 1,
+    "bytes": 20791,
+    "sha256": "bbf7edc3293350cf20528138c82dfc9d161e258a2ebc56cd163ba2a69edc895f"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T11:58:26.593504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\n# Load response matrix\nrm = np.load('artifacts/response_matrix.npz')\nprint('Response matrix keys:', list(rm.keys()))\nprint('X shape:', rm['X'].shape)\n\nidx = np.load('artifacts/response_matrix_index.npz', allow_pickle=True)\nprint('Index keys:', list(idx.keys()))\nprint('model_names[:5]:', idx['model_names'][:5])\nprint('item_ids[:5]:', idx['item_ids'][:5])\nprint('n_models:', len(idx['model_names']), 'n_items:', len(idx['item_ids']))\n\"\n"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T11:58:26.594032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nmeta = pd.read_csv('artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv')\nprint('Meta columns:', list(meta.columns))\nprint('Meta shape:', meta.shape)\nprint('cohort_temporal value_counts:')\nprint(meta['cohort_temporal'].value_counts())\nprint()\nprint('Sample model_name:', meta['model_name'].iloc[:3].tolist())\n\"\n"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T11:58:26.594309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    print('X shape:', rm['X'].shape)\n                      ~~^^^^^\n  File \"/usr/lib/python3/dist-packages/numpy/lib/_npyio_impl.py\", line 243, in __getitem__\n    raise KeyError(f\"{key} is not a file in the archive\") from None\nKeyError: 'X is not a file in the archive'\nResponse matrix keys: ['indices', 'indptr', 'format', 'shape', 'data']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T11:58:26.595093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(python3 -c \"\nimport numpy as np\n# Load r…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "elapsed_ms": 1
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T11:58:26.595365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nfrom scipy import sparse\n\nrm = np.load('artifacts/response_matrix.npz')\nprint('Keys:', list(rm.keys()))\nprint('Shape:', rm['shape'])\nprint('Format:', rm['format'])\n\n# Load as sparse\nX = sparse.load_npz('artifacts/response_matrix.npz')\nprint('Sparse type:', type(X))\nprint('X shape:', X.shape)\nprint('X dtype:', X.dtype)\nprint('nnz:', X.nnz)\n# Check value range\nprint('min:', X.data.min(), 'max:', X.data.max())\nprint('unique values sample:', np.unique(X.data)[:10])\n\"\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T11:58:26.595581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Keys: ['indices', 'indptr', 'format', 'shape', 'data']\nShape: [ 5227 12508]\nFormat: np.bytes_(b'csr')\nSparse type: <class 'scipy.sparse._csr.csr_matrix'>\nX shape: (5227, 12508)\nX dtype: int8\nnnz: 38654082\nmin: 1 max: 1\nunique values sample: [1]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T11:58:26.595815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nimport numpy as np\n\nmeta = pd.read_csv('artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv')\nprint('Meta columns:', list(meta.columns))\nprint('Meta shape:', meta.shape)\nprint('cohort_temporal value_counts:')\nprint(meta['cohort_temporal'].value_counts())\nprint()\nprint('Sample model_name:', meta['model_name'].iloc[:3].tolist())\n\nidx = np.load('artifacts/response_matrix_index.npz', allow_pickle=True)\nprint()\nprint('Index keys:', list(idx.keys()))\nmn = idx['model_names']\nii = idx['item_ids']\nprint('model_names[:3]:', mn[:3])\nprint('item_ids[:5]:', ii[:5])\nprint('n_models:', len(mn), 'n_items:', len(ii))\n# Parse subjects from item_ids\nsubjects = set()\nfor item in ii[:20]:\n    parts = str(item).rsplit('.', 1)\n    subjects.add(parts[0])\nprint('Sample subjects:', list(subjects)[:5])\n\"\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T11:58:26.596041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Meta columns: ['model_name', 'score_full', 'score_cleaned', 'rank_full', 'rank_cleaned', 'rank_change', 'abs_rank_change', 'family', 'cohort_temporal']\nMeta shape: (5227, 9)\ncohort_temporal value_counts:\ncohort_temporal\nother    3340\n2023     1080\n2024      807\nName: count, dtype: int64\n\nSample model_name: ['0-hero/Matter-0.1-7B', '0-hero/Matter-0.1-7B-DPO-preview', '0-hero/Matter-0.1-7B-boost']\n\nIndex keys: ['model_names', 'item_ids']\nmodel_names[:3]: ['0-hero/Matter-0.1-7B' '0-hero/Matter-0.1-7B-DPO-preview'\n '0-hero/Matter-0.1-7B-boost']\nitem_ids[:5]: ['abstract_algebra.1' 'abstract_algebra.10' 'abstract_algebra.100'\n 'abstract_algebra.11' 'abstract_algebra.12']\nn_models: 5227 n_items: 12508\nSample subjects: ['abstract_algebra']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T11:58:26.596380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p artifacts/r14_mf1_domain_profile"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T11:58:26.596576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T11:58:26.596845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r14_domain_profile.py",
+              "content": "\"\"\"R14 MF1: Domain-Level Ability Profile Analysis.\n\nCompares 2023 vs 2024 cohort accuracy across MMLU domains.\nIf all domain-level Cohen's d < 0.3 → profile shift is flat,\nruling out multidimensional spurious DIF as a confound.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse, stats\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parent.parent\nOUT = ROOT / \"artifacts\" / \"r14_mf1_domain_profile\"\nOUT.mkdir(parents=True, exist_ok=True)\n\n# --- MMLU Subject → Domain mapping ---\nDOMAIN_MAP = {}\nfor s in [\n    \"abstract_algebra\", \"anatomy\", \"astronomy\", \"college_biology\",\n    \"college_chemistry\", \"college_computer_science\", \"college_mathematics\",\n    \"college_physics\", \"computer_security\", \"conceptual_physics\",\n    \"electrical_engineering\", \"elementary_mathematics\", \"high_school_biology\",\n    \"high_school_chemistry\", \"high_school_computer_science\",\n    \"high_school_mathematics\", \"high_school_physics\", \"high_school_statistics\",\n    \"machine_learning\", \"medical_genetics\", \"virology\",\n]:\n    DOMAIN_MAP[s] = \"STEM\"\n\nfor s in [\n    \"formal_logic\", \"high_school_european_history\", \"high_school_us_history\",\n    \"high_school_world_history\", \"international_law\", \"jurisprudence\",\n    \"logical_fallacies\", \"moral_disputes\", \"moral_scenarios\", \"philosophy\",\n    \"prehistory\", \"world_religions\",\n]:\n    DOMAIN_MAP[s] = \"Humanities\"\n\nfor s in [\n    \"econometrics\", \"high_school_geography\",\n    \"high_school_government_and_politics\", \"high_school_macroeconomics\",\n    \"high_school_microeconomics\", \"high_school_psychology\",\n    \"human_sexuality\", \"professional_psychology\", \"public_relations\",\n    \"security_studies\", \"sociology\", \"us_foreign_policy\",\n]:\n    DOMAIN_MAP[s] = \"Social Science\"\n\nfor s in [\n    \"business_ethics\", \"clinical_knowledge\", \"college_medicine\",\n    \"global_facts\", \"human_aging\", \"management\", \"marketing\",\n    \"miscellaneous\", \"nutrition\", \"professional_accounting\",\n    \"professional_law\", \"professional_medicine\",\n]:\n    DOMAIN_MAP[s] = \"Other\"\n\n# --- Load data ---\nprint(\"Loading response matrix...\")\nX = sparse.load_npz(ROOT / \"artifacts\" / \"response_matrix.npz\")\nidx = np.load(ROOT / \"artifacts\" / \"response_matrix_index.npz\", allow_pickle=True)\nmodel_names = idx[\"model_names\"]\nitem_ids = idx[\"item_ids\"]\n\nmeta = pd.read_csv(ROOT / \"artifacts\" / \"plan_032_dif_cleaned_mmlu\" / \"cleaned_mmlu_analysis.csv\")\n\n# --- Build cohort masks ---\nmodel_to_idx = {name: i for i, name in enumerate(model_names)}\nmeta_2023 = meta[meta[\"cohort_temporal\"] == \"2023\"]\nmeta_2024 = meta[meta[\"cohort_temporal\"] == \"2024\"]\n\nidx_2023 = np.array([model_to_idx[m] for m in meta_2023[\"model_name\"] if m in model_to_idx])\nidx_2024 = np.array([model_to_idx[m] for m in meta_2024[\"model_name\"] if m in model_to_idx])\nprint(f\"Cohort sizes: 2023={len(idx_2023)}, 2024={len(idx_2024)}\")\n\n# --- Parse item subjects and map to domains ---\nitem_subjects = np.array([str(iid).rsplit(\".\", 1)[0] for iid in item_ids])\nunique_subjects = sorted(set(item_subjects))\nprint(f\"Found {len(unique_subjects)} unique subjects\")\n\nunmapped = [s for s in unique_subjects if s not in DOMAIN_MAP]\nif unmapped:\n    print(f\"WARNING: unmapped subjects (assigned to Other): {unmapped}\")\n    for s in unmapped:\n        DOMAIN_MAP[s] = \"Other\"\n\nitem_domains = np.array([DOMAIN_MAP[s] for s in item_subjects])\n\n# --- Convert to dense for cohort subsets (memory ~OK for 1887 × 12508 int8) ---\nprint(\"Extracting cohort submatrices...\")\nX_2023 = X[idx_2023].toarray().astype(np.float32)  # (1080, 12508)\nX_2024 = X[idx_2024].toarray().astype(np.float32)  # (807, 12508)\n\n# --- Per-domain analysis ---\ndomains = [\"STEM\", \"Humanities\", \"Social Science\", \"Other\"]\nresults = []\n\nfor domain in domains:\n    col_mask = item_domains == domain\n    n_items = col_mask.sum()\n    n_subjects = len(set(item_subjects[col_mask]))\n\n    acc_2023 = X_2023[:, col_mask].mean(axis=1)  # per-model accuracy\n    acc_2024 = X_2024[:, col_mask].mean(axis=1)\n\n    mean_2023 = acc_2023.mean()\n    mean_2024 = acc_2024.mean()\n    sd_2023 = acc_2023.std(ddof=1)\n    sd_2024 = acc_2024.std(ddof=1)\n\n    # Pooled SD for Cohen's d\n    n1, n2 = len(acc_2023), len(acc_2024)\n    pooled_sd = np.sqrt(((n1 - 1) * sd_2023**2 + (n2 - 1) * sd_2024**2) / (n1 + n2 - 2))\n    d = (mean_2024 - mean_2023) / pooled_sd if pooled_sd > 0 else 0.0\n\n    # 95% CI for d using standard formula\n    se_d = np.sqrt((n1 + n2) / (n1 * n2) + d**2 / (2 * (n1 + n2)))\n    d_ci_lower = d - 1.96 * se_d\n    d_ci_upper = d + 1.96 * se_d\n\n    results.append({\n        \"domain\": domain,\n        \"n_items\": int(n_items),\n        \"n_subjects\": int(n_subjects),\n        \"mean_acc_2023\": round(float(mean_2023), 4),\n        \"sd_acc_2023\": round(float(sd_2023), 4),\n        \"mean_acc_2024\": round(float(mean_2024), 4),\n        \"sd_acc_2024\": round(float(sd_2024), 4),\n        \"cohens_d\": round(float(d), 4),\n        \"d_ci_lower\": round(float(d_ci_lower), 4),\n        \"d_ci_upper\": round(float(d_ci_upper), 4),\n    })\n    print(f\"  {domain:16s}: d={d:+.4f} [{d_ci_lower:.4f}, {d_ci_upper:.4f}]  \"\n          f\"acc_2023={mean_2023:.4f}  acc_2024={mean_2024:.4f}  n_items={n_items}\")\n\n# --- Overall ---\nacc_2023_all = X_2023.mean(axis=1)\nacc_2024_all = X_2024.mean(axis=1)\nmean_all_2023 = acc_2023_all.mean()\nmean_all_2024 = acc_2024_all.mean()\nsd_all_2023 = acc_2023_all.std(ddof=1)\nsd_all_2024 = acc_2024_all.std(ddof=1)\nn1, n2 = len(acc_2023_all), len(acc_2024_all)\npooled_sd_all = np.sqrt(((n1 - 1) * sd_all_2023**2 + (n2 - 1) * sd_all_2024**2) / (n1 + n2 - 2))\nd_all = (mean_all_2024 - mean_all_2023) / pooled_sd_all\nse_d_all = np.sqrt((n1 + n2) / (n1 * n2) + d_all**2 / (2 * (n1 + n2)))\n\nresults.append({\n    \"domain\": \"Overall\",\n    \"n_items\": int(len(item_ids)),\n    \"n_subjects\": int(len(unique_subjects)),\n    \"mean_acc_2023\": round(float(mean_all_2023), 4),\n    \"sd_acc_2023\": round(float(sd_all_2023), 4),\n    \"mean_acc_2024\": round(float(mean_all_2024), 4),\n    \"sd_acc_2024\": round(float(sd_all_2024), 4),\n    \"cohens_d\": round(float(d_all), 4),\n    \"d_ci_lower\": round(float(d_all - 1.96 * se_d_all), 4),\n    \"d_ci_upper\": round(float(d_all + 1.96 * se_d_all), 4),\n})\nprint(f\"\\n  {'Overall':16s}: d={d_all:+.4f} [{d_all - 1.96*se_d_all:.4f}, {d_all + 1.96*se_d_all:.4f}]  \"\n      f\"acc_2023={mean_all_2023:.4f}  acc_2024={mean_all_2024:.4f}\")\n\n# --- Save CSV ---\ndf = pd.DataFrame(results)\ndf.to_csv(OUT / \"domain_profile_results.csv\", index=False)\nprint(f\"\\nSaved: {OUT / 'domain_profile_results.csv'}\")\n\n# --- Profile flatness ---\ndomain_ds = [r[\"cohens_d\"] for r in results if r[\"domain\"] != \"Overall\"]\nd_range = max(domain_ds) - min(domain_ds)\nd_max = max(abs(d) for d in domain_ds)\n\n# --- Per-subject Cohen's d for supplementary detail ---\nsubject_results = []\nfor subj in sorted(unique_subjects):\n    col_mask = item_subjects == subj\n    n_items = col_mask.sum()\n    if n_items < 5:\n        continue\n    acc_2023 = X_2023[:, col_mask].mean(axis=1)\n    acc_2024 = X_2024[:, col_mask].mean(axis=1)\n    m1, m2 = acc_2023.mean(), acc_2024.mean()\n    s1, s2 = acc_2023.std(ddof=1), acc_2024.std(ddof=1)\n    n1, n2 = len(acc_2023), len(acc_2024)\n    ps = np.sqrt(((n1-1)*s1**2 + (n2-1)*s2**2) / (n1+n2-2))\n    d = (m2 - m1) / ps if ps > 0 else 0.0\n    subject_results.append({\n        \"subject\": subj,\n        \"domain\": DOMAIN_MAP[subj],\n        \"n_items\": int(n_items),\n        \"mean_acc_2023\": round(float(m1), 4),\n        \"mean_acc_2024\": round(float(m2), 4),\n        \"cohens_d\": round(float(d), 4),\n    })\n\ndf_subj = pd.DataFrame(subject_results)\ndf_subj.to_csv(OUT / \"subject_profile_results.csv\", index=False)\nprint(f\"Saved: {OUT / 'subject_profile_results.csv'}\")\n\n# --- Generate report ---\nreport_lines = []\nreport_lines.append(\"# R14 MF1: Domain-Level Ability Profile Analysis\\n\")\nreport_lines.append(\"## Purpose\\n\")\nreport_lines.append(\n    \"Quantify whether 2023→2024 cohort ability differences are uniform across MMLU domains \"\n    \"(STEM, Humanities, Social Science, Other). If all domain-level Cohen's d < 0.3 and the \"\n    \"profile is flat, multidimensional ability shifts cannot produce spurious DIF.\\n\"\n)\n\nreport_lines.append(\"## Cohort Sizes\\n\")\nreport_lines.append(f\"- 2023 (Reference): {len(idx_2023)} models\")\nreport_lines.append(f\"- 2024 (Focal): {len(idx_2024)} models\\n\")\n\nreport_lines.append(\"## Domain-Level Results\\n\")\nreport_lines.append(\"| Domain | Items | Subjects | Acc (2023) | Acc (2024) | Cohen's d | 95% CI |\")\nreport_lines.append(\"|--------|------:|:--------:|:----------:|:----------:|:---------:|:------:|\")\nfor r in results:\n    ci = f\"[{r['d_ci_lower']:.3f}, {r['d_ci_upper']:.3f}]\"\n    report_lines.append(\n        f\"| {r['domain']} | {r['n_items']} | {r['n_subjects']} | \"\n        f\"{r['mean_acc_2023']:.3f} | {r['mean_acc_2024']:.3f} | \"\n        f\"{r['cohens_d']:+.3f} | {ci} |\"\n    )\nreport_lines.append(\"\")\n\nreport_lines.append(\"## Profile Flatness\\n\")\nreport_lines.append(f\"- Max |d| across domains: {d_max:.4f}\")\nreport_lines.append(f\"- Range of d across domains: {d_range:.4f}\")\nreport_lines.append(f\"- Overall d: {d_all:.4f}\\n\")\n\nall_below_03 = all(abs(d) < 0.3 for d in domain_ds)\nreport_lines.append(\"## Interpretation\\n\")\nif all_below_03:\n    report_lines.append(\n        f\"All domain-level Cohen's d values fall below the 0.3 threshold \"\n        f\"(max |d| = {d_max:.3f}). The inter-domain range is only {d_range:.3f}, \"\n        f\"indicating a nearly flat ability profile shift. This rules out \"\n        f\"multidimensional ability confounds as a source of spurious DIF: \"\n        f\"the 2024 cohort is uniformly slightly {'stronger' if d_all > 0 else 'weaker'} \"\n        f\"across all domains, rather than differentially strong in specific areas.\"\n    )\nelse:\n    report_lines.append(\n        f\"Some domain-level Cohen's d values exceed 0.3 (max |d| = {d_max:.3f}). \"\n        f\"This suggests non-uniform ability shifts across domains, which could \"\n        f\"contribute to differential item functioning through multidimensional confounds.\"\n    )\n\nreport_lines.append(\"\")\nreport_lines.append(\"## Per-Subject Detail (top 10 largest |d|)\\n\")\ndf_subj_sorted = df_subj.reindex(df_subj[\"cohens_d\"].abs().sort_values(ascending=False).index)\nreport_lines.append(\"| Subject | Domain | Items | d |\")\nreport_lines.append(\"|---------|--------|------:|:---:|\")\nfor _, row in df_subj_sorted.head(10).iterrows():\n    report_lines.append(f\"| {row['subject']} | {row['domain']} | {row['n_items']} | {row['cohens_d']:+.3f} |\")\nreport_lines.append(\"\")\n\nreport = \"\\n\".join(report_lines)\n(OUT / \"domain_profile_analysis.md\").write_text(report)\nprint(f\"Saved: {OUT / 'domain_profile_analysis.md'}\")\nprint(\"\\n--- REPORT ---\")\nprint(report)\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T11:58:26.597291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r14_domain_profile.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T11:58:26.597495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 scripts/r14_domain_profile.py",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T11:58:26.598839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Loading response matrix...\nCohort sizes: 2023=1080, 2024=807\nFound 57 unique subjects\nExtracting cohort submatrices...\n  STEM            : d=+0.2613 [0.1697, 0.3529]  acc_2023=0.5049  acc_2024=0.5374  n_items=2914\n  Humanities      : d=+0.1588 [0.0674, 0.2501]  acc_2023=0.5903  acc_2024=0.6150  n_items=2786\n  Social Science  : d=+0.1474 [0.0561, 0.2387]  acc_2023=0.6588  acc_2024=0.6847  n_items=2862\n  Other           : d=+0.1465 [0.0551, 0.2378]  acc_2023=0.5754  acc_2024=0.5959  n_items=3946\n\n  Overall         : d=+0.1729 [0.0816, 0.2643]  acc_2023=0.5814  acc_2024=0.6068\n\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r14_mf1_domain_profile/domain_profile_results.csv\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r14_mf1_domain_profile/subject_profile_results.csv\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r14_mf1_domain_profile/domain_profile_analysis.md\n\n--- REPORT ---\n# R14 MF1: Domain-Level Ability Profile Analysis\n\n## Purpose\n\nQuantify whether 2023→2024 cohort ability differences are uniform across MMLU domains (STEM, Humanities, Social Science, Other). If all domain-level Cohen's d < 0.3 and the profile is flat, multidimensional ability shifts cannot produce spurious DIF.\n\n## Cohort Sizes\n\n- 2023 (Reference): 1080 models\n- 2024 (Focal): 807 models\n\n## Domain-Level Results\n\n| Domain | Items | Subjects | Acc (2023) | Acc (2024) | Cohen's d | 95% CI |\n|--------|------:|:--------:|:----------:|:----------:|:---------:|:------:|\n| STEM | 2914 | 21 | 0.505 | 0.537 | +0.261 | [0.170, 0.353] |\n| Humanities | 2786 | 12 | 0.590 | 0.615 | +0.159 | [0.067, 0.250] |\n| Social Science | 2862 | 12 | 0.659 | 0.685 | +0.147 | [0.056, 0.239] |\n| Other | 3946 | 12 | 0.575 | 0.596 | +0.146 | [0.055, 0.238] |\n| Overall | 12508 | 57 | 0.581 | 0.607 | +0.173 | [0.082, 0.264] |\n\n## Profile Flatness\n\n- Max |d| across domains: 0.2\n…[truncated 1013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610",
+            "tool": "Bash",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T11:58:26.599132+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。三个文件已写入 `artifacts/r14_mf1_domain_profile/`：\n\n**核心结论**：所有 4 个 domain 的 Cohen's d 均 < 0.3（STEM 最高 d=+0.261，其余三个 ≈ 0.15），domain 间 range 仅 0.115。Overall d=0.173 与预期一致。Profile shift 近乎 flat，排除了多维度能力差异产生 spurious DIF 的可能。\n\nSTEM 的 d 略高（0.26 vs ~0.15），主要由 physics/math 类 subject 驱动（college_physics d=0.43, high_school_mathematics d=0.42），但即使 STEM 也未超过 0.3 阈值。\n\n产出文件：\n- `domain_profile_results.csv` — 逐 domain 统计表\n- `subject_profile_results.csv` — 逐 subject 的 Cohen's d\n- `domain_profile_analysis.md` — 完整报告"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r14_exp1_domain_profile_20260522T115610"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/code-r14-exp1-domain-profile.md"
+}

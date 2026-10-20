@@ -1,0 +1,84 @@
+paper_key: "golchin2024timetravel"
+title: "Time Travel in LLMs: Tracing Data Contamination in Large Language Models"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines: [ChatGPT-Cheat? (Sainz et al. 2023)]
+  metrics:
+    - {name: "detection accuracy (%)", direction: "higher_better"}
+    - {name: "BLEURT-20", direction: "higher_better"}
+    - {name: "ROUGE-L", direction: "higher_better"}
+    - {name: "bootstrap p-value", direction: "lower_better"}
+  datasets:
+    - {name: "AG News", size: "496,835 articles"}
+    - {name: "WNLI", size: "Winograd Schema"}
+    - {name: "XSum", size: "summarization"}
+    - {name: "IMDB", size: "50,000 reviews"}
+    - {name: "SAMSum", size: "summarization"}
+    - {name: "RTE", size: "2,490 train / 3,000 test"}
+    - {name: "GSM8k", size: "math reasoning (GPT-4 validation)"}
+  ablation_dimensions: [guided vs general instruction, label integration, exact vs near-exact matching]
+  training_recipe: {optimizer: "N/A (detection method)", lr: "N/A", hardware: "GPT-3.5-turbo-0613, GPT-4-0613 via API, temperature=0"}
+  method_family: "guided instruction probing"
+
+positioning:
+  core_claim: "通过'guided instruction'（包含数据集名称和分区类型的提示）让LLM补全部分实例，可以在不访问训练数据的情况下检测contamination——两步法(instance→partition)达到92-100%准确率"
+  key_results: "Algorithm 2 (GPT-4 ICL): 100% on GPT-4, 92.86% on GPT-3.5 across 28 scenarios; 发现GPT-4在AG News, WNLI, XSum上contaminated"
+  limitations:
+    - "不区分不同类型的contamination（exact vs near-exact均视为contamination信号）"
+    - "依赖LLM对数据集名称的识别——如果模型不记得数据集名称则无法检测"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Data contamination让LLM的impressive表现可能只是膨胀的假象"
+  tension: "closed models无法直接检查训练数据，计算资源有限——传统检测方法的两个前提都不满足"
+  key_insight: "在Section 3.1揭示：利用LLM对训练数据的记忆——如果模型记住了某数据集，给定数据集名+分区类型+前缀，它会生成与原始数据高度相似的补全"
+  argument_chain: "contamination problem → constraints (no data access, limited compute) → guided instruction design → instance-level detection → partition-level aggregation → validation (intentional contamination) → real-world testing (GPT-3.5/4)"
+  contribution_framing: "3条贡献：novel detection method → 28-scenario evaluation → GPT-4 contamination evidence"
+  intro_structure: "4段：问题定义 → 假设约束 → 方法概述 → 贡献列表"
+  notable_technique: "用intentional contamination（故意在GPT-3.5上fine-tune加入特定数据集）做方法验证，提供ground truth"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "problem_illustration"
+    description: "Guided vs general instruction对比示例（WNLI数据集）：guided产生exact match，general产生paraphrase"
+    narrative_role: "直观展示核心方法的工作原理——guided instruction触发记忆，general instruction不触发"
+    design_elements: ["并排对比", "颜色标注匹配文本", "真实数据集示例"]
+    visual_style: "双栏对比，guided(左)产生高相似度补全，general(右)产生低相似度"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison"
+      what_compared: "Pre/post intentional contamination的RTE补全对比"
+      how_gain_highlighted: "Base模型生成paraphrase，contaminated模型生成exact match"
+      design_note: "Before/after对比最直观展示contamination的影响"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (方法直觉) → Figure 2 (validation) → Figure 3 (few-shot prompt结构)"
+
+tables:
+  table_count: 9
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods"
+    col_axis: "models (GPT-4, GPT-3.5)"
+    row_organization: "flat"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "accuracy percentage across 14 scenarios"
+    num_baselines: 1
+    design_note: "简洁的method×model矩阵，直接展示检测准确率"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["dataset", "partition (train/test)", "metrics (BLEURT/ROUGE-L)", "GPT-4 ICL verdict"]
+      variation_style: "full_numbers"
+      design_note: "28-scenario完整结果表，含统计显著性标注(asterisk for p≤0.05)"
+    - table_id: "Table 6"
+      what_varied: ["label correctness (correct vs incorrect)"]
+      variation_style: "full_numbers"
+      design_note: "展示label在prompt中的关键作用——correct label产生exact match，incorrect产生inexact"
+  supplementary_tables:
+    in_appendix: true
+    content: "Prompt templates (Table 5), match examples with scores (Tables 7-8), bootstrap p-values (Table 9)"
+    reason: "详细examples和统计细节放附录，主表聚焦核心结果对比"

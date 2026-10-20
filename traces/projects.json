@@ -448,6 +448,22 @@
       }
     },
     {
+      "project": "irt_equated_bench_regen",
+      "title": "Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models",
+      "catalog": "../paper-assets/irt_equated_bench_regen/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 380,
+        "messages": 53711,
+        "user_turns": 1833,
+        "tool_calls": 22657,
+        "unparsed_lines": 170,
+        "worker": 170,
+        "result": 148,
+        "conversation": 58,
+        "history": 4
+      }
+    },
+    {
       "project": "meta_brain_lora_routing",
       "title": "Meta-Brain: Perturbation-Diagnostic Routing of LoRA Experts for Parameter-E cient VLA Robustness",
       "catalog": "../paper-assets/meta_brain_lora_routing/05-generation-trace/catalog.json",

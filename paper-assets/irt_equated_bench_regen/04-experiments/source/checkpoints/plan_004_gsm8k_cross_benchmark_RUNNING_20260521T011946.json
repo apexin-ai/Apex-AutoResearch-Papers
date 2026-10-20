@@ -1,0 +1,62 @@
+{
+  "exp_id": "plan_004_gsm8k_cross_benchmark",
+  "project": "irt_equated_bench_regen",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:30:09.372Z",
+    "updated_at": "2026-05-21T01:19:46.553Z",
+    "hypothesis": "GSM8K 的 temporal DIF (2023 vs 2024) 将展示与 MMLU 类似的 30-40% ETS C%，证明 temporal DIF 现象跨 benchmark 泛化。使用 METABENCH 其他 benchmarks 总分做 external matching（GSM8K 无 subject 分层），预期 baseline FPR 更可控。如果 C% 在同一量级 → DIF 作为 benchmark health diagnostic 的泛化性得到验证。",
+    "parent": "plan_001_real_data_dif_mmlu",
+    "metrics": {
+      "step1_gsm8k_temporal_dif": {
+        "n_items": 1319,
+        "n_ref": 1017,
+        "n_foc": 804,
+        "standard_c_pct": 18.9,
+        "external_c_pct": 47.4,
+        "sanity_c_pct": 0.3,
+        "standard_external_spearman": 0.926
+      },
+      "step2_semi_synthetic": {
+        "standard_delta_tpr_p10": 0.818,
+        "external_delta_tpr_p10": 0.517
+      },
+      "step3_gsm1k_correlation": {
+        "n_models": 33,
+        "n_dif_c_items": 249,
+        "pearson_r": -0.478,
+        "pearson_p": 0.005,
+        "spearman_rho": -0.403,
+        "spearman_p": 0.02,
+        "partial_r_controlling_accuracy": -0.385,
+        "partial_p": 0.027,
+        "permutation_p": 0.014,
+        "dif_c_favor_2024": 78,
+        "dif_c_favor_2023": 171,
+        "direction": "NEGATIVE (opposite to contamination hypothesis)",
+        "cook_d_max_model": "Deepseek-math-7b-rl",
+        "leave_one_out_r_range": "-0.537 to -0.374",
+        "robust": true
+      }
+    },
+    "notes": "Step 3 GSM1K correlation: r=-0.478 (p=0.005). |r|>0.3 threshold met but direction NEGATIVE — opposite to contamination hypothesis. DIF-C items disadvantage contaminated models, not advantage them. 171/249 DIF-C items favor older models. Partial r=-0.385 (p=0.027) controlling for overall accuracy. Permutation p=0.014. Robust to leave-one-out. Interpretation: DIF captures genuine measurement anomalies orthogonal to contamination. Contamination produces narrow boost on typical items, fails on atypical-difficulty items (DIF-C). Supports characterization narrative: DIF as benchmark health diagnostic, not contamination detector.",
+    "spec": {
+      "command": "python plan_004_step1/2/3 scripts",
+      "server": "local (CPU)",
+      "data_path": "artifacts/metabench_data/benchmark-data/gsm8k.csv + gsm1k_model_accuracy.csv",
+      "data_count": "1319 items × 6702 models (GSM8K) + 33 models (GSM1K)",
+      "model_name": "N/A (cross-benchmark DIF analysis)",
+      "seed": "42 + 5 seeds per condition + 1000 permutations",
+      "checkpoint_source": "plan_001_real_data_dif_mmlu",
+      "eval_data": "METABENCH GSM8K + GSM1K paper accuracy data"
+    },
+    "checkpoint_path": "artifacts/plan_004/",
+    "log_path": "logs/workers/worker_code_plan_004_step3_gsm1k_correlation_20260521T011144.log",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T01:19:46.584247+00:00",
+  "trigger": "update_registry"
+}

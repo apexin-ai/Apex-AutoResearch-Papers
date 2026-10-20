@@ -1,0 +1,33 @@
+\section{Introduction}
+\label{sec:introduction}
+
+\looseness=-1
+When we say ``Model B outperforms Model A on MMLU,'' we assume that every test item measures the same construct for both models. In educational testing, this property, \emph{measurement invariance}~\citep{meredith1993invariance}, is routinely verified before scores are compared across groups; in LLM evaluation, it has never been tested at scale. We test it here, applying Mantel-Haenszel differential item functioning (DIF) analysis~\citep{holland1988mh} with Educational Testing Service (ETS) severity classification to the METABENCH response matrix~\citep{kipnis2024metabench} (5,227 models $\times$ 12,508 MMLU~\citep{hendrycks2021mmlu} items). The result is sobering: 31\% of items receive ETS Category~C classification ($|\Delta_{\mathrm{MH}}| \geq 1.5$, $p < 0.05$) between 2023 and 2024 model cohorts, compared to 0.62\% under random-split controls, and the finding replicates across all six METABENCH benchmarks (17.9--31.3\%).
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_0_pipeline.pdf}
+\caption{Four-stage psychometric auditing pipeline. \textbf{\ding{192}} A binary response matrix records model correctness across benchmark items, with models split into temporal cohorts (2023 reference vs.\ 2024 focal). \textbf{\ding{193}} Models are stratified into $K{=}5$ score quintiles. \textbf{\ding{194}} Per-item Mantel-Haenszel DIF tests compute $\Delta_{\mathrm{MH}}$ across strata. \textbf{\ding{195}} ETS classification assigns severity labels (A/B/C). Result: 31.3\% of items flagged as C (29.2\% after design-effect (DEFF) correction), yet stable-item $\rho = 0.997$, replicated across six benchmarks.}
+\label{fig:pipeline}
+\end{figure*}
+
+\looseness=-1
+This instability is not what it appears. Aggregate rankings are near-perfect ($\rho \approx 0.997$): even after all unstable items are removed, the leaderboard barely changes. But individual items have shifted in structured ways: some became easier for newer models independent of overall ability, others harder, and these differential effects can shift individual models by ${\pm}561$ rank positions at the 99th percentile (\Cref{app:rank_reversal}). Instability does not threaten validity; it reveals which capability dimensions shift across model generations. Base and instruct models exhibit opposite DIF directions ($\chi^2 = 562.7$), which confirms structured capability changes, not noise.
+
+\looseness=-1
+This diagnostic signal is distinct from what existing benchmark integrity methods target. Contamination detection asks whether items appear in training corpora, probing \emph{global exposure}~\citep{shi2024mink,dekoninck2024constat,liang2026dvd,tao2026selfcritique}, validated against web-overlap labels~\citep{li2024contamination}. Measurement invariance asks whether items \emph{function equivalently} across model cohorts (\Cref{fig:global_vs_differential}). We find these two signals are near-independent (Jaccard~$= 0.206$, $\phi = 0.012$): complementary diagnostic dimensions, not competing ones. Any item-level detector validated solely against web-overlap labels is blind to differential functioning.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_1_global_vs_differential.pdf}
+\caption{Global vs.\ differential contamination via Item Characteristic Curves (ICCs). \textbf{Left}: global contamination produces no DIF; both cohorts encounter the item, and their ICCs overlap. \textbf{Right}: differential contamination produces DIF; the focal cohort's ICC shifts due to disproportionate exposure. The enrichment ratio of $\approx 1.0$ between DIF flags and web-overlap labels is expected because most items fall into the left category.}
+\label{fig:global_vs_differential}
+\end{figure*}
+
+\looseness=-1
+To our knowledge, this is the largest-scale DIF analysis on LLM benchmarks, complementary to concurrent work on anchor-item calibration~\citep{habba2026growingpains} and motivated by the fragility of existing detectors under post-training perturbation~\citep{wang2026fragility}. We make three contributions:
+\begin{enumerate}[nosep,leftmargin=*,topsep=2pt]
+\item \textbf{Temporal DIF at scale}: 31.3\% of MMLU items exhibit large temporal DIF (17.9--31.3\% across six benchmarks; 29.2\% after non-independence correction), near-independent of web-overlap labels (Jaccard $= 0.206$); base-vs-instruct stratification reveals opposite patterns ($\chi^2 = 562.7$), consistent with structured capability shifts rather than uniform exposure (\Cref{sec:temporal,sec:groundtruth,sec:gsm8k,sec:disc_temporal}).
+\item \textbf{Semi-synthetic validation with $\Delta\mathrm{FPR} = 0$ guarantee}: cross-subject matching eliminates false-positive inflation under single-subject contamination ($k \leq 5$), portable across benchmarks (\Cref{sec:semisynthetic}).
+\item \textbf{DIF as diagnostic lens with actionable audit protocol}: unstable items carry disproportionate cross-cohort signal ($z = -8$ to $-49\sigma$) yet are the least ranking-disruptive under non-random removal, which confirms that DIF isolates differential functioning rather than generally informative items; we propose a Monitor/Triage/Correct protocol for benchmark maintainers (\Cref{sec:disc_protocol}).
+\end{enumerate}

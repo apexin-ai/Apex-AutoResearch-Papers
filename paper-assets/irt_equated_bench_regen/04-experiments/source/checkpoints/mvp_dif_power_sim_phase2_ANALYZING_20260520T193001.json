@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp_dif_power_sim_phase2",
+  "project": "irt_equated_bench_regen",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:52:34.145Z",
+    "updated_at": "2026-05-20T19:30:01.935Z",
+    "hypothesis": "ETS C 分类在 METABENCH 真实 MMLU 2PL IRT 参数（非理想化分布）下，仍能在 N≥80/group、δ≥1.4 时达到 TPR≥0.65、FPR≤0.10。Phase 1 用合成参数（a~LogNormal, b~N(0,1)）条件性通过，需验证真实参数分布（可能有偏态、聚集、极端值）不会降解检测功效。",
+    "parent": "mvp_dif_power_sim",
+    "spec": {
+      "command": "python dif_phase2_simulation.py 1000",
+      "server": "local (CPU)",
+      "data_path": "PSN-IRT item_parameters.csv (14042 MMLU items, 4PL→2PL)",
+      "data_count": "15_conditions_x_1000_reps",
+      "model_name": "N/A (Monte Carlo simulation with real IRT params)",
+      "seed": 42,
+      "checkpoint_source": "mvp_dif_power_sim",
+      "eval_data": "PSN-IRT MMLU 14042 items real 2PL parameters (a, b)"
+    }
+  },
+  "timestamp": "2026-05-20T19:30:01.946468+00:00",
+  "trigger": "update_registry"
+}

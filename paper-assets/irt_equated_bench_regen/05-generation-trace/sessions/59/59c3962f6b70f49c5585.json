@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59c3962f6b70f49c5585",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code predictive model phase2 v2",
+  "task_key": "worker_code_predictive_model_phase2_v2_20260522T092120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_predictive_model_phase2_v2_20260522T092120_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "aef91a92f66430fbca0f4e0d09d87cc121f165a25c66c5be71c05b2da7e1d9ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 完成。结果摘要：\n\n**23 个安全特征**（删除 18 个泄漏特征，重算 3 个 ref-only 特征），Subject-GroupKFold 5-fold CV。\n\n| Model | Mean AUROC |\n|-------|-----------|\n| LR Baseline (difficulty_ref only) | 0.5808 ± 0.0353 |\n| LR Full (23 features) | 0.6026 ± 0.0203 |\n| LightGBM (23 features) | 0.5994 ± 0.0258 |\n\n**SHAP top-3**: difficulty_ref (0.258), discrimination_ref (0.219), difficulty_vs_subject_ref (0.124)\n\n**判定：Abandon recommendation** — 最佳 AUROC 0.5994 < 0.65。去除泄漏特征后，剩余 ref cohort + 文本特征对 DIF 分类的预测力接近随机水平。Full model 相对 baseline 仅提升 +0.02 AUROC，说明非 difficulty 特征几乎不提供额外信号。LR 的 recall 基本为 0（阈值 0.5 下几乎不预测正类），GBM 稍好但 F1 仅 0.18。\n\n4 个文件已写入 `artifacts/predictive_model/` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-predictive-model-phase2-v2.md"
+}

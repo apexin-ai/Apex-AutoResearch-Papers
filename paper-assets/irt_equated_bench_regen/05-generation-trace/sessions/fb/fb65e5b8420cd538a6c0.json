@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "fb65e5b8420cd538a6c0",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code plan 035 q3 inflation sim",
+  "task_key": "worker_code_plan_035_q3_inflation_sim_20260521T154538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_035_q3_inflation_sim_20260521T154538.log",
+    "occurrence": 1,
+    "bytes": 756286,
+    "sha256": "fc0563ab9b9c41f3d7893e86973317205a4f7393275e034e7cca0980b80b58b0"
+  },
+  "statistics": {
+    "messages": 203,
+    "user_turns": 2,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 47,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 64,
+      "user": 2,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "fb65e5b8420cd538a6c0-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "fb65e5b8420cd538a6c0-part-0001.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "fb65e5b8420cd538a6c0-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "fb65e5b8420cd538a6c0-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-035-q3-inflation-sim.md"
+}

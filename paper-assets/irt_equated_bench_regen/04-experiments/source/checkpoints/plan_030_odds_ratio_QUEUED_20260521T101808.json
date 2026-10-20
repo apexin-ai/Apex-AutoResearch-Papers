@@ -1,0 +1,61 @@
+{
+  "exp_id": "plan_030_odds_ratio",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:17:26.316Z",
+    "updated_at": "2026-05-21T10:18:08.017Z",
+    "hypothesis": "Logistic regression 的 odds ratio + CI 量化 accuracy change 与 DIF C flag 的关联强度。Item-level accuracy change (Model 3) 比 domain-level delta (Model 1) 提供更精确的预测。控制 item properties (difficulty + discrimination) 后，accuracy change 的 OR 反转（Simpson's paradox），说明 DIF C 主要由 item 固有属性驱动而非 accuracy shift。",
+    "parent": "plan_001_real_data_dif_mmlu",
+    "metrics": {
+      "model1_domain_delta": {
+        "mcfadden_r2": 0.0007,
+        "nagelkerke_r2": 0.0012,
+        "aic": 15545.2,
+        "subject_acc_delta_or": 80.86,
+        "subject_acc_delta_or_per_010": 1.55,
+        "subject_acc_delta_or_ci_per_010": [
+          1.19,
+          2.03
+        ]
+      },
+      "model2_domain_delta_plus_items": {
+        "mcfadden_r2": 0.0423,
+        "nagelkerke_r2": 0.072,
+        "aic": 14902.3,
+        "subject_acc_delta_or_per_010": 0.73,
+        "ctt_difficulty_or_per_010": 0.78,
+        "ctt_discrimination_or_per_010": 1.51
+      },
+      "model3_item_delta": {
+        "mcfadden_r2": 0.0012,
+        "nagelkerke_r2": 0.0021,
+        "aic": 15536.9,
+        "item_acc_change_or": 2.11,
+        "item_acc_change_or_per_010": 1.08,
+        "item_acc_change_ci": [
+          1.51,
+          2.96
+        ]
+      },
+      "model4_item_delta_plus_items": {
+        "mcfadden_r2": 0.0434,
+        "nagelkerke_r2": 0.0737,
+        "aic": 14885.4,
+        "item_acc_change_or_per_010": 0.92,
+        "ctt_difficulty_or_per_010": 0.77,
+        "ctt_discrimination_or_per_010": 1.54
+      },
+      "simpsons_paradox": true,
+      "lr_test_m1_vs_m2_chi2": 646.98,
+      "lr_test_m3_vs_m4_chi2": 655.53,
+      "best_model": "Model 4 (item Δ + item props)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T10:18:08.052986+00:00",
+  "trigger": "update_registry"
+}

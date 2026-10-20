@@ -1,0 +1,74 @@
+{
+  "parameterization_type": "classical_test_theory",
+  "source_file": "mmlu-preproc.rds",
+  "source_code": "analysis/preprocess.R (lines 52-77, 154-156)",
+  "parameters": {
+    "diff": {
+      "definition": "guessing-corrected proportion correct",
+      "formula": "diff = (n_correct / n_total) * (n_options - 1) / n_options",
+      "formula_mmlu": "diff = 0.75 * p_correct",
+      "scale": "probability [0, 0.75]",
+      "mean": 0.444,
+      "range": [0.008, 0.689],
+      "is_irt_parameter": false,
+      "irt_analog": "b (difficulty on logit/ability scale)"
+    },
+    "disc": {
+      "definition": "point-biserial correlation (item response vs total score)",
+      "formula": "rpbis = (m1 - m) / s * sqrt(n1 * n0 / (n * (n-1)))",
+      "scale": "correlation [-1, 1]",
+      "mean": 0.076,
+      "range": [-0.551, 0.291],
+      "is_irt_parameter": false,
+      "irt_analog": "a (discrimination/slope, typically [0.2, 3.0])"
+    },
+    "sd": {
+      "definition": "sample standard deviation of binary responses across LLMs",
+      "formula": "sd(x_i) where x_i in {0, 1}",
+      "scale": "[0, 0.5]",
+      "is_irt_parameter": false
+    }
+  },
+  "actual_irt_fitting": {
+    "r_package": "mirt (Chalmers 2012)",
+    "function": "mirt::mirt(data, 1, itemtype='2PL', method='EM')",
+    "parameterization": "slope-intercept",
+    "irt_formula": "P(theta) = 1 / (1 + exp(-(a1 * theta + d)))",
+    "parameters_in_model": ["a1 (slope/discrimination)", "d (intercept)"],
+    "conversion_to_standard_irt": {
+      "a_standard": "a1 (same)",
+      "b_standard": "-d / a1"
+    },
+    "model_files": "analysis/models/{benchmark}-2PL-1-cv-seed={seed}.rds",
+    "extract_params": "mirt::coef(model, simplify=TRUE, rotate='none')$items",
+    "extract_traditional": "mirt::coef(model, IRTpars=TRUE, simplify=TRUE)$items"
+  },
+  "conversion_formula": {
+    "ctt_to_irt": "NOT POSSIBLE - fundamentally different statistics, must refit from response matrix",
+    "mirt_slope_intercept_to_standard": "b = -d / a1, a = a1"
+  },
+  "can_convert_to_standard_irt": false,
+  "reason_cannot_convert": "diff/disc are CTT descriptive statistics (corrected proportion-correct and point-biserial correlation), not IRT model parameters. They exist on different scales with different assumptions. Conversion requires refitting an IRT model to the original binary response matrix.",
+  "negative_discrimination_items": {
+    "count": 1926,
+    "percentage": 15.4,
+    "interpretation": "Items where LLMs answering correctly tend to have LOWER total scores. In CTT this means negative item-total correlation; in IRT these would typically be excluded or flagged."
+  },
+  "sanity_check": {
+    "sd_vs_expected": {
+      "correlation": 1.0,
+      "mean_abs_diff": 3.8e-05,
+      "conclusion": "sd = sqrt(p*(1-p)*n/(n-1)) confirmed, consistent with binary response sd"
+    },
+    "estimated_n_llms": 5219,
+    "diff_max_consistent": true,
+    "note": "Max diff=0.689 < 0.75, consistent with diff = 0.75 * p_correct"
+  },
+  "recommendations_for_dif_analysis": [
+    "Do NOT use preproc.rds diff/disc as IRT parameters for equating",
+    "For IRT-based DIF: extract response matrix from preproc.rds $data slot and refit with mirt",
+    "For CTT-based DIF: Mantel-Haenszel or delta-p methods work with raw response data",
+    "CTT diff is usable as empirical difficulty proxy for stratification in MH-DIF",
+    "The exclude column flags items already screened out by METABENCH's CTT criteria"
+  ]
+}

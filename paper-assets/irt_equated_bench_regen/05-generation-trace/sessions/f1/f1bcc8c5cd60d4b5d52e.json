@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1bcc8c5cd60d4b5d52e",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 001 dif analysis",
+  "task_key": "worker_code_plan_001_dif_analysis_20260520T205627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_001_dif_analysis_20260520T205627_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "340c34b570c812be374936161ae82dd56703d5cfaf5efb79aa81f0a274dffc96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 9 个产出文件已注册。以下是核心结果摘要：\n\n## 结果总览\n\n| 指标 | Temporal (2023→2024) | Ability (Q1-2 vs Q4-5) |\n|------|---------------------|------------------------|\n| ETS C | **3918 (31.3%)** | **363 (2.9%)** |\n| FPR vs Li clean | 0.3184 | 0.0269 |\n| Enrichment | **0.96** | **1.19** |\n\n**Sanity check 通过**: 随机分半 0.18% C（远低于 5% 阈值）\n\n## 关键发现\n\n1. **Temporal cohort DIF 不是在检测污染**：31.3% C 率 + enrichment ≈ 1.0（clean 和 contaminated items 被标记的概率相同）。MH-DIF 在 temporal cohort 上捕获的是 2023→2024 模型的系统性能力提升，而非污染信号。\n\n2. **Ability cohort 更合理**：2.9% C，enrichment = 1.19（contaminated items 被标记概率高 19%），FPR = 2.7%。\n\n3. **Within-family 证实了混淆**：Llama-2 vs Llama-3 高达 61.3% C — 代际能力差异远超 temporal cohort 的 DIF 幅度。没有同一 family 内的 temporal split 可用（所有 family 只落在单个时间段内）。\n\n4. **Domain 分析**：ρ(C_rate, Δacc) = 0.307, p = 0.02 — 准确率提升越大的 subject DIF 越高，与 \"能力驱动而非污染驱动\" 一致。\n\n5. **Neg-disc 敏感性**：移除 negative-disc items 后 C 率略升（32.4% vs 31.3%），neg-disc items 本身反而 C 率较低（25.7%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-001-dif-analysis.md"
+}

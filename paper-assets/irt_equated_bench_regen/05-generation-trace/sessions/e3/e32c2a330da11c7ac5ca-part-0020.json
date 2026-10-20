@@ -1,0 +1,530 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e32c2a330da11c7ac5ca",
+  "rounds": [
+    {
+      "number": 204,
+      "messages": [
+        {
+          "source_line": 3421,
+          "timestamp": "2026-05-22T19:08:52.787101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-003421"
+        },
+        {
+          "source_line": 3422,
+          "timestamp": "2026-05-22T19:08:52.837909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\n3\t\\looseness=-1\n4\tThree primary limitations apply. (1)~The semi-synthetic framework uses uniform binary response flipping, a worst-case injection model; reported $\\Delta\\mathrm{TPR}$ values are upper-bound estimates, and detection power under realistic contamination patterns (partial memorization, format-specific advantages) is untested. More fundamentally, DIF detects \\emph{that} items function differently but cannot determine \\emph{why}. (2)~The MH $\\chi^2$ test assumes independent examinees; LLM model families violate this assumption. Three convergent corrections (${\\approx}$27--29\\%) and family-level cluster bootstrap (95\\% CI: $[26.7\\%, 53.2\\%]$) bound the impact, but the extreme relatedness of some families (e.g., hundreds of Llama-2 fine-tunes) exceeds the clustering levels studied in educational settings~\\citep{french2010hierarchical}. (3)~Cross-subject matching assumes contamination affects a minority of domains; $\\Delta\\mathrm{FPR}$ rises to 0.069 when contamination spans ${\\geq}20$ subjects. Temporal cohorts defined by calendar year provide coarse granularity, and generalizability to open-ended or partial-credit benchmarks is untested. Multidimensional DIF~\\citep{ackerman1992didmf} may arise when MMLU's 57 subjects span distinct latent dimensions; cross-subject matching mitigates between-domain multidimensionality but not within-domain violations. IRT parameters are used only for auxiliary power analysis; all core DIF results are nonparametric.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003422"
+        },
+        {
+          "source_line": 3423,
+          "timestamp": "2026-05-22T19:09:14.007294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/appendix.tex",
+              "offset": "195",
+              "limit": "25"
+            }
+          },
+          "id": "event-003423"
+        },
+        {
+          "source_line": 3424,
+          "timestamp": "2026-05-22T19:09:14.058192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "195\t\\includegraphics[width=\\columnwidth]{fig_A3_rho_degradation.pdf}\n196\t\\caption{Ranking degradation under DIF-ordered vs.\\ random item removal across six benchmarks. DIF-ordered removal (orange) consistently degrades $\\rho$ faster than random removal (blue band = mean $\\pm$ 1 SD, 20 seeds). Vertical dashed lines mark the Monitor/Flag (15\\%) and Flag/Act (25\\%) thresholds from \\Cref{sec:disc_protocol}.}\n197\t\\label{app:fig_rho_degradation}\n198\t\\end{figure}\n199\t\n200\t\\section{Item-Property Predictive Analysis}\n201\t\\label{app:predictive}\n202\t\n203\tTo test whether DIF susceptibility is a fixed item property, we trained logistic regression and LightGBM classifiers to predict ETS~C classification from 17 leak-free features: ref-cohort difficulty and discrimination, 11 text features (question/option length, vocabulary metrics), subject metadata, and web-overlap labels~\\citep{li2024contamination}. Features were computed exclusively from the reference (2023) cohort to prevent information leakage from the focal cohort. Five-fold subject-stratified cross-validation (no within-subject train/test overlap) yielded AUROC $= 0.603 \\pm 0.020$ (LR) and $0.599 \\pm 0.026$ (LightGBM)---near chance. Web-overlap labels contributed negligibly (SHAP $< 0.015$), independently confirming the DIF--contamination orthogonality reported in \\Cref{sec:groundtruth}. These results indicate that temporal DIF reflects emergent cohort--item interactions rather than fixed item defects, motivating post-hoc monitoring over pre-screening.\n204\t\n205\t\\section{ICC by Family Size}\n206\t\\label{app:icc_family}\n207\t\n208\tWithin-family similarity (mean pairwise Pearson $r$ over 12{,}508-item response vectors) shows no dependence on family size (Spearman $\\rho = -0.009$, $p = 0.96$; 30 families with $\\geq 2$ members, 1{,}884 models). Large families (Mistral, $m = 547$, $\\bar{r} = 0.47$; Llama-3, $m = 315$, $\\bar{r} = 0.53$) are no more homogeneous than small or mid-sized families. Of the 5{,}227 models, 3{,}343 lack fam\n…[truncated 1370 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003424"
+        },
+        {
+          "source_line": 3425,
+          "timestamp": "2026-05-22T19:09:25.538498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/appendix.tex",
+              "offset": "110",
+              "limit": "20"
+            }
+          },
+          "id": "event-003425"
+        },
+        {
+          "source_line": 3426,
+          "timestamp": "2026-05-22T19:09:25.639451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "110\t\\bottomrule\n111\t\\end{tabular}\n112\t\\end{table}\n113\t\n114\t\\section{Design Effect Estimation}\n115\t\\label{app:deff}\n116\t\n117\tModel families (e.g., Mistral, Llama-3) induce intra-class correlation (ICC) that inflates Mantel-Haenszel $\\chi^2$ statistics beyond the nominal $\\chi^2_1$ reference distribution. We estimate the design effect (DEFF) per item following \\citet{rao1992variance}: $\\mathrm{DEFF}_i = 1 + (\\bar{m} - 1) \\cdot \\mathrm{ICC}_i$, where $\\bar{m}$ is the mean family size and $\\mathrm{ICC}_i$ is the one-way random-effects ICC for item $i$ across 30 families (restricted to ref+foc cohort; 1,884 models with family$\\geq$2).\n118\t\n119\tTwo estimates of $\\bar{m}$ bracket the adjustment: (1)~\\emph{Simple mean} ($\\bar{m} = 62.8$), treating all families equally, yields $\\mathrm{DEFF} = 3.87$ and adjusted C\\% $= 29.2\\%$; (2)~\\emph{Weighted mean} ($\\bar{m} = \\sum n_f^2 / \\sum n_f = 254.5$; \\citealp{kish1965survey}), reflecting the effective cluster size experienced by a randomly sampled model, yields $\\mathrm{DEFF} = 12.79$ and adjusted C\\% $= 13.5\\%$.\n120\t\n121\t\\noindent Mean ICC $= 0.047$ (median $0.041$, Q3 $= 0.061$, max $= 0.219$; 4.8\\% of items exceed $0.10$). After dividing each item's $\\chi^2_{\\mathrm{MH}}$ by its item-specific DEFF and re-applying ETS thresholds, 13.5--29.2\\% of items retain Category~C classification depending on the $\\bar{m}$ variant---both far exceeding the 0.18\\% random-split baseline (75--162$\\times$).\n122\t\n123\t\\section{Uncertainty Quantification Comparison}\n124\t\\label{app:uncertainty}\n125\t\n126\t\\begin{table}[h]\n127\t\\centering\n128\t\\caption{Comparison of uncertainty quantification methods for the 31.3\\% C\\% estimate on MMLU.}\n129\t\\small"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-003426"
+        },
+        {
+          "source_line": 3427,
+          "timestamp": "2026-05-22T19:09:43.700427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003427"
+        },
+        {
+          "source_line": 3428,
+          "timestamp": "2026-05-22T19:09:43.751246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-003428"
+        },
+        {
+          "source_line": 3429,
+          "timestamp": "2026-05-22T19:10:09.267432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — R19 论文修正验证 + 残留问题\n\n**结论**: WARNING\n\n### 已验证修正（全部 ✅）\n\n1. **De-dup K=20**: 29.1% → 19.7% ± 0.9%。appendix tab:uncertainty (line 139)、app:dedup_k (line 215)、正文叙述 (line 145) 三处均已更正。experiments.tex:16 不再引用 29.1%，改为引用 within-K SD < 1.5pp 的稳定性论证。\n2. **Rank-bucket 数据**: appendix line 220 已修正为 15.1% [50,200)、4.0% [200,500)、0.6% [500,1000)、0.0% above 1000。与 r18_rank_bucket_reversal 实验数据一致。\n3. **Contribution 1 reframing**: intro line 22 已改为 \"Orthogonal constructs\"，不再使用 \"category error\" 或 \"ground truth meta-critique\"。\n4. **Semi-synthetic gradient 结果**: experiments.tex line 84 已加入 \"capability-like injection produces ρ ≈ +0.77, clearly separable from uniform (contamination-like) injection (ρ ≈ −0.52)\" + \"mapping these signatures onto real-data mechanisms requires further validation\" 的 caveat。\n5. **Base-vs-instruct 分解**: discussion.tex line 18 完整报告了 base ρ=-0.570 vs instruct ρ=-0.079 的分离证据。\n6. **ICC-by-family-size**: appendix line 208 正确描述为 \"mean pairwise Pearson r\"，未与 item-level ICC (0.047) 混淆。DEFF section (line 117) 正确使用 \"one-way random-effects ICC\"。\n\n### 残留问题\n\n- [severity: warning] **discussion.tex:15 \"ruling out ceiling effects\" 表述过强**。restricted-range 分析 (ρ=-0.447 at [0.2, 0.8]) 仅排除了极端 accuracy 项目的 floor/ceiling 伪影，但未排除 semi-synthetic 实验揭示的二值响应天花板效应：即使在 [0.2, 0.8] 范围内，低 accuracy 项目仍有更多 0→1 可翻转响应，导致 uniform contamination 也产生 negative ρ(diff, Δδ)=-0.52。建议将 \"ruling out ceiling effects\" 改为更精确的表述如 \"persisting after excluding extreme-difficulty items\" 或 \"robust to restricted-range analysis\"。当前紧随其后的 \"observational DIF alone cannot separate contamination from capability evolution\" caveat 部分缓解了此问题，但 \"ruling out\" 这一措辞可能成为审稿人攻击点。\n\n- [severity: info] **appendix section 标题 \"ICC by Family Size\" (line 205)** 略有歧义——内容测量的是 model-level pairwise Pearson r，不是 item-level ICC。正文引用 (experiments.tex:16) 正确称为 \"within-family similarity\"，不影响论证。\n\n- [severity: info] **Semi-synthetic 方向匹配未显式讨论**。real data ρ≈-0.60 与 contamination-like (ρ≈-0.52) 同向，与 capability-like (ρ≈+0.77) 反向。experiments.tex:84 的 \"requires further validation\" caveat 足够审慎，但审稿人可能追问为何不直接讨论方向匹配的含义。当前 hedging 程度可接受。",
+              "project": "irt_equated_bench_regen"
+            }
+          },
+          "id": "event-003429"
+        },
+        {
+          "source_line": 3430,
+          "timestamp": "2026-05-22T19:10:10.525185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1257
+          },
+          "id": "event-003430"
+        },
+        {
+          "source_line": 3431,
+          "timestamp": "2026-05-22T19:10:15.481690+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。R19 修正中此前标记的 5 项 CRITICAL/WARNING 问题已全部更正。残留一个 WARNING：discussion.tex:15 的 \"ruling out ceiling effects\" 措辞过强，建议软化为 \"robust to restricted-range analysis\"。其余两个 INFO 级问题不阻塞提交。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer"
+          },
+          "id": "event-003431"
+        }
+      ]
+    },
+    {
+      "number": 205,
+      "messages": [
+        {
+          "source_line": 3432,
+          "timestamp": "2026-05-22T19:10:15.955498+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**紧急审查：Exp 4 Difficulty-Dependent Semi-Synthetic Injection 的解释正确性**\n\nAgent 报告了以下结果：\n- Scheme A (capability-like, hard items 更多 flip): ρ(diff, Δδ) = +0.771\n- Scheme B (contamination-like, uniform injection): ρ(diff, Δδ) = -0.517\n- Scheme C (mixed): ρ(diff, Δδ) = +0.394\n\nAgent 的解释是 \"capability-like → ρ>0 (easy items affected), contamination-like → ρ<0 (hard items affected)\"。\n\n**我需要你验证以下关键问题**：\n\n1. **Sign convention**: 论文中 ρ(difficulty, DIF direction) = -0.597 意味着 hard items 更 focal-favoring (2024 better)。Exp 4 中的 ρ(diff, Δδ) 是否用相同的 sign convention？Δδ 是 Δ_MH 还是其他量？\n\n2. **Ceiling effect 问题**: Scheme B 是 uniform injection（与 difficulty 无关），但产生 ρ = -0.517。Agent 解释为 ceiling effect（easy items 准确率高，可翻转的 0 少）。这是否意味着论文当前的 ρ = -0.597 无法区分 capability evolution 和 contamination？\n\n3. **对论文叙事的影响**: 论文 §5.1 说 \"The difficulty–direction interaction provides suggestive evidence for capability evolution\"。如果 contamination + ceiling effect 也能产生类似的负 ρ，这个 claim 是否需要修改？\n\n4. **Agent 的因果映射是否正确**: Agent 说 \"base model ρ=-0.570 consistent with contamination-like pattern\"。但论文一直说负 ρ 是 capability evolution 的证据。这两个解释矛盾吗？\n\n请仔细审查实验代码和结果，验证 sign convention 和因果推断的逻辑链条。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "source": "system"
+          },
+          "id": "event-003432"
+        },
+        {
+          "source_line": 3433,
+          "timestamp": "2026-05-22T19:12:15.688993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Check semi-synthetic code details",
+              "subagent_type": "Explore",
+              "prompt": "Find and read the semi-synthetic gradient experiment code in the irt_equated_bench_regen project. I need to understand:\n\n1. How \"difficulty\" is defined — is it proportion correct (higher = easier) or something else?\n2. How Δδ is computed — is it δ_after - δ_before for Mantel-Haenszel Δ_MH?\n3. What does Scheme A \"capability-like\" injection actually do? Is injection probability proportional to item accuracy (easy items targeted) or inversely proportional (hard items targeted)?\n4. What does Scheme B \"contamination-like\" do exactly? Is it truly uniform p=0.5 for all items?\n5. How is ρ(diff, Δδ) computed — Spearman correlation between what exact two arrays?\n\nSearch in:\n- `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_semisynthetic_gradient/` for .py files\n- Also check any scripts in the project `scripts/` directory related to semi-synthetic or injection\n\nRead the FULL implementation of the injection mechanism and the correlation computation. Search breadth: very thorough."
+            }
+          },
+          "id": "event-003433"
+        },
+        {
+          "source_line": 3434,
+          "timestamp": "2026-05-22T19:12:17.648167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_semisynthetic_gradient/**/*.py"
+            }
+          },
+          "id": "event-003434"
+        },
+        {
+          "source_line": 3435,
+          "timestamp": "2026-05-22T19:12:17.849906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_semisynthetic_gradient/semisynthetic_gradient.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 201
+          },
+          "id": "event-003435"
+        },
+        {
+          "source_line": 3436,
+          "timestamp": "2026-05-22T19:12:17.850378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/**/*.py"
+            }
+          },
+          "id": "event-003436"
+        },
+        {
+          "source_line": 3437,
+          "timestamp": "2026-05-22T19:12:18.202337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r14_domain_profile.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r14_cooks_d_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/scripts/r16_dif_union.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 351
+          },
+          "id": "event-003437"
+        },
+        {
+          "source_line": 3438,
+          "timestamp": "2026-05-22T19:12:18.257956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen -type f -name \"*semi*\" -o -name \"*inject*\" 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-003438"
+        },
+        {
+          "source_line": 3439,
+          "timestamp": "2026-05-22T19:12:18.410558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_011_semi_synthetic_20260520T213716_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_016_within_subject_injection_20260520T223139.log\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_016_within_subject_injection_20260520T223139_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_034_multi_subject_injection_20260521T154505_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_r19_semisynthetic_gradient_20260522T184822.log\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_r19_semisynthetic_gradient_20260522T184822_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_034_multi_subject_injection_20260521T154505.log\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_004_step2_gsm8k_semi_synthetic_20260521T005157.log\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_011_semi_synthetic_20260520T213716.log\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_plan_004_step2_gsm8k_semi_synthetic_20260521T005157_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/worker_code_plan_004_step2_gsm8k_semi_synthetic_20260521T005157.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/worker_code_plan_004_step2_gsm8k_semi_synthetic_20260521T005157.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_\n…[truncated 1197 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-003439"
+        },
+        {
+          "source_line": 3440,
+          "timestamp": "2026-05-22T19:12:19.917989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_semisynthetic_gradient/semisynthetic_gradient.py"
+            }
+          },
+          "id": "event-003440"
+        },
+        {
+          "source_line": 3441,
+          "timestamp": "2026-05-22T19:12:19.968986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tR19 Exp 4 — Difficulty-Dependent Semi-Synthetic Injection\n3\tTests whether MH-DIF can distinguish capability-like vs contamination-like DIF patterns.\n4\t\"\"\"\n5\t\n6\timport numpy as np\n7\timport pandas as pd\n8\tfrom scipy import sparse, stats\n9\tfrom scipy.stats import chi2 as chi2_dist\n10\timport time, os, sys\n11\t\n12\tROOT = \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\"\n13\tOUT = os.path.join(ROOT, \"r19_semisynthetic_gradient\")\n14\t\n15\tN_SEEDS = 5\n16\tN_STRATA = 5\n17\tFOC_INJECT_FRAC = 0.30\n18\tITEM_INJECT_FRAC = 0.24\n19\t\n20\t# ════════════════════════════════════════════════════════════════════════════\n21\t#  VECTORIZED MH-DIF — returns per-item results\n22\t# ════════════════════════════════════════════════════════════════════════════\n23\tdef mh_dif_vec(X_ref, X_foc, n_strata=N_STRATA):\n24\t    \"\"\"Vectorized MH-DIF returning per-item delta_mh, p_value, is_c, direction.\"\"\"\n25\t    n_ref, J = X_ref.shape\n26\t    n_foc = X_foc.shape[0]\n27\t\n28\t    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n29\t    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n30\t    s_all = np.concatenate([tot_ref, tot_foc])\n31\t\n32\t    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n33\t    n_bins = len(edges) - 1\n34\t    if n_bins < 1:\n35\t        return np.zeros(J), np.ones(J), np.zeros(J, dtype=bool)\n36\t\n37\t    k_ref = np.digitize(tot_ref, edges[1:-1])\n38\t    k_foc = np.digitize(tot_foc, edges[1:-1])\n39\t\n40\t    n1 = np.zeros(n_bins, dtype=np.float64)\n41\t    n0 = np.zeros(n_bins, dtype=np.float64)\n42\t    A = np.zeros((n_bins, J), dtype=np.float64)\n43\t    C_mat = np.zeros((n_bins, J), dtype=np.float64)\n44\t\n45\t    for k in range(n_bins):\n46\t        mr = (k_ref == k)\n47\t        mf = (k_foc == k)\n48\t        n1[k] = mr.sum()\n49\t        n0[k] = mf.sum()\n50\t        if mr.any():\n51\t            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n52\t        if mf.any():\n53\t            C_mat[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n54\t\n55\t    B = n1[:, N\n…[truncated 22282 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003441"
+        },
+        {
+          "source_line": 3442,
+          "timestamp": "2026-05-22T19:12:39.191527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have the complete code. Let me now provide you with detailed answers to all five questions based on the implementation:\n\n## Summary of Semi-Synthetic Gradient Experiment\n\n### 1. **How \"difficulty\" is defined**\n\n**Difficulty = proportion correct (higher = easier)**\n\nLine 125:\n```python\nitem_difficulty = X_ref_base.mean(axis=0)  # shape (J,)\n```\n\nThis is the mean accuracy of the reference cohort (2023 models) per item. Higher values mean easier items (more correct responses), which is why the code uses the term \"difficulty\" (standard IRT convention where difficulty is often inversely labeled, but here it's directly accuracy).\n\n---\n\n### 2. **How Δδ is computed**\n\n**Δδ = δ_after - δ_baseline (Mantel-Haenszel Δ_MH)**\n\nLines 262-264:\n```python\ndelta_j, pval_j, is_c = mh_dif_vec(X_ref_base, X_foc_inj, n_strata=N_STRATA)\n\n# Delta change from baseline (isolates injection effect)\n# δ > 0 = focal-favoring; injection flips focal 0→1 → pushes δ positive\nddelta = delta_j - delta_base\n```\n\nThe MH-DIF statistic δ_MH is computed per item in the `mh_dif_vec()` function (line 70):\n```python\ndelta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n```\n\nThis is the standard Mantel-Haenszel log-odds formula. Then Δδ isolates the injection-induced shift by subtracting the baseline delta.\n\n---\n\n### 3. **Scheme A \"capability-like\" injection**\n\n**Injection probability is PROPORTIONAL to item accuracy (easy items targeted)**\n\nLines 139-149:\n```python\ndef inject_scheme_a(X_foc, inject_model_mask, inject_item_idx, item_diff, rng):\n    \"\"\"Capability-like: injection probability ∝ difficulty (easy items more likely flipped).\"\"\"\n    X = X_foc.copy()\n    n_flipped = 0\n    for j in inject_item_idx:\n        p_inject = max(0.0, min(1.0, (item_diff[j] - 0.2) / 0.6))\n        for i in np.where(inject_model_mask)[0]:\n            if X[i, j] == 0 and rng.random() < p_inject:\n                X[i, j] = 1\n                n_flipped += 1\n    return X, n_flipped\n```\n\nThe key line is:\n```python\np_inje\n…[truncated 4024 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 23502
+          },
+          "id": "event-003442"
+        },
+        {
+          "source_line": 3443,
+          "timestamp": "2026-05-22T19:14:15.873304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Exp 4 Semi-Synthetic Gradient 解释正确性\n\n**结论**: WARNING\n\n---\n\n### Q1: Sign Convention 验证\n\n**两个 ρ 使用相同的 sign convention，但测量不同的量。**\n\n代码确认：\n- \"difficulty\" = `X_ref_base.mean(axis=0)` = ref cohort item accuracy（higher = easier）\n- δ > 0 = focal-favoring\n- Δδ = δ_after − δ_baseline（正 = 注入使 item 更 focal-favoring）\n\n关键区别：\n- **Real data**: ρ(difficulty, δ_MH) = −0.597，测量的是**已观测 DIF 总量**\n- **Semi-synthetic**: ρ(difficulty, Δδ) = ±0.52/0.77，测量的是**注入引起的 DIF 变化量**\n\n两者概念上可类比（都是 difficulty 与 DIF 方向的关联），但不是同一个量。Semi-synthetic 的 Δδ 已从 baseline 中分离了注入效应；real data 的 δ_MH 包含所有机制的综合结果。\n\n---\n\n### Q2: Ceiling Effect — 这是一个真实问题\n\n**[severity: warning] Uniform contamination 产生 ρ ≈ −0.52 与 real data ρ ≈ −0.60 同向。ρ 的符号无法区分 capability evolution 和 contamination。**\n\n代码确认 Scheme B 机制：\n```python\n# Scheme B: uniform p=0.5, 不依赖 difficulty\nif X[i, j] == 0 and rng.random() < 0.5:\n    X[i, j] = 1  # flip 0→1\n```\n所有 item 的注入概率相同（p=0.5），但 hard items baseline accuracy 低 → 更多 0 可被翻转 → 累积更大 Δδ → 产生 negative ρ。\n\n这意味着：\n1. **Discussion.tex:15 \"ruling out ceiling effects\" 表述错误**。Restricted-range 分析 (ρ=−0.447 at [0.2, 0.8]) 排除了极端 accuracy 项目的统计伪影，但**未排除 binary response 的结构性天花板**——即使在 [0.2, 0.8] 范围内，accuracy=0.2 的 item 有 80% 的 0 可翻转，accuracy=0.8 的 item 只有 20% 可翻转。\n2. **ρ < 0 同时与两种机制一致**：contamination（ceiling effect）和 capability evolution（如果 hard items 确实提升更多）。符号本身不具区分力。\n\n---\n\n### Q3: 对论文叙事的影响\n\n**[severity: warning] §5.1 的 \"suggestive evidence for capability evolution\" 需要重新表述，但不需要推翻。**\n\n当前问题链：\n1. 论文说 ρ=−0.597 \"suggestive\" → 读者推断这是 capability evolution 的证据\n2. 但 semi-synthetic 显示 contamination 也产生 negative ρ（−0.52）→ ρ 符号不具区分力\n3. \"ruling out ceiling effects\" 与同一论文 experiments.tex:84 的 semi-synthetic 结果矛盾\n\n**建议修正**：\n\ndiscussion.tex:15 从：\n> \"ruling out ceiling effects\"\n\n改为：\n> \"robust to restricted-range analysis\"（或 \"persisting after excluding extreme-difficulty items\"）\n\n并在 \"however, observational DIF alone cannot separate...\" 之后增加一句：\n> \"Semi-synthetic validation confirms that uniform injection produces ρ(diff, Δδ) ≈ −0.52 via binary-response ceiling effects (§4.5), so the sign of the difficulty–direction gradient alone does not distinguish contamination from capability evolution.\"\n\n**论文叙事整体仍可维持**，因为：\n- Base-vs-instruct 分解（χ²=562.7）是更强的机制分离证据，不依赖 ρ 符号\n- 论文已有 \"observational DIF alone cannot separate\" 的 caveat\n- 只需将 ceiling effect caveat 从 experiments 传导到 discussion\n\n---\n\n### Q4: Agent 因果映射的矛盾分析\n\n**不构成逻辑矛盾，但暴露了 Scheme A 的建模假设。**\n\n核心问题：Scheme A 将 \"capability-like\" 建模为 **easy items 优先改善**：\n```python\np_inject = max(0, min(1, (accuracy - 0.2) / 0.6))\n# accuracy=0.8 → p=1, accuracy=0.2 → p=0\n```\n\n但 real data 显示 **hard items 才是 focal-favoring**（2024 models gain on hard items）。这意味着：\n\n| 场景 | ρ(diff, Δδ) | 与 real data 方向 |\n|------|-------------|-------------------|\n| Scheme A（easy items 改善 → \"capability\"） | +0.77 | **反向** |\n| Scheme B（uniform, ceiling effect → \"contamination\"） | −0.52 | **同向** |\n| Real data | −0.60 | — |\n\n**关键推论**：\n1. **Scheme A 只建模了一种 capability evolution**（\"easy items improve first\"），不代表所有 capability 模型\n2. 另一种 capability model——\"hard items improve because models get smarter\"——也会产生 negative ρ，与 contamination ceiling effect 不可分\n3. Agent 说 \"base ρ=−0.570 consistent with contamination-like\" 是正确的（方向一致），但**同样 consistent with** \"hard-item capability evolution\"\n4. **ρ 符号 is ambiguous**——不能作为因果推断的依据\n\n**论文当前表述 \"suggestive\" 是合适的 hedge 词**，但需要删除 \"ruling out ceiling effects\" 这个过强 claim。Base-vs-instruct 分解是唯一提供 positive evidence for mechanism separation 的分析——它显示两种模型类型有**不同的 pattern**（χ²=562.7），而非只看一个 ρ 的符号。\n\n---\n\n### 总结建议\n\n1. **必须修改** discussion.tex:15: \"ruling out ceiling effects\" → \"robust to restricted-range analysis\"\n2. **建议增加** 一句 ceiling effect caveat 连接 §4.5 semi-synthetic 结果到 §5.1 discussion\n3. **Base-vs-instruct 分解应作为 mechanism separation 的主论据**，difficulty-direction gradient 降级为辅助观察\n4. Scheme A 的建模假设（\"easy items improve = capability\"）可在 limitations 或 appendix 中注明，避免审稿人质疑\"为什么 capability 不是 hard items improve\"",
+              "project": "irt_equated_bench_regen"
+            }
+          },
+          "id": "event-003443"
+        },
+        {
+          "source_line": 3444,
+          "timestamp": "2026-05-22T19:14:19.590983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3717
+          },
+          "id": "event-003444"
+        },
+        {
+          "source_line": 3445,
+          "timestamp": "2026-05-22T19:14:26.630285+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成 Exp 4 semi-synthetic gradient 的深度审查并提交报告。核心发现：\n\n1. **Sign convention 一致**但测量量不同（total δ vs change Δδ）\n2. **Ceiling effect 是真实问题**：uniform contamination 产生 ρ≈-0.52 与 real data ρ≈-0.60 同向，ρ 符号无法区分机制\n3. **discussion.tex:15 \"ruling out ceiling effects\" 必须修改**——与同论文 §4.5 semi-synthetic 结果矛盾\n4. **Base-vs-instruct 分解是更强的证据**，应作为 mechanism separation 的主论据"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer"
+          },
+          "id": "event-003445"
+        }
+      ]
+    },
+    {
+      "number": 206,
+      "messages": [
+        {
+          "source_line": 3446,
+          "timestamp": "2026-05-22T19:15:17.029524+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-003446"
+        },
+        {
+          "source_line": 3447,
+          "timestamp": "2026-05-22T19:16:06.386482+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目是纯分析项目（METABENCH response matrix），无 GPU 训练、无远程服务器。所有实验在本地 Python 运行。不要 SSH 任何服务器。\n- 论文 DDL: **2026-05-25 AoE**（EMNLP 2026 via ARR），8 页正文限制。\n- Discussion.tex:15 \"ruling out ceiling effects\" 已被我标 WARNING 但截至 handoff 时**尚未修正**——下一个\"你\"必须追踪这个修正是否落地。\n- Semi-synthetic gradient 实验的 Scheme A 将 \"capability\" 建模为 \"easy items improve\"，但 real data 显示 hard items improve。**不要**在审查中说 \"real data rules out capability evolution\"——只能说 \"ρ 符号 alone 不具区分力\"。\n\n### 2. 🖥️ 基础设施快照\n- 无远程服务器、无 GPU、无 wandb、无活跃进程/cron\n- 本地 workspace: `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/`\n- 论文: `paper/sections/{introduction,experiments,discussion,method,limitations,appendix,abstract}.tex`\n- 实验产出: `artifacts/r17_*/`, `artifacts/r18_*/`, `artifacts/r19_*/`\n- Registry: `registry.yaml`; Roadmap: `ROADMAP.md`; Decisions: `decisions.yaml`\n\n### 3. 📊 当前状态\n**刚完成**：R19 全部实验审查 + 论文修正验证。已发两条 `reviewer_post_to_director`:\n1. R19 论文修正验证报告（6 项修正全部 ✅，1 个 WARNING 残留：\"ruling out ceiling effects\"）\n2. Exp 4 Semi-Synthetic Gradient 解释正确性深度审查（回答 Director 4 个问题，结论 WARNING）\n\n**Registry 状态**：所有实验 DONE，无 RUNNING/PREPARING。\n\n**等待中**：\n- Director 对 \"ruling out ceiling effects\" 修正的决策\n- 可能的 R20 论文提交前终审请求\n- Paper Agent 可能的 Step 5 写作评审请求（需用维度评分模板）\n\n### 4. 📋 待办\n- Director 转发论文修正稿 → 验证 discussion.tex:15 是否删除 \"ruling out ceiling effects\"，是否增加 ceiling effect caveat 连接 §4.5→§5.1\n- Paper Agent 提交 Step 5 评审 → 使用 §5.3 评分模板（Originality/Clarity/Soundness/Significance/Presentation + Overall 1-10）\n- 论文提交前终审 → 逐项检查：de-dup 19.7%（3处）、rank-bucket 15.1%、contribution \"orthogonal constructs\"、base-vs-instruct 数据一致性、limitations 长度合规（EMNLP: 一小段 3 点）、页数 ≤8\n- Director 转发 Framing 调整提案 → 必须先 Read `negative-framing-review` skill，按四维度审\n\n### 5. 🎯 战略上下文\n**论文核心论点**：MH-DIF 审计发现 MMLU 31% items 存在 temporal measurement instability（校正后 ~27-29%），DIF flags 与 web-overlap labels 正交（Jaccard=0.206），base/instruct 模型展现不同 DIF 机制（χ²=562.7）。\n\n**审稿分数轨迹**：R17=3.0 → R18=3.5 → R19=3.0（回落）。目标 4.0（Conference），现实天花板 3.5（Findings）。R19 回落可能因 de-dup 数据 credibility + causal framing tension。\n\n**最易判断错的事**：\n1. **ρ 符号的因果推断**：negative ρ 同时 consistent with contamination（ceiling effect）和 capability evolution（hard items improve）。不要在审查中偏向任一解释。Base-vs-instruct 分解才是 mechanism separation 的主论据。\n2. **De-dup K=20 的 19.7% vs 旧 29.1%**：19.7% 是 random selection（正确），29.1% 是 plan_022 biased \"most representative\" selection（已废弃）。如果论文任何位置还残留 29.1%，立即 CRITICAL。\n3. **ICC 混淆**：item-level ICC=0.047（DEFF 用）vs model-level pairwise r≈0.47（ICC-by-family-size 用），10× 差异。appendix \"ICC by Family Size\" section 内容正确（说 pairwise r）但标题有歧义。\n4. **Scheme A 建模假设**：它定义 \"capability = easy items improve\"，但这只是一种可能的 capability model。审稿人可能质疑\"为什么不建模 hard items improve\"——论文需要 acknowledge 这个局限。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer"
+          },
+          "id": "event-003447"
+        }
+      ]
+    }
+  ]
+}

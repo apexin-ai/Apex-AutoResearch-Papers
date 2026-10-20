@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe674c5d7afdeb80a3b",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code data audit experiments tables",
+  "task_key": "worker_code_data_audit_experiments_tables_20260523T193629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_audit_experiments_tables_20260523T193629.log",
+    "occurrence": 1,
+    "bytes": 1396142,
+    "sha256": "3a29291bf5a1cf298da89fb6eca9b46c1efc46a3e98dfe03d41d6f8c85f44970"
+  },
+  "statistics": {
+    "messages": 1013,
+    "user_turns": 4,
+    "tool_calls": 336,
+    "roles": {
+      "log": 1,
+      "system": 325,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 336,
+      "tool_result": 336,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0001.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 851,
+      "chunks": [
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0001.json",
+          "message_count": 18
+        },
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fe674c5d7afdeb80a3b-part-0006.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-data-audit-experiments-tables.md"
+}

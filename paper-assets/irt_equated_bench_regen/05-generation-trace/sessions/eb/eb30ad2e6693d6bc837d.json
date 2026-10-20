@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb30ad2e6693d6bc837d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mf2 practical significance v3",
+  "task_key": "worker_code_mf2_practical_significance_v3_20260522T021536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf2_practical_significance_v3_20260522T021536_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "247735ba400a34ca13e9ee57ca3dfe61006716559b68f59b3213e696c442d2b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF2 完成。结果：\n\n| Benchmark | %C | Spearman ρ | Flip Rate |\n|---|---|---|---|\n| TruthfulQA | 29.7% | 0.9971 | 2.07% |\n| ARC | 26.9% | 0.9962 | 2.31% |\n| WinoGrande | 30.3% | 0.9943 | 2.84% |\n| GSM8K | 18.9% | 0.9993 | 0.78% |\n| HellaSwag | 17.9% | 0.9986 | 1.39% |\n| MMLU | 31.3% | 0.9965 | — |\n\n**Mean ρ = 0.9971**，移除 DIF-biased items 后模型排名几乎不变。所有 p 值 ≈ 0。\n\n产出在 `artifacts/mf2_practical_significance/`（`benchmark_rho_summary.csv` + `mf2_report.md`），已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf2-practical-significance-v3.md"
+}

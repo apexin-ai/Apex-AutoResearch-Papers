@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_013_q3_local_independence",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:58:11.134Z",
+    "updated_at": "2026-05-20T22:35:43.630Z",
+    "hypothesis": "MMLU 同一 subject 内的 items 存在显著局部依赖性（within-subject Q3 均值 > 0.20，显著高于 cross-subject Q3），这违反 2PL IRT 和 MH-DIF 的局部独立性假设，部分解释了 plan_011 中 temporal cohort baseline FPR=31% 的膨胀。如果确认，则动机化后续 bifactor/testlet 模型改进。",
+    "parent": "plan_011_semi_synthetic_validation"
+  },
+  "timestamp": "2026-05-20T22:35:43.681176+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,4 @@
+\section*{Limitations}
+
+\looseness=-1
+(1)~The semi-synthetic injection framework uses uniform binary response flipping; realistic contamination (partial memorization, format-specific advantages) would produce weaker DIF signals, so reported $\Delta\mathrm{TPR}$ values may overestimate detection power. The framework detects \emph{that} items function differently but not \emph{why}. (2)~The MH $\chi^2$ test assumes independent examinees; LLM model families violate this assumption. DEFF correction and cluster bootstrap bound the impact, but extreme within-family relatedness (e.g., hundreds of Llama-2 fine-tunes) exceeds educational-testing precedents~\citep{french2010hierarchical}. (3)~Cross-subject matching assumes contamination affects a minority of domains ($\Delta\mathrm{FPR}$ rises when contamination spans ${\geq}20$ subjects), and generalization beyond MCQ benchmarks requires further validation.

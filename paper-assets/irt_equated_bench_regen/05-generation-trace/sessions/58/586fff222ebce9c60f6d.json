@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "586fff222ebce9c60f6d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code lofo robustness",
+  "task_key": "worker_code_lofo_robustness_20260522T071721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lofo_robustness_20260522T071721_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "d73c7442afc20351fde0ab8f9ffb0a87a170de49d59f9701951eefb97a741f37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LOFO 分析完成。结果摘要：\n\n| Family | N removed | C% LOFO | ΔC% |\n|--------|----------|---------|-----|\n| mistral | 547 (51% of ref) | 22.47% | −8.85 |\n| llama-3 | 315 (39% of foc) | 24.06% | −7.26 |\n| llama-2 | 161 (15% of ref) | 31.48% | +0.16 |\n| mixtral | 120 (15% of foc) | 34.26% | +2.93 |\n| solar | 91 (11% of foc) | 31.01% | −0.31 |\n\nFull baseline C% = 31.32%（与已知 31.3% 一致）。\n\n**核心发现**：占 cohort ≤15% 的家族移除后 |ΔC%| ≤ 2.93pp，C% 稳定。mistral/llama-3 的大幅下降是 **composition effect**（各自占 cohort >30%），不是 DIF 信号脆弱的证据。\n\n输出已保存到 `artifacts/lofo_robustness/` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lofo-robustness.md"
+}

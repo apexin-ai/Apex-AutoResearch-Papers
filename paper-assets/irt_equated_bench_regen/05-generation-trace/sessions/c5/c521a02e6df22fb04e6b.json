@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c521a02e6df22fb04e6b",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper w3 mixed mechanism writeup",
+  "task_key": "worker_paper_w3_mixed_mechanism_writeup_20260523T020328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w3_mixed_mechanism_writeup_20260523T020328_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "763094fe15f014968868f29c694e66e961510688d1011890c2ddb72a7b2f634d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，17 页，无错误。\n\n**Commit**: `995f4e4` — `[paper] E3: Add mixed-mechanism semi-synthetic results to appendix + §5.1`\n\n修改内容：\n- **appendix.tex**: `\\paragraph{Mixed-mechanism injection.}` 加在 `app:interaction` 后，报告 Scheme D 的 ρ/χ² 可复现但 instruct gradient 3.8× gap\n- **discussion.tex §5.1**: B1 段末加一句 mixed-mechanism 确认句，引用 `\\Cref{app:mixed_mechanism}`\n- **rebuttal_talking_points.md**: B1 加入 E2 regression + E3 mixed mechanism 数据，B5 加入 E1 K=3 power 结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w3-mixed-mechanism-writeup.md"
+}

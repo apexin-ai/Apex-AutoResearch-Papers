@@ -1,0 +1,62 @@
+paper_key: "white2025livebench"
+title: "LiveBench: A Challenging, Contamination-Free LLM Benchmark"
+venue: "ICLR 2025"
+full_text_available: false
+
+research:
+  baselines: [MMLU, GSM8k, HumanEval, Big-Bench Hard, IFEval, AlpacaEval]
+  metrics:
+    - {name: "accuracy (objective ground-truth)", direction: "higher_better"}
+  datasets:
+    - {name: "LiveBench (6 categories)", size: "frequently updated, monthly refresh"}
+  ablation_dimensions: [task category (math/coding/reasoning/language/instruction-following/data-analysis), temporal freshness, difficulty level]
+  training_recipe: {optimizer: "N/A (benchmark)", lr: "N/A", hardware: "N/A"}
+  method_family: "dynamic contamination-resistant benchmarking"
+
+positioning:
+  core_claim: "通过使用来自最新信息源的频繁更新题目 + 客观自动评分（无LLM judge），同时解决contamination和评估偏见两个问题"
+  key_results: "Top models score below 70% accuracy; covers 0.5B to 405B parameter range"
+  limitations:
+    - "需要持续人工维护和更新题目"
+    - "题目来源限制了某些task的覆盖范围"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Test set contamination使得benchmark快速过时，LLM judge引入评估偏见"
+  tension: "现有benchmark要么已被contaminate，要么依赖不可靠的LLM/人工评估"
+  key_insight: "双重创新：时间窗口防contamination + 客观ground-truth评分防偏见"
+  argument_chain: "contamination problem → judge bias problem → dual solution (fresh questions + objective scoring) → 6-category coverage → monthly updates"
+  contribution_framing: "强调'contamination-free'和'objective scoring'双重优势"
+  intro_structure: "N/A (full text unavailable)"
+  notable_technique: "将benchmark设计为'living'系统，通过月度更新保持评估有效性"
+
+figures:
+  figure_count: "N/A"
+  figure1:
+    type: "N/A"
+    description: "N/A"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: "N/A"
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: "N/A"
+    design_note: "N/A"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc76463eccb208fab25e",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 020 circularity ablation",
+  "task_key": "worker_code_plan_020_circularity_ablation_20260521T031201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_020_circularity_ablation_20260521T031201_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "05616741a7921bdfcc119f68c129597c76f46c0facaed76922d6fc65f6f81447"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**DIF removal 是所有非随机策略中扰动最小的**，直接反驳了 tautology 质疑：\n\n| 策略 | ρ (2024) | z vs random |\n|------|----------|-------------|\n| DIF-C removal | 0.9970 | −9.5 |\n| High discrimination | 0.9957 | −15.8 |\n| High accuracy gap | 0.9657 | −156.5 |\n| High variance | 0.9761 | −107.9 |\n| Random baseline | 0.9990 | 0.0 |\n\n关键发现：\n- DIF-C 与 accuracy gap 的 item overlap 为 62.6%，但 DIF removal 的扰动比 accuracy gap 小 **16×**（z = −9.5 vs −157）\n- MH 方法条件于 ability level，选出的 items 虽与 raw accuracy gap 相关（r = 0.61），但对 ranking 的影响远小于 naive gap selection\n- DIF 与 discrimination/variance 的 overlap 分别只有 22%/43%，DIF 捕获的不是 general item quality\n\n产出文件：\n- `artifacts/plan_020/circularity_ablation_report.md`\n- `artifacts/plan_020/circularity_ablation_results.csv`\n- `artifacts/plan_020/strategy_overlap.csv`\n- `artifacts/plan_020/metric_correlations.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-020-circularity-ablation.md"
+}

@@ -1,0 +1,1949 @@
+{
+  "schema_version": "1.0",
+  "id": "3233d16fcb36f1aca0d0",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code r22 score inflation",
+  "task_key": "worker_code_r22_score_inflation_20260523T081520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r22_score_inflation_20260523T081520.log",
+    "occurrence": 1,
+    "bytes": 119882,
+    "sha256": "153ce9ecf65ff2ecab229692ee0a203d74ae3ae84cdb8141ccb667ac3d738bd8"
+  },
+  "statistics": {
+    "messages": 47,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "02639308-1235-426d-add6-4d11599b6226",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779540600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "37dc018a-0390-4d84-993b-7aad8981b792",
+                "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to perform a Score Inflation quantification and DIF-Corrected Scoring analysis. Let me start by examining the data files to understand their structure, then write the analysis script.\n\nLet me first check what files are available.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "67f4bbb6-2db9-4693-8d7d-873ffd7016ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RW2kJ94ourEb8hJSdFQgbZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13828,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13828
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by examining the data files to understand their structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "a9482aa6-cd23-4f74-afb3-c1824368a159",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RW2kJ94ourEb8hJSdFQgbZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13828,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13828
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0181aMv6f6jkHak2HuWQbtL8",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/ | head -30",
+                "description": "List plan_001 directory contents"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "7b560f64-260c-41a3-bead-15a8cbe01c40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RW2kJ94ourEb8hJSdFQgbZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13828,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13828
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T08:15:40.311Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0181aMv6f6jkHak2HuWQbtL8",
+              "type": "tool_result",
+              "content": "cross_analysis.csv\ndif_results_ability.csv\ndif_results_temporal.csv\ndif_summary.csv\ndomain_specificity.csv\nneg_disc_sensitivity.csv\nplan_001_analysis.py\nplan_001_report.md\nwithin_family_dif.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "2fdad463-0143-4353-b123-ae3149e02a02",
+            "tool_use_result": {
+              "stdout": "cross_analysis.csv\ndif_results_ability.csv\ndif_results_temporal.csv\ndif_summary.csv\ndomain_specificity.csv\nneg_disc_sensitivity.csv\nplan_001_analysis.py\nplan_001_report.md\nwithin_family_dif.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HqdkGogfBqmEw6n38EojDA",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix* /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv 2>/dev/null",
+                "description": "Check for response matrix and metadata files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "6cd280bb-4453-4aad-8935-2e157c0410a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RW2kJ94ourEb8hJSdFQgbZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13828,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13828
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T08:15:40.579Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HqdkGogfBqmEw6n38EojDA",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix.npz\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix_index.npz",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "3a331b69-05f6-48dd-84b9-76f49aa7f3af",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix.npz\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix_index.npz",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, all files exist. Let me inspect their structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "2066b08e-e561-41ef-8c68-b38ded93dad9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5h4dQQ8vcF4oLGeVAUotR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 600,
+                "cache_read_input_tokens": 25669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 600
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014WbSfNYoxzahgQNJkKuv84",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport numpy as np, pandas as pd\n\n# Response matrix\nrm = np.load('artifacts/response_matrix.npz', allow_pickle=True)\nprint('=== response_matrix.npz keys:', list(rm.keys()))\nfor k in rm.keys():\n    print(f'  {k}: shape={rm[k].shape}, dtype={rm[k].dtype}')\n\nri = np.load('artifacts/response_matrix_index.npz', allow_pickle=True)\nprint('=== response_matrix_index.npz keys:', list(ri.keys()))\nfor k in ri.keys():\n    arr = ri[k]\n    print(f'  {k}: shape={arr.shape}, dtype={arr.dtype}, first3={arr[:3]}')\n\n# Model metadata\nmm = pd.read_csv('artifacts/model_metadata.csv')\nprint('=== model_metadata.csv:', mm.shape)\nprint(mm.columns.tolist())\nprint(mm.head(3))\nprint('cohort_temporal values:', mm['cohort_temporal'].value_counts().to_dict() if 'cohort_temporal' in mm.columns else 'N/A')\nprint('training_method values:', mm['training_method'].value_counts().to_dict() if 'training_method' in mm.columns else 'N/A')\n\n# DIF results\ndif = pd.read_csv('artifacts/plan_001/dif_results_temporal.csv')\nprint('=== dif_results_temporal.csv:', dif.shape)\nprint(dif.columns.tolist())\nprint(dif.head(3))\nprint('ets_class values:', dif['ets_class'].value_counts().to_dict() if 'ets_class' in dif.columns else 'N/A')\n\"\n",
+                "description": "Inspect data file structures"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "c4821d2a-c928-47f2-b6a5-84a44a96ae3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5h4dQQ8vcF4oLGeVAUotR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 600,
+                "cache_read_input_tokens": 25669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 600
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T08:15:51.295Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014WbSfNYoxzahgQNJkKuv84",
+              "type": "tool_result",
+              "content": "=== response_matrix.npz keys: ['indices', 'indptr', 'format', 'shape', 'data']\n  indices: shape=(38654082,), dtype=int32\n  indptr: shape=(5228,), dtype=int32\n  format: shape=(), dtype=|S3\n  shape: shape=(2,), dtype=int64\n  data: shape=(38654082,), dtype=int8\n=== response_matrix_index.npz keys: ['model_names', 'item_ids']\n  model_names: shape=(5227,), dtype=object, first3=['0-hero/Matter-0.1-7B' '0-hero/Matter-0.1-7B-DPO-preview'\n '0-hero/Matter-0.1-7B-boost']\n  item_ids: shape=(12508,), dtype=object, first3=['abstract_algebra.1' 'abstract_algebra.10' 'abstract_algebra.100']\n=== model_metadata.csv: (5227, 8)\n['model_name', 'family', 'release_year', 'release_half', 'training_method', 'accuracy', 'cohort_temporal', 'cohort_accuracy_quintile']\n                         model_name  ... cohort_accuracy_quintile\n0              0-hero/Matter-0.1-7B  ...                        3\n1  0-hero/Matter-0.1-7B-DPO-preview  ...                        3\n2        0-hero/Matter-0.1-7B-boost  ...                        3\n\n[3 rows x 8 columns]\ncohort_temporal values: {'other': 3340, '2023': 1080, '2024': 807}\ntraining_method values: {'unknown': 4676, 'DPO': 347, 'SFT': 136, 'ORPO': 52, 'PPO': 10, 'KTO': 6}\n=== dif_results_temporal.csv: (12508, 9)\n['item_id', 'subject', 'alpha_mh', 'delta_mh', 'se', 'p_value', 'ets_class', 'li_label', 'li_contamination_type']\n                item_id           subject  ...  li_label  li_contamination_type\n0    abstract_algebra.1  abstract_algebra  ...     False                  clean\n1   abstract_algebra.10  abstract_algebra  ...     False                  clean\n2  abstract_algebra.100  abstract_algebra  ...       NaN          no_annotation\n\n[3 rows x 9 columns]\nets_class values: {'A': 6332, 'C': 3918, 'B': 2258}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "784b91ea-82d7-4581-a54a-bfd55599fef3",
+            "tool_use_result": {
+              "stdout": "=== response_matrix.npz keys: ['indices', 'indptr', 'format', 'shape', 'data']\n  indices: shape=(38654082,), dtype=int32\n  indptr: shape=(5228,), dtype=int32\n  format: shape=(), dtype=|S3\n  shape: shape=(2,), dtype=int64\n  data: shape=(38654082,), dtype=int8\n=== response_matrix_index.npz keys: ['model_names', 'item_ids']\n  model_names: shape=(5227,), dtype=object, first3=['0-hero/Matter-0.1-7B' '0-hero/Matter-0.1-7B-DPO-preview'\n '0-hero/Matter-0.1-7B-boost']\n  item_ids: shape=(12508,), dtype=object, first3=['abstract_algebra.1' 'abstract_algebra.10' 'abstract_algebra.100']\n=== model_metadata.csv: (5227, 8)\n['model_name', 'family', 'release_year', 'release_half', 'training_method', 'accuracy', 'cohort_temporal', 'cohort_accuracy_quintile']\n                         model_name  ... cohort_accuracy_quintile\n0              0-hero/Matter-0.1-7B  ...                        3\n1  0-hero/Matter-0.1-7B-DPO-preview  ...                        3\n2        0-hero/Matter-0.1-7B-boost  ...                        3\n\n[3 rows x 8 columns]\ncohort_temporal values: {'other': 3340, '2023': 1080, '2024': 807}\ntraining_method values: {'unknown': 4676, 'DPO': 347, 'SFT': 136, 'ORPO': 52, 'PPO': 10, 'KTO': 6}\n=== dif_results_temporal.csv: (12508, 9)\n['item_id', 'subject', 'alpha_mh', 'delta_mh', 'se', 'p_value', 'ets_class', 'li_label', 'li_contamination_type']\n                item_id           subject  ...  li_label  li_contamination_type\n0    abstract_algebra.1  abstract_algebra  ...     False                  clean\n1   abstract_algebra.10  abstract_algebra  ...     False                  clean\n2  abstract_algebra.100  abstract_algebra  ...       NaN          no_annotation\n\n[3 rows x 9 columns]\nets_class values: {'A': 6332, 'C': 3918, 'B': 2258}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the data:\n\n1. Response matrix is sparse (CSR format), 5227 × 12508\n2. Model metadata has cohort_temporal (2023: 1080, 2024: 807, other: 3340) and training_method (mostly unknown)\n3. DIF results have ets_class with A: 6332, B: 2258, C: 3918 items\n\nNote: training_method is mostly \"unknown\" (4676/5227). The user mentioned \"base vs instruct\" but the metadata has training_method, not a base/instruct field. \n\nI need to figure out how to derive the base vs instruct split the user referenced. There's no explicit base/instruct column in the metadata, so I'll need to infer it either from the model names or by mapping the training_method values, since the user indicated there should be around 1409 base and 478 instruct models.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "129539f9-54a6-433a-a6a1-3ab5a5b27af9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ni3JvoGoJB1SC3ycw1VNA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1211,
+                "cache_read_input_tokens": 26269,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1211
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Need to check how base/instruct is determined — training_method is mostly \"unknown\"."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "f86cc711-2e38-4a66-b74a-b4d1b764993b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ni3JvoGoJB1SC3ycw1VNA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1211,
+                "cache_read_input_tokens": 26269,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1211
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C82v36NDH6pXWffXvJMtnb",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport pandas as pd\nmm = pd.read_csv('artifacts/model_metadata.csv')\n# Check if model names contain instruct/chat patterns\nmm['is_instruct'] = mm['model_name'].str.lower().str.contains('instruct|chat|rlhf|dpo|sft|aligned', regex=True)\nprint('Name-based instruct detection:', mm['is_instruct'].sum())\n# Check training_method vs base\nprint('training_method != unknown:', (mm['training_method'] != 'unknown').sum())\n# Try a model_type derivation\ndef get_type(row):\n    name_lower = row['model_name'].lower()\n    if any(kw in name_lower for kw in ['instruct', 'chat', 'rlhf']):\n        return 'instruct'\n    if row['training_method'] not in ['unknown']:\n        return 'instruct'\n    return 'base'\nmm['model_type'] = mm.apply(get_type, axis=1)\nprint('model_type counts:', mm['model_type'].value_counts().to_dict())\n\"\n",
+                "description": "Derive base vs instruct from model metadata"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "a6de93db-c070-481d-a85c-507a11d6bc07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ni3JvoGoJB1SC3ycw1VNA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1211,
+                "cache_read_input_tokens": 26269,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1211
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T08:16:08.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C82v36NDH6pXWffXvJMtnb",
+              "type": "tool_result",
+              "content": "Name-based instruct detection: 1197\ntraining_method != unknown: 551\nmodel_type counts: {'base': 4081, 'instruct': 1146}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "551936ad-a1b7-467a-a66b-a01e5dd976d2",
+            "tool_use_result": {
+              "stdout": "Name-based instruct detection: 1197\ntraining_method != unknown: 551\nmodel_type counts: {'base': 4081, 'instruct': 1146}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The numbers don't exactly match the user's context (Base: 1409, Instruct: 478), but those might have been for a specific subset. Let me just use a reasonable derivation. The user context says \"Base: 1409, Instruct: 478 (rest: unknown/other)\" which sums to 1887, suggesting these might be only for the 2023+2024 cohorts (1080+807=1887). Let me check.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "d84f4be3-3cc2-4e3f-8189-5012d0d3850d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lv4fy1kLXJz4jiJqd6DzqF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 867,
+                "cache_read_input_tokens": 27480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013UEUFHWQZqx47vGQzaBbWv",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport pandas as pd\nmm = pd.read_csv('artifacts/model_metadata.csv')\ndef get_type(row):\n    name_lower = row['model_name'].lower()\n    if any(kw in name_lower for kw in ['instruct', 'chat', 'rlhf']):\n        return 'instruct'\n    if row['training_method'] not in ['unknown']:\n        return 'instruct'\n    return 'base'\nmm['model_type'] = mm.apply(get_type, axis=1)\n# Check within 2023+2024 cohorts only\nsub = mm[mm['cohort_temporal'].isin(['2023','2024'])]\nprint('2023+2024 model_type:', sub['model_type'].value_counts().to_dict())\nprint('Total 2023+2024:', len(sub))\n\"\n",
+                "description": "Check base/instruct split for temporal cohorts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "78096a0f-0fdc-4045-bb48-143524262d13",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lv4fy1kLXJz4jiJqd6DzqF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 867,
+                "cache_read_input_tokens": 27480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T08:16:16.647Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013UEUFHWQZqx47vGQzaBbWv",
+              "type": "tool_result",
+              "content": "2023+2024 model_type: {'base': 1339, 'instruct': 548}\nTotal 2023+2024: 1887",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "295bd1b9-cd8e-411e-946e-10206ebcf452",
+            "tool_use_result": {
+              "stdout": "2023+2024 model_type: {'base': 1339, 'instruct': 548}\nTotal 2023+2024: 1887",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Close enough to the expected 1409/478. Now let me create the output directory and write the analysis script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "108d9351-6fe4-4a92-90f1-88f2d8f559ae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Se5C4UoqL8w2H8WdyN2HpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 465,
+                "cache_read_input_tokens": 28347,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 465
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gda8pmJ2BYHnsk6AX7ChGN",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis",
+                "description": "Create output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "1f1fa4c9-caef-4631-8ee5-bf85a122509e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Se5C4UoqL8w2H8WdyN2HpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 465,
+                "cache_read_input_tokens": 28347,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 465
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T08:16:21.230Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gda8pmJ2BYHnsk6AX7ChGN",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "98d22cb1-3a50-4135-8cca-13346a648226",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0125q1U5xL38MPQL378A7pnz",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation.py",
+                "content": "\"\"\"\nScore Inflation Quantification & DIF-Corrected Scoring Analysis.\nComputes original vs stable (DIF-free) scores, rank impacts, and equating adjustments.\n\"\"\"\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse, stats\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\n\nOUT = Path(__file__).parent\nART = OUT.parent\n\n# ── Load data ────────────────────────────────────────────────────────────────\n\nrm_data = np.load(ART / 'response_matrix.npz', allow_pickle=True)\nR = sparse.csr_matrix((rm_data['data'], rm_data['indices'], rm_data['indptr']),\n                       shape=tuple(rm_data['shape']))\n\nidx = np.load(ART / 'response_matrix_index.npz', allow_pickle=True)\nmodel_names = idx['model_names']\nitem_ids = idx['item_ids']\n\nmeta = pd.read_csv(ART / 'model_metadata.csv')\ndif = pd.read_csv(ART / 'plan_001' / 'dif_results_temporal.csv')\n\n# ── Derive model_type (base vs instruct) ─────────────────────────────────────\n\ndef classify_type(row):\n    name_lower = row['model_name'].lower()\n    if any(kw in name_lower for kw in ['instruct', 'chat', 'rlhf']):\n        return 'instruct'\n    if row['training_method'] not in ['unknown']:\n        return 'instruct'\n    return 'base'\n\nmeta['model_type'] = meta.apply(classify_type, axis=1)\n\n# ── Identify DIF-C items ─────────────────────────────────────────────────────\n\ndif_c_items = set(dif.loc[dif['ets_class'] == 'C', 'item_id'].values)\nitem_id_list = list(item_ids)\ndif_c_mask = np.array([iid in dif_c_items for iid in item_id_list])\nstable_mask = ~dif_c_mask\n\nn_total = len(item_id_list)\nn_dif_c = dif_c_mask.sum()\nn_stable = stable_mask.sum()\nprint(f\"Items: total={n_total}, DIF-C={n_dif_c} ({100*n_dif_c/n_total:.1f}%), stable={n_stable}\")\n\n# ── Compute scores ───────────────────────────────────────────────────────────\n\nR_dense = R.toarray()  # 5227 × 12508, int8 with -1 = missing\n\nvalid_mask = (R_dense >= 0)  # 0 or 1 are valid; -1 is missing\n\ncorrect_all = np.where(valid_mask, R_dense, 0).sum(axis=1)\nattempted_all = valid_mask.sum(axis=1)\noriginal_score = correct_all / np.maximum(attempted_all, 1)\n\ncorrect_stable = np.where(valid_mask & stable_mask[None, :], R_dense, 0).sum(axis=1)\nattempted_stable = (valid_mask & stable_mask[None, :]).sum(axis=1)\nstable_score = correct_stable / np.maximum(attempted_stable, 1)\n\nscore_change = stable_score - original_score\n\n# ── Build per-model dataframe ────────────────────────────────────────────────\n\ndf = pd.DataFrame({\n    'model_name': model_names,\n    'original_score': original_score,\n    'stable_score': stable_score,\n    'score_change': score_change,\n    'n_attempted_all': attempted_all,\n    'n_attempted_stable': attempted_stable,\n})\n\ndf = df.merge(meta[['model_name', 'cohort_temporal', 'model_type', 'family']], on='model_name', how='left')\n\n# Rankings\ndf['original_rank'] = df['original_score'].rank(ascending=False, method='min').astype(int)\ndf['stable_rank'] = df['stable_score'].rank(ascending=False, method='min').astype(int)\ndf['rank_displacement'] = df['original_rank'] - df['stable_rank']\n\n# ── Analysis 1 & 2: Score inflation by cohort and type ───────────────────────\n\ndef group_stats(group):\n    n = len(group)\n    mu = group['score_change'].mean()\n    sd = group['score_change'].std()\n    se = sd / np.sqrt(n)\n    ci_lo = mu - 1.96 * se\n    ci_hi = mu + 1.96 * se\n    return pd.Series({\n        'n': n,\n        'mean_original': group['original_score'].mean(),\n        'mean_stable': group['stable_score'].mean(),\n        'mean_score_change': mu,\n        'sd_score_change': sd,\n        'ci95_lo': ci_lo,\n        'ci95_hi': ci_hi,\n        'median_score_change': group['score_change'].median(),\n        'mean_rank_displacement': group['rank_displacement'].mean(),\n        'sd_rank_displacement': group['rank_displacement'].std(),\n    })\n\ncohort_summary = df.groupby('cohort_temporal').apply(group_stats).reset_index()\ntype_summary = df.groupby(['cohort_temporal', 'model_type']).apply(group_stats).reset_index()\n\nprint(\"\\n=== Cohort Summary ===\")\nprint(cohort_summary.to_string(index=False))\nprint(\"\\n=== Type Summary ===\")\nprint(type_summary.to_string(index=False))\n\n# ── Analysis 3: Ranking impact ──────────────────────────────────────────────\n\nrho_all, p_rho = stats.spearmanr(df['original_rank'], df['stable_rank'])\nprint(f\"\\nOverall Spearman ρ (original vs stable ranking): {rho_all:.6f} (p={p_rho:.2e})\")\n\nfor cohort in ['2023', '2024']:\n    sub = df[df['cohort_temporal'] == cohort]\n    rho_c, _ = stats.spearmanr(sub['original_rank'], sub['stable_rank'])\n    print(f\"  Cohort {cohort}: ρ = {rho_c:.6f}\")\n\n# Top displaced\ntop_beneficiaries = df.nlargest(20, 'rank_displacement')  # rank improved most in stable\ntop_victims = df.nsmallest(20, 'rank_displacement')  # rank worsened most in stable\ntop_displaced = pd.concat([\n    top_beneficiaries.assign(direction='DIF_victim_rank_improves'),\n    top_victims.assign(direction='DIF_beneficiary_rank_drops'),\n])\n\nprint(\"\\n=== Top-20 DIF Victims (rank improves when DIF items removed) ===\")\nprint(top_beneficiaries[['model_name', 'cohort_temporal', 'model_type', 'original_score',\n                          'stable_score', 'score_change', 'original_rank', 'stable_rank',\n                          'rank_displacement']].to_string(index=False))\n\nprint(\"\\n=== Top-20 DIF Beneficiaries (rank drops when DIF items removed) ===\")\nprint(top_victims[['model_name', 'cohort_temporal', 'model_type', 'original_score',\n                    'stable_score', 'score_change', 'original_rank', 'stable_rank',\n                    'rank_displacement']].to_string(index=False))\n\n# Characteristics of displaced models\nprint(\"\\n=== Displacement characteristics ===\")\nfor direction, group in [('victims', top_beneficiaries), ('beneficiaries', top_victims)]:\n    print(f\"\\n{direction}:\")\n    print(f\"  cohort: {group['cohort_temporal'].value_counts().to_dict()}\")\n    print(f\"  type: {group['model_type'].value_counts().to_dict()}\")\n    print(f\"  families: {group['family'].value_counts().head(5).to_dict()}\")\n\n# ── Analysis 4: Equating adjustment ─────────────────────────────────────────\n\nprint(\"\\n=== Equating Adjustment ===\")\nfor cohort in ['2023', '2024', 'other']:\n    sub = df[df['cohort_temporal'] == cohort]\n    shift = sub['score_change'].mean()\n    print(f\"  Cohort {cohort}: mean_shift = {shift:+.4f} ({shift*100:+.2f} pp)\")\n\n# Cross-cohort ranking comparison (2023 vs 2024 only)\ndf_23 = df[df['cohort_temporal'] == '2023'].copy()\ndf_24 = df[df['cohort_temporal'] == '2024'].copy()\ndf_cross = pd.concat([df_23, df_24])\n\nrho_orig_cross, _ = stats.spearmanr(df_cross['original_score'].rank(ascending=False),\n                                      df_cross['original_rank'])\nrho_stable_cross, _ = stats.spearmanr(df_cross['stable_score'].rank(ascending=False),\n                                        df_cross['stable_rank'])\n\n# Adjusted scores with cohort-specific shifts\nshifts = df.groupby('cohort_temporal')['score_change'].mean().to_dict()\ndf['adjusted_score'] = df.apply(lambda r: r['original_score'] + shifts.get(r['cohort_temporal'], 0), axis=1)\ndf['adjusted_rank'] = df['adjusted_score'].rank(ascending=False, method='min').astype(int)\n\nrho_adj, _ = stats.spearmanr(df['original_rank'], df['adjusted_rank'])\nrho_stable_adj, _ = stats.spearmanr(df['stable_rank'], df['adjusted_rank'])\nprint(f\"\\nRanking correlations:\")\nprint(f\"  original vs stable:   ρ = {rho_all:.6f}\")\nprint(f\"  original vs adjusted: ρ = {rho_adj:.6f}\")\nprint(f\"  stable vs adjusted:   ρ = {rho_stable_adj:.6f}\")\n\n# ── Effect size: Cohen's d for 2023 vs 2024 score change ────────────────────\n\nsc_23 = df_23['score_change'].values\nsc_24 = df_24['score_change'].values\npooled_sd = np.sqrt(((len(sc_23)-1)*sc_23.std()**2 + (len(sc_24)-1)*sc_24.std()**2) /\n                     (len(sc_23)+len(sc_24)-2))\ncohens_d = (sc_24.mean() - sc_23.mean()) / pooled_sd\nt_stat, t_p = stats.ttest_ind(sc_24, sc_23)\nprint(f\"\\n2024 vs 2023 score_change:\")\nprint(f\"  Cohen's d = {cohens_d:.4f}\")\nprint(f\"  t-test: t={t_stat:.3f}, p={t_p:.2e}\")\n\n# ── Save CSVs ────────────────────────────────────────────────────────────────\n\ndf[['model_name', 'cohort_temporal', 'model_type', 'family',\n    'original_score', 'stable_score', 'score_change',\n    'original_rank', 'stable_rank', 'rank_displacement',\n    'adjusted_score', 'adjusted_rank']].to_csv(OUT / 'model_scores.csv', index=False)\n\ncohort_summary.to_csv(OUT / 'cohort_summary.csv', index=False)\ntype_summary.to_csv(OUT / 'type_summary.csv', index=False)\n\ntop_displaced[['model_name', 'cohort_temporal', 'model_type', 'family', 'direction',\n               'original_score', 'stable_score', 'score_change',\n               'original_rank', 'stable_rank', 'rank_displacement']].to_csv(OUT / 'top_displaced.csv', index=False)\n\nprint(\"\\nCSVs saved.\")\n\n# ── Visualizations ───────────────────────────────────────────────────────────\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.size': 11,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.6,\n    'ytick.major.width': 0.6,\n    'legend.frameon': False,\n    'figure.dpi': 150,\n})\n\n# 1. Scatter: original vs stable score by cohort\nfig, ax = plt.subplots(figsize=(7, 6))\ncolors = {'2023': '#2166ac', '2024': '#b2182b', 'other': '#999999'}\nfor cohort in ['other', '2023', '2024']:\n    sub = df[df['cohort_temporal'] == cohort]\n    ax.scatter(sub['original_score'], sub['stable_score'],\n               c=colors[cohort], alpha=0.25, s=8, label=cohort, rasterized=True)\nlo, hi = df['original_score'].min() - 0.02, df['original_score'].max() + 0.02\nax.plot([lo, hi], [lo, hi], 'k--', lw=0.8, alpha=0.5, label='y = x')\nax.set_xlabel('Original Score (all items)')\nax.set_ylabel('Stable Score (non-DIF-C items)')\nax.set_xlim(lo, hi)\nax.set_ylim(lo, hi)\nax.legend(loc='lower right', fontsize=9)\nax.set_title('Original vs. DIF-Corrected Scores')\nfig.tight_layout()\nfig.savefig(OUT / 'score_scatter.pdf', bbox_inches='tight')\nfig.savefig(OUT / 'score_scatter.png', dpi=300, bbox_inches='tight')\nplt.close(fig)\n\n# 2. Rank displacement histogram by cohort\nfig, ax = plt.subplots(figsize=(8, 5))\nfor cohort in ['2023', '2024']:\n    sub = df[df['cohort_temporal'] == cohort]\n    ax.hist(sub['rank_displacement'], bins=80, alpha=0.55, color=colors[cohort],\n            label=f'{cohort} (n={len(sub)})', density=True)\nax.axvline(0, color='k', ls='--', lw=0.8)\nax.set_xlabel('Rank Displacement (original_rank − stable_rank)')\nax.set_ylabel('Density')\nax.set_title('Rank Displacement Distribution by Cohort')\nax.legend(fontsize=9)\nfig.tight_layout()\nfig.savefig(OUT / 'rank_displacement.pdf', bbox_inches='tight')\nfig.savefig(OUT / 'rank_displacement.png', dpi=300, bbox_inches='tight')\nplt.close(fig)\n\n# 3. Violin: score_change by cohort × model_type\nfig, ax = plt.subplots(figsize=(8, 5.5))\ngroups = []\nlabels = []\npositions = []\nviolin_colors = []\npos_map = {'2023': [1, 2], '2024': [4, 5]}\ntype_order = ['base', 'instruct']\ncolor_map = {('2023', 'base'): '#4393c3', ('2023', 'instruct'): '#2166ac',\n             ('2024', 'base'): '#d6604d', ('2024', 'instruct'): '#b2182b'}\n\nfor cohort in ['2023', '2024']:\n    for i, mtype in enumerate(type_order):\n        sub = df[(df['cohort_temporal'] == cohort) & (df['model_type'] == mtype)]\n        if len(sub) < 5:\n            continue\n        groups.append(sub['score_change'].values * 100)  # convert to pp\n        labels.append(f'{cohort}\\n{mtype}')\n        positions.append(pos_map[cohort][i])\n        violin_colors.append(color_map[(cohort, mtype)])\n\nparts = ax.violinplot(groups, positions=positions, showmeans=True, showextrema=False)\nfor i, pc in enumerate(parts['bodies']):\n    pc.set_facecolor(violin_colors[i])\n    pc.set_alpha(0.7)\nparts['cmeans'].set_color('black')\n\nax.set_xticks(positions)\nax.set_xticklabels(labels, fontsize=9)\nax.axhline(0, color='k', ls='--', lw=0.8, alpha=0.5)\nax.set_ylabel('Score Change (pp): stable − original')\nax.set_title('Score Inflation/Deflation by Cohort × Model Type')\nfig.tight_layout()\nfig.savefig(OUT / 'score_change_violin.pdf', bbox_inches='tight')\nfig.savefig(OUT / 'score_change_violin.png', dpi=300, bbox_inches='tight')\nplt.close(fig)\n\nprint(\"Figures saved.\")\n\n# ── Generate report ──────────────────────────────────────────────────────────\n\nreport_lines = []\nreport_lines.append(\"# Score Inflation & DIF-Corrected Scoring Analysis\\n\")\nreport_lines.append(f\"**Date**: 2026-05-23\\n\")\nreport_lines.append(f\"**Dataset**: {n_total} items, {len(df)} models\\n\")\nreport_lines.append(f\"**DIF-C items**: {n_dif_c} ({100*n_dif_c/n_total:.1f}%)\\n\")\nreport_lines.append(f\"**Stable items**: {n_stable} ({100*n_stable/n_total:.1f}%)\\n\")\n\nreport_lines.append(\"\\n## 1. Score Change Summary\\n\")\nreport_lines.append(\"### By Cohort\\n\")\nreport_lines.append(\"| Cohort | N | Mean Original | Mean Stable | Mean Δ (pp) | SD (pp) | 95% CI |\\n\")\nreport_lines.append(\"|--------|---|--------------|-------------|-------------|---------|--------|\\n\")\nfor _, row in cohort_summary.iterrows():\n    report_lines.append(\n        f\"| {row['cohort_temporal']} | {int(row['n'])} | \"\n        f\"{row['mean_original']:.4f} | {row['mean_stable']:.4f} | \"\n        f\"{row['mean_score_change']*100:+.2f} | {row['sd_score_change']*100:.2f} | \"\n        f\"[{row['ci95_lo']*100:+.2f}, {row['ci95_hi']*100:+.2f}] |\\n\"\n    )\n\nreport_lines.append(\"\\n### By Cohort × Model Type\\n\")\nreport_lines.append(\"| Cohort | Type | N | Mean Δ (pp) | SD (pp) | 95% CI |\\n\")\nreport_lines.append(\"|--------|------|---|-------------|---------|--------|\\n\")\nfor _, row in type_summary.iterrows():\n    report_lines.append(\n        f\"| {row['cohort_temporal']} | {row['model_type']} | {int(row['n'])} | \"\n        f\"{row['mean_score_change']*100:+.2f} | {row['sd_score_change']*100:.2f} | \"\n        f\"[{row['ci95_lo']*100:+.2f}, {row['ci95_hi']*100:+.2f}] |\\n\"\n    )\n\nreport_lines.append(f\"\\n### Effect Size\\n\")\nreport_lines.append(f\"- 2024 vs 2023 score_change Cohen's d = {cohens_d:.4f}\\n\")\nreport_lines.append(f\"- Welch's t-test: t = {t_stat:.3f}, p = {t_p:.2e}\\n\")\n\nreport_lines.append(\"\\n## 2. Ranking Impact\\n\")\nreport_lines.append(f\"- Overall Spearman ρ (original vs stable): **{rho_all:.6f}**\\n\")\nreport_lines.append(f\"- Original vs adjusted: ρ = {rho_adj:.6f}\\n\")\nreport_lines.append(f\"- Stable vs adjusted: ρ = {rho_stable_adj:.6f}\\n\")\n\nreport_lines.append(\"\\n### Top-20 DIF Victims (rank improves most)\\n\")\nreport_lines.append(\"| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\\n\")\nreport_lines.append(\"|-------|--------|------|-----------|-------------|------|----------|\\n\")\nfor _, row in top_beneficiaries.iterrows():\n    report_lines.append(\n        f\"| {row['model_name'][:50]} | {row['cohort_temporal']} | {row['model_type']} | \"\n        f\"{row['original_score']:.4f} | {row['stable_score']:.4f} | \"\n        f\"{row['score_change']*100:+.2f} | {int(row['rank_displacement']):+d} |\\n\"\n    )\n\nreport_lines.append(\"\\n### Top-20 DIF Beneficiaries (rank drops most)\\n\")\nreport_lines.append(\"| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\\n\")\nreport_lines.append(\"|-------|--------|------|-----------|-------------|------|----------|\\n\")\nfor _, row in top_victims.iterrows():\n    report_lines.append(\n        f\"| {row['model_name'][:50]} | {row['cohort_temporal']} | {row['model_type']} | \"\n        f\"{row['original_score']:.4f} | {row['stable_score']:.4f} | \"\n        f\"{row['score_change']*100:+.2f} | {int(row['rank_displacement']):+d} |\\n\"\n    )\n\nreport_lines.append(\"\\n## 3. Equating Adjustment\\n\")\nfor cohort in ['2023', '2024', 'other']:\n    sub = df[df['cohort_temporal'] == cohort]\n    shift = sub['score_change'].mean()\n    report_lines.append(f\"- **{cohort}**: adjusted_score = original_score + ({shift:+.4f})\\n\")\n\nreport_lines.append(\"\\n## 4. Interpretation\\n\")\n\n# Compute interpretation-relevant numbers\nsc_2023_mean = df[df['cohort_temporal']=='2023']['score_change'].mean()\nsc_2024_mean = df[df['cohort_temporal']=='2024']['score_change'].mean()\ndiff_pp = (sc_2024_mean - sc_2023_mean) * 100\n\nreport_lines.append(\n    f\"Removing the {n_dif_c} DIF-C items ({100*n_dif_c/n_total:.1f}% of all items) \"\n    f\"shifts model scores by an average of {df['score_change'].mean()*100:+.2f} pp overall. \"\n    f\"The direction of this shift differs by cohort: 2023 models see a mean change of \"\n    f\"{sc_2023_mean*100:+.2f} pp while 2024 models see {sc_2024_mean*100:+.2f} pp \"\n    f\"(differential: {diff_pp:+.2f} pp).\\n\\n\"\n)\n\nreport_lines.append(\n    f\"Despite measurable score changes, the overall ranking is highly preserved \"\n    f\"(ρ = {rho_all:.4f}), indicating that DIF primarily shifts absolute scores \"\n    f\"rather than relative ordering. However, individual models can experience \"\n    f\"rank displacements exceeding ±{int(abs(df['rank_displacement']).quantile(0.99))} positions \"\n    f\"(99th percentile).\\n\"\n)\n\n(OUT / 'score_inflation_report.md').write_text(''.join(report_lines))\nprint(\"Report saved.\")\nprint(\"\\nDone.\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "4dacceb1-6a7f-4f37-bd57-43bb88600623",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PAXjyqmSA2dPTtHBGAr5MK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 260,
+                "cache_read_input_tokens": 28812,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 260
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T08:17:46.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0125q1U5xL38MPQL378A7pnz",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "fbed4e4e-057a-4a60-bcc7-beeb7619e806",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation.py",
+              "content": "\"\"\"\nScore Inflation Quantification & DIF-Corrected Scoring Analysis.\nComputes original vs stable (DIF-free) scores, rank impacts, and equating adjustments.\n\"\"\"\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse, stats\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\n\nOUT = Path(__file__).parent\nART = OUT.parent\n\n# ── Load data ────────────────────────────────────────────────────────────────\n\nrm_data = np.load(ART / 'response_matrix.npz', allow_pickle=True)\nR = sparse.csr_matrix((rm_data['data'], rm_data['indices'], rm_data['indptr']),\n                       shape=tuple(rm_data['shape']))\n\nidx = np.load(ART / 'response_matrix_index.npz', allow_pickle=True)\nmodel_names = idx['model_names']\nitem_ids = idx['item_ids']\n\nmeta = pd.read_csv(ART / 'model_metadata.csv')\ndif = pd.read_csv(ART / 'plan_001' / 'dif_results_temporal.csv')\n\n# ── Derive model_type (base vs instruct) ─────────────────────────────────────\n\ndef classify_type(row):\n    name_lower = row['model_name'].lower()\n    if any(kw in name_lower for kw in ['instruct', 'chat', 'rlhf']):\n        return 'instruct'\n    if row['training_method'] not in ['unknown']:\n        return 'instruct'\n    return 'base'\n\nmeta['model_type'] = meta.apply(classify_type, axis=1)\n\n# ── Identify DIF-C items ─────────────────────────────────────────────────────\n\ndif_c_items = set(dif.loc[dif['ets_class'] == 'C', 'item_id'].values)\nitem_id_list = list(item_ids)\ndif_c_mask = np.array([iid in dif_c_items for iid in item_id_list])\nstable_mask = ~dif_c_mask\n\nn_total = len(item_id_list)\nn_dif_c = dif_c_mask.sum()\nn_stable = stable_mask.sum()\nprint(f\"Items: total={n_total}, DIF-C={n_dif_c} ({100*n_dif_c/n_total:.1f}%), stable={n_stable}\")\n\n# ── Compute scores ───────────────────────────────────────────────────────────\n\nR_dense = R.toarray()  # 5227 × 12508, int8 with -1 = missing\n\nvalid_mask = (R_dense >= 0)  # 0 or 1 are valid; -1 is missing\n\ncorrect_all = np.where(valid_mask, R_dense, 0).sum(axis=1)\nattempted_all = valid_mask.sum(axis=1)\noriginal_score = correct_all / np.maximum(attempted_all, 1)\n\ncorrect_stable = np.where(valid_mask & stable_mask[None, :], R_dense, 0).sum(axis=1)\nattempted_stable = (valid_mask & stable_mask[None, :]).sum(axis=1)\nstable_score = correct_stable / np.maximum(attempted_stable, 1)\n\nscore_change = stable_score - original_score\n\n# ── Build per-model dataframe ────────────────────────────────────────────────\n\ndf = pd.DataFrame({\n    'model_name': model_names,\n    'original_score': original_score,\n    'stable_score': stable_score,\n    'score_change': score_change,\n    'n_attempted_all': attempted_all,\n    'n_attempted_stable': attempted_stable,\n})\n\ndf = df.merge(meta[['model_name', 'cohort_temporal', 'model_type', 'family']], on='model_name', how='left')\n\n# Rankings\ndf['original_rank'] = df['original_score'].rank(ascending=False, method='min').astype(int)\ndf['stable_rank'] = df['stable_score'].rank(ascending=False, method='min').astype(int)\ndf['rank_displacement'] = df['original_rank'] - df['stable_rank']\n\n# ── Analysis 1 & 2: Score inflation by cohort and type ───────────────────────\n\ndef group_stats(group):\n    n = len(group)\n    mu = group['score_change'].mean()\n    sd = group['score_change'].std()\n    se = sd / np.sqrt(n)\n    ci_lo = mu - 1.96 * se\n    ci_hi = mu + 1.96 * se\n    return pd.Series({\n        'n': n,\n        'mean_original': group['original_score'].mean(),\n        'mean_stable': group['stable_score'].mean(),\n        'mean_score_change': mu,\n        'sd_score_change': sd,\n        'ci95_lo': ci_lo,\n        'ci95_hi': ci_hi,\n        'median_score_change': group['score_change'].median(),\n        'mean_rank_displacement': group['rank_displacement'].mean(),\n        'sd_rank_displacement': group['rank_displacement'].std(),\n    })\n\ncohort_summary = df.groupby('cohort_temporal').apply(group_stats).reset_index()\ntype_summary = df.groupby(['cohort_temporal', 'model_type']).apply(group_stats).reset_index()\n\nprint(\"\\n=== Cohort Summary ===\")\nprint(cohort_summary.to_string(index=False))\nprint(\"\\n=== Type Summary ===\")\nprint(type_summary.to_string(index=False))\n\n# ── Analysis 3: Ranking impact ──────────────────────────────────────────────\n\nrho_all, p_rho = stats.spearmanr(df['original_rank'], df['stable_rank'])\nprint(f\"\\nOverall Spearman ρ (original vs stable ranking): {rho_all:.6f} (p={p_rho:.2e})\")\n\nfor cohort in ['2023', '2024']:\n    sub = df[df['cohort_temporal'] == cohort]\n    rho_c, _ = stats.spearmanr(sub['original_rank'], sub['stable_rank'])\n    print(f\"  Cohort {cohort}: ρ = {rho_c:.6f}\")\n\n# Top displaced\ntop_beneficiaries = df.nlargest(20, 'rank_displacement')  # rank improved most in stable\ntop_victims = df.nsmallest(20, 'rank_displacement')  # rank worsened most in stable\ntop_displaced = pd.concat([\n    top_beneficiaries.assign(direction='DIF_victim_rank_improves'),\n    top_victims.assign(direction='DIF_beneficiary_rank_drops'),\n])\n\nprint(\"\\n=== Top-20 DIF Victims (rank improves when DIF items removed) ===\")\nprint(top_beneficiaries[['model_name', 'cohort_temporal', 'model_type', 'original_score',\n                          'stable_score', 'score_change', 'original_rank', 'stable_rank',\n                          'rank_displacement']].to_string(index=False))\n\nprint(\"\\n=== Top-20 DIF Beneficiaries (rank drops when DIF items removed) ===\")\nprint(top_victims[['model_name', 'cohort_temporal', 'model_type', 'original_score',\n                    'stable_score', 'score_change', 'original_rank', 'stable_rank',\n                    'rank_displacement']].to_string(index=False))\n\n# Characteristics of displaced models\nprint(\"\\n=== Displacement characteristics ===\")\nfor direction, group in [('victims', top_beneficiaries), ('beneficiaries', top_victims)]:\n    print(f\"\\n{direction}:\")\n    print(f\"  cohort: {group['cohort_temporal'].value_counts().to_dict()}\")\n    print(f\"  type: {group['model_type'].value_counts().to_dict()}\")\n    print(f\"  families: {group['family'].value_counts().head(5).to_dict()}\")\n\n# ── Analysis 4: Equating adjustment ─────────────────────────────────────────\n\nprint(\"\\n=== Equating Adjustment ===\")\nfor cohort in ['2023', '2024', 'other']:\n    sub = df[df['cohort_temporal'] == cohort]\n    shift = sub['score_change'].mean()\n    print(f\"  Cohort {cohort}: mean_shift = {shift:+.4f} ({shift*100:+.2f} pp)\")\n\n# Cross-cohort ranking comparison (2023 vs 2024 only)\ndf_23 = df[df['cohort_temporal'] == '2023'].copy()\ndf_24 = df[df['cohort_temporal'] == '2024'].copy()\ndf_cross = pd.concat([df_23, df_24])\n\nrho_orig_cross, _ = stats.spearmanr(df_cross['original_score'].rank(ascending=False),\n                                      df_cross['original_rank'])\nrho_stable_cross, _ = stats.spearmanr(df_cross['stable_score'].rank(ascending=False),\n                                        df_cross['stable_rank'])\n\n# Adjusted scores with cohort-specific shifts\nshifts = df.groupby('cohort_temporal')['score_change'].mean().to_dict()\ndf['adjusted_score'] = df.apply(lambda r: r['original_score'] + shifts.get(r['cohort_temporal'], 0), axis=1)\ndf['adjusted_rank'] = df['adjusted_score'].rank(ascending=False, method='min').astype(int)\n\nrho_adj, _ = stats.spearmanr(df['original_rank'], df['adjusted_rank'])\nrho_stable_adj, _ = stats.spearmanr(df['stable_rank'], df['adjusted_rank'])\nprint(f\"\\nRanking correlations:\")\nprint(f\"  original vs stable:   ρ = {rho_all:.6f}\")\nprint(f\"  original vs adjusted: ρ = {rho_adj:.6f}\")\nprint(f\"  stable vs adjusted:   ρ = {rho_stable_adj:.6f}\")\n\n# ── Effect size: Cohen's d for 2023 vs 2024 score change ────────────────────\n\nsc_23 = df_23['score_change'].values\nsc_24 = df_24['score_change'].values\npooled_sd = np.sqrt(((len(sc_23)-1)*sc_23.std()**2 + (len(sc_24)-1)*sc_24.std()**2) /\n                     (len(sc_23)+len(sc_24)-2))\ncohens_d = (sc_24.mean() - sc_23.mean()) / pooled_sd\nt_stat, t_p = stats.ttest_ind(sc_24, sc_23)\nprint(f\"\\n2024 vs 2023 score_change:\")\nprint(f\"  Cohen's d = {cohens_d:.4f}\")\nprint(f\"  t-test: t={t_stat:.3f}, p={t_p:.2e}\")\n\n# ── Save CSVs ────────────────────────────────────────────────────────────────\n\ndf[['model_name', 'cohort_temporal', 'model_type', 'family',\n    'original_score', 'stable_score', 'score_change',\n    'original_rank', 'stable_rank', 'rank_displacement',\n    'adjusted_score', 'adjusted_rank']].to_csv(OUT / 'model_scores.csv', index=False)\n\ncohort_summary.to_csv(OUT / 'cohort_summary.csv', index=False)\ntype_summary.to_csv(OUT / 'type_summary.csv', index=False)\n\ntop_displaced[['model_name', 'cohort_temporal', 'model_type', 'family', 'direction',\n               'original_score', 'stable_score', 'score_change',\n               'original_rank', 'stable_rank', 'rank_displacement']].to_csv(OUT / 'top_displaced.csv', index=False)\n\nprint(\"\\nCSVs saved.\")\n\n# ── Visualizations ───────────────────────────────────────────────────────────\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.size': 11,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.6,\n    'ytick.major.width': 0.6,\n    'legend.frameon': False,\n    'figure.dpi': 150,\n})\n\n# 1. Scatter: original vs stable score by cohort\nfig, ax = plt.subplots(figsize=(7, 6))\ncolors = {'2023': '#2166ac', '2024': '#b2182b', 'other': '#999999'}\nfor cohort in ['other', '2023', '2024']:\n    sub = df[df['cohort_temporal'] == cohort]\n    ax.scatter(sub['original_score'], sub['stable_score'],\n               c=colors[cohort], alpha=0.25, s=8, label=cohort, rasterized=True)\nlo, hi = df['original_score'].min() - 0.02, df['original_score'].max() + 0.02\nax.plot([lo, hi], [lo, hi], 'k--', lw=0.8, alpha=0.5, label='y = x')\nax.set_xlabel('Original Score (all items)')\nax.set_ylabel('Stable Score (non-DIF-C items)')\nax.set_xlim(lo, hi)\nax.set_ylim(lo, hi)\nax.legend(loc='lower right', fontsize=9)\nax.set_title('Original vs. DIF-Corrected Scores')\nfig.tight_layout()\nfig.savefig(OUT / 'score_scatter.pdf', bbox_inches='tight')\nfig.savefig(OUT / 'score_scatter.png', dpi=300, bbox_inches='tight')\nplt.close(fig)\n\n# 2. Rank displacement histogram by cohort\nfig, ax = plt.subplots(figsize=(8, 5))\nfor cohort in ['2023', '2024']:\n    sub = df[df['cohort_temporal'] == cohort]\n    ax.hist(sub['rank_displacement'], bins=80, alpha=0.55, color=colors[cohort],\n            label=f'{cohort} (n={len(sub)})', density=True)\nax.axvline(0, color='k', ls='--', lw=0.8)\nax.set_xlabel('Rank Displacement (original_rank − stable_rank)')\nax.set_ylabel('Density')\nax.set_title('Rank Displacement Distribution by Cohort')\nax.legend(fontsize=9)\nfig.tight_layout()\nfig.savefig(OUT / 'rank_displacement.pdf', bbox_inches='tight')\nfig.savefig(OUT / 'rank_displacement.png', dpi=300, bbox_inches='tight')\nplt.close(fig)\n\n# 3. Violin: score_change by cohort × model_type\nfig, ax = plt.subplots(figsize=(8, 5.5))\ngroups = []\nlabels = []\npositions = []\nviolin_colors = []\npos_map = {'2023': [1, 2], '2024': [4, 5]}\ntype_order = ['base', 'instruct']\ncolor_map = {('2023', 'base'): '#4393c3', ('2023', 'instruct'): '#2166ac',\n             ('2024', 'base'): '#d6604d', ('2024', 'instruct'): '#b2182b'}\n\nfor cohort in ['2023', '2024']:\n    for i, mtype in enumerate(type_order):\n        sub = df[(df['cohort_temporal'] == cohort) & (df['model_type'] == mtype)]\n        if len(sub) < 5:\n            continue\n        groups.append(sub['score_change'].values * 100)  # convert to pp\n        labels.append(f'{cohort}\\n{mtype}')\n        positions.append(pos_map[cohort][i])\n        violin_colors.append(color_map[(cohort, mtype)])\n\nparts = ax.violinplot(groups, positions=positions, showmeans=True, showextrema=False)\nfor i, pc in enumerate(parts['bodies']):\n    pc.set_facecolor(violin_colors[i])\n    pc.set_alpha(0.7)\nparts['cmeans'].set_color('black')\n\nax.set_xticks(positions)\nax.set_xticklabels(labels, fontsize=9)\nax.axhline(0, color='k', ls='--', lw=0.8, alpha=0.5)\nax.set_ylabel('Score Change (pp): stable − original')\nax.set_title('Score Inflation/Deflation by Cohort × Model Type')\nfig.tight_layout()\nfig.savefig(OUT / 'score_change_violin.pdf', bbox_inches='tight')\nfig.savefig(OUT / 'score_change_violin.png', dpi=300, bbox_inches='tight')\nplt.close(fig)\n\nprint(\"Figures saved.\")\n\n# ── Generate report ──────────────────────────────────────────────────────────\n\nreport_lines = []\nreport_lines.append(\"# Score Inflation & DIF-Corrected Scoring Analysis\\n\")\nreport_lines.append(f\"**Date**: 2026-05-23\\n\")\nreport_lines.append(f\"**Dataset**: {n_total} items, {len(df)} models\\n\")\nreport_lines.append(f\"**DIF-C items**: {n_dif_c} ({100*n_dif_c/n_total:.1f}%)\\n\")\nreport_lines.append(f\"**Stable items**: {n_stable} ({100*n_stable/n_total:.1f}%)\\n\")\n\nreport_lines.append(\"\\n## 1. Score Change Summary\\n\")\nreport_lines.append(\"### By Cohort\\n\")\nreport_lines.append(\"| Cohort | N | Mean Original | Mean Stable | Mean Δ (pp) | SD (pp) | 95% CI |\\n\")\nreport_lines.append(\"|--------|---|--------------|-------------|-------------|---------|--------|\\n\")\nfor _, row in cohort_summary.iterrows():\n    report_lines.append(\n        f\"| {row['cohort_temporal']} | {int(row['n'])} | \"\n        f\"{row['mean_original']:.4f} | {row['mean_stable']:.4f} | \"\n        f\"{row['mean_score_change']*100:+.2f} | {row['sd_score_change']*100:.2f} | \"\n        f\"[{row['ci95_lo']*100:+.2f}, {row['ci95_hi']*100:+.2f}] |\\n\"\n    )\n\nreport_lines.append(\"\\n### By Cohort × Model Type\\n\")\nreport_lines.append(\"| Cohort | Type | N | Mean Δ (pp) | SD (pp) | 95% CI |\\n\")\nreport_lines.append(\"|--------|------|---|-------------|---------|--------|\\n\")\nfor _, row in type_summary.iterrows():\n    report_lines.append(\n        f\"| {row['cohort_temporal']} | {row['model_type']} | {int(row['n'])} | \"\n        f\"{row['mean_score_change']*100:+.2f} | {row['sd_score_change']*100:.2f} | \"\n        f\"[{row['ci95_lo']*100:+.2f}, {row['ci95_hi']*100:+.2f}] |\\n\"\n    )\n\nreport_lines.append(f\"\\n### Effect Size\\n\")\nreport_lines.append(f\"- 2024 vs 2023 score_change Cohen's d = {cohens_d:.4f}\\n\")\nreport_lines.append(f\"- Welch's t-test: t = {t_stat:.3f}, p = {t_p:.2e}\\n\")\n\nreport_lines.append(\"\\n## 2. Ranking Impact\\n\")\nreport_lines.append(f\"- Overall Spearman ρ (original vs stable): **{rho_all:.6f}**\\n\")\nreport_lines.append(f\"- Original vs adjusted: ρ = {rho_adj:.6f}\\n\")\nreport_lines.append(f\"- Stable vs adjusted: ρ = {rho_stable_adj:.6f}\\n\")\n\nreport_lines.append(\"\\n### Top-20 DIF Victims (rank improves most)\\n\")\nreport_lines.append(\"| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\\n\")\nreport_lines.append(\"|-------|--------|------|-----------|-------------|------|----------|\\n\")\nfor _, row in top_beneficiaries.iterrows():\n    report_lines.append(\n        f\"| {row['model_name'][:50]} | {row['cohort_temporal']} | {row['model_type']} | \"\n        f\"{row['original_score']:.4f} | {row['stable_score']:.4f} | \"\n        f\"{row['score_change']*100:+.2f} | {int(row['rank_displacement']):+d} |\\n\"\n    )\n\nreport_lines.append(\"\\n### Top-20 DIF Beneficiaries (rank drops most)\\n\")\nreport_lines.append(\"| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\\n\")\nreport_lines.append(\"|-------|--------|------|-----------|-------------|------|----------|\\n\")\nfor _, row in top_victims.iterrows():\n    report_lines.append(\n        f\"| {row['model_name'][:50]} | {row['cohort_temporal']} | {row['model_type']} | \"\n        f\"{row['original_score']:.4f} | {row['stable_score']:.4f} | \"\n        f\"{row['score_change']*100:+.2f} | {int(row['rank_displacement']):+d} |\\n\"\n    )\n\nreport_lines.append(\"\\n## 3. Equating Adjustment\\n\")\nfor cohort in ['2023', '2024', 'other']:\n    sub = df[df['cohort_temporal'] == cohort]\n    shift = sub['score_change'].mean()\n    report_lines.append(f\"- **{cohort}**: adjusted_score = original_score + ({shift:+.4f})\\n\")\n\nreport_lines.append(\"\\n## 4. Interpretation\\n\")\n\n# Compute interpretation-relevant numbers\nsc_2023_mean = df[df['cohort_temporal']=='2023']['score_change'].mean()\nsc_2024_mean = df[df['cohort_temporal']=='2024']['score_change'].mean()\ndiff_pp = (sc_2024_mean - sc_2023_mean) * 100\n\nreport_lines.append(\n    f\"Removing the {n_dif_c} DIF-C items ({100*n_dif_c/n_total:.1f}% of all items) \"\n    f\"shifts model scores by an average of {df['score_change'].mean()*100:+.2f} pp overall. \"\n    f\"The direction of this shift differs by cohort: 2023 models see a mean change of \"\n    f\"{sc_2023_mean*100:+.2f} pp while 2024 models see {sc_2024_mean*100:+.2f} pp \"\n    f\"(differential: {diff_pp:+.2f} pp).\\n\\n\"\n)\n\nreport_lines.append(\n    f\"Despite measurable score changes, the overall ranking is highly preserved \"\n    f\"(ρ = {rho_all:.4f}), indicating that DIF primarily shifts absolute scores \"\n    f\"rather than relative ordering. However, individual models can experience \"\n    f\"rank displacements exceeding ±{int(abs(df['rank_displacement']).quantile(0.99))} positions \"\n    f\"(99th percentile).\\n\"\n)\n\n(OUT / 'score_inflation_report.md').write_text(''.join(report_lines))\nprint(\"Report saved.\")\nprint(\"\\nDone.\")\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dtuu8YnN6wMhxYLWBgjg6E",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/score_inflation_analysis/score_inflation.py 2>&1",
+                "description": "Run score inflation analysis",
+                "timeout": 300000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "f4a92b9f-6704-40f3-9c94-67ab328013b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VQBusMVHDvHvnK8GSmmuku",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6440,
+                "cache_read_input_tokens": 29072,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6440
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bpns0d2so",
+                "tool_use_id": "toolu_01Dtuu8YnN6wMhxYLWBgjg6E",
+                "description": "Run score inflation analysis",
+                "task_type": "local_bash",
+                "uuid": "574549a9-b46c-4e3e-afef-fd726baaa4e6",
+                "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bpns0d2so",
+                "tool_use_id": "toolu_01Dtuu8YnN6wMhxYLWBgjg6E",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run score inflation analysis",
+                "uuid": "66ba824c-373c-4068-9156-f6e329a422b3",
+                "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T08:17:54.898Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dtuu8YnN6wMhxYLWBgjg6E",
+              "type": "tool_result",
+              "content": "Items: total=12508, DIF-C=3918 (31.3%), stable=8590\n\n=== Cohort Summary ===\ncohort_temporal      n  mean_original  mean_stable  mean_score_change  sd_score_change  ci95_lo  ci95_hi  median_score_change  mean_rank_displacement  sd_rank_displacement\n           2023 1080.0       0.581380     0.604889           0.023508         0.008807 0.022983 0.024033             0.026174               23.026852             89.869250\n           2024  807.0       0.606830     0.627430           0.020600         0.010434 0.019880 0.021320             0.019963              -73.265180            161.690017\n          other 3340.0       0.590643     0.611180           0.020537         0.009221 0.020224 0.020850             0.022760               11.040719            121.664231\n\n=== Type Summary ===\ncohort_temporal model_type      n  mean_original  mean_stable  mean_score_change  sd_score_change  ci95_lo  ci95_hi  median_score_change  mean_rank_displacement  sd_rank_displacement\n           2023       base  805.0       0.589965     0.613665           0.023700         0.008791 0.023093 0.024308             0.026578               32.142857             93.463781\n           2023   instruct  275.0       0.556251     0.579197           0.022946         0.008845 0.021901 0.023991             0.025212               -3.658182             72.204036\n           2024       base  534.0       0.593416     0.614035           0.020619         0.010603 0.019720 0.021518             0.020109              -74.511236            164.835864\n           2024   instruct  273.0       0.633068     0.653632           0.020564         0.010114 0.019364 0.021763             0.019577              -70.827839            155.621039\n          other       base 2742.0       0.593364     0.613825           0.020460         0.009162 0.020118 0.020803             0.022717                9.851933            126.457362\n          other   instruct  598.0       0.578163     0.599052           0.020889         0.009484 0.020129 0.021649             0.023092               16.491639             96.594001\n\nOverall Spearman ρ (original vs stable ranking): 0.996455 (p=0.00e+00)\n  Cohort 2023: ρ = 0.998857\n  Cohort 2024: ρ = 0.997018\n\n=== Top-20 DIF Victims (rank improves when DIF items removed) ===\n                                 model_name cohort_temporal model_type  original_score  stable_score  score_change  original_rank  stable_rank  rank_displacement\n              liminerity/Blurstral-7b-slerp           other       base        0.694835      0.723632      0.028797           1410          817                593\nDreadPoor/PAIN_LeDestroy-7B-task_arithmetic           other       base        0.698433      0.725844      0.027411           1180          610                570\n             flammenai/flammen26-mistral-7B            2023       base        0.696114      0.723981      0.027867           1335          787                548\n             Gille/StrangeMerges_2-7B-slerp           other       base        0.696434      0.723865      0.027431           1315          797                518\n            Gille/StrangeMerges_12-7B-slerp           other       base        0.695955      0.723166      0.027212           1344          850                494\n                  jambroz/sixtyoneeighty-7b           other       base        0.697154      0.724098      0.026944           1268          775                493\n             jambroz/sixtyoneeighty-7b-chat           other   instruct        0.697154      0.724098      0.026944           1268          775                493\n                       antiven0m/reverie-7b           other       base        0.696834      0.723749      0.026915           1288          804                484\n             GreenNode/GreenNodeLM-7B-v2leo           other       base        0.696194      0.723166      0.026972           1329          850                479\n              jambroz/sixtyoneeighty-7b-dpo           other   instruct        0.696594      0.723399      0.026805           1300          835                465\n            DreadPoor/Sphinx-7B-Model_Stock           other       base        0.696994      0.723632      0.026638           1278          817                461\n                  Inv/Konstanta-V4-Alpha-7B           other       base        0.697713      0.724098      0.026384           1230          775                455\n               SanjiWatsuki/Kunoichi-DPO-7B           other   instruct        0.696514      0.723166      0.026652           1304          850                454\n         allknowingroger/LimyQstar-7B-slerp           other       base        0.700032      0.727474      0.027442            979          531                448\n                    mncai/mistral-7b-dpo-v6           other   instruct        0.698353      0.724214      0.025861           1194          756                438\n        Gille/StrangeMerges_17-7B-dare_ties           other       base        0.693316      0.721420      0.028104           1486         1050                436\n                 Vasanth/Valor_Macaroni_moe           other       base        0.696914      0.723166      0.026252           1284          850                434\n                    nbeerbower/bruphin-iota           other       base        0.698113      0.723865      0.025752           1210          797                413\n             flammenai/flammen27-mistral-7B            2023       base        0.700352      0.727707      0.027355            934          522                412\n                       rishiraj/oswald-2x7b           other       base        0.688919      0.718044      0.029125           1731         1326                405\n\n=== Top-20 DIF Beneficiaries (rank drops when DIF items removed) ===\n                                  model_name cohort_temporal model_type  original_score  stable_score  score_change  original_rank  stable_rank  rank_displacement\n                    Sao10K/14B-Glacier-Stack           other       base        0.704749      0.716764      0.012015            555         1404               -849\n                              AA051611/A0118           other       base        0.698593      0.703609      0.005016           1169         1996               -827\n             DeepMount00/Phi-3-Mini-4K-Boost            2024       base        0.702350      0.714319      0.011968            734         1545               -811\n                           DeepMount00/phi_3            2024       base        0.702350      0.714319      0.011968            734         1545               -811\n             Mihaiii/Pallas-0.5-frankenmerge           other       base        0.713064      0.719092      0.006028            455         1264               -809\n    vonjack/Phi-3-mini-4k-instruct-LLaMAfied            2024   instruct        0.705069      0.718044      0.012975            529         1326               -797\n    vonjack/phi-3-mini-4k-instruct-llamafied            2024   instruct        0.705069      0.718044      0.012975            529         1326               -797\n         nbeerbower/llama-3-dragonmaid-8B-v2            2024       base        0.704349      0.717346      0.012997            576         1367               -791\n              raincandy-u/phillama-3.8b-v0.1            2024       base        0.702430      0.715134      0.012703            725         1492               -767\n                nbeerbower/llama-3-stinky-8B            2024       base        0.704829      0.718510      0.013681            549         1299               -750\n       cognitivecomputations/yayi2-30b-llama           other       base        0.708587      0.720023      0.011437            469         1197               -728\n                 cstr/llama3-8b-spaetzle-v13            2024       base        0.702590      0.716298      0.013708            705         1432               -727\n                       shyamieee/JARVIS-v1.0           other       base        0.703630      0.717811      0.014182            616         1343               -727\n         Nitral-AI/Poppy_Porpoise-0.96-L3-8B           other       base        0.702590      0.716414      0.013824            705         1428               -723\nFairMind/Phi-3-mini-4k-instruct-bnb-4bit-Ita            2024   instruct        0.700272      0.711641      0.011370            944         1650               -706\n                nbeerbower/llama-3-stella-8B            2024       base        0.704269      0.718743      0.014473            581         1281               -700\n      rhysjones/Phi-3-mini-mango-1-llamafied            2024       base        0.704669      0.719208      0.014539            563         1251               -688\n       KnutJaegersberg/YaYi-30b-EverythingLM            2023       base        0.700911      0.713737      0.012825            880         1567               -687\n                    ABX-AI/Silver-Sun-v2-11B           other       base        0.702350      0.716531      0.014180            734         1417               -683\n                       Qwen/Qwen1.5-14B-Chat            2024   instruct        0.704189      0.718976      0.014786            590         1270               -680\n\n=== Displacement characteristics ===\n\nvictims:\n  cohort: {'other': 18, '2023': 2}\n  type: {'base': 16, 'instruct': 4}\n  families: {'unknown': 15, 'mistral': 2, 'mistral-0.1': 1}\n\nbeneficiaries:\n  cohort: {'2024': 12, 'other': 7, '2023': 1}\n  type: {'base': 16, 'instruct': 4}\n  families: {'unknown': 7, 'phi-3': 6, 'llama-3': 5, 'yi': 1, 'qwen-1.5': 1}\n\n=== Equating Adjustment ===\n  Cohort 2023: mean_shift = +0.0235 (+2.35 pp)\n  Cohort 2024: mean_shift = +0.0206 (+2.06 pp)\n  Cohort other: mean_shift = +0.0205 (+2.05 pp)\n\nRanking correlations:\n  original vs stable:   ρ = 0.996455\n  original vs adjusted: ρ = 0.999759\n  stable vs adjusted:   ρ = 0.996489\n\n2024 vs 2023 score_change:\n  Cohen's d = -0.3051\n  t-test: t=-6.553, p=7.23e-11\n\nCSVs saved.\nFigures saved.\nReport saved.\n\nDone.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "741bbc15-3755-4464-b68e-e479f3caea5a",
+            "tool_use_result": {
+              "stdout": "Items: total=12508, DIF-C=3918 (31.3%), stable=8590\n\n=== Cohort Summary ===\ncohort_temporal      n  mean_original  mean_stable  mean_score_change  sd_score_change  ci95_lo  ci95_hi  median_score_change  mean_rank_displacement  sd_rank_displacement\n           2023 1080.0       0.581380     0.604889           0.023508         0.008807 0.022983 0.024033             0.026174               23.026852             89.869250\n           2024  807.0       0.606830     0.627430           0.020600         0.010434 0.019880 0.021320             0.019963              -73.265180            161.690017\n          other 3340.0       0.590643     0.611180           0.020537         0.009221 0.020224 0.020850             0.022760               11.040719            121.664231\n\n=== Type Summary ===\ncohort_temporal model_type      n  mean_original  mean_stable  mean_score_change  sd_score_change  ci95_lo  ci95_hi  median_score_change  mean_rank_displacement  sd_rank_displacement\n           2023       base  805.0       0.589965     0.613665           0.023700         0.008791 0.023093 0.024308             0.026578               32.142857             93.463781\n           2023   instruct  275.0       0.556251     0.579197           0.022946         0.008845 0.021901 0.023991             0.025212               -3.658182             72.204036\n           2024       base  534.0       0.593416     0.614035           0.020619         0.010603 0.019720 0.021518             0.020109              -74.511236            164.835864\n           2024   instruct  273.0       0.633068     0.653632           0.020564         0.010114 0.019364 0.021763             0.019577              -70.827839            155.621039\n          other       base 2742.0       0.593364     0.613825           0.020460         0.009162 0.020118 0.020803             0.022717                9.851933            126.457362\n          other   instruct  598.0       0.578163     0.599052           0.020889         0.009484 0.020129 0.021649             0.023092               16.491639             96.594001\n\nOverall Spearman ρ (original vs stable ranking): 0.996455 (p=0.00e+00)\n  Cohort 2023: ρ = 0.998857\n  Cohort 2024: ρ = 0.997018\n\n=== Top-20 DIF Victims (rank improves when DIF items removed) ===\n                                 model_name cohort_temporal model_type  original_score  stable_score  score_change  original_rank  stable_rank  rank_displacement\n              liminerity/Blurstral-7b-slerp           other       base        0.694835      0.723632      0.028797           1410          817                593\nDreadPoor/PAIN_LeDestroy-7B-task_arithmetic           other       base        0.698433      0.725844      0.027411           1180          610                570\n             flammenai/flammen26-mistral-7B            2023       base        0.696114      0.723981      0.027867           1335          787                548\n             Gille/StrangeMerges_2-7B-slerp           other       base        0.696434      0.723865      0.027431           1315          797                518\n            Gille/StrangeMerges_12-7B-slerp           other       base        0.695955      0.723166      0.027212           1344          850                494\n                  jambroz/sixtyoneeighty-7b           other       base        0.697154      0.724098      0.026944           1268          775                493\n             jambroz/sixtyoneeighty-7b-chat           other   instruct        0.697154      0.724098      0.026944           1268          775                493\n                       antiven0m/reverie-7b           other       base        0.696834      0.723749      0.026915           1288          804                484\n             GreenNode/GreenNodeLM-7B-v2leo           other       base        0.696194      0.723166      0.026972           1329          850                479\n              jambroz/sixtyoneeighty-7b-dpo           other   instruct        0.696594      0.723399      0.026805           1300          835                465\n            DreadPoor/Sphinx-7B-Model_Stock           other       base        0.696994      0.723632      0.026638           1278          817                461\n                  Inv/Konstanta-V4-Alpha-7B           other       base        0.697713      0.724098      0.026384           1230          775                455\n               SanjiWatsuki/Kunoichi-DPO-7B           other   instruct        0.696514      0.723166      0.026652           1304          850                454\n         allknowingroger/LimyQstar-7B-slerp           other       base        0.700032      0.727474      0.027442            979          531                448\n                    mncai/mistral-7b-dpo-v6           other   instruct        0.698353      0.724214      0.025861           1194          756                438\n        Gille/StrangeMerges_17-7B-dare_ties           other       base        0.693316      0.721420      0.028104           1486         1050                436\n                 Vasanth/Valor_Macaroni_moe           other       base        0.696914      0.723166      0.026252           1284          850                434\n                    nbeerbower/bruphin-iota           other       base        0.698113      0.723865      0.025752           1210          797                413\n             flammenai/flammen27-mistral-7B            2023       base        0.700352      0.727707      0.027355            934          522                412\n                       rishiraj/oswald-2x7b           other       base        0.688919      0.718044      0.029125           1731         1326                405\n\n=== Top-20 DIF Beneficiaries (rank drops when DIF items removed) ===\n                                  model_name cohort_temporal model_type  original_score  stable_score  score_change  original_rank  stable_rank  rank_displacement\n                    Sao10K/14B-Glacier-Stack           other       base        0.704749      0.716764      0.012015            555         1404               -849\n                              AA051611/A0118           other       base        0.698593      0.703609      0.005016           1169         1996               -827\n             DeepMount00/Phi-3-Mini-4K-Boost            2024       base        0.702350      0.714319      0.011968            734         1545               -811\n                           DeepMount00/phi_3            2024       base        0.702350      0.714319      0.011968            734         1545               -811\n             Mihaiii/Pallas-0.5-frankenmerge           other       base        0.713064      0.719092      0.006028            455         1264               -809\n    vonjack/Phi-3-mini-4k-instruct-LLaMAfied            2024   instruct        0.705069      0.718044      0.012975            529         1326               -797\n    vonjack/phi-3-mini-4k-instruct-llamafied            2024   instruct        0.705069      0.718044      0.012975            529         1326               -797\n         nbeerbower/llama-3-dragonmaid-8B-v2            2024       base        0.704349      0.717346      0.012997            576         1367               -791\n              raincandy-u/phillama-3.8b-v0.1            2024       base        0.702430      0.715134      0.012703            725         1492               -767\n                nbeerbower/llama-3-stinky-8B            2024       base        0.704829      0.718510      0.013681            549         1299               -750\n       cognitivecomputations/yayi2-30b-llama           other       base        0.708587      0.720023      0.011437            469         1197               -728\n                 cstr/llama3-8b-spaetzle-v13            2024       base        0.702590      0.716298      0.013708            705         1432               -727\n                       shyamieee/JARVIS-v1.0           other       base        0.703630      0.717811      0.014182            616         1343               -727\n         Nitral-AI/Poppy_Porpoise-0.96-L3-8B           other       base        0.702590      0.716414      0.013824            705         1428               -723\nFairMind/Phi-3-mini-4k-instruct-bnb-4bit-Ita            2024   instruct        0.700272      0.711641      0.011370            944         1650               -706\n                nbeerbower/llama-3-stella-8B            2024       base        0.704269      0.718743      0.014473            581         1281               -700\n      rhysjones/Phi-3-mini-mango-1-llamafied            2024       base        0.704669      0.719208      0.014539            563         1251               -688\n       KnutJaegersberg/YaYi-30b-EverythingLM            2023       base        0.700911      0.713737      0.012825            880         1567               -687\n                    ABX-AI/Silver-Sun-v2-11B           other       base        0.702350      0.716531      0.014180            734         1417               -683\n                       Qwen/Qwen1.5-14B-Chat            2024   instruct        0.704189      0.718976      0.014786            590         1270               -680\n\n=== Displacement characteristics ===\n\nvictims:\n  cohort: {'other': 18, '2023': 2}\n  type: {'base': 16, 'instruct': 4}\n  families: {'unknown': 15, 'mistral': 2, 'mistral-0.1': 1}\n\nbeneficiaries:\n  cohort: {'2024': 12, 'other': 7, '2023': 1}\n  type: {'base': 16, 'instruct': 4}\n  families: {'unknown': 7, 'phi-3': 6, 'llama-3': 5, 'yi': 1, 'qwen-1.5': 1}\n\n=== Equating Adjustment ===\n  Cohort 2023: mean_shift = +0.0235 (+2.35 pp)\n  Cohort 2024: mean_shift = +0.0206 (+2.06 pp)\n  Cohort other: mean_shift = +0.0205 (+2.05 pp)\n\nRanking correlations:\n  original vs stable:   ρ = 0.996455\n  original vs adjusted: ρ = 0.999759\n  stable vs adjusted:   ρ = 0.996489\n\n2024 vs 2023 score_change:\n  Cohen's d = -0.3051\n  t-test: t=-6.553, p=7.23e-11\n\nCSVs saved.\nFigures saved.\nReport saved.\n\nDone.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The analysis ran successfully. Let me review the key findings:\n\n1. **Score Change**: Removing DIF-C items shifts all scores upward (stable > original), meaning DIF-C items are generally harder. 2023 models see a larger shift (+2.35pp) than 2024 (+2.06pp), differential of ~0.29pp. Cohen's d = -0.31, p < 1e-10, so the difference is significant.\n\n2. **Ranking**: Overall ρ = 0.9965 — high but not perfect. Some individual models see huge displacements (up to ±849 ranks).\n   \n3. **Displacement patterns**: The models that improve most are dominated by the \"other\" cohort with 7B mistral merges, while those that drop are concentrated in the 2024 cohort, particularly phi-3 and llama-3 families. The equating adjustment itself is modest at around 2pp, yet the differential impact across cohorts reaches statistical significance.\n\n4. The score improvements from removing DIF-C items are positive across all cohorts, which makes sense since these items show differential functioning. What's striking is that 2023 models gain substantially more (+2.35pp) than 2024 models (+2.06pp) from this removal, suggesting the DIF-C items are relatively harder for older models and easier for newer ones—likely due to contamination effects. The 0.29pp differential is small in absolute magnitude but highly significant statistically. Now I need to verify the outputs were saved correctly and check the figures.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "b1ee10a0-3554-4afd-b308-32f7d0607f6f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018L39AEwHXnJgABDYuVwM9H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3148,
+                "cache_read_input_tokens": 35512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3148
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Let me verify the outputs."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "a1582ab9-a27b-4767-a6d5-4ded62b91c74",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018L39AEwHXnJgABDYuVwM9H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3148,
+                "cache_read_input_tokens": 35512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3148
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AeceKFbp9fNBFsdk9tQ7Xk",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la artifacts/score_inflation_analysis/",
+                "description": "Verify output files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "77b29fd4-18c7-460f-8a98-46d658277ccd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018L39AEwHXnJgABDYuVwM9H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3148,
+                "cache_read_input_tokens": 35512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3148
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T08:18:08.968Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AeceKFbp9fNBFsdk9tQ7Xk",
+              "type": "tool_result",
+              "content": "total 1464\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 23 08:17 .\ndrwxr-xr-x 101 ubuntu ubuntu  12288 May 23 08:16 ..\n-rw-r--r--   1 ubuntu ubuntu    725 May 23 08:17 cohort_summary.csv\n-rw-r--r--   1 ubuntu ubuntu 764377 May 23 08:17 model_scores.csv\n-rw-r--r--   1 ubuntu ubuntu  18391 May 23 08:17 rank_displacement.pdf\n-rw-r--r--   1 ubuntu ubuntu 124928 May 23 08:17 rank_displacement.png\n-rw-r--r--   1 ubuntu ubuntu  22922 May 23 08:17 score_change_violin.pdf\n-rw-r--r--   1 ubuntu ubuntu 142541 May 23 08:17 score_change_violin.png\n-rw-r--r--   1 ubuntu ubuntu  18109 May 23 08:17 score_inflation.py\n-rw-r--r--   1 ubuntu ubuntu   5749 May 23 08:17 score_inflation_report.md\n-rw-r--r--   1 ubuntu ubuntu  67655 May 23 08:17 score_scatter.pdf\n-rw-r--r--   1 ubuntu ubuntu 284530 May 23 08:17 score_scatter.png\n-rw-r--r--   1 ubuntu ubuntu   6024 May 23 08:17 top_displaced.csv\n-rw-r--r--   1 ubuntu ubuntu   1344 May 23 08:17 type_summary.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "dee1e04a-a537-454d-a922-238d55e7a082",
+            "tool_use_result": {
+              "stdout": "total 1464\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 23 08:17 .\ndrwxr-xr-x 101 ubuntu ubuntu  12288 May 23 08:16 ..\n-rw-r--r--   1 ubuntu ubuntu    725 May 23 08:17 cohort_summary.csv\n-rw-r--r--   1 ubuntu ubuntu 764377 May 23 08:17 model_scores.csv\n-rw-r--r--   1 ubuntu ubuntu  18391 May 23 08:17 rank_displacement.pdf\n-rw-r--r--   1 ubuntu ubuntu 124928 May 23 08:17 rank_displacement.png\n-rw-r--r--   1 ubuntu ubuntu  22922 May 23 08:17 score_change_violin.pdf\n-rw-r--r--   1 ubuntu ubuntu 142541 May 23 08:17 score_change_violin.png\n-rw-r--r--   1 ubuntu ubuntu  18109 May 23 08:17 score_inflation.py\n-rw-r--r--   1 ubuntu ubuntu   5749 May 23 08:17 score_inflation_report.md\n-rw-r--r--   1 ubuntu ubuntu  67655 May 23 08:17 score_scatter.pdf\n-rw-r--r--   1 ubuntu ubuntu 284530 May 23 08:17 score_scatter.png\n-rw-r--r--   1 ubuntu ubuntu   6024 May 23 08:17 top_displaced.csv\n-rw-r--r--   1 ubuntu ubuntu   1344 May 23 08:17 type_summary.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H9HvFRasUih6LUrUgBZ5BW",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l artifacts/score_inflation_analysis/*.csv",
+                "description": "Check CSV row counts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "3d8e89ca-fe2c-4da2-8e80-dd95ee0943b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018L39AEwHXnJgABDYuVwM9H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3148,
+                "cache_read_input_tokens": 35512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3148
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T08:18:09.250Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H9HvFRasUih6LUrUgBZ5BW",
+              "type": "tool_result",
+              "content": "     4 artifacts/score_inflation_analysis/cohort_summary.csv\n  5228 artifacts/score_inflation_analysis/model_scores.csv\n    41 artifacts/score_inflation_analysis/top_displaced.csv\n     7 artifacts/score_inflation_analysis/type_summary.csv\n  5280 total",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "a552af87-f301-4a9f-b35c-bb4a4c154aad",
+            "tool_use_result": {
+              "stdout": "     4 artifacts/score_inflation_analysis/cohort_summary.csv\n  5228 artifacts/score_inflation_analysis/model_scores.csv\n    41 artifacts/score_inflation_analysis/top_displaced.csv\n     7 artifacts/score_inflation_analysis/type_summary.csv\n  5280 total",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eg5uWF8eUwCGMQBEyw6B9H",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_scatter.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "c4d64070-a05b-41aa-89f5-590ce6078603",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhsrQmzhqytiJybw4zoms9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1190,
+                "cache_read_input_tokens": 38660,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1190
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LKX3MRgpBovFjRMozxdbHi",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/rank_displacement.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "2ad7591b-6b63-4e18-8cb8-98f085eb03ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhsrQmzhqytiJybw4zoms9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1190,
+                "cache_read_input_tokens": 38660,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1190
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLjbmYEoWFXPWwtuf9yQDP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_change_violin.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "1fc249cf-f4a0-4737-b015-1306334fe56c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhsrQmzhqytiJybw4zoms9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1190,
+                "cache_read_input_tokens": 38660,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1190
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T08:18:14.173Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eg5uWF8eUwCGMQBEyw6B9H",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "7daa0649-f4cb-4fcd-9e2c-ff64e2adb49f",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 284530
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T08:18:14.217Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LKX3MRgpBovFjRMozxdbHi",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "a352f65c-8af7-4cf9-b108-f078d63501d2",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 124928
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T08:18:14.561Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SLjbmYEoWFXPWwtuf9yQDP",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "95edfd57-3429-4901-9215-2fced797e4da",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 142541
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All figures and outputs look good. Let me now read the report to verify it's complete.\n\nLet me now also think about the interpretation. The key findings are:\n\n1. **All models score higher on stable items** (+2.0 to +2.4 pp), meaning DIF-C items are systematically harder than average for all models.\n\n2. **2023 models gain MORE** from removing DIF items (+2.35pp vs +2.06pp for 2024). This is counter-intuitive if you expect \"contamination inflates 2024 scores\" — it actually suggests DIF-C items are differentially harder for 2023 (the reference group), not differentially easier for 2024.\n   \nNow I need to reconsider what the DIF analysis is actually showing. Since 2023 is the reference group and 2024 is focal, items with |Δ_MH| ≥ 1.5 function very differently between the two model generations. The sign of Δ_MH tells me whether an item is relatively easier or harder for 2024 compared to 2023. The fact that 2023 gains more from removing these items suggests the DIF-C items are pulling down 2023's performance more than 2024's, which means the differential effect is working against the older models. So the contamination hypothesis checks out: 2024 models gain an unfair advantage on DIF-C items, which is why removing them causes a sharp drop. The 0.29pp score inflation is modest in absolute terms, but the ranking impact is dramatic—2024 models plummet an average of 73 positions, with some dropping hundreds of ranks. This ranking disruption is the real story for the paper, and the visualizations are ready for publication.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "4a76da1f-fff6-46d3-a876-282dbe138891",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmiYpnqeB7aYwsuNhpB817",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3767,
+                "cache_read_input_tokens": 39850,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3767
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated correctly. Let me verify the report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "ab0a22ef-d19a-43e2-9be3-410d154f6999",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmiYpnqeB7aYwsuNhpB817",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3767,
+                "cache_read_input_tokens": 39850,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3767
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014JjxYx7NqtnjpfwhM8eZ9M",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "ba336200-00a9-4050-ba44-4261df8fbf50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmiYpnqeB7aYwsuNhpB817",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3767,
+                "cache_read_input_tokens": 39850,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3767
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T08:18:40.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014JjxYx7NqtnjpfwhM8eZ9M",
+              "type": "tool_result",
+              "content": "1\t# Score Inflation & DIF-Corrected Scoring Analysis\n2\t**Date**: 2026-05-23\n3\t**Dataset**: 12508 items, 5227 models\n4\t**DIF-C items**: 3918 (31.3%)\n5\t**Stable items**: 8590 (68.7%)\n6\t\n7\t## 1. Score Change Summary\n8\t### By Cohort\n9\t| Cohort | N | Mean Original | Mean Stable | Mean Δ (pp) | SD (pp) | 95% CI |\n10\t|--------|---|--------------|-------------|-------------|---------|--------|\n11\t| 2023 | 1080 | 0.5814 | 0.6049 | +2.35 | 0.88 | [+2.30, +2.40] |\n12\t| 2024 | 807 | 0.6068 | 0.6274 | +2.06 | 1.04 | [+1.99, +2.13] |\n13\t| other | 3340 | 0.5906 | 0.6112 | +2.05 | 0.92 | [+2.02, +2.08] |\n14\t\n15\t### By Cohort × Model Type\n16\t| Cohort | Type | N | Mean Δ (pp) | SD (pp) | 95% CI |\n17\t|--------|------|---|-------------|---------|--------|\n18\t| 2023 | base | 805 | +2.37 | 0.88 | [+2.31, +2.43] |\n19\t| 2023 | instruct | 275 | +2.29 | 0.88 | [+2.19, +2.40] |\n20\t| 2024 | base | 534 | +2.06 | 1.06 | [+1.97, +2.15] |\n21\t| 2024 | instruct | 273 | +2.06 | 1.01 | [+1.94, +2.18] |\n22\t| other | base | 2742 | +2.05 | 0.92 | [+2.01, +2.08] |\n23\t| other | instruct | 598 | +2.09 | 0.95 | [+2.01, +2.16] |\n24\t\n25\t### Effect Size\n26\t- 2024 vs 2023 score_change Cohen's d = -0.3051\n27\t- Welch's t-test: t = -6.553, p = 7.23e-11\n28\t\n29\t## 2. Ranking Impact\n30\t- Overall Spearman ρ (original vs stable): **0.996455**\n31\t- Original vs adjusted: ρ = 0.999759\n32\t- Stable vs adjusted: ρ = 0.996489\n33\t\n34\t### Top-20 DIF Victims (rank improves most)\n35\t| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\n36\t|-------|--------|------|-----------|-------------|------|----------|\n37\t| liminerity/Blurstral-7b-slerp | other | base | 0.6948 | 0.7236 | +2.88 | +593 |\n38\t| DreadPoor/PAIN_LeDestroy-7B-task_arithmetic | other | base | 0.6984 | 0.7258 | +2.74 | +570 |\n39\t| flammenai/flammen26-mistral-7B | 2023 | base | 0.6961 | 0.7240 | +2.79 | +548 |\n40\t| Gille/StrangeMerges_2-7B-slerp | other | base | 0.6964 | 0.7239 | +2.74 | +518 |\n41\t| Gille/StrangeMerges_12-7B-slerp | other | base | 0.6960 | 0.7232 | +2.72 | +494 |\n42\t| jambroz/sixtyoneeighty-7b | other | base | 0.6972 | 0.7241 | +2.69 | +493 |\n43\t| jambroz/sixtyoneeighty-7b-chat | other | instruct | 0.6972 | 0.7241 | +2.69 | +493 |\n44\t| antiven0m/reverie-7b | other | base | 0.6968 | 0.7237 | +2.69 | +484 |\n45\t| GreenNode/GreenNodeLM-7B-v2leo | other | base | 0.6962 | 0.7232 | +2.70 | +479 |\n46\t| jambroz/sixtyoneeighty-7b-dpo | other | instruct | 0.6966 | 0.7234 | +2.68 | +465 |\n47\t| DreadPoor/Sphinx-7B-Model_Stock | other | base | 0.6970 | 0.7236 | +2.66 | +461 |\n48\t| Inv/Konstanta-V4-Alpha-7B | other | base | 0.6977 | 0.7241 | +2.64 | +455 |\n49\t| SanjiWatsuki/Kunoichi-DPO-7B | other | instruct | 0.6965 | 0.7232 | +2.67 | +454 |\n50\t| allknowingroger/LimyQstar-7B-slerp | other | base | 0.7000 | 0.7275 | +2.74 | +448 |\n51\t| mncai/mistral-7b-dpo-v6 | other | instruct | 0.6984 | 0.7242 | +2.59 | +438 |\n52\t| Gille/StrangeMerges_17-7B-dare_ties | other | base | 0.6933 | 0.7214 | +2.81 | +436 |\n53\t| Vasanth/Valor_Macaroni_moe | other | base | 0.6969 | 0.7232 | +2.63 | +434 |\n54\t| nbeerbower/bruphin-iota | other | base | 0.6981 | 0.7239 | +2.58 | +413 |\n55\t| flammenai/flammen27-mistral-7B | 2023 | base | 0.7004 | 0.7277 | +2.74 | +412 |\n56\t| rishiraj/oswald-2x7b | other | base | 0.6889 | 0.7180 | +2.91 | +405 |\n57\t\n58\t### Top-20 DIF Beneficiaries (rank drops most)\n59\t| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\n60\t|-------|--------|------|-----------|-------------|------|----------|\n61\t| Sao10K/14B-Glacier-Stack | other | base | 0.7047 | 0.7168 | +1.20 | -849 |\n62\t| AA051611/A0118 | other | base | 0.6986 | 0.7036 | +0.50 | -827 |\n63\t| DeepMount00/Phi-3-Mini-4K-Boost | 2024 | base | 0.7024 | 0.7143 | +1.20 | -811 |\n64\t| DeepMount00/phi_3 | 2024 | base | 0.7024 | 0.7143 | +1.20 | -811 |\n65\t| Mihaiii/Pallas-0.5-frankenmerge | other | base | 0.7131 | 0.7191 | +0.60 | -809 |\n66\t| vonjack/Phi-3-mini-4k-instruct-LLaMAfied | 2024 | instruct | 0.7051 | 0.7180 | +1.30 | -797 |\n67\t| vonjack/phi-3-mini-4k-instruct-llamafied | 2024 | instruct | 0.7051 | 0.7180 | +1.30 | -797 |\n68\t| nbeerbower/llama-3-dragonmaid-8B-v2 | 2024 | base | 0.7043 | 0.7173 | +1.30 | -791 |\n69\t| raincandy-u/phillama-3.8b-v0.1 | 2024 | base | 0.7024 | 0.7151 | +1.27 | -767 |\n70\t| nbeerbower/llama-3-stinky-8B | 2024 | base | 0.7048 | 0.7185 | +1.37 | -750 |\n71\t| cognitivecomputations/yayi2-30b-llama | other | base | 0.7086 | 0.7200 | +1.14 | -728 |\n72\t| cstr/llama3-8b-spaetzle-v13 | 2024 | base | 0.7026 | 0.7163 | +1.37 | -727 |\n73\t| shyamieee/JARVIS-v1.0 | other | base | 0.7036 | 0.7178 | +1.42 | -727 |\n74\t| Nitral-AI/Poppy_Porpoise-0.96-L3-8B | other | base | 0.7026 | 0.7164 | +1.38 | -723 |\n75\t| FairMind/Phi-3-mini-4k-instruct-bnb-4bit-Ita | 2024 | instruct | 0.7003 | 0.7116 | +1.14 | -706 |\n76\t| nbeerbower/llama-3-stella-8B | 2024 | base | 0.7043 | 0.7187 | +1.45 | -700 |\n77\t| rhysjones/Phi-3-mini-mango-1-llamafied | 2024 | base | 0.7047 | 0.7192 | +1.45 | -688 |\n78\t| KnutJaegersberg/YaYi-30b-EverythingLM | 2023 | base | 0.7009 | 0.7137 | +1.28 | -687 |\n79\t| ABX-AI/Silver-Sun-v2-11B | other | base | 0.7024 | 0.7165 | +1.42 | -683 |\n80\t| Qwen/Qwen1.5-14B-Chat | 2024 | instruct | 0.7042 | 0.7190 | +1.48 | -680 |\n81\t\n82\t## 3. Equating Adjustment\n83\t- **2023**: adjusted_score = original_score + (+0.0235)\n84\t- **2024**: adjusted_score = original_score + (+0.0206)\n85\t- **other**: adjusted_score = original_score + (+0.0205)\n86\t\n87\t## 4. Interpretation\n88\tRemoving the 3918 DIF-C items (31.3% of all items) shifts model scores by an average of +2.12 pp overall. The direction of this shift differs by cohort: 2023 models see a mean change of +2.35 pp while 2024 models see +2.06 pp (differential: -0.29 pp).\n89\t\n90\tDespite measurable score changes, the overall ranking is highly preserved (ρ = 0.9965), indicating that DIF primarily shifts absolute scores rather than relative ordering. However, individual models can experience rank displacements exceeding ±561 positions (99th percentile).\n91\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "e4ccfa9e-55a7-45cb-aea4-6dbc9776495d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation_report.md",
+                "content": "# Score Inflation & DIF-Corrected Scoring Analysis\n**Date**: 2026-05-23\n**Dataset**: 12508 items, 5227 models\n**DIF-C items**: 3918 (31.3%)\n**Stable items**: 8590 (68.7%)\n\n## 1. Score Change Summary\n### By Cohort\n| Cohort | N | Mean Original | Mean Stable | Mean Δ (pp) | SD (pp) | 95% CI |\n|--------|---|--------------|-------------|-------------|---------|--------|\n| 2023 | 1080 | 0.5814 | 0.6049 | +2.35 | 0.88 | [+2.30, +2.40] |\n| 2024 | 807 | 0.6068 | 0.6274 | +2.06 | 1.04 | [+1.99, +2.13] |\n| other | 3340 | 0.5906 | 0.6112 | +2.05 | 0.92 | [+2.02, +2.08] |\n\n### By Cohort × Model Type\n| Cohort | Type | N | Mean Δ (pp) | SD (pp) | 95% CI |\n|--------|------|---|-------------|---------|--------|\n| 2023 | base | 805 | +2.37 | 0.88 | [+2.31, +2.43] |\n| 2023 | instruct | 275 | +2.29 | 0.88 | [+2.19, +2.40] |\n| 2024 | base | 534 | +2.06 | 1.06 | [+1.97, +2.15] |\n| 2024 | instruct | 273 | +2.06 | 1.01 | [+1.94, +2.18] |\n| other | base | 2742 | +2.05 | 0.92 | [+2.01, +2.08] |\n| other | instruct | 598 | +2.09 | 0.95 | [+2.01, +2.16] |\n\n### Effect Size\n- 2024 vs 2023 score_change Cohen's d = -0.3051\n- Welch's t-test: t = -6.553, p = 7.23e-11\n\n## 2. Ranking Impact\n- Overall Spearman ρ (original vs stable): **0.996455**\n- Original vs adjusted: ρ = 0.999759\n- Stable vs adjusted: ρ = 0.996489\n\n### Top-20 DIF Victims (rank improves most)\n| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\n|-------|--------|------|-----------|-------------|------|----------|\n| liminerity/Blurstral-7b-slerp | other | base | 0.6948 | 0.7236 | +2.88 | +593 |\n| DreadPoor/PAIN_LeDestroy-7B-task_arithmetic | other | base | 0.6984 | 0.7258 | +2.74 | +570 |\n| flammenai/flammen26-mistral-7B | 2023 | base | 0.6961 | 0.7240 | +2.79 | +548 |\n| Gille/StrangeMerges_2-7B-slerp | other | base | 0.6964 | 0.7239 | +2.74 | +518 |\n| Gille/StrangeMerges_12-7B-slerp | other | base | 0.6960 | 0.7232 | +2.72 | +494 |\n| jambroz/sixtyoneeighty-7b | other | base | 0.6972 | 0.7241 | +2.69 | +493 |\n| jambroz/sixtyoneeighty-7b-chat | other | instruct | 0.6972 | 0.7241 | +2.69 | +493 |\n| antiven0m/reverie-7b | other | base | 0.6968 | 0.7237 | +2.69 | +484 |\n| GreenNode/GreenNodeLM-7B-v2leo | other | base | 0.6962 | 0.7232 | +2.70 | +479 |\n| jambroz/sixtyoneeighty-7b-dpo | other | instruct | 0.6966 | 0.7234 | +2.68 | +465 |\n| DreadPoor/Sphinx-7B-Model_Stock | other | base | 0.6970 | 0.7236 | +2.66 | +461 |\n| Inv/Konstanta-V4-Alpha-7B | other | base | 0.6977 | 0.7241 | +2.64 | +455 |\n| SanjiWatsuki/Kunoichi-DPO-7B | other | instruct | 0.6965 | 0.7232 | +2.67 | +454 |\n| allknowingroger/LimyQstar-7B-slerp | other | base | 0.7000 | 0.7275 | +2.74 | +448 |\n| mncai/mistral-7b-dpo-v6 | other | instruct | 0.6984 | 0.7242 | +2.59 | +438 |\n| Gille/StrangeMerges_17-7B-dare_ties | other | base | 0.6933 | 0.7214 | +2.81 | +436 |\n| Vasanth/Valor_Macaroni_moe | other | base | 0.6969 | 0.7232 | +2.63 | +434 |\n| nbeerbower/bruphin-iota | other | base | 0.6981 | 0.7239 | +2.58 | +413 |\n| flammenai/flammen27-mistral-7B | 2023 | base | 0.7004 | 0.7277 | +2.74 | +412 |\n| rishiraj/oswald-2x7b | other | base | 0.6889 | 0.7180 | +2.91 | +405 |\n\n### Top-20 DIF Beneficiaries (rank drops most)\n| Model | Cohort | Type | Orig Score | Stable Score | Δ pp | Rank Disp |\n|-------|--------|------|-----------|-------------|------|----------|\n| Sao10K/14B-Glacier-Stack | other | base | 0.7047 | 0.7168 | +1.20 | -849 |\n| AA051611/A0118 | other | base | 0.6986 | 0.7036 | +0.50 | -827 |\n| DeepMount00/Phi-3-Mini-4K-Boost | 2024 | base | 0.7024 | 0.7143 | +1.20 | -811 |\n| DeepMount00/phi_3 | 2024 | base | 0.7024 | 0.7143 | +1.20 | -811 |\n| Mihaiii/Pallas-0.5-frankenmerge | other | base | 0.7131 | 0.7191 | +0.60 | -809 |\n| vonjack/Phi-3-mini-4k-instruct-LLaMAfied | 2024 | instruct | 0.7051 | 0.7180 | +1.30 | -797 |\n| vonjack/phi-3-mini-4k-instruct-llamafied | 2024 | instruct | 0.7051 | 0.7180 | +1.30 | -797 |\n| nbeerbower/llama-3-dragonmaid-8B-v2 | 2024 | base | 0.7043 | 0.7173 | +1.30 | -791 |\n| raincandy-u/phillama-3.8b-v0.1 | 2024 | base | 0.7024 | 0.7151 | +1.27 | -767 |\n| nbeerbower/llama-3-stinky-8B | 2024 | base | 0.7048 | 0.7185 | +1.37 | -750 |\n| cognitivecomputations/yayi2-30b-llama | other | base | 0.7086 | 0.7200 | +1.14 | -728 |\n| cstr/llama3-8b-spaetzle-v13 | 2024 | base | 0.7026 | 0.7163 | +1.37 | -727 |\n| shyamieee/JARVIS-v1.0 | other | base | 0.7036 | 0.7178 | +1.42 | -727 |\n| Nitral-AI/Poppy_Porpoise-0.96-L3-8B | other | base | 0.7026 | 0.7164 | +1.38 | -723 |\n| FairMind/Phi-3-mini-4k-instruct-bnb-4bit-Ita | 2024 | instruct | 0.7003 | 0.7116 | +1.14 | -706 |\n| nbeerbower/llama-3-stella-8B | 2024 | base | 0.7043 | 0.7187 | +1.45 | -700 |\n| rhysjones/Phi-3-mini-mango-1-llamafied | 2024 | base | 0.7047 | 0.7192 | +1.45 | -688 |\n| KnutJaegersberg/YaYi-30b-EverythingLM | 2023 | base | 0.7009 | 0.7137 | +1.28 | -687 |\n| ABX-AI/Silver-Sun-v2-11B | other | base | 0.7024 | 0.7165 | +1.42 | -683 |\n| Qwen/Qwen1.5-14B-Chat | 2024 | instruct | 0.7042 | 0.7190 | +1.48 | -680 |\n\n## 3. Equating Adjustment\n- **2023**: adjusted_score = original_score + (+0.0235)\n- **2024**: adjusted_score = original_score + (+0.0206)\n- **other**: adjusted_score = original_score + (+0.0205)\n\n## 4. Interpretation\nRemoving the 3918 DIF-C items (31.3% of all items) shifts model scores by an average of +2.12 pp overall. The direction of this shift differs by cohort: 2023 models see a mean change of +2.35 pp while 2024 models see +2.06 pp (differential: -0.29 pp).\n\nDespite measurable score changes, the overall ranking is highly preserved (ρ = 0.9965), indicating that DIF primarily shifts absolute scores rather than relative ordering. However, individual models can experience rank displacements exceeding ±561 positions (99th percentile).\n",
+                "numLines": 91,
+                "startLine": 1,
+                "totalLines": 91
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The analysis and report are complete. Let me now provide a summary of the key findings. Let me also think about whether the interpretation makes sense for the paper's narrative.\n\nKey findings:\n\n1. **Score shift direction**: All models score HIGHER on stable items (+2.05 to +2.35 pp), meaning DIF-C items are harder on average for all models.\n\n2. **Cohort differential**: 2023 models gain +2.35pp when DIF items removed, vs 2024 models gaining +2.06pp. The -0.29pp differential means 2024 models benefit relatively more from DIF items being included (i.e., DIF items inflate 2024 scores by 0.29pp relative to 2023). \n\nThis difference is statistically significant with a small to moderate effect size.\n\n3. **Ranking impact**: Overall ρ = 0.9965 (high). But 2024 cohort has mean rank displacement of -73 positions (they drop on average). Individual models can shift up to ±849 positions.\n\n4. **DIF beneficiaries**: Dominated by 2024 cohort (12/20), phi-3 and llama-3 families — models that benefited from DIF items.\n\n5. **DIF victims**: Dominated by \"other\" cohort (18/20), mostly 7B mistral merges — models that were disadvantaged by DIF items.\n\nThe key insight is that while DIF items boost 2024 scores by roughly 0.29 percentage points overall, the real story lies in the rank displacement distribution. The 2024 cohort shows much larger negative shifts in leaderboard positions, revealing that their rankings were artificially inflated by these items. The high correlation masks substantial individual-level distortions, and the violin plot visualization makes this pattern clear with its wider variance and pronounced left tail for the newer models.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "6c656333-c675-4068-90b9-31c7e6feab85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmzRJvDTXMyrHbep2qhVCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4161,
+                "cache_read_input_tokens": 43617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4161
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。关键发现总结：\n\n**Score shift**: 移除 3918 个 DIF-C 项目后，所有模型分数上升（DIF-C 项目平均更难），但 cohort 间存在显著差异：\n- 2023 cohort: +2.35 pp\n- 2024 cohort: +2.06 pp\n- **差异**: 2024 模型从 DIF 项目中相对多获益 0.29 pp（Cohen's d = 0.31, p < 1e-10）\n\n**Ranking impact**: 整体 ρ = 0.9965（高度保留），但个体模型位移剧烈：\n- 2024 cohort 平均排名下降 73 位（DIF 项目人为抬升了排名）\n- 极端案例位移达 ±849 位\n- DIF 受益者（排名下降最多）: 12/20 来自 2024 cohort，集中在 phi-3 和 llama-3 家族\n- DIF 受害者（排名上升最多）: 18/20 来自 other cohort，主要是 7B mistral merges\n\n**Rank displacement 直方图**是最有说服力的可视化——2024 cohort 有明显的左偏重尾（大量模型排名下降 200-800 位），而 2023 分布集中在零附近。\n\n所有输出在 `artifacts/score_inflation_analysis/`：3 个 PDF 图、4 个 CSV、分析脚本和报告。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "uuid": "8d9c607b-7a79-4c58-b0e5-cf7fcf88ad70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmzRJvDTXMyrHbep2qhVCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4161,
+                "cache_read_input_tokens": 43617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4161
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。关键发现总结：\n\n**Score shift**: 移除 3918 个 DIF-C 项目后，所有模型分数上升（DIF-C 项目平均更难），但 cohort 间存在显著差异：\n- 2023 cohort: +2.35 pp\n- 2024 cohort: +2.06 pp\n- **差异**: 2024 模型从 DIF 项目中相对多获益 0.29 pp（Cohen's d = 0.31, p < 1e-10）\n\n**Ranking impact**: 整体 ρ = 0.9965（高度保留），但个体模型位移剧烈：\n- 2024 cohort 平均排名下降 73 位（DIF 项目人为抬升了排名）\n- 极端案例位移达 ±849 位\n- DIF 受益者（排名下降最多）: 12/20 来自 2024 cohort，集中在 phi-3 和 llama-3 家族\n- DIF 受害者（排名上升最多）: 18/20 来自 other cohort，主要是 7B mistral merges\n\n**Rank displacement 直方图**是最有说服力的可视化——2024 cohort 有明显的左偏重尾（大量模型排名下降 200-800 位），而 2023 分布集中在零附近。\n\n所有输出在 `artifacts/score_inflation_analysis/`：3 个 PDF 图、4 个 CSV、分析脚本和报告。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 213145,
+            "duration_api_ms": 203510,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "03d5e0e7-4d39-494d-98a0-2d402410e1fa",
+            "total_cost_usd": 0.68139375,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 35937,
+              "cache_read_input_tokens": 335129,
+              "output_tokens": 11487,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 35937,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 907,
+                  "cache_read_input_tokens": 43617,
+                  "cache_creation_input_tokens": 4161,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4161
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1878,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001983,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 11487,
+                "cacheReadInputTokens": 335129,
+                "cacheCreationInputTokens": 35937,
+                "webSearchRequests": 0,
+                "costUSD": 0.67941075,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "aac797e7-32b6-4d43-817b-4ed2fae6ec6c"
+          },
+          "id": "event-000047"
+        }
+      ],
+      "message_count": 47
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r22-score-inflation.md"
+}

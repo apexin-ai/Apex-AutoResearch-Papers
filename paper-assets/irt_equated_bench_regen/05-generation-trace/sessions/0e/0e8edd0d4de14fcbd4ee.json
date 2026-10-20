@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e8edd0d4de14fcbd4ee",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r19 semisynthetic gradient",
+  "task_key": "worker_code_r19_semisynthetic_gradient_20260522T184822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r19_semisynthetic_gradient_20260522T184822_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "2b3c1eda213a4925e08456305ec3f734df395746b0a8a802a3a2013cf48ac125"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three output files produced. Summary:\n\n**R19 Exp 4 — Results**\n\n| Scheme | ρ(diff, Δδ) injected | % focal-favoring (inj C) | C% (all) |\n|--------|---------------------|--------------------------|----------|\n| **A** (capability-like) | **+0.771 ± 0.029** | 85.2% | 31.9% |\n| **B** (contamination-like) | **−0.517 ± 0.107** | 85.7% | 32.1% |\n| **C** (mixed) | **+0.394 ± 0.053** | 83.8% | 32.0% |\n| Baseline | — | 43.9% | 31.3% |\n\nThe key Δδ metric (delta change from baseline) cleanly separates all three injection patterns with Δρ_AB ≈ 1.29 and zero overlap across seeds.\n\nUnexpected but informative: Scheme B gives ρ ≈ −0.5 rather than ≈ 0 due to ceiling effect — hard items have more 0→1 flippable responses, so uniform injection probability produces difficulty-dependent DIF. This means the capability vs. contamination distinction is about the **sign** of the difficulty-DIF gradient (+0.77 vs −0.52), not \"correlated vs uncorrelated.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r19-semisynthetic-gradient.md"
+}

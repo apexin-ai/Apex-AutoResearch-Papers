@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "c14e032bdd1dc0b5b697",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code plan 028 bootstrap ci",
+  "task_key": "worker_code_plan_028_bootstrap_ci_20260521T123520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_028_bootstrap_ci_20260521T123520.log",
+    "occurrence": 1,
+    "bytes": 1001021,
+    "sha256": "f88ee19253c233bfc8cbf81519cc2703b2ed52510b11825183245f0e6249f0dc"
+  },
+  "statistics": {
+    "messages": 607,
+    "user_turns": 2,
+    "tool_calls": 234,
+    "roles": {
+      "log": 1,
+      "system": 50,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 234,
+      "user": 2,
+      "tool_result": 234,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "c14e032bdd1dc0b5b697-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "c14e032bdd1dc0b5b697-part-0001.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 565,
+      "chunks": [
+        {
+          "path": "c14e032bdd1dc0b5b697-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "c14e032bdd1dc0b5b697-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c14e032bdd1dc0b5b697-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c14e032bdd1dc0b5b697-part-0004.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-028-bootstrap-ci.md"
+}

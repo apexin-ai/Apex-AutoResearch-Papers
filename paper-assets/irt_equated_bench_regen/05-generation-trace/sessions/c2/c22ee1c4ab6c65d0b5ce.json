@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c22ee1c4ab6c65d0b5ce",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code t2 2 temporal accumulation",
+  "task_key": "worker_code_t2_2_temporal_accumulation_20260523T030020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_t2_2_temporal_accumulation_20260523T030020_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "e831046fe9176d62d53f5b4b399b81e14ab539e722a375c0a139a951336918ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are complete. Here's the summary:\n\n## Results\n\n**5 comparisons** run (3 pairwise + 2 cumulative):\n\n| Comparison | Distance | C% | Note |\n|---|---|---|---|\n| 2023-H1 → 2023-H2 | 6mo | 22.6% | underpowered (n=62) |\n| 2023-H1 → 2024-H1 | 12mo | 32.7% | underpowered (n=62) |\n| 2023-H2 → 2024-H1 | 6mo | 34.4% | well-powered |\n| 2023-H1 → {H2+24-H1} | 9mo | 24.2% | underpowered |\n| {H1+H2} → 2024-H1 | 9mo | 31.3% | well-powered |\n\n**Within-ref monotonicity (fixed ref=2023-H1):** C% increases from 22.6% (6mo) → 32.7% (12mo), a +10.1pp increase when doubling temporal distance. This supports contamination accumulation.\n\n**Cross-comparison:** Only partial monotonicity — the well-powered 2023-H2→2024-H1 (6mo, 34.4%) exceeds the underpowered 12mo comparison (32.7%), but this conflates power differences with temporal distance.\n\n**Item overlap:** Jaccard=0.356 between 12mo DIF-C items and union of 6mo DIF-C items — moderate overlap, with 1424 items unique to the 12mo window.\n\n**ρ(difficulty, Δ_MH):** Consistently negative across all comparisons (−0.52 to −0.74), confirming harder items show larger DIF regardless of temporal span.\n\nOutputs saved to `artifacts/temporal_accumulation/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-t2-2-temporal-accumulation.md"
+}

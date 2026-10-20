@@ -1,0 +1,6 @@
+family,n_models_total,n_models_ref,n_models_foc,c_pct_full,c_pct_lofo,delta_c_pct
+mistral,547,547,0,31.32,22.47,-8.85
+llama-3,315,0,315,31.32,24.06,-7.26
+llama-2,161,161,0,31.32,31.48,0.16
+mixtral,120,0,120,31.32,34.26,2.93
+solar,91,0,91,31.32,31.01,-0.31

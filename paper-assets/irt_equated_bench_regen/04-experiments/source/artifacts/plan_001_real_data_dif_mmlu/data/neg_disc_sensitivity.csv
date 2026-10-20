@@ -1,0 +1,4 @@
+item_set,n_items,n_ets_c,pct_c
+all,12508,3918,31.323952670291018
+non_negative_disc,10582,3425,32.36628236628237
+negative_disc_only,1926,495,25.70093457943925

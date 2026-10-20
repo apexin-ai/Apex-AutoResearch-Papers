@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f34db878743cd69c0d14",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 010 arch stratified dif",
+  "task_key": "worker_code_plan_010_arch_stratified_dif_20260521T033224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_arch_stratified_dif_20260521T033224_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "0f6e3aec487cb182078e052ec435689048eed349769b52ce2a8139ffaca7bdad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**METABENCH MMLU 几乎全是 decoder-only 模型**（5226/5227 = 99.98%），唯一被排除的是 `AurelPx/Pegasus-7b-slerp`（名称匹配 encoder-decoder 模式）。\n\n因此 architecture stratification 对 DIF 结果 **没有任何影响**：\n- Decoder-only C% = 31.32%，与 full-population 完全一致\n- Jaccard overlap = **1.0000**（完美重合，零 item 移动）\n- IRT fit 指标（rpb、Lz）在两个群体间无差异\n- Sanity check 通过（0.18% C < 5%）\n\n产出文件在 `artifacts/plan_010/`：\n- `plan_010_arch_stratified_dif.py` — 分析脚本\n- `plan_010_report.md` — 完整报告\n- `dif_results_decoder_only_temporal.csv` — 逐 item DIF 结果\n- `irt_fit_comparison.csv` — IRT fit 对比\n- `architecture_classification.csv` — 模型架构分类\n\n**结论**：审稿人担心的架构异质性不成立。METABENCH 群体本身就是 architecture-homogeneous 的，31.3% ETS C 不是架构混杂的伪影。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-arch-stratified-dif.md"
+}

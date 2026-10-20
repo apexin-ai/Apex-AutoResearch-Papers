@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "743908e6a0f9daf8b86f",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "data irt scale verification",
+  "task_key": "worker_data_irt_scale_verification_20260520T203626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_irt_scale_verification_20260520T203626_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "7ed6e2fd19f1413ee2d79240f32aaa00950421de86599f193d423033f41a794f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入。核心发现：\n\n**`mmlu-preproc.rds` 中的 `diff`/`disc` 是 CTT 统计量，不是 IRT 参数。**\n\n- **`diff`** = 0.75 × 正确率（猜测校正），概率尺度 [0, 0.75]，不是 IRT 的 b 参数\n- **`disc`** = 点双列相关系数（项目-总分相关），[-1, 1]，不是 IRT 的 a 参数\n- 验证：`sd` 与 `sqrt(p*(1-p))` 相关系数 = 1.0，确认为二值响应统计量\n\n**METABENCH 的实际 IRT 拟合**在 `crossvalidate.R` 中用 `mirt::mirt()` 完成，参数存在模型对象文件（如 `mmlu-2PL-1-cv-seed=1.rds`）中，使用 slope-intercept 参数化（a1, d），可转标准形式 `b = -d/a1`。\n\n**CTT → IRT 不可直接转换**，必须从原始响应矩阵重新拟合。对 DIF 分析的影响：如需 IRT equating 必须从 response matrix 重做 IRT 拟合，但 CTT 的 diff 可作为 Mantel-Haenszel DIF 分析的 difficulty 分层变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-irt-scale-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9535506adf5ea2182ad4",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code e2 difficulty modeltype interaction",
+  "task_key": "worker_code_e2_difficulty_modeltype_interaction_20260523T012814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e2_difficulty_modeltype_interaction_20260523T012814_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "e69755de0129a46154abc250d4e9f2a40191a7c12ed2c279057b72f56101cf48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are generated. Here's a summary:\n\n**Part 1 — Logistic Regression** (N=8,585 item×type observations):\n\n| Variable | β | OR | p |\n|---|---|---|---|\n| model_type (instruct) | 1.444 | 4.24 | 10⁻²²⁵ |\n| difficulty_z | -1.918 | 0.15 | 10⁻²⁹⁸ |\n| **difficulty × model_type** | **1.559** | **4.75** | **10⁻¹⁸⁸** |\n\nThe model_type effect survives after controlling for difficulty — the direction reversal is not a difficulty confound. The significant interaction reveals that difficulty *amplifies* the divergence: at easy items both types tend focal-favoring; at hard items, base strongly favors ref while instruct stays near 50/50.\n\n**Part 2 — Within-Family Paired Analysis** (9 families, base=ref, instruct=foc):\n\nHeterogeneous across families — mean instruct-favoring = 50.6% (t=0.19, p=0.85, not different from 50%). llama-3 shows 67.5% instruct-favoring; zephyr/mistral show base-favoring. This indicates the pooled direction reversal reflects differential family composition rather than a universal within-family mechanism.\n\n**McNemar on paired items** (2,053 items C in both analyses): 98% concordance in direction. The aggregate reversal arises from *which items* reach C threshold in each analysis, not from individual items switching direction.\n\nOutputs saved to `artifacts/difficulty_modeltype_interaction/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e2-difficulty-modeltype-interaction.md"
+}

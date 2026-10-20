@@ -1,0 +1,11 @@
+subject,n_items,matching_type,n_ets_a,n_ets_b,n_ets_c,pct_c,pct_a
+business_ethics,93,within,32,19,42,45.16,34.41
+business_ethics,93,cross,32,16,45,48.39,34.41
+human_aging,203,within,96,40,67,33.0,47.29
+human_aging,203,cross,88,30,85,41.87,43.35
+formal_logic,109,within,46,20,43,39.45,42.2
+formal_logic,109,cross,52,14,43,39.45,47.71
+professional_medicine,248,within,124,47,77,31.05,50.0
+professional_medicine,248,cross,109,45,94,37.9,43.95
+high_school_statistics,181,within,66,39,76,41.99,36.46
+high_school_statistics,181,cross,79,39,63,34.81,43.65

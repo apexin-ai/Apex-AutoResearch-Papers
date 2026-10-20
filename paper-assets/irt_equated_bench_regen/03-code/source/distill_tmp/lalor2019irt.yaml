@@ -1,0 +1,20 @@
+paper_key: "lalor2019irt"
+title: "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds"
+venue: "EMNLP-IJCNLP 2019"
+full_text_available: false
+
+research:
+  baselines: [human response pattern-based IRT]
+  metrics:
+    - {name: "correlation between human and machine IRT parameters", direction: "higher_better"}
+    - {name: "training set filtering performance", direction: "higher_better"}
+  datasets:
+    - {name: "NLI datasets", size: "natural language inference"}
+    - {name: "sentiment analysis datasets", size: "standard"}
+  ablation_dimensions: [artificial crowd composition]
+  training_recipe: {optimizer: "IRT parameter estimation", lr: "N/A", hardware: "DNN model crowds"}
+  method_family: "IRT with artificial crowds"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

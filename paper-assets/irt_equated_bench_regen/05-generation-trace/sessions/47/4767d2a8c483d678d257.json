@@ -1,0 +1,1011 @@
+{
+  "schema_version": "1.0",
+  "id": "4767d2a8c483d678d257",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code r16 rank displacement per threshold",
+  "task_key": "worker_code_r16_rank_displacement_per_threshold_20260523T110807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_rank_displacement_per_threshold_20260523T110807.log",
+    "occurrence": 1,
+    "bytes": 36333,
+    "sha256": "9f3a3084d556fdbbc8881b760e285cd2e96c1dbe6880336ce40f74ce58dd91ac"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "12c70771-706e-4d6b-95f7-02ff1b43ecdd",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779550800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9ae78b2c-99f0-4131-a872-1ee522a44089",
+                "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the data files first to understand the structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "4b798ad6-9103-41eb-b52e-02c9cd019a28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ce4JLwdJ1j6mDQU8JXY5Qg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13713,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13713
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C5eRRce8PbCpChhd67hb8B",
+              "name": "Bash",
+              "input": {
+                "command": "head -3 artifacts/plan_001/dif_results_temporal.csv",
+                "description": "Check DIF results CSV column names"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "fb7ee4c2-4a59-43fc-8a57-115cf0980953",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ce4JLwdJ1j6mDQU8JXY5Qg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13713,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13713
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T11:08:22.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C5eRRce8PbCpChhd67hb8B",
+              "type": "tool_result",
+              "content": "item_id,subject,alpha_mh,delta_mh,se,p_value,ets_class,li_label,li_contamination_type\nabstract_algebra.1,abstract_algebra,0.8673811041189408,0.3343505559632721,0.2921867891177819,0.27995385252579175,A,False,clean\nabstract_algebra.10,abstract_algebra,0.5141246508049961,1.5634303993406418,0.36471274316626207,1.8840975857581377e-05,C,False,clean",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "493a7131-719d-4393-b270-42b477e3a352",
+            "tool_use_result": {
+              "stdout": "item_id,subject,alpha_mh,delta_mh,se,p_value,ets_class,li_label,li_contamination_type\nabstract_algebra.1,abstract_algebra,0.8673811041189408,0.3343505559632721,0.2921867891177819,0.27995385252579175,A,False,clean\nabstract_algebra.10,abstract_algebra,0.5141246508049961,1.5634303993406418,0.36471274316626207,1.8840975857581377e-05,C,False,clean",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HC9Qz7tCaJiyAYhvkvdMK4",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport numpy as np; from scipy import sparse\nrm = np.load('artifacts/response_matrix.npz', allow_pickle=True)\nprint('keys:', list(rm.keys()))\nprint('shape:', tuple(rm['shape']))\nidx = np.load('artifacts/response_matrix_index.npz', allow_pickle=True)\nprint('idx keys:', list(idx.keys()))\nprint('models:', len(idx['model_names']), 'items:', len(idx['item_ids']))\n\"",
+                "description": "Check response matrix structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "77700a08-7772-482b-a486-6ff9b843a3b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ce4JLwdJ1j6mDQU8JXY5Qg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13713,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13713
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EpcWWhXNbnArZoT81j9C4Q",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration",
+                "description": "Create output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "2d1a4600-c7bd-4f49-b2f6-e901075b4427",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ce4JLwdJ1j6mDQU8JXY5Qg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13713,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13713
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T11:08:25.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HC9Qz7tCaJiyAYhvkvdMK4",
+              "type": "tool_result",
+              "content": "keys: ['indices', 'indptr', 'format', 'shape', 'data']\nshape: (np.int64(5227), np.int64(12508))\nidx keys: ['model_names', 'item_ids']\nmodels: 5227 items: 12508",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "652ba9bc-1d26-4b8b-9df7-ef0cea820343",
+            "tool_use_result": {
+              "stdout": "keys: ['indices', 'indptr', 'format', 'shape', 'data']\nshape: (np.int64(5227), np.int64(12508))\nidx keys: ['model_names', 'item_ids']\nmodels: 5227 items: 12508",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T11:08:25.246Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EpcWWhXNbnArZoT81j9C4Q",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "c0c75b12-dbca-474c-b469-fadc9157df64",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have the column names: `item_id, subject, alpha_mh, delta_mh, se, p_value, ets_class, li_label, li_contamination_type`. The `delta_mh` column contains signed values, so I need to take absolute values. Now let me write the analysis script.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "8517c6ce-308e-4d82-aa97-a69c2ab72567",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D9AR5WnkTLTBW82CBBuL3T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 25554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 686
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Column names confirmed: `delta_mh` (signed), `p_value`, `ets_class`. Writing the analysis script now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "348e2a26-40d3-4a20-ad27-c81923698fce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D9AR5WnkTLTBW82CBBuL3T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 25554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 686
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GM6vYWqmMHrDwgByQnLZXA",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/rank_displacement.py",
+                "content": "\"\"\"Rank displacement analysis across ETS thresholds with random-removal baseline.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse, stats\nfrom pathlib import Path\n\nART = Path(__file__).resolve().parent.parent\nOUT = ART / \"r16_threshold_calibration\"\nOUT.mkdir(exist_ok=True)\n\nTHRESHOLDS = [1.0, 1.5, 2.0, 2.5]\nN_RANDOM_TRIALS = 20\nRNG = np.random.default_rng(42)\n\n# --- Load data ---\nrm_data = np.load(ART / \"response_matrix.npz\", allow_pickle=True)\nR = sparse.csr_matrix(\n    (rm_data[\"data\"], rm_data[\"indices\"], rm_data[\"indptr\"]),\n    shape=tuple(rm_data[\"shape\"]),\n)\nidx = np.load(ART / \"response_matrix_index.npz\", allow_pickle=True)\nmodel_names = idx[\"model_names\"]\nitem_ids = idx[\"item_ids\"]\n\nR_dense = R.toarray().astype(np.int8)  # -1=missing, 0=wrong, 1=correct\n\ndif = pd.read_csv(ART / \"plan_001\" / \"dif_results_temporal.csv\")\n\n# Build item_id -> column index mapping\nitem_id_to_col = {iid: i for i, iid in enumerate(item_ids)}\ndif_item_cols = dif[\"item_id\"].map(item_id_to_col)\ndif = dif[dif_item_cols.notna()].copy()\ndif[\"col_idx\"] = dif[\"item_id\"].map(item_id_to_col).astype(int)\n\n\ndef compute_accuracy(R_dense, col_mask):\n    \"\"\"Compute per-model accuracy using only columns in col_mask.\"\"\"\n    sub = R_dense[:, col_mask]\n    valid = sub >= 0\n    n_valid = valid.sum(axis=1)\n    n_correct = ((sub == 1) & valid).sum(axis=1)\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        acc = np.where(n_valid > 0, n_correct / n_valid, 0.0)\n    return acc\n\n\ndef compute_rankings(acc):\n    \"\"\"Rank by accuracy descending (rank 1 = highest accuracy). Ties use average.\"\"\"\n    return stats.rankdata(-acc, method=\"average\")\n\n\ndef compute_metrics(rank_orig, rank_clean):\n    disp = np.abs(rank_orig - rank_clean)\n    tau, _ = stats.kendalltau(rank_orig, rank_clean)\n    return {\n        \"avg_abs_rank_displacement\": disp.mean(),\n        \"max_abs_rank_displacement\": disp.max(),\n        \"pairwise_flip_rate\": (1 - tau) / 2,\n    }\n\n\n# --- Original ranking (all items) ---\nall_cols = np.arange(R_dense.shape[1])\nacc_orig = compute_accuracy(R_dense, all_cols)\nrank_orig = compute_rankings(acc_orig)\n\nn_total_items = R_dense.shape[1]\n\nresults = []\n\nfor thresh in THRESHOLDS:\n    print(f\"Threshold {thresh}...\")\n\n    flagged_mask = (dif[\"delta_mh\"].abs() >= thresh) & (dif[\"p_value\"] < 0.05)\n    flagged_cols = set(dif.loc[flagged_mask, \"col_idx\"].values)\n    n_flagged = len(flagged_cols)\n    pct_flagged = n_flagged / n_total_items\n\n    # Cleaned ranking\n    stable_cols = np.array([c for c in range(n_total_items) if c not in flagged_cols])\n    acc_clean = compute_accuracy(R_dense, stable_cols)\n    rank_clean = compute_rankings(acc_clean)\n\n    m = compute_metrics(rank_orig, rank_clean)\n\n    # Random removal baseline\n    rand_metrics = {\"avg_abs_rank_displacement\": [], \"max_abs_rank_displacement\": [], \"pairwise_flip_rate\": []}\n    for trial in range(N_RANDOM_TRIALS):\n        rand_remove = set(RNG.choice(n_total_items, size=n_flagged, replace=False))\n        rand_cols = np.array([c for c in range(n_total_items) if c not in rand_remove])\n        acc_rand = compute_accuracy(R_dense, rand_cols)\n        rank_rand = compute_rankings(acc_rand)\n        rm_ = compute_metrics(rank_orig, rank_rand)\n        for k in rand_metrics:\n            rand_metrics[k].append(rm_[k])\n\n    row = {\n        \"threshold\": thresh,\n        \"n_flagged\": n_flagged,\n        \"pct_flagged\": round(pct_flagged, 4),\n    }\n    for k in [\"avg_abs_rank_displacement\", \"max_abs_rank_displacement\", \"pairwise_flip_rate\"]:\n        row[k] = round(m[k], 4)\n        rm_arr = np.array(rand_metrics[k])\n        row[f\"random_mean_{k}\"] = round(rm_arr.mean(), 4)\n        row[f\"random_std_{k}\"] = round(rm_arr.std(), 4)\n        if rm_arr.std() > 0:\n            row[f\"z_{k}\"] = round((m[k] - rm_arr.mean()) / rm_arr.std(), 2)\n        else:\n            row[f\"z_{k}\"] = float(\"nan\")\n\n    results.append(row)\n    print(f\"  flagged={n_flagged} ({pct_flagged:.1%}), avg_disp={m['avg_abs_rank_displacement']:.1f}, \"\n          f\"flip_rate={m['pairwise_flip_rate']:.4f}\")\n\ndf = pd.DataFrame(results)\ndf.to_csv(OUT / \"rank_displacement_by_threshold.csv\", index=False)\nprint(f\"\\nSaved to {OUT / 'rank_displacement_by_threshold.csv'}\")\n\n# --- Generate report ---\nlines = [\"# Rank Displacement by ETS Threshold\\n\"]\nlines.append(f\"Models: {R_dense.shape[0]}, Items: {n_total_items}, Random trials: {N_RANDOM_TRIALS}\\n\")\n\nlines.append(\"## Results\\n\")\nlines.append(\"| Threshold | Flagged | % | Avg Disp | Max Disp | Flip Rate | Rand Avg Disp | Rand Flip | Z (Disp) | Z (Flip) |\")\nlines.append(\"|-----------|---------|---|----------|----------|-----------|---------------|-----------|----------|----------|\")\nfor _, r in df.iterrows():\n    lines.append(\n        f\"| {r['threshold']:.1f} | {int(r['n_flagged'])} | {r['pct_flagged']:.1%} \"\n        f\"| {r['avg_abs_rank_displacement']:.1f} | {int(r['max_abs_rank_displacement'])} \"\n        f\"| {r['pairwise_flip_rate']:.4f} \"\n        f\"| {r['random_mean_avg_abs_rank_displacement']:.1f} \"\n        f\"| {r['random_mean_pairwise_flip_rate']:.4f} \"\n        f\"| {r['z_avg_abs_rank_displacement']:.1f} \"\n        f\"| {r['z_pairwise_flip_rate']:.1f} |\"\n    )\n\nlines.append(\"\\n## Interpretation\\n\")\nlines.append(\"- **Avg Disp**: mean absolute rank change per model after removing C-flagged items\")\nlines.append(\"- **Flip Rate**: fraction of model pairs whose relative ordering changes (from Kendall tau)\")\nlines.append(\"- **Z-score**: how many SDs the DIF-based removal exceeds random removal of equal count\")\nlines.append(\"- Z > 2 indicates DIF-flagged items cause significantly more ranking instability than random items\\n\")\n\nreport = \"\\n\".join(lines)\n(OUT / \"rank_displacement_report.md\").write_text(report)\nprint(f\"Saved report to {OUT / 'rank_displacement_report.md'}\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "99eca75a-7b6b-4c0d-a1e9-36b64bcde774",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D9AR5WnkTLTBW82CBBuL3T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 25554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 686
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T11:09:00.366Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GM6vYWqmMHrDwgByQnLZXA",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/rank_displacement.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "84aa3251-4405-4d6f-b073-c95889e9477c",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/rank_displacement.py",
+              "content": "\"\"\"Rank displacement analysis across ETS thresholds with random-removal baseline.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse, stats\nfrom pathlib import Path\n\nART = Path(__file__).resolve().parent.parent\nOUT = ART / \"r16_threshold_calibration\"\nOUT.mkdir(exist_ok=True)\n\nTHRESHOLDS = [1.0, 1.5, 2.0, 2.5]\nN_RANDOM_TRIALS = 20\nRNG = np.random.default_rng(42)\n\n# --- Load data ---\nrm_data = np.load(ART / \"response_matrix.npz\", allow_pickle=True)\nR = sparse.csr_matrix(\n    (rm_data[\"data\"], rm_data[\"indices\"], rm_data[\"indptr\"]),\n    shape=tuple(rm_data[\"shape\"]),\n)\nidx = np.load(ART / \"response_matrix_index.npz\", allow_pickle=True)\nmodel_names = idx[\"model_names\"]\nitem_ids = idx[\"item_ids\"]\n\nR_dense = R.toarray().astype(np.int8)  # -1=missing, 0=wrong, 1=correct\n\ndif = pd.read_csv(ART / \"plan_001\" / \"dif_results_temporal.csv\")\n\n# Build item_id -> column index mapping\nitem_id_to_col = {iid: i for i, iid in enumerate(item_ids)}\ndif_item_cols = dif[\"item_id\"].map(item_id_to_col)\ndif = dif[dif_item_cols.notna()].copy()\ndif[\"col_idx\"] = dif[\"item_id\"].map(item_id_to_col).astype(int)\n\n\ndef compute_accuracy(R_dense, col_mask):\n    \"\"\"Compute per-model accuracy using only columns in col_mask.\"\"\"\n    sub = R_dense[:, col_mask]\n    valid = sub >= 0\n    n_valid = valid.sum(axis=1)\n    n_correct = ((sub == 1) & valid).sum(axis=1)\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        acc = np.where(n_valid > 0, n_correct / n_valid, 0.0)\n    return acc\n\n\ndef compute_rankings(acc):\n    \"\"\"Rank by accuracy descending (rank 1 = highest accuracy). Ties use average.\"\"\"\n    return stats.rankdata(-acc, method=\"average\")\n\n\ndef compute_metrics(rank_orig, rank_clean):\n    disp = np.abs(rank_orig - rank_clean)\n    tau, _ = stats.kendalltau(rank_orig, rank_clean)\n    return {\n        \"avg_abs_rank_displacement\": disp.mean(),\n        \"max_abs_rank_displacement\": disp.max(),\n        \"pairwise_flip_rate\": (1 - tau) / 2,\n    }\n\n\n# --- Original ranking (all items) ---\nall_cols = np.arange(R_dense.shape[1])\nacc_orig = compute_accuracy(R_dense, all_cols)\nrank_orig = compute_rankings(acc_orig)\n\nn_total_items = R_dense.shape[1]\n\nresults = []\n\nfor thresh in THRESHOLDS:\n    print(f\"Threshold {thresh}...\")\n\n    flagged_mask = (dif[\"delta_mh\"].abs() >= thresh) & (dif[\"p_value\"] < 0.05)\n    flagged_cols = set(dif.loc[flagged_mask, \"col_idx\"].values)\n    n_flagged = len(flagged_cols)\n    pct_flagged = n_flagged / n_total_items\n\n    # Cleaned ranking\n    stable_cols = np.array([c for c in range(n_total_items) if c not in flagged_cols])\n    acc_clean = compute_accuracy(R_dense, stable_cols)\n    rank_clean = compute_rankings(acc_clean)\n\n    m = compute_metrics(rank_orig, rank_clean)\n\n    # Random removal baseline\n    rand_metrics = {\"avg_abs_rank_displacement\": [], \"max_abs_rank_displacement\": [], \"pairwise_flip_rate\": []}\n    for trial in range(N_RANDOM_TRIALS):\n        rand_remove = set(RNG.choice(n_total_items, size=n_flagged, replace=False))\n        rand_cols = np.array([c for c in range(n_total_items) if c not in rand_remove])\n        acc_rand = compute_accuracy(R_dense, rand_cols)\n        rank_rand = compute_rankings(acc_rand)\n        rm_ = compute_metrics(rank_orig, rank_rand)\n        for k in rand_metrics:\n            rand_metrics[k].append(rm_[k])\n\n    row = {\n        \"threshold\": thresh,\n        \"n_flagged\": n_flagged,\n        \"pct_flagged\": round(pct_flagged, 4),\n    }\n    for k in [\"avg_abs_rank_displacement\", \"max_abs_rank_displacement\", \"pairwise_flip_rate\"]:\n        row[k] = round(m[k], 4)\n        rm_arr = np.array(rand_metrics[k])\n        row[f\"random_mean_{k}\"] = round(rm_arr.mean(), 4)\n        row[f\"random_std_{k}\"] = round(rm_arr.std(), 4)\n        if rm_arr.std() > 0:\n            row[f\"z_{k}\"] = round((m[k] - rm_arr.mean()) / rm_arr.std(), 2)\n        else:\n            row[f\"z_{k}\"] = float(\"nan\")\n\n    results.append(row)\n    print(f\"  flagged={n_flagged} ({pct_flagged:.1%}), avg_disp={m['avg_abs_rank_displacement']:.1f}, \"\n          f\"flip_rate={m['pairwise_flip_rate']:.4f}\")\n\ndf = pd.DataFrame(results)\ndf.to_csv(OUT / \"rank_displacement_by_threshold.csv\", index=False)\nprint(f\"\\nSaved to {OUT / 'rank_displacement_by_threshold.csv'}\")\n\n# --- Generate report ---\nlines = [\"# Rank Displacement by ETS Threshold\\n\"]\nlines.append(f\"Models: {R_dense.shape[0]}, Items: {n_total_items}, Random trials: {N_RANDOM_TRIALS}\\n\")\n\nlines.append(\"## Results\\n\")\nlines.append(\"| Threshold | Flagged | % | Avg Disp | Max Disp | Flip Rate | Rand Avg Disp | Rand Flip | Z (Disp) | Z (Flip) |\")\nlines.append(\"|-----------|---------|---|----------|----------|-----------|---------------|-----------|----------|----------|\")\nfor _, r in df.iterrows():\n    lines.append(\n        f\"| {r['threshold']:.1f} | {int(r['n_flagged'])} | {r['pct_flagged']:.1%} \"\n        f\"| {r['avg_abs_rank_displacement']:.1f} | {int(r['max_abs_rank_displacement'])} \"\n        f\"| {r['pairwise_flip_rate']:.4f} \"\n        f\"| {r['random_mean_avg_abs_rank_displacement']:.1f} \"\n        f\"| {r['random_mean_pairwise_flip_rate']:.4f} \"\n        f\"| {r['z_avg_abs_rank_displacement']:.1f} \"\n        f\"| {r['z_pairwise_flip_rate']:.1f} |\"\n    )\n\nlines.append(\"\\n## Interpretation\\n\")\nlines.append(\"- **Avg Disp**: mean absolute rank change per model after removing C-flagged items\")\nlines.append(\"- **Flip Rate**: fraction of model pairs whose relative ordering changes (from Kendall tau)\")\nlines.append(\"- **Z-score**: how many SDs the DIF-based removal exceeds random removal of equal count\")\nlines.append(\"- Z > 2 indicates DIF-flagged items cause significantly more ranking instability than random items\\n\")\n\nreport = \"\\n\".join(lines)\n(OUT / \"rank_displacement_report.md\").write_text(report)\nprint(f\"Saved report to {OUT / 'rank_displacement_report.md'}\")\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018tGdduKHhMzx2bxH4UCBDQ",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/r16_threshold_calibration/rank_displacement.py",
+                "description": "Run rank displacement analysis",
+                "timeout": 300000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "c41869ba-54c0-4a05-bbff-3feb8547f1e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KnHqmjVopmDaDBv6LZ4bnh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2411,
+                "cache_read_input_tokens": 26240,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2411
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bwi4k7bvt",
+                "tool_use_id": "toolu_018tGdduKHhMzx2bxH4UCBDQ",
+                "description": "Run rank displacement analysis",
+                "task_type": "local_bash",
+                "uuid": "210be2d3-df0f-47de-b3cb-bee13fc482e1",
+                "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bwi4k7bvt",
+                "tool_use_id": "toolu_018tGdduKHhMzx2bxH4UCBDQ",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run rank displacement analysis",
+                "uuid": "05ba0fbf-6e67-4c0a-9ea0-1778ed984157",
+                "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T11:10:01.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018tGdduKHhMzx2bxH4UCBDQ",
+              "type": "tool_result",
+              "content": "Threshold 1.0...\n  flagged=6120 (48.9%), avg_disp=80.8, flip_rate=0.0216\nThreshold 1.5...\n  flagged=3918 (31.3%), avg_disp=74.7, flip_rate=0.0200\nThreshold 2.0...\n  flagged=2294 (18.3%), avg_disp=60.6, flip_rate=0.0161\nThreshold 2.5...\n  flagged=1278 (10.2%), avg_disp=54.7, flip_rate=0.0141\n\nSaved to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/rank_displacement_by_threshold.csv\nSaved report to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/rank_displacement_report.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "eefca21b-122c-4248-9d63-804655a78bad",
+            "tool_use_result": {
+              "stdout": "Threshold 1.0...\n  flagged=6120 (48.9%), avg_disp=80.8, flip_rate=0.0216\nThreshold 1.5...\n  flagged=3918 (31.3%), avg_disp=74.7, flip_rate=0.0200\nThreshold 2.0...\n  flagged=2294 (18.3%), avg_disp=60.6, flip_rate=0.0161\nThreshold 2.5...\n  flagged=1278 (10.2%), avg_disp=54.7, flip_rate=0.0141\n\nSaved to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/rank_displacement_by_threshold.csv\nSaved report to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_threshold_calibration/rank_displacement_report.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ni8MTF3M9kyWdUJgtkNtda",
+              "name": "Bash",
+              "input": {
+                "command": "cat artifacts/r16_threshold_calibration/rank_displacement_by_threshold.csv",
+                "description": "Check output CSV"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "b472fb71-1e88-4434-8c93-b965e6d06800",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QWRLvr1Xq7iiV7NkMkHFEu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 381,
+                "cache_read_input_tokens": 28651,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 381
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T11:10:04.497Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ni8MTF3M9kyWdUJgtkNtda",
+              "type": "tool_result",
+              "content": "threshold,n_flagged,pct_flagged,avg_abs_rank_displacement,random_mean_avg_abs_rank_displacement,random_std_avg_abs_rank_displacement,z_avg_abs_rank_displacement,max_abs_rank_displacement,random_mean_max_abs_rank_displacement,random_std_max_abs_rank_displacement,z_max_abs_rank_displacement,pairwise_flip_rate,random_mean_pairwise_flip_rate,random_std_pairwise_flip_rate,z_pairwise_flip_rate\n1.0,6120,0.4893,80.7802,54.0551,6.7873,3.94,1003.5,655.225,136.1286,2.56,0.0216,0.0142,0.0018,4.09\n1.5,3918,0.3132,74.6721,35.534,2.0897,18.73,847.0,463.625,78.3825,4.89,0.02,0.0093,0.0006,18.66\n2.0,2294,0.1834,60.5829,26.4679,2.598,13.13,834.0,377.2,64.8883,7.04,0.0161,0.0068,0.0007,13.93\n2.5,1278,0.1022,54.6998,19.7906,1.8959,18.41,789.0,302.9,57.9857,8.38,0.0141,0.005,0.0005,17.61",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "eb51008d-b689-4f76-8378-033f8b96403f",
+            "tool_use_result": {
+              "stdout": "threshold,n_flagged,pct_flagged,avg_abs_rank_displacement,random_mean_avg_abs_rank_displacement,random_std_avg_abs_rank_displacement,z_avg_abs_rank_displacement,max_abs_rank_displacement,random_mean_max_abs_rank_displacement,random_std_max_abs_rank_displacement,z_max_abs_rank_displacement,pairwise_flip_rate,random_mean_pairwise_flip_rate,random_std_pairwise_flip_rate,z_pairwise_flip_rate\n1.0,6120,0.4893,80.7802,54.0551,6.7873,3.94,1003.5,655.225,136.1286,2.56,0.0216,0.0142,0.0018,4.09\n1.5,3918,0.3132,74.6721,35.534,2.0897,18.73,847.0,463.625,78.3825,4.89,0.02,0.0093,0.0006,18.66\n2.0,2294,0.1834,60.5829,26.4679,2.598,13.13,834.0,377.2,64.8883,7.04,0.0161,0.0068,0.0007,13.93\n2.5,1278,0.1022,54.6998,19.7906,1.8959,18.41,789.0,302.9,57.9857,8.38,0.0141,0.005,0.0005,17.61",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C9QKZ2FEfnNtd1XJrJK7uv",
+              "name": "Bash",
+              "input": {
+                "command": "cat artifacts/r16_threshold_calibration/rank_displacement_report.md",
+                "description": "Check output report"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "d2c0f265-e13f-40f2-9765-2c3ada458706",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QWRLvr1Xq7iiV7NkMkHFEu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 381,
+                "cache_read_input_tokens": 28651,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 381
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T11:10:04.899Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C9QKZ2FEfnNtd1XJrJK7uv",
+              "type": "tool_result",
+              "content": "# Rank Displacement by ETS Threshold\n\nModels: 5227, Items: 12508, Random trials: 20\n\n## Results\n\n| Threshold | Flagged | % | Avg Disp | Max Disp | Flip Rate | Rand Avg Disp | Rand Flip | Z (Disp) | Z (Flip) |\n|-----------|---------|---|----------|----------|-----------|---------------|-----------|----------|----------|\n| 1.0 | 6120 | 48.9% | 80.8 | 1003 | 0.0216 | 54.1 | 0.0142 | 3.9 | 4.1 |\n| 1.5 | 3918 | 31.3% | 74.7 | 847 | 0.0200 | 35.5 | 0.0093 | 18.7 | 18.7 |\n| 2.0 | 2294 | 18.3% | 60.6 | 834 | 0.0161 | 26.5 | 0.0068 | 13.1 | 13.9 |\n| 2.5 | 1278 | 10.2% | 54.7 | 789 | 0.0141 | 19.8 | 0.0050 | 18.4 | 17.6 |\n\n## Interpretation\n\n- **Avg Disp**: mean absolute rank change per model after removing C-flagged items\n- **Flip Rate**: fraction of model pairs whose relative ordering changes (from Kendall tau)\n- **Z-score**: how many SDs the DIF-based removal exceeds random removal of equal count\n- Z > 2 indicates DIF-flagged items cause significantly more ranking instability than random items",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "5f85eafd-ac3e-45f9-a3ed-b185c6616084",
+            "tool_use_result": {
+              "stdout": "# Rank Displacement by ETS Threshold\n\nModels: 5227, Items: 12508, Random trials: 20\n\n## Results\n\n| Threshold | Flagged | % | Avg Disp | Max Disp | Flip Rate | Rand Avg Disp | Rand Flip | Z (Disp) | Z (Flip) |\n|-----------|---------|---|----------|----------|-----------|---------------|-----------|----------|----------|\n| 1.0 | 6120 | 48.9% | 80.8 | 1003 | 0.0216 | 54.1 | 0.0142 | 3.9 | 4.1 |\n| 1.5 | 3918 | 31.3% | 74.7 | 847 | 0.0200 | 35.5 | 0.0093 | 18.7 | 18.7 |\n| 2.0 | 2294 | 18.3% | 60.6 | 834 | 0.0161 | 26.5 | 0.0068 | 13.1 | 13.9 |\n| 2.5 | 1278 | 10.2% | 54.7 | 789 | 0.0141 | 19.8 | 0.0050 | 18.4 | 17.6 |\n\n## Interpretation\n\n- **Avg Disp**: mean absolute rank change per model after removing C-flagged items\n- **Flip Rate**: fraction of model pairs whose relative ordering changes (from Kendall tau)\n- **Z-score**: how many SDs the DIF-based removal exceeds random removal of equal count\n- Z > 2 indicates DIF-flagged items cause significantly more ranking instability than random items",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Key findings:\n\n- **All z-scores >> 2** across every threshold — DIF-flagged items cause significantly more ranking instability than random removal of the same count.\n- Threshold 1.0 flags 49% of items (too aggressive), z ≈ 4. Thresholds 1.5–2.5 flag 10–31% with z-scores 13–19, showing the effect is robust and not driven by sheer removal volume.\n- Max displacement reaches ~800–1000 ranks (out of 5227 models) — some models shift dramatically.\n- Flip rates are 2–3× the random baseline at every threshold.\n\nOutput files in `artifacts/r16_threshold_calibration/`:\n- `rank_displacement_by_threshold.csv` — full metrics table\n- `rank_displacement_report.md` — formatted report\n- `rank_displacement.py` — analysis script"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "uuid": "a1f5a776-4256-4f37-908a-f90e9d00b886",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016FkbQkzatMkp9hnfQVn4xA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1068,
+                "cache_read_input_tokens": 29032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1068
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Key findings:\n\n- **All z-scores >> 2** across every threshold — DIF-flagged items cause significantly more ranking instability than random removal of the same count.\n- Threshold 1.0 flags 49% of items (too aggressive), z ≈ 4. Thresholds 1.5–2.5 flag 10–31% with z-scores 13–19, showing the effect is robust and not driven by sheer removal volume.\n- Max displacement reaches ~800–1000 ranks (out of 5227 models) — some models shift dramatically.\n- Flip rates are 2–3× the random baseline at every threshold.\n\nOutput files in `artifacts/r16_threshold_calibration/`:\n- `rank_displacement_by_threshold.csv` — full metrics table\n- `rank_displacement_report.md` — formatted report\n- `rank_displacement.py` — analysis script"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 115577,
+            "duration_api_ms": 61885,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "4c4ab0bd-904f-4450-8791-f89fd8e10a51",
+            "total_cost_usd": 0.25944475,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 18259,
+              "cache_read_input_tokens": 121318,
+              "output_tokens": 3315,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18259,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 218,
+                  "cache_read_input_tokens": 29032,
+                  "cache_creation_input_tokens": 1068,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1068
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1672,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001757,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 3315,
+                "cacheReadInputTokens": 121318,
+                "cacheCreationInputTokens": 18259,
+                "webSearchRequests": 0,
+                "costUSD": 0.25768775,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "46bfb884-38b6-454a-8047-ba53a2ce58e6"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r16-rank-displacement-per-threshold.md"
+}

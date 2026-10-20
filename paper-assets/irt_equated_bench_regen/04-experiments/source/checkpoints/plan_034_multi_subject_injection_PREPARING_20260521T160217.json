@@ -1,0 +1,17 @@
+{
+  "exp_id": "plan_034_multi_subject_injection",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:12.118Z",
+    "updated_at": "2026-05-21T16:02:17.045Z",
+    "hypothesis": "Proposition 1 声称当污染局限于单一 subject 时 ΔFPR=0（cross-subject matching 不受污染）。当同时污染 k∈{1,2,3,5,10,20} 个 subject 时，matching variable 被逐步污染，ΔFPR(k) 将随 k 单调递增。具体预测：k≤3 时 ΔFPR<0.02（matching variable 被稀释），k≥10 时 ΔFPR>0.05（matching variable 严重受污）。ΔTPR(k) 在 k=1 与 k=20 之间保持稳定（>0.3 at p=0.5），因为 detection 对 target subject 内的 signal 而非 matching quality 更敏感。",
+    "parent": "plan_016_within_subject_semi_synthetic",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T16:02:17.163022+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1298 @@
+{
+  "schema_version": "1.0",
+  "id": "558258ac5444e0b7c0c6",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "paper figure fig 1 global vs differential",
+  "task_key": "worker_paper_figure_fig_1_global_vs_differential_20260521T011552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_1_global_vs_differential_20260521T011552.log",
+    "occurrence": 1,
+    "bytes": 115382,
+    "sha256": "6633a93d2c02d7218b8c7f2950cda804b0ca4c11cbe3038eca66ce48d412da69"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_figures_and_layout",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "1e051192-7808-43c9-a1dd-523dfdf81db3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779333000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "3c09a221-924b-4e56-8a74-b07a6914b636",
+                "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the two skill files for style standards, then write and execute the figure script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "0e9a1aed-6af9-4312-b844-c3f869a9878e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016NWeUZdH41jQKRK7LVjEUa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12200,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12200
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SYeL5FiEWYvkTx6zbJLGTK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "6b748f70-9dd4-4e5c-9012-4b4988cc4708",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016NWeUZdH41jQKRK7LVjEUa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12200,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12200
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T01:16:02.384Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SYeL5FiEWYvkTx6zbJLGTK",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\n3\tname: paper-visualization\n4\tscope: global\n5\ttags:\n6\t- research\n7\t- visualization\n8\t- paper\n9\t- matplotlib\n10\t- paperbanana\n11\tversion: 5\n12\troles:\n13\t- agent\n14\t- paper_agent\n15\t---\n16\t\n17\t# Paper Visualization — 学术图表设计与生成\n18\t\n19\t> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n20\t\n21\t本 skill 分五层：\n22\t\n23\t- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n24\t- **L1 防丑原则** — 底线，所有图必须遵守\n25\t- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n26\t- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n27\t- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n28\t\n29\t---\n30\t\n31\t## L0 学习同行（设计前的功课）\n32\t\n33\t你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n34\t\n35\t### 为什么这一步是重要的\n36\t\n37\t- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n38\t- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n39\t- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n40\t- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n41\t\n42\t### 什么时候值得投入\n43\t\n44\t判断权交给你。一些可参考的信号：\n45\t\n46\t- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n47\t- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n48\t- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n49\t\n50\t### 怎么看\n51\t\n52\t工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n53\t\n54\t看的时候问自己（不是机械检查清单，是真的去理解）：\n55\t\n56\t- 这张图回答了什么问题？读者一眼能 get 到吗？\n57\t- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n58\t- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n59\t- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n60\t- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n61\t\n62\t### 怎么把学到的传下去\n63\t\n64\t把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n65\t\n66\t```yaml\n67\tdesign_notes:\n68\t  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n69\t  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n70\t  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n71\t```\n72\t\n73\tWorker 拿到这种 design_notes 就知道既要参考 GPTQ 的 layout 又要用 Pattern A，能直接落实成代码。\n74\t\n75\t### 边界\n76\t\n77\t- 不要复刻，要消化。直接抄一张图既没用（数据不一样）也有风险（与他们的 claim 强绑定）\n78\t- 不要看太多。3 张就够，多了 Paper Agent 会陷入\"该听谁的\"\n79\t- 看不到原图（提取失败 / arXiv 无 source）就跳过，不要在这里卡住流程\n80\t\n81\t---\n82\t\n83\t## L1 防丑原则（底线，不可违反）\n84\t\n85\t来自 Tufte 和 Luís Cruz 16 条公认规范。Agent 默认遵守，无需逐条思考。\n86\t\n87\t1. **Self-explanatory** — 不看正文就能看懂：title/caption + 所有轴有 label + 单位\n88\t2. **去 chartjunk** — 不要 3D、不要背景框、不要无意义网格、不要 dual y-axis、不要 pie/donut chart\n89\t3. **直接标注 > Legend** — 能直接标在曲线/柱旁就不用 legend；legend 必要时不遮数据\n90\t4. **颜色/形状/纹理只用于 data variation** — 不用颜色装饰，不用相同颜色表示不同数据\n91\t5. **Meaningful baseline** — bar chart 必须从 0 起；scatter 可以非 0\n92\t6. **文字水平** — label 不要旋转/垂直；类别名太长 → 用 horizontal bar chart\n93\t7. **Sort for comparison** — 柱状图按数值排序，便于对比（除非有自然顺序如时间）\n94\t8. **字号一致** — 用 mm 计算 figsize（`ONE_MM = 1/25.4`），不在 LaTeX 里 `\\includegraphics[scale=...]` resize\n95\t9. **色盲友好** — 默认 Okabe-Ito；红/绿区分时变 saturation；考虑 grayscale 打印\n96\t10. **Bold 只用于强调** — 不要全图加粗；highlight 留给 takeaway\n97\t11. **Line plot 只用于有序数据** — 类别变量用 bar\n98\t12. **单 x 单 y 轴** — 必须双轴时改成 multi-panel\n99\t13. **300 DPI、PDF 矢量、savefig.bbox=tight、去掉 top/right spines**\n100\t\n101\t---\n102\t\n103\t## L2 叙事原则（让图变成论证）\n104\t\n105\tL1 让图\"不丑\"，L2 让图\"有说服力\"。这一层是 Agent 自主画图时最容易缺失的。\n106\t\n107\t### 原则 1：每张图回答一个明确问题\n108\t\n109\t动笔前用一句话写下：\"This figure shows that ___.\"\n110\t\n111\t如果写不出来，就不要画。如果写出来的 takeaway 不是论文的 claim，就要重新设计。\n112\t\n113\t**反例**：`\"Accuracy across methods\"` — 这只是个标题，不是问题\n114\t**正例**：`\"FP16 baseline 在小模型上比量化版高 5pp，但 70B 模型上差距消失\"` — 这是一张图要说服读者相信的事\n115\t\n116\t`visualization_plan.{fig_id}.narrative_intent` 字段写这一句。\n117\t\n118\t### 原则 2：颜色绑定语义而非数据顺序\n119\t\n120\t错的做法：`colors = ['blue', 'orange', 'green', 'red']` 按数据顺序分配。\n121\t对的做法：`BN → 蓝色（始终）`、`non-BN → 橙色（始终）`、`collapse/danger → vermillion (#D55E00)`、`safe/baseline → blue (#0072B2)`。\n122\t\n123\t整篇论文 6 张图，BN 永远蓝、collapse 永远红——零认知负担，读者一眼建立映射。\n124\t\n125\t### 原则 3：信息层级用 visual variable 表达\n126\t\n127\t数据的\"质量\"和\"分类\"应该可见，不应该藏在 caption 里：\n128\t\n129\t| 信息 | Visual 表达 |\n130\t|------|------------|\n131\t| n < 50 低置信度点 | hollow marker + 标注 `n=` |\n132\t| Out-of-sample / pending 数据 | hollow + 不同 marker shape（如 diamond）+ \"OOS\" label |\n133\t| Collapse / 异常类别 | hatching（斜线填充）|\n134\t| 主结果 vs 次要结果 | 主用饱和色，次要用 muted 色或 alpha |\n135\t\n136\t### 原则 4：加叙事层，不只画数据\n137\t\n138\t数据是图的基础，叙事层是让读者\"读懂\"的关键。常见叙事层：\n139\t\n140\t- **Background bands** — `axhspan/axvspan` 标定性区域（\"collapse zone\"、\"safe zone\"、\"Regime A/B/C\"）\n141\t- **Fill_between** — 显示两条曲线发散区域（alpha 极低如 0.06，不抢眼但有面积）\n142\t- **Reference lines** — 锚定真实值（如 dashed line 标\"actual W3A16 accuracy\"）\n143\t- **Equivalence band** — `axvspan` gradient fade 标 +/-1pp 等价区间\n144\t- **Concept curve** — 完全合成的曲线（如 cosine trajectory）建立理论直觉\n145\t\n146\t这些都不来自数据，但帮读者\"看到\"数据想说什么。\n147\t\n148\t### 原则 5：Subtitle / panel label 写 insight 不写描述\n149\t\n150\t错：`\"Layer 6 comparison across three models\"`\n151\t对：`\"Same relative position, opposite function\"`\n152\t\n153\t错：`\"Reliability diagram\"`\n154\t对：`\"Quantization shifts confidence but not accuracy\"`\n155\t\n156\t副标题是免费的 takeaway，不要浪费。\n157\t\n158\t### 原则 6：Multi-panel 每个面板独立回答一个 sub-question\n159\t\n160\t不要做\"主图 + 装饰小图\"。每个 panel 必须有独立的信息价值。\n161\t\n162\t如果一个 panel 想不出独立的问题，要么删掉，要么合并到主 panel。\n163\t\n164\t布局上：非对称比例（如 1.4:1）让视觉重心对齐叙事重心。\n165\t\n166\t### 原则 7：Hero figure 默认要 2-3 轮迭代\n167\t\n168\t第一版画出来基本不能直接用。计划好预算：先确定数据和布局，再调样式标注，最后 polish。不要指望一次到位。\n169\t\n170\t---\n171\t\n172\t## L3 Pattern 库（按 `design_notes` 选用）\n173\t\n174\t按\"图要回答的问题\"选 pattern。每个 pattern 给出**何时用**、**怎么用**（具体代码或 matplotlib API）。\n175\t\n176\t### Pattern A：定性区域 / regime bands\n177\t\n178\t**何时用**：x 或 y 轴有自然分段（regime、phase、severity tier）。\n179\t\n180\t```python\n181\t# horizontal bands\n182\tfor lo, hi, color, label in [(0, 1, '#EBF5FB', 'Regime A'), (1, 5, '#EAFAF1', 'Regime B')]:\n183\t    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n184\t    ax.text(x_label_pos, (lo+hi)/2, label, va='center', fontsize=9, color='gray')\n185\t\n186\t# 单一 collapse zone\n187\tax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\n188\tax.text(0.02, 2.5, 'collapse zone', fontsize=8, color='#ccaaaa', fontstyle='italic')\n189\t```\n190\t\n191\t### Pattern B：发散面积 fill_between\n192\t\n193\t**何时用**：两组数据从某点开始发散，想让\"发散程度\"可见。\n194\t\n195\t```python\n196\t# alpha 0.06 极淡，不抢眼但有面积\n197\tax.fill_between(x_range, curve_high, curve_low, alpha=0.06, color='#555555', zorder=1)\n198\t```\n199\t\n200\t### Pattern C：参考线锚定真实值\n201\t\n202\t**何时用**：合成 / 缩放后的 x 轴需要锚定到真实物理量。\n203\t\n204\t```python\n205\tax.axhline(y=actual_value, color=color, linestyle=':', linewidth=0.8, alpha=0.3)\n206\tt = ax.text(x_pos, actual_value+1, 'actual W3A16', fontsize=7, color=color, alpha=0.5)\n207\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])  # 防遮挡\n208\t```\n209\t\n210\t### Pattern D：信息层级 marker（hollow vs solid）\n211\t\n212\t**何时用**：同一图中有不同置信度 / OOS / pending 数据。\n213\t\n214\t```python\n215\t# 实心 = n >= 50, 空心 = n < 50\n216\tif n < 50:\n217\t    ax.plot(x, y, marker='o', markerfacecolor='white', markeredgecolor=color,\n218\t            markeredgewidth=1.2, markersize=6)\n219\t    ax.annotate(f'n={n}', (x, y), xytext=(0, 7), textcoords='offset points',\n220\t                fontsize=5, color=color, fontstyle='italic')\n221\t```\n222\t\n223\t### Pattern E：Wilson CI / bootstrap 不确定性\n224\t\n225\t**何时用**：accuracy / proportion 数据需要置信区间。\n226\t\n227\t```python\n228\tdef wilson_ci(p, n, z=1.96):\n229\t    denom = 1 + z**2 / n\n230\t    center = (p + z**2 / (2*n)) / denom\n231\t    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n232\t    return max(0, center - half), min(1, center + half)\n233\t```\n234\t\n235\t### Pattern F：Per-label offset dict（解决标注重叠）\n236\t\n237\t**何时用**：scatter 上多个点需要标注且自动布局重叠。\n238\t\n239\t```python\n240\tlabel_offsets = {\n241\t    'Qwen3-8B':  (6, -12),   # 向下避让\n242\t    'Qwen3-4B':  (-55, 4),   # 向左避让\n243\t    'Llama-8B':  (6, 6),\n244\t}\n245\tfor name, (x, y) in data.items():\n246\t    ox, oy = label_offsets.get(name, (6, 6))\n247\t    ax.annotate(name, (x, y), xytext=(ox, oy), textcoords='offset points', fontsize=7)\n248\t```\n249\t\n250\t### Pattern G：Hatching 加分类维度\n251\t\n252\t**何时用**：已用颜色表示一个维度，再加一个二元维度（如 collapse vs not）。\n253\t\n254\t```python\n255\tfor is_collapse, bar in zip(collapse_flags, bars):\n256\t    if is_collapse:\n257\t        bar.set_hatch('///')\n258\t        bar.set_alpha(0.7)\n259\t```\n260\t\n261\t### Pattern H：Multi-panel 非对称布局\n262\t\n263\t**何时用**：主图 + 辅助 panel；或两个等重要 panel 但视觉重心需要倾斜。\n264\t\n265\t```python\n266\tfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n267\t                          gridspec_kw={'width_ratios': [1.4, 1]})\n268\t# 主面板 1.4x 宽，副面板 1x；视觉重心在左\n269\t```\n270\t\n271\t### Pattern I：Broken axis（异常值或对数 0）\n272\t\n273\t**何时用**：数据范围跨度大，或对数轴需要表示 0。\n274\t\n275\t```python\n276\td = 0.012\n277\tkwargs = dict(transform=ax.transAxes, color='black', clip_on=False, linewidth=0.6)\n278\tax.plot((1-d, 1+d), (-d, +d), **kwargs)  # 右下角斜线\n279\tax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)  # 右上角斜线\n280\t```\n281\t\n282\t### Pattern J：Path-effect 文字描边\n283\t\n284\t**何时用**：标注必须放在数据点 / colored region 上方。\n285\t\n286\t```python\n287\timport matplotlib.patheffects as pe\n288\tt = ax.text(x, y, 'label', fontsize=8, color='red')\n289\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n290\t```\n291\t\n292\t### Pattern K：Concept curve（建立直觉）\n293\t\n294\t**何时用**：论文核心 claim 是定性现象，需要先让读者理解理论预期。\n295\t\n296\t```python\n297\t# 完全合成的 cosine trajectory，不是实验数据\n298\tx = np.linspace(0, 1, 100)\n299\ttrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\n300\tax.plot(x, trajectory, linewidth=2, solid_capstyle='round')\n301\tax.annotate('gap eliminated', (1.0, final_y), color='#388E3C',\n302\t            fontstyle='italic', fontsize=9)\n303\t```\n304\t\n305\t### Pattern L：Forest plot（meta-analysis 风格）\n306\t\n307\t**何时用**：多个子条件的 effect size + CI 对比，加 inline 统计数字。\n308\t\n309\t3-column GridSpec：(1) 标签 (2) CI 区间图 (3) 统计数字（mean, CI, p-value）\n310\t\n311\t每行：dot + horizontal line(CI) + 数字 inline。等价带用半透明 axvspan。\n312\t\n313\t---\n314\t\n315\t## L4 工具路由 + 模板\n316\t\n317\t### 路由规则\n318\t\n319\t| 场景 | 工具 | 原因 |\n320\t|------|------|------|\n321\t| 概念图（架构图、流程图、framework 示意） | **PaperBanana（Gemini）** | matplotlib 不擅长 |\n322\t| 统计图（scatter、bar、line、heatmap、forest） | **matplotlib** | 确定性、可控 |\n323\t| 探索性图，不确定 layout | **PaperBanana** | LLM 多轮迭代试 |\n324\t| 离线 / 无 GOOGLE_API_KEY | **matplotlib** | 不依赖外部 API |\n325\t\n326\t项目级偏好：`config/projects/{name}.yaml` 的 `visualization.preferred_tool` 可覆盖。\n327\t\n328\t### Matplotlib 通用样式（rcParams 标准）\n329\t\n330\t```python\n331\timport matplotlib\n332\tmatplotlib.use('Agg')\n333\timport matplotlib.pyplot as plt\n334\timport matplotlib.patheffects as pe\n335\timport numpy as np\n336\t\n337\tplt.rcParams.update({\n338\t    'font.family': 'DejaVu Sans',\n339\t    'font.size': 11, 'axes.titlesize': 13, 'axes.labelsize': 12,\n340\t    'xtick.labelsize': 10, 'ytick.labelsize': 10, 'legend.fontsize': 10,\n341\t    'figure.dpi': 300, 'savefig.dpi': 300,\n342\t    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n343\t    'axes.spines.top': False, 'axes.spines.right': False,\n344\t    'pdf.fonttype': 42, 'ps.fonttype': 42,  # TrueType 嵌入\n345\t    'lines.linewidth': 1.8,\n346\t})\n347\t\n348\t# 色盲友好语义色板（Okabe-Ito）\n349\tSEMANTIC_COLORS = {\n350\t    'baseline':   '#0072B2',  # blue - safe / mild\n351\t    'treatment':  '#E69F00',  # orange - intervention\n352\t    'collapse':   '#D55E00',  # vermillion - danger / catastrophic\n353\t    'safe':       '#009E73',  # green - good outcome\n354\t    'neutral':    '#999999',  # gray - reference / control\n355\t}\n356\t```\n357\t\n358\t### 常用模板（仅作起点，需按 narrative_intent 改造）\n359\t\n360\t详细执行模板见 `skills/global/draw-paper-figure.skill.md`：\n361\t- Reliability Diagram（校准图）\n362\t- ECE Heatmap（方法 × 数据集 ΔECE）\n363\t- T* Scatter Plot（任务 Regime 可视化）\n364\t\n365\t**重要**：这些模板是起点不是终点。每张图根据 `narrative_intent` 必须加 L3 中的相关 pattern，不能直接套用。\n366\t\n367\t### 主图（Figure 1）特别提示\n368\t\n369\t大多数 ML 论文的 Figure 1 是概念图/架构图/方法概览——正是 PaperBanana 的强项。除非 Figure 1 是纯数值结果对比（如 Pareto frontier），否则优先用 PaperBanana。Figure 1 的 `narrative_intent` 必须与 `writing_plan.yaml` 的 `meta.core_claim` 直接关联。\n370\t\n371\t### PaperBanana 用法\n372\t\n373\t见 `skills/global/paper-banana.skill.md`。意图描述时直接引用 `narrative_intent`，并把 L3 中的 pattern 名写进 intent（如 \"with collapse zone background band, hollow markers for n<50\"）。\n374\t\n375\t---\n376\t\n377\t## 给 Paper Agent 的填写规则\n378\t\n379\t规划 `visualization_plan` 时，对每张图填：\n380\t\n381\t```yaml\n382\t- fig_id: fig2_main_result\n383\t  type: statistical\n384\t  tool: matplotlib\n385\t  data_source: \"registry: exp_001, exp_002\"\n386\t  placement: experiments\n387\t\n388\t  # 新字段（必填）\n389\t  narrative_intent: \"Quantized models match FP16 on accuracy but degrade calibration; ECE gap widens with bits→2.\"\n390\t  design_notes:\n391\t    - \"Pattern A: regime bands for bits=8/4/3\"\n392\t    - \"Pattern C: dashed line for FP16 ECE baseline\"\n393\t    - \"Pattern D: hollow markers for n<50 data points\"\n394\t\n395\t  aspect_ratio: \"4:3\"\n396\t```\n397\t\n398\t`narrative_intent`：一句话，主动语态，描述读者应该相信的事。\n399\t\n400\t`design_notes`：从 L3 选 0-4 个 pattern，给出选用理由。可以为空（说明默认模板足够）。\n401\t\n402\t---\n403\t\n404\t## 提交前 Checklist\n405\t\n406\tL1 部分（防丑底线）：\n407\t- [ ] 所有轴有 label + 单位\n408\t- [ ] 无 dual y-axis、无 3D、无 pie\n409\t- [ ] 颜色绑定语义、色盲友好\n410\t- [ ] Bar chart 从 0 起（如有）\n411\t- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n412\t- [ ] PDF 矢量、300 DPI\n413\t\n414\tL2 部分（叙事强度）：\n415\t- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n416\t- [ ] Subtitle / panel label 是 insight，不是描述\n417\t- [ ] 数据质量差异在视觉上可见（n、OOS、pending 等）\n418\t- [ ] 至少考虑过是否需要 background band / fill_between / reference line（不一定要加）\n419\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "7c3a1308-73af-4043-82c2-fe8f909f7a33",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md",
+                "content": "---\ndescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\nname: paper-visualization\nscope: global\ntags:\n- research\n- visualization\n- paper\n- matplotlib\n- paperbanana\nversion: 5\nroles:\n- agent\n- paper_agent\n---\n\n# Paper Visualization — 学术图表设计与生成\n\n> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n\n本 skill 分五层：\n\n- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n- **L1 防丑原则** — 底线，所有图必须遵守\n- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n\n---\n\n## L0 学习同行（设计前的功课）\n\n你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n\n### 为什么这一步是重要的\n\n- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n\n### 什么时候值得投入\n\n判断权交给你。一些可参考的信号：\n\n- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n\n### 怎么看\n\n工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n\n看的时候问自己（不是机械检查清单，是真的去理解）：\n\n- 这张图回答了什么问题？读者一眼能 get 到吗？\n- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n\n### 怎么把学到的传下去\n\n把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n\n```yaml\ndesign_notes:\n  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n```\n\nWorker 拿到这种 design_notes 就知道既要参考 GPTQ 的 layout 又要用 Pattern A，能直接落实成代码。\n\n### 边界\n\n- 不要复刻，要消化。直接抄一张图既没用（数据不一样）也有风险（与他们的 claim 强绑定）\n- 不要看太多。3 张就够，多了 Paper Agent 会陷入\"该听谁的\"\n- 看不到原图（提取失败 / arXiv 无 source）就跳过，不要在这里卡住流程\n\n---\n\n## L1 防丑原则（底线，不可违反）\n\n来自 Tufte 和 Luís Cruz 16 条公认规范。Agent 默认遵守，无需逐条思考。\n\n1. **Self-explanatory** — 不看正文就能看懂：title/caption + 所有轴有 label + 单位\n2. **去 chartjunk** — 不要 3D、不要背景框、不要无意义网格、不要 dual y-axis、不要 pie/donut chart\n3. **直接标注 > Legend** — 能直接标在曲线/柱旁就不用 legend；legend 必要时不遮数据\n4. **颜色/形状/纹理只用于 data variation** — 不用颜色装饰，不用相同颜色表示不同数据\n5. **Meaningful baseline** — bar chart 必须从 0 起；scatter 可以非 0\n6. **文字水平** — label 不要旋转/垂直；类别名太长 → 用 horizontal bar chart\n7. **Sort for comparison** — 柱状图按数值排序，便于对比（除非有自然顺序如时间）\n8. **字号一致** — 用 mm 计算 figsize（`ONE_MM = 1/25.4`），不在 LaTeX 里 `\\includegraphics[scale=...]` resize\n9. **色盲友好** — 默认 Okabe-Ito；红/绿区分时变 saturation；考虑 grayscale 打印\n10. **Bold 只用于强调** — 不要全图加粗；highlight 留给 takeaway\n11. **Line plot 只用于有序数据** — 类别变量用 bar\n12. **单 x 单 y 轴** — 必须双轴时改成 multi-panel\n13. **300 DPI、PDF 矢量、savefig.bbox=tight、去掉 top/right spines**\n\n---\n\n## L2 叙事原则（让图变成论证）\n\nL1 让图\"不丑\"，L2 让图\"有说服力\"。这一层是 Agent 自主画图时最容易缺失的。\n\n### 原则 1：每张图回答一个明确问题\n\n动笔前用一句话写下：\"This figure shows that ___.\"\n\n如果写不出来，就不要画。如果写出来的 takeaway 不是论文的 claim，就要重新设计。\n\n**反例**：`\"Accuracy across methods\"` — 这只是个标题，不是问题\n**正例**：`\"FP16 baseline 在小模型上比量化版高 5pp，但 70B 模型上差距消失\"` — 这是一张图要说服读者相信的事\n\n`visualization_plan.{fig_id}.narrative_intent` 字段写这一句。\n\n### 原则 2：颜色绑定语义而非数据顺序\n\n错的做法：`colors = ['blue', 'orange', 'green', 'red']` 按数据顺序分配。\n对的做法：`BN → 蓝色（始终）`、`non-BN → 橙色（始终）`、`collapse/danger → vermillion (#D55E00)`、`safe/baseline → blue (#0072B2)`。\n\n整篇论文 6 张图，BN 永远蓝、collapse 永远红——零认知负担，读者一眼建立映射。\n\n### 原则 3：信息层级用 visual variable 表达\n\n数据的\"质量\"和\"分类\"应该可见，不应该藏在 caption 里：\n\n| 信息 | Visual 表达 |\n|------|------------|\n| n < 50 低置信度点 | hollow marker + 标注 `n=` |\n| Out-of-sample / pending 数据 | hollow + 不同 marker shape（如 diamond）+ \"OOS\" label |\n| Collapse / 异常类别 | hatching（斜线填充）|\n| 主结果 vs 次要结果 | 主用饱和色，次要用 muted 色或 alpha |\n\n### 原则 4：加叙事层，不只画数据\n\n数据是图的基础，叙事层是让读者\"读懂\"的关键。常见叙事层：\n\n- **Background bands** — `axhspan/axvspan` 标定性区域（\"collapse zone\"、\"safe zone\"、\"Regime A/B/C\"）\n- **Fill_between** — 显示两条曲线发散区域（alpha 极低如 0.06，不抢眼但有面积）\n- **Reference lines** — 锚定真实值（如 dashed line 标\"actual W3A16 accuracy\"）\n- **Equivalence band** — `axvspan` gradient fade 标 +/-1pp 等价区间\n- **Concept curve** — 完全合成的曲线（如 cosine trajectory）建立理论直觉\n\n这些都不来自数据，但帮读者\"看到\"数据想说什么。\n\n### 原则 5：Subtitle / panel label 写 insight 不写描述\n\n错：`\"Layer 6 comparison across three models\"`\n对：`\"Same relative position, opposite function\"`\n\n错：`\"Reliability diagram\"`\n对：`\"Quantization shifts confidence but not accuracy\"`\n\n副标题是免费的 takeaway，不要浪费。\n\n### 原则 6：Multi-panel 每个面板独立回答一个 sub-question\n\n不要做\"主图 + 装饰小图\"。每个 panel 必须有独立的信息价值。\n\n如果一个 panel 想不出独立的问题，要么删掉，要么合并到主 panel。\n\n布局上：非对称比例（如 1.4:1）让视觉重心对齐叙事重心。\n\n### 原则 7：Hero figure 默认要 2-3 轮迭代\n\n第一版画出来基本不能直接用。计划好预算：先确定数据和布局，再调样式标注，最后 polish。不要指望一次到位。\n\n---\n\n## L3 Pattern 库（按 `design_notes` 选用）\n\n按\"图要回答的问题\"选 pattern。每个 pattern 给出**何时用**、**怎么用**（具体代码或 matplotlib API）。\n\n### Pattern A：定性区域 / regime bands\n\n**何时用**：x 或 y 轴有自然分段（regime、phase、severity tier）。\n\n```python\n# horizontal bands\nfor lo, hi, color, label in [(0, 1, '#EBF5FB', 'Regime A'), (1, 5, '#EAFAF1', 'Regime B')]:\n    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n    ax.text(x_label_pos, (lo+hi)/2, label, va='center', fontsize=9, color='gray')\n\n# 单一 collapse zone\nax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\nax.text(0.02, 2.5, 'collapse zone', fontsize=8, color='#ccaaaa', fontstyle='italic')\n```\n\n### Pattern B：发散面积 fill_between\n\n**何时用**：两组数据从某点开始发散，想让\"发散程度\"可见。\n\n```python\n# alpha 0.06 极淡，不抢眼但有面积\nax.fill_between(x_range, curve_high, curve_low, alpha=0.06, color='#555555', zorder=1)\n```\n\n### Pattern C：参考线锚定真实值\n\n**何时用**：合成 / 缩放后的 x 轴需要锚定到真实物理量。\n\n```python\nax.axhline(y=actual_value, color=color, linestyle=':', linewidth=0.8, alpha=0.3)\nt = ax.text(x_pos, actual_value+1, 'actual W3A16', fontsize=7, color=color, alpha=0.5)\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])  # 防遮挡\n```\n\n### Pattern D：信息层级 marker（hollow vs solid）\n\n**何时用**：同一图中有不同置信度 / OOS / pending 数据。\n\n```python\n# 实心 = n >= 50, 空心 = n < 50\nif n < 50:\n    ax.plot(x, y, marker='o', markerfacecolor='white', markeredgecolor=color,\n            markeredgewidth=1.2, markersize=6)\n    ax.annotate(f'n={n}', (x, y), xytext=(0, 7), textcoords='offset points',\n                fontsize=5, color=color, fontstyle='italic')\n```\n\n### Pattern E：Wilson CI / bootstrap 不确定性\n\n**何时用**：accuracy / proportion 数据需要置信区间。\n\n```python\ndef wilson_ci(p, n, z=1.96):\n    denom = 1 + z**2 / n\n    center = (p + z**2 / (2*n)) / denom\n    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n    return max(0, center - half), min(1, center + half)\n```\n\n### Pattern F：Per-label offset dict（解决标注重叠）\n\n**何时用**：scatter 上多个点需要标注且自动布局重叠。\n\n```python\nlabel_offsets = {\n    'Qwen3-8B':  (6, -12),   # 向下避让\n    'Qwen3-4B':  (-55, 4),   # 向左避让\n    'Llama-8B':  (6, 6),\n}\nfor name, (x, y) in data.items():\n    ox, oy = label_offsets.get(name, (6, 6))\n    ax.annotate(name, (x, y), xytext=(ox, oy), textcoords='offset points', fontsize=7)\n```\n\n### Pattern G：Hatching 加分类维度\n\n**何时用**：已用颜色表示一个维度，再加一个二元维度（如 collapse vs not）。\n\n```python\nfor is_collapse, bar in zip(collapse_flags, bars):\n    if is_collapse:\n        bar.set_hatch('///')\n        bar.set_alpha(0.7)\n```\n\n### Pattern H：Multi-panel 非对称布局\n\n**何时用**：主图 + 辅助 panel；或两个等重要 panel 但视觉重心需要倾斜。\n\n```python\nfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n                          gridspec_kw={'width_ratios': [1.4, 1]})\n# 主面板 1.4x 宽，副面板 1x；视觉重心在左\n```\n\n### Pattern I：Broken axis（异常值或对数 0）\n\n**何时用**：数据范围跨度大，或对数轴需要表示 0。\n\n```python\nd = 0.012\nkwargs = dict(transform=ax.transAxes, color='black', clip_on=False, linewidth=0.6)\nax.plot((1-d, 1+d), (-d, +d), **kwargs)  # 右下角斜线\nax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)  # 右上角斜线\n```\n\n### Pattern J：Path-effect 文字描边\n\n**何时用**：标注必须放在数据点 / colored region 上方。\n\n```python\nimport matplotlib.patheffects as pe\nt = ax.text(x, y, 'label', fontsize=8, color='red')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern K：Concept curve（建立直觉）\n\n**何时用**：论文核心 claim 是定性现象，需要先让读者理解理论预期。\n\n```python\n# 完全合成的 cosine trajectory，不是实验数据\nx = np.linspace(0, 1, 100)\ntrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\nax.plot(x, trajectory, linewidth=2, solid_capstyle='round')\nax.annotate('gap eliminated', (1.0, final_y), color='#388E3C',\n            fontstyle='italic', fontsize=9)\n```\n\n### Pattern L：Forest plot（meta-analysis 风格）\n\n**何时用**：多个子条件的 effect size + CI 对比，加 inline 统计数字。\n\n3-column GridSpec：(1) 标签 (2) CI 区间图 (3) 统计数字（mean, CI, p-value）\n\n每行：dot + horizontal line(CI) + 数字 inline。等价带用半透明 axvspan。\n\n---\n\n## L4 工具路由 + 模板\n\n### 路由规则\n\n| 场景 | 工具 | 原因 |\n|------|------|------|\n| 概念图（架构图、流程图、framework 示意） | **PaperBanana（Gemini）** | matplotlib 不擅长 |\n| 统计图（scatter、bar、line、heatmap、forest） | **matplotlib** | 确定性、可控 |\n| 探索性图，不确定 layout | **PaperBanana** | LLM 多轮迭代试 |\n| 离线 / 无 GOOGLE_API_KEY | **matplotlib** | 不依赖外部 API |\n\n项目级偏好：`config/projects/{name}.yaml` 的 `visualization.preferred_tool` 可覆盖。\n\n### Matplotlib 通用样式（rcParams 标准）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11, 'axes.titlesize': 13, 'axes.labelsize': 12,\n    'xtick.labelsize': 10, 'ytick.labelsize': 10, 'legend.fontsize': 10,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n    'axes.spines.top': False, 'axes.spines.right': False,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,  # TrueType 嵌入\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好语义色板（Okabe-Ito）\nSEMANTIC_COLORS = {\n    'baseline':   '#0072B2',  # blue - safe / mild\n    'treatment':  '#E69F00',  # orange - intervention\n    'collapse':   '#D55E00',  # vermillion - danger / catastrophic\n    'safe':       '#009E73',  # green - good outcome\n    'neutral':    '#999999',  # gray - reference / control\n}\n```\n\n### 常用模板（仅作起点，需按 narrative_intent 改造）\n\n详细执行模板见 `skills/global/draw-paper-figure.skill.md`：\n- Reliability Diagram（校准图）\n- ECE Heatmap（方法 × 数据集 ΔECE）\n- T* Scatter Plot（任务 Regime 可视化）\n\n**重要**：这些模板是起点不是终点。每张图根据 `narrative_intent` 必须加 L3 中的相关 pattern，不能直接套用。\n\n### 主图（Figure 1）特别提示\n\n大多数 ML 论文的 Figure 1 是概念图/架构图/方法概览——正是 PaperBanana 的强项。除非 Figure 1 是纯数值结果对比（如 Pareto frontier），否则优先用 PaperBanana。Figure 1 的 `narrative_intent` 必须与 `writing_plan.yaml` 的 `meta.core_claim` 直接关联。\n\n### PaperBanana 用法\n\n见 `skills/global/paper-banana.skill.md`。意图描述时直接引用 `narrative_intent`，并把 L3 中的 pattern 名写进 intent（如 \"with collapse zone background band, hollow markers for n<50\"）。\n\n---\n\n## 给 Paper Agent 的填写规则\n\n规划 `visualization_plan` 时，对每张图填：\n\n```yaml\n- fig_id: fig2_main_result\n  type: statistical\n  tool: matplotlib\n  data_source: \"registry: exp_001, exp_002\"\n  placement: experiments\n\n  # 新字段（必填）\n  narrative_intent: \"Quantized models match FP16 on accuracy but degrade calibration; ECE gap widens with bits→2.\"\n  design_notes:\n    - \"Pattern A: regime bands for bits=8/4/3\"\n    - \"Pattern C: dashed line for FP16 ECE baseline\"\n    - \"Pattern D: hollow markers for n<50 data points\"\n\n  aspect_ratio: \"4:3\"\n```\n\n`narrative_intent`：一句话，主动语态，描述读者应该相信的事。\n\n`design_notes`：从 L3 选 0-4 个 pattern，给出选用理由。可以为空（说明默认模板足够）。\n\n---\n\n## 提交前 Checklist\n\nL1 部分（防丑底线）：\n- [ ] 所有轴有 label + 单位\n- [ ] 无 dual y-axis、无 3D、无 pie\n- [ ] 颜色绑定语义、色盲友好\n- [ ] Bar chart 从 0 起（如有）\n- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n- [ ] PDF 矢量、300 DPI\n\nL2 部分（叙事强度）：\n- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n- [ ] Subtitle / panel label 是 insight，不是描述\n- [ ] 数据质量差异在视觉上可见（n、OOS、pending 等）\n- [ ] 至少考虑过是否需要 background band / fill_between / reference line（不一定要加）\n",
+                "numLines": 419,
+                "startLine": 1,
+                "totalLines": 419
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019V4wPaNbYJ2gzwJAiFAmnB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "63c34048-dea4-4a32-bc58-1a76cc4099cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016NWeUZdH41jQKRK7LVjEUa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12200,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12200
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T01:16:02.472Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019V4wPaNbYJ2gzwJAiFAmnB",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 2\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成（Worker 执行）\n16\t\n17\tWorker 收到画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n18\t\n19\t本 skill 提供：\n20\t- 通用样式（rcParams + 色板）\n21\t- 三个常用图表的起点模板（reliability/heatmap/scatter）\n22\t- NeurIPS 经验提炼的 pattern 实现示例\n23\t\n24\t## 输入字段（从 Paper Agent 传入）\n25\t\n26\t- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n27\t- **`narrative_intent`**：一句话，这张图要让读者相信什么\n28\t- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n29\t\n30\t## 画图工作流\n31\t\n32\t1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n33\t2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n34\t3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n35\t4. 提交前过本 skill §checklist\n36\t\n37\t## 通用样式标准（所有图表必须遵守）\n38\t\n39\t```python\n40\timport matplotlib\n41\tmatplotlib.use('Agg')\n42\timport matplotlib.pyplot as plt\n43\timport matplotlib.patches as mpatches\n44\timport numpy as np\n45\t\n46\t# 字体和全局样式\n47\tplt.rcParams.update({\n48\t    'font.family': 'DejaVu Sans',\n49\t    'font.size': 11,\n50\t    'axes.titlesize': 13,\n51\t    'axes.labelsize': 12,\n52\t    'xtick.labelsize': 10,\n53\t    'ytick.labelsize': 10,\n54\t    'legend.fontsize': 10,\n55\t    'figure.dpi': 300,\n56\t    'savefig.dpi': 300,\n57\t    'savefig.bbox': 'tight',\n58\t    'savefig.pad_inches': 0.05,\n59\t    'axes.spines.top': False,\n60\t    'axes.spines.right': False,\n61\t    'lines.linewidth': 1.8,\n62\t})\n63\t\n64\t# 色盲友好配色（Okabe-Ito）\n65\tCOLORS = {\n66\t    'fp16':   '#E69F00',  # 橙黄\n67\t    'nf4':    '#56B4E9',  # 天蓝\n68\t    'int8':   '#009E73',  # 绿\n69\t    'gptq':   '#F0E442',  # 黄\n70\t    'awq':    '#CC79A7',  # 粉紫\n71\t    'llama':  '#0072B2',  # 深蓝\n72\t    'qwen3':  '#D55E00',  # 橙红\n73\t    'gemma':  '#009E73',  # 绿\n74\t    'mistral':'#CC79A7',  # 粉紫\n75\t    'phi3':   '#F0E442',  # 黄\n76\t}\n77\t\n78\t# 方法标签\n79\tMETHOD_LABELS = {\n80\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n81\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n82\t}\n83\t```\n84\t\n85\t---\n86\t\n87\t## 1. Reliability Diagram（校准图）\n88\t\n89\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n90\t\n91\t```python\n92\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n93\t                              label='', color='#0072B2',\n94\t                              title='Reliability Diagram',\n95\t                              outpath='reliability.pdf'):\n96\t    \"\"\"\n97\t    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n98\t    \"\"\"\n99\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n100\t    bin_accs, bin_confs, bin_counts = [], [], []\n101\t\n102\t    for i in range(n_bins):\n103\t        lo, hi = bin_edges[i], bin_edges[i+1]\n104\t        mask = (confidences >= lo) & (confidences < hi)\n105\t        if mask.sum() > 0:\n106\t            bin_accs.append(accuracies[mask].mean())\n107\t            bin_confs.append(confidences[mask].mean())\n108\t            bin_counts.append(mask.sum())\n109\t        else:\n110\t            bin_accs.append(float('nan'))\n111\t            bin_confs.append((lo + hi) / 2)\n112\t            bin_counts.append(0)\n113\t\n114\t    bin_accs = np.array(bin_accs)\n115\t    bin_confs = np.array(bin_confs)\n116\t\n117\t    fig, (ax_main, ax_hist) = plt.subplots(\n118\t        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n119\t        sharex=True\n120\t    )\n121\t\n122\t    # 主图：gaps\n123\t    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n124\t                color=color, alpha=0.7, label='Accuracy', zorder=2)\n125\t    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n126\t                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n127\t    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n128\t    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n129\t    ax_main.set_ylabel('Accuracy')\n130\t    ax_main.set_title(title)\n131\t    ax_main.legend(loc='upper left', fontsize=9)\n132\t    ax_main.grid(True, alpha=0.3, zorder=1)\n133\t\n134\t    # ECE annotation\n135\t    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n136\t                    np.abs(bin_accs - bin_confs))\n137\t    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n138\t                 ha='right', va='bottom', fontsize=9,\n139\t                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n140\t\n141\t    # 直方图（样本密度）\n142\t    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n143\t                color=color, alpha=0.5)\n144\t    ax_hist.set_ylabel('Count', fontsize=9)\n145\t    ax_hist.set_xlabel('Confidence')\n146\t\n147\t    plt.tight_layout()\n148\t    plt.savefig(outpath)\n149\t    plt.close()\n150\t    print(f'Saved: {outpath}')\n151\t```\n152\t\n153\t### 批量生成 6 张对比图（EMNLP 论文用）\n154\t\n155\t选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n156\t\n157\t```python\n158\t# 在 A6000 服务器上执行\n159\tFIGURE_PLAN = [\n160\t    # (dataset, model, quant, regime, title)\n161\t    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n162\t    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n163\t    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n164\t    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n165\t    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n166\t    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n167\t]\n168\t```\n169\t\n170\t---\n171\t\n172\t## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n173\t\n174\t**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n175\t\n176\t```python\n177\tdef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n178\t                     title='ΔECE Heatmap (vs FP16)',\n179\t                     outpath='ece_heatmap.pdf'):\n180\t    \"\"\"\n181\t    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n182\t    \"\"\"\n183\t    import matplotlib.colors as mcolors\n184\t\n185\t    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n186\t\n187\t    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n188\t    vmax = np.nanmax(np.abs(delta_ece_matrix))\n189\t    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n190\t    cmap = plt.cm.RdBu_r\n191\t\n192\t    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n193\t\n194\t    # 数值标注\n195\t    for i in range(len(methods)):\n196\t        for j in range(len(datasets)):\n197\t            val = delta_ece_matrix[i, j]\n198\t            if not np.isnan(val):\n199\t                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n200\t                sign = '+' if val > 0 else ''\n201\t                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n202\t                        fontsize=9, color=color, fontweight='bold')\n203\t\n204\t    ax.set_xticks(range(len(datasets)))\n205\t    ax.set_yticks(range(len(methods)))\n206\t    ax.set_xticklabels(datasets, rotation=30, ha='right')\n207\t    ax.set_yticklabels(methods)\n208\t    ax.set_title(title)\n209\t\n210\t    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n211\t    cbar.set_label('ΔECE (quantized − FP16)')\n212\t    cbar.ax.axhline(0, color='k', linewidth=0.8)\n213\t\n214\t    plt.tight_layout()\n215\t    plt.savefig(outpath)\n216\t    plt.close()\n217\t    print(f'Saved: {outpath}')\n218\t```\n219\t\n220\t---\n221\t\n222\t## 3. T* Scatter Plot（任务 Regime 可视化）\n223\t\n224\t**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n225\t\n226\t```python\n227\tdef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n228\t    \"\"\"\n229\t    tstar_data: dict of {model_name: {dataset: T*_value}}\n230\t    \"\"\"\n231\t    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n232\t    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n233\t    REGIME_BANDS = [\n234\t        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n235\t        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n236\t        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n237\t    ]\n238\t\n239\t    fig, ax = plt.subplots(figsize=(8, 4))\n240\t\n241\t    # 背景色区\n242\t    for lo, hi, color, label in REGIME_BANDS:\n243\t        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n244\t        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n245\t                color='gray', zorder=1)\n246\t\n247\t    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n248\t\n249\t    x = np.arange(len(DATASETS))\n250\t    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n251\t        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n252\t        ax.plot(x, y, 'o-', color=color, label=model,\n253\t                markersize=7, alpha=0.85, zorder=2)\n254\t\n255\t    ax.set_xticks(x)\n256\t    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n257\t    ax.set_ylabel('T* (FP16)')\n258\t    ax.set_ylim(0, 10.5)\n259\t    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n260\t    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n261\t    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n262\t    ax.legend(loc='upper left', fontsize=9, ncol=2)\n263\t    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n264\t\n265\t    plt.tight_layout()\n266\t    plt.savefig(outpath)\n267\t    plt.close()\n268\t    print(f'Saved: {outpath}')\n269\t```\n270\t\n271\t---\n272\t\n273\t## 4. 生成流程（SSH 执行）\n274\t\n275\t```python\n276\t# Step 1: 写脚本到服务器\n277\tssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n278\t# ... 粘贴上方代码 + 调用逻辑 ...\n279\tPYEOF\"\"\")\n280\t\n281\t# Step 2: 安装依赖（如有）\n282\tssh_execute(\"pip install matplotlib numpy -q\")\n283\t\n284\t# Step 3: 执行\n285\tssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n286\t\n287\t# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\n288\tssh_execute(\"\"\"\n289\tfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n290\t    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n291\t    python3 -c \"\n292\timport matplotlib.pyplot as plt\n293\timport matplotlib.image as mpimg\n294\timg = mpimg.imread('$f')\n295\tfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\n296\tax = fig.add_axes([0,0,1,1])\n297\tax.imshow(img); ax.axis('off')\n298\tplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\n299\tplt.close()\"\n300\tdone\n301\t\"\"\")\n302\t\n303\t# Step 5: 验证\n304\tssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n305\t```\n306\t\n307\t---\n308\t\n309\t## 5. Pattern 实现（按 design_notes 选用）\n310\t\n311\t完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n312\t\n313\t### Pattern A：Regime Background Bands\n314\t\n315\t```python\n316\timport matplotlib.patheffects as pe\n317\t# 横向 regime bands\n318\tREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n319\t                (1, 5, '#EAFAF1', 'Regime B'),\n320\t                (5, 10.5, '#FDF2F8', 'Regime C')]\n321\tfor lo, hi, color, label in REGIME_BANDS:\n322\t    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n323\t    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n324\t            fontsize=9, color='gray', zorder=1)\n325\t\n326\t# 单一 collapse zone\n327\tax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\n328\tax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n329\t        color='#ccaaaa', fontstyle='italic', va='center')\n330\t```\n331\t\n332\t### Pattern B：发散面积 fill_between\n333\t\n334\t```python\n335\t# alpha 极低（0.06）：不抢眼但有面积\n336\tax.fill_between(x_range, curve_upper, curve_lower,\n337\t                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n338\t```\n339\t\n340\t### Pattern C：参考线锚定真实值\n341\t\n342\t```python\n343\tax.axhline(y=actual_value, color=color, linestyle=':',\n344\t           linewidth=0.8, alpha=0.3, zorder=1)\n345\tt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n346\t            fontsize=7, color=color, alpha=0.5, ha='center')\n347\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n348\t```\n349\t\n350\t### Pattern D：信息层级 marker（hollow vs solid by sample size）\n351\t\n352\t```python\n353\t# 实心 = n >= 50, 空心带 n 标注 = n < 50\n354\tsolid_mask = [n >= 50 for n in n_vals]\n355\tfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n356\t    if solid:\n357\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n358\t                markerfacecolor=color, markeredgewidth=0)\n359\t    else:\n360\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n361\t                markerfacecolor='white', markeredgecolor=color,\n362\t                markeredgewidth=1.2, zorder=4)\n363\t        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n364\t                    xytext=(0, 7), fontsize=5, color=color,\n365\t                    ha='center', fontstyle='italic')\n366\t```\n367\t\n368\t### Pattern E：Wilson Binomial CI\n369\t\n370\t```python\n371\tdef wilson_ci(p, n, z=1.96):\n372\t    if n == 0: return 0, 0\n373\t    denom = 1 + z**2 / n\n374\t    center = (p + z**2 / (2*n)) / denom\n375\t    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n376\t    return max(0, center - half), min(1, center + half)\n377\t\n378\t# 用法\n379\tlo, hi = wilson_ci(accuracy, n)\n380\tax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n381\t            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n382\t            markeredgecolor='white', markeredgewidth=1.0)\n383\t```\n384\t\n385\t### Pattern F：Per-label offset dict（防标注重叠）\n386\t\n387\t```python\n388\tlabel_offsets = {\n389\t    'Qwen3-8B':  (6, -12),\n390\t    'Qwen3-4B':  (-55, 4),\n391\t    'Llama-8B':  (6, 6),\n392\t}\n393\tfor name, (x, y) in data.items():\n394\t    ox, oy = label_offsets.get(name, (6, 6))\n395\t    ax.annotate(name, (x, y), xytext=(ox, oy),\n396\t                textcoords='offset points', fontsize=7,\n397\t                arrowprops=dict(arrowstyle='-', color='gray',\n398\t                                lw=0.4) if abs(ox) > 20 else None)\n399\t```\n400\t\n401\t### Pattern G：Hatching 加分类维度\n402\t\n403\t```python\n404\tfrom matplotlib.patches import Patch\n405\tfor is_collapse, bar in zip(collapse_flags, bars):\n406\t    if is_collapse:\n407\t        bar.set_hatch('///')\n408\t        bar.set_alpha(0.7)\n409\t# Legend 加 hatching 说明\n410\tlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\n411\tax.legend(handles=[legend_patch], loc='lower right')\n412\t```\n413\t\n414\t### Pattern H：Multi-panel 非对称布局\n415\t\n416\t```python\n417\tfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n418\t                          gridspec_kw={'width_ratios': [1.4, 1]})\n419\t# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n420\t# 给每个 panel 写 insight subtitle\n421\taxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\n422\taxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n423\t```\n424\t\n425\t### Pattern I：Broken axis（异常值或对数 0）\n426\t\n427\t```python\n428\td = 0.012  # 斜线长度\n429\tkwargs = dict(transform=ax.transAxes, color='black',\n430\t              clip_on=False, linewidth=0.6)\n431\tax.plot((1-d, 1+d), (-d, +d), **kwargs)\n432\tax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n433\t```\n434\t\n435\t### Pattern J：Path-effect 文字描边\n436\t\n437\t```python\n438\timport matplotlib.patheffects as pe\n439\tt = ax.text(x, y, 'label', fontsize=8, color='red')\n440\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n441\t```\n442\t\n443\t### Pattern K：Concept curve（合成轨迹建立直觉）\n444\t\n445\t```python\n446\t# 完全不基于实验数据的概念曲线\n447\tx = np.linspace(0, 1, 100)\n448\ttrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\n449\tax.plot(x, trajectory, color='#0072B2', linewidth=2,\n450\t        solid_capstyle='round', label='Theoretical trajectory')\n451\t\n452\t# 关键节点用 insight 标注\n453\tax.annotate('gap eliminated', xy=(1.0, final_y),\n454\t            xytext=(0.7, final_y - 5), color='#388E3C',\n455\t            fontstyle='italic', fontsize=9,\n456\t            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n457\t```\n458\t\n459\t### Pattern L：Forest Plot（meta-analysis 风格）\n460\t\n461\t```python\n462\t# 3-column GridSpec: label | CI plot | inline stats\n463\tfig = plt.figure(figsize=(7, 3.5))\n464\tgs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\n465\tax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\n466\tax_main = fig.add_subplot(gs[1])\n467\tax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n468\t\n469\t# 等价带（半透明 axvspan）\n470\tax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n471\t\n472\t# 每行：dot + horizontal CI line\n473\tfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n474\t    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n475\t    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n476\t    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n477\t    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n478\t                 fontsize=8, va='center', ha='center', family='monospace')\n479\t\n480\tax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\n481\tax_main.invert_yaxis()\n482\t```\n483\t\n484\t---\n485\t\n486\t## 6. 图表 Checklist（提交前）\n487\t\n488\t### L1 防丑（底线）\n489\t- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n490\t- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n491\t- [ ] 所有轴有 label + 单位\n492\t- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n493\t- [ ] 无 dual y-axis、无 3D、无 pie\n494\t- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n495\t- [ ] 文字水平不旋转\n496\t\n497\t### L2 叙事（说服力）\n498\t- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n499\t- [ ] `design_notes` 中的 pattern 都已实现\n500\t- [ ] Subtitle / panel label 是 insight 不是描述\n501\t- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n502\t- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n503\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "b07206ba-74b9-4987-b518-fd5680a0c6a5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+                "content": "---\ndescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\nname: draw-paper-figure\nscope: global\ntags:\n  - research\n  - visualization\n  - paper\n  - matplotlib\nversion: 2\ntools:\n  - ssh_execute\n---\n\n# Draw Paper Figure — 学术图表生成（Worker 执行）\n\nWorker 收到画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n\n本 skill 提供：\n- 通用样式（rcParams + 色板）\n- 三个常用图表的起点模板（reliability/heatmap/scatter）\n- NeurIPS 经验提炼的 pattern 实现示例\n\n## 输入字段（从 Paper Agent 传入）\n\n- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n- **`narrative_intent`**：一句话，这张图要让读者相信什么\n- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n\n## 画图工作流\n\n1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n4. 提交前过本 skill §checklist\n\n## 通用样式标准（所有图表必须遵守）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# 字体和全局样式\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好配色（Okabe-Ito）\nCOLORS = {\n    'fp16':   '#E69F00',  # 橙黄\n    'nf4':    '#56B4E9',  # 天蓝\n    'int8':   '#009E73',  # 绿\n    'gptq':   '#F0E442',  # 黄\n    'awq':    '#CC79A7',  # 粉紫\n    'llama':  '#0072B2',  # 深蓝\n    'qwen3':  '#D55E00',  # 橙红\n    'gemma':  '#009E73',  # 绿\n    'mistral':'#CC79A7',  # 粉紫\n    'phi3':   '#F0E442',  # 黄\n}\n\n# 方法标签\nMETHOD_LABELS = {\n    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n}\n```\n\n---\n\n## 1. Reliability Diagram（校准图）\n\n**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n\n```python\ndef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n                              label='', color='#0072B2',\n                              title='Reliability Diagram',\n                              outpath='reliability.pdf'):\n    \"\"\"\n    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n    \"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs, bin_confs, bin_counts = [], [], []\n\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i+1]\n        mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(float('nan'))\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n\n    bin_accs = np.array(bin_accs)\n    bin_confs = np.array(bin_confs)\n\n    fig, (ax_main, ax_hist) = plt.subplots(\n        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n        sharex=True\n    )\n\n    # 主图：gaps\n    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n                color=color, alpha=0.7, label='Accuracy', zorder=2)\n    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Accuracy')\n    ax_main.set_title(title)\n    ax_main.legend(loc='upper left', fontsize=9)\n    ax_main.grid(True, alpha=0.3, zorder=1)\n\n    # ECE annotation\n    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n                    np.abs(bin_accs - bin_confs))\n    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n                 ha='right', va='bottom', fontsize=9,\n                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n\n    # 直方图（样本密度）\n    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n                color=color, alpha=0.5)\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlabel('Confidence')\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n### 批量生成 6 张对比图（EMNLP 论文用）\n\n选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n\n```python\n# 在 A6000 服务器上执行\nFIGURE_PLAN = [\n    # (dataset, model, quant, regime, title)\n    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n]\n```\n\n---\n\n## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n\n**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n\n```python\ndef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n                     title='ΔECE Heatmap (vs FP16)',\n                     outpath='ece_heatmap.pdf'):\n    \"\"\"\n    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n    \"\"\"\n    import matplotlib.colors as mcolors\n\n    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n\n    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n    vmax = np.nanmax(np.abs(delta_ece_matrix))\n    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n    cmap = plt.cm.RdBu_r\n\n    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n\n    # 数值标注\n    for i in range(len(methods)):\n        for j in range(len(datasets)):\n            val = delta_ece_matrix[i, j]\n            if not np.isnan(val):\n                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n                sign = '+' if val > 0 else ''\n                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n                        fontsize=9, color=color, fontweight='bold')\n\n    ax.set_xticks(range(len(datasets)))\n    ax.set_yticks(range(len(methods)))\n    ax.set_xticklabels(datasets, rotation=30, ha='right')\n    ax.set_yticklabels(methods)\n    ax.set_title(title)\n\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label('ΔECE (quantized − FP16)')\n    cbar.ax.axhline(0, color='k', linewidth=0.8)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 3. T* Scatter Plot（任务 Regime 可视化）\n\n**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n\n```python\ndef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n    \"\"\"\n    tstar_data: dict of {model_name: {dataset: T*_value}}\n    \"\"\"\n    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n    REGIME_BANDS = [\n        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n    ]\n\n    fig, ax = plt.subplots(figsize=(8, 4))\n\n    # 背景色区\n    for lo, hi, color, label in REGIME_BANDS:\n        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n                color='gray', zorder=1)\n\n    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n\n    x = np.arange(len(DATASETS))\n    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n        ax.plot(x, y, 'o-', color=color, label=model,\n                markersize=7, alpha=0.85, zorder=2)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n    ax.set_ylabel('T* (FP16)')\n    ax.set_ylim(0, 10.5)\n    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=9, ncol=2)\n    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 4. 生成流程（SSH 执行）\n\n```python\n# Step 1: 写脚本到服务器\nssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n# ... 粘贴上方代码 + 调用逻辑 ...\nPYEOF\"\"\")\n\n# Step 2: 安装依赖（如有）\nssh_execute(\"pip install matplotlib numpy -q\")\n\n# Step 3: 执行\nssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n\n# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\nssh_execute(\"\"\"\nfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n    python3 -c \"\nimport matplotlib.pyplot as plt\nimport matplotlib.image as mpimg\nimg = mpimg.imread('$f')\nfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\nax = fig.add_axes([0,0,1,1])\nax.imshow(img); ax.axis('off')\nplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\nplt.close()\"\ndone\n\"\"\")\n\n# Step 5: 验证\nssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n```\n\n---\n\n## 5. Pattern 实现（按 design_notes 选用）\n\n完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n\n### Pattern A：Regime Background Bands\n\n```python\nimport matplotlib.patheffects as pe\n# 横向 regime bands\nREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n                (1, 5, '#EAFAF1', 'Regime B'),\n                (5, 10.5, '#FDF2F8', 'Regime C')]\nfor lo, hi, color, label in REGIME_BANDS:\n    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n            fontsize=9, color='gray', zorder=1)\n\n# 单一 collapse zone\nax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\nax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n        color='#ccaaaa', fontstyle='italic', va='center')\n```\n\n### Pattern B：发散面积 fill_between\n\n```python\n# alpha 极低（0.06）：不抢眼但有面积\nax.fill_between(x_range, curve_upper, curve_lower,\n                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n```\n\n### Pattern C：参考线锚定真实值\n\n```python\nax.axhline(y=actual_value, color=color, linestyle=':',\n           linewidth=0.8, alpha=0.3, zorder=1)\nt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n            fontsize=7, color=color, alpha=0.5, ha='center')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern D：信息层级 marker（hollow vs solid by sample size）\n\n```python\n# 实心 = n >= 50, 空心带 n 标注 = n < 50\nsolid_mask = [n >= 50 for n in n_vals]\nfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n    if solid:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor=color, markeredgewidth=0)\n    else:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor='white', markeredgecolor=color,\n                markeredgewidth=1.2, zorder=4)\n        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n                    xytext=(0, 7), fontsize=5, color=color,\n                    ha='center', fontstyle='italic')\n```\n\n### Pattern E：Wilson Binomial CI\n\n```python\ndef wilson_ci(p, n, z=1.96):\n    if n == 0: return 0, 0\n    denom = 1 + z**2 / n\n    center = (p + z**2 / (2*n)) / denom\n    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n    return max(0, center - half), min(1, center + half)\n\n# 用法\nlo, hi = wilson_ci(accuracy, n)\nax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n            markeredgecolor='white', markeredgewidth=1.0)\n```\n\n### Pattern F：Per-label offset dict（防标注重叠）\n\n```python\nlabel_offsets = {\n    'Qwen3-8B':  (6, -12),\n    'Qwen3-4B':  (-55, 4),\n    'Llama-8B':  (6, 6),\n}\nfor name, (x, y) in data.items():\n    ox, oy = label_offsets.get(name, (6, 6))\n    ax.annotate(name, (x, y), xytext=(ox, oy),\n                textcoords='offset points', fontsize=7,\n                arrowprops=dict(arrowstyle='-', color='gray',\n                                lw=0.4) if abs(ox) > 20 else None)\n```\n\n### Pattern G：Hatching 加分类维度\n\n```python\nfrom matplotlib.patches import Patch\nfor is_collapse, bar in zip(collapse_flags, bars):\n    if is_collapse:\n        bar.set_hatch('///')\n        bar.set_alpha(0.7)\n# Legend 加 hatching 说明\nlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\nax.legend(handles=[legend_patch], loc='lower right')\n```\n\n### Pattern H：Multi-panel 非对称布局\n\n```python\nfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n                          gridspec_kw={'width_ratios': [1.4, 1]})\n# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n# 给每个 panel 写 insight subtitle\naxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\naxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n```\n\n### Pattern I：Broken axis（异常值或对数 0）\n\n```python\nd = 0.012  # 斜线长度\nkwargs = dict(transform=ax.transAxes, color='black',\n              clip_on=False, linewidth=0.6)\nax.plot((1-d, 1+d), (-d, +d), **kwargs)\nax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n```\n\n### Pattern J：Path-effect 文字描边\n\n```python\nimport matplotlib.patheffects as pe\nt = ax.text(x, y, 'label', fontsize=8, color='red')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern K：Concept curve（合成轨迹建立直觉）\n\n```python\n# 完全不基于实验数据的概念曲线\nx = np.linspace(0, 1, 100)\ntrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\nax.plot(x, trajectory, color='#0072B2', linewidth=2,\n        solid_capstyle='round', label='Theoretical trajectory')\n\n# 关键节点用 insight 标注\nax.annotate('gap eliminated', xy=(1.0, final_y),\n            xytext=(0.7, final_y - 5), color='#388E3C',\n            fontstyle='italic', fontsize=9,\n            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n```\n\n### Pattern L：Forest Plot（meta-analysis 风格）\n\n```python\n# 3-column GridSpec: label | CI plot | inline stats\nfig = plt.figure(figsize=(7, 3.5))\ngs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\nax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\nax_main = fig.add_subplot(gs[1])\nax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n\n# 等价带（半透明 axvspan）\nax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n\n# 每行：dot + horizontal CI line\nfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n                 fontsize=8, va='center', ha='center', family='monospace')\n\nax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\nax_main.invert_yaxis()\n```\n\n---\n\n## 6. 图表 Checklist（提交前）\n\n### L1 防丑（底线）\n- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n- [ ] 所有轴有 label + 单位\n- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n- [ ] 无 dual y-axis、无 3D、无 pie\n- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n- [ ] 文字水平不旋转\n\n### L2 叙事（说服力）\n- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n- [ ] `design_notes` 中的 pattern 都已实现\n- [ ] Subtitle / panel label 是 insight 不是描述\n- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n",
+                "numLines": 503,
+                "startLine": 1,
+                "totalLines": 503
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the style standards. Let me ensure the output directory exists, then write the Python script.",
+              "signature": "Eq0CCmMIDRgCKkBYS2ckCKq6KXp/gCP2hvfsXDd3aNkuIIiE62biI4eqiPB82yQt3c5LabWjBhtV8pMQ2RpriYgJCIE9415rbMx4Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDDs7iRD+NUOnclq9JRoMPRZzL8yZ8ijr0S9yIjBYynsHHp+nlvrzxzPoXl6wISzyjRAkK8QThywZKpLo7UglyfG8V3XZCuKUWiXoo+YqeIcxQH1xz+fE+7uydd/6AcmW3G7aUhpxYfj90WgDa1MecZK/VEzHTyUNv4dOYkHkRmn5TqwAZa6yEwhhn0ebBVHxIP6HIM+RGIZ5F31fhd5FrBz0nJVUjWpifxRb806J7f9AUlMvYppiNCjnG2GOlXRUlZSuAxIV2xgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "59dcdcf3-bb9d-4d83-82d0-d3a38ced4082",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016RadteJZpyXbTreZNKzQFr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15620,
+                "cache_read_input_tokens": 24041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15620
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll ensure the output directory exists and write the figure script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "7eba28ef-f407-4bca-b8a0-fe86b45e9b32",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016RadteJZpyXbTreZNKzQFr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15620,
+                "cache_read_input_tokens": 24041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15620
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BWdSAjXPXtVGmk2Qfor7gE",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper",
+                "description": "Create output directory for figures"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "3af921cc-1357-4c62-892a-222df8aa895a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016RadteJZpyXbTreZNKzQFr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15620,
+                "cache_read_input_tokens": 24041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15620
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T01:16:11.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BWdSAjXPXtVGmk2Qfor7gE",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "53499ac2-337d-412e-b879-2db5e875629a",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017pMYYC4ftDWaHpzpLLboti",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.py",
+                "content": "\"\"\"\nfig_1_global_vs_differential — Global vs Differential Contamination concept diagram.\n\nTwo-panel ICC illustration: left panel shows overlapping curves (global contamination,\nno DIF), right panel shows diverging curves (differential contamination, DIF detected).\n\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\nCOL_REF = '#0072B2'\nCOL_FOCAL = '#D55E00'\n\nOUTDIR = Path(__file__).parent\nSTEM = 'fig_1_global_vs_differential'\n\n\ndef icc(theta, a=1.5, b=0.0):\n    return 1.0 / (1.0 + np.exp(-a * (theta - b)))\n\n\ntheta = np.linspace(-3, 3, 300)\n\n# --- Left panel curves (identical) ---\ny_ref_L = icc(theta, a=1.5, b=0.0)\ny_foc_L = icc(theta, a=1.5, b=0.0)\n\n# --- Right panel curves (DIF: focal shifted left) ---\ny_ref_R = icc(theta, a=1.5, b=0.0)\ny_foc_R = icc(theta, a=1.5, b=-1.2)\n\n# --- Figure ---\nfig, (ax_L, ax_R) = plt.subplots(\n    1, 2, figsize=(11, 4.5), sharey=True,\n    gridspec_kw={'wspace': 0.25}\n)\n\nbbox_style = dict(boxstyle='round,pad=0.4', facecolor='#F0F0F0', edgecolor='#CCCCCC',\n                  alpha=0.92)\n\n# ====== LEFT PANEL: Global Contamination ======\nax_L.plot(theta, y_ref_L, color=COL_REF, linestyle='-', linewidth=2.2,\n          label='Reference cohort (2023)')\nax_L.plot(theta, y_foc_L, color=COL_FOCAL, linestyle='--', linewidth=2.2,\n          label='Focal cohort (2024-H1)')\n\nax_L.set_title('Global Contamination', fontweight='bold', pad=10)\nax_L.set_xlabel(r'Ability ($\\theta$)')\nax_L.set_ylabel('P(correct)')\nax_L.set_xlim(-3, 3)\nax_L.set_ylim(0, 1.0)\n\nax_L.legend(loc='lower right', frameon=True, fancybox=True, framealpha=0.9,\n            edgecolor='#CCCCCC')\n\n# Annotations — left panel\nax_L.text(0.04, 0.92, r'$\\Delta_\\mathrm{MH} \\approx 0$  (no DIF)',\n          transform=ax_L.transAxes, fontsize=9.5, color='#444444',\n          bbox=bbox_style, va='top')\n\nax_L.text(0.04, 0.78,\n          'Li et al.: ✓ contaminated\\nDIF: ✗ no group difference',\n          transform=ax_L.transAxes, fontsize=8.5, color='#555555',\n          bbox=bbox_style, va='top', linespacing=1.5)\n\n# Subtle note about web overlap\nax_L.annotate('Item on Common Crawl since 2020\\n→ both cohorts trained on it',\n              xy=(0.0, icc(0.0)), xytext=(-2.4, 0.78),\n              fontsize=8, color='#666666', fontstyle='italic',\n              arrowprops=dict(arrowstyle='->', color='#999999', lw=0.8),\n              bbox=dict(boxstyle='round,pad=0.3', facecolor='white',\n                        edgecolor='#DDDDDD', alpha=0.85))\n\n# ====== RIGHT PANEL: Differential Contamination ======\nax_R.plot(theta, y_ref_R, color=COL_REF, linestyle='-', linewidth=2.2)\nax_R.plot(theta, y_foc_R, color=COL_FOCAL, linestyle='--', linewidth=2.2)\n\n# Shaded DIF area between curves\nax_R.fill_between(theta, y_ref_R, y_foc_R, where=(y_foc_R > y_ref_R),\n                  color=COL_FOCAL, alpha=0.18, label='_nolegend_')\nax_R.fill_between(theta, y_ref_R, y_foc_R, where=(y_foc_R <= y_ref_R),\n                  color=COL_FOCAL, alpha=0.18, label='_nolegend_')\n\n# DIF magnitude label inside shaded area\nmid_theta = -0.6\nmid_y = (icc(mid_theta, b=0.0) + icc(mid_theta, b=-1.2)) / 2\nax_R.annotate('DIF\\nmagnitude', xy=(mid_theta, mid_y),\n              fontsize=8.5, color=COL_FOCAL, fontweight='bold',\n              ha='center', va='center',\n              bbox=dict(boxstyle='round,pad=0.3', facecolor='white',\n                        edgecolor=COL_FOCAL, alpha=0.85, linewidth=0.8))\n\nax_R.set_title('Differential Contamination', fontweight='bold', pad=10)\nax_R.set_xlabel(r'Ability ($\\theta$)')\nax_R.set_xlim(-3, 3)\n\n# Annotations — right panel\nax_R.text(0.04, 0.92, r'$|\\Delta_\\mathrm{MH}| \\geq 1.5$  (ETS C)',\n          transform=ax_R.transAxes, fontsize=9.5, color='#444444',\n          bbox=bbox_style, va='top')\n\nax_R.text(0.04, 0.78,\n          'Li et al.: may or may not flag\\nDIF: ✓ detected (ETS C)',\n          transform=ax_R.transAxes, fontsize=8.5, color='#555555',\n          bbox=bbox_style, va='top', linespacing=1.5)\n\n# Arrow noting focal curve is shifted\nax_R.annotate('Focal curve shifted left\\n(easier for focal group)',\n              xy=(-1.2, 0.5), xytext=(-2.6, 0.28),\n              fontsize=8, color=COL_FOCAL, fontstyle='italic',\n              arrowprops=dict(arrowstyle='->', color=COL_FOCAL, lw=0.9),\n              bbox=dict(boxstyle='round,pad=0.3', facecolor='white',\n                        edgecolor='#DDDDDD', alpha=0.85))\n\n# ====== BOTTOM ANNOTATION spanning both panels ======\nfig.text(0.5, -0.02,\n         'Enrichment ≈ 1.0: most MMLU items are globally contaminated (left), '\n         'not differentially (right)',\n         ha='center', va='top', fontsize=10, color='#333333',\n         bbox=dict(boxstyle='round,pad=0.5', facecolor='#FAFAFA',\n                   edgecolor='#BBBBBB', alpha=0.95))\n\n# ====== SAVE ======\nfor ext in ('pdf', 'png'):\n    outpath = OUTDIR / f'{STEM}.{ext}'\n    fig.savefig(outpath, dpi=300, bbox_inches='tight')\n    print(f'Saved: {outpath}')\n\nplt.close(fig)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "909fff1b-dcce-4db7-9fb7-84314df5206c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019ikW9HzZbSZbLEwgffsN59",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 180,
+                "cache_read_input_tokens": 39661,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 180
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T01:16:45.779Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017pMYYC4ftDWaHpzpLLboti",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "1a952165-2ca8-445d-94a7-1a4e0a5d35ec",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.py",
+              "content": "\"\"\"\nfig_1_global_vs_differential — Global vs Differential Contamination concept diagram.\n\nTwo-panel ICC illustration: left panel shows overlapping curves (global contamination,\nno DIF), right panel shows diverging curves (differential contamination, DIF detected).\n\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\nCOL_REF = '#0072B2'\nCOL_FOCAL = '#D55E00'\n\nOUTDIR = Path(__file__).parent\nSTEM = 'fig_1_global_vs_differential'\n\n\ndef icc(theta, a=1.5, b=0.0):\n    return 1.0 / (1.0 + np.exp(-a * (theta - b)))\n\n\ntheta = np.linspace(-3, 3, 300)\n\n# --- Left panel curves (identical) ---\ny_ref_L = icc(theta, a=1.5, b=0.0)\ny_foc_L = icc(theta, a=1.5, b=0.0)\n\n# --- Right panel curves (DIF: focal shifted left) ---\ny_ref_R = icc(theta, a=1.5, b=0.0)\ny_foc_R = icc(theta, a=1.5, b=-1.2)\n\n# --- Figure ---\nfig, (ax_L, ax_R) = plt.subplots(\n    1, 2, figsize=(11, 4.5), sharey=True,\n    gridspec_kw={'wspace': 0.25}\n)\n\nbbox_style = dict(boxstyle='round,pad=0.4', facecolor='#F0F0F0', edgecolor='#CCCCCC',\n                  alpha=0.92)\n\n# ====== LEFT PANEL: Global Contamination ======\nax_L.plot(theta, y_ref_L, color=COL_REF, linestyle='-', linewidth=2.2,\n          label='Reference cohort (2023)')\nax_L.plot(theta, y_foc_L, color=COL_FOCAL, linestyle='--', linewidth=2.2,\n          label='Focal cohort (2024-H1)')\n\nax_L.set_title('Global Contamination', fontweight='bold', pad=10)\nax_L.set_xlabel(r'Ability ($\\theta$)')\nax_L.set_ylabel('P(correct)')\nax_L.set_xlim(-3, 3)\nax_L.set_ylim(0, 1.0)\n\nax_L.legend(loc='lower right', frameon=True, fancybox=True, framealpha=0.9,\n            edgecolor='#CCCCCC')\n\n# Annotations — left panel\nax_L.text(0.04, 0.92, r'$\\Delta_\\mathrm{MH} \\approx 0$  (no DIF)',\n          transform=ax_L.transAxes, fontsize=9.5, color='#444444',\n          bbox=bbox_style, va='top')\n\nax_L.text(0.04, 0.78,\n          'Li et al.: ✓ contaminated\\nDIF: ✗ no group difference',\n          transform=ax_L.transAxes, fontsize=8.5, color='#555555',\n          bbox=bbox_style, va='top', linespacing=1.5)\n\n# Subtle note about web overlap\nax_L.annotate('Item on Common Crawl since 2020\\n→ both cohorts trained on it',\n              xy=(0.0, icc(0.0)), xytext=(-2.4, 0.78),\n              fontsize=8, color='#666666', fontstyle='italic',\n              arrowprops=dict(arrowstyle='->', color='#999999', lw=0.8),\n              bbox=dict(boxstyle='round,pad=0.3', facecolor='white',\n                        edgecolor='#DDDDDD', alpha=0.85))\n\n# ====== RIGHT PANEL: Differential Contamination ======\nax_R.plot(theta, y_ref_R, color=COL_REF, linestyle='-', linewidth=2.2)\nax_R.plot(theta, y_foc_R, color=COL_FOCAL, linestyle='--', linewidth=2.2)\n\n# Shaded DIF area between curves\nax_R.fill_between(theta, y_ref_R, y_foc_R, where=(y_foc_R > y_ref_R),\n                  color=COL_FOCAL, alpha=0.18, label='_nolegend_')\nax_R.fill_between(theta, y_ref_R, y_foc_R, where=(y_foc_R <= y_ref_R),\n                  color=COL_FOCAL, alpha=0.18, label='_nolegend_')\n\n# DIF magnitude label inside shaded area\nmid_theta = -0.6\nmid_y = (icc(mid_theta, b=0.0) + icc(mid_theta, b=-1.2)) / 2\nax_R.annotate('DIF\\nmagnitude', xy=(mid_theta, mid_y),\n              fontsize=8.5, color=COL_FOCAL, fontweight='bold',\n              ha='center', va='center',\n              bbox=dict(boxstyle='round,pad=0.3', facecolor='white',\n                        edgecolor=COL_FOCAL, alpha=0.85, linewidth=0.8))\n\nax_R.set_title('Differential Contamination', fontweight='bold', pad=10)\nax_R.set_xlabel(r'Ability ($\\theta$)')\nax_R.set_xlim(-3, 3)\n\n# Annotations — right panel\nax_R.text(0.04, 0.92, r'$|\\Delta_\\mathrm{MH}| \\geq 1.5$  (ETS C)',\n          transform=ax_R.transAxes, fontsize=9.5, color='#444444',\n          bbox=bbox_style, va='top')\n\nax_R.text(0.04, 0.78,\n          'Li et al.: may or may not flag\\nDIF: ✓ detected (ETS C)',\n          transform=ax_R.transAxes, fontsize=8.5, color='#555555',\n          bbox=bbox_style, va='top', linespacing=1.5)\n\n# Arrow noting focal curve is shifted\nax_R.annotate('Focal curve shifted left\\n(easier for focal group)',\n              xy=(-1.2, 0.5), xytext=(-2.6, 0.28),\n              fontsize=8, color=COL_FOCAL, fontstyle='italic',\n              arrowprops=dict(arrowstyle='->', color=COL_FOCAL, lw=0.9),\n              bbox=dict(boxstyle='round,pad=0.3', facecolor='white',\n                        edgecolor='#DDDDDD', alpha=0.85))\n\n# ====== BOTTOM ANNOTATION spanning both panels ======\nfig.text(0.5, -0.02,\n         'Enrichment ≈ 1.0: most MMLU items are globally contaminated (left), '\n         'not differentially (right)',\n         ha='center', va='top', fontsize=10, color='#333333',\n         bbox=dict(boxstyle='round,pad=0.5', facecolor='#FAFAFA',\n                   edgecolor='#BBBBBB', alpha=0.95))\n\n# ====== SAVE ======\nfor ext in ('pdf', 'png'):\n    outpath = OUTDIR / f'{STEM}.{ext}'\n    fig.savefig(outpath, dpi=300, bbox_inches='tight')\n    print(f'Saved: {outpath}')\n\nplt.close(fig)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MwJuoCkJdPH33rHm573gkX",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper && python3 fig_1_global_vs_differential.py",
+                "description": "Execute figure generation script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "84316874-8ec7-4fcb-b323-228ee4260385",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SLu5RxzgmZxFKCRVR9fB3q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2397,
+                "cache_read_input_tokens": 39841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2397
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T01:16:51.045Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MwJuoCkJdPH33rHm573gkX",
+              "type": "tool_result",
+              "content": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "7eeadb73-adef-4612-9ad6-cd2e4097641c",
+            "tool_use_result": {
+              "stdout": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BXbVtM9zEERXBc2cUiDyf2",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.{pdf,png}",
+                "description": "Verify output files exist"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "c5485512-30b8-4bc7-984a-614e279aea6e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BNR5StGTUnSNuHRryFAbj8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 238,
+                "cache_read_input_tokens": 42238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 238
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T01:16:54.437Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BXbVtM9zEERXBc2cUiDyf2",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  41007 May 21 01:16 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.pdf\n-rw-r--r-- 1 ubuntu ubuntu 304087 May 21 01:16 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "dfe17ba6-f9d6-4bf7-aef2-fdb12d2190b0",
+            "tool_use_result": {
+              "stdout": "-rw-r--r-- 1 ubuntu ubuntu  41007 May 21 01:16 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.pdf\n-rw-r--r-- 1 ubuntu ubuntu 304087 May 21 01:16 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me visually verify the output."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "7634a554-9b7c-414a-9559-e0e70f4dfaa9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K7zBYTFsDq9QBv2LAe4qDi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 42476,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 285
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TkgyNvLtxcbQvvP7WKApnY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "89ccf5b2-3c8c-4e1a-92a2-1fcd82daf1c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K7zBYTFsDq9QBv2LAe4qDi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 42476,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 285
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T01:16:58.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TkgyNvLtxcbQvvP7WKApnY",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "acfbdc4f-ad90-4cfc-a74f-4f7dab3791c0",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 304087
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figure looks good. Let me assess it against the spec:\n\n1. ✅ Two-panel layout, side by side, sharing y-axis label\n2. ✅ Left panel: \"Global Contamination\" - two ICC curves that overlap almost perfectly\n3. ✅ Right panel: \"Differential Contamination\" - two ICC curves that diverge, with shaded DIF area\n4. ✅ Okabe-Ito colors: Reference = '#0072B2' (blue), Focal = '#D55E00' (orange-red)\n5. ✅ Annotations with bbox for both panels\n\n\n6. ✅ Bottom annotation spanning both panels about enrichment ≈ 1.0\n7. ✅ x-axis: \"Ability (θ)\", y-axis: \"P(correct)\"\n8. ✅ Legend in left panel\n9. ✅ 16:9-ish aspect ratio (11 x 4.5)\n10. ✅ DejaVu Sans, font.size=11, no top/right spines, dpi=300\n11. ✅ PDF + PNG + .py all saved\n\nEverything checks out—the left panel displays perfectly overlapping curves indicating no differential item functioning, while the right panel shows the divergence with the shaded orange region representing the DIF effect.\n\nNow I need to register this artifact with the MCP tool.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "033cb328-63fa-4dcb-9906-7f650b3db949",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012stFS9ru6FA61g3RZ9Rdo9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 566,
+                "cache_read_input_tokens": 42761,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 566
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure looks clean and matches the spec. Now I'll register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "739f1bc4-8a15-44ba-812c-eeba67391e7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012stFS9ru6FA61g3RZ9Rdo9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 566,
+                "cache_read_input_tokens": 42761,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 566
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AJp1RZhrs6dHoQE8Tvfsea",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "0ebcb32f-cc33-43f6-9f7f-66e6f7cf61a6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012stFS9ru6FA61g3RZ9Rdo9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 566,
+                "cache_read_input_tokens": 42761,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 566
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T01:17:11.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01AJp1RZhrs6dHoQE8Tvfsea",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "63b02345-d9b7-480d-aea5-e0d0202672fd",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012red4M64CSjBj36qUG1G15",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fig_1_global_vs_differential",
+                "type": "chart",
+                "description": "Two-panel ICC concept diagram: left panel shows overlapping curves (global contamination, no DIF), right panel shows diverging curves (differential contamination, DIF detected). Illustrates why enrichment ≈ 1.0 between DIF flags and web-overlap labels is expected.",
+                "project": "irt_equated_bench_regen",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/fig_1_global_vs_differential.pdf",
+                "tags": [
+                  "figure1",
+                  "introduction",
+                  "concept-diagram",
+                  "ICC",
+                  "DIF",
+                  "contamination"
+                ],
+                "skill": "draw-paper-figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "c2a4e5e0-e643-4da4-a02e-6b03dab446af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PTMHS7dDBWmUCG6KKNFmKk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1091,
+                "cache_read_input_tokens": 43327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1091
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T01:17:17.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012red4M64CSjBj36qUG1G15",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_1a7f36\\\", \\\"name\\\": \\\"fig_1_global_vs_differential\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Two-panel ICC concept diagram: left panel shows overlapping curves (global contamination, no DIF), right panel shows diverging curves (differential contamination, DIF detected). Illustrates why enrichment ≈ 1.0 between DIF flags and web-overlap labels is expected.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/chart/fig_1_global_vs_differential.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-21T01:17:17.476076+00:00\\\", \\\"tags\\\": [\\\"figure1\\\", \\\"introduction\\\", \\\"concept-diagram\\\", \\\"ICC\\\", \\\"DIF\\\", \\\"contamination\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "58ee0e55-ab19-4e3a-a9e9-aba0ac0bd743",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_1a7f36\\\", \\\"name\\\": \\\"fig_1_global_vs_differential\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Two-panel ICC concept diagram: left panel shows overlapping curves (global contamination, no DIF), right panel shows diverging curves (differential contamination, DIF detected). Illustrates why enrichment ≈ 1.0 between DIF flags and web-overlap labels is expected.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/chart/fig_1_global_vs_differential.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-21T01:17:17.476076+00:00\\\", \\\"tags\\\": [\\\"figure1\\\", \\\"introduction\\\", \\\"concept-diagram\\\", \\\"ICC\\\", \\\"DIF\\\", \\\"contamination\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_1a7f36\", \"name\": \"fig_1_global_vs_differential\", \"type\": \"chart\", \"description\": \"Two-panel ICC concept diagram: left panel shows overlapping curves (global contamination, no DIF), right panel shows diverging curves (differential contamination, DIF detected). Illustrates why enrichment ≈ 1.0 between DIF flags and web-overlap labels is expected.\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/chart/fig_1_global_vs_differential.pdf\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"draw-paper-figure\", \"created_at\": \"2026-05-21T01:17:17.476076+00:00\", \"tags\": [\"figure1\", \"introduction\", \"concept-diagram\", \"ICC\", \"DIF\", \"contamination\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and registered (`art_20260521_1a7f36`).\n\n**Output files:**\n- PDF: `figures/paper/fig_1_global_vs_differential.pdf` (41 KB, vector)\n- PNG: `figures/paper/fig_1_global_vs_differential.png` (304 KB, 300 DPI)\n- Script: `figures/paper/fig_1_global_vs_differential.py`\n\n**What's in the figure:**\n- **Left panel** — two perfectly overlapping ICC curves (Reference blue solid, Focal orange dashed). Annotated: Li et al. flags it as contaminated, but DIF finds no group difference (Δ_MH ≈ 0).\n- **Right panel** — focal curve shifted left (b = −1.2), creating a visible divergence with orange shaded DIF area. Annotated: |Δ_MH| ≥ 1.5 (ETS C), Li et al. may or may not flag.\n- **Bottom text** — \"Enrichment ≈ 1.0: most MMLU items are globally contaminated (left), not differentially (right)\""
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "uuid": "03d6a93a-8fea-430f-9116-2d6a30401691",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YbH4pcjph1dib8CWjpiZDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 665,
+                "cache_read_input_tokens": 44418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 665
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and registered (`art_20260521_1a7f36`).\n\n**Output files:**\n- PDF: `figures/paper/fig_1_global_vs_differential.pdf` (41 KB, vector)\n- PNG: `figures/paper/fig_1_global_vs_differential.png` (304 KB, 300 DPI)\n- Script: `figures/paper/fig_1_global_vs_differential.py`\n\n**What's in the figure:**\n- **Left panel** — two perfectly overlapping ICC curves (Reference blue solid, Focal orange dashed). Annotated: Li et al. flags it as contaminated, but DIF finds no group difference (Δ_MH ≈ 0).\n- **Right panel** — focal curve shifted left (b = −1.2), creating a visible divergence with orange shaded DIF area. Annotated: |Δ_MH| ≥ 1.5 (ETS C), Li et al. may or may not flag.\n- **Bottom text** — \"Enrichment ≈ 1.0: most MMLU items are globally contaminated (left), not differentially (right)\""
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 85801,
+            "duration_api_ms": 82826,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "1cce3615-8d0b-4da2-9d79-ee3ef5277e6f",
+            "total_cost_usd": 0.47664549999999994,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 33242,
+              "cache_read_input_tokens": 330604,
+              "output_tokens": 4077,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 33242,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 280,
+                  "cache_read_input_tokens": 44418,
+                  "cache_creation_input_tokens": 665,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 665
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1506,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001586,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 4077,
+                "cacheReadInputTokens": 330604,
+                "cacheCreationInputTokens": 33242,
+                "webSearchRequests": 0,
+                "costUSD": 0.47505949999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "47efa858-14ae-4269-b409-7407b63adbc4"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig-1-global-vs-differential.md"
+}

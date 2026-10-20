@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "576c4576060a1e219b64",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code r19 semisynthetic gradient",
+  "task_key": "worker_code_r19_semisynthetic_gradient_20260522T184822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r19_semisynthetic_gradient_20260522T184822.log",
+    "occurrence": 1,
+    "bytes": 618372,
+    "sha256": "dc51ee8106f5f14fcbb7a5dc5f9dab23f2312a5cf633d6b8d9e4c438d01b2230"
+  },
+  "statistics": {
+    "messages": 128,
+    "user_turns": 1,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 40,
+      "user": 1,
+      "tool_result": 40,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "576c4576060a1e219b64-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 121,
+      "chunks": [
+        {
+          "path": "576c4576060a1e219b64-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "576c4576060a1e219b64-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r19-semisynthetic-gradient.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3afd4568acc691d2d6b7",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 021 nonuniform dif robustness",
+  "task_key": "worker_code_plan_021_nonuniform_dif_robustness_20260521T052135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_021_nonuniform_dif_robustness_20260521T052135_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "e583d60e478d622fa90aebdfd32fc4aa1fef72eafd1ac080f6d2d0b4de00d1c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**9 个 MMLU subjects（1787 items），Logistic Regression DIF 结果：**\n\n| 指标 | 数值 |\n|------|------|\n| Uniform DIF only | 472 (26.4%) |\n| Non-uniform DIF only | 171 (9.6%) |\n| Both | 520 (29.1%) |\n| Neither | 624 (34.9%) |\n| **Any non-uniform DIF** | **691 (38.7%)** |\n\n**MH 一致性**: MH C-class items 中 92.1% 也被 LR 标记为 uniform DIF — 方法间高度吻合。\n\n**关键发现**: Non-uniform DIF 比例较高（38.7%）且 effect size 不小（|β_interaction| 中位数 0.58），说明 2023→2024 的 temporal shift 不仅是 difficulty shift，还有 discrimination 差异。这**强化**了论文的论点——MMLU 的 temporal instability 比 MH 单独检测到的更严重。MH A/B items 中有 29.8% 存在 non-uniform DIF，是 MH 结构性盲区。\n\n产出文件在 `artifacts/plan_021/`，报告和数据已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-021-nonuniform-dif-robustness.md"
+}

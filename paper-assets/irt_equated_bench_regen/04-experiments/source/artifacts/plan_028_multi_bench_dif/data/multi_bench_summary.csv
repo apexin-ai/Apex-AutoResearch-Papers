@@ -1,0 +1,7 @@
+benchmark,n_items,n_ref,n_foc,n_ets_a,n_ets_b,n_ets_c,pct_c,random_pct_c,status
+mmlu,12508,1080,807,6332,2258,3918,31.3,0.18,PRIOR
+winogrande,1267,1017,803,612,271,384,30.3,0.32,OK
+truthfulqa,817,1080,807,398,176,243,29.7,0.37,OK
+arc,1172,1080,807,642,215,315,26.9,0.6,OK
+gsm8k,1319,1017,804,825,245,249,18.9,0.3,PRIOR
+hellaswag,10042,1080,807,6037,2208,1797,17.9,0.28,OK

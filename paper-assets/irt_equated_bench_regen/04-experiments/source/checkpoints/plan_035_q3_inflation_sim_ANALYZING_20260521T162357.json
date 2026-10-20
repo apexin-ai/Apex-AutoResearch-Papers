@@ -1,0 +1,79 @@
+{
+  "exp_id": "plan_035_q3_inflation_sim",
+  "project": "irt_equated_bench_regen",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:20.736Z",
+    "updated_at": "2026-05-21T16:23:57.517Z",
+    "hypothesis": "plan_013 发现 11.3% within-subject item pairs |Q3|>0.20，存在局部依赖(LD)。MH-DIF 假设局部独立，LD 可能膨胀 Type I error。通过 Monte Carlo 模拟或 within-subject permutation null（保持 Q3 结构），量化 LD 对 MH-DIF FPR 的实际膨胀程度。预测：校准 LD 后实际 FPR 膨胀 <3pp（从 nominal 5% 到 <8%），因为 LD 温和（mean Q3=0.009）且 MH 的 total-score stratification 部分吸收了 LD 效应。",
+    "parent": "plan_013_q3_local_independence",
+    "conclusion": "success",
+    "metrics": {
+      "n_subjects": 8,
+      "n_permutations": 1000,
+      "method": "permutation null + independence control, cross-subject matching",
+      "ets_c_inflation": {
+        "mean_pp": 0.0004,
+        "max_pp": 0.001,
+        "max_subject": "marketing",
+        "verdict": "far below 3pp threshold"
+      },
+      "p05_inflation": {
+        "mean_pp": -0.0019,
+        "direction": "slightly negative (no inflation)",
+        "mean_fpr_with_ld": 0.0412,
+        "mean_fpr_without_ld": 0.0431
+      },
+      "subject_details": {
+        "moral_scenarios": {
+          "q3_pct": 34.2,
+          "ets_c_delta_pp": -1e-05
+        },
+        "human_aging": {
+          "q3_pct": 20.5,
+          "ets_c_delta_pp": 0.0004
+        },
+        "world_religions": {
+          "q3_pct": 18.1,
+          "ets_c_delta_pp": 0.0006
+        },
+        "marketing": {
+          "q3_pct": 17.5,
+          "ets_c_delta_pp": 0.001
+        },
+        "professional_law": {
+          "q3_pct": 10.5,
+          "ets_c_delta_pp": 0.0003
+        },
+        "college_medicine": {
+          "q3_pct": 4.6,
+          "ets_c_delta_pp": 0.0005
+        }
+      },
+      "q3_inflation_correlation": {
+        "spearman_rho": -0.238,
+        "p_value": 0.57,
+        "significant": false
+      },
+      "key_insight": "Cross-subject matching completely isolates within-subject LD from MH-DIF FPR"
+    },
+    "notes": "LD inflation simulation 完成。核心发现：cross-subject matching 完全隔离了 within-subject LD 对 MH-DIF FPR 的影响。ETS-C 标准下 LD 膨胀仅 +0.0004pp（最大 +0.001pp），远低于 3pp 阈值。p<0.05 标准下甚至略为负（-0.0019pp，无膨胀）。即使 moral_scenarios 有 34.2% item pairs |Q3|>0.20，ETS-C 膨胀仍 <0.01pp。两个机制：(1) cross-subject matching 变量不含当前 subject items，LD 无法污染 matching；(2) ETS-C 的 |Δ|≥1.5 阈值本身极保守（actual FPR ~0.1%，远低于 nominal 5%）。Q3 与膨胀无显著相关（ρ=-0.24, p=0.57）。直接回应 Reviewer 对 LD violation 的担忧。",
+    "spec": {
+      "command": "python plan_035_q3_inflation_sim.py",
+      "server": "local",
+      "data_path": "artifacts/response_matrix.npz + item_metadata.csv + model_metadata.csv",
+      "data_count": "5227 models x 12508 items, 8 subjects, 1000 permutations",
+      "model_name": "N/A (CPU simulation)",
+      "seed": "42",
+      "checkpoint_path": "artifacts/plan_035_q3_inflation_sim/",
+      "log_path": "logs/workers/worker_code_plan_035_q3_inflation_sim_20260521T154538.log",
+      "checkpoint_source": "N/A",
+      "eval_data": "METABENCH response_matrix.npz permutation null"
+    }
+  },
+  "timestamp": "2026-05-21T16:23:57.573164+00:00",
+  "trigger": "update_registry"
+}

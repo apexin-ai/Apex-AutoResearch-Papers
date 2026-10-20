@@ -1,0 +1,2136 @@
+# code r19 open closed dif
+
+**Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_code_r19_open_closed_dif_20260522T184758.log`
+- **Structured JSON:** [`50e78b32486edcb79e89.json`](../../sessions/50/50e78b32486edcb79e89.json)
+
+## Before a recorded user message
+
+38 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d3ede5cc-82b2-4f34-94bf-1ac24057346f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779493200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b1effcb0-ae07-4c5d-9f98-957a683ec73d",
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me understand the task: I need to create an analysis that splits models into open-source vs closed-source groups, then runs temporal MH-DIF (2023 vs 2024) for each group separately. Let me start by examining the data and the existing MH-DIF function.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "ea530935-a8b2-4120-a44e-93a2d01e0f8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GctUaYZvxDie5ZJfKSt4hr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13191,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13191
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll start by examining the data sources and the existing MH-DIF function in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "fa5bfb96-d671-4237-92cf-4c8d05e80d11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GctUaYZvxDie5ZJfKSt4hr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13191,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13191
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01W7bteFsi4v41JmdNkfqFsk`</summary>
+
+```json
+{
+  "command": "ls artifacts/r19_open_closed_dif/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+  "description": "Check if output directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "e7198d96-2849-4199-bd7a-b0e8696c8caa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GctUaYZvxDie5ZJfKSt4hr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13191,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13191
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T18:48:10.586Z_
+
+<details><summary>↩ Tool result · `toolu_01W7bteFsi4v41JmdNkfqFsk`</summary>
+
+```text
+DIR_NOT_EXISTS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "8ff5adf4-9855-45a5-a386-31d67666de77",
+  "tool_use_result": {
+    "stdout": "DIR_NOT_EXISTS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Nosb223JsUFnUPRzujHLHu`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport numpy as np\nfrom scipy import sparse\nROOT = 'artifacts'\nrm = np.load(f'{ROOT}/response_matrix.npz')\nX = sparse.csr_matrix((rm['data'], rm['indices'], rm['indptr']), shape=tuple(rm['shape']))\nidx = np.load(f'{ROOT}/response_matrix_index.npz', allow_pickle=True)\nmodel_names = idx['model_names']\nitem_ids = idx['item_ids']\nprint(f'X shape: {X.shape}')\nprint(f'Models: {len(model_names)}, Items: {len(item_ids)}')\nprint(f'Sample model names (first 20):')\nfor m in model_names[:20]:\n    print(f'  {m}')\nprint(f'...')\nprint(f'Sample model names (last 20):')\nfor m in model_names[-20:]:\n    print(f'  {m}')\n\"\n",
+  "description": "Load response matrix and inspect model names"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "4b9bbb55-273d-4b31-8778-c769186de8c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GctUaYZvxDie5ZJfKSt4hr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13191,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13191
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T18:48:15.176Z_
+
+<details><summary>↩ Tool result · `toolu_01Nosb223JsUFnUPRzujHLHu`</summary>
+
+```text
+X shape: (5227, 12508)
+Models: 5227, Items: 12508
+Sample model names (first 20):
+  0-hero/Matter-0.1-7B
+  0-hero/Matter-0.1-7B-DPO-preview
+  0-hero/Matter-0.1-7B-boost
+  0-hero/Matter-0.1-7B-boost-DPO
+  0-hero/Matter-0.1-7B-boost-DPO-preview
+  0-hero/Matter-0.1-Slim-7B
+  0-hero/Matter-0.1-Slim-7B-A
+  0-hero/Matter-0.1-Slim-7B-B
+  0-hero/Matter-0.1-Slim-7B-C
+  0-hero/Matter-0.1-Slim-7B-C-DPO
+  0-hero/Matter-0.1-Slim-7B-preview
+  0-hero/Matter-0.2-32B
+  0-hero/Matter-0.2-7B
+  0-hero/Matter-0.2-7B-DPO
+  01-ai/Yi-1.5-34B
+  01-ai/Yi-1.5-34B-32K
+  01-ai/Yi-1.5-34B-Chat
+  01-ai/Yi-1.5-34B-Chat-16K
+  01-ai/Yi-1.5-6B
+  01-ai/Yi-1.5-6B-Chat
+...
+Sample model names (last 20):
+  zelus82/Obelix-Phi2
+  zelus82/Obelix-Phi2-v0
+  zhengchenphd/ICE-GRT
+  zhengchenphd/Mistral-Plus-7B
+  zhengr/MixTAO-7Bx2-MoE-DPO
+  zhengr/MixTAO-7Bx2-MoE-Instruct-v1.0
+  zhengr/MixTAO-7Bx2-MoE-Instruct-v2.0
+  zhengr/MixTAO-7Bx2-MoE-Instruct-v4.0
+  zhengr/MixTAO-7Bx2-MoE-Instruct-v5.0
+  zhengr/MixTAO-7Bx2-MoE-Instruct-v6.0
+  zhengr/MixTAO-7Bx2-MoE-Instruct-v7.0
+  zhengr/MixTAO-7Bx2-MoE-v8.1
+  zhengr/NeuralPipe-7B-slerp
+  ziniuli/Mistral-7B-ReMax-v0.1
+  zmzmxz/NeuralPipe-7B-slerp
+  zorobin/mistral-class-shishya-7b-ep3
+  zorobin/mistral-class-shishya-all-hal-7b-ep3
+  zyh3826/20231206094523-pretrain-Llama-2-13b-hf-76000
+  zyh3826/GML-Mistral-merged-v1
+  zyh3826/llama2-13b-ft-openllm-leaderboard-v1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "8c4b06b6-3c64-4d5f-bb92-2da2a0ad4a31",
+  "tool_use_result": {
+    "stdout": "X shape: (5227, 12508)\nModels: 5227, Items: 12508\nSample model names (first 20):\n  0-hero/Matter-0.1-7B\n  0-hero/Matter-0.1-7B-DPO-preview\n  0-hero/Matter-0.1-7B-boost\n  0-hero/Matter-0.1-7B-boost-DPO\n  0-hero/Matter-0.1-7B-boost-DPO-preview\n  0-hero/Matter-0.1-Slim-7B\n  0-hero/Matter-0.1-Slim-7B-A\n  0-hero/Matter-0.1-Slim-7B-B\n  0-hero/Matter-0.1-Slim-7B-C\n  0-hero/Matter-0.1-Slim-7B-C-DPO\n  0-hero/Matter-0.1-Slim-7B-preview\n  0-hero/Matter-0.2-32B\n  0-hero/Matter-0.2-7B\n  0-hero/Matter-0.2-7B-DPO\n  01-ai/Yi-1.5-34B\n  01-ai/Yi-1.5-34B-32K\n  01-ai/Yi-1.5-34B-Chat\n  01-ai/Yi-1.5-34B-Chat-16K\n  01-ai/Yi-1.5-6B\n  01-ai/Yi-1.5-6B-Chat\n...\nSample model names (last 20):\n  zelus82/Obelix-Phi2\n  zelus82/Obelix-Phi2-v0\n  zhengchenphd/ICE-GRT\n  zhengchenphd/Mistral-Plus-7B\n  zhengr/MixTAO-7Bx2-MoE-DPO\n  zhengr/MixTAO-7Bx2-MoE-Instruct-v1.0\n  zhengr/MixTAO-7Bx2-MoE-Instruct-v2.0\n  zhengr/MixTAO-7Bx2-MoE-Instruct-v4.0\n  zhengr/MixTAO-7Bx2-MoE-Instruct-v5.0\n  zhengr/MixTAO-7Bx2-MoE-Instruct-v6.0\n  zhengr/MixTAO-7Bx2-MoE-Instruct-v7.0\n  zhengr/MixTAO-7Bx2-MoE-v8.1\n  zhengr/NeuralPipe-7B-slerp\n  ziniuli/Mistral-7B-ReMax-v0.1\n  zmzmxz/NeuralPipe-7B-slerp\n  zorobin/mistral-class-shishya-7b-ep3\n  zorobin/mistral-class-shishya-all-hal-7b-ep3\n  zyh3826/20231206094523-pretrain-Llama-2-13b-hf-76000\n  zyh3826/GML-Mistral-merged-v1\n  zyh3826/llama2-13b-ft-openllm-leaderboard-v1",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QBYQpErVgLvQGiJrzJ7g4n`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport pandas as pd\nROOT = 'artifacts'\n# Try model_metadata.csv first\ntry:\n    meta = pd.read_csv(f'{ROOT}/model_metadata.csv')\n    print('=== model_metadata.csv ===')\n    print(f'Shape: {meta.shape}')\n    print(f'Columns: {list(meta.columns)}')\n    print(meta.head(3).to_string())\n    print(f'cohort_temporal values: {meta[\\\"cohort_temporal\\\"].value_counts().to_dict() if \\\"cohort_temporal\\\" in meta.columns else \\\"N/A\\\"}')\nexcept Exception as e:\n    print(f'model_metadata.csv error: {e}')\n\n# Try cleaned_mmlu_analysis.csv\ntry:\n    cleaned = pd.read_csv(f'{ROOT}/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv')\n    print('\\n=== cleaned_mmlu_analysis.csv ===')\n    print(f'Shape: {cleaned.shape}')\n    print(f'Columns: {list(cleaned.columns)}')\n    print(cleaned.head(3).to_string())\n    print(f'cohort_temporal values: {cleaned[\\\"cohort_temporal\\\"].value_counts().to_dict() if \\\"cohort_temporal\\\" in cleaned.columns else \\\"N/A\\\"}')\nexcept Exception as e:\n    print(f'cleaned_mmlu_analysis.csv error: {e}')\n\"\n",
+  "description": "Inspect model metadata files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "9a1e9802-ef85-4b03-b2df-c3fc7760e73b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GctUaYZvxDie5ZJfKSt4hr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13191,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13191
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T18:48:19.134Z_
+
+<details><summary>↩ Tool result · `toolu_01QBYQpErVgLvQGiJrzJ7g4n`</summary>
+
+```text
+=== model_metadata.csv ===
+Shape: (5227, 8)
+Columns: ['model_name', 'family', 'release_year', 'release_half', 'training_method', 'accuracy', 'cohort_temporal', 'cohort_accuracy_quintile']
+                         model_name   family release_year release_half training_method  accuracy cohort_temporal  cohort_accuracy_quintile
+0              0-hero/Matter-0.1-7B  unknown      unknown      unknown         unknown  0.661225           other                         3
+1  0-hero/Matter-0.1-7B-DPO-preview      NaN      unknown      unknown             DPO  0.661337           other                         3
+2        0-hero/Matter-0.1-7B-boost  unknown      unknown      unknown         unknown  0.653422           other                         3
+cohort_temporal values: {'other': 3340, '2023': 1080, '2024': 807}
+
+=== cleaned_mmlu_analysis.csv ===
+Shape: (5227, 9)
+Columns: ['model_name', 'score_full', 'score_cleaned', 'rank_full', 'rank_cleaned', 'rank_change', 'abs_rank_change', 'family', 'cohort_temporal']
+                         model_name  score_full  score_cleaned  rank_full  rank_cleaned  rank_change  abs_rank_change   family cohort_temporal
+0              0-hero/Matter-0.1-7B    0.560201       0.579977       3837          3892           55               55  unknown           other
+1  0-hero/Matter-0.1-7B-DPO-preview    0.661337       0.686380       2611          2615            4                4      NaN           other
+2        0-hero/Matter-0.1-7B-boost    0.653422       0.680093       2811          2791          -20               20  unknown           other
+cohort_temporal values: {'other': 3340, '2023': 1080, '2024': 807}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "11504fab-ac54-4602-b891-a5aa03b3651a",
+  "tool_use_result": {
+    "stdout": "=== model_metadata.csv ===\nShape: (5227, 8)\nColumns: ['model_name', 'family', 'release_year', 'release_half', 'training_method', 'accuracy', 'cohort_temporal', 'cohort_accuracy_quintile']\n                         model_name   family release_year release_half training_method  accuracy cohort_temporal  cohort_accuracy_quintile\n0              0-hero/Matter-0.1-7B  unknown      unknown      unknown         unknown  0.661225           other                         3\n1  0-hero/Matter-0.1-7B-DPO-preview      NaN      unknown      unknown             DPO  0.661337           other                         3\n2        0-hero/Matter-0.1-7B-boost  unknown      unknown      unknown         unknown  0.653422           other                         3\ncohort_temporal values: {'other': 3340, '2023': 1080, '2024': 807}\n\n=== cleaned_mmlu_analysis.csv ===\nShape: (5227, 9)\nColumns: ['model_name', 'score_full', 'score_cleaned', 'rank_full', 'rank_cleaned', 'rank_change', 'abs_rank_change', 'family', 'cohort_temporal']\n                         model_name  score_full  score_cleaned  rank_full  rank_cleaned  rank_change  abs_rank_change   family cohort_temporal\n0              0-hero/Matter-0.1-7B    0.560201       0.579977       3837          3892           55               55  unknown           other\n1  0-hero/Matter-0.1-7B-DPO-preview    0.661337       0.686380       2611          2615            4                4      NaN           other\n2        0-hero/Matter-0.1-7B-boost    0.653422       0.680093       2811          2791          -20               20  unknown           other\ncohort_temporal values: {'other': 3340, '2023': 1080, '2024': 807}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QnLMmScuk2SULbs48wQazg`</summary>
+
+```json
+{
+  "command": "grep -n 'def mh_dif_c_pct_vec' artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py",
+  "description": "Find MH-DIF function location"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "bd13eaaf-9548-43b4-8f56-4767d6c97e6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GctUaYZvxDie5ZJfKSt4hr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13191,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13191
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T18:48:19.290Z_
+
+<details><summary>↩ Tool result · `toolu_01QnLMmScuk2SULbs48wQazg`</summary>
+
+```text
+34:def mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "6a479662-e78f-49a1-a03b-62f9ad263227",
+  "tool_use_result": {
+    "stdout": "34:def mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TbDPf82Gi7TEvimSaigVnE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py",
+  "offset": 30,
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "5c120e02-cce7-4398-8615-b69a65dba5b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017j6aw5onjFBU9SfUspNKyM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2549,
+      "cache_read_input_tokens": 25032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2549
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T18:48:29.067Z_
+
+<details><summary>↩ Tool result · `toolu_01TbDPf82Gi7TEvimSaigVnE`</summary>
+
+```text
+30	
+31	# ════════════════════════════════════════════════════════════════════════
+32	#  VECTORIZED MH-DIF (total-score stratification)
+33	# ════════════════════════════════════════════════════════════════════════
+34	def mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):
+35	    """Fully vectorized MH-DIF → C%. Stratifies on total score (not rest)."""
+36	    n_ref, J = X_ref.shape
+37	    n_foc = X_foc.shape[0]
+38	
+39	    tot_ref = X_ref.sum(axis=1).astype(np.float64)
+40	    tot_foc = X_foc.sum(axis=1).astype(np.float64)
+41	    s_all = np.concatenate([tot_ref, tot_foc])
+42	
+43	    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))
+44	    n_bins = len(edges) - 1
+45	    if n_bins < 1:
+46	        return 0.0
+47	
+48	    k_ref = np.digitize(tot_ref, edges[1:-1])
+49	    k_foc = np.digitize(tot_foc, edges[1:-1])
+50	
+51	    n1 = np.zeros(n_bins, dtype=np.float64)
+52	    n0 = np.zeros(n_bins, dtype=np.float64)
+53	    A = np.zeros((n_bins, J), dtype=np.float64)
+54	    C = np.zeros((n_bins, J), dtype=np.float64)
+55	
+56	    for k in range(n_bins):
+57	        mr = (k_ref == k)
+58	        mf = (k_foc == k)
+59	        n1[k] = mr.sum()
+60	        n0[k] = mf.sum()
+61	        if mr.any():
+62	            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)
+63	        if mf.any():
+64	            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)
+65	
+66	    B = n1[:, None] - A
+67	    D = n0[:, None] - C
+68	    Nk = (n1 + n0)[:, None]
+69	    m1 = A + C
+70	    m0 = B + D
+71	
+72	    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &
+73	             (Nk > 1) & (m1 > 0) & (m0 > 0))
+74	
+75	    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)
+76	    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)
+77	
+78	    finite_mask = (Rj > 0) & (Sj > 0)
+79	
+80	    with np.errstate(divide="ignore", invalid="ignore"):
+81	        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)
+82	
+83	    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)
+84	    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)
+85	
+86	    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)
+87	    sum_var = np.where(
+88	        valid,
+89	        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),
+90	        0,
+91	    ).sum(axis=0)
+92	
+93	    chi2_j = np.where(
+94	        sum_var > 0,
+95	        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),
+96	        0,
+97	    )
+98	    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)
+99	
+100	    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)
+101	    return is_c.sum() / J * 100
+102	
+103	
+104	# ════════════════════════════════════════════════════════════════════════
+105	#  REST-SCORE MH-DIF (validation only)
+106	# ════════════════════════════════════════════════════════════════════════
+107	def mh_dif_c_pct_rest(X_ref, X_foc, n_strata=N_STRATA):
+108	    """Per-item rest-score MH-DIF (reference implementation)."""
+109	    tot_ref = X_ref.sum(axis=1).astype(np.float64)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "2066ef0b-de31-4886-849f-ed5e443873c8",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py",
+      "content": "\n# ════════════════════════════════════════════════════════════════════════\n#  VECTORIZED MH-DIF (total-score stratification)\n# ════════════════════════════════════════════════════════════════════════\ndef mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Fully vectorized MH-DIF → C%. Stratifies on total score (not rest).\"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return 0.0\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = (k_ref == k)\n        mf = (k_foc == k)\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n        if mf.any():\n            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C\n    m0 = B + D\n\n    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n             (Nk > 1) & (m1 > 0) & (m0 > 0))\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n    return is_c.sum() / J * 100\n\n\n# ════════════════════════════════════════════════════════════════════════\n#  REST-SCORE MH-DIF (validation only)\n# ════════════════════════════════════════════════════════════════════════\ndef mh_dif_c_pct_rest(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Per-item rest-score MH-DIF (reference implementation).\"\"\"\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)",
+      "numLines": 80,
+      "startLine": 30,
+      "totalLines": 364
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01T28NcHxRdUdmkqSfa2wTxF`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport numpy as np\nidx = np.load('artifacts/response_matrix_index.npz', allow_pickle=True)\nmodel_names = idx['model_names']\n# Find all models that look closed-source\nclosed_patterns = ['gpt-', 'GPT-', 'claude-', 'Claude', 'gemini-', 'Gemini', 'palm-', 'PaLM', 'command', 'j2-', 'jamba-', 'luminous', 'reka-', 'qwen-max', 'qwen-plus', 'qwen-turbo']\nfor m in model_names:\n    ml = m.lower()\n    for p in ['gpt-', 'claude-', 'gemini-', 'palm-', 'command', 'j2-', 'jamba-', 'luminous', 'reka-', 'qwen-max', 'qwen-plus', 'qwen-turbo']:\n        if p in ml:\n            print(m)\n            break\n\" | sort | head -80\n",
+  "description": "Identify closed-source model names in dataset"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "6268db66-1abf-41b4-99f4-939fab3c741a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017j6aw5onjFBU9SfUspNKyM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2549,
+      "cache_read_input_tokens": 25032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2549
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T18:48:34.279Z_
+
+<details><summary>↩ Tool result · `toolu_01T28NcHxRdUdmkqSfa2wTxF`</summary>
+
+```text
+AI-Sweden-Models/gpt-sw3-1.3b
+AI-Sweden-Models/gpt-sw3-1.3b-instruct
+AI-Sweden-Models/gpt-sw3-126m
+AI-Sweden-Models/gpt-sw3-126m-instruct
+AI-Sweden-Models/gpt-sw3-20b
+AI-Sweden-Models/gpt-sw3-20b-instruct
+AI-Sweden-Models/gpt-sw3-356m
+AI-Sweden-Models/gpt-sw3-356m-instruct
+AI-Sweden-Models/gpt-sw3-40b
+AI-Sweden-Models/gpt-sw3-6.7b
+AI-Sweden-Models/gpt-sw3-6.7b-v2
+AI-Sweden-Models/gpt-sw3-6.7b-v2-instruct
+Aratako/c4ai-command-r-v01-japanese-instruct
+Charlie911/llama2-MultiLoRA-sharegpt-mmlu-drop-ffn-1.0general
+Charlie911/vicuna-MultiLoRA-sharegpt-mmlu-drop-ffn-1.0general
+CobraMamba/mamba-gpt-3b-v2
+CobraMamba/mamba-gpt-7b-v1
+CobraMamba/mamba-gpt-7b-v2
+CohereForAI/c4ai-command-r-plus
+CohereForAI/c4ai-command-r-v01
+DrNicefellow/GPT-2-Large-115k-steps
+DrNicefellow/GPT-2-Large-20k-steps
+DrNicefellow/GPT-2-Large-32k-steps
+DrNicefellow/GPT-2-Large-40k-steps
+DrNicefellow/GPT-2-Large-43k-steps
+DrNicefellow/GPT-2-Large-51k-steps
+EleutherAI/gpt-j-6B
+FreedomIntelligence/AceGPT-7B
+INSAIT-Institute/BgGPT-7B-Instruct-v0.1
+INSAIT-Institute/BgGPT-7B-Instruct-v0.2
+JCX-kcuf/Llama-2-7b-chat-hf-gpt-3.5-80k-base_lora
+JCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k
+JCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k-base_lora
+JCX-kcuf/Llama-2-7b-hf-gpt-3.5-80k
+JCX-kcuf/Llama-2-7b-hf-gpt-4-80k
+JCX-kcuf/Mistral-7B-v0.1-gpt-4-20k
+JCX-kcuf/Mistral-7B-v0.1-gpt-4-60k
+JCX-kcuf/Mistral-7B-v0.1-gpt-4-80k
+JCX-kcuf/openchat_3.5-gpt-4-80k
+JunchengXie/Llama-2-13b-chat-hf-gpt-4-80k-base_lora
+JunchengXie/Mistral-7B-Instruct-v0.1-gpt-4-80k-base_lora
+JunchengXie/Mistral-7B-Instruct-v0.2-gpt-4-80k
+JunchengXie/Mistral-7B-Instruct-v0.2-gpt-4-80k-base_lora
+JunchengXie/Mistral-7B-v0.1-gpt-4-20k
+JunchengXie/Mistral-7B-v0.1-gpt-4-40k
+JunchengXie/Mistral-7B-v0.1-gpt-4-60k
+JunchengXie/Starling-LM-7B-alpha-gpt-4-80k
+JunchengXie/zephyr-7b-beta-gpt-4-80k
+NbAiLab/nb-gpt-j-6B-alpaca
+Norquinal/Mistral-7B-claude-instruct
+RatanRohith/SRBOSGPT-7B-slerp
+XuanXuanXuanXuan/Llama-2-13b-hf-gpt-4-80k
+XuanXuanXuanXuan/Llama-2-7b-chat-hf-gpt-3.5-80k
+XuanXuanXuanXuan/Llama-2-7b-hf-gpt-3.5-80k
+XuanXuanXuanXuan/Mistral-7B-Instruct-v0.1-gpt-4-80k
+XuanXuanXuanXuan/Mistral-7B-Instruct-v0.2-gpt-4-80k
+h2oai/h2ogpt-research-oasst1-llama-65b
+ibivibiv/llama-3-8b-instruct-alpaca-gpt-4
+lex-hue/LexGPT-V3
+openthaigpt/openthaigpt-1.0.0-13b-chat
+openthaigpt/openthaigpt-1.0.0-70b-chat
+openthaigpt/openthaigpt-1.0.0-7b-chat
+openthaigpt/openthaigpt-1.0.0-beta-13b-chat-hf
+openthaigpt/openthaigpt-1.0.0-beta-7b-chat-ckpt-hf
+postbot/gpt-neo-1.3B-emailgen
+rinna/bilingual-gpt-neox-4b-instruction-ppo
+rinna/japanese-gpt-neox-3.6b
+samir-fama/FernandoGPT-v1
+samir-fama/SamirGPT-v1
+sr5434/CodegebraGPT-10b
+wannaphong/openthaigpt-0.1.0-beta-full-model_for_open_llm_leaderboard
+xzuyn/GPT-2-SlimOrcaDeduped-airoboros-3.1-MetaMathQA-SFT-124M
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "4d76993b-d73e-42c2-8dd2-9266d45e55ab",
+  "tool_use_result": {
+    "stdout": "AI-Sweden-Models/gpt-sw3-1.3b\nAI-Sweden-Models/gpt-sw3-1.3b-instruct\nAI-Sweden-Models/gpt-sw3-126m\nAI-Sweden-Models/gpt-sw3-126m-instruct\nAI-Sweden-Models/gpt-sw3-20b\nAI-Sweden-Models/gpt-sw3-20b-instruct\nAI-Sweden-Models/gpt-sw3-356m\nAI-Sweden-Models/gpt-sw3-356m-instruct\nAI-Sweden-Models/gpt-sw3-40b\nAI-Sweden-Models/gpt-sw3-6.7b\nAI-Sweden-Models/gpt-sw3-6.7b-v2\nAI-Sweden-Models/gpt-sw3-6.7b-v2-instruct\nAratako/c4ai-command-r-v01-japanese-instruct\nCharlie911/llama2-MultiLoRA-sharegpt-mmlu-drop-ffn-1.0general\nCharlie911/vicuna-MultiLoRA-sharegpt-mmlu-drop-ffn-1.0general\nCobraMamba/mamba-gpt-3b-v2\nCobraMamba/mamba-gpt-7b-v1\nCobraMamba/mamba-gpt-7b-v2\nCohereForAI/c4ai-command-r-plus\nCohereForAI/c4ai-command-r-v01\nDrNicefellow/GPT-2-Large-115k-steps\nDrNicefellow/GPT-2-Large-20k-steps\nDrNicefellow/GPT-2-Large-32k-steps\nDrNicefellow/GPT-2-Large-40k-steps\nDrNicefellow/GPT-2-Large-43k-steps\nDrNicefellow/GPT-2-Large-51k-steps\nEleutherAI/gpt-j-6B\nFreedomIntelligence/AceGPT-7B\nINSAIT-Institute/BgGPT-7B-Instruct-v0.1\nINSAIT-Institute/BgGPT-7B-Instruct-v0.2\nJCX-kcuf/Llama-2-7b-chat-hf-gpt-3.5-80k-base_lora\nJCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k\nJCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k-base_lora\nJCX-kcuf/Llama-2-7b-hf-gpt-3.5-80k\nJCX-kcuf/Llama-2-7b-hf-gpt-4-80k\nJCX-kcuf/Mistral-7B-v0.1-gpt-4-20k\nJCX-kcuf/Mistral-7B-v0.1-gpt-4-60k\nJCX-kcuf/Mistral-7B-v0.1-gpt-4-80k\nJCX-kcuf/openchat_3.5-gpt-4-80k\nJunchengXie/Llama-2-13b-chat-hf-gpt-4-80k-base_lora\nJunchengXie/Mistral-7B-Instruct-v0.1-gpt-4-80k-base_lora\nJunchengXie/Mistral-7B-Instruct-v0.2-gpt-4-80k\nJunchengXie/Mistral-7B-Instruct-v0.2-gpt-4-80k-base_lora\nJunchengXie/Mistral-7B-v0.1-gpt-4-20k\nJunchengXie/Mistral-7B-v0.1-gpt-4-40k\nJunchengXie/Mistral-7B-v0.1-gpt-4-60k\nJunchengXie/Starling-LM-7B-alpha-gpt-4-80k\nJunchengXie/zephyr-7b-beta-gpt-4-80k\nNbAiLab/nb-gpt-j-6B-alpaca\nNorquinal/Mistral-7B-claude-instruct\nRatanRohith/SRBOSGPT-7B-slerp\nXuanXuanXuanXuan/Llama-2-13b-hf-gpt-4-80k\nXuanXuanXuanXuan/Llama-2-7b-chat-hf-gpt-3.5-80k\nXuanXuanXuanXuan/Llama-2-7b-hf-gpt-3.5-80k\nXuanXuanXuanXuan/Mistral-7B-Instruct-v0.1-gpt-4-80k\nXuanXuanXuanXuan/Mistral-7B-Instruct-v0.2-gpt-4-80k\nh2oai/h2ogpt-research-oasst1-llama-65b\nibivibiv/llama-3-8b-instruct-alpaca-gpt-4\nlex-hue/LexGPT-V3\nopenthaigpt/openthaigpt-1.0.0-13b-chat\nopenthaigpt/openthaigpt-1.0.0-70b-chat\nopenthaigpt/openthaigpt-1.0.0-7b-chat\nopenthaigpt/openthaigpt-1.0.0-beta-13b-chat-hf\nopenthaigpt/openthaigpt-1.0.0-beta-7b-chat-ckpt-hf\npostbot/gpt-neo-1.3B-emailgen\nrinna/bilingual-gpt-neox-4b-instruction-ppo\nrinna/japanese-gpt-neox-3.6b\nsamir-fama/FernandoGPT-v1\nsamir-fama/SamirGPT-v1\nsr5434/CodegebraGPT-10b\nwannaphong/openthaigpt-0.1.0-beta-full-model_for_open_llm_leaderboard\nxzuyn/GPT-2-SlimOrcaDeduped-airoboros-3.1-MetaMathQA-SFT-124M",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pattern matching is picking up many false positives - open-source models that happen to have "gpt", "command", "claude" etc. in their names. These are HuggingFace models with public weights. I need to be more careful about identifying truly closed-source/API-only models.
+
+True closed-source models in METABENCH would be like OpenAI's GPT-4, Claude, Gemini, etc. But METABENCH primarily collects open-source models evaluated on the Open LLM Leaderboard. Let me check if there are actual API-only models in there.
+
+
+Looking through the actual models in the dataset, I'm seeing that most of these are open-source or open-weight releases - the Cohere command models are on HuggingFace, the gpt-sw3 variants are publicly hosted, and even the models fine-tuned on GPT-4 distilled data are open-source. It's becoming clear that METABENCH doesn't really contain proprietary API-only models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "6c1d83d7-1908-4bdd-b782-f82a73c3f413",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVA7o6YN9oKBGyCftFHxnW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3624,
+      "cache_read_input_tokens": 27581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3624
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Most of these are false positives — open-source models with "gpt" in the name. Let me check for actual API-only models.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "3acfd3d8-45bd-421c-a17c-9c01b3a501da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVA7o6YN9oKBGyCftFHxnW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3624,
+      "cache_read_input_tokens": 27581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3624
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Vw7yo6mBLn4jfPvhQh8hh6`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport numpy as np\nidx = np.load('artifacts/response_matrix_index.npz', allow_pickle=True)\nmodel_names = list(idx['model_names'])\n\n# True closed-source model names (no HF org prefix, or known API-only)\n# Check for models WITHOUT org/ prefix (which would indicate non-HF models)\nno_org = [m for m in model_names if '/' not in m]\nprint(f'Models without org/ prefix: {len(no_org)}')\nfor m in sorted(no_org):\n    print(f'  {m}')\n\nprint()\n\n# Check for specific API-only model patterns\napi_patterns = ['gpt-4', 'gpt-3.5', 'gpt-4o', 'claude-3', 'claude-2', 'gemini', 'palm-2',\n                'o1-mini', 'o1-preview', 'o3']\nfor p in api_patterns:\n    matches = [m for m in model_names if p.lower() in m.lower()]\n    if matches:\n        print(f'Pattern \\\"{p}\\\": {matches[:10]}')\n\"\n",
+  "description": "Check for actual API-only / closed-source models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "adf01315-bcfb-4b56-af87-d7af806b1829",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVA7o6YN9oKBGyCftFHxnW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3624,
+      "cache_read_input_tokens": 27581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3624
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T18:48:56.554Z_
+
+<details><summary>↩ Tool result · `toolu_01Vw7yo6mBLn4jfPvhQh8hh6`</summary>
+
+```text
+Models without org/ prefix: 3
+  distilgpt2
+  gpt2
+  gpt2-xl
+
+Pattern "gpt-4": ['JCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k', 'JCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k-base_lora', 'JCX-kcuf/Llama-2-7b-hf-gpt-4-80k', 'JCX-kcuf/Mistral-7B-v0.1-gpt-4-20k', 'JCX-kcuf/Mistral-7B-v0.1-gpt-4-60k', 'JCX-kcuf/Mistral-7B-v0.1-gpt-4-80k', 'JCX-kcuf/openchat_3.5-gpt-4-80k', 'JunchengXie/Llama-2-13b-chat-hf-gpt-4-80k-base_lora', 'JunchengXie/Mistral-7B-Instruct-v0.1-gpt-4-80k-base_lora', 'JunchengXie/Mistral-7B-Instruct-v0.2-gpt-4-80k']
+Pattern "gpt-3.5": ['JCX-kcuf/Llama-2-7b-chat-hf-gpt-3.5-80k-base_lora', 'JCX-kcuf/Llama-2-7b-hf-gpt-3.5-80k', 'XuanXuanXuanXuan/Llama-2-7b-chat-hf-gpt-3.5-80k', 'XuanXuanXuanXuan/Llama-2-7b-hf-gpt-3.5-80k']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "3d7d1060-13f8-4a6c-accb-90e0ee70a5e8",
+  "tool_use_result": {
+    "stdout": "Models without org/ prefix: 3\n  distilgpt2\n  gpt2\n  gpt2-xl\n\nPattern \"gpt-4\": ['JCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k', 'JCX-kcuf/Llama-2-7b-chat-hf-gpt-4-80k-base_lora', 'JCX-kcuf/Llama-2-7b-hf-gpt-4-80k', 'JCX-kcuf/Mistral-7B-v0.1-gpt-4-20k', 'JCX-kcuf/Mistral-7B-v0.1-gpt-4-60k', 'JCX-kcuf/Mistral-7B-v0.1-gpt-4-80k', 'JCX-kcuf/openchat_3.5-gpt-4-80k', 'JunchengXie/Llama-2-13b-chat-hf-gpt-4-80k-base_lora', 'JunchengXie/Mistral-7B-Instruct-v0.1-gpt-4-80k-base_lora', 'JunchengXie/Mistral-7B-Instruct-v0.2-gpt-4-80k']\nPattern \"gpt-3.5\": ['JCX-kcuf/Llama-2-7b-chat-hf-gpt-3.5-80k-base_lora', 'JCX-kcuf/Llama-2-7b-hf-gpt-3.5-80k', 'XuanXuanXuanXuan/Llama-2-7b-chat-hf-gpt-3.5-80k', 'XuanXuanXuanXuan/Llama-2-7b-hf-gpt-3.5-80k']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+As expected, METABENCH data comes entirely from the HuggingFace Open LLM Leaderboard — all models have public weights. There are no actual closed-source/API-only models in the dataset. The models with "gpt-4" or "gpt-3.5" in their names are open-source models fine-tuned on data distilled from GPT-4/GPT-3.5.
+
+Even `gpt2`, `gpt2-xl`, `distilgpt2` are open-source models by OpenAI/Hugging Face.
+
+So the analysis as originally conceived won't work — there's no closed-source group to form. 
+
+The instructions did anticipate this scenario — if the closed-source group falls below 30 models, I should report it but still proceed. However, with zero closed-source models, I can't run the DIF analysis for that group at all. I'll document this finding and deliver what I can, though the comparison won't be possible as originally framed. Let me just build the complete analysis. I'll create a classification that's careful (not matching false positives), properly document N=0 for closed-source, and produce the deliverables.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "c88c199f-8ee3-4eb1-b296-cadbb290706a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hw2mZEQX5b24yEqzpe4gab",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 31205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1385
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+METABENCH data comes from the HuggingFace Open LLM Leaderboard — all 5,227 models have public weights. There are zero actual closed-source/API-only models. The "gpt-4" matches are open-source models fine-tuned on GPT-4 distilled data.
+
+I'll build the analysis script that documents this finding, does the classification, and runs a feasible alternative: **distilled-from-API** (models trained on closed-source model outputs) vs **non-distilled** as a proxy split.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "56c021f1-b26a-4151-83eb-30a9aabef4c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hw2mZEQX5b24yEqzpe4gab",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 31205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1385
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RQWXAcyxRHvHptAauC1kq8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py",
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "f4771ba3-5269-429d-a61d-86bdf0a1b8e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hw2mZEQX5b24yEqzpe4gab",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 31205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1385
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T18:49:21.847Z_
+
+<details><summary>↩ Tool result · `toolu_01RQWXAcyxRHvHptAauC1kq8`</summary>
+
+```text
+1	#!/usr/bin/env python3
+2	"""
+3	mmlu_bootstrap_ci.py — MMLU bootstrap 95% CI for MH-DIF C%.
+4	
+5	Vectorized total-score stratification (~100x faster than per-item rest-score).
+6	For J=12508, total-score ≈ rest-score (diff < 0.3pp); validated at startup.
+7	"""
+8	
+9	import numpy as np
+10	import pandas as pd
+11	from scipy.stats import chi2 as chi2_dist
+12	from scipy.sparse import load_npz
+13	from pathlib import Path
+14	from multiprocessing import Pool
+15	import time
+16	import warnings
+17	
+18	warnings.filterwarnings("ignore", category=RuntimeWarning)
+19	
+20	BASE = Path("/home/ubuntu/.agent-ml-research-idea_gen_0520_2/"
+21	            "projects/irt_equated_bench_regen/artifacts")
+22	OUT = BASE / "plan_028_bootstrap_ci"
+23	OUT.mkdir(exist_ok=True)
+24	
+25	N_BOOTSTRAP = 1000
+26	N_CONTROL = 20
+27	SEED = 42
+28	N_STRATA = 5
+29	
+30	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "7a3e5aae-1f28-4121-8bdd-748b37f0396e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py",
+      "content": "#!/usr/bin/env python3\n\"\"\"\nmmlu_bootstrap_ci.py — MMLU bootstrap 95% CI for MH-DIF C%.\n\nVectorized total-score stratification (~100x faster than per-item rest-score).\nFor J=12508, total-score ≈ rest-score (diff < 0.3pp); validated at startup.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import chi2 as chi2_dist\nfrom scipy.sparse import load_npz\nfrom pathlib import Path\nfrom multiprocessing import Pool\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/\"\n            \"projects/irt_equated_bench_regen/artifacts\")\nOUT = BASE / \"plan_028_bootstrap_ci\"\nOUT.mkdir(exist_ok=True)\n\nN_BOOTSTRAP = 1000\nN_CONTROL = 20\nSEED = 42\nN_STRATA = 5\n\n",
+      "numLines": 30,
+      "startLine": 1,
+      "totalLines": 364
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RBS5J9XtPhVy3D8BGTynYg`</summary>
+
+```json
+{
+  "command": "mkdir -p artifacts/r19_open_closed_dif",
+  "description": "Create output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "69d29125-5112-4331-83da-657ad05d9f64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NvqiYAB2zV16d9CuXEL7cV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 32590,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1377
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T18:49:25.025Z_
+
+<details><summary>↩ Tool result · `toolu_01RBS5J9XtPhVy3D8BGTynYg`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "d27755a3-71a3-46ee-b70e-195c42c0e4ed",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01HzHiZMaM8XHk22EPJToAFK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/open_closed_dif_analysis.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"\nR19 Exp 3 — Open vs Closed-Source DIF analysis.\n\nClassifies METABENCH models as open-source vs closed-source/API-only,\nthen runs temporal MH-DIF (2023 vs 2024) per group.\n\nFinding: METABENCH contains 0 closed-source models (all from HF Open LLM\nLeaderboard). Fallback analysis uses distilled-from-API vs non-distilled split.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse\nfrom scipy.stats import chi2 as chi2_dist, spearmanr\nfrom pathlib import Path\nimport warnings\nimport re\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/\"\n            \"projects/irt_equated_bench_regen/artifacts\")\nOUT = BASE / \"r19_open_closed_dif\"\nOUT.mkdir(exist_ok=True)\n\nN_STRATA = 5\nSEED = 42\n\n# ════════════════════════════════════════════════════════════════════════\n#  DATA LOADING\n# ════════════════════════════════════════════════════════════════════════\nrm = np.load(BASE / \"response_matrix.npz\")\nX = sparse.csr_matrix((rm['data'], rm['indices'], rm['indptr']),\n                       shape=tuple(rm['shape']))\nidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\nmodel_names = list(idx['model_names'])\nitem_ids = list(idx['item_ids'])\nmeta = pd.read_csv(BASE / \"model_metadata.csv\")\n\nprint(f\"Loaded: {X.shape[0]} models × {X.shape[1]} items\")\n\n# ════════════════════════════════════════════════════════════════════════\n#  MODEL CLASSIFICATION: open vs closed-source\n# ════════════════════════════════════════════════════════════════════════\n\n# True closed-source/API-only: models NOT hosted on HF with public weights.\n# In METABENCH (HF Open LLM Leaderboard data), all models have public weights.\n# We detect closed-source by checking for API-only model names without HF org prefixes.\nCLOSED_SOURCE_EXACT = {\n    # OpenAI API-only models (if present)\n    'gpt-4', 'gpt-4-turbo', 'gpt-4o', 'gpt-4o-mini',\n    'gpt-3.5-turbo', 'o1-mini', 'o1-preview', 'o3-mini',\n    # Would also match claude-3-*, gemini-*, etc. if present\n}\n\ndef classify_model(name):\n    \"\"\"Classify a model as open-source, closed-source, or distilled-from-api.\"\"\"\n    name_lower = name.lower()\n    base = name.split('/')[-1] if '/' in name else name\n\n    # Check exact matches for API-only models\n    if base.lower() in CLOSED_SOURCE_EXACT:\n        return 'closed'\n\n    # API-only models typically have NO HF org/ prefix\n    # and match known API provider patterns\n    if '/' not in name:\n        for p in ['gpt-4', 'gpt-3.5', 'claude-', 'gemini-', 'palm-']:\n            if p in name_lower:\n                return 'closed'\n\n    # Everything on HF with org/ prefix = open-source (public weights)\n    return 'open'\n\n\ndef is_distilled_from_api(name):\n    \"\"\"Detect models fine-tuned on closed-source model outputs.\"\"\"\n    name_lower = name.lower()\n    distill_signals = [\n        'gpt-4', 'gpt-3.5', 'gpt4', 'gpt35',\n        'chatgpt', 'claude-distil', 'orca',\n        'alpaca-gpt4', 'sharegpt',\n    ]\n    for sig in distill_signals:\n        if sig in name_lower:\n            return True\n    return False\n\n\n# Classify all models\nclassifications = []\nfor m in model_names:\n    source = classify_model(m)\n    distilled = is_distilled_from_api(m)\n    classifications.append({\n        'model_name': m,\n        'source_type': source,\n        'distilled_from_api': distilled\n    })\n\nclass_df = pd.DataFrame(classifications)\nclass_df = class_df.merge(meta[['model_name', 'cohort_temporal']], on='model_name', how='left')\n\n# Save classification\nclass_df.to_csv(OUT / \"model_source_classification.csv\", index=False)\n\nn_open = (class_df['source_type'] == 'open').sum()\nn_closed = (class_df['source_type'] == 'closed').sum()\nn_distilled = class_df['distilled_from_api'].sum()\n\nprint(f\"\\n=== Source Classification ===\")\nprint(f\"Open-source:    {n_open}\")\nprint(f\"Closed-source:  {n_closed}\")\nprint(f\"Distilled from API: {n_distilled}\")\n\n# Cross-tab with cohort\nprint(\"\\n=== Source × Cohort ===\")\nprint(pd.crosstab(class_df['source_type'], class_df['cohort_temporal'], margins=True))\nprint(\"\\n=== Distilled × Cohort ===\")\nprint(pd.crosstab(class_df['distilled_from_api'], class_df['cohort_temporal'], margins=True))\n\n\n# ════════════════════════════════════════════════════════════════════════\n#  PER-ITEM MH-DIF (returns item-level stats)\n# ════════════════════════════════════════════════════════════════════════\ndef mh_dif_per_item(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"MH-DIF returning per-item delta_mh, p-value, and C classification.\"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return pd.DataFrame({\n            'delta_mh': np.zeros(J),\n            'p_value': np.ones(J),\n            'is_c': np.zeros(J, dtype=bool),\n            'difficulty': np.zeros(J),\n        })\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = (k_ref == k)\n        mf = (k_foc == k)\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n        if mf.any():\n            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C\n    m0 = B + D\n\n    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n             (Nk > 1) & (m1 > 0) & (m0 > 0))\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n\n    # item difficulty = overall p-value (proportion correct)\n    all_X = np.vstack([X_ref, X_foc])\n    difficulty = all_X.mean(axis=0).astype(np.float64)\n\n    return pd.DataFrame({\n        'delta_mh': delta_j,\n        'p_value': pval_j,\n        'is_c': is_c,\n        'difficulty': difficulty,\n    })\n\n\ndef run_temporal_dif(group_mask, group_name):\n    \"\"\"Run temporal MH-DIF (2023 vs 2024) for a subset of models.\"\"\"\n    cohorts = class_df['cohort_temporal'].values\n\n    ref_mask = group_mask & (cohorts == '2023')\n    foc_mask = group_mask & (cohorts == '2024')\n\n    n_ref = ref_mask.sum()\n    n_foc = foc_mask.sum()\n\n    print(f\"\\n{'='*60}\")\n    print(f\"  {group_name}: N_ref(2023)={n_ref}, N_foc(2024)={n_foc}\")\n    print(f\"{'='*60}\")\n\n    if n_ref < 5 or n_foc < 5:\n        print(f\"  SKIPPED: insufficient models (need >= 5 per cohort)\")\n        return None\n\n    X_dense = X.toarray()\n    X_ref = X_dense[ref_mask]\n    X_foc = X_dense[foc_mask]\n\n    results = mh_dif_per_item(X_ref, X_foc)\n    results['item_id'] = item_ids\n\n    J = len(item_ids)\n    c_pct = results['is_c'].sum() / J * 100\n    n_c = results['is_c'].sum()\n\n    # Direction of DIF among C items\n    c_items = results[results['is_c']]\n    n_favor_ref = (c_items['delta_mh'] > 0).sum()  # favors 2023\n    n_favor_foc = (c_items['delta_mh'] < 0).sum()  # favors 2024\n\n    # Correlation between difficulty and delta_MH\n    finite = results['delta_mh'] != 0\n    if finite.sum() > 10:\n        rho, rho_p = spearmanr(results.loc[finite, 'difficulty'],\n                               results.loc[finite, 'delta_mh'])\n    else:\n        rho, rho_p = np.nan, np.nan\n\n    print(f\"  C%: {c_pct:.1f}% ({n_c}/{J})\")\n    print(f\"  Direction: {n_favor_ref} favor 2023, {n_favor_foc} favor 2024\")\n    print(f\"  ρ(difficulty, Δ_MH): {rho:.3f} (p={rho_p:.4f})\")\n\n    return {\n        'group': group_name,\n        'n_ref': n_ref,\n        'n_foc': n_foc,\n        'c_pct': c_pct,\n        'n_c': n_c,\n        'n_favor_ref': n_favor_ref,\n        'n_favor_foc': n_favor_foc,\n        'rho': rho,\n        'rho_p': rho_p,\n        'item_results': results,\n    }\n\n\n# ════════════════════════════════════════════════════════════════════════\n#  MAIN ANALYSIS\n# ════════════════════════════════════════════════════════════════════════\nresults_all = {}\n\n# 1. Open-source full set (all models are open-source)\nopen_mask = (class_df['source_type'] == 'open').values\nr = run_temporal_dif(open_mask, \"All Models (Open-Source)\")\nif r:\n    results_all['all_open'] = r\n\n# 2. Closed-source (expected: N=0)\nclosed_mask = (class_df['source_type'] == 'closed').values\nif closed_mask.sum() > 0:\n    r = run_temporal_dif(closed_mask, \"Closed-Source\")\n    if r:\n        results_all['closed'] = r\nelse:\n    print(f\"\\n{'='*60}\")\n    print(f\"  Closed-Source: N=0 — METABENCH has no API-only models\")\n    print(f\"  (all data from HF Open LLM Leaderboard)\")\n    print(f\"{'='*60}\")\n\n# 3. Fallback: Distilled-from-API vs Non-distilled\ndistilled_mask = class_df['distilled_from_api'].values\nnondistilled_mask = ~class_df['distilled_from_api'].values\n\nr = run_temporal_dif(distilled_mask, \"Distilled-from-API\")\nif r:\n    results_all['distilled'] = r\n\nr = run_temporal_dif(nondistilled_mask, \"Non-Distilled\")\nif r:\n    results_all['non_distilled'] = r\n\n# ════════════════════════════════════════════════════════════════════════\n#  DIF ITEM OVERLAP (Jaccard) — distilled vs non-distilled\n# ════════════════════════════════════════════════════════════════════════\nif 'distilled' in results_all and 'non_distilled' in results_all:\n    c_dist = set(results_all['distilled']['item_results']\n                 .loc[results_all['distilled']['item_results']['is_c'], 'item_id'])\n    c_nondist = set(results_all['non_distilled']['item_results']\n                    .loc[results_all['non_distilled']['item_results']['is_c'], 'item_id'])\n\n    if len(c_dist | c_nondist) > 0:\n        jaccard = len(c_dist & c_nondist) / len(c_dist | c_nondist)\n    else:\n        jaccard = 0.0\n\n    print(f\"\\n=== DIF Item Overlap ===\")\n    print(f\"Distilled C items: {len(c_dist)}\")\n    print(f\"Non-distilled C items: {len(c_nondist)}\")\n    print(f\"Intersection: {len(c_dist & c_nondist)}\")\n    print(f\"Jaccard: {jaccard:.3f}\")\n\n# ════════════════════════════════════════════════════════════════════════\n#  SIZE-MATCHED CONTROL\n# ════════════════════════════════════════════════════════════════════════\nif 'distilled' in results_all:\n    n_dist_ref = results_all['distilled']['n_ref']\n    n_dist_foc = results_all['distilled']['n_foc']\n\n    rng = np.random.default_rng(SEED)\n    cohorts = class_df['cohort_temporal'].values\n    nondist_ref_idx = np.where(nondistilled_mask & (cohorts == '2023'))[0]\n    nondist_foc_idx = np.where(nondistilled_mask & (cohorts == '2024'))[0]\n\n    if len(nondist_ref_idx) >= n_dist_ref and len(nondist_foc_idx) >= n_dist_foc:\n        n_boot = 50\n        control_c_pcts = []\n        X_dense = X.toarray()\n\n        print(f\"\\n=== Size-Matched Control (N={n_boot} resamples) ===\")\n        for i in range(n_boot):\n            sub_ref = rng.choice(nondist_ref_idx, size=n_dist_ref, replace=False)\n            sub_foc = rng.choice(nondist_foc_idx, size=n_dist_foc, replace=False)\n            res = mh_dif_per_item(X_dense[sub_ref], X_dense[sub_foc])\n            control_c_pcts.append(res['is_c'].sum() / len(item_ids) * 100)\n\n        ctrl_mean = np.mean(control_c_pcts)\n        ctrl_std = np.std(control_c_pcts)\n        ctrl_ci = np.percentile(control_c_pcts, [2.5, 97.5])\n        dist_c = results_all['distilled']['c_pct']\n\n        print(f\"Distilled C%: {dist_c:.1f}%\")\n        print(f\"Control C% (mean ± sd): {ctrl_mean:.1f}% ± {ctrl_std:.1f}%\")\n        print(f\"Control 95% CI: [{ctrl_ci[0]:.1f}%, {ctrl_ci[1]:.1f}%]\")\n        print(f\"Distilled {'OUTSIDE' if dist_c < ctrl_ci[0] or dist_c > ctrl_ci[1] else 'within'} control CI\")\n\n\n# ════════════════════════════════════════════════════════════════════════\n#  GENERATE REPORT\n# ════════════════════════════════════════════════════════════════════════\nreport_lines = [\n    \"# R19 Exp 3 — Open vs Closed-Source DIF\\n\",\n    \"## Key Finding\\n\",\n    \"METABENCH contains **zero closed-source/API-only models**. All 5,227 models\",\n    \"come from the HuggingFace Open LLM Leaderboard, which by definition only\",\n    \"evaluates models with publicly available weights.\\n\",\n    \"Models with names containing 'gpt-4' or 'gpt-3.5' are open-source models\",\n    \"fine-tuned on data distilled from those API models, not the API models themselves.\\n\",\n    \"## Model Classification\\n\",\n    f\"| Category | N |\",\n    f\"|----------|---|\",\n    f\"| Open-source | {n_open} |\",\n    f\"| Closed-source | {n_closed} |\",\n    f\"| Distilled-from-API | {n_distilled} |\",\n    f\"| Non-distilled | {len(model_names) - n_distilled} |\",\n    \"\",\n]\n\n# Cohort breakdown\nreport_lines += [\n    \"\\n## Cohort Breakdown\\n\",\n    \"| Group | 2023 | 2024 | Other |\",\n    \"|-------|------|------|-------|\",\n]\nfor label, mask in [('All Open', open_mask), ('Distilled', distilled_mask),\n                    ('Non-distilled', nondistilled_mask)]:\n    n23 = (mask & (class_df['cohort_temporal'].values == '2023')).sum()\n    n24 = (mask & (class_df['cohort_temporal'].values == '2024')).sum()\n    nother = (mask & (class_df['cohort_temporal'].values == 'other')).sum()\n    report_lines.append(f\"| {label} | {n23} | {n24} | {nother} |\")\n\n# DIF results\nreport_lines += [\"\\n## Temporal MH-DIF Results (2023 → 2024)\\n\"]\n\nfor key, label in [('all_open', 'All Models'), ('distilled', 'Distilled-from-API'),\n                   ('non_distilled', 'Non-Distilled')]:\n    if key in results_all:\n        r = results_all[key]\n        report_lines += [\n            f\"### {label}\\n\",\n            f\"- N_ref (2023): {r['n_ref']}, N_foc (2024): {r['n_foc']}\",\n            f\"- C%: {r['c_pct']:.1f}% ({r['n_c']}/{len(item_ids)} items)\",\n            f\"- Direction: {r['n_favor_ref']} favor 2023, {r['n_favor_foc']} favor 2024\",\n            f\"- ρ(difficulty, Δ_MH): {r['rho']:.3f} (p={r['rho_p']:.4f})\",\n            \"\",\n        ]\n\n# Overlap\nif 'distilled' in results_all and 'non_distilled' in results_all:\n    report_lines += [\n        \"## DIF Item Overlap\\n\",\n        f\"- Distilled C items: {len(c_dist)}\",\n        f\"- Non-distilled C items: {len(c_nondist)}\",\n        f\"- Intersection: {len(c_dist & c_nondist)}\",\n        f\"- Jaccard similarity: {jaccard:.3f}\",\n        \"\",\n    ]\n\n# Size-matched control\nif 'distilled' in results_all and 'control_c_pcts' in dir():\n    report_lines += [\n        \"## Size-Matched Control\\n\",\n        f\"- Distilled C%: {dist_c:.1f}%\",\n        f\"- Control C% (mean ± sd): {ctrl_mean:.1f}% ± {ctrl_std:.1f}%\",\n        f\"- Control 95% CI: [{ctrl_ci[0]:.1f}%, {ctrl_ci[1]:.1f}%]\",\n        f\"- Distilled {'**outside**' if dist_c < ctrl_ci[0] or dist_c > ctrl_ci[1] else 'within'} control CI\",\n        \"\",\n    ]\n\nreport_lines += [\n    \"\\n## Implication for Paper\\n\",\n    \"The open-vs-closed analysis is not feasible with METABENCH data. This is a\",\n    \"limitation of the dataset, not of the method. If API-only model responses were\",\n    \"available (e.g., from LMSYS Chatbot Arena or custom evaluation), the same\",\n    \"MH-DIF pipeline could be applied directly.\",\n]\n\nreport_text = \"\\n\".join(report_lines)\n(OUT / \"open_closed_dif_report.md\").write_text(report_text)\nprint(f\"\\n\\nReport saved to {OUT / 'open_closed_dif_report.md'}\")\nprint(f\"Classification saved to {OUT / 'model_source_classification.csv'}\")\nprint(\"\\nDone.\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "6b14e80c-69d5-434f-bcad-85893a8ead67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRCMyERPHjrosrnA9G6Zpi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 102,
+      "cache_read_input_tokens": 33967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 102
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T18:51:08.947Z_
+
+<details><summary>↩ Tool result · `toolu_01HzHiZMaM8XHk22EPJToAFK`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/open_closed_dif_analysis.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "79a8866d-efed-4ed9-a9cd-6b7256ffbf94",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/open_closed_dif_analysis.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"\nR19 Exp 3 — Open vs Closed-Source DIF analysis.\n\nClassifies METABENCH models as open-source vs closed-source/API-only,\nthen runs temporal MH-DIF (2023 vs 2024) per group.\n\nFinding: METABENCH contains 0 closed-source models (all from HF Open LLM\nLeaderboard). Fallback analysis uses distilled-from-API vs non-distilled split.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse\nfrom scipy.stats import chi2 as chi2_dist, spearmanr\nfrom pathlib import Path\nimport warnings\nimport re\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/\"\n            \"projects/irt_equated_bench_regen/artifacts\")\nOUT = BASE / \"r19_open_closed_dif\"\nOUT.mkdir(exist_ok=True)\n\nN_STRATA = 5\nSEED = 42\n\n# ════════════════════════════════════════════════════════════════════════\n#  DATA LOADING\n# ════════════════════════════════════════════════════════════════════════\nrm = np.load(BASE / \"response_matrix.npz\")\nX = sparse.csr_matrix((rm['data'], rm['indices'], rm['indptr']),\n                       shape=tuple(rm['shape']))\nidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\nmodel_names = list(idx['model_names'])\nitem_ids = list(idx['item_ids'])\nmeta = pd.read_csv(BASE / \"model_metadata.csv\")\n\nprint(f\"Loaded: {X.shape[0]} models × {X.shape[1]} items\")\n\n# ════════════════════════════════════════════════════════════════════════\n#  MODEL CLASSIFICATION: open vs closed-source\n# ════════════════════════════════════════════════════════════════════════\n\n# True closed-source/API-only: models NOT hosted on HF with public weights.\n# In METABENCH (HF Open LLM Leaderboard data), all models have public weights.\n# We detect closed-source by checking for API-only model names without HF org prefixes.\nCLOSED_SOURCE_EXACT = {\n    # OpenAI API-only models (if present)\n    'gpt-4', 'gpt-4-turbo', 'gpt-4o', 'gpt-4o-mini',\n    'gpt-3.5-turbo', 'o1-mini', 'o1-preview', 'o3-mini',\n    # Would also match claude-3-*, gemini-*, etc. if present\n}\n\ndef classify_model(name):\n    \"\"\"Classify a model as open-source, closed-source, or distilled-from-api.\"\"\"\n    name_lower = name.lower()\n    base = name.split('/')[-1] if '/' in name else name\n\n    # Check exact matches for API-only models\n    if base.lower() in CLOSED_SOURCE_EXACT:\n        return 'closed'\n\n    # API-only models typically have NO HF org/ prefix\n    # and match known API provider patterns\n    if '/' not in name:\n        for p in ['gpt-4', 'gpt-3.5', 'claude-', 'gemini-', 'palm-']:\n            if p in name_lower:\n                return 'closed'\n\n    # Everything on HF with org/ prefix = open-source (public weights)\n    return 'open'\n\n\ndef is_distilled_from_api(name):\n    \"\"\"Detect models fine-tuned on closed-source model outputs.\"\"\"\n    name_lower = name.lower()\n    distill_signals = [\n        'gpt-4', 'gpt-3.5', 'gpt4', 'gpt35',\n        'chatgpt', 'claude-distil', 'orca',\n        'alpaca-gpt4', 'sharegpt',\n    ]\n    for sig in distill_signals:\n        if sig in name_lower:\n            return True\n    return False\n\n\n# Classify all models\nclassifications = []\nfor m in model_names:\n    source = classify_model(m)\n    distilled = is_distilled_from_api(m)\n    classifications.append({\n        'model_name': m,\n        'source_type': source,\n        'distilled_from_api': distilled\n    })\n\nclass_df = pd.DataFrame(classifications)\nclass_df = class_df.merge(meta[['model_name', 'cohort_temporal']], on='model_name', how='left')\n\n# Save classification\nclass_df.to_csv(OUT / \"model_source_classification.csv\", index=False)\n\nn_open = (class_df['source_type'] == 'open').sum()\nn_closed = (class_df['source_type'] == 'closed').sum()\nn_distilled = class_df['distilled_from_api'].sum()\n\nprint(f\"\\n=== Source Classification ===\")\nprint(f\"Open-source:    {n_open}\")\nprint(f\"Closed-source:  {n_closed}\")\nprint(f\"Distilled from API: {n_distilled}\")\n\n# Cross-tab with cohort\nprint(\"\\n=== Source × Cohort ===\")\nprint(pd.crosstab(class_df['source_type'], class_df['cohort_temporal'], margins=True))\nprint(\"\\n=== Distilled × Cohort ===\")\nprint(pd.crosstab(class_df['distilled_from_api'], class_df['cohort_temporal'], margins=True))\n\n\n# ════════════════════════════════════════════════════════════════════════\n#  PER-ITEM MH-DIF (returns item-level stats)\n# ════════════════════════════════════════════════════════════════════════\ndef mh_dif_per_item(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"MH-DIF returning per-item delta_mh, p-value, and C classification.\"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return pd.DataFrame({\n            'delta_mh': np.zeros(J),\n            'p_value': np.ones(J),\n            'is_c': np.zeros(J, dtype=bool),\n            'difficulty': np.zeros(J),\n        })\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = (k_ref == k)\n        mf = (k_foc == k)\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n        if mf.any():\n            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C\n    m0 = B + D\n\n    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n             (Nk > 1) & (m1 > 0) & (m0 > 0))\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n\n    # item difficulty = overall p-value (proportion correct)\n    all_X = np.vstack([X_ref, X_foc])\n    difficulty = all_X.mean(axis=0).astype(np.float64)\n\n    return pd.DataFrame({\n        'delta_mh': delta_j,\n        'p_value': pval_j,\n        'is_c': is_c,\n        'difficulty': difficulty,\n    })\n\n\ndef run_temporal_dif(group_mask, group_name):\n    \"\"\"Run temporal MH-DIF (2023 vs 2024) for a subset of models.\"\"\"\n    cohorts = class_df['cohort_temporal'].values\n\n    ref_mask = group_mask & (cohorts == '2023')\n    foc_mask = group_mask & (cohorts == '2024')\n\n    n_ref = ref_mask.sum()\n    n_foc = foc_mask.sum()\n\n    print(f\"\\n{'='*60}\")\n    print(f\"  {group_name}: N_ref(2023)={n_ref}, N_foc(2024)={n_foc}\")\n    print(f\"{'='*60}\")\n\n    if n_ref < 5 or n_foc < 5:\n        print(f\"  SKIPPED: insufficient models (need >= 5 per cohort)\")\n        return None\n\n    X_dense = X.toarray()\n    X_ref = X_dense[ref_mask]\n    X_foc = X_dense[foc_mask]\n\n    results = mh_dif_per_item(X_ref, X_foc)\n    results['item_id'] = item_ids\n\n    J = len(item_ids)\n    c_pct = results['is_c'].sum() / J * 100\n    n_c = results['is_c'].sum()\n\n    # Direction of DIF among C items\n    c_items = results[results['is_c']]\n    n_favor_ref = (c_items['delta_mh'] > 0).sum()  # favors 2023\n    n_favor_foc = (c_items['delta_mh'] < 0).sum()  # favors 2024\n\n    # Correlation between difficulty and delta_MH\n    finite = results['delta_mh'] != 0\n    if finite.sum() > 10:\n        rho, rho_p = spearmanr(results.loc[finite, 'difficulty'],\n                               results.loc[finite, 'delta_mh'])\n    else:\n        rho, rho_p = np.nan, np.nan\n\n    print(f\"  C%: {c_pct:.1f}% ({n_c}/{J})\")\n    print(f\"  Direction: {n_favor_ref} favor 2023, {n_favor_foc} favor 2024\")\n    print(f\"  ρ(difficulty, Δ_MH): {rho:.3f} (p={rho_p:.4f})\")\n\n    return {\n        'group': group_name,\n        'n_ref': n_ref,\n        'n_foc': n_foc,\n        'c_pct': c_pct,\n        'n_c': n_c,\n        'n_favor_ref': n_favor_ref,\n        'n_favor_foc': n_favor_foc,\n        'rho': rho,\n        'rho_p': rho_p,\n        'item_results': results,\n    }\n\n\n# ════════════════════════════════════════════════════════════════════════\n#  MAIN ANALYSIS\n# ════════════════════════════════════════════════════════════════════════\nresults_all = {}\n\n# 1. Open-source full set (all models are open-source)\nopen_mask = (class_df['source_type'] == 'open').values\nr = run_temporal_dif(open_mask, \"All Models (Open-Source)\")\nif r:\n    results_all['all_open'] = r\n\n# 2. Closed-source (expected: N=0)\nclosed_mask = (class_df['source_type'] == 'closed').values\nif closed_mask.sum() > 0:\n    r = run_temporal_dif(closed_mask, \"Closed-Source\")\n    if r:\n        results_all['closed'] = r\nelse:\n    print(f\"\\n{'='*60}\")\n    print(f\"  Closed-Source: N=0 — METABENCH has no API-only models\")\n    print(f\"  (all data from HF Open LLM Leaderboard)\")\n    print(f\"{'='*60}\")\n\n# 3. Fallback: Distilled-from-API vs Non-distilled\ndistilled_mask = class_df['distilled_from_api'].values\nnondistilled_mask = ~class_df['distilled_from_api'].values\n\nr = run_temporal_dif(distilled_mask, \"Distilled-from-API\")\nif r:\n    results_all['distilled'] = r\n\nr = run_temporal_dif(nondistilled_mask, \"Non-Distilled\")\nif r:\n    results_all['non_distilled'] = r\n\n# ════════════════════════════════════════════════════════════════════════\n#  DIF ITEM OVERLAP (Jaccard) — distilled vs non-distilled\n# ════════════════════════════════════════════════════════════════════════\nif 'distilled' in results_all and 'non_distilled' in results_all:\n    c_dist = set(results_all['distilled']['item_results']\n                 .loc[results_all['distilled']['item_results']['is_c'], 'item_id'])\n    c_nondist = set(results_all['non_distilled']['item_results']\n                    .loc[results_all['non_distilled']['item_results']['is_c'], 'item_id'])\n\n    if len(c_dist | c_nondist) > 0:\n        jaccard = len(c_dist & c_nondist) / len(c_dist | c_nondist)\n    else:\n        jaccard = 0.0\n\n    print(f\"\\n=== DIF Item Overlap ===\")\n    print(f\"Distilled C items: {len(c_dist)}\")\n    print(f\"Non-distilled C items: {len(c_nondist)}\")\n    print(f\"Intersection: {len(c_dist & c_nondist)}\")\n    print(f\"Jaccard: {jaccard:.3f}\")\n\n# ════════════════════════════════════════════════════════════════════════\n#  SIZE-MATCHED CONTROL\n# ════════════════════════════════════════════════════════════════════════\nif 'distilled' in results_all:\n    n_dist_ref = results_all['distilled']['n_ref']\n    n_dist_foc = results_all['distilled']['n_foc']\n\n    rng = np.random.default_rng(SEED)\n    cohorts = class_df['cohort_temporal'].values\n    nondist_ref_idx = np.where(nondistilled_mask & (cohorts == '2023'))[0]\n    nondist_foc_idx = np.where(nondistilled_mask & (cohorts == '2024'))[0]\n\n    if len(nondist_ref_idx) >= n_dist_ref and len(nondist_foc_idx) >= n_dist_foc:\n        n_boot = 50\n        control_c_pcts = []\n        X_dense = X.toarray()\n\n        print(f\"\\n=== Size-Matched Control (N={n_boot} resamples) ===\")\n        for i in range(n_boot):\n            sub_ref = rng.choice(nondist_ref_idx, size=n_dist_ref, replace=False)\n            sub_foc = rng.choice(nondist_foc_idx, size=n_dist_foc, replace=False)\n            res = mh_dif_per_item(X_dense[sub_ref], X_dense[sub_foc])\n            control_c_pcts.append(res['is_c'].sum() / len(item_ids) * 100)\n\n        ctrl_mean = np.mean(control_c_pcts)\n        ctrl_std = np.std(control_c_pcts)\n        ctrl_ci = np.percentile(control_c_pcts, [2.5, 97.5])\n        dist_c = results_all['distilled']['c_pct']\n\n        print(f\"Distilled C%: {dist_c:.1f}%\")\n        print(f\"Control C% (mean ± sd): {ctrl_mean:.1f}% ± {ctrl_std:.1f}%\")\n        print(f\"Control 95% CI: [{ctrl_ci[0]:.1f}%, {ctrl_ci[1]:.1f}%]\")\n        print(f\"Distilled {'OUTSIDE' if dist_c < ctrl_ci[0] or dist_c > ctrl_ci[1] else 'within'} control CI\")\n\n\n# ════════════════════════════════════════════════════════════════════════\n#  GENERATE REPORT\n# ════════════════════════════════════════════════════════════════════════\nreport_lines = [\n    \"# R19 Exp 3 — Open vs Closed-Source DIF\\n\",\n    \"## Key Finding\\n\",\n    \"METABENCH contains **zero closed-source/API-only models**. All 5,227 models\",\n    \"come from the HuggingFace Open LLM Leaderboard, which by definition only\",\n    \"evaluates models with publicly available weights.\\n\",\n    \"Models with names containing 'gpt-4' or 'gpt-3.5' are open-source models\",\n    \"fine-tuned on data distilled from those API models, not the API models themselves.\\n\",\n    \"## Model Classification\\n\",\n    f\"| Category | N |\",\n    f\"|----------|---|\",\n    f\"| Open-source | {n_open} |\",\n    f\"| Closed-source | {n_closed} |\",\n    f\"| Distilled-from-API | {n_distilled} |\",\n    f\"| Non-distilled | {len(model_names) - n_distilled} |\",\n    \"\",\n]\n\n# Cohort breakdown\nreport_lines += [\n    \"\\n## Cohort Breakdown\\n\",\n    \"| Group | 2023 | 2024 | Other |\",\n    \"|-------|------|------|-------|\",\n]\nfor label, mask in [('All Open', open_mask), ('Distilled', distilled_mask),\n                    ('Non-distilled', nondistilled_mask)]:\n    n23 = (mask & (class_df['cohort_temporal'].values == '2023')).sum()\n    n24 = (mask & (class_df['cohort_temporal'].values == '2024')).sum()\n    nother = (mask & (class_df['cohort_temporal'].values == 'other')).sum()\n    report_lines.append(f\"| {label} | {n23} | {n24} | {nother} |\")\n\n# DIF results\nreport_lines += [\"\\n## Temporal MH-DIF Results (2023 → 2024)\\n\"]\n\nfor key, label in [('all_open', 'All Models'), ('distilled', 'Distilled-from-API'),\n                   ('non_distilled', 'Non-Distilled')]:\n    if key in results_all:\n        r = results_all[key]\n        report_lines += [\n            f\"### {label}\\n\",\n            f\"- N_ref (2023): {r['n_ref']}, N_foc (2024): {r['n_foc']}\",\n            f\"- C%: {r['c_pct']:.1f}% ({r['n_c']}/{len(item_ids)} items)\",\n            f\"- Direction: {r['n_favor_ref']} favor 2023, {r['n_favor_foc']} favor 2024\",\n            f\"- ρ(difficulty, Δ_MH): {r['rho']:.3f} (p={r['rho_p']:.4f})\",\n            \"\",\n        ]\n\n# Overlap\nif 'distilled' in results_all and 'non_distilled' in results_all:\n    report_lines += [\n        \"## DIF Item Overlap\\n\",\n        f\"- Distilled C items: {len(c_dist)}\",\n        f\"- Non-distilled C items: {len(c_nondist)}\",\n        f\"- Intersection: {len(c_dist & c_nondist)}\",\n        f\"- Jaccard similarity: {jaccard:.3f}\",\n        \"\",\n    ]\n\n# Size-matched control\nif 'distilled' in results_all and 'control_c_pcts' in dir():\n    report_lines += [\n        \"## Size-Matched Control\\n\",\n        f\"- Distilled C%: {dist_c:.1f}%\",\n        f\"- Control C% (mean ± sd): {ctrl_mean:.1f}% ± {ctrl_std:.1f}%\",\n        f\"- Control 95% CI: [{ctrl_ci[0]:.1f}%, {ctrl_ci[1]:.1f}%]\",\n        f\"- Distilled {'**outside**' if dist_c < ctrl_ci[0] or dist_c > ctrl_ci[1] else 'within'} control CI\",\n        \"\",\n    ]\n\nreport_lines += [\n    \"\\n## Implication for Paper\\n\",\n    \"The open-vs-closed analysis is not feasible with METABENCH data. This is a\",\n    \"limitation of the dataset, not of the method. If API-only model responses were\",\n    \"available (e.g., from LMSYS Chatbot Arena or custom evaluation), the same\",\n    \"MH-DIF pipeline could be applied directly.\",\n]\n\nreport_text = \"\\n\".join(report_lines)\n(OUT / \"open_closed_dif_report.md\").write_text(report_text)\nprint(f\"\\n\\nReport saved to {OUT / 'open_closed_dif_report.md'}\")\nprint(f\"Classification saved to {OUT / 'model_source_classification.csv'}\")\nprint(\"\\nDone.\")\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014GZgEqgaqCks8ZjTXXtu8r`</summary>
+
+```json
+{
+  "command": "python3 artifacts/r19_open_closed_dif/open_closed_dif_analysis.py",
+  "description": "Run the analysis script",
+  "timeout": 300000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "742e6df6-377e-468a-b3d5-25572231fd06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015cQL6CF25tZPxAA87yZgVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6419,
+      "cache_read_input_tokens": 34069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6419
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 31_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bwm1pial2",
+  "tool_use_id": "toolu_014GZgEqgaqCks8ZjTXXtu8r",
+  "description": "Run the analysis script",
+  "task_type": "local_bash",
+  "uuid": "de5e3ab9-e296-4ca2-b5a1-7f5d86f4b4be",
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97"
+}
+```
+
+---
+
+### System
+
+_source line 32_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bwm1pial2",
+  "tool_use_id": "toolu_014GZgEqgaqCks8ZjTXXtu8r",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Run the analysis script",
+  "uuid": "405fbf37-a47e-4dac-a431-8f5705dc4aa2",
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97"
+}
+```
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T18:51:16.710Z_
+
+<details><summary>↩ Tool result · `toolu_014GZgEqgaqCks8ZjTXXtu8r`</summary>
+
+```text
+Loaded: 5227 models × 12508 items
+
+=== Source Classification ===
+Open-source:    5227
+Closed-source:  0
+Distilled from API: 148
+
+=== Source × Cohort ===
+cohort_temporal  2023  2024  other   All
+source_type                             
+open             1080   807   3340  5227
+All              1080   807   3340  5227
+
+=== Distilled × Cohort ===
+cohort_temporal     2023  2024  other   All
+distilled_from_api                         
+False               1037   798   3244  5079
+True                  43     9     96   148
+All                 1080   807   3340  5227
+
+============================================================
+  All Models (Open-Source): N_ref(2023)=1080, N_foc(2024)=807
+============================================================
+  C%: 31.3% (3918/12508)
+  Direction: 1719 favor 2023, 2199 favor 2024
+  ρ(difficulty, Δ_MH): -0.268 (p=0.0000)
+
+============================================================
+  Closed-Source: N=0 — METABENCH has no API-only models
+  (all data from HF Open LLM Leaderboard)
+============================================================
+
+============================================================
+  Distilled-from-API: N_ref(2023)=43, N_foc(2024)=9
+============================================================
+  C%: 1.5% (191/12508)
+  Direction: 115 favor 2023, 76 favor 2024
+  ρ(difficulty, Δ_MH): -0.411 (p=0.0000)
+
+============================================================
+  Non-Distilled: N_ref(2023)=1037, N_foc(2024)=798
+============================================================
+  C%: 30.2% (3777/12508)
+  Direction: 1699 favor 2023, 2078 favor 2024
+  ρ(difficulty, Δ_MH): -0.220 (p=0.0000)
+
+=== DIF Item Overlap ===
+Distilled C items: 191
+Non-distilled C items: 3777
+Intersection: 132
+Jaccard: 0.034
+
+=== Size-Matched Control (N=50 resamples) ===
+Distilled C%: 1.5%
+Control C% (mean ± sd): 2.0% ± 1.1%
+Control 95% CI: [0.5%, 4.4%]
+Distilled within control CI
+
+
+Report saved to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/open_closed_dif_report.md
+Classification saved to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/model_source_classification.csv
+
+Done.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "a940d0c7-f704-478d-baf6-b5731bb4b30d",
+  "tool_use_result": {
+    "stdout": "Loaded: 5227 models × 12508 items\n\n=== Source Classification ===\nOpen-source:    5227\nClosed-source:  0\nDistilled from API: 148\n\n=== Source × Cohort ===\ncohort_temporal  2023  2024  other   All\nsource_type                             \nopen             1080   807   3340  5227\nAll              1080   807   3340  5227\n\n=== Distilled × Cohort ===\ncohort_temporal     2023  2024  other   All\ndistilled_from_api                         \nFalse               1037   798   3244  5079\nTrue                  43     9     96   148\nAll                 1080   807   3340  5227\n\n============================================================\n  All Models (Open-Source): N_ref(2023)=1080, N_foc(2024)=807\n============================================================\n  C%: 31.3% (3918/12508)\n  Direction: 1719 favor 2023, 2199 favor 2024\n  ρ(difficulty, Δ_MH): -0.268 (p=0.0000)\n\n============================================================\n  Closed-Source: N=0 — METABENCH has no API-only models\n  (all data from HF Open LLM Leaderboard)\n============================================================\n\n============================================================\n  Distilled-from-API: N_ref(2023)=43, N_foc(2024)=9\n============================================================\n  C%: 1.5% (191/12508)\n  Direction: 115 favor 2023, 76 favor 2024\n  ρ(difficulty, Δ_MH): -0.411 (p=0.0000)\n\n============================================================\n  Non-Distilled: N_ref(2023)=1037, N_foc(2024)=798\n============================================================\n  C%: 30.2% (3777/12508)\n  Direction: 1699 favor 2023, 2078 favor 2024\n  ρ(difficulty, Δ_MH): -0.220 (p=0.0000)\n\n=== DIF Item Overlap ===\nDistilled C items: 191\nNon-distilled C items: 3777\nIntersection: 132\nJaccard: 0.034\n\n=== Size-Matched Control (N=50 resamples) ===\nDistilled C%: 1.5%\nControl C% (mean ± sd): 2.0% ± 1.1%\nControl 95% CI: [0.5%, 4.4%]\nDistilled within control CI\n\n\nReport saved to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/open_closed_dif_report.md\nClassification saved to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/model_source_classification.csv\n\nDone.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Analysis complete. Let me verify the outputs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "d198d4cd-505a-44f0-b0c1-021dae5bfb6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vq34sfuxGNdahf7hxFSBoE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 40488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0155U5AMqiQMfw7rTxMgQG5E`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/open_closed_dif_report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "ce2293ea-a45b-48fc-b4fd-d7ef31623bf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vq34sfuxGNdahf7hxFSBoE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 40488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T18:51:20.356Z_
+
+<details><summary>↩ Tool result · `toolu_0155U5AMqiQMfw7rTxMgQG5E`</summary>
+
+```text
+1	# R19 Exp 3 — Open vs Closed-Source DIF
+2	
+3	## Key Finding
+4	
+5	METABENCH contains **zero closed-source/API-only models**. All 5,227 models
+6	come from the HuggingFace Open LLM Leaderboard, which by definition only
+7	evaluates models with publicly available weights.
+8	
+9	Models with names containing 'gpt-4' or 'gpt-3.5' are open-source models
+10	fine-tuned on data distilled from those API models, not the API models themselves.
+11	
+12	## Model Classification
+13	
+14	| Category | N |
+15	|----------|---|
+16	| Open-source | 5227 |
+17	| Closed-source | 0 |
+18	| Distilled-from-API | 148 |
+19	| Non-distilled | 5079 |
+20	
+21	
+22	## Cohort Breakdown
+23	
+24	| Group | 2023 | 2024 | Other |
+25	|-------|------|------|-------|
+26	| All Open | 1080 | 807 | 3340 |
+27	| Distilled | 43 | 9 | 96 |
+28	| Non-distilled | 1037 | 798 | 3244 |
+29	
+30	## Temporal MH-DIF Results (2023 → 2024)
+31	
+32	### All Models
+33	
+34	- N_ref (2023): 1080, N_foc (2024): 807
+35	- C%: 31.3% (3918/12508 items)
+36	- Direction: 1719 favor 2023, 2199 favor 2024
+37	- ρ(difficulty, Δ_MH): -0.268 (p=0.0000)
+38	
+39	### Distilled-from-API
+40	
+41	- N_ref (2023): 43, N_foc (2024): 9
+42	- C%: 1.5% (191/12508 items)
+43	- Direction: 115 favor 2023, 76 favor 2024
+44	- ρ(difficulty, Δ_MH): -0.411 (p=0.0000)
+45	
+46	### Non-Distilled
+47	
+48	- N_ref (2023): 1037, N_foc (2024): 798
+49	- C%: 30.2% (3777/12508 items)
+50	- Direction: 1699 favor 2023, 2078 favor 2024
+51	- ρ(difficulty, Δ_MH): -0.220 (p=0.0000)
+52	
+53	## DIF Item Overlap
+54	
+55	- Distilled C items: 191
+56	- Non-distilled C items: 3777
+57	- Intersection: 132
+58	- Jaccard similarity: 0.034
+59	
+60	## Size-Matched Control
+61	
+62	- Distilled C%: 1.5%
+63	- Control C% (mean ± sd): 2.0% ± 1.1%
+64	- Control 95% CI: [0.5%, 4.4%]
+65	- Distilled within control CI
+66	
+67	
+68	## Implication for Paper
+69	
+70	The open-vs-closed analysis is not feasible with METABENCH data. This is a
+71	limitation of the dataset, not of the method. If API-only model responses were
+72	available (e.g., from LMSYS Chatbot Arena or custom evaluation), the same
+73	MH-DIF pipeline could be applied directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "312a3e70-46c8-4852-9375-ce0c29d34079",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_open_closed_dif/open_closed_dif_report.md",
+      "content": "# R19 Exp 3 — Open vs Closed-Source DIF\n\n## Key Finding\n\nMETABENCH contains **zero closed-source/API-only models**. All 5,227 models\ncome from the HuggingFace Open LLM Leaderboard, which by definition only\nevaluates models with publicly available weights.\n\nModels with names containing 'gpt-4' or 'gpt-3.5' are open-source models\nfine-tuned on data distilled from those API models, not the API models themselves.\n\n## Model Classification\n\n| Category | N |\n|----------|---|\n| Open-source | 5227 |\n| Closed-source | 0 |\n| Distilled-from-API | 148 |\n| Non-distilled | 5079 |\n\n\n## Cohort Breakdown\n\n| Group | 2023 | 2024 | Other |\n|-------|------|------|-------|\n| All Open | 1080 | 807 | 3340 |\n| Distilled | 43 | 9 | 96 |\n| Non-distilled | 1037 | 798 | 3244 |\n\n## Temporal MH-DIF Results (2023 → 2024)\n\n### All Models\n\n- N_ref (2023): 1080, N_foc (2024): 807\n- C%: 31.3% (3918/12508 items)\n- Direction: 1719 favor 2023, 2199 favor 2024\n- ρ(difficulty, Δ_MH): -0.268 (p=0.0000)\n\n### Distilled-from-API\n\n- N_ref (2023): 43, N_foc (2024): 9\n- C%: 1.5% (191/12508 items)\n- Direction: 115 favor 2023, 76 favor 2024\n- ρ(difficulty, Δ_MH): -0.411 (p=0.0000)\n\n### Non-Distilled\n\n- N_ref (2023): 1037, N_foc (2024): 798\n- C%: 30.2% (3777/12508 items)\n- Direction: 1699 favor 2023, 2078 favor 2024\n- ρ(difficulty, Δ_MH): -0.220 (p=0.0000)\n\n## DIF Item Overlap\n\n- Distilled C items: 191\n- Non-distilled C items: 3777\n- Intersection: 132\n- Jaccard similarity: 0.034\n\n## Size-Matched Control\n\n- Distilled C%: 1.5%\n- Control C% (mean ± sd): 2.0% ± 1.1%\n- Control 95% CI: [0.5%, 4.4%]\n- Distilled within control CI\n\n\n## Implication for Paper\n\nThe open-vs-closed analysis is not feasible with METABENCH data. This is a\nlimitation of the dataset, not of the method. If API-only model responses were\navailable (e.g., from LMSYS Chatbot Arena or custom evaluation), the same\nMH-DIF pipeline could be applied directly.",
+      "numLines": 73,
+      "startLine": 1,
+      "totalLines": 73
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+All three deliverables produced:
+
+- **Script**: `artifacts/r19_open_closed_dif/open_closed_dif_analysis.py`
+- **Report**: `artifacts/r19_open_closed_dif/open_closed_dif_report.md`
+- **CSV**: `artifacts/r19_open_closed_dif/model_source_classification.csv`
+
+## 结果摘要
+
+**核心发现：METABENCH 中 closed-source 模型数量为 0。** 所有 5,227 个模型均来自 HF Open LLM Leaderboard，都有公开权重。名称中含 "gpt-4" 的模型是用 GPT-4 蒸馏数据微调的开源模型，不是 API 模型本身。
+
+**Fallback 分析（distilled-from-API vs non-distilled）**：
+- Distilled 组只有 148 个模型，temporal cohort 仅 43 (2023) vs 9 (2024)——严重 underpowered
+- Distilled C% = 1.5%，Non-distilled C% = 30.2%（差异主要由样本量驱动）
+- Size-matched control 显示 distilled 的 C% 落在随机抽样的 95% CI 内——无显著差异
+- Jaccard overlap 仅 0.034，说明小样本组检测到的 C items 几乎是大样本组的子集
+
+**结论：open-vs-closed 分析在 METABENCH 数据上不可行，这是数据集局限而非方法局限。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "uuid": "a1da2169-8897-4cf9-a3ee-c616d6b0aa3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHZR1cwL8PbB5wPvV6r6Gr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 41378,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 38_
+
+All three deliverables produced:
+
+- **Script**: `artifacts/r19_open_closed_dif/open_closed_dif_analysis.py`
+- **Report**: `artifacts/r19_open_closed_dif/open_closed_dif_report.md`
+- **CSV**: `artifacts/r19_open_closed_dif/model_source_classification.csv`
+
+## 结果摘要
+
+**核心发现：METABENCH 中 closed-source 模型数量为 0。** 所有 5,227 个模型均来自 HF Open LLM Leaderboard，都有公开权重。名称中含 "gpt-4" 的模型是用 GPT-4 蒸馏数据微调的开源模型，不是 API 模型本身。
+
+**Fallback 分析（distilled-from-API vs non-distilled）**：
+- Distilled 组只有 148 个模型，temporal cohort 仅 43 (2023) vs 9 (2024)——严重 underpowered
+- Distilled C% = 1.5%，Non-distilled C% = 30.2%（差异主要由样本量驱动）
+- Size-matched control 显示 distilled 的 C% 落在随机抽样的 95% CI 内——无显著差异
+- Jaccard overlap 仅 0.034，说明小样本组检测到的 C items 几乎是大样本组的子集
+
+**结论：open-vs-closed 分析在 METABENCH 数据上不可行，这是数据集局限而非方法局限。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 205436,
+  "duration_api_ms": 202243,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "d09b55f3-7a58-4822-bea2-14a52e432e97",
+  "total_cost_usd": 0.5960422500000001,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 30619,
+    "cache_read_input_tokens": 278151,
+    "output_tokens": 10564,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30619,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 436,
+        "cache_read_input_tokens": 41378,
+        "cache_creation_input_tokens": 1082,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1082
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1348,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001443,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 10564,
+      "cacheReadInputTokens": 278151,
+      "cacheCreationInputTokens": 30619,
+      "webSearchRequests": 0,
+      "costUSD": 0.59459925,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "045895b0-4a87-4df6-96db-8625c32c3712"
+}
+```
+
+</details>
+
+---

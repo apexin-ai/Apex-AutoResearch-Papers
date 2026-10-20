@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "379a1a2c21ba9b9e4cdc",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research literature supplement",
+  "task_key": "worker_research_literature_supplement_20260520T234638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_supplement_20260520T234638_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "4aad25e5f54e600de190bdb96d7828bc3831b1e3848406a5415ffd445d23a7ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已更新并注册。变更摘要：\n\n**新增 3 篇文献（Section 3）：**\n- **Li et al. (EMNLP 2024)** — Contamination Detector，9,229 条 MMLU item-level web-overlap 标注。定位为 primary ground truth source，解释了 enrichment≈1.0 的原因（global vs differential contamination 区分）。\n- **Dekoninck et al. (NeurIPS 2024)** — ConStat，performance-based 污染检测。与 DIF 互补：ConStat 检测 model-level performance anomaly，DIF 检测 item-level differential functioning。\n- **Zhang et al. (NeurIPS 2024)** — GSM1K，10–13pp accuracy drop 的里程碑实证。定位为 motivating example。\n\n**次要修正：**\n- **Oren et al.** — 补充了 canonical ordering 与 DIF 的方法论近似性和区别（都是统计检验，但检测目标不同）。\n- **Growing Pains arXiv ID** — 确认 2604.12843 无误，无需修改。\n- **Tao, Wang et al. (arXiv 2510.09259)** — 新增 Self-Critique 条目，RL post-training 隐藏污染信号，作为次要条目列入 Section 3 末尾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-supplement.md"
+}

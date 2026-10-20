@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ff844b23c030a0ae7f7",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper research cluster 3 dif methodology",
+  "task_key": "worker_paper_research_cluster_3_dif_methodology_20260521T031438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster_3_dif_methodology_20260521T031438_result.json",
+    "occurrence": 1,
+    "bytes": 1479,
+    "sha256": "6fba5d812e35b3be7d567f7cdcaafe0a8840abdf0a207ac035213af74baef23c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 11 papers in dif_methodology, all verified. Here's the summary:\n\n**Cluster 3: DIF Methodology & Measurement Invariance — Complete**\n\n**Verified existing (2):**\n- `belzak2020smallsample` — updated with DOI, S2 ID, second author, verified=true\n- `kim2019fpc` — updated with DOI, URL, verified=true (kept in irt_equating)\n\n**Added 8 must_cite papers (all verified):**\n1. `holland1988mh` — Holland & Thayer, MH-DIF procedure (seminal)\n2. `shealy1993sibtest` — Shealy & Stout, SIBTEST method\n3. `clauser1998dif` — Clauser & Mazor, DIF methods review\n4. `zumbo1999handbook` — Zumbo, DIF handbook (logistic regression framework)\n5. `meredith1993invariance` — Meredith, measurement invariance hierarchy\n6. `vandenberg2000invariance` — Vandenberg & Lance, MI review\n7. `swaminathan1990logistic` — Swaminathan & Rogers, logistic regression DIF\n8. `teresi2007dif` — Teresi & Fleishman, DIF in health assessment with propensity score approaches\n\n**Added 2 additional papers (all verified):**\n9. `lord1980irt` — Lord, IRT book with Lord's chi-square DIF test\n10. `raju1988area` — Raju, area between ICC curves for DIF effect-size\n\nTotal: 31 papers in literature map, 11 in dif_methodology cluster. All 12 target slots filled (11 in dif_methodology + kim2019fpc in irt_equating). All entries have DOIs and Semantic Scholar IDs where available (Lord 1980 is a book with no DOI; Zumbo 1999 is a government handbook with no DOI)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster-3-dif-methodology.md"
+}

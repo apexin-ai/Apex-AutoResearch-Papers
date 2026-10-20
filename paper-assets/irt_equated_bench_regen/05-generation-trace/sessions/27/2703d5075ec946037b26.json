@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2703d5075ec946037b26",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r14 exp5 quintile residual",
+  "task_key": "worker_code_r14_exp5_quintile_residual_20260522T123546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r14_exp5_quintile_residual_20260522T123546_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "258e2045f5ee01eb7af2431c2d80c2383f35c122de94235d3cdf5ae37299e97f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。两个文件已写入 `artifacts/r14_mf1_domain_profile/`：\n\n**核心发现**：\n\n| Stratum | Δ Mean | Cohen's d | Pooled SD |\n|---------|--------|-----------|-----------|\n| Q1 | −0.017 | −0.18 | 0.092 |\n| Q2 | −0.004 | −0.10 | 0.037 |\n| Q3 | +0.004 | +0.36 | 0.012 |\n| Q4 | +0.006 | +0.69 | 0.008 |\n| Q5 | −0.002 | −0.06 | 0.041 |\n\nQ3、Q4 的 Cohen's d 超过 0.1 阈值，但**原始均值差异极小**（最大 0.006）。d 被放大是因为这两个 stratum 的 score range 极窄（Q4 仅跨 0.028 分），导致 pooled SD 仅 0.008，分母极小。在 0–1 量表上 0.006 的差异不构成有意义的 ability confounding，MH-DIF 的 conditioning 是可靠的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r14-exp5-quintile-residual.md"
+}

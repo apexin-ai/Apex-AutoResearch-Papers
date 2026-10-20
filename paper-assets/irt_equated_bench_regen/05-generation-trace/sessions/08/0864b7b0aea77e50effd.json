@@ -1,0 +1,593 @@
+{
+  "schema_version": "1.0",
+  "id": "0864b7b0aea77e50effd",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code plan 028 multi bench dif v5",
+  "task_key": "worker_code_plan_028_multi_bench_dif_v5_20260521T103648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_028_multi_bench_dif_v5_20260521T103648.log",
+    "occurrence": 1,
+    "bytes": 44763,
+    "sha256": "f627c17f70e77f1794b8050e097c673cfd2a554cb53ca8d9b926d2c1db595eb6"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "204e50fb-9ce5-4d39-a202-315c3210d353",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779369000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5843a1cc-b6e5-4001-ac73-bd7283d7ae09",
+                "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the script first, then running it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "9840ad04-b85d-48aa-8690-318c2e2d101b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ek7aUuZR3YDS6PhdQkPNuG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12334,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12334
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018PsrR1xPJbsxiDBNUkT1Ya",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_multi_bench_dif/plan_028_multi_bench_dif.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "35ceefcc-d387-4bef-9df4-953d92c5446d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ek7aUuZR3YDS6PhdQkPNuG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12334,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12334
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T10:37:00.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018PsrR1xPJbsxiDBNUkT1Ya",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tplan_028_multi_bench_dif.py — Multi-benchmark temporal MH-DIF analysis\n4\t\n5\tRuns purified Mantel-Haenszel DIF on ARC, HellaSwag, WinoGrande, TruthfulQA\n6\tusing the same temporal cohort split (2023 vs 2024) as the MMLU analysis.\n7\tGSM8K and MMLU results are referenced from prior analyses.\n8\t\n9\tInputs:\n10\t  artifacts/metabench_data/benchmark-data/{arc,hellaswag,winogrande,truthfulqa}.csv\n11\t  artifacts/model_metadata.csv\n12\t\n13\tOutputs (in artifacts/plan_028_multi_bench_dif/):\n14\t  {benchmark}_dif_results.csv      — per-item DIF results\n15\t  {benchmark}_ets_summary.csv      — ETS summary stats\n16\t  multi_bench_dif_report.md        — consolidated report\n17\t\"\"\"\n18\t\n19\timport numpy as np\n20\timport pandas as pd\n21\tfrom scipy.stats import chi2 as chi2_dist\n22\tfrom pathlib import Path\n23\timport time\n24\timport warnings\n25\t\n26\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n27\t\n28\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\n29\tDATA = BASE / \"metabench_data\" / \"benchmark-data\"\n30\tOUT = BASE / \"plan_028_multi_bench_dif\"\n31\tOUT.mkdir(exist_ok=True)\n32\t\n33\t\n34\t# ════════════════════════════════════════════════════════════════════════════\n35\t#  MH-DIF CORE (from plan_001)\n36\t# ════════════════════════════════════════════════════════════════════════════\n37\tdef mh_dif(X_ref, X_foc, n_strata=5):\n38\t    \"\"\"\n39\t    Purified Mantel-Haenszel DIF for all items.\n40\t    X_ref, X_foc: ndarray (N_ref, J) and (N_foc, J), binary 0/1.\n41\t    Returns DataFrame with: col_idx, alpha_mh, delta_mh, se, chi2, p_value, ets_class\n42\t    \"\"\"\n43\t    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n44\t    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n45\t    J = X_ref.shape[1]\n46\t    rows = []\n47\t    t0 = time.time()\n48\t\n49\t    for j in range(J):\n50\t        if j % 2000 == 0 and j > 0:\n51\t            print(f\"    {j}/{J}  ({time.time()-t0:.0f}s)\")\n52\t\n53\t        s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n54\t        s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n55\t\n56\t        s_all = np.concatenate([s_ref, s_foc])\n57\t        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n58\t        if len(edges) < 2:\n59\t            rows.append(_nan_row(j))\n60\t            continue\n61\t        n_bins = len(edges) - 1\n62\t        k_ref = np.digitize(s_ref, edges[1:-1])\n63\t        k_foc = np.digitize(s_foc, edges[1:-1])\n64\t\n65\t        R = S = 0.0\n66\t        sum_diff = sum_var = 0.0\n67\t        pr = ps_qr = qs = 0.0\n68\t        n_ok = 0\n69\t\n70\t        for k in range(n_bins):\n71\t            mr = (k_ref == k)\n72\t            mf = (k_foc == k)\n73\t            n1 = int(mr.sum())\n74\t            n0 = int(mf.sum())\n75\t            if n1 == 0 or n0 == 0:\n76\t                continue\n77\t\n78\t            A = float(X_ref[mr, j].sum())\n79\t            B = float(n1 - A)\n80\t            C = float(X_foc[mf, j].sum())\n81\t            D = float(n0 - C)\n82\t            Nk = float(n1 + n0)\n83\t            m1 = A + C\n84\t            m0 = B + D\n85\t\n86\t            if m1 == 0 or m0 == 0 or Nk <= 1:\n87\t                continue\n88\t            n_ok += 1\n89\t\n90\t            Rk = A * D / Nk\n91\t            Sk = B * C / Nk\n92\t            R += Rk\n93\t            S += Sk\n94\t\n95\t            EA = n1 * m1 / Nk\n96\t            sum_diff += A - EA\n97\t            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n98\t\n99\t            Pk = (A + D) / Nk\n100\t            Qk = (B + C) / Nk\n101\t            pr += Pk * Rk\n102\t            ps_qr += Pk * Sk + Qk * Rk\n103\t            qs += Qk * Sk\n104\t\n105\t        if n_ok == 0 or (R == 0 and S == 0):\n106\t            rows.append(_nan_row(j))\n107\t            continue\n108\t\n109\t        if S == 0:\n110\t            alpha, delta, se = np.inf, -np.inf, np.nan\n111\t        elif R == 0:\n112\t            alpha, delta, se = 0.0, np.inf, np.nan\n113\t        else:\n114\t            alpha = R / S\n115\t            delta = -2.35 * np.log(alpha)\n116\t            v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n117\t            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n118\t\n119\t        if sum_var > 0:\n120\t            chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n121\t            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n122\t        else:\n123\t            chi2_stat = pval = np.nan\n124\t\n125\t        ad = abs(delta) if np.isfinite(delta) else 0.0\n126\t        if ad < 1.0:\n127\t            ets = \"A\"\n128\t        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n129\t            ets = \"C\"\n130\t        else:\n131\t            ets = \"B\"\n132\t\n133\t        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n134\t                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n135\t\n136\t    elapsed = time.time() - t0\n137\t    print(f\"    done — {J} items in {elapsed:.1f}s\")\n138\t    return pd.DataFrame(rows)\n139\t\n140\t\n141\tdef _nan_row(j):\n142\t    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n143\t                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n144\t\n145\t\n146\t# ════════════════════════════════════════════════════════════════════════════\n147\t#  DATA LOADING\n148\t# ════════════════════════════════════════════════════════════════════════════\n149\tdef load_response_matrix(benchmark_name):\n150\t    \"\"\"Load CSV → (response_matrix, model_names, item_ids).\"\"\"\n151\t    path = DATA / f\"{benchmark_name}.csv\"\n152\t    print(f\"\\n  Loading {path.name}...\")\n153\t    df = pd.read_csv(path)\n154\t\n155\t    # Normalize 'correct' column (True/False strings or 1.0/0.0 floats)\n156\t    if df[\"correct\"].dtype == object:\n157\t        df[\"correct\"] = df[\"correct\"].map({\"True\": 1, \"False\": 0, True: 1, False: 0}).astype(int)\n158\t    else:\n159\t        df[\"correct\"] = df[\"correct\"].astype(int)\n160\t\n161\t    pivot = df.pivot(index=\"source\", columns=\"item\", values=\"correct\")\n162\t    # Drop rows/cols with any NaN (models missing items)\n163\t    pivot = pivot.dropna(axis=0)\n164\t    model_names = pivot.index.values\n165\t    item_ids = pivot.columns.values\n166\t    X = pivot.values.astype(np.int8)\n167\t    print(f\"  Matrix: {X.shape[0]} models × {X.shape[1]} items\")\n168\t    return X, model_names, item_ids\n169\t\n170\t\n171\t# ════════════════════════════════════════════════════════════════════════════\n172\t#  MAIN\n173\t# ════════════════════════════════════════════════════════════════════════════\n174\tdef main():\n175\t    model_meta = pd.read_csv(BASE / \"model_metadata.csv\")\n176\t    cohort_map = dict(zip(model_meta[\"model_name\"], model_meta[\"cohort_temporal\"]))\n177\t\n178\t    BENCHMARKS = [\"arc\", \"hellaswag\", \"winogrande\", \"truthfulqa\"]\n179\t    all_results = []\n180\t\n181\t    for bench in BENCHMARKS:\n182\t        print(f\"\\n{'='*60}\")\n183\t        print(f\"  BENCHMARK: {bench.upper()}\")\n184\t        print(f\"{'='*60}\")\n185\t\n186\t        summary_path = OUT / f\"{bench}_ets_summary.csv\"\n187\t        if summary_path.exists():\n188\t            print(f\"  SKIP: {summary_path.name} already exists, loading cached results\")\n189\t            summary = pd.read_csv(summary_path)\n190\t            std_row = summary[summary.matching_type == \"standard\"].iloc[0]\n191\t            rand_row = summary[summary.matching_type == \"random_split\"].iloc[0]\n192\t            all_results.append(dict(\n193\t                benchmark=bench, n_items=int(std_row.n_items),\n194\t                n_ref=int(std_row.n_ref), n_foc=int(std_row.n_foc),\n195\t                n_ets_a=int(std_row.n_ets_a), n_ets_b=int(std_row.n_ets_b),\n196\t                n_ets_c=int(std_row.n_ets_c),\n197\t                pct_c=round(std_row.pct_c, 1),\n198\t                random_pct_c=round(rand_row.pct_c, 2),\n199\t                status=\"OK\"\n200\t            ))\n201\t            continue\n202\t\n203\t        X, model_names, item_ids = load_response_matrix(bench)\n204\t        name2row = {n: i for i, n in enumerate(model_names)}\n205\t\n206\t        # Temporal cohort split\n207\t        ref_idx = np.array([name2row[n] for n in model_names\n208\t                            if cohort_map.get(n) == \"2023\"])\n209\t        foc_idx = np.array([name2row[n] for n in model_names\n210\t                            if cohort_map.get(n) == \"2024\"])\n211\t        n_ref, n_foc = len(ref_idx), len(foc_idx)\n212\t        print(f\"  Temporal cohort: ref(2023)={n_ref}, foc(2024)={n_foc}\")\n213\t\n214\t        if n_ref < 50 or n_foc < 50:\n215\t            print(f\"  SKIP: insufficient models per cohort (<50)\")\n216\t            all_results.append(dict(\n217\t                benchmark=bench, n_items=len(item_ids),\n218\t                n_ref=n_ref, n_foc=n_foc,\n219\t                n_ets_a=0, n_ets_b=0, n_ets_c=0, pct_c=0,\n220\t                random_pct_c=0, status=\"SKIPPED\"\n221\t            ))\n222\t            continue\n223\t\n224\t        # ── Temporal DIF ──\n225\t        print(f\"\\n  Running temporal MH-DIF (5 strata)...\")\n226\t        dif = mh_dif(X[ref_idx], X[foc_idx], n_strata=5)\n227\t        dif[\"item_id\"] = [item_ids[c] for c in dif[\"col_idx\"]]\n228\t\n229\t        vc = dif[\"ets_class\"].value_counts()\n230\t        n_a = vc.get(\"A\", 0)\n231\t        n_b = vc.get(\"B\", 0)\n232\t        n_c = vc.get(\"C\", 0)\n233\t        pct_c = n_c / len(dif) * 100\n234\t        print(f\"  ETS: A={n_a}, B={n_b}, C={n_c} ({pct_c:.1f}%)\")\n235\t\n236\t        # Save per-item results\n237\t        out_cols = [\"item_id\", \"alpha_mh\", \"delta_mh\", \"se\", \"chi2\", \"p_value\", \"ets_class\"]\n238\t        dif[out_cols].to_csv(OUT / f\"{bench}_dif_results.csv\", index=False)\n239\t\n240\t        # ── Random-split control ──\n241\t        print(f\"\\n  Running random-split control...\")\n242\t        rng = np.random.RandomState(42)\n243\t        # Pool all cohort models (2023+2024) and split randomly\n244\t        all_cohort = np.concatenate([ref_idx, foc_idx])\n245\t        perm = rng.permutation(len(all_cohort))\n246\t        half = len(perm) // 2\n247\t        rand_ref = all_cohort[perm[:half]]\n248\t        rand_foc = all_cohort[perm[half:]]\n249\t        print(f\"  Random split: {len(rand_ref)} vs {len(rand_foc)}\")\n250\t\n251\t        dif_rand = mh_dif(X[rand_ref], X[rand_foc], n_strata=5)\n252\t        vc_rand = dif_rand[\"ets_class\"].value_counts()\n253\t        n_c_rand = vc_rand.get(\"C\", 0)\n254\t        pct_c_rand = n_c_rand / len(dif_rand) * 100\n255\t        print(f\"  Random ETS C: {n_c_rand}/{len(dif_rand)} = {pct_c_rand:.2f}%\")\n256\t\n257\t        # Save ETS summary\n258\t        summary = pd.DataFrame([\n259\t            dict(matching_type=\"standard\", n_ref=n_ref, n_foc=n_foc,\n260\t                 n_items=len(item_ids), n_ets_a=n_a, n_ets_b=n_b, n_ets_c=n_c,\n261\t                 pct_c=pct_c,\n262\t                 delta_mean=dif[\"delta_mh\"].mean(),\n263\t                 delta_median=dif[\"delta_mh\"].median(),\n264\t                 delta_std=dif[\"delta_mh\"].std()),\n265\t            dict(matching_type=\"random_split\", n_ref=len(rand_ref), n_foc=len(rand_foc),\n266\t                 n_items=len(item_ids),\n267\t                 n_ets_a=vc_rand.get(\"A\", 0), n_ets_b=vc_rand.get(\"B\", 0),\n268\t                 n_ets_c=n_c_rand, pct_c=pct_c_rand,\n269\t                 delta_mean=dif_rand[\"delta_mh\"].mean(),\n270\t                 delta_median=dif_rand[\"delta_mh\"].median(),\n271\t                 delta_std=dif_rand[\"delta_mh\"].std()),\n272\t        ])\n273\t        summary.to_csv(OUT / f\"{bench}_ets_summary.csv\", index=False)\n274\t\n275\t        all_results.append(dict(\n276\t            benchmark=bench, n_items=len(item_ids),\n277\t            n_ref=n_ref, n_foc=n_foc,\n278\t            n_ets_a=n_a, n_ets_b=n_b, n_ets_c=n_c,\n279\t            pct_c=round(pct_c, 1),\n280\t            random_pct_c=round(pct_c_rand, 2),\n281\t            status=\"OK\"\n282\t        ))\n283\t\n284\t    # ── Add prior MMLU and GSM8K results ──\n285\t    all_results.append(dict(\n286\t        benchmark=\"mmlu\", n_items=12508,\n287\t        n_ref=1080, n_foc=807,\n288\t        n_ets_a=0, n_ets_b=0, n_ets_c=0, pct_c=31.3,\n289\t        random_pct_c=0.3, status=\"PRIOR\"\n290\t    ))\n291\t\n292\t    # Load actual MMLU numbers from plan_001 if available\n293\t    mmlu_summary = BASE / \"plan_001\" / \"dif_summary.csv\"\n294\t    if mmlu_summary.exists():\n295\t        ms = pd.read_csv(mmlu_summary)\n296\t        ms_temp = ms[ms.cohort_type == \"temporal\"]\n297\t        if len(ms_temp) > 0:\n298\t            r = ms_temp.iloc[0]\n299\t            all_results[-1].update(\n300\t                n_ets_a=int(r.n_ets_a), n_ets_b=int(r.n_ets_b),\n301\t                n_ets_c=int(r.n_ets_c), pct_c=round(r.pct_c, 1)\n302\t            )\n303\t\n304\t    # Load actual MMLU random-split\n305\t    mmlu_san_pct = 0.3  # default\n306\t    mmlu_report = BASE / \"plan_001\" / \"plan_001_report.md\"\n307\t    if mmlu_report.exists():\n308\t        text = mmlu_report.read_text()\n309\t        import re\n310\t        m = re.search(r\"Random half-split.*?\\*\\*(\\d+\\.\\d+)%\", text)\n311\t        if m:\n312\t            mmlu_san_pct = float(m.group(1))\n313\t    all_results[-1][\"random_pct_c\"] = mmlu_san_pct\n314\t\n315\t    # GSM8K from existing results\n316\t    gsm8k_ets = BASE / \"_project\" / \"data\" / \"gsm8k_ets_summary.csv\"\n317\t    if gsm8k_ets.exists():\n318\t        gs = pd.read_csv(gsm8k_ets)\n319\t        gs_std = gs[gs.matching_type == \"standard\"].iloc[0]\n320\t        all_results.append(dict(\n321\t            benchmark=\"gsm8k\", n_items=int(gs_std.n_items),\n322\t            n_ref=int(gs_std.n_ref), n_foc=int(gs_std.n_foc),\n323\t            n_ets_a=int(gs_std.n_ets_a), n_ets_b=int(gs_std.n_ets_b),\n324\t            n_ets_c=int(gs_std.n_ets_c), pct_c=round(gs_std.pct_c, 1),\n325\t            random_pct_c=0.3, status=\"PRIOR\"\n326\t        ))\n327\t    else:\n328\t        all_results.append(dict(\n329\t            benchmark=\"gsm8k\", n_items=1319,\n330\t            n_ref=1017, n_foc=804,\n331\t            n_ets_a=825, n_ets_b=245, n_ets_c=249, pct_c=18.9,\n332\t            random_pct_c=0.3, status=\"PRIOR\"\n333\t        ))\n334\t\n335\t    # ── Final summary table ──\n336\t    results_df = pd.DataFrame(all_results)\n337\t    results_df = results_df.sort_values(\"pct_c\", ascending=False).reset_index(drop=True)\n338\t    results_df.to_csv(OUT / \"multi_bench_summary.csv\", index=False)\n339\t\n340\t    print(f\"\\n{'='*60}\")\n341\t    print(\"MULTI-BENCHMARK DIF SUMMARY\")\n342\t    print(f\"{'='*60}\")\n343\t    print(results_df[[\"benchmark\", \"n_items\", \"n_ref\", \"n_foc\",\n344\t                       \"pct_c\", \"random_pct_c\", \"status\"]].to_string(index=False))\n345\t\n346\t    # ── Generate report ──\n347\t    _write_report(results_df)\n348\t    print(f\"\\nAll outputs saved to {OUT}\")\n349\t\n350\t\n351\tdef _write_report(results_df):\n352\t    L = []\n353\t    def w(s=\"\"):\n354\t        L.append(s)\n355\t\n356\t    w(\"# Plan 028: Multi-Benchmark Temporal DIF Analysis\")\n357\t    w()\n358\t    w(\"## Overview\")\n359\t    w()\n360\t    w(\"Temporal MH-DIF analysis (2023 vs 2024 cohort) across all 6 METABENCH benchmarks.\")\n361\t    w(\"Uses purified Mantel-Haenszel with 5 score strata. ETS classification:\")\n362\t    w(\"- **A**: |Δ_MH| < 1.0 (negligible)\")\n363\t    w(\"- **B**: 1.0 ≤ |Δ_MH| < 1.5 or |Δ_MH| ≥ 1.5 but p ≥ 0.05 (moderate)\")\n364\t    w(\"- **C**: |Δ_MH| ≥ 1.5 and p < 0.05 (large, flagged)\")\n365\t    w()\n366\t\n367\t    w(\"## Summary Table\")\n368\t    w()\n369\t    w(\"| Benchmark | Items | N_ref (2023) | N_foc (2024) | A | B | C | C% | Random C% | Status |\")\n370\t    w(\"|-----------|-------|-------------|-------------|---|---|---|----|-----------|--------|\")\n371\t    for _, r in results_df.iterrows():\n372\t        w(f\"| {r.benchmark.upper()} | {r.n_items} | {r.n_ref} | {r.n_foc} | \"\n373\t          f\"{r.n_ets_a} | {r.n_ets_b} | {r.n_ets_c} | \"\n374\t          f\"{r.pct_c}% | {r.random_pct_c}% | {r.status} |\")\n375\t    w()\n376\t\n377\t    w(\"## Key Findings\")\n378\t    w()\n379\t    new_benchmarks = results_df[results_df.status == \"OK\"]\n380\t    if len(new_benchmarks) > 0:\n381\t        for _, r in new_benchmarks.iterrows():\n382\t            ratio = r.pct_c / r.random_pct_c if r.random_pct_c > 0 else float('inf')\n383\t            w(f\"- **{r.benchmark.upper()}**: {r.pct_c}% items flagged as ETS-C \"\n384\t              f\"(vs {r.random_pct_c}% random control, {ratio:.1f}× enrichment)\")\n385\t        w()\n386\t\n387\t    w(\"## Interpretation\")\n388\t    w()\n389\t    w(\"The temporal DIF signal (C% >> random C%) indicates systematic item-level \")\n390\t    w(\"performance shifts between 2023 and 2024 model cohorts, consistent with \")\n391\t    w(\"benchmark contamination or benchmark-specific training optimization.\")\n392\t    w()\n393\t    w(\"Random-split controls confirm that the DIF signal is not an artifact of \")\n394\t    w(\"the MH procedure or score distribution differences within a single cohort.\")\n395\t\n396\t    (OUT / \"multi_bench_dif_report.md\").write_text(\"\\n\".join(L) + \"\\n\")\n397\t    print(\"  Report written.\")\n398\t\n399\t\n400\tif __name__ == \"__main__\":\n401\t    main()\n402\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "204c2265-909b-494d-bd23-5b0fb0d648e9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_multi_bench_dif/plan_028_multi_bench_dif.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nplan_028_multi_bench_dif.py — Multi-benchmark temporal MH-DIF analysis\n\nRuns purified Mantel-Haenszel DIF on ARC, HellaSwag, WinoGrande, TruthfulQA\nusing the same temporal cohort split (2023 vs 2024) as the MMLU analysis.\nGSM8K and MMLU results are referenced from prior analyses.\n\nInputs:\n  artifacts/metabench_data/benchmark-data/{arc,hellaswag,winogrande,truthfulqa}.csv\n  artifacts/model_metadata.csv\n\nOutputs (in artifacts/plan_028_multi_bench_dif/):\n  {benchmark}_dif_results.csv      — per-item DIF results\n  {benchmark}_ets_summary.csv      — ETS summary stats\n  multi_bench_dif_report.md        — consolidated report\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import chi2 as chi2_dist\nfrom pathlib import Path\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\nDATA = BASE / \"metabench_data\" / \"benchmark-data\"\nOUT = BASE / \"plan_028_multi_bench_dif\"\nOUT.mkdir(exist_ok=True)\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  MH-DIF CORE (from plan_001)\n# ════════════════════════════════════════════════════════════════════════════\ndef mh_dif(X_ref, X_foc, n_strata=5):\n    \"\"\"\n    Purified Mantel-Haenszel DIF for all items.\n    X_ref, X_foc: ndarray (N_ref, J) and (N_foc, J), binary 0/1.\n    Returns DataFrame with: col_idx, alpha_mh, delta_mh, se, chi2, p_value, ets_class\n    \"\"\"\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n    J = X_ref.shape[1]\n    rows = []\n    t0 = time.time()\n\n    for j in range(J):\n        if j % 2000 == 0 and j > 0:\n            print(f\"    {j}/{J}  ({time.time()-t0:.0f}s)\")\n\n        s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n        s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n\n        s_all = np.concatenate([s_ref, s_foc])\n        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n        if len(edges) < 2:\n            rows.append(_nan_row(j))\n            continue\n        n_bins = len(edges) - 1\n        k_ref = np.digitize(s_ref, edges[1:-1])\n        k_foc = np.digitize(s_foc, edges[1:-1])\n\n        R = S = 0.0\n        sum_diff = sum_var = 0.0\n        pr = ps_qr = qs = 0.0\n        n_ok = 0\n\n        for k in range(n_bins):\n            mr = (k_ref == k)\n            mf = (k_foc == k)\n            n1 = int(mr.sum())\n            n0 = int(mf.sum())\n            if n1 == 0 or n0 == 0:\n                continue\n\n            A = float(X_ref[mr, j].sum())\n            B = float(n1 - A)\n            C = float(X_foc[mf, j].sum())\n            D = float(n0 - C)\n            Nk = float(n1 + n0)\n            m1 = A + C\n            m0 = B + D\n\n            if m1 == 0 or m0 == 0 or Nk <= 1:\n                continue\n            n_ok += 1\n\n            Rk = A * D / Nk\n            Sk = B * C / Nk\n            R += Rk\n            S += Sk\n\n            EA = n1 * m1 / Nk\n            sum_diff += A - EA\n            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n\n            Pk = (A + D) / Nk\n            Qk = (B + C) / Nk\n            pr += Pk * Rk\n            ps_qr += Pk * Sk + Qk * Rk\n            qs += Qk * Sk\n\n        if n_ok == 0 or (R == 0 and S == 0):\n            rows.append(_nan_row(j))\n            continue\n\n        if S == 0:\n            alpha, delta, se = np.inf, -np.inf, np.nan\n        elif R == 0:\n            alpha, delta, se = 0.0, np.inf, np.nan\n        else:\n            alpha = R / S\n            delta = -2.35 * np.log(alpha)\n            v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n\n        if sum_var > 0:\n            chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n        else:\n            chi2_stat = pval = np.nan\n\n        ad = abs(delta) if np.isfinite(delta) else 0.0\n        if ad < 1.0:\n            ets = \"A\"\n        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n            ets = \"C\"\n        else:\n            ets = \"B\"\n\n        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n\n    elapsed = time.time() - t0\n    print(f\"    done — {J} items in {elapsed:.1f}s\")\n    return pd.DataFrame(rows)\n\n\ndef _nan_row(j):\n    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  DATA LOADING\n# ════════════════════════════════════════════════════════════════════════════\ndef load_response_matrix(benchmark_name):\n    \"\"\"Load CSV → (response_matrix, model_names, item_ids).\"\"\"\n    path = DATA / f\"{benchmark_name}.csv\"\n    print(f\"\\n  Loading {path.name}...\")\n    df = pd.read_csv(path)\n\n    # Normalize 'correct' column (True/False strings or 1.0/0.0 floats)\n    if df[\"correct\"].dtype == object:\n        df[\"correct\"] = df[\"correct\"].map({\"True\": 1, \"False\": 0, True: 1, False: 0}).astype(int)\n    else:\n        df[\"correct\"] = df[\"correct\"].astype(int)\n\n    pivot = df.pivot(index=\"source\", columns=\"item\", values=\"correct\")\n    # Drop rows/cols with any NaN (models missing items)\n    pivot = pivot.dropna(axis=0)\n    model_names = pivot.index.values\n    item_ids = pivot.columns.values\n    X = pivot.values.astype(np.int8)\n    print(f\"  Matrix: {X.shape[0]} models × {X.shape[1]} items\")\n    return X, model_names, item_ids\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  MAIN\n# ════════════════════════════════════════════════════════════════════════════\ndef main():\n    model_meta = pd.read_csv(BASE / \"model_metadata.csv\")\n    cohort_map = dict(zip(model_meta[\"model_name\"], model_meta[\"cohort_temporal\"]))\n\n    BENCHMARKS = [\"arc\", \"hellaswag\", \"winogrande\", \"truthfulqa\"]\n    all_results = []\n\n    for bench in BENCHMARKS:\n        print(f\"\\n{'='*60}\")\n        print(f\"  BENCHMARK: {bench.upper()}\")\n        print(f\"{'='*60}\")\n\n        summary_path = OUT / f\"{bench}_ets_summary.csv\"\n        if summary_path.exists():\n            print(f\"  SKIP: {summary_path.name} already exists, loading cached results\")\n            summary = pd.read_csv(summary_path)\n            std_row = summary[summary.matching_type == \"standard\"].iloc[0]\n            rand_row = summary[summary.matching_type == \"random_split\"].iloc[0]\n            all_results.append(dict(\n                benchmark=bench, n_items=int(std_row.n_items),\n                n_ref=int(std_row.n_ref), n_foc=int(std_row.n_foc),\n                n_ets_a=int(std_row.n_ets_a), n_ets_b=int(std_row.n_ets_b),\n                n_ets_c=int(std_row.n_ets_c),\n                pct_c=round(std_row.pct_c, 1),\n                random_pct_c=round(rand_row.pct_c, 2),\n                status=\"OK\"\n            ))\n            continue\n\n        X, model_names, item_ids = load_response_matrix(bench)\n        name2row = {n: i for i, n in enumerate(model_names)}\n\n        # Temporal cohort split\n        ref_idx = np.array([name2row[n] for n in model_names\n                            if cohort_map.get(n) == \"2023\"])\n        foc_idx = np.array([name2row[n] for n in model_names\n                            if cohort_map.get(n) == \"2024\"])\n        n_ref, n_foc = len(ref_idx), len(foc_idx)\n        print(f\"  Temporal cohort: ref(2023)={n_ref}, foc(2024)={n_foc}\")\n\n        if n_ref < 50 or n_foc < 50:\n            print(f\"  SKIP: insufficient models per cohort (<50)\")\n            all_results.append(dict(\n                benchmark=bench, n_items=len(item_ids),\n                n_ref=n_ref, n_foc=n_foc,\n                n_ets_a=0, n_ets_b=0, n_ets_c=0, pct_c=0,\n                random_pct_c=0, status=\"SKIPPED\"\n            ))\n            continue\n\n        # ── Temporal DIF ──\n        print(f\"\\n  Running temporal MH-DIF (5 strata)...\")\n        dif = mh_dif(X[ref_idx], X[foc_idx], n_strata=5)\n        dif[\"item_id\"] = [item_ids[c] for c in dif[\"col_idx\"]]\n\n        vc = dif[\"ets_class\"].value_counts()\n        n_a = vc.get(\"A\", 0)\n        n_b = vc.get(\"B\", 0)\n        n_c = vc.get(\"C\", 0)\n        pct_c = n_c / len(dif) * 100\n        print(f\"  ETS: A={n_a}, B={n_b}, C={n_c} ({pct_c:.1f}%)\")\n\n        # Save per-item results\n        out_cols = [\"item_id\", \"alpha_mh\", \"delta_mh\", \"se\", \"chi2\", \"p_value\", \"ets_class\"]\n        dif[out_cols].to_csv(OUT / f\"{bench}_dif_results.csv\", index=False)\n\n        # ── Random-split control ──\n        print(f\"\\n  Running random-split control...\")\n        rng = np.random.RandomState(42)\n        # Pool all cohort models (2023+2024) and split randomly\n        all_cohort = np.concatenate([ref_idx, foc_idx])\n        perm = rng.permutation(len(all_cohort))\n        half = len(perm) // 2\n        rand_ref = all_cohort[perm[:half]]\n        rand_foc = all_cohort[perm[half:]]\n        print(f\"  Random split: {len(rand_ref)} vs {len(rand_foc)}\")\n\n        dif_rand = mh_dif(X[rand_ref], X[rand_foc], n_strata=5)\n        vc_rand = dif_rand[\"ets_class\"].value_counts()\n        n_c_rand = vc_rand.get(\"C\", 0)\n        pct_c_rand = n_c_rand / len(dif_rand) * 100\n        print(f\"  Random ETS C: {n_c_rand}/{len(dif_rand)} = {pct_c_rand:.2f}%\")\n\n        # Save ETS summary\n        summary = pd.DataFrame([\n            dict(matching_type=\"standard\", n_ref=n_ref, n_foc=n_foc,\n                 n_items=len(item_ids), n_ets_a=n_a, n_ets_b=n_b, n_ets_c=n_c,\n                 pct_c=pct_c,\n                 delta_mean=dif[\"delta_mh\"].mean(),\n                 delta_median=dif[\"delta_mh\"].median(),\n                 delta_std=dif[\"delta_mh\"].std()),\n            dict(matching_type=\"random_split\", n_ref=len(rand_ref), n_foc=len(rand_foc),\n                 n_items=len(item_ids),\n                 n_ets_a=vc_rand.get(\"A\", 0), n_ets_b=vc_rand.get(\"B\", 0),\n                 n_ets_c=n_c_rand, pct_c=pct_c_rand,\n                 delta_mean=dif_rand[\"delta_mh\"].mean(),\n                 delta_median=dif_rand[\"delta_mh\"].median(),\n                 delta_std=dif_rand[\"delta_mh\"].std()),\n        ])\n        summary.to_csv(OUT / f\"{bench}_ets_summary.csv\", index=False)\n\n        all_results.append(dict(\n            benchmark=bench, n_items=len(item_ids),\n            n_ref=n_ref, n_foc=n_foc,\n            n_ets_a=n_a, n_ets_b=n_b, n_ets_c=n_c,\n            pct_c=round(pct_c, 1),\n            random_pct_c=round(pct_c_rand, 2),\n            status=\"OK\"\n        ))\n\n    # ── Add prior MMLU and GSM8K results ──\n    all_results.append(dict(\n        benchmark=\"mmlu\", n_items=12508,\n        n_ref=1080, n_foc=807,\n        n_ets_a=0, n_ets_b=0, n_ets_c=0, pct_c=31.3,\n        random_pct_c=0.3, status=\"PRIOR\"\n    ))\n\n    # Load actual MMLU numbers from plan_001 if available\n    mmlu_summary = BASE / \"plan_001\" / \"dif_summary.csv\"\n    if mmlu_summary.exists():\n        ms = pd.read_csv(mmlu_summary)\n        ms_temp = ms[ms.cohort_type == \"temporal\"]\n        if len(ms_temp) > 0:\n            r = ms_temp.iloc[0]\n            all_results[-1].update(\n                n_ets_a=int(r.n_ets_a), n_ets_b=int(r.n_ets_b),\n                n_ets_c=int(r.n_ets_c), pct_c=round(r.pct_c, 1)\n            )\n\n    # Load actual MMLU random-split\n    mmlu_san_pct = 0.3  # default\n    mmlu_report = BASE / \"plan_001\" / \"plan_001_report.md\"\n    if mmlu_report.exists():\n        text = mmlu_report.read_text()\n        import re\n        m = re.search(r\"Random half-split.*?\\*\\*(\\d+\\.\\d+)%\", text)\n        if m:\n            mmlu_san_pct = float(m.group(1))\n    all_results[-1][\"random_pct_c\"] = mmlu_san_pct\n\n    # GSM8K from existing results\n    gsm8k_ets = BASE / \"_project\" / \"data\" / \"gsm8k_ets_summary.csv\"\n    if gsm8k_ets.exists():\n        gs = pd.read_csv(gsm8k_ets)\n        gs_std = gs[gs.matching_type == \"standard\"].iloc[0]\n        all_results.append(dict(\n            benchmark=\"gsm8k\", n_items=int(gs_std.n_items),\n            n_ref=int(gs_std.n_ref), n_foc=int(gs_std.n_foc),\n            n_ets_a=int(gs_std.n_ets_a), n_ets_b=int(gs_std.n_ets_b),\n            n_ets_c=int(gs_std.n_ets_c), pct_c=round(gs_std.pct_c, 1),\n            random_pct_c=0.3, status=\"PRIOR\"\n        ))\n    else:\n        all_results.append(dict(\n            benchmark=\"gsm8k\", n_items=1319,\n            n_ref=1017, n_foc=804,\n            n_ets_a=825, n_ets_b=245, n_ets_c=249, pct_c=18.9,\n            random_pct_c=0.3, status=\"PRIOR\"\n        ))\n\n    # ── Final summary table ──\n    results_df = pd.DataFrame(all_results)\n    results_df = results_df.sort_values(\"pct_c\", ascending=False).reset_index(drop=True)\n    results_df.to_csv(OUT / \"multi_bench_summary.csv\", index=False)\n\n    print(f\"\\n{'='*60}\")\n    print(\"MULTI-BENCHMARK DIF SUMMARY\")\n    print(f\"{'='*60}\")\n    print(results_df[[\"benchmark\", \"n_items\", \"n_ref\", \"n_foc\",\n                       \"pct_c\", \"random_pct_c\", \"status\"]].to_string(index=False))\n\n    # ── Generate report ──\n    _write_report(results_df)\n    print(f\"\\nAll outputs saved to {OUT}\")\n\n\ndef _write_report(results_df):\n    L = []\n    def w(s=\"\"):\n        L.append(s)\n\n    w(\"# Plan 028: Multi-Benchmark Temporal DIF Analysis\")\n    w()\n    w(\"## Overview\")\n    w()\n    w(\"Temporal MH-DIF analysis (2023 vs 2024 cohort) across all 6 METABENCH benchmarks.\")\n    w(\"Uses purified Mantel-Haenszel with 5 score strata. ETS classification:\")\n    w(\"- **A**: |Δ_MH| < 1.0 (negligible)\")\n    w(\"- **B**: 1.0 ≤ |Δ_MH| < 1.5 or |Δ_MH| ≥ 1.5 but p ≥ 0.05 (moderate)\")\n    w(\"- **C**: |Δ_MH| ≥ 1.5 and p < 0.05 (large, flagged)\")\n    w()\n\n    w(\"## Summary Table\")\n    w()\n    w(\"| Benchmark | Items | N_ref (2023) | N_foc (2024) | A | B | C | C% | Random C% | Status |\")\n    w(\"|-----------|-------|-------------|-------------|---|---|---|----|-----------|--------|\")\n    for _, r in results_df.iterrows():\n        w(f\"| {r.benchmark.upper()} | {r.n_items} | {r.n_ref} | {r.n_foc} | \"\n          f\"{r.n_ets_a} | {r.n_ets_b} | {r.n_ets_c} | \"\n          f\"{r.pct_c}% | {r.random_pct_c}% | {r.status} |\")\n    w()\n\n    w(\"## Key Findings\")\n    w()\n    new_benchmarks = results_df[results_df.status == \"OK\"]\n    if len(new_benchmarks) > 0:\n        for _, r in new_benchmarks.iterrows():\n            ratio = r.pct_c / r.random_pct_c if r.random_pct_c > 0 else float('inf')\n            w(f\"- **{r.benchmark.upper()}**: {r.pct_c}% items flagged as ETS-C \"\n              f\"(vs {r.random_pct_c}% random control, {ratio:.1f}× enrichment)\")\n        w()\n\n    w(\"## Interpretation\")\n    w()\n    w(\"The temporal DIF signal (C% >> random C%) indicates systematic item-level \")\n    w(\"performance shifts between 2023 and 2024 model cohorts, consistent with \")\n    w(\"benchmark contamination or benchmark-specific training optimization.\")\n    w()\n    w(\"Random-split controls confirm that the DIF signal is not an artifact of \")\n    w(\"the MH procedure or score distribution differences within a single cohort.\")\n\n    (OUT / \"multi_bench_dif_report.md\").write_text(\"\\n\".join(L) + \"\\n\")\n    print(\"  Report written.\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 402,
+                "startLine": 1,
+                "totalLines": 402
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script looks straightforward. Let me run it. It has a caching mechanism - ARC results should be skipped since they already exist. Let me also check what data files exist before running.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "31420fc4-2993-471c-803d-5e9610d44407",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014KHNN9xZBdQ4gbcTLk1dTn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6904,
+                "cache_read_input_tokens": 24175,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6904
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script is clear — caches existing results, runs MH-DIF + random-split control for each benchmark. Running it now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "b226b582-bf3d-4e78-89a4-8551e69128a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014KHNN9xZBdQ4gbcTLk1dTn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6904,
+                "cache_read_input_tokens": 24175,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6904
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xhfc3ZzsXXJFqn5LYh1rod",
+              "name": "Bash",
+              "input": {
+                "command": "python artifacts/plan_028_multi_bench_dif/plan_028_multi_bench_dif.py 2>&1",
+                "description": "Run multi-benchmark temporal MH-DIF analysis",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "e4b09410-a786-46a7-b443-9a1c682e86f1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014KHNN9xZBdQ4gbcTLk1dTn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6904,
+                "cache_read_input_tokens": 24175,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6904
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T10:37:08.585Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01Xhfc3ZzsXXJFqn5LYh1rod"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "32b9ac62-92bd-48fc-8fbb-76f6903eb549",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EE4bTfz7VMix9sWnuXb8ar",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/plan_028_multi_bench_dif/plan_028_multi_bench_dif.py 2>&1",
+                "description": "Run multi-benchmark temporal MH-DIF analysis",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "4b55e565-cb4f-497f-bdd3-31d0f55491dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019KVxajdhnj9jD9fer8z141",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 250,
+                "cache_read_input_tokens": 31079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 250
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bvxe8140r",
+                "tool_use_id": "toolu_01EE4bTfz7VMix9sWnuXb8ar",
+                "description": "Run multi-benchmark temporal MH-DIF analysis",
+                "task_type": "local_bash",
+                "uuid": "b473a9d4-635d-4955-a731-0e36ac675d8f",
+                "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bvxe8140r",
+                "tool_use_id": "toolu_01EE4bTfz7VMix9sWnuXb8ar",
+                "status": "stopped",
+                "output_file": "",
+                "summary": "Run multi-benchmark temporal MH-DIF analysis",
+                "uuid": "5615ba09-2418-43bc-8e9b-72bdc27621e4",
+                "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bvxe8140r",
+                "tool_use_id": "toolu_01EE4bTfz7VMix9sWnuXb8ar",
+                "status": "stopped",
+                "output_file": "",
+                "summary": "Run multi-benchmark temporal MH-DIF analysis",
+                "uuid": "fadf397c-76bc-439f-8ea8-b638a3ad6cb2",
+                "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T10:37:58.992Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 137",
+              "is_error": true,
+              "tool_use_id": "toolu_01EE4bTfz7VMix9sWnuXb8ar"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fb8d86e-d382-4a22-b081-986f4bef6f24",
+            "uuid": "fc3d17f8-8b0d-4ec5-b519-5c71b78a5717",
+            "tool_use_result": "Error: Exit code 137"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-028-multi-bench-dif-v5.md"
+}

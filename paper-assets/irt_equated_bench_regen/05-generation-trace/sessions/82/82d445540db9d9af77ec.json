@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82d445540db9d9af77ec",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 016 revision",
+  "task_key": "worker_code_plan_016_revision_20260520T224414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_016_revision_20260520T224414_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "55916cdca022ab7e9b60cf8633ff4284195c6678258f51baa53ca29463a2050d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three modifications complete:\n\n**修正 1**: 报告中 Plan 011 baseline FPR 从 `~0.048` 改为 `0.314`。\n\n**修正 2**: 添加 cross-subject matching 变体。结果验证了预期——cross-subject FPR **完全不随注入膨胀**（所有 5 个 subject 的 ΔFPR = 0.000），而 within-subject FPR 膨胀 +0.067 到 +0.281。Cross-subject matching 检测力也更强：4/5 subjects ΔTPR > 0.3 at p=0.5（vs within 的 3/5）。\n\n**修正 3**: 添加 formal_logic (109 items) 和 high_school_statistics (181 items)。\n- formal_logic: 5 strata（非预期的 3-4），cross matching ΔTPR=+0.543 at p=0.5，检测效果很好\n- high_school_statistics: 5 strata，cross matching ΔTPR=+0.433 at p=0.5，检测清晰\n\n产出文件：\n- `within_subject_dose_response.csv` — 30 行（5 subjects × 3 p × 2 matching_types）\n- `within_subject_injection_results.csv` — 150 行（含 seed 级明细）\n- `plan_016_report.md` — 更新完毕，含 within vs cross 对比表和 FPR 稳定性分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-016-revision.md"
+}

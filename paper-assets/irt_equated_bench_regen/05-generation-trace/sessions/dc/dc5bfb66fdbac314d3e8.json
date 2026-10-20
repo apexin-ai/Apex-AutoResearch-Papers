@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc5bfb66fdbac314d3e8",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper e1 fix values",
+  "task_key": "worker_paper_e1_fix_values_20260523T020701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_e1_fix_values_20260523T020701_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "9c01b9d28262de09373e0d3338fd2cc211598d910ad531458b46a083ed8bae85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Commit `566b762`, 编译成功（17页，无错误）。\n\n修改内容：AUC 从 0.93 → 0.905，TPR 拆分为 N=80 对应 0.454、N=100 对应 0.571。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-e1-fix-values.md"
+}

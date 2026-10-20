@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c15700e381a59d23d27",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r22 score inflation",
+  "task_key": "worker_code_r22_score_inflation_20260523T081520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r22_score_inflation_20260523T081520_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "6ae5bff180a1d54a3e6bca8a8fe421067cc24316260f4a1b805a9278ef2b170f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。关键发现总结：\n\n**Score shift**: 移除 3918 个 DIF-C 项目后，所有模型分数上升（DIF-C 项目平均更难），但 cohort 间存在显著差异：\n- 2023 cohort: +2.35 pp\n- 2024 cohort: +2.06 pp\n- **差异**: 2024 模型从 DIF 项目中相对多获益 0.29 pp（Cohen's d = 0.31, p < 1e-10）\n\n**Ranking impact**: 整体 ρ = 0.9965（高度保留），但个体模型位移剧烈：\n- 2024 cohort 平均排名下降 73 位（DIF 项目人为抬升了排名）\n- 极端案例位移达 ±849 位\n- DIF 受益者（排名下降最多）: 12/20 来自 2024 cohort，集中在 phi-3 和 llama-3 家族\n- DIF 受害者（排名上升最多）: 18/20 来自 other cohort，主要是 7B mistral merges\n\n**Rank displacement 直方图**是最有说服力的可视化——2024 cohort 有明显的左偏重尾（大量模型排名下降 200-800 位），而 2023 分布集中在零附近。\n\n所有输出在 `artifacts/score_inflation_analysis/`：3 个 PDF 图、4 个 CSV、分析脚本和报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r22-score-inflation.md"
+}

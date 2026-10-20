@@ -1,0 +1,75 @@
+{
+  "mmlu_cf": {
+    "has_item_mapping": false,
+    "is_modification_of_mmlu": false,
+    "description": "Entirely new dataset, NOT derived from MMLU. Cannot be used as item-level ground truth.",
+    "n_validation_items": 10000,
+    "n_test_items": 10000,
+    "n_subjects": 30,
+    "repo": "https://github.com/microsoft/MMLU-CF",
+    "hf_dataset": "https://huggingface.co/datasets/microsoft/MMLU-CF",
+    "paper": "https://arxiv.org/abs/2412.15194",
+    "usable_as_ground_truth": false,
+    "reason": "No item-level mapping to original MMLU; entirely new questions"
+  },
+  "primary_ground_truth": {
+    "source": "Li et al. (EMNLP 2024 Findings) - Contamination_Detector",
+    "paper": "An Open-Source Data Contamination Report for Large Language Models",
+    "paper_url": "https://arxiv.org/abs/2310.17589",
+    "repo": "https://github.com/liyucheng09/Contamination_Detector",
+    "method": "Bing Search API + Common Crawl index overlap detection",
+    "has_item_mapping": true,
+    "n_annotated_items": 9229,
+    "n_total_metabench_items": 12508,
+    "coverage_rate": 0.738,
+    "n_clean": 5584,
+    "n_input_contaminated": 602,
+    "n_input_and_label_contaminated": 3043,
+    "contamination_rate": 0.395,
+    "contamination_types": [
+      "clean",
+      "input_only",
+      "input_and_label"
+    ],
+    "usable_as_ground_truth": true,
+    "ground_truth_csv_path": "artifacts/mmlu_cf_ground_truth.csv",
+    "limitations": [
+      "Web overlap != training data contamination",
+      "Model-agnostic labels (same label for all models)",
+      "73.8% coverage (3279 items without annotation)",
+      "Based on Common Crawl Oct 2020-Oct 2023"
+    ]
+  },
+  "alternative_sources": [
+    {
+      "name": "Hidayat et al. (Eval4NLP 2025) - MCQ Leakage Detection",
+      "paper_url": "https://arxiv.org/abs/2505.24263",
+      "repo": "https://github.com/nailashfrni/mcq-leakage-detection-code",
+      "method": "N-gram overlap detection",
+      "has_item_labels": true,
+      "n_contaminated_removed": 6547,
+      "contamination_rate_strong": 0.466,
+      "provides_cleaned_mmlu": true,
+      "limitation": "46.6% removal rate may be too aggressive; synthetic ground truth only"
+    },
+    {
+      "name": "Zhu et al. (2024) - Inference-Time Decontamination",
+      "paper_url": "https://arxiv.org/abs/2406.13990",
+      "repo": "https://github.com/8188zq/Inference-Time-Decontamination",
+      "method": "MinKProb detection + iterative rewriting",
+      "has_item_labels": false,
+      "provides_rewritten_mmlu": true,
+      "limitation": "Model-specific thresholds; no universal per-item labels released"
+    },
+    {
+      "name": "Meta Llama 2 Technical Report",
+      "paper_url": "https://arxiv.org/abs/2307.09288",
+      "method": "Token overlap with training data",
+      "has_item_labels": false,
+      "contamination_rate": 0.162,
+      "serious_contamination_rate": 0.111,
+      "limitation": "Subject-level aggregates only; no item-level labels released"
+    }
+  ],
+  "recommendation": "Use Li et al. (2024) as primary proxy ground truth. Cross-validate with Hidayat et al. n-gram labels if available. Note that web overlap is an upper bound on contamination, not exact ground truth."
+}

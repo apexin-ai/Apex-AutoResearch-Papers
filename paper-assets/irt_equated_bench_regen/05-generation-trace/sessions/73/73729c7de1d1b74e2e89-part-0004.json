@@ -1,0 +1,2597 @@
+{
+  "schema_version": "1.0",
+  "session_id": "73729c7de1d1b74e2e89",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-23T19:54:33.879868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ -name \"*gsm*\" -o -name \"*GSM*\" 2>/dev/null | head -10",
+              "description": "Find GSM8K related files"
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-23T19:54:33.879987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/intermediate/plan_004_step3_gsm1k_dif_correlation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/intermediate/plan_004_step2_gsm8k_semi_synthetic.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/gsm1k_model_accuracy.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/gsm1k_dif_correlation.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/gsm8k_dif_results.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/gsm8k_dose_response.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/gsm8k_ets_summary.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/plan_004_step1_gsm8k_temporal_dif.py\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/gsm8k_dose_response_summary.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/gsm1k_jaccard_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-23T19:54:33.880131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/gsm8k_dose_response_summary.csv",
+              "description": "Read GSM8K dose response summary for ΔTPR=+0.514"
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-23T19:54:33.880257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "p,matching_type,tpr_mean,tpr_std,fpr_mean,fpr_std,delta_tpr,fisher_or_mean,fisher_p_median,n_flipped_mean\n0.0,external,0.4833333333333334,0.027654109467339354,0.47146919431279616,0.006920080473343698,0.0,1.0569313712780013,0.535203228313758,0.0\n0.0,standard,0.18181818181818182,0.038721682386857706,0.190521327014218,0.00968959635083454,0.0,0.968883721205098,0.13488067909313184,0.0\n0.3,external,0.9696969696969697,0.014670391462906869,0.47146919431279616,0.006920080473343698,0.48636363636363633,43.675880258053276,4.09415202292533e-62,36235.2\n0.3,standard,0.740909090909091,0.017066485342528484,0.2564928909952607,0.0073604810078927736,0.5590909090909091,8.322469364987208,1.6700289913331167e-47,36235.2\n0.5,external,0.9977272727272727,0.0020747066572165363,0.47146919431279616,0.006920080473343698,0.5143939393939393,inf,1.617530418124674e-73,60445.4\n0.5,standard,0.931060606060606,0.00561833218719372,0.3672037914691943,0.0019655394647703924,0.7492424242424243,23.417772639889186,6.7348716962479354e-68,60445.4\n0.7,external,1.0,0.0,0.47146919431279616,0.006920080473343698,0.5166666666666666,inf,1.617530418124674e-73,84524.4\n0.7,standard,1.0,0.0,0.47601895734597155,0.009791060859614568,0.8181818181818181,inf,1.617530418124674e-73,84524.4\n1.0,external,1.0,0.0,0.47146919431279616,0.006920080473343698,0.5166666666666666,inf,1.617530418124674e-73,120928.6\n1.0,standard,1.0,0.0,0.6453080568720378,0.012456433365686845,0.8181818181818181,inf,3.725110278780312e-45,120928.6"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-23T19:54:33.880393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_multi_bench_dif/plan_028_bootstrap_ci/bootstrap_ci_report.md | head -40",
+              "description": "Read plan_028 bootstrap CI report"
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-23T19:54:33.880525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# The paper says in the text: '1:1 nearest-neighbor matching on total score (N=638/group, Cohen's d = -0.17)'\n# Source shows: mean N=638, Cohen's d = -0.0096 (not -0.17!)\n# This is a discrepancy in the text of the paper (not the table)\n# The table row 'Matched-ability' just says ~0.31 C%\n\n# But the ~0.31 in Table 2 doesn't match any single source value clearly\n# The temporal overlap report shows that NN-matched C% = 28.9% (not ~31%)\n# plan_001b shows Q3 has 42.5%, Q2 has 34.4%, etc.\n# Where does ~0.31 in Table 2 come from?\n\n# Let me check if plan_001b has a merged Temp C% value close to 31%\n# plan_001b: CMH method gives 33.3%, >= 2 gives 47.5%\n# None is ~31%\n\n# Actually the r22 composition control shows balanced C% = 30.2% (mean)\n# Maybe ~0.31 = 31% in Table 2 refers to CMH quintile analysis?\n\n# Or the table represents the unmatched temporal C% under quintile-based comparison\n# plan_001 ability cohort C% = 2.9% - not 31%\n\n# Let me look at other reports mentioning 31% with ability matching\nimport os, glob\nbase = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/'\nfor f in glob.glob(base + '**/*.md', recursive=True):\n    try:\n        with open(f) as fh:\n            content = fh.read()\n        if '~0.31' in content or '~31' in content:\n            print(f)\n    except:\n        pass\n\" | head -10\n",
+              "description": "Find source of ~0.31 value in Table 2"
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-23T19:54:33.880695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/experiment_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/plan_013_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/experiment_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/plan_012_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_013_q3_local_independence/report/plan_013_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/median/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-23T19:54:33.880846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cat: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_multi_bench_dif/plan_028_bootstrap_ci/bootstrap_ci_report.md: No such file or directory"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-23T19:54:33.880980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check downstream numbers: ρ=0.997, τ=0.958, flip≤2.8% from cross-benchmark table\n# plan_028 has these values - check multi_bench_summary.csv for full numbers including rank stats\ncat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/mf2_report.md 2>/dev/null | head -20",
+              "description": "Check mf2_report for cross-benchmark ρ/τ values"
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-23T19:54:33.881107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# MF2: Practical Significance — Stable-Item Rank Stability\n\n## Per-Benchmark Results\n\n| Benchmark | Items | C items | Stable | %C | Models | Spearman ρ | p-value | Kendall τ | Flip rate |\n|-----------|------:|--------:|-------:|---:|-------:|-----------:|--------:|----------:|----------:|\n| MMLU | 12508 | 3918 | 8590 | 31.32% | 5227 | 0.9965 | 0.00e+00 | 0.9600 | 0.0200 |\n| ARC | 1172 | 315 | 857 | 26.88% | 5227 | 0.9962 | 0.00e+00 | 0.9538 | 0.0231 |\n| HellaSwag | 10042 | 1797 | 8245 | 17.89% | 5227 | 0.9986 | 0.00e+00 | 0.9722 | 0.0139 |\n| WinoGrande | 1267 | 384 | 883 | 30.31% | 6558 | 0.9943 | 0.00e+00 | 0.9432 | 0.0284 |\n| TruthfulQA | 817 | 243 | 574 | 29.74% | 5228 | 0.9971 | 0.00e+00 | 0.9586 | 0.0207 |\n| GSM8K | 1319 | 249 | 1070 | 18.88% | 6702 | 0.9993 | 0.00e+00 | 0.9843 | 0.0078 |\n\n## Cross-Benchmark Summary\n\n- **Mean Spearman ρ**: 0.9970 (range: 0.9943–0.9993)\n- **Mean flip rate**: 0.0190 (range: 0.0078–0.0284)\n\n## Interpretation"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-23T19:54:33.881242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/plan_012_report.md') as f:\n    content = f.read()\nidx = content.find('~0.31')\nif idx >= 0:\n    print(content[max(0,idx-300):idx+400])\n\"\n",
+              "description": "Check plan_012 report context for ~0.31"
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-23T19:54:33.881378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Now check the downstream numbers more carefully:\n# Paper says ρ=0.997, τ=0.958, flip rate ≤2.8% - from table above (MMLU: ρ=0.9965, τ=0.9600, Flip=0.0200)\n# WinoGrande: Flip=0.0284 (2.84%), which is the max - paper says ≤2.8% - let me check\n\n# Also check 33.6% pairwise rankings reverse for 200 most displaced\n# From plan_032 report: \"| 200 | 119 | 59.5% | 83 | 41.5% | 33 | 16.5% |\" - not 33.6%\n# Let me look more carefully\n\ngrep -rn \"33.6\\|pairwise.*200\\|200.*pairwise\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ --include=\"*.md\" 2>/dev/null | head -10",
+              "description": "Find pairwise rank reversal 33.6% for 200 most displaced"
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-23T19:54:33.881511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf1_worked_examples/mf1_report.md:14:Within the top-200 most displaced models (|rank_change| ≥ 298), there are 6,694 pairwise flips out of 19,900 pairs (33.6%).\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/mf1_report.md:14:Within the top-200 most displaced models (|rank_change| ≥ 298), there are 6,694 pairwise flips out of 19,900 pairs (33.6%).\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/composition_control_report.md:37:7,29.90885833066837,682,807,67.88856304985337,67.90582403965304\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/plan_012_report.md:150:| theta_qt_15 | 15 | 0.3280 | 0.3376 | 0.972 |\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012_irt_theta_conditioning/report/plan_012_report.md:150:| theta_qt_15 | 15 | 0.3280 | 0.3376 | 0.972 |\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_013_supplement/ld_dif_cross_report.md:57:| 5 | professional_psychology | 7.0% | 33.6% |\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_013_supplement/report/ld_dif_cross_report.md:57:| 5 | professional_psychology | 7.0% | 33.6% |\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_report.md:150:| theta_qt_15 | 15 | 0.3280 | 0.3376 | 0.972 |\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_11.md:76:**W-S3. ρ = 0.997 与 33.6% pairwise reversal 的张力未 reconcile。** [R1-W5 Should-Fix, R2 AGREE]\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_11.md:78:Spearman ρ = 0.997（全局排名几乎不变）而 33.6% pairw\n…[truncated 215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-23T19:54:33.881662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_rank_bucket_reversal/ 2>/dev/null || ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_rank_bucket_reversal/",
+              "description": "Check r18_rank_bucket_reversal directory"
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-23T19:54:33.881804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "rank_reversal_analysis.py\nrank_reversal_report.md\nresults.json\nreversal_by_bucket.pdf\nreversal_by_bucket.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-23T19:54:33.881929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_rank_bucket_reversal/*.md 2>/dev/null | head -60",
+              "description": "Read rank bucket reversal report"
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-23T19:54:33.882051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# R18 Exp 2: Rank-Bucket Reversal Distribution\n\n## Setup\n- **Models**: 5,227\n- **Items (full)**: 12,508\n- **DIF-C items removed**: 3,918\n- **Stable items**: 8,590\n- **Rank correlation (full vs stable)**: 0.996451\n\n## Results\n\n| Bucket | Reversal Rate | Sampled / Total Pairs | Mean Δacc |\n|--------|--------------|----------------------|-----------|\n| 1–49 | 35.2% | 200,000 / 254,898 | 0.0031 |\n| 50–199 | 15.1% | 200,000 / 765,375 | 0.0143 |\n| 200–499 | 4.0% | 200,000 / 1,463,250 | 0.0394 |\n| 500–999 | 0.6% | 200,000 / 2,238,750 | 0.0804 |\n| 1000+ | 0.0% | 200,000 / 8,935,878 | 0.2237 |\n\n## Interpretation\n\nRank reversals are **heavily concentrated** among closely-ranked models:\n\n- **Δrank < 50**: reversal rate = 35.2%\n- **Δrank ≥ 1000**: reversal rate = 0.0%\n\nThis confirms that removing DIF-C items reshuffles rankings primarily among\nmodels with similar ability, while the broad leaderboard structure is preserved\n(rank correlation = 0.9965).\n\n**Key takeaway**: contamination-driven score inflation matters most for\nfine-grained comparisons between closely-matched models, not for separating\nqualitatively different capability tiers."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-23T19:54:33.882181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-23T19:54:33.882315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Let me directly look for what 'Matched-ability' means in Table 2 context\n# The table caption says: 'Structural controls and sensitivity checks for temporal DIF'\n# Row: Matched-ability | Within-quintile temp DIF | ~0.31 | -- | Enrich. 0.94-1.04\n# This could represent the FPR (fraction of C-flagged items) in the semi-synthetic baseline\n\n# From plan_011 standard MH for temporal cohort at p=0:\n# 'temporal | 0.0 | 0.308±0.047 | 0.298±0.012 | +0.000'\n# So standard FPR is 0.298\n\n# But plan_012 external_5 at p=0 has FPR=0.314±0.009\n# And theta_qt_20 has FPR=0.312±0.008\n\n# Looking at the table structure: 'Temp C%' means temporal C%\n# ~0.31 for matched-ability means ~31% C% in temporal DIF\n\n# r22 composition-balanced: mean C% = 30.25% ≈ ~0.30\n# NN matched: 28.9% \n\n# Actually plan_001b CMH approach gives 33.3% -- that's not ~31% either\n# Let me check if there's a simpler: plan_022 (composition control = ~30.2%)\n# rounded to ~0.31 would be close\n\n# OR maybe it's just stating temporal C% doesn't change much under ability matching\n# and refers to the fact that r22 or plan_001 result stays around 31%\n\nprint('Summary: ~0.31 in Table 2 row Matched-ability could be:')\nprint('  - r22 composition-balanced: 30.25% (closest)')\nprint('  - NN matching: 28.9% (not ~31%)')  \nprint('  - plan_001b Q5: 30.2% (close)')\nprint('  - Most likely intended as ~30-31% range from r22 balanced result')\n\"\n",
+              "description": "Analyze source of ~0.31 value in Table 2"
+            }
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-23T19:54:33.882459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check cohort gap = 96.2 positions, 40x random, p<0.001 - from plan_032 dif_vs_random_comparison\npython3 -c \"\n# From plan_032 random_baseline_report.md:\n# DIF cohort gap = 73.60 - (-22.56) = 96.16\n# Random mean: 2.79 - 0.43 = 2.36\nprint(f'DIF cohort gap: {73.599 - (-22.562):.1f}')\nprint(f'Random mean gap: {2.787 - 0.431:.2f}')\nprint(f'Ratio: {(73.599 - (-22.562)) / (2.787 - 0.431):.0f}x')\n\"",
+              "description": "Verify cohort gap 96.2 and 40x ratio"
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-23T19:54:33.882580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary: ~0.31 in Table 2 row Matched-ability could be:\n  - r22 composition-balanced: 30.25% (closest)\n  - NN matching: 28.9% (not ~31%)\n  - plan_001b Q5: 30.2% (close)\n  - Most likely intended as ~30-31% range from r22 balanced result"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-23T19:54:33.882720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Let me also look at plan_027_temporal_overlap which might have the matched values\nimport os\nbase = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_027_temporal_overlap/'\nfiles = os.listdir(base)\nprint(files)\n\"\n",
+              "description": "List plan_027 temporal overlap files"
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-23T19:54:33.882851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "['full_dif_results.csv', 'fig_temporal_score_distribution.pdf', 'nn_matching_results.csv', 'fig_temporal_score_distribution.png', 'temporal_overlap_report.md', 'plan_027_temporal_overlap.py']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-23T19:54:33.882963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DIF cohort gap: 96.2\nRandom mean gap: 2.36\nRatio: 41x"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-23T19:54:33.883084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check z=-8 to -49 for DIF-flagged items concentration\ncat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/mf2_report.md | grep -n \"z.*score\\|discrimin\\|signal\"",
+              "description": "Find z-score for discriminative signal"
+            }
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-23T19:54:33.883208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_027_temporal_overlap/temporal_overlap_report.md"
+            }
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-23T19:54:33.883345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Plan 027: Temporal Cohort Ability Distribution Overlap + Restricted C%\n2\t\n3\t## Part 1: Score Distribution Statistics\n4\t\n5\t| Metric | 2023 (ref, N=1080) | 2024 (foc, N=807) |\n6\t|--------|------|------|\n7\t| Mean | 0.5814 | 0.6068 |\n8\t| Median | 0.6275 | 0.6715 |\n9\t| SD | 0.1405 | 0.1556 |\n10\t| Min | 0.2200 | 0.1736 |\n11\t| Q1 | 0.5404 | 0.5644 |\n12\t| Q3 | 0.6673 | 0.6955 |\n13\t| Max | 0.8090 | 0.8261 |\n14\t\n15\t### Distributional Overlap Metrics\n16\t\n17\t| Metric | Value |\n18\t|--------|-------|\n19\t| Cohen's d | -0.1729 |\n20\t| Overlap coefficient (KDE) | 0.7639 |\n21\t| Bhattacharyya coefficient | 0.9606 |\n22\t| Bhattacharyya distance | 0.0402 |\n23\t| KL(2023 ‖ 2024) | 1.5235 |\n24\t| KL(2024 ‖ 2023) | 1.1664 |\n25\t| Mann-Whitney U | 330170 |\n26\t| Mann-Whitney p | 1.90e-19 |\n27\t\n28\t**Interpretation:** Cohen's d = -0.17 indicates a negligible-to-small effect size (below the |d| = 0.2 \"small\" threshold). The overlap coefficient of 0.764 means 76.4% of the density mass is shared between cohorts. The Bhattacharyya coefficient of 0.961 (1.0 = identical distributions) confirms substantial distributional similarity.\n29\t\n30\t## Part 2: Ability-Restricted MH-DIF\n31\t\n32\t### 2a. Full Population (Baseline Verification)\n33\t\n34\t| ETS Class | Count | % |\n35\t|-----------|-------|---|\n36\t| A | 6332 | 50.6 |\n37\t| B | 2258 | 18.1 |\n38\t| C | 3918 | 31.3 |\n39\t\n40\t**Full C% = 31.3%** (matches plan_001)\n41\t\n42\t### 2b. Score-Range Restriction\n43\t\n44\tRestriction: total score ∈ [max(min_ref, min_foc), min(max_ref, max_foc)] = [0.2200, 0.8090]\n45\t\n46\t| | Reference | Focal |\n47\t|--|-----------|-------|\n48\t| N (full) | 1080 | 807 |\n49\t| N (restricted) | 1080 | 787 |\n50\t| Retained | 100.0% | 97.5% |\n51\t\n52\tCohen's d (restricted) = -0.1488\n53\t\n54\t**Range-restricted C% = 30.9%** (essentially unchanged; only 20 extreme foc models excluded)\n55\t\n56\t### 2c. 1:1 Nearest-Neighbor Matching (Primary Ability Control)\n57\t\n58\tCaliper = 0.02 (max score difference between matched pairs). Five random seeds for robustness.\n5\n…[truncated 3070 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-23T19:54:33.883481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-23T19:54:33.883602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf2_practical_significance/mf2_report.md",
+              "description": "Read full mf2 practical significance report"
+            }
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-23T19:54:33.883745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# MF2: Practical Significance — Stable-Item Rank Stability\n\n## Per-Benchmark Results\n\n| Benchmark | Items | C items | Stable | %C | Models | Spearman ρ | p-value | Kendall τ | Flip rate |\n|-----------|------:|--------:|-------:|---:|-------:|-----------:|--------:|----------:|----------:|\n| TruthfulQA | 817 | 243 | 574 | 29.74% | 5228 | 0.9971 | 0.00e+00 | 0.9586 | 0.0207 |\n| WinoGrande | 1267 | 384 | 883 | 30.31% | 6558 | 0.9943 | 0.00e+00 | 0.9432 | 0.0284 |\n| ARC | 1172 | 315 | 857 | 26.88% | 5227 | 0.9962 | 0.00e+00 | 0.9538 | 0.0231 |\n| GSM8K | 1319 | 249 | 1070 | 18.88% | 6702 | 0.9993 | 0.00e+00 | 0.9843 | 0.0078 |\n| HellaSwag | 10042 | 1797 | 8245 | 17.89% | 5227 | 0.9986 | 0.00e+00 | 0.9722 | 0.0139 |\n| MMLU | 12508 | 3918 | 8590 | 31.32% | 5227 | 0.9965 | 0.00e+00 | 0.9600 | 0.0200 |\n\n## Cross-Benchmark Summary\n\n- **Mean Spearman ρ**: 0.9970 (range: 0.9943–0.9993)\n- **Mean flip rate**: 0.0190 (range: 0.0078–0.0284)\n\n## Interpretation\n\n- **WinoGrande** shows the lowest ρ (0.9943) with 30.31% C items.\n- **GSM8K** is the most stable (ρ=0.9993, flip rate=0.0078).\n- Overall, removing ETS class C items produces minimal rank disruption (mean flip rate 0.0190), but the effect is benchmark-dependent."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-23T19:54:33.883898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Paper says ρ=0.997, τ=0.958. From table: MMLU ρ=0.9965, τ=0.9600 (rounds to 0.997, 0.958-not quite)\n# Mean ρ=0.9970 (rounds to 0.997), mean τ is higher\n# Flip rate ≤2.8% — max is WinoGrande 2.84% (rounds to 2.8% or exceeds)\npython3 -c \"\nrhos = [0.9971, 0.9943, 0.9962, 0.9993, 0.9986, 0.9965]\ntaus = [0.9586, 0.9432, 0.9538, 0.9843, 0.9722, 0.9600]\nflips = [0.0207, 0.0284, 0.0231, 0.0078, 0.0139, 0.0200]\nprint(f'Min rho: {min(rhos):.4f}')\nprint(f'Max flip: {max(flips)*100:.2f}%')\nprint(f'Min tau: {min(taus):.4f}')\nprint('Paper says: rho=0.997, tau=0.958, flip<=2.8%')\nprint(f'WinoGrande flip: {0.0284*100:.2f}%')\n\"",
+              "description": "Verify ρ=0.997, τ=0.958, flip≤2.8%"
+            }
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-23T19:54:33.884026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Min rho: 0.9943\nMax flip: 2.84%\nMin tau: 0.9432\nPaper says: rho=0.997, tau=0.958, flip<=2.8%\nWinoGrande flip: 2.84%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-23T19:54:33.884164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check z=-8 to -49 for discriminative signal concentration\ngrep -rn \"z.*=.*-8\\|z.*-8\\|-8.*to.*-49\\|-49\\|discrimin.*signal\\|z.score\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ --include=\"*.md\" 2>/dev/null | head -15",
+              "description": "Find z=-8 to -49 discriminative signal"
+            }
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-23T19:54:33.884304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/phase2_results.md:95:- **Interpretation**: difficulty is the primary linear predictor, but GBM captures non-linear interactions (e.g., difficulty × discrimination, within-subject deviations) that improve classification. The features provide complementary signal through interactions, not additive linear effects.\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/rank_shift_distribution_report.md:66:| deepseek | 24 | -1.0 | -1 | 19.9 | -49 | +68 | -22 | +15 |\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/circularity_ablation_report.md:70:1. **DIF removal is the least disruptive non-random strategy.** Across all cohorts, DIF-C removal produces the highest ρ (least perturbation) among the four targeted strategies. In the 2024 cohort: DIF ρ = 0.9970 vs accuracy gap ρ = 0.9657, discrimination ρ = 0.9957, variance ρ = 0.9761. The z-scores tell the same story: DIF z = −9.5 vs accuracy gap z = −157, discrimination z = −16, variance z = −108.\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_020/circularity_ablation_report.md:70:1. **DIF removal is the least disruptive non-random strategy.** Across all cohorts, DIF-C removal produces the highest ρ (least perturbation) among the four targeted strategies. In the 2024 cohort: DIF ρ = 0.9970 vs accuracy gap ρ = 0.9657, discrimination ρ = 0.9957, variance ρ = 0.9761. The z-scores tell the same story: DIF z = −9.5 vs accuracy gap z = −157, discrimination z = −16, variance z = −108.\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_report.md:121:9. **§4.5, \"DIF as diagnostic, not filter\":** The z-score comparisons (DIF removal z=−8 to −49σ vs. accuracy-gap removal z=−157) effect\n…[truncated 6226 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-23T19:54:33.884458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf1_lofo_power_calibration/ 2>/dev/null || ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf1_lofo_power_calibration/",
+              "description": "Check mf1_lofo_power_calibration directory"
+            }
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-23T19:54:33.884577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mf1_lofo_power_calibration.py\npower_calibration_report.md\npower_calibration_reps.csv\npower_calibration_results.csv"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-23T19:54:33.884726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Paper text says: '1:1 nearest-neighbor matching on total score (N=638/group, Cohen's d = -0.17) yields C% = 28.9%'\n# Source: plan_027 shows Cohen's d of temporal cohorts = -0.1729 (full distribution)\n# After NN matching, d = -0.0096 (mean of 5 seeds)\n# Paper's 'd = -0.17' refers to the UNMATCHED Cohen's d (from plan_027 part 1)\n# which is the original temporal cohort difference, not after matching\n\n# So in the text: 'matched on total score (N=638/group, Cohen's d = -0.17)' \n# seems to be saying ORIGINAL d=-0.17 AND THEN matched to N=638\n# Actually it should say d≈0 after matching, and d=-0.17 before\n# The way it's written is ambiguous/misleading but not strictly wrong if they mean\n# 'original cohort diff was -0.17, we matched to 638/group'\n\n# Now: Table 2 'Matched-ability | ~0.31'\n# The temporal overlap report shows NN matched C% = 28.9%\n# Not 31%. \n# The only values close to 31% are: original C%=31.3%, range-restricted C%=30.9%\n# r22 composition-balanced: 30.25%\n# None of these is 'matched-ability within-quintile temp DIF'\n\n# Let me check if perhaps table 2 was derived from a different analysis\n# Looking at plan_001b: CMH approach = 33.3%, Q2-only = 34.4%, Q5-only = 30.2%\n# The closest to ~0.31 is CMH=33.3% or Q5=30.2%\n\n# OR: maybe '~0.31' is just saying 'same as baseline ~31%', not claiming exact value\n# The footnote says 'none reduces C% below 31%'\nprint('Table 2 matched-ability ~0.31 analysis:')\nprint('  NN matched C% = 28.9% (plan_027)')\nprint('  CMH quintile C% = 33.3% (plan_001b)')  \nprint('  r22 composition balanced = 30.25%')\nprint('  Claim ~0.31 (31%) does not precisely match any single source')\nprint('  Most authoritative matched value is 28.9% (NN matching, plan_027)')\n\"\n",
+              "description": "Analyze ~0.31 discrepancy for matched-ability row"
+            }
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-23T19:54:33.884889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf1_lofo_power_calibration/power_calibration_report.md | head -50",
+              "description": "Read power calibration report for z scores"
+            }
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-23T19:54:33.885047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# MF1: LOFO Power Calibration — Random Subsample Baseline\n\n## Method\n\nRandom subsample on real response matrix (12508 items, 200 reps per scenario).\nFor each LOFO scenario, draw the same number of models randomly (without targeting any family)\nand compute MH-DIF C%. The gap between random subsample and observed LOFO isolates the\ncomposition effect from the pure power (sample-size) effect.\n\n- Full baseline: N_ref=1080, N_foc=807 → C%=31.32%\n- MH-DIF: 5-stratum total-score matching, ETS C classification (|Δ_MH|≥1.5, p<0.05)\n\n## Results\n\n| | Full Baseline | Random Subsample (mean±SD) | LOFO Observed | Power Effect | Composition Effect |\n|---|---|---|---|---|---|\n| Remove Mistral (N_ref: 1080→533) | 31.32% | 30.91±2.07% | 22.47% | -0.41pp | -8.44pp |\n| Remove Llama-3 (N_foc: 807→492) | 31.32% | 32.24±1.42% | 24.06% | +0.91pp | -8.17pp |\n\n## Decomposition\n\n**Mistral removal** (total drop: -8.85pp):\n- Power effect (random subsample − full): -0.41pp (5%)\n- Composition effect (LOFO − random subsample): -8.44pp (95%)\n\n**Llama-3 removal** (total drop: -7.26pp):\n- Power effect (random subsample − full): +0.91pp (-13%)\n- Composition effect (LOFO − random subsample): -8.17pp (113%)\n\n## Interpretation\n\nBoth scenarios show composition effects beyond pure power reduction, confirming that family-specific removal changes DIF detection beyond what sample size alone explains.\n\nRandom subsample 95% range:\n- Scenario A (Mistral): [27.33%, 34.76%]\n- Scenario B (Llama-3): [29.65%, 35.02%]\n\nLOFO observed falls below the random subsample 95% range for Mistral.\nLOFO observed falls below the random subsample 95% range for Llama-3.\n\nRuntime: 0.3 min (200 reps × 2 scenarios)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-23T19:54:33.885249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Find z=-8 to -49 range from plan_017\nls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_017/ && ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_017_supplement/ 2>/dev/null",
+              "description": "Check plan_017 directory"
+            }
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-23T19:54:33.885383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Table 2 matched-ability ~0.31 analysis:\n  NN matched C% = 28.9% (plan_027)\n  CMH quintile C% = 33.3% (plan_001b)\n  r22 composition balanced = 30.25%\n  Claim ~0.31 (31%) does not precisely match any single source\n  Most authoritative matched value is 28.9% (NN matching, plan_027)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-23T19:54:33.885516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Let me also check the Llama-3 N count discrepancy more carefully\n# Paper says 161/308, plan_027 shows 161/315, model_metadata shows 315 for llama-3\n# Let me see if there's an older analysis with 308\n\nimport os, glob\nbase = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/'\nfor f in glob.glob(base + '**/*.md', recursive=True):\n    try:\n        with open(f) as fh:\n            content = fh.read()\n        if '308' in content and 'llama' in content.lower():\n            print(f)\n    except:\n        pass\n\" | head -10\n",
+              "description": "Search for any analysis using Llama-3 N=308"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-23T19:54:33.885648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004_data_availability.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary_ec3bbf.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/plan_004_data_availability.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-23T19:54:33.885815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data\nintermediate\nplan_017_downstream_impact.py\nplan_017_report.md\nprogressive_removal.csv\nrandom_baseline.csv\nrank_movers.csv\nranking_comparison.csv\nreport\nrank_shift_analysis.py\nrank_shift_distribution_report.md\nrank_shift_stats.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-23T19:54:33.885948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_017/*.md 2>/dev/null | head -60; ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_017/",
+              "description": "Read plan_017 report for z-scores"
+            }
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-23T19:54:33.886082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# plan_017: Downstream Impact Analysis — DIF Item Removal → Ranking Stability\n\n## Summary\n\nThis analysis evaluates whether removing temporally unstable (DIF) items from MMLU\nproduces more stable and reliable model rankings.\n\n\n## Data\n\n- Response matrix: 5227 models × 12508 items\n- Temporal cohorts: 2023 (1080 models), 2024 (807 models)\n- DIF classification: ETS A=6332, B=2258, C=3918\n- Stable items (A+B): 8590 (68.7%)\n- DIF items (C): 3918 (31.3%)\n\n\n## Part 1: Full vs Stable-Only Ranking\n\n| Cohort | N models | ρ(full, stable) | 95% CI | SHR full | SHR stable |\n|--------|----------|-----------------|--------|----------|------------|\n| 2023 | 1080 | 0.998851 | [0.998490, 0.999028] | 0.9970±0.0005 | 0.9955±0.0007 |\n| 2024 | 807 | 0.997014 | [0.995997, 0.997642] | 0.9923±0.0024 | 0.9890±0.0030 |\n| all | 5227 | 0.996451 | [0.995977, 0.996808] | 0.9934±0.0018 | 0.9919±0.0016 |\n\n\n## Part 2: Progressive DIF Removal\n\n| Frac | Removed | Remaining | Cohort | ρ(full, reduced) | 95% CI |\n|------|---------|-----------|--------|------------------|--------|\n| 0.00 | 0 | 12508 | 2023 | 1.000000 | [1.000000, 1.000000] |\n| 0.00 | 0 | 12508 | 2024 | 1.000000 | [1.000000, 1.000000] |\n| 0.00 | 0 | 12508 | all | 1.000000 | [1.000000, 1.000000] |\n| 0.05 | 625 | 11883 | 2023 | 0.999846 | [0.999777, 0.999862] |\n| 0.05 | 625 | 11883 | 2024 | 0.999351 | [0.999033, 0.999458] |\n| 0.05 | 625 | 11883 | all | 0.998926 | [0.998730, 0.999062] |\n| 0.10 | 1250 | 11258 | 2023 | 0.999641 | [0.999498, 0.999707] |\n| 0.10 | 1250 | 11258 | 2024 | 0.998676 | [0.998120, 0.998969] |\n| 0.10 | 1250 | 11258 | all | 0.997700 | [0.997313, 0.997990] |\n| 0.15 | 1876 | 10632 | 2023 | 0.999458 | [0.999283, 0.999545] |\n| 0.15 | 1876 | 10632 | 2024 | 0.997849 | [0.996921, 0.998397] |\n| 0.15 | 1876 | 10632 | all | 0.997698 | [0.997344, 0.997998] |\n| 0.20 | 2501 | 10007 | 2023 | 0.999344 | [0.999157, 0.999426] |\n| 0.20 | 2501 | 10007 | 2024 | 0.997483 | [0.996414, 0.998024] |\n| 0.20 | 2501 | 10007 | all | 0.997397 | [0.9970\n…[truncated 867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-23T19:54:33.886240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md') as f:\n    content = f.read()\nidx = content.find('308')\nif idx >= 0:\n    print(content[max(0,idx-200):idx+300])\n\"\n",
+              "description": "Check metabench data summary for 308 value"
+            }
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-23T19:54:33.886371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_017/plan_017_report.md | grep -A 30 \"Part 3\\|z.score\\|z =\"",
+              "description": "Find z-scores in plan_017 report"
+            }
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-23T19:54:33.886495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part 3: DIF vs Random Removal Comparison\n\nNegative z-score = DIF removal causes *more* rank disruption than random.\n\n| Frac | Cohort | ρ DIF | ρ Random (mean±std) | z-score |\n|------|--------|-------|---------------------|---------|\n| 0.05 | 2023 | 0.999846 | 0.999942±0.000009 | -10.20 |\n| 0.05 | 2024 | 0.999351 | 0.999844±0.000042 | -11.70 |\n| 0.05 | all | 0.998926 | 0.999886±0.000033 | -29.07 |\n| 0.10 | 2023 | 0.999641 | 0.999898±0.000010 | -25.12 |\n| 0.10 | 2024 | 0.998676 | 0.999727±0.000095 | -11.00 |\n| 0.10 | all | 0.997700 | 0.999795±0.000042 | -49.44 |\n| 0.15 | 2023 | 0.999458 | 0.999823±0.000031 | -11.71 |\n| 0.15 | 2024 | 0.997849 | 0.999552±0.000151 | -11.28 |\n| 0.15 | all | 0.997698 | 0.999611±0.000157 | -12.22 |\n| 0.20 | 2023 | 0.999344 | 0.999774±0.000046 | -9.42 |\n| 0.20 | 2024 | 0.997483 | 0.999415±0.000152 | -12.72 |\n| 0.20 | all | 0.997397 | 0.999477±0.000171 | -12.15 |\n| 0.25 | 2023 | 0.999192 | 0.999713±0.000040 | -12.89 |\n| 0.25 | 2024 | 0.997558 | 0.999247±0.000203 | -8.33 |\n| 0.25 | all | 0.997049 | 0.999370±0.000163 | -14.26 |\n| 0.30 | 2023 | 0.998865 | 0.999648±0.000041 | -19.02 |\n| 0.30 | 2024 | 0.997229 | 0.999084±0.000227 | -8.16 |\n| 0.30 | all | 0.996451 | 0.999219±0.000244 | -11.35 |\n| 0.38 | 2023 | 0.998644 | 0.999499±0.000065 | -13.18 |\n| 0.38 | 2024 | 0.995266 | 0.998777±0.000326 | -10.76 |\n| 0.38 | all | 0.996645 | 0.998850±0.000241 | -9.16 |\n\n\n## Part 4: Top Rank Movers (all models, full → stable-only)\n\n### Biggest rank *drops* (benefited from DIF items)\n\n| Model | Family | Method | Rank Full | Rank Stable | ΔRank |\n|-------|--------|--------|-----------|-------------|-------|\n--\n4. **Average z-score (DIF vs random)**: -14.91\n5. **Cross-cohort stability**: DIF items show 1.09× the accuracy shift of full benchmark; stable items show 0.96×\n6. **Top-50 rank movers** dominant training methods: unknown (49), DPO (1)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-23T19:54:33.886639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": " models — the dataset likely predates most 2024-H2 releases. The bulk of classified 2024 models are from H1.\n\n### Top Families\n\n| Family | Count |\n|--------|-------|\n| mistral-0.1 | 400 |\n| llama-3 | 308 |\n| llama-2 | 161 |\n| llama-1 | 135 |\n| mixtral-8x7B | 130 |\n| solar | 92 |\n| zephyr | 85 |\n| qwen-1.5 | 67 |\n| phi-2 | 60 |\n\n### Alternative Cohort Strategy\n\nSince 63% of models are unclassified, **name-based cohort assignment is insufficient for fine-grained temporal analysis**. Consider:\n1. U"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-23T19:54:33.886807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_017/plan_017_report.md | grep -A 60 \"Part 3\"",
+              "description": "Read Part 3 of plan_017 report"
+            }
+          },
+          "id": "event-000591"
+        },
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-23T19:54:33.886941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Let me check the exact Llama counts from an earlier analysis\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/within_family_report.md') as f:\n    content = f.read()\nidx = content.find('308')\nif idx >= 0:\n    print('Found 308 in within_family_report:')\n    print(content[max(0,idx-200):idx+300])\nelse:\n    print('308 not found in within_family_report')\n    # Find llama-3 N count\n    idx = content.find('Llama-3')\n    if idx < 0:\n        idx = content.find('llama-3')\n    print(content[max(0,idx-50):idx+200])\n\"\n",
+              "description": "Check within_family_report for Llama-3 N count"
+            }
+          },
+          "id": "event-000592"
+        },
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-23T19:54:33.887078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part 3: DIF vs Random Removal Comparison\n\nNegative z-score = DIF removal causes *more* rank disruption than random.\n\n| Frac | Cohort | ρ DIF | ρ Random (mean±std) | z-score |\n|------|--------|-------|---------------------|---------|\n| 0.05 | 2023 | 0.999846 | 0.999942±0.000009 | -10.20 |\n| 0.05 | 2024 | 0.999351 | 0.999844±0.000042 | -11.70 |\n| 0.05 | all | 0.998926 | 0.999886±0.000033 | -29.07 |\n| 0.10 | 2023 | 0.999641 | 0.999898±0.000010 | -25.12 |\n| 0.10 | 2024 | 0.998676 | 0.999727±0.000095 | -11.00 |\n| 0.10 | all | 0.997700 | 0.999795±0.000042 | -49.44 |\n| 0.15 | 2023 | 0.999458 | 0.999823±0.000031 | -11.71 |\n| 0.15 | 2024 | 0.997849 | 0.999552±0.000151 | -11.28 |\n| 0.15 | all | 0.997698 | 0.999611±0.000157 | -12.22 |\n| 0.20 | 2023 | 0.999344 | 0.999774±0.000046 | -9.42 |\n| 0.20 | 2024 | 0.997483 | 0.999415±0.000152 | -12.72 |\n| 0.20 | all | 0.997397 | 0.999477±0.000171 | -12.15 |\n| 0.25 | 2023 | 0.999192 | 0.999713±0.000040 | -12.89 |\n| 0.25 | 2024 | 0.997558 | 0.999247±0.000203 | -8.33 |\n| 0.25 | all | 0.997049 | 0.999370±0.000163 | -14.26 |\n| 0.30 | 2023 | 0.998865 | 0.999648±0.000041 | -19.02 |\n| 0.30 | 2024 | 0.997229 | 0.999084±0.000227 | -8.16 |\n| 0.30 | all | 0.996451 | 0.999219±0.000244 | -11.35 |\n| 0.38 | 2023 | 0.998644 | 0.999499±0.000065 | -13.18 |\n| 0.38 | 2024 | 0.995266 | 0.998777±0.000326 | -10.76 |\n| 0.38 | all | 0.996645 | 0.998850±0.000241 | -9.16 |\n\n\n## Part 4: Top Rank Movers (all models, full → stable-only)\n\n### Biggest rank *drops* (benefited from DIF items)\n\n| Model | Family | Method | Rank Full | Rank Stable | ΔRank |\n|-------|--------|--------|-----------|-------------|-------|\n| Sao10K/14B-Glacier-Stack | unknown | unknown | 555 | 1406 | +851 |\n| AA051611/A0118 | unknown | unknown | 1169 | 1996 | +827 |\n| DeepMount00/phi_3 | phi-3 | unknown | 736 | 1545 | +809 |\n| Mihaiii/Pallas-0.5-frankenmerge | unknown | unknown | 455 | 1264 | +809 |\n| DeepMount00/Phi-3-Mini-4K-Boost | phi-3 | unknown | 738 | 1546 | +808 |\n| vonjack/phi-3-mini\n…[truncated 1398 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-23T19:54:33.887222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "308 not found in within_family_report\n# Plan 024: Within-Family Deep Dive — Llama-2 vs Llama-3\n\n## Part 1: Llama-2 vs Llama-3\n\n### Score Distributions\n\n| Metric | Llama-2 (N=161) | Llama-3 (N=315) |\n|--------|------------|------------|\n| Mean accuracy | 0.5269 | 0.6475 |\n| SD | 0.1135 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000594"
+        },
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-23T19:54:33.887361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# So metabench_data_summary shows Llama-3: 308 in an earlier version\n# But plan_024 report and model_metadata show 315 (exact llama-3 label)\n# The earlier count of 308 might be from a previous data version\n# or might exclude certain sub-variants\n\n# Let me check the metabench_data_summary.md for the full context\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md') as f:\n    content = f.read()\n# Find the section with 308\nidx = content.find('308')\nprint(content[max(0,idx-500):idx+500])\n\"\n",
+              "description": "Get context around 308 in metabench data summary"
+            }
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-23T19:54:33.887492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": " and unrecognizable names.\n\n### Annual Cohorts\n\n| Year | N models | N ≥ 80? |\n|------|----------|---------|\n| 2021 | 5 | No |\n| 2022 | 13 | No |\n| 2023 | 1,253 | **Yes** |\n| 2024 | 658 | **Yes** |\n\n**Two annual cohorts meet the N≥80 threshold (2023 and 2024).** However, 2024-H2 only has 2 classified models — the dataset likely predates most 2024-H2 releases. The bulk of classified 2024 models are from H1.\n\n### Top Families\n\n| Family | Count |\n|--------|-------|\n| mistral-0.1 | 400 |\n| llama-3 | 308 |\n| llama-2 | 161 |\n| llama-1 | 135 |\n| mixtral-8x7B | 130 |\n| solar | 92 |\n| zephyr | 85 |\n| qwen-1.5 | 67 |\n| phi-2 | 60 |\n\n### Alternative Cohort Strategy\n\nSince 63% of models are unclassified, **name-based cohort assignment is insufficient for fine-grained temporal analysis**. Consider:\n1. Using accuracy-based quintiles as proxy cohorts\n2. Using the RDS train/test split directly (4755/464)\n3. Cross-referencing with HuggingFace Hub metadata for release dates\n\n## RL-trained Models\n\n**477 m"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000596"
+        },
+        {
+          "source_line": 597,
+          "timestamp": "2026-05-23T19:54:33.887638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check difficulty-dependent ΔTPR≈0.41 vs 0.51 from mixed_mechanism_semisynthetic\n# already read: scheme_d C%=35.3, scheme_e C%=34.1 - need ΔTPR at p=0.5\ncat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mixed_mechanism_semisynthetic/scheme_d_results.csv | head -10",
+              "description": "Check scheme_d results for ΔTPR"
+            }
+          },
+          "id": "event-000597"
+        },
+        {
+          "source_line": 598,
+          "timestamp": "2026-05-23T19:54:33.887799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scheme,seed,n_inject_base,n_inject_instruct,n_inject_items,n_flipped_base,n_flipped_instruct,n_flipped_total,rho_overall,rho_ddelta_overall,c_pct_overall,n_c_overall,pct_focal_overall,rho_base,rho_ddelta_base,c_pct_base,n_c_base,pct_focal_base,rho_instruct,rho_ddelta_instruct,c_pct_instruct,n_c_instruct,pct_focal_instruct,chi2_reversal,p_reversal,elapsed_sec\nD_base_diff_instruct_unif,1,164,77,3001,121757,42312,164069,-0.6735766716170853,-0.9060160459082353,34.97761432683083,4375,43.93142857142857,-0.6355133078992963,-0.8793040209009231,37.671889990406136,4712,38.00933786078098,-0.27937425533319565,-0.7134855154281844,37.783818356252,4726,65.7638595006348,726.968192629643,4.0874241186018946e-160,1.2172610759735107\nD_base_diff_instruct_unif,2,164,77,3001,122355,45089,167444,-0.6767212897484215,-0.8768636596121858,34.09018228333866,4264,45.1219512195122,-0.6332638419776755,-0.8545627272755317,36.39270866645347,4552,38.02724077328647,-0.36042686129537177,-0.7021758032690065,37.4080588423409,4679,64.00940371874331,622.359608284548,2.2937839275193187e-137,1.22713041305542\nD_base_diff_instruct_unif,3,164,77,3001,127411,44847,172258,-0.673697292060372,-0.8951509314753945,34.98560921010554,4376,43.4872029250457,-0.6281342399521531,-0.8253091268320575,36.23281100095939,4532,39.58517210944395,-0.39140164428161694,-0.7916825255725379,37.42404860889031,4681,61.58940397350994,445.18862778076607,8.039252959609924e-99,1.8680834770202637\nD_base_diff_instruct_unif,4,164,77,3001,125098,45684,170782,-0.6812021862759863,-0.9364059677613089,38.367444835305406,4799,40.987705772035845,-0.6371712040402486,-0.8987114284346627,39.66261592580748,4961,36.86756702277766,-0.3631442193558,-0.7297062634938113,37.927726255196674,4744,62.98482293423272,660.6488983400108,1.079479216766851e-145,1.7706491947174072\nD_base_diff_instruct_unif,5,164,77,3001,123615,43879,167494,-0.6729273848106917,-0.9043539630705516,34.769747361688516,4349,43.435272476431365,-0.6391666216463695,-0.9090979997930986,38.575311\n…[truncated 1626 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000598"
+        },
+        {
+          "source_line": 599,
+          "timestamp": "2026-05-23T19:54:33.887955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mixed_mechanism_semisynthetic/all_results.csv | head -20",
+              "description": "Read all_results from mixed mechanism"
+            }
+          },
+          "id": "event-000599"
+        },
+        {
+          "source_line": 600,
+          "timestamp": "2026-05-23T19:54:33.888099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scheme,seed,n_inject_base,n_inject_instruct,n_inject_items,n_flipped_base,n_flipped_instruct,n_flipped_total,rho_overall,rho_ddelta_overall,c_pct_overall,n_c_overall,pct_focal_overall,rho_base,rho_ddelta_base,c_pct_base,n_c_base,pct_focal_base,rho_instruct,rho_ddelta_instruct,c_pct_instruct,n_c_instruct,pct_focal_instruct,chi2_reversal,p_reversal,elapsed_sec\nD_base_diff_instruct_unif,1,164,77,3001,121757,42312,164069,-0.6735766716170853,-0.9060160459082353,34.97761432683083,4375,43.93142857142857,-0.6355133078992963,-0.8793040209009231,37.671889990406136,4712,38.00933786078098,-0.27937425533319565,-0.7134855154281844,37.783818356252,4726,65.7638595006348,726.968192629643,4.0874241186018946e-160,1.2172610759735107\nE_base_unif_instruct_diff,1,164,77,3001,98906,55180,154086,-0.6637790191129412,-0.7040291970339788,33.82635113527343,4231,46.18293547624675,-0.6240648314230977,-0.4352522706622211,34.56987527982092,4324,41.327474560592044,-0.40954031812586555,-0.8774893357003645,38.48736808442597,4814,62.06896551724138,391.9625781630919,3.0947411813138303e-87,1.2993569374084473\nD_base_diff_instruct_unif,2,164,77,3001,122355,45089,167444,-0.6767212897484215,-0.8768636596121858,34.09018228333866,4264,45.1219512195122,-0.6332638419776755,-0.8545627272755317,36.39270866645347,4552,38.02724077328647,-0.36042686129537177,-0.7021758032690065,37.4080588423409,4679,64.00940371874331,622.359608284548,2.2937839275193187e-137,1.22713041305542\nE_base_unif_instruct_diff,2,164,77,3001,95039,57282,152321,-0.6675497546683294,-0.7394232757594663,33.00287815797889,4128,46.51162790697674,-0.6254834736704104,-0.45785404416132414,33.490566037735846,4189,41.298639293387446,-0.495911501847601,-0.9229235206212875,38.48736808442597,4814,59.098462816784384,283.234671593744,1.481560332046404e-63,1.2114250659942627\nD_base_diff_instruct_unif,3,164,77,3001,127411,44847,172258,-0.673697292060372,-0.8951509314753945,34.98560921010554,4376,43.4872029250457,-0.6281342399521531,-0.8253091268320575,36.23281100\n…[truncated 5258 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000600"
+        },
+        {
+          "source_line": 601,
+          "timestamp": "2026-05-23T19:54:33.888254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Also verify the ±800 individual displacements claim from score_inflation_report\n# score_inflation_report says: \"individual displacements exceeding ±561 positions (99th percentile)\"\n# but paper says \"±800\". Let me check more carefully.\ngrep -n \"800\\|±800\\|99th\\|percentile\\|max.*rank\\|rank.*max\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation_report.md | head -10",
+              "description": "Verify ±800 individual displacements in score inflation report"
+            }
+          },
+          "id": "event-000601"
+        },
+        {
+          "source_line": 602,
+          "timestamp": "2026-05-23T19:54:33.888387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "90:Despite measurable score changes, the overall ranking is highly preserved (ρ = 0.9965), indicating that DIF primarily shifts absolute scores rather than relative ordering. However, individual models can experience rank displacements exceeding ±561 positions (99th percentile)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000602"
+        },
+        {
+          "source_line": 603,
+          "timestamp": "2026-05-23T19:54:33.888525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# So the earlier metabench_data_summary.md shows llama-3 N=308\n# But the current model_metadata.csv (which was updated) shows 315 for 'llama-3'\n# The paper says 161/308 which matches the earlier count from metabench_data_summary\n\n# The plan_024 report shows 161/315 suggesting model_metadata was updated after the initial analysis\n# Let me check if there's a plan_001 run that used 308 models\n\n# Actually: within_family_dif.csv shows 12508 rows for llama-2 vs llama-3\n# that means MH was run on ALL items for that family comparison\n# The 161 vs 315/308 is just counting unique models\n\n# The key question: does the actual MH DIF run use 308 or 315 models?\n# plan_001_analysis.py uses model_metadata.csv for grouping\n\n# Let me check the current model_metadata llama-3 count again\nimport csv\nllama3 = 0\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv') as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        if row.get('family','').lower() == 'llama-3':\n            llama3 += 1\nprint(f'model_metadata llama-3: {llama3}')\n\n# But what about the within_family analysis - what was run when?\n# Let me check the plan_001 report which was output around the same time\n# plan_001_report mentions llama-2 vs llama-3: C=7672 (61.34%)\n# C% = 61.34% which matches the table 61.3%\n\n# plan_027 report says 161/315\n# metabench_data_summary says 308 (older)\n# paper says 308\n# model_metadata shows 315\n\n# This is a real discrepancy: the paper likely used an old metadata file with 308\n\nprint('DISCREPANCY: paper uses 308 but current model_metadata has 315')\nprint('The 61.3% C% figure is consistent across analyses')\n\"\n",
+              "description": "Investigate Llama-3 count discrepancy between paper and source data"
+            }
+          },
+          "id": "event-000603"
+        },
+        {
+          "source_line": 604,
+          "timestamp": "2026-05-23T19:54:33.888671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check ±800 claim - max rank displacement in score_inflation_report\ngrep -n \"800\\|849\\|Max\\|max.*rank\\|rank.*max\\|max.*disp\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation_report.md | head -10",
+              "description": "Check max rank displacement in score inflation report"
+            }
+          },
+          "id": "event-000604"
+        },
+        {
+          "source_line": 605,
+          "timestamp": "2026-05-23T19:54:33.888813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "model_metadata llama-3: 315\nDISCREPANCY: paper uses 308 but current model_metadata has 315\nThe 61.3% C% figure is consistent across analyses"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000605"
+        },
+        {
+          "source_line": 606,
+          "timestamp": "2026-05-23T19:54:33.888924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "61:| Sao10K/14B-Glacier-Stack | other | base | 0.7047 | 0.7168 | +1.20 | -849 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000606"
+        },
+        {
+          "source_line": 607,
+          "timestamp": "2026-05-23T19:54:33.889050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# From plan_032 cleaned_mmlu_analysis: Min: -589 | Max: 849 (from report)\n# From score_inflation_report: max rank disp = 593 (upward). But plan_032 says max=849 displacement\n# The ±800 claim in the paper refers to the max displacement, not 99th percentile\n# Let me verify from plan_032 main report\ngrep -n \"±800\\|±561\\|max.*rank\\|849\\|589\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation_report.md | head -5\ngrep -n \"849\\|rank.*max\\|Max.*rank\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/plan_032_report.md | head -10",
+              "description": "Find max rank displacement values"
+            }
+          },
+          "id": "event-000607"
+        },
+        {
+          "source_line": 608,
+          "timestamp": "2026-05-23T19:54:33.889193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Let me check what the actual within_family_dif.csv used for N counts\n# The DIF results are per-item so we can't directly get N_models from it\n# But the plan_001 report only mentions the %C, not the model counts\n# Let me look for a report or log that explicitly states model counts for families\n\npython3 -c \"\nimport os, glob\nbase = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/'\n\n# Check all markdown files for '161 / 315' or '161/315' or '161 / 308'\nfor f in glob.glob(base + '**/*.md', recursive=True):\n    try:\n        with open(f) as fh:\n            content = fh.read()\n        if '161 / 315' in content or '161/315' in content:\n            print(f'FOUND 161/315: {f}')\n        if '161 / 308' in content or '161/308' in content:\n            print(f'FOUND 161/308: {f}')\n    except:\n        pass\n\"\n",
+              "description": "Search for explicit Llama N count references in all reports"
+            }
+          },
+          "id": "event-000608"
+        },
+        {
+          "source_line": 609,
+          "timestamp": "2026-05-23T19:54:33.889319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "FOUND 161/315: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/temporal_overlap_report.md\nFOUND 161/315: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_027_temporal_overlap/temporal_overlap_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000609"
+        },
+        {
+          "source_line": 610,
+          "timestamp": "2026-05-23T19:54:33.889447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Only plan_027 report (temporal overlap) uses 161/315\n# The paper says 161/308 which matches the earlier metabench_data_summary\n# When plan_001's within_family_dif.csv was generated, it likely used 308 llama-3 models\n# (the older metadata)\n\n# The current model_metadata shows 315 because metadata was later updated\n# But the actual DIF analysis (plan_001) was likely run with 308\n\n# Key question: does the 61.3% C% value change between 308 and 315 models?\n# Since DIF is run on items not models, probably not significantly\n\n# Let me check if there's an older version of model_metadata or if plan_001 has specific model lists\n\n# Check the plan_001 analysis script for how it reads metadata\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/plan_001_analysis.py') as f:\n    content = f.read()\n\n# Find how it filters for llama families\nfor line in content.split('\\n'):\n    if 'llama' in line.lower() or 'family' in line.lower():\n        print(line)\n\" | head -20\n",
+              "description": "Check plan_001 script for family filtering logic"
+            }
+          },
+          "id": "event-000610"
+        },
+        {
+          "source_line": 611,
+          "timestamp": "2026-05-23T19:54:33.889580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "against Li et al. contamination proxy labels, and performs within-family,\n  model_metadata.csv           — cohort_temporal, cohort_accuracy_quintile, family\n  within_family_dif.csv, cross_analysis.csv, domain_specificity.csv,\n    # ── Step 4: Within-family analysis ─────────────────────────────────────\n    print(\"\\n=== Step 4: Within-family DIF ===\")\n    # Show family × temporal distribution\n    fam_temp = (model_meta.groupby([\"family\", \"cohort_temporal\"])\n    print(\"  Family × temporal counts:\")\n    for fam in [\"llama-2\", \"llama-3\", \"mistral\", \"mixtral\", \"solar\", \"zephyr\"]:\n    family_pairs = []\n    # (A) Cross-family comparisons (related families)\n    llama2_idx = rows_for(\"family\", [\"llama-2\"])\n    llama3_idx = rows_for(\"family\", [\"llama-3\"])\n    if len(llama2_idx) >= 80 and len(llama3_idx) >= 80:\n        family_pairs.append((\"llama-2\", \"llama-3\", llama2_idx, llama3_idx))\n    mistral_idx = rows_for(\"family\", [\"mistral\"])\n    mixtral_idx = rows_for(\"family\", [\"mixtral\"])\n        family_pairs.append((\"mistral\", \"mixtral\", mistral_idx, mixtral_idx))\n    # (B) Within single family, temporal split (where both groups >= 40)\n    for fam in [\"unknown\", \"mistral\", \"llama-3\", \"llama-2\"]:"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000611"
+        },
+        {
+          "source_line": 612,
+          "timestamp": "2026-05-23T19:54:33.889729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "61:| Sao10K/14B-Glacier-Stack | other | base | 0.7047 | 0.7168 | +1.20 | -849 |\n90:Despite measurable score changes, the overall ranking is highly preserved (ρ = 0.9965), indicating that DIF primarily shifts absolute scores rather than relative ordering. However, individual models can experience rank displacements exceeding ±561 positions (99th percentile).\n15:- Min: -589 | Max: 849\n41:| Sao10K/14B-Glacier-Stack | unknown | other | 0.7047 | 0.7168 | 556 | 1405 | 849 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000612"
+        },
+        {
+          "source_line": 613,
+          "timestamp": "2026-05-23T19:54:33.889878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Compute ΔTPR for difficulty-dependent injection from mixed_mechanism\npython3 -c \"\nimport pandas as pd\nimport numpy as np\n\n# From scheme_d_results: these are the injection results at p=0.5 equivalent\n# But the paper is comparing ΔTPR of ~0.41 for difficulty-dependent vs 0.51 for uniform\n# plan_011 shows external/temporal at p=0.5: ΔTPR=+0.508 (uniform)\n# mixed_mechanism scheme_d: what is the TPR?\n\n# From mixed_mechanism_report, scheme D baseline vs injected C% \n# Scheme D overall C%=35.3±1.0 vs baseline C%=31.3%\n# The paper says 'difficulty-dependent injection yields ΔTPR≈0.41 at p=0.5 (vs 0.51 uniform)'\n# This comes from some other plan - let me check if it's plan_011 difficulty variant\n\n# From scheme_d report: n_c_overall mean = 35.3% vs baseline 31.3%, so net ΔTPR≈(35.3-31.3)/100?\n# No - that's C% not TPR. Let me look for TPR data in scheme results \nprint('Need to find TPR from difficulty-dependent injection')\n\"",
+              "description": "Check difficulty-dependent ΔTPR claim"
+            }
+          },
+          "id": "event-000613"
+        },
+        {
+          "source_line": 614,
+          "timestamp": "2026-05-23T19:54:33.890007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Need to find TPR from difficulty-dependent injection"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000614"
+        },
+        {
+          "source_line": 615,
+          "timestamp": "2026-05-23T19:54:33.890135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ -name \"*.md\" 2>/dev/null | xargs grep -l \"0.41\\|difficulty.depend\\|diff.inject\\|weighted.*inject\" 2>/dev/null | grep -v \"__pycache__\\|dream\" | head -10",
+              "description": "Find difficulty-dependent ΔTPR=0.41 source"
+            }
+          },
+          "id": "event-000615"
+        },
+        {
+          "source_line": 616,
+          "timestamp": "2026-05-23T19:54:33.890258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/rank_displacement_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/icc_family_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/gsm1k_data_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/restricted_rho_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/plan_004_step2_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/phase2_results.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/mf2_thresholds.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/open_closed_dif_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/power_calibration_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/phase2_results_5c7f57.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000616"
+        },
+        {
+          "source_line": 617,
+          "timestamp": "2026-05-23T19:54:33.890405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/plan_004_step2_report.md | head -80",
+              "description": "Read plan_004_step2 for difficulty-dependent ΔTPR"
+            }
+          },
+          "id": "event-000617"
+        },
+        {
+          "source_line": 618,
+          "timestamp": "2026-05-23T19:54:33.890542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Plan 004 Step 2: GSM8K Semi-Synthetic DIF Injection\n\n## 1. Objective\n\nInject known differential contamination into GSM8K response data and test whether\nMH-DIF detects it. Validates that the DIF methodology works on GSM8K (single-domain,\nmath benchmark) and enables comparison with MMLU results from plan_011.\n\n## 2. Setup\n\n- **Benchmark**: GSM8K (1319 items)\n- **Contaminated items**: 264 (20% of 1319)\n- **Injection probabilities**: [0.0, 0.3, 0.5, 0.7, 1.0]\n- **Seeds per p-level**: 5\n- **Cohort**: temporal, ref=2023 (N=1017), foc=2024 (N=804)\n- **External cohort**: ref (N=1017), foc (N=804)\n- **Focal inject (standard)**: 779 models in accuracy overlap [0.0000, 0.7589]\n- **Focal inject (external)**: 779 models\n\n### Matching variants\n\n| Variant | Matching variable | Properties |\n|---------|-------------------|------------|\n| standard | purified GSM8K total score | Contaminated by injection (20% items affected) |\n| external | avg proportion correct on ARC+HellaSwag+TruthfulQA+Winogrande | Immune to GSM8K injection |\n\n## 3. Dose-Response Results\n\n### Standard matching\n\n| p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |\n|---|----------------|----------------|------|-----------|----------|\n| 0.0 | 0.182±0.039 | 0.191±0.010 | +0.000 | 0.97 | 0.1349 |\n| 0.3 | 0.741±0.017 | 0.256±0.007 | +0.559 | 8.32 | 0.0000 |\n| 0.5 | 0.931±0.006 | 0.367±0.002 | +0.749 | 23.42 | 0.0000 |\n| 0.7 | 1.000±0.000 | 0.476±0.010 | +0.818 | inf | 0.0000 |\n| 1.0 | 1.000±0.000 | 0.645±0.012 | +0.818 | inf | 0.0000 |\n\n### External matching\n\n| p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |\n|---|----------------|----------------|------|-----------|----------|\n| 0.0 | 0.483±0.028 | 0.471±0.007 | +0.000 | 1.06 | 0.5352 |\n| 0.3 | 0.970±0.015 | 0.471±0.007 | +0.486 | 43.68 | 0.0000 |\n| 0.5 | 0.998±0.002 | 0.471±0.007 | +0.514 | inf | 0.0000 |\n| 0.7 | 1.000±0.000 | 0.471±0.007 | +0.517 | inf | 0.0000 |\n| 1.0 | 1.000±0.000 | 0.471±0.007 | +0.517 | inf | 0.0000 |\n\n## 4. \n…[truncated 1012 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000618"
+        },
+        {
+          "source_line": 619,
+          "timestamp": "2026-05-23T19:54:33.890697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Find ΔTPR≈0.41 for difficulty-dependent injection\nfind /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ -name \"*.md\" 2>/dev/null | xargs grep -l \"0.41.*ΔTPR\\|ΔTPR.*0.41\\|diff.*depend.*0.41\\|weighted.*0.41\" 2>/dev/null | grep -v \"__pycache__\\|dream\" | head -5",
+              "description": "Find ΔTPR=0.41 from difficulty-dependent injection"
+            }
+          },
+          "id": "event-000619"
+        },
+        {
+          "source_line": 620,
+          "timestamp": "2026-05-23T19:54:33.890880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_17.md\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_16.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000620"
+        },
+        {
+          "source_line": 621,
+          "timestamp": "2026-05-23T19:54:33.891019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check plan_016 (within_subject) for ΔTPR 0.41 vs 0.51 comparison  \n# From within-subject report: average ΔTPR was 0.211 at p=0.5\n# Let me look at plan_011 with difficulty weighting\ngrep -rn \"0.41\\|0.420\\|difficulty.*weight\\|weight.*inject\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/ --include=\"*.md\" 2>/dev/null | head -10",
+              "description": "Find difficulty-weighted injection result"
+            }
+          },
+          "id": "event-000621"
+        },
+        {
+          "source_line": 622,
+          "timestamp": "2026-05-23T19:54:33.891143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000622"
+        },
+        {
+          "source_line": 623,
+          "timestamp": "2026-05-23T19:54:33.891266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check dose_response_summary.csv in plan_011\ncat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/dose_response_summary.csv | head -20",
+              "description": "Read plan_011 dose response summary"
+            }
+          },
+          "id": "event-000623"
+        },
+        {
+          "source_line": 624,
+          "timestamp": "2026-05-23T19:54:33.891391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "p,cohort_type,mh_variant,tpr_mean,tpr_std,fpr_mean,fpr_std,fisher_or_mean,fisher_p_median\n0.0,ability,anchor,0.6,0.05958187643906492,0.5955,0.021607290436331923,1.0425176402092453,0.48934843949095175\n0.0,ability,external,0.49800000000000005,0.040865633483405106,0.493,0.010216408370851257,1.0376862626110337,0.5025492358221133\n0.0,ability,standard,0.5940000000000001,0.052725705305856276,0.6114999999999999,0.013181426326464086,0.9605839309463293,0.4231473007797394\n0.0,temporal,anchor,0.31400000000000006,0.053197744313081545,0.307,0.01848986208710059,1.0651659083562441,0.5465028509582752\n0.0,temporal,external,0.32599999999999996,0.03507135583350037,0.3135,0.008767838958375098,1.0732098198053222,0.7202868041451116\n0.0,temporal,standard,0.308,0.046583258795408464,0.298,0.011645814698852104,1.0740528244958572,0.8081326220818719\n0.3,ability,anchor,0.7000000000000001,0.051478150704934986,0.5955,0.021607290436331923,1.6418565717967872,0.17314822982263203\n0.3,ability,external,0.662,0.04438468204234428,0.493,0.010216408370851257,2.069855540970715,0.005067695426382491\n0.3,ability,standard,0.7,0.05700877125495689,0.6094999999999999,0.02570262632494974,1.584939735800224,0.25548738941208027\n0.3,temporal,anchor,0.5219999999999999,0.05357238094391551,0.307,0.01848986208710059,2.4925140255423237,0.00010073571834208619\n0.3,temporal,external,0.548,0.03271085446759225,0.3135,0.008767838958375098,2.674044460691511,1.621363555997074e-05\n0.3,temporal,standard,0.42400000000000004,0.05856620185738529,0.3895,0.017624556732014567,1.1840390749023468,0.6434635572662124\n0.5,ability,anchor,0.764,0.03781534080237811,0.5955,0.021607290436331923,2.238876999052195,0.001423732852816243\n0.5,ability,external,0.756,0.04098780306383843,0.493,0.010216408370851257,3.307777208034717,5.631291377561033e-07\n0.5,ability,standard,0.76,0.04636809247747853,0.5995,0.02057000243072422,2.2105804398056343,0.006744942166107429\n0.5,temporal,anchor,0.806,0.033615472627943205,0.307,0.01848986208710059,9.594426178873977,9.756\n…[truncated 377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000624"
+        },
+        {
+          "source_line": 625,
+          "timestamp": "2026-05-23T19:54:33.891545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# The plan_001 script uses family='llama-3' from model_metadata.csv\n# At the time it was run, model_metadata had 308 llama-3 models\n# Current model_metadata has 315 (updated)\n# The paper's 308 is consistent with what was used in the analysis\n\n# Now let me compile all the findings\n\n# Summary of verified values\nprint('=== TABLE 1 VERIFICATION ===')\nprint()\nprint('Row: Temporal (2023 vs 2024)')\nprint('  N_ref/N_focal = 1080/807 -> plan_001: N=1080/N=807 MATCH')\nprint('  C% = 31.3 -> dif_summary.csv: 31.32% MATCH')\nprint('  C% (web-clean) = 0.318 -> plan_001: fpr_vs_li_clean=0.3184 MATCH')\nprint('  Enrich = 0.964 -> plan_001: enrichment_ratio=0.9641 MATCH')\nprint()\nprint('Row: Ability quintile (Q1-2 vs Q4-5)')\nprint('  N_ref/N_focal = ~2600/~2600 -> model_metadata: Q1-2=2092, Q4-5=2089 MISMATCH')\nprint('  C% = 2.9 -> dif_summary.csv: 2.9021% MATCH')\nprint('  C% (web-clean) = 0.027 -> plan_001: fpr_vs_li_clean=0.0269 MATCH')\nprint('  Enrich = 1.19 -> plan_001: enrichment_ratio=1.1949 MATCH')\nprint()\nprint('Row: Within-family (Llama-2 vs 3)')\nprint('  N_ref/N_focal = 161/308 -> model_metadata: 161/315, plan_027: 161/315 MISMATCH (~7 off)')\nprint('    (earlier metabench_data_summary.md says 308 -- stale metadata)')\nprint('  C% = 61.3 -> within_family analysis: 61.34% MATCH')\nprint()\nprint('Row: Random split 2023 (sanity)')\nprint('  N = 540/540 -> random_split_report.md: N=540/540 MATCH')\nprint('  C% = 0.62 -> _project/data/random_split_report.md: mean null C%=0.6247% MATCH')\nprint()\nprint('Row: Random split 2024 (sanity)')\nprint('  N = ~400/~400 -> r15_random_split_control: ~403/404 MATCH')\nprint('  C% = 1.3 -> r15_random_split_report: mean C%=1.335% (rounds to 1.3%) MATCH')\nprint()\nprint('Row: Within-subject (avg, 5 subj.)')\nprint('  N = varies (ok)')\nprint('  C% = 38.1 -> plan_014: average within-subject C%=38.1% MATCH')\n\"\n",
+              "description": "Compile Table 1 verification results"
+            }
+          },
+          "id": "event-000625"
+        },
+        {
+          "source_line": 626,
+          "timestamp": "2026-05-23T19:54:33.891697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Search for the difficulty-dependent 0.41 and 20% overestimation in plan dirs\ngrep -rn \"0.420\\|0.41.*tpr\\|tpr.*0.41\\|difficulty.*injection\\|inject.*difficulty\\|20.*over\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ --include=\"*.md\" 2>/dev/null | grep -v \"dream\" | head -20",
+              "description": "Find 0.41 ΔTPR and 20% overestimation source"
+            }
+          },
+          "id": "event-000626"
+        },
+        {
+          "source_line": 627,
+          "timestamp": "2026-05-23T19:54:33.891865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary.md:127:**YES, but only 2 annual cohorts (2023, 2024).** With 63% unclassified models, name-based classification has limited coverage. For finer temporal granularity, external metadata (HF Hub API) would be needed.\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/semisynthetic_gradient_report.md:108:## Key Comparison: ρ(difficulty, Δδ) — injection signal isolated\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary_ec3bbf.md:127:**YES, but only 2 annual cohorts (2023, 2024).** With 63% unclassified models, name-based classification has limited coverage. For finer temporal granularity, external metadata (HF Hub API) would be needed.\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/arr_checklist_draft.md:28:**Justification**: All artifacts are cited: METABENCH (Kipnis, 2024), MMLU (Hendrycks et al., 2021), GSM8K, HellaSwag (Zellers et al., 2019), ARC, WinoGrande, TruthfulQA, PSN-IRT (Zhou et al., 2026), and the web-overlap contamination labels (Li et al., 2024). The ETS classification system and MH method (Holland & Thayer, 1988) are also cited.\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/arr_checklist_draft.md:44:**Justification**: §2 and §4 describe the METABENCH dataset dimensions (5,227 models × 12,508 MMLU items), temporal cohort definitions (2023 vs. 2024 by release date, N_ref=1,080, N_focal=807), and cross-benchmark coverage (6 benchmarks with item counts in Table 5). MMLU's 57-subject domain structure is discussed with subject-level DIF rates.\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/circularity_ablation_report.md:72\n…[truncated 6463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000627"
+        },
+        {
+          "source_line": 628,
+          "timestamp": "2026-05-23T19:54:33.892023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_16.md | grep -n \"0.41\\|0.51\\|difficulty.*dep\\|overestim\" | head -20",
+              "description": "Check round_16 review for 0.41 ΔTPR"
+            }
+          },
+          "id": "event-000628"
+        },
+        {
+          "source_line": 629,
+          "timestamp": "2026-05-23T19:54:33.892162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5:timestamp: 2026-05-23T10:41:35.678595+00:00\n99:Uniform binary flipping 是检测的 best-case scenario。论文已加 difficulty-dependent injection（ΔTPR ≈ 0.41 vs 0.51 uniform, ~20% reduction）和 \"stylized/may overestimate\" 措辞，改善明显。残余问题：instruct 模型残差 gap 13×（无法复制 near-zero direction reversal）。\n138:**Q4.** Difficulty × model-type interaction 能解释多大比例的 observed temporal DIF？是否存在 difficulty-dependent capability improvements（无 contamination）即可产生类似幅度 DIF 的可能性？"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000629"
+        },
+        {
+          "source_line": 630,
+          "timestamp": "2026-05-23T19:54:33.892299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/semisynthetic_gradient_report.md | head -80",
+              "description": "Read semisynthetic gradient report for ΔTPR=0.41"
+            }
+          },
+          "id": "event-000630"
+        },
+        {
+          "source_line": 631,
+          "timestamp": "2026-05-23T19:54:33.892432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# R19 Exp 4 — Difficulty-Dependent Semi-Synthetic Injection\n\n**Date**: 2026-05-22 19:01\n\n**Config**: 5 seeds, 1080 ref models (2023), 807 foc models (2024), 12508 items\n\n**Injection**: 242 foc models (30%), ~3001 items (24%)\n\n\n## Baseline (no injection)\n\n- C%: 31.32%\n- ρ(difficulty, δ_MH) among C: -0.587\n- % focal-favoring (δ>0): 43.9%\n- % ref-favoring (δ<0): 56.1%\n- N DIF-C: 3918\n\n## Scheme A — Capability\n\n| Metric | Mean ± SD |\n|--------|-----------|\n| C% (all items) | 31.88 ± 0.65 |\n| C% (injected items) | 27.33 ± 0.94 |\n| C% (non-injected) | 33.32 ± 0.82 |\n| ρ(diff, δ) all C | -0.532 ± 0.021 |\n| ρ(diff, δ) injected C | -0.229 ± 0.058 |\n| **ρ(diff, Δδ) injected items** | **0.771 ± 0.029** |\n| ρ(diff, Δδ) all items | -0.160 ± 0.131 |\n| % focal-favoring (all C, δ>0) | 45.8 ± 1.3 |\n| % focal-favoring (inj C, δ>0) | 85.2 ± 1.5 |\n| N DIF-C items | 3988 ± 81 |\n| N DIF-C (injected) | 820 ± 28 |\n| Newly flagged C | 725 ± 74 |\n| Mean Δδ (injected items) | 0.796 ± 0.049 |\n| Responses flipped | 102528 ± 3208 |\n| Items injected | 3001 |\n\n### Quintile Breakdown\n\n| Quintile | C% (all) | C% (inj) | % Focal | Mean Δδ (inj) | N_C | N_inj |\n|----------|----------|----------|---------|---------------|-----|-------|\n| Q1 | 34.1 | 35.4 | 88.4 | -0.080 | 853 | 585 |\n| Q2 | 38.5 | 35.9 | 60.3 | 0.426 | 961 | 602 |\n| Q3 | 32.4 | 30.0 | 33.3 | 1.045 | 811 | 620 |\n| Q4 | 31.4 | 24.5 | 21.0 | 1.378 | 777 | 596 |\n| Q5 | 23.2 | 10.9 | 10.0 | 1.188 | 587 | 598 |\n\n## Scheme B — Contamination\n\n| Metric | Mean ± SD |\n|--------|-----------|\n| C% (all items) | 32.07 ± 0.79 |\n| C% (injected items) | 39.22 ± 6.34 |\n| C% (non-injected) | 31.46 ± 0.23 |\n| ρ(diff, δ) all C | -0.599 ± 0.015 |\n| ρ(diff, δ) injected C | -0.729 ± 0.047 |\n| **ρ(diff, Δδ) injected items** | **-0.517 ± 0.107** |\n| ρ(diff, Δδ) all items | 0.181 ± 0.136 |\n| % focal-favoring (all C, δ>0) | 43.6 ± 0.4 |\n| % focal-favoring (inj C, δ>0) | 85.7 ± 3.4 |\n| N DIF-C items | 4011 ± 99 |\n| N DIF-C (injected) | 351 ± 136 |\n| Newly flagged \n…[truncated 581 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000631"
+        },
+        {
+          "source_line": 632,
+          "timestamp": "2026-05-23T19:54:33.892583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== TABLE 1 VERIFICATION ===\n\nRow: Temporal (2023 vs 2024)\n  N_ref/N_focal = 1080/807 -> plan_001: N=1080/N=807 MATCH\n  C% = 31.3 -> dif_summary.csv: 31.32% MATCH\n  C% (web-clean) = 0.318 -> plan_001: fpr_vs_li_clean=0.3184 MATCH\n  Enrich = 0.964 -> plan_001: enrichment_ratio=0.9641 MATCH\n\nRow: Ability quintile (Q1-2 vs Q4-5)\n  N_ref/N_focal = ~2600/~2600 -> model_metadata: Q1-2=2092, Q4-5=2089 MISMATCH\n  C% = 2.9 -> dif_summary.csv: 2.9021% MATCH\n  C% (web-clean) = 0.027 -> plan_001: fpr_vs_li_clean=0.0269 MATCH\n  Enrich = 1.19 -> plan_001: enrichment_ratio=1.1949 MATCH\n\nRow: Within-family (Llama-2 vs 3)\n  N_ref/N_focal = 161/308 -> model_metadata: 161/315, plan_027: 161/315 MISMATCH (~7 off)\n    (earlier metabench_data_summary.md says 308 -- stale metadata)\n  C% = 61.3 -> within_family analysis: 61.34% MATCH\n\nRow: Random split 2023 (sanity)\n  N = 540/540 -> random_split_report.md: N=540/540 MATCH\n  C% = 0.62 -> _project/data/random_split_report.md: mean null C%=0.6247% MATCH\n\nRow: Random split 2024 (sanity)\n  N = ~400/~400 -> r15_random_split_control: ~403/404 MATCH\n  C% = 1.3 -> r15_random_split_report: mean C%=1.335% (rounds to 1.3%) MATCH\n\nRow: Within-subject (avg, 5 subj.)\n  N = varies (ok)\n  C% = 38.1 -> plan_014: average within-subject C%=38.1% MATCH"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 1
+          },
+          "id": "event-000632"
+        },
+        {
+          "source_line": 633,
+          "timestamp": "2026-05-23T19:54:33.892747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nprint('=== TABLE 2 VERIFICATION ===')\nprint()\nprint('Row: Baseline (ext.)')\nprint('  Mechanism = Cross-bench total score (OK, descriptive)')\nprint('  Temp C% = 0.314±.009 -> plan_011/plan_012 external_5: FPR=0.314±0.009 MATCH')\nprint('  TPR(p=0.5) = 0.834±.027 -> plan_011 external_5 temporal p=0.5: TPR=0.834±0.027 MATCH')\nprint('  Outcome = Reference (OK, descriptive)')\nprint()\nprint('Row: Matched-ability')\nprint('  Mechanism = Within-quintile temp DIF (OK, descriptive)')\nprint('  Temp C% = ~0.31 -> plan_027 NN matched: 28.9%; r22 composition: 30.25%')\nprint('    The ~0.31 claim is INCONSISTENT with best source (plan_027 NN matched = 28.9%)')\nprint('    plan_001b CMH gives 33.3%; r22 gives 30.25%; NN gives 28.9%')\nprint('    No source gives exactly ~31% for ability-matched temporal DIF')\nprint('  TPR = -- (N/A, consistent)')\nprint('  Enrich = 0.94-1.04 -> plan_001b per-quintile: Q1=1.04, Q2=0.94, Q3=0.97, Q4=0.99, Q5=0.96')\nprint('    Range 0.94-1.04 = correct MATCH')\nprint()\nprint('Row: theta-cond (sens.)')\nprint('  Temp C% = 0.312 -> plan_012 theta_qt_20: FPR=0.312±0.008 MATCH')\nprint('  TPR(p=0.5) = 0.876 -> plan_012 theta_qt_20: TPR@p=0.5=0.876 MATCH')\nprint('  r(theta,total) = 0.9986 -> plan_012: correlation = 0.9986 MATCH')\nprint()\nprint('Row: Within-subject')\nprint('  C% = 38.1% -> plan_014: average C%=38.1% MATCH')\nprint('  TPR = -- (consistent with no injection shown for within-subject)')\n\"\n",
+              "description": "Compile Table 2 verification results"
+            }
+          },
+          "id": "event-000633"
+        },
+        {
+          "source_line": 634,
+          "timestamp": "2026-05-23T19:54:33.892894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== TABLE 2 VERIFICATION ===\n\nRow: Baseline (ext.)\n  Mechanism = Cross-bench total score (OK, descriptive)\n  Temp C% = 0.314±.009 -> plan_011/plan_012 external_5: FPR=0.314±0.009 MATCH\n  TPR(p=0.5) = 0.834±.027 -> plan_011 external_5 temporal p=0.5: TPR=0.834±0.027 MATCH\n  Outcome = Reference (OK, descriptive)\n\nRow: Matched-ability\n  Mechanism = Within-quintile temp DIF (OK, descriptive)\n  Temp C% = ~0.31 -> plan_027 NN matched: 28.9%; r22 composition: 30.25%\n    The ~0.31 claim is INCONSISTENT with best source (plan_027 NN matched = 28.9%)\n    plan_001b CMH gives 33.3%; r22 gives 30.25%; NN gives 28.9%\n    No source gives exactly ~31% for ability-matched temporal DIF\n  TPR = -- (N/A, consistent)\n  Enrich = 0.94-1.04 -> plan_001b per-quintile: Q1=1.04, Q2=0.94, Q3=0.97, Q4=0.99, Q5=0.96\n    Range 0.94-1.04 = correct MATCH\n\nRow: theta-cond (sens.)\n  Temp C% = 0.312 -> plan_012 theta_qt_20: FPR=0.312±0.008 MATCH\n  TPR(p=0.5) = 0.876 -> plan_012 theta_qt_20: TPR@p=0.5=0.876 MATCH\n  r(theta,total) = 0.9986 -> plan_012: correlation = 0.9986 MATCH\n\nRow: Within-subject\n  C% = 38.1% -> plan_014: average C%=38.1% MATCH\n  TPR = -- (consistent with no injection shown for within-subject)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000634"
+        },
+        {
+          "source_line": 635,
+          "timestamp": "2026-05-23T19:54:33.893038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/semisynthetic_gradient_report.md | grep -A 50 \"Scheme C\" | head -50",
+              "description": "Read Scheme C from gradient report"
+            }
+          },
+          "id": "event-000635"
+        },
+        {
+          "source_line": 636,
+          "timestamp": "2026-05-23T19:54:33.893171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Scheme C — Mixed\n\n| Metric | Mean ± SD |\n|--------|-----------|\n| C% (all items) | 31.98 ± 0.54 |\n| C% (injected items) | 31.28 ± 2.87 |\n| C% (non-injected) | 32.18 ± 0.25 |\n| ρ(diff, δ) all C | -0.561 ± 0.017 |\n| ρ(diff, δ) injected C | -0.496 ± 0.028 |\n| **ρ(diff, Δδ) injected items** | **0.394 ± 0.053** |\n| ρ(diff, Δδ) all items | -0.008 ± 0.101 |\n| % focal-favoring (all C, δ>0) | 45.8 ± 1.6 |\n| % focal-favoring (inj C, δ>0) | 83.8 ± 2.7 |\n| N DIF-C items | 4000 ± 67 |\n| N DIF-C (injected) | 749 ± 99 |\n| Newly flagged C | 626 ± 51 |\n| Mean Δδ (injected items) | 0.850 ± 0.039 |\n| Responses flipped | 93752 ± 14432 |\n| Items injected | 2407 |\n\n### Quintile Breakdown\n\n| Quintile | C% (all) | C% (inj) | % Focal | Mean Δδ (inj) | N_C | N_inj |\n|----------|----------|----------|---------|---------------|-----|-------|\n| Q1 | 37.2 | 53.8 | 89.2 | 0.600 | 931 | 469 |\n| Q2 | 39.1 | 36.4 | 60.0 | 0.554 | 978 | 493 |\n| Q3 | 32.6 | 30.1 | 29.5 | 0.926 | 815 | 467 |\n| Q4 | 29.7 | 23.6 | 17.8 | 1.169 | 735 | 474 |\n| Q5 | 21.4 | 12.5 | 8.3 | 1.029 | 542 | 503 |\n\n## Key Comparison: ρ(difficulty, Δδ) — injection signal isolated\n\nΔδ = δ_after − δ_baseline isolates the injection-induced DIF shift.\n\n| Scheme | ρ(diff, Δδ) injected | ρ(diff, Δδ) all | Expected |\n|--------|---------------------|-----------------|----------|\n| A_capability | 0.771 ± 0.029 | -0.160 ± 0.131 | positive (easy→more focal DIF) |\n| B_contamination | -0.517 ± 0.107 | 0.181 ± 0.136 | ≈ 0 (uniform) |\n| C_mixed | 0.394 ± 0.053 | -0.008 ± 0.101 | intermediate |\n\n## Interpretation\n\n**Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring. Δδ = δ_after − δ_before; positive Δδ = injection shifted item toward focal-favoring.\n\n### Key finding: three schemes produce cleanly separable ρ(diff, Δδ) signatures\n\n1. **Scheme A** (capability-like): ρ(diff, Δδ) ≈ **+0.77**. Injection probability ∝ item accuracy → easy items receive more flips → larger focal-favoring Δδ on easy items. Strong positive correlation.\n2. *\n…[truncated 429 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000636"
+        },
+        {
+          "source_line": 637,
+          "timestamp": "2026-05-23T19:54:33.893336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"0.41\\|ΔTPR\\|delta.*tpr\\|tpr.*delta\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/semisynthetic_gradient_report.md | head -15",
+              "description": "Find ΔTPR values in gradient report"
+            }
+          },
+          "id": "event-000637"
+        },
+        {
+          "source_line": 638,
+          "timestamp": "2026-05-23T19:54:33.893462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000638"
+        },
+        {
+          "source_line": 639,
+          "timestamp": "2026-05-23T19:54:33.893641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete audit:\n\n---\n\n## Table 1 核查\n\n- Cell [Temporal, N_ref/N_focal] = 1,080 / 807 ← `plan_001/dif_summary.csv` + `plan_029_permutation_null/run_final.log`: N_ref=1080, N_foc=807 ✅\n- Cell [Temporal, C%] = 31.3 ← `plan_001/dif_summary.csv`: pct_c=31.3240% ✅\n- Cell [Temporal, C% (web-clean)] = 0.318 ← `plan_001/dif_summary.csv`: fpr_vs_li_clean=0.31840 ✅\n- Cell [Temporal, Enrich.] = 0.964 ← `plan_001/dif_summary.csv`: enrichment_ratio=0.96415 ✅\n\n- Cell [Ability quintile, N_ref/N_focal] = ~2,600 / ~2,600 ← `model_metadata.csv` + `plan_001_report.md`: Q1-2=2,092, Q4-5=2,089 ❌ (paper overstates by ~500 per group; source consistently shows 2,092/2,089)\n- Cell [Ability quintile, C%] = 2.9 ← `plan_001/dif_summary.csv`: pct_c=2.9021% ✅\n- Cell [Ability quintile, C% (web-clean)] = 0.027 ← `plan_001/dif_summary.csv`: fpr_vs_li_clean=0.026862 ✅\n- Cell [Ability quintile, Enrich.] = 1.19 ← `plan_001/dif_summary.csv`: enrichment_ratio=1.1949 ✅\n\n- Cell [Within-family, N_ref/N_focal] = 161 / 308 ← `model_metadata.csv` (current): llama-2=161, llama-3=315; `plan_027_temporal_overlap/temporal_overlap_report.md`: 161/315 ⚠️ (paper matches an earlier metadata version that shows 308; current data shows 315. The earlier count of 308 appears in `artifacts/metabench_data_summary.md`. The 61.3% C% is unaffected either way.)\n- Cell [Within-family, C%] = 61.3 ← `plan_001_real_data_dif_mmlu/report/plan_001_report.md`: llama-2 vs llama-3 C=7672 (61.34%) ✅\n\n- Cell [Random split 2023, N] = 540 / 540 ← `artifacts/_project/data/random_split_report.md`: \"100 random permutations (each 540 ref vs 540 foc)\" ✅\n- Cell [Random split 2023, C%] = 0.62 ← `artifacts/_project/data/random_split_report.md`: \"Mean null C% per split: 0.6247%\" ✅\n\n- Cell [Random split 2024, N] = ~400 / ~400 ← `r15_random_split_control/random_split_report.md`: 807 models split 50/50 → ~403/404 ✅\n- Cell [Random split 2024, C%] = 1.3 ← `r15_random_split_control/random_split_report.md`: mean C%=1.335% ✅\n\n- Cell [Within-subject\n…[truncated 2630 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Agent",
+            "elapsed_ms": 92
+          },
+          "id": "event-000639"
+        },
+        {
+          "source_line": 640,
+          "timestamp": "2026-05-23T19:54:33.893902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on all the data gathered, here is the complete audit report:\n\n---\n\n## §5.1 Validation: DIF Detection Power\n\n- `N ≥ 80` per cohort threshold ← dif_phase2_results.csv: N=80 rows present ✅\n- `TPR of 0.68--0.80` (ETS C, uniform injection, |Δ_MH|≥1.4) ← dif_phase2_results.csv: N=80,delta=1.4: ets_c_tpr=0.6823; N=80,delta=1.6: ets_c_tpr=0.7223; N=100,delta=1.4: ets_c_tpr=0.7582; N=100,delta=1.6: ets_c_tpr=0.7966 → range 0.68–0.80 spans both N=80 and N=100 rows ✅\n- `AUC of 0.93--0.94` (|Δ_MH|≥1.4) ← dif_phase2_results.csv: N=80,delta=1.4: auc=0.8950; N=80,delta=1.6: auc=0.8936; N=100,delta=1.4: auc=0.9231; N=100,delta=1.6: auc=0.9254 → 0.93–0.94 only matches N=100 rows; N=80 AUC=0.89–0.90 ⚠️ (range accurate if referencing N=100, but paper says \"at N≥80\" implying N=80 suffices; AUC at N=80 is ~0.89–0.90, not 0.93–0.94)\n- `ā = 1.2` ← sf8_power_sensitivity/sf8_report.md: PSN-IRT a mean=1.197 → rounds to 1.2 ✅\n- `b̄ = -0.84` ← sf8_power_sensitivity/sf8_report.md: b mean=-0.838 → rounds to -0.84 ✅\n- `N_ref = 1,080` ← plan_001/dif_summary.csv: N_ref=1080 ✅\n- `N_focal = 807` ← plan_001/dif_summary.csv: N_focal=807 ✅\n- `TPR 0.40--0.95 across a = 0.5--2.0` ← sf8_report.md: TPR range 0.398–0.949 → rounds to 0.40–0.95 ✅\n\n## §5.2 Temporal DIF: ~29% of Items Exhibit Differential Functioning\n\n- `31.3%` ETS C classification ← plan_001/dif_summary.csv: 31.323% ✅\n- `|Δ_MH| ≥ 1.5` threshold used ← plan_001/dif_summary.csv: criterion confirmed ✅\n- bootstrap 95% CI `[29.4%, 38.1%]` (model-level) ← sf1_cluster_bootstrap/bootstrap_results.csv: computed [29.2%, 37.8%] ⚠️ (paper's lower bound 29.4% vs computed 29.2%; upper bound 38.1% vs computed 37.8%)\n- family-level cluster bootstrap `[26.7%, 53.2%]` ← sf1_cluster_bootstrap/cluster_bootstrap_ci.md: [26.73%, 53.17%] → rounds to [26.7%, 53.2%] ✅\n- simple-mean DEFF → `29.2%` ← mf2_deff_estimation/deff_summary.md: 29.2% ✅\n- weighted-mean DEFF → `13.5%` ← mf2_deff_estimation/deff_summary.md: 13.5% ✅\n- under weighted-mean DEFF: `ρ = 0.999` ← _p\n…[truncated 8505 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Agent",
+            "elapsed_ms": 81
+          },
+          "id": "event-000640"
+        },
+        {
+          "source_line": 641,
+          "timestamp": "2026-05-23T19:54:33.894110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/sf1_cluster_bootstrap/bootstrap_results.csv 2>/dev/null | head -5",
+              "description": "Check bootstrap CI source"
+            }
+          },
+          "id": "event-000641"
+        },
+        {
+          "source_line": 642,
+          "timestamp": "2026-05-23T19:54:33.894246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bootstrap_type,iteration,c_pct\ncluster,0,0.3675247841381516\ncluster,1,0.37663895107131434\ncluster,2,0.43316277582347296\ncluster,3,0.3580108730412536"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000642"
+        },
+        {
+          "source_line": 643,
+          "timestamp": "2026-05-23T19:54:33.894370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dif_phase2_results.csv 2>/dev/null | head -3 && echo \"---\" && grep \"N_per_group,80\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dif_phase2_results.csv 2>/dev/null | head -5",
+              "description": "Check AUC at N=80"
+            }
+          },
+          "id": "event-000643"
+        },
+        {
+          "source_line": 644,
+          "timestamp": "2026-05-23T19:54:33.894492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "n_per_group,delta,method,tpr_raw,fpr_raw,tpr_bh,fpr_bh,ets_c_tpr,ets_c_fpr,auc,n_reps,verdict\n50,0.8,MH,0.2411,0.0273,0.0127,0.0001,0.2346,0.027,0.7302,1000,N/A\n50,0.8,LR,0.3036,0.0641,0.0334,0.0011,,,0.7105,1000,N/A\n---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000644"
+        },
+        {
+          "source_line": 645,
+          "timestamp": "2026-05-23T19:54:33.894614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf2_practical_significance/benchmark_rho_summary.csv 2>/dev/null",
+              "description": "Check τ and flip rate across benchmarks"
+            }
+          },
+          "id": "event-000645"
+        },
+        {
+          "source_line": 646,
+          "timestamp": "2026-05-23T19:54:33.894758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "benchmark,n_items_total,n_items_c,n_items_stable,pct_c,n_models,spearman_rho,spearman_p,kendall_tau,flip_rate\nTruthfulQA,817,243,574,29.74,5228,0.997123,0.00e+00,0.958635,0.020682\nARC,1172,315,857,26.88,5227,0.996209,0.00e+00,0.953791,0.023104\nWinoGrande,1267,384,883,30.31,6558,0.994255,0.00e+00,0.943166,0.028417\nGSM8K,1319,249,1070,18.88,6702,0.999303,0.00e+00,0.984311,0.007844\nHellaSwag,10042,1797,8245,17.89,5227,0.998623,0.00e+00,0.972166,0.013917\nMMLU,12508,3918,8590,31.32,5227,0.9965,0.00e+00,0.959986,0.020007"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000646"
+        },
+        {
+          "source_line": 647,
+          "timestamp": "2026-05-23T19:54:33.894894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -i \"quintile\\|Q1.*Q2\\|ability\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_summary.csv 2>/dev/null | head -5 && echo \"===\" && grep -i \"2092\\|2089\\|2600\\|quintile\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001_real_data_dif_mmlu/report/plan_001_report.md 2>/dev/null | head -10",
+              "description": "Check ability quintile N"
+            }
+          },
+          "id": "event-000647"
+        },
+        {
+          "source_line": 648,
+          "timestamp": "2026-05-23T19:54:33.895017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ability,all,12508,11052,1093,363,2.9021426287176206,0.026862464183381087,1.1949300411522636\n===\n- Ability cohort: ref = Q1-2 (N=2092), foc = Q4-5 (N=2089), 10 strata"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000648"
+        },
+        {
+          "source_line": 649,
+          "timestamp": "2026-05-23T19:54:33.895138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check bootstrap CI percentiles\npython3 -c \"\nimport csv\nvals = []\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/sf1_cluster_bootstrap/bootstrap_results.csv') as f:\n    r = csv.DictReader(f)\n    for row in r:\n        if row['bootstrap_type'] == 'cluster':\n            vals.append(float(row['c_pct']))\nvals.sort()\nn = len(vals)\nprint(f'N bootstrap samples: {n}')\nlo = vals[int(0.025*n)]\nhi = vals[int(0.975*n)]\nprint(f'2.5th percentile: {lo:.4f} = {lo*100:.2f}%')\nprint(f'97.5th percentile: {hi:.4f} = {hi*100:.2f}%')\n# Also check model-level bootstrap\nvals2 = []\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/sf1_cluster_bootstrap/bootstrap_results.csv') as f:\n    r = csv.DictReader(f)\n    for row in r:\n        if row['bootstrap_type'] != 'cluster':\n            vals2.append(float(row['c_pct']))\nif vals2:\n    vals2.sort()\n    n2 = len(vals2)\n    print(f'Model-level N: {n2}')\n    lo2 = vals2[int(0.025*n2)]\n    hi2 = vals2[int(0.975*n2)]\n    print(f'Model 2.5th: {lo2:.4f} = {lo2*100:.2f}%')\n    print(f'Model 97.5th: {hi2:.4f} = {hi2*100:.2f}%')\n\"\n",
+              "description": "Compute bootstrap CI from raw data"
+            }
+          },
+          "id": "event-000649"
+        },
+        {
+          "source_line": 650,
+          "timestamp": "2026-05-23T19:54:33.895265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "N bootstrap samples: 1000\n2.5th percentile: 0.2673 = 26.73%\n97.5th percentile: 0.5325 = 53.25%\nModel-level N: 1000\nModel 2.5th: 0.2923 = 29.23%\nModel 97.5th: 0.3779 = 37.79%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000650"
+        },
+        {
+          "source_line": 651,
+          "timestamp": "2026-05-23T19:54:33.895380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check AUC at N=80 specifically\ngrep \"^80,\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dif_phase2_results.csv | head -10",
+              "description": "Check AUC values at N=80"
+            }
+          },
+          "id": "event-000651"
+        },
+        {
+          "source_line": 652,
+          "timestamp": "2026-05-23T19:54:33.895497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80,0.8,MH,0.3931,0.0335,0.0661,0.0003,0.3911,0.0334,0.8037,1000,N/A\n80,0.8,LR,0.4155,0.0598,0.0951,0.0014,,,0.7777,1000,N/A\n80,1.0,MH,0.5181,0.0347,0.1608,0.0006,0.5136,0.0346,0.8544,1000,N/A\n80,1.0,LR,0.5358,0.0622,0.2035,0.0026,,,0.8327,1000,N/A\n80,1.2,MH,0.6214,0.0357,0.2862,0.001,0.6075,0.0357,0.8793,1000,N/A\n80,1.2,LR,0.6333,0.0638,0.3329,0.0034,,,0.8717,1000,N/A\n80,1.4,MH,0.7045,0.0361,0.4001,0.0016,0.6823,0.0361,0.895,1000,PASS\n80,1.4,LR,0.7186,0.065,0.4496,0.0046,,,0.9003,1000,N/A\n80,1.6,MH,0.7645,0.0386,0.4864,0.0019,0.7223,0.0386,0.8936,1000,PASS\n80,1.6,LR,0.7726,0.068,0.5365,0.0062,,,0.9242,1000,N/A"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000652"
+        },
+        {
+          "source_line": 653,
+          "timestamp": "2026-05-23T19:54:33.895622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Compute cross-benchmark mean τ and max flip rate\npython3 -c \"\ntaus = [0.958635, 0.953791, 0.943166, 0.984311, 0.972166, 0.959986]\nflips = [0.020682, 0.023104, 0.028417, 0.007844, 0.013917, 0.020007]\nprint(f'Mean tau: {sum(taus)/len(taus):.4f}')\nprint(f'Min tau: {min(taus):.4f}')\nprint(f'Max flip: {max(flips)*100:.2f}%')\n# Also check: paper says rho=0.997\nrhos = [0.997123, 0.996209, 0.994255, 0.999303, 0.998623, 0.9965]\nprint(f'Mean rho: {sum(rhos)/len(rhos):.4f}')\nprint(f'Min rho: {min(rhos):.4f}')\n\"\n",
+              "description": "Compute cross-benchmark means"
+            }
+          },
+          "id": "event-000653"
+        },
+        {
+          "source_line": 654,
+          "timestamp": "2026-05-23T19:54:33.895772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mean tau: 0.9620\nMin tau: 0.9432\nMax flip: 2.84%\nMean rho: 0.9970\nMin rho: 0.9943"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000654"
+        },
+        {
+          "source_line": 655,
+          "timestamp": "2026-05-23T19:54:33.895898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check score inflation for ±800 claim\ngrep -i \"max\\|displace\\|800\\|849\\|589\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation_report.md 2>/dev/null | head -10",
+              "description": "Check displacement claims"
+            }
+          },
+          "id": "event-000655"
+        },
+        {
+          "source_line": 656,
+          "timestamp": "2026-05-23T19:54:33.896023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| Sao10K/14B-Glacier-Stack | other | base | 0.7047 | 0.7168 | +1.20 | -849 |\nDespite measurable score changes, the overall ranking is highly preserved (ρ = 0.9965), indicating that DIF primarily shifts absolute scores rather than relative ordering. However, individual models can experience rank displacements exceeding ±561 positions (99th percentile)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000656"
+        },
+        {
+          "source_line": 657,
+          "timestamp": "2026-05-23T19:54:33.896170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check the 18.3% at |Δ_MH|≥2.0\npython3 -c \"\nimport csv\ncount = 0\ntotal = 0\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_results_temporal.csv') as f:\n    r = csv.DictReader(f)\n    for row in r:\n        total += 1\n        if abs(float(row.get('delta_mh', row.get('MH_delta', 0)))) >= 2.0:\n            count += 1\nprint(f'Total items: {total}')\nprint(f'Count |Δ_MH|≥2.0: {count}')\nprint(f'Pct: {count/total*100:.2f}%')\n\"\n",
+              "description": "Check 18.3% threshold claim"
+            }
+          },
+          "id": "event-000657"
+        },
+        {
+          "source_line": 658,
+          "timestamp": "2026-05-23T19:54:33.896309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total items: 12508\nCount |Δ_MH|≥2.0: 2297\nPct: 18.36%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000658"
+        },
+        {
+          "source_line": 659,
+          "timestamp": "2026-05-23T19:54:33.896440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check max downward displacement\ngrep -E \"\\-[5-9][0-9]{2}\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/score_inflation_report.md 2>/dev/null | head -5\necho \"===\"\n# Check plan_032 for displacement info\ngrep -i \"max\\|displace\\|800\\|rank_change\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/plan_032_report.md 2>/dev/null | head -10",
+              "description": "Check max displacement values"
+            }
+          },
+          "id": "event-000659"
+        },
+        {
+          "source_line": 660,
+          "timestamp": "2026-05-23T19:54:33.896576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| Sao10K/14B-Glacier-Stack | other | base | 0.7047 | 0.7168 | +1.20 | -849 |\n| AA051611/A0118 | other | base | 0.6986 | 0.7036 | +0.50 | -827 |\n| DeepMount00/Phi-3-Mini-4K-Boost | 2024 | base | 0.7024 | 0.7143 | +1.20 | -811 |\n| DeepMount00/phi_3 | 2024 | base | 0.7024 | 0.7143 | +1.20 | -811 |\n| Mihaiii/Pallas-0.5-frankenmerge | other | base | 0.7131 | 0.7191 | +0.60 | -809 |\n===\n- Min: -589 | Max: 849\n| model_name | family | cohort_temporal | score_full | score_cleaned | rank_full | rank_cleaned | rank_change |\n| model_name | family | cohort_temporal | score_full | score_cleaned | rank_full | rank_cleaned | rank_change |\n| family | n_models | mean_rank_change | median_rank_change | mean_abs_change | mean_score_full |\n| family | n_models | mean_rank_change | median_rank_change | mean_abs_change | mean_score_full |\n| rank_change_std | +127.087 | +60.245 | 7.837 | +8.53 |\n| mean_abs_rank_change | +74.685 | +36.013 | 3.626 | +10.66 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000660"
+        },
+        {
+          "source_line": 661,
+          "timestamp": "2026-05-23T19:54:33.896731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check the within-family N_focal=308 vs 315\ngrep -i \"llama.*3\\|308\\|315\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md 2>/dev/null | head -5\necho \"===\"\ngrep \"llama-3\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv 2>/dev/null | wc -l",
+              "description": "Check Llama-3 model count"
+            }
+          },
+          "id": "event-000661"
+        },
+        {
+          "source_line": 662,
+          "timestamp": "2026-05-23T19:54:33.896869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| llama-3 | 308 |\n| llama-1 | 135 |\nNote: these are models with explicit RL signals in names. Many models (Llama-3, Qwen-2.5, etc.) used RLHF but don't advertise it in their names. The DPO-labeled models alone provide a substantial pool for RL contamination analysis.\n**YES.** 477 explicitly labeled (mostly DPO). Many more used RLHF implicitly (Llama-3, Qwen-2, etc.) but aren't detectable from names alone.\n===\n316"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000662"
+        },
+        {
+          "source_line": 663,
+          "timestamp": "2026-05-23T19:54:33.897034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check N=100 AUC values\ngrep \"^100,\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dif_phase2_results.csv | grep \"MH\" | head -5",
+              "description": "Check AUC at N=100"
+            }
+          },
+          "id": "event-000663"
+        },
+        {
+          "source_line": 664,
+          "timestamp": "2026-05-23T19:54:33.897162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100,0.8,MH,0.4813,0.0353,0.1215,0.0005,0.4793,0.0347,0.8358,1000,N/A\n100,1.0,MH,0.6089,0.0368,0.2729,0.0011,0.6058,0.0364,0.8816,1000,N/A\n100,1.2,MH,0.7088,0.0399,0.4082,0.0018,0.7013,0.0394,0.9103,1000,N/A\n100,1.4,MH,0.7745,0.0407,0.5211,0.0022,0.7582,0.0401,0.9231,1000,PASS\n100,1.6,MH,0.8241,0.0429,0.6066,0.0029,0.7966,0.0424,0.9254,1000,PASS"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000664"
+        },
+        {
+          "source_line": 665,
+          "timestamp": "2026-05-23T19:54:33.897295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Check if there's a τ=0.958 anywhere in plan_032 or score_inflation\ngrep -r \"0.958\\b\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/ 2>/dev/null | head -5\necho \"===\"\ngrep -r \"0.958\\b\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/ 2>/dev/null | head -5\necho \"===\"\ngrep -r \"kendall\\|tau\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/plan_032_report.md 2>/dev/null | head -5",
+              "description": "Search for τ=0.958 source"
+            }
+          },
+          "id": "event-000665"
+        },
+        {
+          "source_line": 666,
+          "timestamp": "2026-05-23T19:54:33.897441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/data/cleaned_mmlu_analysis.csv:llmixer/BigWeave-v12-90b,0.7274544291653342,0.7419091967403958,387,363,-24,24,unknown,other\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/data/cleaned_mmlu_analysis.csv:wannaphong/han-llm-7b-v1,0.6113687240166293,0.6419091967403958,3471,3445,-26,26,unknown,other\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/data/cleaned_mmlu_analysis.csv:yeontaek/Platypus2xOpenOrca-13B-IA3-ensemble,0.6160057563159578,0.6419091967403958,3437,3446,9,9,orca,other\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv:llmixer/BigWeave-v12-90b,0.7274544291653342,0.7419091967403958,387,363,-24,24,unknown,other\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv:wannaphong/han-llm-7b-v1,0.6113687240166293,0.6419091967403958,3471,3445,-26,26,unknown,other\n===\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/model_scores.csv:flemmingmiguel/DareBeagle-7B,other,base,unknown,0.7049888071634154,0.7265424912689173,0.021553684105501958,535,574,-39,0.7255259679234803,554\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/model_scores.csv:itsliupeng/llama_9b_long,other,base,unknown,0.7153821554205309,0.7284051222351572,0.013022966814626336,449,494,-45,0.7359193161805958,451\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/model_scores.csv:llmixer/BigWeave-v12-90b,other,base,unknown,0.7274544291653342,0.7419091967403958,0.014454767575061589,387,\n…[truncated 595 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000666"
+        },
+        {
+          "source_line": 667,
+          "timestamp": "2026-05-23T19:54:33.897596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# The paper §5.7 says \"across all six benchmarks (ρ=0.997, τ=0.958)\" — check if there's a cross-benchmark summary\ngrep -r \"kendall\\|tau\\|0.958\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf2_practical_significance/mf2_report.md 2>/dev/null | head -10\necho \"===\"\ngrep -r \"spearman\\|0.997\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf2_practical_significance/mf2_report.md 2>/dev/null | head -10",
+              "description": "Check mf2 report for summary stats"
+            }
+          },
+          "id": "event-000667"
+        },
+        {
+          "source_line": 668,
+          "timestamp": "2026-05-23T19:54:33.897748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| TruthfulQA | 817 | 243 | 574 | 29.74% | 5228 | 0.9971 | 0.00e+00 | 0.9586 | 0.0207 |\n===\n| TruthfulQA | 817 | 243 | 574 | 29.74% | 5228 | 0.9971 | 0.00e+00 | 0.9586 | 0.0207 |\n- **Mean Spearman ρ**: 0.9970 (range: 0.9943–0.9993)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000668"
+        },
+        {
+          "source_line": 669,
+          "timestamp": "2026-05-23T19:54:33.897881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Get the full summary section from mf2_report\ngrep -A 20 \"Mean\\|Summary\\|Across\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mf2_practical_significance/mf2_report.md 2>/dev/null | head -30",
+              "description": "Check mf2 cross-benchmark summary"
+            }
+          },
+          "id": "event-000669"
+        },
+        {
+          "source_line": 670,
+          "timestamp": "2026-05-23T19:54:33.898008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Cross-Benchmark Summary\n\n- **Mean Spearman ρ**: 0.9970 (range: 0.9943–0.9993)\n- **Mean flip rate**: 0.0190 (range: 0.0078–0.0284)\n\n## Interpretation\n\n- **WinoGrande** shows the lowest ρ (0.9943) with 30.31% C items.\n- **GSM8K** is the most stable (ρ=0.9993, flip rate=0.0078).\n- Overall, removing ETS class C items produces minimal rank disruption (mean flip rate 0.0190), but the effect is benchmark-dependent."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000670"
+        },
+        {
+          "source_line": 671,
+          "timestamp": "2026-05-23T19:54:33.898223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/data_audit_part2.md",
+              "content": "# Data Audit Part 2: Experiments & Discussion 数字核查\n\n**日期**: 2026-05-23\n**范围**: experiments.tex (§5) + discussion.tex (§6) 所有数字 + Table 1–3\n\n---\n\n## Table 1 核查 (tab:temporal_landscape)\n\n| Cell | 论文值 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| [Temporal, N_ref/N_focal] | 1,080 / 807 | plan_001/dif_summary.csv | 1080 / 807 | ✅ |\n| [Temporal, C%] | 31.3 | plan_001/dif_summary.csv | 31.324% | ✅ |\n| [Temporal, C% web-clean] | 0.318 | plan_001/dif_summary.csv | 0.31840 | ✅ |\n| [Temporal, Enrich.] | 0.964 | plan_001/dif_summary.csv | 0.96415 | ✅ |\n| [Ability quintile, N_ref/N_focal] | ~2,600 / ~2,600 | plan_001_report.md | Q1-2=2,092 / Q4-5=2,089 | ❌ |\n| [Ability quintile, C%] | 2.9 | plan_001/dif_summary.csv | 2.9021% | ✅ |\n| [Ability quintile, C% web-clean] | 0.027 | plan_001/dif_summary.csv | 0.02686 | ✅ |\n| [Ability quintile, Enrich.] | 1.19 | plan_001/dif_summary.csv | 1.1949 | ✅ |\n| [Within-family, N_ref/N_focal] | 161 / 308 | metabench_data_summary.md / model_metadata.csv | 161 / 308 (旧) or 315-316 (新) | ⚠️ |\n| [Within-family, C%] | 61.3 | plan_001_report.md | 61.34% | ✅ |\n| [Random 2023, N] | 540 / 540 | _project/data/random_split_report.md | 540 / 540 | ✅ |\n| [Random 2023, C%] | 0.62 | _project/data/random_split_report.md | 0.6247% | ✅ |\n| [Random 2024, N] | ~400 / ~400 | r15_random_split_control/random_split_report.md | ~403/404 | ✅ |\n| [Random 2024, C%] | 1.3 | r15_random_split_control/random_split_report.md | 1.335% | ✅ |\n| [Within-subject, C%] | 38.1 | plan_014/plan_014_report.md | 38.1% | ✅ |\n\n---\n\n## Table 2 核查 (tab:structural_comparison)\n\n| Cell | 论文值 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| [Baseline, Temp C%] | 0.314±.009 | plan_011/plan_011_report.md | 0.314±0.009 | ✅ |\n| [Baseline, TPR] | 0.834±.027 | plan_011/plan_011_report.md | 0.834±0.027 | ✅ |\n| [Matched-ability, C%] | ~0.31 | plan_027/temporal_overlap_report.md | 28.9% (1:1 NN); r22: 30.25% | ⚠️ |\n| [Matched-ability, Enrich.] | 0.94–1.04 | plan_001b/plan_001b_report.md | Q1=1.04, Q2=0.94 (range) | ✅ |\n| [θ-cond., C%] | 0.312 | plan_012/plan_012_report.md | 0.312±0.008 | ✅ |\n| [θ-cond., TPR] | 0.876 | plan_012/plan_012_report.md | 0.876 | ✅ |\n| [θ-cond., r(θ,total)] | 0.9986 | plan_012/plan_012_report.md | 0.9986 | ✅ |\n| [Within-subject, C%] | 38.1% | plan_014/plan_014_report.md | 38.1% | ✅ |\n\n---\n\n## Table 3 核查 (tab:cross_benchmark)\n\n| Cell | 论文值 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| [MMLU, Items] | 12,508 | plan_028/multi_bench_summary.csv | 12508 | ✅ |\n| [MMLU, C%] | 31.3 | plan_028 | 31.32% | ✅ |\n| [MMLU, ρ] | 0.9965 | benchmark_rho_summary.csv | 0.9965 | ✅ |\n| [MMLU, τ] | 0.9600 | benchmark_rho_summary.csv | 0.959986 | ✅ |\n| [MMLU, Flip%] | 2.00 | benchmark_rho_summary.csv | 0.020007 → 2.00% | ✅ |\n| [MMLU, Rand C%] | 0.62 | random_split_report.md (100-run mean) | 0.6247% | ✅ |\n| [MMLU, Ratio] | 50× | 31.3/0.62=50.5 | — | ✅ |\n| [WinoGrande, Items] | 1,267 | plan_028 | 1267 | ✅ |\n| [WinoGrande, C%] | 30.3 | plan_028 | 30.31% | ✅ |\n| [WinoGrande, ρ] | 0.9943 | benchmark_rho_summary.csv | 0.994255 | ✅ |\n| [WinoGrande, τ] | 0.9432 | benchmark_rho_summary.csv | 0.943166 | ✅ |\n| [WinoGrande, Flip%] | 2.84 | benchmark_rho_summary.csv | 0.028417 → 2.84% | ✅ |\n| [WinoGrande, Rand C%] | 0.32 | plan_028 random_pct_c | 0.32 | ✅ |\n| [WinoGrande, Ratio] | 95× | 30.3/0.32=94.7 | — | ✅ |\n| [TruthfulQA, Items] | 817 | plan_028 | 817 | ✅ |\n| [TruthfulQA, C%] | 29.7 | plan_028 | 29.74% | ✅ |\n| [TruthfulQA, ρ] | 0.9971 | benchmark_rho_summary.csv | 0.997123 | ✅ |\n| [TruthfulQA, τ] | 0.9586 | benchmark_rho_summary.csv | 0.958635 | ✅ |\n| [TruthfulQA, Flip%] | 2.07 | benchmark_rho_summary.csv | 0.020682 → 2.07% | ✅ |\n| [TruthfulQA, Rand C%] | 0.37 | plan_028 | 0.37 | ✅ |\n| [TruthfulQA, Ratio] | 80× | 29.7/0.37=80.3 | — | ✅ |\n| [ARC, Items] | 1,172 | plan_028 | 1172 | ✅ |\n| [ARC, C%] | 26.9 | plan_028 | 26.88% | ✅ |\n| [ARC, ρ] | 0.9962 | benchmark_rho_summary.csv | 0.996209 | ✅ |\n| [ARC, τ] | 0.9538 | benchmark_rho_summary.csv | 0.953791 | ✅ |\n| [ARC, Flip%] | 2.31 | benchmark_rho_summary.csv | 0.023104 → 2.31% | ✅ |\n| [ARC, Rand C%] | 0.60 | plan_028 | 0.6 | ✅ |\n| [ARC, Ratio] | 45× | 26.9/0.60=44.8 | — | ✅ |\n| [GSM8K, Items] | 1,319 | plan_028 | 1319 | ✅ |\n| [GSM8K, C%] | 18.9 | plan_028 | 18.88% | ✅ |\n| [GSM8K, ρ] | 0.9993 | benchmark_rho_summary.csv | 0.999303 | ✅ |\n| [GSM8K, τ] | 0.9843 | benchmark_rho_summary.csv | 0.984311 | ✅ |\n| [GSM8K, Flip%] | 0.78 | benchmark_rho_summary.csv | 0.007844 → 0.78% | ✅ |\n| [GSM8K, Rand C%] | 0.30 | plan_028 | 0.3 | ✅ |\n| [GSM8K, Ratio] | 63× | 18.9/0.30=63.0 | — | ✅ |\n| [HellaSwag, Items] | 10,042 | plan_028 | 10042 | ✅ |\n| [HellaSwag, C%] | 17.9 | plan_028 | 17.89% | ✅ |\n| [HellaSwag, ρ] | 0.9986 | benchmark_rho_summary.csv | 0.998623 | ✅ |\n| [HellaSwag, τ] | 0.9722 | benchmark_rho_summary.csv | 0.972166 | ✅ |\n| [HellaSwag, Flip%] | 1.39 | benchmark_rho_summary.csv | 0.013917 → 1.39% | ✅ |\n| [HellaSwag, Rand C%] | 0.28 | plan_028 | 0.28 | ✅ |\n| [HellaSwag, Ratio] | 64× | 17.9/0.28=63.9 | — | ✅ |\n\n**Table 3: 全部 42 cells 核查通过。**\n\n---\n\n## Experiments 正文数字\n\n### §5.1 Validation\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| ā=1.2 | PSN-IRT mean discrimination | sf8_power_sensitivity/sf8_report.md | a mean=1.197 | ✅ |\n| b̄=−0.84 | PSN-IRT mean difficulty | sf8_report.md | b mean=−0.838 | ✅ |\n| N≥80 per cohort | power threshold | dif_phase2_results.csv | N=80 rows present | ✅ |\n| TPR 0.68–0.80 | ETS C under uniform injection | dif_phase2_results.csv | N=80,δ=1.4: 0.6823; N=100,δ=1.6: 0.7966 | ✅ |\n| AUC 0.93–0.94 | for \\|Δ_MH\\|≥1.4 | dif_phase2_results.csv | N=80: AUC=0.895; N=100: AUC=0.923–0.925 | ⚠️ |\n| N_ref=1,080 | temporal cohort | plan_001/dif_summary.csv | 1080 | ✅ |\n| N_focal=807 | temporal cohort | plan_001/dif_summary.csv | 807 | ✅ |\n| TPR 0.40–0.95 | across a=0.5–2.0 | sf8_report.md | 0.398–0.949 | ✅ |\n\n### §5.2 Temporal DIF\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| 31.3% | C items | plan_001/dif_summary.csv | 31.324% | ✅ |\n| \\|Δ_MH\\|≥1.5 | ETS C threshold | plan_001 | criterion confirmed | ✅ |\n| CI [29.4%, 38.1%] | bootstrap 95% CI | sf1_cluster_bootstrap/bootstrap_results.csv | 计算值: [29.23%, 37.79%] | ❌ |\n| CI [26.7%, 53.2%] | family-level cluster bootstrap | sf1_cluster_bootstrap/cluster_bootstrap_ci.md | [26.73%, 53.17%] | ✅ |\n| DEFF simple-mean → 29.2% | DEFF upper | mf2_deff_estimation/deff_summary.md | 29.2% | ✅ |\n| DEFF weighted-mean → 13.5% | DEFF lower | mf2_deff_estimation/deff_summary.md | 13.5% | ✅ |\n| ρ=0.999 | under weighted-mean DEFF | _project/data/weighted_mean_downstream.md | 0.998811 | ✅ |\n| +1.77pp | score shift under weighted-mean | _project/data/weighted_mean_downstream.md | +1.772pp | ✅ |\n| P99 \\|Δ_MH\\|=1.45 | permutation null | _project/data/random_split_report.md | 1.4504 | ✅ |\n| 0.62% | random split 2023 | _project/data/random_split_report.md | 0.6247% | ✅ |\n| 1.3% | random split 2024 | r15_random_split_control | 1.335% | ✅ |\n| ≥24× | below temporal C% | 31.3/1.3=24.1 | — | ✅ |\n| 2.9% | ability quintile C% | plan_001/dif_summary.csv | 2.9021% | ✅ |\n| N=638/group | NN matching | temporal_overlap_report.md | 638 | ✅ |\n| Cohen's d=−0.17 | matching context | temporal_overlap_report.md | −0.17 (pre-match gap) | ⚠️ |\n| C%=28.9%±0.1% | matched C% | temporal_overlap_report.md | 28.9%±0.1% | ✅ |\n| ~2.4pp | ability mismatch | 31.3−28.9=2.4 | — | ✅ |\n| p<0.01 | matching significance | temporal_overlap_report.md | confirmed | ✅ |\n| LOFO \\|ΔC%\\|≤2.93pp | max LOFO | lofo_robustness/lofo_results.csv | 2.93pp (mixtral) | ✅ |\n| 20.7%–48.4% | subject C% range | plan_033_report.md | confirmed | ✅ |\n| mean≈30% | subject mean C% | plan_033_report.md | 30.6% | ✅ |\n| KW p=0.78 | domain invariance | plan_033_report.md | 0.7797 | ✅ |\n| STEM 55.4% | favor 2024 | plan_033_report.md | 55.4% | ✅ |\n| Humanities 64.4% | favor 2023 | plan_033_report.md | 100−35.58=64.42% | ✅ |\n| <0.1% variance | domain accuracy → DIF | interaction_report.md | R²<0.001 | ✅ |\n| ρ=−0.597 | difficulty–direction | interaction_report.md | −0.597 | ✅ |\n| 18.3% at \\|Δ_MH\\|≥2.0 | threshold sensitivity | plan_001/dif_results_temporal.csv | 2297/12508=18.37% → 18.4% | ⚠️ |\n| 10.2% at \\|Δ_MH\\|≥2.5 | threshold sensitivity | plan_001/dif_results_temporal.csv | 1278/12508=10.22% | ✅ |\n\n### §5.3 Comparison with Web-Overlap Labels\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| 9,229 | annotated items | plan_001/plan_001_report.md | 9229 | ✅ |\n| enrichment=0.964 | DIF vs web-overlap | plan_001/dif_summary.csv | 0.96415 | ✅ |\n| Jaccard=0.206 | DIF–web overlap | r17_jaccard_permutation | 0.2063 | ✅ |\n| p=0.88 | Fisher exact | computed | 0.8806 | ✅ |\n| 30.7% | DIF-C among web-contam | plan_001_report.md | 0.3070 | ✅ |\n| 31.8% | DIF-C among clean | plan_001_report.md | 0.3184 | ✅ |\n| χ²=562.7 | base/instruct reversal | r18_base_vs_instruct_dif | 562.70 | ✅ |\n| ΔTPR=+0.508 | semi-synthetic p=0.5 | plan_011_report.md | +0.508 | ✅ |\n\n### §5.4 Structural Analysis\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| 17.7% | non-uniform DIF | r16_dif_union | 317/1787=17.74% | ✅ |\n| union 47% | total flagged | r16_dif_union | 47.0% | ✅ |\n| ~28–29% | ability-matched convergence | temporal_overlap_report.md | 28.9% | ✅ |\n| r(θ,total)=0.9986 | IRT conditioning | plan_012_report.md | 0.9986 | ✅ |\n\n### §5.5 Detection Power (Semi-synthetic Injection)\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| ΔFPR=0.000 | cross-subject, 5 subjects | plan_011_report.md | 0.000 | ✅ |\n| 4/5 with ΔTPR>0.3 | at p=0.5 | plan_011_report.md | confirmed | ✅ |\n| +0.186 avg | within-subject FPR inflation | plan_011_report.md | +0.186 | ✅ |\n| k≤5: ΔFPR<0.007 | single-subject contamination | summary_by_k_full.csv | k=5: 0.0065 | ✅ |\n| k=10: ΔFPR=0.069 | 18% of domains | summary_by_k_full.csv | 0.069 | ✅ |\n| k=20: ΔFPR=0.167 | multi-subject | summary_by_k_full.csv | 0.1673 | ✅ |\n| k≥30: ΔFPR>0.36 | >50% domains | summary_by_k_full.csv | k=30: 0.3618 | ✅ |\n| ΔTPR≈0.41 | difficulty-dependent | mixed_mechanism_report.md | ~0.41 | ✅ |\n| 0.51 | uniform reference | plan_011_report.md | ~0.508 | ✅ |\n| ~20% | overestimation bound | (0.51−0.41)/0.51=19.6% | — | ✅ |\n\n### §5.6 Downstream Impact\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| ρ=0.997 | across 6 benchmarks | benchmark_rho_summary.csv | mean=0.9970 | ✅ |\n| τ=0.958 | across 6 benchmarks | benchmark_rho_summary.csv | mean=0.9620; 无单值=0.958 | ❌ |\n| flip rate ≤2.8% | max flip | benchmark_rho_summary.csv | WinoGrande=2.84% > 2.8% | ❌ |\n| z=−8 to −49 | vs random removal | plan_017_report.md | −8.16 to −49.44 | ✅ |\n| 33.6% | pairwise reversals (top 200) | mf1_worked_examples/mf1_report.md | 6694/19900=33.6% | ✅ |\n| 96.2 positions | cohort gap | plan_032/dif_vs_random_comparison.csv | 96.16 | ✅ |\n| 40× random | cohort gap ratio | 96.16/2.36=40.7 | — | ✅ |\n| p<0.001 | cohort gap significance | plan_032_report | confirmed | ✅ |\n| +2.12pp | avg accuracy shift | score_inflation_report.md | +2.116pp | ✅ |\n| 0.29pp | cohort-differential | score_inflation_report.md | 2.351−2.060=0.291pp | ✅ |\n| d=0.31 | Cohen's d | score_inflation_report.md | \\|d\\|=0.3051 | ✅ |\n| ±800 | individual displacements | score_inflation_report.md | max down=−849; report P99=±561 | ⚠️ |\n\n### §5.7 Cross-Benchmark Validation\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| 17.9%–31.3% | C% range | plan_028/multi_bench_summary.csv | confirmed | ✅ |\n| 26.9–31.3% | knowledge/reasoning | multi_bench_summary.csv | ARC=26.9, others higher | ✅ |\n| 17.9–18.9% | procedural | multi_bench_summary.csv | HellaSwag=17.9, GSM8K=18.9 | ✅ |\n| 45–95× | above random | Table 3 Ratio column | confirmed | ✅ |\n| ΔTPR=+0.514 | GSM8K semi-synthetic | gsm8k_dose_response_summary.csv | +0.514 | ✅ |\n\n---\n\n## Discussion 正文数字\n\n### §6.1 Temporal DIF as Structured Signal\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| N=1,409 | base models | r18_base_vs_instruct_dif | Ref=861+Foc=548=1409 | ✅ |\n| 60.1% | ref-favoring (base) | r18_base_vs_instruct_dif | 2413 (60.1%) | ✅ |\n| ρ=−0.570 | base difficulty–direction | r18_base_vs_instruct_dif | −0.570 | ✅ |\n| N=478 | instruct models | r18_base_vs_instruct_dif | Ref=219+Foc=259=478 | ✅ |\n| 65.6% | focal-favoring (instruct) | r18_base_vs_instruct_dif | 2994 (65.6%) | ✅ |\n| ρ=−0.079 | instruct difficulty–direction | r18_base_vs_instruct_dif | −0.079 | ✅ |\n| χ²=562.7 | direction reversal | r18_base_vs_instruct_dif | 562.70 | ✅ |\n| p<10^−124 | significance | r18_base_vs_instruct_dif | 2.178e-124 | ✅ |\n| Δ=1.08pp | composition downsampling | r22_composition_control | 1.08pp | ✅ |\n| C%=29.2% | DEFF-adjusted headline | r20_size_stratified_deff | simple-mean DEFF→29.2% | ⚠️ |\n| CI [26.7%, 53.2%] | cluster bootstrap | sf1_cluster_bootstrap | [26.73%, 53.17%] | ✅ |\n| Jaccard=0.206 | DIF–web overlap | r17_jaccard_permutation | 0.2063 | ✅ |\n| OR=4.75 | base/instruct interaction | interaction_report.md | 4.754 | ✅ |\n\n### §6.2 Recommended DIF Audit Protocol\n\n| 数字 | 上下文 | 源文件 | 源值 | 状态 |\n|------|--------|--------|------|------|\n| AUROC=0.60 | predictive model | predictive_model/phase2_results.md | LR=0.6026, GBM=0.5994 | ✅ |\n| ≥500 models | threshold | 无单一源文件 | 来自 rebuttal 实践建议 | ⚠️ |\n| K=3 | smaller corpora | k3_power_simulation/k3_power_report.md | K=3≈K=5 confirmed | ✅ |\n| C%≈12% | 20× baseline for MMLU | 20×0.62%=12.4% | 算术一致 | ✅ |\n\n---\n\n## ⚠️ 不一致 / ❌ 无法追溯\n\n### ❌ 需要修正（3项）\n\n1. **Table 1, Ability quintile N: `~2,600 / ~2,600` → 实际 `~2,090 / ~2,090`**\n   - 源: plan_001_report.md: \"ref = Q1-2 (N=2092), foc = Q4-5 (N=2089)\"\n   - 偏差: 论文多报约500/组\n   - 建议: 改为 `${\\sim}$2,090 / ${\\sim}$2,090`\n\n2. **§5.6 Downstream: τ=0.958 无法追溯**\n   - 源: benchmark_rho_summary.csv 六个 benchmark 的 Kendall τ 值: 0.9432, 0.9538, 0.9586, 0.9600, 0.9722, 0.9843\n   - 均值 = 0.9620, 中位数 = 0.9593, 最小值 = 0.9432 — 无论哪种解释都不等于 0.958\n   - 建议: 改为 `τ = 0.962`（均值）或 `τ \\geq 0.943`（最小值）\n\n3. **§5.6 Downstream: flip rate ≤ 2.8% 不成立**\n   - 源: benchmark_rho_summary.csv WinoGrande flip_rate=0.028417 = **2.84%** > 2.8%\n   - 建议: 改为 `flip rate $\\leq$ 2.9\\%`\n\n### ❌ 需要修正但较小（1项）\n\n4. **§5.2 bootstrap CI [29.4%, 38.1%] 与计算值不符**\n   - 源: sf1_cluster_bootstrap/bootstrap_results.csv 1000次 model-level bootstrap\n   - 计算 2.5th/97.5th percentile: **[29.23%, 37.79%]**\n   - 论文写 [29.4%, 38.1%]，偏差 0.17pp (lower) 和 0.31pp (upper)\n   - 建议: 改为 `[29.2\\%, 37.8\\%]`\n\n### ⚠️ 可接受但需注意（6项）\n\n5. **§5.1 AUC 0.93–0.94 \"at N≥80\"**: N=80 时 AUC=0.895–0.894; 0.93–0.94 仅在 N=100 时成立。论文措辞 \"at N≥80\" 暗示 N=80 即可达到，实际需 N≈100。建议: 改措辞为 \"at N=100\" 或注明 \"0.89–0.94 across N=80–200\"。\n\n6. **§5.2 18.3% at |Δ_MH|≥2.0**: 精确值 2297/12508=18.37%→四舍五入应为 18.4% 而非 18.3%。差异极小，可保留或改为 18.4%。\n\n7. **§5.2 Cohen's d=−0.17**: 值本身正确（temporal_overlap_report.md），但这是 pre-matching 能力差距，不是 post-matching 残差（post-match d=−0.010）。论文上下文可能让读者误以为匹配后仍有 d=0.17 的差距。\n\n8. **§5.6 individual displacements ±800**: score_inflation 中最大负位移 −849（Sao10K），但 P99=±561。report 说 \"exceeding ±561 positions (99th percentile)\"。±800 作为极值描述基本准确（max down=−849），但对称的 \"±\" 表述有误导性（正向最大值需要确认是否也接近 800）。\n\n9. **Table 1, Within-family N_focal=308**: metabench_data_summary.md 记录 308（分析时数据），当前 model_metadata.csv 为 315-316。C% 不受影响。轻微数据版本差异。\n\n10. **Table 2, Matched-ability C%=~0.31**: 最严格的 1:1 NN 匹配得 28.9%，composition-balanced 得 30.25%，CMH quintile 得 33.3%。`~0.31` 依赖于对 \"matched\" 的定义。波浪号（~）做了较多工作。\n\n11. **§6.1 C%=29.2%**: 值来自 DEFF simple-mean 校正结果。§5.2 报告原始 C%=31.3%。Discussion 中使用 29.2% 未注明是 DEFF 校正值，可能让读者困惑。\n\n---\n\n## 统计\n\n- **Tables**: 62 cells checked (Table 1: 15, Table 2: 8, Table 3: 42 — 含 Ratio 推导)\n  - ✅ 57 | ⚠️ 3 | ❌ 2 (Ability quintile N; Within-family N_focal 轻微)\n- **Experiments 正文**: ~55 个数字\n  - ✅ 46 | ⚠️ 6 | ❌ 3 (bootstrap CI, τ, flip rate)\n- **Discussion 正文**: ~17 个数字\n  - ✅ 14 | ⚠️ 3\n\n**需立即修正**: 4 项 (Ability quintile N, bootstrap CI, τ=0.958, flip rate ≤2.8%)\n**建议修正**: 2 项 (AUC at N≥80 措辞, 18.3%→18.4%)\n**建议注意**: 5 项 (Cohen's d 语境, ±800 对称性, Within-family N, Matched C% ~0.31, Discussion C% 29.2% 来源)\n"
+            }
+          },
+          "id": "event-000671"
+        },
+        {
+          "source_line": 672,
+          "timestamp": "2026-05-23T19:54:33.898623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/data_audit_part2.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000672"
+        },
+        {
+          "source_line": 673,
+          "timestamp": "2026-05-23T19:54:33.898831+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/data_audit_part2.md`。\n\n核查覆盖了 3 个 Table（62 cells）+ experiments.tex（~55 个数字）+ discussion.tex（~17 个数字）。\n\n**需立即修正的 4 项**：\n\n1. **Table 1 Ability quintile N**: 论文写 `~2,600/~2,600`，实际 `2,092/2,089` — 多报约 500/组\n2. **§5.2 bootstrap CI [29.4%, 38.1%]**: 从 bootstrap_results.csv 计算为 `[29.2%, 37.8%]`\n3. **§5.6 τ=0.958**: 六个 benchmark 的均值 τ=0.962、中位数 0.959、最小值 0.943 — 无解释可得 0.958\n4. **§5.6 flip rate ≤2.8%**: WinoGrande=2.84%，超过 2.8%\n\n其余 ⚠️ 项为措辞/四舍五入/上下文问题（AUC at N≥80 措辞、18.3%→18.4% 四舍五入、±800 对称性等），不影响结论但值得注意。\n\nk=10/20/30 ΔFPR 值（summary_by_k_full.csv）、Table 3 全部 42 cells、base/instruct 分层数据均与源文件完全匹配。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_audit_experiments_tables_20260523T193629"
+          },
+          "id": "event-000673"
+        }
+      ]
+    }
+  ]
+}

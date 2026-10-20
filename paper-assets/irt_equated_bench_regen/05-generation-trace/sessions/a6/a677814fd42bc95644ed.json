@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a677814fd42bc95644ed",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 030 odds ratio",
+  "task_key": "worker_code_plan_030_odds_ratio_20260521T100139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_030_odds_ratio_20260521T100139_result.json",
+    "occurrence": 1,
+    "bytes": 1306,
+    "sha256": "70e57a83841f4e00095ba4c505cee00fbb10ec4e94d97cdd69c74c579eedbf1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 register_artifact 工具可用。任务已完成，总结结果：\n\n**验证通过**: Model 1 coef=4.3928, McFadden R²=0.0007，与 plan_019 完全一致。\n\n**核心发现**:\n\n| | Model 1 (domain Δ) | Model 2 (+item props) | Model 3 (item Δ) | Model 4 (+item props) |\n|---|---|---|---|---|\n| McFadden R² | 0.0007 | 0.0423 | 0.0012 | **0.0434** |\n| Nagelkerke R² | 0.0012 | 0.0720 | 0.0021 | **0.0737** |\n| AIC | 15545 | 14902 | 15537 | **14885** |\n\n- **Item-level accuracy change (M3) 比 domain-level delta (M1) 更好**: AIC 15537 vs 15545, Nagelkerke R² 0.0021 vs 0.0012\n- **Item properties 是主要驱动力**: 加入 difficulty + discrimination 后 R² 从 ~0.001 跳到 ~0.07 (LR χ² > 646, p ≈ 0)\n- **Simpson's paradox 同样出现**: accuracy change 的 OR 在控制 item properties 后反转（M3: OR=2.11 → M4: OR=0.44; M1: OR=80.9 → M2: OR=0.045）\n- **OR 在合理范围内**: 以 per 0.10 单位计算，M1 subject_acc_delta OR=1.55 [1.19, 2.03]，无极端值\n- **所有模型 Hosmer-Lemeshow p=0.000**: 拟合不佳，但在 N=12508 时 HL test 几乎必然显著\n\n**输出文件**:\n- `artifacts/plan_030_odds_ratio/plan_030_odds_ratio.py` — 分析脚本\n- `artifacts/plan_030_odds_ratio/odds_ratio_report.md` — 完整统计报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-030-odds-ratio.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_016_within_subject_semi_synthetic",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:30:50.476Z",
+    "updated_at": "2026-05-20T22:37:07.092Z",
+    "hypothesis": "在 subject 内部使用 within-subject total score 做 MH 分层的 semi-synthetic injection 中，DIF 仍能检测差异性污染（ΔTPR > 0.3 at p=0.5）。这证明 DIF 方法在 subject 级别也有效，plan_014 的 38% within-subject C% 反映的是真实代际能力差异而非方法失败。",
+    "parent": "plan_014_within_subject_dif"
+  },
+  "timestamp": "2026-05-20T22:37:07.149838+00:00",
+  "trigger": "update_registry"
+}

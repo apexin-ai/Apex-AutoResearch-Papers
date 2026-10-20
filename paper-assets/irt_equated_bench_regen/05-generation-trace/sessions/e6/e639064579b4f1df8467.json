@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e639064579b4f1df8467",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "paper writing page compression",
+  "task_key": "worker_paper_writing_page_compression_20260521T052643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_page_compression_20260521T052643.log",
+    "occurrence": 1,
+    "bytes": 786676,
+    "sha256": "54c9586da96b2c9684301bd0d5a050d643e425ec2b8cdaf3b59e76090ee732be"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "e639064579b4f1df8467-part-0001.json",
+          "message_count": 89
+        },
+        {
+          "path": "e639064579b4f1df8467-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-page-compression.md"
+}

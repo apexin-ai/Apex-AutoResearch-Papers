@@ -1,0 +1,4 @@
+domain,n_subjects,n_items,n_c,pct_c,mean_difficulty,mean_discrimination,mean_delta_mh,pct_favor_focal
+Social Science,25.0,6912.0,2182.0,31.57,0.4641,0.0773,-0.176,42.03
+Humanities,10.0,2573.0,801.0,31.13,0.4569,0.0913,-0.2515,35.58
+STEM,22.0,3023.0,935.0,30.93,0.3864,0.0592,0.0814,55.4

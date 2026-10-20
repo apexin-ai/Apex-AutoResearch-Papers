@@ -1,0 +1,19 @@
+paper_key: "chiang2024chatbot"
+title: "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: [static benchmarks (MMLU, etc.), LLM-as-judge]
+  metrics:
+    - {name: "Elo rating", direction: "higher_better"}
+    - {name: "pairwise agreement with expert raters", direction: "higher_better"}
+  datasets:
+    - {name: "Chatbot Arena crowdsourced votes", size: "240K+ votes"}
+  ablation_dimensions: []
+  training_recipe: {optimizer: "N/A (evaluation platform)", lr: "N/A", hardware: "N/A"}
+  method_family: "human preference-based evaluation (Elo rating)"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

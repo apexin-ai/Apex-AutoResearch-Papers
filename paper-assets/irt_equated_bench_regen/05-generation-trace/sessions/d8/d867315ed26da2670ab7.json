@@ -1,0 +1,1619 @@
+{
+  "schema_version": "1.0",
+  "id": "d867315ed26da2670ab7",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code r18 base vs instruct dif",
+  "task_key": "worker_code_r18_base_vs_instruct_dif_20260522T174522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r18_base_vs_instruct_dif_20260522T174522.log",
+    "occurrence": 1,
+    "bytes": 100533,
+    "sha256": "6827b9ebcba36e580cf1799688e8b5dc3773ab231391ec677db0238f40fec237"
+  },
+  "statistics": {
+    "messages": 42,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 11,
+      "user": 1,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f8193b23-b0fb-49ea-ac2f-e6ff6b61c5b3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779489600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "383eccc8-d058-4c2b-8750-337ff7a88d53",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break down this task:\n\n1. Create a single script that classifies models as base vs instruct, runs MH-DIF separately for each group, does comparison analysis, and outputs results\n2. The script should be at `artifacts/r18_base_vs_instruct_dif/base_instruct_dif.py`\n\nLet me start by examining the existing code and data to understand the structure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "ed8f88fa-0a1e-45e6-a07e-e6c323ecf53e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sr48gbE4QS5i3a3Yst1nBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14091,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14091
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先看现有数据和参考代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "fdcac243-2db0-42aa-b219-0d5ac750597f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sr48gbE4QS5i3a3Yst1nBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14091,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14091
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+              "name": "Agent",
+              "input": {
+                "subagent_type": "Explore",
+                "description": "Explore data and reference code",
+                "prompt": "I need to understand the data and reference code for building a base vs instruct DIF analysis script. Please find and read:\n\n1. The MH-DIF function `mh_dif_c_pct_vec` in `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py` - read the full function implementation\n\n2. The cleaned MMLU analysis CSV structure - read a few lines of `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv` to see the columns\n\n3. Check what's in the response_matrix_index.npz - specifically what model_names look like (a sample of names)\n\n4. Check the structure of response_matrix.npz\n\nReport the full MH-DIF function code, the CSV columns, and a sample of model names."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "125ba190-1c06-435c-a779-bc8dbe7ac254",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sr48gbE4QS5i3a3Yst1nBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14091,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14091
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "a6ad6397e8c91d2f6",
+                "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+                "description": "Explore data and reference code",
+                "task_type": "local_agent",
+                "prompt": "I need to understand the data and reference code for building a base vs instruct DIF analysis script. Please find and read:\n\n1. The MH-DIF function `mh_dif_c_pct_vec` in `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py` - read the full function implementation\n\n2. The cleaned MMLU analysis CSV structure - read a few lines of `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv` to see the columns\n\n3. Check what's in the response_matrix_index.npz - specifically what model_names look like (a sample of names)\n\n4. Check the structure of response_matrix.npz\n\nReport the full MH-DIF function code, the CSV columns, and a sample of model names.",
+                "uuid": "db0ea706-bcf3-4310-9d0c-bd2fb9125a19",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T17:45:43.855Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to understand the data and reference code for building a base vs instruct DIF analysis script. Please find and read:\n\n1. The MH-DIF function `mh_dif_c_pct_vec` in `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py` - read the full function implementation\n\n2. The cleaned MMLU analysis CSV structure - read a few lines of `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv` to see the columns\n\n3. Check what's in the response_matrix_index.npz - specifically what model_names look like (a sample of names)\n\n4. Check the structure of response_matrix.npz\n\nReport the full MH-DIF function code, the CSV columns, and a sample of model names."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "f5a0083c-f342-49e4-81d1-a9b949e0cf66"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a6ad6397e8c91d2f6",
+                "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+                "description": "Reading artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py",
+                "usage": {
+                  "total_tokens": 15656,
+                  "tool_uses": 1,
+                  "duration_ms": 1894
+                },
+                "last_tool_name": "Read",
+                "uuid": "37453ebd-fa22-4d79-a94a-d4f966d7908e",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EWRpFeeGW8gcyWr5ar2sjN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "6babe32f-a377-426b-b40d-93720346b073",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q3eRWoeQpaWPvnyXVe6qK9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15643,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15643,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T17:45:45.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EWRpFeeGW8gcyWr5ar2sjN",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tmmlu_bootstrap_ci.py — MMLU bootstrap 95% CI for MH-DIF C%.\n4\t\n5\tVectorized total-score stratification (~100x faster than per-item rest-score).\n6\tFor J=12508, total-score ≈ rest-score (diff < 0.3pp); validated at startup.\n7\t\"\"\"\n8\t\n9\timport numpy as np\n10\timport pandas as pd\n11\tfrom scipy.stats import chi2 as chi2_dist\n12\tfrom scipy.sparse import load_npz\n13\tfrom pathlib import Path\n14\tfrom multiprocessing import Pool\n15\timport time\n16\timport warnings\n17\t\n18\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n19\t\n20\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/\"\n21\t            \"projects/irt_equated_bench_regen/artifacts\")\n22\tOUT = BASE / \"plan_028_bootstrap_ci\"\n23\tOUT.mkdir(exist_ok=True)\n24\t\n25\tN_BOOTSTRAP = 1000\n26\tN_CONTROL = 20\n27\tSEED = 42\n28\tN_STRATA = 5\n29\t\n30\t\n31\t# ════════════════════════════════════════════════════════════════════════\n32\t#  VECTORIZED MH-DIF (total-score stratification)\n33\t# ════════════════════════════════════════════════════════════════════════\n34\tdef mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):\n35\t    \"\"\"Fully vectorized MH-DIF → C%. Stratifies on total score (not rest).\"\"\"\n36\t    n_ref, J = X_ref.shape\n37\t    n_foc = X_foc.shape[0]\n38\t\n39\t    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n40\t    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n41\t    s_all = np.concatenate([tot_ref, tot_foc])\n42\t\n43\t    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n44\t    n_bins = len(edges) - 1\n45\t    if n_bins < 1:\n46\t        return 0.0\n47\t\n48\t    k_ref = np.digitize(tot_ref, edges[1:-1])\n49\t    k_foc = np.digitize(tot_foc, edges[1:-1])\n50\t\n51\t    n1 = np.zeros(n_bins, dtype=np.float64)\n52\t    n0 = np.zeros(n_bins, dtype=np.float64)\n53\t    A = np.zeros((n_bins, J), dtype=np.float64)\n54\t    C = np.zeros((n_bins, J), dtype=np.float64)\n55\t\n56\t    for k in range(n_bins):\n57\t        mr = (k_ref == k)\n58\t        mf = (k_foc == k)\n59\t        n1[k] = mr.sum()\n60\t        n0[k] = mf.sum()\n61\t        if mr.any():\n62\t            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n63\t        if mf.any():\n64\t            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n65\t\n66\t    B = n1[:, None] - A\n67\t    D = n0[:, None] - C\n68\t    Nk = (n1 + n0)[:, None]\n69\t    m1 = A + C\n70\t    m0 = B + D\n71\t\n72\t    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n73\t             (Nk > 1) & (m1 > 0) & (m0 > 0))\n74\t\n75\t    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n76\t    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n77\t\n78\t    finite_mask = (Rj > 0) & (Sj > 0)\n79\t\n80\t    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n81\t        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n82\t\n83\t    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n84\t    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n85\t\n86\t    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n87\t    sum_var = np.where(\n88\t        valid,\n89\t        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n90\t        0,\n91\t    ).sum(axis=0)\n92\t\n93\t    chi2_j = np.where(\n94\t        sum_var > 0,\n95\t        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n96\t        0,\n97\t    )\n98\t    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n99\t\n100\t    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n101\t    return is_c.sum() / J * 100\n102\t\n103\t\n104\t# ════════════════════════════════════════════════════════════════════════\n105\t#  REST-SCORE MH-DIF (validation only)\n106\t# ════════════════════════════════════════════════════════════════════════\n107\tdef mh_dif_c_pct_rest(X_ref, X_foc, n_strata=N_STRATA):\n108\t    \"\"\"Per-item rest-score MH-DIF (reference implementation).\"\"\"\n109\t    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n110\t    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n111\t    J = X_ref.shape[1]\n112\t    n_c = 0\n113\t    qs = np.linspace(0, 1, n_strata + 1)\n114\t    nr = len(tot_ref)\n115\t    nf = len(tot_foc)\n116\t    s_buf = np.empty(nr + nf, dtype=np.float64)\n117\t\n118\t    for j in range(J):\n119\t        s_buf[:nr] = tot_ref - X_ref[:, j]\n120\t        s_buf[nr:] = tot_foc - X_foc[:, j]\n121\t        edges = np.unique(np.quantile(s_buf, qs))\n122\t        nb = len(edges) - 1\n123\t        if nb < 1:\n124\t            continue\n125\t        kr = np.digitize(s_buf[:nr], edges[1:-1])\n126\t        kf = np.digitize(s_buf[nr:], edges[1:-1])\n127\t\n128\t        R = S = sd = sv = 0.0\n129\t        n_ok = 0\n130\t        for k in range(nb):\n131\t            mr = (kr == k)\n132\t            mf = (kf == k)\n133\t            n1 = int(mr.sum())\n134\t            n0 = int(mf.sum())\n135\t            if n1 == 0 or n0 == 0:\n136\t                continue\n137\t            Ak = float(X_ref[mr, j].sum())\n138\t            Bk = n1 - Ak\n139\t            Ck = float(X_foc[mf, j].sum())\n140\t            Dk = n0 - Ck\n141\t            Nk = n1 + n0\n142\t            m1k = Ak + Ck\n143\t            m0k = Bk + Dk\n144\t            if m1k == 0 or m0k == 0 or Nk <= 1:\n145\t                continue\n146\t            n_ok += 1\n147\t            R += Ak * Dk / Nk\n148\t            S += Bk * Ck / Nk\n149\t            sd += Ak - n1 * m1k / Nk\n150\t            sv += n1 * n0 * m1k * m0k / (Nk * Nk * (Nk - 1))\n151\t\n152\t        if n_ok == 0 or (R == 0 and S == 0):\n153\t            continue\n154\t        if S == 0:\n155\t            delta = -np.inf\n156\t        elif R == 0:\n157\t            delta = np.inf\n158\t        else:\n159\t            delta = -2.35 * np.log(R / S)\n160\t        pval = (1 - chi2_dist.cdf(max(abs(sd) - 0.5, 0) ** 2 / sv, df=1)\n161\t                if sv > 0 else 1.0)\n162\t        if np.isfinite(delta) and abs(delta) >= 1.5 and pval < 0.05:\n163\t            n_c += 1\n164\t\n165\t    return n_c / J * 100\n166\t\n167\t\n168\t# ════════════════════════════════════════════════════════════════════════\n169\t#  MULTIPROCESSING BOOTSTRAP\n170\t# ════════════════════════════════════════════════════════════════════════\n171\t_Xr = None\n172\t_Xf = None\n173\t\n174\t\n175\tdef _init(Xr, Xf):\n176\t    global _Xr, _Xf\n177\t    _Xr = Xr\n178\t    _Xf = Xf\n179\t\n180\t\n181\tdef _boot_one(seed):\n182\t    rng = np.random.RandomState(seed)\n183\t    ir = rng.randint(0, _Xr.shape[0], size=_Xr.shape[0])\n184\t    jf = rng.randint(0, _Xf.shape[0], size=_Xf.shape[0])\n185\t    return mh_dif_c_pct_vec(_Xr[ir], _Xf[jf])\n186\t\n187\t\n188\t# ════════════════════════════════════════════════════════════════════════\n189\t#  MAIN\n190\t# ════════════════════════════════════════════════════════════════════════\n191\tdef main():\n192\t    t_total = time.time()\n193\t    print(f\"MMLU Bootstrap CI — N={N_BOOTSTRAP}, seed={SEED}\")\n194\t    print(f\"Output: {OUT}\\n\")\n195\t\n196\t    # ── Load ──\n197\t    print(\"Loading MMLU response matrix...\")\n198\t    t0 = time.time()\n199\t    X = load_npz(BASE / \"response_matrix.npz\").toarray().astype(np.int8)\n200\t    idx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\n201\t    model_names = idx[\"model_names\"]\n202\t    meta = pd.read_csv(BASE / \"model_metadata.csv\")\n203\t    cohort = dict(zip(meta[\"model_name\"], meta[\"cohort_temporal\"]))\n204\t    print(f\"  {X.shape[0]} models × {X.shape[1]} items ({time.time()-t0:.1f}s)\")\n205\t\n206\t    name2row = {n: i for i, n in enumerate(model_names)}\n207\t    ref_idx = np.array([name2row[n] for n in model_names if cohort.get(n) == \"2023\"])\n208\t    foc_idx = np.array([name2row[n] for n in model_names if cohort.get(n) == \"2024\"])\n209\t    print(f\"  Cohorts: ref(2023)={len(ref_idx)}, foc(2024)={len(foc_idx)}\")\n210\t\n211\t    X_ref = X[ref_idx]\n212\t    X_foc = X[foc_idx]\n213\t    del X\n214\t\n215\t    # ── Validate total-score vs rest-score ──\n216\t    print(\"\\nValidation: total-score vs rest-score stratification...\")\n217\t    t0 = time.time()\n218\t    c_vec = mh_dif_c_pct_vec(X_ref, X_foc)\n219\t    t_vec = time.time() - t0\n220\t    print(f\"  Vectorized (total-score): C% = {c_vec:.2f}% ({t_vec:.2f}s)\")\n221\t\n222\t    t0 = time.time()\n223\t    c_rest = mh_dif_c_pct_rest(X_ref, X_foc)\n224\t    t_rest = time.time() - t0\n225\t    print(f\"  Original  (rest-score):   C% = {c_rest:.2f}% ({t_rest:.1f}s)\")\n226\t    diff_pp = abs(c_vec - c_rest)\n227\t    print(f\"  Difference: {diff_pp:.2f}pp  |  Speedup: {t_rest/t_vec:.0f}x\")\n228\t\n229\t    use_rest = diff_pp > 1.0\n230\t    if use_rest:\n231\t        print(\"  WARNING: >1pp gap — using rest-score (slow path)\")\n232\t\n233\t    # ── Sanity check N=10 ──\n234\t    print(f\"\\nSanity check: N=10 bootstrap...\")\n235\t    rng = np.random.RandomState(SEED)\n236\t    fn = mh_dif_c_pct_rest if use_rest else mh_dif_c_pct_vec\n237\t    sanity = []\n238\t    for i in range(10):\n239\t        ir = rng.randint(0, len(ref_idx), size=len(ref_idx))\n240\t        jf = rng.randint(0, len(foc_idx), size=len(foc_idx))\n241\t        sanity.append(fn(X_ref[ir], X_foc[jf]))\n242\t    print(f\"  C% range: [{min(sanity):.1f}%, {max(sanity):.1f}%], \"\n243\t          f\"mean={np.mean(sanity):.1f}%  (expect ≈31%)\")\n244\t\n245\t    # ── Full bootstrap N=1000 ──\n246\t    print(f\"\\nBootstrap N={N_BOOTSTRAP} (2 processes)...\")\n247\t    seeds = list(range(SEED, SEED + N_BOOTSTRAP))\n248\t    boot_cs = np.zeros(N_BOOTSTRAP)\n249\t    t_start = time.time()\n250\t\n251\t    with Pool(2, initializer=_init, initargs=(X_ref, X_foc)) as pool:\n252\t        for i, c in enumerate(pool.imap(\n253\t                _boot_one if not use_rest else _boot_one, seeds)):\n254\t            boot_cs[i] = c\n255\t            done = i + 1\n256\t            if done % 100 == 0 or done == 1:\n257\t                el = time.time() - t_start\n258\t                eta = (N_BOOTSTRAP - done) / (done / el) / 60\n259\t                print(f\"  [{done}/{N_BOOTSTRAP}] C%={c:.2f}%  \"\n260\t                      f\"running mean={boot_cs[:done].mean():.2f}%  \"\n261\t                      f\"({el:.0f}s, ETA {eta:.0f}min)\")\n262\t\n263\t    ci_lo = np.percentile(boot_cs, 2.5)\n264\t    ci_hi = np.percentile(boot_cs, 97.5)\n265\t    b_mean = boot_cs.mean()\n266\t    b_std = boot_cs.std()\n267\t\n268\t    print(f\"\\n  Original C% = {c_rest:.2f}% (rest-score)\")\n269\t    print(f\"  95% CI: [{ci_lo:.2f}%, {ci_hi:.2f}%]\")\n270\t    print(f\"  Boot mean={b_mean:.2f}%, std={b_std:.2f}%, \"\n271\t          f\"bias={b_mean - c_vec:+.2f}pp\")\n272\t\n273\t    # ── Random-split control ──\n274\t    print(f\"\\nRandom-split control (N={N_CONTROL})...\")\n275\t    combined = np.vstack([X_ref, X_foc])\n276\t    rng_c = np.random.RandomState(SEED + 9999)\n277\t    ctrl = []\n278\t    for i in range(N_CONTROL):\n279\t        perm = rng_c.permutation(combined.shape[0])\n280\t        Xr = combined[perm[: len(ref_idx)]]\n281\t        Xf = combined[perm[len(ref_idx): len(ref_idx) + len(foc_idx)]]\n282\t        ctrl.append(mh_dif_c_pct_vec(Xr, Xf))\n283\t        if (i + 1) % 5 == 0:\n284\t            print(f\"  [{i+1}/{N_CONTROL}] C%={ctrl[-1]:.2f}%\")\n285\t\n286\t    ctrl_mean = np.mean(ctrl)\n287\t    ctrl_std = np.std(ctrl)\n288\t    print(f\"  Control: mean={ctrl_mean:.2f}%, std={ctrl_std:.2f}%, \"\n289\t          f\"range=[{min(ctrl):.2f}%, {max(ctrl):.2f}%]\")\n290\t\n291\t    # ── Save ──\n292\t    pd.DataFrame({\"bootstrap_id\": range(N_BOOTSTRAP), \"c_pct\": boot_cs}).to_csv(\n293\t        OUT / \"mmlu_bootstrap_results.csv\", index=False)\n294\t\n295\t    summary = pd.DataFrame([{\n296\t        \"benchmark\": \"mmlu\",\n297\t        \"original_c_pct_rest\": c_rest,\n298\t        \"original_c_pct_vec\": c_vec,\n299\t        \"ci_lower\": ci_lo,\n300\t        \"ci_upper\": ci_hi,\n301\t        \"boot_mean\": b_mean,\n302\t        \"boot_std\": b_std,\n303\t        \"n_bootstrap\": N_BOOTSTRAP,\n304\t        \"n_ref\": len(ref_idx),\n305\t        \"n_foc\": len(foc_idx),\n306\t        \"n_items\": X_ref.shape[1],\n307\t        \"ctrl_mean\": ctrl_mean,\n308\t        \"ctrl_std\": ctrl_std,\n309\t    }])\n310\t    summary.to_csv(OUT / \"mmlu_bootstrap_summary.csv\", index=False)\n311\t\n312\t    elapsed = time.time() - t_total\n313\t    temporal_vs_ctrl = (\"confirms DIF is temporal, not spurious\"\n314\t                        if ctrl_mean < ci_lo\n315\t                        else \"control overlaps temporal — interpret with caution\")\n316\t\n317\t    report = f\"\"\"# MMLU Bootstrap 95% CI for MH-DIF C%\n318\t\n319\t## Method\n320\t\n321\t- Bootstrap resampling of **models** (not items), N={N_BOOTSTRAP}\n322\t- Per bootstrap: resample N_ref={len(ref_idx)} (2023) and N_foc={len(foc_idx)} (2024) with replacement\n323\t- MH-DIF with {N_STRATA}-stratum total-score matching\n324\t- Validated against rest-score: diff = {diff_pp:.2f}pp (speedup {t_rest/t_vec:.0f}x)\n325\t- 95% CI via percentile method [2.5th, 97.5th]\n326\t- Seed = {SEED}\n327\t\n328\t## Results\n329\t\n330\t| Metric | Value |\n331\t|--------|-------|\n332\t| Original C% (rest-score) | {c_rest:.2f}% |\n333\t| Original C% (total-score) | {c_vec:.2f}% |\n334\t| Bootstrap 95% CI | [{ci_lo:.2f}%, {ci_hi:.2f}%] |\n335\t| Bootstrap mean | {b_mean:.2f}% |\n336\t| Bootstrap SD | {b_std:.2f}% |\n337\t| Bias (mean − original) | {b_mean - c_vec:+.2f}pp |\n338\t| CI width | {ci_hi - ci_lo:.2f}pp |\n339\t\n340\t## Random-Split Control (N={N_CONTROL})\n341\t\n342\t| Metric | Value |\n343\t|--------|-------|\n344\t| Control mean C% | {ctrl_mean:.2f}% |\n345\t| Control SD | {ctrl_std:.2f}% |\n346\t| Control range | [{min(ctrl):.2f}%, {max(ctrl):.2f}%] |\n347\t\n348\t## Interpretation\n349\t\n350\t- 95% CI [{ci_lo:.1f}%, {ci_hi:.1f}%] — {'narrow, estimate is stable' if (ci_hi - ci_lo) < 10 else 'moderate width'}\n351\t- Control C% = {ctrl_mean:.1f}% vs temporal C% = {c_rest:.1f}% — {temporal_vs_ctrl}\n352\t\n353\tRuntime: {elapsed / 60:.1f} min\n354\t\"\"\"\n355\t    (OUT / \"mmlu_bootstrap_report.md\").write_text(report)\n356\t\n357\t    print(f\"\\nSaved: mmlu_bootstrap_results.csv, mmlu_bootstrap_summary.csv, \"\n358\t          f\"mmlu_bootstrap_report.md\")\n359\t    print(f\"Total: {elapsed / 60:.1f} min\")\n360\t\n361\t\n362\tif __name__ == \"__main__\":\n363\t    main()\n364\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "253968d9-8b68-462b-89bf-233b948e0bda"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a6ad6397e8c91d2f6",
+                "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+                "description": "Reading artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv",
+                "usage": {
+                  "total_tokens": 15661,
+                  "tool_uses": 2,
+                  "duration_ms": 2351
+                },
+                "last_tool_name": "Read",
+                "uuid": "be38fcc5-a174-483e-b63c-402854093245",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TeUR9rCj76bs3oaxA1EkxU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv",
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "fc9abbe9-d90a-4d2a-932a-60c0bc7b1dbc",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q3eRWoeQpaWPvnyXVe6qK9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15643,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15643,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T17:45:46.214Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TeUR9rCj76bs3oaxA1EkxU",
+              "type": "tool_result",
+              "content": "1\tmodel_name,score_full,score_cleaned,rank_full,rank_cleaned,rank_change,abs_rank_change,family,cohort_temporal\n2\t0-hero/Matter-0.1-7B,0.5602014710585226,0.579976717112922,3837,3892,55,55,unknown,other\n3\t0-hero/Matter-0.1-7B-DPO-preview,0.6613367444835305,0.6863795110593713,2611,2615,4,4,,other\n4\t0-hero/Matter-0.1-7B-boost,0.6534218100415734,0.680093131548312,2811,2791,-20,20,unknown,other\n5\t0-hero/Matter-0.1-7B-boost-DPO,0.6549408378637672,0.6817229336437718,2776,2751,-25,25,,other"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "e4821a41-b670-4043-9926-1493b34b2e76"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a6ad6397e8c91d2f6",
+                "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+                "description": "Running ls -la /home/ubuntu/.agent-ml-research-idea_gen_0…",
+                "usage": {
+                  "total_tokens": 15666,
+                  "tool_uses": 3,
+                  "duration_ms": 2539
+                },
+                "last_tool_name": "Bash",
+                "uuid": "2fbfaff4-878b-4970-85d5-ee2aa48f0221",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015D9M9YxMfYcm3eqDXxNaUM",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "53ad2636-ff33-454c-955d-41e24d9c4861",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q3eRWoeQpaWPvnyXVe6qK9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15643,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15643,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T17:45:46.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015D9M9YxMfYcm3eqDXxNaUM",
+              "type": "tool_result",
+              "content": "total 580\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 21 13:48 .\ndrwxr-xr-x 84 ubuntu ubuntu   4096 May 22 17:45 ..\n-rw-r--r--  1 ubuntu ubuntu 517398 May 21 13:37 cleaned_mmlu_analysis.csv\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 13:49 data\n-rw-r--r--  1 ubuntu ubuntu    785 May 21 13:48 dif_vs_random_comparison.csv\n-rw-r--r--  1 ubuntu ubuntu   4791 May 21 13:37 per_subject_dif_concentration.csv\n-rw-r--r--  1 ubuntu ubuntu  10868 May 21 13:37 plan_032_dif_cleaned_mmlu.py\n-rw-r--r--  1 ubuntu ubuntu   9912 May 21 13:47 plan_032_random_baseline.py\n-rw-r--r--  1 ubuntu ubuntu   8307 May 21 13:48 plan_032_report.md\n-rw-r--r--  1 ubuntu ubuntu   1224 May 21 13:48 random_baseline_report.md\n-rw-r--r--  1 ubuntu ubuntu   3209 May 21 13:48 random_baseline_summary.csv\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 13:40 report",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "d949a8d2-ba69-4c72-8078-5915bdbc4843"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a6ad6397e8c91d2f6",
+                "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+                "description": "Running cd /home/ubuntu/.agent-ml-research-idea_gen_0520_…",
+                "usage": {
+                  "total_tokens": 23490,
+                  "tool_uses": 4,
+                  "duration_ms": 6691
+                },
+                "last_tool_name": "Bash",
+                "uuid": "ae15773a-7f39-442e-ab21-74a9eb493bc8",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0189VcLMkyP2mQcFCkhUgaLo",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts && python3 << 'EOF'\nimport numpy as np\nfrom scipy.sparse import load_npz\n\n# Load and inspect response_matrix_index.npz\nidx = np.load('response_matrix_index.npz', allow_pickle=True)\nmodel_names = idx['model_names']\nprint(\"=== response_matrix_index.npz ===\")\nprint(f\"Keys: {list(idx.files)}\")\nprint(f\"Model names shape: {model_names.shape}\")\nprint(f\"\\nFirst 10 model names:\")\nfor i, name in enumerate(model_names[:10]):\n    print(f\"  [{i}] {name}\")\nprint(f\"\\nLast 5 model names:\")\nfor i, name in enumerate(model_names[-5:], start=len(model_names)-5):\n    print(f\"  [{i}] {name}\")\n\n# Load and inspect response_matrix.npz\nprint(\"\\n=== response_matrix.npz ===\")\nX = load_npz('response_matrix.npz')\nprint(f\"Type: {type(X)}\")\nprint(f\"Shape: {X.shape}\")\nprint(f\"Dtype: {X.dtype}\")\nprint(f\"Sparsity: {1 - (X.nnz / (X.shape[0] * X.shape[1])):.2%}\")\nEOF\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "f9643a1e-1dd6-4fc1-bf4f-31eeec8f1522",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Epts9wSgrSS9u1kCqFjmfA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7818,
+                "cache_read_input_tokens": 15643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7818,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T17:45:51.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0189VcLMkyP2mQcFCkhUgaLo",
+              "type": "tool_result",
+              "content": "=== response_matrix_index.npz ===\nKeys: ['model_names', 'item_ids']\nModel names shape: (5227,)\n\nFirst 10 model names:\n  [0] 0-hero/Matter-0.1-7B\n  [1] 0-hero/Matter-0.1-7B-DPO-preview\n  [2] 0-hero/Matter-0.1-7B-boost\n  [3] 0-hero/Matter-0.1-7B-boost-DPO\n  [4] 0-hero/Matter-0.1-7B-boost-DPO-preview\n  [5] 0-hero/Matter-0.1-Slim-7B\n  [6] 0-hero/Matter-0.1-Slim-7B-A\n  [7] 0-hero/Matter-0.1-Slim-7B-B\n  [8] 0-hero/Matter-0.1-Slim-7B-C\n  [9] 0-hero/Matter-0.1-Slim-7B-C-DPO\n\nLast 5 model names:\n  [5222] zorobin/mistral-class-shishya-7b-ep3\n  [5223] zorobin/mistral-class-shishya-all-hal-7b-ep3\n  [5224] zyh3826/20231206094523-pretrain-Llama-2-13b-hf-76000\n  [5225] zyh3826/GML-Mistral-merged-v1\n  [5226] zyh3826/llama2-13b-ft-openllm-leaderboard-v1\n\n=== response_matrix.npz ===\nType: <class 'scipy.sparse._csr.csr_matrix'>\nShape: (5227, 12508)\nDtype: int8\nSparsity: 40.88%",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "25b30519-5fc5-4126-998a-04d644c3d0cf"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a6ad6397e8c91d2f6",
+                "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+                "description": "Running head -1 /home/ubuntu/.agent-ml-research-idea_gen_…",
+                "usage": {
+                  "total_tokens": 24418,
+                  "tool_uses": 5,
+                  "duration_ms": 9665
+                },
+                "last_tool_name": "Bash",
+                "uuid": "deceef1a-d95b-4781-997e-7c25562ed741",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019XGqfgf49Zs9MZNYB7yuHL",
+              "name": "Bash",
+              "input": {
+                "command": "head -1 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv | tr ',' '\\n' | nl"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "65585b12-1803-4aa2-837e-521b5f566060",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PW1mCuA1d7GUQ6zyJpoX8R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 927,
+                "cache_read_input_tokens": 23461,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 927,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T17:45:53.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019XGqfgf49Zs9MZNYB7yuHL",
+              "type": "tool_result",
+              "content": "     1\tmodel_name\n     2\tscore_full\n     3\tscore_cleaned\n     4\trank_full\n     5\trank_cleaned\n     6\trank_change\n     7\tabs_rank_change\n     8\tfamily\n     9\tcohort_temporal",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "8451f928-3315-46c6-9ae6-89e706aa61d5"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a6ad6397e8c91d2f6",
+                "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Explore data and reference code",
+                "usage": {
+                  "total_tokens": 24638,
+                  "tool_uses": 5,
+                  "duration_ms": 27253
+                },
+                "uuid": "c0ca2831-cc38-4c1d-b013-3b4a2dd5256e",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T17:46:11.115Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y5RrvEELuin7ddvFck7QAD",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! Now I have all the information needed. Let me compile the complete report.\n\n## Summary Report\n\n### 1. MH-DIF Function: `mh_dif_c_pct_vec` (Full Implementation)\n\nLocated at: `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py` (lines 34–101)\n\n```python\ndef mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Fully vectorized MH-DIF → C%. Stratifies on total score (not rest).\"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return 0.0\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = (k_ref == k)\n        mf = (k_foc == k)\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n        if mf.any():\n            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C\n    m0 = B + D\n\n    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n             (Nk > 1) & (m1 > 0) & (m0 > 0))\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n    return is_c.sum() / J * 100\n```\n\n**Key characteristics:**\n- Uses **total-score stratification** (not per-item rest-score) for ~100x speed improvement\n- Stratifies into n_strata=5 bins based on quantiles\n- For each stratum k and item j, computes the Mantel-Haenszel log-odds ratio: delta_j = -2.35 * log(Rj/Sj)\n- Tests DIF at two thresholds: |delta_j| >= 1.5 AND chi-square p-value < 0.05\n- Returns the percentage of items flagged as having DIF (C%)\n\n### 2. Cleaned MMLU Analysis CSV Structure\n\n**Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv`\n\n**Columns (9 total):**\n1. `model_name` — unique model identifier (e.g., \"0-hero/Matter-0.1-7B\")\n2. `score_full` — performance score on full MMLU dataset\n3. `score_cleaned` — performance score on cleaned subset\n4. `rank_full` — ranking based on full score\n5. `rank_cleaned` — ranking based on cleaned score\n6. `rank_change` — signed rank change (negative = improved rank)\n7. `abs_rank_change` — absolute value of rank change\n8. `family` — model family designation (e.g., \"unknown\", blank for unlabeled)\n9. `cohort_temporal` — temporal cohort assignment (\"2023\", \"2024\", \"other\")\n\n**Sample rows (first 4 data rows):**\n```\n0-hero/Matter-0.1-7B,0.5602014710585226,0.579976717112922,3837,3892,55,55,unknown,other\n0-hero/Matter-0.1-7B-DPO-preview,0.6613367444835305,0.6863795110593713,2611,2615,4,4,,other\n0-hero/Matter-0.1-7B-boost,0.6534218100415734,0.680093131548312,2811,2791,-20,20,unknown,other\n0-hero/Matter-0.1-7B-boost-DPO,0.6549408378637672,0.6817229336437718,2776,2751,-25,25,,other\n```\n\n### 3. Response Matrix Data Structure\n\n**response_matrix.npz:**\n- **Shape:** 5227 models × 12508 items\n- **Type:** scipy.sparse.csr_matrix (CSR sparse format)\n- **Data type:** int8 (binary: 0/1 for incorrect/correct)\n- **Sparsity:** 40.88% (59.12% non-zero, fully populated with responses)\n\n**response_matrix_index.npz:**\n- **Keys:** `model_names`, `item_ids`\n- **model_names:** Array of 5227 unique model identifiers (e.g., \"0-hero/Matter-0.1-7B\", \"zorobin/mistral-class-shishya-7b-ep3\")\n\n**Sample model names (first 10):**\n```\n0-hero/Matter-0.1-7B\n0-hero/Matter-0.1-7B-DPO-preview\n0-hero/Matter-0.1-7B-boost\n0-hero/Matter-0.1-7B-boost-DPO\n0-hero/Matter-0.1-7B-boost-DPO-preview\n0-hero/Matter-0.1-Slim-7B\n0-hero/Matter-0.1-Slim-7B-A\n0-hero/Matter-0.1-Slim-7B-B\n0-hero/Matter-0.1-Slim-7B-C\n0-hero/Matter-0.1-Slim-7B-C-DPO\n```\n\nThis data is ready for building a base vs instruct DIF analysis script. The MH-DIF function provides stratified total-score matching (5 strata default), and you can segment models by the `cohort_temporal` column to compare 2023 vs 2024 performance, or use the `family` column for base vs instruct groupings."
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "5b4e293a-9fed-409f-9d59-9d2935fd1b92",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "I need to understand the data and reference code for building a base vs instruct DIF analysis script. Please find and read:\n\n1. The MH-DIF function `mh_dif_c_pct_vec` in `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py` - read the full function implementation\n\n2. The cleaned MMLU analysis CSV structure - read a few lines of `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv` to see the columns\n\n3. Check what's in the response_matrix_index.npz - specifically what model_names look like (a sample of names)\n\n4. Check the structure of response_matrix.npz\n\nReport the full MH-DIF function code, the CSV columns, and a sample of model names.",
+              "agentId": "a6ad6397e8c91d2f6",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! Now I have all the information needed. Let me compile the complete report.\n\n## Summary Report\n\n### 1. MH-DIF Function: `mh_dif_c_pct_vec` (Full Implementation)\n\nLocated at: `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py` (lines 34–101)\n\n```python\ndef mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Fully vectorized MH-DIF → C%. Stratifies on total score (not rest).\"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return 0.0\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = (k_ref == k)\n        mf = (k_foc == k)\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n        if mf.any():\n            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C\n    m0 = B + D\n\n    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n             (Nk > 1) & (m1 > 0) & (m0 > 0))\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n    return is_c.sum() / J * 100\n```\n\n**Key characteristics:**\n- Uses **total-score stratification** (not per-item rest-score) for ~100x speed improvement\n- Stratifies into n_strata=5 bins based on quantiles\n- For each stratum k and item j, computes the Mantel-Haenszel log-odds ratio: delta_j = -2.35 * log(Rj/Sj)\n- Tests DIF at two thresholds: |delta_j| >= 1.5 AND chi-square p-value < 0.05\n- Returns the percentage of items flagged as having DIF (C%)\n\n### 2. Cleaned MMLU Analysis CSV Structure\n\n**Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv`\n\n**Columns (9 total):**\n1. `model_name` — unique model identifier (e.g., \"0-hero/Matter-0.1-7B\")\n2. `score_full` — performance score on full MMLU dataset\n3. `score_cleaned` — performance score on cleaned subset\n4. `rank_full` — ranking based on full score\n5. `rank_cleaned` — ranking based on cleaned score\n6. `rank_change` — signed rank change (negative = improved rank)\n7. `abs_rank_change` — absolute value of rank change\n8. `family` — model family designation (e.g., \"unknown\", blank for unlabeled)\n9. `cohort_temporal` — temporal cohort assignment (\"2023\", \"2024\", \"other\")\n\n**Sample rows (first 4 data rows):**\n```\n0-hero/Matter-0.1-7B,0.5602014710585226,0.579976717112922,3837,3892,55,55,unknown,other\n0-hero/Matter-0.1-7B-DPO-preview,0.6613367444835305,0.6863795110593713,2611,2615,4,4,,other\n0-hero/Matter-0.1-7B-boost,0.6534218100415734,0.680093131548312,2811,2791,-20,20,unknown,other\n0-hero/Matter-0.1-7B-boost-DPO,0.6549408378637672,0.6817229336437718,2776,2751,-25,25,,other\n```\n\n### 3. Response Matrix Data Structure\n\n**response_matrix.npz:**\n- **Shape:** 5227 models × 12508 items\n- **Type:** scipy.sparse.csr_matrix (CSR sparse format)\n- **Data type:** int8 (binary: 0/1 for incorrect/correct)\n- **Sparsity:** 40.88% (59.12% non-zero, fully populated with responses)\n\n**response_matrix_index.npz:**\n- **Keys:** `model_names`, `item_ids`\n- **model_names:** Array of 5227 unique model identifiers (e.g., \"0-hero/Matter-0.1-7B\", \"zorobin/mistral-class-shishya-7b-ep3\")\n\n**Sample model names (first 10):**\n```\n0-hero/Matter-0.1-7B\n0-hero/Matter-0.1-7B-DPO-preview\n0-hero/Matter-0.1-7B-boost\n0-hero/Matter-0.1-7B-boost-DPO\n0-hero/Matter-0.1-7B-boost-DPO-preview\n0-hero/Matter-0.1-Slim-7B\n0-hero/Matter-0.1-Slim-7B-A\n0-hero/Matter-0.1-Slim-7B-B\n0-hero/Matter-0.1-Slim-7B-C\n0-hero/Matter-0.1-Slim-7B-C-DPO\n```\n\nThis data is ready for building a base vs instruct DIF analysis script. The MH-DIF function provides stratified total-score matching (5 strata default), and you can segment models by the `cohort_temporal` column to compare 2023 vs 2024 performance, or use the `family` column for base vs instruct groupings."
+                }
+              ],
+              "totalDurationMs": 27255,
+              "totalTokens": 26846,
+              "totalToolUseCount": 5,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 219,
+                "cache_read_input_tokens": 24388,
+                "output_tokens": 2233,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 219
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 2233,
+                    "cache_read_input_tokens": 24388,
+                    "cache_creation_input_tokens": 219,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 219,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 2,
+                "searchCount": 0,
+                "bashCount": 3,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018tWFQfDG2c7SbfyExDarcY",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif",
+                "description": "Create output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "5f87f0d1-aa5f-4dbf-a679-d6871619c355",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019LUb8MrWwH1PMEJsrK8PiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2708,
+                "cache_read_input_tokens": 25932,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2708
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T17:46:15.827Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018tWFQfDG2c7SbfyExDarcY",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "ac12258d-25a9-4496-b654-c4a243c9a14e",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构清楚了，开始写脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "0d9fdffc-5950-48af-b3bb-61f004ffbf6e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016EY4yrq3e8EkNrRfjDiQxG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 138,
+                "cache_read_input_tokens": 28640,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 138
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J1c1TBWBSFZ66aCJsCtSND",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/base_instruct_dif.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"R18: Base vs Instruct MH-DIF separation experiment.\"\"\"\n\nimport re\nimport sys\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse\nfrom scipy.stats import chi2 as chi2_dist, spearmanr, chi2_contingency\n\nROOT = \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\"\nOUT = f\"{ROOT}/r18_base_vs_instruct_dif\"\n\nN_STRATA = 5\nN_BOOT = 1000\nALPHA = 0.05\nDELTA_THRESH = 1.5\n\n# ── Part 1: Model classification ─────────────────────────────────────────\n\nINSTRUCT_SUFFIXES = re.compile(\n    r\"[-_\\.](instruct|chat|it|rlhf|dpo|sft|aligned|ppo)\"\n    r\"([-_\\.]|$)\",\n    re.IGNORECASE,\n)\n\nQUANT_SUFFIXES = re.compile(\n    r\"[-_\\.](gptq|awq|gguf|ggml|exl2|fp16|bf16|int[48]|q[2-8]_[0-9])\",\n    re.IGNORECASE,\n)\n\nFAMILY_PREFIX_EXCLUDE = re.compile(\n    r\"^(openchat|chatglm|chatml)\",\n    re.IGNORECASE,\n)\n\n\ndef classify_model(name: str) -> str:\n    short = name.split(\"/\")[-1] if \"/\" in name else name\n    stripped = QUANT_SUFFIXES.sub(\"\", short)\n\n    if stripped.lower().endswith(\"-it\"):\n        return \"instruct\"\n\n    if INSTRUCT_SUFFIXES.search(stripped):\n        prefix_part = stripped.split(\"-\")[0].split(\"_\")[0]\n        if FAMILY_PREFIX_EXCLUDE.match(prefix_part):\n            rest = stripped[len(prefix_part):]\n            if not INSTRUCT_SUFFIXES.search(rest):\n                return \"base\"\n        return \"instruct\"\n\n    return \"base\"\n\n\n# ── Part 2: MH-DIF (extended) ────────────────────────────────────────────\n\ndef mh_dif_full(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Vectorized MH-DIF returning per-item details.\n\n    Returns (c_pct, delta_mh, pval, is_c).\n    \"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = np.asarray(X_ref.sum(axis=1), dtype=np.float64).ravel()\n    tot_foc = np.asarray(X_foc.sum(axis=1), dtype=np.float64).ravel()\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return 0.0, np.zeros(J), np.ones(J), np.zeros(J, dtype=bool)\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = k_ref == k\n        mf = k_foc == k\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = np.asarray(X_ref[mr].sum(axis=0), dtype=np.float64).ravel()\n        if mf.any():\n            C[k] = np.asarray(X_foc[mf].sum(axis=0), dtype=np.float64).ravel()\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C\n    m0 = B + D\n\n    valid = (n1[:, None] > 0) & (n0[:, None] > 0) & (Nk > 1) & (m1 > 0) & (m0 > 0)\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk**2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= DELTA_THRESH) & (pval_j < ALPHA)\n    c_pct = is_c.sum() / J * 100\n\n    return c_pct, delta_j, pval_j, is_c\n\n\ndef ets_class(delta):\n    a = abs(delta)\n    if a < 1.0:\n        return \"A\"\n    elif a < 1.5:\n        return \"B\"\n    else:\n        return \"C\"\n\n\n# ── Main ──────────────────────────────────────────────────────────────────\n\ndef main():\n    print(\"Loading data...\")\n    meta = pd.read_csv(f\"{ROOT}/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv\")\n    rm = np.load(f\"{ROOT}/response_matrix.npz\")\n    X = sparse.csr_matrix((rm[\"data\"], rm[\"indices\"], rm[\"indptr\"]), shape=tuple(rm[\"shape\"]))\n    idx = np.load(f\"{ROOT}/response_matrix_index.npz\", allow_pickle=True)\n    model_names = idx[\"model_names\"]\n    item_ids = idx[\"item_ids\"]\n\n    # Build model name → row index lookup\n    name2row = {n: i for i, n in enumerate(model_names)}\n\n    # Classify models\n    meta = meta[meta[\"cohort_temporal\"].isin([\"2023\", \"2024\"])].copy()\n    meta[\"model_type\"] = meta[\"model_name\"].apply(classify_model)\n\n    # Save classification\n    class_df = meta[[\"model_name\", \"model_type\", \"cohort_temporal\", \"family\"]].copy()\n    class_df.to_csv(f\"{OUT}/model_classification.csv\", index=False)\n\n    # Map to response matrix rows\n    meta[\"rm_idx\"] = meta[\"model_name\"].map(name2row)\n    meta = meta.dropna(subset=[\"rm_idx\"])\n    meta[\"rm_idx\"] = meta[\"rm_idx\"].astype(int)\n\n    # Group counts\n    groups = {}\n    for mtype in [\"base\", \"instruct\"]:\n        ref_mask = (meta[\"model_type\"] == mtype) & (meta[\"cohort_temporal\"] == \"2023\")\n        foc_mask = (meta[\"model_type\"] == mtype) & (meta[\"cohort_temporal\"] == \"2024\")\n        groups[mtype] = {\n            \"ref_idx\": meta.loc[ref_mask, \"rm_idx\"].values,\n            \"foc_idx\": meta.loc[foc_mask, \"rm_idx\"].values,\n        }\n\n    print(\"\\n=== Part 4: Sample sizes ===\")\n    for mtype in [\"base\", \"instruct\"]:\n        n_ref = len(groups[mtype][\"ref_idx\"])\n        n_foc = len(groups[mtype][\"foc_idx\"])\n        flag = \" ⚠ UNDERPOWERED\" if min(n_ref, n_foc) < 80 else \"\"\n        print(f\"  {mtype:>10s}: ref(2023)={n_ref}, foc(2024)={n_foc}{flag}\")\n    print(f\"  {'full':>10s}: ref(2023)=1080, foc(2024)=807  (reported baseline)\")\n\n    # Run MH-DIF per group\n    results = {}\n    for mtype in [\"base\", \"instruct\"]:\n        ri, fi = groups[mtype][\"ref_idx\"], groups[mtype][\"foc_idx\"]\n        print(f\"\\nRunning MH-DIF for {mtype} ({len(ri)} ref, {len(fi)} foc)...\")\n        X_ref = X[ri]\n        X_foc = X[fi]\n        c_pct, delta, pval, is_c = mh_dif_full(X_ref, X_foc)\n        results[mtype] = {\"c_pct\": c_pct, \"delta\": delta, \"pval\": pval, \"is_c\": is_c}\n        print(f\"  C% = {c_pct:.1f}%  ({is_c.sum()}/{len(is_c)} items)\")\n\n    # ── Part 3a: Bootstrap CI for C% difference ──────────────────────────\n    print(\"\\n=== Part 3a: Bootstrap C% difference ===\")\n    rng = np.random.default_rng(42)\n    boot_diff = np.zeros(N_BOOT)\n\n    for b in range(N_BOOT):\n        if (b + 1) % 200 == 0:\n            print(f\"  bootstrap {b+1}/{N_BOOT}...\")\n        cpcts = {}\n        for mtype in [\"base\", \"instruct\"]:\n            ri, fi = groups[mtype][\"ref_idx\"], groups[mtype][\"foc_idx\"]\n            ri_b = rng.choice(ri, size=len(ri), replace=True)\n            fi_b = rng.choice(fi, size=len(fi), replace=True)\n            c, _, _, _ = mh_dif_full(X[ri_b], X[fi_b])\n            cpcts[mtype] = c\n        boot_diff[b] = cpcts[\"base\"] - cpcts[\"instruct\"]\n\n    ci_lo, ci_hi = np.percentile(boot_diff, [2.5, 97.5])\n    mean_diff = boot_diff.mean()\n    print(f\"  C%_base - C%_instruct = {results['base']['c_pct']:.1f} - {results['instruct']['c_pct']:.1f} = {results['base']['c_pct'] - results['instruct']['c_pct']:.1f}\")\n    print(f\"  Bootstrap 95% CI: [{ci_lo:.1f}, {ci_hi:.1f}]\")\n\n    # ── Part 3b: Difficulty-direction gradient ────────────────────────────\n    print(\"\\n=== Part 3b: Difficulty-direction gradient ===\")\n    all_2023_idx = meta.loc[meta[\"cohort_temporal\"] == \"2023\", \"rm_idx\"].values\n    X_2023 = X[all_2023_idx]\n    item_diff = np.asarray(X_2023.mean(axis=0), dtype=np.float64).ravel()\n\n    for mtype in [\"base\", \"instruct\"]:\n        c_mask = results[mtype][\"is_c\"]\n        if c_mask.sum() < 3:\n            print(f\"  {mtype}: too few C items ({c_mask.sum()}) for correlation\")\n            continue\n        rho, p = spearmanr(item_diff[c_mask], results[mtype][\"delta\"][c_mask])\n        print(f\"  {mtype}: ρ(difficulty, Δ_MH) = {rho:.3f}  (p={p:.2e}, n={c_mask.sum()})\")\n\n    # ── Part 3c: DIF item overlap ─────────────────────────────────────────\n    print(\"\\n=== Part 3c: DIF item overlap ===\")\n    c_base = set(np.where(results[\"base\"][\"is_c\"])[0])\n    c_inst = set(np.where(results[\"instruct\"][\"is_c\"])[0])\n    inter = c_base & c_inst\n    union = c_base | c_inst\n    jaccard = len(inter) / len(union) if union else 0\n\n    p_b = len(c_base) / len(item_ids)\n    p_i = len(c_inst) / len(item_ids)\n    expected_jaccard = (p_b * p_i) / (p_b + p_i - p_b * p_i) if (p_b + p_i - p_b * p_i) > 0 else 0\n\n    only_base = len(c_base - c_inst)\n    only_inst = len(c_inst - c_base)\n    both = len(inter)\n    print(f\"  |C_base|={len(c_base)}, |C_instruct|={len(c_inst)}\")\n    print(f\"  Only base: {only_base}, Only instruct: {only_inst}, Both: {both}\")\n    print(f\"  Jaccard = {jaccard:.3f}  (expected under independence: {expected_jaccard:.3f})\")\n\n    # ── Part 3d: Direction distribution ───────────────────────────────────\n    print(\"\\n=== Part 3d: DIF direction distribution ===\")\n    dir_table = {}\n    for mtype in [\"base\", \"instruct\"]:\n        d = results[mtype][\"delta\"][results[mtype][\"is_c\"]]\n        n_foc_fav = (d > 0).sum()\n        n_ref_fav = (d < 0).sum()\n        dir_table[mtype] = (int(n_foc_fav), int(n_ref_fav))\n        total = n_foc_fav + n_ref_fav\n        print(f\"  {mtype}: focal-favoring={n_foc_fav} ({n_foc_fav/total*100:.1f}%), ref-favoring={n_ref_fav} ({n_ref_fav/total*100:.1f}%)\")\n\n    ct = np.array([[dir_table[\"base\"][0], dir_table[\"base\"][1]],\n                    [dir_table[\"instruct\"][0], dir_table[\"instruct\"][1]]])\n    if ct.min() > 0:\n        chi2_val, p_dir, _, _ = chi2_contingency(ct)\n        print(f\"  χ²={chi2_val:.2f}, p={p_dir:.3e}\")\n    else:\n        p_dir = np.nan\n        print(\"  χ² test not possible (zero cell)\")\n\n    # ── Save per-item CSV ─────────────────────────────────────────────────\n    print(\"\\nSaving per-item results...\")\n\n    # Extract subject from item_id (format: subject_qXXXX or similar)\n    def get_subject(iid):\n        parts = iid.rsplit(\"_\", 1)\n        return parts[0] if len(parts) > 1 else iid\n\n    item_df = pd.DataFrame({\n        \"item_id\": item_ids,\n        \"subject\": [get_subject(str(i)) for i in item_ids],\n        \"difficulty\": item_diff,\n        \"delta_mh_base\": results[\"base\"][\"delta\"],\n        \"p_base\": results[\"base\"][\"pval\"],\n        \"ets_base\": [ets_class(d) for d in results[\"base\"][\"delta\"]],\n        \"is_c_base\": results[\"base\"][\"is_c\"],\n        \"delta_mh_instruct\": results[\"instruct\"][\"delta\"],\n        \"p_instruct\": results[\"instruct\"][\"pval\"],\n        \"ets_instruct\": [ets_class(d) for d in results[\"instruct\"][\"delta\"]],\n        \"is_c_instruct\": results[\"instruct\"][\"is_c\"],\n    })\n    item_df.to_csv(f\"{OUT}/base_instruct_item_results.csv\", index=False)\n\n    # ── Generate report ───────────────────────────────────────────────────\n    print(\"Writing report...\")\n\n    n_base_ref = len(groups[\"base\"][\"ref_idx\"])\n    n_base_foc = len(groups[\"base\"][\"foc_idx\"])\n    n_inst_ref = len(groups[\"instruct\"][\"ref_idx\"])\n    n_inst_foc = len(groups[\"instruct\"][\"foc_idx\"])\n\n    report = f\"\"\"# R18: Base vs Instruct DIF Separation Experiment\n\n## Sample Sizes\n\n| Group | Ref (2023) | Foc (2024) | Total |\n|-------|-----------|-----------|-------|\n| Base | {n_base_ref} | {n_base_foc} | {n_base_ref + n_base_foc} |\n| Instruct | {n_inst_ref} | {n_inst_foc} | {n_inst_ref + n_inst_foc} |\n| Full (reported) | 1,080 | 807 | 1,887 |\n\n{\"**⚠ Warning:** Some subgroups have N < 80; interpret with caution.\" if min(n_base_ref, n_base_foc, n_inst_ref, n_inst_foc) < 80 else \"All subgroups have N ≥ 80; adequate power.\"}\n\n## C% Comparison\n\n| Group | C% | DIF-C items |\n|-------|-----|------------|\n| Base | {results['base']['c_pct']:.1f}% | {results['base']['is_c'].sum()}/{len(item_ids)} |\n| Instruct | {results['instruct']['c_pct']:.1f}% | {results['instruct']['is_c'].sum()}/{len(item_ids)} |\n| Full (reported) | 31.3% | — |\n\n**Difference (base − instruct):** {results['base']['c_pct'] - results['instruct']['c_pct']:.1f} pp\n**Bootstrap 95% CI:** [{ci_lo:.1f}, {ci_hi:.1f}] (N={N_BOOT})\n\n## Difficulty–Direction Gradient\n\nSpearman correlation between item difficulty (2023 accuracy) and Δ_MH among DIF-C items:\n\n\"\"\"\n\n    for mtype in [\"base\", \"instruct\"]:\n        c_mask = results[mtype][\"is_c\"]\n        if c_mask.sum() >= 3:\n            rho, p = spearmanr(item_diff[c_mask], results[mtype][\"delta\"][c_mask])\n            report += f\"- **{mtype.capitalize()}:** ρ = {rho:.3f} (p = {p:.2e}, n = {c_mask.sum()})\\n\"\n        else:\n            report += f\"- **{mtype.capitalize()}:** too few C items ({c_mask.sum()}) for correlation\\n\"\n\n    report += f\"\"\"\n## DIF Item Overlap\n\n| Metric | Value |\n|--------|-------|\n| C_base only | {only_base} |\n| C_instruct only | {only_inst} |\n| Both | {both} |\n| Jaccard index | {jaccard:.3f} |\n| Expected Jaccard (independence) | {expected_jaccard:.3f} |\n| Jaccard / Expected ratio | {jaccard / expected_jaccard:.1f}× |\n\n## DIF Direction Distribution\n\n| Group | Focal-favoring (2024↑) | Ref-favoring (2023↑) |\n|-------|----------------------|---------------------|\n| Base | {dir_table['base'][0]} ({dir_table['base'][0]/(sum(dir_table['base']))*100:.1f}%) | {dir_table['base'][1]} ({dir_table['base'][1]/(sum(dir_table['base']))*100:.1f}%) |\n| Instruct | {dir_table['instruct'][0]} ({dir_table['instruct'][0]/(sum(dir_table['instruct']))*100:.1f}%) | {dir_table['instruct'][1]} ({dir_table['instruct'][1]/(sum(dir_table['instruct']))*100:.1f}%) |\n\nχ² = {chi2_val:.2f}, p = {p_dir:.3e}\n\n## Output Files\n\n- `model_classification.csv` — {len(class_df)} models classified\n- `base_instruct_item_results.csv` — {len(item_ids)} items with per-group DIF statistics\n\"\"\"\n\n    with open(f\"{OUT}/base_instruct_dif_report.md\", \"w\") as f:\n        f.write(report)\n\n    print(f\"\\nDone. Results in {OUT}/\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "98d068cb-9f99-413e-b290-7cce58ba9dfb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016EY4yrq3e8EkNrRfjDiQxG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 138,
+                "cache_read_input_tokens": 28640,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 138
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T17:47:40.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J1c1TBWBSFZ66aCJsCtSND",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/base_instruct_dif.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "ef7f5610-c14f-4586-b209-6cfb63988113",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/base_instruct_dif.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"R18: Base vs Instruct MH-DIF separation experiment.\"\"\"\n\nimport re\nimport sys\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse\nfrom scipy.stats import chi2 as chi2_dist, spearmanr, chi2_contingency\n\nROOT = \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\"\nOUT = f\"{ROOT}/r18_base_vs_instruct_dif\"\n\nN_STRATA = 5\nN_BOOT = 1000\nALPHA = 0.05\nDELTA_THRESH = 1.5\n\n# ── Part 1: Model classification ─────────────────────────────────────────\n\nINSTRUCT_SUFFIXES = re.compile(\n    r\"[-_\\.](instruct|chat|it|rlhf|dpo|sft|aligned|ppo)\"\n    r\"([-_\\.]|$)\",\n    re.IGNORECASE,\n)\n\nQUANT_SUFFIXES = re.compile(\n    r\"[-_\\.](gptq|awq|gguf|ggml|exl2|fp16|bf16|int[48]|q[2-8]_[0-9])\",\n    re.IGNORECASE,\n)\n\nFAMILY_PREFIX_EXCLUDE = re.compile(\n    r\"^(openchat|chatglm|chatml)\",\n    re.IGNORECASE,\n)\n\n\ndef classify_model(name: str) -> str:\n    short = name.split(\"/\")[-1] if \"/\" in name else name\n    stripped = QUANT_SUFFIXES.sub(\"\", short)\n\n    if stripped.lower().endswith(\"-it\"):\n        return \"instruct\"\n\n    if INSTRUCT_SUFFIXES.search(stripped):\n        prefix_part = stripped.split(\"-\")[0].split(\"_\")[0]\n        if FAMILY_PREFIX_EXCLUDE.match(prefix_part):\n            rest = stripped[len(prefix_part):]\n            if not INSTRUCT_SUFFIXES.search(rest):\n                return \"base\"\n        return \"instruct\"\n\n    return \"base\"\n\n\n# ── Part 2: MH-DIF (extended) ────────────────────────────────────────────\n\ndef mh_dif_full(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Vectorized MH-DIF returning per-item details.\n\n    Returns (c_pct, delta_mh, pval, is_c).\n    \"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = np.asarray(X_ref.sum(axis=1), dtype=np.float64).ravel()\n    tot_foc = np.asarray(X_foc.sum(axis=1), dtype=np.float64).ravel()\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return 0.0, np.zeros(J), np.ones(J), np.zeros(J, dtype=bool)\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = k_ref == k\n        mf = k_foc == k\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = np.asarray(X_ref[mr].sum(axis=0), dtype=np.float64).ravel()\n        if mf.any():\n            C[k] = np.asarray(X_foc[mf].sum(axis=0), dtype=np.float64).ravel()\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C\n    m0 = B + D\n\n    valid = (n1[:, None] > 0) & (n0[:, None] > 0) & (Nk > 1) & (m1 > 0) & (m0 > 0)\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk**2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= DELTA_THRESH) & (pval_j < ALPHA)\n    c_pct = is_c.sum() / J * 100\n\n    return c_pct, delta_j, pval_j, is_c\n\n\ndef ets_class(delta):\n    a = abs(delta)\n    if a < 1.0:\n        return \"A\"\n    elif a < 1.5:\n        return \"B\"\n    else:\n        return \"C\"\n\n\n# ── Main ──────────────────────────────────────────────────────────────────\n\ndef main():\n    print(\"Loading data...\")\n    meta = pd.read_csv(f\"{ROOT}/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv\")\n    rm = np.load(f\"{ROOT}/response_matrix.npz\")\n    X = sparse.csr_matrix((rm[\"data\"], rm[\"indices\"], rm[\"indptr\"]), shape=tuple(rm[\"shape\"]))\n    idx = np.load(f\"{ROOT}/response_matrix_index.npz\", allow_pickle=True)\n    model_names = idx[\"model_names\"]\n    item_ids = idx[\"item_ids\"]\n\n    # Build model name → row index lookup\n    name2row = {n: i for i, n in enumerate(model_names)}\n\n    # Classify models\n    meta = meta[meta[\"cohort_temporal\"].isin([\"2023\", \"2024\"])].copy()\n    meta[\"model_type\"] = meta[\"model_name\"].apply(classify_model)\n\n    # Save classification\n    class_df = meta[[\"model_name\", \"model_type\", \"cohort_temporal\", \"family\"]].copy()\n    class_df.to_csv(f\"{OUT}/model_classification.csv\", index=False)\n\n    # Map to response matrix rows\n    meta[\"rm_idx\"] = meta[\"model_name\"].map(name2row)\n    meta = meta.dropna(subset=[\"rm_idx\"])\n    meta[\"rm_idx\"] = meta[\"rm_idx\"].astype(int)\n\n    # Group counts\n    groups = {}\n    for mtype in [\"base\", \"instruct\"]:\n        ref_mask = (meta[\"model_type\"] == mtype) & (meta[\"cohort_temporal\"] == \"2023\")\n        foc_mask = (meta[\"model_type\"] == mtype) & (meta[\"cohort_temporal\"] == \"2024\")\n        groups[mtype] = {\n            \"ref_idx\": meta.loc[ref_mask, \"rm_idx\"].values,\n            \"foc_idx\": meta.loc[foc_mask, \"rm_idx\"].values,\n        }\n\n    print(\"\\n=== Part 4: Sample sizes ===\")\n    for mtype in [\"base\", \"instruct\"]:\n        n_ref = len(groups[mtype][\"ref_idx\"])\n        n_foc = len(groups[mtype][\"foc_idx\"])\n        flag = \" ⚠ UNDERPOWERED\" if min(n_ref, n_foc) < 80 else \"\"\n        print(f\"  {mtype:>10s}: ref(2023)={n_ref}, foc(2024)={n_foc}{flag}\")\n    print(f\"  {'full':>10s}: ref(2023)=1080, foc(2024)=807  (reported baseline)\")\n\n    # Run MH-DIF per group\n    results = {}\n    for mtype in [\"base\", \"instruct\"]:\n        ri, fi = groups[mtype][\"ref_idx\"], groups[mtype][\"foc_idx\"]\n        print(f\"\\nRunning MH-DIF for {mtype} ({len(ri)} ref, {len(fi)} foc)...\")\n        X_ref = X[ri]\n        X_foc = X[fi]\n        c_pct, delta, pval, is_c = mh_dif_full(X_ref, X_foc)\n        results[mtype] = {\"c_pct\": c_pct, \"delta\": delta, \"pval\": pval, \"is_c\": is_c}\n        print(f\"  C% = {c_pct:.1f}%  ({is_c.sum()}/{len(is_c)} items)\")\n\n    # ── Part 3a: Bootstrap CI for C% difference ──────────────────────────\n    print(\"\\n=== Part 3a: Bootstrap C% difference ===\")\n    rng = np.random.default_rng(42)\n    boot_diff = np.zeros(N_BOOT)\n\n    for b in range(N_BOOT):\n        if (b + 1) % 200 == 0:\n            print(f\"  bootstrap {b+1}/{N_BOOT}...\")\n        cpcts = {}\n        for mtype in [\"base\", \"instruct\"]:\n            ri, fi = groups[mtype][\"ref_idx\"], groups[mtype][\"foc_idx\"]\n            ri_b = rng.choice(ri, size=len(ri), replace=True)\n            fi_b = rng.choice(fi, size=len(fi), replace=True)\n            c, _, _, _ = mh_dif_full(X[ri_b], X[fi_b])\n            cpcts[mtype] = c\n        boot_diff[b] = cpcts[\"base\"] - cpcts[\"instruct\"]\n\n    ci_lo, ci_hi = np.percentile(boot_diff, [2.5, 97.5])\n    mean_diff = boot_diff.mean()\n    print(f\"  C%_base - C%_instruct = {results['base']['c_pct']:.1f} - {results['instruct']['c_pct']:.1f} = {results['base']['c_pct'] - results['instruct']['c_pct']:.1f}\")\n    print(f\"  Bootstrap 95% CI: [{ci_lo:.1f}, {ci_hi:.1f}]\")\n\n    # ── Part 3b: Difficulty-direction gradient ────────────────────────────\n    print(\"\\n=== Part 3b: Difficulty-direction gradient ===\")\n    all_2023_idx = meta.loc[meta[\"cohort_temporal\"] == \"2023\", \"rm_idx\"].values\n    X_2023 = X[all_2023_idx]\n    item_diff = np.asarray(X_2023.mean(axis=0), dtype=np.float64).ravel()\n\n    for mtype in [\"base\", \"instruct\"]:\n        c_mask = results[mtype][\"is_c\"]\n        if c_mask.sum() < 3:\n            print(f\"  {mtype}: too few C items ({c_mask.sum()}) for correlation\")\n            continue\n        rho, p = spearmanr(item_diff[c_mask], results[mtype][\"delta\"][c_mask])\n        print(f\"  {mtype}: ρ(difficulty, Δ_MH) = {rho:.3f}  (p={p:.2e}, n={c_mask.sum()})\")\n\n    # ── Part 3c: DIF item overlap ─────────────────────────────────────────\n    print(\"\\n=== Part 3c: DIF item overlap ===\")\n    c_base = set(np.where(results[\"base\"][\"is_c\"])[0])\n    c_inst = set(np.where(results[\"instruct\"][\"is_c\"])[0])\n    inter = c_base & c_inst\n    union = c_base | c_inst\n    jaccard = len(inter) / len(union) if union else 0\n\n    p_b = len(c_base) / len(item_ids)\n    p_i = len(c_inst) / len(item_ids)\n    expected_jaccard = (p_b * p_i) / (p_b + p_i - p_b * p_i) if (p_b + p_i - p_b * p_i) > 0 else 0\n\n    only_base = len(c_base - c_inst)\n    only_inst = len(c_inst - c_base)\n    both = len(inter)\n    print(f\"  |C_base|={len(c_base)}, |C_instruct|={len(c_inst)}\")\n    print(f\"  Only base: {only_base}, Only instruct: {only_inst}, Both: {both}\")\n    print(f\"  Jaccard = {jaccard:.3f}  (expected under independence: {expected_jaccard:.3f})\")\n\n    # ── Part 3d: Direction distribution ───────────────────────────────────\n    print(\"\\n=== Part 3d: DIF direction distribution ===\")\n    dir_table = {}\n    for mtype in [\"base\", \"instruct\"]:\n        d = results[mtype][\"delta\"][results[mtype][\"is_c\"]]\n        n_foc_fav = (d > 0).sum()\n        n_ref_fav = (d < 0).sum()\n        dir_table[mtype] = (int(n_foc_fav), int(n_ref_fav))\n        total = n_foc_fav + n_ref_fav\n        print(f\"  {mtype}: focal-favoring={n_foc_fav} ({n_foc_fav/total*100:.1f}%), ref-favoring={n_ref_fav} ({n_ref_fav/total*100:.1f}%)\")\n\n    ct = np.array([[dir_table[\"base\"][0], dir_table[\"base\"][1]],\n                    [dir_table[\"instruct\"][0], dir_table[\"instruct\"][1]]])\n    if ct.min() > 0:\n        chi2_val, p_dir, _, _ = chi2_contingency(ct)\n        print(f\"  χ²={chi2_val:.2f}, p={p_dir:.3e}\")\n    else:\n        p_dir = np.nan\n        print(\"  χ² test not possible (zero cell)\")\n\n    # ── Save per-item CSV ─────────────────────────────────────────────────\n    print(\"\\nSaving per-item results...\")\n\n    # Extract subject from item_id (format: subject_qXXXX or similar)\n    def get_subject(iid):\n        parts = iid.rsplit(\"_\", 1)\n        return parts[0] if len(parts) > 1 else iid\n\n    item_df = pd.DataFrame({\n        \"item_id\": item_ids,\n        \"subject\": [get_subject(str(i)) for i in item_ids],\n        \"difficulty\": item_diff,\n        \"delta_mh_base\": results[\"base\"][\"delta\"],\n        \"p_base\": results[\"base\"][\"pval\"],\n        \"ets_base\": [ets_class(d) for d in results[\"base\"][\"delta\"]],\n        \"is_c_base\": results[\"base\"][\"is_c\"],\n        \"delta_mh_instruct\": results[\"instruct\"][\"delta\"],\n        \"p_instruct\": results[\"instruct\"][\"pval\"],\n        \"ets_instruct\": [ets_class(d) for d in results[\"instruct\"][\"delta\"]],\n        \"is_c_instruct\": results[\"instruct\"][\"is_c\"],\n    })\n    item_df.to_csv(f\"{OUT}/base_instruct_item_results.csv\", index=False)\n\n    # ── Generate report ───────────────────────────────────────────────────\n    print(\"Writing report...\")\n\n    n_base_ref = len(groups[\"base\"][\"ref_idx\"])\n    n_base_foc = len(groups[\"base\"][\"foc_idx\"])\n    n_inst_ref = len(groups[\"instruct\"][\"ref_idx\"])\n    n_inst_foc = len(groups[\"instruct\"][\"foc_idx\"])\n\n    report = f\"\"\"# R18: Base vs Instruct DIF Separation Experiment\n\n## Sample Sizes\n\n| Group | Ref (2023) | Foc (2024) | Total |\n|-------|-----------|-----------|-------|\n| Base | {n_base_ref} | {n_base_foc} | {n_base_ref + n_base_foc} |\n| Instruct | {n_inst_ref} | {n_inst_foc} | {n_inst_ref + n_inst_foc} |\n| Full (reported) | 1,080 | 807 | 1,887 |\n\n{\"**⚠ Warning:** Some subgroups have N < 80; interpret with caution.\" if min(n_base_ref, n_base_foc, n_inst_ref, n_inst_foc) < 80 else \"All subgroups have N ≥ 80; adequate power.\"}\n\n## C% Comparison\n\n| Group | C% | DIF-C items |\n|-------|-----|------------|\n| Base | {results['base']['c_pct']:.1f}% | {results['base']['is_c'].sum()}/{len(item_ids)} |\n| Instruct | {results['instruct']['c_pct']:.1f}% | {results['instruct']['is_c'].sum()}/{len(item_ids)} |\n| Full (reported) | 31.3% | — |\n\n**Difference (base − instruct):** {results['base']['c_pct'] - results['instruct']['c_pct']:.1f} pp\n**Bootstrap 95% CI:** [{ci_lo:.1f}, {ci_hi:.1f}] (N={N_BOOT})\n\n## Difficulty–Direction Gradient\n\nSpearman correlation between item difficulty (2023 accuracy) and Δ_MH among DIF-C items:\n\n\"\"\"\n\n    for mtype in [\"base\", \"instruct\"]:\n        c_mask = results[mtype][\"is_c\"]\n        if c_mask.sum() >= 3:\n            rho, p = spearmanr(item_diff[c_mask], results[mtype][\"delta\"][c_mask])\n            report += f\"- **{mtype.capitalize()}:** ρ = {rho:.3f} (p = {p:.2e}, n = {c_mask.sum()})\\n\"\n        else:\n            report += f\"- **{mtype.capitalize()}:** too few C items ({c_mask.sum()}) for correlation\\n\"\n\n    report += f\"\"\"\n## DIF Item Overlap\n\n| Metric | Value |\n|--------|-------|\n| C_base only | {only_base} |\n| C_instruct only | {only_inst} |\n| Both | {both} |\n| Jaccard index | {jaccard:.3f} |\n| Expected Jaccard (independence) | {expected_jaccard:.3f} |\n| Jaccard / Expected ratio | {jaccard / expected_jaccard:.1f}× |\n\n## DIF Direction Distribution\n\n| Group | Focal-favoring (2024↑) | Ref-favoring (2023↑) |\n|-------|----------------------|---------------------|\n| Base | {dir_table['base'][0]} ({dir_table['base'][0]/(sum(dir_table['base']))*100:.1f}%) | {dir_table['base'][1]} ({dir_table['base'][1]/(sum(dir_table['base']))*100:.1f}%) |\n| Instruct | {dir_table['instruct'][0]} ({dir_table['instruct'][0]/(sum(dir_table['instruct']))*100:.1f}%) | {dir_table['instruct'][1]} ({dir_table['instruct'][1]/(sum(dir_table['instruct']))*100:.1f}%) |\n\nχ² = {chi2_val:.2f}, p = {p_dir:.3e}\n\n## Output Files\n\n- `model_classification.csv` — {len(class_df)} models classified\n- `base_instruct_item_results.csv` — {len(item_ids)} items with per-group DIF statistics\n\"\"\"\n\n    with open(f\"{OUT}/base_instruct_dif_report.md\", \"w\") as f:\n        f.write(report)\n\n    print(f\"\\nDone. Results in {OUT}/\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "d16a313e-cdf8-4725-86ef-be0e6a8fa9ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y9ZUdkXTVUfjRSV5N4nZVH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5847,
+                "cache_read_input_tokens": 28778,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5847
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WfZH1LrnwFFMtJAV7yWyFt",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/r18_base_vs_instruct_dif/base_instruct_dif.py",
+                "description": "Run base vs instruct DIF analysis",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "7156e7ce-d98d-43ff-9e4d-5a93f90afb4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y9ZUdkXTVUfjRSV5N4nZVH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5847,
+                "cache_read_input_tokens": 28778,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5847
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bq5qxyz67",
+                "tool_use_id": "toolu_01WfZH1LrnwFFMtJAV7yWyFt",
+                "description": "Run base vs instruct DIF analysis",
+                "task_type": "local_bash",
+                "uuid": "d01b1407-7909-4826-97d7-93d5d10ee62d",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bq5qxyz67",
+                "tool_use_id": "toolu_01WfZH1LrnwFFMtJAV7yWyFt",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run base vs instruct DIF analysis",
+                "uuid": "ef9daf6e-2a78-4769-bd6b-bcbd8fd84b7e",
+                "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T17:51:37.815Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WfZH1LrnwFFMtJAV7yWyFt",
+              "type": "tool_result",
+              "content": "Loading data...\n\n=== Part 4: Sample sizes ===\n        base: ref(2023)=861, foc(2024)=548\n    instruct: ref(2023)=219, foc(2024)=259\n        full: ref(2023)=1080, foc(2024)=807  (reported baseline)\n\nRunning MH-DIF for base (861 ref, 548 foc)...\n  C% = 32.1%  (4018/12508 items)\n\nRunning MH-DIF for instruct (219 ref, 259 foc)...\n  C% = 36.5%  (4567/12508 items)\n\n=== Part 3a: Bootstrap C% difference ===\n  bootstrap 200/1000...\n  bootstrap 400/1000...\n  bootstrap 600/1000...\n  bootstrap 800/1000...\n  bootstrap 1000/1000...\n  C%_base - C%_instruct = 32.1 - 36.5 = -4.4\n  Bootstrap 95% CI: [-13.4, 4.3]\n\n=== Part 3b: Difficulty-direction gradient ===\n  base: ρ(difficulty, Δ_MH) = -0.570  (p=0.00e+00, n=4018)\n  instruct: ρ(difficulty, Δ_MH) = -0.079  (p=1.02e-07, n=4567)\n\n=== Part 3c: DIF item overlap ===\n  |C_base|=4018, |C_instruct|=4567\n  Only base: 1965, Only instruct: 2514, Both: 2053\n  Jaccard = 0.314  (expected under independence: 0.206)\n\n=== Part 3d: DIF direction distribution ===\n  base: focal-favoring=1605 (39.9%), ref-favoring=2413 (60.1%)\n  instruct: focal-favoring=2994 (65.6%), ref-favoring=1573 (34.4%)\n  χ²=562.70, p=2.178e-124\n\nSaving per-item results...\nWriting report...\n\nDone. Results in /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "347bbe82-6b6a-4321-8040-6f21da21beda",
+            "tool_use_result": {
+              "stdout": "Loading data...\n\n=== Part 4: Sample sizes ===\n        base: ref(2023)=861, foc(2024)=548\n    instruct: ref(2023)=219, foc(2024)=259\n        full: ref(2023)=1080, foc(2024)=807  (reported baseline)\n\nRunning MH-DIF for base (861 ref, 548 foc)...\n  C% = 32.1%  (4018/12508 items)\n\nRunning MH-DIF for instruct (219 ref, 259 foc)...\n  C% = 36.5%  (4567/12508 items)\n\n=== Part 3a: Bootstrap C% difference ===\n  bootstrap 200/1000...\n  bootstrap 400/1000...\n  bootstrap 600/1000...\n  bootstrap 800/1000...\n  bootstrap 1000/1000...\n  C%_base - C%_instruct = 32.1 - 36.5 = -4.4\n  Bootstrap 95% CI: [-13.4, 4.3]\n\n=== Part 3b: Difficulty-direction gradient ===\n  base: ρ(difficulty, Δ_MH) = -0.570  (p=0.00e+00, n=4018)\n  instruct: ρ(difficulty, Δ_MH) = -0.079  (p=1.02e-07, n=4567)\n\n=== Part 3c: DIF item overlap ===\n  |C_base|=4018, |C_instruct|=4567\n  Only base: 1965, Only instruct: 2514, Both: 2053\n  Jaccard = 0.314  (expected under independence: 0.206)\n\n=== Part 3d: DIF direction distribution ===\n  base: focal-favoring=1605 (39.9%), ref-favoring=2413 (60.1%)\n  instruct: focal-favoring=2994 (65.6%), ref-favoring=1573 (34.4%)\n  χ²=562.70, p=2.178e-124\n\nSaving per-item results...\nWriting report...\n\nDone. Results in /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。检查产出文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "4c2f1633-1e53-4317-94e3-878fba75d94e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DShEWfVsyywp73xHgrkUKq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 737,
+                "cache_read_input_tokens": 34625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 737
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RwnqocFMfAdC5Tj9bUoHao",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/base_instruct_dif_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "d11b6c81-e35d-4b66-9cd8-8ca6e1597df1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DShEWfVsyywp73xHgrkUKq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 737,
+                "cache_read_input_tokens": 34625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 737
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T17:51:41.071Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RwnqocFMfAdC5Tj9bUoHao",
+              "type": "tool_result",
+              "content": "1\t# R18: Base vs Instruct DIF Separation Experiment\n2\t\n3\t## Sample Sizes\n4\t\n5\t| Group | Ref (2023) | Foc (2024) | Total |\n6\t|-------|-----------|-----------|-------|\n7\t| Base | 861 | 548 | 1409 |\n8\t| Instruct | 219 | 259 | 478 |\n9\t| Full (reported) | 1,080 | 807 | 1,887 |\n10\t\n11\tAll subgroups have N ≥ 80; adequate power.\n12\t\n13\t## C% Comparison\n14\t\n15\t| Group | C% | DIF-C items |\n16\t|-------|-----|------------|\n17\t| Base | 32.1% | 4018/12508 |\n18\t| Instruct | 36.5% | 4567/12508 |\n19\t| Full (reported) | 31.3% | — |\n20\t\n21\t**Difference (base − instruct):** -4.4 pp\n22\t**Bootstrap 95% CI:** [-13.4, 4.3] (N=1000)\n23\t\n24\t## Difficulty–Direction Gradient\n25\t\n26\tSpearman correlation between item difficulty (2023 accuracy) and Δ_MH among DIF-C items:\n27\t\n28\t- **Base:** ρ = -0.570 (p = 0.00e+00, n = 4018)\n29\t- **Instruct:** ρ = -0.079 (p = 1.02e-07, n = 4567)\n30\t\n31\t## DIF Item Overlap\n32\t\n33\t| Metric | Value |\n34\t|--------|-------|\n35\t| C_base only | 1965 |\n36\t| C_instruct only | 2514 |\n37\t| Both | 2053 |\n38\t| Jaccard index | 0.314 |\n39\t| Expected Jaccard (independence) | 0.206 |\n40\t| Jaccard / Expected ratio | 1.5× |\n41\t\n42\t## DIF Direction Distribution\n43\t\n44\t| Group | Focal-favoring (2024↑) | Ref-favoring (2023↑) |\n45\t|-------|----------------------|---------------------|\n46\t| Base | 1605 (39.9%) | 2413 (60.1%) |\n47\t| Instruct | 2994 (65.6%) | 1573 (34.4%) |\n48\t\n49\tχ² = 562.70, p = 2.178e-124\n50\t\n51\t## Output Files\n52\t\n53\t- `model_classification.csv` — 1887 models classified\n54\t- `base_instruct_item_results.csv` — 12508 items with per-group DIF statistics\n55\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "a4f60e42-4164-4b76-9872-7092b28e133d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/base_instruct_dif_report.md",
+                "content": "# R18: Base vs Instruct DIF Separation Experiment\n\n## Sample Sizes\n\n| Group | Ref (2023) | Foc (2024) | Total |\n|-------|-----------|-----------|-------|\n| Base | 861 | 548 | 1409 |\n| Instruct | 219 | 259 | 478 |\n| Full (reported) | 1,080 | 807 | 1,887 |\n\nAll subgroups have N ≥ 80; adequate power.\n\n## C% Comparison\n\n| Group | C% | DIF-C items |\n|-------|-----|------------|\n| Base | 32.1% | 4018/12508 |\n| Instruct | 36.5% | 4567/12508 |\n| Full (reported) | 31.3% | — |\n\n**Difference (base − instruct):** -4.4 pp\n**Bootstrap 95% CI:** [-13.4, 4.3] (N=1000)\n\n## Difficulty–Direction Gradient\n\nSpearman correlation between item difficulty (2023 accuracy) and Δ_MH among DIF-C items:\n\n- **Base:** ρ = -0.570 (p = 0.00e+00, n = 4018)\n- **Instruct:** ρ = -0.079 (p = 1.02e-07, n = 4567)\n\n## DIF Item Overlap\n\n| Metric | Value |\n|--------|-------|\n| C_base only | 1965 |\n| C_instruct only | 2514 |\n| Both | 2053 |\n| Jaccard index | 0.314 |\n| Expected Jaccard (independence) | 0.206 |\n| Jaccard / Expected ratio | 1.5× |\n\n## DIF Direction Distribution\n\n| Group | Focal-favoring (2024↑) | Ref-favoring (2023↑) |\n|-------|----------------------|---------------------|\n| Base | 1605 (39.9%) | 2413 (60.1%) |\n| Instruct | 2994 (65.6%) | 1573 (34.4%) |\n\nχ² = 562.70, p = 2.178e-124\n\n## Output Files\n\n- `model_classification.csv` — 1887 models classified\n- `base_instruct_item_results.csv` — 12508 items with per-group DIF statistics\n",
+                "numLines": 55,
+                "startLine": 1,
+                "totalLines": 55
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QaiqvmmaS5tNyAxByJ27Vz",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/model_classification.csv && echo \"---\" && head -5 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_vs_instruct_dif/base_instruct_item_results.csv",
+                "description": "Check CSV outputs"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "b1ce0ac8-6669-4c53-840b-1e9f69a52dbf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BQYCwpx8vKp85iiNJXqEVV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 35362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 868
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T17:51:44.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QaiqvmmaS5tNyAxByJ27Vz",
+              "type": "tool_result",
+              "content": "model_name,model_type,cohort_temporal,family\n01-ai/Yi-1.5-34B,base,2024,yi-1.5\n01-ai/Yi-1.5-34B-32K,base,2024,yi-1.5\n01-ai/Yi-1.5-34B-Chat,instruct,2024,yi-1.5\n01-ai/Yi-1.5-34B-Chat-16K,instruct,2024,yi-1.5\n---\nitem_id,subject,difficulty,delta_mh_base,p_base,ets_base,is_c_base,delta_mh_instruct,p_instruct,ets_instruct,is_c_instruct\nabstract_algebra.1,abstract,0.22037037037036922,0.5164981792551308,0.15231987161258398,A,False,-0.06348637436343886,1.0,A,False\nabstract_algebra.10,abstract,0.07962962962962972,1.0738643316687086,0.01021045061688619,B,False,5.129733084585753,1.3209308746708892e-05,C,True\nabstract_algebra.100,abstract,0.05370370370370375,1.743154620463568,0.0002863222906126506,C,True,5.480152433415236,0.0013550047192921744,C,True\nabstract_algebra.11,abstract,0.6472222222222184,0.7522047960198835,0.010164602175935289,A,False,0.593784770139804,0.29792734454822223,A,False",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "f3865627-f91b-4bc3-9067-019a6b641298",
+            "tool_use_result": {
+              "stdout": "model_name,model_type,cohort_temporal,family\n01-ai/Yi-1.5-34B,base,2024,yi-1.5\n01-ai/Yi-1.5-34B-32K,base,2024,yi-1.5\n01-ai/Yi-1.5-34B-Chat,instruct,2024,yi-1.5\n01-ai/Yi-1.5-34B-Chat-16K,instruct,2024,yi-1.5\n---\nitem_id,subject,difficulty,delta_mh_base,p_base,ets_base,is_c_base,delta_mh_instruct,p_instruct,ets_instruct,is_c_instruct\nabstract_algebra.1,abstract,0.22037037037036922,0.5164981792551308,0.15231987161258398,A,False,-0.06348637436343886,1.0,A,False\nabstract_algebra.10,abstract,0.07962962962962972,1.0738643316687086,0.01021045061688619,B,False,5.129733084585753,1.3209308746708892e-05,C,True\nabstract_algebra.100,abstract,0.05370370370370375,1.743154620463568,0.0002863222906126506,C,True,5.480152433415236,0.0013550047192921744,C,True\nabstract_algebra.11,abstract,0.6472222222222184,0.7522047960198835,0.010164602175935289,A,False,0.593784770139804,0.29792734454822223,A,False",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。三个产出文件均已生成。\n\n**核心发现：**\n\n| 指标 | Base | Instruct |\n|------|------|----------|\n| 样本量 | 861+548=1409 | 219+259=478 |\n| C% | 32.1% | 36.5% |\n| ρ(difficulty, Δ_MH) | **−0.570** | −0.079 |\n| DIF 方向 | 60.1% ref-favoring | 65.6% focal-favoring |\n\n关键解读：\n1. **C% 差异不显著**（−4.4 pp, 95% CI [−13.4, 4.3] 包含 0），instruct 稍高但 bootstrap CI 宽\n2. **Difficulty gradient 差异极大**：base 组 ρ=−0.57（容易题 DIF 大），instruct 组几乎无梯度（ρ=−0.08）——说明 base 和 instruct 的 DIF 机制不同\n3. **方向完全相反**：base 组以 ref-favoring（2023↑）为主，instruct 组以 focal-favoring（2024↑）为主，χ²=562.7, p<10⁻¹²⁴\n4. **Overlap 中等** (Jaccard=0.314, 1.5× 独立基线)：约一半 DIF items 是 group-specific 的"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "uuid": "5127e42b-3af1-4671-8384-4ff1f1e37cdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EtJrXkopS3V11ms5zNsBJL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 36230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 730
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。三个产出文件均已生成。\n\n**核心发现：**\n\n| 指标 | Base | Instruct |\n|------|------|----------|\n| 样本量 | 861+548=1409 | 219+259=478 |\n| C% | 32.1% | 36.5% |\n| ρ(difficulty, Δ_MH) | **−0.570** | −0.079 |\n| DIF 方向 | 60.1% ref-favoring | 65.6% focal-favoring |\n\n关键解读：\n1. **C% 差异不显著**（−4.4 pp, 95% CI [−13.4, 4.3] 包含 0），instruct 稍高但 bootstrap CI 宽\n2. **Difficulty gradient 差异极大**：base 组 ρ=−0.57（容易题 DIF 大），instruct 组几乎无梯度（ρ=−0.08）——说明 base 和 instruct 的 DIF 机制不同\n3. **方向完全相反**：base 组以 ref-favoring（2023↑）为主，instruct 组以 focal-favoring（2024↑）为主，χ²=562.7, p<10⁻¹²⁴\n4. **Overlap 中等** (Jaccard=0.314, 1.5× 独立基线)：约一半 DIF items 是 group-specific 的"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 383184,
+            "duration_api_ms": 148156,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "62e91bce-ecc8-42ef-bf44-a280a64e3813",
+            "total_cost_usd": 0.49386470000000005,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 25119,
+              "cache_read_input_tokens": 201408,
+              "output_tokens": 7240,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25119,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 401,
+                  "cache_read_input_tokens": 36230,
+                  "cache_creation_input_tokens": 730,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 730
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2279,
+                "outputTokens": 3147,
+                "cacheReadInputTokens": 63492,
+                "cacheCreationInputTokens": 24607,
+                "webSearchRequests": 0,
+                "costUSD": 0.05512195,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 7240,
+                "cacheReadInputTokens": 201408,
+                "cacheCreationInputTokens": 25119,
+                "webSearchRequests": 0,
+                "costUSD": 0.43874275,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "97b18dd5-c369-4b2c-9264-5528355ddb9e"
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r18-base-vs-instruct-dif.md"
+}

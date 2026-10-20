@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8043d02f09827d4d5bf",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper t2 3 camera ready precheck",
+  "task_key": "worker_paper_t2_3_camera_ready_precheck_20260523T030037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_t2_3_camera_ready_precheck_20260523T030037_result.json",
+    "occurrence": 1,
+    "bytes": 2564,
+    "sha256": "791d5e8b6e08c93ef54f0135887bc1c2dc25973d366667989f46f978c6b0c043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Camera-Ready 预检报告\n\n### 1. 页数\n**[FAIL]** Main text 溢出到第 9 页。\n\nPage 8 右栏：§5 Discussion 开始（§5.1 + §5.2），§5.2 末尾溢出到 Page 9 左栏（~2 行），Conclusion 标题和正文（~2 行）也在 Page 9。尽管 `discussion.tex:3` 已有 `\\enlargethispage*{10\\baselineskip}`，仍有约 4–5 行 main text 溢到第 9 页。Limitations/References 紧跟其后在同一页。\n\n**需要压缩约 4–5 行才能让 Conclusion 结尾在第 8 页。**\n\n### 2. Undefined References\n**[PASS]** 编译日志中无 undefined reference 警告，无 `??` 输出。\n\n### 3. E1-E3 Label 交叉引用\n\n| Label | `\\label` 定义 | `\\Cref`/`\\ref` 引用 | 状态 |\n|---|---|---|---|\n| `app:k3_power` | appendix.tex:50 ✓ | **无引用** | **[FAIL]** |\n| `app:interaction` | appendix.tex:76 ✓ | discussion.tex:13 ✓ | [PASS] |\n| `app:mixed_mechanism` | appendix.tex:80 ✓ | discussion.tex:13 ✓ | [PASS] |\n| `tab:k3_power` | appendix.tex:56 ✓ | discussion.tex:20, appendix.tex:51 ✓ | [PASS] |\n\n`app:k3_power` 只定义了 label 但从未被引用。`tab:k3_power`（对应表格）有引用，但段落级 label 是孤立的。\n\n### 4. 数据一致性\n**[PASS]** 所有跨文件数字一致：\n\n| 数字 | discussion.tex | appendix.tex | 一致性 |\n|---|---|---|---|\n| OR=4.24 | line 13: `OR=4.24, p<10⁻²²⁵` | line 77: `OR=4.24, p<10⁻²²⁵` | ✓ |\n| OR=4.75 | — | line 77: `OR=4.75, p<10⁻¹⁸⁸` | 仅 appendix |\n| ρ=-0.302 | line 13: `best: ρ=-0.302` | line 81: `ρ_instruct=-0.302±0.090` | ✓ |\n| AUC=0.905 | — | line 51: `AUC=0.905 at N=100` | 仅 appendix |\n| TPR=0.571 | — | line 51 | 仅 appendix |\n| TPR=0.454 | — | line 51 | 仅 appendix |\n| χ²=634 | — (observed 562.7 in line 13) | line 81: `634±184 vs observed 562.7` | ✓ |\n\n**[WARN]** appendix.tex:51 段落文字引用 |Δ_MH|≥1.4 的数字（TPR=0.454/0.571, AUC=0.905），但 `\\Cref{tab:k3_power}` 指向的表格标题是 |Δ_MH|≥1.0 且不含 N=100 行。数字本身不矛盾（不同 threshold），但读者查表时可能困惑。\n\n### 5. 其他常见问题\n**[PASS]** 无 TODO/FIXME/XXX 注释\n**[PASS]** 无空 `\\cite{}` 或 `\\Cref{}`\n**[WARN]** 4 个 Overfull hbox 警告（均在 appendix 表格，lines 58–220）\n\n---\n\n**需修复：**\n1. **页数溢出**：压缩 discussion/conclusion 约 4–5 行，或调整 spacing\n2. **`app:k3_power` 无引用**：在 discussion.tex §5.2 中补一个 `\\Cref{app:k3_power}`，或删除该 label"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-t2-3-camera-ready-precheck.md"
+}

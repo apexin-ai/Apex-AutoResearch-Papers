@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "044b08144c94ca19406a",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 026 constat dif comparison",
+  "task_key": "worker_code_plan_026_constat_dif_comparison_20260521T081216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_026_constat_dif_comparison_20260521T081216_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "5a7e9bced8102a959cca5f98c52b1f0fa9ee7a818af260e4c77a91c1f975c650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**DIF-C 与 web-overlap contamination 几乎完全正交**，9229 个有标注的 MMLU items 上：\n\n| 指标 | 值 | 含义 |\n|------|-----|------|\n| Enrichment | **0.9642** | DIF-C 率在 web-contaminated (30.7%) 和 clean (31.8%) items 中几乎一致 |\n| Phi | **0.012** | 相关性可忽略 |\n| Chi-squared | 1.28, p=0.258 | 无统计显著关联 |\n| Odds ratio | 1.05 [0.96, 1.15] | CI 包含 1.0 |\n| Jaccard | **0.206** | 两个 flagged 集合重叠很低 |\n| Cohen's d | **-0.031** | 连续 similarity score 上也无差异 |\n\n按 contamination 子类型也一致：`input_only` enrichment = 0.986，`input_and_label` enrichment = 0.960。\n\n这直接实证化了论文的 ground truth meta-critique：web-overlap 标签不能作为 DIF 的 ground truth，两者捕获的是根本不同的信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-026-constat-dif-comparison.md"
+}

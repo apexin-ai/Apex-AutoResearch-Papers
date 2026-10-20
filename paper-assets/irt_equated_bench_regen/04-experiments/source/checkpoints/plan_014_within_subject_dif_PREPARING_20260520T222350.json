@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_014_within_subject_dif",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:23:50.857Z",
+    "updated_at": "2026-05-20T22:23:50.857Z"
+  },
+  "timestamp": "2026-05-20T22:23:50.883876+00:00",
+  "trigger": "update_registry"
+}

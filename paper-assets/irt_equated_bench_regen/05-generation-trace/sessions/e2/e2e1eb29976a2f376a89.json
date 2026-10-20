@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2e1eb29976a2f376a89",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research plan 004 data availability",
+  "task_key": "worker_research_plan_004_data_availability_20260521T000945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_004_data_availability_20260521T000945_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "fff652b2f787e89c5a0be818f585c6d3752a6b4f57c08b84af6252872ffa5ac5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。核心结论：\n\n**METABENCH 中 GSM8K 数据完整可用** — 1,319 items × 6,702 models 的 per-item binary response matrix，可立即用于 IRT 分析。同时还有 ARC、HellaSwag、TruthfulQA、Winogrande、MMLU(57 subjects) 共 6 个 benchmark 的完整数据。\n\n**GSM1K 题目公开但无大规模 response matrix** — HuggingFace 上有 1,205 道题，论文有 ~30-50 个模型的聚合准确率，但没有类似 METABENCH 的 per-item responses。\n\n**推荐路线：内部交叉验证（方案 A）**，用 METABENCH 内 6 个 benchmark 互相做 cross-benchmark equating 验证，5,000+ 模型重叠，零 GPU 需求，立即可行。GSM1K 论文数据可作为辅助验证（方案 B）。\n\n报告已写入 `artifacts/plan_004_data_availability.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-004-data-availability.md"
+}

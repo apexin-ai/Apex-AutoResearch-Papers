@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04716f11a339fc3ee2d3",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r15 base instruct temporal dif",
+  "task_key": "worker_code_r15_base_instruct_temporal_dif_20260523T094436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r15_base_instruct_temporal_dif_20260523T094436_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "0a52456322a4e2081fea1c03c553725bbd7c9adcc137422109dbbb1501548156"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n| | Base-only | Instruct-only | Overall |\n|---|---|---|---|\n| **N_ref / N_foc** | 861 / 548 | 219 / 259 | 1080 / 807 |\n| **C%** | 32.1% | 36.5% | 31.3% |\n| **N_DIF_C** | 4018 | 4567 | — |\n| **ρ(diff, Δ_MH)** | −0.570 | −0.079 | — |\n| **Focal-fav (2024↑)** | 39.9% | 65.6% | — |\n| **Ref-fav (2023↑)** | 60.1% | 34.4% | — |\n\n关键发现：\n\n1. **两个子集的 C% 都远超 overall 的 31.3%**，temporal DIF 不是某一类模型独有的——base 和 instruct 都存在严重的测量不稳定性。\n\n2. **方向差异极为显著**：\n   - Base 模型：60.1% ref-favoring → 2024 base 模型在 DIF items 上表现更差（ρ=−0.57，难题上尤其明显）\n   - Instruct 模型：65.6% focal-favoring → 2024 instruct 模型在 DIF items 上表现更好\n\n3. **ρ 的差异**：Base 的 ρ=−0.57 说明难题上 2023→2024 的退步尤其严重；Instruct 的 ρ≈0 说明 DIF 在各难度水平均匀分布。\n\n输出已保存到 `artifacts/r15_base_instruct_temporal_dif/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r15-base-instruct-temporal-dif.md"
+}

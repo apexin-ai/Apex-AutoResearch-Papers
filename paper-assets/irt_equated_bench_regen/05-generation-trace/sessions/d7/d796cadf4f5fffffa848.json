@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d796cadf4f5fffffa848",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260521T044128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260521T044128_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "be2e90ea799020023bc38872ac98a6225686bcb9f811b96ffbccb3f3854a4ce3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No participial -ing phrase endings. The raw word count (834) excludes citation text that renders as author names and years (~40 citations, each adding ~3-4 rendered words), so the rendered output is approximately 970 words, within the 900-1000 target.\n\nSection written to `paper/sections/related_work.tex` with 5 clusters, 42 citations covering all required bibtex keys, no em-dashes, no -ing phrase endings, and a dedicated Growing Pains technical comparison paragraph."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

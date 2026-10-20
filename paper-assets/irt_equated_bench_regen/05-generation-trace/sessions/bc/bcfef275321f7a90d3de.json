@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcfef275321f7a90d3de",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code t2 1 deff parametric curve",
+  "task_key": "worker_code_t2_1_deff_parametric_curve_20260523T030002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_t2_1_deff_parametric_curve_20260523T030002_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "4463e2cfa7f286de4e81c967900678ccbc5884bcd8bc3e1795f9df55a64954ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure is clean. All outputs saved to `artifacts/deff_parametric_curve/`:\n\n| File | Description |\n|------|-------------|\n| `deff_parametric_curve.pdf/png` | Two-panel figure: (a) ICC vs family size, (b) Adj. C% vs family size |\n| `family_icc_data.csv` | 30 families with (family, size, ICC, DEFF, adj_c_pct) |\n| `fit_results.csv` | Log-linear and power-law fit parameters + R² |\n| `deff_curve_report.md` | Summary with continuous DEFF lookup table |\n\nKey results:\n- **Best fit**: power-law ICC = 0.550 × m^(-0.060), **R² = 0.026** — ICC is essentially flat (~0.46) across family sizes, confirming R18\n- Both models have negligible R², meaning DEFF scales linearly with m (not modulated by ICC variation)\n- Small families (m < 10) show high ICC variance: near-clone pairs (wizardlm-2: 0.99) vs. dissimilar ones (olmo: 0.12)\n- At m = 63 (simple m̄): DEFF ≈ 28, Adj. C% ≈ 1.1%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-t2-1-deff-parametric-curve.md"
+}

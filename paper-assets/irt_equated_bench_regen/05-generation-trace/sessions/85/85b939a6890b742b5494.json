@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b939a6890b742b5494",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research plan 004 gsm1k data collection",
+  "task_key": "worker_research_plan_004_gsm1k_data_collection_20260521T005054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_004_gsm1k_data_collection_20260521T005054_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "7f747cc266af7de920cc83c6aa14f78cdd1c785d35763b4c3590b96d4a13b3b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。\n\n**结果摘要：**\n- 收集 **82 个模型**的 GSM1K 准确率（70 个有配对 GSM8K/GSM1K，12 个仅有 GSM1K）\n- **34 个**匹配到 METABENCH model ID（41.5%）\n- 污染 gap 范围：-0.025（Claude-3-Sonnet）到 +0.093（Deepseek-llm-67b-base）\n- 高污染家族：Phi（+0.04~0.06）、Gemma/CodeGemma（+0.04~0.07）、Xwin-Math（+0.06）\n- 低/负污染：GPT-4、Claude 系列、Llama-2 家族\n\n**未匹配的主要原因**：API-only 模型（GPT/Claude/Gemini）不在 METABENCH 中；部分基座模型（Llama-2-7b/13b/70b-hf、Mistral-7B-v0.1）也不在 METABENCH 中。\n\n产出已写入 `artifacts/plan_004/gsm1k_model_accuracy.csv` 和 `gsm1k_data_report.md`，并完成注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-004-gsm1k-data-collection.md"
+}

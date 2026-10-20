@@ -1,0 +1,3561 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5b913f34b5b2f99321a1",
+  "rounds": [
+    {
+      "number": 34,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-21T03:47:55.892643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_research_cluster_5_llm_evaluation_20260521T034721\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_research:cluster_5_llm_evaluation\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T03:47:21.696062+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-21T03:47:59.507100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 120 && echo \"check\"",
+              "description": "Wait for Cluster 5 Worker",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-21T03:47:59.712590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: b83jwpnbi. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-paper-agent-3035e659/00ba99eb-1333-4d2c-8a72-7c9ea72ef3de/tasks/b83jwpnbi.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 205
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-21T03:48:01.556487+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker at turn 0 — just started or stalled. Waiting."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent"
+          },
+          "id": "event-000544"
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "messages": [
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-21T03:51:53.328398+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Cluster 5 (LLM Evaluation) 已通过 Reviewer 验证，5 篇新增，literature_map 共 45 篇。\n\n全部 5 个 clusters 完成：\n- Contamination Detection: 10\n- IRT & Equating: 9  \n- DIF & Measurement Invariance: 11\n- Benchmark Design: 8\n- LLM Evaluation: 5\n\n请收尾 Step 3：verify_references → bib_sync，然后进入 Step 4 Writing。这次不用验证引用（Reviewer 已逐 cluster 验证过）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "source": "director"
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-21T03:52:03.375795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ 2>/dev/null || echo \"NO_PAPER_DIR\"",
+              "description": "Check paper directory existence"
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-21T03:52:03.628481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "NO_PAPER_DIR"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-21T03:52:07.153911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/",
+              "description": "Create paper directory"
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-21T03:52:07.254804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 21 03:52 .\ndrwxr-xr-x 9 ubuntu ubuntu 4096 May 21 03:52 .."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-21T03:52:22.022632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "paper_research:bib_sync",
+              "project": "irt_equated_bench_regen",
+              "task_prompt": "## Task: Generate references.bib from literature_map.yaml\n\nRead the literature map and generate a BibTeX file containing all verified papers.\n\n### Steps:\n1. Read `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/literature_map.yaml`\n2. For each paper with `verified: true`, generate a BibTeX entry\n3. Write output to `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib`\n\n### BibTeX format rules:\n- Use `@article{}` for journal papers, `@inproceedings{}` for conference papers, `@book{}` for books, `@misc{}` for arXiv preprints\n- Use the `bibtex_key` field as the entry key\n- Include: title, author, year, booktitle/journal, doi (if available), url (if available)\n- Author format: \"Last, First and Last, First\"\n- For arXiv papers without formal venue: use `@misc{}` with `eprint` and `archivePrefix` fields\n\n### Venue → entry type mapping:\n- ICLR/NeurIPS/ICML/AAAI/ACL/EMNLP/EACL/NAACL/ICML → @inproceedings\n- Psychometrika/Journal of.../Applied.../Multivariate Behavioral Research → @article\n- arXiv → @misc with eprint field\n- Books (Lord 1980, Zumbo 1999) → @book\n\n### Important bibtex key corrections (already applied in map):\n- Growing Pains = `habba2026growingpains` (NOT polo)\n- PSN-IRT = `zhou2026psnirt` (NOT polo)\n\n### Verification:\nAfter writing the file, count the entries and confirm the count matches verified papers in the map.\n\n```bash\ngrep -c '@' /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib\n```\n",
+              "tool_groups": "['knowledge']"
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-21T03:52:29.105937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_research_bib_sync_20260521T035222\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_research_bib_sync_20260521T035222.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_paper_research_bib_sync_20260521T035222 started. Use get_worker_status('worker_paper_research_bib_sync_20260521T035222') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 7083
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-21T03:52:34.989074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+              "limit": "60"
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-21T03:52:35.039947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-21T03:52:40.278756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_research_bib_sync_20260521T035222",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-21T03:52:40.379547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_research_bib_sync_20260521T035222\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_research:bib_sync\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T03:52:23.010534+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-21T03:52:44.147449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 120 && echo \"check\"",
+              "description": "Wait for bib_sync Worker",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-21T03:52:44.250162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: babge9850. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-paper-agent-3035e659/00ba99eb-1333-4d2c-8a72-7c9ea72ef3de/tasks/babge9850.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-21T03:52:45.941925+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "bib_sync Worker 启动。等待完成后进入 Step 4。同时准备 Step 4 的 skill 文件。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent"
+          },
+          "id": "event-000558"
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "messages": [
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-21T03:52:46.528078+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "source": "system"
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-21T03:52:52.436109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_research_bib_sync_20260521T035222",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-21T03:52:52.486817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_research_bib_sync_20260521T035222\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_research:bib_sync\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T03:52:23.010534+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-21T03:52:57.908186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -50 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_research_bib_sync_20260521T035222.log 2>/dev/null || echo \"NO_LOG\"",
+              "description": "Check bib_sync Worker log"
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-21T03:52:58.110490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (83.2KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-paper-agent-3035e659/00ba99eb-1333-4d2c-8a72-7c9ea72ef3de/tool-results/bsxklbj9e.txt\n\nPreview (first 2KB):\nWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen\",\"session_id\":\"00b57d3e-5411-47be-864b-b72448457809\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__auto_build_provenance\",\"mcp__agent-ml-research__bootstrap_provenance\",\"mcp__agent-ml-research__check_figures_and_layout\",\"mcp__agent-ml-research__check_paper_consistency\",\"mcp__agent-ml-research__check_provenance_completeness\",\"mcp__agent-ml-research__cleanup_pdf_images\",\"mcp__agent-ml-research__compute_coverage_matrix\",\"mcp__agent-ml-research__edit_paper_section\",\"mcp__agent-ml-research__get_image_info\",\"mcp__agent-ml-research__get_worker_status\",\"mcp__agent-ml-research__list_artifacts\",\"mcp__agent-ml-research__list_workers\",\"mcp__agent-ml-research__load_project_config\",\"mcp__agent-ml-research__overleaf_init\",\"mcp__agent-ml-research__overleaf_pull\",\"mcp__agent-ml-research__overleaf_push\",\"mcp__agent-ml-research__overleaf_status\",\"mcp__agent-ml-research__overleaf_sync\",\"mcp__agent-ml-research__paper_agent_post_to_director\",\"mcp__agent-ml-research__paper_agent_request_review\",\"mcp__agent-ml-research__paper_compile_and_check\",\"mcp__agent-ml\n…[truncated 337 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-21T03:53:02.830906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib 2>/dev/null || echo \"NOT_YET\"",
+              "description": "Check if references.bib exists"
+            }
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-21T03:53:02.932778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "NOT_YET"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-21T03:53:07.702747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "irt_equated_bench_regen",
+              "file": "literature_map.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-21T03:53:07.854913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/literature_map.yaml\\\", \\\"content\\\": \\\"categories:\\\\n- key: contamination_detection\\\\n  name: Benchmark Contamination Detection\\\\n  narrative: Methods for detecting training data contamination in LLM benchmarks,\\\\n    including RL-robust approaches\\\\n- key: irt_equating\\\\n  name: IRT Methodology & Equating\\\\n  narrative: Item Response Theory models, calibration, equating, and their application\\\\n    to LLM evaluation\\\\n- key: benchmark_design\\\\n  name: Dynamic Benchmark Design\\\\n  narrative: Approaches for creating contamination-resistant or self-updating benchmarks\\\\n- key: dif_methodology\\\\n  name: DIF Statistical Methods\\\\n  narrative: Differential Item Functioning detection methods, power analysis, and\\\\n    small-sample strategies\\\\n- key: item_generation\\\\n  name: Automated Item Generation\\\\n  narrative: LLM-based test item generation with difficulty control and psychometric\\\\n    validation\\\\n- key: llm_evaluation\\\\n  name: LLM Evaluation Methodology\\\\n  narrative: General LLM evaluation methodology, benchmark psychometric analysis,\\\\n    evaluation surveys, and benchmark design principles\\\\nmeta:\\\\n  last_updated: '2026-05-21T03:50:29.840Z'\\\\n  total_papers: 45\\\\npapers:\\\\n  balloccu2024leak:\\\\n    abstract: ''\\\\n    added_at: '2026-05-21T01:40:37.987Z'\\\\n    added_by: literature-gap-fill\\\\n    authors:\\\\n    - Balloccu, S.\\\\n    - Schmidtova, P.\\\\n    - Lango, M.\\\\n    - Dusek, O.\\\\n    bibtex_key: balloccu2024leak\\\\n    category: contamination_detection\\\\n    doi: 10.18653/v1/2024.eacl-long.5\\\\n    relevance: Systematic survey of data leakage in closed-source LLMs covering 255\\\\n      papers and 263 benchmarks; establishes scope of contamination problem motivating\\\\n      our detection approach\\\\n    role: foundation\\\\n    semantic_scholar_id: 798feda076ad710df65d509a7884bd15937c8056\\\\n    title: 'Leak, Cheat, Repeat: Data C\n…[truncated 36566 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 152
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-21T03:55:43.106643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_worker_status,list_workers,spawn_worker",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-21T03:55:43.157286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-21T03:55:47.038845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_worker_status,list_workers,spawn_worker,read_registry,write_paper_section,read_project_file,paper_agent_post_to_director,save_project_file",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-21T03:55:47.039331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-21T03:55:48.951890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "worker status spawn",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-21T03:55:49.409482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 457
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-21T03:55:53.381721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_research_bib_sync_20260521T035222",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-21T03:55:53.433189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_research_bib_sync_20260521T035222\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_research:bib_sync\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T03:52:23.010534+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T03:55:22.399836+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"45 BibTeX entries written, matching all 45 verified papers in the literature map.\\\\n\\\\nEntry type breakdown:\\\\n- `@inproceedings`: 20 (ICLR, NeurIPS, ICML, AAAI, ACL, EMNLP, EACL, NAACL)\\\\n- `@article`: 14 (Psychometrika, Science, Nature Communications, journals)\\\\n- `@misc`: 8 (arXiv preprints with `eprint`/`archivePrefix` fields)\\\\n- `@book`: 2 (Lord 1980, Zumbo 1999)\\\\n- `@incollection`: 1 (Holland 1988 book chapter)\\\\n\\\\nKey corrections applied: `habba2026growingpains` and `zhou2026psnirt` use the specified bibtex keys.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-21T03:56:02.268889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib 2>/dev/null && wc -l /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+              "description": "Check references.bib exists and line count"
+            }
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-21T03:56:02.371918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 19470 May 21 03:55 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib\n424 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 103
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-21T03:56:04.983530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+              "limit": "60"
+            }
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-21T03:56:05.034558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% Benchmark Contamination Detection\n3\t% ============================================================\n4\t\n5\t@inproceedings{balloccu2024leak,\n6\t  title     = {Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source {LLMs}},\n7\t  author    = {Balloccu, Simone and Schmidtova, Patrícia and Lango, Mateusz and Dusek, Ondrej},\n8\t  booktitle = {Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL)},\n9\t  year      = {2024},\n10\t  doi       = {10.18653/v1/2024.eacl-long.5},\n11\t  url       = {https://arxiv.org/abs/2402.03927}\n12\t}\n13\t\n14\t@inproceedings{dekoninck2024constat,\n15\t  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},\n16\t  author    = {Dekoninck, Jasper and Mueller, Mark Niklas and Vechev, Martin},\n17\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n18\t  year      = {2024},\n19\t  url       = {https://arxiv.org/abs/2405.16281}\n20\t}\n21\t\n22\t@inproceedings{golchin2024timetravel,\n23\t  title     = {Time Travel in {LLMs}: Tracing Data Contamination in Large Language Models},\n24\t  author    = {Golchin, Shahriar and Surdeanu, Mihai},\n25\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n26\t  year      = {2024},\n27\t  url       = {https://arxiv.org/abs/2308.08493}\n28\t}\n29\t\n30\t@inproceedings{li2024contamination,\n31\t  title     = {An Open-Source Data Contamination Report for Large Language Models},\n32\t  author    = {Li, Yucheng and Guo, Yunhao and Guerin, Frank and Lin, Chenghua},\n33\t  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},\n34\t  year      = {2024},\n35\t  doi       = {10.18653/v1/2024.findings-emnlp.30},\n36\t  url       = {https://aclanthology.org/2024.findings-emnlp.30/}\n37\t}\n38\t\n39\t@misc{liang2026dvd,\n40\t  title         = {{DVD}: Detection via Variance of Generation Distri\n…[truncated 1001 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-21T03:56:09.203857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c '^@' /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+              "description": "Count BibTeX entries"
+            }
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-21T03:56:09.305135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "45"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-21T03:56:13.019776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "habba2026|zhou2026|kipnis2025",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-21T03:56:13.070510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "164:@misc{habba2026growingpains,\n174:@inproceedings{zhou2026psnirt,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-21T03:56:15.679599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "kipnis",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-21T03:56:15.680157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "195:@misc{kipnis2024metabench,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-21T03:56:21.203148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/writing_plan.yaml",
+              "limit": "50",
+              "offset": "0"
+            }
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-21T03:56:21.203666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\tmeta:\n1\t  venue: ICLR 2027\n2\t  track: main\n3\t  template: \"\"\n4\t  template_note: \"ICLR 2027 template not yet available locally; will download or reuse iclr2025 when entering Step 2\"\n5\t  page_limit: 9\n6\t  deadline: \"2026-10-01\"\n7\t  core_claim: >-\n8\t    Applying DIF to MMLU (5,227 models × 12,508 items) reveals 38% item-level\n9\t    functional instability across model generations, exposes a fundamental gap\n10\t    in contamination ground truth labels, and provides a semi-synthetic\n11\t    validation framework for item-level detectors.\n12\t  created_at: \"2026-05-20T23:45:00Z\"\n13\t  story_arc:\n14\t    hook: >-\n15\t      When we say \"Model B outperforms Model A on MMLU,\" we assume temporal\n16\t      comparability — but 38% of MMLU items function differently across model\n17\t      generations.\n18\t    gap: >-\n19\t      Existing contamination labels (web-overlap, n-gram) measure global\n20\t      exposure, not differential item functioning — every validation study\n21\t      using these labels has a blind spot. This is a fundamental validation\n22\t      methodology gap affecting the entire contamination detection field.\n23\t    insight: >-\n24\t      DIF detects differential contamination (semi-synthetic ΔTPR=+0.508) but\n25\t      temporal DIF is dominated by genuine capability evolution\n26\t      (enrichment≈1.0, within-subject C%=38.1%), and three structural\n27\t      corrections cannot separate them.\n28\t    mechanism: >-\n29\t      Semi-synthetic injection into real response matrices provides controlled\n30\t      ground truth; cross-subject matching eliminates FPR inflation (ΔFPR=0.000).\n31\t    evidence: >-\n32\t      38% items functionally unstable (plan_001/014); ΔTPR=+0.508 at p=0.5\n33\t      (plan_011); ΔFPR=0.000 cross-subject (plan_016); three improvements\n34\t      exhausted (plan_001b/012/014).\n35\t\n36\tpaper_outline:\n37\t  - section: abstract\n38\t    word_budget: 200\n39\t    core_bullets:\n40\t      - >-\n41\t        Problem: LLM benchmark scores assume temporal comparability, but\n42\t        item-l\n…[truncated 421 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-21T03:56:21.655560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-21T03:56:21.807134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-21T03:56:27.795214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "writing_order:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/writing_plan.yaml",
+              "output_mode": "content",
+              "-A": "20"
+            }
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-21T03:56:27.845908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "837:writing_order:\n838-  - experiments\n839-  - method\n840-  - introduction\n841-  - related_work\n842-  - discussion\n843-  - abstract\n844-  - conclusion"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000591"
+        },
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-21T03:56:31.711113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/writing_plan.yaml",
+              "offset": "85",
+              "limit": "350"
+            }
+          },
+          "id": "event-000592"
+        },
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-21T03:56:31.862193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "85\t        cohorts (ETS C DIF), persisting within every subject domain\n86\t        (31-45%, avg 38.1%)\n87\t      - >-\n88\t        Gap: Contamination detection research validates against web-overlap\n89\t        labels, but these measure global exposure, not differential item\n90\t        functioning — a fundamental validation methodology gap. All work\n91\t        using web-overlap/n-gram labels as ground truth for item-level\n92\t        detectors (including Min-K%, n-gram methods) has the same blind\n93\t        spot.\n94\t      - >-\n95\t        Insight: Applying classical psychometric DIF to LLM benchmarks\n96\t        reveals that item-level behavioral differences are pervasive and\n97\t        structural — three correction attempts (matched-ability,\n98\t        θ-conditioning, bifactor pre-check) all fail, pointing to genuine\n99\t        capability evolution as the dominant source\n100\t      - >-\n101\t        Tension resolution (Dream #3, MUST address in §1 end): \"31%\n102\t        items unstable\" sounds alarming but \"ρ=0.997 ranking correlation\"\n103\t        sounds reassuring. Resolve upfront: instability is real but\n104\t        concentrated in redundant measurement → benchmark robust at\n105\t        ranking level, fragile at item level. This is precisely why DIF\n106\t        is a diagnostic lens (understand what changed) not a quality\n107\t        filter (remove bad items).\n108\t      - >-\n109\t        Discovery process (anti-post-hoc framing): \"We initially\n110\t        hypothesized DIF could detect contaminated items. Three structural\n111\t        improvements failed to separate contamination from capability\n112\t        evolution. This led us to investigate what persistent DIF actually\n113\t        captures.\" Pivot was data-driven: plan_011 semi-synthetic success\n114\t        (ΔTPR=+0.508) proved DIF works but ground truth labels don't —\n115\t        triggering problem redefinition. New evidence (plan_017 z=-49σ,\n116\t        plan_004 r=−0.478) came from post-pivot experiments, not\n117\t        \n…[truncated 18704 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-21T03:56:35.782864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/writing_plan.yaml",
+              "offset": "435",
+              "limit": "300"
+            }
+          },
+          "id": "event-000594"
+        },
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-21T03:56:35.835157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "435\t    design_notes:\n436\t      - >-\n437\t        Left panel: \"Global Contamination\" — item on Common Crawl since\n438\t        2020, both cohort ICCs overlap (no DIF), Li et al. labels it\n439\t        contaminated but DIF correctly reports no group difference\n440\t      - >-\n441\t        Right panel: \"Differential Contamination\" — item in focal\n442\t        cohort's training data only, ICCs diverge (DIF detected), Li\n443\t        et al. may or may not label it\n444\t      - >-\n445\t        Use ICC curves (S-shaped logistic) with shaded area between\n446\t        curves = DIF magnitude (Δ_MH)\n447\t      - \"Color: reference cohort blue, focal cohort orange (Okabe-Ito)\"\n448\t      - >-\n449\t        Bottom annotation connecting panels: \"Enrichment ≈ 1.0 because\n450\t        most MMLU items are globally contaminated (left), not\n451\t        differentially (right)\"\n452\t    placement: introduction\n453\t    aspect_ratio: \"16:9\"\n454\t\n455\t  - fig_id: fig_2_dose_response\n456\t    type: statistical\n457\t    tool: matplotlib\n458\t    description: >-\n459\t      Semi-synthetic dose-response: TPR vs exploitation rate p for\n460\t      temporal cohort with external/cross-subject matching, plus FPR\n461\t      stability panel\n462\t    narrative_intent: >-\n463\t      DIF detection power increases monotonically with contamination\n464\t      exploitation rate (clear dose-response), and cross-subject matching\n465\t      maintains perfectly stable FPR (ΔFPR=0.000) — controlled detection\n466\t      capability confirmed.\n467\t    design_notes:\n468\t      - \"x-axis: exploitation rate p ∈ {0, 0.3, 0.5, 0.7, 1.0}\"\n469\t      - >-\n470\t        Top panel: TPR lines — temporal_external (primary, solid blue),\n471\t        temporal_standard (dashed red, shows FPR inflation problem at\n472\t        high p)\n473\t      - >-\n474\t        Bottom panel (smaller): FPR vs p — external flat at ~0.31\n475\t        (ΔFPR=0.000), standard inflating from 0.30 to 0.62\n476\t      - \"Pattern A: light regime band at p<0.3 labeled 'below practical detection'\n…[truncated 11649 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-21T03:56:39.655176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/writing_plan.yaml",
+              "offset": "735",
+              "limit": "110"
+            }
+          },
+          "id": "event-000596"
+        },
+        {
+          "source_line": 597,
+          "timestamp": "2026-05-21T03:56:39.705878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "735\t      threshold (effect size + significance) already controls FPR.\n736\t\n737\t  - table_id: tab_A4_circularity_ablation\n738\t    caption: >-\n739\t      Circularity ablation: ranking disruption from removing different\n740\t      item subsets (31.3% removal rate). DIF is least disruptive\n741\t      non-random strategy.\n742\t    placement: appendix\n743\t    type: comparison\n744\t    columns:\n745\t      - Removal Strategy\n746\t      - \"ρ (2024 cohort)\"\n747\t      - \"z vs random\"\n748\t      - \"Jaccard with DIF-C\"\n749\t    data_source: \"registry: plan_020_circularity_ablation\"\n750\t    notes: >-\n751\t      DIF z=-9.5 vs random, but high-discrimination z=-15.8,\n752\t      accuracy-gap z=-156.5, high-variance z=-107.9. DIF-discrimination\n753\t      Jaccard=0.12. DIF isolates ability-conditioned differential\n754\t      behavior, not just generally informative items.\n755\t\n756\tliterature_strategy:\n757\t  citation_budget: 40\n758\t  macro_context:\n759\t    - \"LLM benchmark contamination detection and validation methodology\"\n760\t    - \"psychometric methods (IRT, DIF) applied to LLM evaluation\"\n761\t    - \"benchmark temporal comparability and dynamic evaluation design\"\n762\t  micro_clusters:\n763\t    - cluster_name: \"Contamination Detection Methods\"\n764\t      search_queries:\n765\t        - \"benchmark contamination detection LLM 2024 2025 2026\"\n766\t        - \"Min-K++ training data detection language model\"\n767\t        - \"ConStat perturbation contamination benchmark\"\n768\t        - \"n-gram overlap contamination benchmark LLM\"\n769\t      must_cite:\n770\t        - \"Wang et al. 2026 RL fragility (ICLR 2026)\"\n771\t        - \"Liang et al. 2026 DVD generation variance\"\n772\t        - \"Tao et al. 2026 Self-Critique (ICLR 2026)\"\n773\t        - \"Li et al. EMNLP 2024 web-overlap labels\"\n774\t        - \"Shi et al. 2024 Min-K++\"\n775\t        - \"Balloccu et al. 2024\"\n776\t      target_count: 10\n777\t\n778\t    - cluster_name: \"IRT in LLM Evaluation\"\n779\t      search_queries:\n780\t        - \"item response theory LLM evaluation 202\n…[truncated 2661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000597"
+        },
+        {
+          "source_line": 598,
+          "timestamp": "2026-05-21T03:56:46.684207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:read_registry,write_paper_section,paper_agent_post_to_director",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000598"
+        },
+        {
+          "source_line": 599,
+          "timestamp": "2026-05-21T03:56:46.736542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000599"
+        },
+        {
+          "source_line": 600,
+          "timestamp": "2026-05-21T03:56:48.491911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "registry read",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000600"
+        },
+        {
+          "source_line": 601,
+          "timestamp": "2026-05-21T03:56:48.542487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000601"
+        },
+        {
+          "source_line": 602,
+          "timestamp": "2026-05-21T03:56:50.803860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_equated_bench_regen",
+              "limit": "0"
+            }
+          },
+          "id": "event-000602"
+        },
+        {
+          "source_line": 603,
+          "timestamp": "2026-05-21T03:56:50.905268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_004_gsm8k_cross_benchmark\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T00:30:09.372Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:22:16.029Z\\\", \\\"hypothesis\\\": \\\"GSM8K 的 temporal DIF (2023 vs 2024) 将展示与 MMLU 类似的 30-40% ETS C%，证明 temporal DIF 现象跨 benchmark 泛化。使用 METABENCH 其他 benchmarks 总分做 external matching（GSM8K 无 subject 分层），预期 baseline FPR 更可控。如果 C% 在同一量级 → DIF 作为 benchmark health diagnostic 的泛化性得到验证。\\\", \\\"parent\\\": \\\"plan_001_real_data_dif_mmlu\\\", \\\"metrics\\\": {\\\"step1_gsm8k_temporal_dif\\\": {\\\"n_items\\\": 1319, \\\"n_ref\\\": 1017, \\\"n_foc\\\": 804, \\\"standard_c_pct\\\": 18.9, \\\"external_c_pct\\\": 47.4, \\\"sanity_c_pct\\\": 0.3, \\\"standard_external_spearman\\\": 0.926}, \\\"step2_semi_synthetic\\\": {\\\"standard_delta_tpr_p10\\\": 0.818, \\\"external_delta_tpr_p10\\\": 0.517}, \\\"step3_gsm1k_correlation\\\": {\\\"n_models\\\": 33, \\\"n_dif_c_items\\\": 249, \\\"pearson_r\\\": -0.478, \\\"pearson_p\\\": 0.005, \\\"spearman_rho\\\": -0.403, \\\"spearman_p\\\": 0.02, \\\"partial_r_controlling_accuracy\\\": -0.385, \\\"partial_p\\\": 0.027, \\\"permutation_p\\\": 0.014, \\\"dif_c_favor_2024\\\": 78, \\\"dif_c_favor_2023\\\": 171, \\\"direction\\\": \\\"NEGATIVE (opposite to contamination hypothesis)\\\", \\\"cook_d_max_model\\\": \\\"Deepseek-math-7b-rl\\\", \\\"leave_one_out_r_range\\\": \\\"-0.537 to -0.374\\\", \\\"robust\\\": true}}, \\\"notes\\\": \\\"Step 3 GSM1K correlation: r=-0.478 (p=0.005). |r|>0.3 threshold met but direction NEGATIVE — opposite to contamination hypothesis. DIF-C items disadvantage contaminated models, not advantage them. 171/249 DIF-C items favor older models. Partial r=-0.385 (p=0.027) controlling for overall accuracy. Permutation p=0.014. Robust to leave-one-out. Interpretation: DIF captures genuine measurement anomalies orthogonal to contamination. Contamination produces narrow boost on typical items, fails on atypical-difficulty items (DIF-C). Supports characterization narrative: DIF as benchmark health diagnostic, not contamination detector.\\\", \\\"conclusion\\\": \\\"negative\\\n…[truncated 14957 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 101
+          },
+          "id": "event-000603"
+        },
+        {
+          "source_line": 604,
+          "timestamp": "2026-05-21T03:57:03.605691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_010/ 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_018/ 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/ 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_020/ 2>/dev/null",
+              "description": "List artifact directories for plan_010/018/019/020"
+            }
+          },
+          "id": "event-000604"
+        },
+        {
+          "source_line": 605,
+          "timestamp": "2026-05-21T03:57:03.708678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "architecture_classification.csv\ndif_results_decoder_only_temporal.csv\nirt_fit_comparison.csv\nplan_010_arch_stratified_dif.py\nplan_010_report.md\n---\nintermediate\nplan_018_threshold_sensitivity.py\nreport\nthreshold_sensitivity_overall.csv\nthreshold_sensitivity_report.md\nthreshold_sensitivity_within_family.csv\n---\nchart\nfig_subject_delta_vs_cpct.png\ninstability_decomposition_report.md\nintermediate\nplan_019_instability_decomposition.py\nreport\nsubject_decomposition_summary.csv\n---\ncircularity_ablation_report.md\ncircularity_ablation_results.csv\nmetric_correlations.csv\nplan_020_circularity_ablation.py\nstrategy_overlap.csv"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-000605"
+        },
+        {
+          "source_line": 606,
+          "timestamp": "2026-05-21T03:57:06.018630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_010/plan_010_report.md"
+            }
+          },
+          "id": "event-000606"
+        },
+        {
+          "source_line": 607,
+          "timestamp": "2026-05-21T03:57:06.923021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Plan 010: Architecture-Stratified DIF Analysis\n2\t\n3\t## 1. Motivation\n4\t\n5\tPlan 001 found 31.3% ETS C items in temporal MH-DIF (2023 vs 2024) across all\n6\t5227 METABENCH MMLU models. A reviewer concern: the model population spans\n7\tmultiple architectures (decoder-only, encoder-decoder, encoder-only), and this\n8\theterogeneity may cause IRT model misfit, inflating DIF flags. This analysis\n9\tverifies DIF findings on an architecture-homogeneous (decoder-only) subset.\n10\t\n11\t## 2. Architecture Classification\n12\t\n13\tModels were classified based on known family labels and model name patterns:\n14\t\n15\t| Architecture | N | % |\n16\t|-------------|---|---|\n17\t| decoder-only | 5226 | 100.0% |\n18\t| encoder-decoder | 1 | 0.0% |\n19\t\n20\t**Key finding**: METABENCH draws from the Open LLM Leaderboard, which evaluates\n21\tgenerative language models on MMLU. Virtually all models are decoder-only.\n22\t\n23\tExcluded non-decoder-only models (1):\n24\t- `AurelPx/Pegasus-7b-slerp` (encoder-decoder)\n25\t\n26\t## 3. Decoder-Only Subset Description\n27\t\n28\t- **Total decoder-only models**: 5226\n29\t- **Temporal cohort split**:\n30\t  - 2023: N = 1080\n31\t  - 2024: N = 807\n32\t  - other: N = 3339\n33\t- **Reference (2023)**: N = 1080\n34\t- **Focal (2024)**: N = 807\n35\t\n36\t## 4. IRT Fit Diagnostics\n37\t\n38\t### 4.1 Item-Level Fit: Point-Biserial Correlations\n39\t\n40\t| Metric | Full Population | Decoder-Only |\n41\t|--------|----------------|--------------|\n42\t| N models | 5227 | 5226 |\n43\t| rpb mean | 0.3993 | 0.3993 |\n44\t| rpb median | 0.5118 | 0.5118 |\n45\t| rpb SD | 0.3439 | 0.3439 |\n46\t| Items with rpb < 0 | 1926 | 1926 |\n47\t\n48\tInterpretation: Point-biserial correlations measure how well each item discriminates\n49\talong the latent trait (total score). Similar distributions between full and\n50\tdecoder-only populations indicate that architecture heterogeneity does not\n51\tmeaningfully affect item-level IRT fit.\n52\t\n53\t### 4.2 Person-Level Fit: Standardized Residuals (Lz proxy)\n54\t\n55\t| Metric | Full Population | Dec\n…[truncated 2803 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 904
+          },
+          "id": "event-000607"
+        },
+        {
+          "source_line": 608,
+          "timestamp": "2026-05-21T03:57:06.923395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_018/threshold_sensitivity_report.md"
+            }
+          },
+          "id": "event-000608"
+        },
+        {
+          "source_line": 609,
+          "timestamp": "2026-05-21T03:57:07.375585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Threshold Sensitivity & BH Multiple Testing Correction Report\n2\t\n3\t## Data Source\n4\t- **File**: `artifacts/plan_001/dif_results_temporal.csv`\n5\t- **N items**: 12,508\n6\t- **Analysis**: Temporal MH-DIF (2023 vs 2024 model cohorts) on MMLU\n7\t\n8\t## ETS C Classification\n9\tAn item is classified as ETS C (large DIF) when:\n10\t- |Δ_MH| ≥ threshold, **and**\n11\t- p < 0.05 (uncorrected) or BH-adjusted p < 0.05\n12\t\n13\t---\n14\t\n15\t## Overall Temporal DIF\n16\t\n17\t| Threshold | n_C | C% | BH_n_C | BH_C% |\n18\t|-----------|-----|-----|--------|-------|\n19\t| 1.0 | 6120.0 | 48.93% | 6024.0 | 48.16% |\n20\t| 1.5 | 3918.0 | 31.32% | 3915.0 | 31.30% |\n21\t| 2.0 | 2294.0 | 18.34% | 2294.0 | 18.34% |\n22\t| 2.5 | 1278.0 | 10.22% | 1278.0 | 10.22% |\n23\t\n24\t**BH-significant tests**: 7,111 / 12,508 (56.9%) at q = 0.05\n25\t\n26\t### Interpretation\n27\t- At the standard ETS threshold (|Δ_MH| ≥ 1.5), **31.3%** of items show large DIF (uncorrected).\n28\t- After BH correction at q=0.05, this drops to **31.3%**.\n29\t- Even at the most conservative threshold (|Δ_MH| ≥ 2.5), **10.2%** of items remain flagged (uncorrected).\n30\t- **The \">15% large-DIF\" finding holds for thresholds up to 2.0** (|Δ_MH| ≥ 2.0 → 18.3% after BH). At |Δ_MH| ≥ 2.5, C% drops to 10.2%, but this is an unusually strict threshold rarely used in practice.\n31\t\n32\t## Within-Family DIF\n33\t\n34\t| Threshold | n_C | C% | BH_n_C | BH_C% |\n35\t|-----------|-----|-----|--------|-------|\n36\t| 1.0 | 13063.0 | 52.22% | 11539.0 | 46.13% |\n37\t| 1.5 | 12534.0 | 50.10% | 11290.0 | 45.13% |\n38\t| 2.0 | 11188.0 | 44.72% | 10322.0 | 41.26% |\n39\t| 2.5 | 9359.0 | 37.41% | 8874.0 | 35.47% |\n40\t\n41\t**N comparisons**: 25,016 (within-family pairwise)\n42\t\n43\t### Interpretation\n44\t- Within-family DIF at |Δ_MH| ≥ 1.5: **50.1%** (uncorrected), **45.1%** (BH-corrected).\n45\t- Within-family comparisons involve more homogeneous model pairs, so DIF rates may differ from overall temporal analysis.\n46\t\n47\t## Conclusion\n48\t\n49\tThe headline finding — that a substantial fraction of \n…[truncated 565 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000609"
+        },
+        {
+          "source_line": 610,
+          "timestamp": "2026-05-21T03:57:07.426277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md"
+            }
+          },
+          "id": "event-000610"
+        },
+        {
+          "source_line": 611,
+          "timestamp": "2026-05-21T03:57:07.778158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Plan 019: Instability Decomposition Report\n2\t\n3\t## Research Question\n4\t\n5\tHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\n6\tdomain-level capability improvement (2024 models systematically outperforming 2023 models\n7\tin certain subjects) versus residual measurement instability?\n8\t\n9\t## Method\n10\t\n11\t1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n12\t   difference between focal (2024, N=807) and reference (2023, N=1080) cohorts.\n13\t2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n14\t   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n15\t3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n16\t   how much DIF C would remain absent domain-level improvement.\n17\t\n18\t## Subject Accuracy Deltas\n19\t\n20\t| Statistic | Value |\n21\t|-----------|-------|\n22\t| Mean Δ    | 0.0264 |\n23\t| SD        | 0.0146 |\n24\t| Min       | -0.0087 |\n25\t| Max       | 0.0571 |\n26\t\n27\t## Logistic Regression Results\n28\t\n29\t### Model 1: DIF_C ~ subject_acc_delta\n30\t\n31\t| Variable | Coef | SE | z | p | OR (per 0.10) |\n32\t|----------|------|----|---|---|----------------|\n33\t| const | -0.8975 | 0.0400 | -22.43 | 0.0000 | — |\n34\t| subject_acc_delta | 4.3928 | 1.3602 | 3.23 | 0.0012 | 1.552 |\n35\t\n36\t- Pseudo R² = 0.0007\n37\t- AIC = 15545.2\n38\t\n39\t### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n40\t\n41\t| Variable | Coef | SE | z | p |\n42\t|----------|------|----|---|---|\n43\t| const | 0.0691 | 0.0650 | 1.06 | 0.2877 |\n44\t| subject_acc_delta | -3.0972 | 1.4305 | -2.17 | 0.0304 |\n45\t| ctt_difficulty | -2.5435 | 0.1151 | -22.09 | 0.0000 |\n46\t| ctt_discrimination | 4.1155 | 0.1929 | 21.33 | 0.0000 |\n47\t\n48\t- Pseudo R² = 0.0423\n49\t- AIC = 14902.3\n50\t\n51\t## Counterfactual Analysis\n52\t\n53\t| Metric | Model 1 | Model 2 |\n54\t|--------|---------|---------|\n55\t| Predicted C% (actual) | 31.3% | 31.3% |\n56\t| Pr\n…[truncated 2442 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000611"
+        },
+        {
+          "source_line": 612,
+          "timestamp": "2026-05-21T03:57:07.778550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_020/circularity_ablation_report.md"
+            }
+          },
+          "id": "event-000612"
+        },
+        {
+          "source_line": 613,
+          "timestamp": "2026-05-21T03:57:07.829237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# plan_020: Circularity Ablation — DIF Removal vs Alternative Item Selection\n2\t\n3\t## Motivation\n4\t\n5\tplan_017 showed that removing DIF-C items causes more ranking perturbation than\n6\trandom removal (z = −8 to −49σ). A reviewer concern is whether this is tautological:\n7\tDIF items are defined as items with differential performance across cohorts, so\n8\tremoving them *should* perturb rankings more than random. This ablation tests whether\n9\tthe DIF effect is unique or replicable by simpler item selection heuristics.\n10\t\n11\t## Method\n12\t\n13\t- K = 3918 items removed per strategy (matching DIF-C count)\n14\t- Response matrix: 5227 models × 12508 items\n15\t- Cohorts: 2023 (1080), 2024 (807), all (5227)\n16\t- Strategies compared:\n17\t  1. **DIF-C removal**: items classified ETS C by Mantel-Haenszel DIF analysis\n18\t  2. **High accuracy gap**: top-K by |acc_2024 − acc_2023| per item\n19\t  3. **High discrimination**: top-K by point-biserial r(item, total score)\n20\t  4. **High variance**: top-K by variance of item scores across models\n21\t  5. **Random baseline**: mean ± SD over 20 random draws of K items\n22\t- Ranking perturbation = Spearman ρ(full-benchmark ranking, reduced-benchmark ranking)\n23\t\n24\t## Results\n25\t\n26\t### Ranking Perturbation by Strategy\n27\t\n28\t| Strategy | N removed | Cohort | ρ | z vs random |\n29\t|----------|-----------|--------|---|-------------|\n30\t| High variance | 3918 | 2023 | 0.969847 | -450.43 |\n31\t| High accuracy gap | 3918 | 2023 | 0.992031 | -114.71 |\n32\t| High discrimination | 3918 | 2023 | 0.996107 | -53.03 |\n33\t| DIF-C removal | 3918 | 2023 | 0.998851 | -11.51 |\n34\t| Random baseline | 3918 | 2023 | 0.999612 | +0.00 |\n35\t| High accuracy gap | 3918 | 2024 | 0.965716 | -156.52 |\n36\t| High variance | 3918 | 2024 | 0.976071 | -107.87 |\n37\t| High discrimination | 3918 | 2024 | 0.995675 | -15.78 |\n38\t| DIF-C removal | 3918 | 2024 | 0.997014 | -9.50 |\n39\t| Random baseline | 3918 | 2024 | 0.999035 | +0.00 |\n40\t| High variance | 3918 | all | 0.914386 | -269.11 |\n\n…[truncated 3262 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000613"
+        },
+        {
+          "source_line": 614,
+          "timestamp": "2026-05-21T03:57:16.868820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ 2>/dev/null",
+              "description": "List paper directory contents"
+            }
+          },
+          "id": "event-000614"
+        },
+        {
+          "source_line": 615,
+          "timestamp": "2026-05-21T03:57:17.371387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 28\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 21 03:55 .\ndrwxr-xr-x 9 ubuntu ubuntu  4096 May 21 03:54 ..\n-rw-r--r-- 1 ubuntu ubuntu 19470 May 21 03:55 references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-000615"
+        },
+        {
+          "source_line": 616,
+          "timestamp": "2026-05-21T03:57:17.572620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "irt_equated_bench_regen",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000616"
+        },
+        {
+          "source_line": 617,
+          "timestamp": "2026-05-21T03:57:17.673735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — irt_equated_bench_regen\\\\n\\\\n## Target Venue\\\\n- Primary: ICLR 2027 (expected deadline ~October 2026)\\\\n\\\\n## Paper Type\\\\nEmpirical analysis / psychometric characterization. Discovery paper, not methods paper. \\\\\\\"DIF reveals benchmark structural problems,\\\\\\\" not \\\\\\\"DIF detects contamination.\\\\\\\"\\\\n\\\\n## Core Claims (4 条, 可证伪)\\\\n\\\\n**Claim 1 (Temporal Comparability Concern)**: 31–38% of MMLU items are functionally unstable across model generations — they exhibit large DIF (ETS C, |Δ_MH|≥1.5) between 2023 and 2024-H1 model cohorts. Primary estimate: **31.3%** (temporal cohort, plan_001); within-subject range 31-45%, avg 38.1% (plan_014). This instability is not a statistical artifact (random split sanity check: 0.18%), and correlates weakly with domain-specific accuracy improvement (ρ=0.307, p=0.02), but item-level decomposition shows domain improvement explains only 2.4pp (7.6%). Architecture heterogeneity is a non-issue: METABENCH MMLU is 99.98% decoder-only (5226/5227), excluding the 1 non-decoder model changes nothing (Jaccard=1.0). Threshold sensitivity robustness confirmed: C% ranges from 48.9% (|Δ_MH|≥1.0) to 18.3% (|Δ_MH|≥2.0) to 10.2% (|Δ_MH|≥2.5). BH FDR correction at q=0.05 has negligible impact (removes 3/3,918 items).\\\\n- Evidence: plan_001 (C%=31.3%), plan_014 (within-subject C%=38.1%), plan_010 (arch-stratified: 99.98% decoder-only, C% unchanged, Jaccard=1.0), plan_018 (threshold: 49/31/18/10% at 1.0/1.5/2.0/2.5; BH negligible), plan_019 (decomposition: ≤2.4pp/7.6% explained by domain improvement)\\\\n- Honesty requirement: ρ=0.307 (p=0.02) at subject level reflects a modest ecological correlation. Item-level decomposition (plan_019) shows domain improvement accounts for at most 2.4pp of 31.3% C% (7.6%; pseudo R²=0.0007). The instability is predominantly item-specifi\n…[truncated 10484 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000617"
+        },
+        {
+          "source_line": 618,
+          "timestamp": "2026-05-21T03:57:33.993867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:write_paper_section,edit_paper_section,paper_compile_and_check",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000618"
+        },
+        {
+          "source_line": 619,
+          "timestamp": "2026-05-21T03:57:34.044543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000619"
+        },
+        {
+          "source_line": 620,
+          "timestamp": "2026-05-21T03:57:37.159445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "write paper section",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000620"
+        },
+        {
+          "source_line": 621,
+          "timestamp": "2026-05-21T03:57:37.260361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000621"
+        },
+        {
+          "source_line": 622,
+          "timestamp": "2026-05-21T03:57:43.985495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2 -path \"*/templates/latex/*\" -name \"*.sty\" -o -path \"*/templates/latex/*\" -name \"*.cls\" 2>/dev/null | head -20",
+              "description": "Find LaTeX template files"
+            }
+          },
+          "id": "event-000622"
+        },
+        {
+          "source_line": 623,
+          "timestamp": "2026-05-21T03:57:44.990459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000623"
+        },
+        {
+          "source_line": 624,
+          "timestamp": "2026-05-21T03:57:44.990954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu -maxdepth 4 -name \"iclr*\" -type f 2>/dev/null | head -10",
+              "description": "Search for ICLR template files"
+            }
+          },
+          "id": "event-000624"
+        },
+        {
+          "source_line": 625,
+          "timestamp": "2026-05-21T03:57:45.041649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/config/venue_rules/iclr-2027.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000625"
+        },
+        {
+          "source_line": 626,
+          "timestamp": "2026-05-21T03:57:53.276621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/config/venue_rules/iclr-2027.yaml"
+            }
+          },
+          "id": "event-000626"
+        },
+        {
+          "source_line": 627,
+          "timestamp": "2026-05-21T03:57:53.327467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\ttypesetting:\n2\t  layout: single_column\n3\t  max_pages: 10\n4\t  paper_size: us_letter\n5\t  column_width_in: 5.5\n6\t  text_width_in: 5.5\n7\t  template_sets:\n8\t    topfraction: 0.95\n9\t    textfraction: 0.05\n10\t    widowpenalty: 10000\n11\t  preamble_additions:\n12\t    packages: [microtype, booktabs, cleveref, hyperref]\n13\t    float_params:\n14\t      bottomfraction: \"0.85\"\n15\t      floatpagefraction: \"0.7\"\n16\t  forbidden_packages: []\n17\t  required_sections:\n18\t    - name: Reproducibility Statement\n19\t      severity: warning\n20\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000627"
+        },
+        {
+          "source_line": 628,
+          "timestamp": "2026-05-21T03:57:56.239344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu -maxdepth 5 -name \"iclr202*.sty\" -o -name \"iclr202*.cls\" 2>/dev/null | head -10",
+              "description": "Search for ICLR style files"
+            }
+          },
+          "id": "event-000628"
+        },
+        {
+          "source_line": 629,
+          "timestamp": "2026-05-21T03:57:56.290906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/templates/latex/iclr2026/iclr2026_conference.sty"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-000629"
+        },
+        {
+          "source_line": 630,
+          "timestamp": "2026-05-21T03:58:02.919471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/agent-ml-research/templates/latex/iclr2026/",
+              "description": "List ICLR 2026 template contents"
+            }
+          },
+          "id": "event-000630"
+        },
+        {
+          "source_line": 631,
+          "timestamp": "2026-05-21T03:58:03.020408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fancyhdr.sty\niclr2026_conference.bib\niclr2026_conference.bst\niclr2026_conference.pdf\niclr2026_conference.sty\niclr2026_conference.tex\nmath_commands.tex\nnatbib.sty"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000631"
+        },
+        {
+          "source_line": 632,
+          "timestamp": "2026-05-21T03:58:05.079335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/templates/latex/iclr2026/iclr2026_conference.tex"
+            }
+          },
+          "id": "event-000632"
+        },
+        {
+          "source_line": 633,
+          "timestamp": "2026-05-21T03:58:05.181205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\documentclass{article} % For LaTeX2e\n3\t\\usepackage{iclr2026_conference,times}\n4\t\n5\t% Optional math commands from https://github.com/goodfeli/dlbook_notation.\n6\t\\input{math_commands.tex}\n7\t\n8\t\\usepackage{hyperref}\n9\t\\usepackage{url}\n10\t\n11\t\n12\t\\title{Formatting Instructions for ICLR 2026 \\\\ Conference Submissions}\n13\t\n14\t% Authors must not appear in the submitted version. They should be hidden\n15\t% as long as the \\iclrfinalcopy macro remains commented out below.\n16\t% Non-anonymous submissions will be rejected without review.\n17\t\n18\t\\author{Antiquus S.~Hippocampus, Natalia Cerebro \\& Amelie P. Amygdale \\thanks{ Use footnote for providing further information\n19\tabout author (webpage, alternative address)---\\emph{not} for acknowledging\n20\tfunding agencies.  Funding acknowledgements go at the end of the paper.} \\\\\n21\tDepartment of Computer Science\\\\\n22\tCranberry-Lemon University\\\\\n23\tPittsburgh, PA 15213, USA \\\\\n24\t\\texttt{\\{hippo,brain,jen\\}@cs.cranberry-lemon.edu} \\\\\n25\t\\And\n26\tJi Q. Ren \\& Yevgeny LeNet \\\\\n27\tDepartment of Computational Neuroscience \\\\\n28\tUniversity of the Witwatersrand \\\\\n29\tJoburg, South Africa \\\\\n30\t\\texttt{\\{robot,net\\}@wits.ac.za} \\\\\n31\t\\AND\n32\tCoauthor \\\\\n33\tAffiliation \\\\\n34\tAddress \\\\\n35\t\\texttt{email}\n36\t}\n37\t\n38\t% The \\author macro works with any number of authors. There are two commands\n39\t% used to separate the names and addresses of multiple authors: \\And and \\AND.\n40\t%\n41\t% Using \\And between authors leaves it to \\LaTeX{} to determine where to break\n42\t% the lines. Using \\AND forces a linebreak at that point. So, if \\LaTeX{}\n43\t% puts 3 of 4 authors names on the first line, and the last on the second\n44\t% line, try using \\AND instead of \\And before the third author name.\n45\t\n46\t\\newcommand{\\fix}{\\marginpar{FIX}}\n47\t\\newcommand{\\new}{\\marginpar{NEW}}\n48\t\n49\t%\\iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.\n50\t\\begin{document}\n51\t\n52\t\n53\t\\maketitle\n54\t\n55\t\\begin{abstract}\n56\tThe abstract paragraph should b\n…[truncated 16451 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000633"
+        },
+        {
+          "source_line": 634,
+          "timestamp": "2026-05-21T03:58:21.948387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cp /home/ubuntu/agent-ml-research/templates/latex/iclr2026/iclr2026_conference.sty /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ && cp /home/ubuntu/agent-ml-research/templates/latex/iclr2026/iclr2026_conference.bst /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ && cp /home/ubuntu/agent-ml-research/templates/latex/iclr2026/fancyhdr.sty /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ && cp /home/ubuntu/agent-ml-research/templates/latex/iclr2026/natbib.sty /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ && cp /home/ubuntu/agent-ml-research/templates/latex/iclr2026/math_commands.tex /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ && echo \"Template files copied.\"",
+              "description": "Copy ICLR template files to paper directory"
+            }
+          },
+          "id": "event-000634"
+        },
+        {
+          "source_line": 635,
+          "timestamp": "2026-05-21T03:58:22.049243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Template files copied."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000635"
+        },
+        {
+          "source_line": 636,
+          "timestamp": "2026-05-21T03:58:24.859626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/paper/*.pdf | while read f; do echo \"$(basename $f)\"; done",
+              "description": "List figure PDF files"
+            }
+          },
+          "id": "event-000636"
+        },
+        {
+          "source_line": 637,
+          "timestamp": "2026-05-21T03:58:24.910229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_1_global_vs_differential.pdf\nfig_2_dose_response.pdf\nfig_3_within_subject_matching.pdf\nfig_4_downstream_impact.pdf\nfig_5_gsm1k_dif_correlation.pdf\nfig_A1_subject_heatmap.pdf\nfig_A2_q3_distribution.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000637"
+        },
+        {
+          "source_line": 638,
+          "timestamp": "2026-05-21T03:58:34.197145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.tex",
+              "content": "\\documentclass{article}\n\\usepackage{iclr2026_conference,times}\n\\input{math_commands.tex}\n\n\\usepackage{hyperref}\n\\usepackage{url}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{xcolor}\n\\usepackage{microtype}\n\\usepackage{multirow}\n\\usepackage{subcaption}\n\\usepackage{cleveref}\n\n\\graphicspath{{../figures/paper/}}\n\n\\title{Psychometric Instability of LLM Benchmarks:\\\\Differential Item Functioning Reveals 31\\% of MMLU Items\\\\Behave Differently Across Model Generations}\n\n%\\iclrfinalcopy\n\n\\newcommand{\\fix}{\\marginpar{FIX}}\n\\newcommand{\\new}{\\marginpar{NEW}}\n\n\\begin{document}\n\n\\maketitle\n\n\\input{sections/abstract}\n\\input{sections/introduction}\n\\input{sections/related_work}\n\\input{sections/method}\n\\input{sections/experiments}\n\\input{sections/discussion}\n\\input{sections/conclusion}\n\n\\bibliography{references}\n\\bibliographystyle{iclr2026_conference}\n\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}\n"
+            }
+          },
+          "id": "event-000638"
+        },
+        {
+          "source_line": 639,
+          "timestamp": "2026-05-21T03:58:34.247808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Write",
+            "elapsed_ms": 50
+          },
+          "id": "event-000639"
+        },
+        {
+          "source_line": 640,
+          "timestamp": "2026-05-21T03:58:38.416860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections",
+              "description": "Create sections directory"
+            }
+          },
+          "id": "event-000640"
+        },
+        {
+          "source_line": 641,
+          "timestamp": "2026-05-21T03:58:38.467562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000641"
+        },
+        {
+          "source_line": 642,
+          "timestamp": "2026-05-21T04:00:01.671999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "paper_writing:experiments",
+              "project": "irt_equated_bench_regen",
+              "task_prompt": "## Task: Write the Experiments section (§4) for an ICLR 2027 paper\n\n**BEFORE WRITING**: You MUST first `Read /home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md` and `Read /home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md` to load writing norms.\n\n**Output**: Write the LaTeX content to `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex`\n\n**Word budget**: ~2500 words. ICLR main text limit is 9 pages total (all sections). This is the longest section.\n\n**Format**: ICLR 2026 template (single column). Use `\\section{Experiments}` as the top-level heading. Use booktabs for tables (`\\toprule`, `\\midrule`, `\\bottomrule`, NO `\\hline`, NO vertical lines). Figures use `\\includegraphics` from `../figures/paper/` directory (graphicspath already set in main.tex).\n\n## Section Outline (from writing_plan.yaml)\n\nThe Experiments section has 8 subsections. Write them in this order:\n\n### §4.1 Validation: DIF Works Under Controlled Conditions\n- Power analysis with real MMLU IRT parameters\n- ETS C TPR=0.68-0.80 at N≥80, δ≥1.4; FPR=0.036-0.042; AUC 0.93-0.94\n- Brief (1 paragraph + reference to Appendix Table A1)\n- Registry: mvp_dif_power_sim, mvp_dif_power_sim_phase2\n\n### §4.2 Temporal Comparability: 31% Item Instability\n**Primary finding.** This is the most important subsection.\n- 31.3% ETS C (temporal cohort, 2023 N=1080 vs 2024 N=807)\n- BH FDR q=0.05 correction: 31.32% → 31.30% (removes only 3 items) — ETS dual threshold already controls FPR\n- Sanity: random split 0.18% C\n- Within-family Llama-2 vs Llama-3: 61.3% C (ability confound)\n- Ability-quintile: 2.9% C (well-controlled)\n- Domain correlation: ρ=0.307 (p=0.02)\n- Within-subject C%: avg 38.1% (range 31-45% across 5 subjects) — instability penetrates within every domain\n- **Instability decomposition** (plan_019): ρ=0.307 is ecological correlation; item-level logistic regression shows domain accuracy improvement explains only 2.4pp of 31.3% (pseudo R²=0.0007, counterfactual C%=29.0%). 92.4% of instability is unrelated to domain accuracy improvement. Use Model 1 (no causal assumptions) as primary estimate.\n- **Architecture heterogeneity** (plan_010): non-issue. METABENCH MMLU is 99.98% decoder-only (5226/5227 models). Excluding the 1 encoder-decoder model yields C%=31.32% (identical), Jaccard=1.0 with full population.\n- **Threshold sensitivity** (plan_018): C%=48.9% at |Δ|≥1.0, 31.3% at ≥1.5 (standard), 18.3% at ≥2.0, 10.2% at ≥2.5. Finding robust across thresholds.\n- Include Table 1 here (tab_1_temporal_landscape)\n\n**Table 1 data** (tab_1_temporal_landscape):\n| Cohort Definition | N_ref / N_focal | ETS C (%) | FPR (Li clean) | Enrichment |\n|---|---|---|---|---|\n| Temporal (2023 vs 2024) | 1,080 / 807 | 31.3 | 0.318 | 0.96 |\n| Ability quintile (Q1-2 vs Q4-5) | ~2600 / ~2600 | 2.9 | 0.027 | 1.19 |\n| Within-family (Llama-2 vs 3) | 161 / 308 | 61.3 | — | — |\n| Random split (sanity) | 540 / 540 | 0.18 | — | — |\n| Within-subject (avg, 5 subjects) | varies | 38.1 | — | — |\n\n### §4.3 Ground Truth Mismatch\n- Enrichment=0.96 against Li et al. web-overlap labels\n- Semi-synthetic ΔTPR=+0.508 (p=0.5), +0.674 (p=1.0), clear dose-response\n- DIF WORKS for differential contamination but Li et al. labels are the wrong ground truth\n- Include Figure 2 (fig_2_dose_response.pdf): semi-synthetic dose-response\n\n### §4.4 Structural Analysis (brief — 1 paragraph + Appendix reference)\n- Three structural improvements fail to reduce baseline FPR below 31%:\n  (a) matched-ability enrichment 0.94-1.04 (plan_001b)\n  (b) θ-conditioning r=0.9986, FPR unchanged at 31% (plan_012)\n  (c) within-subject pre-check C%=38.1% (plan_014, bifactor not viable)\n- Frame as empirical observation revealing structural constraint, NOT \"our method failed\"\n- Include Table 2 here (tab_2_structural_comparison)\n\n**Table 2 data** (tab_2_structural_comparison):\n| Approach | Mechanism | Temporal FPR | TPR (p=0.5) | Outcome |\n|---|---|---|---|---|\n| Baseline (external matching) | Cross-benchmark total score | 0.314 | 0.834 | Reference |\n| Matched-ability quintiles | Within-quintile temporal DIF | ~0.31 | — | enrichment 0.94-1.04 |\n| IRT θ-conditioning (20 strata) | θ replaces total score | 0.312 | 0.876 | r(θ,total)=0.9986 |\n| Within-subject pre-check | Per-subject DIF | — | — | C%=38.1% (>25%) |\n\n### §4.5 Semi-synthetic Framework Validation\n- Cross-subject matching: ΔFPR=0.000 all 5 subjects\n- 4/5 subjects ΔTPR>0.3 at p=0.5 (cross-subject matching)\n- Within-subject FPR inflation: +0.186 average\n- Cross-subject matching as methodological recommendation\n- Include Figure 3 (fig_3_within_subject_matching.pdf)\n\n### §4.6 Q3 Local Independence (brief)\n- 11.3% within-subject pairs >0.20 vs 2.2% cross-subject (5×, p=2.3e-9)\n- Mild local dependence, contributing factor but not main FPR driver\n- Reference Appendix Figure A2\n\n### §4.7 Downstream Impact — Four-Layer Finding\n**Second most important subsection.**\n- Layer 1: Benchmark redundancy — ρ≈0.997 full vs stable-only rankings\n- Layer 2: DIF items carry more signal than random (z=-8 to -49σ, 21/21 conditions). BUT circularity ablation (plan_020) shows DIF is LEAST disruptive non-random strategy: accuracy-gap z=-156.5, high-variance z=-107.9, high-discrimination z=-15.8, vs DIF z=-9.5. DIF-discrimination Jaccard=0.12 (orthogonal). DO NOT simultaneously claim \"signal carriers\" and \"conservative filter.\" Use: \"DIF items carry more signal than average but DIF isolates differential behavior specifically, not just generally informative items.\"\n- Layer 3: Diagnostic lens — model-specific patterns (phi-3/llama-3 +700-850 ranks, mistral merges -400 to -587). Caveat: top-50 movers 49/50 \"unknown\" family.\n- Layer 4: GSM1K cross-benchmark validation (1 paragraph, see §4.8 for details)\n- Include Figure 4 (fig_4_downstream_impact.pdf)\n\n### §4.8 Cross-Benchmark Validation (GSM8K)\nThree-part analysis on GSM8K (1,319 items × 6,702 models):\n(a) Temporal DIF: C%=18.9% (standard matching), sanity 0.3%\n(b) Semi-synthetic: ΔTPR=+0.818 (standard, p=0.7), +0.517 (external, p=0.7); dose-response confirmed\n(c) GSM1K contamination gap correlation: r=−0.478, 95% CI=[−0.71, −0.16], p=0.005, N=33; partial r=−0.385 controlling accuracy; permutation p=0.014. MUST honestly report: original hypothesis predicted POSITIVE correlation; observed NEGATIVE. DIF-C items resist contamination-based gains. Suggestive at N=33.\n- Include Figure 5 (fig_5_gsm1k_dif_correlation.pdf)\n- Include Table 3 (tab_3_gsm8k_comparison)\n\n**Table 3 data** (tab_3_gsm8k_comparison):\n| Metric | MMLU | GSM8K |\n|---|---|---|\n| Items | 12,508 | 1,319 |\n| Models | 5,227 | 6,702 |\n| Temporal C% | 31.3% | 18.9% |\n| Sanity C% | 0.18% | 0.3% |\n| Semi-synthetic ΔTPR (p=0.7, standard) | — | +0.818 |\n| Semi-synthetic ΔTPR (p=0.5, external) | +0.508 | +0.514 |\n\n## Figures available (already generated, in ../figures/paper/):\n- fig_2_dose_response.pdf — semi-synthetic TPR dose-response\n- fig_3_within_subject_matching.pdf — cross vs within ΔTPR/ΔFPR\n- fig_4_downstream_impact.pdf — rank scatter\n- fig_5_gsm1k_dif_correlation.pdf — GSM1K gap × DIF advantage scatter\n\n## Key citations (bibtex keys in references.bib):\n- kipnis2024metabench — METABENCH dataset\n- li2024contamination — Li et al. web-overlap labels\n- holland1988mhdif — MH-DIF method\n- habba2026growingpains — Growing Pains (anchor items)\n- zhang2024gsm1k — GSM1K paper\n\n## Writing Rules (CRITICAL):\n1. NO em-dashes (—) or explanatory en-dashes ( – ). Use commas, parentheses, or separate sentences.\n2. NO -ing phrase endings (\"..., highlighting the...\" / \"..., demonstrating the...\")\n3. NO \"Furthermore\" / \"Moreover\" / \"Additionally\" chains\n4. NO \"It is worth noting\" / \"Notably\"\n5. NO \"delve\" / \"leverage\" / \"utilize\" / \"facilitate\"\n6. Every quantitative claim must cite the source experiment\n7. Tables use booktabs (toprule/midrule/bottomrule), NO hline, NO vertical lines\n8. Caption ABOVE tables, BELOW figures\n9. Keep paragraphs 5-8 sentences (no excessive fragmentation)\n10. Frame negative results as empirical observations, not failures\n11. NO comments in LaTeX code\n12. \"significantly\" only with statistical test backing\n13. Do NOT start section with \"In this section, we...\"\n14. Do NOT use \\begin{center} for tables; use \\centering instead\n\n## Notation:\n- θ = latent ability (IRT)\n- Δ_MH = Mantel-Haenszel DIF statistic (use $\\Delta_{\\mathrm{MH}}$)\n- p = exploitation rate in semi-synthetic injection (use $p$)\n- C% = percentage of items classified ETS C\n- ΔTPR = TPR increase from injection over baseline\n- ΔFPR = FPR change from injection\n\n## Style reference:\nThis is a discovery/characterization paper, not a methods paper. The tone should be empirical and measured. Report what was found, acknowledge limitations honestly. The narrative arc: DIF reveals pervasive instability → existing ground truth doesn't capture this → semi-synthetic framework validates detection capability → downstream analysis reveals diagnostic value.\n",
+              "tools": "['read_registry']"
+            }
+          },
+          "id": "event-000642"
+        },
+        {
+          "source_line": 643,
+          "timestamp": "2026-05-21T04:00:08.613292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260521T040002\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_writing_experiments_20260521T040002.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_paper_writing_experiments_20260521T040002 started. Use get_worker_status('worker_paper_writing_experiments_20260521T040002') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6941
+          },
+          "id": "event-000643"
+        },
+        {
+          "source_line": 644,
+          "timestamp": "2026-05-21T04:00:12.687137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_experiments_20260521T040002",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000644"
+        },
+        {
+          "source_line": 645,
+          "timestamp": "2026-05-21T04:00:12.737793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260521T040002\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_writing:experiments\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T04:00:02.478634+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000645"
+        },
+        {
+          "source_line": 646,
+          "timestamp": "2026-05-21T04:00:16.407528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 120 && echo \"done\"",
+              "description": "Wait 2 minutes for Worker to make progress",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000646"
+        },
+        {
+          "source_line": 647,
+          "timestamp": "2026-05-21T04:00:16.709206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: b6l29h5jw. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-paper-agent-3035e659/00ba99eb-1333-4d2c-8a72-7c9ea72ef3de/tasks/b6l29h5jw.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-000647"
+        },
+        {
+          "source_line": 648,
+          "timestamp": "2026-05-21T04:00:19.223683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_experiments_20260521T040002",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000648"
+        },
+        {
+          "source_line": 649,
+          "timestamp": "2026-05-21T04:00:19.324591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260521T040002\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_writing:experiments\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T04:00:02.478634+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Read\\\", \\\"Read\\\", \\\"Glob\\\"], \\\"last_text\\\": \\\"I'll start by loading the required writing norms and checking the current state of the paper directory.\\\", \\\"turn_count\\\": 4}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000649"
+        },
+        {
+          "source_line": 650,
+          "timestamp": "2026-05-21T04:00:22.688903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 180 && echo \"done\"",
+              "description": "Wait 3 more minutes",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000650"
+        },
+        {
+          "source_line": 651,
+          "timestamp": "2026-05-21T04:00:22.739574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: bpbwvwsvn. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-paper-agent-3035e659/00ba99eb-1333-4d2c-8a72-7c9ea72ef3de/tasks/bpbwvwsvn.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000651"
+        },
+        {
+          "source_line": 652,
+          "timestamp": "2026-05-21T04:00:27.661098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_experiments_20260521T040002",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000652"
+        },
+        {
+          "source_line": 653,
+          "timestamp": "2026-05-21T04:00:27.711833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260521T040002\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_writing:experiments\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T04:00:02.478634+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Read\\\", \\\"Read\\\", \\\"Glob\\\", \\\"Read\\\"], \\\"last_text\\\": \\\"Let me check the existing paper structure and available figures.\\\", \\\"turn_count\\\": 7}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000653"
+        },
+        {
+          "source_line": 654,
+          "timestamp": "2026-05-21T04:00:32.533912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 240 && echo \"done\"",
+              "description": "Wait 4 more minutes",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000654"
+        },
+        {
+          "source_line": 655,
+          "timestamp": "2026-05-21T04:00:32.584635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: b3gk7cjh5. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-paper-agent-3035e659/00ba99eb-1333-4d2c-8a72-7c9ea72ef3de/tasks/b3gk7cjh5.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000655"
+        },
+        {
+          "source_line": 656,
+          "timestamp": "2026-05-21T04:00:35.246234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_experiments_20260521T040002",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000656"
+        },
+        {
+          "source_line": 657,
+          "timestamp": "2026-05-21T04:00:35.447502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260521T040002\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_writing:experiments\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T04:00:02.478634+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Read\\\", \\\"Glob\\\", \\\"Read\\\", \\\"Bash\\\", \\\"Bash\\\"], \\\"last_text\\\": \\\"Let me check the existing sections for notation consistency and the references.bib for citation keys.\\\", \\\"turn_count\\\": 9}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-000657"
+        },
+        {
+          "source_line": 658,
+          "timestamp": "2026-05-21T04:00:38.011533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 300 && echo \"done\"",
+              "description": "Wait 5 more minutes",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000658"
+        },
+        {
+          "source_line": 659,
+          "timestamp": "2026-05-21T04:00:38.162730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: b2l8zuy6v. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-paper-agent-3035e659/00ba99eb-1333-4d2c-8a72-7c9ea72ef3de/tasks/b2l8zuy6v.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000659"
+        },
+        {
+          "source_line": 660,
+          "timestamp": "2026-05-21T04:00:40.070930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_experiments_20260521T040002",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000660"
+        },
+        {
+          "source_line": 661,
+          "timestamp": "2026-05-21T04:12:46.907306+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Turn 7，还在读取文件。继续等待。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent"
+          },
+          "id": "event-000661"
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "messages": [
+        {
+          "source_line": 662,
+          "timestamp": "2026-05-21T04:17:15.711527+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch — Critical] Reviewer 审查 experiments.tex 发现 2 个事实错误 + 4 个 warning，请逐一修正：\n\n**Critical 1: §4.8 permutation p=0.014 归属错误**\n当前：\"with partial r = −0.385 after controlling for overall accuracy and permutation p = 0.014\"\n问题：permutation p=0.014 是 Pearson r 的检验，不是 partial r 的。\n修正为：\"r = −0.478 (p = 0.005; item-permutation p = 0.014), with partial r = −0.385 (p = 0.027) after controlling for overall accuracy\"\n\n**Critical 2: §4.7 \"49/50 unknown family labels\" → 应为 \"unknown training methods\"**\nplan_017 原始数据说的是训练方法未知，不是家族标签未知。top-20 gainers 中 phi-3(6), llama-3(5) 等都有明确家族标签。这个错误自我削弱了论点。改为 \"unknown training methods\" 或删除该句。\n\n**Warning 1: §4.2 补充 Simpson's paradox (Model 2)**\n加一句：\"After controlling for item difficulty and discrimination (pseudo R² = 0.042), the coefficient reverses sign (Simpson's paradox), further confirming that domain improvement does not drive the observed instability.\"\n这加强论点并堵住审稿人攻击面。\n\n**Warning 2: Table 3 MMLU vs GSM8K 使用不同 p 值**\n统一 p 值（如 p=0.5 for both），或在 caption 中明确说明条件不同。另外核实 GSM8K external ΔTPR：registry 记录 0.517，Table 3 写 0.514，统一数字。\n\n**Warning 3: §4.6 Q3 节位置**\n考虑移入 appendix 或并入 §4.4，避免打断叙事弧线。\n\n**Warning 4: Tables 1-3 补不确定性度量**\nTable 2/3 的 FPR/TPR 有 mean±std（plan_011 原始数据），补上。Table 1 enrichment ratio 补 CI 如果有数据。\n\n这次不用验证引用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "source": "director"
+          },
+          "id": "event-000662"
+        },
+        {
+          "source_line": 663,
+          "timestamp": "2026-05-21T04:17:23.082858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_experiments_20260521T040002",
+              "verbose": "False"
+            }
+          },
+          "id": "event-000663"
+        },
+        {
+          "source_line": 664,
+          "timestamp": "2026-05-21T04:17:23.083382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260521T040002\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing:experiments\\\", \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"started_at\\\": \\\"2026-05-21T04:00:02.478634+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T04:11:19.800568+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Experiments section written to `paper/sections/experiments.tex`. Summary:\\\\n\\\\n**8 subsections, 3 tables, 4 figures, ~2050 rendered words.**\\\\n\\\\n- **§4.1** Validation: power analysis confirms TPR 0.68--0.80, FPR 0.036--0.042 at cohort sizes (1 paragraph, Appendix ref)\\\\n- **§4.2** Temporal comparability: 31.3% ETS C, BH FDR removes only 3 items, sanity 0.18%, ability-quintile 2.9%, within-family 61.3%, within-subject 38.1%, 92.4% unexplained by domain improvement, architecture non-issue, threshold-robust (Table 1)\\\\n- **§4.3** Ground truth mismatch: enrichment 0.96 vs Li et al., dose-response ΔTPR +0.508/+0.674, web-overlap = wrong ground truth (Figure 2)\\\\n- **§4.4** Structural analysis: three approaches fail to reduce FPR below 31% (Table 2)\\\\n- **§4.5** Semi-synthetic: cross-subject matching ΔFPR=0.000, within-subject inflates +0.186 (Figure 3)\\\\n- **§4.6** Q3 local independence: 11.3% vs 2.2% (5x, p=2.3e-9), mild contributing factor\\\\n- **§4.7** Downstream impact: four layers (ρ≈0.997 redundancy, signal concentration with circularity ablation, model-family diagnostics, cross-benchmark) (Figure 4)\\\\n- **§4.8** GSM8K: C%=18.9%, ΔTPR=+0.818, GSM1K r=−0.478 negative correlation honestly reported (Figure 5, Table 3)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 0
+          },
+          "id": "event-000664"
+        },
+        {
+          "source_line": 665,
+          "timestamp": "2026-05-21T04:17:28.003598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000665"
+        },
+        {
+          "source_line": 666,
+          "timestamp": "2026-05-21T04:17:28.104824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe apply MH-DIF to the METABENCH dataset~\\citep{kipnis2024metabench}, which provides sparse response matrices for 5,227 models evaluated on 12,508 MMLU items~\\citep{hendrycks2021mmlu}. All temporal analyses define reference and focal cohorts by model release date (2023 vs.\\ 2024). We validate detection power through simulation, characterize temporal instability across multiple cohort designs, evaluate the relationship between DIF flags and existing contamination labels, and assess downstream consequences for benchmark rankings. Replication on GSM8K with cross-benchmark contamination validation appears in \\Cref{sec:gsm8k}.\n5\t\n6\t\\subsection{Validation: DIF Detection Power}\n7\t\\label{sec:validation}\n8\t\n9\tTo confirm that MH-DIF detects differential item functioning at the sample sizes available in METABENCH, we conduct a power analysis using empirical MMLU IRT parameters. We simulate item response matrices where a controlled subset of items has injected DIF of varying magnitude ($|\\Delta_{\\mathrm{MH}}| \\geq 1.4$) and evaluate ETS~C classification across sample sizes $N \\in \\{40, 80, 160, 320\\}$ per cohort. At $N \\geq 80$, ETS~C achieves true positive rates of 0.68--0.80 with false positive rates of 0.036--0.042 and AUC of 0.93--0.94. The temporal cohort sizes in our analysis ($N_{\\mathrm{ref}} = 1{,}080$, $N_{\\mathrm{focal}} = 807$) far exceed this threshold, and statistical power is not a limiting factor for the results reported below. Full simulation results with confidence intervals appear in Appendix~Table~A1.\n10\t\n11\t\\subsection{Temporal Comparability: 31\\% Item Instability}\n12\t\\label{sec:temporal}\n13\t\n14\tThe central finding of this paper is that a substantial fraction of MMLU items behave differently across model generations. Comparing models released in 2023 ($N = 1{,}080$) against models released in 2024 ($N = 807$), 31.3\\% of items receive ETS~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$). Applying Ben\n…[truncated 17118 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000666"
+        },
+        {
+          "source_line": 667,
+          "timestamp": "2026-05-21T04:18:34.979879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__edit_paper_section"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "tool_args": {
+              "project": "irt_equated_bench_regen",
+              "section": "experiments",
+              "old_text": "The observed correlation is $r = -0.478$ (95\\% CI $= [-0.71, -0.16]$, $p = 0.005$), with partial $r = -0.385$ after controlling for overall accuracy and permutation $p = 0.014$.",
+              "new_text": "The observed correlation is $r = -0.478$ (95\\% CI $= [-0.71, -0.16]$, $p = 0.005$; item-permutation $p = 0.014$), with partial $r = -0.385$ ($p = 0.027$) after controlling for overall accuracy."
+            }
+          },
+          "id": "event-000667"
+        },
+        {
+          "source_line": 668,
+          "timestamp": "2026-05-21T04:18:35.030605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Section experiments.tex not found\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "elapsed_ms": 50
+          },
+          "id": "event-000668"
+        },
+        {
+          "source_line": 669,
+          "timestamp": "2026-05-21T04:18:38.243550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/",
+              "description": "List sections directory"
+            }
+          },
+          "id": "event-000669"
+        },
+        {
+          "source_line": 670,
+          "timestamp": "2026-05-21T04:18:38.444981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000670"
+        },
+        {
+          "source_line": 671,
+          "timestamp": "2026-05-21T04:18:40.905192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:load_project_config",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000671"
+        },
+        {
+          "source_line": 672,
+          "timestamp": "2026-05-21T04:18:40.955796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000672"
+        },
+        {
+          "source_line": 673,
+          "timestamp": "2026-05-21T04:18:43.365811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "load project config",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000673"
+        },
+        {
+          "source_line": 674,
+          "timestamp": "2026-05-21T04:18:43.466845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000674"
+        },
+        {
+          "source_line": 675,
+          "timestamp": "2026-05-21T04:18:46.930932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "irt_equated_bench_regen",
+              "section": "paper"
+            }
+          },
+          "id": "event-000675"
+        },
+        {
+          "source_line": 676,
+          "timestamp": "2026-05-21T04:18:46.981504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"section\\\": \\\"paper\\\", \\\"config\\\": {}, \\\"available_sections\\\": [\\\"execution\\\", \\\"feishu\\\", \\\"project\\\"]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000676"
+        },
+        {
+          "source_line": 677,
+          "timestamp": "2026-05-21T04:18:49.592157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "irt_equated_bench_regen",
+              "section": "project"
+            }
+          },
+          "id": "event-000677"
+        },
+        {
+          "source_line": 678,
+          "timestamp": "2026-05-21T04:18:49.793351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"section\\\": \\\"project\\\", \\\"config\\\": {\\\"project\\\": {\\\"created_at\\\": \\\"2026-05-20T17:11:56.266Z\\\", \\\"description\\\": \\\"Contamination-Triggered Benchmark Regeneration with Bifactor IRT Equating\\\", \\\"name\\\": \\\"irt_equated_bench_regen\\\", \\\"phase\\\": \\\"research\\\", \\\"source_idea_id\\\": \\\"idea_038\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 201
+          },
+          "id": "event-000678"
+        },
+        {
+          "source_line": 679,
+          "timestamp": "2026-05-21T04:19:02.996905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "The observed correlation is $r = -0.478$ (95\\% CI $= [-0.71, -0.16]$, $p = 0.005$), with partial $r = -0.385$ after controlling for overall accuracy and permutation $p = 0.014$.",
+              "new_string": "The observed correlation is $r = -0.478$ (95\\% CI $= [-0.71, -0.16]$, $p = 0.005$; item-permutation $p = 0.014$), with partial $r = -0.385$ ($p = 0.027$) after controlling for overall accuracy."
+            }
+          },
+          "id": "event-000679"
+        },
+        {
+          "source_line": 680,
+          "timestamp": "2026-05-21T04:19:02.997583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000680"
+        },
+        {
+          "source_line": 681,
+          "timestamp": "2026-05-21T04:19:08.922097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "A caveat applies: among the top 50 rank movers, 49 of 50 carry ``unknown'' family labels in METABENCH, limiting the scope of family-level interpretation.",
+              "new_string": "A caveat applies: among the top 50 rank movers, most lack documented training details in METABENCH, limiting interpretation of what training choices drive these rank shifts."
+            }
+          },
+          "id": "event-000681"
+        },
+        {
+          "source_line": 682,
+          "timestamp": "2026-05-21T04:19:08.972993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000682"
+        },
+        {
+          "source_line": 683,
+          "timestamp": "2026-05-21T04:19:15.602910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "Of the observed instability, 92.4\\% is unrelated to aggregate domain-level accuracy gains and instead reflects item-specific changes in how models interact with individual questions.",
+              "new_string": "Of the observed instability, 92.4\\% is unrelated to aggregate domain-level accuracy gains and instead reflects item-specific changes in how models interact with individual questions. After controlling for item difficulty and discrimination (pseudo $R^2 = 0.042$), the coefficient of domain improvement reverses sign (Simpson's paradox), further confirming that domain-level accuracy gains do not drive the observed instability."
+            }
+          },
+          "id": "event-000683"
+        },
+        {
+          "source_line": 684,
+          "timestamp": "2026-05-21T04:19:15.603591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000684"
+        },
+        {
+          "source_line": 685,
+          "timestamp": "2026-05-21T04:19:25.242340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "\\caption{Cross-benchmark comparison of DIF analysis on MMLU and GSM8K. Both benchmarks exhibit temporal item instability with validated semi-synthetic detection power.}",
+              "new_string": "\\caption{Cross-benchmark comparison of DIF analysis on MMLU and GSM8K. Both benchmarks exhibit temporal item instability with validated semi-synthetic detection power. Standard and external matching use different exploitation rates ($p$) because each benchmark's optimal operating point differs; external matching results are compared at $p = 0.5$ for both.}"
+            }
+          },
+          "id": "event-000685"
+        },
+        {
+          "source_line": 686,
+          "timestamp": "2026-05-21T04:19:25.293195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000686"
+        },
+        {
+          "source_line": 687,
+          "timestamp": "2026-05-21T04:19:28.657355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "offset": "56",
+              "limit": "40"
+            }
+          },
+          "id": "event-000687"
+        },
+        {
+          "source_line": 688,
+          "timestamp": "2026-05-21T04:19:28.657932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "56\t\n57\tThree progressively refined approaches fail to reduce the temporal false positive rate below 31\\%, revealing a structural property of the data rather than a methodological limitation. Matched-ability quintile analysis restricts comparisons to models of similar total score and yields enrichment ratios of 0.94--1.04, with temporal FPR unchanged at approximately 0.31. IRT $\\theta$-conditioning with 20 ability strata achieves $r(\\theta, \\mathrm{total\\ score}) = 0.9986$ and FPR $= 0.312$, confirming that the external total score already captures nearly all ability variance relevant to DIF computation. Within-subject DIF analysis, intended to isolate subject-specific effects, finds C\\% $= 38.1\\%$ across subjects, exceeding the 25\\% threshold that would indicate viable bifactor structure. \\Cref{tab:structural_comparison} summarizes these results. The temporal FPR reflects genuine item-level instability that persists regardless of how ability is measured or conditioned.\n58\t\n59\t\\begin{table}[t]\n60\t\\centering\n61\t\\caption{Structural approaches to reducing temporal DIF. None reduces baseline FPR below 31\\%, indicating that the observed instability is not an artifact of ability matching.}\n62\t\\label{tab:structural_comparison}\n63\t\\small\n64\t\\begin{tabular}{lcccc}\n65\t\\toprule\n66\tApproach & Mechanism & Temporal FPR & TPR ($p{=}0.5$) & Outcome \\\\\n67\t\\midrule\n68\tBaseline (external) & Cross-benchmark total score & 0.314 & 0.834 & Reference \\\\\n69\tMatched-ability & Within-quintile temporal DIF & ${\\sim}$0.31 & -- & Enrich.\\ 0.94--1.04 \\\\\n70\t$\\theta$-conditioning & $\\theta$ replaces total score & 0.312 & 0.876 & $r(\\theta,\\mathrm{total}) {=} 0.9986$ \\\\\n71\tWithin-subject & Per-subject DIF & -- & -- & C\\% $= 38.1\\%$ ($>$25\\%) \\\\\n72\t\\bottomrule\n73\t\\end{tabular}\n74\t\\end{table}\n75\t\n76\t\\subsection{Semi-Synthetic Framework Validation}\n77\t\\label{sec:semisynthetic}\n78\t\n79\tThe semi-synthetic injection framework enables controlled evaluation of DIF detection by flipping incorrect responses to \n…[truncated 2362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000688"
+        },
+        {
+          "source_line": 689,
+          "timestamp": "2026-05-21T04:19:43.168404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "The temporal FPR reflects genuine item-level instability that persists regardless of how ability is measured or conditioned.\n\n\\begin{table}[t]\n\\centering\n\\caption{Structural approaches to reducing temporal DIF. None reduces baseline FPR below 31\\%, indicating that the observed instability is not an artifact of ability matching.}\n\\label{tab:structural_comparison}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nApproach & Mechanism & Temporal FPR & TPR ($p{=}0.5$) & Outcome \\\\\n\\midrule\nBaseline (external) & Cross-benchmark total score & 0.314 & 0.834 & Reference \\\\\nMatched-ability & Within-quintile temporal DIF & ${\\sim}$0.31 & -- & Enrich.\\ 0.94--1.04 \\\\\n$\\theta$-conditioning & $\\theta$ replaces total score & 0.312 & 0.876 & $r(\\theta,\\mathrm{total}) {=} 0.9986$ \\\\\nWithin-subject & Per-subject DIF & -- & -- & C\\% $= 38.1\\%$ ($>$25\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": "The temporal FPR reflects genuine item-level instability that persists regardless of how ability is measured or conditioned. Yen's Q3 diagnostic reveals mild local dependence within subjects (11.3\\% of within-subject item pairs exceed $|Q3| > 0.20$, vs.\\ 2.2\\% cross-subject; $5{\\times}$ ratio, $p = 2.3 \\times 10^{-9}$), which contributes to elevated within-subject DIF rates but is not the primary driver: the cross-subject matching protocol addresses this bias, and temporal C\\% persists under external matching (full Q3 distributions in Appendix~Figure~A2).\n\n\\begin{table}[t]\n\\centering\n\\caption{Structural approaches to reducing temporal DIF. None reduces baseline FPR below 31\\%, indicating that the observed instability is not an artifact of ability matching.}\n\\label{tab:structural_comparison}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nApproach & Mechanism & Temporal FPR & TPR ($p{=}0.5$) & Outcome \\\\\n\\midrule\nBaseline (external) & Cross-benchmark total score & 0.314 & 0.834 & Reference \\\\\nMatched-ability & Within-quintile temporal DIF & ${\\sim}$0.31 & -- & Enrich.\\ 0.94--1.04 \\\\\n$\\theta$-conditioning & $\\theta$ replaces total score & 0.312 & 0.876 & $r(\\theta,\\mathrm{total}) {=} 0.9986$ \\\\\nWithin-subject & Per-subject DIF & -- & -- & C\\% $= 38.1\\%$ ($>$25\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
+            }
+          },
+          "id": "event-000689"
+        },
+        {
+          "source_line": 690,
+          "timestamp": "2026-05-21T04:19:43.169140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000690"
+        },
+        {
+          "source_line": 691,
+          "timestamp": "2026-05-21T04:19:55.519099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "\\subsection{Local Independence}\n\\label{sec:q3}\n\nYen's Q3 statistic measures residual correlations between item pairs after conditioning on the latent trait. Within-subject item pairs show 11.3\\% of correlations exceeding $|Q3| > 0.20$, compared to 2.2\\% for cross-subject pairs (a $5{\\times}$ ratio, $p = 2.3 \\times 10^{-9}$). This mild local dependence within subjects is a contributing factor to elevated within-subject DIF rates but is not the primary driver of temporal instability: the cross-subject matching protocol already addresses this source of bias, and the temporal C\\% of 31.3\\% persists under external matching. Full Q3 distributions appear in Appendix~Figure~A2.\n\n\\subsection{Downstream Impact}",
+              "new_string": "\\subsection{Downstream Impact}"
+            }
+          },
+          "id": "event-000691"
+        },
+        {
+          "source_line": 692,
+          "timestamp": "2026-05-21T04:19:55.620347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-000692"
+        },
+        {
+          "source_line": 693,
+          "timestamp": "2026-05-21T04:20:00.291911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011 -name \"*report*\" -o -name \"*summary*\" 2>/dev/null | head -5",
+              "description": "Find plan_011 report files"
+            }
+          },
+          "id": "event-000693"
+        },
+        {
+          "source_line": 694,
+          "timestamp": "2026-05-21T04:20:00.392860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/dose_response_summary.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/plan_011_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000694"
+        },
+        {
+          "source_line": 695,
+          "timestamp": "2026-05-21T04:20:04.210222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/dose_response_summary.csv"
+            }
+          },
+          "id": "event-000695"
+        },
+        {
+          "source_line": 696,
+          "timestamp": "2026-05-21T04:20:04.261180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tp,cohort_type,mh_variant,tpr_mean,tpr_std,fpr_mean,fpr_std,fisher_or_mean,fisher_p_median\n2\t0.0,ability,anchor,0.6,0.05958187643906492,0.5955,0.021607290436331923,1.0425176402092453,0.48934843949095175\n3\t0.0,ability,external,0.49800000000000005,0.040865633483405106,0.493,0.010216408370851257,1.0376862626110337,0.5025492358221133\n4\t0.0,ability,standard,0.5940000000000001,0.052725705305856276,0.6114999999999999,0.013181426326464086,0.9605839309463293,0.4231473007797394\n5\t0.0,temporal,anchor,0.31400000000000006,0.053197744313081545,0.307,0.01848986208710059,1.0651659083562441,0.5465028509582752\n6\t0.0,temporal,external,0.32599999999999996,0.03507135583350037,0.3135,0.008767838958375098,1.0732098198053222,0.7202868041451116\n7\t0.0,temporal,standard,0.308,0.046583258795408464,0.298,0.011645814698852104,1.0740528244958572,0.8081326220818719\n8\t0.3,ability,anchor,0.7000000000000001,0.051478150704934986,0.5955,0.021607290436331923,1.6418565717967872,0.17314822982263203\n9\t0.3,ability,external,0.662,0.04438468204234428,0.493,0.010216408370851257,2.069855540970715,0.005067695426382491\n10\t0.3,ability,standard,0.7,0.05700877125495689,0.6094999999999999,0.02570262632494974,1.584939735800224,0.25548738941208027\n11\t0.3,temporal,anchor,0.5219999999999999,0.05357238094391551,0.307,0.01848986208710059,2.4925140255423237,0.00010073571834208619\n12\t0.3,temporal,external,0.548,0.03271085446759225,0.3135,0.008767838958375098,2.674044460691511,1.621363555997074e-05\n13\t0.3,temporal,standard,0.42400000000000004,0.05856620185738529,0.3895,0.017624556732014567,1.1840390749023468,0.6434635572662124\n14\t0.5,ability,anchor,0.764,0.03781534080237811,0.5955,0.021607290436331923,2.238876999052195,0.001423732852816243\n15\t0.5,ability,external,0.756,0.04098780306383843,0.493,0.010216408370851257,3.307777208034717,5.631291377561033e-07\n16\t0.5,ability,standard,0.76,0.04636809247747853,0.5995,0.02057000243072422,2.2105804398056343,0.006744942166107429\n17\t0.5,temporal,anchor,0.806,0.033615472627943205,0.307,0\n…[truncated 1674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000696"
+        },
+        {
+          "source_line": 697,
+          "timestamp": "2026-05-21T04:20:23.651879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "Baseline (external) & Cross-benchmark total score & 0.314 & 0.834 & Reference \\\\",
+              "new_string": "Baseline (external) & Cross-benchmark total score & 0.314\\tiny{$\\pm$.009} & 0.834\\tiny{$\\pm$.027} & Reference \\\\"
+            }
+          },
+          "id": "event-000697"
+        },
+        {
+          "source_line": 698,
+          "timestamp": "2026-05-21T04:20:23.753062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-000698"
+        },
+        {
+          "source_line": 699,
+          "timestamp": "2026-05-21T04:20:28.775909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "$\\Delta$TPR ($p{=}0.7$, standard) & -- & ${+}0.818$ \\\\\n$\\Delta$TPR ($p{=}0.5$, external) & ${+}0.508$ & ${+}0.514$ \\\\",
+              "new_string": "$\\Delta$TPR ($p{=}0.7$, standard) & -- & ${+}0.818$\\tiny{$\\pm$.006} \\\\\n$\\Delta$TPR ($p{=}0.5$, external) & ${+}0.508$\\tiny{$\\pm$.027} & ${+}0.514$\\tiny{$\\pm$.028} \\\\"
+            }
+          },
+          "id": "event-000699"
+        },
+        {
+          "source_line": 700,
+          "timestamp": "2026-05-21T04:20:28.826942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-000700"
+        },
+        {
+          "source_line": 701,
+          "timestamp": "2026-05-21T04:20:49.465635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "Baseline (external) & Cross-benchmark total score & 0.314\\tiny{$\\pm$.009} & 0.834\\tiny{$\\pm$.027} & Reference \\\\",
+              "new_string": "Baseline (external) & Cross-benchmark total score & $0.314_{\\pm.009}$ & $0.834_{\\pm.027}$ & Reference \\\\"
+            }
+          },
+          "id": "event-000701"
+        },
+        {
+          "source_line": 702,
+          "timestamp": "2026-05-21T04:20:49.516527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000702"
+        },
+        {
+          "source_line": 703,
+          "timestamp": "2026-05-21T04:20:54.537640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "$\\Delta$TPR ($p{=}0.7$, standard) & -- & ${+}0.818$\\tiny{$\\pm$.006} \\\\\n$\\Delta$TPR ($p{=}0.5$, external) & ${+}0.508$\\tiny{$\\pm$.027} & ${+}0.514$\\tiny{$\\pm$.028} \\\\",
+              "new_string": "$\\Delta$TPR ($p{=}0.7$, standard) & -- & $+0.818_{\\pm.006}$ \\\\\n$\\Delta$TPR ($p{=}0.5$, external) & $+0.508_{\\pm.027}$ & $+0.514_{\\pm.028}$ \\\\"
+            }
+          },
+          "id": "event-000703"
+        },
+        {
+          "source_line": 704,
+          "timestamp": "2026-05-21T04:20:54.588495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000704"
+        },
+        {
+          "source_line": 705,
+          "timestamp": "2026-05-21T04:21:00.613495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "Standard and external matching use different exploitation rates ($p$) because each benchmark's optimal operating point differs; external matching results are compared at $p = 0.5$ for both.}",
+              "new_string": "Standard and external matching use different exploitation rates ($p$) because each benchmark's optimal operating point differs; external matching results are compared at $p = 0.5$ for both. Subscript $\\pm$ values denote standard deviations across 5 random injection seeds.}"
+            }
+          },
+          "id": "event-000705"
+        },
+        {
+          "source_line": 706,
+          "timestamp": "2026-05-21T04:21:00.614035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000706"
+        },
+        {
+          "source_line": 707,
+          "timestamp": "2026-05-21T04:21:06.438563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "\\caption{Structural approaches to reducing temporal DIF. None reduces baseline FPR below 31\\%, indicating that the observed instability is not an artifact of ability matching.}",
+              "new_string": "\\caption{Structural approaches to reducing temporal DIF. None reduces baseline FPR below 31\\%, indicating that the observed instability is not an artifact of ability matching. Subscript $\\pm$ values denote standard deviations across 5 injection seeds (baseline row only).}"
+            }
+          },
+          "id": "event-000707"
+        },
+        {
+          "source_line": 708,
+          "timestamp": "2026-05-21T04:21:06.439301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000708"
+        },
+        {
+          "source_line": 709,
+          "timestamp": "2026-05-21T04:21:10.660374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000709"
+        },
+        {
+          "source_line": 710,
+          "timestamp": "2026-05-21T04:21:10.811673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe apply MH-DIF to the METABENCH dataset~\\citep{kipnis2024metabench}, which provides sparse response matrices for 5,227 models evaluated on 12,508 MMLU items~\\citep{hendrycks2021mmlu}. All temporal analyses define reference and focal cohorts by model release date (2023 vs.\\ 2024). We validate detection power through simulation, characterize temporal instability across multiple cohort designs, evaluate the relationship between DIF flags and existing contamination labels, and assess downstream consequences for benchmark rankings. Replication on GSM8K with cross-benchmark contamination validation appears in \\Cref{sec:gsm8k}.\n5\t\n6\t\\subsection{Validation: DIF Detection Power}\n7\t\\label{sec:validation}\n8\t\n9\tTo confirm that MH-DIF detects differential item functioning at the sample sizes available in METABENCH, we conduct a power analysis using empirical MMLU IRT parameters. We simulate item response matrices where a controlled subset of items has injected DIF of varying magnitude ($|\\Delta_{\\mathrm{MH}}| \\geq 1.4$) and evaluate ETS~C classification across sample sizes $N \\in \\{40, 80, 160, 320\\}$ per cohort. At $N \\geq 80$, ETS~C achieves true positive rates of 0.68--0.80 with false positive rates of 0.036--0.042 and AUC of 0.93--0.94. The temporal cohort sizes in our analysis ($N_{\\mathrm{ref}} = 1{,}080$, $N_{\\mathrm{focal}} = 807$) far exceed this threshold, and statistical power is not a limiting factor for the results reported below. Full simulation results with confidence intervals appear in Appendix~Table~A1.\n10\t\n11\t\\subsection{Temporal Comparability: 31\\% Item Instability}\n12\t\\label{sec:temporal}\n13\t\n14\tThe central finding of this paper is that a substantial fraction of MMLU items behave differently across model generations. Comparing models released in 2023 ($N = 1{,}080$) against models released in 2024 ($N = 807$), 31.3\\% of items receive ETS~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$). Applying Ben\n…[truncated 17553 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000710"
+        },
+        {
+          "source_line": 711,
+          "timestamp": "2026-05-21T04:21:32.550803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "Standard matching achieves $\\Delta\\mathrm{TPR} = {+}0.818$ at exploitation rate $p = 0.7$. External matching (using MMLU total score to match models for GSM8K DIF analysis) yields $\\Delta\\mathrm{TPR} = {+}0.517$ at $p = 0.7$, with $\\Delta\\mathrm{FPR}$ well-controlled.",
+              "new_string": "Standard matching achieves $\\Delta\\mathrm{TPR} = {+}0.818$ at exploitation rate $p = 0.7$. External matching (using scores on ARC, HellaSwag, TruthfulQA, and Winogrande to match models) yields $\\Delta\\mathrm{TPR} = {+}0.514$ at $p = 0.5$, comparable to MMLU's ${+}0.508$ at the same exploitation rate, with $\\Delta\\mathrm{FPR}$ well-controlled."
+            }
+          },
+          "id": "event-000711"
+        },
+        {
+          "source_line": 712,
+          "timestamp": "2026-05-21T04:21:32.551311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000712"
+        },
+        {
+          "source_line": 713,
+          "timestamp": "2026-05-21T04:21:36.518844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "hendrycks",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000713"
+        },
+        {
+          "source_line": 714,
+          "timestamp": "2026-05-21T04:21:36.569680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "205:@inproceedings{hendrycks2021mmlu,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000714"
+        },
+        {
+          "source_line": 715,
+          "timestamp": "2026-05-21T04:21:40.537874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "holland1988|zhang2024gsm",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000715"
+        },
+        {
+          "source_line": 716,
+          "timestamp": "2026-05-21T04:21:40.588503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "73:@misc{zhang2024gsm1k,\n272:@incollection{holland1988mh,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000716"
+        },
+        {
+          "source_line": 717,
+          "timestamp": "2026-05-21T04:21:45.157638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "irt_equated_bench_regen",
+              "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper",
+              "max_pages": "10",
+              "preview": "False"
+            }
+          },
+          "id": "event-000717"
+        },
+        {
+          "source_line": 718,
+          "timestamp": "2026-05-21T04:21:46.063157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": false, \\\"pdf_path\\\": null, \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"85.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg\\\\nFile: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv\\\\ne\\\\n))\\\\nPackage hyperref Info: Link coloring OFF on input line 24.\\\\n\\\\\\\\@outlinefile=\\\\\\\\write3\\\\n\\\\\\\\openout3 = `main.out'.\\\\n\\\\nLaTeX Info: Redefining \\\\\\\\microtypecontext on input line 24.\\\\nPackage microtype Info: Applying patch `item' on input line 24.\\\\nPackage microtype Info: Applying patch `toc' on input line 24.\\\\nPackage microtype Info: Applying patch `eqnum' on input line 24.\\\\nPackage microtype Info: Applying patch `footnote' on input line 24.\\\\nPackage microtype Info: Applying patch `verbatim' on input line 24.\\\\nLaTeX Info: Redefining \\\\\\\\microtypesetup on input line 24.\\\\nPackage microtype Info: Generating PDF output.\\\\nPackage microtype Info: Character protrusion enabled (level 2).\\\\nPackage microtype Info: Using default protrusion set `alltext'.\\\\nPackage microtype Info: Automatic font expansion enabled (level 2),\\\\n(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.\\\\nPackage microtype Info: Using default expansion set `alltext-nott'.\\\\nPackage microtype Info: Patching command `\\\\\\\\showhyphens'.\\\\nPackage microtype Info: No adjustment of tracking.\\\\nPackage microtype Info: No adjustment of interword spacing.\\\\nPackage microtype Info: No adjustment of character kerning.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg\\\\nFile: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)\\\\n)\\\\nPackage caption Info: Begin \\\\\\\\AtBeginDocument code.\\\\nPackage caption Info: End \\\\\\\\AtBeginDocument code.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg\\\\nFile: mt-cmr.cfg 2013/05/19 v2.2\n…[truncated 2103 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 905
+          },
+          "id": "event-000718"
+        },
+        {
+          "source_line": 719,
+          "timestamp": "2026-05-21T04:21:53.744961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "for section in abstract introduction related_work method discussion conclusion appendix; do\n  echo \"% Placeholder for ${section}\" > /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/${section}.tex\ndone && echo \"Placeholders created\"",
+              "description": "Create placeholder section files"
+            }
+          },
+          "id": "event-000719"
+        },
+        {
+          "source_line": 720,
+          "timestamp": "2026-05-21T04:21:53.796320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholders created"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-000720"
+        }
+      ]
+    }
+  ]
+}

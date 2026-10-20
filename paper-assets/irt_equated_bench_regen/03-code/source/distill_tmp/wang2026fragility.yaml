@@ -1,0 +1,18 @@
+paper_key: "wang2026fragility"
+title: "On The Fragility of Benchmark Contamination Detection in Reasoning Models"
+venue: "ICLR 2026"
+full_text_available: false
+
+research:
+  baselines: [existing memorization-based detectors, sampling consistency methods, perplexity-based methods]
+  metrics:
+    - {name: "detection success rate", direction: "higher_better"}
+  datasets:
+    - {name: "contaminated LRM benchmarks", size: "SFT + RL contamination scenarios"}
+  ablation_dimensions: [contamination phase (SFT vs RL), RL algorithm (GRPO, PPO)]
+  training_recipe: {optimizer: "GRPO/PPO", lr: "N/A", hardware: "N/A"}
+  method_family: "contamination detection evasion analysis"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

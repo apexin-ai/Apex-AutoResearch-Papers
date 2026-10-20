@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "492afa4f29232e362892",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r14 exp3 gema overlap",
+  "task_key": "worker_code_r14_exp3_gema_overlap_20260522T115646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r14_exp3_gema_overlap_20260522T115646_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "f7541cd77ed672892953923f626b97b9893d892414259412beb0106bcc29f7f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出在 `artifacts/r14_sf5_gema_overlap/`:\n\n**核心结论**：DIF-C 与 Gema ground truth errors **统计独立**（enrichment = 0.92×, Fisher p = 0.37, φ = −0.013）。88 个 overlap items 甚至略低于随机期望的 95.2 个。\n\n这直接反驳 \"DIF-C items are just bad items\" 的 reviewer concern — ground truth error 是静态属性（答案本身错误），而 DIF 检测的是跨时间群组的差异功能变化，两者在概念和实证上都正交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r14-exp3-gema-overlap.md"
+}

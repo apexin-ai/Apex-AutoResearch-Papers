@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36b9e9124b8357ed09ac",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r14 exp2 cross subject unique",
+  "task_key": "worker_code_r14_exp2_cross_subject_unique_20260522T115630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r14_exp2_cross_subject_unique_20260522T115630_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "5c6c74a59f0a32b1eb59cb91bcf7c2259b4ccd878d369f933e7ea924896d06d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are in `artifacts/r14_mf1_domain_profile/`:\n\n| File | Content |\n|------|---------|\n| `cross_subject_unique_analysis.md` | Full report |\n| `kappa_results.csv` | Per-subject κ and contingency counts |\n| `accuracy_delta_vs_unique_c.csv` | Accuracy delta vs cross-unique C |\n| `cross_subject_unique_analysis.py` | Reproducible script |\n\n**Key findings**:\n\n- **κ = 0.798 mean** (0.743–0.904): substantial agreement between cross-subject and within-subject matching on C classification\n- **57 cross-unique C items** (6.8% of 834): few items are flagged C only by cross-subject matching\n- **ρ = −0.700** (p = 0.188): cross-unique C items do NOT concentrate in high-shift domains — direction is negative (more shift → fewer unique C items)\n- **Direction**: cross C% (40.8%) slightly exceeds within C% (38.1%) for these 5 subjects (Δ = 2.7 pp), consistent with a mild confound effect but small relative to ~40% base rate\n\n**Bottom line**: multidimensional confound contributes at most a minor secondary effect. The high inter-method agreement and lack of domain-shift concentration rule it out as the primary driver of cross-subject DIF flags."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r14-exp2-cross-subject-unique.md"
+}

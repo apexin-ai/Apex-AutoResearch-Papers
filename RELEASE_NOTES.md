@@ -10,7 +10,7 @@ New interface text and guides are English; recorded source content keeps its ori
 
 ## Scope
 
-This release contains 44 research projects collected from project backup snapshots. The release includes the generated manuscript PDFs and source, experiment data and outputs, project code, contribution notes, internal review and audit materials, dated roadmaps, and sanitized text traces. The original workspace archives remain outside this repository and were not modified.
+This release contains 45 research projects collected from project backup snapshots. The release includes the generated manuscript PDFs and source, experiment data and outputs, project code, contribution notes, internal review and audit materials, dated roadmaps, and sanitized text traces. The original workspace archives remain outside this repository and were not modified.
 
 ## Status evidence
 

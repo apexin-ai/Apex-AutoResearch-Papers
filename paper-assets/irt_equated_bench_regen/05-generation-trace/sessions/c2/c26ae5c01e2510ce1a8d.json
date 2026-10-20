@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c26ae5c01e2510ce1a8d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mf1 lofo power calibration v2",
+  "task_key": "worker_code_mf1_lofo_power_calibration_v2_20260522T105348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf1_lofo_power_calibration_v2_20260522T105348_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "301e8e8f79ef011a71c58e3a27ba8fb91b5b8b1ea23ccbb3e925f295b2b2d2c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF1 完成。核心发现：\n\n| | Full | Random Subsample | LOFO | Power Effect | Composition Effect |\n|---|---|---|---|---|---|\n| Remove Mistral (ref 1080→533) | 31.32% | 30.91±2.07% | 22.47% | −0.41pp (5%) | −8.44pp (95%) |\n| Remove Llama-3 (foc 807→492) | 31.32% | 32.24±1.42% | 24.06% | +0.91pp (−13%) | −8.17pp (113%) |\n\n**结论**：C% 下降几乎完全由 composition effect（family-specific removal）驱动，power effect（样本量减少）可忽略不计。随机移除同等数量模型时 C% 基本不变（Mistral: −0.4pp; Llama-3 甚至 +0.9pp），但定向移除特定 family 导致 8-9pp 的下降。LOFO observed 值远低于 random subsample 的 95% range，确认这不是统计波动。\n\n输出文件在 `artifacts/mf1_lofo_power_calibration/`:\n- `mf1_lofo_power_calibration.py` — 完整可复现脚本\n- `power_calibration_results.csv` — 汇总结果\n- `power_calibration_reps.csv` — 400 次 per-rep 详细数据\n- `power_calibration_report.md` — 分析报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf1-lofo-power-calibration-v2.md"
+}

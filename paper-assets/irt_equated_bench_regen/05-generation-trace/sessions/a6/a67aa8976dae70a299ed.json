@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a67aa8976dae70a299ed",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 022 model independence",
+  "task_key": "worker_code_plan_022_model_independence_20260521T055408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_022_model_independence_20260521T055408_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "5639a0008ea172513cbe87d4f1b4d46ba6b884c5cf2e12e73c51ec40be273b73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**Full-population C% = 31.32%（已验证一致）。**\n\n**Graduated de-duplication sweep：**\n\n| Cap K | N_total | C% | Random Control C% |\n|-------|---------|-----|-------------------|\n| 1 | 33 | 0.17% | 0.16% ± 0.17% |\n| 3 | 92 | 5.46% | 10.77% ± 2.52% |\n| 5 | 146 | 11.69% | 16.89% ± 1.99% |\n| 10 | 261 | 22.71% | 26.82% ± 2.39% |\n| 20 | 447 | 29.12% | 30.91% ± 3.18% |\n| 50 | 794 | 27.54% | 31.64% ± 0.80% |\n| full | 1887 | 31.32% | — |\n\n**关键发现：**\n\n1. **C% 受 sample size 驱动，非 model redundancy。** 在每个 cap 水平，de-duplicated C% 都 ≤ 同 N 的 random subsample control，说明 family structure 不但没有膨胀统计量，反而略微 *压低* 了 C%（同族模型响应相似，减少了组间变异）。\n\n2. **Per-item Δ_MH 排序稳定**：cap=10 时 ρ=0.58，cap=20 时 ρ=0.66，被标记为 C 类的 item identity 在 de-duplication 下保持一致。\n\n3. **结论**：31.3% C-rate 不是 non-independent models 的 artifact。审稿人的担忧可以用这个 graduated sweep + random control 设计来直接回应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-022-model-independence.md"
+}

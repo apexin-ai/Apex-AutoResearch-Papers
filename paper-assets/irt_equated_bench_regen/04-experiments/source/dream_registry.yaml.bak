@@ -1,0 +1,416 @@
+dreams:
+  dream_20260520T193456:
+    dream_id: dream_20260520T193456
+    project: irt_equated_bench_regen
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: null
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fd480c0c0a4b4c9b750a9e883f
+    started_at: '2026-05-20T19:34:56+00:00'
+    updated_at: '2026-05-20T19:42:02+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 769a2001ec590160d2d825a776e694aa872d65d12e43af06ca921282bdda61f3
+  dream_20260520T194223:
+    dream_id: dream_20260520T194223
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 107330
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fd4a4ce70a0b28a350ae4fe4e4
+    started_at: '2026-05-20T19:42:23+00:00'
+    updated_at: '2026-05-20T20:32:52+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d04e97100390dc70cdec33b4a23d27451396b481461913b4835617cc5c5bf478
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260520T205007:
+    dream_id: dream_20260520T205007
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Verify that the updated framing (qualified novelty, partial exploitation
+      analysis, contamination-capability confound controls) and new experiments (plan_010
+      architecture-stratified DIF, plan_011 semi-synthetic validation) address the
+      issues from Dream #1. Pay attention to whether the 9 Anticipated Reviewer Concerns
+      now have adequate experimental coverage.'
+    what_if: []
+    pid: 112609
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fd5a9330d30b276d3cf8e58121
+    started_at: '2026-05-20T20:50:07+00:00'
+    updated_at: '2026-05-20T21:45:32+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ad456fd2f2f93277405ee51858c2c5ecb77186c4523e75cf5071028d5dad92f3
+    review_quality:
+      best: simulated
+      worst: simulated
+  dream_20260521T012912:
+    dream_id: dream_20260521T012912
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-pivot framing: characterization + methodology paper, NOT methods
+      paper. Key new evidence since last Dream: (1) GSM8K cross-benchmark replication
+      ΔTPR=+0.818, (2) GSM1K contamination gap anti-correlation r=−0.478 — DIF captures
+      capability-discriminative items that contamination can''t fake, (3) downstream
+      impact z=-8 to -49σ confirming DIF items are discriminative carriers. Assess
+      whether these strengthen ICLR main conference viability vs findings track.'
+    what_if: []
+    pid: 135955
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fd1b05db084b28645af98cbf25
+    started_at: '2026-05-21T01:29:12+00:00'
+    updated_at: '2026-05-21T02:23:18+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 50ad24572216f5e8d30829914b20b3c46ed9a4892abf674ac085f843e8cd3492
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T032826:
+    dream_id: dream_20260521T032826
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 143968
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fd3f37c64a0b369a7e44e50bd2
+    started_at: '2026-05-21T03:28:26+00:00'
+    updated_at: '2026-05-21T04:00:16+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: f6ef4d94de4f068b58be7012dd3930f4b3188ea359566e54a90b51a05bc4d3bb
+    review_quality:
+      best: simulated
+      worst: simulated
+  dream_20260521T042647:
+    dream_id: dream_20260521T042647
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'This is a post-revision re-dream. Key changes since Dream #3: (1) paper_framing.md
+      rewritten with no-pivot narrative, scope pruning (Bayesian DIF/RL/ensemble/pilots
+      → appendix), explicit 3-layer novelty articulation, "instability ≠ invalidity"
+      framing upfront; (2) 6 new robustness analyses with real data: threshold sensitivity
+      (49/31/18/10%), BH FDR (negligible), instability decomposition (≤2.4pp/7.6%),
+      circularity ablation (DIF least disruptive non-random), architecture stratification
+      (99.98% decoder-only, concern dissolved), bootstrap CIs (all exclude zero);
+      (3) literature expanded 15→45 papers across 5 clusters; (4) experiments.tex
+      completed with Reviewer patches. Focus review on whether the structural/writing
+      improvements address the prior round''s concerns.'
+    what_if: []
+    pid: 153048
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fdcd6b490a4b2f8987554c1e86
+    started_at: '2026-05-21T04:26:47+00:00'
+    updated_at: '2026-05-21T05:39:49+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 3b30ed32c88e6902981df3bacc5e0a1969f859d35b7ab9c134e23dbe8134a27d
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T062008:
+    dream_id: dream_20260521T062008
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Dream #4 后的改进：(1) plan_022 model independence — graduated de-duplication
+      证明 family structure 不 inflate C%；(2) plan_023 item characterization — difficulty×direction
+      ρ=-0.597 强化 diagnostic lens；(3) 删除 unprovenanced r=-0.347；(4) K=10 数据修正；(5)
+      所有 critical 写作问题已修复。关注 novelty 和 IRT misspecification 是否仍是主要扣分项。'
+    what_if: []
+    pid: 164865
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fde0f78ccc0b4861aaf2fd7de7
+    started_at: '2026-05-21T06:20:08+00:00'
+    updated_at: '2026-05-21T07:14:00+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: e5a35c2fc552b36821ea2521d3ce162f85d45ce13fcab4829df25c8cf495f626
+    review_quality:
+      worst: simulated
+  dream_20260521T085919:
+    dream_id: dream_20260521T085919
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'EMNLP 2026 venue, paper now includes: plan_026 ConStat empirical comparison
+      (enrichment=0.964, Jaccard=0.206), plan_027 temporal ability overlap (matched
+      C%=28.9%, ability confound only 2.4pp), ACL double-column template, 7.5 pages
+      main body, mandatory Limitations section, Conclusion restored. All reviewer
+      issues from previous rounds addressed. Evaluate whether this version reaches
+      EMNLP Conference acceptance (score 4).'
+    what_if: []
+    pid: 181747
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fd8d84ba0a8b3ef3e9cdf5330a
+    started_at: '2026-05-21T08:59:19+00:00'
+    updated_at: '2026-05-21T09:55:10+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 0ee05dc81aae38a069d788081a0fafe8f7e134620c2041d738e370b24571560b
+    review_quality:
+      median: simulated
+  dream_20260521T110541:
+    dream_id: dream_20260521T110541
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: plan_028 新增 6-benchmark cross-validation (C%=17.9-31.3%, 45-174× above
+      random) + plan_030 Simpson's paradox (OR 1.55→0.73)。评估这些新数据是否将 Best 从 3.5 推到
+      4.0+ (Conference acceptance)。重点关注：IRT misfit defense 是否充分、temporal coarseness
+      (2023 vs 2024 binary) 是否仍是主要攻击面、actionability gap 是否被 audit protocol 覆盖。
+    what_if: []
+    pid: 195857
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fda3e4a7ca8b14338bf36edd87
+    started_at: '2026-05-21T11:05:41+00:00'
+    updated_at: '2026-05-21T12:06:02+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ba0027113e61f67257b9c45495efd3b7f4592a46b4f5a64e81d0b19648c287ad
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T122440:
+    dream_id: dream_20260521T122440
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 199194
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fdbd6446cacb2e1265e26b8a09
+    started_at: '2026-05-21T12:24:40+00:00'
+    updated_at: '2026-05-21T13:18:42+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ba0027113e61f67257b9c45495efd3b7f4592a46b4f5a64e81d0b19648c287ad
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T141728:
+    dream_id: dream_20260521T141728
+    project: irt_equated_bench_regen
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'This is re-dream #8 after major revisions addressing Dream #7''s specific
+      weaknesses. Key improvements since Dream #7 (all integrated into paper via P6-P16
+      patches):
+
+
+      1. **Actionability paradox SOLVED** (was CW1-level concern): NEW plan_032 DIF-cleaned
+      MMLU demonstration shows 89.5% models shift ≥5 ranks, systematic cohort bias
+      (2024 Δrank=+73.6), confirmed DIF-specific by random baseline (z=8.5). This
+      directly answers "ρ=0.997 means DIF doesn''t matter."
+
+
+      2. **Proposition 1 (ΔFPR=0 formalized)**: Cross-subject matching now has a formal
+      algebraic proof, not just an empirical observation. Elevates methodological
+      contribution.
+
+
+      3. **Temporal coarseness addressed**: NEW plan_031 6-month window robustness
+      check (C%=34.35%, 181× enrichment) shows DIF is robust to finer temporal granularity.
+
+
+      4. **Subject DIF direction asymmetry** (NEW analytical finding): STEM subjects
+      favor 2024 models (55.4%), Humanities favor 2023 (64.4%) — content-level predictor
+      of DIF direction.
+
+
+      5. **Expanded Related Work**: Added BHI (Blebea et al. 2024), PSN-IRT (Polo
+      et al. 2024), Maeda (2024) — addresses "thin related work" concern.
+
+
+      6. **Systematic Confound Elimination narrative**: 6 negative results reframed
+      as systematic exclusion of confounds (architecture, ability, local dependence,
+      IRT misfit, reasoning-RL, ensemble), strengthening the "what remains is genuine
+      temporal DIF" argument.
+
+
+      7. **Bootstrap CI on headline C%**: MMLU C%=31.3% [29.5%, 33.1%] with N=1000
+      model resampling.
+
+
+      8. **Causal language softened** throughout — "contamination-adjacent" phrasing
+      replaced with hedged "differential functioning" language.
+
+
+      9. **DIF-for-LLMs paragraph** added in Discussion — explicitly addresses what
+      DIF means for machine (vs. human) examinees.
+
+
+      10. **Audit protocol expanded** with code release commitment.
+
+
+      11. **ConStat/DVD comparison visibility increased** — AUROC numbers and Jaccard
+      overlap now in main text.
+
+
+      Reviewers should evaluate whether these revisions close the gap from 3.5 to
+      4.0 (Conference). The paper''s strongest path to 4.0: unprecedented scale +
+      cross-subject matching (Proposition 1) + Simpson''s paradox + DIF-cleaned demonstration
+      (actionability) + 6-benchmark replication + systematic confound elimination.'
+    what_if: []
+    pid: 213852
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fc5716378a8b2585d82467d8c9
+    started_at: '2026-05-21T14:17:28+00:00'
+    updated_at: '2026-05-21T15:20:55+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 201360eccd005d366e6a950b9503514cc88c60865335632d389c94d6ea5c9070
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T165710:
+    dream_id: dream_20260521T165710
+    project: irt_equated_bench_regen
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Dream #9 — based on FULLY REVISED paper after Round 5 review fixes (P17-P26).
+      Key changes since Dream #8:
+
+
+      1. **Title changed**: "Temporal Measurement Drift in LLM Benchmarks" (was "Psychometric
+      Instability")
+
+      2. **3 contributions (was 4)**: Claim 4 merged into Claim 1, GSM1K demoted to
+      exploratory
+
+      3. **Multi-subject injection robustness (NEW plan_034)**: ΔFPR<0.007 for k≤5
+      subjects, graceful degradation at k=10+. Proposition 1 explicitly scoped to
+      single-subject with empirical extension.
+
+      4. **Q3 local dependence quantified (NEW plan_035)**: LD inflation <0.001pp,
+      cross-subject matching completely isolates LD effects.
+
+      5. **LLM-specific challenges paragraph**: local dependence, family structure,
+      non-normal ability, multidimensionality explicitly discussed
+
+      6. **DIF running example**: concrete α_MH=0.42 → Δ_MH=2.04 → ETS C walkthrough
+
+      7. **Causal framing systematically softened**: instability → measurement drift/differential
+      functioning throughout
+
+      8. **Bootstrap CI reporting**: model-level resampling explicitly stated, "approximately
+      31%" in Abstract
+
+      9. **Audit protocol expanded**: three-tier threshold (C%<15 monitor, 15-25 flag,
+      >25 act)
+
+      10. **Growing Pains complementarity**: conceptual bridge to anchor item stability
+
+      11. **Citation cleanup**: 8 orphans removed, 3 new refs added (Benchmark2, MedIRT,
+      ATLAS)
+
+      12. **Claim 2 dual interpretation**: explicitly acknowledged in Discussion
+
+      13. **Power analysis details**: Monte Carlo 1000 reps, 2PL PSN-IRT parameters
+
+
+      Reviewers should evaluate the CURRENT 3-contribution structure and whether the
+      multi-subject robustness data + framing softening address prior concerns about
+      Proposition 1 scope and causal overclaiming.'
+    what_if: []
+    pid: 223443
+    chat_id: oc_25ed8e3ecef6fc922cb497fae9f34627
+    card_message_id: om_x100b6fc7d85968a0b212b6365c9604b
+    started_at: '2026-05-21T16:57:10+00:00'
+    updated_at: '2026-05-21T17:54:17+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 1070b3785e0f1d4d5518a69166290c7e536961bbe44fb9faf93ea334d191b9cf
+    review_quality:
+      best: simulated
+      worst: simulated

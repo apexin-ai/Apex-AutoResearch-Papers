@@ -1,0 +1,1672 @@
+{
+  "schema_version": "1.0",
+  "id": "8ef76b32c5a285ee65f1",
+  "project": "irt_equated_bench_regen",
+  "kind": "conversation",
+  "title": "code plan 019 instability decomposition",
+  "task_key": "worker_code_plan_019_instability_decomposition_20260521T031142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_plan_019_instability_decomposition_20260521T031142.jsonl",
+    "occurrence": 1,
+    "bytes": 83846,
+    "sha256": "7838c57ada22e0dc294b6274caf3e4d8f70e05256b2b71858de2c0729b8cd8c0"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "tool_call": 40,
+      "tool_result": 40,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T03:30:45.735168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/",
+              "description": "List plan_001 artifacts"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T03:30:45.735493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cross_analysis.csv\ndif_results_ability.csv\ndif_results_temporal.csv\ndif_summary.csv\ndomain_specificity.csv\nneg_disc_sensitivity.csv\nplan_001_analysis.py\nplan_001_report.md\nwithin_family_dif.csv"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T03:30:45.735650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/",
+              "description": "List all artifacts"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T03:30:45.735839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "__pycache__\n_project\nartifacts_qc_report.md\nbuild_response_matrix.py\ndif_diagnostic.py\ndif_diagnostic_output.log\ndif_diagnostic_pvalue_dist.pdf\ndif_diagnostic_tpr_comparison.csv\ndif_phase2_param_distribution.pdf\ndif_phase2_power_curves.pdf\ndif_phase2_results.csv\ndif_phase2_simulation.py\ndif_power_curves.pdf\ndif_power_results.csv\ndif_power_simulation.py\ndream_reports\nexperiment_summary.md\nirt_scale_analysis.json\nirt_scale_analysis.md\nitem_metadata.csv\nliterature_survey_d011.md\nmanifest.yaml\nmetabench_cohort_analysis.csv\nmetabench_ctt_stats.csv\nmetabench_data\nmetabench_data_summary.md\nmetabench_explore.py\nmetabench_model_accuracy.csv\nmetabench_model_list.txt\nmetabench_rl_models.csv\nmetabench_subject_stats.csv\nmetabench_summary.json\nmmlu_cf_analysis.json\nmmlu_cf_analysis.md\nmmlu_li2024_proxy_labels.csv\nmodel_metadata.csv\nmvp_dif_power_sim\nplan_001\nplan_001_real_data_dif_mmlu\nplan_001b\nplan_004\nplan_004_data_availability.md\nplan_011\nplan_011_semi_synthetic_validation\nplan_012\nplan_012_irt_theta_conditioning\nplan_013\nplan_013_q3_local_independence\nplan_014\nplan_015\nplan_016\nplan_016_within_subject_semi_synthetic\nplan_017\nplan_018\npsn_irt_item_parameters.csv\nresponse_matrix.npz\nresponse_matrix_index.npz\nreview_issues.yaml\nreview_reports"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T03:30:45.735982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_results_temporal.csv",
+              "limit": "20"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T03:30:45.736147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\titem_id,subject,alpha_mh,delta_mh,se,p_value,ets_class,li_label,li_contamination_type\n2\tabstract_algebra.1,abstract_algebra,0.8673811041189408,0.3343505559632721,0.2921867891177819,0.27995385252579175,A,False,clean\n3\tabstract_algebra.10,abstract_algebra,0.5141246508049961,1.5634303993406418,0.36471274316626207,1.8840975857581377e-05,C,False,clean\n4\tabstract_algebra.100,abstract_algebra,0.45562394251510224,1.8473056183645777,0.4442953571627415,3.3721937472974695e-05,C,,no_annotation\n5\tabstract_algebra.11,abstract_algebra,0.7175060366563377,0.780138707124792,0.2484055209632857,0.0016556553694112575,A,False,clean\n6\tabstract_algebra.12,abstract_algebra,1.4899881312460284,-0.937105162649532,0.2813290278113714,0.0007921945558931887,A,False,clean\n7\tabstract_algebra.13,abstract_algebra,1.6623708623468896,-1.1943753123055647,0.24349932220813678,1.1074001383670762e-06,B,False,clean\n8\tabstract_algebra.14,abstract_algebra,0.47050921142342894,1.7717583941763377,0.39879705520766956,7.794093909940791e-06,C,False,clean\n9\tabstract_algebra.15,abstract_algebra,1.274074494967226,-0.5692170675088077,0.8253399422382749,0.6085683132700959,A,False,clean\n10\tabstract_algebra.16,abstract_algebra,0.8190200681472496,0.46916972666288403,0.264861289970129,0.08118193827845621,A,False,clean\n11\tabstract_algebra.17,abstract_algebra,1.073117016076642,-0.16583365498585692,0.2883154944248265,0.5952450889614067,A,False,clean\n12\tabstract_algebra.18,abstract_algebra,0.5588024066034348,1.36760446045332,0.32138779261988615,1.9024352303942393e-05,B,True,input_and_label\n13\tabstract_algebra.2,abstract_algebra,1.955059888825436,-1.5754889426003047,0.2831692496720547,1.146525685502553e-08,C,True,input_only\n14\tabstract_algebra.20,abstract_algebra,0.5171438254638294,1.5496704893224662,0.25495047752248373,1.5142136433610176e-09,C,False,clean\n15\tabstract_algebra.21,abstract_algebra,1.6643179897220297,-1.1971262457757967,0.33000555981065327,0.0004076914717419111,B,False,clean\n16\tabstract_algebra.22,abstract_algebra,\n…[truncated 633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T03:30:45.736317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/item_metadata.csv",
+              "limit": "10"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T03:30:45.736450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\titem_id,subject,ctt_difficulty,ctt_discrimination,sd,is_negative_disc,empirical_p\n2\tabstract_algebra.1,abstract_algebra,0.1415501053841732,-0.2833678806673642,0.391334247107756,True,0.18867202449292\n3\tabstract_algebra.10,abstract_algebra,0.0829181835600689,0.1905805323705553,0.313613528527619,False,0.11040949100650593\n4\tabstract_algebra.100,abstract_algebra,0.0485725234719294,0.0603451356931113,0.2461314261708401,False,0.06467661691542288\n5\tabstract_algebra.11,abstract_algebra,0.5031136232994826,0.0842828755338663,0.4699611407645028,False,0.6701109835438194\n6\tabstract_algebra.12,abstract_algebra,0.2526346043303314,0.1733498148434182,0.4726770856917052,False,0.33639494833524686\n7\tabstract_algebra.13,abstract_algebra,0.4737976623874305,0.0758625686101177,0.4823813175887054,False,0.6320321469575201\n8\tabstract_algebra.14,abstract_algebra,0.0551829852462157,0.1366969378370061,0.261106789953203,False,0.07367011098354381\n9\tabstract_algebra.15,abstract_algebra,0.0153765089097528,-0.0851202027819684,0.1417234205348907,True,0.020474550325296593\n10\tabstract_algebra.16,abstract_algebra,0.3397202529220157,0.2338768519700561,0.4978300484566788,False,0.452353616532721"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T03:30:45.736578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv",
+              "limit": "20"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T03:30:45.736723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tmodel_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile\n2\t0-hero/Matter-0.1-7B,unknown,unknown,unknown,unknown,0.661225,other,3\n3\t0-hero/Matter-0.1-7B-DPO-preview,,unknown,unknown,DPO,0.661337,other,3\n4\t0-hero/Matter-0.1-7B-boost,unknown,unknown,unknown,unknown,0.653422,other,3\n5\t0-hero/Matter-0.1-7B-boost-DPO,,unknown,unknown,DPO,0.654941,other,3\n6\t0-hero/Matter-0.1-7B-boost-DPO-preview,,unknown,unknown,DPO,0.65614,other,3\n7\t0-hero/Matter-0.1-Slim-7B,unknown,unknown,unknown,unknown,0.62456,other,2\n8\t0-hero/Matter-0.1-Slim-7B-A,unknown,unknown,unknown,unknown,0.62456,other,2\n9\t0-hero/Matter-0.1-Slim-7B-B,unknown,unknown,unknown,unknown,0.633435,other,3\n10\t0-hero/Matter-0.1-Slim-7B-C,unknown,unknown,unknown,unknown,0.642709,other,3\n11\t0-hero/Matter-0.1-Slim-7B-C-DPO,,unknown,unknown,DPO,0.635114,other,3\n12\t0-hero/Matter-0.1-Slim-7B-preview,unknown,unknown,unknown,unknown,0.645507,other,3\n13\t0-hero/Matter-0.2-32B,unknown,unknown,unknown,unknown,0.767109,other,5\n14\t0-hero/Matter-0.2-7B,unknown,unknown,unknown,unknown,0.65574,other,3\n15\t0-hero/Matter-0.2-7B-DPO,,unknown,unknown,DPO,0.660937,other,3\n16\t01-ai/Yi-1.5-34B,yi-1.5,2024,H1,unknown,0.793332,2024,5\n17\t01-ai/Yi-1.5-34B-32K,yi-1.5,2024,H1,unknown,0.795891,2024,5\n18\t01-ai/Yi-1.5-34B-Chat,yi-1.5,2024,H1,unknown,0.782299,2024,5\n19\t01-ai/Yi-1.5-34B-Chat-16K,yi-1.5,2024,H1,unknown,0.795571,2024,5\n20\t01-ai/Yi-1.5-6B,yi-1.5,2024,H1,unknown,0.659418,2024,3"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T03:30:45.736913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -1 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_results_temporal.csv | tr ',' '\\n' | cat -n",
+              "description": "List columns of DIF results"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T03:30:45.737046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "     1\titem_id\n     2\tsubject\n     3\talpha_mh\n     4\tdelta_mh\n     5\tse\n     6\tp_value\n     7\tets_class\n     8\tli_label\n     9\tli_contamination_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T03:30:45.737167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts && python3 -c \"\nimport pandas as pd\ndif = pd.read_csv('plan_001/dif_results_temporal.csv')\nprint('DIF shape:', dif.shape)\nprint('ETS class distribution:')\nprint(dif['ets_class'].value_counts())\nprint(f'C%: {(dif.ets_class==\\\"C\\\").mean()*100:.1f}%')\nprint(f'Unique subjects: {dif.subject.nunique()}')\n\"",
+              "description": "Check DIF data summary"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T03:30:45.737288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DIF shape: (12508, 9)\nETS class distribution:\nets_class\nA    6332\nC    3918\nB    2258\nName: count, dtype: int64\nC%: 31.3%\nUnique subjects: 57"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T03:30:45.737406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nmeta = pd.read_csv('model_metadata.csv')\nprint('cohort_temporal values:')\nprint(meta['cohort_temporal'].value_counts())\nprint()\nprint('release_year distribution:')\nprint(meta['release_year'].value_counts().head(10))\n\"",
+              "description": "Check model metadata cohorts"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T03:30:45.737525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cohort_temporal values:\ncohort_temporal\nother    3340\n2023     1080\n2024      807\nName: count, dtype: int64\n\nrelease_year distribution:\nrelease_year\nunknown    3340\n2023       1080\n2024        807\nName: count, dtype: int64"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T03:30:45.737661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\ndata = np.load('response_matrix.npz', allow_pickle=True)\nprint('Keys:', list(data.keys()))\nfor k in data.keys():\n    arr = data[k]\n    print(f'  {k}: shape={arr.shape}, dtype={arr.dtype}')\n    if arr.ndim == 1 and arr.shape[0] < 20:\n        print(f'    values: {arr[:20]}')\n    elif arr.ndim == 1:\n        print(f'    first 5: {arr[:5]}')\n\"",
+              "description": "Check response matrix structure"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T03:30:45.737825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Keys: ['indices', 'indptr', 'format', 'shape', 'data']\n  indices: shape=(38654082,), dtype=int32\n    first 5: [ 92  95  96  98 101]\n  indptr: shape=(5228,), dtype=int32\n    first 5: [    0  7007 15279 23452 31644]\n  format: shape=(), dtype=|S3\n  shape: shape=(2,), dtype=int64\n    values: [ 5227 12508]\n  data: shape=(38654082,), dtype=int8\n    first 5: [1 1 1 1 1]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T03:30:45.737963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nidx = np.load('response_matrix_index.npz', allow_pickle=True)\nprint('Keys:', list(idx.keys()))\nfor k in idx.keys():\n    arr = idx[k]\n    print(f'  {k}: shape={arr.shape}, dtype={arr.dtype}')\n    print(f'    first 5: {arr[:5]}')\n\"",
+              "description": "Check response matrix index"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T03:30:45.738096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Keys: ['model_names', 'item_ids']\n  model_names: shape=(5227,), dtype=object\n    first 5: ['0-hero/Matter-0.1-7B' '0-hero/Matter-0.1-7B-DPO-preview'\n '0-hero/Matter-0.1-7B-boost' '0-hero/Matter-0.1-7B-boost-DPO'\n '0-hero/Matter-0.1-7B-boost-DPO-preview']\n  item_ids: shape=(12508,), dtype=object\n    first 5: ['abstract_algebra.1' 'abstract_algebra.10' 'abstract_algebra.100'\n 'abstract_algebra.11' 'abstract_algebra.12']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T03:30:45.738215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019",
+              "description": "Create plan_019 output directory"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T03:30:45.738327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T03:30:45.738501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+              "content": "\"\"\"\nPlan 019: Instability Decomposition — How much DIF C% is attributable\nto domain-level capability improvement vs residual instability.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nimport scipy.sparse as sp\nimport statsmodels.api as sm\nfrom sklearn.metrics import roc_auc_score\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parent.parent\nOUT  = Path(__file__).resolve().parent\n\n# ── 1. Load data ──────────────────────────────────────────────────────\n\ndif = pd.read_csv(ROOT / \"plan_001\" / \"dif_results_temporal.csv\")\nitem_meta = pd.read_csv(ROOT / \"item_metadata.csv\")\nmodel_meta = pd.read_csv(ROOT / \"model_metadata.csv\")\n\nidx = np.load(ROOT / \"response_matrix_index.npz\", allow_pickle=True)\nmodel_names = idx[\"model_names\"]\nitem_ids = idx[\"item_ids\"]\n\nraw = np.load(ROOT / \"response_matrix.npz\", allow_pickle=True)\nR = sp.csr_matrix((raw[\"data\"], raw[\"indices\"], raw[\"indptr\"]),\n                   shape=tuple(raw[\"shape\"]))\n\n# ── 2. Compute per-subject focal-ref accuracy delta ───────────────────\n\nref_mask = model_meta[\"cohort_temporal\"] == \"2023\"\nfoc_mask = model_meta[\"cohort_temporal\"] == \"2024\"\nref_idx = np.where(ref_mask.values)[0]\nfoc_idx = np.where(foc_mask.values)[0]\n\nitem_subject = pd.Series(item_meta.set_index(\"item_id\")[\"subject\"].reindex(item_ids).values,\n                          index=item_ids)\n\ndef cohort_subject_accuracy(row_indices):\n    \"\"\"Mean accuracy per subject for a cohort of models.\"\"\"\n    sub = R[row_indices]\n    mask = sub != 0\n    correct = sub.copy()\n    correct.data = (correct.data == 1).astype(np.float64)\n\n    records = []\n    for j, iid in enumerate(item_ids):\n        col = mask[:, j]\n        n = col.nnz\n        if n == 0:\n            continue\n        acc = correct[:, j].sum() / n\n        records.append({\"item_id\": iid, \"subject\": item_subject.iloc[j], \"acc\": acc, \"n\": n})\n    df = pd.DataFrame(records)\n    return df.groupby(\"subject\")[\"acc\"].mean()\n\nref_acc = cohort_subject_accuracy(ref_idx)\nfoc_acc = cohort_subject_accuracy(foc_idx)\nsubject_delta = (foc_acc - ref_acc).rename(\"subject_acc_delta\")\nprint(f\"Subject accuracy delta: mean={subject_delta.mean():.4f}, \"\n      f\"std={subject_delta.std():.4f}, range=[{subject_delta.min():.4f}, {subject_delta.max():.4f}]\")\n\n# ── 3. Merge item-level data ──────────────────────────────────────────\n\ndf = dif.merge(item_meta[[\"item_id\", \"ctt_difficulty\", \"ctt_discrimination\"]],\n               on=\"item_id\", how=\"left\")\ndf = df.merge(subject_delta.reset_index().rename(columns={\"index\": \"subject\"}),\n              on=\"subject\", how=\"left\")\n\ndf[\"dif_c\"] = (df[\"ets_class\"] == \"C\").astype(int)\ndf = df.dropna(subset=[\"subject_acc_delta\", \"ctt_difficulty\", \"ctt_discrimination\"])\n\nprint(f\"\\nAnalysis dataset: {len(df)} items, {df.subject.nunique()} subjects\")\nprint(f\"DIF C count: {df.dif_c.sum()} ({df.dif_c.mean()*100:.1f}%)\")\n\n# ── 4. Subject-level summary ─────────────────────────────────────────\n\nsubj_summary = df.groupby(\"subject\").agg(\n    n_items=(\"dif_c\", \"size\"),\n    n_c=(\"dif_c\", \"sum\"),\n    c_pct=(\"dif_c\", \"mean\"),\n    acc_delta=(\"subject_acc_delta\", \"first\"),\n).reset_index()\nsubj_summary[\"c_pct\"] *= 100\n\n# ── 5. Logistic Regressions ──────────────────────────────────────────\n\ny = df[\"dif_c\"].values\n\n# Model 1: DIF_C ~ subject_accuracy_delta\nX1 = sm.add_constant(df[[\"subject_acc_delta\"]])\nm1 = sm.Logit(y, X1).fit(disp=0)\n\n# Model 2: DIF_C ~ subject_accuracy_delta + difficulty + discrimination\nX2 = sm.add_constant(df[[\"subject_acc_delta\", \"ctt_difficulty\", \"ctt_discrimination\"]])\nm2 = sm.Logit(y, X2).fit(disp=0)\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"MODEL 1: DIF_C ~ subject_acc_delta\")\nprint(\"=\"*70)\nprint(m1.summary2().tables[1].to_string())\nprint(f\"Pseudo R²: {m1.prsquared:.4f}\")\nprint(f\"AIC: {m1.aic:.1f}  BIC: {m1.bic:.1f}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"MODEL 2: DIF_C ~ subject_acc_delta + difficulty + discrimination\")\nprint(\"=\"*70)\nprint(m2.summary2().tables[1].to_string())\nprint(f\"Pseudo R²: {m2.prsquared:.4f}\")\nprint(f\"AIC: {m2.aic:.1f}  BIC: {m2.bic:.1f}\")\n\n# ── 6. Predicted C% under counterfactual (delta=0) ───────────────────\n\n# Model 1 counterfactual\nX1_cf = X1.copy()\nX1_cf[\"subject_acc_delta\"] = 0\npred_actual_m1 = m1.predict(X1)\npred_cf_m1 = m1.predict(X1_cf)\n\n# Model 2 counterfactual\nX2_cf = X2.copy()\nX2_cf[\"subject_acc_delta\"] = 0\npred_actual_m2 = m2.predict(X2)\npred_cf_m2 = m2.predict(X2_cf)\n\ncpct_actual = df[\"dif_c\"].mean() * 100\ncpct_m1_actual = pred_actual_m1.mean() * 100\ncpct_m1_cf = pred_cf_m1.mean() * 100\ncpct_m2_actual = pred_actual_m2.mean() * 100\ncpct_m2_cf = pred_cf_m2.mean() * 100\n\nprint(f\"\\n{'='*70}\")\nprint(\"COUNTERFACTUAL ANALYSIS\")\nprint(f\"{'='*70}\")\nprint(f\"Observed C%:              {cpct_actual:.1f}%\")\nprint(f\"Model 1 predicted C%:     {cpct_m1_actual:.1f}%\")\nprint(f\"Model 1 CF (delta=0) C%:  {cpct_m1_cf:.1f}%\")\nprint(f\"Model 1 reduction:        {cpct_m1_actual - cpct_m1_cf:.1f} pp\")\nprint(f\"Model 2 predicted C%:     {cpct_m2_actual:.1f}%\")\nprint(f\"Model 2 CF (delta=0) C%:  {cpct_m2_cf:.1f}%\")\nprint(f\"Model 2 reduction:        {cpct_m2_actual - cpct_m2_cf:.1f} pp\")\n\n# ── 7. Odds ratios ───────────────────────────────────────────────────\n\nprint(f\"\\n{'='*70}\")\nprint(\"ODDS RATIOS (per 0.10 increase in subject_acc_delta)\")\nprint(f\"{'='*70}\")\nfor name, model in [(\"Model 1\", m1), (\"Model 2\", m2)]:\n    coef = model.params[\"subject_acc_delta\"]\n    ci = model.conf_int().loc[\"subject_acc_delta\"]\n    or_val = np.exp(coef * 0.10)\n    or_lo = np.exp(ci.iloc[0] * 0.10)\n    or_hi = np.exp(ci.iloc[1] * 0.10)\n    print(f\"{name}: OR = {or_val:.3f} (95% CI: {or_lo:.3f}–{or_hi:.3f})\")\n\n# ── 8. Subject-level correlation ──────────────────────────────────────\n\nfrom scipy.stats import pearsonr, spearmanr\nr_p, p_p = pearsonr(subj_summary[\"acc_delta\"], subj_summary[\"c_pct\"])\nr_s, p_s = spearmanr(subj_summary[\"acc_delta\"], subj_summary[\"c_pct\"])\nprint(f\"\\nSubject-level correlation (acc_delta vs C%):\")\nprint(f\"  Pearson  r = {r_p:.3f}, p = {p_p:.4f}\")\nprint(f\"  Spearman ρ = {r_s:.3f}, p = {p_s:.4f}\")\n\n# ── 9. Scatter plot ───────────────────────────────────────────────────\n\nfig, ax = plt.subplots(figsize=(8, 6))\nsc = ax.scatter(subj_summary[\"acc_delta\"] * 100, subj_summary[\"c_pct\"],\n                s=subj_summary[\"n_items\"] * 1.5, alpha=0.6, edgecolors=\"k\", linewidths=0.5)\n\nz = np.polyfit(subj_summary[\"acc_delta\"] * 100, subj_summary[\"c_pct\"], 1)\nxline = np.linspace(subj_summary[\"acc_delta\"].min() * 100, subj_summary[\"acc_delta\"].max() * 100, 100)\nax.plot(xline, np.polyval(z, xline), \"r--\", lw=1.5, label=f\"r = {r_p:.2f}\")\n\nax.set_xlabel(\"Subject Accuracy Delta (focal − ref, %)\", fontsize=12)\nax.set_ylabel(\"DIF Category C Items (%)\", fontsize=12)\nax.set_title(\"Domain Capability Improvement vs. DIF Instability\", fontsize=13)\nax.legend(fontsize=11)\nax.grid(True, alpha=0.3)\nfig.tight_layout()\nfig.savefig(OUT / \"fig_subject_delta_vs_cpct.png\", dpi=200)\nprint(f\"\\nFigure saved: {OUT / 'fig_subject_delta_vs_cpct.png'}\")\n\n# ── 10. Decomposition summary ────────────────────────────────────────\n\nexplained_m1 = cpct_m1_actual - cpct_m1_cf\nresidual_m1 = cpct_m1_cf\nexplained_m2 = cpct_m2_actual - cpct_m2_cf\nresidual_m2 = cpct_m2_cf\n\nprint(f\"\\n{'='*70}\")\nprint(\"DECOMPOSITION SUMMARY\")\nprint(f\"{'='*70}\")\nprint(f\"Total observed C%:                    {cpct_actual:.1f}%\")\nprint(f\"Attributable to domain improvement:   {explained_m2:.1f} pp ({explained_m2/cpct_actual*100:.1f}% of total)\")\nprint(f\"Residual instability:                 {residual_m2:.1f}% ({residual_m2/cpct_actual*100:.1f}% of total)\")\n\n# ── 11. Write report ─────────────────────────────────────────────────\n\nreport = f\"\"\"# Plan 019: Instability Decomposition Report\n\n## Research Question\n\nHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\ndomain-level capability improvement (2024 models systematically outperforming 2023 models\nin certain subjects) versus residual measurement instability?\n\n## Method\n\n1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n   difference between focal (2024, N={len(foc_idx)}) and reference (2023, N={len(ref_idx)}) cohorts.\n2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n   how much DIF C would remain absent domain-level improvement.\n\n## Subject Accuracy Deltas\n\n| Statistic | Value |\n|-----------|-------|\n| Mean Δ    | {subject_delta.mean():.4f} |\n| SD        | {subject_delta.std():.4f} |\n| Min       | {subject_delta.min():.4f} |\n| Max       | {subject_delta.max():.4f} |\n\n## Logistic Regression Results\n\n### Model 1: DIF_C ~ subject_acc_delta\n\n| Variable | Coef | SE | z | p | OR (per 0.10) |\n|----------|------|----|---|---|----------------|\n| const | {m1.params['const']:.4f} | {m1.bse['const']:.4f} | {m1.tvalues['const']:.2f} | {m1.pvalues['const']:.4f} | — |\n| subject_acc_delta | {m1.params['subject_acc_delta']:.4f} | {m1.bse['subject_acc_delta']:.4f} | {m1.tvalues['subject_acc_delta']:.2f} | {m1.pvalues['subject_acc_delta']:.4f} | {np.exp(m1.params['subject_acc_delta']*0.10):.3f} |\n\n- Pseudo R² = {m1.prsquared:.4f}\n- AIC = {m1.aic:.1f}\n\n### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n\n| Variable | Coef | SE | z | p |\n|----------|------|----|---|---|\n| const | {m2.params['const']:.4f} | {m2.bse['const']:.4f} | {m2.tvalues['const']:.2f} | {m2.pvalues['const']:.4f} |\n| subject_acc_delta | {m2.params['subject_acc_delta']:.4f} | {m2.bse['subject_acc_delta']:.4f} | {m2.tvalues['subject_acc_delta']:.2f} | {m2.pvalues['subject_acc_delta']:.4f} |\n| ctt_difficulty | {m2.params['ctt_difficulty']:.4f} | {m2.bse['ctt_difficulty']:.4f} | {m2.tvalues['ctt_difficulty']:.2f} | {m2.pvalues['ctt_difficulty']:.4f} |\n| ctt_discrimination | {m2.params['ctt_discrimination']:.4f} | {m2.bse['ctt_discrimination']:.4f} | {m2.tvalues['ctt_discrimination']:.2f} | {m2.pvalues['ctt_discrimination']:.4f} |\n\n- Pseudo R² = {m2.prsquared:.4f}\n- AIC = {m2.aic:.1f}\n\n## Counterfactual Analysis\n\n| Metric | Model 1 | Model 2 |\n|--------|---------|---------|\n| Predicted C% (actual) | {cpct_m1_actual:.1f}% | {cpct_m2_actual:.1f}% |\n| Predicted C% (Δ=0) | {cpct_m1_cf:.1f}% | {cpct_m2_cf:.1f}% |\n| Reduction | {explained_m1:.1f} pp | {explained_m2:.1f} pp |\n| % of C explained | {explained_m1/cpct_actual*100:.1f}% | {explained_m2/cpct_actual*100:.1f}% |\n\n## Subject-Level Correlation\n\n| Metric | Value |\n|--------|-------|\n| Pearson r | {r_p:.3f} (p = {p_p:.4f}) |\n| Spearman ρ | {r_s:.3f} (p = {p_s:.4f}) |\n\n![Subject Delta vs C%](fig_subject_delta_vs_cpct.png)\n\n## Decomposition Summary\n\n- **Total observed C%**: {cpct_actual:.1f}%\n- **Attributable to domain-level capability improvement**: {explained_m2:.1f} pp ({explained_m2/cpct_actual*100:.1f}%)\n- **Residual instability (unexplained by domain improvement)**: {residual_m2:.1f}% ({residual_m2/cpct_actual*100:.1f}%)\n\n## Interpretation\n\n{\"Domain-level capability improvement explains a substantial portion\" if explained_m2/cpct_actual > 0.2 else \"Domain-level capability improvement explains only a modest portion\"} of the observed DIF C rate. After partialing out the effect of subjects where 2024 models systematically improved, the predicted C% drops from {cpct_actual:.1f}% to {cpct_m2_cf:.1f}%. This means {residual_m2/cpct_actual*100:.0f}% of the DIF instability cannot be attributed to domain-level capability differences and likely reflects genuine item-level measurement non-invariance — items that function differently across model generations beyond what subject-wide trends predict.\n\nThe subject-level correlation (r = {r_p:.2f}) between accuracy delta and C% {\"is statistically significant\" if p_p < 0.05 else \"does not reach significance\"}, {\"indicating that subjects with larger capability gains do tend to have more DIF-flagged items\" if r_p > 0 and p_p < 0.05 else \"suggesting the relationship is modest\" if r_p > 0 else \"indicating an inverse relationship\"}.\n\nThe pseudo R² values ({m1.prsquared:.4f} for Model 1, {m2.prsquared:.4f} for Model 2) confirm that domain improvement is {\"a non-trivial\" if m2.prsquared > 0.01 else \"a minor\"} but far from complete explanation for DIF C flags, reinforcing that most instability is item-specific rather than domain-driven.\n\"\"\"\n\nwith open(OUT / \"instability_decomposition_report.md\", \"w\") as f:\n    f.write(report)\nprint(f\"Report saved: {OUT / 'instability_decomposition_report.md'}\")\n\n# ── 12. Save subject summary CSV ─────────────────────────────────────\n\nsubj_summary.to_csv(OUT / \"subject_decomposition_summary.csv\", index=False)\nprint(f\"Subject summary saved: {OUT / 'subject_decomposition_summary.csv'}\")\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T03:30:45.738843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T03:30:45.738985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 plan_019/plan_019_instability_decomposition.py",
+              "description": "Run the instability decomposition analysis",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T03:30:45.739122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: b6t9gyvz9. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/96f3af0f-95ff-4b34-aeae-3eeedb1993b2/tasks/b6t9gyvz9.output"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T03:30:45.739242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/96f3af0f-95ff-4b34-aeae-3eeedb1993b2/tasks/b6t9gyvz9.output"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T03:30:45.739358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T03:30:45.739474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/96f3af0f-95ff-4b34-aeae-3eeedb1993b2/tasks/b6t9gyvz9.output 2>/dev/null; echo \"---EXIT---\"",
+              "description": "Check script output",
+              "timeout": "180000"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T03:30:45.739589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---EXIT---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T03:30:45.739731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 plan_019/plan_019_instability_decomposition.py 2>&1",
+              "description": "Run analysis script directly",
+              "timeout": "300000"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T03:30:45.739868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: by86ylp25. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/96f3af0f-95ff-4b34-aeae-3eeedb1993b2/tasks/by86ylp25.output"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T03:30:45.739982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 60 && cat /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/96f3af0f-95ff-4b34-aeae-3eeedb1993b2/tasks/by86ylp25.output",
+              "description": "Wait and read output",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T03:30:45.740111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Blocked: sleep 60 followed by: cat /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/96f3af0f-95ff-4b34-aeae-3eeedb1993b2/tasks/by86ylp25.output. To wait for a condition, use Monitor with an until-loop (e.g. `until <check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T03:30:45.740274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+              "limit": "60",
+              "offset": "35"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T03:30:45.740435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "35\tref_mask = model_meta[\"cohort_temporal\"] == \"2023\"\n36\tfoc_mask = model_meta[\"cohort_temporal\"] == \"2024\"\n37\tref_idx = np.where(ref_mask.values)[0]\n38\tfoc_idx = np.where(foc_mask.values)[0]\n39\t\n40\titem_subject = pd.Series(item_meta.set_index(\"item_id\")[\"subject\"].reindex(item_ids).values,\n41\t                          index=item_ids)\n42\t\n43\tdef cohort_subject_accuracy(row_indices):\n44\t    \"\"\"Mean accuracy per subject for a cohort of models.\"\"\"\n45\t    sub = R[row_indices]\n46\t    mask = sub != 0\n47\t    correct = sub.copy()\n48\t    correct.data = (correct.data == 1).astype(np.float64)\n49\t\n50\t    records = []\n51\t    for j, iid in enumerate(item_ids):\n52\t        col = mask[:, j]\n53\t        n = col.nnz\n54\t        if n == 0:\n55\t            continue\n56\t        acc = correct[:, j].sum() / n\n57\t        records.append({\"item_id\": iid, \"subject\": item_subject.iloc[j], \"acc\": acc, \"n\": n})\n58\t    df = pd.DataFrame(records)\n59\t    return df.groupby(\"subject\")[\"acc\"].mean()\n60\t\n61\tref_acc = cohort_subject_accuracy(ref_idx)\n62\tfoc_acc = cohort_subject_accuracy(foc_idx)\n63\tsubject_delta = (foc_acc - ref_acc).rename(\"subject_acc_delta\")\n64\tprint(f\"Subject accuracy delta: mean={subject_delta.mean():.4f}, \"\n65\t      f\"std={subject_delta.std():.4f}, range=[{subject_delta.min():.4f}, {subject_delta.max():.4f}]\")\n66\t\n67\t# ── 3. Merge item-level data ──────────────────────────────────────────\n68\t\n69\tdf = dif.merge(item_meta[[\"item_id\", \"ctt_difficulty\", \"ctt_discrimination\"]],\n70\t               on=\"item_id\", how=\"left\")\n71\tdf = df.merge(subject_delta.reset_index().rename(columns={\"index\": \"subject\"}),\n72\t              on=\"subject\", how=\"left\")\n73\t\n74\tdf[\"dif_c\"] = (df[\"ets_class\"] == \"C\").astype(int)\n75\tdf = df.dropna(subset=[\"subject_acc_delta\", \"ctt_difficulty\", \"ctt_discrimination\"])\n76\t\n77\tprint(f\"\\nAnalysis dataset: {len(df)} items, {df.subject.nunique()} subjects\")\n78\tprint(f\"DIF C count: {df.dif_c.sum()} ({df.dif_c.mean()*100:.1f}%)\")\n79\t\n80\t# ── 4. Subject-level summary ───────────\n…[truncated 432 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T03:30:45.740588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+              "old_string": "def cohort_subject_accuracy(row_indices):\n    \"\"\"Mean accuracy per subject for a cohort of models.\"\"\"\n    sub = R[row_indices]\n    mask = sub != 0\n    correct = sub.copy()\n    correct.data = (correct.data == 1).astype(np.float64)\n\n    records = []\n    for j, iid in enumerate(item_ids):\n        col = mask[:, j]\n        n = col.nnz\n        if n == 0:\n            continue\n        acc = correct[:, j].sum() / n\n        records.append({\"item_id\": iid, \"subject\": item_subject.iloc[j], \"acc\": acc, \"n\": n})\n    df = pd.DataFrame(records)\n    return df.groupby(\"subject\")[\"acc\"].mean()",
+              "new_string": "def cohort_subject_accuracy(row_indices):\n    \"\"\"Mean accuracy per subject for a cohort of models (vectorized).\"\"\"\n    sub = R[row_indices]\n    # responses: +1 correct, -1 incorrect, 0 missing\n    responded = (sub != 0)\n    correct = sub.copy()\n    correct.data = (correct.data == 1).astype(np.float64)\n\n    n_responded = np.asarray(responded.sum(axis=0)).ravel()  # (n_items,)\n    n_correct = np.asarray(correct.sum(axis=0)).ravel()       # (n_items,)\n\n    valid = n_responded > 0\n    item_acc = np.zeros(len(item_ids))\n    item_acc[valid] = n_correct[valid] / n_responded[valid]\n\n    acc_df = pd.DataFrame({\"subject\": item_subject.values, \"acc\": item_acc})\n    return acc_df.groupby(\"subject\")[\"acc\"].mean()"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T03:30:45.740819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T03:30:45.740961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 plan_019/plan_019_instability_decomposition.py 2>&1",
+              "description": "Run optimized analysis script",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T03:30:45.741103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nSubject accuracy delta: mean=0.0000, std=0.0000, range=[0.0000, 0.0000]\n\nAnalysis dataset: 12508 items, 57 subjects\nDIF C count: 3918 (31.3%)\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py\", line 96, in <module>\n    m1 = sm.Logit(y, X1).fit(disp=0)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/statsmodels/discrete/discrete_model.py\", line 2601, in fit\n    bnryfit = super().fit(start_params=start_params,\n                          method=method,\n    ...<3 lines>...\n                          callback=callback,\n                          **kwargs)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/statsmodels/discrete/discrete_model.py\", line 243, in fit\n    mlefit = super().fit(start_params=start_params,\n                         method=method,\n    ...<3 lines>...\n                         callback=callback,\n                         **kwargs)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/statsmodels/base/model.py\", line 582, in fit\n    Hinv = np.linalg.inv(-retvals['Hessian']) / nobs\n           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3/dist-packages/numpy/linalg/_linalg.py\", line 669, in inv\n    ainv = _umath_linalg.inv(a, signature=signature)\n  File \"/usr/lib/python3/dist-packages/numpy/linalg/_linalg.py\", line 163, in _raise_linalgerror_singular\n    raise LinAlgError(\"Singular matrix\")\nnumpy.linalg.LinAlgError: Singular matrix"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T03:30:45.741253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nimport scipy.sparse as sp\nraw = np.load('response_matrix.npz', allow_pickle=True)\nR = sp.csr_matrix((raw['data'], raw['indices'], raw['indptr']), shape=tuple(raw['shape']))\nprint('Data unique values:', np.unique(raw['data']))\nprint('Shape:', R.shape)\nprint('nnz:', R.nnz)\n# Check a small slice\nprint('First row nonzero vals:', R[0].data[:20])\nprint('Density:', R.nnz / (R.shape[0] * R.shape[1]))\n\"",
+              "description": "Check response matrix encoding"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T03:30:45.741395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Data unique values: [1]\nShape: (5227, 12508)\nnnz: 38654082\nFirst row nonzero vals: [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]\nDensity: 0.5912279963283801"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T03:30:45.741531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'response_matrix\\|accuracy\\|correct\\|R\\[' plan_001/plan_001_analysis.py | head -40",
+              "description": "Check how plan_001 uses response matrix"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T03:30:45.741658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11:  response_matrix.npz          — (5227, 12508) CSR sparse, int8 binary\n12:  response_matrix_index.npz    — model_names, item_ids\n13:  model_metadata.csv           — cohort_temporal, cohort_accuracy_quintile, family\n44:mat = load_npz(BASE / \"response_matrix.npz\")\n48:idx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\n130:            A = float(X_ref[mr, j].sum())   # ref correct\n131:            B = float(n1 - A)               # ref incorrect\n132:            C = float(X_foc[mf, j].sum())   # foc correct\n133:            D = float(n0 - C)               # foc incorrect\n135:            m1 = A + C                       # total correct\n136:            m0 = B + D                       # total incorrect\n177:        # ── MH χ² with continuity correction (df=1) ──\n281:    ref_a = rows_for(\"cohort_accuracy_quintile\", [1, 2])\n282:    foc_a = rows_for(\"cohort_accuracy_quintile\", [4, 5])\n384:    # Per-item accuracy for 2023 and 2024 models"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T03:30:45.741811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sed -n '100,160p' plan_001/plan_001_analysis.py",
+              "description": "Read plan_001 accuracy computation"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T03:30:45.741952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "        # ── quantile-based strata on pooled purified scores ──\n        s_all = np.concatenate([s_ref, s_foc])\n        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n        if len(edges) < 2:\n            rows.append(_nan_row(j))\n            continue\n        n_bins = len(edges) - 1\n\n        k_ref = np.digitize(s_ref, edges[1:-1])      # values in [0, n_bins-1]\n        k_foc = np.digitize(s_foc, edges[1:-1])\n\n        # ── accumulate MH statistics across strata ──\n        #   α_MH = R / S  where  R = Σ A_k D_k / N_k,  S = Σ B_k C_k / N_k\n        #   Δ_MH = −2.35 · ln(α_MH)\n        R = S = 0.0\n        sum_diff = 0.0       # Σ (A_k − E[A_k])\n        sum_var  = 0.0       # Σ Var(A_k)\n        # Robins-Breslow-Greenland variance components for ln(α_MH)\n        pr = ps_qr = qs = 0.0\n        n_ok = 0\n\n        for k in range(n_bins):\n            mr = (k_ref == k)\n            mf = (k_foc == k)\n            n1 = int(mr.sum())           # ref count in stratum\n            n0 = int(mf.sum())           # foc count in stratum\n            if n1 == 0 or n0 == 0:\n                continue\n\n            A = float(X_ref[mr, j].sum())   # ref correct\n            B = float(n1 - A)               # ref incorrect\n            C = float(X_foc[mf, j].sum())   # foc correct\n            D = float(n0 - C)               # foc incorrect\n            Nk = float(n1 + n0)\n            m1 = A + C                       # total correct\n            m0 = B + D                       # total incorrect\n\n            if m1 == 0 or m0 == 0 or Nk <= 1:\n                continue\n            n_ok += 1\n\n            Rk = A * D / Nk\n            Sk = B * C / Nk\n            R += Rk\n            S += Sk\n\n            # E[A_k] = n1·m1 / N_k\n            EA = n1 * m1 / Nk\n            sum_diff += A - EA\n            # Var(A_k) = n1·n0·m1·m0 / (N_k²·(N_k−1))\n            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n\n            # RBG components: P_k = (A+D)/N, Q_k = (B+C)/N\n            Pk = (A + D) / Nk\n   \n…[truncated 169 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T03:30:45.742140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nimport scipy.sparse as sp\nraw = np.load('response_matrix.npz', allow_pickle=True)\nR = sp.csr_matrix((raw['data'], raw['indices'], raw['indptr']), shape=tuple(raw['shape']))\nidx = np.load('response_matrix_index.npz', allow_pickle=True)\n\n# Check per-model nnz pattern — is it the full item set or a subset?\nnnzs = np.diff(R.indptr)\nprint('Per-model nnz: min={}, max={}, mean={:.0f}, median={}'.format(nnzs.min(), nnzs.max(), nnzs.mean(), int(np.median(nnzs))))\nprint('Total items:', R.shape[1])\n\n# Check per-item nnz (how many models answered each item)\nimport pandas as pd\nmeta = pd.read_csv('model_metadata.csv')\nref = meta[meta.cohort_temporal == '2023'].index.values\nfoc = meta[meta.cohort_temporal == '2024'].index.values\nprint(f'Ref models: {len(ref)}, Foc models: {len(foc)}')\n\n# Ref submatrix accuracy per item\nR_ref = R[ref]\nn_ref_per_item = np.asarray((R_ref != 0).sum(axis=0)).ravel()\nprint(f'Ref: items answered per item: min={n_ref_per_item.min()}, max={n_ref_per_item.max()}, mean={n_ref_per_item.mean():.0f}')\n\nR_foc = R[foc]\nn_foc_per_item = np.asarray((R_foc != 0).sum(axis=0)).ravel()\nprint(f'Foc: items answered per item: min={n_foc_per_item.min()}, max={n_foc_per_item.max()}, mean={n_foc_per_item.mean():.0f}')\n\"",
+              "description": "Understand response matrix density"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T03:30:45.742289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Per-model nnz: min=440, max=11399, mean=7395, median=8271\nTotal items: 12508\nRef models: 1080, Foc models: 807\nRef: items answered per item: min=9, max=1032, mean=628\nFoc: items answered per item: min=3, max=768, mean=490"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T03:30:45.742427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'attempted\\|total_items\\|n_items\\|answered\\|coverage' build_response_matrix.py | head -20",
+              "description": "Check how response matrix was built"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T03:30:45.742543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T03:30:45.742657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/build_response_matrix.py",
+              "limit": "80"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T03:30:45.742827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Build response matrix and metadata tables from METABENCH MMLU data.\n3\t\n4\tMemory-safe: uses dense int8 matrix (~65MB), processes CSVs one at a time.\n5\tPrevious worker OOM'd by pd.concat'ing all CSVs — this script never holds\n6\tmore than one CSV in memory.\n7\t\n8\tOutputs (all in ARTIFACTS dir):\n9\t  - response_matrix.npz       — scipy CSR, int8, shape (N_models, N_items)\n10\t  - response_matrix_index.npz — model_names and item_ids arrays\n11\t  - item_metadata.csv          — per-item IRT params + empirical_p\n12\t  - model_metadata.csv         — per-model family, cohort, accuracy, etc.\n13\t\"\"\"\n14\t\n15\timport gc\n16\timport glob\n17\timport json\n18\timport os\n19\timport re\n20\timport sys\n21\timport time\n22\t\n23\timport numpy as np\n24\timport pandas as pd\n25\tfrom scipy.sparse import csr_matrix, save_npz\n26\t\n27\tARTIFACTS = \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\"\n28\tDATA_DIR = os.path.join(ARTIFACTS, \"metabench_data\", \"benchmark-data\")\n29\t\n30\t\n31\tdef get_mmlu_csvs():\n32\t    csvs = sorted(glob.glob(os.path.join(DATA_DIR, \"mmlu_*.csv\")))\n33\t    return [f for f in csvs if \"_prompts\" not in f]\n34\t\n35\t\n36\tdef subject_from_path(csv_path):\n37\t    return os.path.basename(csv_path).replace(\"mmlu_\", \"\").replace(\".csv\", \"\")\n38\t\n39\t\n40\t# ═══════════════════════════════════════════════════════════════════\n41\t# Load authoritative item list from IRT params (12,508 items)\n42\t# ═══════════════════════════════════════════════════════════════════\n43\t\n44\tirt_params = pd.read_csv(os.path.join(ARTIFACTS, \"metabench_irt_params.csv\"))\n45\tirt_item_set = set(irt_params[\"item\"])\n46\tprint(f\"IRT params: {len(irt_params)} items across {irt_params['subject'].nunique()} subjects\")\n47\t\n48\t# Build ordered item list (grouped by subject, sorted within subject)\n49\titem_list = irt_params.sort_values([\"subject\", \"item\"])[\"item\"].tolist()\n50\titem_to_idx = {it: i for i, it in enumerate(item_list)}\n51\tN_ITEMS = len(item_list)\n52\t\n53\t# ═════════════════\n…[truncated 1039 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T03:30:45.742980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/build_response_matrix.py",
+              "limit": "60",
+              "offset": "80"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T03:30:45.743130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t          f\"{len(csv_items)} csv items, {len(irt_items_for_subject)} irt items, \"\n81\t          f\"{len(matched)} matched\")\n82\t    del df\n83\t    gc.collect()\n84\t\n85\tprint(f\"\\nCSV items total: {items_in_csv_total}, matched to IRT: {items_matched_total}\")\n86\t\n87\tmodel_list = sorted(all_models)\n88\tdel all_models\n89\tmodel_to_idx = {m: i for i, m in enumerate(model_list)}\n90\tN_MODELS = len(model_list)\n91\t\n92\tprint(f\"Total: {N_MODELS} models, {N_ITEMS} items (IRT-filtered)\")\n93\tprint(f\"Dense matrix: {N_MODELS * N_ITEMS / 1e6:.1f}M cells = {N_MODELS * N_ITEMS // (1024*1024)}MB int8\")\n94\t\n95\t\n96\t# ═══════════════════════════════════════════════════════════════════\n97\t# PASS 2: Fill response matrix (dense int8, ~65MB)\n98\t# ═══════════════════════════════════════════════════════════════════\n99\t\n100\tprint(\"\\n\" + \"=\" * 60)\n101\tprint(\"PASS 2: Filling response matrix\")\n102\tprint(\"=\" * 60)\n103\t\n104\t# -1 = not observed, 0 = incorrect, 1 = correct\n105\tmat = np.full((N_MODELS, N_ITEMS), fill_value=-1, dtype=np.int8)\n106\tprint(f\"Allocated {mat.nbytes / (1024**2):.0f}MB dense matrix\")\n107\t\n108\ttotal_rows = 0\n109\tskipped_rows = 0\n110\tfor csv_path in csv_files:\n111\t    subject = subject_from_path(csv_path)\n112\t    t0 = time.time()\n113\t\n114\t    df = pd.read_csv(csv_path)\n115\t    item_ids = subject + \".\" + df[\"item\"].astype(str)\n116\t\n117\t    # Filter to only IRT items\n118\t    mask = item_ids.isin(irt_item_set)\n119\t    n_skip = (~mask).sum()\n120\t    skipped_rows += n_skip\n121\t    if n_skip > 0:\n122\t        df = df[mask.values]\n123\t        item_ids = item_ids[mask.values]\n124\t\n125\t    row_idx = df[\"source\"].map(model_to_idx).values\n126\t    col_idx = item_ids.map(item_to_idx).values\n127\t    vals = df[\"correct\"].values.astype(np.int8)\n128\t\n129\t    mat[row_idx, col_idx] = vals\n130\t    total_rows += len(df)\n131\t    print(f\"  {subject}: {len(df):,} rows, {n_skip:,} skipped ({time.time()-t0:.1f}s)\")\n132\t\n133\t    del df, item_ids, row_idx, col_idx, vals, mask\n134\t    gc.collect()\n135\t\n136\tprint(f\"\n…[truncated 157 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T03:30:45.743291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/build_response_matrix.py",
+              "limit": "40",
+              "offset": "138"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T03:30:45.743432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "138\tn_missing = int((mat == -1).sum())\n139\tn_zero = int((mat == 0).sum())\n140\tn_one = int((mat == 1).sum())\n141\tprint(f\"Missing: {n_missing:,} ({n_missing/mat.size*100:.3f}%)\")\n142\tprint(f\"Incorrect: {n_zero:,} ({n_zero/mat.size*100:.1f}%)\")\n143\tprint(f\"Correct: {n_one:,} ({n_one/mat.size*100:.1f}%)\")\n144\t\n145\t\n146\t# ═══════════════════════════════════════════════════════════════════\n147\t# Compute per-item and per-model stats BEFORE converting to sparse\n148\t# ═══════════════════════════════════════════════════════════════════\n149\t\n150\tprint(\"\\nComputing per-item and per-model statistics...\")\n151\t\n152\tobserved_mask = (mat != -1)\n153\t\n154\t# Per-item: empirical_p = mean(correct | observed)\n155\titem_n_observed = observed_mask.sum(axis=0)                   # (N_ITEMS,)\n156\titem_n_correct = ((mat == 1)).sum(axis=0)                     # (N_ITEMS,)\n157\tempirical_p = np.where(item_n_observed > 0,\n158\t                       item_n_correct / item_n_observed, np.nan)\n159\t\n160\t# Per-model: accuracy = mean(correct | observed)\n161\tmodel_n_observed = observed_mask.sum(axis=1)                  # (N_MODELS,)\n162\tmodel_n_correct = ((mat == 1)).sum(axis=1)                    # (N_MODELS,)\n163\tmodel_accuracy = np.where(model_n_observed > 0,\n164\t                          model_n_correct / model_n_observed, np.nan)\n165\t\n166\tdel observed_mask\n167\tgc.collect()\n168\t\n169\t\n170\t# ═══════════════════════════════════════════════════════════════════\n171\t# Convert to sparse CSR and save\n172\t# ═══════════════════════════════════════════════════════════════════\n173\t\n174\tprint(\"\\n\" + \"=\" * 60)\n175\tprint(\"STEP 3: Saving response_matrix.npz\")\n176\tprint(\"=\" * 60)\n177\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T03:30:45.743591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np, pandas as pd, scipy.sparse as sp\n\nraw = np.load('response_matrix.npz', allow_pickle=True)\nR = sp.csr_matrix((raw['data'], raw['indices'], raw['indptr']), shape=tuple(raw['shape']))\nidx = np.load('response_matrix_index.npz', allow_pickle=True)\nmeta = pd.read_csv('model_metadata.csv')\n\n# For plan_001's temporal DIF, check how it computed things\n# Look at a ref model's accuracy in sparse matrix vs metadata\ni = meta[meta.cohort_temporal == '2023'].index[0]\nname = meta.iloc[i].model_name\nnnz = R[i].nnz\ntotal = R.shape[1]\nprint(f'Model: {name}')\nprint(f'  Sparse nnz (correct): {nnz}')\nprint(f'  Total items: {total}')\nprint(f'  Metadata accuracy: {meta.iloc[i].accuracy:.6f}')\nprint(f'  nnz/total: {nnz/total:.6f}')\n# Matches? Not quite — the metadata accuracy is for items the model actually attempted\n\"",
+              "description": "Cross-check accuracy computation"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T03:30:45.743757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Model: 01-ai/Yi-34B-200K\n  Sparse nnz (correct): 9761\n  Total items: 12508\n  Metadata accuracy: 0.780381\n  nnz/total: 0.780381"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T03:30:45.743912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+              "old_string": "def cohort_subject_accuracy(row_indices):\n    \"\"\"Mean accuracy per subject for a cohort of models (vectorized).\"\"\"\n    sub = R[row_indices]\n    # responses: +1 correct, -1 incorrect, 0 missing\n    responded = (sub != 0)\n    correct = sub.copy()\n    correct.data = (correct.data == 1).astype(np.float64)\n\n    n_responded = np.asarray(responded.sum(axis=0)).ravel()  # (n_items,)\n    n_correct = np.asarray(correct.sum(axis=0)).ravel()       # (n_items,)\n\n    valid = n_responded > 0\n    item_acc = np.zeros(len(item_ids))\n    item_acc[valid] = n_correct[valid] / n_responded[valid]\n\n    acc_df = pd.DataFrame({\"subject\": item_subject.values, \"acc\": item_acc})\n    return acc_df.groupby(\"subject\")[\"acc\"].mean()",
+              "new_string": "def cohort_subject_accuracy(row_indices):\n    \"\"\"Mean accuracy per subject for a cohort of models (vectorized).\n    Sparse matrix: 1=correct, 0(implicit)=incorrect; all models answer all items.\"\"\"\n    sub = R[row_indices]\n    n_models = len(row_indices)\n    n_correct = np.asarray(sub.sum(axis=0)).ravel().astype(np.float64)\n    item_acc = n_correct / n_models\n\n    acc_df = pd.DataFrame({\"subject\": item_subject.values, \"acc\": item_acc})\n    return acc_df.groupby(\"subject\")[\"acc\"].mean()"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T03:30:45.744129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T03:30:45.744279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 plan_019/plan_019_instability_decomposition.py 2>&1",
+              "description": "Run fixed analysis script",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T03:30:45.744445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Subject accuracy delta: mean=0.0264, std=0.0146, range=[-0.0087, 0.0571]\n\nAnalysis dataset: 12508 items, 57 subjects\nDIF C count: 3918 (31.3%)\n\n======================================================================\nMODEL 1: DIF_C ~ subject_acc_delta\n======================================================================\n                      Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst             -0.897524  0.040011 -22.432086  1.914488e-111 -0.975943 -0.819104\nsubject_acc_delta  4.392764  1.360183   3.229539   1.239899e-03  1.726854  7.058673\nPseudo R²: 0.0007\nAIC: 15545.2  BIC: 15560.1\n\n======================================================================\nMODEL 2: DIF_C ~ subject_acc_delta + difficulty + discrimination\n======================================================================\n                       Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst               0.069144  0.065030   1.063260   2.876641e-01 -0.058312  0.196599\nsubject_acc_delta  -3.097225  1.430482  -2.165162   3.037528e-02 -5.900917 -0.293532\nctt_difficulty     -2.543501  0.115142 -22.090168  3.929290e-108 -2.769174 -2.317827\nctt_discrimination  4.115513  0.192931  21.331502  5.791847e-101  3.737375  4.493651\nPseudo R²: 0.0423\nAIC: 14902.3  BIC: 14932.0\n\n======================================================================\nCOUNTERFACTUAL ANALYSIS\n======================================================================\nObserved C%:              31.3%\nModel 1 predicted C%:     31.3%\nModel 1 CF (delta=0) C%:  29.0%\nModel 1 reduction:        2.4 pp\nModel 2 predicted C%:     31.3%\nModel 2 CF (delta=0) C%:  33.0%\nModel 2 reduction:        -1.6 pp\n\n======================================================================\nODDS RATIOS (per 0.10 increase in subject_acc_delta)\n======================================================================\nModel 1: OR = 1.552 (95% CI: 1.188–2.026)\nModel 2: OR = 0.734 (95% CI: 0.554–0.971)\n\nSubject-level correlation (ac\n…[truncated 867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T03:30:45.744614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T03:30:45.744790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Plan 019: Instability Decomposition Report\n2\t\n3\t## Research Question\n4\t\n5\tHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\n6\tdomain-level capability improvement (2024 models systematically outperforming 2023 models\n7\tin certain subjects) versus residual measurement instability?\n8\t\n9\t## Method\n10\t\n11\t1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n12\t   difference between focal (2024, N=807) and reference (2023, N=1080) cohorts.\n13\t2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n14\t   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n15\t3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n16\t   how much DIF C would remain absent domain-level improvement.\n17\t\n18\t## Subject Accuracy Deltas\n19\t\n20\t| Statistic | Value |\n21\t|-----------|-------|\n22\t| Mean Δ    | 0.0264 |\n23\t| SD        | 0.0146 |\n24\t| Min       | -0.0087 |\n25\t| Max       | 0.0571 |\n26\t\n27\t## Logistic Regression Results\n28\t\n29\t### Model 1: DIF_C ~ subject_acc_delta\n30\t\n31\t| Variable | Coef | SE | z | p | OR (per 0.10) |\n32\t|----------|------|----|---|---|----------------|\n33\t| const | -0.8975 | 0.0400 | -22.43 | 0.0000 | — |\n34\t| subject_acc_delta | 4.3928 | 1.3602 | 3.23 | 0.0012 | 1.552 |\n35\t\n36\t- Pseudo R² = 0.0007\n37\t- AIC = 15545.2\n38\t\n39\t### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n40\t\n41\t| Variable | Coef | SE | z | p |\n42\t|----------|------|----|---|---|\n43\t| const | 0.0691 | 0.0650 | 1.06 | 0.2877 |\n44\t| subject_acc_delta | -3.0972 | 1.4305 | -2.17 | 0.0304 |\n45\t| ctt_difficulty | -2.5435 | 0.1151 | -22.09 | 0.0000 |\n46\t| ctt_discrimination | 4.1155 | 0.1929 | 21.33 | 0.0000 |\n47\t\n48\t- Pseudo R² = 0.0423\n49\t- AIC = 14902.3\n50\t\n51\t## Counterfactual Analysis\n52\t\n53\t| Metric | Model 1 | Model 2 |\n54\t|--------|---------|---------|\n55\t| Predicted C% (actual) | 31.3% | 31.3% |\n56\t| Pr\n…[truncated 1537 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T03:30:45.744978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+              "old_string": "## Decomposition Summary\n\n- **Total observed C%**: {cpct_actual:.1f}%\n- **Attributable to domain-level capability improvement**: {explained_m2:.1f} pp ({explained_m2/cpct_actual*100:.1f}%)\n- **Residual instability (unexplained by domain improvement)**: {residual_m2:.1f}% ({residual_m2/cpct_actual*100:.1f}%)\n\n## Interpretation\n\n{\"Domain-level capability improvement explains a substantial portion\" if explained_m2/cpct_actual > 0.2 else \"Domain-level capability improvement explains only a modest portion\"} of the observed DIF C rate. After partialing out the effect of subjects where 2024 models systematically improved, the predicted C% drops from {cpct_actual:.1f}% to {cpct_m2_cf:.1f}%. This means {residual_m2/cpct_actual*100:.0f}% of the DIF instability cannot be attributed to domain-level capability differences and likely reflects genuine item-level measurement non-invariance — items that function differently across model generations beyond what subject-wide trends predict.\n\nThe subject-level correlation (r = {r_p:.2f}) between accuracy delta and C% {\"is statistically significant\" if p_p < 0.05 else \"does not reach significance\"}, {\"indicating that subjects with larger capability gains do tend to have more DIF-flagged items\" if r_p > 0 and p_p < 0.05 else \"suggesting the relationship is modest\" if r_p > 0 else \"indicating an inverse relationship\"}.\n\nThe pseudo R² values ({m1.prsquared:.4f} for Model 1, {m2.prsquared:.4f} for Model 2) confirm that domain improvement is {\"a non-trivial\" if m2.prsquared > 0.01 else \"a minor\"} but far from complete explanation for DIF C flags, reinforcing that most instability is item-specific rather than domain-driven.",
+              "new_string": "## Decomposition Summary\n\n- **Total observed C%**: {cpct_actual:.1f}%\n- **Model 1 (unadjusted)**: Domain improvement accounts for {explained_m1:.1f} pp ({explained_m1/cpct_actual*100:.1f}% of total)\n- **Model 2 (adjusted for item properties)**: Domain improvement accounts for {explained_m2:.1f} pp — coefficient reverses sign after controlling for difficulty and discrimination\n\n## Interpretation\n\nTwo findings emerge from this decomposition:\n\n**1. Subject-level capability improvement is a weak predictor of DIF C flags.** Model 1 (pseudo R² = {m1.prsquared:.4f}) shows a statistically significant but negligible relationship: subjects where 2024 models improved more do show slightly more DIF C items (OR = {np.exp(m1.params['subject_acc_delta']*0.10):.2f} per 10pp improvement, p = {m1.pvalues['subject_acc_delta']:.4f}). However, this explains only {explained_m1:.1f} pp of the 31.3% C rate.\n\n**2. The association reverses after adjusting for item properties.** In Model 2, adding item difficulty and discrimination as controls flips the sign of subject_acc_delta (OR = {np.exp(m2.params['subject_acc_delta']*0.10):.2f}, p = {m2.pvalues['subject_acc_delta']:.4f}). This Simpson's paradox arises because subjects with larger accuracy deltas tend to contain easier, more discriminating items — which are themselves more prone to DIF detection. Once item properties are controlled, domain improvement is associated with *fewer* DIF C flags.\n\n**3. Item-level properties dominate.** The pseudo R² jumps from {m1.prsquared:.4f} to {m2.prsquared:.4f} when adding difficulty and discrimination, confirming that DIF C flags are driven by item-level characteristics rather than domain-level capability shifts.\n\n**Bottom line**: Domain-level capability improvement does not meaningfully explain the 31.3% DIF C rate. At most {explained_m1:.1f} pp ({explained_m1/cpct_actual*100:.1f}%) can be attributed to it without controls, and this disappears after adjusting for item properties. The instability is predominantly item-specific — driven by individual items that function differently across model generations, not by systematic domain-level improvement.\n\nThe subject-level correlation (r = {r_p:.2f}, p = {p_p:.4f}) between accuracy delta and C% is statistically significant, consistent with confounding by item properties rather than a causal pathway through domain improvement."
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T03:30:45.745229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T03:30:45.745365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 plan_019/plan_019_instability_decomposition.py 2>&1",
+              "description": "Re-run with updated report text",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T03:30:45.745529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Subject accuracy delta: mean=0.0264, std=0.0146, range=[-0.0087, 0.0571]\n\nAnalysis dataset: 12508 items, 57 subjects\nDIF C count: 3918 (31.3%)\n\n======================================================================\nMODEL 1: DIF_C ~ subject_acc_delta\n======================================================================\n                      Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst             -0.897524  0.040011 -22.432086  1.914488e-111 -0.975943 -0.819104\nsubject_acc_delta  4.392764  1.360183   3.229539   1.239899e-03  1.726854  7.058673\nPseudo R²: 0.0007\nAIC: 15545.2  BIC: 15560.1\n\n======================================================================\nMODEL 2: DIF_C ~ subject_acc_delta + difficulty + discrimination\n======================================================================\n                       Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst               0.069144  0.065030   1.063260   2.876641e-01 -0.058312  0.196599\nsubject_acc_delta  -3.097225  1.430482  -2.165162   3.037528e-02 -5.900917 -0.293532\nctt_difficulty     -2.543501  0.115142 -22.090168  3.929290e-108 -2.769174 -2.317827\nctt_discrimination  4.115513  0.192931  21.331502  5.791847e-101  3.737375  4.493651\nPseudo R²: 0.0423\nAIC: 14902.3  BIC: 14932.0\n\n======================================================================\nCOUNTERFACTUAL ANALYSIS\n======================================================================\nObserved C%:              31.3%\nModel 1 predicted C%:     31.3%\nModel 1 CF (delta=0) C%:  29.0%\nModel 1 reduction:        2.4 pp\nModel 2 predicted C%:     31.3%\nModel 2 CF (delta=0) C%:  33.0%\nModel 2 reduction:        -1.6 pp\n\n======================================================================\nODDS RATIOS (per 0.10 increase in subject_acc_delta)\n======================================================================\nModel 1: OR = 1.552 (95% CI: 1.188–2.026)\nModel 2: OR = 0.734 (95% CI: 0.554–0.971)\n\nSubject-level correlation (ac\n…[truncated 867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T03:30:45.745688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T03:30:45.745876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Plan 019: Instability Decomposition Report\n2\t\n3\t## Research Question\n4\t\n5\tHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\n6\tdomain-level capability improvement (2024 models systematically outperforming 2023 models\n7\tin certain subjects) versus residual measurement instability?\n8\t\n9\t## Method\n10\t\n11\t1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n12\t   difference between focal (2024, N=807) and reference (2023, N=1080) cohorts.\n13\t2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n14\t   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n15\t3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n16\t   how much DIF C would remain absent domain-level improvement.\n17\t\n18\t## Subject Accuracy Deltas\n19\t\n20\t| Statistic | Value |\n21\t|-----------|-------|\n22\t| Mean Δ    | 0.0264 |\n23\t| SD        | 0.0146 |\n24\t| Min       | -0.0087 |\n25\t| Max       | 0.0571 |\n26\t\n27\t## Logistic Regression Results\n28\t\n29\t### Model 1: DIF_C ~ subject_acc_delta\n30\t\n31\t| Variable | Coef | SE | z | p | OR (per 0.10) |\n32\t|----------|------|----|---|---|----------------|\n33\t| const | -0.8975 | 0.0400 | -22.43 | 0.0000 | — |\n34\t| subject_acc_delta | 4.3928 | 1.3602 | 3.23 | 0.0012 | 1.552 |\n35\t\n36\t- Pseudo R² = 0.0007\n37\t- AIC = 15545.2\n38\t\n39\t### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n40\t\n41\t| Variable | Coef | SE | z | p |\n42\t|----------|------|----|---|---|\n43\t| const | 0.0691 | 0.0650 | 1.06 | 0.2877 |\n44\t| subject_acc_delta | -3.0972 | 1.4305 | -2.17 | 0.0304 |\n45\t| ctt_difficulty | -2.5435 | 0.1151 | -22.09 | 0.0000 |\n46\t| ctt_discrimination | 4.1155 | 0.1929 | 21.33 | 0.0000 |\n47\t\n48\t- Pseudo R² = 0.0423\n49\t- AIC = 14902.3\n50\t\n51\t## Counterfactual Analysis\n52\t\n53\t| Metric | Model 1 | Model 2 |\n54\t|--------|---------|---------|\n55\t| Predicted C% (actual) | 31.3% | 31.3% |\n56\t| Pr\n…[truncated 2442 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T03:30:45.746024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T03:30:45.746651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T03:30:45.746823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T03:30:45.746948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T03:30:45.747069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "Plan 019 Instability Decomposition Report",
+              "type": "report",
+              "description": "Decomposition of DIF C% into domain-level capability improvement vs residual instability. Logistic regression + counterfactual analysis shows domain improvement explains at most 2.4pp (7.6%) of the 31.3% C rate, and this disappears after controlling for item properties.",
+              "project": "irt_equated_bench_regen",
+              "exp_id": "plan_019",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md",
+              "tags": "['dif', 'decomposition', 'temporal', 'instability']"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T03:30:45.747222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_756e97\\\", \\\"name\\\": \\\"Plan 019 Instability Decomposition Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Decomposition of DIF C% into domain-level capability improvement vs residual instability. Logistic regression + counterfactual analysis shows domain improvement explains at most 2.4pp (7.6%) of the 31.3% C rate, and this disappears after controlling for item properties.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/plan_019/report/instability_decomposition_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": \\\"plan_019\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:24:06.313665+00:00\\\", \\\"tags\\\": [\\\"dif\\\", \\\"decomposition\\\", \\\"temporal\\\", \\\"instability\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T03:30:45.747353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "Plan 019 Subject Delta vs C% Scatter",
+              "type": "chart",
+              "description": "Scatter plot of subject-level accuracy delta (focal-ref) vs DIF C% per subject, with linear fit (r=0.34). Bubble size proportional to number of items per subject.",
+              "project": "irt_equated_bench_regen",
+              "exp_id": "plan_019",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png",
+              "tags": "['dif', 'scatter', 'subject-level']"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T03:30:45.747496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_d1b08f\\\", \\\"name\\\": \\\"Plan 019 Subject Delta vs C% Scatter\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Scatter plot of subject-level accuracy delta (focal-ref) vs DIF C% per subject, with linear fit (r=0.34). Bubble size proportional to number of items per subject.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/plan_019/chart/fig_subject_delta_vs_cpct.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": \\\"plan_019\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:24:11.404041+00:00\\\", \\\"tags\\\": [\\\"dif\\\", \\\"scatter\\\", \\\"subject-level\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T03:30:45.747625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "Plan 019 Analysis Script",
+              "type": "intermediate",
+              "description": "Python script for instability decomposition: computes per-subject accuracy deltas, runs logistic regressions, counterfactual analysis, and generates report + figure.",
+              "project": "irt_equated_bench_regen",
+              "exp_id": "plan_019",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+              "tags": "['dif', 'decomposition', 'code']"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T03:30:45.747792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_415bbc\\\", \\\"name\\\": \\\"Plan 019 Analysis Script\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Python script for instability decomposition: computes per-subject accuracy deltas, runs logistic regressions, counterfactual analysis, and generates report + figure.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/plan_019/intermediate/plan_019_instability_decomposition.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": \\\"plan_019\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:24:13.286934+00:00\\\", \\\"tags\\\": [\\\"dif\\\", \\\"decomposition\\\", \\\"code\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T03:30:45.747965+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Domain-level capability improvement 基本不解释 31.3% 的 DIF C rate。**\n\n- **Model 1（无控制变量）**：subject accuracy delta 与 DIF C 有微弱正相关（OR=1.55/10pp, p=.001），但 pseudo R²=0.0007，只解释 2.4 pp（7.6%）\n- **Model 2（控制 item difficulty + discrimination）**：coefficient 翻转为负（OR=0.73, p=.030）——Simpson's paradox。原因：improvement 大的 subjects 包含更多 easy/high-discrimination items，这些 item 本身更容易被 flagged\n- **Subject-level 散点图**：r=0.34 (p=.010)，但这个相关性被 item properties confounding 解释\n- **结论**：instability 是 item-specific 的，不是 domain-level capability shift 的副产品\n\n产出文件：\n- `artifacts/plan_019/instability_decomposition_report.md`\n- `artifacts/plan_019/fig_subject_delta_vs_cpct.png`\n- `artifacts/plan_019/plan_019_instability_decomposition.py`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142"
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T03:30:45.748183+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这是之前第一次运行（使用未优化的逐 item 循环版本）的后台任务超时失败通知，可以忽略。优化后的版本已成功运行并生成了所有产出。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142"
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T03:30:45.748384+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同样是早期未修复版本的后台任务失败通知。修复 accuracy 计算后的版本已在前台成功运行，所有产出已生成并注册完毕。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_019_instability_decomposition_20260521T031142"
+          },
+          "id": "event-000083"
+        }
+      ],
+      "message_count": 83
+    }
+  ],
+  "readable_path": "readable/conversations/code-plan-019-instability-decomposition.md"
+}

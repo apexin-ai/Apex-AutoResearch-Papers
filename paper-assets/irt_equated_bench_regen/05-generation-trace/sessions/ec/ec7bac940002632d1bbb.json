@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec7bac940002632d1bbb",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r18 rank bucket reversal",
+  "task_key": "worker_code_r18_rank_bucket_reversal_20260522T163346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r18_rank_bucket_reversal_20260522T163346_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "204a32ed8129347fb4ae6eaddbbc30df336e0589e3e753212a2471e6f8021f11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果符合预期且效果很清晰：\n\n| Bucket | Reversal Rate | Mean Δacc |\n|--------|--------------|-----------|\n| 1–49 | **35.2%** | 0.003 |\n| 50–199 | 15.1% | 0.014 |\n| 200–499 | 4.0% | 0.039 |\n| 500–999 | 0.6% | 0.080 |\n| 1000+ | 0.0% | 0.224 |\n\nFull vs stable ranking 的 Pearson 相关 = 0.9965，宏观排序几乎不变，但 Δrank < 50 的模型对中超过三分之一发生排名翻转。\n\n产出文件：\n- `artifacts/r18_rank_bucket_reversal/rank_reversal_analysis.py`\n- `artifacts/r18_rank_bucket_reversal/rank_reversal_report.md`\n- `artifacts/r18_rank_bucket_reversal/reversal_by_bucket.png` / `.pdf`\n- `artifacts/r18_rank_bucket_reversal/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r18-rank-bucket-reversal.md"
+}

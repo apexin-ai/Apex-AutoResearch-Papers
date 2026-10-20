@@ -1,0 +1,603 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0bf8c25735501553ffa4",
+  "rounds": [
+    {
+      "number": 49,
+      "messages": [
+        {
+          "source_line": 1801,
+          "timestamp": "2026-05-25T21:19:13.842198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-001801"
+        },
+        {
+          "source_line": 1802,
+          "timestamp": "2026-05-25T21:19:14.143528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\n3\t\\looseness=-1\n4\t(1)~The semi-synthetic injection framework uses uniform binary response flipping; realistic contamination (partial memorization, format-specific advantages) would produce weaker DIF signals, so reported $\\Delta\\mathrm{TPR}$ values may overestimate detection power. The framework detects \\emph{that} items function differently but not \\emph{why}. (2)~The MH $\\chi^2$ test assumes independent examinees; LLM model families violate this assumption. DEFF correction and cluster bootstrap bound the impact, but extreme within-family relatedness (e.g., hundreds of Llama-2 fine-tunes) exceeds educational-testing precedents~\\citep{french2010hierarchical}. (3)~Cross-subject matching assumes contamination affects a minority of domains ($\\Delta\\mathrm{FPR}$ rises when contamination spans ${\\geq}20$ subjects), and generalization beyond MCQ benchmarks requires further validation.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-001802"
+        },
+        {
+          "source_line": 1803,
+          "timestamp": "2026-05-25T21:19:14.194130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-001803"
+        },
+        {
+          "source_line": 1804,
+          "timestamp": "2026-05-25T21:19:14.245002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Psychometric Methods for LLM Evaluation.}\n5\t\\looseness=-1\n6\tThe Mantel-Haenszel procedure \\citep{holland1988mh} remains the most widely used DIF detector in educational testing due to its simplicity and well-characterized statistical properties, operating nonparametrically without requiring an explicit item response theory (IRT) model. DIF analysis is a specific instance of measurement invariance testing \\citep{meredith1993invariance}, which examines whether an instrument functions equivalently across groups. IRT adoption in LLM evaluation has accelerated since \\citet{lalor2019irt} introduced it to natural language processing: recent work calibrates test sets for discriminability, item selection, and adaptive evaluation. The closest concurrent work is Growing Pains \\citep{habba2026growingpains}, which uses parametric IRT (two-parameter logistic [2PL] / three-parameter logistic [3PL] fixed-parameter calibration) to equate scores across temporal cohorts. MH-DIF is nonparametric and robust to model misspecification, an advantage given poor 2PL fit for MMLU (root mean square error of approximation [RMSEA] $> 0.08$; \\Cref{app:power_sensitivity}). Growing Pains prescribes how to equate scores after instability is detected; our work diagnoses \\emph{which} items exhibit instability and quantifies severity via ETS classification, providing pre-screened anchor candidates for downstream equating. Their anchor-item selection can directly consume our stable-item set; our finding that 31\\% of items exhibit temporal DIF identifies which items should \\emph{not} serve as anchors. To our knowledge, no prior work applies DIF to benchmark temporal comparability.\n7\t\n8\t\\paragraph{Contamination Detection.}\n9\t\\looseness=-1\n10\tA growing family of methods detects benchmark contamination through model behavior or training-data analysis. Membership inference approaches use token-level log-likelihood statistics \\citep{shi2024mi\n…[truncated 1669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001804"
+        },
+        {
+          "source_line": 1805,
+          "timestamp": "2026-05-25T21:19:42.975186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/abstract.tex | grep -v '\\\\begin{abstract}' | grep -v '\\\\end{abstract}' | sed 's/\\\\footnote{[^}]*}//g' | sed 's/\\\\url{[^}]*}//g' | sed 's/\\\\citep{[^}]*}//g' | sed 's/\\\\citet{[^}]*}//g' | sed 's/\\\\%/%/g' | sed 's/\\$[^$]*\\$/MATH/g' | sed 's/\\\\emph{//g; s/\\\\textit{//g; s/\\\\textbf{//g; s/}//g' | sed 's/\\\\[a-zA-Z]*//g' | sed 's/~/ /g' | wc -w",
+              "description": "Count abstract words more accurately"
+            }
+          },
+          "id": "event-001805"
+        },
+        {
+          "source_line": 1806,
+          "timestamp": "2026-05-25T21:19:43.080056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "159"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Bash",
+            "elapsed_ms": 104
+          },
+          "id": "event-001806"
+        },
+        {
+          "source_line": 1807,
+          "timestamp": "2026-05-25T21:19:48.501252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-001807"
+        },
+        {
+          "source_line": 1808,
+          "timestamp": "2026-05-25T21:19:49.054351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\looseness=-1\n5\tWhen we say ``Model B outperforms Model A on MMLU,'' we assume that every test item measures the same construct for both models. In educational testing, this property, \\emph{measurement invariance}~\\citep{meredith1993invariance}, is routinely verified before scores are compared across groups; in LLM evaluation, it has never been tested at scale. We test it here, applying Mantel-Haenszel differential item functioning (DIF) analysis~\\citep{holland1988mh} with ETS severity classification to the METABENCH response matrix~\\citep{kipnis2024metabench} (5,227 models $\\times$ 12,508 MMLU~\\citep{hendrycks2021mmlu} items). The result is sobering: 31\\% of items receive ETS Category~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$, $p < 0.05$) between 2023 and 2024 model cohorts, compared to 0.62\\% under random-split controls, and the finding replicates across all six METABENCH benchmarks (17.9--31.3\\%).\n6\t\n7\t\\begin{figure*}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\textwidth]{fig_0_pipeline.pdf}\n10\t\\caption{Four-stage psychometric auditing pipeline. \\textbf{\\ding{192}} A binary response matrix records model correctness across benchmark items, with models split into temporal cohorts (2023 reference vs.\\ 2024 focal). \\textbf{\\ding{193}} Models are stratified into $K{=}5$ score quintiles. \\textbf{\\ding{194}} Per-item Mantel-Haenszel DIF tests compute $\\Delta_{\\mathrm{MH}}$ across strata. \\textbf{\\ding{195}} ETS classification assigns severity labels (A/B/C). Result: 31.3\\% of items flagged as C (29.2\\% after DEFF correction), yet stable-item $\\rho = 0.997$, replicated across six benchmarks.}\n11\t\\label{fig:pipeline}\n12\t\\end{figure*}\n13\t\n14\t\\looseness=-1\n15\tThis instability is not what it appears. Aggregate rankings are near-perfect ($\\rho \\approx 0.997$): even after all unstable items are removed, the leaderboard barely changes. But individual items have shifted in structured ways: some became easier for ne\n…[truncated 3323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-001808"
+        },
+        {
+          "source_line": 1809,
+          "timestamp": "2026-05-25T21:19:49.054754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-001809"
+        },
+        {
+          "source_line": 1810,
+          "timestamp": "2026-05-25T21:19:49.105424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe apply MH-DIF to the METABENCH response matrix~\\citep{kipnis2024metabench} (5,227 models $\\times$ 12,508 MMLU items~\\citep{hendrycks2021mmlu}), with temporal cohorts defined by release date (2023 vs.\\ 2024). Cross-benchmark validation across all six METABENCH benchmarks appears in \\Cref{sec:gsm8k}.\n5\t\n6\t\\begin{figure*}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\textwidth]{fig_A3_rho_degradation.pdf}\n9\t\\caption{Ranking degradation under DIF-ordered vs.\\ random item removal. DIF-ordered removal (orange) degrades $\\rho$ faster than random (blue band = mean $\\pm$ 1\\,SD, 20 seeds). Dashed lines: Monitor/Flag (15\\%) and Flag/Act (25\\%) thresholds (\\Cref{sec:disc_protocol}).}\n10\t\\label{fig:rho_degradation}\n11\t\\end{figure*}\n12\t\n13\t\\subsection{Validation: DIF Detection Power}\n14\t\\label{sec:validation}\n15\t\n16\t\\looseness=-1\n17\tA Monte Carlo power analysis (1,000 replications) using empirical 2PL parameters from PSN-IRT~\\citep{zhou2026psnirt} ($\\bar{a} = 1.2$, $\\bar{b} = -0.84$) confirms that at $N \\geq 100$ per cohort, ETS~C achieves TPR of 0.68--0.80 (under uniform injection) and area under the curve (AUC) of 0.93--0.94 for $|\\Delta_{\\mathrm{MH}}| \\geq 1.4$ (\\Cref{app:method_details}). Our temporal cohorts ($N_{\\mathrm{ref}} = 1{,}080$, $N_{\\mathrm{focal}} = 807$) far exceed this threshold; power varies with item discrimination (TPR 0.40--0.95 across $a = 0.5$--$2.0$; \\Cref{app:power_sensitivity}).\n18\t\n19\t\\subsection{Temporal DIF: ${\\sim}$29\\% of Items Exhibit Differential Functioning}\n20\t\\label{sec:temporal}\n21\t\n22\t\\looseness=-1\n23\tWe compare 2023 ($N = 1{,}080$) against 2024 ($N = 807$) models; 31.3\\% of items receive ETS~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$; bootstrap 95\\% CI: $[29.2\\%, 37.8\\%]$; family-level cluster bootstrap: $[26.7\\%, 53.2\\%]$; \\Cref{app:uncertainty}). Two DEFF estimators bound the non-independence effect: simple-mean DEFF yields 29.2\\% and weighted-mean yields 13.5\\%, bracketing C\\%\n…[truncated 7918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001810"
+        },
+        {
+          "source_line": 1811,
+          "timestamp": "2026-05-25T21:19:55.579990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-001811"
+        },
+        {
+          "source_line": 1812,
+          "timestamp": "2026-05-25T21:19:55.630627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{Temporal DIF as Structured Signal}\n5\t\\label{sec:disc_temporal}\n6\t\n7\t\\looseness=-2\n8\tTemporal DIF detects \\emph{that} items function differently across cohorts, not \\emph{why}, by design (\\Cref{sec:cohorts}). Stratifying by model type reveals opposite patterns: base models ($N{=}1{,}409$) are 60.1\\% reference-favoring ($r = -0.570$), while instruct models ($N{=}478$) are 65.6\\% focal-favoring ($\\chi^2 = 562.7$, $p < 10^{-124}$). This reversal reflects structured item-level bias rather than uniform group impact~\\citep{camilli1994methods}, consistent with DIF as a mechanism-agnostic diagnostic; mixed-mechanism injection cannot match the near-zero instruct gradient, pointing to non-contamination drivers (\\Cref{app:mechanism_discussion,app:mixed_mechanism}). Composition downsampling ($\\Delta = 1.08$\\,pp) and base-only/instruct-only analyses confirm DIF is not a cohort-structure artifact (\\Cref{app:composition_control,app:baseinst_temporal,app:within_arch}). Three features distinguish LLM temporal DIF from educational settings: C\\% (29.2\\%) substantially exceeds typical rates~\\citep{clauser1998dif}; DIF flags and web-overlap labels are near-independent (Jaccard $= 0.206$); and the base/instruct reversal (OR $= 4.75$) favors a broader-signal reading over distinct-construct independence.\n9\t\n10\t\\subsection{Recommended DIF Audit Protocol}\n11\t\\label{sec:disc_protocol}\n12\t\n13\t\\looseness=-2\n14\tItem-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \\Cref{app:predictive}), precluding pre-screening. We recommend: (1)~\\emph{Monitor}: run MH-DIF audits when ${\\geq}$500 models accumulate, triggering review when C\\% exceeds $20\\times$ the random-split baseline; (2)~\\emph{Triage}: DIF $\\times$ web-overlap co-occurrence warrants removal, DIF on web-clean items warrants monitoring; (3)~\\emph{Correct}: expert review, not automatic removal~\\citep{camilli1994methods,penfield2007dif} (\\Cref{app:score_inflation}\n…[truncated 6 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001812"
+        },
+        {
+          "source_line": 1813,
+          "timestamp": "2026-05-25T21:19:56.132800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-001813"
+        },
+        {
+          "source_line": 1814,
+          "timestamp": "2026-05-25T21:19:56.735529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\t\\looseness=-2\n5\tAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain stable ($\\rho \\geq 0.994$); base-vs-instruct reversals and web-overlap independence confirm signal beyond contamination, and cross-subject matching, DEFF correction, and a Monitor/Triage/Correct protocol enable ongoing psychometric auditing.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 602
+          },
+          "id": "event-001814"
+        },
+        {
+          "source_line": 1815,
+          "timestamp": "2026-05-25T21:19:56.735881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/method.tex"
+            }
+          },
+          "id": "event-001815"
+        },
+        {
+          "source_line": 1816,
+          "timestamp": "2026-05-25T21:19:56.786486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe adopt Differential Item Functioning (DIF) analysis from educational measurement to assess whether individual benchmark items behave consistently across groups of LLMs. The procedure requires only a binary response matrix and group labels, with no access to model internals or training data. Below we define the data, the statistical test, the cohort designs, and a semi-synthetic validation framework.\n5\t\n6\t\\subsection{Data}\n7\t\\label{sec:data}\n8\t\n9\tThe primary dataset is the METABENCH response matrix~\\citep{kipnis2024metabench}, which records binary outcomes (1~=~correct, 0~=~incorrect) for 5,227 models evaluated on 12,508 MMLU items~\\citep{hendrycks2021mmlu}. Models span release dates from 2023 to 2024, drawn from the Open LLM Leaderboard. MMLU covers 57 subjects grouped into five broad domains (STEM, Humanities, Social Sciences, Other, and a mixed category). We supplement the response matrix with the web-overlap contamination labels of \\citet{li2024contamination}, which classify 9,229 of 12,508 items (73.8\\% coverage) as ``contaminated'' or ``clean'' based on verbatim matches in publicly accessible web corpora. These labels serve as an external reference for evaluating the relationship between DIF flags and existing contamination indicators.\n10\t\n11\t\\subsection{Mantel-Haenszel DIF and ETS Classification}\n12\t\\label{sec:mhdif}\n13\t\n14\tIn educational testing, Differential Item Functioning (DIF) occurs when an item's statistical relationship to the latent trait $\\theta$ differs between two groups after conditioning on ability level. An item with DIF is not merely harder for one group; it functions differently relative to what the group's overall ability would predict. The standard terminology refers to test-takers as ``examinees'' and questions as ``items.'' In our setting, examinees are LLMs and items are benchmark questions.\n15\t\n16\tThe Mantel-Haenszel (MH) procedure~\\citep{holland1988mh,magis2010difr} detects DIF by stratify\n…[truncated 11194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001816"
+        },
+        {
+          "source_line": 1817,
+          "timestamp": "2026-05-25T21:21:29.914797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "IRT item response theory LLM evaluation benchmark measurement invariance 2024 2025"
+            }
+          },
+          "id": "event-001817"
+        },
+        {
+          "source_line": 1818,
+          "timestamp": "2026-05-25T21:21:29.915212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Rodriguez \"evaluation examples are not equally informative\" IRT NLP leaderboards"
+            }
+          },
+          "id": "event-001818"
+        },
+        {
+          "source_line": 1819,
+          "timestamp": "2026-05-25T21:21:36.041307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Rodriguez \"evaluation examples are not equally informative\" IRT NLP leaderboards\"\n\nLinks: [{\"title\":\"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? - ACL Anthology\",\"url\":\"https://aclanthology.org/2021.acl-long.346/\"},{\"title\":\"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Request PDF\",\"url\":\"https://www.researchgate.net/publication/353488536_Evaluation_Examples_are_not_Equally_Informative_How_should_that_change_NLP_Leaderboards\"},{\"title\":\"Figure 2 from Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19/figure/2\"},{\"title\":\"Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards?\",\"url\":\"https://www.pedro.ai/leaderboard-acl2021\"},{\"title\":\"Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards? - Meta Research | Meta Research\",\"url\":\"https://research.facebook.com/publications/evaluation-examples-are-not-equally-informative-how-should-that-change-nlp-leaderboards/\"},{\"title\":\"How Should That Change NLP Leaderboards?\",\"url\":\"https://aclanthology.org/2021.acl-long.346.pdf\"},{\"title\":\"[PDF] Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n\"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards?\" is a paper by Pedro Rodriguez, Joe Barrow, Alexander Hoyle, John P. Lalor, Robin Jia, and Jordan Boyd-Graber published in 2021.\n\nThe paper addresses how while leaderboards p\n…[truncated 819 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6126
+          },
+          "id": "event-001819"
+        },
+        {
+          "source_line": 1820,
+          "timestamp": "2026-05-25T21:21:38.201254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"IRT item response theory LLM evaluation benchmark measurement invariance 2024 2025\"\n\nLinks: [{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v3\"},{\"title\":\"An Interpretable and Scalable Framework for Evaluating Large Language Models\",\"url\":\"https://arxiv.org/html/2605.07046\"},{\"title\":\"Learning Compact Representations of LLM Abilities via Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2510.00844\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/pdf/2511.04689\"},{\"title\":\"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2602.00521\"},{\"title\":\"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/abs/2505.15055\"},{\"title\":\"Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks\",\"url\":\"https://arxiv.org/pdf/2509.24186\"},{\"title\":\"Latency-Response Theory Model: Evaluating Large Language\",\"url\":\"https://www.arxiv.org/pdf/2512.07019\"}]\n\nI found several recent research papers on the intersection of Item Response Theory (IRT), LLM evaluation, and benchmarking. Here are the key findings:\n\n## Recent IRT Applications to LLM Evaluation\n\nA 2025 paper proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), an enhanced IRT framework, and conducts extensive analysis on 11 LLM benchmarks comprising 41,871 items, revealing significant shortcomings in their measurement quality.\n\nRecently, psychometricians have brought Item Response Theory into LLM evaluation, framing it as a latent variable modeling problem analogous to human performance assessment.\n\n## Key Measurement Approaches\n\nIRT provides item parameters such as difficulty, discrimination, and guessing, as well as latent ability estimates for models. Unlike raw be\n…[truncated 922 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 8286
+          },
+          "id": "event-001820"
+        },
+        {
+          "source_line": 1821,
+          "timestamp": "2026-05-25T21:24:12.011570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Summary\n\n本文将教育测量中的 Mantel-Haenszel 差异项目功能（DIF）分析应用于 METABENCH 响应矩阵（5,227 个模型 × 12,508 个 MMLU 题目），发现 2023 与 2024 模型群组之间约 31% 的题目表现出显著的时间性 DIF（ETS Category C），且该信号与 web-overlap 污染标签近乎独立（φ = 0.012）。论文提出了 cross-subject matching 以控制 FPR，在六个基准上复现了发现，并提出了 Monitor/Triage/Correct 审计协议。\n\n## Strengths\n\n**S1. 大规模、系统性的实证分析。** 5,227 个模型 × 12,508 个题目的分析规模令人印象深刻，在六个基准上复现（C% 从 17.9% 到 31.3%，Table 2）增强了可信度。据我所知，这确实是目前最大规模的 LLM 基准 DIF 分析。\n\n**S2. 多层次验证设计严谨。** 论文构建了五种 cohort 对比（temporal、ability-quintile、within-family、within-subject、random split；Section 3.3），辅以 DEFF 校正、cluster bootstrap、LOFO 分析和多阈值敏感性检验。Random split 的 0.62% C% 与 temporal 的 31.3% 形成 50× 对比，有力排除了随机噪声解释。\n\n**S3. Cross-subject matching 的 ΔFPR = 0 保证有理论和实证价值。** 将 purified subtest matching 适配到 LLM 多学科场景，并在 Remark (Section 3.4) 中提供了构造性论证，Figure 5 直观展示了 within-subject matching 的 FPR 膨胀问题。这是对心理测量方法在 LLM 场景下适配的有意义贡献。\n\n**S4. DIF vs. contamination 的区分具有概念洞察力。** Figure 2 通过 ICC 曲线清晰展示了 global exposure 与 differential functioning 的区别，这一概念框架对 NLP 评估社区有教育意义。Jaccard = 0.206、φ = 0.012 的实证结果支持了两者的互补性。\n\n**S5. 对 NLP 读者的心理测量概念解释充分。** Section 3.2 对 MH 程序、ETS 分类、匹配变量选择的解释清晰，包括公式推导（Eq. 1-2）和 LLM 特有挑战的讨论。\n\n**S6. Base-vs-instruct 方向反转是有价值的发现。** χ² = 562.7 的结构化方向性差异（Section 5.1：base 60.1% reference-favoring vs. instruct 65.6% focal-favoring）超越了简单的\"有/无 DIF\"二分法，指向训练方法论对测量特性的系统性影响。\n\n## Weaknesses\n\n**W1. [Critical] 标题\"Score Incomparability\"与核心发现之间存在根本性叙事张力。** 标题暗示分数不可比较，但论文最核心的实证发现恰恰是 ρ ≈ 0.997（Table 2，所有六个基准 ρ ≥ 0.994）——排名几乎完美保持。Section 4.5 明确指出 stable-item ranks are preserved。这造成了一个困境：如果 31% 的题目有 DIF 但排名不变，那么\"incomparability\"这一措辞是否过度？论文实际展示的是 item-level instability with aggregate robustness，但标题设置的期望与实际发现不匹配。Introduction 中 \"The result is sobering\" 的措辞进一步放大了这一不匹配——如果排名稳定，这一发现究竟有多\"sobering\"？建议标题更准确地反映论文的细致发现，如 \"Temporal Differential Item Functioning\" 或 \"Item-Level Instability\"。\n\n**W2. [Critical] 方法论新颖性有限——核心方法均为已知技术的直接应用。** MH-DIF 是 1988 年的标准方法（Holland & Thayer）；ETS A/B/C 分类是标准实践；cross-subject matching 是 purified subtest matching（Swaminathan & Rogers, 1990）的直接适配；DEFF 校正来自 Rao & Scott (1992)。论文的主要方法论贡献是将这些已知工具组合应用到 LLM 评估场景——这是有价值的应用性工作，但 NLP 顶会对方法论创新的要求通常高于\"已知方法到新领域的迁移\"。论文在 Section 3.2 讨论了四个 LLM-specific challenges，但每个的解决方案都是现有方法（permutation simulation、DEFF、quintile stratification、cross-subject matching），没有提出针对 LLM 特殊性的新统计方法。\n\n**W3. [Major] 关键发现 C% 的不确定性范围过大（13.5%–31.3%），削弱了结论的精确度。** Section 4.2 报告 DEFF 校正后 C% 在 13.5%（weighted-mean DEFF）到 29.2%（simple-mean DEFF）之间，未校正值为 31.3%。这是一个 2.3× 的范围。论文论证 weighted-mean over-corrects（因为 cluster bootstrap CI excludes weighted-mean estimate），但这一论证不完全令人信服——cluster bootstrap 本身依赖于 family 定义的合理性，而 model family 边界（什么算一个 family？微调变体 vs. 不同训练配方）是模糊的。如果真实 C% 接近 13.5% 而非 31%，论文的许多结论（如\"50× above random\"、\"sobering\"等）需要显著弱化。\n\n**W4. [Major] \"Mechanism-agnostic\"定位与论文内容之间存在紧张关系。** 论文反复强调 DIF 是 mechanism-agnostic（Section 3.4, 5.1），但大量篇幅用于 contamination 分析：Section 4.3 与 web-overlap labels 对比、Section 3.4 使用 contamination injection 作为唯一验证方法、Section 5.1 讨论 base-vs-instruct 与 contamination 的关系。如果 DIF 真的是 mechanism-agnostic，为什么验证框架完全基于 contamination？一个更强的验证应包括其他可能驱动 DIF 的机制（如训练方法变化、数据分布偏移）的模拟。当前验证仅覆盖一种可能的 DIF 机制，作为 mechanism-agnostic 工具的评估并不完整。\n\n**W5. [Major] 缺少对 DIF 在 LLM 场景下概念合法性的深入讨论。** 在教育测量中，DIF 检测的是对同等能力的不同人群的 item bias——关注的是公平性。在 LLM 场景中，2023 vs. 2024 模型不是同一总体的人口学子群，而是技术上根本不同的系统。当我们将 2024 模型与同总分的 2023 模型匹配时，\"同总分\"的含义可能完全不同（不同的能力剖面得到相同总分）。论文在 Section 3.2 承认了多维性问题（Cohen's d range = 0.12, κ = 0.80），但 κ = 0.80 意味着 20% 的 DIF 项目可能是多维性伪影而非真正的 measurement invariance violation。论文需要更明确地讨论：在什么条件下，LLM temporal DIF 反映的是测量问题（item 有问题），vs. 反映的是被测对象的合法能力结构变化（model 本来就不同）。\n\n**W6. [Minor] 三个 contribution 的权重不均衡。** Contribution 1（empirical finding）是论文的主要价值；Contribution 2（cross-subject matching）是已知方法的适配；Contribution 3（audit protocol）在 Section 5.2 中仅占半段，没有任何部署验证。将 audit protocol 列为正式 contribution 时，缺乏证据支撑其实用性——没有 benchmark maintainer 参与验证，没有 case study 展示协议的实际运作。\n\n## Questions\n\n**Q1.** 既然 ρ ≈ 0.997 且排名几乎完全保持，能否更精确地量化 temporal DIF 的实际危害？Section 4.5 提到 DIF-corrected scoring shifts accuracy by +2.12 pp，但这是平均值——对具体模型/评估决策的影响有多大？在什么场景下，一个 practitioner 会因为忽略 temporal DIF 而做出错误决策？\n\n**Q2.** 论文使用 2023 vs. 2024 的 calendar-year boundary 作为主要对比。这一划分必然混合了多种变化源（架构演进、训练数据扩展、RLHF 方法改进、数据清洗实践变化等）。是否考虑过更细粒度的时间划分（如季度），以及 DIF 信号是逐渐积累还是存在突变点？Section 3.3 提到 half-yearly C% = 34.4%，但没有详细分析时间动态。\n\n**Q3.** Base-vs-instruct 方向反转（χ² = 562.7）本身可能部分反映了 RLHF/instruction tuning 对答题策略的系统性改变（如更倾向选择\"安全\"选项、改变猜测行为），而非 item-level measurement invariance violation。如何区分\"训练方法改变了模型的合法能力剖面\"与\"训练方法导致了 item 测量特性的扭曲\"？\n\n**Q4.** Cross-subject matching 在 contamination 影响 ≤5 个 subject 时保证 ΔFPR ≈ 0，但论文未讨论当 DIF 由非 contamination 因素（如全局训练方法变化）驱动时，cross-subject matching 的行为。如果所有 subject 同时受到训练方法变化的影响，cross-subject matching 的保护机制是否仍然有效？\n\n## Missing References\n\n**M1. Rodriguez et al. (2021) \"Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards?\" (ACL 2021).** 这是 IRT 应用于 NLP 评估的奠基性工作之一，使用贝叶斯 IRT 模型分析 NLP leaderboard 的可靠性、标注决策和过拟合检测。与本文在\"心理测量方法改进 NLP 评估\"这一主题上高度相关，但未被引用。论文引用了 Lalor et al. (2019) 作为 IRT 在 NLP 中的引入，但跳过了 Rodriguez et al. 这一重要中间节点。\n\n**M2. Polo et al. (2024) \"tinyBenchmarks: Evaluating LLMs with Fewer Examples\" (ICML 2024).** 使用 IRT 进行高效 LLM 评估，与本文的心理测量方法论主题直接相关。\n\n**M3.** 论文讨论了 Growing Pains (Habba et al., 2026) 作为最接近的并发工作，但可能遗漏了 2025 年的 PSN-IRT 后续工作或其他 IRT+LLM 评估的最新进展（如 \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with IRT\"）。\n\n## Minor Issues\n\n**m1.** Abstract 脚注中的匿名链接 `anonymous.4open.science` 格式正确，匿名性保持完好。\n\n**m2.** Section 3.2 中 \"At N = 1,887... significance (p < 0.05) is nearly automatically satisfied for any |Δ_MH| ≥ 1.5: only 3 of 3,918 C items lack significance\" —— 这实际上意味着在如此大的 N 下，ETS C 的双重阈值实质上退化为单一效应量阈值。这削弱了\"dual threshold guards against false positives\"的论点，值得在正文中更坦诚地承认（而非仅在同句后半部分轻描淡写）。\n\n**m3.** Figure 4（dose-response）的 y 轴标签 \"ΔTPR\" 在 baseline 区域（p = 0.0）的误差条显示非零值——建议说明 baseline ΔTPR 的期望值和实际分布。\n\n**m4.** Table 1 的 \"Enrichment\" 列标题可进一步明确定义（首次出现在 Table caption 中才解释为 \"ratio of observed to expected overlap\"）。\n\n**m5.** Section 4.2 最后一段 \"DIF rates are domain-invariant (Kruskal-Wallis p = 0.78)\" 与 \"DIF direction exhibits domain dependence: STEM items favor 2024 models (55.4%), Humanities favor 2023 (64.4%)\" 的并置可能让读者困惑——rate invariant 但 direction dependent 的区别需要更清晰地铺垫。\n\n**m6.** 正文在第 8 页结束（Section 6 Conclusion + Section 5 Discussion），Limitations 在第 9 页，符合 8 页限制。References 格式符合 ACL 规范。\n\n**m7.** Conclusion（Section 6）非常简短（仅一句话），在信息密度上可以接受但可能给 reviewer 留下仓促收尾的印象。\n\n## Overall Assessment\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 4 / 5 | 方法论执行扎实，多重控制和验证设计严谨；但 C% 的 13.5-31.3% 不确定性范围和多维性伪影问题（κ=0.80）是显著缺口 |\n| Excitement | 3 / 5 | 将心理测量方法引入 LLM 评估有价值，但核心方法为已知技术组合，实际影响有限（ρ≈0.997 意味着排名不变） |\n| Confidence | 4 / 5 | 我仔细阅读了全文（含 16 页附录），熟悉 DIF 方法论和 LLM 评估文献 |\n\n**Overall: 3.5 (Borderline Conference)**\n\n这是一篇执行质量高的实证论文，分析规模大、验证设计严谨、对 NLP 读者的概念解释清晰。核心发现（~29-31% temporal DIF, near-independence from contamination, base-vs-instruct reversal）是有价值的诊断洞察。\n\n主要顾虑在于：(1) 方法论新颖性有限——全部核心方法均为教育测量中 30+ 年历史的标准工具的直接应用/适配，NLP 方法论贡献不足以达到 conference 水平；(2) 标题暗示的\"不可比较性\"与 ρ ≈ 0.997 的发现之间存在叙事过度，practical impact 不清晰；(3) C% 的大范围不确定性（2.3×）使核心结论的精确度受限。论文作为 Findings 论文完全达标，但升入主会议需要在新颖性或实际影响上有更强的论证。",
+              "reviewer_id": "2",
+              "project": "irt_equated_bench_regen"
+            }
+          },
+          "id": "event-001821"
+        },
+        {
+          "source_line": 1822,
+          "timestamp": "2026-05-25T21:24:15.829493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_f025582a920d3f79beb59dfc17929017:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3817
+          },
+          "id": "event-001822"
+        },
+        {
+          "source_line": 1823,
+          "timestamp": "2026-05-25T21:24:21.210933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001823"
+        },
+        {
+          "source_line": 1824,
+          "timestamp": "2026-05-25T21:24:21.261548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001824"
+        },
+        {
+          "source_line": 1825,
+          "timestamp": "2026-05-25T21:24:24.985879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_round_19/_pdf_images"
+            }
+          },
+          "id": "event-001825"
+        },
+        {
+          "source_line": 1826,
+          "timestamp": "2026-05-25T21:24:25.036523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-001826"
+        },
+        {
+          "source_line": 1827,
+          "timestamp": "2026-05-25T21:24:36.725830+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 1 审稿完成。已向 Review Director 提交完整审稿意见，核心评判：\n\n- **Overall: 3.5（Borderline Conference）**\n- **Soundness: 4/5** — 方法执行扎实，多重验证设计严谨\n- **Excitement: 3/5** — 核心方法为已知技术组合，practical impact 受限于 ρ≈0.997\n\n主要问题集中在三点：(1) 标题 \"Score Incomparability\" 与排名近乎完美保持的发现存在叙事过度；(2) 方法论新颖性有限（MH-DIF、ETS 分类、purified subtest matching 均为 30+ 年历史的标准工具）；(3) 核心发现 C% 的不确定性范围过大（13.5%–31.3%）。同时指出了 Rodriguez et al. (2021) 和 Polo et al. (2024) 两篇遗漏的重要相关工作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2"
+          },
+          "id": "event-001827"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "messages": [
+        {
+          "source_line": 1828,
+          "timestamp": "2026-05-25T21:25:21.824539+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享 — Reviewer 1 的完整审稿意见\n\n以下是 Reviewer 1 的完整审稿原文。请逐条回应每个 Weakness 和 Question：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n---\n\n## Reviewer 1 原文\n\n### Strengths\n\n**S1. 问题定位精准且重要。** 基准测试的时序可比性在 LLM 评估社区被广泛讨论但缺乏严格量化工具。将心理测量学的 measurement invariance 框架引入 LLM 评估是一个自然但尚未被充分探索的方向，填补了 Growing Pains (Habba et al., 2026) 等工作在诊断粒度上的空白。\n\n**S2. 实验规模与复制性出色。** 5,227 模型、12,508 题目、6 个基准测试的规模在同类工作中罕见。核心发现 (17.9–31.3% C%) 在 TruthfulQA、ARC、HellaSwag、WinoGrande、GSM8K 上均复制成功 (Section 4.7, Table 2)，显著增强了结论的可信度。\n\n**S3. Cross-subject matching 设计巧妙。** 利用非目标学科总分作为匹配变量，在单学科注入下 ΔFPR=0 的构造性保证 (Section 3.4, Remark) 是方法论上的亮点。Figure 5 清晰展示了 cross-subject vs within-subject 匹配在 FPR 控制上的差异，令人信服。\n\n**S4. 控制实验层次丰富。** 能力分位匹配 (C%=2.9% within-cohort, Table 5)、LOFO 家族分析 (Table 8)、随机拆分基线 (0.62%)、IRT θ-conditioning (r=0.9986) 等多层控制从不同角度排除了混淆因素。\n\n**S5. 诊断与行动协议的实用价值。** Section 5.2 提出的 Monitor/Triage/Correct 框架不仅是方法展示，还给出了具体可操作的基准维护建议，增加了论文的实际影响力。\n\n**S6. Figure 1 管线图信息量大。**\n\n### Weaknesses\n\n**W1. [Critical] 标题数字 (31.3%) 未经 DEFF 校正，且校正后区间极宽 (13.5%–29.2%)。** 论文的核心 claim 是 \"~29% of items exhibit large temporal DIF\"（Abstract, Section 4.2），但这是未经设计效应 (DEFF) 校正的 raw C%。Section D 和 Table 10 显示：简单均值 DEFF 校正后 C%=29.2%，加权均值 DEFF 校正后仅 C%=13.5%，两者相差 2.16 倍。Cluster bootstrap 上界为 53.2%，校正后收敛至 ~27–29%，但这仍依赖于 simple-mean estimator 的选择。论文在 Section 4.2 将此范围表述为 \"bracketing C% at 13.5–29.2%\"，但 abstract 和 introduction 的措辞 (\"31% of items\") 强烈暗示了更高端的估计。\n\n**W2. [Critical] 半合成注入使用均匀二值翻转 (uniform binary flipping)，可能高估检测力。** Section 3.4 将 \"contaminated\" 项以 20% 均匀概率翻转为正确。现实中的 contamination 效应高度异质。Appendix B 的混合机制注入仅测试了一种替代模式，且仍假设所有被注入题目受到相同强度影响。\n\n**W3. [Major] IRT 模型拟合差与参数化 power analysis 之间的张力。** Section A.2 明确指出 MMLU 对 2PL 拟合差，但 Table 3 的 power analysis 恰恰使用了 2PL 参数来生成模拟数据并估计 TPR。\n\n**W4. [Major] Cross-subject ΔFPR=0 保证在多学科污染下退化，且退化速度未充分表征。** Table 7 报告 k=30-50 时 ΔFPR 达到 0.36-0.46。但论文缺少对中间区域 (k=5-15) 的系统表征。\n\n**W5. [Major] ETS 阈值从人类考生迁移到 LLM 的合理性缺乏讨论。** LLM 与人类在 item-person 交互模式上有本质差异：LLM 没有真正的 \"ability\" latent trait；5,227 个 \"考生\" 中存在大量高度同质的模型。\n\n**W6. [Moderate] 多重比较校正未作为主方法。** 12,508 个项目同时进行假设检验，ETS C 的 p-value 门槛未做多重校正。\n\n**W7. [Moderate] \"近独立于 web-overlap labels\" 的推断强度。** φ=0.012 的低相关更可能反映 web-overlap labels 的噪声而非 DIF 的独立性。\n\n**W8. [Moderate] Base vs instruct 反向模式的机制解释。** base 和 instruct 模型在处理 MCQ 时有系统性差异（如 instruction following, output format），这些差异可能产生 DIF-like 的 artifacts。\n\n### Questions\nQ1-Q7 见上文（关于 DEFF 报告、2PL power analysis、多学科 ΔFPR 曲线、时间分割点影响、family correlation 处理、within-subject DIF 全量验证、item-property 预测力的含义）\n\n### Missing References\n1. CAT for LLMs (Zhuang et al., 2023)\n2. Test security / item exposure literature (van der Linden & Veldkamp, 2007)\n3. Vania et al. (2021, \"Comparing Test Sets with Item Response Theory\")\n\n---\n\n请对以上每个 Weakness (W1-W8) 和 Questions (Q1-Q7) 逐条给出 [AGREE] 或 [REBUT] 回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001828"
+        },
+        {
+          "source_line": 1829,
+          "timestamp": "2026-05-25T21:28:06.204066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 交叉回应：Reviewer 2 对 Reviewer 1 审稿意见的逐条评议\n\n---\n\n### Weaknesses\n\n**[AGREE] R1-W1: 标题数字 31.3% 未经 DEFF 校正，校正后区间极宽。**\n完全同意。这与我的 W3 一致。Abstract 和 Introduction 使用 \"31% of items\" 作为 headline claim，但 Section 4.2 和 Appendix D 显示 DEFF 校正后范围为 13.5%–29.2%，2.3× 的不确定性严重影响核心结论的精确度。论文虽然在 Section 4.2 用 \"bracketing C% at 13.5–29.2%\" 承认了这一范围，但 abstract 和 title 的措辞并未反映这一不确定性。如果真实 C% 接近 13.5%，\"50× above random\" 变成 ~22×，叙事力度显著减弱。至少 abstract 应报告 DEFF 校正后的范围而非 raw C%。\n\n**[AGREE] R1-W2: 半合成注入使用均匀二值翻转可能高估检测力。**\n同意，但补充一点：论文在 Limitations (1) 和 Section 3.4 末尾已明确承认这一局限（\"reported ΔTPR values may overestimate detection power\"），且 Section 4.4 报告了 difficulty-dependent injection 的 ΔTPR ≈ 0.41（vs. uniform 的 0.51），量化了高估幅度约 ~20%。Appendix B 的 mixed-mechanism injection 也提供了部分补充。所以问题不在于作者是否意识到这个问题（他们意识到了），而在于验证框架的覆盖面不够广——只有 contamination-based 的注入，没有其他 DIF 机制的模拟（如训练方法变化）。这与我的 W4（mechanism-agnostic 定位与 contamination-heavy 验证的张力）一致。\n\n**[REBUT] R1-W3: IRT 模型拟合差与参数化 power analysis 的张力。**\n这个张力确实存在，但其影响被 R1 高估了。关键区分在于：(1) MH-DIF 本身是非参数方法，不依赖 2PL 拟合——论文选择 MH 而非 IRT-based DIF 检测恰恰是为了规避 2PL 拟合差的问题（Section 2, Related Work 明确指出 \"MH-DIF is nonparametric and robust to model misspecification, an advantage given poor 2PL fit for MMLU\"）；(2) Table 3 的 power analysis 是辅助验证，用 2PL 参数生成模拟数据来估计 MH 的检测功效——即使 2PL 参数不精确，模拟提供的是 approximate bound 而非精确估计；(3) 最关键的功效证据是实证的：31.3% temporal C% vs. 0.62% random baseline 的 50× ratio（Table 1），这一对比完全不依赖 2PL 参数。论文的分析链条是\"非参数检测 + 实证控制验证\"，参数化 power analysis 是补充而非基础。不过，论文确实应更明确标注 power analysis 结果的局限性——当前 Section 4.1 仅在 Appendix A.2 提及 RMSEA 问题。\n\n**[AGREE] R1-W4: Cross-subject ΔFPR=0 在多学科污染下的退化未充分表征（k=5-15 区间）。**\n部分同意。Section 4.4 确实报告了 k=20 时 ΔFPR = 0.167，论文据此论证 \"still insufficient to account for the observed 31% C%\"。但 R1 指出 k=5（ΔFPR < 0.007）到 k=20（ΔFPR = 0.167）之间存在跳变区域未被系统刻画，这个批评合理。这一退化曲线的精确形状对实际应用场景（benchmark maintainer 需要判断何时切换到 within-subject matching）至关重要。不过，我认为这是一个\"加分项\"需求而非\"否决性\"缺陷——论文已提供了足够的数据点来支持其核心论证（cross-subject matching 在 low-k 场景下有效）。\n\n**[AGREE] R1-W5: ETS 阈值从人类考生迁移到 LLM 的合理性缺乏讨论。**\n同意，且这与我的 W5（DIF 在 LLM 场景下的概念合法性）互补。ETS 的 |Δ_MH| = 1.0/1.5 阈值源于人类考试场景中对 \"negligible/moderate/large\" 效应量的经验判断。LLM 群体有根本不同的属性：(a) 没有真正的 latent ability trait，(b) model families 内高度同质，(c) 能力分布可能是多模态的。论文在 Section 4.2 展示了跨阈值的鲁棒性（18.4% at |Δ_MH| ≥ 2.0, 10.2% at ≥ 2.5），这在一定程度上缓解了阈值选择的任意性——核心发现不依赖于特定阈值。但论文没有提供 LLM-specific 的阈值校准方法，这确实是方法论上的缺口。\n\n**[REBUT] R1-W6: 多重比较校正未作为主方法。**\nR1 的担忧是常见的，但论文已在 Section 3.4 充分回应：Benjamini-Hochberg 校正在 q = 0.05 水平仅重新分类 3/3,918 C items——即 0.08% 的变化。这一近零影响是因为 ETS C 已内置了双重阈值（效应量 + 显著性）。更重要的是，DIF 分析在教育测量领域的标准实践中不使用多重比较校正（论文引用 Wainer 1993），因为 DIF 分析的目标是 item-level 诊断而非控制 study-level error rate——每个 item 的 DIF 判定是独立的诊断决策。论文遵循了领域惯例且提供了 BH 校正的敏感性检验。不过我在自己的 minor issue m2 中也指出：在 N = 1,887 下，p < 0.05 几乎自动满足（only 3/3,918 C items lack significance），这意味着双重阈值实质退化为单一效应量阈值——论文应更坦诚地承认这一点。\n\n**[AGREE] R1-W7: \"近独立于 web-overlap labels\" 的推断强度。**\n同意。φ = 0.012 的低相关有两种可能解释：(a) DIF 和 contamination 确实测量不同维度，或 (b) web-overlap labels 作为 contamination 的 proxy 噪声太大，掩盖了真实相关性。论文在 Section 4.3 承认了 (b) 的可能性（\"this near-independence could partly reflect proxy noise\"），并提供了 label-independent 的支持证据（base-vs-instruct reversal, χ² = 562.7）。但 R1 的担忧仍然成立：如果 web-overlap labels 的 proxy quality 很差，那么低 φ 本身的信息量有限。论文应更保守地表述这一发现——从 \"DIF flags are near-independent of web-overlap labels\" 改为 \"DIF flags show low correlation with available contamination proxies, though proxy noise may attenuate the measured association\"。\n\n**[AGREE] R1-W8: Base vs instruct 反向模式的机制解释不足。**\n同意，与我的 Q3 一致。Instruction tuning 系统性地改变模型的 MCQ 应答策略（如 instruction following 导致的格式偏好、safety training 导致的\"安全选项\"倾向、RLHF 改变的猜测行为），这些都可能产生 DIF-like artifacts，而非反映 item 本身的 measurement invariance violation。论文在 Section 5.1 将反转解释为 \"structured item-level bias rather than uniform group impact\"（引用 Camilli 1994），但没有排除上述 confound。一个更强的分析应检验反转是否与 item 特征（如选项格式、是否需要 instruction following、是否涉及安全敏感内容）相关，而非仅与 difficulty 相关（当前仅报告了 difficulty-direction interaction r = -0.597, Section 4.2）。\n\n---\n\n### Questions\n\n**[AGREE] R1-Q1 (DEFF 报告):** 如上 W1 所述，abstract 应报告校正后范围。\n\n**[REBUT] R1-Q2 (2PL power analysis):** 如上 W3 所述，power analysis 是辅助证据；实证 50× ratio 不依赖 2PL 参数。但同意论文应在 Section 4.1 更明确地讨论 2PL misfit 对 power 估计的影响方向。\n\n**[AGREE] R1-Q3 (多学科 ΔFPR 曲线):** 如上 W4 所述，k=5-15 区间的系统表征将提升论文的完整性和实用性。\n\n**[AGREE] R1-Q4 (时间分割点影响):** 这与我的 Q2 一致。Calendar-year boundary 是粗糙的。Section 3.3 报告 half-yearly C% = 34.4%（反而更高），但缺少对 DIF 信号随时间积累动态的分析——DIF 是线性增长、S-curve、还是在特定事件（如某主流模型发布）后突变？这一分析对理解 DIF 的驱动因素有重要价值。\n\n**[AGREE] R1-Q5 (Family correlation 处理):** DEFF 校正处理了 family correlation，但 DEFF 估计本身高度依赖 \"family\" 的定义边界（什么算同一 family？Llama-2-7B 的不同 LoRA 微调 vs. Llama-2-7B vs. Llama-2-13B vs. Llama-3？），这一定义的模糊性导致了 C% 的宽区间（13.5%-29.2%）。论文应提供 family 定义的敏感性分析。\n\n**[REBUT] R1-Q6 (Within-subject DIF 全量验证):** Section 4.2 已报告 within-subject C% = 38.1%（average across 5 subjects），且 cross-subject 与 within-subject 匹配的 agreement κ = 0.80（834 items）。Section 4.2 还指出 cross-subject-unique C items 不集中于 high-shift subjects。这些提供了合理的 within-subject 验证覆盖，虽然不是 all-57-subjects 的全量分析。完整的 57 学科分析确实更严谨，但 5 学科的验证已足以支持论文结论。\n\n**[AGREE] R1-Q7 (Item-property 预测力 AUROC=0.60 的含义):** Section 5.2 的低 AUROC 意味着 DIF susceptibility 不可预测，这是一个重要的负面发现——它意味着 benchmark maintainer 无法通过 item 特征提前筛选潜在 DIF 项目，只能通过运行 MH-DIF 进行事后检测。这既强化了 audit protocol 的必要性，也限制了其预防价值。论文应更充分地讨论这一含义。\n\n---\n\n### Missing References\n\n**[AGREE] Vania et al. (2021, \"Comparing Test Sets with Item Response Theory\"):** 直接相关——在 NLP test set 比较中使用 IRT，与本文主题高度匹配。\n\n**[REBUT] CAT for LLMs (Zhuang et al., 2023):** 计算机自适应测试（CAT）与 DIF 分析是不同的心理测量工具，在方法论上没有直接关联。CAT 关注的是 test administration efficiency，而非 measurement invariance。这篇文献与 Lalor et al. (2019) 的关系更紧密，可放在 related work 的 IRT 段落中作为背景，但不构成核心遗漏。\n\n**[AGREE] Test security / item exposure literature (van der Linden & Veldkamp, 2007):** Item exposure 控制与 DIF 在概念上有交叉——item exposure 可能导致 DIF（高曝光 item 更容易被训练数据覆盖），且 item exposure management 文献中的方法论思路可能启发 benchmark rotation 策略。不过这更像是一个 \"nice to have\" 的背景引用，而非核心遗漏。\n\n**补充：** 我在自己的审稿中也指出了两个可能遗漏的引用：Rodriguez et al. (2021, \"Evaluation Examples Are Not Equally Informative,\" ACL) 和 Polo et al. (2024, \"tinyBenchmarks,\" ICML)，两者都是 IRT 应用于 NLP/LLM 评估的重要先驱工作。\n\n---\n\n### 总结\n\nR1 和我的审稿意见有高度一致的关注点：(1) C% 不确定性范围和 headline claim 的表述（我的 W3 = R1-W1）；(2) mechanism-agnostic 定位与 contamination-centric 验证的张力（我的 W4 ≈ R1-W2）；(3) DIF 在 LLM 场景下的概念合法性（我的 W5 ≈ R1-W5）；(4) base-vs-instruct 反转的机制解释不足（我的 Q3 = R1-W8）。\n\n**主要分歧在 R1-W3 (2PL power analysis) 和 R1-W6 (多重比较校正)：** 我认为 R1 高估了这两个问题的严重性——MH-DIF 的非参数性质和 DIF 领域的多重检验惯例使这些问题成为 minor concerns 而非 major weaknesses。\n\n**对 Overall Assessment 的影响：** R1 的审稿强化了我的 Borderline Conference (3.5) 判断。论文的执行质量高，但方法论新颖性有限（R1 未直接提及但通过强调\"已知方法\"间接表达了类似关注）。如果作者能在 rebuttal 中 (a) 在 abstract 使用 DEFF 校正后的数字，(b) 提供 family 定义敏感性分析以收窄 C% 区间，(c) 更诚实地讨论 ETS 阈值迁移的局限性，论文可升至 4.0 (Conference)。",
+              "reviewer_id": "2",
+              "project": "irt_equated_bench_regen"
+            }
+          },
+          "id": "event-001829"
+        },
+        {
+          "source_line": 1830,
+          "timestamp": "2026-05-25T21:28:10.277114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_f025582a920d3f79beb59dfc17929017:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4073
+          },
+          "id": "event-001830"
+        },
+        {
+          "source_line": 1831,
+          "timestamp": "2026-05-25T21:28:20.870166+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。对 R1 的 8 个 Weakness 和 7 个 Question 逐条给出了 AGREE/REBUT 判断：\n\n- **AGREE (10 条):** W1、W2、W4、W5、W7、W8、Q1、Q3-Q5、Q7 — 与我自己的审稿高度一致，特别是 C% 不确定性、ETS 阈值迁移合理性、base-vs-instruct 机制解释不足\n- **REBUT (3 条):** W3（2PL power analysis 是辅助证据，MH 本身是非参数的）、W6（多重比较校正在 DIF 领域非标准实践，且 BH 校正仅影响 3/3918 items）、Q6（within-subject 验证已有 5 学科覆盖）\n- **主要共识:** 标题过度暗示不可比较性（ρ≈0.997）、C% 应报告 DEFF 校正后范围、LLM-specific 阈值校准缺失"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f025582a920d3f79beb59dfc17929017:reviewer_2"
+          },
+          "id": "event-001831"
+        }
+      ]
+    }
+  ]
+}

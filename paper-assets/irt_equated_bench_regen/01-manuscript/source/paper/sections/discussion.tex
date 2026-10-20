@@ -1,0 +1,14 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Temporal DIF as Structured Signal}
+\label{sec:disc_temporal}
+
+\looseness=-2
+Temporal DIF detects \emph{that} items function differently across cohorts, not \emph{why}, by design (\Cref{sec:cohorts}). Stratifying by model type reveals opposite patterns: base models ($N{=}1{,}409$) are 60.1\% reference-favoring ($r = -0.570$), while instruct models ($N{=}478$) are 65.6\% focal-favoring ($\chi^2 = 562.7$, $p < 10^{-124}$). This reversal reflects structured item-level bias rather than uniform group impact~\citep{camilli1994methods}, consistent with DIF as a mechanism-agnostic diagnostic; mixed-mechanism injection cannot match the near-zero instruct gradient, pointing to non-contamination drivers (\Cref{app:mechanism_discussion,app:mixed_mechanism}). Composition downsampling ($\Delta = 1.08$\,pp) and base-only/instruct-only analyses confirm DIF is not a cohort-structure artifact (\Cref{app:composition_control,app:baseinst_temporal,app:within_arch}). Three features distinguish LLM temporal DIF from educational settings: C\% (29.2\%) substantially exceeds typical rates~\citep{clauser1998dif}; DIF flags and web-overlap labels are near-independent (Jaccard $= 0.206$); and the base/instruct reversal (OR $= 4.75$) favors a broader-signal reading over distinct-construct independence.
+
+\subsection{Recommended DIF Audit Protocol}
+\label{sec:disc_protocol}
+
+\looseness=-2
+Item-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \Cref{app:predictive}), precluding pre-screening. We recommend: (1)~\emph{Monitor}: run MH-DIF audits when ${\geq}$500 models accumulate, triggering review when C\% exceeds $20\times$ the random-split baseline; (2)~\emph{Triage}: DIF $\times$ web-overlap co-occurrence warrants removal, DIF on web-clean items warrants monitoring; (3)~\emph{Correct}: expert review, not automatic removal~\citep{camilli1994methods,penfield2007dif} (\Cref{app:score_inflation}).

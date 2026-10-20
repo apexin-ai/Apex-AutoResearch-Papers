@@ -1,0 +1,18 @@
+paper_key: "hendrycks2021mmlu"
+title: "Measuring Massive Multitask Language Understanding"
+venue: "ICLR 2021"
+full_text_available: false
+
+research:
+  baselines: [GPT-3, UnifiedQA]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "MMLU", size: "14K examples across 57 subjects"}
+  ablation_dimensions: [subject area, few-shot count]
+  training_recipe: {optimizer: "N/A (benchmark)", lr: "N/A", hardware: "N/A"}
+  method_family: "static multi-domain benchmark"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,2100 @@
+# research base vs instruct metadata
+
+**Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_research_base_vs_instruct_metadata_20260522T174407.log`
+- **Structured JSON:** [`04823adcfc54063359ce.json`](../../sessions/04/04823adcfc54063359ce.json)
+
+## Before a recorded user message
+
+39 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f8a377a8-d579-4589-9cc0-15443f789399",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to survey the METABENCH data to check if there's base vs instruct model classification info, and if not, classify models automatically. Let me start by examining the data files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "914e3881-fb35-4b7b-901a-2003c69d9ad6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fx2WZgzLhsVQvPeuPDpWGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13393
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 4_
+
+开始调研 base vs instruct 模型标注情况。先检查数据文件结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "1adf51e9-6510-42a6-b2dd-ed928dfbdc45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fx2WZgzLhsVQvPeuPDpWGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13393
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JwkfdraMj3Qc6i3zCWTvmG`</summary>
+
+```json
+{
+  "command": "head -2 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv",
+  "description": "Check CSV columns"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "aea39042-46b4-4613-99c6-aab434a5fbb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fx2WZgzLhsVQvPeuPDpWGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13393
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T17:44:24.131Z_
+
+<details><summary>↩ Tool result · `toolu_01JwkfdraMj3Qc6i3zCWTvmG`</summary>
+
+```text
+model_name,score_full,score_cleaned,rank_full,rank_cleaned,rank_change,abs_rank_change,family,cohort_temporal
+0-hero/Matter-0.1-7B,0.5602014710585226,0.579976717112922,3837,3892,55,55,unknown,other
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "f2a67d2a-ceb0-48bf-8aee-08b9fcd8db82",
+  "tool_use_result": {
+    "stdout": "model_name,score_full,score_cleaned,rank_full,rank_cleaned,rank_change,abs_rank_change,family,cohort_temporal\n0-hero/Matter-0.1-7B,0.5602014710585226,0.579976717112922,3837,3892,55,55,unknown,other",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BeJu7QkCAWy9nAmAM7Lzth`</summary>
+
+```json
+{
+  "command": "head -2 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/metabench_irt_params.csv",
+  "description": "Check IRT params columns"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "c9706c5d-1da7-4b6f-a799-566cbd4c2183",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fx2WZgzLhsVQvPeuPDpWGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13393
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T17:44:24.880Z_
+
+<details><summary>↩ Tool result · `toolu_01BeJu7QkCAWy9nAmAM7Lzth`</summary>
+
+```text
+item,subject,sd,diff,disc,exclude
+abstract_algebra.1,abstract_algebra,0.391334247107756,0.1415501053841732,-0.2833678806673642,False
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "7e75f9db-4d6e-409e-8ccf-04182d1ae11b",
+  "tool_use_result": {
+    "stdout": "item,subject,sd,diff,disc,exclude\nabstract_algebra.1,abstract_algebra,0.391334247107756,0.1415501053841732,-0.2833678806673642,False",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01E4y4jMDpof1HPE4ZtiiDme`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/",
+  "description": "List data directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "87a26421-9921-4f9d-b2bb-ddd10bc409ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fx2WZgzLhsVQvPeuPDpWGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13393
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T17:44:25.842Z_
+
+<details><summary>↩ Tool result · `toolu_01E4y4jMDpof1HPE4ZtiiDme`</summary>
+
+```text
+benchmark_rho_summary.csv
+bootstrap_dfpr_results.csv
+bootstrap_dfpr_samples.csv
+cluster_bootstrap_ci.md
+cv_results.csv
+cv_results_25bbdb.csv
+deff_results.csv
+degradation_curves.csv
+dif_phase2_results.csv
+dif_power_results.csv
+dose_response_theta.csv
+enrichment_theta.csv
+feature_importance.csv
+feature_importance_1bd0a5.csv
+features.csv
+gsm1k_dif_correlation.csv
+gsm1k_model_accuracy.csv
+gsm8k_dif_results.csv
+gsm8k_dose_response.csv
+gsm8k_dose_response_summary.csv
+gsm8k_ets_summary.csv
+inflation_summary.csv
+irt_scale_analysis.json
+item_metadata.csv
+llama_dif_unmatched.csv
+lofo_results.csv
+lr_dif_item_results.csv
+metabench_cohort_analysis.csv
+metabench_ctt_stats.csv
+metabench_irt_params.csv
+metabench_irt_params_345678.csv
+metabench_model_accuracy.csv
+metabench_rl_models.csv
+metabench_rl_models_18eb0d.csv
+metabench_summary.json
+metabench_summary_646c62.json
+mf1_lofo_power_calibration.py
+mf2_stable_rho.csv
+mmlu_cf_analysis.json
+mmlu_cf_ground_truth.csv
+mmlu_li2024_proxy_labels.csv
+model_metadata.csv
+param_descriptives.csv
+permutation_null_results.csv
+plan_004_step1_gsm8k_temporal_dif.py
+plan_020_circularity_ablation.py
+power_calibration_results.csv
+q3_summary.csv
+q3_within_vs_cross.csv
+rank_shift_stats.json
+response_matrix.npz
+safe_features.csv
+sensitivity_results.csv
+target.csv
+theta_estimates.csv
+within_subject_dif_results.csv
+within_subject_dose_response.csv
+within_subject_injection_results.csv
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "1520d160-2f49-4d96-82f0-3f56558f6923",
+  "tool_use_result": {
+    "stdout": "benchmark_rho_summary.csv\nbootstrap_dfpr_results.csv\nbootstrap_dfpr_samples.csv\ncluster_bootstrap_ci.md\ncv_results.csv\ncv_results_25bbdb.csv\ndeff_results.csv\ndegradation_curves.csv\ndif_phase2_results.csv\ndif_power_results.csv\ndose_response_theta.csv\nenrichment_theta.csv\nfeature_importance.csv\nfeature_importance_1bd0a5.csv\nfeatures.csv\ngsm1k_dif_correlation.csv\ngsm1k_model_accuracy.csv\ngsm8k_dif_results.csv\ngsm8k_dose_response.csv\ngsm8k_dose_response_summary.csv\ngsm8k_ets_summary.csv\ninflation_summary.csv\nirt_scale_analysis.json\nitem_metadata.csv\nllama_dif_unmatched.csv\nlofo_results.csv\nlr_dif_item_results.csv\nmetabench_cohort_analysis.csv\nmetabench_ctt_stats.csv\nmetabench_irt_params.csv\nmetabench_irt_params_345678.csv\nmetabench_model_accuracy.csv\nmetabench_rl_models.csv\nmetabench_rl_models_18eb0d.csv\nmetabench_summary.json\nmetabench_summary_646c62.json\nmf1_lofo_power_calibration.py\nmf2_stable_rho.csv\nmmlu_cf_analysis.json\nmmlu_cf_ground_truth.csv\nmmlu_li2024_proxy_labels.csv\nmodel_metadata.csv\nparam_descriptives.csv\npermutation_null_results.csv\nplan_004_step1_gsm8k_temporal_dif.py\nplan_020_circularity_ablation.py\npower_calibration_results.csv\nq3_summary.csv\nq3_within_vs_cross.csv\nrank_shift_stats.json\nresponse_matrix.npz\nsafe_features.csv\nsensitivity_results.csv\ntarget.csv\ntheta_estimates.csv\nwithin_subject_dif_results.csv\nwithin_subject_dose_response.csv\nwithin_subject_injection_results.csv",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012tWCsFPcEbLqW5pmWc4yXM`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ | head -30",
+  "description": "List artifacts root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "4ec915a7-fb36-4eb4-ab4d-823bcd1a4874",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fx2WZgzLhsVQvPeuPDpWGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13393
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779489600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "218efd3c-a44b-407e-a10b-a2881cf8f456",
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T17:44:26.220Z_
+
+<details><summary>↩ Tool result · `toolu_012tWCsFPcEbLqW5pmWc4yXM`</summary>
+
+```text
+__pycache__
+_project
+artifacts_qc_report.md
+build_response_matrix.py
+dif_diagnostic.py
+dif_diagnostic_output.log
+dif_diagnostic_pvalue_dist.pdf
+dif_diagnostic_tpr_comparison.csv
+dif_phase2_param_distribution.pdf
+dif_phase2_power_curves.pdf
+dif_phase2_results.csv
+dif_phase2_simulation.py
+dif_power_curves.pdf
+dif_power_results.csv
+dif_power_simulation.py
+dream_reports
+experiment_summary.md
+irt_scale_analysis.json
+irt_scale_analysis.md
+item_metadata.csv
+literature_survey_d011.md
+lofo_robustness
+manifest.yaml
+metabench_cohort_analysis.csv
+metabench_ctt_stats.csv
+metabench_data
+metabench_data_summary.md
+metabench_explore.py
+metabench_model_accuracy.csv
+metabench_model_list.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "fc968cd8-e621-4e0d-a4b5-8a7d9df1fdeb",
+  "tool_use_result": {
+    "stdout": "__pycache__\n_project\nartifacts_qc_report.md\nbuild_response_matrix.py\ndif_diagnostic.py\ndif_diagnostic_output.log\ndif_diagnostic_pvalue_dist.pdf\ndif_diagnostic_tpr_comparison.csv\ndif_phase2_param_distribution.pdf\ndif_phase2_power_curves.pdf\ndif_phase2_results.csv\ndif_phase2_simulation.py\ndif_power_curves.pdf\ndif_power_results.csv\ndif_power_simulation.py\ndream_reports\nexperiment_summary.md\nirt_scale_analysis.json\nirt_scale_analysis.md\nitem_metadata.csv\nliterature_survey_d011.md\nlofo_robustness\nmanifest.yaml\nmetabench_cohort_analysis.csv\nmetabench_ctt_stats.csv\nmetabench_data\nmetabench_data_summary.md\nmetabench_explore.py\nmetabench_model_accuracy.csv\nmetabench_model_list.txt",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+发现有 `model_metadata.csv` 文件，先检查它。同时看看 `metabench_model_accuracy.csv` 和其他可能有模型类型信息的文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "f5ac9fc9-c0c3-472a-b043-92fd682a7f6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u2HcThjupMsoRHCguqqcq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1557,
+      "cache_read_input_tokens": 25234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1557
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SWev36BdHmfrGdUM9vT2gM`</summary>
+
+```json
+{
+  "command": "head -3 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/model_metadata.csv",
+  "description": "Check model_metadata columns"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "e41e81fa-eea2-4388-82d9-b1fadf0158ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u2HcThjupMsoRHCguqqcq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1557,
+      "cache_read_input_tokens": 25234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1557
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T17:44:30.505Z_
+
+<details><summary>↩ Tool result · `toolu_01SWev36BdHmfrGdUM9vT2gM`</summary>
+
+```text
+model_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile
+0-hero/Matter-0.1-7B,unknown,unknown,unknown,unknown,0.661225,other,3
+0-hero/Matter-0.1-7B-DPO-preview,,unknown,unknown,DPO,0.661337,other,3
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "c66883fa-13a4-4a0a-8ec4-483e2388467a",
+  "tool_use_result": {
+    "stdout": "model_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile\n0-hero/Matter-0.1-7B,unknown,unknown,unknown,unknown,0.661225,other,3\n0-hero/Matter-0.1-7B-DPO-preview,,unknown,unknown,DPO,0.661337,other,3",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Li5rgMB2i6ogig4eAcka2j`</summary>
+
+```json
+{
+  "command": "head -3 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/metabench_model_accuracy.csv",
+  "description": "Check model accuracy columns"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "7cf8b74c-8b74-4a4a-98ed-1c64aa55408b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u2HcThjupMsoRHCguqqcq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1557,
+      "cache_read_input_tokens": 25234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1557
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T17:44:31.419Z_
+
+<details><summary>↩ Tool result · `toolu_01Li5rgMB2i6ogig4eAcka2j`</summary>
+
+```text
+model,accuracy
+AA051611/O0201,0.9113367444835305
+AA051611/V0201,0.9023824752158619
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "7b40d0bf-b085-4c2d-8dc1-1ce813033ffb",
+  "tool_use_result": {
+    "stdout": "model,accuracy\nAA051611/O0201,0.9113367444835305\nAA051611/V0201,0.9023824752158619",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0156f4hkrYsfdpdeyAqpYDvK`</summary>
+
+```json
+{
+  "command": "head -3 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/metabench_cohort_analysis.csv",
+  "description": "Check cohort analysis columns"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "b5ffb2f4-7ba6-43f1-95f4-72cc2f6d9ade",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u2HcThjupMsoRHCguqqcq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1557,
+      "cache_read_input_tokens": 25234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1557
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T17:44:32.343Z_
+
+<details><summary>↩ Tool result · `toolu_0156f4hkrYsfdpdeyAqpYDvK`</summary>
+
+```text
+cohort,n_models,mean_accuracy,std_accuracy,sufficient_for_dif
+2021-H1,5,0.239702590342181,0.02251580568448245,False
+2022-H1,9,0.2349163202217247,0.019901996519650432,False
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "16cd53ff-35d8-480e-bdba-2243ea7e6000",
+  "tool_use_result": {
+    "stdout": "cohort,n_models,mean_accuracy,std_accuracy,sufficient_for_dif\n2021-H1,5,0.239702590342181,0.02251580568448245,False\n2022-H1,9,0.2349163202217247,0.019901996519650432,False",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SPhs2VfHpmXPqEzzqZcEeg`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/ 2>/dev/null",
+  "description": "List metabench_data directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "da05d0e2-7f9c-42fb-a0cb-20c4e85ba124",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u2HcThjupMsoRHCguqqcq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1557,
+      "cache_read_input_tokens": 25234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1557
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T17:44:32.874Z_
+
+<details><summary>↩ Tool result · `toolu_01SPhs2VfHpmXPqEzzqZcEeg`</summary>
+
+```text
+benchmark-data
+data.tgz
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "b7d0c385-6107-44c8-bdff-2bf43e897939",
+  "tool_use_result": {
+    "stdout": "benchmark-data\ndata.tgz",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+`model_metadata.csv` 有 `training_method` 列，这可能直接包含 base/instruct 信息。现在用 Python 做完整分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "b7eee09d-a984-4220-9b45-27f8e6ff930c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PBtDDzfR3bETiaD4dugQrp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 26791,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 925
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015RSSijyvoPjb8d1FFzqqTV`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport pandas as pd\nimport numpy as np\n\n# Step 1: Check all metadata files for explicit type fields\nmeta = pd.read_csv('artifacts/_project/data/model_metadata.csv')\nprint(\"=== model_metadata.csv ===\")\nprint(f\"Shape: {meta.shape}\")\nprint(f\"Columns: {list(meta.columns)}\")\nprint(f\"\\ntraining_method value_counts:\")\nprint(meta['training_method'].value_counts(dropna=False).head(20))\nprint(f\"\\nfamily value_counts (top 20):\")\nprint(meta['family'].value_counts(dropna=False).head(20))\nPYEOF",
+  "description": "Analyze model_metadata training_method field"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "28d2cff4-24cb-4cc0-8287-52f59a200791",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PBtDDzfR3bETiaD4dugQrp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 26791,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 925
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T17:44:39.470Z_
+
+<details><summary>↩ Tool result · `toolu_015RSSijyvoPjb8d1FFzqqTV`</summary>
+
+```text
+=== model_metadata.csv ===
+Shape: (5227, 8)
+Columns: ['model_name', 'family', 'release_year', 'release_half', 'training_method', 'accuracy', 'cohort_temporal', 'cohort_accuracy_quintile']
+
+training_method value_counts:
+training_method
+unknown    4676
+DPO         347
+SFT         136
+ORPO         52
+PPO          10
+KTO           6
+Name: count, dtype: int64
+
+family value_counts (top 20):
+family
+unknown        2882
+mistral         547
+llama-3         315
+NaN             220
+llama-2         161
+mixtral         120
+solar            91
+zephyr           86
+yi               72
+mistral-0.1      72
+gemma            72
+qwen-1.5         69
+phi-2            60
+orca             41
+gemma-2          36
+openchat         30
+vicuna           29
+neuralchat       28
+qwen             27
+orca-2           25
+Name: count, dtype: int64
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "731a9527-dc4f-42fd-b35e-a12dbcc0800c",
+  "tool_use_result": {
+    "stdout": "=== model_metadata.csv ===\nShape: (5227, 8)\nColumns: ['model_name', 'family', 'release_year', 'release_half', 'training_method', 'accuracy', 'cohort_temporal', 'cohort_accuracy_quintile']\n\ntraining_method value_counts:\ntraining_method\nunknown    4676\nDPO         347\nSFT         136\nORPO         52\nPPO          10\nKTO           6\nName: count, dtype: int64\n\nfamily value_counts (top 20):\nfamily\nunknown        2882\nmistral         547\nllama-3         315\nNaN             220\nllama-2         161\nmixtral         120\nsolar            91\nzephyr           86\nyi               72\nmistral-0.1      72\ngemma            72\nqwen-1.5         69\nphi-2            60\norca             41\ngemma-2          36\nopenchat         30\nvicuna           29\nneuralchat       28\nqwen             27\norca-2           25\nName: count, dtype: int64",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Sipo3cgGcizbaEMXFQVW3P`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport pandas as pd\nimport numpy as np\nimport re, os\n\n# Load data\nmeta = pd.read_csv('artifacts/_project/data/model_metadata.csv')\ncleaned = pd.read_csv('artifacts/plan_032_dif_cleaned_mmlu/cleaned_mmlu_analysis.csv')\n\n# ============================================\n# Step 2: Classify base vs instruct by name\n# ============================================\n\nINSTRUCT_PATTERNS = [\n    r'[-_.]instruct',\n    r'[-_.]chat',\n    r'[-_.]it\\b',     # gemma-7b-it\n    r'[-_.]rlhf',\n    r'[-_.]dpo',\n    r'[-_.]sft',\n    r'[-_.]aligned',\n    r'[-_.]ift',       # instruction fine-tuned\n    r'[-_.]hf-chat',\n    r'[-_.]gptq.*chat',\n    r'[-_.]awq.*chat',\n    r'[-_.]assistant',\n    r'[-_.]turbo',\n    r'[-_.]plus',      # some model variants\n]\n\n# Compile into single pattern (case insensitive)\ninstruct_re = re.compile('|'.join(INSTRUCT_PATTERNS), re.IGNORECASE)\n\n# Also check training_method for explicit alignment signals\nALIGNMENT_METHODS = {'DPO', 'SFT', 'ORPO', 'PPO', 'KTO'}\n\ndef classify_model(row):\n    name = str(row['model_name']).lower()\n    method = str(row.get('training_method', 'unknown'))\n    \n    # Rule 1: Explicit alignment training method → instruct\n    if method in ALIGNMENT_METHODS:\n        return 'instruct'\n    \n    # Rule 2: Name-based pattern matching\n    if instruct_re.search(name):\n        return 'instruct'\n    \n    # Rule 3: Check for common instruct model name patterns\n    # Some models use capitalized variants\n    name_orig = str(row['model_name'])\n    if any(kw in name_orig for kw in ['Instruct', 'Chat', '-it-', '-IT-']):\n        return 'instruct'\n    \n    # Check for specific known patterns\n    if re.search(r'\\b(it)\\b', name) and not re.search(r'(mit|kit|lit|bit|git|fit|sit|wit|hit)', name):\n        # \"it\" as a standalone word that's not part of another word\n        pass  # too ambiguous, skip\n    \n    return 'base'\n\nmeta['model_type'] = meta.apply(classify_model, axis=1)\n\n# ============================================\n# Step 3: Statistics\n# ============================================\nprint(\"=\" * 60)\nprint(\"OVERALL CLASSIFICATION\")\nprint(\"=\" * 60)\nprint(meta['model_type'].value_counts())\nprint()\n\n# Cross-tab with training_method\nprint(\"Classification × training_method:\")\nprint(pd.crosstab(meta['model_type'], meta['training_method'], margins=True))\nprint()\n\n# By cohort_temporal\nprint(\"=\" * 60)\nprint(\"BY COHORT_TEMPORAL\")\nprint(\"=\" * 60)\nct = pd.crosstab(meta['cohort_temporal'], meta['model_type'], margins=True)\nprint(ct)\nprint()\n\n# By family (top 20)\nprint(\"=\" * 60)\nprint(\"BY FAMILY (top 20 families)\")\nprint(\"=\" * 60)\ntop_fam = meta['family'].value_counts().head(20).index.tolist()\nfam_ct = pd.crosstab(meta[meta['family'].isin(top_fam)]['family'], \n                      meta[meta['family'].isin(top_fam)]['model_type'])\nfam_ct['total'] = fam_ct.sum(axis=1)\nfam_ct['instruct_pct'] = (fam_ct['instruct'] / fam_ct['total'] * 100).round(1)\nprint(fam_ct.sort_values('total', ascending=False).to_string())\nprint()\n\n# ============================================\n# Step 3b: Merge with cleaned analysis for cohort info\n# ============================================\n# cleaned has cohort_temporal too, use meta's\n# Focus on 2023-H2 (ref) and 2024-H1 (foc) cohorts\nprint(\"=\" * 60)\nprint(\"DIF-RELEVANT COHORTS (2023-H2 ref, 2024-H1 foc)\")\nprint(\"=\" * 60)\ndif_cohorts = meta[meta['cohort_temporal'].isin(['2023-H2', '2024-H1'])]\ndif_ct = pd.crosstab(dif_cohorts['cohort_temporal'], dif_cohorts['model_type'])\nprint(dif_ct)\nprint()\n\n# ============================================\n# Step 3c: Ambiguous cases - models that might be misclassified\n# ============================================\nprint(\"=\" * 60)\nprint(\"POTENTIAL AMBIGUOUS CASES\")\nprint(\"=\" * 60)\n\n# Models classified as base but have alignment-suggesting names\nbase_models = meta[meta['model_type'] == 'base']\nambiguous_patterns = ['finetun', 'align', 'tuned', 'merged', 'mix', 'gguf', 'gptq', 'awq', 'exl2']\nambiguous = []\nfor _, row in base_models.iterrows():\n    name_lower = row['model_name'].lower()\n    for pat in ambiguous_patterns:\n        if pat in name_lower:\n            ambiguous.append({'model_name': row['model_name'], 'reason': pat, 'family': row['family']})\n            break\n\nprint(f\"Base models with ambiguous patterns: {len(ambiguous)}\")\nif ambiguous:\n    amb_df = pd.DataFrame(ambiguous)\n    print(\"\\nSample ambiguous (first 15):\")\n    for _, r in amb_df.head(15).iterrows():\n        print(f\"  {r['model_name']} (reason: '{r['reason']}', family: {r['family']})\")\nprint()\n\n# Models classified as instruct but look like base\ninstruct_models = meta[meta['model_type'] == 'instruct']\nprint(f\"\\nSample instruct-classified models (first 10):\")\nfor _, r in instruct_models.head(10).iterrows():\n    print(f\"  {r['model_name']} (method: {r['training_method']}, family: {r['family']})\")\n\nprint(f\"\\nSample base-classified models (first 10):\")\nfor _, r in base_models.head(10).iterrows():\n    print(f\"  {r['model_name']} (method: {r['training_method']}, family: {r['family']})\")\n\nPYEOF",
+  "description": "Full classification and statistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "6a4801c7-ff9f-49a5-a08a-299d3a80c226",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uzsU9H8iLb8ZRR4e1kKWv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 27716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T17:45:08.771Z_
+
+<details><summary>↩ Tool result · `toolu_01Sipo3cgGcizbaEMXFQVW3P`</summary>
+
+```text
+============================================================
+OVERALL CLASSIFICATION
+============================================================
+model_type
+base        4100
+instruct    1127
+Name: count, dtype: int64
+
+Classification × training_method:
+training_method  DPO  KTO  ORPO  PPO  SFT  unknown   All
+model_type                                              
+base               0    0     0    0    0     4100  4100
+instruct         347    6    52   10  136      576  1127
+All              347    6    52   10  136     4676  5227
+
+============================================================
+BY COHORT_TEMPORAL
+============================================================
+model_type       base  instruct   All
+cohort_temporal                      
+2023              837       243  1080
+2024              517       290   807
+other            2746       594  3340
+All              4100      1127  5227
+
+============================================================
+BY FAMILY (top 20 families)
+============================================================
+model_type   base  instruct  total  instruct_pct
+family                                          
+unknown      2651       231   2882           8.0
+mistral       443       104    547          19.0
+llama-3       184       131    315          41.6
+llama-2       108        53    161          32.9
+mixtral       100        20    120          16.7
+solar          55        36     91          39.6
+zephyr         42        44     86          51.2
+gemma          55        17     72          23.6
+yi             65         7     72           9.7
+mistral-0.1     6        66     72          91.7
+qwen-1.5       41        28     69          40.6
+phi-2          50        10     60          16.7
+orca           33         8     41          19.5
+gemma-2        17        19     36          52.8
+openchat       26         4     30          13.3
+vicuna         29         0     29           0.0
+neuralchat      0        28     28         100.0
+qwen           22         5     27          18.5
+orca-2         22         3     25          12.0
+deepseek       14        10     24          41.7
+
+============================================================
+DIF-RELEVANT COHORTS (2023-H2 ref, 2024-H1 foc)
+============================================================
+Empty DataFrame
+Columns: []
+Index: []
+
+============================================================
+POTENTIAL AMBIGUOUS CASES
+============================================================
+Base models with ambiguous patterns: 234
+
+Sample ambiguous (first 15):
+  4season/alignment-model-test10 (reason: 'align', family: unknown)
+  4season/alignment-model-test3 (reason: 'align', family: unknown)
+  4season/alignment-model-test9 (reason: 'align', family: unknown)
+  4season/alignment_model_test (reason: 'align', family: unknown)
+  AIGeekLabs/radiantloom-mixtral-8x7b-fusion (reason: 'mix', family: mixtral)
+  Aryanne/MixSwap (reason: 'mix', family: unknown)
+  Aryanne/TinyllamaMix-1.1B (reason: 'mix', family: unknown)
+  BEE-spoke-data/Mixtral-GQA-400m-v2 (reason: 'mix', family: mixtral)
+  BelalTab/finetuned-llama2-2048-v3.0 (reason: 'finetun', family: llama-2)
+  ChaoticNeutrals/Eris_Remix_7B (reason: 'mix', family: unknown)
+  ChaoticNeutrals/RPMix-4x7B-MoE (reason: 'mix', family: unknown)
+  Charlie911/vicuna-7b-v1.5-general-temporal-merged (reason: 'merged', family: vicuna)
+  Charlie911/vicuna-7b-v1.5-lora-mmlu-merged (reason: 'merged', family: vicuna)
+  Charlie911/zephyr-7b-beta-MultiLoRA-mmlu-merged (reason: 'merged', family: zephyr)
+  Charlie911/zephyr-7b-beta-lora-mmlu-merged (reason: 'merged', family: zephyr)
+
+
+Sample instruct-classified models (first 10):
+  0-hero/Matter-0.1-7B-DPO-preview (method: DPO, family: nan)
+  0-hero/Matter-0.1-7B-boost-DPO (method: DPO, family: nan)
+  0-hero/Matter-0.1-7B-boost-DPO-preview (method: DPO, family: nan)
+  0-hero/Matter-0.1-Slim-7B-C-DPO (method: DPO, family: nan)
+  0-hero/Matter-0.2-7B-DPO (method: DPO, family: nan)
+  01-ai/Yi-1.5-34B-Chat (method: unknown, family: yi-1.5)
+  01-ai/Yi-1.5-34B-Chat-16K (method: unknown, family: yi-1.5)
+  01-ai/Yi-1.5-6B-Chat (method: unknown, family: yi-1.5)
+  01-ai/Yi-1.5-9B-Chat (method: unknown, family: yi-1.5)
+  01-ai/Yi-1.5-9B-Chat-16K (method: unknown, family: yi-1.5)
+
+Sample base-classified models (first 10):
+  0-hero/Matter-0.1-7B (method: unknown, family: unknown)
+  0-hero/Matter-0.1-7B-boost (method: unknown, family: unknown)
+  0-hero/Matter-0.1-Slim-7B (method: unknown, family: unknown)
+  0-hero/Matter-0.1-Slim-7B-A (method: unknown, family: unknown)
+  0-hero/Matter-0.1-Slim-7B-B (method: unknown, family: unknown)
+  0-hero/Matter-0.1-Slim-7B-C (method: unknown, family: unknown)
+  0-hero/Matter-0.1-Slim-7B-preview (method: unknown, family: unknown)
+  0-hero/Matter-0.2-32B (method: unknown, family: unknown)
+  0-hero/Matter-0.2-7B (method: unknown, family: unknown)
+  01-ai/Yi-1.5-34B (method: unknown, family: yi-1.5)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "a8ebdb07-4d46-4f1d-97ff-a858fc60821e",
+  "tool_use_result": {
+    "stdout": "============================================================\nOVERALL CLASSIFICATION\n============================================================\nmodel_type\nbase        4100\ninstruct    1127\nName: count, dtype: int64\n\nClassification × training_method:\ntraining_method  DPO  KTO  ORPO  PPO  SFT  unknown   All\nmodel_type                                              \nbase               0    0     0    0    0     4100  4100\ninstruct         347    6    52   10  136      576  1127\nAll              347    6    52   10  136     4676  5227\n\n============================================================\nBY COHORT_TEMPORAL\n============================================================\nmodel_type       base  instruct   All\ncohort_temporal                      \n2023              837       243  1080\n2024              517       290   807\nother            2746       594  3340\nAll              4100      1127  5227\n\n============================================================\nBY FAMILY (top 20 families)\n============================================================\nmodel_type   base  instruct  total  instruct_pct\nfamily                                          \nunknown      2651       231   2882           8.0\nmistral       443       104    547          19.0\nllama-3       184       131    315          41.6\nllama-2       108        53    161          32.9\nmixtral       100        20    120          16.7\nsolar          55        36     91          39.6\nzephyr         42        44     86          51.2\ngemma          55        17     72          23.6\nyi             65         7     72           9.7\nmistral-0.1     6        66     72          91.7\nqwen-1.5       41        28     69          40.6\nphi-2          50        10     60          16.7\norca           33         8     41          19.5\ngemma-2        17        19     36          52.8\nopenchat       26         4     30          13.3\nvicuna         29         0     29           0.0\nneuralchat      0        28     28         100.0\nqwen           22         5     27          18.5\norca-2         22         3     25          12.0\ndeepseek       14        10     24          41.7\n\n============================================================\nDIF-RELEVANT COHORTS (2023-H2 ref, 2024-H1 foc)\n============================================================\nEmpty DataFrame\nColumns: []\nIndex: []\n\n============================================================\nPOTENTIAL AMBIGUOUS CASES\n============================================================\nBase models with ambiguous patterns: 234\n\nSample ambiguous (first 15):\n  4season/alignment-model-test10 (reason: 'align', family: unknown)\n  4season/alignment-model-test3 (reason: 'align', family: unknown)\n  4season/alignment-model-test9 (reason: 'align', family: unknown)\n  4season/alignment_model_test (reason: 'align', family: unknown)\n  AIGeekLabs/radiantloom-mixtral-8x7b-fusion (reason: 'mix', family: mixtral)\n  Aryanne/MixSwap (reason: 'mix', family: unknown)\n  Aryanne/TinyllamaMix-1.1B (reason: 'mix', family: unknown)\n  BEE-spoke-data/Mixtral-GQA-400m-v2 (reason: 'mix', family: mixtral)\n  BelalTab/finetuned-llama2-2048-v3.0 (reason: 'finetun', family: llama-2)\n  ChaoticNeutrals/Eris_Remix_7B (reason: 'mix', family: unknown)\n  ChaoticNeutrals/RPMix-4x7B-MoE (reason: 'mix', family: unknown)\n  Charlie911/vicuna-7b-v1.5-general-temporal-merged (reason: 'merged', family: vicuna)\n  Charlie911/vicuna-7b-v1.5-lora-mmlu-merged (reason: 'merged', family: vicuna)\n  Charlie911/zephyr-7b-beta-MultiLoRA-mmlu-merged (reason: 'merged', family: zephyr)\n  Charlie911/zephyr-7b-beta-lora-mmlu-merged (reason: 'merged', family: zephyr)\n\n\nSample instruct-classified models (first 10):\n  0-hero/Matter-0.1-7B-DPO-preview (method: DPO, family: nan)\n  0-hero/Matter-0.1-7B-boost-DPO (method: DPO, family: nan)\n  0-hero/Matter-0.1-7B-boost-DPO-preview (method: DPO, family: nan)\n  0-hero/Matter-0.1-Slim-7B-C-DPO (method: DPO, family: nan)\n  0-hero/Matter-0.2-7B-DPO (method: DPO, family: nan)\n  01-ai/Yi-1.5-34B-Chat (method: unknown, family: yi-1.5)\n  01-ai/Yi-1.5-34B-Chat-16K (method: unknown, family: yi-1.5)\n  01-ai/Yi-1.5-6B-Chat (method: unknown, family: yi-1.5)\n  01-ai/Yi-1.5-9B-Chat (method: unknown, family: yi-1.5)\n  01-ai/Yi-1.5-9B-Chat-16K (method: unknown, family: yi-1.5)\n\nSample base-classified models (first 10):\n  0-hero/Matter-0.1-7B (method: unknown, family: unknown)\n  0-hero/Matter-0.1-7B-boost (method: unknown, family: unknown)\n  0-hero/Matter-0.1-Slim-7B (method: unknown, family: unknown)\n  0-hero/Matter-0.1-Slim-7B-A (method: unknown, family: unknown)\n  0-hero/Matter-0.1-Slim-7B-B (method: unknown, family: unknown)\n  0-hero/Matter-0.1-Slim-7B-C (method: unknown, family: unknown)\n  0-hero/Matter-0.1-Slim-7B-preview (method: unknown, family: unknown)\n  0-hero/Matter-0.2-32B (method: unknown, family: unknown)\n  0-hero/Matter-0.2-7B (method: unknown, family: unknown)\n  01-ai/Yi-1.5-34B (method: unknown, family: yi-1.5)",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+cohort_temporal 用的是 `2023`/`2024`/`other` 而不是 `2023-H2`/`2024-H1`。让我修正并完成可行性评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "e23cd6fc-1981-47c2-b2bb-127379866ff2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lm2R4wnyHfawFT1szhu5pJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3456,
+      "cache_read_input_tokens": 28287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3456
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019DbyEEYFXhUhDCwU9FCPRh`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport pandas as pd\nimport numpy as np\nimport re\n\nmeta = pd.read_csv('artifacts/_project/data/model_metadata.csv')\n\n# --- Classification (same as before) ---\nINSTRUCT_PATTERNS = [\n    r'[-_.]instruct', r'[-_.]chat', r'[-_.]it\\b', r'[-_.]rlhf',\n    r'[-_.]dpo', r'[-_.]sft', r'[-_.]aligned', r'[-_.]ift',\n    r'[-_.]assistant', r'[-_.]turbo',\n]\ninstruct_re = re.compile('|'.join(INSTRUCT_PATTERNS), re.IGNORECASE)\nALIGNMENT_METHODS = {'DPO', 'SFT', 'ORPO', 'PPO', 'KTO'}\n\ndef classify_model(row):\n    name = str(row['model_name'])\n    method = str(row.get('training_method', 'unknown'))\n    if method in ALIGNMENT_METHODS:\n        return 'instruct'\n    if instruct_re.search(name):\n        return 'instruct'\n    if any(kw in name for kw in ['Instruct', 'Chat', '-IT-', '-it-']):\n        return 'instruct'\n    return 'base'\n\nmeta['model_type'] = meta.apply(classify_model, axis=1)\n\n# --- Step 4: MH-DIF feasibility ---\nprint(\"=\" * 60)\nprint(\"MH-DIF FEASIBILITY: base×cohort sub-groups\")\nprint(\"=\" * 60)\n\n# What cohort values exist?\nprint(f\"\\ncohort_temporal unique: {meta['cohort_temporal'].unique()}\")\n\n# For DIF we used 2023 as ref, 2024 as foc\nsubgroups = meta[meta['cohort_temporal'].isin(['2023', '2024'])].groupby(\n    ['cohort_temporal', 'model_type']).size().unstack(fill_value=0)\nprint(\"\\nSub-group sizes (cohort × model_type):\")\nprint(subgroups)\nprint()\n\nmin_n = 80\nfor cohort in ['2023', '2024']:\n    for mtype in ['base', 'instruct']:\n        n = subgroups.loc[cohort, mtype] if cohort in subgroups.index and mtype in subgroups.columns else 0\n        status = \"✓ OK\" if n >= min_n else \"✗ UNDERPOWERED\"\n        print(f\"  {cohort}-{mtype}: n={n}  {status}\")\n\n# --- Also check: what if we split \"other\" by type? ---\nprint(\"\\n\" + \"=\" * 60)\nprint(\"ALL cohorts × model_type\")\nprint(\"=\" * 60)\nfull_ct = pd.crosstab(meta['cohort_temporal'], meta['model_type'], margins=True)\nprint(full_ct)\n\n# --- Paired base-instruct models (same family, same base name) ---\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PAIRED BASE-INSTRUCT WITHIN FAMILIES\")\nprint(\"=\" * 60)\n\n# Find families that have both base and instruct\nfam_types = meta[meta['family'].notna() & (meta['family'] != 'unknown')].groupby('family')['model_type'].apply(set)\npaired_fam = fam_types[fam_types.apply(lambda x: 'base' in x and 'instruct' in x)]\nprint(f\"Families with BOTH base and instruct: {len(paired_fam)}\")\nfor fam in sorted(paired_fam.index)[:15]:\n    sub = meta[meta['family'] == fam]\n    nb = (sub['model_type'] == 'base').sum()\n    ni = (sub['model_type'] == 'instruct').sum()\n    print(f\"  {fam}: base={nb}, instruct={ni}\")\n\n# --- Accuracy distribution by type ---\nprint(\"\\n\" + \"=\" * 60)\nprint(\"ACCURACY STATS BY MODEL_TYPE\")\nprint(\"=\" * 60)\nfor mtype in ['base', 'instruct']:\n    sub = meta[meta['model_type'] == mtype]['accuracy']\n    print(f\"  {mtype}: n={len(sub)}, mean={sub.mean():.4f}, median={sub.median():.4f}, std={sub.std():.4f}\")\n\n# For DIF cohorts\nfor cohort in ['2023', '2024']:\n    for mtype in ['base', 'instruct']:\n        sub = meta[(meta['cohort_temporal'] == cohort) & (meta['model_type'] == mtype)]['accuracy']\n        if len(sub) > 0:\n            print(f\"  {cohort}-{mtype}: n={len(sub)}, mean={sub.mean():.4f}, median={sub.median():.4f}\")\n\nPYEOF",
+  "description": "DIF feasibility analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "25597e8c-3b0c-41a5-9e5c-b66739330ad0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lm2R4wnyHfawFT1szhu5pJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3456,
+      "cache_read_input_tokens": 28287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3456
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T17:45:29.039Z_
+
+<details><summary>↩ Tool result · `toolu_019DbyEEYFXhUhDCwU9FCPRh`</summary>
+
+```text
+============================================================
+MH-DIF FEASIBILITY: base×cohort sub-groups
+============================================================
+
+cohort_temporal unique: &lt;ArrowStringArray>
+['other', '2024', '2023']
+Length: 3, dtype: str
+
+Sub-group sizes (cohort × model_type):
+model_type       base  instruct
+cohort_temporal                
+2023              838       242
+2024              518       289
+
+  2023-base: n=838  ✓ OK
+  2023-instruct: n=242  ✓ OK
+  2024-base: n=518  ✓ OK
+  2024-instruct: n=289  ✓ OK
+
+============================================================
+ALL cohorts × model_type
+============================================================
+model_type       base  instruct   All
+cohort_temporal                      
+2023              838       242  1080
+2024              518       289   807
+other            2753       587  3340
+All              4109      1118  5227
+
+============================================================
+PAIRED BASE-INSTRUCT WITHIN FAMILIES
+============================================================
+Families with BOTH base and instruct: 32
+  abel: base=5, instruct=1
+  amber: base=9, instruct=1
+  codellama: base=8, instruct=2
+  command-r: base=2, instruct=1
+  dbrx: base=1, instruct=1
+  deepseek: base=14, instruct=10
+  falcon: base=18, instruct=3
+  gemma: base=55, instruct=17
+  gemma-2: base=17, instruct=19
+  internlm-2: base=11, instruct=3
+  llama-2: base=108, instruct=53
+  llama-3: base=184, instruct=131
+  mistral: base=444, instruct=103
+  mistral-0.1: base=6, instruct=66
+  mixtral: base=100, instruct=20
+
+============================================================
+ACCURACY STATS BY MODEL_TYPE
+============================================================
+  base: n=4109, mean=0.5938, median=0.6641, std=0.1611
+  instruct: n=1118, mean=0.5820, median=0.6461, std=0.1598
+  2023-base: n=838, mean=0.5930, median=0.6379
+  2023-instruct: n=242, mean=0.5412, median=0.6077
+  2024-base: n=518, mean=0.5980, median=0.6684
+  2024-instruct: n=289, mean=0.6226, median=0.6773
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "d75bb605-1e31-4017-9e29-be908a1178c0",
+  "tool_use_result": {
+    "stdout": "============================================================\nMH-DIF FEASIBILITY: base×cohort sub-groups\n============================================================\n\ncohort_temporal unique: &lt;ArrowStringArray>\n['other', '2024', '2023']\nLength: 3, dtype: str\n\nSub-group sizes (cohort × model_type):\nmodel_type       base  instruct\ncohort_temporal                \n2023              838       242\n2024              518       289\n\n  2023-base: n=838  ✓ OK\n  2023-instruct: n=242  ✓ OK\n  2024-base: n=518  ✓ OK\n  2024-instruct: n=289  ✓ OK\n\n============================================================\nALL cohorts × model_type\n============================================================\nmodel_type       base  instruct   All\ncohort_temporal                      \n2023              838       242  1080\n2024              518       289   807\nother            2753       587  3340\nAll              4109      1118  5227\n\n============================================================\nPAIRED BASE-INSTRUCT WITHIN FAMILIES\n============================================================\nFamilies with BOTH base and instruct: 32\n  abel: base=5, instruct=1\n  amber: base=9, instruct=1\n  codellama: base=8, instruct=2\n  command-r: base=2, instruct=1\n  dbrx: base=1, instruct=1\n  deepseek: base=14, instruct=10\n  falcon: base=18, instruct=3\n  gemma: base=55, instruct=17\n  gemma-2: base=17, instruct=19\n  internlm-2: base=11, instruct=3\n  llama-2: base=108, instruct=53\n  llama-3: base=184, instruct=131\n  mistral: base=444, instruct=103\n  mistral-0.1: base=6, instruct=66\n  mixtral: base=100, instruct=20\n\n============================================================\nACCURACY STATS BY MODEL_TYPE\n============================================================\n  base: n=4109, mean=0.5938, median=0.6641, std=0.1611\n  instruct: n=1118, mean=0.5820, median=0.6461, std=0.1598\n  2023-base: n=838, mean=0.5930, median=0.6379\n  2023-instruct: n=242, mean=0.5412, median=0.6077\n  2024-base: n=518, mean=0.5980, median=0.6684\n  2024-instruct: n=289, mean=0.6226, median=0.6773",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+数据充足。现在生成输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "bd86bac1-c82c-417b-8892-9530f54be930",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q94B8N2h1aD5qVYdNip7BQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2031,
+      "cache_read_input_tokens": 31743,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2031
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CVTJpfPvwzv2sCPWmo8Tze`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_instruct_survey",
+  "description": "Create output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "2a48aa63-673b-4620-ab7f-f05ac25d4933",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q94B8N2h1aD5qVYdNip7BQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2031,
+      "cache_read_input_tokens": 31743,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2031
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T17:45:33.778Z_
+
+<details><summary>↩ Tool result · `toolu_01CVTJpfPvwzv2sCPWmo8Tze`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "e3972f6a-709f-4261-930c-70cd3f07baf4",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AdThGo88ZQaFKfSZD86fsp`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport pandas as pd\nimport numpy as np\nimport re\n\nmeta = pd.read_csv('artifacts/_project/data/model_metadata.csv')\n\n# Classification\nINSTRUCT_PATTERNS = [\n    r'[-_.]instruct', r'[-_.]chat', r'[-_.]it\\b', r'[-_.]rlhf',\n    r'[-_.]dpo', r'[-_.]sft', r'[-_.]aligned', r'[-_.]ift',\n    r'[-_.]assistant', r'[-_.]turbo',\n]\ninstruct_re = re.compile('|'.join(INSTRUCT_PATTERNS), re.IGNORECASE)\nALIGNMENT_METHODS = {'DPO', 'SFT', 'ORPO', 'PPO', 'KTO'}\n\ndef classify_model(row):\n    name = str(row['model_name'])\n    method = str(row.get('training_method', 'unknown'))\n    if method in ALIGNMENT_METHODS:\n        return 'instruct'\n    if instruct_re.search(name):\n        return 'instruct'\n    if any(kw in name for kw in ['Instruct', 'Chat', '-IT-', '-it-']):\n        return 'instruct'\n    return 'base'\n\ndef classify_reason(row):\n    name = str(row['model_name'])\n    method = str(row.get('training_method', 'unknown'))\n    if method in ALIGNMENT_METHODS:\n        return f'training_method={method}'\n    if instruct_re.search(name):\n        return 'name_pattern'\n    if any(kw in name for kw in ['Instruct', 'Chat', '-IT-', '-it-']):\n        return 'name_keyword'\n    return 'default_base'\n\nmeta['model_type'] = meta.apply(classify_model, axis=1)\nmeta['classification_reason'] = meta.apply(classify_reason, axis=1)\n\n# Save CSV\nout = meta[['model_name', 'family', 'cohort_temporal', 'training_method', 'accuracy', 'model_type', 'classification_reason']]\nout.to_csv('artifacts/r18_base_instruct_survey/model_type_classification.csv', index=False)\nprint(f\"Saved classification CSV: {len(out)} rows\")\nprint(f\"\\nClassification reason breakdown:\")\nprint(out['classification_reason'].value_counts())\nPYEOF",
+  "description": "Generate classification CSV"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "5c7c5647-b621-409a-89ac-aef655aeb848",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014q8UQAsQWZVkyWMtUvXrMe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 150,
+      "cache_read_input_tokens": 33774,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 150
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T17:45:43.202Z_
+
+<details><summary>↩ Tool result · `toolu_01AdThGo88ZQaFKfSZD86fsp`</summary>
+
+```text
+Saved classification CSV: 5227 rows
+
+Classification reason breakdown:
+classification_reason
+default_base            4109
+name_pattern             511
+training_method=DPO      347
+training_method=SFT      136
+name_keyword              56
+training_method=ORPO      52
+training_method=PPO       10
+training_method=KTO        6
+Name: count, dtype: int64
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "13c8c5bd-b1eb-46c6-b8cf-3a7b484a4b25",
+  "tool_use_result": {
+    "stdout": "Saved classification CSV: 5227 rows\n\nClassification reason breakdown:\nclassification_reason\ndefault_base            4109\nname_pattern             511\ntraining_method=DPO      347\ntraining_method=SFT      136\nname_keyword              56\ntraining_method=ORPO      52\ntraining_method=PPO       10\ntraining_method=KTO        6\nName: count, dtype: int64",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01PQz6igxmvbojzzSNgoMMmC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_instruct_survey/base_instruct_survey.md",
+  "content": "# R18: Base vs Instruct Model Classification Survey\n\n## 1. Existing Metadata\n\n`model_metadata.csv` (5,227 models) contains a `training_method` column with values:\n\n| training_method | count |\n|---|---|\n| unknown | 4,676 |\n| DPO | 347 |\n| SFT | 136 |\n| ORPO | 52 |\n| PPO | 10 |\n| KTO | 6 |\n\nNo explicit `is_base` / `is_instruct` field exists. The `training_method` field identifies 551 instruct/aligned models (10.5%), but 89.5% are `unknown`.\n\n## 2. Heuristic Classification\n\nTwo-signal approach:\n1. **training_method**: DPO/SFT/ORPO/PPO/KTO → instruct\n2. **Name patterns** (case-insensitive): `-instruct`, `-chat`, `-it` (word boundary), `-rlhf`, `-dpo`, `-sft`, `-aligned`, `-ift`, `-assistant`, `-turbo`\n\n| model_type | count | pct |\n|---|---|---|\n| base | 4,109 | 78.6% |\n| instruct | 1,118 | 21.4% |\n\nClassification reason breakdown:\n\n| reason | count |\n|---|---|\n| default_base (no instruct signal) | 4,109 |\n| name_pattern (regex match) | 511 |\n| training_method (explicit) | 551 |\n| name_keyword (Instruct/Chat/IT) | 56 |\n\n**Known limitations**: The 4,109 \"base\" models include fine-tuned/merged models that lack instruct keywords (e.g., `alignment-model-test`, `*-merged`, `*-mix`). Approximately 234 base-classified models have ambiguous patterns (`finetun`, `align`, `merged`, `mix`, `gguf`, `gptq`, `awq`). Most of these are quantized variants (GGUF/GPTQ/AWQ) which preserve the original model's type, so the misclassification risk is moderate but not zero.\n\n## 3. Sub-group Sizes\n\n### By Cohort\n\n| cohort | base | instruct | total |\n|---|---|---|---|\n| 2023 (ref) | 838 | 242 | 1,080 |\n| 2024 (foc) | 518 | 289 | 807 |\n| other | 2,753 | 587 | 3,340 |\n| **All** | **4,109** | **1,118** | **5,227** |\n\n### DIF Sub-groups (cohort × model_type)\n\n| sub-group | n | ≥80 threshold |\n|---|---|---|\n| 2023-base | 838 | pass |\n| 2023-instruct | 242 | pass |\n| 2024-base | 518 | pass |\n| 2024-instruct | 289 | pass |\n\nAll four sub-groups far exceed the minimum n=80 for MH-DIF.\n\n### By Family (families with both base and instruct)\n\n32 families have both base and instruct variants. Top families:\n\n| family | base | instruct | instruct% |\n|---|---|---|---|\n| mistral | 444 | 103 | 19.0% |\n| llama-3 | 184 | 131 | 41.6% |\n| llama-2 | 108 | 53 | 32.9% |\n| mixtral | 100 | 20 | 16.7% |\n| gemma | 55 | 17 | 23.6% |\n| gemma-2 | 17 | 19 | 52.8% |\n| deepseek | 14 | 10 | 41.7% |\n\n## 4. Accuracy Distributions\n\n| group | n | mean | median |\n|---|---|---|---|\n| base (all) | 4,109 | 0.594 | 0.664 |\n| instruct (all) | 1,118 | 0.582 | 0.646 |\n| 2023-base | 838 | 0.593 | 0.638 |\n| 2023-instruct | 242 | 0.541 | 0.608 |\n| 2024-base | 518 | 0.598 | 0.668 |\n| 2024-instruct | 289 | 0.623 | 0.677 |\n\nNotable: In 2024, instruct models are slightly higher-performing than base models (mean 0.623 vs 0.598), while in 2023 the pattern reverses (0.541 vs 0.593). This ability-level difference is important for DIF matching.\n\n## 5. MH-DIF Feasibility Assessment\n\n**Verdict: Feasible, with caveats.**\n\n**Strengths:**\n- All four sub-groups (base/instruct × 2023/2024) have n ≥ 200, well above the n=80 minimum\n- 32 families have both base and instruct variants, enabling within-family controls\n- The `training_method` field provides ground-truth labels for 551 models\n\n**Caveats:**\n- 78.6% of models are classified as \"base\" by default (no instruct signal detected). Some fraction of these are actually fine-tuned/instruction-tuned models that lack standard naming conventions\n- Accuracy distributions differ between base and instruct groups, especially in 2023 cohort. MH-DIF requires ability matching — the theta-stratification in our existing pipeline handles this, but the base/instruct imbalance means some strata may be dominated by one type\n- The \"other\" cohort (n=3,340) is excluded from temporal DIF but could be used for a base-vs-instruct DIF analysis ignoring temporal effects\n\n**Possible experimental designs:**\n1. **3-way DIF**: cohort(2023/2024) × model_type(base/instruct) as grouping variable — tests whether contamination DIF differs for base vs instruct models\n2. **Within-family paired analysis**: For families with both variants (e.g., Llama-3), compare DIF item flags between base and instruct sub-populations\n3. **Conservative subset**: Use only the 551 models with explicit training_method labels + name-matched base counterparts for higher-confidence classification\n\n## 6. Output Files\n\n- `model_type_classification.csv`: Full classification with columns `model_name, family, cohort_temporal, training_method, accuracy, model_type, classification_reason`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "84826a3e-d2f5-49bf-834a-c242f14af7cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011md7Vn44QgUNfZfeeu6iTF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 800,
+      "cache_read_input_tokens": 33924,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 800
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T17:46:14.306Z_
+
+<details><summary>↩ Tool result · `toolu_01PQz6igxmvbojzzSNgoMMmC`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_instruct_survey/base_instruct_survey.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "ceddc3f8-2404-4fab-b73f-c94faed09446",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r18_base_instruct_survey/base_instruct_survey.md",
+    "content": "# R18: Base vs Instruct Model Classification Survey\n\n## 1. Existing Metadata\n\n`model_metadata.csv` (5,227 models) contains a `training_method` column with values:\n\n| training_method | count |\n|---|---|\n| unknown | 4,676 |\n| DPO | 347 |\n| SFT | 136 |\n| ORPO | 52 |\n| PPO | 10 |\n| KTO | 6 |\n\nNo explicit `is_base` / `is_instruct` field exists. The `training_method` field identifies 551 instruct/aligned models (10.5%), but 89.5% are `unknown`.\n\n## 2. Heuristic Classification\n\nTwo-signal approach:\n1. **training_method**: DPO/SFT/ORPO/PPO/KTO → instruct\n2. **Name patterns** (case-insensitive): `-instruct`, `-chat`, `-it` (word boundary), `-rlhf`, `-dpo`, `-sft`, `-aligned`, `-ift`, `-assistant`, `-turbo`\n\n| model_type | count | pct |\n|---|---|---|\n| base | 4,109 | 78.6% |\n| instruct | 1,118 | 21.4% |\n\nClassification reason breakdown:\n\n| reason | count |\n|---|---|\n| default_base (no instruct signal) | 4,109 |\n| name_pattern (regex match) | 511 |\n| training_method (explicit) | 551 |\n| name_keyword (Instruct/Chat/IT) | 56 |\n\n**Known limitations**: The 4,109 \"base\" models include fine-tuned/merged models that lack instruct keywords (e.g., `alignment-model-test`, `*-merged`, `*-mix`). Approximately 234 base-classified models have ambiguous patterns (`finetun`, `align`, `merged`, `mix`, `gguf`, `gptq`, `awq`). Most of these are quantized variants (GGUF/GPTQ/AWQ) which preserve the original model's type, so the misclassification risk is moderate but not zero.\n\n## 3. Sub-group Sizes\n\n### By Cohort\n\n| cohort | base | instruct | total |\n|---|---|---|---|\n| 2023 (ref) | 838 | 242 | 1,080 |\n| 2024 (foc) | 518 | 289 | 807 |\n| other | 2,753 | 587 | 3,340 |\n| **All** | **4,109** | **1,118** | **5,227** |\n\n### DIF Sub-groups (cohort × model_type)\n\n| sub-group | n | ≥80 threshold |\n|---|---|---|\n| 2023-base | 838 | pass |\n| 2023-instruct | 242 | pass |\n| 2024-base | 518 | pass |\n| 2024-instruct | 289 | pass |\n\nAll four sub-groups far exceed the minimum n=80 for MH-DIF.\n\n### By Family (families with both base and instruct)\n\n32 families have both base and instruct variants. Top families:\n\n| family | base | instruct | instruct% |\n|---|---|---|---|\n| mistral | 444 | 103 | 19.0% |\n| llama-3 | 184 | 131 | 41.6% |\n| llama-2 | 108 | 53 | 32.9% |\n| mixtral | 100 | 20 | 16.7% |\n| gemma | 55 | 17 | 23.6% |\n| gemma-2 | 17 | 19 | 52.8% |\n| deepseek | 14 | 10 | 41.7% |\n\n## 4. Accuracy Distributions\n\n| group | n | mean | median |\n|---|---|---|---|\n| base (all) | 4,109 | 0.594 | 0.664 |\n| instruct (all) | 1,118 | 0.582 | 0.646 |\n| 2023-base | 838 | 0.593 | 0.638 |\n| 2023-instruct | 242 | 0.541 | 0.608 |\n| 2024-base | 518 | 0.598 | 0.668 |\n| 2024-instruct | 289 | 0.623 | 0.677 |\n\nNotable: In 2024, instruct models are slightly higher-performing than base models (mean 0.623 vs 0.598), while in 2023 the pattern reverses (0.541 vs 0.593). This ability-level difference is important for DIF matching.\n\n## 5. MH-DIF Feasibility Assessment\n\n**Verdict: Feasible, with caveats.**\n\n**Strengths:**\n- All four sub-groups (base/instruct × 2023/2024) have n ≥ 200, well above the n=80 minimum\n- 32 families have both base and instruct variants, enabling within-family controls\n- The `training_method` field provides ground-truth labels for 551 models\n\n**Caveats:**\n- 78.6% of models are classified as \"base\" by default (no instruct signal detected). Some fraction of these are actually fine-tuned/instruction-tuned models that lack standard naming conventions\n- Accuracy distributions differ between base and instruct groups, especially in 2023 cohort. MH-DIF requires ability matching — the theta-stratification in our existing pipeline handles this, but the base/instruct imbalance means some strata may be dominated by one type\n- The \"other\" cohort (n=3,340) is excluded from temporal DIF but could be used for a base-vs-instruct DIF analysis ignoring temporal effects\n\n**Possible experimental designs:**\n1. **3-way DIF**: cohort(2023/2024) × model_type(base/instruct) as grouping variable — tests whether contamination DIF differs for base vs instruct models\n2. **Within-family paired analysis**: For families with both variants (e.g., Llama-3), compare DIF item flags between base and instruct sub-populations\n3. **Conservative subset**: Use only the 551 models with explicit training_method labels + name-matched base counterparts for higher-confidence classification\n\n## 6. Output Files\n\n- `model_type_classification.csv`: Full classification with columns `model_name, family, cohort_temporal, training_method, accuracy, model_type, classification_reason`\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+调研完成。核心发现：
+
+- **没有显式 base/instruct 标注**，但 `training_method` 列为 551 个模型提供了 ground-truth（DPO/SFT/ORPO/PPO/KTO）
+- **启发式分类结果**: base 4,109 (78.6%) vs instruct 1,118 (21.4%)
+- **MH-DIF 可行**: 四个子组（base/instruct × 2023/2024）均 n≥200，远超 n=80 阈值
+- **注意事项**: "base" 组里混有一些未标注的 fine-tuned 模型（约 234 个有歧义名称），2023 cohort 中 base 和 instruct 的 accuracy 分布差异较大（均值差 0.05），需要 theta 匹配
+
+产出已写入 `artifacts/r18_base_instruct_survey/`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "uuid": "dd6dff7a-19d5-4cc8-9c2a-fb44b8ae0f17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019X7Q1F6zct8woL3M7mLab3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1825,
+      "cache_read_input_tokens": 34724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1825
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 39_
+
+调研完成。核心发现：
+
+- **没有显式 base/instruct 标注**，但 `training_method` 列为 551 个模型提供了 ground-truth（DPO/SFT/ORPO/PPO/KTO）
+- **启发式分类结果**: base 4,109 (78.6%) vs instruct 1,118 (21.4%)
+- **MH-DIF 可行**: 四个子组（base/instruct × 2023/2024）均 n≥200，远超 n=80 阈值
+- **注意事项**: "base" 组里混有一些未标注的 fine-tuned 模型（约 234 个有歧义名称），2023 cohort 中 base 和 instruct 的 accuracy 分布差异较大（均值差 0.05），需要 theta 匹配
+
+产出已写入 `artifacts/r18_base_instruct_survey/`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 123245,
+  "duration_api_ms": 132573,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "194f3c47-80bc-49a8-8869-8946279c975b",
+  "total_cost_usd": 0.46775599999999995,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 24708,
+    "cache_read_input_tokens": 254034,
+    "output_tokens": 7384,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 24708,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 261,
+        "cache_read_input_tokens": 34724,
+        "cache_creation_input_tokens": 1825,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1825
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 7384,
+      "cacheReadInputTokens": 254034,
+      "cacheCreationInputTokens": 24708,
+      "webSearchRequests": 0,
+      "costUSD": 0.466097,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1559,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001659,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7b5c6c0f-5ba0-4bf5-afd0-ffb02652cf67"
+}
+```
+
+</details>
+
+---

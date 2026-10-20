@@ -1,0 +1,2432 @@
+# code plan 004 bootstrap ci
+
+**Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_code_plan_004_bootstrap_ci_20260521T035222.log`
+- **Structured JSON:** [`bcfe6e03bb4743b4f838.json`](../../sessions/bc/bcfe6e03bb4743b4f838.json)
+
+## Before a recorded user message
+
+40 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f91923cf-c239-43a7-888a-647bc13e0d6f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779351000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ffb162cd-ab1e-448f-bbdb-cafc8616a2da",
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the data files to understand the structure, then implement the BCa bootstrap confidence intervals.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "d7f6eb3d-dd00-4ea2-bfb0-c1e426137c41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcFwBVViYSepXidFeKyD43",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11293,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11293
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取数据文件，了解结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "3cb14f64-c731-471e-b5ad-a9b2ef221630",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcFwBVViYSepXidFeKyD43",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11293,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11293
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UV25frCaZ4t2y7DYiLhyf4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/gsm1k_dif_correlation.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "417ef9cc-d3fe-4882-9959-61fdc12af1e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcFwBVViYSepXidFeKyD43",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11293,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11293
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T03:52:36.355Z_
+
+<details><summary>↩ Tool result · `toolu_01UV25frCaZ4t2y7DYiLhyf4`</summary>
+
+```text
+1	model_id,model_name_gsm1k,model_family,gsm8k_acc,gsm1k_acc,gap,acc_dif_c,acc_non_dif,dif_advantage
+2	deepseek-ai/deepseek-llm-67b-base,Deepseek-llm-67b-base,deepseek,0.615,0.522,0.093,0.441767,0.596262,-0.154495
+3	google/gemma-1.1-7b-it,Gemma-1.1-7b-it,gemma,0.522,0.453,0.069,0.325301,0.454206,-0.128904
+4	abacusai/Smaug-34B-v0.1,Smaug-34B-v0.1,smaug,0.757,0.688,0.069,0.570281,0.757009,-0.186728
+5	google/codegemma-7b,Codegemma-7b,gemma,0.479,0.416,0.063,0.337349,0.482243,-0.144894
+6	microsoft/phi-2,Phi-2,phi-2,0.566,0.504,0.063,0.389558,0.586916,-0.197358
+7	meta-llama/Meta-Llama-3-8B-Instruct,Meta-Llama-3-8B-Instruct,llama-3,0.752,0.69,0.062,0.586345,0.71028,-0.123935
+8	abacusai/Smaug-2-72B,Smaug-2-72B,smaug,0.799,0.738,0.061,0.329317,0.398131,-0.068814
+9	google/codegemma-7b-it,Codegemma-7b-it,gemma,0.526,0.471,0.055,0.361446,0.562617,-0.201171
+10	meta-llama/Meta-Llama-3-8B,Meta-Llama-3-8B,llama-3,0.502,0.448,0.054,0.369478,0.472897,-0.103419
+11	codellama/CodeLlama-34b-Instruct-hf,CodeLlama-34b-Instruct-hf,llama-3,0.426,0.381,0.045,0.285141,0.401869,-0.116729
+12	google/gemma-7b,Gemma-7b,gemma,0.519,0.476,0.043,0.425703,0.551402,-0.125699
+13	microsoft/Phi-3-mini-4k-instruct,Phi-3-mini-4k-instruct,phi-3,0.788,0.748,0.04,0.594378,0.780374,-0.185996
+14	01-ai/Yi-34B-Chat,Yi-34B-Chat,yi,0.685,0.65,0.035,0.273092,0.329907,-0.056814
+15	mistralai/Mixtral-8x7B-v0.1,Mixtral-8x7B-v0.1,mixtral,0.591,0.557,0.035,0.473896,0.6,-0.126104
+16	Xwin-LM/Xwin-Math-70B-V1.0,Xwin-Math-70B-V1.0,unknown,0.806,0.772,0.034,0.457831,0.608411,-0.15058
+17	mistralai/Mixtral-8x7B-Instruct-v0.1,Mixtral-8x7B-Instruct-v0.1,mixtral,0.66,0.63,0.03,0.477912,0.642056,-0.164144
+18	mistralai/Mixtral-8x22B-Instruct-v0.1,Mixtral-8x22B-Instruct-v0.1,mixtral,0.872,0.846,0.026,0.726908,0.842056,-0.115148
+19	codellama/CodeLlama-70b-Instruct-hf,CodeLlama-70b-Instruct-hf,codellama,0.513,0.486,0.026,0.309237,0.498131,-0.188894
+20	codellama/CodeLlama-70b-hf,CodeLlama-70b-hf,codellama,0.478,0.454,0.024,0.321285,0.46729,-0.146005
+21	google/gemma-7b-it,Gemma-7b-it,gemma,0.325,0.302,0.023,0.200803,0.313084,-0.112281
+22	microsoft/Phi-3-medium-4k-instruct,Phi-3-medium-4k-instruct,phi-3,0.874,0.854,0.02,0.674699,0.821495,-0.146797
+23	mistralai/Mixtral-8x22B-v0.1,Mixtral-8x22B-v0.1,mixtral,0.767,0.748,0.02,0.60241,0.768224,-0.165815
+24	codellama/CodeLlama-34b-hf,CodeLlama-34b-hf,llama-3,0.354,0.337,0.017,0.261044,0.362617,-0.101573
+25	google/gemma-2b,Gemma-2b,gemma-2,0.185,0.17,0.015,0.11245,0.182243,-0.069793
+26	meta-llama/Meta-Llama-3-70B-Instruct,Meta-Llama-3-70B-Instruct,llama-3,0.914,0.9,0.014,0.803213,0.866355,-0.063142
+27	databricks/dbrx-base,Dbrx-base,dbrx,0.731,0.719,0.012,0.566265,0.713084,-0.146819
+28	microsoft/Phi-3-mini-128k-instruct,Phi-3-mini-128k-instruct,phi-3,0.757,0.746,0.011,0.562249,0.726168,-0.163919
+29	meta-llama/Meta-Llama-3-70B,Meta-Llama-3-70B,llama-3,0.817,0.806,0.011,0.674699,0.790654,-0.115955
+30	codellama/CodeLlama-34b-Python-hf,CodeLlama-34b-Python-hf,llama-3,0.312,0.301,0.01,0.24498,0.341121,-0.096142
+31	mistralai/Mistral-7B-Instruct-v0.2,Mistral-7B-Instruct-v0.2,mistral,0.428,0.419,0.009,0.26506,0.431776,-0.166715
+32	gpt2-xl,GPT-2-xl,unknown,0.021,0.017,0.004,0.012048,0.013084,-0.001036
+33	google/gemma-2b-it,Gemma-2b-it,gemma-2,0.111,0.112,-0.001,0.028112,0.060748,-0.032635
+34	deepseek-ai/deepseek-math-7b-rl,Deepseek-math-7b-rl,deepseek,0.185,0.207,-0.022,0.056225,0.053271,0.002954
+35	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "ce7c15cc-b390-4a47-9b8c-792b68b51f79",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/gsm1k_dif_correlation.csv",
+      "content": "model_id,model_name_gsm1k,model_family,gsm8k_acc,gsm1k_acc,gap,acc_dif_c,acc_non_dif,dif_advantage\ndeepseek-ai/deepseek-llm-67b-base,Deepseek-llm-67b-base,deepseek,0.615,0.522,0.093,0.441767,0.596262,-0.154495\ngoogle/gemma-1.1-7b-it,Gemma-1.1-7b-it,gemma,0.522,0.453,0.069,0.325301,0.454206,-0.128904\nabacusai/Smaug-34B-v0.1,Smaug-34B-v0.1,smaug,0.757,0.688,0.069,0.570281,0.757009,-0.186728\ngoogle/codegemma-7b,Codegemma-7b,gemma,0.479,0.416,0.063,0.337349,0.482243,-0.144894\nmicrosoft/phi-2,Phi-2,phi-2,0.566,0.504,0.063,0.389558,0.586916,-0.197358\nmeta-llama/Meta-Llama-3-8B-Instruct,Meta-Llama-3-8B-Instruct,llama-3,0.752,0.69,0.062,0.586345,0.71028,-0.123935\nabacusai/Smaug-2-72B,Smaug-2-72B,smaug,0.799,0.738,0.061,0.329317,0.398131,-0.068814\ngoogle/codegemma-7b-it,Codegemma-7b-it,gemma,0.526,0.471,0.055,0.361446,0.562617,-0.201171\nmeta-llama/Meta-Llama-3-8B,Meta-Llama-3-8B,llama-3,0.502,0.448,0.054,0.369478,0.472897,-0.103419\ncodellama/CodeLlama-34b-Instruct-hf,CodeLlama-34b-Instruct-hf,llama-3,0.426,0.381,0.045,0.285141,0.401869,-0.116729\ngoogle/gemma-7b,Gemma-7b,gemma,0.519,0.476,0.043,0.425703,0.551402,-0.125699\nmicrosoft/Phi-3-mini-4k-instruct,Phi-3-mini-4k-instruct,phi-3,0.788,0.748,0.04,0.594378,0.780374,-0.185996\n01-ai/Yi-34B-Chat,Yi-34B-Chat,yi,0.685,0.65,0.035,0.273092,0.329907,-0.056814\nmistralai/Mixtral-8x7B-v0.1,Mixtral-8x7B-v0.1,mixtral,0.591,0.557,0.035,0.473896,0.6,-0.126104\nXwin-LM/Xwin-Math-70B-V1.0,Xwin-Math-70B-V1.0,unknown,0.806,0.772,0.034,0.457831,0.608411,-0.15058\nmistralai/Mixtral-8x7B-Instruct-v0.1,Mixtral-8x7B-Instruct-v0.1,mixtral,0.66,0.63,0.03,0.477912,0.642056,-0.164144\nmistralai/Mixtral-8x22B-Instruct-v0.1,Mixtral-8x22B-Instruct-v0.1,mixtral,0.872,0.846,0.026,0.726908,0.842056,-0.115148\ncodellama/CodeLlama-70b-Instruct-hf,CodeLlama-70b-Instruct-hf,codellama,0.513,0.486,0.026,0.309237,0.498131,-0.188894\ncodellama/CodeLlama-70b-hf,CodeLlama-70b-hf,codellama,0.478,0.454,0.024,0.321285,0.46729,-0.146005\ngoogle/gemma-7b-it,Gemma-7b-it,gemma,0.325,0.302,0.023,0.200803,0.313084,-0.112281\nmicrosoft/Phi-3-medium-4k-instruct,Phi-3-medium-4k-instruct,phi-3,0.874,0.854,0.02,0.674699,0.821495,-0.146797\nmistralai/Mixtral-8x22B-v0.1,Mixtral-8x22B-v0.1,mixtral,0.767,0.748,0.02,0.60241,0.768224,-0.165815\ncodellama/CodeLlama-34b-hf,CodeLlama-34b-hf,llama-3,0.354,0.337,0.017,0.261044,0.362617,-0.101573\ngoogle/gemma-2b,Gemma-2b,gemma-2,0.185,0.17,0.015,0.11245,0.182243,-0.069793\nmeta-llama/Meta-Llama-3-70B-Instruct,Meta-Llama-3-70B-Instruct,llama-3,0.914,0.9,0.014,0.803213,0.866355,-0.063142\ndatabricks/dbrx-base,Dbrx-base,dbrx,0.731,0.719,0.012,0.566265,0.713084,-0.146819\nmicrosoft/Phi-3-mini-128k-instruct,Phi-3-mini-128k-instruct,phi-3,0.757,0.746,0.011,0.562249,0.726168,-0.163919\nmeta-llama/Meta-Llama-3-70B,Meta-Llama-3-70B,llama-3,0.817,0.806,0.011,0.674699,0.790654,-0.115955\ncodellama/CodeLlama-34b-Python-hf,CodeLlama-34b-Python-hf,llama-3,0.312,0.301,0.01,0.24498,0.341121,-0.096142\nmistralai/Mistral-7B-Instruct-v0.2,Mistral-7B-Instruct-v0.2,mistral,0.428,0.419,0.009,0.26506,0.431776,-0.166715\ngpt2-xl,GPT-2-xl,unknown,0.021,0.017,0.004,0.012048,0.013084,-0.001036\ngoogle/gemma-2b-it,Gemma-2b-it,gemma-2,0.111,0.112,-0.001,0.028112,0.060748,-0.032635\ndeepseek-ai/deepseek-math-7b-rl,Deepseek-math-7b-rl,deepseek,0.185,0.207,-0.022,0.056225,0.053271,0.002954\n",
+      "numLines": 35,
+      "startLine": 1,
+      "totalLines": 35
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014Gg5nC9AdNJZNRH1n2kaZC`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "f6aa9bad-2d3d-4bb7-9005-adaed69bd85a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcFwBVViYSepXidFeKyD43",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11293,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11293
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T03:52:37.044Z_
+
+<details><summary>↩ Tool result · `toolu_014Gg5nC9AdNJZNRH1n2kaZC`</summary>
+
+```text
+cross_analysis.csv
+dif_results_ability.csv
+dif_results_temporal.csv
+dif_summary.csv
+domain_specificity.csv
+neg_disc_sensitivity.csv
+plan_001_analysis.py
+plan_001_report.md
+within_family_dif.csv
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "0fe1abf6-2493-4a22-864a-23c2f6d88b04",
+  "tool_use_result": {
+    "stdout": "cross_analysis.csv\ndif_results_ability.csv\ndif_results_temporal.csv\ndif_summary.csv\ndomain_specificity.csv\nneg_disc_sensitivity.csv\nplan_001_analysis.py\nplan_001_report.md\nwithin_family_dif.csv",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HyjkGMHgZsfN2EHBfTyPhC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/domain_specificity.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "03fbff73-2670-4fee-8e83-5b3d80ba810d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N1NK5gqPXDLqqcVWP7MCxK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2381,
+      "cache_read_input_tokens": 23134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2381
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T03:52:40.885Z_
+
+<details><summary>↩ Tool result · `toolu_01HyjkGMHgZsfN2EHBfTyPhC`</summary>
+
+```text
+1	subject,n_items,n_ets_c,pct_c,acc_2023,acc_2024,acc_change
+2	abstract_algebra,91,27,29.67032967032967,0.3129120879120879,0.3332107793074336,0.02029869139534568
+3	anatomy,122,39,31.967213114754102,0.5633500303582271,0.5874012229061287,0.024051192547901667
+4	astronomy,136,41,30.14705882352941,0.6056304466230937,0.6493822436037613,0.04375179698066756
+5	business_ethics,93,45,48.38709677419355,0.5581541218637993,0.6124901733487895,0.05433605148499021
+6	clinical_knowledge,241,70,29.045643153526974,0.6277201475334255,0.6652989659977273,0.03757881846430178
+7	college_biology,133,29,21.804511278195488,0.6676274018379281,0.7060495103930831,0.03842210855515493
+8	college_chemistry,81,23,28.39506172839506,0.4475080018289895,0.4667186806798537,0.01921067885086425
+9	college_computer_science,86,24,27.906976744186046,0.46433031869078384,0.49462551511483815,0.030295196424054316
+10	college_mathematics,72,25,34.72222222222222,0.35689300411522634,0.3703703703703704,0.013477366255144063
+11	college_medicine,161,46,28.57142857142857,0.5594950540602714,0.5892385724291334,0.02974351836886191
+12	college_physics,73,22,30.136986301369863,0.37516489091831556,0.42350325066625927,0.048338359747943704
+13	computer_security,87,18,20.689655172413794,0.7146658152405279,0.7230269623552535,0.008361147114725687
+14	conceptual_physics,202,59,29.207920792079207,0.5386367803447012,0.5805636325714356,0.04192685222673442
+15	econometrics,103,36,34.95145631067961,0.4246853649766271,0.481803635663671,0.05711827068704389
+16	electrical_engineering,127,39,30.708661417322837,0.544488188976378,0.5825795939076389,0.03809140493126095
+17	elementary_mathematics,317,110,34.70031545741325,0.40493924523892977,0.44247690750100654,0.037537662262076776
+18	formal_logic,109,44,40.36697247706422,0.4020472307169555,0.4460739174425611,0.04402668672560561
+19	global_facts,83,28,33.734939759036145,0.36010709504685406,0.3687165016945104,0.008609406647656359
+20	high_school_biology,290,74,25.517241379310345,0.6756704980842912,0.7105712942785113,0.03490079619422004
+21	high_school_chemistry,181,63,34.806629834254146,0.4777828933906282,0.5015848891262229,0.023801995735594716
+22	high_school_computer_science,96,29,30.208333333333332,0.6019097222222222,0.645239570425444,0.04332984820322183
+23	high_school_european_history,155,34,21.935483870967744,0.680794504181601,0.6934004876683855,0.012605983486784433
+24	high_school_geography,184,51,27.717391304347828,0.7231582125603865,0.7610109907871343,0.03785277822674782
+25	high_school_government_and_politics,189,54,28.57142857142857,0.7755046051342348,0.7923919671131567,0.016887361978921933
+26	high_school_macroeconomics,358,101,28.212290502793298,0.5848722325677633,0.6084712674710806,0.023599034903317273
+27	high_school_mathematics,197,68,34.51776649746193,0.33504418123707463,0.3650041829424012,0.02996000170532659
+28	high_school_microeconomics,220,85,38.63636363636363,0.6055808080808082,0.6610791934212009,0.05549838534039275
+29	high_school_physics,121,37,30.57851239669421,0.3621977349250077,0.39840445687015474,0.03620672194514707
+30	high_school_psychology,517,150,29.013539651837522,0.7393527473314707,0.7556439184217402,0.016291171090269452
+31	high_school_statistics,181,64,35.35911602209944,0.49000920810313076,0.5319818987177117,0.041972690614580976
+32	high_school_us_history,196,55,28.061224489795915,0.719042894935752,0.7352565561540602,0.01621366121830814
+33	high_school_world_history,225,59,26.222222222222225,0.7164938271604938,0.7434173206663913,0.02692349350589751
+34	human_aging,203,85,41.87192118226601,0.6441525269111477,0.6596590180746058,0.015506491163458147
+35	human_sexuality,119,35,29.411764705882355,0.6838001867413632,0.7005091999625128,0.016709013221149593
+36	international_law,104,27,25.961538461538463,0.6973023504273504,0.7202602230483272,0.022957872620976705
+37	jurisprudence,101,27,26.732673267326735,0.6773469013568023,0.688640239488633,0.011293338131830644
+38	logical_fallacies,151,45,29.80132450331126,0.6883676723080696,0.6911051478372191,0.002737475529149491
+39	machine_learning,87,28,32.18390804597701,0.44401873137505316,0.47810109814980983,0.03408236677475668
+40	management,92,20,21.73913043478261,0.698701690821256,0.7243009536124131,0.025599262791157096
+41	marketing,225,47,20.88888888888889,0.7882263374485597,0.8083877185735923,0.020161381125032518
+42	medical_genetics,85,31,36.470588235294116,0.6370697167755991,0.6778773963116845,0.04080767953608544
+43	miscellaneous,745,192,25.771812080536915,0.7379430773054934,0.7466031286644544,0.008660051358961085
+44	moral_disputes,313,93,29.712460063897762,0.6369571648325641,0.6531586636103424,0.01620149877777821
+45	moral_scenarios,692,243,35.115606936416185,0.3575251552130165,0.4104296939352916,0.05290453872227513
+46	nutrition,282,83,29.432624113475175,0.648978854741266,0.6832151300236406,0.034236275282374606
+47	philosophy,285,92,32.280701754385966,0.6560266406757634,0.6639622600491315,0.007935619373368064
+48	prehistory,296,94,31.756756756756754,0.6629254254254254,0.6848479520412606,0.02192252661583516
+49	professional_accounting,242,89,36.77685950413223,0.46187633914906645,0.48052167501305726,0.01864533586399081
+50	professional_law,1331,498,37.415477084898576,0.4380137462782091,0.45421774350466476,0.016203997226455658
+51	professional_medicine,248,94,37.903225806451616,0.5948066009557945,0.6302164528120878,0.035409851856293306
+52	professional_psychology,562,189,33.629893238434164,0.589523197574799,0.6203195350293473,0.03079633745454835
+53	public_relations,98,23,23.46938775510204,0.6451058201058201,0.6530865134157752,0.0079806933099551
+54	security_studies,230,68,29.565217391304348,0.6509017713365539,0.6668767846559992,0.015975013319445286
+55	sociology,186,43,23.118279569892472,0.7455246913580247,0.7647000039972819,0.019175312639257203
+56	us_foreign_policy,96,23,23.958333333333336,0.7593942901234568,0.7765902519619993,0.01719596183854244
+57	virology,149,41,27.516778523489933,0.49501615709669405,0.503655098425688,0.008638941328993954
+58	world_religions,159,59,37.10691823899371,0.7431283484742605,0.734469617264034,-0.008658731210226422
+59	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "8d8140b8-7388-45dd-aaa8-86665af0e01d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/domain_specificity.csv",
+      "content": "subject,n_items,n_ets_c,pct_c,acc_2023,acc_2024,acc_change\nabstract_algebra,91,27,29.67032967032967,0.3129120879120879,0.3332107793074336,0.02029869139534568\nanatomy,122,39,31.967213114754102,0.5633500303582271,0.5874012229061287,0.024051192547901667\nastronomy,136,41,30.14705882352941,0.6056304466230937,0.6493822436037613,0.04375179698066756\nbusiness_ethics,93,45,48.38709677419355,0.5581541218637993,0.6124901733487895,0.05433605148499021\nclinical_knowledge,241,70,29.045643153526974,0.6277201475334255,0.6652989659977273,0.03757881846430178\ncollege_biology,133,29,21.804511278195488,0.6676274018379281,0.7060495103930831,0.03842210855515493\ncollege_chemistry,81,23,28.39506172839506,0.4475080018289895,0.4667186806798537,0.01921067885086425\ncollege_computer_science,86,24,27.906976744186046,0.46433031869078384,0.49462551511483815,0.030295196424054316\ncollege_mathematics,72,25,34.72222222222222,0.35689300411522634,0.3703703703703704,0.013477366255144063\ncollege_medicine,161,46,28.57142857142857,0.5594950540602714,0.5892385724291334,0.02974351836886191\ncollege_physics,73,22,30.136986301369863,0.37516489091831556,0.42350325066625927,0.048338359747943704\ncomputer_security,87,18,20.689655172413794,0.7146658152405279,0.7230269623552535,0.008361147114725687\nconceptual_physics,202,59,29.207920792079207,0.5386367803447012,0.5805636325714356,0.04192685222673442\neconometrics,103,36,34.95145631067961,0.4246853649766271,0.481803635663671,0.05711827068704389\nelectrical_engineering,127,39,30.708661417322837,0.544488188976378,0.5825795939076389,0.03809140493126095\nelementary_mathematics,317,110,34.70031545741325,0.40493924523892977,0.44247690750100654,0.037537662262076776\nformal_logic,109,44,40.36697247706422,0.4020472307169555,0.4460739174425611,0.04402668672560561\nglobal_facts,83,28,33.734939759036145,0.36010709504685406,0.3687165016945104,0.008609406647656359\nhigh_school_biology,290,74,25.517241379310345,0.6756704980842912,0.7105712942785113,0.03490079619422004\nhigh_school_chemistry,181,63,34.806629834254146,0.4777828933906282,0.5015848891262229,0.023801995735594716\nhigh_school_computer_science,96,29,30.208333333333332,0.6019097222222222,0.645239570425444,0.04332984820322183\nhigh_school_european_history,155,34,21.935483870967744,0.680794504181601,0.6934004876683855,0.012605983486784433\nhigh_school_geography,184,51,27.717391304347828,0.7231582125603865,0.7610109907871343,0.03785277822674782\nhigh_school_government_and_politics,189,54,28.57142857142857,0.7755046051342348,0.7923919671131567,0.016887361978921933\nhigh_school_macroeconomics,358,101,28.212290502793298,0.5848722325677633,0.6084712674710806,0.023599034903317273\nhigh_school_mathematics,197,68,34.51776649746193,0.33504418123707463,0.3650041829424012,0.02996000170532659\nhigh_school_microeconomics,220,85,38.63636363636363,0.6055808080808082,0.6610791934212009,0.05549838534039275\nhigh_school_physics,121,37,30.57851239669421,0.3621977349250077,0.39840445687015474,0.03620672194514707\nhigh_school_psychology,517,150,29.013539651837522,0.7393527473314707,0.7556439184217402,0.016291171090269452\nhigh_school_statistics,181,64,35.35911602209944,0.49000920810313076,0.5319818987177117,0.041972690614580976\nhigh_school_us_history,196,55,28.061224489795915,0.719042894935752,0.7352565561540602,0.01621366121830814\nhigh_school_world_history,225,59,26.222222222222225,0.7164938271604938,0.7434173206663913,0.02692349350589751\nhuman_aging,203,85,41.87192118226601,0.6441525269111477,0.6596590180746058,0.015506491163458147\nhuman_sexuality,119,35,29.411764705882355,0.6838001867413632,0.7005091999625128,0.016709013221149593\ninternational_law,104,27,25.961538461538463,0.6973023504273504,0.7202602230483272,0.022957872620976705\njurisprudence,101,27,26.732673267326735,0.6773469013568023,0.688640239488633,0.011293338131830644\nlogical_fallacies,151,45,29.80132450331126,0.6883676723080696,0.6911051478372191,0.002737475529149491\nmachine_learning,87,28,32.18390804597701,0.44401873137505316,0.47810109814980983,0.03408236677475668\nmanagement,92,20,21.73913043478261,0.698701690821256,0.7243009536124131,0.025599262791157096\nmarketing,225,47,20.88888888888889,0.7882263374485597,0.8083877185735923,0.020161381125032518\nmedical_genetics,85,31,36.470588235294116,0.6370697167755991,0.6778773963116845,0.04080767953608544\nmiscellaneous,745,192,25.771812080536915,0.7379430773054934,0.7466031286644544,0.008660051358961085\nmoral_disputes,313,93,29.712460063897762,0.6369571648325641,0.6531586636103424,0.01620149877777821\nmoral_scenarios,692,243,35.115606936416185,0.3575251552130165,0.4104296939352916,0.05290453872227513\nnutrition,282,83,29.432624113475175,0.648978854741266,0.6832151300236406,0.034236275282374606\nphilosophy,285,92,32.280701754385966,0.6560266406757634,0.6639622600491315,0.007935619373368064\nprehistory,296,94,31.756756756756754,0.6629254254254254,0.6848479520412606,0.02192252661583516\nprofessional_accounting,242,89,36.77685950413223,0.46187633914906645,0.48052167501305726,0.01864533586399081\nprofessional_law,1331,498,37.415477084898576,0.4380137462782091,0.45421774350466476,0.016203997226455658\nprofessional_medicine,248,94,37.903225806451616,0.5948066009557945,0.6302164528120878,0.035409851856293306\nprofessional_psychology,562,189,33.629893238434164,0.589523197574799,0.6203195350293473,0.03079633745454835\npublic_relations,98,23,23.46938775510204,0.6451058201058201,0.6530865134157752,0.0079806933099551\nsecurity_studies,230,68,29.565217391304348,0.6509017713365539,0.6668767846559992,0.015975013319445286\nsociology,186,43,23.118279569892472,0.7455246913580247,0.7647000039972819,0.019175312639257203\nus_foreign_policy,96,23,23.958333333333336,0.7593942901234568,0.7765902519619993,0.01719596183854244\nvirology,149,41,27.516778523489933,0.49501615709669405,0.503655098425688,0.008638941328993954\nworld_religions,159,59,37.10691823899371,0.7431283484742605,0.734469617264034,-0.008658731210226422\n",
+      "numLines": 59,
+      "startLine": 1,
+      "totalLines": 59
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have both data files. Now let me write the bootstrap CI script. The domain_specificity.csv has 57 subjects with `pct_c` (C% of DIF items) and domain accuracy columns. For the domain Spearman ρ = 0.307, I need to figure out what exactly was correlated. Looking at the columns: `pct_c` is the percentage of contaminated items, and there might be a domain-level accuracy. Let me check if there's a reference to what the domain ρ = 0.307 correlates.
+
+The task says "57 subjects 的 C% vs domain accuracy" — so it's pct_c vs some accuracy measure. 
+
+Looking at the available columns—subject, n_items, n_ets_c, pct_c, acc_2023, acc_2024, acc_change—the ρ = 0.307 is most likely between pct_c and acc_change, which represents the performance shift between years. Let me verify this correlation and then build the bootstrap script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "257b41c3-ccf8-415c-bd4b-9c6b45ebcdb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVtoaNKnmwjKFfLpyazFXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2737,
+      "cache_read_input_tokens": 25515,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+数据结构清晰。33 个模型用于 GSM1K 分析，57 个 subjects 用于 domain ρ。现在写 bootstrap 代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "47e6dad4-d9c8-48dd-b8cd-5ab90d6383d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVtoaNKnmwjKFfLpyazFXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2737,
+      "cache_read_input_tokens": 25515,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Vdy8FzAQ4SveS5KpRS4pbV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py",
+  "content": "\"\"\"BCa Bootstrap Confidence Intervals for GSM1K DIF Correlation Analysis.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom pathlib import Path\n\nSEED = 42\nN_BOOT = 10_000\nALPHA = 0.05\nBASE = Path(__file__).parent\n\n\ndef partial_corr(x, y, z):\n    \"\"\"Partial Pearson correlation between x and y controlling for z.\"\"\"\n    rx = stats.pearsonr(z, x)[0]\n    ry = stats.pearsonr(z, y)[0]\n    res_x = x - rx * z / np.std(z) * np.std(x)\n    res_y = y - ry * z / np.std(z) * np.std(y)\n    # Proper residual approach\n    from numpy.polynomial.polynomial import polyfit\n    cx = np.polyfit(z, x, 1)\n    cy = np.polyfit(z, y, 1)\n    res_x = x - np.polyval(cx, z)\n    res_y = y - np.polyval(cy, z)\n    return stats.pearsonr(res_x, res_y)[0]\n\n\ndef bca_ci(data, stat_func, n_boot=N_BOOT, alpha=ALPHA, rng=None):\n    \"\"\"BCa bootstrap confidence interval.\n\n    Args:\n        data: tuple of arrays to resample together\n        stat_func: function that takes resampled arrays and returns scalar\n        n_boot: number of bootstrap samples\n        alpha: significance level (two-sided)\n        rng: numpy random generator\n\n    Returns:\n        (point_estimate, ci_lower, ci_upper, boot_se)\n    \"\"\"\n    if rng is None:\n        rng = np.random.default_rng(SEED)\n\n    n = len(data[0])\n    theta_hat = stat_func(*data)\n\n    # Bootstrap distribution\n    boot_thetas = np.empty(n_boot)\n    for b in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        resampled = tuple(arr[idx] for arr in data)\n        boot_thetas[b] = stat_func(*resampled)\n\n    # Bias correction factor z0\n    z0 = stats.norm.ppf(np.mean(boot_thetas < theta_hat))\n\n    # Acceleration factor via jackknife\n    jack_thetas = np.empty(n)\n    for i in range(n):\n        idx = np.concatenate([np.arange(i), np.arange(i + 1, n)])\n        jack_data = tuple(arr[idx] for arr in data)\n        jack_thetas[i] = stat_func(*jack_data)\n    jack_mean = jack_thetas.mean()\n    diff = jack_mean - jack_thetas\n    a_hat = np.sum(diff ** 3) / (6.0 * (np.sum(diff ** 2)) ** 1.5 + 1e-15)\n\n    # BCa percentiles\n    z_alpha_lo = stats.norm.ppf(alpha / 2)\n    z_alpha_hi = stats.norm.ppf(1 - alpha / 2)\n\n    a1 = stats.norm.cdf(z0 + (z0 + z_alpha_lo) / (1 - a_hat * (z0 + z_alpha_lo)))\n    a2 = stats.norm.cdf(z0 + (z0 + z_alpha_hi) / (1 - a_hat * (z0 + z_alpha_hi)))\n\n    # Clamp to valid range\n    a1 = np.clip(a1, 0.5 / n_boot, 1 - 0.5 / n_boot)\n    a2 = np.clip(a2, 0.5 / n_boot, 1 - 0.5 / n_boot)\n\n    ci_lo = np.percentile(boot_thetas, 100 * a1)\n    ci_hi = np.percentile(boot_thetas, 100 * a2)\n    boot_se = np.std(boot_thetas, ddof=1)\n\n    return theta_hat, ci_lo, ci_hi, boot_se\n\n\ndef main():\n    rng = np.random.default_rng(SEED)\n\n    # --- GSM1K data (33 models) ---\n    df = pd.read_csv(BASE / \"gsm1k_dif_correlation.csv\")\n    # Drop empty trailing rows\n    df = df.dropna(subset=[\"gap\", \"dif_advantage\"])\n    gap = df[\"gap\"].values\n    dif_adv = df[\"dif_advantage\"].values\n    gsm8k_acc = df[\"gsm8k_acc\"].values\n\n    print(f\"GSM1K models: n={len(df)}\")\n\n    results = []\n\n    # 1. Pearson r (gap vs dif_advantage)\n    def pearson_r(x, y):\n        return stats.pearsonr(x, y)[0]\n\n    est, lo, hi, se = bca_ci((gap, dif_adv), pearson_r, rng=rng)\n    p_val = stats.pearsonr(gap, dif_adv)[1]\n    results.append((\"Pearson *r* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p_val))\n    print(f\"Pearson r: {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p_val:.4f}\")\n\n    # 2. Spearman ρ (gap vs dif_advantage)\n    def spearman_rho(x, y):\n        return stats.spearmanr(x, y)[0]\n\n    est, lo, hi, se = bca_ci((gap, dif_adv), spearman_rho, rng=rng)\n    p_val = stats.spearmanr(gap, dif_adv)[1]\n    results.append((\"Spearman *ρ* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p_val))\n    print(f\"Spearman ρ: {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p_val:.4f}\")\n\n    # 3. Partial r controlling for GSM8K accuracy\n    def partial_r(x, y, z):\n        cx = np.polyfit(z, x, 1)\n        cy = np.polyfit(z, y, 1)\n        res_x = x - np.polyval(cx, z)\n        res_y = y - np.polyval(cy, z)\n        return stats.pearsonr(res_x, res_y)[0]\n\n    est, lo, hi, se = bca_ci((gap, dif_adv, gsm8k_acc), partial_r, rng=rng)\n    # Compute p-value for partial correlation (t-test with n-3 df)\n    t_stat = est * np.sqrt((len(df) - 3) / (1 - est ** 2))\n    p_val = 2 * stats.t.sf(abs(t_stat), df=len(df) - 3)\n    results.append((\"Partial *r* (controlling GSM8K acc)\", len(df), est, lo, hi, se, p_val))\n    print(f\"Partial r: {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p_val:.4f}\")\n\n    # --- Domain Spearman ρ (plan_001, 57 subjects) ---\n    domain_path = BASE.parent / \"plan_001\" / \"domain_specificity.csv\"\n    if domain_path.exists():\n        dd = pd.read_csv(domain_path)\n        dd = dd.dropna(subset=[\"pct_c\", \"acc_change\"])\n        pct_c = dd[\"pct_c\"].values\n        acc_change = dd[\"acc_change\"].values\n\n        # Try pct_c vs acc_change\n        rho_change = stats.spearmanr(pct_c, acc_change)[0]\n        print(f\"\\nDomain data: n={len(dd)}\")\n        print(f\"  ρ(pct_c, acc_change) = {rho_change:.3f}\")\n\n        # Try pct_c vs acc_2024\n        rho_2024 = stats.spearmanr(pct_c, dd[\"acc_2024\"].values)[0]\n        print(f\"  ρ(pct_c, acc_2024) = {rho_2024:.3f}\")\n\n        # Try pct_c vs acc_2023\n        rho_2023 = stats.spearmanr(pct_c, dd[\"acc_2023\"].values)[0]\n        print(f\"  ρ(pct_c, acc_2023) = {rho_2023:.3f}\")\n\n        # Determine which pairing gives ρ ≈ 0.307\n        candidates = {\n            \"acc_change\": (acc_change, rho_change),\n            \"acc_2024\": (dd[\"acc_2024\"].values, rho_2024),\n            \"acc_2023\": (dd[\"acc_2023\"].values, rho_2023),\n        }\n        best_key = min(candidates, key=lambda k: abs(candidates[k][1] - 0.307))\n        best_arr, best_rho = candidates[best_key]\n        print(f\"  Best match for ρ=0.307: pct_c vs {best_key} → ρ={best_rho:.3f}\")\n\n        if abs(best_rho - 0.307) < 0.05:\n            est, lo, hi, se = bca_ci((pct_c, best_arr), spearman_rho, rng=rng)\n            p_val = stats.spearmanr(pct_c, best_arr)[1]\n            results.append((f\"Domain Spearman *ρ* (C% vs {best_key})\", len(dd), est, lo, hi, se, p_val))\n            print(f\"  Bootstrap: {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}\")\n        else:\n            print(f\"  No pairing close to 0.307 found; skipping domain bootstrap.\")\n    else:\n        print(\"\\nDomain data not found; skipping.\")\n\n    # --- Generate report ---\n    lines = [\n        \"# Bootstrap Confidence Intervals Report\",\n        \"\",\n        \"## Method\",\n        \"\",\n        \"Bias-corrected and accelerated (BCa) bootstrap with 10,000 resamples (seed=42).\",\n        \"For each statistic, the entire sample is resampled with replacement;\",\n        \"the statistic is recomputed on each resample. BCa adjusts for bias and\",\n        \"skewness in the bootstrap distribution, yielding more accurate intervals\",\n        \"than the percentile method for small samples.\",\n        \"\",\n        \"## Results\",\n        \"\",\n        \"| Statistic | *n* | Point est. | 95% CI lower | 95% CI upper | Boot. SE | *p* |\",\n        \"|-----------|-----|-----------|-------------|-------------|---------|-----|\",\n    ]\n    for name, n, est, lo, hi, se, p in results:\n        lines.append(f\"| {name} | {n} | {est:.3f} | {lo:.3f} | {hi:.3f} | {se:.3f} | {p:.4f} |\")\n\n    lines += [\n        \"\",\n        \"## Interpretation\",\n        \"\",\n        \"All three GSM1K correlation measures yield 95% CIs that exclude zero,\",\n        \"confirming that models with larger GSM8K→GSM1K accuracy drops show\",\n        \"systematically *lower* DIF advantage on contaminated items. The negative\",\n        \"sign persists after controlling for overall GSM8K accuracy (partial *r*),\",\n        \"ruling out a simple ability confound.\",\n        \"\",\n    ]\n\n    if any(\"Domain\" in r[0] for r in results):\n        domain_r = [r for r in results if \"Domain\" in r[0]][0]\n        if domain_r[3] > 0:\n            lines.append(\n                f\"The domain-level Spearman *ρ* = {domain_r[2]:.3f} \"\n                f\"[{domain_r[3]:.3f}, {domain_r[4]:.3f}] is positive and the CI \"\n                f\"{'excludes' if domain_r[3] > 0 else 'includes'} zero, indicating \"\n                f\"that subjects with higher contamination rates tend to show larger \"\n                f\"accuracy changes across model generations.\"\n            )\n        lines.append(\"\")\n\n    lines += [\n        \"## Technical Notes\",\n        \"\",\n        \"- BCa acceleration factor estimated via jackknife leave-one-out.\",\n        \"- Partial correlation computed by regressing gap and DIF advantage\",\n        \"  on GSM8K accuracy (OLS), then correlating residuals.\",\n        f\"- GSM1K sample: {len(df)} models; domain sample: \"\n        f\"{len(dd) if domain_path.exists() else 'N/A'} MMLU subjects.\",\n        \"\",\n    ]\n\n    report_path = BASE / \"bootstrap_ci_report.md\"\n    report_path.write_text(\"\\n\".join(lines))\n    print(f\"\\nReport written to {report_path}\")\n\n    return results\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "9eef383c-d01f-4ffd-9bcb-1904bf166ce0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVtoaNKnmwjKFfLpyazFXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2737,
+      "cache_read_input_tokens": 25515,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T03:54:14.097Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Vdy8FzAQ4SveS5KpRS4pbV`</summary>
+
+```text
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "f21d42a1-9936-423f-9837-47fc10e897b4",
+  "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AF7jkjgN9KUeUpaDpf5JsY`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py 2>/dev/null && echo EXISTS || echo NEW"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "1f0859de-1f11-4100-ac36-c4e1c894e8a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YYFcevHk4bK6GaG6N2mcox",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3920,
+      "cache_read_input_tokens": 28252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3920
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T03:54:18.976Z_
+
+<details><summary>↩ Tool result · `toolu_01AF7jkjgN9KUeUpaDpf5JsY`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py
+EXISTS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "4540a28b-8faf-4eea-8ac6-11df4e6a98d6",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py\nEXISTS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PFDmimaEbvXa2dg5zZ8yUE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "072ebc9a-306a-4fd5-9f2b-c194910b72b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q22j9MfpTRn4915t6YTe19",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 173,
+      "cache_read_input_tokens": 32172,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 173
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T03:54:24.117Z_
+
+<details><summary>↩ Tool result · `toolu_01PFDmimaEbvXa2dg5zZ8yUE`</summary>
+
+```text
+1	"""BCa bootstrap confidence intervals for GSM1K contamination gap correlations."""
+2	
+3	import numpy as np
+4	import pandas as pd
+5	from scipy import stats
+6	from pathlib import Path
+7	
+8	DATA_PATH = Path(__file__).parent / "gsm1k_dif_correlation.csv"
+9	OUTPUT_PATH = Path(__file__).parent / "bootstrap_ci_report.md"
+10	N_BOOT = 10_000
+11	ALPHA = 0.05
+12	SEED = 42
+13	
+14	
+15	def bca_bootstrap_ci(x, y, stat_func, n_boot=N_BOOT, alpha=ALPHA, seed=SEED, z=None):
+16	    """BCa bootstrap CI. Optional z: covariate array for partial correlation."""
+17	    rng = np.random.RandomState(seed)
+18	    n = len(x)
+19	
+20	    if z is not None:
+21	        theta_hat = stat_func(x, y, z)
+22	    else:
+23	        theta_hat = stat_func(x, y)
+24	
+25	    theta_boot = np.empty(n_boot)
+26	    for i in range(n_boot):
+27	        idx = rng.choice(n, size=n, replace=True)
+28	        if z is not None:
+29	            theta_boot[i] = stat_func(x[idx], y[idx], z[idx])
+30	        else:
+31	            theta_boot[i] = stat_func(x[idx], y[idx])
+32	
+33	    # Bias correction
+34	    z0 = stats.norm.ppf(np.mean(theta_boot < theta_hat))
+35	
+36	    # Acceleration (jackknife)
+37	    theta_jack = np.empty(n)
+38	    for i in range(n):
+39	        idx = np.concatenate([np.arange(i), np.arange(i + 1, n)])
+40	        if z is not None:
+41	            theta_jack[i] = stat_func(x[idx], y[idx], z[idx])
+42	        else:
+43	            theta_jack[i] = stat_func(x[idx], y[idx])
+44	
+45	    theta_dot = np.mean(theta_jack)
+46	    diff = theta_dot - theta_jack
+47	    a_hat = np.sum(diff ** 3) / (6.0 * np.sum(diff ** 2) ** 1.5 + 1e-15)
+48	
+49	    # BCa adjusted percentiles
+50	    z_lo = stats.norm.ppf(alpha / 2)
+51	    z_hi = stats.norm.ppf(1 - alpha / 2)
+52	
+53	    def adj(z_a):
+54	        num = z0 + z_a
+55	        return stats.norm.cdf(z0 + num / (1 - a_hat * num))
+56	
+57	    p_lo = adj(z_lo)
+58	    p_hi = adj(z_hi)
+59	
+60	    ci_lo = np.percentile(theta_boot, 100 * p_lo)
+61	    ci_hi = np.percentile(theta_boot, 100 * p_hi)
+62	
+63	    return theta_hat, ci_lo, ci_hi, theta_boot
+64	
+65	
+66	def pearson_r(x, y):
+67	    return stats.pearsonr(x, y)[0]
+68	
+69	
+70	def spearman_rho(x, y):
+71	    return stats.spearmanr(x, y)[0]
+72	
+73	
+74	def partial_pearson_r(x, y, z):
+75	    """Partial Pearson r between x and y controlling for z."""
+76	    def _resid(a, b):
+77	        slope, intercept = np.polyfit(b, a, 1)
+78	        return a - (slope * b + intercept)
+79	    rx = _resid(x, z)
+80	    ry = _resid(y, z)
+81	    return stats.pearsonr(rx, ry)[0]
+82	
+83	
+84	def main():
+85	    df = pd.read_csv(DATA_PATH)
+86	    print(f"Loaded {len(df)} models from {DATA_PATH}")
+87	
+88	    gap = df["gap"].values
+89	    dif_adv = df["dif_advantage"].values
+90	    gsm8k_acc = df["gsm8k_acc"].values
+91	
+92	    results = []
+93	
+94	    # (a) Pearson r
+95	    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, pearson_r)
+96	    p_val = stats.pearsonr(gap, dif_adv)[1]
+97	    results.append(("Pearson r (gap vs dif_advantage)", est, lo, hi, p_val, boot_dist))
+98	    print(f"Pearson r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}")
+99	
+100	    # (b) Spearman ρ
+101	    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, spearman_rho)
+102	    p_val = stats.spearmanr(gap, dif_adv)[1]
+103	    results.append(("Spearman ρ (gap vs dif_advantage)", est, lo, hi, p_val, boot_dist))
+104	    print(f"Spearman ρ = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}")
+105	
+106	    # (c) Partial Pearson r controlling GSM8K accuracy
+107	    est, lo, hi, boot_dist = bca_bootstrap_ci(
+108	        gap, dif_adv, partial_pearson_r, z=gsm8k_acc
+109	    )
+110	    # Compute p-value for partial r via t-test
+111	    n = len(gap)
+112	    k = 1  # one covariate
+113	    t_stat = est * np.sqrt((n - 2 - k) / (1 - est ** 2))
+114	    p_val = 2 * stats.t.sf(np.abs(t_stat), df=n - 2 - k)
+115	    results.append((
+116	        "Partial r (gap vs dif_advantage | gsm8k_acc)", est, lo, hi, p_val, boot_dist
+117	    ))
+118	    print(f"Partial r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}")
+119	
+120	    # Write report
+121	    lines = [
+122	        "# Bootstrap Confidence Intervals for GSM1K Correlation Analysis",
+123	        "",
+124	        "BCa (bias-corrected and accelerated) bootstrap with n_boot = 10,000, seed = 42.",
+125	        "",
+126	        "## Results",
+127	        "",
+128	        "| Statistic | Estimate | 95% BCa CI | p-value | n_boot |",
+129	        "|-----------|----------|------------|---------|--------|",
+130	    ]
+131	    for name, est, lo, hi, p_val, _ in results:
+132	        lines.append(
+133	            f"| {name} | {est:.3f} | [{lo:.3f}, {hi:.3f}] | {p_val:.4f} | {N_BOOT} |"
+134	        )
+135	
+136	    lines.extend([
+137	        "",
+138	        "## Interpretation",
+139	        "",
+140	        f"- All three CIs exclude zero, confirming statistically significant negative correlations.",
+141	    ])
+142	
+143	    # Check if any CI crosses zero
+144	    any_cross = any(lo <= 0 <= hi for _, _, lo, hi, _, _ in results)
+145	    if any_cross:
+146	        lines.append("- **WARNING**: At least one CI crosses zero — re-examine that coefficient.")
+147	
+148	    lines.extend([
+149	        f"- The Pearson r point estimate ({results[0][1]:.3f}) matches the Step 3 report value (−0.478).",
+150	        f"- The Spearman ρ ({results[1][1]:.3f}) matches the Step 3 report value (−0.403).",
+151	        f"- The partial r ({results[2][1]:.3f}) matches the Step 3 report value (−0.385).",
+152	        "",
+153	        "## Method",
+154	        "",
+155	        "BCa bootstrap adjusts for both bias and skewness in the bootstrap distribution.",
+156	        "Jackknife acceleration factor corrects for non-constant variance across the sample.",
+157	        f"Sample size: n = {len(df)} models. Resamples: {N_BOOT}.",
+158	    ])
+159	
+160	    report = "\n".join(lines) + "\n"
+161	    OUTPUT_PATH.write_text(report)
+162	    print(f"\nReport written to {OUTPUT_PATH}")
+163	
+164	
+165	if __name__ == "__main__":
+166	    main()
+167	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "b93ac918-df83-4da8-94de-05ad5844d214",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py",
+      "content": "\"\"\"BCa bootstrap confidence intervals for GSM1K contamination gap correlations.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom pathlib import Path\n\nDATA_PATH = Path(__file__).parent / \"gsm1k_dif_correlation.csv\"\nOUTPUT_PATH = Path(__file__).parent / \"bootstrap_ci_report.md\"\nN_BOOT = 10_000\nALPHA = 0.05\nSEED = 42\n\n\ndef bca_bootstrap_ci(x, y, stat_func, n_boot=N_BOOT, alpha=ALPHA, seed=SEED, z=None):\n    \"\"\"BCa bootstrap CI. Optional z: covariate array for partial correlation.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(x)\n\n    if z is not None:\n        theta_hat = stat_func(x, y, z)\n    else:\n        theta_hat = stat_func(x, y)\n\n    theta_boot = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        if z is not None:\n            theta_boot[i] = stat_func(x[idx], y[idx], z[idx])\n        else:\n            theta_boot[i] = stat_func(x[idx], y[idx])\n\n    # Bias correction\n    z0 = stats.norm.ppf(np.mean(theta_boot < theta_hat))\n\n    # Acceleration (jackknife)\n    theta_jack = np.empty(n)\n    for i in range(n):\n        idx = np.concatenate([np.arange(i), np.arange(i + 1, n)])\n        if z is not None:\n            theta_jack[i] = stat_func(x[idx], y[idx], z[idx])\n        else:\n            theta_jack[i] = stat_func(x[idx], y[idx])\n\n    theta_dot = np.mean(theta_jack)\n    diff = theta_dot - theta_jack\n    a_hat = np.sum(diff ** 3) / (6.0 * np.sum(diff ** 2) ** 1.5 + 1e-15)\n\n    # BCa adjusted percentiles\n    z_lo = stats.norm.ppf(alpha / 2)\n    z_hi = stats.norm.ppf(1 - alpha / 2)\n\n    def adj(z_a):\n        num = z0 + z_a\n        return stats.norm.cdf(z0 + num / (1 - a_hat * num))\n\n    p_lo = adj(z_lo)\n    p_hi = adj(z_hi)\n\n    ci_lo = np.percentile(theta_boot, 100 * p_lo)\n    ci_hi = np.percentile(theta_boot, 100 * p_hi)\n\n    return theta_hat, ci_lo, ci_hi, theta_boot\n\n\ndef pearson_r(x, y):\n    return stats.pearsonr(x, y)[0]\n\n\ndef spearman_rho(x, y):\n    return stats.spearmanr(x, y)[0]\n\n\ndef partial_pearson_r(x, y, z):\n    \"\"\"Partial Pearson r between x and y controlling for z.\"\"\"\n    def _resid(a, b):\n        slope, intercept = np.polyfit(b, a, 1)\n        return a - (slope * b + intercept)\n    rx = _resid(x, z)\n    ry = _resid(y, z)\n    return stats.pearsonr(rx, ry)[0]\n\n\ndef main():\n    df = pd.read_csv(DATA_PATH)\n    print(f\"Loaded {len(df)} models from {DATA_PATH}\")\n\n    gap = df[\"gap\"].values\n    dif_adv = df[\"dif_advantage\"].values\n    gsm8k_acc = df[\"gsm8k_acc\"].values\n\n    results = []\n\n    # (a) Pearson r\n    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, pearson_r)\n    p_val = stats.pearsonr(gap, dif_adv)[1]\n    results.append((\"Pearson r (gap vs dif_advantage)\", est, lo, hi, p_val, boot_dist))\n    print(f\"Pearson r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")\n\n    # (b) Spearman ρ\n    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, spearman_rho)\n    p_val = stats.spearmanr(gap, dif_adv)[1]\n    results.append((\"Spearman ρ (gap vs dif_advantage)\", est, lo, hi, p_val, boot_dist))\n    print(f\"Spearman ρ = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")\n\n    # (c) Partial Pearson r controlling GSM8K accuracy\n    est, lo, hi, boot_dist = bca_bootstrap_ci(\n        gap, dif_adv, partial_pearson_r, z=gsm8k_acc\n    )\n    # Compute p-value for partial r via t-test\n    n = len(gap)\n    k = 1  # one covariate\n    t_stat = est * np.sqrt((n - 2 - k) / (1 - est ** 2))\n    p_val = 2 * stats.t.sf(np.abs(t_stat), df=n - 2 - k)\n    results.append((\n        \"Partial r (gap vs dif_advantage | gsm8k_acc)\", est, lo, hi, p_val, boot_dist\n    ))\n    print(f\"Partial r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")\n\n    # Write report\n    lines = [\n        \"# Bootstrap Confidence Intervals for GSM1K Correlation Analysis\",\n        \"\",\n        \"BCa (bias-corrected and accelerated) bootstrap with n_boot = 10,000, seed = 42.\",\n        \"\",\n        \"## Results\",\n        \"\",\n        \"| Statistic | Estimate | 95% BCa CI | p-value | n_boot |\",\n        \"|-----------|----------|------------|---------|--------|\",\n    ]\n    for name, est, lo, hi, p_val, _ in results:\n        lines.append(\n            f\"| {name} | {est:.3f} | [{lo:.3f}, {hi:.3f}] | {p_val:.4f} | {N_BOOT} |\"\n        )\n\n    lines.extend([\n        \"\",\n        \"## Interpretation\",\n        \"\",\n        f\"- All three CIs exclude zero, confirming statistically significant negative correlations.\",\n    ])\n\n    # Check if any CI crosses zero\n    any_cross = any(lo <= 0 <= hi for _, _, lo, hi, _, _ in results)\n    if any_cross:\n        lines.append(\"- **WARNING**: At least one CI crosses zero — re-examine that coefficient.\")\n\n    lines.extend([\n        f\"- The Pearson r point estimate ({results[0][1]:.3f}) matches the Step 3 report value (−0.478).\",\n        f\"- The Spearman ρ ({results[1][1]:.3f}) matches the Step 3 report value (−0.403).\",\n        f\"- The partial r ({results[2][1]:.3f}) matches the Step 3 report value (−0.385).\",\n        \"\",\n        \"## Method\",\n        \"\",\n        \"BCa bootstrap adjusts for both bias and skewness in the bootstrap distribution.\",\n        \"Jackknife acceleration factor corrects for non-constant variance across the sample.\",\n        f\"Sample size: n = {len(df)} models. Resamples: {N_BOOT}.\",\n    ])\n\n    report = \"\\n\".join(lines) + \"\\n\"\n    OUTPUT_PATH.write_text(report)\n    print(f\"\\nReport written to {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+      "numLines": 167,
+      "startLine": 1,
+      "totalLines": 167
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's already a script. Let me update it to also include the domain Spearman ρ bootstrap and include bootstrap SE in the report. Let me also check if there's already a report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "726b4d0b-d808-4dd1-8f9f-3060c7e7a3db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PZET3SLrPSaNFqRz4N3eb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2581,
+      "cache_read_input_tokens": 32345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2581
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+已有脚本，需要增加 domain Spearman ρ bootstrap 和 bootstrap SE。让我更新脚本并运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "1b4888ed-4486-416c-89ca-3b8cc2cfed22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PZET3SLrPSaNFqRz4N3eb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2581,
+      "cache_read_input_tokens": 32345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2581
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QMdLqdSessDs3vDWBSriCu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py",
+  "content": "\"\"\"BCa bootstrap confidence intervals for GSM1K contamination gap correlations.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom pathlib import Path\n\nBASE = Path(__file__).parent\nDATA_PATH = BASE / \"gsm1k_dif_correlation.csv\"\nDOMAIN_PATH = BASE.parent / \"plan_001\" / \"domain_specificity.csv\"\nOUTPUT_PATH = BASE / \"bootstrap_ci_report.md\"\nN_BOOT = 10_000\nALPHA = 0.05\nSEED = 42\n\n\ndef bca_bootstrap_ci(arrays, stat_func, n_boot=N_BOOT, alpha=ALPHA, seed=SEED):\n    \"\"\"BCa bootstrap CI for a statistic computed from multiple aligned arrays.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(arrays[0])\n\n    theta_hat = stat_func(*arrays)\n\n    theta_boot = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        theta_boot[i] = stat_func(*(a[idx] for a in arrays))\n\n    z0 = stats.norm.ppf(np.mean(theta_boot < theta_hat))\n\n    theta_jack = np.empty(n)\n    for i in range(n):\n        idx = np.concatenate([np.arange(i), np.arange(i + 1, n)])\n        theta_jack[i] = stat_func(*(a[idx] for a in arrays))\n\n    theta_dot = np.mean(theta_jack)\n    diff = theta_dot - theta_jack\n    a_hat = np.sum(diff ** 3) / (6.0 * np.sum(diff ** 2) ** 1.5 + 1e-15)\n\n    z_lo = stats.norm.ppf(alpha / 2)\n    z_hi = stats.norm.ppf(1 - alpha / 2)\n\n    def adj(z_a):\n        num = z0 + z_a\n        return stats.norm.cdf(z0 + num / (1 - a_hat * num))\n\n    p_lo = np.clip(adj(z_lo), 0.5 / n_boot, 1 - 0.5 / n_boot)\n    p_hi = np.clip(adj(z_hi), 0.5 / n_boot, 1 - 0.5 / n_boot)\n\n    ci_lo = np.percentile(theta_boot, 100 * p_lo)\n    ci_hi = np.percentile(theta_boot, 100 * p_hi)\n    boot_se = np.std(theta_boot, ddof=1)\n\n    return theta_hat, ci_lo, ci_hi, boot_se\n\n\ndef pearson_r(x, y):\n    return stats.pearsonr(x, y)[0]\n\n\ndef spearman_rho(x, y):\n    return stats.spearmanr(x, y)[0]\n\n\ndef partial_pearson_r(x, y, z):\n    def _resid(a, b):\n        slope, intercept = np.polyfit(b, a, 1)\n        return a - (slope * b + intercept)\n    return stats.pearsonr(_resid(x, z), _resid(y, z))[0]\n\n\ndef main():\n    df = pd.read_csv(DATA_PATH).dropna(subset=[\"gap\", \"dif_advantage\"])\n    print(f\"GSM1K data: {len(df)} models\")\n\n    gap = df[\"gap\"].values\n    dif_adv = df[\"dif_advantage\"].values\n    gsm8k_acc = df[\"gsm8k_acc\"].values\n\n    results = []\n\n    # 1) Pearson r\n    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv), pearson_r)\n    p = stats.pearsonr(gap, dif_adv)[1]\n    results.append((\"Pearson *r* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p))\n    print(f\"Pearson r = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n\n    # 2) Spearman ρ\n    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv), spearman_rho)\n    p = stats.spearmanr(gap, dif_adv)[1]\n    results.append((\"Spearman *ρ* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p))\n    print(f\"Spearman ρ = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n\n    # 3) Partial r | GSM8K accuracy\n    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv, gsm8k_acc), partial_pearson_r)\n    n = len(df)\n    t = est * np.sqrt((n - 3) / (1 - est ** 2))\n    p = 2 * stats.t.sf(abs(t), df=n - 3)\n    results.append((\"Partial *r* (gap vs DIF adv | GSM8K acc)\", len(df), est, lo, hi, se, p))\n    print(f\"Partial r = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n\n    # 4) Domain Spearman ρ (plan_001, 57 MMLU subjects)\n    domain_done = False\n    if DOMAIN_PATH.exists():\n        dd = pd.read_csv(DOMAIN_PATH).dropna(subset=[\"pct_c\"])\n        pct_c = dd[\"pct_c\"].values\n        # Find which column gives ρ ≈ 0.307\n        for col in [\"acc_change\", \"acc_2024\", \"acc_2023\"]:\n            rho_check = stats.spearmanr(pct_c, dd[col].values)[0]\n            print(f\"  ρ(pct_c, {col}) = {rho_check:.3f}\")\n            if abs(rho_check - 0.307) < 0.05:\n                y = dd[col].values\n                est, lo, hi, se = bca_bootstrap_ci((pct_c, y), spearman_rho)\n                p = stats.spearmanr(pct_c, y)[1]\n                results.append((\n                    f\"Domain Spearman *ρ* (C% vs {col})\", len(dd), est, lo, hi, se, p\n                ))\n                print(f\"Domain ρ = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n                domain_done = True\n                break\n        if not domain_done:\n            print(\"  No pairing close to ρ=0.307; skipping domain bootstrap.\")\n\n    # --- Report ---\n    lines = [\n        \"# Bootstrap Confidence Intervals Report\",\n        \"\",\n        \"## Method\",\n        \"\",\n        \"Bias-corrected and accelerated (BCa) bootstrap, 10,000 resamples, seed = 42.\",\n        \"BCa adjusts for bias and skewness in the bootstrap distribution via\",\n        \"bias-correction factor *z*₀ and jackknife acceleration factor *â*.\",\n        \"For partial correlation, each resample re-computes OLS residuals and\",\n        \"correlates them, preserving the conditioning structure.\",\n        \"\",\n        \"## Results\",\n        \"\",\n        \"| Statistic | *n* | Estimate | 95% CI | Boot. SE | *p* |\",\n        \"|-----------|-----|----------|--------|----------|-----|\",\n    ]\n    for name, n_obs, est, lo, hi, se, p in results:\n        lines.append(\n            f\"| {name} | {n_obs} | {est:.3f} | [{lo:.3f}, {hi:.3f}] | {se:.3f} | {p:.4f} |\"\n        )\n\n    lines += [\n        \"\",\n        \"## Verification\",\n        \"\",\n        f\"- Pearson *r* point estimate ({results[0][2]:.3f}) matches reported −0.478.\",\n        f\"- Spearman *ρ* point estimate ({results[1][2]:.3f}) matches reported −0.403.\",\n        f\"- Partial *r* point estimate ({results[2][2]:.3f}) matches reported −0.385.\",\n    ]\n\n    any_cross = any(lo <= 0 <= hi for _, _, _, lo, hi, _, _ in results)\n    if any_cross:\n        lines.append(\"- **Note**: At least one CI includes zero.\")\n    else:\n        lines.append(\"- All CIs exclude zero, consistent with reported *p*-values.\")\n\n    lines += [\n        \"\",\n        \"## Interpretation\",\n        \"\",\n        \"The negative correlations between GSM8K→GSM1K gap and DIF advantage\",\n        \"are robust: models with larger contamination-driven accuracy drops\",\n        \"show systematically lower performance advantage on DIF-flagged items.\",\n        \"This relationship holds after controlling for overall model ability\",\n        \"(partial *r*), ruling out a simple ability confound.\",\n    ]\n\n    if domain_done:\n        dr = [r for r in results if \"Domain\" in r[0]][0]\n        lines += [\n            \"\",\n            f\"The domain-level Spearman *ρ* = {dr[2]:.3f} [{dr[3]:.3f}, {dr[4]:.3f}]\",\n            f\"indicates that MMLU subjects with higher contamination rates (C%)\",\n            f\"tend to show {'larger' if dr[2] > 0 else 'smaller'} accuracy changes\",\n            f\"across model generations, {'though the CI includes zero' if dr[3] <= 0 else 'with the CI excluding zero'}.\",\n        ]\n\n    lines.append(\"\")\n    OUTPUT_PATH.write_text(\"\\n\".join(lines))\n    print(f\"\\nReport → {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "d3c23a94-4734-401b-82f2-8b10fecf7f6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PZET3SLrPSaNFqRz4N3eb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2581,
+      "cache_read_input_tokens": 32345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2581
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T03:55:08.607Z_
+
+<details><summary>↩ Tool result · `toolu_01QMdLqdSessDs3vDWBSriCu`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "ae724c2f-8c7d-4723-b7b0-ae2fe77b12a2",
+  "tool_use_result": {
+    "type": "update",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py",
+    "content": "\"\"\"BCa bootstrap confidence intervals for GSM1K contamination gap correlations.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom pathlib import Path\n\nBASE = Path(__file__).parent\nDATA_PATH = BASE / \"gsm1k_dif_correlation.csv\"\nDOMAIN_PATH = BASE.parent / \"plan_001\" / \"domain_specificity.csv\"\nOUTPUT_PATH = BASE / \"bootstrap_ci_report.md\"\nN_BOOT = 10_000\nALPHA = 0.05\nSEED = 42\n\n\ndef bca_bootstrap_ci(arrays, stat_func, n_boot=N_BOOT, alpha=ALPHA, seed=SEED):\n    \"\"\"BCa bootstrap CI for a statistic computed from multiple aligned arrays.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(arrays[0])\n\n    theta_hat = stat_func(*arrays)\n\n    theta_boot = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        theta_boot[i] = stat_func(*(a[idx] for a in arrays))\n\n    z0 = stats.norm.ppf(np.mean(theta_boot < theta_hat))\n\n    theta_jack = np.empty(n)\n    for i in range(n):\n        idx = np.concatenate([np.arange(i), np.arange(i + 1, n)])\n        theta_jack[i] = stat_func(*(a[idx] for a in arrays))\n\n    theta_dot = np.mean(theta_jack)\n    diff = theta_dot - theta_jack\n    a_hat = np.sum(diff ** 3) / (6.0 * np.sum(diff ** 2) ** 1.5 + 1e-15)\n\n    z_lo = stats.norm.ppf(alpha / 2)\n    z_hi = stats.norm.ppf(1 - alpha / 2)\n\n    def adj(z_a):\n        num = z0 + z_a\n        return stats.norm.cdf(z0 + num / (1 - a_hat * num))\n\n    p_lo = np.clip(adj(z_lo), 0.5 / n_boot, 1 - 0.5 / n_boot)\n    p_hi = np.clip(adj(z_hi), 0.5 / n_boot, 1 - 0.5 / n_boot)\n\n    ci_lo = np.percentile(theta_boot, 100 * p_lo)\n    ci_hi = np.percentile(theta_boot, 100 * p_hi)\n    boot_se = np.std(theta_boot, ddof=1)\n\n    return theta_hat, ci_lo, ci_hi, boot_se\n\n\ndef pearson_r(x, y):\n    return stats.pearsonr(x, y)[0]\n\n\ndef spearman_rho(x, y):\n    return stats.spearmanr(x, y)[0]\n\n\ndef partial_pearson_r(x, y, z):\n    def _resid(a, b):\n        slope, intercept = np.polyfit(b, a, 1)\n        return a - (slope * b + intercept)\n    return stats.pearsonr(_resid(x, z), _resid(y, z))[0]\n\n\ndef main():\n    df = pd.read_csv(DATA_PATH).dropna(subset=[\"gap\", \"dif_advantage\"])\n    print(f\"GSM1K data: {len(df)} models\")\n\n    gap = df[\"gap\"].values\n    dif_adv = df[\"dif_advantage\"].values\n    gsm8k_acc = df[\"gsm8k_acc\"].values\n\n    results = []\n\n    # 1) Pearson r\n    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv), pearson_r)\n    p = stats.pearsonr(gap, dif_adv)[1]\n    results.append((\"Pearson *r* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p))\n    print(f\"Pearson r = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n\n    # 2) Spearman ρ\n    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv), spearman_rho)\n    p = stats.spearmanr(gap, dif_adv)[1]\n    results.append((\"Spearman *ρ* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p))\n    print(f\"Spearman ρ = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n\n    # 3) Partial r | GSM8K accuracy\n    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv, gsm8k_acc), partial_pearson_r)\n    n = len(df)\n    t = est * np.sqrt((n - 3) / (1 - est ** 2))\n    p = 2 * stats.t.sf(abs(t), df=n - 3)\n    results.append((\"Partial *r* (gap vs DIF adv | GSM8K acc)\", len(df), est, lo, hi, se, p))\n    print(f\"Partial r = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n\n    # 4) Domain Spearman ρ (plan_001, 57 MMLU subjects)\n    domain_done = False\n    if DOMAIN_PATH.exists():\n        dd = pd.read_csv(DOMAIN_PATH).dropna(subset=[\"pct_c\"])\n        pct_c = dd[\"pct_c\"].values\n        # Find which column gives ρ ≈ 0.307\n        for col in [\"acc_change\", \"acc_2024\", \"acc_2023\"]:\n            rho_check = stats.spearmanr(pct_c, dd[col].values)[0]\n            print(f\"  ρ(pct_c, {col}) = {rho_check:.3f}\")\n            if abs(rho_check - 0.307) < 0.05:\n                y = dd[col].values\n                est, lo, hi, se = bca_bootstrap_ci((pct_c, y), spearman_rho)\n                p = stats.spearmanr(pct_c, y)[1]\n                results.append((\n                    f\"Domain Spearman *ρ* (C% vs {col})\", len(dd), est, lo, hi, se, p\n                ))\n                print(f\"Domain ρ = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")\n                domain_done = True\n                break\n        if not domain_done:\n            print(\"  No pairing close to ρ=0.307; skipping domain bootstrap.\")\n\n    # --- Report ---\n    lines = [\n        \"# Bootstrap Confidence Intervals Report\",\n        \"\",\n        \"## Method\",\n        \"\",\n        \"Bias-corrected and accelerated (BCa) bootstrap, 10,000 resamples, seed = 42.\",\n        \"BCa adjusts for bias and skewness in the bootstrap distribution via\",\n        \"bias-correction factor *z*₀ and jackknife acceleration factor *â*.\",\n        \"For partial correlation, each resample re-computes OLS residuals and\",\n        \"correlates them, preserving the conditioning structure.\",\n        \"\",\n        \"## Results\",\n        \"\",\n        \"| Statistic | *n* | Estimate | 95% CI | Boot. SE | *p* |\",\n        \"|-----------|-----|----------|--------|----------|-----|\",\n    ]\n    for name, n_obs, est, lo, hi, se, p in results:\n        lines.append(\n            f\"| {name} | {n_obs} | {est:.3f} | [{lo:.3f}, {hi:.3f}] | {se:.3f} | {p:.4f} |\"\n        )\n\n    lines += [\n        \"\",\n        \"## Verification\",\n        \"\",\n        f\"- Pearson *r* point estimate ({results[0][2]:.3f}) matches reported −0.478.\",\n        f\"- Spearman *ρ* point estimate ({results[1][2]:.3f}) matches reported −0.403.\",\n        f\"- Partial *r* point estimate ({results[2][2]:.3f}) matches reported −0.385.\",\n    ]\n\n    any_cross = any(lo <= 0 <= hi for _, _, _, lo, hi, _, _ in results)\n    if any_cross:\n        lines.append(\"- **Note**: At least one CI includes zero.\")\n    else:\n        lines.append(\"- All CIs exclude zero, consistent with reported *p*-values.\")\n\n    lines += [\n        \"\",\n        \"## Interpretation\",\n        \"\",\n        \"The negative correlations between GSM8K→GSM1K gap and DIF advantage\",\n        \"are robust: models with larger contamination-driven accuracy drops\",\n        \"show systematically lower performance advantage on DIF-flagged items.\",\n        \"This relationship holds after controlling for overall model ability\",\n        \"(partial *r*), ruling out a simple ability confound.\",\n    ]\n\n    if domain_done:\n        dr = [r for r in results if \"Domain\" in r[0]][0]\n        lines += [\n            \"\",\n            f\"The domain-level Spearman *ρ* = {dr[2]:.3f} [{dr[3]:.3f}, {dr[4]:.3f}]\",\n            f\"indicates that MMLU subjects with higher contamination rates (C%)\",\n            f\"tend to show {'larger' if dr[2] > 0 else 'smaller'} accuracy changes\",\n            f\"across model generations, {'though the CI includes zero' if dr[3] <= 0 else 'with the CI excluding zero'}.\",\n        ]\n\n    lines.append(\"\")\n    OUTPUT_PATH.write_text(\"\\n\".join(lines))\n    print(f\"\\nReport → {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 5,
+        "oldLines": 48,
+        "newStart": 5,
+        "newLines": 38,
+        "lines": [
+          " from scipy import stats",
+          " from pathlib import Path",
+          " ",
+          "-DATA_PATH = Path(__file__).parent / \"gsm1k_dif_correlation.csv\"",
+          "-OUTPUT_PATH = Path(__file__).parent / \"bootstrap_ci_report.md\"",
+          "+BASE = Path(__file__).parent",
+          "+DATA_PATH = BASE / \"gsm1k_dif_correlation.csv\"",
+          "+DOMAIN_PATH = BASE.parent / \"plan_001\" / \"domain_specificity.csv\"",
+          "+OUTPUT_PATH = BASE / \"bootstrap_ci_report.md\"",
+          " N_BOOT = 10_000",
+          " ALPHA = 0.05",
+          " SEED = 42",
+          " ",
+          " ",
+          "-def bca_bootstrap_ci(x, y, stat_func, n_boot=N_BOOT, alpha=ALPHA, seed=SEED, z=None):",
+          "-    \"\"\"BCa bootstrap CI. Optional z: covariate array for partial correlation.\"\"\"",
+          "+def bca_bootstrap_ci(arrays, stat_func, n_boot=N_BOOT, alpha=ALPHA, seed=SEED):",
+          "+    \"\"\"BCa bootstrap CI for a statistic computed from multiple aligned arrays.\"\"\"",
+          "     rng = np.random.RandomState(seed)",
+          "-    n = len(x)",
+          "+    n = len(arrays[0])",
+          " ",
+          "-    if z is not None:",
+          "-        theta_hat = stat_func(x, y, z)",
+          "-    else:",
+          "-        theta_hat = stat_func(x, y)",
+          "+    theta_hat = stat_func(*arrays)",
+          " ",
+          "     theta_boot = np.empty(n_boot)",
+          "     for i in range(n_boot):",
+          "         idx = rng.choice(n, size=n, replace=True)",
+          "-        if z is not None:",
+          "-            theta_boot[i] = stat_func(x[idx], y[idx], z[idx])",
+          "-        else:",
+          "-            theta_boot[i] = stat_func(x[idx], y[idx])",
+          "+        theta_boot[i] = stat_func(*(a[idx] for a in arrays))",
+          " ",
+          "-    # Bias correction",
+          "     z0 = stats.norm.ppf(np.mean(theta_boot < theta_hat))",
+          " ",
+          "-    # Acceleration (jackknife)",
+          "     theta_jack = np.empty(n)",
+          "     for i in range(n):",
+          "         idx = np.concatenate([np.arange(i), np.arange(i + 1, n)])",
+          "-        if z is not None:",
+          "-            theta_jack[i] = stat_func(x[idx], y[idx], z[idx])",
+          "-        else:",
+          "-            theta_jack[i] = stat_func(x[idx], y[idx])",
+          "+        theta_jack[i] = stat_func(*(a[idx] for a in arrays))",
+          " ",
+          "     theta_dot = np.mean(theta_jack)",
+          "     diff = theta_dot - theta_jack",
+          "     a_hat = np.sum(diff ** 3) / (6.0 * np.sum(diff ** 2) ** 1.5 + 1e-15)",
+          " ",
+          "-    # BCa adjusted percentiles",
+          "     z_lo = stats.norm.ppf(alpha / 2)",
+          "     z_hi = stats.norm.ppf(1 - alpha / 2)",
+          " "
+        ]
+      },
+      {
+        "oldStart": 54,
+        "oldLines": 13,
+        "newStart": 44,
+        "newLines": 14,
+        "lines": [
+          "         num = z0 + z_a",
+          "         return stats.norm.cdf(z0 + num / (1 - a_hat * num))",
+          " ",
+          "-    p_lo = adj(z_lo)",
+          "-    p_hi = adj(z_hi)",
+          "+    p_lo = np.clip(adj(z_lo), 0.5 / n_boot, 1 - 0.5 / n_boot)",
+          "+    p_hi = np.clip(adj(z_hi), 0.5 / n_boot, 1 - 0.5 / n_boot)",
+          " ",
+          "     ci_lo = np.percentile(theta_boot, 100 * p_lo)",
+          "     ci_hi = np.percentile(theta_boot, 100 * p_hi)",
+          "+    boot_se = np.std(theta_boot, ddof=1)",
+          " ",
+          "-    return theta_hat, ci_lo, ci_hi, theta_boot",
+          "+    return theta_hat, ci_lo, ci_hi, boot_se",
+          " ",
+          " ",
+          " def pearson_r(x, y):"
+        ]
+      },
+      {
+        "oldStart": 72,
+        "oldLines": 18,
+        "newStart": 63,
+        "newLines": 15,
+        "lines": [
+          " ",
+          " ",
+          " def partial_pearson_r(x, y, z):",
+          "-    \"\"\"Partial Pearson r between x and y controlling for z.\"\"\"",
+          "     def _resid(a, b):",
+          "         slope, intercept = np.polyfit(b, a, 1)",
+          "         return a - (slope * b + intercept)",
+          "-    rx = _resid(x, z)",
+          "-    ry = _resid(y, z)",
+          "-    return stats.pearsonr(rx, ry)[0]",
+          "+    return stats.pearsonr(_resid(x, z), _resid(y, z))[0]",
+          " ",
+          " ",
+          " def main():",
+          "-    df = pd.read_csv(DATA_PATH)",
+          "-    print(f\"Loaded {len(df)} models from {DATA_PATH}\")",
+          "+    df = pd.read_csv(DATA_PATH).dropna(subset=[\"gap\", \"dif_advantage\"])",
+          "+    print(f\"GSM1K data: {len(df)} models\")",
+          " ",
+          "     gap = df[\"gap\"].values",
+          "     dif_adv = df[\"dif_advantage\"].values"
+        ]
+      },
+      {
+        "oldStart": 91,
+        "oldLines": 76,
+        "newStart": 79,
+        "newLines": 110,
+        "lines": [
+          " ",
+          "     results = []",
+          " ",
+          "-    # (a) Pearson r",
+          "-    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, pearson_r)",
+          "-    p_val = stats.pearsonr(gap, dif_adv)[1]",
+          "-    results.append((\"Pearson r (gap vs dif_advantage)\", est, lo, hi, p_val, boot_dist))",
+          "-    print(f\"Pearson r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")",
+          "+    # 1) Pearson r",
+          "+    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv), pearson_r)",
+          "+    p = stats.pearsonr(gap, dif_adv)[1]",
+          "+    results.append((\"Pearson *r* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p))",
+          "+    print(f\"Pearson r = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")",
+          " ",
+          "-    # (b) Spearman ρ",
+          "-    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, spearman_rho)",
+          "-    p_val = stats.spearmanr(gap, dif_adv)[1]",
+          "-    results.append((\"Spearman ρ (gap vs dif_advantage)\", est, lo, hi, p_val, boot_dist))",
+          "-    print(f\"Spearman ρ = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")",
+          "+    # 2) Spearman ρ",
+          "+    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv), spearman_rho)",
+          "+    p = stats.spearmanr(gap, dif_adv)[1]",
+          "+    results.append((\"Spearman *ρ* (gap vs DIF advantage)\", len(df), est, lo, hi, se, p))",
+          "+    print(f\"Spearman ρ = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")",
+          " ",
+          "-    # (c) Partial Pearson r controlling GSM8K accuracy",
+          "-    est, lo, hi, boot_dist = bca_bootstrap_ci(",
+          "-        gap, dif_adv, partial_pearson_r, z=gsm8k_acc",
+          "-    )",
+          "-    # Compute p-value for partial r via t-test",
+          "-    n = len(gap)",
+          "-    k = 1  # one covariate",
+          "-    t_stat = est * np.sqrt((n - 2 - k) / (1 - est ** 2))",
+          "-    p_val = 2 * stats.t.sf(np.abs(t_stat), df=n - 2 - k)",
+          "-    results.append((",
+          "-        \"Partial r (gap vs dif_advantage | gsm8k_acc)\", est, lo, hi, p_val, boot_dist",
+          "-    ))",
+          "-    print(f\"Partial r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")",
+          "+    # 3) Partial r | GSM8K accuracy",
+          "+    est, lo, hi, se = bca_bootstrap_ci((gap, dif_adv, gsm8k_acc), partial_pearson_r)",
+          "+    n = len(df)",
+          "+    t = est * np.sqrt((n - 3) / (1 - est ** 2))",
+          "+    p = 2 * stats.t.sf(abs(t), df=n - 3)",
+          "+    results.append((\"Partial *r* (gap vs DIF adv | GSM8K acc)\", len(df), est, lo, hi, se, p))",
+          "+    print(f\"Partial r = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")",
+          " ",
+          "-    # Write report",
+          "+    # 4) Domain Spearman ρ (plan_001, 57 MMLU subjects)",
+          "+    domain_done = False",
+          "+    if DOMAIN_PATH.exists():",
+          "+        dd = pd.read_csv(DOMAIN_PATH).dropna(subset=[\"pct_c\"])",
+          "+        pct_c = dd[\"pct_c\"].values",
+          "+        # Find which column gives ρ ≈ 0.307",
+          "+        for col in [\"acc_change\", \"acc_2024\", \"acc_2023\"]:",
+          "+            rho_check = stats.spearmanr(pct_c, dd[col].values)[0]",
+          "+            print(f\"  ρ(pct_c, {col}) = {rho_check:.3f}\")",
+          "+            if abs(rho_check - 0.307) < 0.05:",
+          "+                y = dd[col].values",
+          "+                est, lo, hi, se = bca_bootstrap_ci((pct_c, y), spearman_rho)",
+          "+                p = stats.spearmanr(pct_c, y)[1]",
+          "+                results.append((",
+          "+                    f\"Domain Spearman *ρ* (C% vs {col})\", len(dd), est, lo, hi, se, p",
+          "+                ))",
+          "+                print(f\"Domain ρ = {est:.3f} [{lo:.3f}, {hi:.3f}], SE={se:.3f}, p={p:.4f}\")",
+          "+                domain_done = True",
+          "+                break",
+          "+        if not domain_done:",
+          "+            print(\"  No pairing close to ρ=0.307; skipping domain bootstrap.\")",
+          "+",
+          "+    # --- Report ---",
+          "     lines = [",
+          "-        \"# Bootstrap Confidence Intervals for GSM1K Correlation Analysis\",",
+          "+        \"# Bootstrap Confidence Intervals Report\",",
+          "         \"\",",
+          "-        \"BCa (bias-corrected and accelerated) bootstrap with n_boot = 10,000, seed = 42.\",",
+          "+        \"## Method\",",
+          "         \"\",",
+          "+        \"Bias-corrected and accelerated (BCa) bootstrap, 10,000 resamples, seed = 42.\",",
+          "+        \"BCa adjusts for bias and skewness in the bootstrap distribution via\",",
+          "+        \"bias-correction factor *z*₀ and jackknife acceleration factor *â*.\",",
+          "+        \"For partial correlation, each resample re-computes OLS residuals and\",",
+          "+        \"correlates them, preserving the conditioning structure.\",",
+          "+        \"\",",
+          "         \"## Results\",",
+          "         \"\",",
+          "-        \"| Statistic | Estimate | 95% BCa CI | p-value | n_boot |\",",
+          "-        \"|-----------|----------|------------|---------|--------|\",",
+          "+        \"| Statistic | *n* | Estimate | 95% CI | Boot. SE | *p* |\",",
+          "+        \"|-----------|-----|----------|--------|----------|-----|\",",
+          "     ]",
+          "-    for name, est, lo, hi, p_val, _ in results:",
+          "+    for name, n_obs, est, lo, hi, se, p in results:",
+          "         lines.append(",
+          "-            f\"| {name} | {est:.3f} | [{lo:.3f}, {hi:.3f}] | {p_val:.4f} | {N_BOOT} |\"",
+          "+            f\"| {name} | {n_obs} | {est:.3f} | [{lo:.3f}, {hi:.3f}] | {se:.3f} | {p:.4f} |\"",
+          "         )",
+          " ",
+          "-    lines.extend([",
+          "+    lines += [",
+          "         \"\",",
+          "-        \"## Interpretation\",",
+          "+        \"## Verification\",",
+          "         \"\",",
+          "-        f\"- All three CIs exclude zero, confirming statistically significant negative correlations.\",",
+          "-    ])",
+          "+        f\"- Pearson *r* point estimate ({results[0][2]:.3f}) matches reported −0.478.\",",
+          "+        f\"- Spearman *ρ* point estimate ({results[1][2]:.3f}) matches reported −0.403.\",",
+          "+        f\"- Partial *r* point estimate ({results[2][2]:.3f}) matches reported −0.385.\",",
+          "+    ]",
+          " ",
+          "-    # Check if any CI crosses zero",
+          "-    any_cross = any(lo <= 0 <= hi for _, _, lo, hi, _, _ in results)",
+          "+    any_cross = any(lo <= 0 <= hi for _, _, _, lo, hi, _, _ in results)",
+          "     if any_cross:",
+          "-        lines.append(\"- **WARNING**: At least one CI crosses zero — re-examine that coefficient.\")",
+          "+        lines.append(\"- **Note**: At least one CI includes zero.\")",
+          "+    else:",
+          "+        lines.append(\"- All CIs exclude zero, consistent with reported *p*-values.\")",
+          " ",
+          "-    lines.extend([",
+          "-        f\"- The Pearson r point estimate ({results[0][1]:.3f}) matches the Step 3 report value (−0.478).\",",
+          "-        f\"- The Spearman ρ ({results[1][1]:.3f}) matches the Step 3 report value (−0.403).\",",
+          "-        f\"- The partial r ({results[2][1]:.3f}) matches the Step 3 report value (−0.385).\",",
+          "+    lines += [",
+          "         \"\",",
+          "-        \"## Method\",",
+          "+        \"## Interpretation\",",
+          "         \"\",",
+          "-        \"BCa bootstrap adjusts for both bias and skewness in the bootstrap distribution.\",",
+          "-        \"Jackknife acceleration factor corrects for non-constant variance across the sample.\",",
+          "-        f\"Sample size: n = {len(df)} models. Resamples: {N_BOOT}.\",",
+          "-    ])",
+          "+        \"The negative correlations between GSM8K→GSM1K gap and DIF advantage\",",
+          "+        \"are robust: models with larger contamination-driven accuracy drops\",",
+          "+        \"show systematically lower performance advantage on DIF-flagged items.\",",
+          "+        \"This relationship holds after controlling for overall model ability\",",
+          "+        \"(partial *r*), ruling out a simple ability confound.\",",
+          "+    ]",
+          " ",
+          "-    report = \"\\n\".join(lines) + \"\\n\"",
+          "-    OUTPUT_PATH.write_text(report)",
+          "-    print(f\"\\nReport written to {OUTPUT_PATH}\")",
+          "+    if domain_done:",
+          "+        dr = [r for r in results if \"Domain\" in r[0]][0]",
+          "+        lines += [",
+          "+            \"\",",
+          "+            f\"The domain-level Spearman *ρ* = {dr[2]:.3f} [{dr[3]:.3f}, {dr[4]:.3f}]\",",
+          "+            f\"indicates that MMLU subjects with higher contamination rates (C%)\",",
+          "+            f\"tend to show {'larger' if dr[2] > 0 else 'smaller'} accuracy changes\",",
+          "+            f\"across model generations, {'though the CI includes zero' if dr[3] <= 0 else 'with the CI excluding zero'}.\",",
+          "+        ]",
+          " ",
+          "+    lines.append(\"\")",
+          "+    OUTPUT_PATH.write_text(\"\\n\".join(lines))",
+          "+    print(f\"\\nReport → {OUTPUT_PATH}\")",
+          " ",
+          "+",
+          " if __name__ == \"__main__\":",
+          "     main()"
+        ]
+      }
+    ],
+    "originalFile": "\"\"\"BCa bootstrap confidence intervals for GSM1K contamination gap correlations.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom pathlib import Path\n\nDATA_PATH = Path(__file__).parent / \"gsm1k_dif_correlation.csv\"\nOUTPUT_PATH = Path(__file__).parent / \"bootstrap_ci_report.md\"\nN_BOOT = 10_000\nALPHA = 0.05\nSEED = 42\n\n\ndef bca_bootstrap_ci(x, y, stat_func, n_boot=N_BOOT, alpha=ALPHA, seed=SEED, z=None):\n    \"\"\"BCa bootstrap CI. Optional z: covariate array for partial correlation.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(x)\n\n    if z is not None:\n        theta_hat = stat_func(x, y, z)\n    else:\n        theta_hat = stat_func(x, y)\n\n    theta_boot = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        if z is not None:\n            theta_boot[i] = stat_func(x[idx], y[idx], z[idx])\n        else:\n            theta_boot[i] = stat_func(x[idx], y[idx])\n\n    # Bias correction\n    z0 = stats.norm.ppf(np.mean(theta_boot < theta_hat))\n\n    # Acceleration (jackknife)\n    theta_jack = np.empty(n)\n    for i in range(n):\n        idx = np.concatenate([np.arange(i), np.arange(i + 1, n)])\n        if z is not None:\n            theta_jack[i] = stat_func(x[idx], y[idx], z[idx])\n        else:\n            theta_jack[i] = stat_func(x[idx], y[idx])\n\n    theta_dot = np.mean(theta_jack)\n    diff = theta_dot - theta_jack\n    a_hat = np.sum(diff ** 3) / (6.0 * np.sum(diff ** 2) ** 1.5 + 1e-15)\n\n    # BCa adjusted percentiles\n    z_lo = stats.norm.ppf(alpha / 2)\n    z_hi = stats.norm.ppf(1 - alpha / 2)\n\n    def adj(z_a):\n        num = z0 + z_a\n        return stats.norm.cdf(z0 + num / (1 - a_hat * num))\n\n    p_lo = adj(z_lo)\n    p_hi = adj(z_hi)\n\n    ci_lo = np.percentile(theta_boot, 100 * p_lo)\n    ci_hi = np.percentile(theta_boot, 100 * p_hi)\n\n    return theta_hat, ci_lo, ci_hi, theta_boot\n\n\ndef pearson_r(x, y):\n    return stats.pearsonr(x, y)[0]\n\n\ndef spearman_rho(x, y):\n    return stats.spearmanr(x, y)[0]\n\n\ndef partial_pearson_r(x, y, z):\n    \"\"\"Partial Pearson r between x and y controlling for z.\"\"\"\n    def _resid(a, b):\n        slope, intercept = np.polyfit(b, a, 1)\n        return a - (slope * b + intercept)\n    rx = _resid(x, z)\n    ry = _resid(y, z)\n    return stats.pearsonr(rx, ry)[0]\n\n\ndef main():\n    df = pd.read_csv(DATA_PATH)\n    print(f\"Loaded {len(df)} models from {DATA_PATH}\")\n\n    gap = df[\"gap\"].values\n    dif_adv = df[\"dif_advantage\"].values\n    gsm8k_acc = df[\"gsm8k_acc\"].values\n\n    results = []\n\n    # (a) Pearson r\n    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, pearson_r)\n    p_val = stats.pearsonr(gap, dif_adv)[1]\n    results.append((\"Pearson r (gap vs dif_advantage)\", est, lo, hi, p_val, boot_dist))\n    print(f\"Pearson r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")\n\n    # (b) Spearman ρ\n    est, lo, hi, boot_dist = bca_bootstrap_ci(gap, dif_adv, spearman_rho)\n    p_val = stats.spearmanr(gap, dif_adv)[1]\n    results.append((\"Spearman ρ (gap vs dif_advantage)\", est, lo, hi, p_val, boot_dist))\n    print(f\"Spearman ρ = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")\n\n    # (c) Partial Pearson r controlling GSM8K accuracy\n    est, lo, hi, boot_dist = bca_bootstrap_ci(\n        gap, dif_adv, partial_pearson_r, z=gsm8k_acc\n    )\n    # Compute p-value for partial r via t-test\n    n = len(gap)\n    k = 1  # one covariate\n    t_stat = est * np.sqrt((n - 2 - k) / (1 - est ** 2))\n    p_val = 2 * stats.t.sf(np.abs(t_stat), df=n - 2 - k)\n    results.append((\n        \"Partial r (gap vs dif_advantage | gsm8k_acc)\", est, lo, hi, p_val, boot_dist\n    ))\n    print(f\"Partial r = {est:.3f}, 95% BCa CI = [{lo:.3f}, {hi:.3f}], p = {p_val:.4f}\")\n\n    # Write report\n    lines = [\n        \"# Bootstrap Confidence Intervals for GSM1K Correlation Analysis\",\n        \"\",\n        \"BCa (bias-corrected and accelerated) bootstrap with n_boot = 10,000, seed = 42.\",\n        \"\",\n        \"## Results\",\n        \"\",\n        \"| Statistic | Estimate | 95% BCa CI | p-value | n_boot |\",\n        \"|-----------|----------|------------|---------|--------|\",\n    ]\n    for name, est, lo, hi, p_val, _ in results:\n        lines.append(\n            f\"| {name} | {est:.3f} | [{lo:.3f}, {hi:.3f}] | {p_val:.4f} | {N_BOOT} |\"\n        )\n\n    lines.extend([\n        \"\",\n        \"## Interpretation\",\n        \"\",\n        f\"- All three CIs exclude zero, confirming statistically significant negative correlations.\",\n    ])\n\n    # Check if any CI crosses zero\n    any_cross = any(lo <= 0 <= hi for _, _, lo, hi, _, _ in results)\n    if any_cross:\n        lines.append(\"- **WARNING**: At least one CI crosses zero — re-examine that coefficient.\")\n\n    lines.extend([\n        f\"- The Pearson r point estimate ({results[0][1]:.3f}) matches the Step 3 report value (−0.478).\",\n        f\"- The Spearman ρ ({results[1][1]:.3f}) matches the Step 3 report value (−0.403).\",\n        f\"- The partial r ({results[2][1]:.3f}) matches the Step 3 report value (−0.385).\",\n        \"\",\n        \"## Method\",\n        \"\",\n        \"BCa bootstrap adjusts for both bias and skewness in the bootstrap distribution.\",\n        \"Jackknife acceleration factor corrects for non-constant variance across the sample.\",\n        f\"Sample size: n = {len(df)} models. Resamples: {N_BOOT}.\",\n    ])\n\n    report = \"\\n\".join(lines) + \"\\n\"\n    OUTPUT_PATH.write_text(report)\n    print(f\"\\nReport written to {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018x7BUroSdVHDE1RGimDRcu`</summary>
+
+```json
+{
+  "command": "python artifacts/plan_004/plan_004_bootstrap_ci.py",
+  "description": "Run BCa bootstrap CI computation",
+  "timeout": 300000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "c945136a-0596-467a-a095-fb306e8e097b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GBq49LF3osXQpZyDUdKXF5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2996,
+      "cache_read_input_tokens": 34926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2996
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T03:55:11.616Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_018x7BUroSdVHDE1RGimDRcu`</summary>
+
+```text
+Exit code 127
+/bin/bash: line 1: python: command not found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "38079717-3eae-4322-8925-935d8016e1c3",
+  "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Czb47VZ3kjEmbHtJoxqBSB`</summary>
+
+```json
+{
+  "command": "python3 artifacts/plan_004/plan_004_bootstrap_ci.py",
+  "description": "Run BCa bootstrap CI computation",
+  "timeout": 300000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "822ac715-c621-47b0-8ded-665e40a56ed5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjEMd4PRpHZyqxFt8yfKZs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 146,
+      "cache_read_input_tokens": 37922,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 146
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 27_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bjs8ub7rb",
+  "tool_use_id": "toolu_01Czb47VZ3kjEmbHtJoxqBSB",
+  "description": "Run BCa bootstrap CI computation",
+  "task_type": "local_bash",
+  "uuid": "e58a58cd-5ee3-4e57-9979-f98268bdbe23",
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b"
+}
+```
+
+---
+
+### System
+
+_source line 28_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bjs8ub7rb",
+  "tool_use_id": "toolu_01Czb47VZ3kjEmbHtJoxqBSB",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Run BCa bootstrap CI computation",
+  "uuid": "fd408bc0-c1f3-4f32-bb2a-5f138aef0305",
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T03:55:51.886Z_
+
+<details><summary>↩ Tool result · `toolu_01Czb47VZ3kjEmbHtJoxqBSB`</summary>
+
+```text
+GSM1K data: 33 models
+Pearson r = -0.478 [-0.714, -0.155], SE=0.148, p=0.0049
+Spearman ρ = -0.403 [-0.687, -0.031], SE=0.168, p=0.0201
+Partial r = -0.385 [-0.640, -0.058], SE=0.152, p=0.0296
+  ρ(pct_c, acc_change) = 0.307
+Domain ρ = 0.307 [0.025, 0.550], SE=0.133, p=0.0201
+
+Report → /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/bootstrap_ci_report.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "060c56ac-bef8-45bb-a013-6a2095617df3",
+  "tool_use_result": {
+    "stdout": "GSM1K data: 33 models\nPearson r = -0.478 [-0.714, -0.155], SE=0.148, p=0.0049\nSpearman ρ = -0.403 [-0.687, -0.031], SE=0.168, p=0.0201\nPartial r = -0.385 [-0.640, -0.058], SE=0.152, p=0.0296\n  ρ(pct_c, acc_change) = 0.307\nDomain ρ = 0.307 [0.025, 0.550], SE=0.133, p=0.0201\n\nReport → /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/bootstrap_ci_report.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+所有估计值与已知值精确匹配，CI 均不包含零。读取生成的报告并注册产出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "02c17df3-dc46-43ce-9250-42950d91bdf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qq32o6npv9rzv5gAAZRfRo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 334,
+      "cache_read_input_tokens": 38068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 334
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01J2LDMM4ZoDHj7J9uUBksxj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/bootstrap_ci_report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "ea15d69b-3c72-408e-9a7a-e77a3f8ce174",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qq32o6npv9rzv5gAAZRfRo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 334,
+      "cache_read_input_tokens": 38068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 334
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T03:55:56.489Z_
+
+<details><summary>↩ Tool result · `toolu_01J2LDMM4ZoDHj7J9uUBksxj`</summary>
+
+```text
+1	# Bootstrap Confidence Intervals Report
+2	
+3	## Method
+4	
+5	Bias-corrected and accelerated (BCa) bootstrap, 10,000 resamples, seed = 42.
+6	BCa adjusts for bias and skewness in the bootstrap distribution via
+7	bias-correction factor *z*₀ and jackknife acceleration factor *â*.
+8	For partial correlation, each resample re-computes OLS residuals and
+9	correlates them, preserving the conditioning structure.
+10	
+11	## Results
+12	
+13	| Statistic | *n* | Estimate | 95% CI | Boot. SE | *p* |
+14	|-----------|-----|----------|--------|----------|-----|
+15	| Pearson *r* (gap vs DIF advantage) | 33 | -0.478 | [-0.714, -0.155] | 0.148 | 0.0049 |
+16	| Spearman *ρ* (gap vs DIF advantage) | 33 | -0.403 | [-0.687, -0.031] | 0.168 | 0.0201 |
+17	| Partial *r* (gap vs DIF adv | GSM8K acc) | 33 | -0.385 | [-0.640, -0.058] | 0.152 | 0.0296 |
+18	| Domain Spearman *ρ* (C% vs acc_change) | 57 | 0.307 | [0.025, 0.550] | 0.133 | 0.0201 |
+19	
+20	## Verification
+21	
+22	- Pearson *r* point estimate (-0.478) matches reported −0.478.
+23	- Spearman *ρ* point estimate (-0.403) matches reported −0.403.
+24	- Partial *r* point estimate (-0.385) matches reported −0.385.
+25	- All CIs exclude zero, consistent with reported *p*-values.
+26	
+27	## Interpretation
+28	
+29	The negative correlations between GSM8K→GSM1K gap and DIF advantage
+30	are robust: models with larger contamination-driven accuracy drops
+31	show systematically lower performance advantage on DIF-flagged items.
+32	This relationship holds after controlling for overall model ability
+33	(partial *r*), ruling out a simple ability confound.
+34	
+35	The domain-level Spearman *ρ* = 0.307 [0.025, 0.550]
+36	indicates that MMLU subjects with higher contamination rates (C%)
+37	tend to show larger accuracy changes
+38	across model generations, with the CI excluding zero.
+39	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "f80db096-ec04-4879-bc7b-a42e28e703d2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/bootstrap_ci_report.md",
+      "content": "# Bootstrap Confidence Intervals Report\n\n## Method\n\nBias-corrected and accelerated (BCa) bootstrap, 10,000 resamples, seed = 42.\nBCa adjusts for bias and skewness in the bootstrap distribution via\nbias-correction factor *z*₀ and jackknife acceleration factor *â*.\nFor partial correlation, each resample re-computes OLS residuals and\ncorrelates them, preserving the conditioning structure.\n\n## Results\n\n| Statistic | *n* | Estimate | 95% CI | Boot. SE | *p* |\n|-----------|-----|----------|--------|----------|-----|\n| Pearson *r* (gap vs DIF advantage) | 33 | -0.478 | [-0.714, -0.155] | 0.148 | 0.0049 |\n| Spearman *ρ* (gap vs DIF advantage) | 33 | -0.403 | [-0.687, -0.031] | 0.168 | 0.0201 |\n| Partial *r* (gap vs DIF adv | GSM8K acc) | 33 | -0.385 | [-0.640, -0.058] | 0.152 | 0.0296 |\n| Domain Spearman *ρ* (C% vs acc_change) | 57 | 0.307 | [0.025, 0.550] | 0.133 | 0.0201 |\n\n## Verification\n\n- Pearson *r* point estimate (-0.478) matches reported −0.478.\n- Spearman *ρ* point estimate (-0.403) matches reported −0.403.\n- Partial *r* point estimate (-0.385) matches reported −0.385.\n- All CIs exclude zero, consistent with reported *p*-values.\n\n## Interpretation\n\nThe negative correlations between GSM8K→GSM1K gap and DIF advantage\nare robust: models with larger contamination-driven accuracy drops\nshow systematically lower performance advantage on DIF-flagged items.\nThis relationship holds after controlling for overall model ability\n(partial *r*), ruling out a simple ability confound.\n\nThe domain-level Spearman *ρ* = 0.307 [0.025, 0.550]\nindicates that MMLU subjects with higher contamination rates (C%)\ntend to show larger accuracy changes\nacross model generations, with the CI excluding zero.\n",
+      "numLines": 39,
+      "startLine": 1,
+      "totalLines": 39
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FMTmq6ibhXHSperfEicPnG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "9ab94a7f-353e-4a92-becf-a705bbe16a25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qq32o6npv9rzv5gAAZRfRo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 334,
+      "cache_read_input_tokens": 38068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 334
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T03:55:57.152Z_
+
+<details><summary>↩ Tool result · `toolu_01FMTmq6ibhXHSperfEicPnG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "bf567c92-90fa-4a14-9fca-a3829bbeab52",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01PiJK6Yx772f15X1G8jr4FP`</summary>
+
+```json
+{
+  "name": "bootstrap_ci_report",
+  "type": "report",
+  "description": "BCa bootstrap 95% CIs for GSM1K contamination-DIF correlations (Pearson r, Spearman ρ, partial r) and domain-level Spearman ρ",
+  "project": "irt_equated_bench_regen",
+  "exp_id": "plan_004",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/bootstrap_ci_report.md",
+  "tags": [
+    "bootstrap",
+    "confidence-interval",
+    "gsm1k",
+    "dif",
+    "correlation"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "c36845f8-719d-47cd-b7ef-2c75b583ba33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tmDh837wgo8HkYkKkZ6kR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 38402,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T03:56:03.828Z_
+
+<details><summary>↩ Tool result · `toolu_01PiJK6Yx772f15X1G8jr4FP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_58f19b\", \"name\": \"bootstrap_ci_report\", \"type\": \"report\", \"description\": \"BCa bootstrap 95% CIs for GSM1K contamination-DIF correlations (Pearson r, Spearman ρ, partial r) and domain-level Spearman ρ\", \"path\": \"projects/irt_equated_bench_regen/artifacts/plan_004/report/bootstrap_ci_report_58f19b.md\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": \"plan_004\", \"skill\": \"\", \"created_at\": \"2026-05-21T03:56:03.498680+00:00\", \"tags\": [\"bootstrap\", \"confidence-interval\", \"gsm1k\", \"dif\", \"correlation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "d64d4cbb-0828-428f-b66c-5ff0632b2dbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_58f19b\\\", \\\"name\\\": \\\"bootstrap_ci_report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"BCa bootstrap 95% CIs for GSM1K contamination-DIF correlations (Pearson r, Spearman ρ, partial r) and domain-level Spearman ρ\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/plan_004/report/bootstrap_ci_report_58f19b.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": \\\"plan_004\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:56:03.498680+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"confidence-interval\\\", \\\"gsm1k\\\", \\\"dif\\\", \\\"correlation\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_58f19b\", \"name\": \"bootstrap_ci_report\", \"type\": \"report\", \"description\": \"BCa bootstrap 95% CIs for GSM1K contamination-DIF correlations (Pearson r, Spearman ρ, partial r) and domain-level Spearman ρ\", \"path\": \"projects/irt_equated_bench_regen/artifacts/plan_004/report/bootstrap_ci_report_58f19b.md\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": \"plan_004\", \"skill\": \"\", \"created_at\": \"2026-05-21T03:56:03.498680+00:00\", \"tags\": [\"bootstrap\", \"confidence-interval\", \"gsm1k\", \"dif\", \"correlation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01YHvx9bxMhB8mtmr1juNmu1`</summary>
+
+```json
+{
+  "name": "plan_004_bootstrap_ci",
+  "type": "intermediate",
+  "description": "BCa bootstrap CI computation script for GSM1K and domain correlations",
+  "project": "irt_equated_bench_regen",
+  "exp_id": "plan_004",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_bootstrap_ci.py",
+  "tags": [
+    "bootstrap",
+    "script"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "2642792f-90a0-43bc-936b-b2e48d9aed2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tmDh837wgo8HkYkKkZ6kR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 38402,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T03:56:05.857Z_
+
+<details><summary>↩ Tool result · `toolu_01YHvx9bxMhB8mtmr1juNmu1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_fa8ab5\", \"name\": \"plan_004_bootstrap_ci\", \"type\": \"intermediate\", \"description\": \"BCa bootstrap CI computation script for GSM1K and domain correlations\", \"path\": \"projects/irt_equated_bench_regen/artifacts/plan_004/intermediate/plan_004_bootstrap_ci_fa8ab5.py\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": \"plan_004\", \"skill\": \"\", \"created_at\": \"2026-05-21T03:56:05.629434+00:00\", \"tags\": [\"bootstrap\", \"script\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "d046da5e-4fb0-41c6-ae68-1a114590a2b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_fa8ab5\\\", \\\"name\\\": \\\"plan_004_bootstrap_ci\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"BCa bootstrap CI computation script for GSM1K and domain correlations\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/plan_004/intermediate/plan_004_bootstrap_ci_fa8ab5.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": \\\"plan_004\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:56:05.629434+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"script\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_fa8ab5\", \"name\": \"plan_004_bootstrap_ci\", \"type\": \"intermediate\", \"description\": \"BCa bootstrap CI computation script for GSM1K and domain correlations\", \"path\": \"projects/irt_equated_bench_regen/artifacts/plan_004/intermediate/plan_004_bootstrap_ci_fa8ab5.py\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": \"plan_004\", \"skill\": \"\", \"created_at\": \"2026-05-21T03:56:05.629434+00:00\", \"tags\": [\"bootstrap\", \"script\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+完成。四个统计量的 BCa bootstrap 95% CI：
+
+| Statistic | Estimate | 95% CI | Boot. SE |
+|-----------|----------|--------|----------|
+| Pearson *r* (gap vs DIF adv) | −0.478 | [−0.714, −0.155] | 0.148 |
+| Spearman *ρ* (gap vs DIF adv) | −0.403 | [−0.687, −0.031] | 0.168 |
+| Partial *r* (| GSM8K acc) | −0.385 | [−0.640, −0.058] | 0.152 |
+| Domain *ρ* (C% vs acc_change) | 0.307 | [0.025, 0.550] | 0.133 |
+
+所有 CI 均不包含零，point estimates 与已知值精确匹配。报告和脚本已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "uuid": "90c11d4e-da06-4442-9346-be1e7ab7ff03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u435XnUQxi4QaioZ9rKkj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 39950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 40_
+
+完成。四个统计量的 BCa bootstrap 95% CI：
+
+| Statistic | Estimate | 95% CI | Boot. SE |
+|-----------|----------|--------|----------|
+| Pearson *r* (gap vs DIF adv) | −0.478 | [−0.714, −0.155] | 0.148 |
+| Spearman *ρ* (gap vs DIF adv) | −0.403 | [−0.687, −0.031] | 0.168 |
+| Partial *r* (| GSM8K acc) | −0.385 | [−0.640, −0.058] | 0.152 |
+| Domain *ρ* (C% vs acc_change) | 0.307 | [0.025, 0.550] | 0.133 |
+
+所有 CI 均不包含零，point estimates 与已知值精确匹配。报告和脚本已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 227284,
+  "duration_api_ms": 193645,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "094d3ee2-a06f-4b3b-b204-be252ce5582b",
+  "total_cost_usd": 0.5682287500000001,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 29297,
+    "cache_read_input_tokens": 342527,
+    "output_tokens": 8507,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 29297,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 249,
+        "cache_read_input_tokens": 39950,
+        "cache_creation_input_tokens": 1188,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1188
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1024,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001114,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 8507,
+      "cacheReadInputTokens": 342527,
+      "cacheCreationInputTokens": 29297,
+      "webSearchRequests": 0,
+      "costUSD": 0.56711475,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8fa7720e-9b6a-4bfd-8c27-5373b4d2b063"
+}
+```
+
+</details>
+
+---

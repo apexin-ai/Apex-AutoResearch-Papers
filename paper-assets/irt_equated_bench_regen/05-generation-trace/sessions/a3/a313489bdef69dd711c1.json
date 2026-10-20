@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a313489bdef69dd711c1",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code experiment summary d011",
+  "task_key": "worker_code_experiment_summary_d011_20260520T234523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_experiment_summary_d011_20260520T234523_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "d196ca3185515bc8022ffe01d9d46acabd8715c3091c69aeffe8e7fd9c9198b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出写入 `artifacts/experiment_summary.md` 并注册。\n\n文档包含：\n- **Overview**: 项目从 DIF contamination detection 出发，经 11 个实验 pivot 到 psychometric characterization 的完整叙事\n- **Experiment Chain**: 每个实验的 hypothesis / result / conclusion / story contribution（MVP Phase 1-2, plan_001-016）\n- **Decision Chain**: D001-D012 依赖关系 ASCII 图 + 三条失败路线总结\n- **Key Numbers for Paper**: 25 个可直接引用的指标，标注来源和论文用途\n- **Evidence Chain Summary**: 五步逻辑推导为什么 31-38% temporal DIF = genuine capability improvement"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-experiment-summary-d011.md"
+}

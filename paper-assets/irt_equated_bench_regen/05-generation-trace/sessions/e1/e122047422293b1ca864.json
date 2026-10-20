@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e122047422293b1ca864",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code ld dif cross analysis",
+  "task_key": "worker_code_ld_dif_cross_analysis_20260521T080459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ld_dif_cross_analysis_20260521T080459_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "970242dcf366eefbda117fe423805d106e2d32c84240de7eeaa54b7f5b906abe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n1. **极端 LD（% |Q3|>0.20）与 DIF C% 无关** — r = 0.09, p = 0.50，三种相关系数（Pearson/Spearman/Kendall）均不显著。Top-5 仅 2 个 overlap（human_aging, professional_medicine）。\n\n2. **均值 Q3 与 DIF C% 显著负相关** — r = −0.36, p = 0.006。高均值 Q3 的 domain（内部 item 依赖强）反而 DIF 率更低。解释：事实性密集型 domain（如 moral_scenarios, world_religions）item 间共享窄子技能导致高 Q3，但这类 item 跨 cohort 稳定；推理型 domain（formal_logic, business_ethics）inter-item 依赖低但对模型能力变化更敏感。\n\n3. **DIF C% 与 accuracy gain 正相关**（r = 0.34, p = 0.01），LD 与 accuracy gain 无关（r = −0.10, n.s.）。\n\n**结论：LD 和 DIF 是互补的 item quality 诊断维度，不可互相替代。** 报告和数据已注册到 `plan_013_supplement`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ld-dif-cross-analysis.md"
+}

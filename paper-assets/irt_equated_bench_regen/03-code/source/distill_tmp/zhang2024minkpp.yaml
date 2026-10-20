@@ -1,0 +1,18 @@
+paper_key: "zhang2024minkpp"
+title: "Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [Min-K% (Shi et al. 2024), reference model methods]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+  datasets:
+    - {name: "WikiMIA", size: "standard MIA benchmark"}
+  ablation_dimensions: []
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "membership inference (normalized token probability)"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,884 @@
+{
+  "distribution": {
+    "n": 5227,
+    "mean": 0.0,
+    "sd": 127.14116565688873,
+    "median": -3.0,
+    "q1": -45.0,
+    "q3": 30.0,
+    "iqr": 75.0,
+    "p5": -174.0,
+    "p95": 197.69999999999982,
+    "min": -587.0,
+    "max": 851.0
+  },
+  "family_stats": [
+    {
+      "family": "unknown",
+      "n": 3102,
+      "mean": -9.339136041263702,
+      "median": -5.0,
+      "sd": 123.33351593339997,
+      "min": -587,
+      "max": 851,
+      "p5": -191.0,
+      "p95": 171.94999999999982
+    },
+    {
+      "family": "mistral",
+      "n": 547,
+      "mean": -53.85009140767824,
+      "median": -35.0,
+      "sd": 90.24116759409868,
+      "min": -542,
+      "max": 182,
+      "p5": -215.7,
+      "p95": 60.0
+    },
+    {
+      "family": "llama-3",
+      "n": 315,
+      "mean": 120.78412698412698,
+      "median": 53.0,
+      "sd": 185.81856537410582,
+      "min": -140,
+      "max": 793,
+      "p5": -74.0,
+      "p95": 581.3000000000002
+    },
+    {
+      "family": "llama-2",
+      "n": 161,
+      "mean": 23.267080745341616,
+      "median": 13.0,
+      "sd": 65.56130316009352,
+      "min": -112,
+      "max": 553,
+      "p5": -14.0,
+      "p95": 67.0
+    },
+    {
+      "family": "mixtral",
+      "n": 120,
+      "mean": 0.5333333333333333,
+      "median": 0.0,
+      "sd": 89.96450591722255,
+      "min": -389,
+      "max": 485,
+      "p5": -120.15,
+      "p95": 124.29999999999998
+    },
+    {
+      "family": "solar",
+      "n": 91,
+      "mean": 149.1098901098901,
+      "median": 164.0,
+      "sd": 121.52269569000504,
+      "min": -40,
+      "max": 496,
+      "p5": -24.0,
+      "p95": 384.0
+    },
+    {
+      "family": "zephyr",
+      "n": 86,
+      "mean": -29.790697674418606,
+      "median": -15.5,
+      "sd": 75.59755929441262,
+      "min": -381,
+      "max": 113,
+      "p5": -146.75,
+      "p95": 71.0
+    },
+    {
+      "family": "yi",
+      "n": 72,
+      "mean": 25.958333333333332,
+      "median": -1.5,
+      "sd": 98.78992329009053,
+      "min": -56,
+      "max": 681,
+      "p5": -26.9,
+      "p95": 186.1500000000001
+    },
+    {
+      "family": "mistral-0.1",
+      "n": 72,
+      "mean": -60.69444444444444,
+      "median": -51.0,
+      "sd": 108.82906080520657,
+      "min": -446,
+      "max": 156,
+      "p5": -245.4,
+      "p95": 99.55000000000005
+    },
+    {
+      "family": "gemma",
+      "n": 72,
+      "mean": 8.652777777777779,
+      "median": -8.5,
+      "sd": 85.45588759453406,
+      "min": -325,
+      "max": 313,
+      "p5": -45.25,
+      "p95": 217.35000000000008
+    },
+    {
+      "family": "qwen-1.5",
+      "n": 69,
+      "mean": 14.173913043478262,
+      "median": -8.0,
+      "sd": 108.98987493742104,
+      "min": -159,
+      "max": 681,
+      "p5": -47.199999999999996,
+      "p95": 212.79999999999995
+    },
+    {
+      "family": "phi-2",
+      "n": 60,
+      "mean": -3.566666666666667,
+      "median": -5.5,
+      "sd": 22.790398414398236,
+      "min": -86,
+      "max": 79,
+      "p5": -31.1,
+      "p95": 28.049999999999997
+    },
+    {
+      "family": "orca",
+      "n": 41,
+      "mean": -28.975609756097562,
+      "median": -17.0,
+      "sd": 106.96412665115301,
+      "min": -287,
+      "max": 266,
+      "p5": -202.0,
+      "p95": 117.0
+    },
+    {
+      "family": "gemma-2",
+      "n": 36,
+      "mean": -28.63888888888889,
+      "median": -32.0,
+      "sd": 12.7305095348094,
+      "min": -65,
+      "max": 5,
+      "p5": -39.5,
+      "p95": -7.0
+    },
+    {
+      "family": "openchat",
+      "n": 30,
+      "mean": 20.766666666666666,
+      "median": 37.0,
+      "sd": 56.322154233225696,
+      "min": -131,
+      "max": 155,
+      "p5": -77.1,
+      "p95": 85.44999999999995
+    },
+    {
+      "family": "vicuna",
+      "n": 29,
+      "mean": 2.9310344827586206,
+      "median": 4.0,
+      "sd": 13.627522137421437,
+      "min": -24,
+      "max": 44,
+      "p5": -18.599999999999998,
+      "p95": 19.199999999999985
+    },
+    {
+      "family": "neuralchat",
+      "n": 28,
+      "mean": -26.25,
+      "median": -19.5,
+      "sd": 93.6382420294741,
+      "min": -232,
+      "max": 183,
+      "p5": -165.45,
+      "p95": 97.24999999999997
+    },
+    {
+      "family": "qwen",
+      "n": 27,
+      "mean": 39.592592592592595,
+      "median": -5.0,
+      "sd": 122.17523961011564,
+      "min": -71,
+      "max": 381,
+      "p5": -48.2,
+      "p95": 343.0999999999999
+    },
+    {
+      "family": "orca-2",
+      "n": 25,
+      "mean": 9.52,
+      "median": 9.0,
+      "sd": 30.568393262758622,
+      "min": -44,
+      "max": 97,
+      "p5": -34.4,
+      "p95": 70.99999999999986
+    },
+    {
+      "family": "deepseek",
+      "n": 24,
+      "mean": -1.0,
+      "median": -1.0,
+      "sd": 19.930313376972972,
+      "min": -49,
+      "max": 68,
+      "p5": -21.85,
+      "p95": 15.399999999999991
+    },
+    {
+      "family": "falcon",
+      "n": 21,
+      "mean": 18.476190476190474,
+      "median": -7.0,
+      "sd": 148.16295726247472,
+      "min": -131,
+      "max": 601,
+      "p5": -131.0,
+      "p95": 198.0
+    },
+    {
+      "family": "phi-3",
+      "n": 20,
+      "mean": 254.5,
+      "median": 20.0,
+      "sd": 359.2831312781782,
+      "min": -41,
+      "max": 809,
+      "p5": -25.799999999999997,
+      "p95": 808.05
+    },
+    {
+      "family": "openhermes",
+      "n": 16,
+      "mean": -20.8125,
+      "median": -6.5,
+      "sd": 64.96277780390861,
+      "min": -174,
+      "max": 108,
+      "p5": -142.5,
+      "p95": 42.0
+    },
+    {
+      "family": "mixtral-8x7B",
+      "n": 15,
+      "mean": -21.6,
+      "median": 12.0,
+      "sd": 93.7891251691794,
+      "min": -226,
+      "max": 112,
+      "p5": -205.7,
+      "p95": 91.69999999999997
+    },
+    {
+      "family": "yi-1.5",
+      "n": 14,
+      "mean": 42.5,
+      "median": 22.5,
+      "sd": 66.55795623711367,
+      "min": -36,
+      "max": 169,
+      "p5": -36.0,
+      "p95": 156.65
+    },
+    {
+      "family": "internlm-2",
+      "n": 14,
+      "mean": 37.07142857142857,
+      "median": 14.5,
+      "sd": 71.43201640044167,
+      "min": -51,
+      "max": 183,
+      "p5": -49.7,
+      "p95": 153.1
+    },
+    {
+      "family": "smaug",
+      "n": 12,
+      "mean": 27.916666666666668,
+      "median": 1.5,
+      "sd": 83.40204742781508,
+      "min": -25,
+      "max": 282,
+      "p5": -17.299999999999997,
+      "p95": 161.54999999999984
+    },
+    {
+      "family": "amber",
+      "n": 10,
+      "mean": -36.3,
+      "median": -35.0,
+      "sd": 42.21913731420332,
+      "min": -103,
+      "max": 27,
+      "p5": -94.0,
+      "p95": 16.649999999999977
+    },
+    {
+      "family": "codellama",
+      "n": 10,
+      "mean": 23.0,
+      "median": 18.0,
+      "sd": 31.216092715848415,
+      "min": -11,
+      "max": 92,
+      "p5": -6.95,
+      "p95": 75.79999999999995
+    },
+    {
+      "family": "yi-1",
+      "n": 8,
+      "mean": 51.75,
+      "median": 24.0,
+      "sd": 69.28151680952556,
+      "min": -5,
+      "max": 161,
+      "p5": -2.9,
+      "p95": 159.95
+    },
+    {
+      "family": "stablelm",
+      "n": 8,
+      "mean": 3.375,
+      "median": 7.5,
+      "sd": 22.193547968465328,
+      "min": -34,
+      "max": 27,
+      "p5": -30.5,
+      "p95": 25.249999999999996
+    },
+    {
+      "family": "mpt",
+      "n": 7,
+      "mean": -19.142857142857142,
+      "median": -19.0,
+      "sd": 31.408218518027898,
+      "min": -71,
+      "max": 11,
+      "p5": -64.1,
+      "p95": 10.099999999999998
+    },
+    {
+      "family": "abel",
+      "n": 6,
+      "mean": -30.5,
+      "median": -8.5,
+      "sd": 79.03606771594852,
+      "min": -186,
+      "max": 36,
+      "p5": -144.75,
+      "p95": 28.25
+    },
+    {
+      "family": "llama-1",
+      "n": 5,
+      "mean": 96.2,
+      "median": 39.0,
+      "sd": 119.01554520313722,
+      "min": 4,
+      "max": 277,
+      "p5": 4.0,
+      "p95": 252.99999999999997
+    },
+    {
+      "family": "tinyllama",
+      "n": 5,
+      "mean": -1.4,
+      "median": -4.0,
+      "sd": 83.70663056174223,
+      "min": -104,
+      "max": 104,
+      "p5": -94.8,
+      "p95": 94.19999999999999
+    },
+    {
+      "family": "wizardlm",
+      "n": 5,
+      "mean": -0.2,
+      "median": 13.0,
+      "sd": 31.57847368065784,
+      "min": -56,
+      "max": 18,
+      "p5": -43.6,
+      "p95": 18.0
+    },
+    {
+      "family": "olmo",
+      "n": 5,
+      "mean": -4.0,
+      "median": -7.0,
+      "sd": 39.805778474990284,
+      "min": -40,
+      "max": 58,
+      "p5": -39.4,
+      "p95": 47.599999999999994
+    },
+    {
+      "family": "starcoder",
+      "n": 5,
+      "mean": -40.2,
+      "median": -31.0,
+      "sd": 31.79150830017349,
+      "min": -90,
+      "max": -6,
+      "p5": -81.8,
+      "p95": -9.800000000000004
+    },
+    {
+      "family": "pythia",
+      "n": 4,
+      "mean": -8.5,
+      "median": -10.0,
+      "sd": 17.55942292142123,
+      "min": -24,
+      "max": 10,
+      "p5": -23.85,
+      "p95": 8.949999999999998
+    },
+    {
+      "family": "openchat-3.5",
+      "n": 4,
+      "mean": 12.25,
+      "median": 42.5,
+      "sd": 92.64762993910495,
+      "min": -123,
+      "max": 87,
+      "p5": -98.85,
+      "p95": 80.99999999999999
+    },
+    {
+      "family": "wizardlm-2",
+      "n": 4,
+      "mean": 32.75,
+      "median": 33.0,
+      "sd": 1.5,
+      "min": 31,
+      "max": 34,
+      "p5": 31.15,
+      "p95": 34.0
+    },
+    {
+      "family": "nous-hermes-2",
+      "n": 4,
+      "mean": -25.5,
+      "median": -23.5,
+      "sd": 18.734993995195193,
+      "min": -49,
+      "max": -6,
+      "p5": -46.3,
+      "p95": -7.5000000000000036
+    },
+    {
+      "family": "starcoder-2",
+      "n": 4,
+      "mean": -3.25,
+      "median": -5.5,
+      "sd": 9.776672917374976,
+      "min": -12,
+      "max": 10,
+      "p5": -11.55,
+      "p95": 8.199999999999996
+    },
+    {
+      "family": "command-r",
+      "n": 3,
+      "mean": 239.66666666666666,
+      "median": 228.0,
+      "sd": 237.71481513219436,
+      "min": 8,
+      "max": 483,
+      "p5": 30.0,
+      "p95": 457.5
+    },
+    {
+      "family": "tulu",
+      "n": 2,
+      "mean": 121.0,
+      "median": 121.0,
+      "sd": 127.27922061357856,
+      "min": 31,
+      "max": 211,
+      "p5": 40.0,
+      "p95": 202.0
+    },
+    {
+      "family": "dbrx",
+      "n": 2,
+      "mean": 5.5,
+      "median": 5.5,
+      "sd": 3.5355339059327378,
+      "min": 3,
+      "max": 8,
+      "p5": 3.25,
+      "p95": 7.75
+    },
+    {
+      "family": "qwen-1",
+      "n": 1,
+      "mean": -17.0,
+      "median": -17.0,
+      "sd": 0.0,
+      "min": -17,
+      "max": -17,
+      "p5": -17.0,
+      "p95": -17.0
+    },
+    {
+      "family": "llama-3.2",
+      "n": 1,
+      "mean": 103.0,
+      "median": 103.0,
+      "sd": 0.0,
+      "min": 103,
+      "max": 103,
+      "p5": 103.0,
+      "p95": 103.0
+    },
+    {
+      "family": "qwen-2",
+      "n": 1,
+      "mean": 18.0,
+      "median": 18.0,
+      "sd": 0.0,
+      "min": 18,
+      "max": 18,
+      "p5": 18.0,
+      "p95": 18.0
+    },
+    {
+      "family": "tulu-2",
+      "n": 1,
+      "mean": 7.0,
+      "median": 7.0,
+      "sd": 0.0,
+      "min": 7,
+      "max": 7,
+      "p5": 7.0,
+      "p95": 7.0
+    },
+    {
+      "family": "gemma-1",
+      "n": 1,
+      "mean": 29.0,
+      "median": 29.0,
+      "sd": 0.0,
+      "min": 29,
+      "max": 29,
+      "p5": 29.0,
+      "p95": 29.0
+    },
+    {
+      "family": "gpt-neo",
+      "n": 1,
+      "mean": 35.0,
+      "median": 35.0,
+      "sd": 0.0,
+      "min": 35,
+      "max": 35,
+      "p5": 35.0,
+      "p95": 35.0
+    },
+    {
+      "family": "falcon-2",
+      "n": 1,
+      "mean": -52.0,
+      "median": -52.0,
+      "sd": 0.0,
+      "min": -52,
+      "max": -52,
+      "p5": -52.0,
+      "p95": -52.0
+    }
+  ],
+  "top_drops": [
+    {
+      "model": "Sao10K/14B-Glacier-Stack",
+      "family": "unknown",
+      "rank_full": 555,
+      "rank_stable": 1406,
+      "rank_change": 851
+    },
+    {
+      "model": "AA051611/A0118",
+      "family": "unknown",
+      "rank_full": 1169,
+      "rank_stable": 1996,
+      "rank_change": 827
+    },
+    {
+      "model": "DeepMount00/phi_3",
+      "family": "phi-3",
+      "rank_full": 736,
+      "rank_stable": 1545,
+      "rank_change": 809
+    },
+    {
+      "model": "Mihaiii/Pallas-0.5-frankenmerge",
+      "family": "unknown",
+      "rank_full": 455,
+      "rank_stable": 1264,
+      "rank_change": 809
+    },
+    {
+      "model": "DeepMount00/Phi-3-Mini-4K-Boost",
+      "family": "phi-3",
+      "rank_full": 738,
+      "rank_stable": 1546,
+      "rank_change": 808
+    },
+    {
+      "model": "vonjack/phi-3-mini-4k-instruct-llamafied",
+      "family": "phi-3",
+      "rank_full": 534,
+      "rank_stable": 1334,
+      "rank_change": 800
+    },
+    {
+      "model": "vonjack/Phi-3-mini-4k-instruct-LLaMAfied",
+      "family": "phi-3",
+      "rank_full": 533,
+      "rank_stable": 1330,
+      "rank_change": 797
+    },
+    {
+      "model": "nbeerbower/llama-3-dragonmaid-8B-v2",
+      "family": "llama-3",
+      "rank_full": 576,
+      "rank_stable": 1369,
+      "rank_change": 793
+    },
+    {
+      "model": "raincandy-u/phillama-3.8b-v0.1",
+      "family": "llama-3",
+      "rank_full": 733,
+      "rank_stable": 1500,
+      "rank_change": 767
+    },
+    {
+      "model": "nbeerbower/llama-3-stinky-8B",
+      "family": "llama-3",
+      "rank_full": 553,
+      "rank_stable": 1300,
+      "rank_change": 747
+    },
+    {
+      "model": "cognitivecomputations/yayi2-30b-llama",
+      "family": "unknown",
+      "rank_full": 469,
+      "rank_stable": 1202,
+      "rank_change": 733
+    },
+    {
+      "model": "cstr/llama3-8b-spaetzle-v13",
+      "family": "llama-3",
+      "rank_full": 705,
+      "rank_stable": 1437,
+      "rank_change": 732
+    },
+    {
+      "model": "shyamieee/JARVIS-v1.0",
+      "family": "unknown",
+      "rank_full": 616,
+      "rank_stable": 1345,
+      "rank_change": 729
+    },
+    {
+      "model": "Nitral-AI/Poppy_Porpoise-0.96-L3-8B",
+      "family": "unknown",
+      "rank_full": 712,
+      "rank_stable": 1430,
+      "rank_change": 718
+    },
+    {
+      "model": "nbeerbower/llama-3-stella-8B",
+      "family": "llama-3",
+      "rank_full": 588,
+      "rank_stable": 1287,
+      "rank_change": 699
+    },
+    {
+      "model": "FairMind/Phi-3-mini-4k-instruct-bnb-4bit-Ita",
+      "family": "phi-3",
+      "rank_full": 956,
+      "rank_stable": 1651,
+      "rank_change": 695
+    },
+    {
+      "model": "rhysjones/Phi-3-mini-mango-1-llamafied",
+      "family": "phi-3",
+      "rank_full": 563,
+      "rank_stable": 1258,
+      "rank_change": 695
+    },
+    {
+      "model": "GeorgiaTech/0.0005_llama_nodpo_3iters_bs128_531lr_oldtrl_iter_2",
+      "family": "unknown",
+      "rank_full": 495,
+      "rank_stable": 1182,
+      "rank_change": 687
+    },
+    {
+      "model": "KnutJaegersberg/YaYi-30b-EverythingLM",
+      "family": "yi",
+      "rank_full": 887,
+      "rank_stable": 1568,
+      "rank_change": 681
+    },
+    {
+      "model": "Qwen/Qwen1.5-14B-Chat",
+      "family": "qwen-1.5",
+      "rank_full": 591,
+      "rank_stable": 1272,
+      "rank_change": 681
+    }
+  ],
+  "top_gains": [
+    {
+      "model": "liminerity/Blurstral-7b-slerp",
+      "family": "unknown",
+      "rank_full": 1410,
+      "rank_stable": 823,
+      "rank_change": -587
+    },
+    {
+      "model": "DreadPoor/PAIN_LeDestroy-7B-task_arithmetic",
+      "family": "unknown",
+      "rank_full": 1186,
+      "rank_stable": 619,
+      "rank_change": -567
+    },
+    {
+      "model": "flammenai/flammen26-mistral-7B",
+      "family": "mistral",
+      "rank_full": 1335,
+      "rank_stable": 793,
+      "rank_change": -542
+    },
+    {
+      "model": "Gille/StrangeMerges_2-7B-slerp",
+      "family": "unknown",
+      "rank_full": 1320,
+      "rank_stable": 801,
+      "rank_change": -519
+    },
+    {
+      "model": "jambroz/sixtyoneeighty-7b",
+      "family": "unknown",
+      "rank_full": 1270,
+      "rank_stable": 782,
+      "rank_change": -488
+    },
+    {
+      "model": "jambroz/sixtyoneeighty-7b-chat",
+      "family": "unknown",
+      "rank_full": 1271,
+      "rank_stable": 783,
+      "rank_change": -488
+    },
+    {
+      "model": "Gille/StrangeMerges_12-7B-slerp",
+      "family": "unknown",
+      "rank_full": 1347,
+      "rank_stable": 860,
+      "rank_change": -487
+    },
+    {
+      "model": "antiven0m/reverie-7b",
+      "family": "unknown",
+      "rank_full": 1288,
+      "rank_stable": 805,
+      "rank_change": -483
+    },
+    {
+      "model": "GreenNode/GreenNodeLM-7B-v2leo",
+      "family": "unknown",
+      "rank_full": 1333,
+      "rank_stable": 852,
+      "rank_change": -481
+    },
+    {
+      "model": "jambroz/sixtyoneeighty-7b-dpo",
+      "family": "unknown",
+      "rank_full": 1303,
+      "rank_stable": 835,
+      "rank_change": -468
+    },
+    {
+      "model": "DreadPoor/Sphinx-7B-Model_Stock",
+      "family": "unknown",
+      "rank_full": 1282,
+      "rank_stable": 817,
+      "rank_change": -465
+    },
+    {
+      "model": "SanjiWatsuki/Kunoichi-DPO-7B",
+      "family": "unknown",
+      "rank_full": 1314,
+      "rank_stable": 857,
+      "rank_change": -457
+    },
+    {
+      "model": "Inv/Konstanta-V4-Alpha-7B",
+      "family": "unknown",
+      "rank_full": 1231,
+      "rank_stable": 777,
+      "rank_change": -454
+    },
+    {
+      "model": "allknowingroger/LimyQstar-7B-slerp",
+      "family": "unknown",
+      "rank_full": 987,
+      "rank_stable": 534,
+      "rank_change": -453
+    },
+    {
+      "model": "mncai/mistral-7b-dpo-v6",
+      "family": "mistral-0.1",
+      "rank_full": 1202,
+      "rank_stable": 756,
+      "rank_change": -446
+    },
+    {
+      "model": "Gille/StrangeMerges_17-7B-dare_ties",
+      "family": "unknown",
+      "rank_full": 1491,
+      "rank_stable": 1051,
+      "rank_change": -440
+    },
+    {
+      "model": "Vasanth/Valor_Macaroni_moe",
+      "family": "unknown",
+      "rank_full": 1284,
+      "rank_stable": 859,
+      "rank_change": -425
+    },
+    {
+      "model": "flammenai/flammen27-mistral-7B",
+      "family": "mistral",
+      "rank_full": 939,
+      "rank_stable": 523,
+      "rank_change": -416
+    },
+    {
+      "model": "nbeerbower/bruphin-iota",
+      "family": "unknown",
+      "rank_full": 1215,
+      "rank_stable": 803,
+      "rank_change": -412
+    },
+    {
+      "model": "rishiraj/oswald-2x7b",
+      "family": "unknown",
+      "rank_full": 1731,
+      "rank_stable": 1327,
+      "rank_change": -404
+    }
+  ]
+}

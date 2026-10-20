@@ -1,0 +1,5475 @@
+# research literature survey d011
+
+**Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_research_literature_survey_d011_20260520T232511.log`
+- **Structured JSON:** [`96292b8b9d43a4798562.json`](../../sessions/96/96292b8b9d43a4798562.json)
+
+## Before a recorded user message
+
+86 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "fc907f13-3669-4342-8e7f-cc9115124829",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779333600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a0fe1d04-1c58-43c9-b873-39fe6371b526",
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll collect literature for the Related Work section across all five categories. Let me search for these papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "6b840969-a348-46bb-a610-7a10e892c22d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4KnmvSvzfMdqg5JVjcKq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11435,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11435
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VcP4VpWY9vZCCUtwadsEKZ`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "c0310b62-1f3e-4374-9200-21a0eaa07a04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4KnmvSvzfMdqg5JVjcKq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11435,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11435
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T23:25:24.795Z_
+
+<details><summary>↩ Tool result · `toolu_01VcP4VpWY9vZCCUtwadsEKZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "31fd1ecc-5fd9-40e1-aaed-09c62a386aaf",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for all the papers in parallel, grouped by category. I'll launch multiple web searches simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "0f1bde43-62b8-4a34-80f7-94fdb0655914",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Starting parallel searches for all paper categories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "67ce1d32-747e-48cb-906e-855fc6d8624d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SdnhHt13CaCggZ4dBcp2Bm`</summary>
+
+```json
+{
+  "query": "Shealy Stout 1993 SIBTEST model-based DIF detection procedure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "ac880810-e5a3-4c98-b523-a47eb198041c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019Q7YUEwPio3tjg1YbZCquU`</summary>
+
+```json
+{
+  "query": "Clauser Mazor 1998 DIF methods review differential item functioning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "7a219ee8-ac36-44ea-9ebf-1e11b3c14915",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014ciy7E6B513AJSuiFPpb6d`</summary>
+
+```json
+{
+  "query": "Zumbo 1999 DIF theoretical framework handbook differential item functioning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "4c84c460-c2e2-4e0d-bf6e-3804cf2f5d42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xk3kRnazH2nWk3JytLVQSN`</summary>
+
+```json
+{
+  "query": "Holland Wainer 1993 Differential Item Functioning book"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "ec3c3cbb-b627-4059-b917-ba0a83ff7c5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A8dQ2XCziDK6i944BdQFpf`</summary>
+
+```json
+{
+  "query": "Lalor et al 2019 IRT NLP evaluation item response theory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "d7c60718-e6c9-468d-9b27-c69ab0431591",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J7RGEkWBcD5qwBhPg2SeXm`</summary>
+
+```json
+{
+  "query": "Vania et al 2021 IRT NLP benchmarks item response theory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "29c1795f-eff0-4e26-957b-4c697f50186f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WwWaZ9SpHmFHNaEzfzLDY6`</summary>
+
+```json
+{
+  "query": "Rodriguez et al 2021 evaluation NLP systems item response theory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "7f5a7b19-c3de-4f15-9bd3-27372a05d796",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MWtigypRCCyLJftb232d6p`</summary>
+
+```json
+{
+  "query": "Polo et al 2024 tinyBenchmarks IRT efficient LLM evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "8bc1775b-887e-445a-8e46-6356481d360c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfPp4AvbjEPeCTb1k1x1ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 23276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T23:25:34.618Z_
+
+<details><summary>↩ Tool result · `toolu_01Xk3kRnazH2nWk3JytLVQSN`</summary>
+
+```text
+Web search results for query: "Holland Wainer 1993 Differential Item Functioning book"
+
+Links: [{"title":"Differential Item Functioning by Paul W. Holland (1993, Hardcover) for sale online | eBay","url":"https://www.ebay.com/p/886571"},{"title":"P. W. Holland and H. Wainer (Editors). Differential Item Functioning. Hillsdale, N J: Lawrence Erlbaum, 1993. | Psychometrika | Cambridge Core","url":"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2C8627A9523CFE367F24F05B4A1F2A39/S0033312300027599a.pdf/p-w-holland-and-h-wainer-editors-differential-item-functioning-hillsdale-n-j-lawrence-erlbaum-1993.pdf"},{"title":"Sage Research Methods Differential Item Functioning","url":"https://methods.sagepub.com/book/mono/preview/differential-item-functioning.pdf"},{"title":"P. W. Holland and H. Wainer (Editors). Differential Item Functioning. Hillsdale, N J: Lawrence Erlbaum, 1993.","url":"https://www.researchgate.net/publication/387700563_P_W_Holland_and_H_Wainer_Editors_Differential_Item_Functioning_Hillsdale_N_J_Lawrence_Erlbaum_1993"},{"title":"Differential Item Functioning: Holland, Paul W., Wainer, Howard: 9780805809725: Amazon.com: Books","url":"https://www.amazon.com/Differential-Item-Functioning-Paul-Holland/dp/0805809724"},{"title":"Differential Item Functioning - 1st Edition - Paul W. Holland - Howard","url":"https://www.routledge.com/Differential-Item-Functioning/Holland-Wainer/p/book/9781138967694"},{"title":"(PDF) Differential Item Functioning","url":"https://www.researchgate.net/publication/28113644_Differential_Item_Functioning"}]
+
+Based on the search results, I found information about the book you're looking for:
+
+The book "Differential Item Functioning" was published in 1993, edited by Paul W. Holland and Howard Wainer (with Holland as the author and Wainer as editor). The book was published by Lawrence Erlbaum in Hillsdale, New Jersey.
+
+The book focuses on methods for detecting test items that function differently for different groups of examinees and on using this information to improve tests. It examines techniques including detailed reviews of test items by subject matter experts and members of major subgroups in society, comparisons of predictive validity across demographic groups, and extensive statistical analyses of how major subgroups perform on individual test items.
+
+The book contains several chapters on different aspects of differential item functioning (DIF), including chapters on methodology, detection procedures like the Mantel-Haenszel method, and item response models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "4788cdb8-d92a-4965-b342-0cbe82be95d3",
+  "tool_use_result": {
+    "query": "Holland Wainer 1993 Differential Item Functioning book",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GHCtrVqvTK3Sf96VFohPiY",
+        "content": [
+          {
+            "title": "Differential Item Functioning by Paul W. Holland (1993, Hardcover) for sale online | eBay",
+            "url": "https://www.ebay.com/p/886571"
+          },
+          {
+            "title": "P. W. Holland and H. Wainer (Editors). Differential Item Functioning. Hillsdale, N J: Lawrence Erlbaum, 1993. | Psychometrika | Cambridge Core",
+            "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2C8627A9523CFE367F24F05B4A1F2A39/S0033312300027599a.pdf/p-w-holland-and-h-wainer-editors-differential-item-functioning-hillsdale-n-j-lawrence-erlbaum-1993.pdf"
+          },
+          {
+            "title": "Sage Research Methods Differential Item Functioning",
+            "url": "https://methods.sagepub.com/book/mono/preview/differential-item-functioning.pdf"
+          },
+          {
+            "title": "P. W. Holland and H. Wainer (Editors). Differential Item Functioning. Hillsdale, N J: Lawrence Erlbaum, 1993.",
+            "url": "https://www.researchgate.net/publication/387700563_P_W_Holland_and_H_Wainer_Editors_Differential_Item_Functioning_Hillsdale_N_J_Lawrence_Erlbaum_1993"
+          },
+          {
+            "title": "Differential Item Functioning: Holland, Paul W., Wainer, Howard: 9780805809725: Amazon.com: Books",
+            "url": "https://www.amazon.com/Differential-Item-Functioning-Paul-Holland/dp/0805809724"
+          },
+          {
+            "title": "Differential Item Functioning - 1st Edition - Paul W. Holland - Howard",
+            "url": "https://www.routledge.com/Differential-Item-Functioning/Holland-Wainer/p/book/9781138967694"
+          },
+          {
+            "title": "(PDF) Differential Item Functioning",
+            "url": "https://www.researchgate.net/publication/28113644_Differential_Item_Functioning"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the book you're looking for:\n\nThe book \"Differential Item Functioning\" was published in 1993, edited by Paul W. Holland and Howard Wainer (with Holland as the author and Wainer as editor). The book was published by Lawrence Erlbaum in Hillsdale, New Jersey.\n\nThe book focuses on methods for detecting test items that function differently for different groups of examinees and on using this information to improve tests. It examines techniques including detailed reviews of test items by subject matter experts and members of major subgroups in society, comparisons of predictive validity across demographic groups, and extensive statistical analyses of how major subgroups perform on individual test items.\n\nThe book contains several chapters on different aspects of differential item functioning (DIF), including chapters on methodology, detection procedures like the Mantel-Haenszel method, and item response models."
+    ],
+    "durationSeconds": 4.305139943999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T23:25:35.341Z_
+
+<details><summary>↩ Tool result · `toolu_014ciy7E6B513AJSuiFPpb6d`</summary>
+
+```text
+Web search results for query: "Zumbo 1999 DIF theoretical framework handbook differential item functioning"
+
+Links: [{"title":"Zumbo BD (1999) A handbook on the theory and methods of differential item functioning (DIF): Logistic regression modeling as a unitary framework for binary and likert-type (ordinal) item scores. Ottawa: Directorate of Human Resources Research and Evaluation, Department of National Defense. - Open Access Library","url":"https://www.oalib.com/references/8059597"},{"title":"Differential Item Functioning (DIF) Handbook","url":"https://faculty.educ.ubc.ca/zumbo/DIF/"},{"title":"An Introduction to Differential Item Functioning Analysis Akihito Kamata1","url":"https://files.eric.ed.gov/fulltext/EJ797693.pdf"},{"title":"(PDF) A Handbook on the Theory and Methods of Differential Item Functioning (DIF)","url":"https://www.researchgate.net/publication/242099921_A_Handbook_on_the_Theory_and_Methods_of_Differential_Item_Functioning_DIF"},{"title":"(PDF) A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-Type (Ordinal) Item Scores","url":"https://www.researchgate.net/publication/236596822_A_Handbook_on_the_Theory_and_Methods_of_Differential_Item_Functioning_DIF_Logistic_Regression_Modeling_as_a_Unitary_Framework_for_Binary_and_Likert-Type_Ordinal_Item_Scores"},{"title":"The Theory and Methods of Differential Item Functioning ( ...","url":"https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf"},{"title":"Differential Item Functioning 1","url":"https://brunozumbo.com/wp-content/uploads/2016/12/Slocum_Gelin_Zumbo.pdf"},{"title":"[PDF] A Handbook on the Theory and Methods of Differential Item Functioning (DIF) LOGISTIC REGRESSION MODELING AS A UNITARY FRAMEWORK FOR BINARY AND LIKERT-TYPE (ORDINAL) ITEM SCORES | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Handbook-on-the-Theory-and-Methods-of-Item-(DIF)-Zumbo/7f88fb0ad98645582665532600d7c46406fa2db6"},{"title":"The hitchhiker’s guide to differential item functioning (DIF)","url":"https://www.apadivisions.org/division-5/publications/score/2022/01/differential-item-functioning"}]
+
+Based on the search results, I found the reference you're looking for:
+
+Zumbo's 1999 handbook is titled "A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-type (Ordinal) Item Scores." It was published by the Directorate of Human Resources Research and Evaluation, Department of National Defense in Ottawa, ON.
+
+The handbook was written under a research contract from the Department of National Defense (DND) of Canada and is distributed free of charge for purposes of research and teaching. The handbook is available in PDF format with example data files and SPSS syntax command files also accessible.
+
+The handbook presents logistic regression as one of the more complex methods used for DIF analysis, which has been adapted to handle test items with ordinal grading scales.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "d8edb6f4-2574-434c-8296-83d46aa4a5aa",
+  "tool_use_result": {
+    "query": "Zumbo 1999 DIF theoretical framework handbook differential item functioning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NANvnJSADh8B3e8Zw7Pmoq",
+        "content": [
+          {
+            "title": "Zumbo BD (1999) A handbook on the theory and methods of differential item functioning (DIF): Logistic regression modeling as a unitary framework for binary and likert-type (ordinal) item scores. Ottawa: Directorate of Human Resources Research and Evaluation, Department of National Defense. - Open Access Library",
+            "url": "https://www.oalib.com/references/8059597"
+          },
+          {
+            "title": "Differential Item Functioning (DIF) Handbook",
+            "url": "https://faculty.educ.ubc.ca/zumbo/DIF/"
+          },
+          {
+            "title": "An Introduction to Differential Item Functioning Analysis Akihito Kamata1",
+            "url": "https://files.eric.ed.gov/fulltext/EJ797693.pdf"
+          },
+          {
+            "title": "(PDF) A Handbook on the Theory and Methods of Differential Item Functioning (DIF)",
+            "url": "https://www.researchgate.net/publication/242099921_A_Handbook_on_the_Theory_and_Methods_of_Differential_Item_Functioning_DIF"
+          },
+          {
+            "title": "(PDF) A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-Type (Ordinal) Item Scores",
+            "url": "https://www.researchgate.net/publication/236596822_A_Handbook_on_the_Theory_and_Methods_of_Differential_Item_Functioning_DIF_Logistic_Regression_Modeling_as_a_Unitary_Framework_for_Binary_and_Likert-Type_Ordinal_Item_Scores"
+          },
+          {
+            "title": "The Theory and Methods of Differential Item Functioning ( ...",
+            "url": "https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf"
+          },
+          {
+            "title": "Differential Item Functioning 1",
+            "url": "https://brunozumbo.com/wp-content/uploads/2016/12/Slocum_Gelin_Zumbo.pdf"
+          },
+          {
+            "title": "[PDF] A Handbook on the Theory and Methods of Differential Item Functioning (DIF) LOGISTIC REGRESSION MODELING AS A UNITARY FRAMEWORK FOR BINARY AND LIKERT-TYPE (ORDINAL) ITEM SCORES | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/A-Handbook-on-the-Theory-and-Methods-of-Item-(DIF)-Zumbo/7f88fb0ad98645582665532600d7c46406fa2db6"
+          },
+          {
+            "title": "The hitchhiker’s guide to differential item functioning (DIF)",
+            "url": "https://www.apadivisions.org/division-5/publications/score/2022/01/differential-item-functioning"
+          }
+        ]
+      },
+      "Based on the search results, I found the reference you're looking for:\n\nZumbo's 1999 handbook is titled \"A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-type (Ordinal) Item Scores.\" It was published by the Directorate of Human Resources Research and Evaluation, Department of National Defense in Ottawa, ON.\n\nThe handbook was written under a research contract from the Department of National Defense (DND) of Canada and is distributed free of charge for purposes of research and teaching. The handbook is available in PDF format with example data files and SPSS syntax command files also accessible.\n\nThe handbook presents logistic regression as one of the more complex methods used for DIF analysis, which has been adapted to handle test items with ordinal grading scales."
+    ],
+    "durationSeconds": 5.547154876999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T23:25:35.844Z_
+
+<details><summary>↩ Tool result · `toolu_01SdnhHt13CaCggZ4dBcp2Bm`</summary>
+
+```text
+Web search results for query: "Shealy Stout 1993 SIBTEST model-based DIF detection procedure"
+
+Links: [{"title":"(PDF) Differential item functioning: Its multidimensional model and resulting SIBTEST detection procedure","url":"https://www.researchgate.net/publication/228855110_Differential_item_functioning_Its_multidimensional_model_and_resulting_SIBTEST_detection_procedure"},{"title":"[PDF] A model-based standardization approach that separates true bias/DIF from group ability differences and detects test bias/DTF as well as item bias/DIF | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-model-based-standardization-approach-that-true-as-Shealy-Stout/82f3db496626afd828fedb01a41f719a50dbfc2c"},{"title":"DETECTING DIF FOR POLYTOMOUSLY SCORED ITEMS: AN ADAPTATION OF THE SIBTEST PROCEDURE - Chang - 1995 - ETS Research Report Series - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/pdf/10.1002/j.2333-8504.1995.tb01640.x"},{"title":"Detecting DIF for Polytomously Scored Items: An Adaptation of the SIBTEST Procedure DIF IRT","url":"https://www.ets.org/research/policy_research_reports/publications/report/1995/hxqt.html"},{"title":"Differential Item Functioning: its Multidimensional Model and Resulting Sibtest Detection Procedure | Behaviormetrika | Springer Nature Link","url":"https://link.springer.com/content/pdf/10.2333/bhmk.23.67.pdf"},{"title":"Small-Sample DIF Estimation Using Log-Linear Smoothing: A SIBTEST Application","url":"https://files.eric.ed.gov/fulltext/EJ1111572.pdf"},{"title":"A Model-Based Standardization Approach that Separates True Bias/DIF from Group Ability Differences and Detects Test Bias/DTF as Well as Item Bias/DIF - Learning & Technology Library (LearnTechLib)","url":"https://www.learntechlib.org/p/146387/"},{"title":"ERIC - EJ466301 - A Model-Based Standardization Approach that Separates True Bias/DIF from Group Ability Differences and Detects Test Bias/DTF as Well as Item Bias/DIF., Psychometrika, 1993","url":"https://eric.ed.gov/?id=EJ466301"},{"title":"Detecting DIF for polytomously scored items: An adaptation of the SIBTEST procedure | Request PDF","url":"https://www.researchgate.net/publication/229571856_Detecting_DIF_for_polytomously_scored_items_An_adaptation_of_the_SIBTEST_procedure"},{"title":"A model-based standardization approach that separates true bias/DIF from group ability differences and detects test bias/DTF as well as item bias/DIF | Psychometrika","url":"https://link.springer.com/article/10.1007/BF02294572"}]
+
+Based on the search results, I've found comprehensive information about the Shealy and Stout 1993 SIBTEST model-based DIF detection procedure.
+
+## Overview
+
+Shealy and Stout (1993) presented a model-based modification (SIBTEST) of the standardization index based upon a multidimensional IRT bias modeling approach that detects and estimates DIF or item bias simultaneously for several items.
+
+## Key Characteristics
+
+The SIBTEST procedure is IRT model based, is non-parametric, does not require IRF estimation, provides a test of significance, and estimates the amount of DIF.
+
+SIBTEST is a nonparametric procedure that both tests for and estimates the amount of DIF in an item or set of items while controlling inflated Type I error by using a regression correction technique.
+
+## Purpose and Contributions
+
+The multidimensional model of DIF developed by Shealy and Stout explains how individual items combine to produce differential test functioning (DTF) at the test level. The Shealy-Stout model not only offers insight into how DIF can occur, but suggests methods for investigating the root causes of DIF, which are useful to both substantive and statistical researchers of DIF.
+
+## Publication Details
+
+The original work was published in Psychometrika in June 1993, with the full citation being Psychometrika, 58(2), 159.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "d88d4784-5e0d-41d0-a009-a51208567067",
+  "tool_use_result": {
+    "query": "Shealy Stout 1993 SIBTEST model-based DIF detection procedure",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VpRa8W1Bes8BrapXC6oZ9x",
+        "content": [
+          {
+            "title": "(PDF) Differential item functioning: Its multidimensional model and resulting SIBTEST detection procedure",
+            "url": "https://www.researchgate.net/publication/228855110_Differential_item_functioning_Its_multidimensional_model_and_resulting_SIBTEST_detection_procedure"
+          },
+          {
+            "title": "[PDF] A model-based standardization approach that separates true bias/DIF from group ability differences and detects test bias/DTF as well as item bias/DIF | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/A-model-based-standardization-approach-that-true-as-Shealy-Stout/82f3db496626afd828fedb01a41f719a50dbfc2c"
+          },
+          {
+            "title": "DETECTING DIF FOR POLYTOMOUSLY SCORED ITEMS: AN ADAPTATION OF THE SIBTEST PROCEDURE - Chang - 1995 - ETS Research Report Series - Wiley Online Library",
+            "url": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/j.2333-8504.1995.tb01640.x"
+          },
+          {
+            "title": "Detecting DIF for Polytomously Scored Items: An Adaptation of the SIBTEST Procedure DIF IRT",
+            "url": "https://www.ets.org/research/policy_research_reports/publications/report/1995/hxqt.html"
+          },
+          {
+            "title": "Differential Item Functioning: its Multidimensional Model and Resulting Sibtest Detection Procedure | Behaviormetrika | Springer Nature Link",
+            "url": "https://link.springer.com/content/pdf/10.2333/bhmk.23.67.pdf"
+          },
+          {
+            "title": "Small-Sample DIF Estimation Using Log-Linear Smoothing: A SIBTEST Application",
+            "url": "https://files.eric.ed.gov/fulltext/EJ1111572.pdf"
+          },
+          {
+            "title": "A Model-Based Standardization Approach that Separates True Bias/DIF from Group Ability Differences and Detects Test Bias/DTF as Well as Item Bias/DIF - Learning & Technology Library (LearnTechLib)",
+            "url": "https://www.learntechlib.org/p/146387/"
+          },
+          {
+            "title": "ERIC - EJ466301 - A Model-Based Standardization Approach that Separates True Bias/DIF from Group Ability Differences and Detects Test Bias/DTF as Well as Item Bias/DIF., Psychometrika, 1993",
+            "url": "https://eric.ed.gov/?id=EJ466301"
+          },
+          {
+            "title": "Detecting DIF for polytomously scored items: An adaptation of the SIBTEST procedure | Request PDF",
+            "url": "https://www.researchgate.net/publication/229571856_Detecting_DIF_for_polytomously_scored_items_An_adaptation_of_the_SIBTEST_procedure"
+          },
+          {
+            "title": "A model-based standardization approach that separates true bias/DIF from group ability differences and detects test bias/DTF as well as item bias/DIF | Psychometrika",
+            "url": "https://link.springer.com/article/10.1007/BF02294572"
+          }
+        ]
+      },
+      "Based on the search results, I've found comprehensive information about the Shealy and Stout 1993 SIBTEST model-based DIF detection procedure.\n\n## Overview\n\nShealy and Stout (1993) presented a model-based modification (SIBTEST) of the standardization index based upon a multidimensional IRT bias modeling approach that detects and estimates DIF or item bias simultaneously for several items.\n\n## Key Characteristics\n\nThe SIBTEST procedure is IRT model based, is non-parametric, does not require IRF estimation, provides a test of significance, and estimates the amount of DIF.\n\nSIBTEST is a nonparametric procedure that both tests for and estimates the amount of DIF in an item or set of items while controlling inflated Type I error by using a regression correction technique.\n\n## Purpose and Contributions\n\nThe multidimensional model of DIF developed by Shealy and Stout explains how individual items combine to produce differential test functioning (DTF) at the test level. The Shealy-Stout model not only offers insight into how DIF can occur, but suggests methods for investigating the root causes of DIF, which are useful to both substantive and statistical researchers of DIF.\n\n## Publication Details\n\nThe original work was published in Psychometrika in June 1993, with the full citation being Psychometrika, 58(2), 159."
+    ],
+    "durationSeconds": 6.915585869
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T23:25:36.661Z_
+
+<details><summary>↩ Tool result · `toolu_01WwWaZ9SpHmFHNaEzfzLDY6`</summary>
+
+```text
+Web search results for query: "Rodriguez et al 2021 evaluation NLP systems item response theory"
+
+Links: [{"title":"Item Response Theory for Natural Language Processing","url":"https://aclanthology.org/2024.eacl-tutorials.2.pdf"},{"title":"fl-IRT-ing with Psychometrics to Improve NLP Bias Measurement | Minds and Machines | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11023-024-09695-9"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v1"},{"title":"Item Response Theory for Natural Language Processing | Request PDF","url":"https://www.researchgate.net/publication/393045192_Item_Response_Theory_for_Natural_Language_Processing"},{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level | Request PDF","url":"https://www.researchgate.net/publication/330771284_Item_response_theory_in_AI_Analysing_machine_learning_classifiers_at_the_instance_level"},{"title":"Building an Evaluation Scale using Item Response Theory - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC5167538/"},{"title":"[1605.08889] Building an Evaluation Scale using Item Response Theory","url":"https://arxiv.org/abs/1605.08889"},{"title":"Building an Evaluation Scale using Item Response Theory - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/28004039/"}]
+
+Based on the search results, I found references to Rodriguez et al. 2021 in the context of evaluating NLP systems using item response theory.
+
+Rodriguez et al. 2021 is one of several works that have applied Item Response Theory (IRT) within NLP. Additionally, Rodriguez et al. 2021 used IRT methods to rank leaderboards, indicating their work focused on improving how NLP systems are evaluated and compared.
+
+More broadly, Item Response Theory is a theory of evaluation for characterizing test items and estimating human ability from their performance on such tests, and it assumes that individual test questions have unique characteristics such as difficulty and discriminating power. IRT has been proposed as an alternative means for gold-standard test-set generation and NLP system evaluation, as it can describe characteristics of individual items and can account for these characteristics in its estimation of ability for an NLP task.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "7fe3e5e7-1cc5-44ef-a6f5-793aff38ace9",
+  "tool_use_result": {
+    "query": "Rodriguez et al 2021 evaluation NLP systems item response theory",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016VTpAr1RNqarKaK4vJk3sX",
+        "content": [
+          {
+            "title": "Item Response Theory for Natural Language Processing",
+            "url": "https://aclanthology.org/2024.eacl-tutorials.2.pdf"
+          },
+          {
+            "title": "fl-IRT-ing with Psychometrics to Improve NLP Bias Measurement | Minds and Machines | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11023-024-09695-9"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v1"
+          },
+          {
+            "title": "Item Response Theory for Natural Language Processing | Request PDF",
+            "url": "https://www.researchgate.net/publication/393045192_Item_Response_Theory_for_Natural_Language_Processing"
+          },
+          {
+            "title": "Item response theory in AI: Analysing machine learning classifiers at the instance level | Request PDF",
+            "url": "https://www.researchgate.net/publication/330771284_Item_response_theory_in_AI_Analysing_machine_learning_classifiers_at_the_instance_level"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5167538/"
+          },
+          {
+            "title": "[1605.08889] Building an Evaluation Scale using Item Response Theory",
+            "url": "https://arxiv.org/abs/1605.08889"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/28004039/"
+          }
+        ]
+      },
+      "Based on the search results, I found references to Rodriguez et al. 2021 in the context of evaluating NLP systems using item response theory.\n\nRodriguez et al. 2021 is one of several works that have applied Item Response Theory (IRT) within NLP. Additionally, Rodriguez et al. 2021 used IRT methods to rank leaderboards, indicating their work focused on improving how NLP systems are evaluated and compared.\n\nMore broadly, Item Response Theory is a theory of evaluation for characterizing test items and estimating human ability from their performance on such tests, and it assumes that individual test questions have unique characteristics such as difficulty and discriminating power. IRT has been proposed as an alternative means for gold-standard test-set generation and NLP system evaluation, as it can describe characteristics of individual items and can account for these characteristics in its estimation of ability for an NLP task."
+    ],
+    "durationSeconds": 4.934158444
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T23:25:37.105Z_
+
+<details><summary>↩ Tool result · `toolu_01A8dQ2XCziDK6i944BdQFpf`</summary>
+
+```text
+Web search results for query: "Lalor et al 2019 IRT NLP evaluation item response theory"
+
+Links: [{"title":"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds | Request PDF","url":"https://www.researchgate.net/publication/336999016_Learning_Latent_Parameters_without_Human_Response_Patterns_Item_Response_Theory_with_Artificial_Crowds"},{"title":"Do LLMs Give Psychometrically Plausible Responses in Educational Assessments?","url":"https://arxiv.org/html/2506.09796"},{"title":"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - ACL Anthology","url":"https://aclanthology.org/D19-1434/"},{"title":"Building an Evaluation Scale using Item Response Theory - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/28004039/"},{"title":"Building an Evaluation Scale using Item Response Theory - PMC","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5167538/"},{"title":"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/31803865/"},{"title":"[1605.08889] Building an Evaluation Scale using Item Response Theory","url":"https://arxiv.org/abs/1605.08889"},{"title":"Building an Evaluation Scale using Item Response Theory","url":"https://arxiv.org/pdf/1605.08889"},{"title":"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC6892593/"}]
+
+Based on the search results, I found the Lalor et al. 2019 paper you're looking for. Here are the key details:
+
+**Paper Title:** "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds"
+
+**Authors:** John P. Lalor, Hao Wu, and Hong Yu
+
+**Publication:** Published in the Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP) in November 2019 in Hong Kong
+
+**Main Contribution:** The paper addresses the bottleneck of using human response pattern (RP) data to learn IRT models by proposing to learn IRT models using RPs generated from artificial crowds of deep neural network (DNN) models.
+
+**Key Finding:** Parameters learned from human and machine RPs for natural language inference and sentiment analysis exhibit medium to large positive correlations.
+
+The paper is available through the ACL Anthology and other academic databases. It represents important work in applying Item Response Theory, a psychometric method, to NLP evaluation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "3482929f-c240-472d-915d-103731ed52d8",
+  "tool_use_result": {
+    "query": "Lalor et al 2019 IRT NLP evaluation item response theory",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JpAKRZxFQ5aW98XeXNFB19",
+        "content": [
+          {
+            "title": "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds | Request PDF",
+            "url": "https://www.researchgate.net/publication/336999016_Learning_Latent_Parameters_without_Human_Response_Patterns_Item_Response_Theory_with_Artificial_Crowds"
+          },
+          {
+            "title": "Do LLMs Give Psychometrically Plausible Responses in Educational Assessments?",
+            "url": "https://arxiv.org/html/2506.09796"
+          },
+          {
+            "title": "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - ACL Anthology",
+            "url": "https://aclanthology.org/D19-1434/"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/28004039/"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - PMC",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5167538/"
+          },
+          {
+            "title": "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/31803865/"
+          },
+          {
+            "title": "[1605.08889] Building an Evaluation Scale using Item Response Theory",
+            "url": "https://arxiv.org/abs/1605.08889"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory",
+            "url": "https://arxiv.org/pdf/1605.08889"
+          },
+          {
+            "title": "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6892593/"
+          }
+        ]
+      },
+      "Based on the search results, I found the Lalor et al. 2019 paper you're looking for. Here are the key details:\n\n**Paper Title:** \"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds\"\n\n**Authors:** John P. Lalor, Hao Wu, and Hong Yu\n\n**Publication:** Published in the Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP) in November 2019 in Hong Kong\n\n**Main Contribution:** The paper addresses the bottleneck of using human response pattern (RP) data to learn IRT models by proposing to learn IRT models using RPs generated from artificial crowds of deep neural network (DNN) models.\n\n**Key Finding:** Parameters learned from human and machine RPs for natural language inference and sentiment analysis exhibit medium to large positive correlations.\n\nThe paper is available through the ACL Anthology and other academic databases. It represents important work in applying Item Response Theory, a psychometric method, to NLP evaluation tasks."
+    ],
+    "durationSeconds": 6.335502955999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T23:25:37.454Z_
+
+<details><summary>↩ Tool result · `toolu_019Q7YUEwPio3tjg1YbZCquU`</summary>
+
+```text
+Web search results for query: "Clauser Mazor 1998 DIF methods review differential item functioning"
+
+Links: [{"title":"The Theory and Methods of Differential Item Functioning ( ...","url":"https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf"},{"title":"(PDF) A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-Type (Ordinal) Item Scores","url":"https://www.researchgate.net/publication/236596822_A_Handbook_on_the_Theory_and_Methods_of_Differential_Item_Functioning_DIF_Logistic_Regression_Modeling_as_a_Unitary_Framework_for_Binary_and_Likert-Type_Ordinal_Item_Scores"},{"title":"Sage Research Methods Differential Item Functioning","url":"https://methods.sagepub.com/book/mono/preview/differential-item-functioning.pdf"},{"title":"Differential item functioning (DIF) analyses of health-related quality of life instruments using logistic regression - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC2924271/"},{"title":"Checking Equity: Why Differential Item Functioning Analysis Should Be a Routine Part of Developing Conceptual Assessments | CBE—Life Sciences Education","url":"https://www.lifescied.org/doi/10.1187/cbe.16-10-0307"},{"title":"Investigating the Effects of Differential Item Functioning on Proficiency Classification - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC5978605/"},{"title":"Measuring differential item and test functioning across academic disciplines | Language Testing in Asia | Springer Nature Link","url":"https://link.springer.com/article/10.1186/2229-0443-3-9"},{"title":"Academic Journals - Educational Research and Reviews - a comparison of four differential item functioning procedures in the presence of multidimensionality","url":"https://academicjournals.org/journal/ERR/article-full-text/9E279A959269"},{"title":"Frontiers | Detecting Multidimensional Differential Item Functioning with the Multiple Indicators Multiple Causes Model, the Item Response Theory Likelihood Ratio Test, and Logistic Regression","url":"https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2017.00051/full"}]
+
+I found relevant search results about the Clauser & Mazor 1998 publication on DIF (Differential Item Functioning) methods. Here's what the search results show:
+
+## Publication Details
+
+Clauser and Mazor's 1998 article, "Using statistical procedures to identify differentially functioning test items," was published in Educational Measurement: Issues and Practice, volume 2, pages 31-44.
+
+## Significance in DIF Literature
+
+The Clauser and Mazor 1998 work is recognized as one of the most commonly used references for reviewing statistical methods developed to detect DIF. The work is cited for documenting that a myriad of techniques has been developed to detect DIF.
+
+## DIF Methods Discussed
+
+The search results indicate that the paper discusses several DIF detection procedures, including:
+
+- Logistic regression, the Mantel-Haenszel procedure, and Simultaneous Item Bias (SIBTEST) as popular methods to detect DIF
+- Mazor et al. used the logistic regression procedure to accommodate multiple traits as matching variables
+
+The Clauser and Mazor 1998 publication appears to be an influential methodological review that has been widely cited in subsequent DIF research across educational measurement and health-related applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "4c05ac29-589a-417d-80d8-d39348b9e442",
+  "tool_use_result": {
+    "query": "Clauser Mazor 1998 DIF methods review differential item functioning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JWbTfNfhcsXksKroXt2S8w",
+        "content": [
+          {
+            "title": "The Theory and Methods of Differential Item Functioning ( ...",
+            "url": "https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf"
+          },
+          {
+            "title": "(PDF) A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-Type (Ordinal) Item Scores",
+            "url": "https://www.researchgate.net/publication/236596822_A_Handbook_on_the_Theory_and_Methods_of_Differential_Item_Functioning_DIF_Logistic_Regression_Modeling_as_a_Unitary_Framework_for_Binary_and_Likert-Type_Ordinal_Item_Scores"
+          },
+          {
+            "title": "Sage Research Methods Differential Item Functioning",
+            "url": "https://methods.sagepub.com/book/mono/preview/differential-item-functioning.pdf"
+          },
+          {
+            "title": "Differential item functioning (DIF) analyses of health-related quality of life instruments using logistic regression - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2924271/"
+          },
+          {
+            "title": "Checking Equity: Why Differential Item Functioning Analysis Should Be a Routine Part of Developing Conceptual Assessments | CBE—Life Sciences Education",
+            "url": "https://www.lifescied.org/doi/10.1187/cbe.16-10-0307"
+          },
+          {
+            "title": "Investigating the Effects of Differential Item Functioning on Proficiency Classification - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5978605/"
+          },
+          {
+            "title": "Measuring differential item and test functioning across academic disciplines | Language Testing in Asia | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1186/2229-0443-3-9"
+          },
+          {
+            "title": "Academic Journals - Educational Research and Reviews - a comparison of four differential item functioning procedures in the presence of multidimensionality",
+            "url": "https://academicjournals.org/journal/ERR/article-full-text/9E279A959269"
+          },
+          {
+            "title": "Frontiers | Detecting Multidimensional Differential Item Functioning with the Multiple Indicators Multiple Causes Model, the Item Response Theory Likelihood Ratio Test, and Logistic Regression",
+            "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2017.00051/full"
+          }
+        ]
+      },
+      "I found relevant search results about the Clauser & Mazor 1998 publication on DIF (Differential Item Functioning) methods. Here's what the search results show:\n\n## Publication Details\n\nClauser and Mazor's 1998 article, \"Using statistical procedures to identify differentially functioning test items,\" was published in Educational Measurement: Issues and Practice, volume 2, pages 31-44.\n\n## Significance in DIF Literature\n\nThe Clauser and Mazor 1998 work is recognized as one of the most commonly used references for reviewing statistical methods developed to detect DIF. The work is cited for documenting that a myriad of techniques has been developed to detect DIF.\n\n## DIF Methods Discussed\n\nThe search results indicate that the paper discusses several DIF detection procedures, including:\n\n- Logistic regression, the Mantel-Haenszel procedure, and Simultaneous Item Bias (SIBTEST) as popular methods to detect DIF\n- Mazor et al. used the logistic regression procedure to accommodate multiple traits as matching variables\n\nThe Clauser and Mazor 1998 publication appears to be an influential methodological review that has been widely cited in subsequent DIF research across educational measurement and health-related applications."
+    ],
+    "durationSeconds": 8.185089268
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T23:25:38.504Z_
+
+<details><summary>↩ Tool result · `toolu_01J7RGEkWBcD5qwBhPg2SeXm`</summary>
+
+```text
+Web search results for query: "Vania et al 2021 IRT NLP benchmarks item response theory"
+
+Links: [{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v2"},{"title":"[PDF] Comparing Test Sets with Item Response Theory | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Comparing-Test-Sets-with-Item-Response-Theory-Vania-Htut/4ca39cf99747b8962fe37e7e025e284872df3425"},{"title":"fl-IRT-ing with Psychometrics to Improve NLP Bias Measurement | Minds and Machines | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11023-024-09695-9"},{"title":"Item Response Theory for Natural Language Processing | Request PDF","url":"https://www.researchgate.net/publication/393045192_Item_Response_Theory_for_Natural_Language_Processing"},{"title":"Item Response Theory | Request PDF","url":"https://www.researchgate.net/publication/298425267_Item_Response_Theory"},{"title":"Building an Evaluation Scale using Item Response Theory - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC5167538/"},{"title":"Learning Latent Parameters without Human Response Patterns: Item   Response Theory with Artificial Crowds","url":"https://arxiv.org/pdf/1908.11421"},{"title":"[2106.00840] Comparing Test Sets with Item Response Theory","url":"https://arxiv.org/abs/2106.00840"},{"title":"[2106.00840v1] Comparing Test Sets with Item Response Theory","url":"https://arxiv.org/abs/2106.00840v1"}]
+
+Based on the search results, I found relevant information about the Vania et al. 2021 paper on IRT and NLP benchmarks.
+
+The paper "Comparing Test Sets with Item Response Theory" was authored by Clara Vania, Phu Mon Htut, William Huang, Dhara Mungra, Richard Yuanzhe Pang, Jason Phang, Haokun Liu, Kyunghyun Cho, and Sam Bowman, presented at the 2021 Annual Meeting of the Association for Computational Linguistics.
+
+The study evaluated 29 datasets using predictions from 18 pretrained Transformer models on individual test examples by drawing on Item Response Theory. The researchers found that Quoref, HellaSwag, and MC-TACO are best suited for distinguishing among state-of-the-art models, while SNLI, MNLI, and CommitmentBank seem to be saturated for current strong models.
+
+The paper addresses the challenge that many NLP datasets are largely saturated and unlikely to detect further progress, with the question of what kinds of datasets are still effective at discriminating among strong models and detecting future improvements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "e842bf00-c115-402b-98f0-b7c173b4b2b7",
+  "tool_use_result": {
+    "query": "Vania et al 2021 IRT NLP benchmarks item response theory",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XMRUuFFr9iGhEfXRsWSKLG",
+        "content": [
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v2"
+          },
+          {
+            "title": "[PDF] Comparing Test Sets with Item Response Theory | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Comparing-Test-Sets-with-Item-Response-Theory-Vania-Htut/4ca39cf99747b8962fe37e7e025e284872df3425"
+          },
+          {
+            "title": "fl-IRT-ing with Psychometrics to Improve NLP Bias Measurement | Minds and Machines | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11023-024-09695-9"
+          },
+          {
+            "title": "Item Response Theory for Natural Language Processing | Request PDF",
+            "url": "https://www.researchgate.net/publication/393045192_Item_Response_Theory_for_Natural_Language_Processing"
+          },
+          {
+            "title": "Item Response Theory | Request PDF",
+            "url": "https://www.researchgate.net/publication/298425267_Item_Response_Theory"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5167538/"
+          },
+          {
+            "title": "Learning Latent Parameters without Human Response Patterns: Item   Response Theory with Artificial Crowds",
+            "url": "https://arxiv.org/pdf/1908.11421"
+          },
+          {
+            "title": "[2106.00840] Comparing Test Sets with Item Response Theory",
+            "url": "https://arxiv.org/abs/2106.00840"
+          },
+          {
+            "title": "[2106.00840v1] Comparing Test Sets with Item Response Theory",
+            "url": "https://arxiv.org/abs/2106.00840v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the Vania et al. 2021 paper on IRT and NLP benchmarks.\n\nThe paper \"Comparing Test Sets with Item Response Theory\" was authored by Clara Vania, Phu Mon Htut, William Huang, Dhara Mungra, Richard Yuanzhe Pang, Jason Phang, Haokun Liu, Kyunghyun Cho, and Sam Bowman, presented at the 2021 Annual Meeting of the Association for Computational Linguistics.\n\nThe study evaluated 29 datasets using predictions from 18 pretrained Transformer models on individual test examples by drawing on Item Response Theory. The researchers found that Quoref, HellaSwag, and MC-TACO are best suited for distinguishing among state-of-the-art models, while SNLI, MNLI, and CommitmentBank seem to be saturated for current strong models.\n\nThe paper addresses the challenge that many NLP datasets are largely saturated and unlikely to detect further progress, with the question of what kinds of datasets are still effective at discriminating among strong models and detecting future improvements."
+    ],
+    "durationSeconds": 7.255508049
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T23:25:38.570Z_
+
+<details><summary>↩ Tool result · `toolu_01MWtigypRCCyLJftb232d6p`</summary>
+
+```text
+Web search results for query: "Polo et al 2024 tinyBenchmarks IRT efficient LLM evaluation"
+
+Links: [{"title":"tinyBenchmarks: evaluating LLMs with fewer examples | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/tinybenchmarks-evaluating-llms-fewer-examples"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples for ICLR 2024 - IBM Research","url":"https://research.ibm.com/publications/tinybenchmarks-evaluating-llms-with-fewer-examples"},{"title":"GitHub - felipemaiapolo/tinyBenchmarks: Evaluating LLMs with fewer examples · GitHub","url":"https://github.com/felipemaiapolo/tinyBenchmarks"},{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"[2402.14992] tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://arxiv.org/abs/2402.14992"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples for ICML 2024 - IBM Research","url":"https://research.ibm.com/publications/tinybenchmarks-evaluating-llms-with-fewer-examples--1"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://arxiv.org/html/2402.14992v1"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://proceedings.mlr.press/v235/maia-polo24a.html"},{"title":"(PDF) tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://www.researchgate.net/publication/383238265_tinyBenchmarks_evaluating_LLMs_with_fewer_examples"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+## tinyBenchmarks: Evaluating LLMs with Fewer Examples
+
+The paper was published on 5/28/2024 by Felipe Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, and Mikhail Yurochkin.
+
+### Key Contribution
+
+tinyBenchmarks presents a new approach to efficiently evaluating the performance of large language models (LLMs) using fewer examples. The paper investigates strategies to reduce the number of evaluations needed to assess LLM performance on several key benchmarks, showing that to accurately estimate performance on MMLU (a 14K example benchmark), it is sufficient to evaluate on just 100 curated examples.
+
+### Methodology and Release
+
+The authors released an IRT-based tool to enhance performance estimation, which provides code and IRT parameters trained on the corresponding benchmarks and can be run on a CPU in a few seconds. They released evaluation tools and tiny versions of popular benchmarks: Open LLM Leaderboard, MMLU, HELM, and AlpacaEval 2.0.
+
+### Results
+
+Empirical analysis demonstrates that these tools and tiny benchmarks are sufficient to reliably and efficiently reproduce the original evaluation results.
+
+The paper was presented at ICML 2024 and is available on arXiv (preprint 2402.14992).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "1a8260cf-3a1a-4e76-8e95-fb00c010162d",
+  "tool_use_result": {
+    "query": "Polo et al 2024 tinyBenchmarks IRT efficient LLM evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019NV4SCFbxUSJLo19MoDBFg",
+        "content": [
+          {
+            "title": "tinyBenchmarks: evaluating LLMs with fewer examples | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/tinybenchmarks-evaluating-llms-fewer-examples"
+          },
+          {
+            "title": "tinyBenchmarks: evaluating LLMs with fewer examples for ICLR 2024 - IBM Research",
+            "url": "https://research.ibm.com/publications/tinybenchmarks-evaluating-llms-with-fewer-examples"
+          },
+          {
+            "title": "GitHub - felipemaiapolo/tinyBenchmarks: Evaluating LLMs with fewer examples · GitHub",
+            "url": "https://github.com/felipemaiapolo/tinyBenchmarks"
+          },
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "[2402.14992] tinyBenchmarks: evaluating LLMs with fewer examples",
+            "url": "https://arxiv.org/abs/2402.14992"
+          },
+          {
+            "title": "tinyBenchmarks: evaluating LLMs with fewer examples for ICML 2024 - IBM Research",
+            "url": "https://research.ibm.com/publications/tinybenchmarks-evaluating-llms-with-fewer-examples--1"
+          },
+          {
+            "title": "tinyBenchmarks: evaluating LLMs with fewer examples",
+            "url": "https://arxiv.org/html/2402.14992v1"
+          },
+          {
+            "title": "tinyBenchmarks: evaluating LLMs with fewer examples",
+            "url": "https://proceedings.mlr.press/v235/maia-polo24a.html"
+          },
+          {
+            "title": "(PDF) tinyBenchmarks: evaluating LLMs with fewer examples",
+            "url": "https://www.researchgate.net/publication/383238265_tinyBenchmarks_evaluating_LLMs_with_fewer_examples"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the paper you're looking for:\n\n## tinyBenchmarks: Evaluating LLMs with Fewer Examples\n\nThe paper was published on 5/28/2024 by Felipe Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, and Mikhail Yurochkin.\n\n### Key Contribution\n\ntinyBenchmarks presents a new approach to efficiently evaluating the performance of large language models (LLMs) using fewer examples. The paper investigates strategies to reduce the number of evaluations needed to assess LLM performance on several key benchmarks, showing that to accurately estimate performance on MMLU (a 14K example benchmark), it is sufficient to evaluate on just 100 curated examples.\n\n### Methodology and Release\n\nThe authors released an IRT-based tool to enhance performance estimation, which provides code and IRT parameters trained on the corresponding benchmarks and can be run on a CPU in a few seconds. They released evaluation tools and tiny versions of popular benchmarks: Open LLM Leaderboard, MMLU, HELM, and AlpacaEval 2.0.\n\n### Results\n\nEmpirical analysis demonstrates that these tools and tiny benchmarks are sufficient to reliably and efficiently reproduce the original evaluation results.\n\nThe paper was presented at ICML 2024 and is available on arXiv (preprint 2402.14992)."
+    ],
+    "durationSeconds": 6.635502315000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have results for the first two categories. Now let me search for the remaining categories: contamination detection, dynamic benchmarks, and key comparison papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "03eecc74-d76f-485e-809e-7625e392f8c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Got results for categories 1 and 2. Now searching categories 3-5.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "afd2244a-be6e-489e-9550-a522350bb6ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Miti1hm3zhBmFy8kKCJcpk`</summary>
+
+```json
+{
+  "query": "Shi et al 2024 Min-K%++ detecting pretraining data LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "93d4fb5c-435a-4e36-a730-611c0b953f68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014C9F6a7DyKMMhAvmXPp4w3`</summary>
+
+```json
+{
+  "query": "Balloccu et al 2024 \"Leak Cheat Repeat\" contamination survey LLM benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "950bb43f-61b6-4925-935a-4ae48fd2c66c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N5RZPzzHjNiPa2iLds7PTr`</summary>
+
+```json
+{
+  "query": "Golchin Surdeanu 2024 \"Data Contamination Quiz\" LLM evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "68d05a88-d2af-4e27-bce2-cef1c8fdb614",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ck2dm39uhaxRL3yiHWNzGN`</summary>
+
+```json
+{
+  "query": "Oren et al 2024 \"Proving Test Set Contamination\" language models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "8a7d2e0a-8c6b-43bc-909f-3bbf5950e697",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ANB7J6mfjweVkrrDtM2DqY`</summary>
+
+```json
+{
+  "query": "Deng et al 2024 \"Investigating Data Contamination\" modern benchmarks LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "f460ab08-8e79-4f34-8950-e5f1d1a68132",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DWha7Kw5HxtFz9Jqdy3CuQ`</summary>
+
+```json
+{
+  "query": "DyVal Zhu et al 2024 dynamic evaluation LLM benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "8428aae3-e615-4b59-ac39-d56e55e15a46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D6x3HMUMWrYHKs7F7YBLJd`</summary>
+
+```json
+{
+  "query": "LiveBench 2024 LLM benchmark contamination-free dynamic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "13f04c6e-a869-452a-87f6-4bda5e38ef98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F7BJtn8MZJwgmi864heZE1`</summary>
+
+```json
+{
+  "query": "MMLU-Pro MMLU-Redux 2024 harder benchmark evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "24a1d234-8f79-4a74-9279-51198a43437e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HETR4b1sTQhy4z5URr99k4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7360,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T23:25:49.696Z_
+
+<details><summary>↩ Tool result · `toolu_014C9F6a7DyKMMhAvmXPp4w3`</summary>
+
+```text
+Web search results for query: "Balloccu et al 2024 "Leak Cheat Repeat" contamination survey LLM benchmarks"
+
+Links: [{"title":"Simulating Training Data Leakage in Multiple-Choice Benchmarks for LLM Evaluation","url":"https://arxiv.org/html/2505.24263v1"},{"title":"[PDF] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Leak,-Cheat,-Repeat:-Data-Contamination-and-in-LLMs-Balloccu-Schmidtov'a/798feda076ad710df65d509a7884bd15937c8056"},{"title":"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs - ACL Anthology","url":"https://aclanthology.org/2024.eacl-long.5/"},{"title":"Data Contamination in Closed-Source LLMs","url":"https://www.emergentmind.com/papers/2402.03927"},{"title":"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | Request PDF","url":"https://www.researchgate.net/publication/393021102_Leak_Cheat_Repeat_Data_Contamination_and_Evaluation_Malpractices_in_Closed-Source_LLMs"},{"title":"[2402.03927v2] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs","url":"https://arxiv.org/abs/2402.03927v2"},{"title":"[2402.03927v1] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs","url":"https://arxiv.org/abs/2402.03927v1"},{"title":"[2402.03927] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs","url":"https://arxiv.org/abs/2402.03927"},{"title":"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | Leak, Cheat, Repeat - Data Contamination and Evaluation Malpractices in Closed-Source LLMs","url":"https://leak-llm.github.io/"},{"title":"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | alphaXiv","url":"https://www.alphaxiv.org/overview/2402.03927v2"}]
+
+I found the research you're looking for. Here's what I found about the paper:
+
+The paper "Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs" by Balloccu et al. was published in 2024 at the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL).
+
+The work conducts a systematic review of papers using OpenAI's ChatGPT and GPT-4, and by analyzing 255 papers, the authors extensively document how much data was leaked to ChatGPT in the first year after the model's release.
+
+The paper documents evaluation malpractices emerging in reviewed papers, including unfair or missing baseline comparisons, reproducibility issues, and authors' lack of awareness of the data usage policy. The study estimated over 4.7 million samples from 263 datasets were exposed through web interface usage.
+
+The paper is available through multiple sources including the ACL Anthology and arXiv (arxiv.org/abs/2402.03927), and the authors have also released their results as a collaborative project at leak-llm.github.io.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "f3c6ca82-a22b-44a0-ab69-c9d714326d32",
+  "tool_use_result": {
+    "query": "Balloccu et al 2024 \"Leak Cheat Repeat\" contamination survey LLM benchmarks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HegXwfkD8B87PsC7oWzETK",
+        "content": [
+          {
+            "title": "Simulating Training Data Leakage in Multiple-Choice Benchmarks for LLM Evaluation",
+            "url": "https://arxiv.org/html/2505.24263v1"
+          },
+          {
+            "title": "[PDF] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Leak,-Cheat,-Repeat:-Data-Contamination-and-in-LLMs-Balloccu-Schmidtov'a/798feda076ad710df65d509a7884bd15937c8056"
+          },
+          {
+            "title": "Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2024.eacl-long.5/"
+          },
+          {
+            "title": "Data Contamination in Closed-Source LLMs",
+            "url": "https://www.emergentmind.com/papers/2402.03927"
+          },
+          {
+            "title": "Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/393021102_Leak_Cheat_Repeat_Data_Contamination_and_Evaluation_Malpractices_in_Closed-Source_LLMs"
+          },
+          {
+            "title": "[2402.03927v2] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs",
+            "url": "https://arxiv.org/abs/2402.03927v2"
+          },
+          {
+            "title": "[2402.03927v1] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs",
+            "url": "https://arxiv.org/abs/2402.03927v1"
+          },
+          {
+            "title": "[2402.03927] Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs",
+            "url": "https://arxiv.org/abs/2402.03927"
+          },
+          {
+            "title": "Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | Leak, Cheat, Repeat - Data Contamination and Evaluation Malpractices in Closed-Source LLMs",
+            "url": "https://leak-llm.github.io/"
+          },
+          {
+            "title": "Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2402.03927v2"
+          }
+        ]
+      },
+      "I found the research you're looking for. Here's what I found about the paper:\n\nThe paper \"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs\" by Balloccu et al. was published in 2024 at the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL).\n\nThe work conducts a systematic review of papers using OpenAI's ChatGPT and GPT-4, and by analyzing 255 papers, the authors extensively document how much data was leaked to ChatGPT in the first year after the model's release.\n\nThe paper documents evaluation malpractices emerging in reviewed papers, including unfair or missing baseline comparisons, reproducibility issues, and authors' lack of awareness of the data usage policy. The study estimated over 4.7 million samples from 263 datasets were exposed through web interface usage.\n\nThe paper is available through multiple sources including the ACL Anthology and arXiv (arxiv.org/abs/2402.03927), and the authors have also released their results as a collaborative project at leak-llm.github.io."
+    ],
+    "durationSeconds": 5.035253892000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T23:25:50.127Z_
+
+<details><summary>↩ Tool result · `toolu_01Miti1hm3zhBmFy8kKCJcpk`</summary>
+
+```text
+Web search results for query: "Shi et al 2024 Min-K%++ detecting pretraining data LLM"
+
+Links: [{"title":"(PDF) Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models (2024) | Jingyang Zhang | 16 Citations","url":"https://scispace.com/papers/min-k-improved-baseline-for-detecting-pre-training-data-from-1r3llgg58h"},{"title":"min-k%++: improved baseline for detecting pre-training ...","url":"https://arxiv.org/pdf/2404.02936"},{"title":"MIN-K%++: IMPROVED BASELINE FOR DETECTING PRE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a2e3b4132ab2e0b7a21e6e75da7f91a9-Paper-Conference.pdf"},{"title":"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models","url":"https://arxiv.org/html/2404.02936v1"},{"title":"DETECTING PRETRAINING DATA FROM LARGE LANGUAGE MODELS - Princeton University","url":"https://collaborate.princeton.edu/en/publications/detecting-pretraining-data-from-large-language-models/"},{"title":"[2310.16789] Detecting Pretraining Data from Large Language Models","url":"https://arxiv.org/abs/2310.16789"},{"title":"Detecting Pretraining Data from Large Language Models","url":"https://arxiv.org/pdf/2310.16789"}]
+
+Based on the search results, here's what I found about the research:
+
+## Overview
+
+The problem of pre-training data detection for large language models (LLMs) has received growing attention due to its implications in critical issues like copyright violation and test data contamination.
+
+## Min-K%++ Method
+
+Min-K%++ is a novel methodology for pre-training data detection that measures how sharply peaked the likelihood is around the input, a measurement analogous to the curvature of continuous distribution. Existing approaches, including the state-of-the-art Min-K%, often use zeroth-order signals for detection, which are less robust in determining local maxima than second-order statistics.
+
+The method is theoretically motivated by the observation that maximum likelihood training implicitly optimizes the trace of the Hessian matrix of likelihood through score matching.
+
+## Background Work
+
+The Min-K%++ paper references earlier work by Shi et al. (2024) on pretraining data detection. Although large language models are widely deployed, the data used to train them is rarely disclosed, and given the scale of this data (up to trillions of tokens), it is all but certain that it includes potentially problematic text such as copyrighted materials, personally identifiable information, and test data for widely reported reference benchmarks.
+
+The Min-K% Prob method was applied to three real-world scenarios: copyrighted book detection, contaminated downstream example detection and privacy auditing of machine unlearning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "c0dedbee-4e72-4bd8-b6e4-a77046b69ba2",
+  "tool_use_result": {
+    "query": "Shi et al 2024 Min-K%++ detecting pretraining data LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FMGSFMJrnKLZ5aiRiQrm5Z",
+        "content": [
+          {
+            "title": "(PDF) Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models (2024) | Jingyang Zhang | 16 Citations",
+            "url": "https://scispace.com/papers/min-k-improved-baseline-for-detecting-pre-training-data-from-1r3llgg58h"
+          },
+          {
+            "title": "min-k%++: improved baseline for detecting pre-training ...",
+            "url": "https://arxiv.org/pdf/2404.02936"
+          },
+          {
+            "title": "MIN-K%++: IMPROVED BASELINE FOR DETECTING PRE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a2e3b4132ab2e0b7a21e6e75da7f91a9-Paper-Conference.pdf"
+          },
+          {
+            "title": "Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models",
+            "url": "https://arxiv.org/html/2404.02936v1"
+          },
+          {
+            "title": "DETECTING PRETRAINING DATA FROM LARGE LANGUAGE MODELS - Princeton University",
+            "url": "https://collaborate.princeton.edu/en/publications/detecting-pretraining-data-from-large-language-models/"
+          },
+          {
+            "title": "[2310.16789] Detecting Pretraining Data from Large Language Models",
+            "url": "https://arxiv.org/abs/2310.16789"
+          },
+          {
+            "title": "Detecting Pretraining Data from Large Language Models",
+            "url": "https://arxiv.org/pdf/2310.16789"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the research:\n\n## Overview\n\nThe problem of pre-training data detection for large language models (LLMs) has received growing attention due to its implications in critical issues like copyright violation and test data contamination.\n\n## Min-K%++ Method\n\nMin-K%++ is a novel methodology for pre-training data detection that measures how sharply peaked the likelihood is around the input, a measurement analogous to the curvature of continuous distribution. Existing approaches, including the state-of-the-art Min-K%, often use zeroth-order signals for detection, which are less robust in determining local maxima than second-order statistics.\n\nThe method is theoretically motivated by the observation that maximum likelihood training implicitly optimizes the trace of the Hessian matrix of likelihood through score matching.\n\n## Background Work\n\nThe Min-K%++ paper references earlier work by Shi et al. (2024) on pretraining data detection. Although large language models are widely deployed, the data used to train them is rarely disclosed, and given the scale of this data (up to trillions of tokens), it is all but certain that it includes potentially problematic text such as copyrighted materials, personally identifiable information, and test data for widely reported reference benchmarks.\n\nThe Min-K% Prob method was applied to three real-world scenarios: copyrighted book detection, contaminated downstream example detection and privacy auditing of machine unlearning."
+    ],
+    "durationSeconds": 6.475009480000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T23:25:52.563Z_
+
+<details><summary>↩ Tool result · `toolu_01ANB7J6mfjweVkrrDtM2DqY`</summary>
+
+```text
+Web search results for query: "Deng et al 2024 "Investigating Data Contamination" modern benchmarks LLM"
+
+Links: [{"title":"Investigating Data Contamination in Modern Benchmarks for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.482/"},{"title":"Recent Advances in Large Langauge Model Benchmarks against Data Contamination: From Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v1"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v2"},{"title":"[Quick Review] Investigating Data Contamination in Modern Benchmarks for Large Language Models","url":"https://liner.com/review/investigating-data-contamination-in-modern-benchmarks-for-large-language-models"},{"title":"Investigating Data Contamination in Modern Benchmarks for Large Language Models","url":"https://papers.gersteinlab.org/papers/llmcontamination/index.html"},{"title":"Investigating Data Contamination in Modern Benchmarks for Large Language Models","url":"https://www.researchgate.net/publication/382633331_Investigating_Data_Contamination_in_Modern_Benchmarks_for_Large_Language_Models"},{"title":"[2311.09783] Investigating Data Contamination in Modern Benchmarks for Large Language Models","url":"https://arxiv.org/abs/2311.09783"},{"title":"dblp: Investigating Data Contamination in Modern Benchmarks for Large Language Models.","url":"https://dblp.org/rec/conf/naacl/Deng0TGC24.html"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** "Investigating Data Contamination in Modern Benchmarks for Large Language Models"
+
+**Authors:** Chunyuan Deng, Yilun Zhao, Xiangru Tang, Mark Gerstein, and Arman Cohan
+
+**Publication:** Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), pages 8706–8719, Mexico City, Mexico
+
+**Key Finding:** In the MMLU benchmark, ChatGPT and GPT-4 demonstrated an exact match rate of 52% and 57%, respectively, in guessing the missing options in benchmark test data.
+
+**Research Focus:** Recent observations have underscored a disparity between the inflated benchmark scores and the actual performance of LLMs, raising concerns about potential contamination of evaluation benchmarks. The researchers proposed two methods tailored for both open-source and proprietary LLMs, introducing a retrieval-based system to explore potential overlaps between evaluation benchmarks and pretraining corpora, and a novel investigation protocol named Testset Slot Guessing (TS-Guessing).
+
+You can access the paper on the ACL Anthology at: https://aclanthology.org/2024.naacl-long.482/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "abd344eb-f493-454b-8a5f-db8193380291",
+  "tool_use_result": {
+    "query": "Deng et al 2024 \"Investigating Data Contamination\" modern benchmarks LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B4UZ23UmkvLAafx9ya8ZN1",
+        "content": [
+          {
+            "title": "Investigating Data Contamination in Modern Benchmarks for Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.naacl-long.482/"
+          },
+          {
+            "title": "Recent Advances in Large Langauge Model Benchmarks against Data Contamination: From Static to Dynamic Evaluation",
+            "url": "https://arxiv.org/html/2502.17521v1"
+          },
+          {
+            "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation",
+            "url": "https://arxiv.org/html/2502.17521v2"
+          },
+          {
+            "title": "[Quick Review] Investigating Data Contamination in Modern Benchmarks for Large Language Models",
+            "url": "https://liner.com/review/investigating-data-contamination-in-modern-benchmarks-for-large-language-models"
+          },
+          {
+            "title": "Investigating Data Contamination in Modern Benchmarks for Large Language Models",
+            "url": "https://papers.gersteinlab.org/papers/llmcontamination/index.html"
+          },
+          {
+            "title": "Investigating Data Contamination in Modern Benchmarks for Large Language Models",
+            "url": "https://www.researchgate.net/publication/382633331_Investigating_Data_Contamination_in_Modern_Benchmarks_for_Large_Language_Models"
+          },
+          {
+            "title": "[2311.09783] Investigating Data Contamination in Modern Benchmarks for Large Language Models",
+            "url": "https://arxiv.org/abs/2311.09783"
+          },
+          {
+            "title": "dblp: Investigating Data Contamination in Modern Benchmarks for Large Language Models.",
+            "url": "https://dblp.org/rec/conf/naacl/Deng0TGC24.html"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Paper Title:** \"Investigating Data Contamination in Modern Benchmarks for Large Language Models\"\n\n**Authors:** Chunyuan Deng, Yilun Zhao, Xiangru Tang, Mark Gerstein, and Arman Cohan\n\n**Publication:** Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), pages 8706–8719, Mexico City, Mexico\n\n**Key Finding:** In the MMLU benchmark, ChatGPT and GPT-4 demonstrated an exact match rate of 52% and 57%, respectively, in guessing the missing options in benchmark test data.\n\n**Research Focus:** Recent observations have underscored a disparity between the inflated benchmark scores and the actual performance of LLMs, raising concerns about potential contamination of evaluation benchmarks. The researchers proposed two methods tailored for both open-source and proprietary LLMs, introducing a retrieval-based system to explore potential overlaps between evaluation benchmarks and pretraining corpora, and a novel investigation protocol named Testset Slot Guessing (TS-Guessing).\n\nYou can access the paper on the ACL Anthology at: https://aclanthology.org/2024.naacl-long.482/"
+    ],
+    "durationSeconds": 5.942686360999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T23:25:53.144Z_
+
+<details><summary>↩ Tool result · `toolu_01DWha7Kw5HxtFz9Jqdy3CuQ`</summary>
+
+```text
+Web search results for query: "DyVal Zhu et al 2024 dynamic evaluation LLM benchmark"
+
+Links: [{"title":"Compound-QA: A Benchmark for Evaluating LLMs on Compound Questions","url":"https://arxiv.org/html/2411.10163v1"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v2"},{"title":"Recent Advances in Large Langauge Model Benchmarks against Data Contamination: From Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v1"},{"title":"PrismBench: Dynamic and Flexible Benchmarking of LLMs ...","url":"https://openreview.net/pdf?id=O0bsC6FDly"},{"title":"Published as a conference paper at ICLR 2024 DYVAL: DYNAMIC EVALUATION OF LARGE","url":"https://arxiv.org/pdf/2309.17167"},{"title":"ThinkBench: Dynamic Out-of-Distribution Evaluation for Robust LLM Reasoning","url":"https://arxiv.org/html/2502.16268v1"},{"title":"TestAgent: Automatic Benchmarking and Exploratory Interaction for Evaluating LLMs in Vertical Domains","url":"https://arxiv.org/html/2410.11507"}]
+
+Based on the search results, here's what I found about DyVal by Zhu et al. 2024:
+
+DyVal is a dynamic evaluation of large language models for reasoning tasks. The work by Kaijie Zhu, Jiaao Chen, Jindong Wang, Neil Zhenqiang Gong, Diyi Yang, and Xing Xie was published in the International Conference on Learning Representations (ICLR 2024).
+
+DyVal proposes applying graph complexity to evaluate the complexity of reasoning problems. While the paper focuses on evaluating reasoning tasks, DyVal is flexible to evaluate natural language tasks.
+
+DyVal generates tasks at test time to mitigate memorization. This approach helps address concerns about data contamination in LLM benchmarks by creating dynamic test cases rather than relying on static evaluation sets.
+
+The paper appears to be part of a broader research effort on dynamic evaluation, as there is also a follow-up work called DyVal 2: Dynamic evaluation of large language models by meta probing agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "a82ca9a1-6025-485d-bbed-c2e67138bbde",
+  "tool_use_result": {
+    "query": "DyVal Zhu et al 2024 dynamic evaluation LLM benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SWVZtuDKMKWmJ7LJUGirj8",
+        "content": [
+          {
+            "title": "Compound-QA: A Benchmark for Evaluating LLMs on Compound Questions",
+            "url": "https://arxiv.org/html/2411.10163v1"
+          },
+          {
+            "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation",
+            "url": "https://arxiv.org/html/2502.17521v2"
+          },
+          {
+            "title": "Recent Advances in Large Langauge Model Benchmarks against Data Contamination: From Static to Dynamic Evaluation",
+            "url": "https://arxiv.org/html/2502.17521v1"
+          },
+          {
+            "title": "PrismBench: Dynamic and Flexible Benchmarking of LLMs ...",
+            "url": "https://openreview.net/pdf?id=O0bsC6FDly"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 DYVAL: DYNAMIC EVALUATION OF LARGE",
+            "url": "https://arxiv.org/pdf/2309.17167"
+          },
+          {
+            "title": "ThinkBench: Dynamic Out-of-Distribution Evaluation for Robust LLM Reasoning",
+            "url": "https://arxiv.org/html/2502.16268v1"
+          },
+          {
+            "title": "TestAgent: Automatic Benchmarking and Exploratory Interaction for Evaluating LLMs in Vertical Domains",
+            "url": "https://arxiv.org/html/2410.11507"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DyVal by Zhu et al. 2024:\n\nDyVal is a dynamic evaluation of large language models for reasoning tasks. The work by Kaijie Zhu, Jiaao Chen, Jindong Wang, Neil Zhenqiang Gong, Diyi Yang, and Xing Xie was published in the International Conference on Learning Representations (ICLR 2024).\n\nDyVal proposes applying graph complexity to evaluate the complexity of reasoning problems. While the paper focuses on evaluating reasoning tasks, DyVal is flexible to evaluate natural language tasks.\n\nDyVal generates tasks at test time to mitigate memorization. This approach helps address concerns about data contamination in LLM benchmarks by creating dynamic test cases rather than relying on static evaluation sets.\n\nThe paper appears to be part of a broader research effort on dynamic evaluation, as there is also a follow-up work called DyVal 2: Dynamic evaluation of large language models by meta probing agents."
+    ],
+    "durationSeconds": 5.521795860999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T23:25:53.576Z_
+
+<details><summary>↩ Tool result · `toolu_01Ck2dm39uhaxRL3yiHWNzGN`</summary>
+
+```text
+Web search results for query: "Oren et al 2024 "Proving Test Set Contamination" language models"
+
+Links: [{"title":"[PDF] Proving Test Set Contamination in Black Box Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Proving-Test-Set-Contamination-in-Black-Box-Models-Oren-Meister/c871377b208814713c18e25633866323a2982136"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"},{"title":"[2310.17623] Proving Test Set Contamination in Black Box Language Models","url":"https://arxiv.org/abs/2310.17623"},{"title":"Towards Data Contamination Detection for Modern Large Language Models: Limitations, Inconsistencies, and Oracle Challenges","url":"https://arxiv.org/html/2409.09927v2"},{"title":"[2310.17623v1] Proving Test Set Contamination in Black Box Language Models","url":"https://arxiv.org/abs/2310.17623v1"},{"title":"Proving Test Set Contamination in Black Box Language Models","url":"https://arxiv.org/pdf/2310.17623"},{"title":"Proving Test Set Contamination in Black-Box Language Models","url":"https://proceedings.iclr.cc/paper_files/paper/2024/hash/46e624c244cff669223d488defd4e835-Abstract-Conference.html"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"ICLR 2024 Proving Test Set Contamination in Black-Box Language Models Oral","url":"https://iclr.cc/virtual/2024/oral/19769"},{"title":"Contamination Report for Multilingual Benchmarks","url":"https://arxiv.org/pdf/2410.16186"}]
+
+Based on the search results, here's information about the Oren et al. 2024 paper on test set contamination:
+
+## Overview
+
+Oren et al. propose a procedure for detecting test set contamination of language models with exact false positive guarantees and without access to pretraining data or model weights. The paper was published at The Twelfth International Conference on Learning Representations (ICLR 2024).
+
+## Key Method
+
+The authors used a statistical test to identify contamination by comparing the likelihood of a benchmark dataset's canonical ordering against a shuffled version. More specifically, since language models tend to memorize example order, a contaminated language model will find certain canonical orderings to be much more likely than others, and the test flags potential contamination whenever the likelihood of a canonically ordered benchmark dataset is significantly higher than the likelihood after shuffling the examples.
+
+## Results and Impact
+
+The authors demonstrated that their procedure is sensitive enough to reliably prove test set contamination in challenging situations, including models as small as 1.4 billion parameters, on small test sets of only 1000 examples, and datasets that appear only a few times in the pretraining corpus. When they audited five popular publicly accessible language models for test set contamination, they found little evidence for pervasive contamination.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "6154c8ed-538d-4fe2-be80-3e62287a8682",
+  "tool_use_result": {
+    "query": "Oren et al 2024 \"Proving Test Set Contamination\" language models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RvV1eMKXVvCBFvJSVsRwDC",
+        "content": [
+          {
+            "title": "[PDF] Proving Test Set Contamination in Black Box Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Proving-Test-Set-Contamination-in-Black-Box-Models-Oren-Meister/c871377b208814713c18e25633866323a2982136"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          },
+          {
+            "title": "[2310.17623] Proving Test Set Contamination in Black Box Language Models",
+            "url": "https://arxiv.org/abs/2310.17623"
+          },
+          {
+            "title": "Towards Data Contamination Detection for Modern Large Language Models: Limitations, Inconsistencies, and Oracle Challenges",
+            "url": "https://arxiv.org/html/2409.09927v2"
+          },
+          {
+            "title": "[2310.17623v1] Proving Test Set Contamination in Black Box Language Models",
+            "url": "https://arxiv.org/abs/2310.17623v1"
+          },
+          {
+            "title": "Proving Test Set Contamination in Black Box Language Models",
+            "url": "https://arxiv.org/pdf/2310.17623"
+          },
+          {
+            "title": "Proving Test Set Contamination in Black-Box Language Models",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/46e624c244cff669223d488defd4e835-Abstract-Conference.html"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "ICLR 2024 Proving Test Set Contamination in Black-Box Language Models Oral",
+            "url": "https://iclr.cc/virtual/2024/oral/19769"
+          },
+          {
+            "title": "Contamination Report for Multilingual Benchmarks",
+            "url": "https://arxiv.org/pdf/2410.16186"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the Oren et al. 2024 paper on test set contamination:\n\n## Overview\n\nOren et al. propose a procedure for detecting test set contamination of language models with exact false positive guarantees and without access to pretraining data or model weights. The paper was published at The Twelfth International Conference on Learning Representations (ICLR 2024).\n\n## Key Method\n\nThe authors used a statistical test to identify contamination by comparing the likelihood of a benchmark dataset's canonical ordering against a shuffled version. More specifically, since language models tend to memorize example order, a contaminated language model will find certain canonical orderings to be much more likely than others, and the test flags potential contamination whenever the likelihood of a canonically ordered benchmark dataset is significantly higher than the likelihood after shuffling the examples.\n\n## Results and Impact\n\nThe authors demonstrated that their procedure is sensitive enough to reliably prove test set contamination in challenging situations, including models as small as 1.4 billion parameters, on small test sets of only 1000 examples, and datasets that appear only a few times in the pretraining corpus. When they audited five popular publicly accessible language models for test set contamination, they found little evidence for pervasive contamination."
+    ],
+    "durationSeconds": 7.430325777000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T23:25:55.891Z_
+
+<details><summary>↩ Tool result · `toolu_01F7BJtn8MZJwgmi864heZE1`</summary>
+
+```text
+Web search results for query: "MMLU-Pro MMLU-Redux 2024 harder benchmark evaluation"
+
+Links: [{"title":"Refreshing general-knowledge benchmarks without leakage","url":"https://www.dataset.news/p/refreshing-general-knowledge-benchmarks"},{"title":"MMLU-Pro Explained: The Advanced AI Benchmark for LLMs | IntuitionLabs","url":"https://intuitionlabs.ai/articles/mmlu-pro-ai-benchmark-explained"},{"title":"MMLU Benchmark: Testing AI Language Models | Galileo","url":"https://galileo.ai/blog/mmlu-benchmark-ai-language-testing"},{"title":"MMLU-Redux: Refined LLM Benchmark Suite","url":"https://www.emergentmind.com/topics/mmlu-redux"},{"title":"MMLU - Wikipedia","url":"https://en.wikipedia.org/wiki/MMLU"},{"title":"GitHub - TIGER-AI-Lab/MMLU-Pro: The code and data for \"MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark\" [NeurIPS 2024] · GitHub","url":"https://github.com/TIGER-AI-Lab/MMLU-Pro"},{"title":"MMLU-Pro: A More Robust and Challenging Multi-Task Language   Understanding Benchmark","url":"https://arxiv.org/pdf/2406.01574"},{"title":"MMLU-Pro Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/mmlu-pro"}]
+
+Based on the search results, here's what I found about MMLU-Pro and MMLU-Redux as harder benchmark evaluations in 2024:
+
+## MMLU-Redux (2024)
+
+MMLU-Redux addresses data quality concerns identified in June 2024 through systematic manual review, which revealed a 6.5% error rate in the original MMLU benchmark. The review identified errors across 5,700 questions spanning all 57 subjects, with error categories including parsing mistakes, multiple correct answers, and missing context. When models were re-evaluated using MMLU-Redux, significant variation in performance metrics and shifts in model rankings were observed.
+
+## MMLU-Pro (2024)
+
+MMLU-Pro is an enhanced benchmark presented at NeurIPS 2024 that integrates more challenging, reasoning-focused questions and increases answer choices per question from four to ten, significantly raising difficulty and reducing random guessing success. MMLU-Pro comprises over 12,000 rigorously curated questions spanning 14 diverse domains including Biology, Business, Chemistry, Computer Science, Economics, Engineering, Health, History, Law, Math, Philosophy, Physics, Psychology, and Others.
+
+The leading model, GPT-4o, only achieves 72.6% accuracy on MMLU-Pro compared to its performance on original MMLU, indicating substantial room for improvement. MMLU-Pro is more discriminative than MMLU in distinguishing nuances between models—the gap between GPT-4o and GPT-4-Turbo is 9% on MMLU-Pro versus 1% on MMLU.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "02d0058b-4f43-489b-b3ea-667fb99ea656",
+  "tool_use_result": {
+    "query": "MMLU-Pro MMLU-Redux 2024 harder benchmark evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015SMNJHZfSz3bEJra29QFDF",
+        "content": [
+          {
+            "title": "Refreshing general-knowledge benchmarks without leakage",
+            "url": "https://www.dataset.news/p/refreshing-general-knowledge-benchmarks"
+          },
+          {
+            "title": "MMLU-Pro Explained: The Advanced AI Benchmark for LLMs | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/mmlu-pro-ai-benchmark-explained"
+          },
+          {
+            "title": "MMLU Benchmark: Testing AI Language Models | Galileo",
+            "url": "https://galileo.ai/blog/mmlu-benchmark-ai-language-testing"
+          },
+          {
+            "title": "MMLU-Redux: Refined LLM Benchmark Suite",
+            "url": "https://www.emergentmind.com/topics/mmlu-redux"
+          },
+          {
+            "title": "MMLU - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/MMLU"
+          },
+          {
+            "title": "GitHub - TIGER-AI-Lab/MMLU-Pro: The code and data for \"MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark\" [NeurIPS 2024] · GitHub",
+            "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro"
+          },
+          {
+            "title": "MMLU-Pro: A More Robust and Challenging Multi-Task Language   Understanding Benchmark",
+            "url": "https://arxiv.org/pdf/2406.01574"
+          },
+          {
+            "title": "MMLU-Pro Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/mmlu-pro"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about MMLU-Pro and MMLU-Redux as harder benchmark evaluations in 2024:\n\n## MMLU-Redux (2024)\n\nMMLU-Redux addresses data quality concerns identified in June 2024 through systematic manual review, which revealed a 6.5% error rate in the original MMLU benchmark. The review identified errors across 5,700 questions spanning all 57 subjects, with error categories including parsing mistakes, multiple correct answers, and missing context. When models were re-evaluated using MMLU-Redux, significant variation in performance metrics and shifts in model rankings were observed.\n\n## MMLU-Pro (2024)\n\nMMLU-Pro is an enhanced benchmark presented at NeurIPS 2024 that integrates more challenging, reasoning-focused questions and increases answer choices per question from four to ten, significantly raising difficulty and reducing random guessing success. MMLU-Pro comprises over 12,000 rigorously curated questions spanning 14 diverse domains including Biology, Business, Chemistry, Computer Science, Economics, Engineering, Health, History, Law, Math, Philosophy, Physics, Psychology, and Others.\n\nThe leading model, GPT-4o, only achieves 72.6% accuracy on MMLU-Pro compared to its performance on original MMLU, indicating substantial room for improvement. MMLU-Pro is more discriminative than MMLU in distinguishing nuances between models—the gap between GPT-4o and GPT-4-Turbo is 9% on MMLU-Pro versus 1% on MMLU."
+    ],
+    "durationSeconds": 7.368949041
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T23:25:56.329Z_
+
+<details><summary>↩ Tool result · `toolu_01D6x3HMUMWrYHKs7F7YBLJd`</summary>
+
+```text
+Web search results for query: "LiveBench 2024 LLM benchmark contamination-free dynamic"
+
+Links: [{"title":"LiveBench: Dynamic LLM Benchmark Suite","url":"https://www.emergentmind.com/topics/livebench"},{"title":"LiveBench: Contamination-Free LLM Benchmark","url":"https://www.emergentmind.com/papers/2406.19314"},{"title":"Musing 59: LiveBench: A Challenging, Contamination-Free LLM Benchmark","url":"https://aiscientist.substack.com/p/musing-59-livebench-a-challenging"},{"title":"LiveBench: A Challenging, Contamination-Free LLM Benchmark","url":"https://ukgovernmentbeis.github.io/inspect_evals/evals/knowledge/livebench/"},{"title":"LiveBench: A Challenging, Contamination-Free LLM Benchmark","url":"https://livebench.ai/livebench.pdf"},{"title":"GitHub - LiveBench/LiveBench: LiveBench: A Challenging, Contamination-Free LLM Benchmark · GitHub","url":"https://github.com/livebench/livebench"},{"title":"LiveBench: A Challenging, Contamination-Free LLM Benchmark | Request PDF","url":"https://www.researchgate.net/publication/381770568_LiveBench_A_Challenging_Contamination-Free_LLM_Benchmark"},{"title":"LiveCodeBench: Holistic and Contamination Free Evaluation of Large   Language Models for Code","url":"https://arxiv.org/pdf/2403.07974"},{"title":"LiveMedBench: A Contamination-Free Medical Benchmark for LLMs with Automated Rubric Evaluation","url":"https://arxiv.org/pdf/2602.10367"},{"title":"[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark","url":"https://arxiv.org/abs/2406.19314"}]
+
+Based on the search results, here's what I found about LiveBench 2024:
+
+## Overview
+
+LiveBench is a benchmark suite that uses fresh, real-world tasks to evaluate LLMs and LMMs while avoiding test data contamination. LiveBench introduces a contamination-free, automated evaluation benchmark using current datasets and ground-truth scoring to challenge LLMs across diverse tasks.
+
+## Design Features
+
+LiveBench is designed to limit potential contamination by releasing new questions monthly, as well as having questions based on recently-released datasets, arXiv papers, news articles, and IMDb movie synopses. Each question has verifiable, objective ground-truth answers, allowing hard questions to be scored accurately and automatically, without the use of an LLM judge.
+
+## Categories and Structure
+
+The benchmark spans 6 main categories: Math, Reasoning, Data Analysis, Language, Coding, and Instruction Following. LiveBench currently contains a set of 18 diverse tasks across 6 categories, and will release new, harder tasks over time.
+
+## Key Innovation
+
+LiveBench limits contamination by releasing new questions regularly, ensuring a portion of the test set is always novel. To mitigate test set contamination issues, many recent benchmarks crowdsource new prompts and evaluations from human or LLM judges; however, these can introduce significant biases and break down when scoring hard questions. LiveBench introduces a new benchmark for LLMs designed to be immune to both test set contamination and the pitfalls of LLM judging and human crowdsourcing.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "252fce5b-ed86-48aa-bdca-2348597622da",
+  "tool_use_result": {
+    "query": "LiveBench 2024 LLM benchmark contamination-free dynamic",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H4qXLd6SL44mMNmnR4w35t",
+        "content": [
+          {
+            "title": "LiveBench: Dynamic LLM Benchmark Suite",
+            "url": "https://www.emergentmind.com/topics/livebench"
+          },
+          {
+            "title": "LiveBench: Contamination-Free LLM Benchmark",
+            "url": "https://www.emergentmind.com/papers/2406.19314"
+          },
+          {
+            "title": "Musing 59: LiveBench: A Challenging, Contamination-Free LLM Benchmark",
+            "url": "https://aiscientist.substack.com/p/musing-59-livebench-a-challenging"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Free LLM Benchmark",
+            "url": "https://ukgovernmentbeis.github.io/inspect_evals/evals/knowledge/livebench/"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Free LLM Benchmark",
+            "url": "https://livebench.ai/livebench.pdf"
+          },
+          {
+            "title": "GitHub - LiveBench/LiveBench: LiveBench: A Challenging, Contamination-Free LLM Benchmark · GitHub",
+            "url": "https://github.com/livebench/livebench"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Free LLM Benchmark | Request PDF",
+            "url": "https://www.researchgate.net/publication/381770568_LiveBench_A_Challenging_Contamination-Free_LLM_Benchmark"
+          },
+          {
+            "title": "LiveCodeBench: Holistic and Contamination Free Evaluation of Large   Language Models for Code",
+            "url": "https://arxiv.org/pdf/2403.07974"
+          },
+          {
+            "title": "LiveMedBench: A Contamination-Free Medical Benchmark for LLMs with Automated Rubric Evaluation",
+            "url": "https://arxiv.org/pdf/2602.10367"
+          },
+          {
+            "title": "[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark",
+            "url": "https://arxiv.org/abs/2406.19314"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LiveBench 2024:\n\n## Overview\n\nLiveBench is a benchmark suite that uses fresh, real-world tasks to evaluate LLMs and LMMs while avoiding test data contamination. LiveBench introduces a contamination-free, automated evaluation benchmark using current datasets and ground-truth scoring to challenge LLMs across diverse tasks.\n\n## Design Features\n\nLiveBench is designed to limit potential contamination by releasing new questions monthly, as well as having questions based on recently-released datasets, arXiv papers, news articles, and IMDb movie synopses. Each question has verifiable, objective ground-truth answers, allowing hard questions to be scored accurately and automatically, without the use of an LLM judge.\n\n## Categories and Structure\n\nThe benchmark spans 6 main categories: Math, Reasoning, Data Analysis, Language, Coding, and Instruction Following. LiveBench currently contains a set of 18 diverse tasks across 6 categories, and will release new, harder tasks over time.\n\n## Key Innovation\n\nLiveBench limits contamination by releasing new questions regularly, ensuring a portion of the test set is always novel. To mitigate test set contamination issues, many recent benchmarks crowdsource new prompts and evaluations from human or LLM judges; however, these can introduce significant biases and break down when scoring hard questions. LiveBench introduces a new benchmark for LLMs designed to be immune to both test set contamination and the pitfalls of LLM judging and human crowdsourcing."
+    ],
+    "durationSeconds": 8.236760051999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T23:25:56.878Z_
+
+<details><summary>↩ Tool result · `toolu_01N5RZPzzHjNiPa2iLds7PTr`</summary>
+
+```text
+Web search results for query: "Golchin Surdeanu 2024 "Data Contamination Quiz" LLM evaluation"
+
+Links: [{"title":"Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.20/132117/Data-Contamination-Quiz-A-Tool-to-Detect-and"},{"title":"Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models","url":"https://arxiv.org/html/2311.06233v7"},{"title":"[2311.06233v1] Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models","url":"https://arxiv.org/abs/2311.06233v1"},{"title":"A Survey on Data Contamination for Large Language Models","url":"https://arxiv.org/html/2502.14425v2"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"},{"title":"Unveiling the Spectrum of Data Contamination in Language Models: A Survey from Detection to Remediation","url":"https://arxiv.org/html/2406.14644v1"},{"title":"Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/394284366_Data_Contamination_Quiz_A_Tool_to_Detect_and_Estimate_Contamination_in_Large_Language_Models"},{"title":"Data Contamination Quiz: A Tool to Detect and Estimate Contamination in   Large Language Models","url":"https://arxiv.org/pdf/2311.06233"}]
+
+Based on the search results, I can provide you with information about the Golchin and Surdeanu 2024 "Data Contamination Quiz" research:
+
+## Overview
+
+The Data Contamination Quiz (DCQ) is a simple and effective approach to detect data contamination in large language models (LLMs) and estimate the amount of it.
+
+## Method
+
+The DCQ frames data contamination detection as a series of multiple-choice questions, devising a quiz format wherein three perturbed versions of each instance are created with word-level perturbations, which along with the original dataset instance form the options in the DCQ, with an extra option accommodating the selection of none of the provided options.
+
+The LLM's ability to identify the original instance among the perturbed ones indicates potential exposure to the data during pre-training.
+
+## Key Findings
+
+Golchin and Surdeanu (2024b) presented a technique that combines instance-level identification using guided instruction prompts with partition-level assessment through overlap score comparison and classifier-based detection, achieving high accuracy rates between 92% and 100%, across seven datasets.
+
+The authors also found specific cases of contamination in popular datasets, such as AG News, WNLI, and XSum, when tested with GPT-4.
+
+Additionally, under controlled and uncontrolled contamination, the findings suggest that DCQ achieves state-of-the-art results and uncovers greater contamination levels through memorization compared to existing methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "530dce31-8b02-4872-a584-b8f02381de90",
+  "tool_use_result": {
+    "query": "Golchin Surdeanu 2024 \"Data Contamination Quiz\" LLM evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DZqQSWq1LburFdEpvFrzcF",
+        "content": [
+          {
+            "title": "Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.20/132117/Data-Contamination-Quiz-A-Tool-to-Detect-and"
+          },
+          {
+            "title": "Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models",
+            "url": "https://arxiv.org/html/2311.06233v7"
+          },
+          {
+            "title": "[2311.06233v1] Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models",
+            "url": "https://arxiv.org/abs/2311.06233v1"
+          },
+          {
+            "title": "A Survey on Data Contamination for Large Language Models",
+            "url": "https://arxiv.org/html/2502.14425v2"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          },
+          {
+            "title": "Unveiling the Spectrum of Data Contamination in Language Models: A Survey from Detection to Remediation",
+            "url": "https://arxiv.org/html/2406.14644v1"
+          },
+          {
+            "title": "Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/394284366_Data_Contamination_Quiz_A_Tool_to_Detect_and_Estimate_Contamination_in_Large_Language_Models"
+          },
+          {
+            "title": "Data Contamination Quiz: A Tool to Detect and Estimate Contamination in   Large Language Models",
+            "url": "https://arxiv.org/pdf/2311.06233"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the Golchin and Surdeanu 2024 \"Data Contamination Quiz\" research:\n\n## Overview\n\nThe Data Contamination Quiz (DCQ) is a simple and effective approach to detect data contamination in large language models (LLMs) and estimate the amount of it.\n\n## Method\n\nThe DCQ frames data contamination detection as a series of multiple-choice questions, devising a quiz format wherein three perturbed versions of each instance are created with word-level perturbations, which along with the original dataset instance form the options in the DCQ, with an extra option accommodating the selection of none of the provided options.\n\nThe LLM's ability to identify the original instance among the perturbed ones indicates potential exposure to the data during pre-training.\n\n## Key Findings\n\nGolchin and Surdeanu (2024b) presented a technique that combines instance-level identification using guided instruction prompts with partition-level assessment through overlap score comparison and classifier-based detection, achieving high accuracy rates between 92% and 100%, across seven datasets.\n\nThe authors also found specific cases of contamination in popular datasets, such as AG News, WNLI, and XSum, when tested with GPT-4.\n\nAdditionally, under controlled and uncontrolled contamination, the findings suggest that DCQ achieves state-of-the-art results and uncovers greater contamination levels through memorization compared to existing methods."
+    ],
+    "durationSeconds": 11.675013040000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I need to search for the key comparison papers: Growing Pains (Zhang et al. 2026) and METABENCH (Kipnis et al. 2025). Let me also get more details on Rodriguez et al. 2021 since the initial search didn't return very specific results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "8756f1ae-ec77-464e-bca9-fc8c4d6504a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JVZmYL6usvfLQQ6f7ViYq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3934,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 32141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3147
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+Now searching for the key comparison papers and filling in gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "ea8139f4-5f71-4a4d-b219-0b57231c754a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JVZmYL6usvfLQQ6f7ViYq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3934,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 32141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3147
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JS6aALpMvQz9P8iMwvrZUB`</summary>
+
+```json
+{
+  "query": "\"Growing Pains\" LLM benchmark Zhang 2025 2026 arXiv fixed parameter calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "90c0f37b-43ca-4841-8ab3-b48b8432df3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JVZmYL6usvfLQQ6f7ViYq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3934,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 32141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3147
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CA9rivhzaCofAcrP6ZxvNo`</summary>
+
+```json
+{
+  "query": "Kipnis et al 2025 METABENCH ICLR benchmark evaluation LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "75ecb23f-73d6-462c-8baa-23a33c2d584d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JVZmYL6usvfLQQ6f7ViYq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3934,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 32141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3147
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LT7dHjvh2f9d6z2otsKaPE`</summary>
+
+```json
+{
+  "query": "Rodriguez et al 2021 \"Evaluation Examples Are Not Equally Informative\" IRT NLP leaderboard"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "1012ff3e-6b69-422a-9e6c-0a77c6c17672",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JVZmYL6usvfLQQ6f7ViYq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3934,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 32141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3147
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y9CFUZtukFYuuYFnffZq2w`</summary>
+
+```json
+{
+  "query": "Shi et al 2024 \"Detecting Pretraining Data\" Min-K% Prob membership inference LLM ICLR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "7699551a-9cab-450c-ae95-f32ee3f431c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JVZmYL6usvfLQQ6f7ViYq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3934,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 32141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3147
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T23:26:09.722Z_
+
+<details><summary>↩ Tool result · `toolu_01LT7dHjvh2f9d6z2otsKaPE`</summary>
+
+```text
+Web search results for query: "Rodriguez et al 2021 "Evaluation Examples Are Not Equally Informative" IRT NLP leaderboard"
+
+Links: [{"title":"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? - ACL Anthology","url":"https://aclanthology.org/2021.acl-long.346/"},{"title":"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Request PDF","url":"https://www.researchgate.net/publication/353488536_Evaluation_Examples_are_not_Equally_Informative_How_should_that_change_NLP_Leaderboards"},{"title":"Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards?","url":"https://www.pedro.ai/leaderboard-acl2021"},{"title":"Figure 2 from Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19/figure/2"},{"title":"Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards? - Meta Research | Meta Research","url":"https://research.facebook.com/publications/evaluation-examples-are-not-equally-informative-how-should-that-change-nlp-leaderboards/"},{"title":"GitHub - facebookresearch/irt-leaderboard: Leaderboards are widely used in NLP and push the field forward. While leaderboards are a straightforward ranking of NLP models, this simplicity can mask nuances in evaluation items (examples) and subjects (NLP models). Rather than replace leaderboards, we advocate a re-imagining so that they better highlight if and where progress is made. Building on educational testing, we create a Bayesian leaderboard where latent subject skill and latent item difficulty predict","url":"https://github.com/facebookresearch/irt-leaderboard"},{"title":"Beyond the Numbers: Transparency in Relation Extraction Benchmark Creation and Leaderboards","url":"https://arxiv.org/html/2411.05224v1"},{"title":"[PDF] Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19"},{"title":"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? - Essentials","url":"https://essentials.news/ai/general/article/evaluation-examples-equally-informative-change-nlp-leaderboards-c92c2da705"}]
+
+I found the paper you're looking for! Here are the key details:
+
+The paper "Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards?" was published by Rodriguez et al. at ACL-IJCNLP 2021, with authors Pedro Rodriguez, Joe Barrow, Alexander Hoyle, John P. Lalor, Robin Jia, and Jordan Boyd-Graber.
+
+**Key Contributions:**
+
+The paper builds on educational testing to create a Bayesian leaderboard model where latent subject skill and latent item difficulty predict correct responses. The model can guide what to annotate, identify annotation errors, detect overfitting, and identify informative examples.
+
+**Main Resources:**
+
+- The paper is available on the ACL Anthology at https://aclanthology.org/2021.acl-long.346/
+- The code repository on GitHub includes what is needed to reproduce the results, and the goal is to provide a re-usable implementation of IRT models geared towards use in NLP leaderboards. The code is available at https://github.com/facebookresearch/irt-leaderboard
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "d997987c-3c11-4a9e-904a-421e31c804eb",
+  "tool_use_result": {
+    "query": "Rodriguez et al 2021 \"Evaluation Examples Are Not Equally Informative\" IRT NLP leaderboard",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NA42d6QBdsDAkJPwoNk4eD",
+        "content": [
+          {
+            "title": "Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? - ACL Anthology",
+            "url": "https://aclanthology.org/2021.acl-long.346/"
+          },
+          {
+            "title": "Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Request PDF",
+            "url": "https://www.researchgate.net/publication/353488536_Evaluation_Examples_are_not_Equally_Informative_How_should_that_change_NLP_Leaderboards"
+          },
+          {
+            "title": "Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards?",
+            "url": "https://www.pedro.ai/leaderboard-acl2021"
+          },
+          {
+            "title": "Figure 2 from Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19/figure/2"
+          },
+          {
+            "title": "Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards? - Meta Research | Meta Research",
+            "url": "https://research.facebook.com/publications/evaluation-examples-are-not-equally-informative-how-should-that-change-nlp-leaderboards/"
+          },
+          {
+            "title": "GitHub - facebookresearch/irt-leaderboard: Leaderboards are widely used in NLP and push the field forward. While leaderboards are a straightforward ranking of NLP models, this simplicity can mask nuances in evaluation items (examples) and subjects (NLP models). Rather than replace leaderboards, we advocate a re-imagining so that they better highlight if and where progress is made. Building on educational testing, we create a Bayesian leaderboard where latent subject skill and latent item difficulty predict",
+            "url": "https://github.com/facebookresearch/irt-leaderboard"
+          },
+          {
+            "title": "Beyond the Numbers: Transparency in Relation Extraction Benchmark Creation and Leaderboards",
+            "url": "https://arxiv.org/html/2411.05224v1"
+          },
+          {
+            "title": "[PDF] Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19"
+          },
+          {
+            "title": "Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? - Essentials",
+            "url": "https://essentials.news/ai/general/article/evaluation-examples-equally-informative-change-nlp-leaderboards-c92c2da705"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\nThe paper \"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards?\" was published by Rodriguez et al. at ACL-IJCNLP 2021, with authors Pedro Rodriguez, Joe Barrow, Alexander Hoyle, John P. Lalor, Robin Jia, and Jordan Boyd-Graber.\n\n**Key Contributions:**\n\nThe paper builds on educational testing to create a Bayesian leaderboard model where latent subject skill and latent item difficulty predict correct responses. The model can guide what to annotate, identify annotation errors, detect overfitting, and identify informative examples.\n\n**Main Resources:**\n\n- The paper is available on the ACL Anthology at https://aclanthology.org/2021.acl-long.346/\n- The code repository on GitHub includes what is needed to reproduce the results, and the goal is to provide a re-usable implementation of IRT models geared towards use in NLP leaderboards. The code is available at https://github.com/facebookresearch/irt-leaderboard"
+    ],
+    "durationSeconds": 5.977676867999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T23:26:10.129Z_
+
+<details><summary>↩ Tool result · `toolu_01Y9CFUZtukFYuuYFnffZq2w`</summary>
+
+```text
+Web search results for query: "Shi et al 2024 "Detecting Pretraining Data" Min-K% Prob membership inference LLM ICLR"
+
+Links: [{"title":"DETECTING PRETRAINING DATA FROM LARGE LANGUAGE MODELS - Princeton University","url":"https://collaborate.princeton.edu/en/publications/detecting-pretraining-data-from-large-language-models/"},{"title":"min-k%++: improved baseline for detecting pre-training ...","url":"https://arxiv.org/pdf/2404.02936"},{"title":"MIN-K%++: IMPROVED BASELINE FOR DETECTING PRE ...","url":"https://openreview.net/pdf?id=ZGkfoufDaU"},{"title":"Pretraining Data Detection for Large Language Models: A Divergence-based Calibration Method","url":"https://arxiv.org/html/2409.14781v1"},{"title":"[2310.16789] Detecting Pretraining Data from Large Language Models","url":"https://arxiv.org/abs/2310.16789"},{"title":"DETECTING PRETRAINING DATA FROM LARGE LAN","url":"https://openreview.net/pdf?id=zWqr3MQuNs"},{"title":"Detecting Pretraining Data from Large Language Models","url":"https://arxiv.org/pdf/2310.16789"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper "Detecting Pretraining Data from Large Language Models" by Shi, Weijia; Ajith, Anirudh; Xia, Mengzhou et al. was presented at the 12th International Conference on Learning Representations (ICLR 2024) in Vienna, Austria.
+
+The paper addresses the pretraining data detection problem: given a piece of text and black-box access to an LLM without knowing the pretraining data, can we determine if the model was trained on the provided text?
+
+The paper presents a benchmark called WIKIMIA and an approach called MIN-K% PROB for pretraining data detection. This problem is an instance of Membership Inference Attacks (MIAs).
+
+The Min-K% Prob method achieves a 7.4% improvement on WIKIMIA over previous methods and is applied to three real-world scenarios: copyrighted book detection, contaminated downstream example detection, and privacy auditing of machine unlearning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "c23aa6a4-221a-464f-af4d-c1b20baaf163",
+  "tool_use_result": {
+    "query": "Shi et al 2024 \"Detecting Pretraining Data\" Min-K% Prob membership inference LLM ICLR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HpBRctfR2xzLajxzkjTJYP",
+        "content": [
+          {
+            "title": "DETECTING PRETRAINING DATA FROM LARGE LANGUAGE MODELS - Princeton University",
+            "url": "https://collaborate.princeton.edu/en/publications/detecting-pretraining-data-from-large-language-models/"
+          },
+          {
+            "title": "min-k%++: improved baseline for detecting pre-training ...",
+            "url": "https://arxiv.org/pdf/2404.02936"
+          },
+          {
+            "title": "MIN-K%++: IMPROVED BASELINE FOR DETECTING PRE ...",
+            "url": "https://openreview.net/pdf?id=ZGkfoufDaU"
+          },
+          {
+            "title": "Pretraining Data Detection for Large Language Models: A Divergence-based Calibration Method",
+            "url": "https://arxiv.org/html/2409.14781v1"
+          },
+          {
+            "title": "[2310.16789] Detecting Pretraining Data from Large Language Models",
+            "url": "https://arxiv.org/abs/2310.16789"
+          },
+          {
+            "title": "DETECTING PRETRAINING DATA FROM LARGE LAN",
+            "url": "https://openreview.net/pdf?id=zWqr3MQuNs"
+          },
+          {
+            "title": "Detecting Pretraining Data from Large Language Models",
+            "url": "https://arxiv.org/pdf/2310.16789"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper \"Detecting Pretraining Data from Large Language Models\" by Shi, Weijia; Ajith, Anirudh; Xia, Mengzhou et al. was presented at the 12th International Conference on Learning Representations (ICLR 2024) in Vienna, Austria.\n\nThe paper addresses the pretraining data detection problem: given a piece of text and black-box access to an LLM without knowing the pretraining data, can we determine if the model was trained on the provided text?\n\nThe paper presents a benchmark called WIKIMIA and an approach called MIN-K% PROB for pretraining data detection. This problem is an instance of Membership Inference Attacks (MIAs).\n\nThe Min-K% Prob method achieves a 7.4% improvement on WIKIMIA over previous methods and is applied to three real-world scenarios: copyrighted book detection, contaminated downstream example detection, and privacy auditing of machine unlearning."
+    ],
+    "durationSeconds": 5.586218973000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T23:26:10.442Z_
+
+<details><summary>↩ Tool result · `toolu_01JS6aALpMvQz9P8iMwvrZUB`</summary>
+
+```text
+Web search results for query: ""Growing Pains" LLM benchmark Zhang 2025 2026 arXiv fixed parameter calibration"
+
+Links: [{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/abs/2604.12843"},{"title":"LemmaBench: A Live, Research-Level Benchmark to Evaluate LLM Capabilities in Mathematics","url":"https://arxiv.org/pdf/2602.24173"},{"title":"A Benchmark for Evaluating Outcome-Driven Constraint Violations in Autonomous AI Agents","url":"https://arxiv.org/html/2512.20798v1"},{"title":"LLLMs: A Data-Driven Survey of Evolving Research on Limitations of Large Language Models","url":"https://arxiv.org/pdf/2505.19240"},{"title":"MemoryBench: A Benchmark for Memory and Continual Learning in LLM Systems","url":"https://arxiv.org/html/2510.17281v1"}]
+
+I found the paper you're looking for! 
+
+The framework is based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. This approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.
+
+In large-scale experiments on more than 400 models, the framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.
+
+The paper is titled "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration" and was posted to arXiv on April 15, 2026. Code is available at https://github.com/eliyahabba/growing-pains/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "89a866be-9e6e-4a56-b042-b1b42a24e555",
+  "tool_use_result": {
+    "query": "\"Growing Pains\" LLM benchmark Zhang 2025 2026 arXiv fixed parameter calibration",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WBPzGtZa1LPmX9sjdzEWWa",
+        "content": [
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/abs/2604.12843"
+          },
+          {
+            "title": "LemmaBench: A Live, Research-Level Benchmark to Evaluate LLM Capabilities in Mathematics",
+            "url": "https://arxiv.org/pdf/2602.24173"
+          },
+          {
+            "title": "A Benchmark for Evaluating Outcome-Driven Constraint Violations in Autonomous AI Agents",
+            "url": "https://arxiv.org/html/2512.20798v1"
+          },
+          {
+            "title": "LLLMs: A Data-Driven Survey of Evolving Research on Limitations of Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.19240"
+          },
+          {
+            "title": "MemoryBench: A Benchmark for Memory and Continual Learning in LLM Systems",
+            "url": "https://arxiv.org/html/2510.17281v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! \n\nThe framework is based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. This approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.\n\nIn large-scale experiments on more than 400 models, the framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.\n\nThe paper is titled \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\" and was posted to arXiv on April 15, 2026. Code is available at https://github.com/eliyahabba/growing-pains/."
+    ],
+    "durationSeconds": 8.058309321000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T23:26:11.062Z_
+
+<details><summary>↩ Tool result · `toolu_01CA9rivhzaCofAcrP6ZxvNo`</summary>
+
+```text
+Web search results for query: "Kipnis et al 2025 METABENCH ICLR benchmark evaluation LLM"
+
+Links: [{"title":"(PDF) Rethinking LLM Evaluation: Can We Evaluate LLMs with 200x Less Data?","url":"https://www.researchgate.net/publication/396460178_Rethinking_LLM_Evaluation_Can_We_Evaluate_LLMs_with_200x_Less_Data"},{"title":"GitHub - adkipnis/metabench: A principled reduction of six benchmarks from the Open LLM Leaderboard to a single sparse benchmark. · GitHub","url":"https://github.com/adkipnis/metabench"},{"title":"Preprint. Under review. RETHINKING LLM EVALUATION: CAN WE EVALUATE","url":"https://arxiv.org/pdf/2510.10457"},{"title":"Published as a conference paper at ICLR 2025 ME TABENCH","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/4ebc26584810a189ef1e4f173aba4319-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/4b8be7f0ab85963bcfd951faf828c362344a69a1.pdf"},{"title":"MetaBench: A Multi-task Benchmark for Assessing LLMs in Metabolomics","url":"https://arxiv.org/pdf/2510.14944"}]
+
+Based on the search results, I found information about the MetaBench paper by Kipnis et al. 2025 that was published at ICLR 2025.
+
+## MetaBench: A Sparse Benchmark for LLM Evaluation
+
+MetaBench distills six prominent benchmarks—ARC, GSM8K, HellaSwag, MMLU, TruthfulQA, and WinoGrande—into a more concise and informative benchmark. 
+
+### Key Achievements
+
+By analyzing data from over 5000 LLMs, the researchers identified the most revealing items within these benchmarks, compressing them to less than 3% of their combined size. Scores for the six benchmarks can be reconstructed with on average less than 0.9% mean absolute error, and the Open LLM Leaderboard score can be reconstructed with less than 0.5% mean absolute error.
+
+### Methodology
+
+MetaBench uses Generalized Additive Models (GAM) to model the relationship between subset scores and full set performance, and it employs root mean square error (RMSE) as an index to guide sampling policies.
+
+### Features and Implementation
+
+The benchmark is hosted as a dataset on HuggingFace and is integrated in EleutherAI's lm-evaluation-harness, a unified framework for evaluating language models on a range of tasks. Additionally, MetaBench provides two disjoint versions containing distinct items for all six benchmarks so it can be used for repeated evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "1a167aef-bdf6-418c-b47c-97dd0c9fd947",
+  "tool_use_result": {
+    "query": "Kipnis et al 2025 METABENCH ICLR benchmark evaluation LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UN1Nk4gzeNyXbriZC6SHwv",
+        "content": [
+          {
+            "title": "(PDF) Rethinking LLM Evaluation: Can We Evaluate LLMs with 200x Less Data?",
+            "url": "https://www.researchgate.net/publication/396460178_Rethinking_LLM_Evaluation_Can_We_Evaluate_LLMs_with_200x_Less_Data"
+          },
+          {
+            "title": "GitHub - adkipnis/metabench: A principled reduction of six benchmarks from the Open LLM Leaderboard to a single sparse benchmark. · GitHub",
+            "url": "https://github.com/adkipnis/metabench"
+          },
+          {
+            "title": "Preprint. Under review. RETHINKING LLM EVALUATION: CAN WE EVALUATE",
+            "url": "https://arxiv.org/pdf/2510.10457"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 ME TABENCH",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/4ebc26584810a189ef1e4f173aba4319-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf/4b8be7f0ab85963bcfd951faf828c362344a69a1.pdf"
+          },
+          {
+            "title": "MetaBench: A Multi-task Benchmark for Assessing LLMs in Metabolomics",
+            "url": "https://arxiv.org/pdf/2510.14944"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the MetaBench paper by Kipnis et al. 2025 that was published at ICLR 2025.\n\n## MetaBench: A Sparse Benchmark for LLM Evaluation\n\nMetaBench distills six prominent benchmarks—ARC, GSM8K, HellaSwag, MMLU, TruthfulQA, and WinoGrande—into a more concise and informative benchmark. \n\n### Key Achievements\n\nBy analyzing data from over 5000 LLMs, the researchers identified the most revealing items within these benchmarks, compressing them to less than 3% of their combined size. Scores for the six benchmarks can be reconstructed with on average less than 0.9% mean absolute error, and the Open LLM Leaderboard score can be reconstructed with less than 0.5% mean absolute error.\n\n### Methodology\n\nMetaBench uses Generalized Additive Models (GAM) to model the relationship between subset scores and full set performance, and it employs root mean square error (RMSE) as an index to guide sampling policies.\n\n### Features and Implementation\n\nThe benchmark is hosted as a dataset on HuggingFace and is integrated in EleutherAI's lm-evaluation-harness, a unified framework for evaluating language models on a range of tasks. Additionally, MetaBench provides two disjoint versions containing distinct items for all six benchmarks so it can be used for repeated evaluation."
+    ],
+    "durationSeconds": 8.350367834000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get more details on the Growing Pains paper and also search for BenchmarkReplace if it's a real thing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "810497f0-7bd7-43df-a9f5-f5e42ed12c32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDNQ8HcqbZW7rAh7Eq1hyD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 5754,
+      "cache_read_input_tokens": 35288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+Let me get more details on a few papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "09beaf5e-c582-48f1-8e1e-3d2566efc38c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDNQ8HcqbZW7rAh7Eq1hyD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 5754,
+      "cache_read_input_tokens": 35288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DQmBmf5VdMYGwfWSsmohLE`</summary>
+
+```json
+{
+  "query": "arxiv 2604.12843 \"Growing Pains\" Zhang authors method details IRT anchor items contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "1d07a25f-1739-4406-abfb-7ef54f5d246b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDNQ8HcqbZW7rAh7Eq1hyD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 5754,
+      "cache_read_input_tokens": 35288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RJPbxUhoogBxiRpzSKNafD`</summary>
+
+```json
+{
+  "query": "MMLU-Redux 2024 Gema et al error analysis original benchmark arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "8972edd9-77c2-4ef4-894a-f8ea1e39ff09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDNQ8HcqbZW7rAh7Eq1hyD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 5754,
+      "cache_read_input_tokens": 35288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018Zz6fkA8np1Ag75BHAS98N`</summary>
+
+```json
+{
+  "query": "DyVal 2 meta probing agents Zhu et al 2024 dynamic evaluation arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "0dbff94a-4efc-4da8-bcbf-bd5dea669bf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDNQ8HcqbZW7rAh7Eq1hyD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 5754,
+      "cache_read_input_tokens": 35288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T23:26:21.687Z_
+
+<details><summary>↩ Tool result · `toolu_01RJPbxUhoogBxiRpzSKNafD`</summary>
+
+```text
+Web search results for query: "MMLU-Redux 2024 Gema et al error analysis original benchmark arXiv"
+
+Links: [{"title":"MMLU-Redux: Refined LLM Benchmark Suite","url":"https://www.emergentmind.com/topics/mmlu-redux"},{"title":"Paper page - Are We Done with MMLU?","url":"https://huggingface.co/papers/2406.04127"},{"title":"[2406.04127v1] Are We Done with MMLU?","url":"https://arxiv.org/abs/2406.04127v1"},{"title":"Refreshing general-knowledge benchmarks without leakage","url":"https://www.dataset.news/p/refreshing-general-knowledge-benchmarks"},{"title":"Are We Done with MMLU? Aryo Pradipta Gema1 Joshua Ong Jun Leang1 Giwon Hong1","url":"https://arxiv.org/pdf/2406.04127v1"},{"title":"From KMMLU-Redux to Pro: A Professional Korean Benchmark Suite for LLM Evaluation","url":"https://arxiv.org/html/2507.08924v2"},{"title":"[2406.04127] Are We Done with MMLU?","url":"https://arxiv.org/abs/2406.04127"},{"title":"Are We Done with MMLU?","url":"https://arxiv.org/html/2406.04127v1"}]
+
+Based on the search results, I found detailed information about the MMLU-Redux paper:
+
+## Key Findings
+
+The paper "Are We Done with MMLU?" (arXiv:2406.04127) by Gema et al. was published on June 6, 2024 and identifies numerous errors in the MMLU benchmark, leading to the creation of MMLU-Redux, a re-annotated subset that highlights discrepancies in model performance metrics.
+
+## Error Analysis
+
+Even though MMLU is widely adopted, the analysis demonstrates numerous ground truth errors that obscure the true capabilities of LLMs, with 57% of the analysed questions in the Virology subset containing errors. The researchers estimate that 6.49% of MMLU questions contain errors.
+
+## Dataset Construction
+
+MMLU-Redux is a subset of 5,700 manually re-annotated questions across all 57 MMLU subjects. The researchers introduced a comprehensive framework for identifying dataset errors using a novel error annotation protocol.
+
+## Impact
+
+Using MMLU-Redux, they demonstrate significant discrepancies with the model performance metrics that were originally reported. The results strongly advocate for revising MMLU's error-ridden questions to enhance its future utility and reliability as a benchmark.
+
+The corrected dataset is available on HuggingFace at the address provided in the paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "dd29027a-5839-47a0-9250-9a33156a5e71",
+  "tool_use_result": {
+    "query": "MMLU-Redux 2024 Gema et al error analysis original benchmark arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GAwGDSNJLiWkW9Ttjhnst9",
+        "content": [
+          {
+            "title": "MMLU-Redux: Refined LLM Benchmark Suite",
+            "url": "https://www.emergentmind.com/topics/mmlu-redux"
+          },
+          {
+            "title": "Paper page - Are We Done with MMLU?",
+            "url": "https://huggingface.co/papers/2406.04127"
+          },
+          {
+            "title": "[2406.04127v1] Are We Done with MMLU?",
+            "url": "https://arxiv.org/abs/2406.04127v1"
+          },
+          {
+            "title": "Refreshing general-knowledge benchmarks without leakage",
+            "url": "https://www.dataset.news/p/refreshing-general-knowledge-benchmarks"
+          },
+          {
+            "title": "Are We Done with MMLU? Aryo Pradipta Gema1 Joshua Ong Jun Leang1 Giwon Hong1",
+            "url": "https://arxiv.org/pdf/2406.04127v1"
+          },
+          {
+            "title": "From KMMLU-Redux to Pro: A Professional Korean Benchmark Suite for LLM Evaluation",
+            "url": "https://arxiv.org/html/2507.08924v2"
+          },
+          {
+            "title": "[2406.04127] Are We Done with MMLU?",
+            "url": "https://arxiv.org/abs/2406.04127"
+          },
+          {
+            "title": "Are We Done with MMLU?",
+            "url": "https://arxiv.org/html/2406.04127v1"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the MMLU-Redux paper:\n\n## Key Findings\n\nThe paper \"Are We Done with MMLU?\" (arXiv:2406.04127) by Gema et al. was published on June 6, 2024 and identifies numerous errors in the MMLU benchmark, leading to the creation of MMLU-Redux, a re-annotated subset that highlights discrepancies in model performance metrics.\n\n## Error Analysis\n\nEven though MMLU is widely adopted, the analysis demonstrates numerous ground truth errors that obscure the true capabilities of LLMs, with 57% of the analysed questions in the Virology subset containing errors. The researchers estimate that 6.49% of MMLU questions contain errors.\n\n## Dataset Construction\n\nMMLU-Redux is a subset of 5,700 manually re-annotated questions across all 57 MMLU subjects. The researchers introduced a comprehensive framework for identifying dataset errors using a novel error annotation protocol.\n\n## Impact\n\nUsing MMLU-Redux, they demonstrate significant discrepancies with the model performance metrics that were originally reported. The results strongly advocate for revising MMLU's error-ridden questions to enhance its future utility and reliability as a benchmark.\n\nThe corrected dataset is available on HuggingFace at the address provided in the paper."
+    ],
+    "durationSeconds": 5.004129495999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-20T23:26:22.183Z_
+
+<details><summary>↩ Tool result · `toolu_01DQmBmf5VdMYGwfWSsmohLE`</summary>
+
+```text
+Web search results for query: "arxiv 2604.12843 "Growing Pains" Zhang authors method details IRT anchor items contamination"
+
+Links: [{"title":"[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/abs/2604.12843"},{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"The statistics of noisy growth with mechanical feedback in elastic tissues","url":"https://www.biorxiv.org/content/10.1101/426361.full.pdf"},{"title":"Effects of Chinese strategies for controlling the diffusion and deterioration of novel coronavirus–infected pneumonia in China","url":"https://www.medrxiv.org/content/10.1101/2020.03.10.20032755.full.pdf"},{"title":"Machine Learning Reveals Synovial Fibroblast Genes Associated with Pain Affect Sensory Nerve Growth in Rheumatoid Arthritis","url":"https://www.medrxiv.org/content/10.1101/2023.08.17.23294232.full.pdf"}]
+
+Based on the search results, I found the paper you're looking for. The paper proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed.
+
+The approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.
+
+In large-scale experiments on more than 400 models, the framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset.
+
+The paper is titled "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration" by Eliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, and Gabriel Stanovsky.
+
+If you need more specific details about the method, particularly regarding anchor item contamination, you may want to access the full paper directly from the arXiv link.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "4a608360-7951-4e82-a266-7283915a3a48",
+  "tool_use_result": {
+    "query": "arxiv 2604.12843 \"Growing Pains\" Zhang authors method details IRT anchor items contamination",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NVZWe4LeJwUN3wd6Gq7ECH",
+        "content": [
+          {
+            "title": "[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/abs/2604.12843"
+          },
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "The statistics of noisy growth with mechanical feedback in elastic tissues",
+            "url": "https://www.biorxiv.org/content/10.1101/426361.full.pdf"
+          },
+          {
+            "title": "Effects of Chinese strategies for controlling the diffusion and deterioration of novel coronavirus–infected pneumonia in China",
+            "url": "https://www.medrxiv.org/content/10.1101/2020.03.10.20032755.full.pdf"
+          },
+          {
+            "title": "Machine Learning Reveals Synovial Fibroblast Genes Associated with Pain Affect Sensory Nerve Growth in Rheumatoid Arthritis",
+            "url": "https://www.medrxiv.org/content/10.1101/2023.08.17.23294232.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. The paper proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed.\n\nThe approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.\n\nIn large-scale experiments on more than 400 models, the framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset.\n\nThe paper is titled \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\" by Eliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, and Gabriel Stanovsky.\n\nIf you need more specific details about the method, particularly regarding anchor item contamination, you may want to access the full paper directly from the arXiv link."
+    ],
+    "durationSeconds": 6.530426486000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T23:26:32.482Z_
+
+<details><summary>↩ Tool result · `toolu_018Zz6fkA8np1Ag75BHAS98N`</summary>
+
+```text
+Web search results for query: "DyVal 2 meta probing agents Zhu et al 2024 dynamic evaluation arXiv"
+
+Links: [{"title":"Dynamic Evaluation of Large Language Models by Meta Probing Agents | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/dynamic-evaluation-large-language-models-by-meta"},{"title":"[2402.14865] Dynamic Evaluation of Large Language Models by Meta Probing Agents","url":"https://arxiv.org/abs/2402.14865"},{"title":"Dynamic Evaluation of Large Language Models by Meta Probing Agents","url":"https://arxiv.org/pdf/2402.14865"},{"title":"DyVal 2: Dynamic Evaluation of Large Language Models by Meta Probing Agents","url":"https://arxiv.org/html/2402.14865v1"},{"title":"Figure 1 from DyVal 2: Dynamic Evaluation of Large Language Models by Meta Probing Agents | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DyVal-2:-Dynamic-Evaluation-of-Large-Language-by-Zhu-Wang/0334987f094121c094d5043ab38f14ebf5852c05/figure/0"},{"title":"PretextTrans: Investigating Medical Factual Knowledge Mastery of LLMs with Predicate-text Dual Transformation","url":"https://arxiv.org/html/2409.14302v1"},{"title":"AgentReview: Exploring Peer Review Dynamics with LLM Agents","url":"https://arxiv.org/html/2406.12708v2"},{"title":"UniGen: A Unified Framework for Textual Dataset Generation via Large Language Models","url":"https://arxiv.org/html/2406.18966v3"},{"title":"Dynamic Evaluation of Large Language Models by Meta Probing Agents","url":"https://arxiv.org/html/2402.14865"}]
+
+Based on the web search results, here's what I found about DyVal 2:
+
+## DyVal 2: Dynamic Evaluation of Large Language Models by Meta Probing Agents
+
+The paper was published on arXiv (2402.14865) on June 10, 2024 by Kaijie Zhu, Jindong Wang, Qinlin Zhao, Ruochen Xu, and Xing Xie.
+
+**Key Overview:**
+
+DyVal 2 introduces a framework for dynamically evaluating the capabilities of large language models using "meta probing agents".
+
+**Main Innovation:**
+
+The paper proposes meta probing agents (MPA), a general dynamic evaluation protocol inspired by psychometrics to evaluate LLMs, which is the key component of DyVal 2 and naturally extends the previous DyVal.
+
+**How It Works:**
+
+MPA designs the probing and judging agents to automatically transform an original evaluation problem into a new one following psychometric theory on three basic cognitive abilities: language understanding, problem solving, and domain knowledge. These basic abilities are also dynamically configurable, allowing multifaceted analysis.
+
+**Key Findings:**
+
+Extensive evaluations using MPA found that most LLMs achieve poorer performance, indicating room for improvement.
+
+The paper addresses important evaluation challenges related to data contamination and provides a more generalizable approach to LLM evaluation that extends beyond task-specific protocols.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "c92e3bd5-430b-4f22-8250-dc1bb7f721b1",
+  "tool_use_result": {
+    "query": "DyVal 2 meta probing agents Zhu et al 2024 dynamic evaluation arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fao86Bkw2h4DXk3MqU6LvN",
+        "content": [
+          {
+            "title": "Dynamic Evaluation of Large Language Models by Meta Probing Agents | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/dynamic-evaluation-large-language-models-by-meta"
+          },
+          {
+            "title": "[2402.14865] Dynamic Evaluation of Large Language Models by Meta Probing Agents",
+            "url": "https://arxiv.org/abs/2402.14865"
+          },
+          {
+            "title": "Dynamic Evaluation of Large Language Models by Meta Probing Agents",
+            "url": "https://arxiv.org/pdf/2402.14865"
+          },
+          {
+            "title": "DyVal 2: Dynamic Evaluation of Large Language Models by Meta Probing Agents",
+            "url": "https://arxiv.org/html/2402.14865v1"
+          },
+          {
+            "title": "Figure 1 from DyVal 2: Dynamic Evaluation of Large Language Models by Meta Probing Agents | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DyVal-2:-Dynamic-Evaluation-of-Large-Language-by-Zhu-Wang/0334987f094121c094d5043ab38f14ebf5852c05/figure/0"
+          },
+          {
+            "title": "PretextTrans: Investigating Medical Factual Knowledge Mastery of LLMs with Predicate-text Dual Transformation",
+            "url": "https://arxiv.org/html/2409.14302v1"
+          },
+          {
+            "title": "AgentReview: Exploring Peer Review Dynamics with LLM Agents",
+            "url": "https://arxiv.org/html/2406.12708v2"
+          },
+          {
+            "title": "UniGen: A Unified Framework for Textual Dataset Generation via Large Language Models",
+            "url": "https://arxiv.org/html/2406.18966v3"
+          },
+          {
+            "title": "Dynamic Evaluation of Large Language Models by Meta Probing Agents",
+            "url": "https://arxiv.org/html/2402.14865"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about DyVal 2:\n\n## DyVal 2: Dynamic Evaluation of Large Language Models by Meta Probing Agents\n\nThe paper was published on arXiv (2402.14865) on June 10, 2024 by Kaijie Zhu, Jindong Wang, Qinlin Zhao, Ruochen Xu, and Xing Xie.\n\n**Key Overview:**\n\nDyVal 2 introduces a framework for dynamically evaluating the capabilities of large language models using \"meta probing agents\".\n\n**Main Innovation:**\n\nThe paper proposes meta probing agents (MPA), a general dynamic evaluation protocol inspired by psychometrics to evaluate LLMs, which is the key component of DyVal 2 and naturally extends the previous DyVal.\n\n**How It Works:**\n\nMPA designs the probing and judging agents to automatically transform an original evaluation problem into a new one following psychometric theory on three basic cognitive abilities: language understanding, problem solving, and domain knowledge. These basic abilities are also dynamically configurable, allowing multifaceted analysis.\n\n**Key Findings:**\n\nExtensive evaluations using MPA found that most LLMs achieve poorer performance, indicating room for improvement.\n\nThe paper addresses important evaluation challenges related to data contamination and provides a more generalizable approach to LLM evaluation that extends beyond task-specific protocols."
+    ],
+    "durationSeconds": 15.079371371
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information on all the papers. Let me also look at the Growing Pains paper in more detail to understand their contamination detection method vs. our DIF method. Let me read the HTML version of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "4e95af2e-efd5-457d-a278-6c2ac864dbf5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrawGkXtnWJdPamAAdDEXg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4092,
+      "cache_read_input_tokens": 41042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Let me get more details on the Growing Pains paper's methodology for the technical comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "c767aa16-86d6-4c30-85bf-45eee55802ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrawGkXtnWJdPamAAdDEXg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4092,
+      "cache_read_input_tokens": 41042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TFBy76v5DNp3iByeTn1KY3`</summary>
+
+```json
+{
+  "query": "arxiv \"Growing Pains\" 2604.12843 Habba Stanovsky method anchor calibration DIF contamination detection comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "8aa12939-fc94-4fc6-b858-8d299fae5c07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrawGkXtnWJdPamAAdDEXg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4092,
+      "cache_read_input_tokens": 41042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019cSWz6Lv5jDu7uGDvuDZsU`</summary>
+
+```json
+{
+  "query": "Lalor Wu Hong Yu 2016 \"Building an Evaluation Scale using Item Response Theory\" EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "fa29ef62-7918-4769-a785-4147153e7b60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrawGkXtnWJdPamAAdDEXg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4092,
+      "cache_read_input_tokens": 41042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-20T23:26:43.040Z_
+
+<details><summary>↩ Tool result · `toolu_019cSWz6Lv5jDu7uGDvuDZsU`</summary>
+
+```text
+Web search results for query: "Lalor Wu Hong Yu 2016 "Building an Evaluation Scale using Item Response Theory" EMNLP"
+
+Links: [{"title":"Building an Evaluation Scale using Item Response Theory - ACL Anthology","url":"https://aclanthology.org/D16-1062/"},{"title":"Item Response Theory and Machine Learning","url":"https://johnlalor.net/irt/"},{"title":"Building an Evaluation Scale using Item Response Theory - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC5167538/"},{"title":"Building an Evaluation Scale using Item Response Theory - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/28004039/"},{"title":"EMNLP 2016","url":"https://mirror.aclweb.org/emnlp2016/accepted-papers.html"},{"title":"(PDF) Building an Evaluation Scale using Item Response Theory","url":"https://www.researchgate.net/publication/311990859_Building_an_Evaluation_Scale_using_Item_Response_Theory"},{"title":"Predicting Item Response Theory Parameters Using Question Statements Texts | LAK23: 13th International Learning Analytics and Knowledge Conference","url":"https://dl.acm.org/doi/10.1145/3576050.3576139"},{"title":"[1605.08889] Building an Evaluation Scale using Item Response Theory","url":"https://arxiv.org/abs/1605.08889"},{"title":"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC6892593/"},{"title":"Building an Evaluation Scale using Item Response Theory","url":"https://arxiv.org/pdf/1605.08889"}]
+
+I found the paper you're looking for! The paper "Building an Evaluation Scale using Item Response Theory" by John P. Lalor, Hao Wu, and Hong Yu was published in the Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 648–657, Austin, Texas.
+
+The paper proposes Item Response Theory (IRT) from psychometrics as an alternative means for gold-standard test-set generation and NLP system evaluation, and IRT is able to describe characteristics of individual items - their difficulty and discriminating power - and can account for these characteristics in its estimation of human intelligence or ability for an NLP task. The authors demonstrate IRT by generating a gold-standard test set for Recognizing Textual Entailment.
+
+The paper is available through multiple sources including the ACL Anthology at https://aclanthology.org/D16-1062/ and on arXiv at https://arxiv.org/abs/1605.08889.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "67a24553-74b5-46a5-9115-a7f2229a6b04",
+  "tool_use_result": {
+    "query": "Lalor Wu Hong Yu 2016 \"Building an Evaluation Scale using Item Response Theory\" EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LSHn9G4LTJGe4tWFccsVug",
+        "content": [
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - ACL Anthology",
+            "url": "https://aclanthology.org/D16-1062/"
+          },
+          {
+            "title": "Item Response Theory and Machine Learning",
+            "url": "https://johnlalor.net/irt/"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5167538/"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/28004039/"
+          },
+          {
+            "title": "EMNLP 2016",
+            "url": "https://mirror.aclweb.org/emnlp2016/accepted-papers.html"
+          },
+          {
+            "title": "(PDF) Building an Evaluation Scale using Item Response Theory",
+            "url": "https://www.researchgate.net/publication/311990859_Building_an_Evaluation_Scale_using_Item_Response_Theory"
+          },
+          {
+            "title": "Predicting Item Response Theory Parameters Using Question Statements Texts | LAK23: 13th International Learning Analytics and Knowledge Conference",
+            "url": "https://dl.acm.org/doi/10.1145/3576050.3576139"
+          },
+          {
+            "title": "[1605.08889] Building an Evaluation Scale using Item Response Theory",
+            "url": "https://arxiv.org/abs/1605.08889"
+          },
+          {
+            "title": "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6892593/"
+          },
+          {
+            "title": "Building an Evaluation Scale using Item Response Theory",
+            "url": "https://arxiv.org/pdf/1605.08889"
+          }
+        ]
+      },
+      "I found the paper you're looking for! The paper \"Building an Evaluation Scale using Item Response Theory\" by John P. Lalor, Hao Wu, and Hong Yu was published in the Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 648–657, Austin, Texas.\n\nThe paper proposes Item Response Theory (IRT) from psychometrics as an alternative means for gold-standard test-set generation and NLP system evaluation, and IRT is able to describe characteristics of individual items - their difficulty and discriminating power - and can account for these characteristics in its estimation of human intelligence or ability for an NLP task. The authors demonstrate IRT by generating a gold-standard test set for Recognizing Textual Entailment.\n\nThe paper is available through multiple sources including the ACL Anthology at https://aclanthology.org/D16-1062/ and on arXiv at https://arxiv.org/abs/1605.08889."
+    ],
+    "durationSeconds": 4.705679871
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T23:26:44.814Z_
+
+<details><summary>↩ Tool result · `toolu_01TFBy76v5DNp3iByeTn1KY3`</summary>
+
+```text
+Web search results for query: "arxiv "Growing Pains" 2604.12843 Habba Stanovsky method anchor calibration DIF contamination detection comparison"
+
+Links: [{"title":"[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/abs/2604.12843"},{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"Search | arXiv e-print repository","url":"https://arxiv.org/search/cs?searchtype=author&query=Stanovsky,+G"},{"title":"Developer Challenges on Large Language Models: A Study of Stack Overflow   and OpenAI Developer Forum Posts","url":"https://arxiv.org/pdf/2411.10873"},{"title":"[2505.22169] ReliableEval: A Recipe for Stochastic LLM Evaluation via Method of Moments","url":"https://arxiv.org/abs/2505.22169"},{"title":"HeSum: a Novel Dataset for Abstractive Text Summarization in Hebrew","url":"https://arxiv.org/pdf/2406.03897"},{"title":"Exploring the Potential and Limitations of Large Language Models for Novice Program Fault Localization","url":"https://arxiv.org/pdf/2512.03421"},{"title":"Medical Hallucination in Foundation Models and Their Impact on Healthcare","url":"https://www.medrxiv.org/content/10.1101/2025.02.28.25323115.full.pdf"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration** (arXiv:2604.12843)
+
+**Authors:** Eliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, and Gabriel Stanovsky
+
+**Core Contribution:** The paper proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed.
+
+**Key Results:** In large-scale experiments on more than 400 models, their framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.
+
+The paper was submitted on April 14, 2026, with a revised version on April 15, 2026. While the search results don't explicitly mention "DIF contamination detection comparison," the paper's focus on anchor calibration and item parameter fixing would be relevant to differential item functioning (DIF) analysis in the context of benchmark comparability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "26cadbc5-b054-4ab8-a7de-7c213124d9f3",
+  "tool_use_result": {
+    "query": "arxiv \"Growing Pains\" 2604.12843 Habba Stanovsky method anchor calibration DIF contamination detection comparison",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013jnhpAcBrM2gHDy9fn76iA",
+        "content": [
+          {
+            "title": "[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/abs/2604.12843"
+          },
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "Search | arXiv e-print repository",
+            "url": "https://arxiv.org/search/cs?searchtype=author&query=Stanovsky,+G"
+          },
+          {
+            "title": "Developer Challenges on Large Language Models: A Study of Stack Overflow   and OpenAI Developer Forum Posts",
+            "url": "https://arxiv.org/pdf/2411.10873"
+          },
+          {
+            "title": "[2505.22169] ReliableEval: A Recipe for Stochastic LLM Evaluation via Method of Moments",
+            "url": "https://arxiv.org/abs/2505.22169"
+          },
+          {
+            "title": "HeSum: a Novel Dataset for Abstractive Text Summarization in Hebrew",
+            "url": "https://arxiv.org/pdf/2406.03897"
+          },
+          {
+            "title": "Exploring the Potential and Limitations of Large Language Models for Novice Program Fault Localization",
+            "url": "https://arxiv.org/pdf/2512.03421"
+          },
+          {
+            "title": "Medical Hallucination in Foundation Models and Their Impact on Healthcare",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.02.28.25323115.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration** (arXiv:2604.12843)\n\n**Authors:** Eliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, and Gabriel Stanovsky\n\n**Core Contribution:** The paper proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed.\n\n**Key Results:** In large-scale experiments on more than 400 models, their framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.\n\nThe paper was submitted on April 14, 2026, with a revised version on April 15, 2026. While the search results don't explicitly mention \"DIF contamination detection comparison,\" the paper's focus on anchor calibration and item parameter fixing would be relevant to differential item functioning (DIF) analysis in the context of benchmark comparability."
+    ],
+    "durationSeconds": 7.024770515000011
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information needed to write the literature survey. Let me also get the full text of the Growing Pains paper to understand their methodology in more detail for the technical comparison section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "ee21e08e-c30b-411f-8d74-322c90207cbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iqd1U9cPHGkqhqPH4EXkk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 45134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+Now I have enough to write the survey. Let me also fetch the Growing Pains paper for deeper technical comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "21ea3ec4-d8f5-429d-b0e1-cbe1a717885d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iqd1U9cPHGkqhqPH4EXkk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 45134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013g3xQjLu5WFcoUSYrHLQbe`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"Growing Pains\" 2604.12843 IRT equating fixed parameter contamination item drift"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "79827e35-c244-4e38-ae2c-fd152aaf912c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iqd1U9cPHGkqhqPH4EXkk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 45134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T23:26:55.213Z_
+
+<details><summary>↩ Tool result · `toolu_013g3xQjLu5WFcoUSYrHLQbe`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "Growing Pains" 2604.12843 IRT equating fixed parameter contamination item drift"
+
+Links: [{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/abs/2604.12843"},{"title":"The stability of IRT parameters under several test equating conditions","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12832260/"},{"title":"Investigating the Impact of Item Parameter Drift for Item Response Theory Models with Mixture Distributions","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4764735/"},{"title":"Practical Consequences of Item Response Theory Model Misfit in the Context of Test Equating with Mixed-Format Test Data","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5378703/"}]
+
+I found the paper you were searching for! The paper "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration" proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks while holding previously calibrated item parameters fixed, supporting a realistic evaluation setting where datasets are introduced over time and models are evaluated only on datasets available at evaluation time.
+
+The search results also include related research on IRT equating, item parameter drift, and test equating methods that appear relevant to the technical foundations of this work.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "5e9660a9-09c7-4690-84a3-b5f399d487b6",
+  "tool_use_result": {
+    "query": "site:arxiv.org \"Growing Pains\" 2604.12843 IRT equating fixed parameter contamination item drift",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NTDU6wqAvV7E4FtM7nUEkL",
+        "content": [
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/abs/2604.12843"
+          },
+          {
+            "title": "The stability of IRT parameters under several test equating conditions",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12832260/"
+          },
+          {
+            "title": "Investigating the Impact of Item Parameter Drift for Item Response Theory Models with Mixture Distributions",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4764735/"
+          },
+          {
+            "title": "Practical Consequences of Item Response Theory Model Misfit in the Context of Test Equating with Mixed-Format Test Data",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5378703/"
+          }
+        ]
+      },
+      "I found the paper you were searching for! The paper \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\" proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks while holding previously calibrated item parameters fixed, supporting a realistic evaluation setting where datasets are introduced over time and models are evaluated only on datasets available at evaluation time.\n\nThe search results also include related research on IRT equating, item parameter drift, and test equating methods that appear relevant to the technical foundations of this work."
+    ],
+    "durationSeconds": 4.329733557
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CDfeQCErcHPK4RHYrvjiq6`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "f53b6132-a467-442a-9b53-3ba09ba1f428",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QURHUo2bc96yVudPMyixeq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1347,
+      "cache_read_input_tokens": 46126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1347
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T23:26:57.858Z_
+
+<details><summary>↩ Tool result · `toolu_01CDfeQCErcHPK4RHYrvjiq6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "43cf8b7b-e71b-489e-ab1b-116481586217",
+  "tool_use_result": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01N2Yg3uLEZ9kWMiYbkPLCEq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.12843",
+  "prompt": "Extract the following details from this paper: 1) Full author list, 2) The exact IRT model used (1PL, 2PL, 3PL, MIRT?), 3) How anchor items are selected and used, 4) Do they address contamination or item drift? If so, how? 5) What benchmarks do they evaluate on? 6) Key limitations they acknowledge. 7) How does their \"fixed parameter calibration\" work technically?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "3e97fe4d-0c6d-41c3-856e-fbef849b763d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQpDuHA1KVBGvgjs49VtUT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 47473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T23:27:08.499Z_
+
+<details><summary>↩ Tool result · `toolu_01N2Yg3uLEZ9kWMiYbkPLCEq`</summary>
+
+```text
+# Paper Analysis: Growing Pains - LLM Benchmarking via Fixed Parameter Calibration
+
+Based on the arXiv abstract provided, here's what can be extracted:
+
+## 1) Full Author List
+Eliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, Gabriel Stanovsky
+
+## 2) IRT Model Type
+The abstract specifies "multidimensional Item Response Theory (MIRT)" but does not specify whether it's 1PL, 2PL, or 3PL variants.
+
+## 3) Anchor Item Selection & Usage
+The abstract states the framework "uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed." It mentions employing "100 anchor questions per dataset" but the abstract does not detail the selection methodology.
+
+## 4) Contamination & Item Drift
+The provided content does not address whether they tackle contamination or item drift concerns.
+
+## 5) Benchmarks Evaluated
+The abstract references experiments on "more than 400 models" but does not name specific benchmark datasets evaluated.
+
+## 6) Acknowledged Limitations
+The abstract does not explicitly state limitations.
+
+## 7) Fixed Parameter Calibration Technical Process
+The abstract indicates this approach "uses anchor items to calibrate new benchmarks...while holding previously calibrated item parameters fixed," enabling comparison across evaluation periods at "constant evaluation cost per new dataset."
+
+**Note:** The full technical details would require accessing the complete paper PDF or HTML version.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "7d0f2846-df7b-4b47-a50f-73c1f8f6f8ba",
+  "tool_use_result": {
+    "bytes": 47190,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Growing Pains - LLM Benchmarking via Fixed Parameter Calibration\n\nBased on the arXiv abstract provided, here's what can be extracted:\n\n## 1) Full Author List\nEliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, Gabriel Stanovsky\n\n## 2) IRT Model Type\nThe abstract specifies \"multidimensional Item Response Theory (MIRT)\" but does not specify whether it's 1PL, 2PL, or 3PL variants.\n\n## 3) Anchor Item Selection & Usage\nThe abstract states the framework \"uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed.\" It mentions employing \"100 anchor questions per dataset\" but the abstract does not detail the selection methodology.\n\n## 4) Contamination & Item Drift\nThe provided content does not address whether they tackle contamination or item drift concerns.\n\n## 5) Benchmarks Evaluated\nThe abstract references experiments on \"more than 400 models\" but does not name specific benchmark datasets evaluated.\n\n## 6) Acknowledged Limitations\nThe abstract does not explicitly state limitations.\n\n## 7) Fixed Parameter Calibration Technical Process\nThe abstract indicates this approach \"uses anchor items to calibrate new benchmarks...while holding previously calibrated item parameters fixed,\" enabling comparison across evaluation periods at \"constant evaluation cost per new dataset.\"\n\n**Note:** The full technical details would require accessing the complete paper PDF or HTML version.",
+    "durationMs": 5368,
+    "url": "https://arxiv.org/abs/2604.12843"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018d6E5yGpgRsM4QY2qD14aD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.12843",
+  "prompt": "Extract detailed technical information: 1) What specific MIRT model do they use (dimensions, parameters per item)? 2) How are anchor items selected? Random? Information-based? 3) Do they discuss contamination, data leakage, or item drift at all? If yes, what do they say? 4) What is their equating/linking methodology? Is it concurrent calibration or fixed-parameter calibration? 5) What benchmarks: MMLU, ARC, HellaSwag, etc.? 6) Do they discuss DIF (differential item functioning) at all? 7) Key limitations and failure modes they identify. 8) How do they handle the problem of items becoming \"stale\" or contaminated over time?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "525c5334-1ef8-48f4-9427-515eddccc42c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017evHMcJ2ifWsT9AkBJLEHE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 577,
+      "cache_read_input_tokens": 48170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 577
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T23:27:23.773Z_
+
+<details><summary>↩ Tool result · `toolu_018d6E5yGpgRsM4QY2qD14aD`</summary>
+
+```text
+# Technical Analysis: Growing Pains LLM Benchmarking Paper
+
+## 1) MIRT Model Specifications
+The paper employs **Multidimensional 2-Parameter Logistic (MIRT 2PL)** IRT. Each item has:
+- A discrimination vector **a_i** (sensitivity across latent dimensions)
+- An intercept term **d_i** (related to item difficulty)
+
+The model does not specify exact dimensionality, treating it as emerging from data rather than predetermined.
+
+## 2) Anchor Item Selection
+Selection uses **clustering-based methodology** rather than random sampling. The procedure: "cluster the IRT item representations and selecting the most representative item from each cluster, following the anchor selection method of Polo et al." They explicitly show this outperforms top-K discrimination selection (Figure 4), distributing anchors across difficulty and discrimination space.
+
+## 3) Contamination & Item Drift
+The paper acknowledges but doesn't deeply address these issues: "anchors may become contaminated or saturated over time, requiring recalibration." This appears in the limitations section as an identified but unresolved concern.
+
+## 4) Equating/Linking Methodology
+They implement **fixed parameter calibration (FPC)** sequentially. The process holds previously calibrated anchor parameters constant while estimating only new item parameters: "previously learned item parameters are held fixed, and only the parameters of newly introduced items are estimated."
+
+## 5) Benchmark Suites
+**Open LLM Leaderboard** (6 datasets): ARC Challenge, GSM8K, HellaSwag, MMLU, TruthfulQA, Winogrande
+**MMLU** (57 subject subsets treated as separate datasets)
+
+## 6) Differential Item Functioning (DIF)
+The paper makes **no mention** of DIF analysis or differential performance across model subgroups.
+
+## 7) Key Limitations Identified
+- Validation limited to "knowledge and reasoning tasks in English"
+- Binary response assumption (cannot handle graded/open-ended formats)
+- Random train-test splits may underestimate generalization difficulty
+- Anchor saturation over time unresolved
+- Calibration cost increases as anchor sets accumulate
+
+## 8) Handling Item Staleness
+The paper identifies but doesn't solve this: "anchors may become contaminated or saturated over time, requiring recalibration." No mechanism for detecting or managing item drift is proposed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "727c71a6-ca63-430f-b2db-f8a25683d40e",
+  "tool_use_result": {
+    "bytes": 155576,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Analysis: Growing Pains LLM Benchmarking Paper\n\n## 1) MIRT Model Specifications\nThe paper employs **Multidimensional 2-Parameter Logistic (MIRT 2PL)** IRT. Each item has:\n- A discrimination vector **a_i** (sensitivity across latent dimensions)\n- An intercept term **d_i** (related to item difficulty)\n\nThe model does not specify exact dimensionality, treating it as emerging from data rather than predetermined.\n\n## 2) Anchor Item Selection\nSelection uses **clustering-based methodology** rather than random sampling. The procedure: \"cluster the IRT item representations and selecting the most representative item from each cluster, following the anchor selection method of Polo et al.\" They explicitly show this outperforms top-K discrimination selection (Figure 4), distributing anchors across difficulty and discrimination space.\n\n## 3) Contamination & Item Drift\nThe paper acknowledges but doesn't deeply address these issues: \"anchors may become contaminated or saturated over time, requiring recalibration.\" This appears in the limitations section as an identified but unresolved concern.\n\n## 4) Equating/Linking Methodology\nThey implement **fixed parameter calibration (FPC)** sequentially. The process holds previously calibrated anchor parameters constant while estimating only new item parameters: \"previously learned item parameters are held fixed, and only the parameters of newly introduced items are estimated.\"\n\n## 5) Benchmark Suites\n**Open LLM Leaderboard** (6 datasets): ARC Challenge, GSM8K, HellaSwag, MMLU, TruthfulQA, Winogrande\n**MMLU** (57 subject subsets treated as separate datasets)\n\n## 6) Differential Item Functioning (DIF)\nThe paper makes **no mention** of DIF analysis or differential performance across model subgroups.\n\n## 7) Key Limitations Identified\n- Validation limited to \"knowledge and reasoning tasks in English\"\n- Binary response assumption (cannot handle graded/open-ended formats)\n- Random train-test splits may underestimate generalization difficulty\n- Anchor saturation over time unresolved\n- Calibration cost increases as anchor sets accumulate\n\n## 8) Handling Item Staleness\nThe paper identifies but doesn't solve this: \"anchors may become contaminated or saturated over time, requiring recalibration.\" No mechanism for detecting or managing item drift is proposed.",
+    "durationMs": 8384,
+    "url": "https://arxiv.org/html/2604.12843"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information needed to write a comprehensive literature survey. Let me compile it all into the output file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "ec826793-1df5-4235-9365-5268e2501971",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019CWJTpSEvd1Y6KGnnqQrky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 48747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+Now I have all the details needed. Writing the survey document.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "d20aee80-573f-4a2f-9bbb-4664a3875c9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019CWJTpSEvd1Y6KGnnqQrky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 48747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018DGzh2r1qgTnD4ktiN2RTK`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "7d4f5ce9-663d-4644-985c-6c9b59a61c2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019CWJTpSEvd1Y6KGnnqQrky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 48747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T23:27:28.946Z_
+
+<details><summary>↩ Tool result · `toolu_018DGzh2r1qgTnD4ktiN2RTK`</summary>
+
+```text
+__pycache__
+_project
+build_response_matrix.py
+dif_diagnostic.py
+dif_diagnostic_output.log
+dif_diagnostic_pvalue_dist.pdf
+dif_diagnostic_tpr_comparison.csv
+dif_phase2_param_distribution.pdf
+dif_phase2_power_curves.pdf
+dif_phase2_results.csv
+dif_phase2_simulation.py
+dif_power_curves.pdf
+dif_power_results.csv
+dif_power_simulation.py
+dream_reports
+irt_scale_analysis.json
+irt_scale_analysis.md
+item_metadata.csv
+manifest.yaml
+metabench_cohort_analysis.csv
+metabench_ctt_stats.csv
+metabench_data
+metabench_data_summary.md
+metabench_explore.py
+metabench_model_accuracy.csv
+metabench_model_list.txt
+metabench_rl_models.csv
+metabench_subject_stats.csv
+metabench_summary.json
+mmlu_cf_analysis.json
+mmlu_cf_analysis.md
+mmlu_li2024_proxy_labels.csv
+model_metadata.csv
+mvp_dif_power_sim
+plan_001
+plan_001_real_data_dif_mmlu
+plan_001b
+plan_011
+plan_011_semi_synthetic_validation
+plan_012
+plan_012_irt_theta_conditioning
+plan_013
+plan_013_q3_local_independence
+plan_014
+plan_015
+plan_016
+plan_016_within_subject_semi_synthetic
+psn_irt_item_parameters.csv
+response_matrix.npz
+response_matrix_index.npz
+review_issues.yaml
+review_reports
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "9dc324dd-1750-4b22-ae87-71ba6fe4219e",
+  "tool_use_result": {
+    "stdout": "__pycache__\n_project\nbuild_response_matrix.py\ndif_diagnostic.py\ndif_diagnostic_output.log\ndif_diagnostic_pvalue_dist.pdf\ndif_diagnostic_tpr_comparison.csv\ndif_phase2_param_distribution.pdf\ndif_phase2_power_curves.pdf\ndif_phase2_results.csv\ndif_phase2_simulation.py\ndif_power_curves.pdf\ndif_power_results.csv\ndif_power_simulation.py\ndream_reports\nirt_scale_analysis.json\nirt_scale_analysis.md\nitem_metadata.csv\nmanifest.yaml\nmetabench_cohort_analysis.csv\nmetabench_ctt_stats.csv\nmetabench_data\nmetabench_data_summary.md\nmetabench_explore.py\nmetabench_model_accuracy.csv\nmetabench_model_list.txt\nmetabench_rl_models.csv\nmetabench_subject_stats.csv\nmetabench_summary.json\nmmlu_cf_analysis.json\nmmlu_cf_analysis.md\nmmlu_li2024_proxy_labels.csv\nmodel_metadata.csv\nmvp_dif_power_sim\nplan_001\nplan_001_real_data_dif_mmlu\nplan_001b\nplan_011\nplan_011_semi_synthetic_validation\nplan_012\nplan_012_irt_theta_conditioning\nplan_013\nplan_013_q3_local_independence\nplan_014\nplan_015\nplan_016\nplan_016_within_subject_semi_synthetic\npsn_irt_item_parameters.csv\nresponse_matrix.npz\nresponse_matrix_index.npz\nreview_issues.yaml\nreview_reports",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01LqJvWKxSB3tMYQ9Ygo5toL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_survey_d011.md",
+  "content": "# Literature Survey for Related Work (D011)\n\n## 1. Impact-vs-DIF Classics\n\n### Shealy & Stout (1993)\n- **Title**: A Model-Based Standardization Approach that Separates True Bias/DIF from Group Ability Differences and Detects Test Bias/DTF as Well as Item Bias/DIF\n- **Year**: 1993\n- **Venue**: Psychometrika, 58(2), 159–194\n- **Key method/finding**: Developed the SIBTEST procedure — a nonparametric, IRT model-based method that detects and estimates DIF without requiring item response function (IRF) estimation. Uses a multidimensional IRT model to explain how individual items combine to produce differential test functioning (DTF) at the test level. Employs a regression correction technique to control inflated Type I error while separating true bias from group ability differences.\n- **Relevance to our paper**: SIBTEST is the foundational statistical test for detecting item-level bias across groups. Our DIF-based contamination detection adapts this logic: instead of demographic groups, we compare \"pre-contamination\" vs. \"post-contamination\" model cohorts. The multidimensional DIF framework directly informs our approach to separating genuine ability differences from item-specific anomalies.\n\n### Clauser & Mazor (1998)\n- **Title**: Using Statistical Procedures to Identify Differentially Functioning Test Items\n- **Year**: 1998\n- **Venue**: Educational Measurement: Issues and Practice, 17(1), 31–44\n- **Key method/finding**: Comprehensive review of DIF detection methods including Mantel-Haenszel, logistic regression, and SIBTEST. Documents the landscape of statistical techniques for detecting items that function differently across groups while controlling for overall ability.\n- **Relevance to our paper**: Provides the methodological taxonomy we draw from when selecting DIF detection procedures for the LLM benchmark setting. Establishes that multiple complementary DIF methods exist with different sensitivity profiles — motivating our multi-method approach.\n\n### Zumbo (1999)\n- **Title**: A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-Type (Ordinal) Item Scores\n- **Year**: 1999\n- **Venue**: Technical report, Directorate of Human Resources Research and Evaluation, Department of National Defense, Ottawa, Canada\n- **Key method/finding**: Presents logistic regression as a unifying framework for DIF analysis applicable to both binary and ordinal item scores. Provides theoretical grounding for understanding DIF as a violation of measurement invariance.\n- **Relevance to our paper**: Our logistic-regression-based DIF detection for binary (correct/incorrect) LLM responses directly follows this framework. Zumbo's formalization of uniform vs. non-uniform DIF maps onto our distinction between items that are uniformly easier for contaminated models vs. items showing interaction effects with model ability.\n\n### Holland & Wainer (1993)\n- **Title**: Differential Item Functioning (edited volume)\n- **Year**: 1993\n- **Venue**: Lawrence Erlbaum Associates, Hillsdale, NJ\n- **Key method/finding**: Definitive reference volume on DIF. Covers methods for detecting test items that function differently across examinee groups, including Mantel-Haenszel, IRT-based methods, and standardization approaches. Establishes the conceptual distinction between item impact (legitimate group differences) and item bias (construct-irrelevant difficulty).\n- **Relevance to our paper**: The impact-vs-bias distinction is the conceptual backbone of our work. We argue that contamination-inflated performance is analogous to construct-irrelevant easiness — a form of DIF where the \"group\" variable is exposure to benchmark data rather than demographics.\n\n---\n\n## 2. IRT in NLP/LLM Evaluation\n\n### Lalor, Wu & Yu (2016)\n- **Title**: Building an Evaluation Scale using Item Response Theory\n- **Year**: 2016\n- **Venue**: EMNLP 2016, pp. 648–657\n- **Key method/finding**: First to propose IRT as an alternative means for gold-standard test-set generation and NLP system evaluation. Demonstrates that IRT can describe characteristics of individual items (difficulty, discriminating power) and account for these in estimating NLP system ability. Applied to Recognizing Textual Entailment.\n- **Relevance to our paper**: Pioneering work establishing that IRT is applicable to NLP evaluation. Our work extends this foundation from simple item characterization to cross-cohort equating and DIF detection.\n\n### Lalor, Wu & Yu (2019)\n- **Title**: Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds\n- **Year**: 2019\n- **Venue**: EMNLP-IJCNLP 2019, Hong Kong\n- **Key method/finding**: Addresses the bottleneck of needing human response patterns to calibrate IRT models by proposing to learn IRT parameters from \"artificial crowds\" of DNN models. Finds medium-to-large positive correlations between parameters learned from human vs. machine response patterns for NLI and sentiment analysis.\n- **Relevance to our paper**: Validates that IRT parameters estimated from machine (model) responses are meaningful and correlate with human-derived parameters. This justifies our use of LLM response matrices for IRT calibration.\n\n### Vania et al. (2021)\n- **Title**: Comparing Test Sets with Item Response Theory\n- **Year**: 2021\n- **Venue**: ACL 2021\n- **Key method/finding**: Evaluated 29 datasets using predictions from 18 pretrained Transformer models via IRT. Found that Quoref, HellaSwag, and MC-TACO best distinguish among SOTA models, while SNLI, MNLI, and CommitmentBank are saturated. Provides a principled way to compare the discriminative quality of benchmark datasets.\n- **Relevance to our paper**: Demonstrates IRT-based benchmark comparison at the dataset level. Our work extends this to item-level analysis across temporal model cohorts, using DIF to detect which specific items have degraded discriminative quality due to contamination.\n\n### Rodriguez et al. (2021)\n- **Title**: Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards?\n- **Year**: 2021\n- **Venue**: ACL-IJCNLP 2021\n- **Key method/finding**: Creates a Bayesian IRT leaderboard model where latent subject skill and latent item difficulty predict correct responses. Demonstrates that IRT can guide annotation priorities, identify annotation errors, detect overfitting, and identify the most informative evaluation examples. Released open-source IRT leaderboard code.\n- **Relevance to our paper**: Directly relevant methodological predecessor. Their Bayesian IRT approach to leaderboards establishes that item-level modeling reveals evaluation quality issues invisible to aggregate scores. We build on this by using IRT-derived item parameters to detect contamination-induced parameter drift.\n\n### Polo et al. (2024)\n- **Title**: tinyBenchmarks: Evaluating LLMs with Fewer Examples\n- **Year**: 2024\n- **Venue**: ICML 2024\n- **Key method/finding**: Shows that evaluating on ~100 curated IRT-selected items per benchmark is sufficient to accurately reproduce full-benchmark performance. Released IRT-based evaluation tools and tiny versions of Open LLM Leaderboard, MMLU, HELM, and AlpacaEval 2.0. Uses clustering-based item selection to ensure coverage of the difficulty/discrimination space.\n- **Relevance to our paper**: tinyBenchmarks demonstrates the practical value of IRT for efficient evaluation. Their item selection methodology (clustering IRT representations) is adopted by Growing Pains for anchor selection. Our DIF analysis provides a complementary diagnostic: not just which items are informative, but which items have become unreliable due to contamination.\n\n---\n\n## 3. Contamination Detection\n\n### Shi et al. (2024)\n- **Title**: Detecting Pretraining Data from Large Language Models\n- **Year**: 2024\n- **Venue**: ICLR 2024\n- **Key method/finding**: Proposes MIN-K% PROB — a membership inference method that identifies pretraining data by checking whether the k% of tokens with minimum probability under the LLM are unlikely enough. Introduces the WIKIMIA benchmark for evaluation. Achieves 7.4% improvement over prior methods. Applied to copyrighted book detection, contaminated example detection, and privacy auditing.\n- **Relevance to our paper**: Min-K% operates at the instance level (is this text in the training data?) while our DIF approach operates at the item level across model populations (does this item behave differently for likely-contaminated models?). The approaches are complementary: Min-K% requires model access per instance; DIF requires only response matrices.\n\n### Zhang et al. (2024) — Min-K%++\n- **Title**: Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\n- **Year**: 2024\n- **Venue**: ICLR 2025\n- **Key method/finding**: Extends Min-K% by measuring how sharply peaked the likelihood is around the input (analogous to curvature), using second-order statistics motivated by the connection between maximum likelihood training and the Hessian trace via score matching. More robust than zeroth-order signals.\n- **Relevance to our paper**: Further develops the instance-level contamination detection paradigm. Our work offers an orthogonal, population-level signal that does not require per-instance likelihood computation.\n\n### Balloccu et al. (2024)\n- **Title**: Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs\n- **Year**: 2024\n- **Venue**: EACL 2024\n- **Key method/finding**: Systematic review of 255 papers using ChatGPT/GPT-4, documenting that over 4.7M samples from 263 datasets were exposed through the web interface. Catalogs evaluation malpractices including unfair baselines, reproducibility issues, and lack of contamination awareness.\n- **Relevance to our paper**: Establishes the scale and severity of the contamination problem. Their documentation of widespread data leakage motivates our work: if contamination is pervasive and hard to prevent, we need methods to detect and account for it post-hoc — exactly what DIF provides.\n\n### Golchin & Surdeanu (2024)\n- **Title**: Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models\n- **Year**: 2024\n- **Venue**: TACL 2024\n- **Key method/finding**: Frames contamination detection as a multiple-choice quiz: given an original instance and three word-level perturbations, a contaminated model should identify the original. Achieves 92–100% accuracy across seven datasets. Detects specific contamination in AG News, WNLI, and XSum for GPT-4.\n- **Relevance to our paper**: DCQ is a clever per-model, per-instance detection method but requires generating perturbations and querying the model. Our DIF approach is purely observational — it works from existing response matrices without additional model queries or perturbation generation.\n\n### Oren et al. (2024)\n- **Title**: Proving Test Set Contamination in Black Box Language Models\n- **Year**: 2024\n- **Venue**: ICLR 2024\n- **Key method/finding**: Statistical test comparing likelihood of a benchmark's canonical ordering vs. shuffled versions. Contaminated models find canonical orderings more likely due to memorized example order. Provides exact false positive guarantees without requiring access to pretraining data or model weights. Effective on models as small as 1.4B parameters with only 1000 examples.\n- **Relevance to our paper**: Elegant black-box method with formal statistical guarantees. However, it detects dataset-level contamination (is the whole benchmark memorized?) rather than item-level contamination effects (which specific items are affected?). Our DIF approach provides item-level granularity.\n\n### Deng et al. (2024)\n- **Title**: Investigating Data Contamination in Modern Benchmarks for Large Language Models\n- **Year**: 2024\n- **Venue**: NAACL 2024, pp. 8706–8719\n- **Key method/finding**: Proposes two methods: a retrieval-based system to find overlaps between benchmarks and pretraining corpora (for open-source LLMs), and Testset Slot Guessing (TS-Guessing) for proprietary LLMs. Finds ChatGPT and GPT-4 achieve 52% and 57% exact match rates in guessing missing MMLU options.\n- **Relevance to our paper**: Demonstrates contamination in the exact benchmark (MMLU) we analyze. Their TS-Guessing evidence of MMLU contamination in GPT-4 provides ground-truth validation context for our DIF-based detection.\n\n---\n\n## 4. Dynamic/Adaptive Benchmarks\n\n### Zhu et al. (2024a) — DyVal\n- **Title**: DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks\n- **Year**: 2024\n- **Venue**: ICLR 2024\n- **Key method/finding**: Generates evaluation tasks at test time using graph-based complexity control to mitigate memorization. Applies graph complexity metrics to parameterize reasoning problem difficulty. Dynamically constructs evaluation instances rather than relying on static test sets.\n- **Relevance to our paper**: Represents the \"regenerate the benchmark\" approach to contamination. Our work takes the complementary \"detect and account for contamination in existing benchmarks\" approach, which preserves historical comparability.\n\n### Zhu et al. (2024b) — DyVal 2\n- **Title**: Dynamic Evaluation of Large Language Models by Meta Probing Agents\n- **Year**: 2024\n- **Venue**: arXiv:2402.14865\n- **Key method/finding**: Extends DyVal with Meta Probing Agents (MPA) inspired by psychometrics. Agents automatically transform original evaluation problems targeting three cognitive abilities: language understanding, problem solving, and domain knowledge. More generalizable than task-specific dynamic generation.\n- **Relevance to our paper**: MPA's psychometric inspiration is conceptually aligned with our IRT-based approach, but they use psychometrics to generate new items while we use it to analyze existing items for contamination signals.\n\n### White et al. (2024) — LiveBench\n- **Title**: LiveBench: A Challenging, Contamination-Free LLM Benchmark\n- **Year**: 2024\n- **Venue**: arXiv:2406.19314\n- **Key method/finding**: Releases new questions monthly based on recent datasets, arXiv papers, news, and IMDb synopses. All questions have verifiable, objective ground-truth answers enabling automatic scoring without LLM judges. Spans 18 tasks across 6 categories (Math, Reasoning, Data Analysis, Language, Coding, Instruction Following).\n- **Relevance to our paper**: LiveBench's monthly refresh strategy prevents contamination prospectively. Our DIF method detects contamination retrospectively in static benchmarks. The approaches address different temporal windows: LiveBench prevents future contamination; we diagnose past contamination in widely-used benchmarks whose historical results we want to preserve.\n\n### Wang et al. (2024) — MMLU-Pro\n- **Title**: MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark\n- **Year**: 2024\n- **Venue**: NeurIPS 2024\n- **Key method/finding**: Enhances MMLU with harder, reasoning-focused questions and increases answer choices from 4 to 10, reducing random guessing success. Over 12K questions across 14 domains. GPT-4o achieves only 72.6%, and the gap between GPT-4o and GPT-4-Turbo widens from 1% (MMLU) to 9% (MMLU-Pro), showing better discriminative power.\n- **Relevance to our paper**: MMLU-Pro addresses contamination by making a harder benchmark, but doesn't diagnose which original MMLU items are compromised. Our DIF analysis can quantify exactly which MMLU items have degraded, providing evidence for why harder replacements are needed and which content areas are most affected.\n\n### Gema et al. (2024) — MMLU-Redux\n- **Title**: Are We Done with MMLU?\n- **Year**: 2024\n- **Venue**: arXiv:2406.04127\n- **Key method/finding**: Manual re-annotation of 5,700 MMLU questions reveals a 6.5% error rate. Error types include parsing mistakes, multiple correct answers, and missing context. Virology subset has 57% errors. Re-evaluation with corrected labels shows significant metric discrepancies and ranking shifts.\n- **Relevance to our paper**: MMLU-Redux addresses data quality while our work addresses contamination — both are sources of measurement error. Items flagged by DIF analysis that are not contaminated may instead have quality issues, making these analyses complementary.\n\n---\n\n## 5. Key Technical Comparisons\n\n### Habba, Itzhak, Yehudai, Perlitz, Bandel, Shmueli-Scheuer, Choshen & Stanovsky (2026) — Growing Pains\n- **Title**: Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\n- **Year**: 2026 (April)\n- **Venue**: arXiv:2604.12843\n- **Authors**: Eliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, Gabriel Stanovsky\n\n#### Method Details\n- **IRT Model**: Multidimensional 2PL IRT (MIRT-2PL). Each item has a discrimination vector **a_i** and intercept **d_i**.\n- **Calibration**: Fixed Parameter Calibration (FPC) — previously calibrated item parameters are held fixed; only new item parameters are estimated when new benchmarks are added.\n- **Anchor Selection**: Clustering-based method (following Polo et al.) that distributes anchors across the difficulty/discrimination space. Uses 100 anchor items per dataset. Outperforms top-K discrimination selection.\n- **Scale**: 400+ models, evaluated on Open LLM Leaderboard (ARC, GSM8K, HellaSwag, MMLU, TruthfulQA, WinoGrande) and MMLU's 57 subjects.\n- **Performance**: Predicts full-evaluation performance within 2–3 percentage points; Spearman ρ ≥ 0.9 for ranking preservation.\n\n#### Technical Comparison with Our Approach\n\n| Dimension | Growing Pains | Our DIF Approach |\n|-----------|---------------|------------------|\n| **Goal** | Efficient, extensible benchmarking via FPC | Detect contamination-induced measurement distortion |\n| **IRT model** | MIRT-2PL | 2PL (with DIF extensions) |\n| **Core technique** | Fixed parameter calibration with anchor items | DIF analysis across temporal model cohorts |\n| **Contamination** | Acknowledged as limitation (\"anchors may become contaminated or saturated over time, requiring recalibration\") but **not addressed** | Central focus — DIF detects which items are affected |\n| **Item drift** | Not detected; assumes item parameters are stable | Explicitly models item parameter drift as DIF signal |\n| **DIF analysis** | Not mentioned | Core methodology |\n| **Granularity** | Dataset/benchmark level efficiency | Item-level contamination diagnostics |\n| **Binary response** | Yes (limitation acknowledged) | Yes |\n\n#### Complementarity\nGrowing Pains and our work are highly complementary:\n1. **They assume stable item parameters; we test that assumption.** Their FPC framework relies on anchor item parameters not drifting. Our DIF analysis can identify when this assumption breaks down due to contamination.\n2. **They optimize evaluation efficiency; we diagnose evaluation validity.** Growing Pains reduces the number of items needed; we identify which items should be trusted.\n3. **Their acknowledged limitation is our research question.** They note \"anchors may become contaminated or saturated over time, requiring recalibration\" but do not address it. We provide the diagnostic tool for exactly this problem.\n4. **Integration pathway**: DIF-flagged items could be excluded from Growing Pains' anchor sets, making their FPC calibration more robust to contamination.\n\n### Kipnis et al. (2025) — METABENCH\n- **Title**: MetaBench: A Sparse Benchmark for LLM Evaluation\n- **Year**: 2025\n- **Venue**: ICLR 2025\n- **Key method/finding**: Distills six Open LLM Leaderboard benchmarks (ARC, GSM8K, HellaSwag, MMLU, TruthfulQA, WinoGrande) into <3% of their combined size using data from 5000+ LLMs. Uses Generalized Additive Models (GAM) to model subset-to-full-set relationships. Reconstructs benchmark scores with <0.9% MAE and leaderboard scores with <0.5% MAE. Provides two disjoint versions for repeated evaluation. Integrated into EleutherAI's lm-evaluation-harness.\n- **Relevance to our paper**: METABENCH is our primary data source — we use their 5000+ model response matrices for IRT calibration and DIF analysis. Their item selection optimizes for predictive accuracy of aggregate scores; our DIF analysis adds a validity dimension by identifying which items remain measurement-invariant across model cohorts. Items selected by MetaBench that we flag as contaminated would suggest the sparse benchmark itself may be vulnerable to contamination effects.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "d2fc912d-d44a-40f5-93c7-71026dc2e601",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UxdeTgziBQ8QKmZGdrTg62",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 601,
+      "cache_read_input_tokens": 49563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 601
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T23:29:34.541Z_
+
+<details><summary>↩ Tool result · `toolu_01LqJvWKxSB3tMYQ9Ygo5toL`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_survey_d011.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "7cf193b0-ff60-4959-ae0f-3957baf7e3d2",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_survey_d011.md",
+    "content": "# Literature Survey for Related Work (D011)\n\n## 1. Impact-vs-DIF Classics\n\n### Shealy & Stout (1993)\n- **Title**: A Model-Based Standardization Approach that Separates True Bias/DIF from Group Ability Differences and Detects Test Bias/DTF as Well as Item Bias/DIF\n- **Year**: 1993\n- **Venue**: Psychometrika, 58(2), 159–194\n- **Key method/finding**: Developed the SIBTEST procedure — a nonparametric, IRT model-based method that detects and estimates DIF without requiring item response function (IRF) estimation. Uses a multidimensional IRT model to explain how individual items combine to produce differential test functioning (DTF) at the test level. Employs a regression correction technique to control inflated Type I error while separating true bias from group ability differences.\n- **Relevance to our paper**: SIBTEST is the foundational statistical test for detecting item-level bias across groups. Our DIF-based contamination detection adapts this logic: instead of demographic groups, we compare \"pre-contamination\" vs. \"post-contamination\" model cohorts. The multidimensional DIF framework directly informs our approach to separating genuine ability differences from item-specific anomalies.\n\n### Clauser & Mazor (1998)\n- **Title**: Using Statistical Procedures to Identify Differentially Functioning Test Items\n- **Year**: 1998\n- **Venue**: Educational Measurement: Issues and Practice, 17(1), 31–44\n- **Key method/finding**: Comprehensive review of DIF detection methods including Mantel-Haenszel, logistic regression, and SIBTEST. Documents the landscape of statistical techniques for detecting items that function differently across groups while controlling for overall ability.\n- **Relevance to our paper**: Provides the methodological taxonomy we draw from when selecting DIF detection procedures for the LLM benchmark setting. Establishes that multiple complementary DIF methods exist with different sensitivity profiles — motivating our multi-method approach.\n\n### Zumbo (1999)\n- **Title**: A Handbook on the Theory and Methods of Differential Item Functioning (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-Type (Ordinal) Item Scores\n- **Year**: 1999\n- **Venue**: Technical report, Directorate of Human Resources Research and Evaluation, Department of National Defense, Ottawa, Canada\n- **Key method/finding**: Presents logistic regression as a unifying framework for DIF analysis applicable to both binary and ordinal item scores. Provides theoretical grounding for understanding DIF as a violation of measurement invariance.\n- **Relevance to our paper**: Our logistic-regression-based DIF detection for binary (correct/incorrect) LLM responses directly follows this framework. Zumbo's formalization of uniform vs. non-uniform DIF maps onto our distinction between items that are uniformly easier for contaminated models vs. items showing interaction effects with model ability.\n\n### Holland & Wainer (1993)\n- **Title**: Differential Item Functioning (edited volume)\n- **Year**: 1993\n- **Venue**: Lawrence Erlbaum Associates, Hillsdale, NJ\n- **Key method/finding**: Definitive reference volume on DIF. Covers methods for detecting test items that function differently across examinee groups, including Mantel-Haenszel, IRT-based methods, and standardization approaches. Establishes the conceptual distinction between item impact (legitimate group differences) and item bias (construct-irrelevant difficulty).\n- **Relevance to our paper**: The impact-vs-bias distinction is the conceptual backbone of our work. We argue that contamination-inflated performance is analogous to construct-irrelevant easiness — a form of DIF where the \"group\" variable is exposure to benchmark data rather than demographics.\n\n---\n\n## 2. IRT in NLP/LLM Evaluation\n\n### Lalor, Wu & Yu (2016)\n- **Title**: Building an Evaluation Scale using Item Response Theory\n- **Year**: 2016\n- **Venue**: EMNLP 2016, pp. 648–657\n- **Key method/finding**: First to propose IRT as an alternative means for gold-standard test-set generation and NLP system evaluation. Demonstrates that IRT can describe characteristics of individual items (difficulty, discriminating power) and account for these in estimating NLP system ability. Applied to Recognizing Textual Entailment.\n- **Relevance to our paper**: Pioneering work establishing that IRT is applicable to NLP evaluation. Our work extends this foundation from simple item characterization to cross-cohort equating and DIF detection.\n\n### Lalor, Wu & Yu (2019)\n- **Title**: Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds\n- **Year**: 2019\n- **Venue**: EMNLP-IJCNLP 2019, Hong Kong\n- **Key method/finding**: Addresses the bottleneck of needing human response patterns to calibrate IRT models by proposing to learn IRT parameters from \"artificial crowds\" of DNN models. Finds medium-to-large positive correlations between parameters learned from human vs. machine response patterns for NLI and sentiment analysis.\n- **Relevance to our paper**: Validates that IRT parameters estimated from machine (model) responses are meaningful and correlate with human-derived parameters. This justifies our use of LLM response matrices for IRT calibration.\n\n### Vania et al. (2021)\n- **Title**: Comparing Test Sets with Item Response Theory\n- **Year**: 2021\n- **Venue**: ACL 2021\n- **Key method/finding**: Evaluated 29 datasets using predictions from 18 pretrained Transformer models via IRT. Found that Quoref, HellaSwag, and MC-TACO best distinguish among SOTA models, while SNLI, MNLI, and CommitmentBank are saturated. Provides a principled way to compare the discriminative quality of benchmark datasets.\n- **Relevance to our paper**: Demonstrates IRT-based benchmark comparison at the dataset level. Our work extends this to item-level analysis across temporal model cohorts, using DIF to detect which specific items have degraded discriminative quality due to contamination.\n\n### Rodriguez et al. (2021)\n- **Title**: Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards?\n- **Year**: 2021\n- **Venue**: ACL-IJCNLP 2021\n- **Key method/finding**: Creates a Bayesian IRT leaderboard model where latent subject skill and latent item difficulty predict correct responses. Demonstrates that IRT can guide annotation priorities, identify annotation errors, detect overfitting, and identify the most informative evaluation examples. Released open-source IRT leaderboard code.\n- **Relevance to our paper**: Directly relevant methodological predecessor. Their Bayesian IRT approach to leaderboards establishes that item-level modeling reveals evaluation quality issues invisible to aggregate scores. We build on this by using IRT-derived item parameters to detect contamination-induced parameter drift.\n\n### Polo et al. (2024)\n- **Title**: tinyBenchmarks: Evaluating LLMs with Fewer Examples\n- **Year**: 2024\n- **Venue**: ICML 2024\n- **Key method/finding**: Shows that evaluating on ~100 curated IRT-selected items per benchmark is sufficient to accurately reproduce full-benchmark performance. Released IRT-based evaluation tools and tiny versions of Open LLM Leaderboard, MMLU, HELM, and AlpacaEval 2.0. Uses clustering-based item selection to ensure coverage of the difficulty/discrimination space.\n- **Relevance to our paper**: tinyBenchmarks demonstrates the practical value of IRT for efficient evaluation. Their item selection methodology (clustering IRT representations) is adopted by Growing Pains for anchor selection. Our DIF analysis provides a complementary diagnostic: not just which items are informative, but which items have become unreliable due to contamination.\n\n---\n\n## 3. Contamination Detection\n\n### Shi et al. (2024)\n- **Title**: Detecting Pretraining Data from Large Language Models\n- **Year**: 2024\n- **Venue**: ICLR 2024\n- **Key method/finding**: Proposes MIN-K% PROB — a membership inference method that identifies pretraining data by checking whether the k% of tokens with minimum probability under the LLM are unlikely enough. Introduces the WIKIMIA benchmark for evaluation. Achieves 7.4% improvement over prior methods. Applied to copyrighted book detection, contaminated example detection, and privacy auditing.\n- **Relevance to our paper**: Min-K% operates at the instance level (is this text in the training data?) while our DIF approach operates at the item level across model populations (does this item behave differently for likely-contaminated models?). The approaches are complementary: Min-K% requires model access per instance; DIF requires only response matrices.\n\n### Zhang et al. (2024) — Min-K%++\n- **Title**: Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\n- **Year**: 2024\n- **Venue**: ICLR 2025\n- **Key method/finding**: Extends Min-K% by measuring how sharply peaked the likelihood is around the input (analogous to curvature), using second-order statistics motivated by the connection between maximum likelihood training and the Hessian trace via score matching. More robust than zeroth-order signals.\n- **Relevance to our paper**: Further develops the instance-level contamination detection paradigm. Our work offers an orthogonal, population-level signal that does not require per-instance likelihood computation.\n\n### Balloccu et al. (2024)\n- **Title**: Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs\n- **Year**: 2024\n- **Venue**: EACL 2024\n- **Key method/finding**: Systematic review of 255 papers using ChatGPT/GPT-4, documenting that over 4.7M samples from 263 datasets were exposed through the web interface. Catalogs evaluation malpractices including unfair baselines, reproducibility issues, and lack of contamination awareness.\n- **Relevance to our paper**: Establishes the scale and severity of the contamination problem. Their documentation of widespread data leakage motivates our work: if contamination is pervasive and hard to prevent, we need methods to detect and account for it post-hoc — exactly what DIF provides.\n\n### Golchin & Surdeanu (2024)\n- **Title**: Data Contamination Quiz: A Tool to Detect and Estimate Contamination in Large Language Models\n- **Year**: 2024\n- **Venue**: TACL 2024\n- **Key method/finding**: Frames contamination detection as a multiple-choice quiz: given an original instance and three word-level perturbations, a contaminated model should identify the original. Achieves 92–100% accuracy across seven datasets. Detects specific contamination in AG News, WNLI, and XSum for GPT-4.\n- **Relevance to our paper**: DCQ is a clever per-model, per-instance detection method but requires generating perturbations and querying the model. Our DIF approach is purely observational — it works from existing response matrices without additional model queries or perturbation generation.\n\n### Oren et al. (2024)\n- **Title**: Proving Test Set Contamination in Black Box Language Models\n- **Year**: 2024\n- **Venue**: ICLR 2024\n- **Key method/finding**: Statistical test comparing likelihood of a benchmark's canonical ordering vs. shuffled versions. Contaminated models find canonical orderings more likely due to memorized example order. Provides exact false positive guarantees without requiring access to pretraining data or model weights. Effective on models as small as 1.4B parameters with only 1000 examples.\n- **Relevance to our paper**: Elegant black-box method with formal statistical guarantees. However, it detects dataset-level contamination (is the whole benchmark memorized?) rather than item-level contamination effects (which specific items are affected?). Our DIF approach provides item-level granularity.\n\n### Deng et al. (2024)\n- **Title**: Investigating Data Contamination in Modern Benchmarks for Large Language Models\n- **Year**: 2024\n- **Venue**: NAACL 2024, pp. 8706–8719\n- **Key method/finding**: Proposes two methods: a retrieval-based system to find overlaps between benchmarks and pretraining corpora (for open-source LLMs), and Testset Slot Guessing (TS-Guessing) for proprietary LLMs. Finds ChatGPT and GPT-4 achieve 52% and 57% exact match rates in guessing missing MMLU options.\n- **Relevance to our paper**: Demonstrates contamination in the exact benchmark (MMLU) we analyze. Their TS-Guessing evidence of MMLU contamination in GPT-4 provides ground-truth validation context for our DIF-based detection.\n\n---\n\n## 4. Dynamic/Adaptive Benchmarks\n\n### Zhu et al. (2024a) — DyVal\n- **Title**: DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks\n- **Year**: 2024\n- **Venue**: ICLR 2024\n- **Key method/finding**: Generates evaluation tasks at test time using graph-based complexity control to mitigate memorization. Applies graph complexity metrics to parameterize reasoning problem difficulty. Dynamically constructs evaluation instances rather than relying on static test sets.\n- **Relevance to our paper**: Represents the \"regenerate the benchmark\" approach to contamination. Our work takes the complementary \"detect and account for contamination in existing benchmarks\" approach, which preserves historical comparability.\n\n### Zhu et al. (2024b) — DyVal 2\n- **Title**: Dynamic Evaluation of Large Language Models by Meta Probing Agents\n- **Year**: 2024\n- **Venue**: arXiv:2402.14865\n- **Key method/finding**: Extends DyVal with Meta Probing Agents (MPA) inspired by psychometrics. Agents automatically transform original evaluation problems targeting three cognitive abilities: language understanding, problem solving, and domain knowledge. More generalizable than task-specific dynamic generation.\n- **Relevance to our paper**: MPA's psychometric inspiration is conceptually aligned with our IRT-based approach, but they use psychometrics to generate new items while we use it to analyze existing items for contamination signals.\n\n### White et al. (2024) — LiveBench\n- **Title**: LiveBench: A Challenging, Contamination-Free LLM Benchmark\n- **Year**: 2024\n- **Venue**: arXiv:2406.19314\n- **Key method/finding**: Releases new questions monthly based on recent datasets, arXiv papers, news, and IMDb synopses. All questions have verifiable, objective ground-truth answers enabling automatic scoring without LLM judges. Spans 18 tasks across 6 categories (Math, Reasoning, Data Analysis, Language, Coding, Instruction Following).\n- **Relevance to our paper**: LiveBench's monthly refresh strategy prevents contamination prospectively. Our DIF method detects contamination retrospectively in static benchmarks. The approaches address different temporal windows: LiveBench prevents future contamination; we diagnose past contamination in widely-used benchmarks whose historical results we want to preserve.\n\n### Wang et al. (2024) — MMLU-Pro\n- **Title**: MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark\n- **Year**: 2024\n- **Venue**: NeurIPS 2024\n- **Key method/finding**: Enhances MMLU with harder, reasoning-focused questions and increases answer choices from 4 to 10, reducing random guessing success. Over 12K questions across 14 domains. GPT-4o achieves only 72.6%, and the gap between GPT-4o and GPT-4-Turbo widens from 1% (MMLU) to 9% (MMLU-Pro), showing better discriminative power.\n- **Relevance to our paper**: MMLU-Pro addresses contamination by making a harder benchmark, but doesn't diagnose which original MMLU items are compromised. Our DIF analysis can quantify exactly which MMLU items have degraded, providing evidence for why harder replacements are needed and which content areas are most affected.\n\n### Gema et al. (2024) — MMLU-Redux\n- **Title**: Are We Done with MMLU?\n- **Year**: 2024\n- **Venue**: arXiv:2406.04127\n- **Key method/finding**: Manual re-annotation of 5,700 MMLU questions reveals a 6.5% error rate. Error types include parsing mistakes, multiple correct answers, and missing context. Virology subset has 57% errors. Re-evaluation with corrected labels shows significant metric discrepancies and ranking shifts.\n- **Relevance to our paper**: MMLU-Redux addresses data quality while our work addresses contamination — both are sources of measurement error. Items flagged by DIF analysis that are not contaminated may instead have quality issues, making these analyses complementary.\n\n---\n\n## 5. Key Technical Comparisons\n\n### Habba, Itzhak, Yehudai, Perlitz, Bandel, Shmueli-Scheuer, Choshen & Stanovsky (2026) — Growing Pains\n- **Title**: Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\n- **Year**: 2026 (April)\n- **Venue**: arXiv:2604.12843\n- **Authors**: Eliya Habba, Itay Itzhak, Asaf Yehudai, Yotam Perlitz, Elron Bandel, Michal Shmueli-Scheuer, Leshem Choshen, Gabriel Stanovsky\n\n#### Method Details\n- **IRT Model**: Multidimensional 2PL IRT (MIRT-2PL). Each item has a discrimination vector **a_i** and intercept **d_i**.\n- **Calibration**: Fixed Parameter Calibration (FPC) — previously calibrated item parameters are held fixed; only new item parameters are estimated when new benchmarks are added.\n- **Anchor Selection**: Clustering-based method (following Polo et al.) that distributes anchors across the difficulty/discrimination space. Uses 100 anchor items per dataset. Outperforms top-K discrimination selection.\n- **Scale**: 400+ models, evaluated on Open LLM Leaderboard (ARC, GSM8K, HellaSwag, MMLU, TruthfulQA, WinoGrande) and MMLU's 57 subjects.\n- **Performance**: Predicts full-evaluation performance within 2–3 percentage points; Spearman ρ ≥ 0.9 for ranking preservation.\n\n#### Technical Comparison with Our Approach\n\n| Dimension | Growing Pains | Our DIF Approach |\n|-----------|---------------|------------------|\n| **Goal** | Efficient, extensible benchmarking via FPC | Detect contamination-induced measurement distortion |\n| **IRT model** | MIRT-2PL | 2PL (with DIF extensions) |\n| **Core technique** | Fixed parameter calibration with anchor items | DIF analysis across temporal model cohorts |\n| **Contamination** | Acknowledged as limitation (\"anchors may become contaminated or saturated over time, requiring recalibration\") but **not addressed** | Central focus — DIF detects which items are affected |\n| **Item drift** | Not detected; assumes item parameters are stable | Explicitly models item parameter drift as DIF signal |\n| **DIF analysis** | Not mentioned | Core methodology |\n| **Granularity** | Dataset/benchmark level efficiency | Item-level contamination diagnostics |\n| **Binary response** | Yes (limitation acknowledged) | Yes |\n\n#### Complementarity\nGrowing Pains and our work are highly complementary:\n1. **They assume stable item parameters; we test that assumption.** Their FPC framework relies on anchor item parameters not drifting. Our DIF analysis can identify when this assumption breaks down due to contamination.\n2. **They optimize evaluation efficiency; we diagnose evaluation validity.** Growing Pains reduces the number of items needed; we identify which items should be trusted.\n3. **Their acknowledged limitation is our research question.** They note \"anchors may become contaminated or saturated over time, requiring recalibration\" but do not address it. We provide the diagnostic tool for exactly this problem.\n4. **Integration pathway**: DIF-flagged items could be excluded from Growing Pains' anchor sets, making their FPC calibration more robust to contamination.\n\n### Kipnis et al. (2025) — METABENCH\n- **Title**: MetaBench: A Sparse Benchmark for LLM Evaluation\n- **Year**: 2025\n- **Venue**: ICLR 2025\n- **Key method/finding**: Distills six Open LLM Leaderboard benchmarks (ARC, GSM8K, HellaSwag, MMLU, TruthfulQA, WinoGrande) into <3% of their combined size using data from 5000+ LLMs. Uses Generalized Additive Models (GAM) to model subset-to-full-set relationships. Reconstructs benchmark scores with <0.9% MAE and leaderboard scores with <0.5% MAE. Provides two disjoint versions for repeated evaluation. Integrated into EleutherAI's lm-evaluation-harness.\n- **Relevance to our paper**: METABENCH is our primary data source — we use their 5000+ model response matrices for IRT calibration and DIF analysis. Their item selection optimizes for predictive accuracy of aggregate scores; our DIF analysis adds a validity dimension by identifying which items remain measurement-invariant across model cohorts. Items selected by MetaBench that we flag as contaminated would suggest the sparse benchmark itself may be vulnerable to contamination effects.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Kdszx9WZYZZpBvVyvSiXjY`</summary>
+
+```json
+{
+  "name": "literature_survey_d011",
+  "type": "report",
+  "description": "Literature survey for ICLR 2027 Related Work: 19 papers across 5 categories (DIF classics, IRT in NLP, contamination detection, dynamic benchmarks, key comparisons). Includes detailed technical comparison with Growing Pains (Habba et al. 2026).",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_survey_d011.md",
+  "tags": [
+    "literature",
+    "related-work",
+    "D011",
+    "ICLR2027"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "10cf534d-7c17-4098-813c-e2e33110d20a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jq6Vu8pozgCHCvdx5Txs3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5470,
+      "cache_read_input_tokens": 50164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5470
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T23:29:40.797Z_
+
+<details><summary>↩ Tool result · `toolu_01Kdszx9WZYZZpBvVyvSiXjY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_edf23e\", \"name\": \"literature_survey_d011\", \"type\": \"report\", \"description\": \"Literature survey for ICLR 2027 Related Work: 19 papers across 5 categories (DIF classics, IRT in NLP, contamination detection, dynamic benchmarks, key comparisons). Includes detailed technical comparison with Growing Pains (Habba et al. 2026).\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/report/literature_survey_d011.md\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T23:29:40.655234+00:00\", \"tags\": [\"literature\", \"related-work\", \"D011\", \"ICLR2027\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "92d6f55c-0950-450e-906d-7539c401c2ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_edf23e\\\", \\\"name\\\": \\\"literature_survey_d011\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Literature survey for ICLR 2027 Related Work: 19 papers across 5 categories (DIF classics, IRT in NLP, contamination detection, dynamic benchmarks, key comparisons). Includes detailed technical comparison with Growing Pains (Habba et al. 2026).\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/report/literature_survey_d011.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T23:29:40.655234+00:00\\\", \\\"tags\\\": [\\\"literature\\\", \\\"related-work\\\", \\\"D011\\\", \\\"ICLR2027\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_edf23e\", \"name\": \"literature_survey_d011\", \"type\": \"report\", \"description\": \"Literature survey for ICLR 2027 Related Work: 19 papers across 5 categories (DIF classics, IRT in NLP, contamination detection, dynamic benchmarks, key comparisons). Includes detailed technical comparison with Growing Pains (Habba et al. 2026).\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/report/literature_survey_d011.md\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T23:29:40.655234+00:00\", \"tags\": [\"literature\", \"related-work\", \"D011\", \"ICLR2027\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+文献调查已完成，写入 `artifacts/literature_survey_d011.md` 并注册。
+
+覆盖 19 篇文献，5 个类别：
+
+1. **DIF 经典** (4篇): Shealy & Stout 1993 (SIBTEST), Clauser & Mazor 1998 (方法综述), Zumbo 1999 (logistic regression 框架), Holland & Wainer 1993 (教科书)
+2. **IRT in NLP** (5篇): Lalor et al. 2016/2019, Vania et al. 2021, Rodriguez et al. 2021, Polo et al. 2024 (tinyBenchmarks)
+3. **污染检测** (6篇): Shi et al. 2024 (Min-K%), Zhang et al. 2024 (Min-K%++), Balloccu et al. 2024, Golchin & Surdeanu 2024, Oren et al. 2024, Deng et al. 2024
+4. **动态 Benchmark** (5篇): DyVal 1/2, LiveBench, MMLU-Pro, MMLU-Redux
+5. **关键对标** (2篇): Growing Pains (详细技术对比表) 和 METABENCH
+
+Growing Pains 关键发现：他们用 MIRT-2PL + Fixed Parameter Calibration 做高效评估，但**不做 DIF 分析、不检测污染**。他们在 limitations 中承认 "anchors may become contaminated over time" 但没有解决方案——这恰好是我们论文的核心贡献点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "uuid": "e83e1c53-4b44-4922-9ba0-02e8fd28b3cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AkLMHvMwopt8Fw7qiucHRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 621,
+      "cache_read_input_tokens": 55634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 621
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 86_
+
+文献调查已完成，写入 `artifacts/literature_survey_d011.md` 并注册。
+
+覆盖 19 篇文献，5 个类别：
+
+1. **DIF 经典** (4篇): Shealy & Stout 1993 (SIBTEST), Clauser & Mazor 1998 (方法综述), Zumbo 1999 (logistic regression 框架), Holland & Wainer 1993 (教科书)
+2. **IRT in NLP** (5篇): Lalor et al. 2016/2019, Vania et al. 2021, Rodriguez et al. 2021, Polo et al. 2024 (tinyBenchmarks)
+3. **污染检测** (6篇): Shi et al. 2024 (Min-K%), Zhang et al. 2024 (Min-K%++), Balloccu et al. 2024, Golchin & Surdeanu 2024, Oren et al. 2024, Deng et al. 2024
+4. **动态 Benchmark** (5篇): DyVal 1/2, LiveBench, MMLU-Pro, MMLU-Redux
+5. **关键对标** (2篇): Growing Pains (详细技术对比表) 和 METABENCH
+
+Growing Pains 关键发现：他们用 MIRT-2PL + Fixed Parameter Calibration 做高效评估，但**不做 DIF 分析、不检测污染**。他们在 limitations 中承认 "anchors may become contaminated over time" 但没有解决方案——这恰好是我们论文的核心贡献点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 270766,
+  "duration_api_ms": 402672,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "2a533a15-d218-42f7-80fe-8a54f92b8d9e",
+  "total_cost_usd": 1.4373575,
+  "usage": {
+    "input_tokens": 6335,
+    "cache_creation_input_tokens": 44414,
+    "cache_read_input_tokens": 559380,
+    "output_tokens": 8922,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44414,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 447,
+        "cache_read_input_tokens": 55634,
+        "cache_creation_input_tokens": 621,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 621
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 306500,
+      "outputTokens": 11771,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 26,
+      "costUSD": 0.625355,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 6335,
+      "outputTokens": 8922,
+      "cacheReadInputTokens": 559380,
+      "cacheCreationInputTokens": 44414,
+      "webSearchRequests": 0,
+      "costUSD": 0.8120025000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "57c487f8-f888-439c-a04f-b4a611fbf6ab"
+}
+```
+
+</details>
+
+---

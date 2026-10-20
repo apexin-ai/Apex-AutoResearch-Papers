@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_012_irt_theta_conditioning",
+  "project": "irt_equated_bench_regen",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:58:10.439Z",
+    "updated_at": "2026-05-20T22:18:36.631Z",
+    "hypothesis": "用 2PL IRT 估计的 θ 值（10-20 等距层）替代粗糙总分作为 MH 分层变量后，semi-synthetic 框架下 baseline FPR 将从 ~31%（temporal）/~49%（ability）降至 <10%，同时保持 TPR>0.70 at p=0.5。θ-conditioning 通过更精确的能力匹配消除 impact-vs-DIF 混淆残留。",
+    "parent": "plan_011_semi_synthetic_validation"
+  },
+  "timestamp": "2026-05-20T22:18:36.646464+00:00",
+  "trigger": "update_registry"
+}

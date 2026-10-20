@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "402f8c67453382e83c37",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research base vs instruct metadata",
+  "task_key": "worker_research_base_vs_instruct_metadata_20260522T174407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_base_vs_instruct_metadata_20260522T174407_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "23adf72d9fa8eb4738381daadaae7fbb62105d44b8ffd7d45198492c5b94737d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。核心发现：\n\n- **没有显式 base/instruct 标注**，但 `training_method` 列为 551 个模型提供了 ground-truth（DPO/SFT/ORPO/PPO/KTO）\n- **启发式分类结果**: base 4,109 (78.6%) vs instruct 1,118 (21.4%)\n- **MH-DIF 可行**: 四个子组（base/instruct × 2023/2024）均 n≥200，远超 n=80 阈值\n- **注意事项**: \"base\" 组里混有一些未标注的 fine-tuned 模型（约 234 个有歧义名称），2023 cohort 中 base 和 instruct 的 accuracy 分布差异较大（均值差 0.05），需要 theta 匹配\n\n产出已写入 `artifacts/r18_base_instruct_survey/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-base-vs-instruct-metadata.md"
+}

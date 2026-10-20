@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9dfc1281e7cc1a94e3c",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 001b matched ability dif",
+  "task_key": "worker_code_plan_001b_matched_ability_dif_20260520T211545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_001b_matched_ability_dif_20260520T211545_result.json",
+    "occurrence": 1,
+    "bytes": 1457,
+    "sha256": "30ee160818fa6cef679b0928c370ddf172bb95ec925e7013f002881ffa13d029"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果：FAILURE\n\nMatched-ability DIF 未能隔离出污染信号。核心数据：\n\n| 方法 | C% | FPR | Enrichment |\n|------|-----|------|-----------|\n| plan_001 raw temporal | 31.3% | ~0.31 | 0.96 |\n| plan_001b ≥2 quintiles | 47.5% | 0.48 | 0.98 |\n| plan_001b CMH pooled | 33.3% | 0.33 | 1.00 |\n| plan_001b ≥3 quintiles | 25.4% | 0.26 | 0.96 |\n\n**所有方法的 enrichment 都在 0.94–1.04 之间，与随机无异。** 控制能力后 DIF 信号不但没有聚焦到污染 items 上，C% 反而从 31.3% 升到 47.5%（因为 quintile 内样本量更小，统计波动更大导致更多 false flags）。\n\n关键诊断：\n- 5 个 quintile 的 per-quintile enrichment 全在 0.94–1.04，没有任何一个 quintile 显示出差异化信号\n- 6365/12508 items 在至少一个 quintile 中有 NaN delta（样本量不足导致分层失败），但 CMH 补回了这些 items，enrichment 仍为 1.00\n- Q2/Q3 的 C% 最高（34–42%），对应的是 2023/2024 模型比例最不均衡的 quintile（Q2: 406 vs 106），说明组间 N 不平衡放大了 type-I error\n\n**结论：MH-DIF（含 ability matching）对 Li et al. proxy labels 没有区分力。** 污染 items 和 clean items 被等比例地 flag 为 DIF。这说明 temporal cohort 间的 item-level 响应差异主要由能力差异和随机噪声驱动，而非 item-specific contamination。\n\n产出文件已保存到 `artifacts/plan_001b/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-001b-matched-ability-dif.md"
+}

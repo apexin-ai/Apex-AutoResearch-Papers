@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c95bb30a7a000653cb3",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r16 sf2 dif union",
+  "task_key": "worker_code_r16_sf2_dif_union_20260522T133157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_sf2_dif_union_20260522T133157_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "418681ed1cbc03c892cec72cab676af06ca137e2dbee80c17d9c79775de728d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both output files are written:\n\n- **`artifacts/r16_dif_union/dif_union_results.csv`** — 1,787 rows with per-item DIF classification flags\n- **`artifacts/r16_dif_union/dif_union_report.md`** — full report\n\nKey numbers:\n\n| | Sig criterion (BH p<0.05) | Effect criterion (\\|β\\|≥0.5) |\n|---|---|---|\n| Only Uniform (ETS C) | 208 (11.6%) | 288 (16.1%) |\n| Only Non-uniform | 377 (21.1%) | 317 (17.7%) |\n| Both | 314 (17.6%) | 234 (13.1%) |\n| **Union** | **899 (50.3%)** | **839 (47.0%)** |\n| Jaccard | 0.349 | 0.279 |\n\nUnion is 47–50% — well above the 35% threshold. Overlap is moderate (Jaccard ~0.28–0.35), confirming that uniform and non-uniform DIF capture partially distinct item sets. Non-uniform DIF adds ~21% unique items that MH alone misses."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-sf2-dif-union.md"
+}

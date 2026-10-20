@@ -1,0 +1,18 @@
+paper_key: "kiela2021dynabench"
+title: "Dynabench: Rethinking Benchmarking in NLP"
+venue: "NAACL 2021"
+full_text_available: false
+
+research:
+  baselines: [static benchmarks]
+  metrics:
+    - {name: "model error rate on adversarial examples", direction: "informational"}
+  datasets:
+    - {name: "Dynabench platform", size: "dynamic, human-and-model-in-the-loop"}
+  ablation_dimensions: []
+  training_recipe: {optimizer: "N/A (platform)", lr: "N/A", hardware: "N/A"}
+  method_family: "dynamic adversarial benchmarking"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

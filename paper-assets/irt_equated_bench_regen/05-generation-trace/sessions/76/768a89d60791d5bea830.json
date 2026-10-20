@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "768a89d60791d5bea830",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mvp dif power sim v2",
+  "task_key": "worker_code_mvp_dif_power_sim_v2_20260520T172217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_dif_power_sim_v2_20260520T172217_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "ca47eac96d04eabdff2ac28bf9c1bcef2f834fcd7fd6d4853a4d2652f0e08c33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both monitors timed out — simulation was already complete and all results reported. Nothing further to do."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-dif-power-sim-v2.md"
+}

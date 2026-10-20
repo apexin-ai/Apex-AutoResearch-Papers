@@ -1,0 +1,23 @@
+paper_key: "li2025atlas"
+title: "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [full benchmark evaluation, MetaBench, random subsampling]
+  metrics:
+    - {name: "MAE (ability estimation)", direction: "lower_better"}
+    - {name: "item reduction ratio", direction: "higher_better"}
+  datasets:
+    - {name: "WinoGrande", size: "standard"}
+    - {name: "TruthfulQA", size: "standard"}
+    - {name: "HellaSwag", size: "5,600 items"}
+    - {name: "GSM8K", size: "standard"}
+    - {name: "ARC", size: "standard"}
+  ablation_dimensions: [item count, benchmark type]
+  training_recipe: {optimizer: "IRT + Fisher information-guided CAT", lr: "N/A", hardware: "N/A"}
+  method_family: "computerized adaptive testing for LLMs"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

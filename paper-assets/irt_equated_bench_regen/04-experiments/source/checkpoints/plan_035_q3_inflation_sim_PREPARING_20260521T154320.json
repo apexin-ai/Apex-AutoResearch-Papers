@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_035_q3_inflation_sim",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:20.736Z",
+    "updated_at": "2026-05-21T15:43:20.736Z"
+  },
+  "timestamp": "2026-05-21T15:43:20.801070+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "575b85acc0c9f8ad9648",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 m4 gsm1k jaccard permutation",
+  "task_key": "worker_code_r17_m4_gsm1k_jaccard_permutation_20260522T161908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_m4_gsm1k_jaccard_permutation_20260522T161908_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "4ba28905d96b45d018b22f13e2d6698c67b1c723253d0d828541d0068f739174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个产出已生成：\n\n| 文件 | 说明 |\n|------|------|\n| `gsm1k_jaccard_permutation.py` | 脚本（median split + 6 组阈值 robustness + Spearman） |\n| `gsm1k_jaccard_results.csv` | 主分析 10,000 次 permutation 的 null 分布 |\n| `gsm1k_jaccard_report.md` | 完整报告 |\n\n**关键结果：**\n- **Jaccard (median split)**: 0.3913, null mean = 0.3256, **p = 0.31** — 不显著。二值化后 set-level 重合无异于随机。\n- **Robustness**: 6 组阈值中仅 gap>0.02 & |dif|>0.10 一组边际显著 (p=0.029)，但该组合将 33 个模型中 20/25 个分别标记为 contaminated/dif-sensitive，集合过大，Jaccard 膨胀。\n- **Spearman**: r = 0.40, **p = 0.02** — 连续变量上存在中等正相关。binarization 丢失信息导致 Jaccard 不显著，但 rank order 上 contamination gap 大的模型倾向于 DIF magnitude 也大。\n\n结论：两个信号 **部分相关但不冗余** — DIF 捕捉的 item-level 心理测量异常不能被 contamination gap 完全预测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-m4-gsm1k-jaccard-permutation.md"
+}

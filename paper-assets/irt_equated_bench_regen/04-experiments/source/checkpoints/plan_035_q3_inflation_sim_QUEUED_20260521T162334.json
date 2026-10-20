@@ -1,0 +1,17 @@
+{
+  "exp_id": "plan_035_q3_inflation_sim",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:20.736Z",
+    "updated_at": "2026-05-21T16:23:34.071Z",
+    "hypothesis": "plan_013 发现 11.3% within-subject item pairs |Q3|>0.20，存在局部依赖(LD)。MH-DIF 假设局部独立，LD 可能膨胀 Type I error。通过 Monte Carlo 模拟或 within-subject permutation null（保持 Q3 结构），量化 LD 对 MH-DIF FPR 的实际膨胀程度。预测：校准 LD 后实际 FPR 膨胀 <3pp（从 nominal 5% 到 <8%），因为 LD 温和（mean Q3=0.009）且 MH 的 total-score stratification 部分吸收了 LD 效应。",
+    "parent": "plan_013_q3_local_independence",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T16:23:34.123151+00:00",
+  "trigger": "update_registry"
+}

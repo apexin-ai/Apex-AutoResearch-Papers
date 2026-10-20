@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "2307f28a95efda256b6c",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code r22 deff simulation",
+  "task_key": "worker_code_r22_deff_simulation_20260523T081051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r22_deff_simulation_20260523T081051.log",
+    "occurrence": 1,
+    "bytes": 632610,
+    "sha256": "17241191bb63ee25af3397b5a1754e5b884a978142748a459d28fbd691f8f8ea"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 1,
+    "tool_calls": 31,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 31,
+      "tool_result": 31,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "2307f28a95efda256b6c-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 91,
+      "chunks": [
+        {
+          "path": "2307f28a95efda256b6c-part-0001.json",
+          "message_count": 74
+        },
+        {
+          "path": "2307f28a95efda256b6c-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r22-deff-simulation.md"
+}

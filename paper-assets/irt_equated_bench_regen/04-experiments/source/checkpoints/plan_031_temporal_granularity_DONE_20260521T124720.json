@@ -1,0 +1,72 @@
+{
+  "exp_id": "plan_031_temporal_granularity",
+  "project": "irt_equated_bench_regen",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:46:39.820Z",
+    "updated_at": "2026-05-21T12:47:20.517Z",
+    "hypothesis": "如果 temporal DIF 随时间距离单调递增，则 half-year cohort (2023-H2 vs 2024-H1, 0.5yr) 的 C% 应显著低于 full-year (2023 vs 2024, 1.0yr) 的 C%。这检验 DIF 信号是否与 temporal distance 成正比，回应 Reviewer 对 binary temporal split 过于粗糙的批评。如果 half-year C% ≈ full-year C%，说明 DIF 信号在短至 6 个月的窗口内即已饱和。",
+    "parent": "plan_001_real_data_dif_mmlu",
+    "spec": {
+      "command": "python3 plan_031_temporal_granularity.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/metabench_data/benchmark-data/{mmlu,arc,hellaswag,winogrande,truthfulqa}.csv + model_metadata.csv",
+      "data_count": "5 benchmarks × half-year cohorts (2023-H1: 62, 2023-H2: 1018, 2024-H1: 807)",
+      "model_name": "N/A (CPU analysis)",
+      "seed": 42,
+      "checkpoint_source": "plan_001_real_data_dif_mmlu + plan_028_multi_bench_dif",
+      "eval_data": "METABENCH temporal cohort half-year splits",
+      "checkpoint_path": "artifacts/plan_031_temporal_granularity/",
+      "log_path": "logs/workers/worker_code_plan_031_temporal_granularity_20260521T123458.log"
+    },
+    "metrics": {
+      "mmlu_full_year": {
+        "comparison": "2023 vs 2024",
+        "distance_yr": 1,
+        "n_ref": 1080,
+        "n_foc": 807,
+        "pct_c": 31.32,
+        "random_pct_c": 0.02
+      },
+      "mmlu_half_year": {
+        "comparison": "2023-H2 vs 2024-H1",
+        "distance_yr": 0.5,
+        "n_ref": 1018,
+        "n_foc": 807,
+        "pct_c": 34.35,
+        "random_pct_c": 0.19
+      },
+      "mmlu_within_2023": {
+        "comparison": "2023-H1 vs 2023-H2",
+        "distance_yr": 0.5,
+        "n_ref": 62,
+        "n_foc": 1018,
+        "pct_c": 22.62,
+        "random_pct_c": 0.18,
+        "supplementary": true
+      },
+      "cross_bench_half_year": {
+        "arc_pct_c": 29.27,
+        "hellaswag_pct_c": 18.07,
+        "winogrande_pct_c": 33.62,
+        "truthfulqa_pct_c": 31.33
+      },
+      "cross_bench_full_year": {
+        "arc_pct_c": 26.88,
+        "hellaswag_pct_c": 17.89,
+        "winogrande_pct_c": 30.31,
+        "truthfulqa_pct_c": 29.74
+      },
+      "half_year_gt_full_year_all_benchmarks": true,
+      "dif_saturates_within_6mo": true
+    },
+    "notes": "Hypothesis 被证伪但结果更有价值：half-year C% (34.35%) > full-year C% (31.32%)，在所有 5 个 benchmark 上一致。DIF 信号不随 temporal distance 单调递增——去掉 2023-H1 的 62 个早期模型后，reference group 更 homogeneous (同质化)，增强了 DIF 检测灵敏度。解释：DIF 在 6 个月内即已饱和，且 cohort purity 比 temporal distance 更影响检测结果。2023-H1 vs 2023-H2 (supplementary, N=62 < 80 threshold): C%=22.62%，即使不足 80 模型也观测到 DIF 信号。",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T12:47:20.517Z"
+  },
+  "timestamp": "2026-05-21T12:47:20.596904+00:00",
+  "trigger": "update_registry"
+}

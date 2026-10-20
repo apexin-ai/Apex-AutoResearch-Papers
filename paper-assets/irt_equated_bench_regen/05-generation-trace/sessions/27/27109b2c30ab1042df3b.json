@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27109b2c30ab1042df3b",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 019 instability decomposition",
+  "task_key": "worker_code_plan_019_instability_decomposition_20260521T031142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_019_instability_decomposition_20260521T031142_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "9729e4736fa33c840df23c0dded4817ebdd66a119c468480e10a4f6c5d0728c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同样是早期未修复版本的后台任务失败通知。修复 accuracy 计算后的版本已在前台成功运行，所有产出已生成并注册完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-019-instability-decomposition.md"
+}

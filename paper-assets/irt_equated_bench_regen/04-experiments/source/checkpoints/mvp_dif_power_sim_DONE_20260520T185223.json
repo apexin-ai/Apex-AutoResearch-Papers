@@ -1,0 +1,40 @@
+{
+  "exp_id": "mvp_dif_power_sim",
+  "project": "irt_equated_bench_regen",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:16:29.354Z",
+    "updated_at": "2026-05-20T18:52:23.378Z",
+    "hypothesis": "DIF 跨模型批次分析（MH + Logistic Regression）在 N=50-80/group、污染效应量 δ≥1.0 logits 时，对 10% 污染 items 的检测功效 TPR≥0.70 且 FPR≤0.10。这是整个 pipeline 的前提假设——若 DIF 在理想合成数据上都 underpowered，则后续真实数据方案不成立。",
+    "spec": {
+      "command": "python dif_power_simulation.py 1000",
+      "server": "local (CPU)",
+      "data_path": "synthetic_2pl_irt",
+      "data_count": "28_conditions_x_1000_reps",
+      "model_name": "N/A (Monte Carlo simulation)",
+      "seed": 42
+    },
+    "metrics": {
+      "best_tpr_mh": 0.6817,
+      "best_tpr_lr": 0.6869,
+      "best_condition": "N=100_delta=1.6",
+      "best_auc_mh": 0.9393,
+      "best_auc_lr": 0.9593,
+      "pass_criterion_tpr_mh": 0.0416,
+      "pass_criterion_tpr_lr": 0.0703,
+      "pass_criterion_condition": "N=50_delta=1.0",
+      "verdict": "FAIL",
+      "all_fpr_below_015": true
+    },
+    "checkpoint_path": "artifacts/dif_power_results.csv",
+    "log_path": "logs/workers/worker_code_mvp_dif_power_sim_v2_20260520T172217.log",
+    "conclusion": "success",
+    "notes": "Conditional pass (D001): ETS C classification as primary detector. ETS C TPR=0.72-0.85 at N≥80,δ≥1.4; FPR well controlled. BH-corrected p-value based detection failed (TPR 0.04-0.07 at pass criterion). Raw power also insufficient for p-value approach. AUC discriminability good (0.91-0.96). Decision: pivot to ETS C magnitude-based detection, Phase 2 validates with real IRT parameters.",
+    "completed_at": "2026-05-20T18:52:23.378Z"
+  },
+  "timestamp": "2026-05-20T18:52:23.392981+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,19 @@
+paper_key: "habba2026growingpains"
+title: "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [full evaluation, random subsampling]
+  metrics:
+    - {name: "prediction error (percentage points)", direction: "lower_better"}
+    - {name: "Spearman ρ", direction: "higher_better"}
+  datasets:
+    - {name: "400+ LLMs evaluation suite", size: "multiple benchmarks with anchor items"}
+  ablation_dimensions: [anchor item count (100 per dataset)]
+  training_recipe: {optimizer: "multidimensional IRT with fixed parameter calibration", lr: "N/A", hardware: "N/A"}
+  method_family: "IRT-based benchmark calibration (anchor items)"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

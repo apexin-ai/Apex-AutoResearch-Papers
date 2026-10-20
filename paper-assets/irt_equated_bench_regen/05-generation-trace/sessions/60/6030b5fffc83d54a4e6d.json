@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6030b5fffc83d54a4e6d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 weighted mean downstream",
+  "task_key": "worker_code_r17_weighted_mean_downstream_20260523T115014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_weighted_mean_downstream_20260523T115014_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "fec9270d2682f008f2b8b5b3ce8de0d6fe9ebe1359cd55f10bca93a70ef22bd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出：\n\n- **脚本**: `artifacts/r17_evidence/weighted_mean_downstream.py`\n- **报告**: `artifacts/r17_evidence/weighted_mean_downstream.md`\n- **JSON**: `artifacts/r17_evidence/weighted_mean_downstream.json`\n\n关键结果：\n\n| Metric | Uncorrected (3918 C) | Weighted-mean (1690 C) |\n|--------|-----:|-----:|\n| ρ | 0.9965 | 0.9988 |\n| τ | 0.9600 | 0.9785 |\n| Flip rate | 2.00% | 1.08% |\n| Avg \\|rank disp\\| | 74.67 | 39.36 |\n| Mean score shift | +2.116 pp | +1.772 pp |\n| Cohort differential | −0.291 pp | −0.101 pp |\n\n三个定性结论在 DEFF 校正下全部成立：(1) C%=13.5% 远超 ~5% null；(2) 排名近乎完美保留（ρ>0.998）；(3) 两个 cohort 均有正 score shift，cohort differential 在校正后从 −0.29 缩小到 −0.10 pp，方向一致。校正使分析更保守（C items 减少 57%），但不反转任何发现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-weighted-mean-downstream.md"
+}

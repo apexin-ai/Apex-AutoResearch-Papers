@@ -1,0 +1,79 @@
+\section{Method}
+\label{sec:method}
+
+We adopt Differential Item Functioning (DIF) analysis from educational measurement to assess whether individual benchmark items behave consistently across groups of LLMs. The procedure requires only a binary response matrix and group labels, with no access to model internals or training data. Below we define the data, the statistical test, the cohort designs, and a semi-synthetic validation framework.
+
+\subsection{Data}
+\label{sec:data}
+
+The primary dataset is the METABENCH response matrix~\citep{kipnis2024metabench}, which records binary outcomes (1~=~correct, 0~=~incorrect) for 5,227 models evaluated on 12,508 MMLU items~\citep{hendrycks2021mmlu}. Models span release dates from 2023 to 2024, drawn from the Open LLM Leaderboard. MMLU covers 57 subjects grouped into five broad domains (STEM, Humanities, Social Sciences, Other, and a mixed category). We supplement the response matrix with the web-overlap contamination labels of \citet{li2024contamination}, which classify 9,229 of 12,508 items (73.8\% coverage) as ``contaminated'' or ``clean'' based on verbatim matches in publicly accessible web corpora. These labels serve as an external reference for evaluating the relationship between DIF flags and existing contamination indicators.
+
+\subsection{Mantel-Haenszel DIF and ETS Classification}
+\label{sec:mhdif}
+
+In educational testing, Differential Item Functioning (DIF) occurs when an item's statistical relationship to the latent trait $\theta$ differs between two groups after conditioning on ability level. An item with DIF is not merely harder for one group; it functions differently relative to what the group's overall ability would predict. The standard terminology refers to test-takers as ``examinees'' and questions as ``items.'' In our setting, examinees are LLMs and items are benchmark questions.
+
+The Mantel-Haenszel (MH) procedure~\citep{holland1988mh,magis2010difr} detects DIF by stratifying examinees into $K$ score bins based on total score (a proxy for $\theta$) and computing a common odds ratio across strata. We use $K = 5$ equiprobable strata (quintile-based binning) following ETS recommended practice for large-scale assessments~\citep{donoghue1993mh,clauser1998dif}; $K{=}3$ yields near-identical power (\Cref{app:k3_power}). Within each stratum $k$, the responses of the reference group and the focal group form a $2 \times 2$ contingency table:
+
+\begin{equation}
+\label{eq:mh}
+\alpha_{\mathrm{MH}} = \frac{\displaystyle\sum_{k=1}^{K} A_k D_k \,/\, T_k}{\displaystyle\sum_{k=1}^{K} B_k C_k \,/\, T_k}\,,
+\end{equation}
+
+\noindent where $A_k$ and $B_k$ are the number of correct and incorrect responses in the reference group for stratum $k$, $C_k$ and $D_k$ are the corresponding counts for the focal group, and $T_k$ is the total number of examinees in stratum $k$. Under the null hypothesis of no DIF, $\alpha_{\mathrm{MH}} = 1$. The log odds ratio is converted to the ETS delta scale:
+
+\begin{equation}
+\label{eq:delta}
+\Delta_{\mathrm{MH}} = -2.35 \ln(\alpha_{\mathrm{MH}})\,.
+\end{equation}
+
+The Educational Testing Service (ETS) classifies DIF severity into three categories based on $|\Delta_{\mathrm{MH}}|$. Category~A (negligible) requires $|\Delta_{\mathrm{MH}}| < 1.0$. Category~C (large) requires both $|\Delta_{\mathrm{MH}}| \geq 1.5$ and statistical significance at $p < 0.05$ from the MH chi-squared test. Category~B (moderate) includes all remaining items: those with $1.0 \leq |\Delta_{\mathrm{MH}}| < 1.5$, or $|\Delta_{\mathrm{MH}}| \geq 1.5$ without statistical significance. The dual threshold in ETS~C (effect size \emph{and} significance) guards against flagging items that show large but unreliable effect sizes. These thresholds were calibrated for human test-taker populations; we retain them as standardized reference points and verify robustness across stricter cutoffs (\Cref{sec:temporal}). Throughout this paper, we report the percentage of items classified as ETS~C, denoted C\%. At $N = 1{,}887$ (the temporal comparison; 5{,}227 total across all cohort designs), significance ($p < 0.05$) is nearly automatically satisfied for any $|\Delta_{\mathrm{MH}}| \geq 1.5$: only 3 of 3{,}918 C items lack significance, so the dual criterion effectively reduces to a single effect-size threshold; per-item DEFF correction (\Cref{app:deff}) restores $p$-value selectivity by reducing effective $N$: under simple-mean DEFF, 269 items (6.9\%) lose significance while retaining $|\Delta_{\mathrm{MH}}| \geq 1.5$; 74\% of these are near-miss ($p_{\mathrm{adj}} \in [0.05, 0.10]$).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_ets_distribution.pdf}
+\caption{Distribution of $\Delta_{\mathrm{MH}}$ across 12,508 MMLU items (2023 vs.\ 2024 cohorts). Colors indicate ETS severity: A (negligible, $|\Delta_{\mathrm{MH}}| < 1.0$), B (moderate), C (large, $|\Delta_{\mathrm{MH}}| \geq 1.5$ and $p < 0.05$). The heavy tails show that 31.3\% of items exhibit large DIF, 50$\times$ above random baselines (\Cref{sec:temporal}).}
+\label{fig:ets_distribution}
+\end{figure}
+
+The choice of matching variable (the total score used for stratification) affects both validity and interpretation. We distinguish three matching strategies: (1)~\emph{standard matching} uses the within-benchmark total score on all items of the same benchmark; (2)~\emph{cross-subject matching}, adapting purified subtest matching~\citep{swaminathan1990logistic} to the LLM multi-subject setting, uses the total score on all subjects \emph{other than} the one containing the item under test, preventing the matching variable from absorbing injected contamination signals (\Cref{sec:injection}); and (3)~\emph{external matching} uses the total score on a different benchmark entirely (e.g., MMLU total score as the matching variable when testing DIF on Grade School Math 8K (GSM8K) items), providing an independent ability proxy uncontaminated by the target benchmark. Cross-subject and external matching both address matching variable contamination but at different granularities: cross-subject operates within a multi-domain benchmark, while external operates across benchmarks. Total score matching is adequate: IRT $\theta$ correlates at $r = 0.9986$ with total scores (\Cref{sec:structural}).
+
+\paragraph{LLM-specific challenges.} Applying MH-DIF to LLMs introduces four challenges absent in educational testing. First, overlapping training corpora violate local independence; permutation simulation (1{,}000 replications shuffling group labels within score strata) confirms local-dependence-attributable FPR inflation $< 0.001$~pp under cross-subject matching (\Cref{app:method_details}). Second, fine-tuned variants within model families are not independent examinees; graduated de-duplication shows family structure does not inflate C\% (\Cref{sec:structural}). Third, bimodal ability distributions motivate quintile-based stratification. Fourth, MMLU's 57-subject structure raises a multidimensionality concern~\citep{ackerman1992didmf,roussos1996multidimensionality}: domain-level ability profiles are nearly flat across cohorts (Cohen's $d$ range $= 0.12$), cross-subject and within-subject matching agree ($\kappa = 0.80$, 834 items), and cross-subject-unique C items do not concentrate in high-shift subjects (\Cref{app:structural}).
+
+\subsection{Cohort Designs}
+\label{sec:cohorts}
+
+We construct five cohort comparisons: (1)~\emph{Temporal}: 2023 ($N = 1{,}080$) vs.\ 2024 ($N = 807$) models, the primary comparison; (2)~\emph{Ability-quintile}: Q1--Q2 vs.\ Q4--Q5 within the same temporal window; (3)~\emph{Within-family}: Llama-2 ($N = 161$) vs.\ Llama-3 ($N = 308$), isolating generational changes within a single family; (4)~\emph{Within-subject}: per-subject DIF to test domain concentration; and (5)~\emph{Random split}: two random halves of the 2023 cohort ($N = 540$ each) as a sanity check. Calendar-year boundaries are coarse; half-yearly comparison (C\% $= 34.4\%$; \Cref{app:uncertainty}) and base-only/instruct-only analyses (C\% $= 32.1\%$/$36.5\%$; \Cref{app:baseinst_temporal}) confirm DIF persists under finer slicing.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_2_dose_response.pdf}
+\caption{Semi-synthetic dose-response for DIF detection on MMLU. $\Delta\mathrm{TPR}$ ($= \mathrm{TPR}_{\text{injected}} - \mathrm{TPR}_{\text{baseline}}$) increases monotonically with exploitation rate $p$ under binary injection (a calibration upper bound; \Cref{sec:injection}); MH-DIF is sensitive to differential item behavior when present. Baseline (no injection) produces $\Delta\mathrm{TPR} \approx 0$.}
+\label{fig:dose_response}
+\end{figure}
+
+\subsection{Semi-Synthetic Injection Framework}
+\label{sec:injection}
+
+We use contamination injection as a controlled case study to validate DIF detection power; DIF itself is mechanism-agnostic and flags items that function differently without attributing cause (\Cref{sec:disc_protocol}). To evaluate whether MH-DIF can detect differential contamination when it is present, we construct a semi-synthetic framework with controlled ground truth.
+
+\paragraph{Procedure.} From items classified as ETS~A in the uninjected data (negligible DIF), we select 20\% uniformly at random as the ``contaminated'' set. For each contaminated item, we flip incorrect responses to correct in the focal group at exploitation rate $p \in \{0.0, 0.3, 0.5, 0.7, 1.0\}$. We then run MH-DIF on the modified response matrix and measure detection performance. We report $\Delta\mathrm{TPR} = \mathrm{TPR}(\text{injected}) - \mathrm{TPR}(\text{baseline})$ and $\Delta\mathrm{FPR} = \mathrm{FPR}(\text{injected}) - \mathrm{FPR}(\text{baseline})$, where TPR is the true positive rate on injected items and FPR is the false positive rate on uninjected items. Each injection level is repeated across 5 random seeds for uncertainty estimation. Because binary response flipping represents a stylized uniform injection pattern, reported $\Delta\mathrm{TPR}$ values may overestimate detection power; realistic contamination (partial memorization, format-specific advantages) would produce weaker signals.
+
+\paragraph{Cross-subject matching.} The choice of matching variable is critical for valid semi-synthetic evaluation. When contamination is injected into items within subject $X$, the total score on subject $X$ absorbs part of the injection signal. Using this contaminated total score as the MH matching variable violates the conditional independence assumption and inflates FPR. Cross-subject matching resolves this by computing the matching variable from all subjects \emph{other than} the one being tested.
+
+\paragraph{Remark (Zero FPR under single-subject matching).}
+\label{prop:fpr}
+Let $M_i^{(-s)} = \sum_{j \notin s} Y_{ij}$ be the matching variable for examinee $i$ on focal subject $s$. Under single-subject injection (contamination confined to subject $s$), the tested item belongs to $s$ and does not contribute to $M_i^{(-s)}$; injecting contamination into $s$ leaves $M_i^{(-s)}$ unchanged. Therefore $\Delta\mathrm{FPR} = 0$ by construction.
+
+When contamination spans multiple subjects simultaneously, $M_i^{(-s)}$ may absorb signal from other contaminated subjects, potentially inflating FPR. Empirically, this guarantee extends to multi-domain contamination affecting $\leq$9\% of subjects ($k \leq 5$), with graceful degradation beyond this boundary (\Cref{sec:semisynthetic}).
+
+Empirically, $\Delta\mathrm{FPR} = 0.000$ across all five MMLU domains (bootstrap 95\% CI $= [0.000, 0.000]$). $\Delta\mathrm{FPR} = 0$ is a constructive guarantee of the matching strategy, independent of injection realism, whereas $\Delta\mathrm{TPR}$ may overestimate detection power under the stylized uniform injection. $\Delta\mathrm{FPR}$ remains negligible for single-domain contamination ($k \leq 5$); when contamination spans many domains, within-subject matching should be preferred (\Cref{sec:semisynthetic}). We adopt cross-subject matching as the standard protocol.
+
+Following DIF convention~\citep{wainer1993differential}, we do not apply family-wise error correction: the dual ETS~C threshold ($|\Delta_{\mathrm{MH}}| \geq 1.5$ \emph{and} $p < 0.05$) guards against false positives; Benjamini-Hochberg false discovery rate correction at $q = 0.05$ reclassifies only 3 of 3{,}918 C items (\Cref{app:method_details}). Diagnostic procedures (Yen's Q3, domain-specificity, DIF decomposition) and further details appear in \Cref{app:method_details}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_3_within_subject_matching.pdf}
+\caption{Cross-subject vs.\ within-subject matching ($p = 0.5$). Each arrow connects the same subject under both strategies. Cross-subject points (filled) cluster at $\Delta\mathrm{FPR} = 0$ while retaining $\Delta\mathrm{TPR} > 0.3$ for 4/5 subjects; within-subject points (open) inflate FPR by up to ${+}0.12$.}
+\label{fig:matching}
+\end{figure}

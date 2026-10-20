@@ -1,0 +1,18 @@
+paper_key: "chang2024survey"
+title: "A Survey on Evaluation of Large Language Models"
+venue: "ACM Transactions on Intelligent Systems and Technology 2024"
+full_text_available: false
+
+research:
+  baselines: [N/A - survey]
+  metrics:
+    - {name: "N/A - survey", direction: "informational"}
+  datasets:
+    - {name: "comprehensive survey of LLM evaluation methods", size: "N/A"}
+  ablation_dimensions: []
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "survey"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

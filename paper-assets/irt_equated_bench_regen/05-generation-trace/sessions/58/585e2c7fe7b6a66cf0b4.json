@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "585e2c7fe7b6a66cf0b4",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r15 mf3 subject level rho",
+  "task_key": "worker_code_r15_mf3_subject_level_rho_20260522T124300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r15_mf3_subject_level_rho_20260522T124300_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "8e8f4d33dbfe04807d09de1dcce66311a41de3316e669b264b851198475e8ba1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results are strong for the paper argument:\n\n**Key numbers:**\n- Aggregate ρ = 0.9965 → looks harmless\n- Mean subject-level ρ = 0.9499 → meaningful degradation\n- 55/57 subjects have ρ < 0.99; 22 subjects < 0.95; 5 subjects < 0.90\n- Worst: `global_facts` at ρ = 0.774 with max rank displacement of 3,258 positions\n- Mean |rank change| across subjects = 304 positions\n\n**One note:** the C% vs ρ correlation is weaker than expected (ρ = −0.186, p = 0.17) — item count per subject and specific item difficulty distributions likely moderate the relationship, so it's not a clean linear dose-response at subject level.\n\nAll three outputs are written to `artifacts/r15_subject_level_rho/`:\n- `subject_level_rho_report.md` — full report\n- `subject_level_rho_results.csv` — per-subject data (57 rows)\n- `subject_level_rho_analysis.py` — reproducible script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r15-mf3-subject-level-rho.md"
+}

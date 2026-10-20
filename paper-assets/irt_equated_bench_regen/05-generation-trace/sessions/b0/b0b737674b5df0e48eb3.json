@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b737674b5df0e48eb3",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper w1 k3 power writeup",
+  "task_key": "worker_paper_w1_k3_power_writeup_20260523T014316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w1_k3_power_writeup_20260523T014316_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "637e2a154a81eab6fe5e75a04a9150831cc1b167184a3d37f7db9e2776e7f155"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Commit `f98e93e`，编译成功（16 pages, 无错误）。\n\n变更：\n- `appendix.tex`：在 power sensitivity 表后新增 `\\paragraph{Stratum sensitivity (K=3 vs K=5)}` + `tab:k3_power`，表含 δ=1.0 下 N=80/200/500 的 K=3 vs K=5 TPR/FPR/AUC\n- `discussion.tex` §5.2：`(e.g., $K{=}3$)` → `($K{=}3$ yields equivalent power; \\Cref{tab:k3_power})`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w1-k3-power-writeup.md"
+}

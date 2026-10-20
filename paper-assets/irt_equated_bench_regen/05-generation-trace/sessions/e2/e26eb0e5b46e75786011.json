@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e26eb0e5b46e75786011",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research plan 036 growing pains lookup",
+  "task_key": "worker_research_plan_036_growing_pains_lookup_20260521T160331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_036_growing_pains_lookup_20260521T160331_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "cb1d45dc7e6b4638af8554ee7831d61b15ddfe6f9f1d636308996f6b54b44a47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/plan_036_growing_pains/plan_036_report.md`。\n\n## 结论\n\n**\"Growing Pains\"** 论文（Habba et al., arXiv 2604.12843, 2026.04）的 FPC 是 **Fixed Parameter Calibration**，不是 Focal Point Contamination。论文用 IRT anchor items 做高效 benchmark 校准，**不涉及污染检测**，也没有公开的 contamination flag list。因此无法执行 Jaccard overlap 分析。\n\n与我们工作的关联：\n- 共享 IRT 基础，验证了 IRT 在 400+ 模型、57 个 MMLU subjects 上的可行性\n- 论文在 Limitations 中承认 anchor items 可能随时间被污染——直接支持我们 DIF-based contamination detection 的必要性论点\n- 适合在 Related Work 中引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-036-growing-pains-lookup.md"
+}

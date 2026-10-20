@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cad000acc52b9195738e",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper fix page overflow",
+  "task_key": "worker_paper_fix_page_overflow_20260523T030904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_page_overflow_20260523T030904_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "57c08b252241e7cb0c7747f442057b4794f5aee80c18184bd43e4fefe4bbac62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Commit SHA: `e51bb6a`\n\n**结果：**\n- Conclusion (\"6 Conclusion\") 在 page 8 内结束（第 704–708 行）\n- §5.2 \"equating\" 完整显示（第 701–703 行）\n- Limitations 从 page 9 开始（不计入 8 页限制）\n- 无 undefined references\n- 压缩方式：合并 E2/E3 两句为一句 + 删除冗余 alternative-explanation 展开（保留核心 chi-squared 统计量在前文首次引用处）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-page-overflow.md"
+}

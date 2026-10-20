@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36cd206d448b14cd4101",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 deff reclassification",
+  "task_key": "worker_code_r17_deff_reclassification_20260522T153259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_deff_reclassification_20260522T153259_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "4c0ad46ede780285a293a034d7340b4fbee68ec38183368b5c6452833a5427d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2229 lines = 2228 data rows + header. Correct.\n\n**Done.** Outputs in `artifacts/r17_deff_reclassification/`:\n\n- **`deff_reclassification_report.md`** — full breakdown\n- **`deff_reclassification_results.csv`** — 2228 reclassified items\n\nKey findings:\n- **100% of C→non-C reclassifications are C→A via significance loss** (assertions verified — all have |Δ_MH| ≥ 1.5 and adj_p ≥ 0.05)\n- Simple DEFF: 269/3918 C items reclassified (6.9%), 74% near-miss (adj_p 0.05–0.10)\n- Weighted DEFF: 2228/3918 reclassified (56.9%), 65.5% clearly non-significant (adj_p ≥ 0.10)\n- Simple is a strict subset of weighted (every simple-reclassified item is also weighted-reclassified)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-deff-reclassification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2188c2102a870ad6d36b",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r19 model size dif",
+  "task_key": "worker_code_r19_model_size_dif_20260522T184744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r19_model_size_dif_20260522T184744_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "fe7d81f6a58799532dbca5121529cde104e3992e2a5a5871c4976f7c378ff776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有产出已生成，核心结果：\n\n| Group | N_ref/N_foc | C% | 方向偏向 | ρ(difficulty, Δ_MH) |\n|-------|-------------|------|---------|---------------------|\n| Small | 55/114 | **11.14%** | 均衡 (719R/674F) | +0.251 |\n| Medium | 713/429 | **48.25%** | Focal偏↑ (2693R/3342F) | −0.476 |\n| Large | 92/115 | **26.36%** | Focal偏↑ (1207R/2090F) | −0.430 |\n\n关键发现：\n- **DIF 随模型规模递增**：Small 11% → Large 26% → Medium 48%（Medium 最高可能因样本量最大带来的统计功效）\n- **方向差异**：Small 组 DIF 方向近乎对称；Medium/Large 都 focal(2024)-favoring，说明较大模型的 2024 代在某些题上有系统性优势\n- **ρ 翻转**：Small 组难度-DIF 正相关（+0.25，难题对 2023 有利），Medium/Large 负相关（−0.43~−0.48，难题对 2024 有利）\n- **跨组重叠极低**：Jaccard 仅 0.086–0.245，不同规模模型触发 DIF 的 item 集合基本不同\n\n输出文件：\n- `artifacts/r19_model_size_dif/model_size_dif_analysis.py`\n- `artifacts/r19_model_size_dif/model_size_dif_report.md`\n- `artifacts/r19_model_size_dif/model_size_classification.csv`\n- `artifacts/r19_model_size_dif/model_size_results.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r19-model-size-dif.md"
+}

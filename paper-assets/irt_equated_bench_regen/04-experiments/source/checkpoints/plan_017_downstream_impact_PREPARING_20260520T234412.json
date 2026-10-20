@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_017_downstream_impact",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:44:12.194Z",
+    "updated_at": "2026-05-20T23:44:12.194Z"
+  },
+  "timestamp": "2026-05-20T23:44:12.226074+00:00",
+  "trigger": "update_registry"
+}

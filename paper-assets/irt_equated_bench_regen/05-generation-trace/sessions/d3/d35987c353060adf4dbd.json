@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d35987c353060adf4dbd",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 004 step2 gsm8k semi synthetic",
+  "task_key": "worker_code_plan_004_step2_gsm8k_semi_synthetic_20260521T005157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_step2_gsm8k_semi_synthetic_20260521T005157_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "04de5e56c1b7afa06b4ee83ed00df91549a2d190b6eece11262ebcd4efc0f901"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。核心结果：\n\n### GSM8K vs MMLU 对比\n\n| 指标 | MMLU plan_011 (external) | GSM8K (external) | GSM8K (standard) |\n|------|--------------------------|------------------|-------------------|\n| Baseline FPR | 0.314 | **0.471** | 0.191 |\n| ΔTPR p=0.5 | +0.508 | **+0.514** | **+0.749** |\n| ΔTPR p=1.0 | +0.674 | +0.517 | **+0.818** |\n\n### 关键发现\n\n1. **Standard matching 表现优于预期**：baseline FPR 仅 19.1%，ΔTPR 在 p=0.5 就达到 +0.749，p=0.7 时 TPR 已饱和至 1.000。比 MMLU 的 external matching 更强。\n\n2. **External matching 灵敏度极高但 FPR 太高**：p=0.3 时 TPR 已达 0.970，但 baseline FPR 高达 47.1%（与 Step 1 的 47.4% C-rate 一致）。FPR 不随 p 变化（预期行为——外部分数不受 GSM8K 注入影响），但这意味着 external matching 在 GSM8K 上无法区分真实 temporal DIF 和注入污染。\n\n3. **Standard matching 的 FPR 膨胀**：从 p=0 的 0.191 升至 p=1.0 的 0.645，符合预期——20% items 被注入时 matching variable 被污染。\n\n4. **方法论在 GSM8K 上验证成功**：standard matching 展现清晰的 dose-response，ΔTPR 单调递增，Fisher exact test 显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-step2-gsm8k-semi-synthetic.md"
+}

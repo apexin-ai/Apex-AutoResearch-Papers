@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61fad0d379283c57cf7d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r14 exp1 domain profile",
+  "task_key": "worker_code_r14_exp1_domain_profile_20260522T115610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r14_exp1_domain_profile_20260522T115610_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "52d6bc7a707d274249629e9e33a22c12d6b6aa2fdadc81cd24545d0f6e590ab2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。三个文件已写入 `artifacts/r14_mf1_domain_profile/`：\n\n**核心结论**：所有 4 个 domain 的 Cohen's d 均 < 0.3（STEM 最高 d=+0.261，其余三个 ≈ 0.15），domain 间 range 仅 0.115。Overall d=0.173 与预期一致。Profile shift 近乎 flat，排除了多维度能力差异产生 spurious DIF 的可能。\n\nSTEM 的 d 略高（0.26 vs ~0.15），主要由 physics/math 类 subject 驱动（college_physics d=0.43, high_school_mathematics d=0.42），但即使 STEM 也未超过 0.3 阈值。\n\n产出文件：\n- `domain_profile_results.csv` — 逐 domain 统计表\n- `subject_profile_results.csv` — 逐 subject 的 Cohen's d\n- `domain_profile_analysis.md` — 完整报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r14-exp1-domain-profile.md"
+}

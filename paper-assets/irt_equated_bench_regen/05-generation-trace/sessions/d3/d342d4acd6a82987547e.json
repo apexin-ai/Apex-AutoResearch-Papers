@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d342d4acd6a82987547e",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper r20 text edits",
+  "task_key": "worker_paper_r20_text_edits_20260522T192247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r20_text_edits_20260522T192247_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "a087cfd77b07e0eed8fd82d586b738fce9692a14db7fc2fd084f78008e837aba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完成，上下文通顺。汇总如下：\n\n### 修改汇总\n\n| Task | 文件 | 行号 | 内容 |\n|------|------|------|------|\n| **B1** | `discussion.tex:19` | 原 L18 末尾 | 在 base-vs-instruct 段落末追加替代解释句：\"An alternative explanation...yet we observe opposite patterns\" |\n| **B2** | `discussion.tex:25` | 原 L24 | \"≥500 models accumulate (ensuring ≥80 per stratum...)\" → \"N≥80 per cohort suffices for significant detection; we recommend N≥500 for robust estimation...\" |\n| **B3** | `experiments.tex:16` | 原 L16 | K=10 解释从 \"reflects ability–DIF interactions...residual non-uniform DIF that MH does not capture\" → \"may reflect MH's partial sensitivity to non-uniform DIF at finer stratifications, rather than more precise uniform DIF estimation\" |\n| **B4** | `appendix.tex:49` | 原 L49 | Matching 段落：加入 caliper 0.2 SD、sample size ~50% 说明 |\n| **B5** | `experiments.tex:118` | 原 L118 | GSM1K 分析拆为独立句，标注 exploratory，使用 outlier-removed 数值 (r=−0.38, p=0.036)，加 \"suggestive rather than confirmatory\" |\n| **B6** | `discussion.tex:3-4` | 原 L3 | `\\enlargethispage*{20\\baselineskip}` → `\\enlargethispage*{4\\baselineskip}` + TODO 注释 |\n| **B7** | — | — | **跳过**：论文中未找到 \"34.35%\"、\"6-month window\" 或相关内容，无修改目标 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r20-text-edits.md"
+}

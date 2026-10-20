@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2aced7300e81bf07e889",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code final data audit full",
+  "task_key": "worker_code_final_data_audit_full_20260524T042720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_final_data_audit_full_20260524T042720_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "de8d434e8c78fa8f5a0b5d8026ff986563bd538b25fbd5ab14027e22d005a995"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/final_data_audit.md`。\n\n核心结论：**无需立即修正的问题，可以提交。**\n\n- 之前修正的 6 项全部确认正确\n- 12 个关键数字的跨位置一致性全部通过\n- 8 个 Figure 的数据源均早于 PDF 时间戳（Figure 为最新）\n- Appendix 核心表格（multi-subject injection 14 cells、LOFO 15 cells、cross-benchmark 42 cells）全部与源数据匹配\n- 仅发现 2 处 camera-ready 级别的低风险事项：§5.1 AUC 偏高 ~0.01（0.93-0.94 vs 实际 0.92-0.93）和 Table 5 一个 cell 差 0.001"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-final-data-audit-full.md"
+}

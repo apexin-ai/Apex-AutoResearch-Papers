@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "453ed176bd050333b931",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r16 random split null",
+  "task_key": "worker_code_r16_random_split_null_20260523T104440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_random_split_null_20260523T104440_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "e7ec3f229f70fb013faaa790f5653b1ff84b5df7ee6d1d03cecc1920147b918d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。关键发现：\n\n**Null C% = 0.6247%** — 这是最重要的数字。在纯随机分组下，MH-DIF 联合标准（|Δ_MH| ≥ 1.5 且 p < 0.05）的 false positive rate 约 0.62%。\n\n对比已知观测值：\n- 2023 within-year C% (~0.18%) **低于** null → 2023 cohort 内部高度一致\n- 2024 cross-year C% (~1.3%) 约为 null 的 2× → 有信号但不极端\n\nP99 = 1.4504 几乎触及 ETS 1.5 阈值，说明在 N=540 per group 的 LLM 场景下，ETS C 阈值大致对应 null 分布的 99th percentile，并非「极端保守」。\n\n输出文件在 `artifacts/r16_threshold_calibration/`：\n- `random_split_null.py` — 分析脚本\n- `random_split_summary.csv` — 分位数汇总\n- `random_split_report.md` — 完整报告\n- `per_item_null_stats.csv` — 每个 item 的 null 统计\n- `null_histogram.csv` — 直方图数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-random-split-null.md"
+}

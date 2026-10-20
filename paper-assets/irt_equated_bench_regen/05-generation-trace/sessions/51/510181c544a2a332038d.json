@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "510181c544a2a332038d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper w2 interaction writeup",
+  "task_key": "worker_paper_w2_interaction_writeup_20260523T014329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w2_interaction_writeup_20260523T014329_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "e2630f46dab67ed24e50f2bc86c18c58a3972c9376ab43c96ac999e7d3422f2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation successful (17 pages, no errors).\n\nCommit SHA: `9c98218`. Changes:\n- **appendix.tex**: Added `\\paragraph{Difficulty--model-type interaction.}` with `\\label{app:interaction}` after the logistic regression specification paragraph — reports the regression coefficients (OR=4.24, OR=4.75) and McNemar concordance (98%).\n- **discussion.tex §5.1**: Appended one sentence at the end of the base-vs-instruct direction reversal argument, citing the regression result and cross-referencing `\\Cref{app:interaction}`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w2-interaction-writeup.md"
+}

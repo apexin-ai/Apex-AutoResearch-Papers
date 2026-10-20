@@ -1,0 +1,2469 @@
+{
+  "schema_version": "1.0",
+  "id": "fab3ce380ef69d0f85a0",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code plan 019 instability decomposition v2",
+  "task_key": "worker_code_plan_019_instability_decomposition_v2_20260521T035329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_019_instability_decomposition_v2_20260521T035329.log",
+    "occurrence": 1,
+    "bytes": 122097,
+    "sha256": "2304d861cfc7bdfa99d2855c8b05675a0a12db797e40afc4a7636521dc46b3e7"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 22,
+      "tool_result": 22,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "de74b8e8-1740-4c7b-b7b7-99e3d7881123",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779351000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b1beac27-a5fe-44e7-af36-3bccd0aa4eae",
+                "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break down this task:\n\n1. I need to perform an \"Instability Decomposition\" analysis on MMLU temporal MH-DIF results\n2. I need to explore existing data files, compute statistics, and generate outputs\n3. The key question: how much of the 31.3% DIF C items is due to domain-level capability improvement vs residual instability\n\nLet me start by exploring the data files to understand their structure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "929bb94e-a531-4972-a6dc-c7a4fe331bd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpJdZto2HSWjLhBYBmLPUg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11697,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11697
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by exploring the existing data files to understand their structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "83cb4f62-b73b-429f-bd48-9e304d9bed57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpJdZto2HSWjLhBYBmLPUg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11697,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11697
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PE7qhLDMPTyhXHvoK5d3Cm",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/",
+                "description": "List plan_001 artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "00068e96-12a9-485d-abf6-984c02dce21d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpJdZto2HSWjLhBYBmLPUg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11697,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11697
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T03:53:43.628Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PE7qhLDMPTyhXHvoK5d3Cm",
+              "type": "tool_result",
+              "content": "cross_analysis.csv\ndif_results_ability.csv\ndif_results_temporal.csv\ndif_summary.csv\ndomain_specificity.csv\nneg_disc_sensitivity.csv\nplan_001_analysis.py\nplan_001_report.md\nwithin_family_dif.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "6eeb5322-51f3-47e7-abf3-f2dd9518da7c",
+            "tool_use_result": {
+              "stdout": "cross_analysis.csv\ndif_results_ability.csv\ndif_results_temporal.csv\ndif_summary.csv\ndomain_specificity.csv\nneg_disc_sensitivity.csv\nplan_001_analysis.py\nplan_001_report.md\nwithin_family_dif.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018RwtxNBFHatzwteWCiD6Cq",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/item_metadata.csv",
+                "description": "Preview item metadata"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "a54d05cc-60fa-4dc4-b6d8-446f710bd127",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpJdZto2HSWjLhBYBmLPUg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11697,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11697
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T03:53:47.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018RwtxNBFHatzwteWCiD6Cq",
+              "type": "tool_result",
+              "content": "item_id,subject,ctt_difficulty,ctt_discrimination,sd,is_negative_disc,empirical_p\nabstract_algebra.1,abstract_algebra,0.1415501053841732,-0.2833678806673642,0.391334247107756,True,0.18867202449292\nabstract_algebra.10,abstract_algebra,0.0829181835600689,0.1905805323705553,0.313613528527619,False,0.11040949100650593\nabstract_algebra.100,abstract_algebra,0.0485725234719294,0.0603451356931113,0.2461314261708401,False,0.06467661691542288\nabstract_algebra.11,abstract_algebra,0.5031136232994826,0.0842828755338663,0.4699611407645028,False,0.6701109835438194",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "d8e98486-2d5e-4ebc-b7d8-4fe251a22731",
+            "tool_use_result": {
+              "stdout": "item_id,subject,ctt_difficulty,ctt_discrimination,sd,is_negative_disc,empirical_p\nabstract_algebra.1,abstract_algebra,0.1415501053841732,-0.2833678806673642,0.391334247107756,True,0.18867202449292\nabstract_algebra.10,abstract_algebra,0.0829181835600689,0.1905805323705553,0.313613528527619,False,0.11040949100650593\nabstract_algebra.100,abstract_algebra,0.0485725234719294,0.0603451356931113,0.2461314261708401,False,0.06467661691542288\nabstract_algebra.11,abstract_algebra,0.5031136232994826,0.0842828755338663,0.4699611407645028,False,0.6701109835438194",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J41JqbfTVaHZP6MZ6KSW9Y",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv",
+                "description": "Preview model metadata"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "1c243fdb-9db4-43e1-be53-645c75ec2db7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpJdZto2HSWjLhBYBmLPUg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11697,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11697
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T03:53:48.256Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J41JqbfTVaHZP6MZ6KSW9Y",
+              "type": "tool_result",
+              "content": "model_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile\n0-hero/Matter-0.1-7B,unknown,unknown,unknown,unknown,0.661225,other,3\n0-hero/Matter-0.1-7B-DPO-preview,,unknown,unknown,DPO,0.661337,other,3\n0-hero/Matter-0.1-7B-boost,unknown,unknown,unknown,unknown,0.653422,other,3\n0-hero/Matter-0.1-7B-boost-DPO,,unknown,unknown,DPO,0.654941,other,3",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "b1853bd3-e3f6-4b4e-98ee-c2195fec4376",
+            "tool_use_result": {
+              "stdout": "model_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile\n0-hero/Matter-0.1-7B,unknown,unknown,unknown,unknown,0.661225,other,3\n0-hero/Matter-0.1-7B-DPO-preview,,unknown,unknown,DPO,0.661337,other,3\n0-hero/Matter-0.1-7B-boost,unknown,unknown,unknown,unknown,0.653422,other,3\n0-hero/Matter-0.1-7B-boost-DPO,,unknown,unknown,DPO,0.654941,other,3",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VdvqrVsYwaunHX5gFJ1ZnV",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_results_temporal.csv",
+                "description": "Preview temporal DIF results"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "b2fc5496-64eb-46b5-a056-76287f370981",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToLyGKfMa5ELTvqfXkq8VA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 974,
+                "cache_read_input_tokens": 23538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 974
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T03:53:50.938Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VdvqrVsYwaunHX5gFJ1ZnV",
+              "type": "tool_result",
+              "content": "item_id,subject,alpha_mh,delta_mh,se,p_value,ets_class,li_label,li_contamination_type\nabstract_algebra.1,abstract_algebra,0.8673811041189408,0.3343505559632721,0.2921867891177819,0.27995385252579175,A,False,clean\nabstract_algebra.10,abstract_algebra,0.5141246508049961,1.5634303993406418,0.36471274316626207,1.8840975857581377e-05,C,False,clean\nabstract_algebra.100,abstract_algebra,0.45562394251510224,1.8473056183645777,0.4442953571627415,3.3721937472974695e-05,C,,no_annotation\nabstract_algebra.11,abstract_algebra,0.7175060366563377,0.780138707124792,0.2484055209632857,0.0016556553694112575,A,False,clean",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "7392c08c-ec1e-4750-bd9c-7344074dda67",
+            "tool_use_result": {
+              "stdout": "item_id,subject,alpha_mh,delta_mh,se,p_value,ets_class,li_label,li_contamination_type\nabstract_algebra.1,abstract_algebra,0.8673811041189408,0.3343505559632721,0.2921867891177819,0.27995385252579175,A,False,clean\nabstract_algebra.10,abstract_algebra,0.5141246508049961,1.5634303993406418,0.36471274316626207,1.8840975857581377e-05,C,False,clean\nabstract_algebra.100,abstract_algebra,0.45562394251510224,1.8473056183645777,0.4442953571627415,3.3721937472974695e-05,C,,no_annotation\nabstract_algebra.11,abstract_algebra,0.7175060366563377,0.780138707124792,0.2484055209632857,0.0016556553694112575,A,False,clean",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016SzRXGj1NUPnJhZFQ1RHzH",
+              "name": "Bash",
+              "input": {
+                "command": "head -3 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_summary.csv",
+                "description": "Preview DIF summary"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "bd12f721-3b69-4bac-a000-b252293554a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToLyGKfMa5ELTvqfXkq8VA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 974,
+                "cache_read_input_tokens": 23538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 974
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T03:53:51.846Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016SzRXGj1NUPnJhZFQ1RHzH",
+              "type": "tool_result",
+              "content": "cohort_type,item_filter,n_items,n_ets_a,n_ets_b,n_ets_c,pct_c,fpr_vs_li_clean,enrichment_ratio\ntemporal,all,12508,6332,2258,3918,31.323952670291018,0.31840974212034384,0.9641535548797142\nability,all,12508,11052,1093,363,2.9021426287176206,0.026862464183381087,1.1949300411522636",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "3937f139-cf48-4f63-a4dc-fc44eed78f1e",
+            "tool_use_result": {
+              "stdout": "cohort_type,item_filter,n_items,n_ets_a,n_ets_b,n_ets_c,pct_c,fpr_vs_li_clean,enrichment_ratio\ntemporal,all,12508,6332,2258,3918,31.323952670291018,0.31840974212034384,0.9641535548797142\nability,all,12508,11052,1093,363,2.9021426287176206,0.026862464183381087,1.1949300411522636",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0156xWRotDc8acyxQkxAhhmY",
+              "name": "Bash",
+              "input": {
+                "command": "cut -d',' -f1,7 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv | sort -t',' -k2 | head -20",
+                "description": "Check cohort_temporal values"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "6cb88157-828b-447a-bd8b-a2992ac4c524",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToLyGKfMa5ELTvqfXkq8VA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 974,
+                "cache_read_input_tokens": 23538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 974
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T03:53:52.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0156xWRotDc8acyxQkxAhhmY",
+              "type": "tool_result",
+              "content": "01-ai/Yi-34B-200K,2023\n01-ai/Yi-34B-Chat,2023\n01-ai/Yi-9B,2023\n01-ai/Yi-9B-200K,2023\n222gate/TinyMistral-248Mx4-MOE,2023\nAIGym/Llama-2-7b-chat-hf-structured-responses,2023\nAIJUUD/juud-Mistral-7B,2023\nAabbhishekk/llama2-7b-function-calling-slerp,2023\nArianAskari/NeuralHermes-2.5-Mistral-7B,2023\nArianAskari/SOLID-SFT-DPO-MixQV2-SOLIDChosen-SFTRejected-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-DPO-MixQV2-SOLIDRejected-SFTChosen-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-DPO-MixQV3-SOLIDChosen-SFTRejected-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-DPO-MixQV3-SOLIDRejected-SFTChosen-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-WoDPO-MixQV2-Zephyr-7b-beta,2023\nAzure99/blossom-v3_1-yi-34b,2023\nAzure99/blossom-v4-mistral-7b,2023\nAzure99/blossom-v4-qwen1_5-14b,2023\nAzure99/blossom-v4-qwen1_5-4b,2023\nAzure99/blossom-v4-qwen1_5-7b,2023\nAzure99/blossom-v4-yi-34b,2023",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "13a559ac-d01a-493b-bcfd-678e58b4e666",
+            "tool_use_result": {
+              "stdout": "01-ai/Yi-34B-200K,2023\n01-ai/Yi-34B-Chat,2023\n01-ai/Yi-9B,2023\n01-ai/Yi-9B-200K,2023\n222gate/TinyMistral-248Mx4-MOE,2023\nAIGym/Llama-2-7b-chat-hf-structured-responses,2023\nAIJUUD/juud-Mistral-7B,2023\nAabbhishekk/llama2-7b-function-calling-slerp,2023\nArianAskari/NeuralHermes-2.5-Mistral-7B,2023\nArianAskari/SOLID-SFT-DPO-MixQV2-SOLIDChosen-SFTRejected-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-DPO-MixQV2-SOLIDRejected-SFTChosen-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-DPO-MixQV3-SOLIDChosen-SFTRejected-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-DPO-MixQV3-SOLIDRejected-SFTChosen-Zephyr-7b-beta,2023\nArianAskari/SOLID-SFT-WoDPO-MixQV2-Zephyr-7b-beta,2023\nAzure99/blossom-v3_1-yi-34b,2023\nAzure99/blossom-v4-mistral-7b,2023\nAzure99/blossom-v4-qwen1_5-14b,2023\nAzure99/blossom-v4-qwen1_5-4b,2023\nAzure99/blossom-v4-qwen1_5-7b,2023\nAzure99/blossom-v4-yi-34b,2023",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have a clear picture of the data. `cohort_temporal` has values like \"2023\", \"2024\", \"other\". Let me check the cohort distribution and then write the analysis script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "d2d980b9-3f7a-49b0-b565-b93add7006b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FZ1DknmMKfGUxVf2hjf3YY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1347,
+                "cache_read_input_tokens": 24512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VkGsNTaQ6yTWD3CGBaXfvq",
+              "name": "Bash",
+              "input": {
+                "command": "cut -d',' -f7 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv | sort | uniq -c | sort -rn",
+                "description": "Count models per cohort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "3e84b3e0-9aa4-4486-b7b9-a79de0530db1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FZ1DknmMKfGUxVf2hjf3YY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1347,
+                "cache_read_input_tokens": 24512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T03:53:57.575Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VkGsNTaQ6yTWD3CGBaXfvq",
+              "type": "tool_result",
+              "content": "   3340 other\n   1080 2023\n    807 2024\n      1 cohort_temporal",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "59145d12-c2b3-4260-9750-d39b4bb6a54a",
+            "tool_use_result": {
+              "stdout": "   3340 other\n   1080 2023\n    807 2024\n      1 cohort_temporal",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AAntZMTmHn9QHTp3c4dpnw",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_results_temporal.csv",
+                "description": "Count DIF result rows"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "13c6ccaa-a3cd-48a5-94a0-e792beb09dcd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FZ1DknmMKfGUxVf2hjf3YY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1347,
+                "cache_read_input_tokens": 24512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T03:53:58.283Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AAntZMTmHn9QHTp3c4dpnw",
+              "type": "tool_result",
+              "content": "12509 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_results_temporal.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "4aed858b-30b7-4af6-b0a8-1a73fc0a19d7",
+            "tool_use_result": {
+              "stdout": "12509 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/dif_results_temporal.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QZaXxzbfHXe8ZqaYDDTP6L",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport scipy.sparse as sp\nm = sp.load_npz('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix.npz')\nprint(f'Shape: {m.shape}, dtype: {m.dtype}, nnz: {m.nnz}')\n\"",
+                "description": "Check response matrix shape"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "b31b1684-a557-4c1c-8844-88000d51e203",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FZ1DknmMKfGUxVf2hjf3YY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1347,
+                "cache_read_input_tokens": 24512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T03:54:00.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QZaXxzbfHXe8ZqaYDDTP6L",
+              "type": "tool_result",
+              "content": "Shape: (5227, 12508), dtype: int8, nnz: 38654082",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "c0968204-b8f9-4c89-88db-b59c1c2491ec",
+            "tool_use_result": {
+              "stdout": "Shape: (5227, 12508), dtype: int8, nnz: 38654082",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll create the directory and write the analysis script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "9fc1097b-2191-406c-a99c-15f986a7120b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Aw8nMimNPGPQPunMdLshid",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 25859,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uu7M5cvGv74fPs5ZbJvXdo",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019",
+                "description": "Create plan_019 output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "dc622aee-ebea-48a0-8fc2-5357e0ed334f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Aw8nMimNPGPQPunMdLshid",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 25859,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T03:54:03.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uu7M5cvGv74fPs5ZbJvXdo",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "be016233-7cb3-47a0-89db-aff8ee8f01fb",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VCDMY4rWkXaDiFxGqA57Qg",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+                "content": "\"\"\"\nPlan 019: Instability Decomposition — How much DIF C% is attributable to domain-level capability improvement?\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nimport scipy.sparse as sp\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import log_loss\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\nfrom scipy.stats import pointbiserialr, pearsonr, spearmanr\n\nROOT = Path('/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen')\nOUT = ROOT / 'artifacts' / 'plan_019'\nOUT.mkdir(parents=True, exist_ok=True)\n\n# ── Load data ──────────────────────────────────────────────────────────────\n\ndif = pd.read_csv(ROOT / 'artifacts' / 'plan_001' / 'dif_results_temporal.csv')\nitem_meta = pd.read_csv(ROOT / 'artifacts' / 'item_metadata.csv')\nmodel_meta = pd.read_csv(ROOT / 'artifacts' / 'model_metadata.csv')\nresp = sp.load_npz(ROOT / 'artifacts' / 'response_matrix.npz')\n\nprint(f\"DIF results: {len(dif)} items\")\nprint(f\"Response matrix: {resp.shape} (models x items)\")\nprint(f\"Models: {len(model_meta)}, Items: {len(item_meta)}\")\n\n# ── Verify C% matches known 31.3% ─────────────────────────────────────────\n\ndif['is_C'] = (dif['ets_class'] == 'C').astype(int)\ntotal_c_pct = dif['is_C'].mean() * 100\nprint(f\"\\nTotal C%: {total_c_pct:.1f}% (expected ~31.3%)\")\n\n# ── Build cohort masks ─────────────────────────────────────────────────────\n\nref_mask = model_meta['cohort_temporal'] == '2023'\nfoc_mask = model_meta['cohort_temporal'] == '2024'\nprint(f\"Reference (2023): {ref_mask.sum()} models, Focal (2024): {foc_mask.sum()} models\")\n\nref_idx = np.where(ref_mask.values)[0]\nfoc_idx = np.where(foc_mask.values)[0]\n\n# ── Compute per-item accuracy by cohort ────────────────────────────────────\n\nresp_dense = resp.toarray()  # (models, items) — int8\n\nref_acc = resp_dense[ref_idx].mean(axis=0)  # per-item accuracy for 2023\nfoc_acc = resp_dense[foc_idx].mean(axis=0)  # per-item accuracy for 2024\nall_acc = resp_dense.mean(axis=0)            # overall item difficulty (= easiness)\n\n# ── Merge item-level features ──────────────────────────────────────────────\n\n# Ensure item ordering matches\nassert list(item_meta['item_id']) == list(dif['item_id']), \"Item order mismatch\"\n\ndif['item_difficulty'] = all_acc  # higher = easier\ndif['ref_acc'] = ref_acc\ndif['foc_acc'] = foc_acc\ndif['item_delta'] = foc_acc - ref_acc  # per-item focal-ref delta\n\n# Item discrimination: point-biserial correlation of item with total score\ntotal_scores = resp_dense.sum(axis=1)  # per-model total\nitem_disc = np.zeros(resp.shape[1])\nfor j in range(resp.shape[1]):\n    r, _ = pointbiserialr(resp_dense[:, j], total_scores)\n    item_disc[j] = r if not np.isnan(r) else 0.0\ndif['item_discrimination'] = item_disc\n\n# ── Compute subject-level accuracy delta ───────────────────────────────────\n\n# Map items to subjects\nsubjects = dif['subject'].values\nunique_subjects = dif['subject'].unique()\nprint(f\"\\n{len(unique_subjects)} unique subjects\")\n\n# For each subject, compute mean accuracy delta across its items\nsubject_delta = dif.groupby('subject')['item_delta'].mean()\ndif['subject_accuracy_delta'] = dif['subject'].map(subject_delta)\n\n# Subject-level C%\nsubject_cpct = dif.groupby('subject')['is_C'].mean() * 100\ndif['subject_cpct'] = dif['subject'].map(subject_cpct)\n\nprint(f\"Subject accuracy delta: mean={subject_delta.mean():.4f}, std={subject_delta.std():.4f}\")\nprint(f\"Subject C%: mean={subject_cpct.mean():.1f}%, std={subject_cpct.std():.1f}%\")\n\n# ── Logistic Regression ───────────────────────────────────────────────────\n\ny = dif['is_C'].values\n\n# Model 1: DIF_flag ~ subject_accuracy_delta\nX1 = dif[['subject_accuracy_delta']].values\nlr1 = LogisticRegression(max_iter=1000, solver='lbfgs')\nlr1.fit(X1, y)\npred1 = lr1.predict_proba(X1)[:, 1]\nll1 = -log_loss(y, pred1, normalize=False)\n\n# Null model\nnull_prob = y.mean()\nll_null = -log_loss(y, np.full_like(y, null_prob, dtype=float), normalize=False)\n\n# McFadden pseudo R²\npseudo_r2_1 = 1 - ll1 / ll_null\n\n# Model 2: DIF_flag ~ subject_accuracy_delta + item_difficulty + item_discrimination\nX2 = dif[['subject_accuracy_delta', 'item_difficulty', 'item_discrimination']].values\nlr2 = LogisticRegression(max_iter=1000, solver='lbfgs')\nlr2.fit(X2, y)\npred2 = lr2.predict_proba(X2)[:, 1]\nll2 = -log_loss(y, pred2, normalize=False)\npseudo_r2_2 = 1 - ll2 / ll_null\n\n# Model 3: DIF_flag ~ item_difficulty + item_discrimination (without subject delta)\nX3 = dif[['item_difficulty', 'item_discrimination']].values\nlr3 = LogisticRegression(max_iter=1000, solver='lbfgs')\nlr3.fit(X3, y)\npred3 = lr3.predict_proba(X3)[:, 1]\nll3 = -log_loss(y, pred3, normalize=False)\npseudo_r2_3 = 1 - ll3 / ll_null\n\n# Incremental R² of subject_accuracy_delta beyond item controls\nincremental_r2 = pseudo_r2_2 - pseudo_r2_3\n\nprint(\"\\n── Logistic Regression Results ──\")\nprint(f\"Null log-likelihood: {ll_null:.1f}\")\nprint(f\"Model 1 (subject_delta only):        pseudo R² = {pseudo_r2_1:.4f}\")\nprint(f\"Model 2 (subject_delta + controls):   pseudo R² = {pseudo_r2_2:.4f}\")\nprint(f\"Model 3 (controls only):              pseudo R² = {pseudo_r2_3:.4f}\")\nprint(f\"Incremental R² of subject_delta:      {incremental_r2:.4f}\")\n\n# Odds ratios\nor1 = np.exp(lr1.coef_[0])\nor2 = np.exp(lr2.coef_[0])\nprint(f\"\\nModel 1 ORs: subject_delta={or1[0]:.3f}\")\nprint(f\"Model 2 ORs: subject_delta={or2[0]:.3f}, item_difficulty={or2[1]:.3f}, item_discrimination={or2[2]:.3f}\")\nprint(f\"Model 1 intercept: {lr1.intercept_[0]:.4f}, Model 2 intercept: {lr2.intercept_[0]:.4f}\")\n\n# ── Predicted C% after partialling out domain improvement ──────────────────\n\n# Counterfactual: set subject_accuracy_delta = 0 (no domain improvement)\nX2_cf = X2.copy()\nX2_cf[:, 0] = 0.0  # zero out subject_accuracy_delta\npred2_cf = lr2.predict_proba(X2_cf)[:, 1]\n\npredicted_c_pct_full = pred2.mean() * 100\npredicted_c_pct_cf = pred2_cf.mean() * 100\nreduction = predicted_c_pct_full - predicted_c_pct_cf\n\nprint(f\"\\n── Counterfactual Analysis ──\")\nprint(f\"Observed C%: {total_c_pct:.1f}%\")\nprint(f\"Model 2 predicted C%: {predicted_c_pct_full:.1f}%\")\nprint(f\"Counterfactual C% (no domain improvement): {predicted_c_pct_cf:.1f}%\")\nprint(f\"Reduction attributable to domain improvement: {reduction:.1f} pp\")\nprint(f\"Residual instability: {predicted_c_pct_cf:.1f}%\")\nprint(f\"Fraction explained by domain improvement: {reduction/total_c_pct*100:.1f}%\")\n\n# ── Subject-level scatter: accuracy delta vs C% ───────────────────────────\n\nsubj_df = pd.DataFrame({\n    'subject': unique_subjects,\n    'accuracy_delta': [subject_delta[s] for s in unique_subjects],\n    'c_pct': [subject_cpct[s] for s in unique_subjects],\n    'n_items': [dif[dif['subject'] == s].shape[0] for s in unique_subjects],\n})\n\nr_pearson, p_pearson = pearsonr(subj_df['accuracy_delta'], subj_df['c_pct'])\nr_spearman, p_spearman = spearmanr(subj_df['accuracy_delta'], subj_df['c_pct'])\n\nprint(f\"\\n── Subject-Level Correlation ──\")\nprint(f\"Pearson r = {r_pearson:.3f} (p = {p_pearson:.2e})\")\nprint(f\"Spearman ρ = {r_spearman:.3f} (p = {p_spearman:.2e})\")\n\n# ── Plot ───────────────────────────────────────────────────────────────────\n\nfig, ax = plt.subplots(figsize=(8, 6))\nsizes = subj_df['n_items'] / subj_df['n_items'].max() * 200 + 20\nax.scatter(subj_df['accuracy_delta'], subj_df['c_pct'], s=sizes, alpha=0.5, edgecolors='k', linewidths=0.5)\n\n# Fit line\nz = np.polyfit(subj_df['accuracy_delta'], subj_df['c_pct'], 1)\nxline = np.linspace(subj_df['accuracy_delta'].min(), subj_df['accuracy_delta'].max(), 100)\nax.plot(xline, np.polyval(z, xline), 'r--', linewidth=1.5, label=f'r={r_pearson:.2f}')\n\nax.set_xlabel('Subject Accuracy Delta (2024 − 2023)', fontsize=12)\nax.set_ylabel('Subject DIF C%', fontsize=12)\nax.set_title('Domain Capability Improvement vs. DIF Instability', fontsize=13)\nax.legend(fontsize=11)\nax.axhline(y=total_c_pct, color='gray', linestyle=':', alpha=0.5, label=f'Overall C% = {total_c_pct:.1f}%')\nax.axvline(x=0, color='gray', linestyle=':', alpha=0.5)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nfig.savefig(OUT / 'fig_subject_delta_vs_cpct.png', dpi=150)\nprint(f\"\\nFigure saved: {OUT / 'fig_subject_delta_vs_cpct.png'}\")\n\n# ── Generate Report ────────────────────────────────────────────────────────\n\nreport = f\"\"\"# Instability Decomposition: DIF C% Attribution Analysis\n\n## Research Question\n\nOf the {total_c_pct:.1f}% items flagged as ETS C (large DIF) in temporal MH-DIF analysis,\nhow much is attributable to **domain-level capability improvement** (2024 models systematically\nstronger in certain subjects) vs. **residual item-level instability**?\n\n## Data\n\n| Component | Count |\n|-----------|-------|\n| Total items | {len(dif):,} |\n| ETS C items | {dif['is_C'].sum():,} ({total_c_pct:.1f}%) |\n| Reference cohort (2023) | {ref_mask.sum()} models |\n| Focal cohort (2024) | {foc_mask.sum()} models |\n| Unique subjects | {len(unique_subjects)} |\n\n## Method\n\n1. **Subject accuracy delta**: For each subject, computed mean accuracy of 2024 cohort minus 2023 cohort across all items in that subject.\n2. **Logistic regression**: Predicted DIF C flag (binary) from subject-level and item-level features.\n3. **Counterfactual**: Set subject_accuracy_delta = 0 in the full model to estimate C% without domain improvement.\n\n## Logistic Regression Results\n\n| Model | Features | Pseudo R² |\n|-------|----------|-----------|\n| Null | (intercept only) | — |\n| Model 1 | subject_accuracy_delta | {pseudo_r2_1:.4f} |\n| Model 2 | subject_accuracy_delta + item_difficulty + item_discrimination | {pseudo_r2_2:.4f} |\n| Model 3 | item_difficulty + item_discrimination | {pseudo_r2_3:.4f} |\n\n**Incremental pseudo R² of subject_accuracy_delta** (Model 2 − Model 3): **{incremental_r2:.4f}**\n\n### Odds Ratios\n\n| Feature | Model 1 OR | Model 2 OR |\n|---------|-----------|-----------|\n| subject_accuracy_delta | {or1[0]:.3f} | {or2[0]:.3f} |\n| item_difficulty | — | {or2[1]:.3f} |\n| item_discrimination | — | {or2[2]:.3f} |\n\n*Note: subject_accuracy_delta and item_difficulty are on their natural scales (0–1 range). ORs reflect the change in odds of DIF C per unit increase.*\n\n## Counterfactual Analysis\n\n| Scenario | Predicted C% |\n|----------|-------------|\n| Observed | {total_c_pct:.1f}% |\n| Full model prediction | {predicted_c_pct_full:.1f}% |\n| Counterfactual (zero domain improvement) | {predicted_c_pct_cf:.1f}% |\n| **Reduction from domain improvement** | **{reduction:.1f} pp** |\n\n- **Fraction of C% attributable to domain improvement**: {reduction/total_c_pct*100:.1f}%\n- **Residual instability** (not explained by capability improvement): {predicted_c_pct_cf:.1f}%\n\n## Subject-Level Correlation\n\n| Metric | Value |\n|--------|-------|\n| Pearson r (accuracy delta vs C%) | {r_pearson:.3f} (p = {p_pearson:.2e}) |\n| Spearman ρ | {r_spearman:.3f} (p = {p_spearman:.2e}) |\n\n![Subject Accuracy Delta vs DIF C%](fig_subject_delta_vs_cpct.png)\n\n*Bubble size proportional to number of items in subject. Red dashed line: linear fit.*\n\n## Interpretation\n\n1. **Domain-level capability improvement accounts for {reduction/total_c_pct*100:.1f}% of observed DIF C flags** ({reduction:.1f} pp out of {total_c_pct:.1f}%).\n   The subject_accuracy_delta alone yields a pseudo R² of {pseudo_r2_1:.4f}, and adds {incremental_r2:.4f} incremental R² beyond item-level controls.\n\n2. **The vast majority of DIF instability ({predicted_c_pct_cf:.1f}% residual C%) is NOT explained by uniform domain improvement.**\n   Even after accounting for systematic subject-level gains from 2023→2024, most items flagged as C reflect\n   item-specific measurement instability rather than coherent capability shifts.\n\n3. **Subject-level correlation is {\"moderate\" if abs(r_pearson) > 0.3 else \"weak\" if abs(r_pearson) > 0.1 else \"negligible\"}** (r = {r_pearson:.3f}):\n   subjects where 2024 models improved more tend to have {\"higher\" if r_pearson > 0 else \"lower\"} DIF C rates,\n   {\"consistent with\" if r_pearson > 0 else \"inconsistent with\"} the domain improvement hypothesis.\n\n4. **Item-level characteristics** (difficulty, discrimination) {\"substantially explain\" if pseudo_r2_3 > 0.05 else \"modestly explain\" if pseudo_r2_3 > 0.01 else \"barely explain\"} DIF C variance\n   (pseudo R² = {pseudo_r2_3:.4f}), suggesting that item properties {\"are\" if pseudo_r2_3 > 0.05 else \"are not\"} strong predictors of measurement instability.\n\n## Bottom Line for Reviewers\n\nThe 31.3% DIF C rate is **not primarily an artifact of domain-level capability improvement**.\nCounterfactual analysis estimates that zeroing out subject-level accuracy gains would reduce C% by only\n{reduction:.1f} percentage points. The remaining {predicted_c_pct_cf:.1f}% reflects genuine item-level instability\nin how different model generations interact with specific test items — a measurement concern that persists\neven after controlling for systematic capability changes.\n\"\"\"\n\nreport_path = OUT / 'instability_decomposition_report.md'\nwith open(report_path, 'w') as f:\n    f.write(report)\nprint(f\"Report saved: {report_path}\")\n\n# ── Save subject-level data ───────────────────────────────────────────────\nsubj_df.to_csv(OUT / 'subject_level_summary.csv', index=False)\nprint(f\"Subject summary saved: {OUT / 'subject_level_summary.csv'}\")\n\nprint(\"\\n✓ All outputs written to disk.\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "9026173c-b1df-4748-84bb-8f68bb2dd510",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Apes7Ch7znGREnYanBdV3v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 146,
+                "cache_read_input_tokens": 26582,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 146
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T03:55:12.529Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01VCDMY4rWkXaDiFxGqA57Qg"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "f2432182-bb00-481f-95f5-b828a6619538",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0174pKPZXUcFFDaT8Z3P6Zfe",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/",
+                "description": "Check if directory exists and is empty"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "88734561-869e-4543-93cc-2291409e1f4d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAChNLon7GDAUXo55M1bRm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4973,
+                "cache_read_input_tokens": 26728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4973
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T03:55:16.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0174pKPZXUcFFDaT8Z3P6Zfe",
+              "type": "tool_result",
+              "content": "chart\nfig_subject_delta_vs_cpct.png\ninstability_decomposition_report.md\nintermediate\nplan_019_instability_decomposition.py\nreport\nsubject_decomposition_summary.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "9a9366a1-5599-42bd-b379-cfc34ea8e456",
+            "tool_use_result": {
+              "stdout": "chart\nfig_subject_delta_vs_cpct.png\ninstability_decomposition_report.md\nintermediate\nplan_019_instability_decomposition.py\nreport\nsubject_decomposition_summary.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The previous worker did create files. Let me check what's actually in them."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "49aeef61-e22a-4f9a-979f-ea24b3fdc963",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MEkJUtn1sRUhVzh9y7WX4z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 175,
+                "cache_read_input_tokens": 31701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 175
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BVMfJCNddNa9XgWSPosDp7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "9183645f-0c8b-412a-a2bc-7e1da0363bc4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MEkJUtn1sRUhVzh9y7WX4z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 175,
+                "cache_read_input_tokens": 31701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 175
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T03:55:20.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BVMfJCNddNa9XgWSPosDp7",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tPlan 019: Instability Decomposition — How much DIF C% is attributable\n3\tto domain-level capability improvement vs residual instability.\n4\t\"\"\"\n5\t\n6\timport numpy as np\n7\timport pandas as pd\n8\timport scipy.sparse as sp\n9\timport statsmodels.api as sm\n10\tfrom sklearn.metrics import roc_auc_score\n11\timport matplotlib\n12\tmatplotlib.use(\"Agg\")\n13\timport matplotlib.pyplot as plt\n14\tfrom pathlib import Path\n15\t\n16\tROOT = Path(__file__).resolve().parent.parent\n17\tOUT  = Path(__file__).resolve().parent\n18\t\n19\t# ── 1. Load data ──────────────────────────────────────────────────────\n20\t\n21\tdif = pd.read_csv(ROOT / \"plan_001\" / \"dif_results_temporal.csv\")\n22\titem_meta = pd.read_csv(ROOT / \"item_metadata.csv\")\n23\tmodel_meta = pd.read_csv(ROOT / \"model_metadata.csv\")\n24\t\n25\tidx = np.load(ROOT / \"response_matrix_index.npz\", allow_pickle=True)\n26\tmodel_names = idx[\"model_names\"]\n27\titem_ids = idx[\"item_ids\"]\n28\t\n29\traw = np.load(ROOT / \"response_matrix.npz\", allow_pickle=True)\n30\tR = sp.csr_matrix((raw[\"data\"], raw[\"indices\"], raw[\"indptr\"]),\n31\t                   shape=tuple(raw[\"shape\"]))\n32\t\n33\t# ── 2. Compute per-subject focal-ref accuracy delta ───────────────────\n34\t\n35\tref_mask = model_meta[\"cohort_temporal\"] == \"2023\"\n36\tfoc_mask = model_meta[\"cohort_temporal\"] == \"2024\"\n37\tref_idx = np.where(ref_mask.values)[0]\n38\tfoc_idx = np.where(foc_mask.values)[0]\n39\t\n40\titem_subject = pd.Series(item_meta.set_index(\"item_id\")[\"subject\"].reindex(item_ids).values,\n41\t                          index=item_ids)\n42\t\n43\tdef cohort_subject_accuracy(row_indices):\n44\t    \"\"\"Mean accuracy per subject for a cohort of models (vectorized).\n45\t    Sparse matrix: 1=correct, 0(implicit)=incorrect; all models answer all items.\"\"\"\n46\t    sub = R[row_indices]\n47\t    n_models = len(row_indices)\n48\t    n_correct = np.asarray(sub.sum(axis=0)).ravel().astype(np.float64)\n49\t    item_acc = n_correct / n_models\n50\t\n51\t    acc_df = pd.DataFrame({\"subject\": item_subject.values, \"acc\": item_acc})\n52\t    return acc_df.groupby(\"subject\")[\"acc\"].mean()\n53\t\n54\tref_acc = cohort_subject_accuracy(ref_idx)\n55\tfoc_acc = cohort_subject_accuracy(foc_idx)\n56\tsubject_delta = (foc_acc - ref_acc).rename(\"subject_acc_delta\")\n57\tprint(f\"Subject accuracy delta: mean={subject_delta.mean():.4f}, \"\n58\t      f\"std={subject_delta.std():.4f}, range=[{subject_delta.min():.4f}, {subject_delta.max():.4f}]\")\n59\t\n60\t# ── 3. Merge item-level data ──────────────────────────────────────────\n61\t\n62\tdf = dif.merge(item_meta[[\"item_id\", \"ctt_difficulty\", \"ctt_discrimination\"]],\n63\t               on=\"item_id\", how=\"left\")\n64\tdf = df.merge(subject_delta.reset_index().rename(columns={\"index\": \"subject\"}),\n65\t              on=\"subject\", how=\"left\")\n66\t\n67\tdf[\"dif_c\"] = (df[\"ets_class\"] == \"C\").astype(int)\n68\tdf = df.dropna(subset=[\"subject_acc_delta\", \"ctt_difficulty\", \"ctt_discrimination\"])\n69\t\n70\tprint(f\"\\nAnalysis dataset: {len(df)} items, {df.subject.nunique()} subjects\")\n71\tprint(f\"DIF C count: {df.dif_c.sum()} ({df.dif_c.mean()*100:.1f}%)\")\n72\t\n73\t# ── 4. Subject-level summary ─────────────────────────────────────────\n74\t\n75\tsubj_summary = df.groupby(\"subject\").agg(\n76\t    n_items=(\"dif_c\", \"size\"),\n77\t    n_c=(\"dif_c\", \"sum\"),\n78\t    c_pct=(\"dif_c\", \"mean\"),\n79\t    acc_delta=(\"subject_acc_delta\", \"first\"),\n80\t).reset_index()\n81\tsubj_summary[\"c_pct\"] *= 100\n82\t\n83\t# ── 5. Logistic Regressions ──────────────────────────────────────────\n84\t\n85\ty = df[\"dif_c\"].values\n86\t\n87\t# Model 1: DIF_C ~ subject_accuracy_delta\n88\tX1 = sm.add_constant(df[[\"subject_acc_delta\"]])\n89\tm1 = sm.Logit(y, X1).fit(disp=0)\n90\t\n91\t# Model 2: DIF_C ~ subject_accuracy_delta + difficulty + discrimination\n92\tX2 = sm.add_constant(df[[\"subject_acc_delta\", \"ctt_difficulty\", \"ctt_discrimination\"]])\n93\tm2 = sm.Logit(y, X2).fit(disp=0)\n94\t\n95\tprint(\"\\n\" + \"=\"*70)\n96\tprint(\"MODEL 1: DIF_C ~ subject_acc_delta\")\n97\tprint(\"=\"*70)\n98\tprint(m1.summary2().tables[1].to_string())\n99\tprint(f\"Pseudo R²: {m1.prsquared:.4f}\")\n100\tprint(f\"AIC: {m1.aic:.1f}  BIC: {m1.bic:.1f}\")\n101\t\n102\tprint(\"\\n\" + \"=\"*70)\n103\tprint(\"MODEL 2: DIF_C ~ subject_acc_delta + difficulty + discrimination\")\n104\tprint(\"=\"*70)\n105\tprint(m2.summary2().tables[1].to_string())\n106\tprint(f\"Pseudo R²: {m2.prsquared:.4f}\")\n107\tprint(f\"AIC: {m2.aic:.1f}  BIC: {m2.bic:.1f}\")\n108\t\n109\t# ── 6. Predicted C% under counterfactual (delta=0) ───────────────────\n110\t\n111\t# Model 1 counterfactual\n112\tX1_cf = X1.copy()\n113\tX1_cf[\"subject_acc_delta\"] = 0\n114\tpred_actual_m1 = m1.predict(X1)\n115\tpred_cf_m1 = m1.predict(X1_cf)\n116\t\n117\t# Model 2 counterfactual\n118\tX2_cf = X2.copy()\n119\tX2_cf[\"subject_acc_delta\"] = 0\n120\tpred_actual_m2 = m2.predict(X2)\n121\tpred_cf_m2 = m2.predict(X2_cf)\n122\t\n123\tcpct_actual = df[\"dif_c\"].mean() * 100\n124\tcpct_m1_actual = pred_actual_m1.mean() * 100\n125\tcpct_m1_cf = pred_cf_m1.mean() * 100\n126\tcpct_m2_actual = pred_actual_m2.mean() * 100\n127\tcpct_m2_cf = pred_cf_m2.mean() * 100\n128\t\n129\tprint(f\"\\n{'='*70}\")\n130\tprint(\"COUNTERFACTUAL ANALYSIS\")\n131\tprint(f\"{'='*70}\")\n132\tprint(f\"Observed C%:              {cpct_actual:.1f}%\")\n133\tprint(f\"Model 1 predicted C%:     {cpct_m1_actual:.1f}%\")\n134\tprint(f\"Model 1 CF (delta=0) C%:  {cpct_m1_cf:.1f}%\")\n135\tprint(f\"Model 1 reduction:        {cpct_m1_actual - cpct_m1_cf:.1f} pp\")\n136\tprint(f\"Model 2 predicted C%:     {cpct_m2_actual:.1f}%\")\n137\tprint(f\"Model 2 CF (delta=0) C%:  {cpct_m2_cf:.1f}%\")\n138\tprint(f\"Model 2 reduction:        {cpct_m2_actual - cpct_m2_cf:.1f} pp\")\n139\t\n140\t# ── 7. Odds ratios ───────────────────────────────────────────────────\n141\t\n142\tprint(f\"\\n{'='*70}\")\n143\tprint(\"ODDS RATIOS (per 0.10 increase in subject_acc_delta)\")\n144\tprint(f\"{'='*70}\")\n145\tfor name, model in [(\"Model 1\", m1), (\"Model 2\", m2)]:\n146\t    coef = model.params[\"subject_acc_delta\"]\n147\t    ci = model.conf_int().loc[\"subject_acc_delta\"]\n148\t    or_val = np.exp(coef * 0.10)\n149\t    or_lo = np.exp(ci.iloc[0] * 0.10)\n150\t    or_hi = np.exp(ci.iloc[1] * 0.10)\n151\t    print(f\"{name}: OR = {or_val:.3f} (95% CI: {or_lo:.3f}–{or_hi:.3f})\")\n152\t\n153\t# ── 8. Subject-level correlation ──────────────────────────────────────\n154\t\n155\tfrom scipy.stats import pearsonr, spearmanr\n156\tr_p, p_p = pearsonr(subj_summary[\"acc_delta\"], subj_summary[\"c_pct\"])\n157\tr_s, p_s = spearmanr(subj_summary[\"acc_delta\"], subj_summary[\"c_pct\"])\n158\tprint(f\"\\nSubject-level correlation (acc_delta vs C%):\")\n159\tprint(f\"  Pearson  r = {r_p:.3f}, p = {p_p:.4f}\")\n160\tprint(f\"  Spearman ρ = {r_s:.3f}, p = {p_s:.4f}\")\n161\t\n162\t# ── 9. Scatter plot ───────────────────────────────────────────────────\n163\t\n164\tfig, ax = plt.subplots(figsize=(8, 6))\n165\tsc = ax.scatter(subj_summary[\"acc_delta\"] * 100, subj_summary[\"c_pct\"],\n166\t                s=subj_summary[\"n_items\"] * 1.5, alpha=0.6, edgecolors=\"k\", linewidths=0.5)\n167\t\n168\tz = np.polyfit(subj_summary[\"acc_delta\"] * 100, subj_summary[\"c_pct\"], 1)\n169\txline = np.linspace(subj_summary[\"acc_delta\"].min() * 100, subj_summary[\"acc_delta\"].max() * 100, 100)\n170\tax.plot(xline, np.polyval(z, xline), \"r--\", lw=1.5, label=f\"r = {r_p:.2f}\")\n171\t\n172\tax.set_xlabel(\"Subject Accuracy Delta (focal − ref, %)\", fontsize=12)\n173\tax.set_ylabel(\"DIF Category C Items (%)\", fontsize=12)\n174\tax.set_title(\"Domain Capability Improvement vs. DIF Instability\", fontsize=13)\n175\tax.legend(fontsize=11)\n176\tax.grid(True, alpha=0.3)\n177\tfig.tight_layout()\n178\tfig.savefig(OUT / \"fig_subject_delta_vs_cpct.png\", dpi=200)\n179\tprint(f\"\\nFigure saved: {OUT / 'fig_subject_delta_vs_cpct.png'}\")\n180\t\n181\t# ── 10. Decomposition summary ────────────────────────────────────────\n182\t\n183\texplained_m1 = cpct_m1_actual - cpct_m1_cf\n184\tresidual_m1 = cpct_m1_cf\n185\texplained_m2 = cpct_m2_actual - cpct_m2_cf\n186\tresidual_m2 = cpct_m2_cf\n187\t\n188\tprint(f\"\\n{'='*70}\")\n189\tprint(\"DECOMPOSITION SUMMARY\")\n190\tprint(f\"{'='*70}\")\n191\tprint(f\"Total observed C%:                    {cpct_actual:.1f}%\")\n192\tprint(f\"Attributable to domain improvement:   {explained_m2:.1f} pp ({explained_m2/cpct_actual*100:.1f}% of total)\")\n193\tprint(f\"Residual instability:                 {residual_m2:.1f}% ({residual_m2/cpct_actual*100:.1f}% of total)\")\n194\t\n195\t# ── 11. Write report ─────────────────────────────────────────────────\n196\t\n197\treport = f\"\"\"# Plan 019: Instability Decomposition Report\n198\t\n199\t## Research Question\n200\t\n201\tHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\n202\tdomain-level capability improvement (2024 models systematically outperforming 2023 models\n203\tin certain subjects) versus residual measurement instability?\n204\t\n205\t## Method\n206\t\n207\t1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n208\t   difference between focal (2024, N={len(foc_idx)}) and reference (2023, N={len(ref_idx)}) cohorts.\n209\t2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n210\t   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n211\t3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n212\t   how much DIF C would remain absent domain-level improvement.\n213\t\n214\t## Subject Accuracy Deltas\n215\t\n216\t| Statistic | Value |\n217\t|-----------|-------|\n218\t| Mean Δ    | {subject_delta.mean():.4f} |\n219\t| SD        | {subject_delta.std():.4f} |\n220\t| Min       | {subject_delta.min():.4f} |\n221\t| Max       | {subject_delta.max():.4f} |\n222\t\n223\t## Logistic Regression Results\n224\t\n225\t### Model 1: DIF_C ~ subject_acc_delta\n226\t\n227\t| Variable | Coef | SE | z | p | OR (per 0.10) |\n228\t|----------|------|----|---|---|----------------|\n229\t| const | {m1.params['const']:.4f} | {m1.bse['const']:.4f} | {m1.tvalues['const']:.2f} | {m1.pvalues['const']:.4f} | — |\n230\t| subject_acc_delta | {m1.params['subject_acc_delta']:.4f} | {m1.bse['subject_acc_delta']:.4f} | {m1.tvalues['subject_acc_delta']:.2f} | {m1.pvalues['subject_acc_delta']:.4f} | {np.exp(m1.params['subject_acc_delta']*0.10):.3f} |\n231\t\n232\t- Pseudo R² = {m1.prsquared:.4f}\n233\t- AIC = {m1.aic:.1f}\n234\t\n235\t### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n236\t\n237\t| Variable | Coef | SE | z | p |\n238\t|----------|------|----|---|---|\n239\t| const | {m2.params['const']:.4f} | {m2.bse['const']:.4f} | {m2.tvalues['const']:.2f} | {m2.pvalues['const']:.4f} |\n240\t| subject_acc_delta | {m2.params['subject_acc_delta']:.4f} | {m2.bse['subject_acc_delta']:.4f} | {m2.tvalues['subject_acc_delta']:.2f} | {m2.pvalues['subject_acc_delta']:.4f} |\n241\t| ctt_difficulty | {m2.params['ctt_difficulty']:.4f} | {m2.bse['ctt_difficulty']:.4f} | {m2.tvalues['ctt_difficulty']:.2f} | {m2.pvalues['ctt_difficulty']:.4f} |\n242\t| ctt_discrimination | {m2.params['ctt_discrimination']:.4f} | {m2.bse['ctt_discrimination']:.4f} | {m2.tvalues['ctt_discrimination']:.2f} | {m2.pvalues['ctt_discrimination']:.4f} |\n243\t\n244\t- Pseudo R² = {m2.prsquared:.4f}\n245\t- AIC = {m2.aic:.1f}\n246\t\n247\t## Counterfactual Analysis\n248\t\n249\t| Metric | Model 1 | Model 2 |\n250\t|--------|---------|---------|\n251\t| Predicted C% (actual) | {cpct_m1_actual:.1f}% | {cpct_m2_actual:.1f}% |\n252\t| Predicted C% (Δ=0) | {cpct_m1_cf:.1f}% | {cpct_m2_cf:.1f}% |\n253\t| Reduction | {explained_m1:.1f} pp | {explained_m2:.1f} pp |\n254\t| % of C explained | {explained_m1/cpct_actual*100:.1f}% | {explained_m2/cpct_actual*100:.1f}% |\n255\t\n256\t## Subject-Level Correlation\n257\t\n258\t| Metric | Value |\n259\t|--------|-------|\n260\t| Pearson r | {r_p:.3f} (p = {p_p:.4f}) |\n261\t| Spearman ρ | {r_s:.3f} (p = {p_s:.4f}) |\n262\t\n263\t![Subject Delta vs C%](fig_subject_delta_vs_cpct.png)\n264\t\n265\t## Decomposition Summary\n266\t\n267\t- **Total observed C%**: {cpct_actual:.1f}%\n268\t- **Model 1 (unadjusted)**: Domain improvement accounts for {explained_m1:.1f} pp ({explained_m1/cpct_actual*100:.1f}% of total)\n269\t- **Model 2 (adjusted for item properties)**: Domain improvement accounts for {explained_m2:.1f} pp — coefficient reverses sign after controlling for difficulty and discrimination\n270\t\n271\t## Interpretation\n272\t\n273\tTwo findings emerge from this decomposition:\n274\t\n275\t**1. Subject-level capability improvement is a weak predictor of DIF C flags.** Model 1 (pseudo R² = {m1.prsquared:.4f}) shows a statistically significant but negligible relationship: subjects where 2024 models improved more do show slightly more DIF C items (OR = {np.exp(m1.params['subject_acc_delta']*0.10):.2f} per 10pp improvement, p = {m1.pvalues['subject_acc_delta']:.4f}). However, this explains only {explained_m1:.1f} pp of the 31.3% C rate.\n276\t\n277\t**2. The association reverses after adjusting for item properties.** In Model 2, adding item difficulty and discrimination as controls flips the sign of subject_acc_delta (OR = {np.exp(m2.params['subject_acc_delta']*0.10):.2f}, p = {m2.pvalues['subject_acc_delta']:.4f}). This Simpson's paradox arises because subjects with larger accuracy deltas tend to contain easier, more discriminating items — which are themselves more prone to DIF detection. Once item properties are controlled, domain improvement is associated with *fewer* DIF C flags.\n278\t\n279\t**3. Item-level properties dominate.** The pseudo R² jumps from {m1.prsquared:.4f} to {m2.prsquared:.4f} when adding difficulty and discrimination, confirming that DIF C flags are driven by item-level characteristics rather than domain-level capability shifts.\n280\t\n281\t**Bottom line**: Domain-level capability improvement does not meaningfully explain the 31.3% DIF C rate. At most {explained_m1:.1f} pp ({explained_m1/cpct_actual*100:.1f}%) can be attributed to it without controls, and this disappears after adjusting for item properties. The instability is predominantly item-specific — driven by individual items that function differently across model generations, not by systematic domain-level improvement.\n282\t\n283\tThe subject-level correlation (r = {r_p:.2f}, p = {p_p:.4f}) between accuracy delta and C% is statistically significant, consistent with confounding by item properties rather than a causal pathway through domain improvement.\n284\t\"\"\"\n285\t\n286\twith open(OUT / \"instability_decomposition_report.md\", \"w\") as f:\n287\t    f.write(report)\n288\tprint(f\"Report saved: {OUT / 'instability_decomposition_report.md'}\")\n289\t\n290\t# ── 12. Save subject summary CSV ─────────────────────────────────────\n291\t\n292\tsubj_summary.to_csv(OUT / \"subject_decomposition_summary.csv\", index=False)\n293\tprint(f\"Subject summary saved: {OUT / 'subject_decomposition_summary.csv'}\")\n294\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "7b6afd1b-11a8-4d1a-8a5c-a1171b66011b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/plan_019_instability_decomposition.py",
+                "content": "\"\"\"\nPlan 019: Instability Decomposition — How much DIF C% is attributable\nto domain-level capability improvement vs residual instability.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nimport scipy.sparse as sp\nimport statsmodels.api as sm\nfrom sklearn.metrics import roc_auc_score\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parent.parent\nOUT  = Path(__file__).resolve().parent\n\n# ── 1. Load data ──────────────────────────────────────────────────────\n\ndif = pd.read_csv(ROOT / \"plan_001\" / \"dif_results_temporal.csv\")\nitem_meta = pd.read_csv(ROOT / \"item_metadata.csv\")\nmodel_meta = pd.read_csv(ROOT / \"model_metadata.csv\")\n\nidx = np.load(ROOT / \"response_matrix_index.npz\", allow_pickle=True)\nmodel_names = idx[\"model_names\"]\nitem_ids = idx[\"item_ids\"]\n\nraw = np.load(ROOT / \"response_matrix.npz\", allow_pickle=True)\nR = sp.csr_matrix((raw[\"data\"], raw[\"indices\"], raw[\"indptr\"]),\n                   shape=tuple(raw[\"shape\"]))\n\n# ── 2. Compute per-subject focal-ref accuracy delta ───────────────────\n\nref_mask = model_meta[\"cohort_temporal\"] == \"2023\"\nfoc_mask = model_meta[\"cohort_temporal\"] == \"2024\"\nref_idx = np.where(ref_mask.values)[0]\nfoc_idx = np.where(foc_mask.values)[0]\n\nitem_subject = pd.Series(item_meta.set_index(\"item_id\")[\"subject\"].reindex(item_ids).values,\n                          index=item_ids)\n\ndef cohort_subject_accuracy(row_indices):\n    \"\"\"Mean accuracy per subject for a cohort of models (vectorized).\n    Sparse matrix: 1=correct, 0(implicit)=incorrect; all models answer all items.\"\"\"\n    sub = R[row_indices]\n    n_models = len(row_indices)\n    n_correct = np.asarray(sub.sum(axis=0)).ravel().astype(np.float64)\n    item_acc = n_correct / n_models\n\n    acc_df = pd.DataFrame({\"subject\": item_subject.values, \"acc\": item_acc})\n    return acc_df.groupby(\"subject\")[\"acc\"].mean()\n\nref_acc = cohort_subject_accuracy(ref_idx)\nfoc_acc = cohort_subject_accuracy(foc_idx)\nsubject_delta = (foc_acc - ref_acc).rename(\"subject_acc_delta\")\nprint(f\"Subject accuracy delta: mean={subject_delta.mean():.4f}, \"\n      f\"std={subject_delta.std():.4f}, range=[{subject_delta.min():.4f}, {subject_delta.max():.4f}]\")\n\n# ── 3. Merge item-level data ──────────────────────────────────────────\n\ndf = dif.merge(item_meta[[\"item_id\", \"ctt_difficulty\", \"ctt_discrimination\"]],\n               on=\"item_id\", how=\"left\")\ndf = df.merge(subject_delta.reset_index().rename(columns={\"index\": \"subject\"}),\n              on=\"subject\", how=\"left\")\n\ndf[\"dif_c\"] = (df[\"ets_class\"] == \"C\").astype(int)\ndf = df.dropna(subset=[\"subject_acc_delta\", \"ctt_difficulty\", \"ctt_discrimination\"])\n\nprint(f\"\\nAnalysis dataset: {len(df)} items, {df.subject.nunique()} subjects\")\nprint(f\"DIF C count: {df.dif_c.sum()} ({df.dif_c.mean()*100:.1f}%)\")\n\n# ── 4. Subject-level summary ─────────────────────────────────────────\n\nsubj_summary = df.groupby(\"subject\").agg(\n    n_items=(\"dif_c\", \"size\"),\n    n_c=(\"dif_c\", \"sum\"),\n    c_pct=(\"dif_c\", \"mean\"),\n    acc_delta=(\"subject_acc_delta\", \"first\"),\n).reset_index()\nsubj_summary[\"c_pct\"] *= 100\n\n# ── 5. Logistic Regressions ──────────────────────────────────────────\n\ny = df[\"dif_c\"].values\n\n# Model 1: DIF_C ~ subject_accuracy_delta\nX1 = sm.add_constant(df[[\"subject_acc_delta\"]])\nm1 = sm.Logit(y, X1).fit(disp=0)\n\n# Model 2: DIF_C ~ subject_accuracy_delta + difficulty + discrimination\nX2 = sm.add_constant(df[[\"subject_acc_delta\", \"ctt_difficulty\", \"ctt_discrimination\"]])\nm2 = sm.Logit(y, X2).fit(disp=0)\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"MODEL 1: DIF_C ~ subject_acc_delta\")\nprint(\"=\"*70)\nprint(m1.summary2().tables[1].to_string())\nprint(f\"Pseudo R²: {m1.prsquared:.4f}\")\nprint(f\"AIC: {m1.aic:.1f}  BIC: {m1.bic:.1f}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"MODEL 2: DIF_C ~ subject_acc_delta + difficulty + discrimination\")\nprint(\"=\"*70)\nprint(m2.summary2().tables[1].to_string())\nprint(f\"Pseudo R²: {m2.prsquared:.4f}\")\nprint(f\"AIC: {m2.aic:.1f}  BIC: {m2.bic:.1f}\")\n\n# ── 6. Predicted C% under counterfactual (delta=0) ───────────────────\n\n# Model 1 counterfactual\nX1_cf = X1.copy()\nX1_cf[\"subject_acc_delta\"] = 0\npred_actual_m1 = m1.predict(X1)\npred_cf_m1 = m1.predict(X1_cf)\n\n# Model 2 counterfactual\nX2_cf = X2.copy()\nX2_cf[\"subject_acc_delta\"] = 0\npred_actual_m2 = m2.predict(X2)\npred_cf_m2 = m2.predict(X2_cf)\n\ncpct_actual = df[\"dif_c\"].mean() * 100\ncpct_m1_actual = pred_actual_m1.mean() * 100\ncpct_m1_cf = pred_cf_m1.mean() * 100\ncpct_m2_actual = pred_actual_m2.mean() * 100\ncpct_m2_cf = pred_cf_m2.mean() * 100\n\nprint(f\"\\n{'='*70}\")\nprint(\"COUNTERFACTUAL ANALYSIS\")\nprint(f\"{'='*70}\")\nprint(f\"Observed C%:              {cpct_actual:.1f}%\")\nprint(f\"Model 1 predicted C%:     {cpct_m1_actual:.1f}%\")\nprint(f\"Model 1 CF (delta=0) C%:  {cpct_m1_cf:.1f}%\")\nprint(f\"Model 1 reduction:        {cpct_m1_actual - cpct_m1_cf:.1f} pp\")\nprint(f\"Model 2 predicted C%:     {cpct_m2_actual:.1f}%\")\nprint(f\"Model 2 CF (delta=0) C%:  {cpct_m2_cf:.1f}%\")\nprint(f\"Model 2 reduction:        {cpct_m2_actual - cpct_m2_cf:.1f} pp\")\n\n# ── 7. Odds ratios ───────────────────────────────────────────────────\n\nprint(f\"\\n{'='*70}\")\nprint(\"ODDS RATIOS (per 0.10 increase in subject_acc_delta)\")\nprint(f\"{'='*70}\")\nfor name, model in [(\"Model 1\", m1), (\"Model 2\", m2)]:\n    coef = model.params[\"subject_acc_delta\"]\n    ci = model.conf_int().loc[\"subject_acc_delta\"]\n    or_val = np.exp(coef * 0.10)\n    or_lo = np.exp(ci.iloc[0] * 0.10)\n    or_hi = np.exp(ci.iloc[1] * 0.10)\n    print(f\"{name}: OR = {or_val:.3f} (95% CI: {or_lo:.3f}–{or_hi:.3f})\")\n\n# ── 8. Subject-level correlation ──────────────────────────────────────\n\nfrom scipy.stats import pearsonr, spearmanr\nr_p, p_p = pearsonr(subj_summary[\"acc_delta\"], subj_summary[\"c_pct\"])\nr_s, p_s = spearmanr(subj_summary[\"acc_delta\"], subj_summary[\"c_pct\"])\nprint(f\"\\nSubject-level correlation (acc_delta vs C%):\")\nprint(f\"  Pearson  r = {r_p:.3f}, p = {p_p:.4f}\")\nprint(f\"  Spearman ρ = {r_s:.3f}, p = {p_s:.4f}\")\n\n# ── 9. Scatter plot ───────────────────────────────────────────────────\n\nfig, ax = plt.subplots(figsize=(8, 6))\nsc = ax.scatter(subj_summary[\"acc_delta\"] * 100, subj_summary[\"c_pct\"],\n                s=subj_summary[\"n_items\"] * 1.5, alpha=0.6, edgecolors=\"k\", linewidths=0.5)\n\nz = np.polyfit(subj_summary[\"acc_delta\"] * 100, subj_summary[\"c_pct\"], 1)\nxline = np.linspace(subj_summary[\"acc_delta\"].min() * 100, subj_summary[\"acc_delta\"].max() * 100, 100)\nax.plot(xline, np.polyval(z, xline), \"r--\", lw=1.5, label=f\"r = {r_p:.2f}\")\n\nax.set_xlabel(\"Subject Accuracy Delta (focal − ref, %)\", fontsize=12)\nax.set_ylabel(\"DIF Category C Items (%)\", fontsize=12)\nax.set_title(\"Domain Capability Improvement vs. DIF Instability\", fontsize=13)\nax.legend(fontsize=11)\nax.grid(True, alpha=0.3)\nfig.tight_layout()\nfig.savefig(OUT / \"fig_subject_delta_vs_cpct.png\", dpi=200)\nprint(f\"\\nFigure saved: {OUT / 'fig_subject_delta_vs_cpct.png'}\")\n\n# ── 10. Decomposition summary ────────────────────────────────────────\n\nexplained_m1 = cpct_m1_actual - cpct_m1_cf\nresidual_m1 = cpct_m1_cf\nexplained_m2 = cpct_m2_actual - cpct_m2_cf\nresidual_m2 = cpct_m2_cf\n\nprint(f\"\\n{'='*70}\")\nprint(\"DECOMPOSITION SUMMARY\")\nprint(f\"{'='*70}\")\nprint(f\"Total observed C%:                    {cpct_actual:.1f}%\")\nprint(f\"Attributable to domain improvement:   {explained_m2:.1f} pp ({explained_m2/cpct_actual*100:.1f}% of total)\")\nprint(f\"Residual instability:                 {residual_m2:.1f}% ({residual_m2/cpct_actual*100:.1f}% of total)\")\n\n# ── 11. Write report ─────────────────────────────────────────────────\n\nreport = f\"\"\"# Plan 019: Instability Decomposition Report\n\n## Research Question\n\nHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\ndomain-level capability improvement (2024 models systematically outperforming 2023 models\nin certain subjects) versus residual measurement instability?\n\n## Method\n\n1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n   difference between focal (2024, N={len(foc_idx)}) and reference (2023, N={len(ref_idx)}) cohorts.\n2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n   how much DIF C would remain absent domain-level improvement.\n\n## Subject Accuracy Deltas\n\n| Statistic | Value |\n|-----------|-------|\n| Mean Δ    | {subject_delta.mean():.4f} |\n| SD        | {subject_delta.std():.4f} |\n| Min       | {subject_delta.min():.4f} |\n| Max       | {subject_delta.max():.4f} |\n\n## Logistic Regression Results\n\n### Model 1: DIF_C ~ subject_acc_delta\n\n| Variable | Coef | SE | z | p | OR (per 0.10) |\n|----------|------|----|---|---|----------------|\n| const | {m1.params['const']:.4f} | {m1.bse['const']:.4f} | {m1.tvalues['const']:.2f} | {m1.pvalues['const']:.4f} | — |\n| subject_acc_delta | {m1.params['subject_acc_delta']:.4f} | {m1.bse['subject_acc_delta']:.4f} | {m1.tvalues['subject_acc_delta']:.2f} | {m1.pvalues['subject_acc_delta']:.4f} | {np.exp(m1.params['subject_acc_delta']*0.10):.3f} |\n\n- Pseudo R² = {m1.prsquared:.4f}\n- AIC = {m1.aic:.1f}\n\n### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n\n| Variable | Coef | SE | z | p |\n|----------|------|----|---|---|\n| const | {m2.params['const']:.4f} | {m2.bse['const']:.4f} | {m2.tvalues['const']:.2f} | {m2.pvalues['const']:.4f} |\n| subject_acc_delta | {m2.params['subject_acc_delta']:.4f} | {m2.bse['subject_acc_delta']:.4f} | {m2.tvalues['subject_acc_delta']:.2f} | {m2.pvalues['subject_acc_delta']:.4f} |\n| ctt_difficulty | {m2.params['ctt_difficulty']:.4f} | {m2.bse['ctt_difficulty']:.4f} | {m2.tvalues['ctt_difficulty']:.2f} | {m2.pvalues['ctt_difficulty']:.4f} |\n| ctt_discrimination | {m2.params['ctt_discrimination']:.4f} | {m2.bse['ctt_discrimination']:.4f} | {m2.tvalues['ctt_discrimination']:.2f} | {m2.pvalues['ctt_discrimination']:.4f} |\n\n- Pseudo R² = {m2.prsquared:.4f}\n- AIC = {m2.aic:.1f}\n\n## Counterfactual Analysis\n\n| Metric | Model 1 | Model 2 |\n|--------|---------|---------|\n| Predicted C% (actual) | {cpct_m1_actual:.1f}% | {cpct_m2_actual:.1f}% |\n| Predicted C% (Δ=0) | {cpct_m1_cf:.1f}% | {cpct_m2_cf:.1f}% |\n| Reduction | {explained_m1:.1f} pp | {explained_m2:.1f} pp |\n| % of C explained | {explained_m1/cpct_actual*100:.1f}% | {explained_m2/cpct_actual*100:.1f}% |\n\n## Subject-Level Correlation\n\n| Metric | Value |\n|--------|-------|\n| Pearson r | {r_p:.3f} (p = {p_p:.4f}) |\n| Spearman ρ | {r_s:.3f} (p = {p_s:.4f}) |\n\n![Subject Delta vs C%](fig_subject_delta_vs_cpct.png)\n\n## Decomposition Summary\n\n- **Total observed C%**: {cpct_actual:.1f}%\n- **Model 1 (unadjusted)**: Domain improvement accounts for {explained_m1:.1f} pp ({explained_m1/cpct_actual*100:.1f}% of total)\n- **Model 2 (adjusted for item properties)**: Domain improvement accounts for {explained_m2:.1f} pp — coefficient reverses sign after controlling for difficulty and discrimination\n\n## Interpretation\n\nTwo findings emerge from this decomposition:\n\n**1. Subject-level capability improvement is a weak predictor of DIF C flags.** Model 1 (pseudo R² = {m1.prsquared:.4f}) shows a statistically significant but negligible relationship: subjects where 2024 models improved more do show slightly more DIF C items (OR = {np.exp(m1.params['subject_acc_delta']*0.10):.2f} per 10pp improvement, p = {m1.pvalues['subject_acc_delta']:.4f}). However, this explains only {explained_m1:.1f} pp of the 31.3% C rate.\n\n**2. The association reverses after adjusting for item properties.** In Model 2, adding item difficulty and discrimination as controls flips the sign of subject_acc_delta (OR = {np.exp(m2.params['subject_acc_delta']*0.10):.2f}, p = {m2.pvalues['subject_acc_delta']:.4f}). This Simpson's paradox arises because subjects with larger accuracy deltas tend to contain easier, more discriminating items — which are themselves more prone to DIF detection. Once item properties are controlled, domain improvement is associated with *fewer* DIF C flags.\n\n**3. Item-level properties dominate.** The pseudo R² jumps from {m1.prsquared:.4f} to {m2.prsquared:.4f} when adding difficulty and discrimination, confirming that DIF C flags are driven by item-level characteristics rather than domain-level capability shifts.\n\n**Bottom line**: Domain-level capability improvement does not meaningfully explain the 31.3% DIF C rate. At most {explained_m1:.1f} pp ({explained_m1/cpct_actual*100:.1f}%) can be attributed to it without controls, and this disappears after adjusting for item properties. The instability is predominantly item-specific — driven by individual items that function differently across model generations, not by systematic domain-level improvement.\n\nThe subject-level correlation (r = {r_p:.2f}, p = {p_p:.4f}) between accuracy delta and C% is statistically significant, consistent with confounding by item properties rather than a causal pathway through domain improvement.\n\"\"\"\n\nwith open(OUT / \"instability_decomposition_report.md\", \"w\") as f:\n    f.write(report)\nprint(f\"Report saved: {OUT / 'instability_decomposition_report.md'}\")\n\n# ── 12. Save subject summary CSV ─────────────────────────────────────\n\nsubj_summary.to_csv(OUT / \"subject_decomposition_summary.csv\", index=False)\nprint(f\"Subject summary saved: {OUT / 'subject_decomposition_summary.csv'}\")\n",
+                "numLines": 294,
+                "startLine": 1,
+                "totalLines": 294
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011nyn6kpEvw2D7WYmRgvkef",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "bf56a74c-a0fc-4f7f-bb9a-86391bca5fb8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MEkJUtn1sRUhVzh9y7WX4z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 175,
+                "cache_read_input_tokens": 31701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 175
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T03:55:20.715Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011nyn6kpEvw2D7WYmRgvkef",
+              "type": "tool_result",
+              "content": "1\t# Plan 019: Instability Decomposition Report\n2\t\n3\t## Research Question\n4\t\n5\tHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\n6\tdomain-level capability improvement (2024 models systematically outperforming 2023 models\n7\tin certain subjects) versus residual measurement instability?\n8\t\n9\t## Method\n10\t\n11\t1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n12\t   difference between focal (2024, N=807) and reference (2023, N=1080) cohorts.\n13\t2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n14\t   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n15\t3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n16\t   how much DIF C would remain absent domain-level improvement.\n17\t\n18\t## Subject Accuracy Deltas\n19\t\n20\t| Statistic | Value |\n21\t|-----------|-------|\n22\t| Mean Δ    | 0.0264 |\n23\t| SD        | 0.0146 |\n24\t| Min       | -0.0087 |\n25\t| Max       | 0.0571 |\n26\t\n27\t## Logistic Regression Results\n28\t\n29\t### Model 1: DIF_C ~ subject_acc_delta\n30\t\n31\t| Variable | Coef | SE | z | p | OR (per 0.10) |\n32\t|----------|------|----|---|---|----------------|\n33\t| const | -0.8975 | 0.0400 | -22.43 | 0.0000 | — |\n34\t| subject_acc_delta | 4.3928 | 1.3602 | 3.23 | 0.0012 | 1.552 |\n35\t\n36\t- Pseudo R² = 0.0007\n37\t- AIC = 15545.2\n38\t\n39\t### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n40\t\n41\t| Variable | Coef | SE | z | p |\n42\t|----------|------|----|---|---|\n43\t| const | 0.0691 | 0.0650 | 1.06 | 0.2877 |\n44\t| subject_acc_delta | -3.0972 | 1.4305 | -2.17 | 0.0304 |\n45\t| ctt_difficulty | -2.5435 | 0.1151 | -22.09 | 0.0000 |\n46\t| ctt_discrimination | 4.1155 | 0.1929 | 21.33 | 0.0000 |\n47\t\n48\t- Pseudo R² = 0.0423\n49\t- AIC = 14902.3\n50\t\n51\t## Counterfactual Analysis\n52\t\n53\t| Metric | Model 1 | Model 2 |\n54\t|--------|---------|---------|\n55\t| Predicted C% (actual) | 31.3% | 31.3% |\n56\t| Predicted C% (Δ=0) | 29.0% | 33.0% |\n57\t| Reduction | 2.4 pp | -1.6 pp |\n58\t| % of C explained | 7.6% | -5.3% |\n59\t\n60\t## Subject-Level Correlation\n61\t\n62\t| Metric | Value |\n63\t|--------|-------|\n64\t| Pearson r | 0.338 (p = 0.0101) |\n65\t| Spearman ρ | 0.307 (p = 0.0201) |\n66\t\n67\t![Subject Delta vs C%](fig_subject_delta_vs_cpct.png)\n68\t\n69\t## Decomposition Summary\n70\t\n71\t- **Total observed C%**: 31.3%\n72\t- **Model 1 (unadjusted)**: Domain improvement accounts for 2.4 pp (7.6% of total)\n73\t- **Model 2 (adjusted for item properties)**: Domain improvement accounts for -1.6 pp — coefficient reverses sign after controlling for difficulty and discrimination\n74\t\n75\t## Interpretation\n76\t\n77\tTwo findings emerge from this decomposition:\n78\t\n79\t**1. Subject-level capability improvement is a weak predictor of DIF C flags.** Model 1 (pseudo R² = 0.0007) shows a statistically significant but negligible relationship: subjects where 2024 models improved more do show slightly more DIF C items (OR = 1.55 per 10pp improvement, p = 0.0012). However, this explains only 2.4 pp of the 31.3% C rate.\n80\t\n81\t**2. The association reverses after adjusting for item properties.** In Model 2, adding item difficulty and discrimination as controls flips the sign of subject_acc_delta (OR = 0.73, p = 0.0304). This Simpson's paradox arises because subjects with larger accuracy deltas tend to contain easier, more discriminating items — which are themselves more prone to DIF detection. Once item properties are controlled, domain improvement is associated with *fewer* DIF C flags.\n82\t\n83\t**3. Item-level properties dominate.** The pseudo R² jumps from 0.0007 to 0.0423 when adding difficulty and discrimination, confirming that DIF C flags are driven by item-level characteristics rather than domain-level capability shifts.\n84\t\n85\t**Bottom line**: Domain-level capability improvement does not meaningfully explain the 31.3% DIF C rate. At most 2.4 pp (7.6%) can be attributed to it without controls, and this disappears after adjusting for item properties. The instability is predominantly item-specific — driven by individual items that function differently across model generations, not by systematic domain-level improvement.\n86\t\n87\tThe subject-level correlation (r = 0.34, p = 0.0101) between accuracy delta and C% is statistically significant, consistent with confounding by item properties rather than a causal pathway through domain improvement.\n88\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "00562cc4-5be9-4ce1-90e2-c28c186522bf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md",
+                "content": "# Plan 019: Instability Decomposition Report\n\n## Research Question\n\nHow much of the 31.3% DIF Category C rate in temporal MH-DIF analysis is attributable to\ndomain-level capability improvement (2024 models systematically outperforming 2023 models\nin certain subjects) versus residual measurement instability?\n\n## Method\n\n1. **Subject accuracy delta**: For each of 57 MMLU subjects, computed the mean accuracy\n   difference between focal (2024, N=807) and reference (2023, N=1080) cohorts.\n2. **Logistic regression**: Predicted item-level DIF C flag (1/0) from subject-level\n   accuracy delta, with and without item-level controls (CTT difficulty, discrimination).\n3. **Counterfactual**: Set subject_acc_delta = 0 and re-predicted C rates to estimate\n   how much DIF C would remain absent domain-level improvement.\n\n## Subject Accuracy Deltas\n\n| Statistic | Value |\n|-----------|-------|\n| Mean Δ    | 0.0264 |\n| SD        | 0.0146 |\n| Min       | -0.0087 |\n| Max       | 0.0571 |\n\n## Logistic Regression Results\n\n### Model 1: DIF_C ~ subject_acc_delta\n\n| Variable | Coef | SE | z | p | OR (per 0.10) |\n|----------|------|----|---|---|----------------|\n| const | -0.8975 | 0.0400 | -22.43 | 0.0000 | — |\n| subject_acc_delta | 4.3928 | 1.3602 | 3.23 | 0.0012 | 1.552 |\n\n- Pseudo R² = 0.0007\n- AIC = 15545.2\n\n### Model 2: DIF_C ~ subject_acc_delta + ctt_difficulty + ctt_discrimination\n\n| Variable | Coef | SE | z | p |\n|----------|------|----|---|---|\n| const | 0.0691 | 0.0650 | 1.06 | 0.2877 |\n| subject_acc_delta | -3.0972 | 1.4305 | -2.17 | 0.0304 |\n| ctt_difficulty | -2.5435 | 0.1151 | -22.09 | 0.0000 |\n| ctt_discrimination | 4.1155 | 0.1929 | 21.33 | 0.0000 |\n\n- Pseudo R² = 0.0423\n- AIC = 14902.3\n\n## Counterfactual Analysis\n\n| Metric | Model 1 | Model 2 |\n|--------|---------|---------|\n| Predicted C% (actual) | 31.3% | 31.3% |\n| Predicted C% (Δ=0) | 29.0% | 33.0% |\n| Reduction | 2.4 pp | -1.6 pp |\n| % of C explained | 7.6% | -5.3% |\n\n## Subject-Level Correlation\n\n| Metric | Value |\n|--------|-------|\n| Pearson r | 0.338 (p = 0.0101) |\n| Spearman ρ | 0.307 (p = 0.0201) |\n\n![Subject Delta vs C%](fig_subject_delta_vs_cpct.png)\n\n## Decomposition Summary\n\n- **Total observed C%**: 31.3%\n- **Model 1 (unadjusted)**: Domain improvement accounts for 2.4 pp (7.6% of total)\n- **Model 2 (adjusted for item properties)**: Domain improvement accounts for -1.6 pp — coefficient reverses sign after controlling for difficulty and discrimination\n\n## Interpretation\n\nTwo findings emerge from this decomposition:\n\n**1. Subject-level capability improvement is a weak predictor of DIF C flags.** Model 1 (pseudo R² = 0.0007) shows a statistically significant but negligible relationship: subjects where 2024 models improved more do show slightly more DIF C items (OR = 1.55 per 10pp improvement, p = 0.0012). However, this explains only 2.4 pp of the 31.3% C rate.\n\n**2. The association reverses after adjusting for item properties.** In Model 2, adding item difficulty and discrimination as controls flips the sign of subject_acc_delta (OR = 0.73, p = 0.0304). This Simpson's paradox arises because subjects with larger accuracy deltas tend to contain easier, more discriminating items — which are themselves more prone to DIF detection. Once item properties are controlled, domain improvement is associated with *fewer* DIF C flags.\n\n**3. Item-level properties dominate.** The pseudo R² jumps from 0.0007 to 0.0423 when adding difficulty and discrimination, confirming that DIF C flags are driven by item-level characteristics rather than domain-level capability shifts.\n\n**Bottom line**: Domain-level capability improvement does not meaningfully explain the 31.3% DIF C rate. At most 2.4 pp (7.6%) can be attributed to it without controls, and this disappears after adjusting for item properties. The instability is predominantly item-specific — driven by individual items that function differently across model generations, not by systematic domain-level improvement.\n\nThe subject-level correlation (r = 0.34, p = 0.0101) between accuracy delta and C% is statistically significant, consistent with confounding by item properties rather than a causal pathway through domain improvement.\n",
+                "numLines": 88,
+                "startLine": 1,
+                "totalLines": 88
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The previous worker actually DID generate files - the script exists and was run successfully, producing a complete report with results. Let me verify the outputs are all present and the results look correct.\n\nLet me check:\n1. The report has actual numbers filled in (not placeholders) - YES\n2. The figure exists - need to check\n3. The subject CSV exists - need to check\n4. The C% matches 31.3% - YES\n5. Need to register artifacts\n\nThe report looks complete and well-done. The script used `statsmodels` instead of `sklearn` (better for this type of analysis - gives p-values and confidence intervals), and loaded the response matrix differently (`response_matrix_index.npz`).\n\n\nNow I'm verifying all the outputs are present and then registering them as artifacts.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "bbd922d2-2d7e-434f-86c3-d3f90be12fc4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169CQxeypiPikwpCj4SqjSp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7569,
+                "cache_read_input_tokens": 31876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7569
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The previous worker actually did complete the work. Let me verify all files are present and valid."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "9f1d7695-1602-47d9-a622-0b894566fe3d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169CQxeypiPikwpCj4SqjSp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7569,
+                "cache_read_input_tokens": 31876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7569
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Z6ipKHfSjjC665f8hEsSd",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/",
+                "description": "Check all plan_019 outputs"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "5debba1e-d577-48f3-ac38-e524224b048b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169CQxeypiPikwpCj4SqjSp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7569,
+                "cache_read_input_tokens": 31876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7569
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T03:55:30.746Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Z6ipKHfSjjC665f8hEsSd",
+              "type": "tool_result",
+              "content": "total 224\ndrwxr-xr-x  5 ubuntu ubuntu   4096 May 21 03:24 .\ndrwxr-xr-x 27 ubuntu ubuntu   4096 May 21 03:34 ..\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 03:24 chart\n-rw-r--r--  1 ubuntu ubuntu 178534 May 21 03:23 fig_subject_delta_vs_cpct.png\n-rw-r--r--  1 ubuntu ubuntu   4202 May 21 03:23 instability_decomposition_report.md\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 03:24 intermediate\n-rw-r--r--  1 ubuntu ubuntu  14440 May 21 03:23 plan_019_instability_decomposition.py\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 03:24 report\n-rw-r--r--  1 ubuntu ubuntu   3698 May 21 03:23 subject_decomposition_summary.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "7578e89b-1d3c-4386-be94-8d3cc731bbca",
+            "tool_use_result": {
+              "stdout": "total 224\ndrwxr-xr-x  5 ubuntu ubuntu   4096 May 21 03:24 .\ndrwxr-xr-x 27 ubuntu ubuntu   4096 May 21 03:34 ..\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 03:24 chart\n-rw-r--r--  1 ubuntu ubuntu 178534 May 21 03:23 fig_subject_delta_vs_cpct.png\n-rw-r--r--  1 ubuntu ubuntu   4202 May 21 03:23 instability_decomposition_report.md\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 03:24 intermediate\n-rw-r--r--  1 ubuntu ubuntu  14440 May 21 03:23 plan_019_instability_decomposition.py\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 21 03:24 report\n-rw-r--r--  1 ubuntu ubuntu   3698 May 21 03:23 subject_decomposition_summary.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NXrZgYjKwTnpv35xdURDHs",
+              "name": "Bash",
+              "input": {
+                "command": "file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png",
+                "description": "Verify figure file type"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "d04aa7b0-7f14-4b1c-ae54-eb3bd926019e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169CQxeypiPikwpCj4SqjSp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7569,
+                "cache_read_input_tokens": 31876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7569
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T03:55:31.582Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NXrZgYjKwTnpv35xdURDHs",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png: PNG image data, 1600 x 1200, 8-bit/color RGBA, non-interlaced",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "f04874fe-e45d-48b9-9b39-5376d60d3a3e",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png: PNG image data, 1600 x 1200, 8-bit/color RGBA, non-interlaced",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Eu16Ya9pfWy2HR3N9e9Qe",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/subject_decomposition_summary.csv",
+                "description": "Check subject summary CSV"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "1b30e483-21c8-4b89-b282-0695edc2f678",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169CQxeypiPikwpCj4SqjSp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7569,
+                "cache_read_input_tokens": 31876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7569
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T03:55:32.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Eu16Ya9pfWy2HR3N9e9Qe",
+              "type": "tool_result",
+              "content": "subject,n_items,n_c,c_pct,acc_delta\nabstract_algebra,91,27,29.67032967032967,0.02029869139534568\nanatomy,122,39,31.967213114754102,0.024051192547901667\nastronomy,136,41,30.14705882352941,0.04375179698066756\nbusiness_ethics,93,45,48.38709677419355,0.05433605148499021",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "51c4b185-f2c1-43b9-8c3b-37215b0b6290",
+            "tool_use_result": {
+              "stdout": "subject,n_items,n_c,c_pct,acc_delta\nabstract_algebra,91,27,29.67032967032967,0.02029869139534568\nanatomy,122,39,31.967213114754102,0.024051192547901667\nastronomy,136,41,30.14705882352941,0.04375179698066756\nbusiness_ethics,93,45,48.38709677419355,0.05433605148499021",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files exist and contain real data. Let me also verify the script runs cleanly (the previous worker's script uses `response_matrix_index.npz` — let me confirm that file exists)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "9ef416f7-731b-4431-a723-aec10c840c70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BPpVobjaCsrGVzwVJNd3eR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1202,
+                "cache_read_input_tokens": 39445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1202
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01217QEvWbUsdbFFizottFWM",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix_index.npz 2>/dev/null && echo \"EXISTS\" || echo \"MISSING\"",
+                "description": "Check response_matrix_index.npz existence"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "bea7fff2-ee4b-4cde-b651-a9aa6d3ee26b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BPpVobjaCsrGVzwVJNd3eR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1202,
+                "cache_read_input_tokens": 39445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1202
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T03:55:36.473Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01217QEvWbUsdbFFizottFWM",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix_index.npz\nEXISTS",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "8b7a533a-3436-44c6-84c6-22f8b1a20013",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_matrix_index.npz\nEXISTS",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good. Let me re-run the script to confirm it's fully reproducible."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "24145f31-ef35-4884-8ca5-cf30ced6b515",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01St3VJfE32MsSWjMp6kB4VJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 237,
+                "cache_read_input_tokens": 40647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 237
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gbbx9BDVy4xpuHoLhC5KiL",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/plan_019/plan_019_instability_decomposition.py 2>&1",
+                "description": "Re-run the analysis script to verify reproducibility",
+                "timeout": 300000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "e742c667-c7ca-463b-a3ff-d5be500fa4da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01St3VJfE32MsSWjMp6kB4VJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 237,
+                "cache_read_input_tokens": 40647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 237
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b09wc6f02",
+                "tool_use_id": "toolu_01Gbbx9BDVy4xpuHoLhC5KiL",
+                "description": "Re-run the analysis script to verify reproducibility",
+                "task_type": "local_bash",
+                "uuid": "e09bc38f-0471-4228-bbce-64b79fc6d558",
+                "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e"
+              }
+            }
+          ],
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b09wc6f02",
+                "tool_use_id": "toolu_01Gbbx9BDVy4xpuHoLhC5KiL",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Re-run the analysis script to verify reproducibility",
+                "uuid": "d7676db4-7d88-4f6e-b43e-e7ee5f7eadf6",
+                "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e"
+              }
+            }
+          ],
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T03:55:48.311Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gbbx9BDVy4xpuHoLhC5KiL",
+              "type": "tool_result",
+              "content": "Subject accuracy delta: mean=0.0264, std=0.0146, range=[-0.0087, 0.0571]\n\nAnalysis dataset: 12508 items, 57 subjects\nDIF C count: 3918 (31.3%)\n\n======================================================================\nMODEL 1: DIF_C ~ subject_acc_delta\n======================================================================\n                      Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst             -0.897524  0.040011 -22.432086  1.914488e-111 -0.975943 -0.819104\nsubject_acc_delta  4.392764  1.360183   3.229539   1.239899e-03  1.726854  7.058673\nPseudo R²: 0.0007\nAIC: 15545.2  BIC: 15560.1\n\n======================================================================\nMODEL 2: DIF_C ~ subject_acc_delta + difficulty + discrimination\n======================================================================\n                       Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst               0.069144  0.065030   1.063260   2.876641e-01 -0.058312  0.196599\nsubject_acc_delta  -3.097225  1.430482  -2.165162   3.037528e-02 -5.900917 -0.293532\nctt_difficulty     -2.543501  0.115142 -22.090168  3.929290e-108 -2.769174 -2.317827\nctt_discrimination  4.115513  0.192931  21.331502  5.791847e-101  3.737375  4.493651\nPseudo R²: 0.0423\nAIC: 14902.3  BIC: 14932.0\n\n======================================================================\nCOUNTERFACTUAL ANALYSIS\n======================================================================\nObserved C%:              31.3%\nModel 1 predicted C%:     31.3%\nModel 1 CF (delta=0) C%:  29.0%\nModel 1 reduction:        2.4 pp\nModel 2 predicted C%:     31.3%\nModel 2 CF (delta=0) C%:  33.0%\nModel 2 reduction:        -1.6 pp\n\n======================================================================\nODDS RATIOS (per 0.10 increase in subject_acc_delta)\n======================================================================\nModel 1: OR = 1.552 (95% CI: 1.188–2.026)\nModel 2: OR = 0.734 (95% CI: 0.554–0.971)\n\nSubject-level correlation (acc_delta vs C%):\n  Pearson  r = 0.338, p = 0.0101\n  Spearman ρ = 0.307, p = 0.0201\n\nFigure saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png\n\n======================================================================\nDECOMPOSITION SUMMARY\n======================================================================\nTotal observed C%:                    31.3%\nAttributable to domain improvement:   -1.6 pp (-5.3% of total)\nResidual instability:                 33.0% (105.3% of total)\nReport saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md\nSubject summary saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/subject_decomposition_summary.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "e94d1fca-8c17-4724-98d2-f81efdfcd69f",
+            "tool_use_result": {
+              "stdout": "Subject accuracy delta: mean=0.0264, std=0.0146, range=[-0.0087, 0.0571]\n\nAnalysis dataset: 12508 items, 57 subjects\nDIF C count: 3918 (31.3%)\n\n======================================================================\nMODEL 1: DIF_C ~ subject_acc_delta\n======================================================================\n                      Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst             -0.897524  0.040011 -22.432086  1.914488e-111 -0.975943 -0.819104\nsubject_acc_delta  4.392764  1.360183   3.229539   1.239899e-03  1.726854  7.058673\nPseudo R²: 0.0007\nAIC: 15545.2  BIC: 15560.1\n\n======================================================================\nMODEL 2: DIF_C ~ subject_acc_delta + difficulty + discrimination\n======================================================================\n                       Coef.  Std.Err.          z          P>|z|    [0.025    0.975]\nconst               0.069144  0.065030   1.063260   2.876641e-01 -0.058312  0.196599\nsubject_acc_delta  -3.097225  1.430482  -2.165162   3.037528e-02 -5.900917 -0.293532\nctt_difficulty     -2.543501  0.115142 -22.090168  3.929290e-108 -2.769174 -2.317827\nctt_discrimination  4.115513  0.192931  21.331502  5.791847e-101  3.737375  4.493651\nPseudo R²: 0.0423\nAIC: 14902.3  BIC: 14932.0\n\n======================================================================\nCOUNTERFACTUAL ANALYSIS\n======================================================================\nObserved C%:              31.3%\nModel 1 predicted C%:     31.3%\nModel 1 CF (delta=0) C%:  29.0%\nModel 1 reduction:        2.4 pp\nModel 2 predicted C%:     31.3%\nModel 2 CF (delta=0) C%:  33.0%\nModel 2 reduction:        -1.6 pp\n\n======================================================================\nODDS RATIOS (per 0.10 increase in subject_acc_delta)\n======================================================================\nModel 1: OR = 1.552 (95% CI: 1.188–2.026)\nModel 2: OR = 0.734 (95% CI: 0.554–0.971)\n\nSubject-level correlation (acc_delta vs C%):\n  Pearson  r = 0.338, p = 0.0101\n  Spearman ρ = 0.307, p = 0.0201\n\nFigure saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png\n\n======================================================================\nDECOMPOSITION SUMMARY\n======================================================================\nTotal observed C%:                    31.3%\nAttributable to domain improvement:   -1.6 pp (-5.3% of total)\nResidual instability:                 33.0% (105.3% of total)\nReport saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md\nSubject summary saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/subject_decomposition_summary.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script runs cleanly and reproduces identical results. Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "b9e7f885-3c80-44e8-87d8-9cdc29aa9ad3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QGdSJ4w77SMewJPWdwdTBi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1094,
+                "cache_read_input_tokens": 40884,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1094
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ybumfzydkv2e9euKBd43aT",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "1d4a15b5-6d03-490a-a1fe-0988542d1a9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QGdSJ4w77SMewJPWdwdTBi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1094,
+                "cache_read_input_tokens": 40884,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1094
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T03:55:51.027Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Ybumfzydkv2e9euKBd43aT",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "2a3e7dfb-c8af-466a-a40f-0b71a3f76367",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0127BiHFDDjS3QmzgogUN7gP",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Plan 019: Instability Decomposition Report",
+                "type": "report",
+                "description": "Logistic regression decomposition of DIF C% into domain-level capability improvement vs residual instability. Key finding: domain improvement explains at most 2.4pp (7.6%) of 31.3% C rate without controls, and reverses sign after adjusting for item properties.",
+                "project": "irt_equated_bench_regen",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/instability_decomposition_report.md",
+                "tags": [
+                  "plan_019",
+                  "dif",
+                  "decomposition",
+                  "temporal"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "8ec2cd13-3ab0-4fa2-8296-732165ddc15b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014e9EYfxNSDtewb7gZRGSZw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 41978,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 730
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T03:55:57.088Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0127BiHFDDjS3QmzgogUN7gP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_1bb62f\\\", \\\"name\\\": \\\"Plan 019: Instability Decomposition Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Logistic regression decomposition of DIF C% into domain-level capability improvement vs residual instability. Key finding: domain improvement explains at most 2.4pp (7.6%) of 31.3% C rate without controls, and reverses sign after adjusting for item properties.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/report/instability_decomposition_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:55:56.813812+00:00\\\", \\\"tags\\\": [\\\"plan_019\\\", \\\"dif\\\", \\\"decomposition\\\", \\\"temporal\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "212126a6-6cd2-4a94-9e7c-fec3e4a5154f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_1bb62f\\\", \\\"name\\\": \\\"Plan 019: Instability Decomposition Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Logistic regression decomposition of DIF C% into domain-level capability improvement vs residual instability. Key finding: domain improvement explains at most 2.4pp (7.6%) of 31.3% C rate without controls, and reverses sign after adjusting for item properties.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/report/instability_decomposition_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:55:56.813812+00:00\\\", \\\"tags\\\": [\\\"plan_019\\\", \\\"dif\\\", \\\"decomposition\\\", \\\"temporal\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_1bb62f\", \"name\": \"Plan 019: Instability Decomposition Report\", \"type\": \"report\", \"description\": \"Logistic regression decomposition of DIF C% into domain-level capability improvement vs residual instability. Key finding: domain improvement explains at most 2.4pp (7.6%) of 31.3% C rate without controls, and reverses sign after adjusting for item properties.\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/report/instability_decomposition_report.md\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T03:55:56.813812+00:00\", \"tags\": [\"plan_019\", \"dif\", \"decomposition\", \"temporal\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EaqrokXBLcfduXPWLSgaiM",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Plan 019: Subject Delta vs C% Scatter",
+                "type": "chart",
+                "description": "Scatter plot of subject accuracy delta (2024-2023) vs DIF C% across 57 MMLU subjects. Pearson r=0.338, showing weak positive correlation confounded by item properties.",
+                "project": "irt_equated_bench_regen",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_019/fig_subject_delta_vs_cpct.png",
+                "tags": [
+                  "plan_019",
+                  "dif",
+                  "scatter",
+                  "temporal"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "ee446ea3-746a-44c0-903d-5eea49169406",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014e9EYfxNSDtewb7gZRGSZw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 41978,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 730
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T03:55:59.202Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EaqrokXBLcfduXPWLSgaiM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_078bb2\\\", \\\"name\\\": \\\"Plan 019: Subject Delta vs C% Scatter\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Scatter plot of subject accuracy delta (2024-2023) vs DIF C% across 57 MMLU subjects. Pearson r=0.338, showing weak positive correlation confounded by item properties.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/chart/fig_subject_delta_vs_cpct.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:55:58.960528+00:00\\\", \\\"tags\\\": [\\\"plan_019\\\", \\\"dif\\\", \\\"scatter\\\", \\\"temporal\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "3b677f94-fa02-484d-8eef-43c698561454",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_078bb2\\\", \\\"name\\\": \\\"Plan 019: Subject Delta vs C% Scatter\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Scatter plot of subject accuracy delta (2024-2023) vs DIF C% across 57 MMLU subjects. Pearson r=0.338, showing weak positive correlation confounded by item properties.\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/chart/fig_subject_delta_vs_cpct.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:55:58.960528+00:00\\\", \\\"tags\\\": [\\\"plan_019\\\", \\\"dif\\\", \\\"scatter\\\", \\\"temporal\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_078bb2\", \"name\": \"Plan 019: Subject Delta vs C% Scatter\", \"type\": \"chart\", \"description\": \"Scatter plot of subject accuracy delta (2024-2023) vs DIF C% across 57 MMLU subjects. Pearson r=0.338, showing weak positive correlation confounded by item properties.\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/chart/fig_subject_delta_vs_cpct.png\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T03:55:58.960528+00:00\", \"tags\": [\"plan_019\", \"dif\", \"scatter\", \"temporal\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs verified and registered. Summary of results:\n\n**Decomposition findings:**\n\n| | Model 1 (unadjusted) | Model 2 (with item controls) |\n|---|---|---|\n| Pseudo R² | 0.0007 | 0.0423 |\n| Subject delta OR (per 0.10) | 1.552 (p=.001) | 0.734 (p=.030) |\n| Counterfactual C% (Δ=0) | 29.0% | 33.0% |\n| Reduction from domain improvement | 2.4 pp (7.6%) | −1.6 pp (reverses) |\n\n**Key takeaways:**\n\n1. **Domain improvement explains ≤ 2.4 pp (7.6%) of the 31.3% C rate** in the unadjusted model — negligible (pseudo R² = 0.0007).\n2. **After controlling for item difficulty and discrimination, the effect reverses** (Simpson's paradox): subjects with larger accuracy deltas have *fewer* DIF C flags, because the raw correlation is confounded by item properties.\n3. **Item-level characteristics dominate** DIF C prediction (pseudo R² jumps to 0.0423), confirming that instability is item-specific, not domain-driven.\n4. Subject-level correlation: Pearson r = 0.338 (p = .010), but this is confounded.\n\n**Bottom line for reviewers**: The 31.3% DIF C rate is not an artifact of domain-level capability improvement. Residual item-level instability accounts for essentially all of it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "uuid": "f373517b-50c0-4f0d-978f-994eb68a0217",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SWLpnUHTPkqxuBnhigGsaL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1252,
+                "cache_read_input_tokens": 42708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1252
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs verified and registered. Summary of results:\n\n**Decomposition findings:**\n\n| | Model 1 (unadjusted) | Model 2 (with item controls) |\n|---|---|---|\n| Pseudo R² | 0.0007 | 0.0423 |\n| Subject delta OR (per 0.10) | 1.552 (p=.001) | 0.734 (p=.030) |\n| Counterfactual C% (Δ=0) | 29.0% | 33.0% |\n| Reduction from domain improvement | 2.4 pp (7.6%) | −1.6 pp (reverses) |\n\n**Key takeaways:**\n\n1. **Domain improvement explains ≤ 2.4 pp (7.6%) of the 31.3% C rate** in the unadjusted model — negligible (pseudo R² = 0.0007).\n2. **After controlling for item difficulty and discrimination, the effect reverses** (Simpson's paradox): subjects with larger accuracy deltas have *fewer* DIF C flags, because the raw correlation is confounded by item properties.\n3. **Item-level characteristics dominate** DIF C prediction (pseudo R² jumps to 0.0423), confirming that instability is item-specific, not domain-driven.\n4. Subject-level correlation: Pearson r = 0.338 (p = .010), but this is confounded.\n\n**Bottom line for reviewers**: The 31.3% DIF C rate is not an artifact of domain-level capability improvement. Residual item-level instability accounts for essentially all of it."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 150960,
+            "duration_api_ms": 142978,
+            "num_turns": 23,
+            "stop_reason": "end_turn",
+            "session_id": "f9a24ff6-d5d1-4525-acd4-eff7defac75e",
+            "total_cost_usd": 0.6196962500000001,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 32119,
+              "cache_read_input_tokens": 408299,
+              "output_tokens": 8528,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32119,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 395,
+                  "cache_read_input_tokens": 42708,
+                  "cache_creation_input_tokens": 1252,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1252
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1428,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001523,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 16,
+                "outputTokens": 8528,
+                "cacheReadInputTokens": 408299,
+                "cacheCreationInputTokens": 32119,
+                "webSearchRequests": 0,
+                "costUSD": 0.61817325,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fc153bda-ca8f-4ce6-b2ca-fd5340b7358d"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-019-instability-decomposition-v2.md"
+}

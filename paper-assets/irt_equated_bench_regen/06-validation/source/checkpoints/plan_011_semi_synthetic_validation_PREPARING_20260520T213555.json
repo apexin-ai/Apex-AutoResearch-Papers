@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_011_semi_synthetic_validation",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:35:55.290Z",
+    "updated_at": "2026-05-20T21:35:55.290Z"
+  },
+  "timestamp": "2026-05-20T21:35:55.301291+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1893 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{meredith1993invariance}
+\citation{holland1988mh}
+\citation{kipnis2024metabench}
+\citation{hendrycks2021mmlu}
+\citation{shi2024mink}
+\citation{dekoninck2024constat,liang2026dvd,tao2026selfcritique}
+\citation{li2024contamination}
+\citation{habba2026growingpains}
+\citation{wang2026fragility}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\newlabel{sec:introduction@cref}{{[section][1][]1}{[1][1][]1}{}{}{}}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN@col{2}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\citation{holland1988mh}
+\citation{clauser1998dif}
+\citation{swaminathan1990logistic}
+\citation{shealy1993sibtest}
+\citation{lord1980irt}
+\citation{raju1988area}
+\citation{millsap1993dif}
+\citation{zumbo1999handbook}
+\citation{penfield2007dif}
+\citation{meredith1993invariance,vandenberg2000invariance,millsap2011invariance}
+\citation{muthen1985mimic,woods2009mimic}
+\citation{teresi2007dif}
+\citation{nandakumar1993dif,donoghue1993mh}
+\citation{belzak2020smallsample}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Four-stage psychometric auditing pipeline. \textbf  {{\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 192}} A binary response matrix records model correctness across benchmark items, with models split into temporal cohorts (2023 reference vs.\ 2024 focal). \textbf  {{\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 193}} Models are stratified into $K{=}5$ score quintiles. \textbf  {{\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 194}} Per-item Mantel-Haenszel DIF tests compute $\Delta _{\mathrm  {MH}}$ across strata. \textbf  {{\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 195}} ETS classification assigns severity labels (A/B/C). Result: 29.2\% of items flagged as C, yet stable-item $\rho = 0.997$, replicated across six benchmarks.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:pipeline}{{1}{2}{Four-stage psychometric auditing pipeline. \textbf {\ding {192}} A binary response matrix records model correctness across benchmark items, with models split into temporal cohorts (2023 reference vs.\ 2024 focal). \textbf {\ding {193}} Models are stratified into $K{=}5$ score quintiles. \textbf {\ding {194}} Per-item Mantel-Haenszel DIF tests compute $\Delta _{\mathrm {MH}}$ across strata. \textbf {\ding {195}} ETS classification assigns severity labels (A/B/C). Result: 29.2\% of items flagged as C, yet stable-item $\rho = 0.997$, replicated across six benchmarks}{figure.caption.1}{}}
+\newlabel{fig:pipeline@cref}{{[figure][1][]1}{[1][1][]2}{}{}{}}
+\@LN@col{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN@col{2}
+\@LN{108}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\newlabel{sec:related_work@cref}{{[section][2][]2}{[1][2][]2}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{DIF Methodology and Measurement Invariance.}{2}{section*.2}\protected@file@percent }
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\citation{lalor2019irt}
+\citation{vania2021irt}
+\citation{rodriguez2021evaluation}
+\citation{zhou2026psnirt}
+\citation{maiapolo2024tinybenchmarks}
+\citation{hardy2026scalability}
+\citation{kraus2024irt}
+\citation{li2025atlas}
+\citation{yao2025jeirt}
+\citation{balkir2026confident}
+\citation{luo2025medirt}
+\citation{habba2026growingpains}
+\citation{kim2019fpc}
+\citation{shi2024mink}
+\citation{zhang2024minkpp}
+\citation{golchin2024timetravel}
+\citation{oren2024proving}
+\citation{dekoninck2024constat,liang2026dvd,tao2026selfcritique,deng2024investigating}
+\citation{zawalski2026codec}
+\citation{chai2026benchmarksleak}
+\citation{balloccu2024leak}
+\citation{li2024contamination}
+\citation{carlini2022quantifying,tirumala2022memorization}
+\citation{wang2026fragility}
+\citation{zhu2026bhi,qian2026benchmark2}
+\citation{zhao2025mmlucf}
+\citation{wang2024mmlupro}
+\citation{maeda2025difllm}
+\citation{kiela2021dynabench,li2024latesteval,white2025livebench}
+\citation{ying2024automating,xu2025benchmark}
+\citation{chang2024survey,burnell2023rethink,alzahrani2024benchmarks}
+\@LN@col{1}
+\@LN{135}{2}
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@writefile{toc}{\contentsline {paragraph}{IRT in LLM Evaluation.}{3}{section*.3}\protected@file@percent }
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN@col{2}
+\@LN{186}{2}
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{3}{section*.4}\protected@file@percent }
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@writefile{toc}{\contentsline {paragraph}{Benchmark Quality and Design.}{3}{section*.5}\protected@file@percent }
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\@LN{233}{2}
+\@LN{234}{2}
+\@LN{235}{2}
+\@LN{236}{2}
+\citation{kipnis2024metabench}
+\citation{hendrycks2021mmlu}
+\citation{li2024contamination}
+\citation{holland1988mh,magis2010difr}
+\citation{donoghue1993mh,clauser1998dif}
+\citation{swaminathan1990logistic}
+\@LN@col{1}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{4}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Method}{section.3}{}}
+\newlabel{sec:method@cref}{{[section][3][]3}{[1][4][]4}{}{}{}}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:data}{{3.1}{4}{Data}{subsection.3.1}{}}
+\newlabel{sec:data@cref}{{[subsection][1][3]3.1}{[1][4][]4}{}{}{}}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Mantel-Haenszel DIF and ETS Classification}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:mhdif}{{3.2}{4}{Mantel-Haenszel DIF and ETS Classification}{subsection.3.2}{}}
+\newlabel{sec:mhdif@cref}{{[subsection][2][3]3.2}{[1][4][]4}{}{}{}}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN@col{2}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\newlabel{eq:mh}{{1}{4}{Mantel-Haenszel DIF and ETS Classification}{equation.1}{}}
+\newlabel{eq:mh@cref}{{[equation][1][]1}{[1][4][]4}{}{}{}}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\@LN{300}{3}
+\@LN{301}{3}
+\@LN{302}{3}
+\newlabel{eq:delta}{{2}{4}{Mantel-Haenszel DIF and ETS Classification}{equation.2}{}}
+\newlabel{eq:delta@cref}{{[equation][2][]2}{[1][4][]4}{}{}{}}
+\@LN{303}{3}
+\@LN{304}{3}
+\@LN{305}{3}
+\@LN{306}{3}
+\@LN{307}{3}
+\@LN{308}{3}
+\@LN{309}{3}
+\@LN{310}{3}
+\@LN{311}{3}
+\@LN{312}{3}
+\@LN{313}{3}
+\@LN{314}{3}
+\@LN{315}{3}
+\@LN{316}{3}
+\@LN{317}{3}
+\@LN{318}{3}
+\@LN{319}{3}
+\@LN{320}{3}
+\@LN{321}{3}
+\@LN{322}{3}
+\@LN{323}{3}
+\@LN{324}{3}
+\@LN{325}{3}
+\@LN{326}{3}
+\@LN{327}{3}
+\@LN{328}{3}
+\@LN{329}{3}
+\@LN{330}{3}
+\citation{ackerman1992didmf,roussos1996multidimensionality}
+\@LN@col{1}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@writefile{toc}{\contentsline {paragraph}{LLM-specific challenges.}{5}{section*.6}\protected@file@percent }
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@LN{374}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cohort Designs}{5}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:cohorts}{{3.3}{5}{Cohort Designs}{subsection.3.3}{}}
+\newlabel{sec:cohorts@cref}{{[subsection][3][3]3.3}{[1][5][]5}{}{}{}}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN@col{2}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\@LN{385}{4}
+\@LN{386}{4}
+\@LN{387}{4}
+\@LN{388}{4}
+\@LN{389}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Semi-Synthetic Injection Framework}{5}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:injection}{{3.4}{5}{Semi-Synthetic Injection Framework}{subsection.3.4}{}}
+\newlabel{sec:injection@cref}{{[subsection][4][3]3.4}{[1][5][]5}{}{}{}}
+\@LN{390}{4}
+\@LN{391}{4}
+\@LN{392}{4}
+\@LN{393}{4}
+\@LN{394}{4}
+\@LN{395}{4}
+\@LN{396}{4}
+\@LN{397}{4}
+\@writefile{toc}{\contentsline {paragraph}{Procedure.}{5}{section*.7}\protected@file@percent }
+\@LN{398}{4}
+\@LN{399}{4}
+\@LN{400}{4}
+\@LN{401}{4}
+\@LN{402}{4}
+\@LN{403}{4}
+\@LN{404}{4}
+\@LN{405}{4}
+\@LN{406}{4}
+\@LN{407}{4}
+\@LN{408}{4}
+\@LN{409}{4}
+\@LN{410}{4}
+\@LN{411}{4}
+\@LN{412}{4}
+\@LN{413}{4}
+\@LN{414}{4}
+\@LN{415}{4}
+\@LN{416}{4}
+\@writefile{toc}{\contentsline {paragraph}{Cross-subject matching.}{5}{section*.8}\protected@file@percent }
+\@LN{417}{4}
+\@LN{418}{4}
+\@LN{419}{4}
+\@LN{420}{4}
+\@LN{421}{4}
+\@LN{422}{4}
+\@LN{423}{4}
+\@LN{424}{4}
+\@LN{425}{4}
+\@LN{426}{4}
+\newlabel{prop:fpr}{{3.4}{5}{Remark (Zero FPR under single-subject matching)}{section*.9}{}}
+\newlabel{prop:fpr@cref}{{[subsection][4][3]3.4}{[1][5][]5}{}{}{}}
+\@LN{427}{4}
+\@writefile{toc}{\contentsline {paragraph}{Remark (Zero FPR under single-subject matching).}{5}{section*.9}\protected@file@percent }
+\@LN{428}{4}
+\@LN{429}{4}
+\citation{wainer1993differential}
+\citation{kipnis2024metabench}
+\citation{hendrycks2021mmlu}
+\citation{zhou2026psnirt}
+\citation{li2024contamination}
+\citation{li2024contamination}
+\citation{li2024contamination}
+\@LN@col{1}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\@LN{453}{5}
+\@LN{454}{5}
+\@LN{455}{5}
+\@LN{456}{5}
+\@LN{457}{5}
+\@LN{458}{5}
+\@LN{459}{5}
+\@LN{460}{5}
+\@LN{461}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{6}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{6}{Experiments}{section.4}{}}
+\newlabel{sec:experiments@cref}{{[section][4][]4}{[1][6][]6}{}{}{}}
+\@LN{462}{5}
+\@LN{463}{5}
+\@LN{464}{5}
+\@LN{465}{5}
+\@LN{466}{5}
+\@LN{467}{5}
+\@LN{468}{5}
+\@LN{469}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Validation: DIF Detection Power}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:validation}{{4.1}{6}{Validation: DIF Detection Power}{subsection.4.1}{}}
+\newlabel{sec:validation@cref}{{[subsection][1][4]4.1}{[1][6][]6}{}{}{}}
+\@LN{470}{5}
+\@LN{471}{5}
+\@LN{472}{5}
+\@LN{473}{5}
+\@LN{474}{5}
+\@LN{475}{5}
+\@LN{476}{5}
+\@LN{477}{5}
+\@LN{478}{5}
+\@LN@col{2}
+\@LN{479}{5}
+\@LN{480}{5}
+\@LN{481}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Temporal DIF: ${\sim }$29\% of Items Exhibit Differential Functioning}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:temporal}{{4.2}{6}{Temporal DIF: ${\sim }$29\% of Items Exhibit Differential Functioning}{subsection.4.2}{}}
+\newlabel{sec:temporal@cref}{{[subsection][2][4]4.2}{[1][6][]6}{}{}{}}
+\@LN{482}{5}
+\@LN{483}{5}
+\@LN{484}{5}
+\@LN{485}{5}
+\@LN{486}{5}
+\@LN{487}{5}
+\@LN{488}{5}
+\@LN{489}{5}
+\@LN{490}{5}
+\@LN{491}{5}
+\@LN{492}{5}
+\@LN{493}{5}
+\@LN{494}{5}
+\@LN{495}{5}
+\@LN{496}{5}
+\@LN{497}{5}
+\@LN{498}{5}
+\@LN{499}{5}
+\@LN{500}{5}
+\@LN{501}{5}
+\@LN{502}{5}
+\@LN{503}{5}
+\@LN{504}{5}
+\@LN{505}{5}
+\@LN{506}{5}
+\@LN{507}{5}
+\@LN{508}{5}
+\@LN{509}{5}
+\@LN{510}{5}
+\@LN{511}{5}
+\@LN{512}{5}
+\@LN{513}{5}
+\@LN{514}{5}
+\@LN{515}{5}
+\@LN{516}{5}
+\@LN{517}{5}
+\@LN{518}{5}
+\@LN{519}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Comparison with Web-Overlap Labels}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:groundtruth}{{4.3}{6}{Comparison with Web-Overlap Labels}{subsection.4.3}{}}
+\newlabel{sec:groundtruth@cref}{{[subsection][3][4]4.3}{[1][6][]6}{}{}{}}
+\@LN{520}{5}
+\@LN{521}{5}
+\@LN{522}{5}
+\@LN{523}{5}
+\@LN{524}{5}
+\@LN{525}{5}
+\@LN{526}{5}
+\@LN{527}{5}
+\@LN{528}{5}
+\citation{zellers2019hellaswag}
+\citation{camilli1994methods}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DIF landscape across cohort definitions. ETS~C denotes the percentage of items with $|\Delta _{\mathrm  {MH}}| \geq 1.5$. C\% (web-clean) is the DIF-C flagging rate among items classified as web-clean by \citet  {li2024contamination}. Enrichment is the ratio of observed to expected overlap between DIF flags and web-overlap labels. Dashes (--) indicate comparisons where Li et al.\ labels are not applicable.}}{7}{table.caption.10}\protected@file@percent }
+\newlabel{tab:temporal_landscape}{{1}{7}{DIF landscape across cohort definitions. ETS~C denotes the percentage of items with $|\Delta _{\mathrm {MH}}| \geq 1.5$. C\% (web-clean) is the DIF-C flagging rate among items classified as web-clean by \citet {li2024contamination}. Enrichment is the ratio of observed to expected overlap between DIF flags and web-overlap labels. Dashes (--) indicate comparisons where Li et al.\ labels are not applicable}{table.caption.10}{}}
+\newlabel{tab:temporal_landscape@cref}{{[table][1][]1}{[1][6][]7}{}{}{}}
+\@LN{529}{6}
+\@LN{530}{6}
+\@LN{531}{6}
+\@LN{532}{6}
+\@LN{533}{6}
+\@LN{534}{6}
+\@LN{535}{6}
+\@LN{536}{6}
+\@LN{537}{6}
+\@LN{538}{6}
+\@LN{539}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Structural Analysis}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:structural}{{4.4}{7}{Structural Analysis}{subsection.4.4}{}}
+\newlabel{sec:structural@cref}{{[subsection][4][4]4.4}{[1][7][]7}{}{}{}}
+\@LN{540}{6}
+\@LN{541}{6}
+\@LN{542}{6}
+\@LN{543}{6}
+\@LN{544}{6}
+\@LN{545}{6}
+\@LN{546}{6}
+\@LN{547}{6}
+\@LN{548}{6}
+\@LN{549}{6}
+\@LN{550}{6}
+\@LN{551}{6}
+\@LN{552}{6}
+\@LN{553}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Detection Power under Controlled Injection}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:semisynthetic}{{4.5}{7}{Detection Power under Controlled Injection}{subsection.4.5}{}}
+\newlabel{sec:semisynthetic@cref}{{[subsection][5][4]4.5}{[1][7][]7}{}{}{}}
+\@LN{554}{6}
+\@LN{555}{6}
+\@LN{556}{6}
+\@LN{557}{6}
+\@LN{558}{6}
+\@LN{559}{6}
+\@LN{560}{6}
+\@LN{561}{6}
+\@LN{562}{6}
+\@LN{563}{6}
+\@LN{564}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Semi-synthetic dose-response for DIF detection on MMLU. $\Delta \mathrm  {TPR}$ ($= \mathrm  {TPR}_{\text  {injected}} - \mathrm  {TPR}_{\text  {baseline}}$) increases monotonically with exploitation rate $p$ under binary injection (a calibration upper bound; \Cref  {sec:injection}); MH-DIF is sensitive to differential item behavior when present. Baseline (no injection) produces $\Delta \mathrm  {TPR} \approx 0$.}}{7}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:dose_response}{{2}{7}{Semi-synthetic dose-response for DIF detection on MMLU. $\Delta \mathrm {TPR}$ ($= \mathrm {TPR}_{\text {injected}} - \mathrm {TPR}_{\text {baseline}}$) increases monotonically with exploitation rate $p$ under binary injection (a calibration upper bound; \Cref {sec:injection}); MH-DIF is sensitive to differential item behavior when present. Baseline (no injection) produces $\Delta \mathrm {TPR} \approx 0$}{figure.caption.11}{}}
+\newlabel{fig:dose_response@cref}{{[figure][2][]2}{[1][6][]7}{}{}{}}
+\@LN{565}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Downstream Impact}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:downstream}{{4.6}{7}{Downstream Impact}{subsection.4.6}{}}
+\newlabel{sec:downstream@cref}{{[subsection][6][4]4.6}{[1][7][]7}{}{}{}}
+\@LN{566}{6}
+\@LN{567}{6}
+\@LN{568}{6}
+\@LN{569}{6}
+\@LN{570}{6}
+\@LN{571}{6}
+\@LN{572}{6}
+\@LN{573}{6}
+\@LN{574}{6}
+\@LN{575}{6}
+\@LN{576}{6}
+\@LN{577}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Benchmark Validation}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:gsm8k}{{4.7}{7}{Cross-Benchmark Validation}{subsection.4.7}{}}
+\newlabel{sec:gsm8k@cref}{{[subsection][7][4]4.7}{[1][7][]7}{}{}{}}
+\@LN{578}{6}
+\@LN{579}{6}
+\@LN{580}{6}
+\@LN{581}{6}
+\@LN{582}{6}
+\@LN{583}{6}
+\@LN{584}{6}
+\@LN{585}{6}
+\@LN{586}{6}
+\@LN{587}{6}
+\@LN{588}{6}
+\@LN{589}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\newlabel{sec:discussion@cref}{{[section][5][]5}{[1][7][]7}{}{}{}}
+\@LN{590}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Temporal DIF as Structured Signal}{7}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:disc_temporal}{{5.1}{7}{Temporal DIF as Structured Signal}{subsection.5.1}{}}
+\newlabel{sec:disc_temporal@cref}{{[subsection][1][5]5.1}{[1][7][]7}{}{}{}}
+\@LN{591}{6}
+\@LN{592}{6}
+\@LN{593}{6}
+\@LN{594}{6}
+\@LN{595}{6}
+\@LN{596}{6}
+\@LN{597}{6}
+\citation{clauser1998dif}
+\citation{camilli1994methods,penfield2007dif}
+\citation{french2010hierarchical}
+\citation{ackerman1992didmf}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Ranking degradation under DIF-ordered vs.\ random item removal. DIF-ordered removal (orange) degrades $\rho $ faster than random (blue band = mean $\pm $ 1\,SD, 20 seeds). Dashed lines: Monitor/Flag (15\%) and Flag/Act (25\%) thresholds (\Cref  {sec:disc_protocol}).}}{8}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:rho_degradation}{{3}{8}{Ranking degradation under DIF-ordered vs.\ random item removal. DIF-ordered removal (orange) degrades $\rho $ faster than random (blue band = mean $\pm $ 1\,SD, 20 seeds). Dashed lines: Monitor/Flag (15\%) and Flag/Act (25\%) thresholds (\Cref {sec:disc_protocol})}{figure.caption.12}{}}
+\newlabel{fig:rho_degradation@cref}{{[figure][3][]3}{[1][7][]8}{}{}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Temporal DIF across six METABENCH benchmarks (2023 vs.\ 2024 cohorts). $\rho $/$\tau $: rank correlation between full and stable-item rankings; Flip: pairwise rank-flip rate; Ratio: C\%/random baseline.}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{2}{8}{Temporal DIF across six METABENCH benchmarks (2023 vs.\ 2024 cohorts). $\rho $/$\tau $: rank correlation between full and stable-item rankings; Flip: pairwise rank-flip rate; Ratio: C\%/random baseline}{table.caption.13}{}}
+\newlabel{tab:cross_benchmark@cref}{{[table][2][]2}{[1][7][]8}{}{}{}}
+\@LN{598}{7}
+\@LN{599}{7}
+\@LN{600}{7}
+\@LN{601}{7}
+\@LN{602}{7}
+\@LN{603}{7}
+\@LN{604}{7}
+\@LN{605}{7}
+\@LN{606}{7}
+\@LN{607}{7}
+\@LN{608}{7}
+\@LN{609}{7}
+\@LN{610}{7}
+\@LN{611}{7}
+\@LN{612}{7}
+\@LN{613}{7}
+\@LN{614}{7}
+\@LN{615}{7}
+\@LN{616}{7}
+\@LN{617}{7}
+\@LN{618}{7}
+\@LN{619}{7}
+\@LN{620}{7}
+\@LN@col{2}
+\@LN{621}{7}
+\@LN{622}{7}
+\@LN{623}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Recommended DIF Audit Protocol}{8}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:disc_protocol}{{5.2}{8}{Recommended DIF Audit Protocol}{subsection.5.2}{}}
+\newlabel{sec:disc_protocol@cref}{{[subsection][2][5]5.2}{[1][8][]8}{}{}{}}
+\@LN{624}{7}
+\@LN{625}{7}
+\@LN{626}{7}
+\@LN{627}{7}
+\@LN{628}{7}
+\@LN{629}{7}
+\@LN{630}{7}
+\@LN{631}{7}
+\@LN{632}{7}
+\@LN{633}{7}
+\@LN{634}{7}
+\@LN{635}{7}
+\@LN{636}{7}
+\@LN{637}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][8][]8}{}{}{}}
+\@LN{638}{7}
+\@LN{639}{7}
+\@LN{640}{7}
+\@LN{641}{7}
+\@LN{642}{7}
+\@LN{643}{7}
+\@LN{644}{7}
+\@LN{645}{7}
+\@LN{646}{7}
+\@LN{647}{7}
+\@LN{648}{7}
+\@LN{649}{7}
+\bibdata{references}
+\bibcite{ackerman1992didmf}{{1}{1992}{{Ackerman}}{{}}}
+\bibcite{alzahrani2024benchmarks}{{2}{2024}{{Alzahrani et~al.}}{{Alzahrani, Alyahya, Alnumay, Alrashed, Alsubaie, Almushaykeh, Mirza, Alotaibi, Altwairesh, Alowisheq, Bari, and Khan}}}
+\bibcite{balkir2026confident}{{3}{2026}{{Balk{\i }r et~al.}}{{}}}
+\bibcite{balloccu2024leak}{{4}{2024}{{Balloccu et~al.}}{{Balloccu, Schmidtova, Lango, and Dusek}}}
+\bibcite{belzak2020smallsample}{{5}{2020}{{Belzak}}{{}}}
+\bibcite{burnell2023rethink}{{6}{2023}{{Burnell et~al.}}{{Burnell, Schellaert, Burden, Ullman, Martinez-Plumed, Tenenbaum, Rutar, Cheke, Sohl-Dickstein, Mitchell, Kiela, Shanahan, Voorhees, Cohn, Leibo, and Hernandez-Orallo}}}
+\bibcite{camilli1994methods}{{7}{1994}{{Camilli and Shepard}}{{}}}
+\bibcite{carlini2022quantifying}{{8}{2023}{{Carlini et~al.}}{{Carlini, Ippolito, Jagielski, Lee, Tram{\`e}r, and Zhang}}}
+\bibcite{chai2026benchmarksleak}{{9}{2026}{{Chai et~al.}}{{Chai, Zhe, and Sakuma}}}
+\bibcite{chang2024survey}{{10}{2024}{{Chang et~al.}}{{Chang, Wang, Wang, Wu, Zhu, Chen, Yang, Yi, Wang, Wang, Ye, Zhang, Chang, Yu, Yang, and Xie}}}
+\bibcite{clauser1998dif}{{11}{1998}{{Clauser and Mazor}}{{}}}
+\bibcite{dekoninck2024constat}{{12}{2024}{{Dekoninck et~al.}}{{Dekoninck, Mueller, and Vechev}}}
+\bibcite{deng2024investigating}{{13}{2024}{{Deng et~al.}}{{Deng, Zhao, Tang, Gerstein, and Cohan}}}
+\@LN@col{1}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\@LN{683}{8}
+\@LN{684}{8}
+\@LN{685}{8}
+\@LN{686}{8}
+\@LN{687}{8}
+\@LN{688}{8}
+\@LN{689}{8}
+\@LN{690}{8}
+\@LN{691}{8}
+\@LN{692}{8}
+\@LN{693}{8}
+\@LN{694}{8}
+\@LN{695}{8}
+\@LN{696}{8}
+\@LN{697}{8}
+\@LN{698}{8}
+\@LN{699}{8}
+\@LN@col{2}
+\@LN{700}{8}
+\@LN{701}{8}
+\@LN{702}{8}
+\@LN{703}{8}
+\@LN{704}{8}
+\@LN{705}{8}
+\@LN{706}{8}
+\@LN{707}{8}
+\@LN{708}{8}
+\@LN{709}{8}
+\@LN{710}{8}
+\@LN{711}{8}
+\@LN{712}{8}
+\@LN{713}{8}
+\@LN{714}{8}
+\@LN{715}{8}
+\@LN{716}{8}
+\@LN{717}{8}
+\@LN{718}{8}
+\@LN{719}{8}
+\@LN{720}{8}
+\@LN{721}{8}
+\@LN{722}{8}
+\@LN{723}{8}
+\@LN{724}{8}
+\@LN{725}{8}
+\@LN{726}{8}
+\@LN{727}{8}
+\@LN{728}{8}
+\@LN{729}{8}
+\@LN{730}{8}
+\@LN{731}{8}
+\@LN{732}{8}
+\@LN{733}{8}
+\@LN{734}{8}
+\@LN{735}{8}
+\@LN{736}{8}
+\@LN{737}{8}
+\@LN{738}{8}
+\@LN{739}{8}
+\@LN{740}{8}
+\@LN{741}{8}
+\@LN{742}{8}
+\@LN{743}{8}
+\@LN{744}{8}
+\@LN{745}{8}
+\@LN{746}{8}
+\@LN{747}{8}
+\@LN{748}{8}
+\@LN{749}{8}
+\@LN{750}{8}
+\@LN{751}{8}
+\@LN{752}{8}
+\@LN{753}{8}
+\bibcite{donoghue1993mh}{{14}{1993}{{Donoghue and Allen}}{{}}}
+\bibcite{french2010hierarchical}{{15}{2010}{{French and Finch}}{{}}}
+\bibcite{gema2024mmlu}{{16}{2024}{{Gema et~al.}}{{Gema, Leang, Hong, Devoto, Mancino, Saxena, He, Zhao, Du, Ghasemi~Madani, Barale, McHardy, Harris, Kaddour, van Krieken, and Minervini}}}
+\bibcite{golchin2024timetravel}{{17}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{habba2026growingpains}{{18}{2026}{{Habba et~al.}}{{Habba, Itzhak, Yehudai, Perlitz, Bandel, Shmueli-Scheuer, Choshen, and Stanovsky}}}
+\bibcite{hardy2026scalability}{{19}{2026}{{Hardy et~al.}}{{Hardy, Gilbert, and Domingue}}}
+\bibcite{hendrycks2021mmlu}{{20}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
+\bibcite{holland1988mh}{{21}{1988}{{Holland and Thayer}}{{}}}
+\bibcite{kiela2021dynabench}{{22}{2021}{{Kiela et~al.}}{{Kiela, Bartolo, Nie, Kaushik, Geiger, Wu, Vidgen, Prasad, Singh, Ringshia, Ma, Thrush, Riedel, Talat, Stenetorp, and Jia}}}
+\bibcite{kim2019fpc}{{23}{2019}{{Kim and Kolen}}{{}}}
+\bibcite{kipnis2024metabench}{{24}{2024}{{Kipnis et~al.}}{{Kipnis, Voudouris, Schulze~Buschoff, and Schulz}}}
+\bibcite{kish1965survey}{{25}{1965}{{Kish}}{{}}}
+\bibcite{kraus2024irt}{{26}{2024}{{Kraus and Arora}}{{}}}
+\bibcite{lalor2019irt}{{27}{2019}{{Lalor et~al.}}{{Lalor, Wu, and Yu}}}
+\bibcite{li2025atlas}{{28}{2025}{{Li et~al.}}{{Li, Tang, Chen, Cheng, Metoyer, Hua, and Chawla}}}
+\bibcite{li2024latesteval}{{29}{2024{a}}{{Li et~al.}}{{Li, Guerin, and Lin}}}
+\bibcite{li2024contamination}{{30}{2024{b}}{{Li et~al.}}{{Li, Guo, Guerin, and Lin}}}
+\bibcite{liang2026dvd}{{31}{2026}{{Liang}}{{}}}
+\bibcite{lord1980irt}{{32}{1980}{{Lord}}{{}}}
+\bibcite{luo2025medirt}{{33}{2025}{{Luo et~al.}}{{Luo, Wu, Frisch, and He}}}
+\bibcite{maeda2025difllm}{{34}{2025}{{Maeda}}{{}}}
+\bibcite{magis2010difr}{{35}{2010}{{Magis et~al.}}{{Magis, B{\'e}land, Tuerlinckx, and De~Boeck}}}
+\bibcite{maiapolo2024tinybenchmarks}{{36}{2024}{{Maia~Polo et~al.}}{{Maia~Polo, Weber, Choshen, Sun, Xu, and Yurochkin}}}
+\bibcite{meredith1993invariance}{{37}{1993}{{Meredith}}{{}}}
+\@LN@col{1}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN{790}{9}
+\@LN{791}{9}
+\@LN{792}{9}
+\@LN{793}{9}
+\@LN{794}{9}
+\@LN{795}{9}
+\@LN{796}{9}
+\@LN{797}{9}
+\@LN{798}{9}
+\@LN{799}{9}
+\@LN{800}{9}
+\@LN{801}{9}
+\@LN{802}{9}
+\@LN{803}{9}
+\@LN{804}{9}
+\@LN{805}{9}
+\@LN{806}{9}
+\@LN{807}{9}
+\@LN{808}{9}
+\@LN{809}{9}
+\@LN{810}{9}
+\@LN@col{2}
+\@LN{811}{9}
+\@LN{812}{9}
+\@LN{813}{9}
+\@LN{814}{9}
+\@LN{815}{9}
+\@LN{816}{9}
+\@LN{817}{9}
+\@LN{818}{9}
+\@LN{819}{9}
+\@LN{820}{9}
+\@LN{821}{9}
+\@LN{822}{9}
+\@LN{823}{9}
+\@LN{824}{9}
+\@LN{825}{9}
+\@LN{826}{9}
+\@LN{827}{9}
+\@LN{828}{9}
+\@LN{829}{9}
+\@LN{830}{9}
+\@LN{831}{9}
+\@LN{832}{9}
+\@LN{833}{9}
+\@LN{834}{9}
+\@LN{835}{9}
+\@LN{836}{9}
+\@LN{837}{9}
+\@LN{838}{9}
+\@LN{839}{9}
+\@LN{840}{9}
+\@LN{841}{9}
+\@LN{842}{9}
+\@LN{843}{9}
+\@LN{844}{9}
+\@LN{845}{9}
+\@LN{846}{9}
+\@LN{847}{9}
+\@LN{848}{9}
+\@LN{849}{9}
+\@LN{850}{9}
+\@LN{851}{9}
+\@LN{852}{9}
+\@LN{853}{9}
+\@LN{854}{9}
+\@LN{855}{9}
+\@LN{856}{9}
+\@LN{857}{9}
+\@LN{858}{9}
+\@LN{859}{9}
+\@LN{860}{9}
+\@LN{861}{9}
+\@LN{862}{9}
+\@LN{863}{9}
+\@LN{864}{9}
+\@LN{865}{9}
+\bibcite{millsap2011invariance}{{38}{2011}{{Millsap}}{{}}}
+\bibcite{millsap1993dif}{{39}{1993}{{Millsap and Everson}}{{}}}
+\bibcite{muthen1985mimic}{{40}{1985}{{Muth{\'e}n}}{{}}}
+\bibcite{nandakumar1993dif}{{41}{1993}{{Nandakumar}}{{}}}
+\bibcite{oren2024proving}{{42}{2024}{{Oren et~al.}}{{Oren, Meister, Chatterji, Ladhak, and Hashimoto}}}
+\bibcite{penfield2007dif}{{43}{2007}{{Penfield and Camilli}}{{}}}
+\bibcite{qian2026benchmark2}{{44}{2026}{{Qian and Huang}}{{}}}
+\bibcite{raju1988area}{{45}{1988}{{Raju}}{{}}}
+\bibcite{rao1992variance}{{46}{1992}{{Rao and Scott}}{{}}}
+\bibcite{rodriguez2021evaluation}{{47}{2021}{{Rodriguez et~al.}}{{Rodriguez, Barrow, Hoyle, Lalor, Jia, and Boyd-Graber}}}
+\bibcite{roussos1996multidimensionality}{{48}{1996}{{Roussos and Stout}}{{}}}
+\bibcite{shealy1993sibtest}{{49}{1993}{{Shealy and Stout}}{{}}}
+\bibcite{shi2024mink}{{50}{2024}{{Shi et~al.}}{{Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and Zettlemoyer}}}
+\bibcite{suk2026rethinking}{{51}{2026}{{Suk and Lyu}}{{}}}
+\bibcite{swaminathan1990logistic}{{52}{1990}{{Swaminathan and Rogers}}{{}}}
+\bibcite{tao2026selfcritique}{{53}{2026}{{Tao et~al.}}{{Tao, Wang, Dong, Liu, Zhang, Hu, and Li}}}
+\bibcite{teresi2007dif}{{54}{2007}{{Teresi and Fleishman}}{{}}}
+\bibcite{tirumala2022memorization}{{55}{2022}{{Tirumala et~al.}}{{Tirumala, Markosyan, Zettlemoyer, and Aghajanyan}}}
+\bibcite{vandenberg2000invariance}{{56}{2000}{{Vandenberg and Lance}}{{}}}
+\bibcite{vania2021irt}{{57}{2021}{{Vania et~al.}}{{Vania, Htut, Huang, Mungra, Pang, Phang, Liu, Cho, and Bowman}}}
+\bibcite{wainer1993differential}{{58}{1993}{{Wainer and Braun}}{{}}}
+\bibcite{wang2026fragility}{{59}{2026}{{Wang et~al.}}{{Wang, Li, Ko, and Zhang}}}
+\bibcite{wang2024mmlupro}{{60}{2024}{{Wang et~al.}}{{Wang, Ma, Zhang, Ni, Chandra, Guo, Ren, Arulraj, He, Jiang, Li, Ku, Wang, Zhuang, Fan, Yue, and Chen}}}
+\bibcite{white2025livebench}{{61}{2025}{{White}}{{}}}
+\bibcite{woods2009mimic}{{62}{2009}{{Woods}}{{}}}
+\bibcite{xu2025benchmark}{{63}{2025}{{Xu et~al.}}{{Xu, Zhang, and Zhao}}}
+\@LN@col{1}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\@LN{888}{10}
+\@LN{889}{10}
+\@LN{890}{10}
+\@LN{891}{10}
+\@LN{892}{10}
+\@LN{893}{10}
+\@LN{894}{10}
+\@LN{895}{10}
+\@LN{896}{10}
+\@LN{897}{10}
+\@LN{898}{10}
+\@LN{899}{10}
+\@LN{900}{10}
+\@LN{901}{10}
+\@LN{902}{10}
+\@LN{903}{10}
+\@LN{904}{10}
+\@LN{905}{10}
+\@LN{906}{10}
+\@LN{907}{10}
+\@LN{908}{10}
+\@LN{909}{10}
+\@LN{910}{10}
+\@LN{911}{10}
+\@LN{912}{10}
+\@LN{913}{10}
+\@LN{914}{10}
+\@LN{915}{10}
+\@LN{916}{10}
+\@LN{917}{10}
+\@LN{918}{10}
+\@LN@col{2}
+\@LN{919}{10}
+\@LN{920}{10}
+\@LN{921}{10}
+\@LN{922}{10}
+\@LN{923}{10}
+\@LN{924}{10}
+\@LN{925}{10}
+\@LN{926}{10}
+\@LN{927}{10}
+\@LN{928}{10}
+\@LN{929}{10}
+\@LN{930}{10}
+\@LN{931}{10}
+\@LN{932}{10}
+\@LN{933}{10}
+\@LN{934}{10}
+\@LN{935}{10}
+\@LN{936}{10}
+\@LN{937}{10}
+\@LN{938}{10}
+\@LN{939}{10}
+\@LN{940}{10}
+\@LN{941}{10}
+\@LN{942}{10}
+\@LN{943}{10}
+\@LN{944}{10}
+\@LN{945}{10}
+\@LN{946}{10}
+\@LN{947}{10}
+\@LN{948}{10}
+\@LN{949}{10}
+\@LN{950}{10}
+\@LN{951}{10}
+\@LN{952}{10}
+\@LN{953}{10}
+\@LN{954}{10}
+\@LN{955}{10}
+\@LN{956}{10}
+\@LN{957}{10}
+\@LN{958}{10}
+\@LN{959}{10}
+\@LN{960}{10}
+\@LN{961}{10}
+\@LN{962}{10}
+\@LN{963}{10}
+\@LN{964}{10}
+\@LN{965}{10}
+\@LN{966}{10}
+\@LN{967}{10}
+\@LN{968}{10}
+\@LN{969}{10}
+\@LN{970}{10}
+\@LN{971}{10}
+\@LN{972}{10}
+\@LN{973}{10}
+\@LN{974}{10}
+\bibcite{yao2025jeirt}{{64}{2025}{{Yao et~al.}}{{Yao, Jarvis, Zhan, Ghosh, Liu, and Jiang}}}
+\bibcite{ying2024automating}{{65}{2024}{{Ying et~al.}}{{Ying, Cao, Luo, Gao, Zhang, Chen, and Liu}}}
+\bibcite{zawalski2026codec}{{66}{2026}{{Zawalski et~al.}}{{Zawalski, Boubdir, Ba{\l }azy, Nushi, and Ribalta}}}
+\bibcite{zellers2019hellaswag}{{67}{2019}{{Zellers et~al.}}{{Zellers, Holtzman, Bisk, Farzaneh, and Choi}}}
+\bibcite{zhang2024minkpp}{{68}{2024}{{Zhang et~al.}}{{Zhang, Sun, Yeats, Ouyang, Kuo, Zhang, Yang, and Li}}}
+\bibcite{zhao2025mmlucf}{{69}{2025}{{Zhao et~al.}}{{Zhao, Huang, Jing, Shi, Liang, Du, He, and Lin}}}
+\bibcite{zhou2026psnirt}{{70}{2026}{{Zhou et~al.}}{{Zhou, Huang, Zhao, Han, Wang, Chen, Yang, Bao, Dong, Xu, Zhu, Cao, and Zhao}}}
+\bibcite{zhu2026bhi}{{71}{2026}{{Zhu et~al.}}{{Zhu, Hua, Miao, and Zhao}}}
+\bibcite{zumbo1999handbook}{{72}{1999}{{Zumbo}}{{}}}
+\@LN@col{1}
+\@LN{975}{11}
+\@LN{976}{11}
+\@LN{977}{11}
+\@LN{978}{11}
+\@LN{979}{11}
+\@LN{980}{11}
+\@LN{981}{11}
+\@LN{982}{11}
+\@LN{983}{11}
+\@LN{984}{11}
+\@LN{985}{11}
+\@LN{986}{11}
+\@LN{987}{11}
+\@LN{988}{11}
+\@LN{989}{11}
+\@LN{990}{11}
+\@LN{991}{11}
+\@LN{992}{11}
+\@LN{993}{11}
+\@LN{994}{11}
+\@LN{995}{11}
+\@LN{996}{11}
+\@LN{997}{11}
+\@LN{998}{11}
+\@LN{999}{11}
+\@LN{1000}{11}
+\@LN{1001}{11}
+\@LN{1002}{11}
+\@LN{1003}{11}
+\@LN{1004}{11}
+\@LN{1005}{11}
+\@LN{1006}{11}
+\@LN{1007}{11}
+\@LN{1008}{11}
+\@LN{1009}{11}
+\@LN{1010}{11}
+\@LN{1011}{11}
+\@LN{1012}{11}
+\@LN{1013}{11}
+\@LN{1014}{11}
+\@LN{1015}{11}
+\@LN{1016}{11}
+\@LN{1017}{11}
+\@LN{1018}{11}
+\@LN{1019}{11}
+\@LN{1020}{11}
+\@LN{1021}{11}
+\@LN{1022}{11}
+\@LN{1023}{11}
+\@LN{1024}{11}
+\@LN{1025}{11}
+\@LN{1026}{11}
+\@LN{1027}{11}
+\@LN{1028}{11}
+\@LN@col{2}
+\@LN{1029}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Method Details}{12}{appendix.A}\protected@file@percent }
+\newlabel{app:method_details}{{A}{12}{Method Details}{appendix.A}{}}
+\newlabel{app:method_details@cref}{{[section][1][]A}{[1][12][]12}{}{}{}}
+\@LN{1030}{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Diagnostics}{12}{subsection.A.1}\protected@file@percent }
+\newlabel{app:diagnostics}{{A.1}{12}{Diagnostics}{subsection.A.1}{}}
+\newlabel{app:diagnostics@cref}{{[subsection][1][1]A.1}{[1][12][]12}{}{}{}}
+\@LN{1031}{11}
+\@LN{1032}{11}
+\@writefile{toc}{\contentsline {paragraph}{Local independence (Yen's Q3).}{12}{section*.16}\protected@file@percent }
+\@LN{1033}{11}
+\@LN{1034}{11}
+\@LN{1035}{11}
+\@LN{1036}{11}
+\@LN{1037}{11}
+\@LN{1038}{11}
+\@LN{1039}{11}
+\@LN{1040}{11}
+\@LN{1041}{11}
+\@LN{1042}{11}
+\@LN{1043}{11}
+\@writefile{toc}{\contentsline {paragraph}{Domain-specificity.}{12}{section*.17}\protected@file@percent }
+\@LN{1044}{11}
+\@LN{1045}{11}
+\@LN{1046}{11}
+\@LN{1047}{11}
+\@LN{1048}{11}
+\@LN{1049}{11}
+\@LN{1050}{11}
+\@LN{1051}{11}
+\@LN{1052}{11}
+\@LN{1053}{11}
+\@LN{1054}{11}
+\@LN{1055}{11}
+\@writefile{toc}{\contentsline {paragraph}{Instability decomposition.}{12}{section*.18}\protected@file@percent }
+\@LN{1056}{11}
+\@LN{1057}{11}
+\@LN{1058}{11}
+\@LN{1059}{11}
+\@LN{1060}{11}
+\@LN{1061}{11}
+\@LN{1062}{11}
+\@LN{1063}{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Statistical Considerations}{12}{subsection.A.2}\protected@file@percent }
+\newlabel{app:statistical}{{A.2}{12}{Statistical Considerations}{subsection.A.2}{}}
+\newlabel{app:statistical@cref}{{[subsection][2][1]A.2}{[1][12][]12}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multiple testing.}{12}{section*.19}\protected@file@percent }
+\@LN{1064}{11}
+\@LN{1065}{11}
+\@LN{1066}{11}
+\@LN{1067}{11}
+\@LN{1068}{11}
+\@LN{1069}{11}
+\@LN{1070}{11}
+\@LN{1071}{11}
+\@writefile{toc}{\contentsline {paragraph}{Threshold sensitivity.}{12}{section*.20}\protected@file@percent }
+\@LN{1072}{11}
+\@LN{1073}{11}
+\@LN{1074}{11}
+\@LN{1075}{11}
+\@LN{1076}{11}
+\citation{clauser1998dif}
+\citation{suk2026rethinking}
+\@LN@col{1}
+\@LN{1077}{12}
+\@LN{1078}{12}
+\@writefile{toc}{\contentsline {paragraph}{IRT model fit.}{13}{section*.21}\protected@file@percent }
+\@LN{1079}{12}
+\@LN{1080}{12}
+\@LN{1081}{12}
+\@LN{1082}{12}
+\@LN{1083}{12}
+\@LN{1084}{12}
+\@LN{1085}{12}
+\@writefile{toc}{\contentsline {paragraph}{Architecture heterogeneity.}{13}{section*.22}\protected@file@percent }
+\@LN{1086}{12}
+\@LN{1087}{12}
+\@LN{1088}{12}
+\@LN{1089}{12}
+\@LN{1090}{12}
+\@LN{1091}{12}
+\@LN{1092}{12}
+\@LN{1093}{12}
+\newlabel{app:power_sensitivity}{{A.2}{13}{Power sensitivity to item discrimination}{section*.23}{}}
+\newlabel{app:power_sensitivity@cref}{{[subsection][2][1]A.2}{[1][13][]13}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Power sensitivity to item discrimination.}{13}{section*.23}\protected@file@percent }
+\@LN{1094}{12}
+\@LN{1095}{12}
+\@LN{1096}{12}
+\@LN{1097}{12}
+\@LN{1098}{12}
+\@LN{1099}{12}
+\@LN{1100}{12}
+\@LN{1101}{12}
+\@LN{1102}{12}
+\@LN{1103}{12}
+\@LN{1104}{12}
+\@LN{1105}{12}
+\@LN{1106}{12}
+\@LN{1107}{12}
+\@LN{1108}{12}
+\@LN{1109}{12}
+\@LN{1110}{12}
+\@LN{1111}{12}
+\@LN{1112}{12}
+\@LN{1113}{12}
+\@LN{1114}{12}
+\@LN{1115}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Power sensitivity to item discrimination. TPR = true positive rate for ETS~C detection ($|\Delta _{\mathrm  {MH}}| \geq 1.5$) at $N = 80$ per cohort, $|\Delta _b| = 1.4$, 1,000 replications.}}{13}{table.caption.24}\protected@file@percent }
+\newlabel{tab:power_sensitivity}{{3}{13}{Power sensitivity to item discrimination. TPR = true positive rate for ETS~C detection ($|\Delta _{\mathrm {MH}}| \geq 1.5$) at $N = 80$ per cohort, $|\Delta _b| = 1.4$, 1,000 replications}{table.caption.24}{}}
+\newlabel{tab:power_sensitivity@cref}{{[table][3][]3}{[1][13][]13}{}{}{}}
+\@LN@col{2}
+\newlabel{app:k3_power}{{A.2}{13}{Stratum sensitivity (K=3 vs.\ K=5)}{section*.25}{}}
+\newlabel{app:k3_power@cref}{{[subsection][2][1]A.2}{[1][13][]13}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stratum sensitivity (K=3 vs.\ K=5).}{13}{section*.25}\protected@file@percent }
+\@LN{1116}{12}
+\@LN{1117}{12}
+\@LN{1118}{12}
+\@LN{1119}{12}
+\@LN{1120}{12}
+\@LN{1121}{12}
+\@LN{1122}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Detection power: K=3 vs.\ K=5 at $|\Delta _{\mathrm  {MH}}| \geq 1.0$.}}{13}{table.caption.26}\protected@file@percent }
+\newlabel{tab:k3_power}{{4}{13}{Detection power: K=3 vs.\ K=5 at $|\Delta _{\mathrm {MH}}| \geq 1.0$}{table.caption.26}{}}
+\newlabel{tab:k3_power@cref}{{[table][4][]4}{[1][13][]13}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Nearest-neighbor matching.}{13}{section*.27}\protected@file@percent }
+\@LN{1123}{12}
+\@LN{1124}{12}
+\@LN{1125}{12}
+\@LN{1126}{12}
+\@LN{1127}{12}
+\@LN{1128}{12}
+\@LN{1129}{12}
+\@LN{1130}{12}
+\@writefile{toc}{\contentsline {paragraph}{Logistic regression specification.}{13}{section*.28}\protected@file@percent }
+\@LN{1131}{12}
+\@LN{1132}{12}
+\@LN{1133}{12}
+\@LN{1134}{12}
+\@LN{1135}{12}
+\@LN{1136}{12}
+\@LN{1137}{12}
+\@LN{1138}{12}
+\@LN{1139}{12}
+\@LN{1140}{12}
+\@LN{1141}{12}
+\@LN{1142}{12}
+\@LN{1143}{12}
+\@LN{1144}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Mechanism Analysis}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:mechanism_discussion}{{B}{13}{Mechanism Analysis}{appendix.B}{}}
+\newlabel{app:mechanism_discussion@cref}{{[section][2][]B}{[1][13][]13}{}{}{}}
+\@LN{1145}{12}
+\@LN{1146}{12}
+\@LN{1147}{12}
+\@LN{1148}{12}
+\@LN{1149}{12}
+\@LN{1150}{12}
+\@LN{1151}{12}
+\@LN{1152}{12}
+\@LN{1153}{12}
+\@LN{1154}{12}
+\@LN{1155}{12}
+\citation{gema2024mmlu}
+\@LN@col{1}
+\@LN{1156}{13}
+\@LN{1157}{13}
+\@LN{1158}{13}
+\@LN{1159}{13}
+\@writefile{toc}{\contentsline {paragraph}{Exclusion arguments.}{14}{section*.29}\protected@file@percent }
+\@LN{1160}{13}
+\@LN{1161}{13}
+\@LN{1162}{13}
+\@LN{1163}{13}
+\@LN{1164}{13}
+\@LN{1165}{13}
+\@LN{1166}{13}
+\@LN{1167}{13}
+\@LN{1168}{13}
+\@LN{1169}{13}
+\@LN{1170}{13}
+\@LN{1171}{13}
+\@LN{1172}{13}
+\@LN{1173}{13}
+\@writefile{toc}{\contentsline {paragraph}{Difficulty--direction interaction.}{14}{section*.30}\protected@file@percent }
+\@LN{1174}{13}
+\@LN{1175}{13}
+\@LN{1176}{13}
+\@LN{1177}{13}
+\@LN{1178}{13}
+\@LN{1179}{13}
+\@LN{1180}{13}
+\@LN{1181}{13}
+\@LN{1182}{13}
+\@LN{1183}{13}
+\@LN{1184}{13}
+\@LN{1185}{13}
+\@LN{1186}{13}
+\@LN{1187}{13}
+\newlabel{app:interaction}{{B}{14}{Difficulty--model-type interaction}{section*.31}{}}
+\newlabel{app:interaction@cref}{{[section][2][]B}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Difficulty--model-type interaction.}{14}{section*.31}\protected@file@percent }
+\@LN{1188}{13}
+\@LN{1189}{13}
+\@LN{1190}{13}
+\@LN{1191}{13}
+\@LN{1192}{13}
+\@LN{1193}{13}
+\@LN{1194}{13}
+\@LN{1195}{13}
+\@LN{1196}{13}
+\@LN{1197}{13}
+\@LN{1198}{13}
+\@LN{1199}{13}
+\newlabel{app:mixed_mechanism}{{B}{14}{Mixed-mechanism injection}{section*.32}{}}
+\newlabel{app:mixed_mechanism@cref}{{[section][2][]B}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mixed-mechanism injection.}{14}{section*.32}\protected@file@percent }
+\@LN{1200}{13}
+\@LN{1201}{13}
+\@LN{1202}{13}
+\@LN{1203}{13}
+\@LN{1204}{13}
+\@LN{1205}{13}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Schematic illustration of global vs.\ differential contamination via Item Characteristic Curves (ICCs). \textbf  {Left}: global contamination produces no DIF; both cohorts encounter the item, and their ICCs overlap. \textbf  {Right}: differential contamination produces DIF; the focal cohort's ICC shifts because only that cohort was disproportionately exposed during training (assuming no ceiling effect). The enrichment ratio of $\approx 1.0$ between DIF flags and web-overlap labels is expected because most MMLU items fall into the left category.}}{14}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:global_vs_differential}{{4}{14}{Schematic illustration of global vs.\ differential contamination via Item Characteristic Curves (ICCs). \textbf {Left}: global contamination produces no DIF; both cohorts encounter the item, and their ICCs overlap. \textbf {Right}: differential contamination produces DIF; the focal cohort's ICC shifts because only that cohort was disproportionately exposed during training (assuming no ceiling effect). The enrichment ratio of $\approx 1.0$ between DIF flags and web-overlap labels is expected because most MMLU items fall into the left category}{figure.caption.33}{}}
+\newlabel{fig:global_vs_differential@cref}{{[figure][4][]4}{[1][14][]14}{}{}{}}
+\@LN{1206}{13}
+\@LN{1207}{13}
+\@LN{1208}{13}
+\@LN{1209}{13}
+\@LN{1210}{13}
+\@LN{1211}{13}
+\@LN{1212}{13}
+\@LN{1213}{13}
+\@LN{1214}{13}
+\@LN{1215}{13}
+\@LN{1216}{13}
+\@LN{1217}{13}
+\@LN{1218}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Structural Analysis Details}{14}{appendix.C}\protected@file@percent }
+\newlabel{app:structural}{{C}{14}{Structural Analysis Details}{appendix.C}{}}
+\newlabel{app:structural@cref}{{[section][3][]C}{[1][14][]14}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Structural controls and sensitivity checks for temporal DIF. None reduces C\% below 31\%; $\theta $-conditioning serves as a sensitivity check confirming total-score adequacy.}}{14}{table.caption.34}\protected@file@percent }
+\newlabel{tab:structural_comparison}{{5}{14}{Structural controls and sensitivity checks for temporal DIF. None reduces C\% below 31\%; $\theta $-conditioning serves as a sensitivity check confirming total-score adequacy}{table.caption.34}{}}
+\newlabel{tab:structural_comparison@cref}{{[table][5][]5}{[1][14][]14}{}{}{}}
+\@LN{1219}{13}
+\@LN{1220}{13}
+\@LN{1221}{13}
+\@LN{1222}{13}
+\@LN{1223}{13}
+\@LN{1224}{13}
+\@LN{1225}{13}
+\@LN{1226}{13}
+\@LN{1227}{13}
+\@LN{1228}{13}
+\citation{rao1992variance}
+\citation{kish1965survey}
+\@LN@col{1}
+\@LN{1229}{14}
+\@LN{1230}{14}
+\@LN{1231}{14}
+\@LN{1232}{14}
+\@LN{1233}{14}
+\@LN{1234}{14}
+\@LN{1235}{14}
+\@LN{1236}{14}
+\@LN{1237}{14}
+\@LN{1238}{14}
+\@LN{1239}{14}
+\@LN{1240}{14}
+\@LN{1241}{14}
+\@LN{1242}{14}
+\@LN{1243}{14}
+\@LN{1244}{14}
+\@LN{1245}{14}
+\@LN{1246}{14}
+\@LN{1247}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Domain-level Cohen's $d$ between 2023 and 2024 cohorts. The narrow range ($0.12$) indicates nearly uniform improvement across domains, supporting total-score matching adequacy for DIF analysis (\Cref  {sec:method}).}}{15}{table.caption.35}\protected@file@percent }
+\newlabel{tab:domain_cohens_d}{{6}{15}{Domain-level Cohen's $d$ between 2023 and 2024 cohorts. The narrow range ($0.12$) indicates nearly uniform improvement across domains, supporting total-score matching adequacy for DIF analysis (\Cref {sec:method})}{table.caption.35}{}}
+\newlabel{tab:domain_cohens_d@cref}{{[table][6][]6}{[1][15][]15}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Multi-subject injection robustness. $k$ = number of simultaneously contaminated subjects (out of 57); values are mean $\pm $ SD across 5 random subject draws at exploitation rate $p = 0.5$. Cross-subject matching provides reliable FPR control at $k \leq 5$; $\Delta \mathrm  {FPR}$ increases substantially at $k \geq 10$.}}{15}{table.caption.36}\protected@file@percent }
+\newlabel{tab:multi_subject_injection}{{7}{15}{Multi-subject injection robustness. $k$ = number of simultaneously contaminated subjects (out of 57); values are mean $\pm $ SD across 5 random subject draws at exploitation rate $p = 0.5$. Cross-subject matching provides reliable FPR control at $k \leq 5$; $\Delta \mathrm {FPR}$ increases substantially at $k \geq 10$}{table.caption.36}{}}
+\newlabel{tab:multi_subject_injection@cref}{{[table][7][]7}{[1][15][]15}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Extreme contamination coverage ($k \geq 30$).}{15}{section*.37}\protected@file@percent }
+\@LN{1248}{14}
+\@LN{1249}{14}
+\@LN{1250}{14}
+\@LN{1251}{14}
+\@LN{1252}{14}
+\@LN{1253}{14}
+\@LN{1254}{14}
+\@LN@col{2}
+\@LN{1255}{14}
+\@LN{1256}{14}
+\@LN{1257}{14}
+\@LN{1258}{14}
+\@LN{1259}{14}
+\@LN{1260}{14}
+\@LN{1261}{14}
+\@LN{1262}{14}
+\@LN{1263}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Leave-one-family-out (LOFO) robustness on MMLU. Removing non-dominant families ($\leq $15\% of their cohort) changes C\% by at most 2.93\,pp. Larger shifts from removing Mistral or Llama-3 are driven almost entirely by family composition, not statistical power loss: Monte Carlo random-subsample calibration (200 replicates per scenario, matching the reduced sample size) shows the power effect is $\leq $1\,pp, while the composition effect accounts for 95--113\% of the observed C\% drop (Mistral: $-8.44$\,pp composition vs.\ $-0.41$\,pp power; Llama-3: $-8.17$\,pp vs.\ ${+}0.91$\,pp; observed C\% falls below the 95\% random-subsample range in both cases). Stratification uses total test score for computational efficiency; cross-subject matching yields identical baseline C\%.}}{15}{table.caption.38}\protected@file@percent }
+\newlabel{tab:lofo}{{8}{15}{Leave-one-family-out (LOFO) robustness on MMLU. Removing non-dominant families ($\leq $15\% of their cohort) changes C\% by at most 2.93\,pp. Larger shifts from removing Mistral or Llama-3 are driven almost entirely by family composition, not statistical power loss: Monte Carlo random-subsample calibration (200 replicates per scenario, matching the reduced sample size) shows the power effect is $\leq $1\,pp, while the composition effect accounts for 95--113\% of the observed C\% drop (Mistral: $-8.44$\,pp composition vs.\ $-0.41$\,pp power; Llama-3: $-8.17$\,pp vs.\ ${+}0.91$\,pp; observed C\% falls below the 95\% random-subsample range in both cases). Stratification uses total test score for computational efficiency; cross-subject matching yields identical baseline C\%}{table.caption.38}{}}
+\newlabel{tab:lofo@cref}{{[table][8][]8}{[1][15][]15}{}{}{}}
+\@LN{1264}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Design Effect Estimation}{15}{appendix.D}\protected@file@percent }
+\newlabel{app:deff}{{D}{15}{Design Effect Estimation}{appendix.D}{}}
+\newlabel{app:deff@cref}{{[section][4][]D}{[1][15][]15}{}{}{}}
+\@LN{1265}{14}
+\@LN{1266}{14}
+\@LN{1267}{14}
+\@LN{1268}{14}
+\@LN{1269}{14}
+\@LN{1270}{14}
+\@LN{1271}{14}
+\@LN{1272}{14}
+\@LN{1273}{14}
+\@LN{1274}{14}
+\@LN{1275}{14}
+\@LN{1276}{14}
+\@LN{1277}{14}
+\@LN{1278}{14}
+\@LN{1279}{14}
+\@LN{1280}{14}
+\@LN{1281}{14}
+\@LN{1282}{14}
+\@LN{1283}{14}
+\citation{li2024contamination}
+\@LN@col{1}
+\@LN{1284}{15}
+\@LN{1285}{15}
+\@LN{1286}{15}
+\@LN{1287}{15}
+\@writefile{toc}{\contentsline {paragraph}{Size-stratified DEFF.}{16}{section*.39}\protected@file@percent }
+\@LN{1288}{15}
+\@LN{1289}{15}
+\@LN{1290}{15}
+\@LN{1291}{15}
+\@LN{1292}{15}
+\@LN{1293}{15}
+\@LN{1294}{15}
+\@LN{1295}{15}
+\@LN{1296}{15}
+\@LN{1297}{15}
+\@LN{1298}{15}
+\@LN{1299}{15}
+\@LN{1300}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Size-stratified DEFF analysis. ICC and DEFF computed per tier; Adj.\ C\% applies tier-specific DEFF to all items.}}{16}{table.caption.40}\protected@file@percent }
+\newlabel{tab:deff_stratified}{{9}{16}{Size-stratified DEFF analysis. ICC and DEFF computed per tier; Adj.\ C\% applies tier-specific DEFF to all items}{table.caption.40}{}}
+\newlabel{tab:deff_stratified@cref}{{[table][9][]9}{[1][16][]16}{}{}{}}
+\@LN{1301}{15}
+\@LN{1302}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Uncertainty Quantification Comparison}{16}{appendix.E}\protected@file@percent }
+\newlabel{app:uncertainty}{{E}{16}{Uncertainty Quantification Comparison}{appendix.E}{}}
+\newlabel{app:uncertainty@cref}{{[section][5][]E}{[1][16][]16}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Comparison of uncertainty quantification methods for the 31.3\% C\% estimate on MMLU.}}{16}{table.caption.41}\protected@file@percent }
+\newlabel{tab:uncertainty}{{10}{16}{Comparison of uncertainty quantification methods for the 31.3\% C\% estimate on MMLU}{table.caption.41}{}}
+\newlabel{tab:uncertainty@cref}{{[table][10][]10}{[1][16][]16}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Half-year granularity.}{16}{section*.42}\protected@file@percent }
+\@LN{1303}{15}
+\@LN{1304}{15}
+\@LN{1305}{15}
+\@LN{1306}{15}
+\@LN{1307}{15}
+\@LN{1308}{15}
+\@LN{1309}{15}
+\@LN{1310}{15}
+\@LN{1311}{15}
+\@LN{1312}{15}
+\@LN{1313}{15}
+\@LN@col{2}
+\@LN{1314}{15}
+\@LN{1315}{15}
+\@LN{1316}{15}
+\@LN{1317}{15}
+\@LN{1318}{15}
+\@LN{1319}{15}
+\@LN{1320}{15}
+\@LN{1321}{15}
+\@LN{1322}{15}
+\@LN{1323}{15}
+\@LN{1324}{15}
+\@LN{1325}{15}
+\@LN{1326}{15}
+\@LN{1327}{15}
+\@LN{1328}{15}
+\@LN{1329}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Cross-Benchmark Comparison}{16}{appendix.F}\protected@file@percent }
+\newlabel{app:gsm8k_details}{{F}{16}{Cross-Benchmark Comparison}{appendix.F}{}}
+\newlabel{app:gsm8k_details@cref}{{[section][6][]F}{[1][16][]16}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-benchmark comparison of DIF analysis on MMLU and GSM8K. Both benchmarks exhibit temporal score incomparability with validated semi-synthetic detection power. Standard and external matching use different exploitation rates ($p$) because each benchmark's optimal operating point differs; external matching results are compared at $p = 0.5$ for both. Subscript $\pm $ values denote standard deviations across 5 random injection seeds.}}{16}{table.caption.43}\protected@file@percent }
+\newlabel{tab:gsm8k_comparison}{{11}{16}{Cross-benchmark comparison of DIF analysis on MMLU and GSM8K. Both benchmarks exhibit temporal score incomparability with validated semi-synthetic detection power. Standard and external matching use different exploitation rates ($p$) because each benchmark's optimal operating point differs; external matching results are compared at $p = 0.5$ for both. Subscript $\pm $ values denote standard deviations across 5 random injection seeds}{table.caption.43}{}}
+\newlabel{tab:gsm8k_comparison@cref}{{[table][11][]11}{[1][16][]16}{}{}{}}
+\@LN{1330}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Additional Figures}{16}{appendix.G}\protected@file@percent }
+\newlabel{app:figures}{{G}{16}{Additional Figures}{appendix.G}{}}
+\newlabel{app:figures@cref}{{[section][7][]G}{[1][16][]16}{}{}{}}
+\@LN{1331}{15}
+\@LN{1332}{15}
+\@LN{1333}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Item-Property Predictive Analysis}{16}{appendix.H}\protected@file@percent }
+\newlabel{app:predictive}{{H}{16}{Item-Property Predictive Analysis}{appendix.H}{}}
+\newlabel{app:predictive@cref}{{[section][8][]H}{[1][16][]16}{}{}{}}
+\@LN{1334}{15}
+\@LN{1335}{15}
+\@LN{1336}{15}
+\@LN{1337}{15}
+\@LN{1338}{15}
+\@LN{1339}{15}
+\@LN{1340}{15}
+\@LN{1341}{15}
+\@LN{1342}{15}
+\@LN{1343}{15}
+\@LN{1344}{15}
+\@LN{1345}{15}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-subject vs.\ within-subject matching for semi-synthetic DIF detection. Cross-subject matching eliminates FPR inflation ($\Delta \mathrm  {FPR} = 0.000$) while preserving detection power ($\Delta \mathrm  {TPR} > 0.3$ for 4/5 subjects at $p = 0.5$). Within-subject matching inflates FPR by ${+}0.186$ on average.}}{17}{figure.caption.44}\protected@file@percent }
+\newlabel{app:fig_matching}{{5}{17}{Cross-subject vs.\ within-subject matching for semi-synthetic DIF detection. Cross-subject matching eliminates FPR inflation ($\Delta \mathrm {FPR} = 0.000$) while preserving detection power ($\Delta \mathrm {TPR} > 0.3$ for 4/5 subjects at $p = 0.5$). Within-subject matching inflates FPR by ${+}0.186$ on average}{figure.caption.44}{}}
+\newlabel{app:fig_matching@cref}{{[figure][5][]5}{[1][16][]17}{}{}{}}
+\@LN{1346}{16}
+\@LN{1347}{16}
+\@LN{1348}{16}
+\@LN{1349}{16}
+\@LN{1350}{16}
+\@LN{1351}{16}
+\@LN{1352}{16}
+\@LN{1353}{16}
+\@LN{1354}{16}
+\@LN{1355}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Within-Family Similarity by Family Size}{17}{appendix.I}\protected@file@percent }
+\newlabel{app:icc_family}{{I}{17}{Within-Family Similarity by Family Size}{appendix.I}{}}
+\newlabel{app:icc_family@cref}{{[section][9][]I}{[1][17][]17}{}{}{}}
+\@LN{1356}{16}
+\@LN{1357}{16}
+\@LN{1358}{16}
+\@LN{1359}{16}
+\@LN{1360}{16}
+\@LN{1361}{16}
+\@LN{1362}{16}
+\@LN{1363}{16}
+\@LN{1364}{16}
+\@LN{1365}{16}
+\@LN{1366}{16}
+\@LN{1367}{16}
+\@LN{1368}{16}
+\@LN{1369}{16}
+\@LN{1370}{16}
+\@LN{1371}{16}
+\@LN{1372}{16}
+\@LN{1373}{16}
+\@LN{1374}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Graduated De-Duplication Sensitivity}{17}{appendix.J}\protected@file@percent }
+\newlabel{app:dedup_k}{{J}{17}{Graduated De-Duplication Sensitivity}{appendix.J}{}}
+\newlabel{app:dedup_k@cref}{{[section][10][]J}{[1][17][]17}{}{}{}}
+\@LN{1375}{16}
+\@LN{1376}{16}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Downstream impact of DIF-based item filtering on model rankings. Despite $\rho \approx 0.997$ overall, individual model families show systematic rank shifts when evaluated on stable items (non-C-flagged) only.}}{17}{figure.caption.45}\protected@file@percent }
+\newlabel{app:fig_downstream}{{6}{17}{Downstream impact of DIF-based item filtering on model rankings. Despite $\rho \approx 0.997$ overall, individual model families show systematic rank shifts when evaluated on stable items (non-C-flagged) only}{figure.caption.45}{}}
+\newlabel{app:fig_downstream@cref}{{[figure][6][]6}{[1][16][]17}{}{}{}}
+\@LN{1377}{16}
+\@LN{1378}{16}
+\@LN{1379}{16}
+\@LN{1380}{16}
+\@LN{1381}{16}
+\@LN{1382}{16}
+\@LN{1383}{16}
+\@LN{1384}{16}
+\@LN{1385}{16}
+\@LN{1386}{16}
+\@LN{1387}{16}
+\@LN{1388}{16}
+\@LN{1389}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Rank-Reversal by Distance}{17}{appendix.K}\protected@file@percent }
+\newlabel{app:rank_reversal}{{K}{17}{Rank-Reversal by Distance}{appendix.K}{}}
+\newlabel{app:rank_reversal@cref}{{[section][11][]K}{[1][17][]17}{}{}{}}
+\@LN{1390}{16}
+\@LN{1391}{16}
+\@LN{1392}{16}
+\@LN{1393}{16}
+\@LN{1394}{16}
+\@LN{1395}{16}
+\@LN{1396}{16}
+\@LN{1397}{16}
+\@LN{1398}{16}
+\@LN{1399}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {L}DEFF Simulation}{17}{appendix.L}\protected@file@percent }
+\newlabel{app:deff_simulation}{{L}{17}{DEFF Simulation}{appendix.L}{}}
+\newlabel{app:deff_simulation@cref}{{[section][12][]L}{[1][17][]17}{}{}{}}
+\@LN{1400}{16}
+\@LN{1401}{16}
+\@LN{1402}{16}
+\@LN{1403}{16}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Exploratory: GSM1K contamination gap vs.\ DIF ranking advantage ($N = 33$; small sample, results should be interpreted cautiously). The negative correlation ($r = -0.478$, $p = 0.005$) indicates that models with larger contamination gaps benefit less from DIF-flagged items. Three of 33 models exceed the Cook's $D$ threshold ($4/N = 0.12$); leave-one-out analysis confirms all individual-removal correlations remain significant ($r \in [-0.54, -0.37]$, all $p < 0.05$), and removing all three outliers yields $r = -0.38$ ($p = 0.036$, $N = 30$).}}{18}{figure.caption.46}\protected@file@percent }
+\newlabel{app:fig_gsm1k}{{7}{18}{Exploratory: GSM1K contamination gap vs.\ DIF ranking advantage ($N = 33$; small sample, results should be interpreted cautiously). The negative correlation ($r = -0.478$, $p = 0.005$) indicates that models with larger contamination gaps benefit less from DIF-flagged items. Three of 33 models exceed the Cook's $D$ threshold ($4/N = 0.12$); leave-one-out analysis confirms all individual-removal correlations remain significant ($r \in [-0.54, -0.37]$, all $p < 0.05$), and removing all three outliers yields $r = -0.38$ ($p = 0.036$, $N = 30$)}{figure.caption.46}{}}
+\newlabel{app:fig_gsm1k@cref}{{[figure][7][]7}{[1][16][]18}{}{}{}}
+\@LN{1404}{17}
+\@LN{1405}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces DEFF estimator comparison across four simulated family structures. Bias = adjusted C\% $-$ ground truth (30\%); RMSE over 50 seeds. Simple-mean wins in 3/4 scenarios; weighted-mean ties only under uniform family sizes.}}{18}{table.caption.47}\protected@file@percent }
+\newlabel{tab:deff_sim}{{12}{18}{DEFF estimator comparison across four simulated family structures. Bias = adjusted C\% $-$ ground truth (30\%); RMSE over 50 seeds. Simple-mean wins in 3/4 scenarios; weighted-mean ties only under uniform family sizes}{table.caption.47}{}}
+\newlabel{tab:deff_sim@cref}{{[table][12][]12}{[1][18][]18}{}{}{}}
+\@LN{1406}{17}
+\@LN{1407}{17}
+\@LN{1408}{17}
+\@LN{1409}{17}
+\@LN{1410}{17}
+\@LN{1411}{17}
+\@LN{1412}{17}
+\@LN{1413}{17}
+\@LN{1414}{17}
+\@LN{1415}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Score Inflation Analysis}{18}{appendix.M}\protected@file@percent }
+\newlabel{app:score_inflation}{{M}{18}{Score Inflation Analysis}{appendix.M}{}}
+\newlabel{app:score_inflation@cref}{{[section][13][]M}{[1][18][]18}{}{}{}}
+\@LN{1416}{17}
+\@LN{1417}{17}
+\@LN{1418}{17}
+\@LN{1419}{17}
+\@LN{1420}{17}
+\@LN@col{2}
+\@LN{1421}{17}
+\@LN{1422}{17}
+\@LN{1423}{17}
+\@LN{1424}{17}
+\@LN{1425}{17}
+\@LN{1426}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Score inflation from DIF-C item removal, by cohort.}}{18}{table.caption.48}\protected@file@percent }
+\newlabel{tab:score_inflation}{{13}{18}{Score inflation from DIF-C item removal, by cohort}{table.caption.48}{}}
+\newlabel{tab:score_inflation@cref}{{[table][13][]13}{[1][18][]18}{}{}{}}
+\@LN{1427}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Within-Architecture Temporal DIF}{18}{appendix.N}\protected@file@percent }
+\newlabel{app:within_arch}{{N}{18}{Within-Architecture Temporal DIF}{appendix.N}{}}
+\newlabel{app:within_arch@cref}{{[section][14][]N}{[1][18][]18}{}{}{}}
+\@LN{1428}{17}
+\@LN{1429}{17}
+\@LN{1430}{17}
+\@LN{1431}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Within-architecture temporal DIF. C\% = ETS~C items between 2023 and 2024 models within each lineage.}}{18}{table.caption.49}\protected@file@percent }
+\newlabel{tab:within_arch}{{14}{18}{Within-architecture temporal DIF. C\% = ETS~C items between 2023 and 2024 models within each lineage}{table.caption.49}{}}
+\newlabel{tab:within_arch@cref}{{[table][14][]14}{[1][18][]18}{}{}{}}
+\@LN{1432}{17}
+\@LN{1433}{17}
+\@LN{1434}{17}
+\@LN{1435}{17}
+\@LN{1436}{17}
+\@LN{1437}{17}
+\@LN{1438}{17}
+\@LN{1439}{17}
+\@LN{1440}{17}
+\@LN{1441}{17}
+\@LN{1442}{17}
+\@LN{1443}{17}
+\@LN{1444}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Base-Only and Instruct-Only Temporal DIF}{18}{appendix.O}\protected@file@percent }
+\newlabel{app:baseinst_temporal}{{O}{18}{Base-Only and Instruct-Only Temporal DIF}{appendix.O}{}}
+\newlabel{app:baseinst_temporal@cref}{{[section][15][]O}{[1][18][]18}{}{}{}}
+\@LN{1445}{17}
+\@LN{1446}{17}
+\@LN{1447}{17}
+\@LN{1448}{17}
+\@LN{1449}{17}
+\@LN{1450}{17}
+\@LN{1451}{17}
+\@LN@col{1}
+\@LN{1452}{18}
+\@LN{1453}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Temporal DIF computed separately for base-only and instruct-only model subsets. Both model types independently exhibit C\% $\geq 32\%$, far exceeding the random baseline (0.62\%). Training methodology modulates DIF direction ($r$, focal-favoring proportion) rather than magnitude.}}{19}{table.caption.50}\protected@file@percent }
+\newlabel{tab:baseinst_temporal}{{15}{19}{Temporal DIF computed separately for base-only and instruct-only model subsets. Both model types independently exhibit C\% $\geq 32\%$, far exceeding the random baseline (0.62\%). Training methodology modulates DIF direction ($r$, focal-favoring proportion) rather than magnitude}{table.caption.50}{}}
+\newlabel{tab:baseinst_temporal@cref}{{[table][15][]15}{[1][19][]19}{}{}{}}
+\@LN{1454}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Composition Control}{19}{appendix.P}\protected@file@percent }
+\newlabel{app:composition_control}{{P}{19}{Composition Control}{appendix.P}{}}
+\newlabel{app:composition_control@cref}{{[section][16][]P}{[1][19][]19}{}{}{}}
+\@LN{1455}{18}
+\@LN{1456}{18}
+\@LN{1457}{18}
+\@LN{1458}{18}
+\@LN{1459}{18}
+\@LN{1460}{18}
+\@LN{1461}{18}
+\@LN{1462}{18}
+\@LN{1463}{18}
+\@LN{1464}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Use of AI Assistants}{19}{appendix.Q}\protected@file@percent }
+\newlabel{app:ai-assistants}{{Q}{19}{Use of AI Assistants}{appendix.Q}{}}
+\newlabel{app:ai-assistants@cref}{{[section][17][]Q}{[1][19][]19}{}{}{}}
+\@LN{1465}{18}
+\@LN{1466}{18}
+\@LN{1467}{18}
+\@LN{1468}{18}
+\@LN{1469}{18}
+\@LN{1470}{18}
+\@LN{1471}{18}
+\@LN{1472}{18}
+\@LN{1473}{18}
+\@LN{1474}{18}
+\@LN@col{2}
+\gdef \@abspage@last{19}

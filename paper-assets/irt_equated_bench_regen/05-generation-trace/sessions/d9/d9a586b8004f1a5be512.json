@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9a586b8004f1a5be512",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 004 bootstrap ci",
+  "task_key": "worker_code_plan_004_bootstrap_ci_20260521T035222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_bootstrap_ci_20260521T035222_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "b0a2935cff72d4d0dcf011387de56204962841dffe5c9a57cc9e106bd62b45c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。四个统计量的 BCa bootstrap 95% CI：\n\n| Statistic | Estimate | 95% CI | Boot. SE |\n|-----------|----------|--------|----------|\n| Pearson *r* (gap vs DIF adv) | −0.478 | [−0.714, −0.155] | 0.148 |\n| Spearman *ρ* (gap vs DIF adv) | −0.403 | [−0.687, −0.031] | 0.168 |\n| Partial *r* (| GSM8K acc) | −0.385 | [−0.640, −0.058] | 0.152 |\n| Domain *ρ* (C% vs acc_change) | 0.307 | [0.025, 0.550] | 0.133 |\n\n所有 CI 均不包含零，point estimates 与已知值精确匹配。报告和脚本已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-bootstrap-ci-copy-2.md"
+}

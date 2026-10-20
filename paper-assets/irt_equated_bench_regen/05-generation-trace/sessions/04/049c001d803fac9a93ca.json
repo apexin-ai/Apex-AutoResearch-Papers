@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "049c001d803fac9a93ca",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper figure fig 3 within subject matching",
+  "task_key": "worker_paper_figure_fig_3_within_subject_matching_20260521T000044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_3_within_subject_matching_20260521T000044_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "455907affc1a765097300b2a5329671d4a91678e8bdb5e6055479c9447744963"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 和 PNG 已生成并注册：\n\n- **PDF**: `figures/paper/fig_3_within_subject_matching.pdf`\n- **PNG**: `figures/paper/fig_3_within_subject_matching.png`\n- **脚本**: `figures/paper/fig_3_within_subject_matching.py`\n- **Artifact ID**: `art_20260521_b3deab`\n\n图表要点：左 panel 显示 cross-subject matching 在 4/5 subjects 上 ΔTPR 超过 0.3 threshold，仅 Business Ethics 失败（浅橙背景高亮）；右 panel 显示 cross-subject ΔFPR 全部为 0，within-subject 有 +0.040 ~ +0.124 的膨胀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-3-within-subject-matching.md"
+}

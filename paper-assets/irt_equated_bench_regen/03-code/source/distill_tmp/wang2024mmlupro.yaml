@@ -1,0 +1,19 @@
+paper_key: "wang2024mmlupro"
+title: "MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark"
+venue: "NeurIPS 2024"
+full_text_available: false
+
+research:
+  baselines: [MMLU]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "prompt sensitivity (%)", direction: "lower_better"}
+  datasets:
+    - {name: "MMLU-Pro", size: "enhanced from MMLU, 10 choices per question"}
+  ablation_dimensions: [prompt style (24 variants), CoT vs direct answering]
+  training_recipe: {optimizer: "N/A (benchmark)", lr: "N/A", hardware: "N/A"}
+  method_family: "hardened static benchmark"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

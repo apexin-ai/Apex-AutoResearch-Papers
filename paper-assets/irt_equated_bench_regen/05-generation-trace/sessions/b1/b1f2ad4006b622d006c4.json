@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1f2ad4006b622d006c4",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mf2 mmlu kendall",
+  "task_key": "worker_code_mf2_mmlu_kendall_20260522T023059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf2_mmlu_kendall_20260522T023059_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "3e24090ca05bb47cd836937dd44fa09cedef8f6edac97e69d803d0c9ac18561f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MMLU Kendall τ 和 flip rate 已补算完成：\n\n| 指标 | 值 |\n|------|-----|\n| Kendall τ | 0.9600 |\n| flip rate | 2.00% |\n\nMMLU 的 flip rate (2.00%) 与 TruthfulQA (2.07%) 接近，符合预期——两者 C-item 比例都在 ~30%。6-benchmark mean flip rate 从原来 5 个的 1.88% 更新为 1.90%。CSV 和 report 均已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf2-mmlu-kendall.md"
+}

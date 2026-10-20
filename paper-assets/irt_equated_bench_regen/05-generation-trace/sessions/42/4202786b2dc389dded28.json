@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4202786b2dc389dded28",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 033 subject dif concentration",
+  "task_key": "worker_code_plan_033_subject_dif_concentration_20260521T133500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_033_subject_dif_concentration_20260521T133500_result.json",
+    "occurrence": 1,
+    "bytes": 1483,
+    "sha256": "e3ae1a984d0b3cfb00970bed8c033a13489d703404d67ee9a1e61296bdbd799c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "57 subjects in both CSVs (58 lines = 57 + header). All outputs validated. Key results:\n\n**DIF concentration across subjects:**\n- All 57 subjects have C-flagged items; range 20.7%–48.4%, mean 30.6%, SD 5.5%\n- Highest: business_ethics (48.4%), human_aging (41.9%), formal_logic (40.4%)\n- Lowest: computer_security (20.7%), marketing (20.9%)\n\n**Domain differences:**\n- STEM 30.9%, Humanities 31.1%, Social Science 31.6% — **no significant difference** (Kruskal-Wallis p=0.78)\n- DIF distributes across domains, not concentrated in one\n\n**Predictive model:**\n- Higher discrimination → much higher DIF odds (OR=57.2, p<10⁻¹⁰⁰)\n- Higher difficulty → much lower DIF odds (OR=0.086, p<10⁻¹⁰⁴)\n- Pseudo R²=0.04 — item properties explain little, consistent with DIF being content-driven\n- 5 subjects (professional_law, human_aging, world_religions, business_ethics, professional_medicine) show significantly **more** DIF than predicted by item properties alone\n\n**Temporal asymmetry — the most striking finding:**\n- STEM DIF items lean 55.4% toward favoring 2024 models (mean_delta_mh positive)\n- Humanities DIF items lean 64.4% toward favoring 2023 models (mean_delta_mh negative)\n- world_religions (83% favor 2023) and logical_fallacies (80% favor 2023) show near-unidirectional asymmetry\n- This STEM↔Humanities directional split answers Q4 directly: the **direction** of DIF is domain-dependent even though the **rate** is not"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-033-subject-dif-concentration.md"
+}

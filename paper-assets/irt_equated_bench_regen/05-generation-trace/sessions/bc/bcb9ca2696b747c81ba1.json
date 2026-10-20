@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcb9ca2696b747c81ba1",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code data audit abstract intro",
+  "task_key": "worker_code_data_audit_abstract_intro_20260523T191605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_audit_abstract_intro_20260523T191605_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "0d47581cb5a897dc29d2aa41d9fb2f37bc1a41675484fa0a99923040c102e1cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/data_audit_part1.md`。\n\n核查结果：29 个数字全部追溯到 artifacts 源文件，跨章节完全一致。唯一的 ⚠️ 是 Abstract 中 \"≥22×\" — 精确值为 13.5%/0.62% = 21.8×，写 \"≥22×\" 略有向上取整（21.8 < 22）。如需严谨可改为 `${\\sim}22\\times$` 或 `${\\geq}21\\times$`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-audit-abstract-intro.md"
+}

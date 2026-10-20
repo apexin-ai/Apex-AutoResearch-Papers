@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86d8f7331fdfb37aeb46",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r16 rank displacement per threshold",
+  "task_key": "worker_code_r16_rank_displacement_per_threshold_20260523T110807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_rank_displacement_per_threshold_20260523T110807_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "9f5c3d2757826246834612917079f01bf099a3c3ba2204d5fb60e2e060e3e430"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Key findings:\n\n- **All z-scores >> 2** across every threshold — DIF-flagged items cause significantly more ranking instability than random removal of the same count.\n- Threshold 1.0 flags 49% of items (too aggressive), z ≈ 4. Thresholds 1.5–2.5 flag 10–31% with z-scores 13–19, showing the effect is robust and not driven by sheer removal volume.\n- Max displacement reaches ~800–1000 ranks (out of 5227 models) — some models shift dramatically.\n- Flip rates are 2–3× the random baseline at every threshold.\n\nOutput files in `artifacts/r16_threshold_calibration/`:\n- `rank_displacement_by_threshold.csv` — full metrics table\n- `rank_displacement_report.md` — formatted report\n- `rank_displacement.py` — analysis script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-rank-displacement-per-threshold.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63073db33224ac84961a",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 032 random baseline",
+  "task_key": "worker_code_plan_032_random_baseline_20260521T134427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_032_random_baseline_20260521T134427_result.json",
+    "occurrence": 1,
+    "bytes": 1321,
+    "sha256": "bed3d11d36968be77d87943ee956b6543be37dc2f5227dd044d1d938e7ba4ec3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated and verified. Summary:\n\n**Every DIF removal metric is significantly different from random (all |z| > 3):**\n\n| Metric | DIF | Random (20 trials) | z |\n|--------|-----|---------------------|---|\n| rank_change σ | 127.1 | 60.2 ± 7.8 | **+8.5** |\n| mean \\|rank change\\| | 74.7 | 36.0 ± 3.6 | **+10.7** |\n| % \\|Δ\\| ≥ 100 | 24.8% | 8.5% ± 2.0% | **+8.2** |\n| cohort 2023 mean Δ | **−22.6** | +0.4 ± 4.1 | **−5.6** |\n| cohort 2024 mean Δ | **+73.6** | +2.8 ± 21.2 | **+3.3** |\n| cohort asymmetry gap | **+96.2** | +2.4 ± 21.6 | **+4.4** |\n\nThe critical finding: random removal produces near-zero cohort bias (both cohorts ~0), confirming the **cohort-asymmetric rank shift is specific to DIF-flagged items**, not an artifact of removing 31% of items. DIF removal also produces ~2× more rank disruption than random, indicating C-flagged items concentrate information that differentially affects model rankings.\n\nOutput files in `artifacts/plan_032_dif_cleaned_mmlu/`:\n- `plan_032_random_baseline.py` — the script\n- `random_baseline_summary.csv` — per-trial metrics (20 rows)\n- `dif_vs_random_comparison.csv` — DIF vs random with z-scores\n- `random_baseline_report.md` — standalone report section\n- Section also appended to `plan_032_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-032-random-baseline.md"
+}

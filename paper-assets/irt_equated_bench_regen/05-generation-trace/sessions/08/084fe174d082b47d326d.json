@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "084fe174d082b47d326d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 k sensitivity",
+  "task_key": "worker_code_r17_k_sensitivity_20260522T153245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_k_sensitivity_20260522T153245_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "da79aa621d55abbab62a14e1ac3548f7f25edfba27259798be9b97e425d5c7cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Results:\n\n| K | C% | B% | A% |\n|---:|-----:|-----:|-----:|\n| 3 | 39.37 | 20.46 | 40.17 |\n| **5** | **31.32** | 17.56 | 51.11 |\n| 7 | 32.72 | 17.77 | 49.50 |\n| 10 | 35.92 | 16.49 | 47.59 |\n| 20 | 32.93 | 15.41 | 51.66 |\n\n- K=5 baseline: 31.32% — matches expected 31.3%\n- K=3 inflates C% to 39.4% (under-stratification, expected)\n- K≥5 range: 31.3%–35.9%, max |ΔC%| = 4.60pp — above the 3pp robustness threshold, driven by K=10 being elevated at 35.9% while K=5/7/20 cluster around 31–33%\n\nOutputs saved to `artifacts/r17_k_sensitivity/`: report, CSV, and reproducible script."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-k-sensitivity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4cdfdc6f956b3b97e02",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper figure fig A2 q3 distribution",
+  "task_key": "worker_paper_figure_fig_A2_q3_distribution_20260521T002337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_A2_q3_distribution_20260521T002337_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "0c99f206e0a840f56e718709eb89584575a5803f98572a044af02a6412ef43bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已完成并注册（`art_20260521_576682`）。\n\n产出文件：\n- **PDF**: `figures/paper/fig_A2_q3_distribution.pdf`\n- **PNG**: `figures/paper/fig_A2_q3_distribution.png`\n- **脚本**: `figures/paper/fig_A2_q3_distribution.py`\n\n设计要点：57 个 MMLU subjects 按 `pct_above_020` 降序排列，4 个超过 20% 阈值的 subject（moral_scenarios 34.2%、human_aging 20.5%、world_religions 18.0%、marketing 17.5%）用橙红高亮，其余深蓝。两条参考虚线分别标注 cross-subject baseline 2.2% 和 within-subject mean 11.3%，右下角统计框显示 Mann-Whitney p 值和 5× ratio。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-a2-q3-distribution.md"
+}

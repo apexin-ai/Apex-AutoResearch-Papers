@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beb8318c012e07e33510",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mf2 practical significance v2",
+  "task_key": "worker_code_mf2_practical_significance_v2_20260522T021443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf2_practical_significance_v2_20260522T021443_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "f44e09833796acd5f7f2c0890cc6ee12363ba74d7ae3cfc9e49f0387e625e0a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor cleaned up. Nothing to do — all 6 benchmarks are already computed and registered."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf2-practical-significance-v2.md"
+}

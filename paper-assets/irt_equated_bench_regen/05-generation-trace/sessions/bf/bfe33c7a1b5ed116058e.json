@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfe33c7a1b5ed116058e",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 004 step3 gsm1k correlation",
+  "task_key": "worker_code_plan_004_step3_gsm1k_correlation_20260521T011144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_step3_gsm1k_correlation_20260521T011144_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "6ac69af21e805c5f186d505cc5f00af0270547a9fca26fb76befa1f9525cbafc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 3 完成。核心结果：\n\n**Pearson r = −0.478, p = 0.005** — 效应量超过 |r| > 0.3 的 breakthrough 阈值，但方向是**负的**，与污染假设相反。\n\n关键发现：\n- 33 个 matched 模型（falcon-180B-chat 不在 MetaBench 中被排除）\n- 所有模型在 DIF-C items 上的 accuracy **低于** non-DIF items（DIF-C items 更难）\n- 高污染模型（gap 大）在 DIF-C items 上表现**更差**，而非更好\n- Partial correlation 控制 GSM8K overall accuracy 后仍显著（r = −0.385, p = 0.027）\n- Permutation test 证实信号真实（empirical p = 0.014）\n- Leave-one-out 分析显示结果稳健，无单点驱动\n\n**解读**：DIF-C items 不是\"污染 items\"，而是捕捉了跨时间队列的真实能力差异。249 个 DIF-C items 中有 171 个不利于新模型（α<1）。污染模型的优势集中在 non-DIF items 上，在 DIF items 上反而更弱——暗示污染产生的是\"窄\"提升，无法泛化到具有非典型难度特征的题目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-step3-gsm1k-correlation.md"
+}

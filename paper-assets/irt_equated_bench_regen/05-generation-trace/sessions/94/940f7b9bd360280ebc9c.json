@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "940f7b9bd360280ebc9c",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r22 within arch temporal",
+  "task_key": "worker_code_r22_within_arch_temporal_20260523T081014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r22_within_arch_temporal_20260523T081014_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "dc67258b390c20f4109fcc2a21ff72ba257d8a8da4556acb3f63b2abb7918889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Summary of findings:\n\n| Lineage | N_ref (2023) | N_foc (2024) | C% |\n|---------|-------------|-------------|-----|\n| **Llama** | 171 | 315 | **59.2%** |\n| Qwen | 27 | 70 | 6.9% |\n| Yi | 72 | 14 | 3.5% |\n| Phi | 60 | 20 | 1.3% |\n\n**Key takeaway:** 3/4 lineages show C% well above random baseline (0.18–1.3%). The Llama family — the best-powered comparison — shows C% = 59.2%, nearly double the overall 31.3%. This rules out the \"architecture differences drive DIF\" confound: even within the same architecture lineage, item difficulty ordering shifts substantially between 2023→2024.\n\nOutputs saved to `artifacts/r22_within_arch_temporal/`:\n- `within_arch_temporal.py` — analysis script\n- `within_arch_results.csv` — per-lineage results\n- `within_arch_report.md` — summary with interpretation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r22-within-arch-temporal.md"
+}

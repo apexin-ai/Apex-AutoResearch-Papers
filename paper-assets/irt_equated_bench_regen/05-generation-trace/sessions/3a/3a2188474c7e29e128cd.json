@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a2188474c7e29e128cd",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mf2 deff estimation v2",
+  "task_key": "worker_code_mf2_deff_estimation_v2_20260522T105423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf2_deff_estimation_v2_20260522T105423_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "e92713086ed9d156387c88c06a272e106a5781bf1a4514b62a8892b3791178bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF2 完成。核心结果：\n\n| 指标 | 值 |\n|------|-----|\n| Valid models / families | 2118 / 45 |\n| m̄_weighted | 230.53 |\n| Mean ICC | 0.0415 |\n| **Global DEFF** | **10.54** |\n| Effective N | 201 (from 2118) |\n| Original C% | 31.3% (3918 items) |\n| **Adjusted C%** | **17.5% (2183 items)** |\n| C→A reclassified | 1735 |\n| B→A reclassified | 2151 |\n\nDEFF 高于 reviewer 预期的 3-5，原因是 family size 极度不均（mistral=547, llama-3=315, median=15），加权 m̄ = Σ(n_f²)/Σ(n_f) = 230.53 远大于简单均值 47。ICC 本身很低（mean=0.04），但乘上大 m̄ 后 DEFF 仍达 10.54。\n\n56% 的 C 类 items 在校正后仍为 C，说明这些 item 的 DIF 信号足够强，即使考虑 family clustering 也显著。\n\n输出位于 `artifacts/mf2_deff_estimation/`：脚本、per-item CSV、summary report。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf2-deff-estimation-v2.md"
+}

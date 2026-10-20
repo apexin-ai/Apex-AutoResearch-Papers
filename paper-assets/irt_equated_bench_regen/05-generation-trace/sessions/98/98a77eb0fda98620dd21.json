@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98a77eb0fda98620dd21",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper w3 wording fix",
+  "task_key": "worker_paper_w3_wording_fix_20260523T020741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w3_wording_fix_20260523T020741_result.json",
+    "occurrence": 1,
+    "bytes": 279,
+    "sha256": "6f5140a0439c253b7b77c7c0c00bf115f3cfae7c6bb259b8414f3bda48a7c836"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Commit `633929f`, compilation successful (17 pages, no errors).\n\nChanges:\n- **discussion.tex**: \"cannot be replicated by any contamination scheme\" → \"any **tested** contamination scheme\"\n- **rebuttal_talking_points.md**: B5 section AUC=0.93 → AUC=0.905"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w3-wording-fix.md"
+}

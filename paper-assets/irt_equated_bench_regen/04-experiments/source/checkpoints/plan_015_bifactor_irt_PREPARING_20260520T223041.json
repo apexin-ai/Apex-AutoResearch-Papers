@@ -1,0 +1,17 @@
+{
+  "exp_id": "plan_015_bifactor_irt",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:23:51.598Z",
+    "updated_at": "2026-05-20T22:30:41.542Z",
+    "hypothesis": "Bifactor IRT（1 general + 57 subject-specific factors）的 general θ 分层能将 temporal cohort baseline FPR 从 31% 降至 <15%，同时在 semi-synthetic 框架下保持 TPR>0.60 at p=0.5。Bifactor 通过分离学科特异性能力和通用能力，消除 subject-level 能力差异对 MH-DIF 的混淆。",
+    "parent": "plan_012_irt_theta_conditioning",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T22:30:41.621818+00:00",
+  "trigger": "update_registry"
+}

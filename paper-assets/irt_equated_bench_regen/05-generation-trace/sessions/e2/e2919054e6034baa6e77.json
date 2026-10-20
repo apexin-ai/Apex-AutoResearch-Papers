@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2919054e6034baa6e77",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper research cluster 2 irt llm evaluation",
+  "task_key": "worker_paper_research_cluster_2_irt_llm_evaluation_20260521T022216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster_2_irt_llm_evaluation_20260521T022216_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "20d605b0851865e80cc671a4c6a13a826cbff32ee9c452dd724ac1b81f0aa4f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cluster 2 complete. Summary of changes:\n\n**Verified existing (3 papers, corrected author attributions):**\n- `polo2026growingpains` — Actually by Habba, Itzhak, Yehudai et al. (not Polo). arXiv:2604.12843. Multidimensional IRT with fixed-parameter calibration for extensible LLM benchmarking.\n- `polo2026psnirt` — Actually by Zhou, Huang, Zhao et al. (not Polo). AAAI 2026. PSN-IRT framework analyzing 41,871 items across 11 benchmarks.\n- `hardy2026scalability` — Hardy, Gilbert, Domingue. arXiv:2603.24999. Nonparametric scalability coefficients for bad item detection.\n\n**Added must_cite (2 papers):**\n- `lalor2019irt` — Lalor, Wu, Yu. EMNLP 2019. Pioneering IRT for NLP with artificial crowds. S2: df6cd8a8...\n- `vania2021irt` — Vania, Htut, Huang et al. ACL 2021. IRT-based analysis of NLU benchmark discriminability. S2: 4ca39cf9...\n\n**Added additional (3 papers):**\n- `li2025atlas` — Li et al. 2025. ATLAS adaptive testing reduces benchmark items by 90% using IRT. S2: 087ce283...\n- `chen2025irtnet` — Chen et al. 2025. IrtNet: Multidimensional IRT with MoE for LLM ability vectors.\n- `choi2026llmjudgeirt` — Choi et al. 2026. IRT Graded Response Model for LLM judge reliability diagnosis. S2: 4fc931a4...\n\nTotal IRT category: 9 papers (8 verified, 1 pre-existing unverified: `kim2019fpc`). Total in map: 21 papers."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster-2-irt-llm-evaluation.md"
+}

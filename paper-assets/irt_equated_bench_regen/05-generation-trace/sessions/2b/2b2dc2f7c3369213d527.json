@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b2dc2f7c3369213d527",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code anon repo paper sync",
+  "task_key": "worker_code_anon_repo_paper_sync_20260523T185152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon_repo_paper_sync_20260523T185152_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "e2546be800780a2b3921ff0d469343b8c70fc936d5bbd0b136b8ab6ad99707a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成：\n\n- **82 个文件变更**（18 个新增，64 个修改），7519 行新增\n- 新增：完整 `paper/` 源码（main.tex + 9 个 section .tex + bib + 样式文件）、1 个新 artifact 脚本\n- 所有 commit 作者均为 `Anonymous <anonymous@example.com>`\n- 无敏感信息泄露\n- 临时仓库已清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-paper-sync.md"
+}

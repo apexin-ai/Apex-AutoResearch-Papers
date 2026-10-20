@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da0c75cbef8b4586948d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code dfpr bootstrap ci",
+  "task_key": "worker_code_dfpr_bootstrap_ci_20260521T074450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dfpr_bootstrap_ci_20260521T074450_result.json",
+    "occurrence": 1,
+    "bytes": 1295,
+    "sha256": "2b4e906f4dfe69eb5e1258309e093a41ba57c257fab89896798c37e11cac4916"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All artifacts registered. Summary:\n\n**Bootstrap ΔFPR analysis complete** (1000 resamples × 5 subjects, 325s total).\n\nResults per subject:\n\n| Subject | ΔFPR | 95% CI | SE | Baseline FPR 95% CI |\n|---------|------|--------|-----|---------------------|\n| business_ethics | 0.000 | [0.000, 0.000] | 0.000 | [0.467, 0.600] |\n| human_aging | 0.000 | [0.000, 0.000] | 0.000 | [0.350, 0.479] |\n| professional_medicine | 0.000 | [0.000, 0.000] | 0.000 | [0.342, 0.452] |\n| formal_logic | 0.000 | [0.000, 0.000] | 0.000 | [0.318, 0.398] |\n| high_school_statistics | 0.000 | [0.000, 0.000] | 0.000 | [0.303, 0.393] |\n\n0 non-zero ΔFPR iterations out of 5000 total. The zero is not a coincidence — it's algebraically guaranteed: cross-subject stratification scores and clean item responses are both invariant to within-subject injection, so the MH-DIF inputs for clean items are numerically identical at p=0 and p=1 regardless of which models are sampled. The report includes this proof.\n\nOutput files in `artifacts/plan_016_supplement/`:\n- `bootstrap_dfpr.py` — code\n- `bootstrap_dfpr_report.md` — report with method, results, algebraic proof\n- `bootstrap_dfpr_results.csv` — per-subject summary\n- `bootstrap_dfpr_samples.csv` — 5000 raw bootstrap iterations"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dfpr-bootstrap-ci.md"
+}

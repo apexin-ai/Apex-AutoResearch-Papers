@@ -1,0 +1,853 @@
+{
+  "schema_version": "1.0",
+  "id": "f1ec056d3f5d8f969125",
+  "project": "irt_equated_bench_regen",
+  "kind": "conversation",
+  "title": "code plan 012 irt theta",
+  "task_key": "worker_code_plan_012_irt_theta_20260520T215924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_plan_012_irt_theta_20260520T215924.jsonl",
+    "occurrence": 1,
+    "bytes": 104268,
+    "sha256": "d77ebc27d8532ca95519bb81f863b40c6eb80b889ca4d846a46452c0afb86e77"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T22:09:08.085479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T22:09:08.085937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "__pycache__\n_project\nbuild_response_matrix.py\ndif_diagnostic.py\ndif_diagnostic_output.log\ndif_diagnostic_pvalue_dist.pdf\ndif_diagnostic_tpr_comparison.csv\ndif_phase2_param_distribution.pdf\ndif_phase2_power_curves.pdf\ndif_phase2_results.csv\ndif_phase2_simulation.py\ndif_power_curves.pdf\ndif_power_results.csv\ndif_power_simulation.py\ndream_reports\nirt_scale_analysis.json\nirt_scale_analysis.md\nitem_metadata.csv\nmanifest.yaml\nmetabench_cohort_analysis.csv\nmetabench_ctt_stats.csv\nmetabench_data\nmetabench_data_summary.md\nmetabench_explore.py\nmetabench_model_accuracy.csv\nmetabench_model_list.txt\nmetabench_rl_models.csv\nmetabench_subject_stats.csv\nmetabench_summary.json\nmmlu_cf_analysis.json\nmmlu_cf_analysis.md\nmmlu_li2024_proxy_labels.csv\nmodel_metadata.csv\nmvp_dif_power_sim\nplan_001\nplan_001_real_data_dif_mmlu\nplan_001b\nplan_011\nplan_011_semi_synthetic_validation\npsn_irt_item_parameters.csv\nresponse_matrix.npz\nresponse_matrix_index.npz\nreview_issues.yaml\nreview_reports"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T22:09:08.086143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/ 2>/dev/null",
+              "description": "List plan_011 directory"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T22:09:08.086300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dose_response_summary.csv\ninjection_results.csv\nper_item_results.csv\nplan_011_analysis.py\nplan_011_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T22:09:08.086433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/plan_011_analysis.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T22:09:08.086789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tplan_011_analysis.py — Semi-Synthetic DIF Validation\n4\t\n5\tInjects known differential contamination into real MMLU response data and tests\n6\twhether MH-DIF can detect it. Validates the DIF methodology used in plan_001.\n7\t\n8\tThree MH variants:\n9\t  (1) standard  — total score on 500 items minus current (same as plan_001)\n10\t  (2) anchor    — total score on 400 known-clean items only\n11\t  (3) external  — total score on full 12508-item original matrix (best matching)\n12\t\n13\tInputs:\n14\t  response_matrix.npz, response_matrix_index.npz, model_metadata.csv,\n15\t  item_metadata.csv, mmlu_li2024_proxy_labels.csv,\n16\t  plan_001/dif_results_ability.csv\n17\t\n18\tOutputs (all in plan_011/):\n19\t  injection_results.csv, dose_response_summary.csv, per_item_results.csv,\n20\t  plan_011_report.md\n21\t\"\"\"\n22\t\n23\timport numpy as np\n24\timport pandas as pd\n25\tfrom scipy.sparse import load_npz\n26\tfrom scipy.stats import chi2 as chi2_dist, fisher_exact\n27\tfrom pathlib import Path\n28\timport time\n29\timport warnings\n30\t\n31\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n32\t\n33\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\n34\tOUT = BASE / \"plan_011\"\n35\tOUT.mkdir(exist_ok=True)\n36\t\n37\tINJECTION_PS = [0.0, 0.3, 0.5, 0.7, 1.0]\n38\tN_SEEDS = 5\n39\tN_BASELINE = 500\n40\tN_CONTAMINATED = 100\n41\t\n42\t\n43\t# ════════════════════════════════════════════════════════════════════════════\n44\t#  MH-DIF CORE\n45\t# ════════════════════════════════════════════════════════════════════════════\n46\tdef mh_dif_subset(X_ref, X_foc, n_strata=5, anchor_cols=None,\n47\t                  external_scores_ref=None, external_scores_foc=None):\n48\t    \"\"\"\n49\t    Purified MH-DIF for all columns.\n50\t\n51\t    Stratification source (in priority order):\n52\t      1. external_scores_ref/foc — precomputed ability scores (e.g. full-matrix total)\n53\t      2. anchor_cols — total score from specified columns only\n54\t      3. None — standard purified (a\n…[truncated 24070 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T22:09:08.087032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/dose_response_summary.csv"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T22:09:08.087222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tp,cohort_type,mh_variant,tpr_mean,tpr_std,fpr_mean,fpr_std,fisher_or_mean,fisher_p_median\n2\t0.0,ability,anchor,0.6,0.05958187643906492,0.5955,0.021607290436331923,1.0425176402092453,0.48934843949095175\n3\t0.0,ability,external,0.49800000000000005,0.040865633483405106,0.493,0.010216408370851257,1.0376862626110337,0.5025492358221133\n4\t0.0,ability,standard,0.5940000000000001,0.052725705305856276,0.6114999999999999,0.013181426326464086,0.9605839309463293,0.4231473007797394\n5\t0.0,temporal,anchor,0.31400000000000006,0.053197744313081545,0.307,0.01848986208710059,1.0651659083562441,0.5465028509582752\n6\t0.0,temporal,external,0.32599999999999996,0.03507135583350037,0.3135,0.008767838958375098,1.0732098198053222,0.7202868041451116\n7\t0.0,temporal,standard,0.308,0.046583258795408464,0.298,0.011645814698852104,1.0740528244958572,0.8081326220818719\n8\t0.3,ability,anchor,0.7000000000000001,0.051478150704934986,0.5955,0.021607290436331923,1.6418565717967872,0.17314822982263203\n9\t0.3,ability,external,0.662,0.04438468204234428,0.493,0.010216408370851257,2.069855540970715,0.005067695426382491\n10\t0.3,ability,standard,0.7,0.05700877125495689,0.6094999999999999,0.02570262632494974,1.584939735800224,0.25548738941208027\n11\t0.3,temporal,anchor,0.5219999999999999,0.05357238094391551,0.307,0.01848986208710059,2.4925140255423237,0.00010073571834208619\n12\t0.3,temporal,external,0.548,0.03271085446759225,0.3135,0.008767838958375098,2.674044460691511,1.621363555997074e-05\n13\t0.3,temporal,standard,0.42400000000000004,0.05856620185738529,0.3895,0.017624556732014567,1.1840390749023468,0.6434635572662124\n14\t0.5,ability,anchor,0.764,0.03781534080237811,0.5955,0.021607290436331923,2.238876999052195,0.001423732852816243\n15\t0.5,ability,external,0.756,0.04098780306383843,0.493,0.010216408370851257,3.307777208034717,5.631291377561033e-07\n16\t0.5,ability,standard,0.76,0.04636809247747853,0.5995,0.02057000243072422,2.2105804398056343,0.006744942166107429\n17\t0.5,temporal,anchor,0.806,0.033615472627943205,0.307,0\n…[truncated 1674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T22:09:08.087390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip show py-irt 2>/dev/null || echo \"NOT_INSTALLED\"",
+              "description": "Check if py-irt is installed"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T22:09:08.087515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "NOT_INSTALLED"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T22:09:08.087665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012",
+              "description": "Create plan_012 output directory"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T22:09:08.087849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T22:09:08.088075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_irt_theta_analysis.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"\nplan_012_irt_theta_analysis.py — IRT θ-Conditioning MH-DIF Analysis\n\nUses IRT-based θ estimates (logit of proportion correct) instead of raw total\nscores for MH-DIF stratification. Tests whether finer ability matching reduces\nthe high baseline FPR from plan_011 (temporal ~31%, ability ~49%) while\npreserving detection power for differential contamination.\n\nOutputs (all in plan_012/):\n  theta_estimates.csv, dose_response_theta.csv, enrichment_theta.csv,\n  plan_012_report.md\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.sparse import load_npz\nfrom scipy.stats import chi2 as chi2_dist, fisher_exact\nfrom pathlib import Path\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\nOUT = BASE / \"plan_012\"\nOUT.mkdir(exist_ok=True)\n\nINJECTION_PS = [0.0, 0.3, 0.5, 0.7, 1.0]\nN_SEEDS = 5\nN_BASELINE = 500\nN_CONTAMINATED = 100\nSTRATA_COUNTS = [10, 15, 20]\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  IRT θ ESTIMATION\n# ════════════════════════════════════════════════════════════════════════════\ndef estimate_theta_logit(response_matrix_sparse):\n    \"\"\"\n    Estimate θ using logit(proportion correct) — monotone transform of\n    the Rasch model sufficient statistic. Better ability matching than\n    raw total scores because it maps onto the logit scale where IRT\n    operates.\n\n    Handles edge cases (0% or 100% correct) with Laplace smoothing.\n    \"\"\"\n    n_models, n_items = response_matrix_sparse.shape\n    totals = np.asarray(response_matrix_sparse.sum(axis=1)).ravel().astype(np.float64)\n    n_responded = np.asarray((response_matrix_sparse != 0).sum(axis=1)).ravel().astype(np.float64)\n\n    # For CSR with stored zeros: count actual responses via nnz per row\n    # In this matrix, 0 = incorrect (stored), so all entries are responses\n    n_responded = np.full(n_models, n_items, dtype=np.float64)\n\n    # Laplace smoothing to avoid ±inf\n    p_correct = (totals + 0.5) / (n_responded + 1.0)\n    theta = np.log(p_correct / (1.0 - p_correct))\n\n    return theta, totals\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  θ-CONDITIONED MH-DIF\n# ════════════════════════════════════════════════════════════════════════════\ndef mh_dif_theta(X_ref, X_foc, theta_ref, theta_foc, n_strata=10):\n    \"\"\"\n    MH-DIF using θ for stratification with equal-width bins on θ scale.\n    Unlike quantile-based binning, equal-width bins on θ preserve the\n    metric properties of the IRT scale.\n    \"\"\"\n    J = X_ref.shape[1]\n    theta_all = np.concatenate([theta_ref, theta_foc])\n    theta_min, theta_max = theta_all.min(), theta_all.max()\n    edges = np.linspace(theta_min, theta_max, n_strata + 1)\n    # Extend edges slightly to include boundary values\n    edges[0] -= 0.001\n    edges[-1] += 0.001\n\n    k_ref = np.digitize(theta_ref, edges[1:-1])\n    k_foc = np.digitize(theta_foc, edges[1:-1])\n\n    rows = []\n    for j in range(J):\n        R = S = 0.0\n        sum_diff = 0.0\n        sum_var = 0.0\n        pr = ps_qr = qs = 0.0\n        n_ok = 0\n\n        for k in range(n_strata):\n            mr = (k_ref == k)\n            mf = (k_foc == k)\n            n1 = int(mr.sum())\n            n0 = int(mf.sum())\n            if n1 == 0 or n0 == 0:\n                continue\n\n            A = float(X_ref[mr, j].sum())\n            B = float(n1 - A)\n            C = float(X_foc[mf, j].sum())\n            D = float(n0 - C)\n            Nk = float(n1 + n0)\n            m1 = A + C\n            m0 = B + D\n\n            if m1 == 0 or m0 == 0 or Nk <= 1:\n                continue\n            n_ok += 1\n\n            Rk = A * D / Nk\n            Sk = B * C / Nk\n            R += Rk\n            S += Sk\n\n            EA = n1 * m1 / Nk\n            sum_diff += A - EA\n            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n\n            Pk = (A + D) / Nk\n            Qk = (B + C) / Nk\n            pr += Pk * Rk\n            ps_qr += Pk * Sk + Qk * Rk\n            qs += Qk * Sk\n\n        if n_ok == 0 or (R == 0 and S == 0):\n            rows.append(_nan_row(j))\n            continue\n\n        if S == 0:\n            alpha, delta, se = np.inf, -np.inf, np.nan\n        elif R == 0:\n            alpha, delta, se = 0.0, np.inf, np.nan\n        else:\n            alpha = R / S\n            delta = -2.35 * np.log(alpha)\n            v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n\n        if sum_var > 0:\n            chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n        else:\n            chi2_stat = pval = np.nan\n\n        ad = abs(delta) if np.isfinite(delta) else np.inf\n        if ad < 1.0:\n            ets = \"A\"\n        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n            ets = \"C\"\n        else:\n            ets = \"B\"\n\n        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n\n    return pd.DataFrame(rows)\n\n\ndef mh_dif_totalscore(X_ref, X_foc, n_strata=5, anchor_cols=None,\n                      external_scores_ref=None, external_scores_foc=None):\n    \"\"\"Original total-score MH-DIF from plan_011 (for comparison).\"\"\"\n    J = X_ref.shape[1]\n    use_external = external_scores_ref is not None\n\n    if not use_external:\n        if anchor_cols is not None:\n            tot_ref = X_ref[:, anchor_cols].sum(axis=1).astype(np.float64)\n            tot_foc = X_foc[:, anchor_cols].sum(axis=1).astype(np.float64)\n            anchor_set = set(anchor_cols.tolist()) if hasattr(anchor_cols, 'tolist') else set(anchor_cols)\n        else:\n            tot_ref = X_ref.sum(axis=1).astype(np.float64)\n            tot_foc = X_foc.sum(axis=1).astype(np.float64)\n            anchor_set = None\n\n    rows = []\n    for j in range(J):\n        if use_external:\n            s_ref = external_scores_ref\n            s_foc = external_scores_foc\n        elif anchor_set is not None:\n            if j in anchor_set:\n                s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n                s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n            else:\n                s_ref = tot_ref\n                s_foc = tot_foc\n        else:\n            s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n            s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n\n        s_all = np.concatenate([s_ref, s_foc])\n        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n        if len(edges) < 2:\n            rows.append(_nan_row(j))\n            continue\n        n_bins = len(edges) - 1\n\n        k_ref = np.digitize(s_ref, edges[1:-1])\n        k_foc = np.digitize(s_foc, edges[1:-1])\n\n        R = S = 0.0\n        sum_diff = 0.0\n        sum_var = 0.0\n        pr = ps_qr = qs = 0.0\n        n_ok = 0\n\n        for k in range(n_bins):\n            mr = (k_ref == k)\n            mf = (k_foc == k)\n            n1 = int(mr.sum())\n            n0 = int(mf.sum())\n            if n1 == 0 or n0 == 0:\n                continue\n\n            A = float(X_ref[mr, j].sum())\n            B = float(n1 - A)\n            C = float(X_foc[mf, j].sum())\n            D = float(n0 - C)\n            Nk = float(n1 + n0)\n            m1 = A + C\n            m0 = B + D\n\n            if m1 == 0 or m0 == 0 or Nk <= 1:\n                continue\n            n_ok += 1\n\n            Rk = A * D / Nk\n            Sk = B * C / Nk\n            R += Rk\n            S += Sk\n\n            EA = n1 * m1 / Nk\n            sum_diff += A - EA\n            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n\n            Pk = (A + D) / Nk\n            Qk = (B + C) / Nk\n            pr += Pk * Rk\n            ps_qr += Pk * Sk + Qk * Rk\n            qs += Qk * Sk\n\n        if n_ok == 0 or (R == 0 and S == 0):\n            rows.append(_nan_row(j))\n            continue\n\n        if S == 0:\n            alpha, delta, se = np.inf, -np.inf, np.nan\n        elif R == 0:\n            alpha, delta, se = 0.0, np.inf, np.nan\n        else:\n            alpha = R / S\n            delta = -2.35 * np.log(alpha)\n            v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n\n        if sum_var > 0:\n            chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n        else:\n            chi2_stat = pval = np.nan\n\n        ad = abs(delta) if np.isfinite(delta) else np.inf\n        if ad < 1.0:\n            ets = \"A\"\n        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n            ets = \"C\"\n        else:\n            ets = \"B\"\n\n        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n\n    return pd.DataFrame(rows)\n\n\ndef _nan_row(j):\n    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  DATA LOADING\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"=== Loading data ===\")\nmat = load_npz(BASE / \"response_matrix.npz\")\nidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\nMODEL_NAMES = idx[\"model_names\"]\nITEM_IDS = idx[\"item_ids\"]\nITEM2COL = {iid: i for i, iid in enumerate(ITEM_IDS)}\n\nmodel_meta = pd.read_csv(BASE / \"model_metadata.csv\")\nli_labels = pd.read_csv(BASE / \"mmlu_li2024_proxy_labels.csv\")\nability_dif = pd.read_csv(BASE / \"plan_001\" / \"dif_results_ability.csv\")\n\nNAME2ROW = {n: i for i, n in enumerate(MODEL_NAMES)}\nN_MODELS, J_FULL = mat.shape\nprint(f\"  Matrix: {N_MODELS} x {J_FULL}\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 1: IRT θ ESTIMATION\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 1: IRT theta estimation ===\")\ntheta_all, totals_all = estimate_theta_logit(mat)\nprint(f\"  θ range: [{theta_all.min():.3f}, {theta_all.max():.3f}]\")\nprint(f\"  θ mean: {theta_all.mean():.3f}, std: {theta_all.std():.3f}\")\n\n# Correlation between θ and total scores\ncorr = np.corrcoef(theta_all, totals_all)[0, 1]\nprint(f\"  Correlation(θ, total_score): {corr:.4f}\")\n\n# Save θ estimates\ntheta_df = pd.DataFrame({\n    \"model_name\": MODEL_NAMES,\n    \"theta\": theta_all,\n    \"total_score\": totals_all,\n    \"method\": \"logit_laplace\"\n})\ntheta_df.to_csv(OUT / \"theta_estimates.csv\", index=False)\nprint(f\"  Saved theta_estimates.csv ({len(theta_df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 2: SELECT BASELINE ITEMS (same as plan_011)\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 2: Selecting baseline items ===\")\nmerged = ability_dif.merge(li_labels[[\"item_id\", \"contamination_type\"]], on=\"item_id\", how=\"inner\")\nbaseline_pool = merged[(merged[\"contamination_type\"] == \"clean\") & (merged[\"ets_class\"] == \"A\")]\nprint(f\"  Baseline pool (clean + ETS A): {len(baseline_pool)}\")\n\nbaseline_items = baseline_pool.sample(N_BASELINE, random_state=42)\nbaseline_item_ids = baseline_items[\"item_id\"].values\nbaseline_col_indices = np.array([ITEM2COL[iid] for iid in baseline_item_ids])\nprint(f\"  Selected {N_BASELINE} baseline items\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 3: DEFINE COHORTS\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 3: Defining cohorts ===\")\n\n\ndef get_row_indices(col, values):\n    names = model_meta.loc[model_meta[col].isin(values), \"model_name\"]\n    return np.array([NAME2ROW[n] for n in names if n in NAME2ROW])\n\n\ncohort_defs = {}\n\n# (a) Ability cohort\nref_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [1, 2])\nfoc_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [4, 5])\n\nref_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([1, 2]), \"accuracy\"]\nfoc_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]), \"accuracy\"]\nab_overlap_min = max(ref_acc.min(), foc_acc.min())\nab_overlap_max = min(ref_acc.max(), foc_acc.max())\n\nif ab_overlap_min <= ab_overlap_max:\n    foc_ab_inject_mask = (\n        model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]) &\n        (model_meta[\"accuracy\"] >= ab_overlap_min) &\n        (model_meta[\"accuracy\"] <= ab_overlap_max)\n    )\n    foc_ab_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_ab_inject_mask, \"model_name\"] if n in NAME2ROW])\nelse:\n    foc_ab_inject_idx = foc_ability_idx\n\nprint(f\"  Ability: ref={len(ref_ability_idx)} (Q1-2), foc={len(foc_ability_idx)} (Q4-5)\")\n\ncohort_defs[\"ability\"] = dict(\n    ref_idx=ref_ability_idx, foc_idx=foc_ability_idx,\n    foc_inject_idx=foc_ab_inject_idx\n)\n\n# (b) Temporal cohort\nref_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2023\"])\nfoc_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2024\"])\n\nref_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2023\", \"accuracy\"]\nfoc_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2024\", \"accuracy\"]\nt_overlap_min = max(ref_t_acc.min(), foc_t_acc.min())\nt_overlap_max = min(ref_t_acc.max(), foc_t_acc.max())\n\nfoc_t_inject_mask = (\n    (model_meta[\"cohort_temporal\"] == \"2024\") &\n    (model_meta[\"accuracy\"] >= t_overlap_min) &\n    (model_meta[\"accuracy\"] <= t_overlap_max)\n)\nfoc_t_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_t_inject_mask, \"model_name\"] if n in NAME2ROW])\n\nprint(f\"  Temporal: ref={len(ref_temporal_idx)} (2023), foc={len(foc_temporal_idx)} (2024)\")\n\ncohort_defs[\"temporal\"] = dict(\n    ref_idx=ref_temporal_idx, foc_idx=foc_temporal_idx,\n    foc_inject_idx=foc_t_inject_idx\n)\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 4: SEMI-SYNTHETIC INJECTION + θ-CONDITIONED MH-DIF\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 4: Semi-Synthetic Injection + θ-Conditioned MH-DIF ===\")\n\nX_base = mat[:, baseline_col_indices].toarray().astype(np.int8)\nprint(f\"  Baseline submatrix: {X_base.shape}, density: {X_base.mean():.4f}\")\n\n# Full-matrix external scores (for comparison)\nfull_totals = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)\n\ninjection_rows = []\n\n# Variants: theta with different strata counts + plan_011's external (5 strata total score)\nMH_VARIANTS = []\nfor ns in STRATA_COUNTS:\n    MH_VARIANTS.append(f\"theta_{ns}\")\nMH_VARIANTS.append(\"external_5\")  # plan_011 baseline for comparison\n\ntotal_runs = len(INJECTION_PS) * N_SEEDS * len(cohort_defs) * len(MH_VARIANTS)\nrun_count = 0\nt_start = time.time()\n\nfor cohort_name, cdef in cohort_defs.items():\n    ref_idx = cdef[\"ref_idx\"]\n    foc_idx = cdef[\"foc_idx\"]\n    foc_inject_idx = cdef[\"foc_inject_idx\"]\n\n    # Precompute θ for this cohort from full matrix\n    theta_ref_full = theta_all[ref_idx]\n    theta_foc_full = theta_all[foc_idx]\n\n    # External total scores (plan_011 style)\n    ext_ref = full_totals[ref_idx]\n    ext_foc = full_totals[foc_idx]\n\n    for p in INJECTION_PS:\n        for seed in range(1, N_SEEDS + 1):\n            rng = np.random.RandomState(seed)\n\n            contam_local_idx = rng.choice(N_BASELINE, N_CONTAMINATED, replace=False)\n            contam_set = set(contam_local_idx.tolist())\n            clean_local_idx = np.array([i for i in range(N_BASELINE) if i not in contam_set])\n\n            X_inj = X_base.copy()\n            n_flipped = 0\n\n            if p > 0:\n                for local_j in contam_local_idx:\n                    for model_row in foc_inject_idx:\n                        if X_inj[model_row, local_j] == 0:\n                            if rng.random() < p:\n                                X_inj[model_row, local_j] = 1\n                                n_flipped += 1\n\n            X_ref = X_inj[ref_idx]\n            X_foc = X_inj[foc_idx]\n\n            for variant in MH_VARIANTS:\n                run_count += 1\n\n                if variant.startswith(\"theta_\"):\n                    ns = int(variant.split(\"_\")[1])\n                    dif_results = mh_dif_theta(\n                        X_ref, X_foc,\n                        theta_ref_full, theta_foc_full,\n                        n_strata=ns\n                    )\n                elif variant == \"external_5\":\n                    dif_results = mh_dif_totalscore(\n                        X_ref, X_foc, n_strata=5,\n                        external_scores_ref=ext_ref,\n                        external_scores_foc=ext_foc\n                    )\n\n                contam_mask = dif_results[\"col_idx\"].isin(contam_set)\n                clean_mask = ~contam_mask\n\n                contam_results = dif_results[contam_mask]\n                clean_results = dif_results[clean_mask]\n\n                n_c_contam = (contam_results[\"ets_class\"] == \"C\").sum()\n                n_c_clean = (clean_results[\"ets_class\"] == \"C\").sum()\n                tpr = n_c_contam / N_CONTAMINATED\n                fpr = n_c_clean / (N_BASELINE - N_CONTAMINATED)\n\n                table = [[n_c_contam, N_CONTAMINATED - n_c_contam],\n                         [n_c_clean, (N_BASELINE - N_CONTAMINATED) - n_c_clean]]\n                fisher_or, fisher_p = fisher_exact(table)\n\n                injection_rows.append(dict(\n                    p=p, seed=seed, cohort_type=cohort_name,\n                    mh_variant=variant,\n                    strata_count=int(variant.split(\"_\")[1]) if variant.startswith(\"theta_\") else 5,\n                    n_baseline=N_BASELINE, n_contaminated=N_CONTAMINATED,\n                    n_clean=N_BASELINE - N_CONTAMINATED,\n                    n_foc_inject=len(foc_inject_idx),\n                    tpr=tpr, fpr=fpr,\n                    fisher_or=fisher_or, fisher_p=fisher_p,\n                    n_responses_flipped=n_flipped,\n                ))\n\n                elapsed = time.time() - t_start\n                if run_count % 20 == 0 or (p in [0.0, 1.0] and variant == \"theta_10\"):\n                    print(f\"  [{run_count}/{total_runs}] {cohort_name} {variant:10s} p={p} seed={seed}: \"\n                          f\"TPR={tpr:.3f} FPR={fpr:.3f} ({elapsed:.0f}s)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 5: AGGREGATE & SAVE\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 5: Aggregating results ===\")\n\ninj_df = pd.DataFrame(injection_rows)\n\nsummary_rows = []\nfor (p_val, cohort, variant), grp in inj_df.groupby([\"p\", \"cohort_type\", \"mh_variant\"]):\n    sc = grp[\"strata_count\"].iloc[0]\n    summary_rows.append(dict(\n        p=p_val, cohort_type=cohort, mh_variant=variant,\n        strata_count=sc,\n        tpr_mean=grp[\"tpr\"].mean(), tpr_std=grp[\"tpr\"].std(),\n        fpr_mean=grp[\"fpr\"].mean(), fpr_std=grp[\"fpr\"].std(),\n        fisher_or_mean=grp[\"fisher_or\"].mean(),\n        fisher_p_median=grp[\"fisher_p\"].median(),\n    ))\nsummary_df = pd.DataFrame(summary_rows)\n\ninj_df.to_csv(OUT / \"injection_results.csv\", index=False)\nsummary_df.to_csv(OUT / \"dose_response_theta.csv\", index=False)\nprint(f\"  Saved injection_results.csv ({len(inj_df)} rows)\")\nprint(f\"  Saved dose_response_theta.csv ({len(summary_df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 6: REAL DATA DIF — ENRICHMENT AGAINST LI ET AL. LABELS\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 6: Real data DIF (no injection) — enrichment vs Li et al. ===\")\n\n# Use temporal cohort (2023 vs 2024) on all items that have Li et al. labels\nli_item_ids = li_labels[\"item_id\"].values\nli_col_indices = np.array([ITEM2COL[iid] for iid in li_item_ids if iid in ITEM2COL])\nli_item_ids_valid = np.array([iid for iid in li_item_ids if iid in ITEM2COL])\n\n# Map back to li_labels for contamination info\nli_labels_valid = li_labels[li_labels[\"item_id\"].isin(li_item_ids_valid)].copy()\nli_labels_valid = li_labels_valid.set_index(\"item_id\").loc[li_item_ids_valid].reset_index()\n\nX_li = mat[:, li_col_indices].toarray().astype(np.int8)\nprint(f\"  Li et al. items submatrix: {X_li.shape}\")\n\nenrichment_rows = []\n\nfor cohort_name in [\"temporal\"]:\n    cdef = cohort_defs[cohort_name]\n    ref_idx = cdef[\"ref_idx\"]\n    foc_idx = cdef[\"foc_idx\"]\n\n    X_ref_li = X_li[ref_idx]\n    X_foc_li = X_li[foc_idx]\n\n    theta_ref = theta_all[ref_idx]\n    theta_foc = theta_all[foc_idx]\n    ext_ref = full_totals[ref_idx]\n    ext_foc = full_totals[foc_idx]\n\n    for ns in STRATA_COUNTS + [5]:\n        if ns == 5:\n            variant_name = \"external_5\"\n            dif_results = mh_dif_totalscore(\n                X_ref_li, X_foc_li, n_strata=5,\n                external_scores_ref=ext_ref,\n                external_scores_foc=ext_foc\n            )\n        else:\n            variant_name = f\"theta_{ns}\"\n            dif_results = mh_dif_theta(\n                X_ref_li, X_foc_li,\n                theta_ref, theta_foc,\n                n_strata=ns\n            )\n\n        # Map col_idx back to item_id\n        dif_results[\"item_id\"] = li_item_ids_valid[dif_results[\"col_idx\"].values]\n\n        # Merge with Li labels\n        dif_merged = dif_results.merge(li_labels_valid[[\"item_id\", \"contamination_type\"]], on=\"item_id\")\n\n        is_contam = dif_merged[\"contamination_type\"] != \"clean\"\n        is_clean = dif_merged[\"contamination_type\"] == \"clean\"\n        is_c = dif_merged[\"ets_class\"] == \"C\"\n\n        rate_contam = (is_c & is_contam).sum() / is_contam.sum() if is_contam.sum() > 0 else 0\n        rate_clean = (is_c & is_clean).sum() / is_clean.sum() if is_clean.sum() > 0 else 0\n        enrichment = rate_contam / rate_clean if rate_clean > 0 else np.inf\n\n        enrichment_rows.append(dict(\n            cohort=cohort_name,\n            mh_variant=variant_name,\n            strata_count=ns,\n            n_items=len(dif_merged),\n            n_contam=int(is_contam.sum()),\n            n_clean=int(is_clean.sum()),\n            rate_contam=rate_contam,\n            rate_clean=rate_clean,\n            fpr_clean=rate_clean,\n            enrichment=enrichment,\n        ))\n\n        print(f\"  {variant_name:10s}: rate_contam={rate_contam:.4f}, \"\n              f\"rate_clean={rate_clean:.4f}, enrichment={enrichment:.3f}\")\n\nenrichment_df = pd.DataFrame(enrichment_rows)\nenrichment_df.to_csv(OUT / \"enrichment_theta.csv\", index=False)\nprint(f\"  Saved enrichment_theta.csv ({len(enrichment_df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  REPORT\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Generating report ===\")\n\nL = []\ndef w(s=\"\"):\n    L.append(s)\n\nw(\"# Plan 012: IRT θ-Conditioning MH-DIF Analysis\")\nw()\nw(\"## 1. Objective\")\nw()\nw(\"Replace raw total scores with IRT-based θ estimates as the MH-DIF stratification\")\nw(\"variable. Test whether finer ability matching reduces the high baseline FPR from\")\nw(\"plan_011 (temporal ~31%, ability ~49%) while preserving detection power (TPR).\")\nw()\n\nw(\"## 2. θ Estimation Method\")\nw()\nw(\"**Method**: Logit of proportion correct with Laplace smoothing\")\nw(\"```\")\nw(\"θ = log((total + 0.5) / (N_items + 1 - total - 0.5))\")\nw(\"```\")\nw(f\"- N models: {N_MODELS}\")\nw(f\"- N items (full matrix): {J_FULL}\")\nw(f\"- θ range: [{theta_all.min():.3f}, {theta_all.max():.3f}]\")\nw(f\"- θ mean±std: {theta_all.mean():.3f}±{theta_all.std():.3f}\")\nw(f\"- Correlation(θ, total_score): {corr:.4f}\")\nw()\nw(\"This is a monotone transformation of the Rasch model sufficient statistic.\")\nw(\"Equal-width bins on the logit scale provide better ability matching than\")\nw(\"quantile bins on raw scores, especially in the tails.\")\nw()\n\nw(\"## 3. Experimental Design\")\nw()\nw(f\"- Baseline items: {N_BASELINE}\")\nw(f\"- Contaminated per run: {N_CONTAMINATED}\")\nw(f\"- Injection probabilities: {INJECTION_PS}\")\nw(f\"- Seeds per p: {N_SEEDS}\")\nw(f\"- Strata counts tested: {STRATA_COUNTS}\")\nw()\nw(\"### Cohort definitions\")\nw()\nfor cn, cd in cohort_defs.items():\n    w(f\"- **{cn}**: ref N={len(cd['ref_idx'])}, foc N={len(cd['foc_idx'])}, \"\n      f\"foc inject N={len(cd['foc_inject_idx'])}\")\nw()\nw(\"### MH variants compared\")\nw()\nw(\"| Variant | Stratification | Strata |\")\nw(\"|---------|---------------|--------|\")\nfor ns in STRATA_COUNTS:\n    w(f\"| theta_{ns} | Equal-width bins on logit(p) | {ns} |\")\nw(\"| external_5 | Quantile bins on full-matrix total score | 5 |\")\nw()\n\nw(\"## 4. Semi-Synthetic Results\")\nw()\n\n# Table for each cohort\nfor cohort in [\"temporal\", \"ability\"]:\n    w(f\"### {cohort.capitalize()} cohort\")\n    w()\n    w(\"| Variant | p=0 FPR | p=0.3 TPR | p=0.5 TPR | p=0.7 TPR | p=1.0 TPR |\")\n    w(\"|---------|---------|-----------|-----------|-----------|-----------|\")\n\n    sub = summary_df[summary_df[\"cohort_type\"] == cohort]\n    for variant in MH_VARIANTS:\n        v_sub = sub[sub[\"mh_variant\"] == variant]\n        fpr0 = v_sub[v_sub[\"p\"] == 0.0][\"fpr_mean\"].values\n        fpr0_str = f\"{fpr0[0]:.3f}\" if len(fpr0) > 0 else \"—\"\n        tprs = []\n        for pv in [0.3, 0.5, 0.7, 1.0]:\n            t = v_sub[v_sub[\"p\"] == pv][\"tpr_mean\"].values\n            tprs.append(f\"{t[0]:.3f}\" if len(t) > 0 else \"—\")\n        w(f\"| {variant:10s} | {fpr0_str} | {' | '.join(tprs)} |\")\n    w()\n\nw(\"### Baseline FPR comparison (p=0)\")\nw()\nw(\"| Cohort | external_5 | theta_10 | theta_15 | theta_20 |\")\nw(\"|--------|-----------|----------|----------|----------|\")\nfor cohort in [\"temporal\", \"ability\"]:\n    sub = summary_df[(summary_df[\"p\"] == 0.0) & (summary_df[\"cohort_type\"] == cohort)]\n    vals = []\n    for variant in [\"external_5\", \"theta_10\", \"theta_15\", \"theta_20\"]:\n        r = sub[sub[\"mh_variant\"] == variant]\n        vals.append(f\"{r.iloc[0]['fpr_mean']:.3f}\" if len(r) > 0 else \"—\")\n    w(f\"| {cohort} | {' | '.join(vals)} |\")\nw()\n\n# Success criteria check\nw(\"## 5. Success Criteria Evaluation\")\nw()\nw(\"**Target**: baseline FPR < 0.10, TPR > 0.70 at p=0.5 (temporal, external/theta)\")\nw()\n\nfor variant in MH_VARIANTS:\n    sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") & (summary_df[\"mh_variant\"] == variant)]\n    fpr0 = sub[sub[\"p\"] == 0.0][\"fpr_mean\"].values\n    tpr05 = sub[sub[\"p\"] == 0.5][\"tpr_mean\"].values\n    if len(fpr0) > 0 and len(tpr05) > 0:\n        fpr_ok = \"PASS\" if fpr0[0] < 0.10 else \"FAIL\"\n        tpr_ok = \"PASS\" if tpr05[0] > 0.70 else \"FAIL\"\n        w(f\"- **{variant}**: FPR={fpr0[0]:.3f} [{fpr_ok}], TPR@p=0.5={tpr05[0]:.3f} [{tpr_ok}]\")\nw()\n\nw(\"## 6. Enrichment Against Li et al. Labels (No Injection)\")\nw()\nw(\"| Variant | Strata | Rate(contam) | Rate(clean) | Enrichment |\")\nw(\"|---------|--------|-------------|-------------|------------|\")\nfor _, r in enrichment_df.iterrows():\n    w(f\"| {r.mh_variant} | {r.strata_count} | {r.rate_contam:.4f} | \"\n      f\"{r.rate_clean:.4f} | {r.enrichment:.3f} |\")\nw()\nw(\"(plan_001 reference: enrichment = 0.96 with 5-strata total-score MH)\")\nw()\n\nw(\"## 7. Analysis & Conclusions\")\nw()\n\n# Compute key metrics for conclusions\nbest_theta = None\nbest_fpr = 1.0\nfor variant in [\"theta_10\", \"theta_15\", \"theta_20\"]:\n    sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") &\n                     (summary_df[\"mh_variant\"] == variant) & (summary_df[\"p\"] == 0.0)]\n    if len(sub) > 0:\n        fpr = sub.iloc[0][\"fpr_mean\"]\n        if fpr < best_fpr:\n            best_fpr = fpr\n            best_theta = variant\n\next_sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") &\n                     (summary_df[\"mh_variant\"] == \"external_5\") & (summary_df[\"p\"] == 0.0)]\next_fpr = ext_sub.iloc[0][\"fpr_mean\"] if len(ext_sub) > 0 else None\n\nw(f\"### θ vs total-score stratification\")\nw()\nif ext_fpr is not None:\n    w(f\"- External total-score (5 strata) baseline FPR: {ext_fpr:.3f}\")\nw(f\"- Best θ variant ({best_theta}) baseline FPR: {best_fpr:.3f}\")\nw(f\"- FPR reduction: {ext_fpr - best_fpr:+.3f}\" if ext_fpr else \"\")\nw()\n\nw(\"### Why FPR remains elevated\")\nw()\nw(\"If FPR is still high with θ-conditioning, possible explanations:\")\nw(\"1. Real DIF exists between cohorts (genuine differential item functioning)\")\nw(\"2. The cohorts differ on dimensions beyond overall ability (e.g., training data composition)\")\nw(\"3. More strata needed for the degree of ability heterogeneity present\")\nw(\"4. Equal-width bins may leave sparse strata in the tails\")\nw()\n\nw(\"### Recommendations\")\nw()\nw(\"Based on these results:\")\nw()\nfor variant in [\"theta_10\", \"theta_15\", \"theta_20\"]:\n    sub_t = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") & (summary_df[\"mh_variant\"] == variant)]\n    fpr0 = sub_t[sub_t[\"p\"] == 0.0][\"fpr_mean\"].values\n    tpr05 = sub_t[sub_t[\"p\"] == 0.5][\"tpr_mean\"].values\n    tpr1 = sub_t[sub_t[\"p\"] == 1.0][\"tpr_mean\"].values\n    if len(fpr0) > 0 and len(tpr05) > 0 and len(tpr1) > 0:\n        w(f\"- {variant}: FPR₀={fpr0[0]:.3f}, TPR@0.5={tpr05[0]:.3f}, TPR@1.0={tpr1[0]:.3f}\")\nw()\n\n(OUT / \"plan_012_report.md\").write_text(\"\\n\".join(L) + \"\\n\")\nprint(\"  Report written to plan_012_report.md\")\n\n# Console summary\nprint(\"\\n\" + \"=\" * 60)\nprint(\"SUMMARY — Baseline FPR (p=0)\")\nprint(\"=\" * 60)\nfor cohort in [\"temporal\", \"ability\"]:\n    print(f\"\\n  {cohort}:\")\n    sub = summary_df[(summary_df[\"p\"] == 0.0) & (summary_df[\"cohort_type\"] == cohort)]\n    for _, r in sub.iterrows():\n        print(f\"    {r.mh_variant:10s}: FPR={r.fpr_mean:.3f}±{r.fpr_std:.3f}\")\n\nprint(\"\\n\" + \"=\" * 60)\nprint(\"SUMMARY — TPR at p=0.5 (temporal)\")\nprint(\"=\" * 60)\nsub = summary_df[(summary_df[\"p\"] == 0.5) & (summary_df[\"cohort_type\"] == \"temporal\")]\nfor _, r in sub.iterrows():\n    print(f\"  {r.mh_variant:10s}: TPR={r.tpr_mean:.3f}±{r.tpr_std:.3f}\")\n\ntotal_elapsed = time.time() - t_start\nprint(f\"\\nTotal time: {total_elapsed:.0f}s\")\nprint(f\"All outputs saved to {OUT}\")\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T22:09:08.088721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_irt_theta_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T22:09:08.088935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/test_small.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Quick smoke test: 1 seed, p=0 and p=0.5, temporal only, theta_10 only.\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.sparse import load_npz\nfrom scipy.stats import chi2 as chi2_dist, fisher_exact\nfrom pathlib import Path\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\n\n# Load data\nprint(\"Loading data...\")\nmat = load_npz(BASE / \"response_matrix.npz\")\nidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\nMODEL_NAMES = idx[\"model_names\"]\nITEM_IDS = idx[\"item_ids\"]\nITEM2COL = {iid: i for i, iid in enumerate(ITEM_IDS)}\n\nmodel_meta = pd.read_csv(BASE / \"model_metadata.csv\")\nli_labels = pd.read_csv(BASE / \"mmlu_li2024_proxy_labels.csv\")\nability_dif = pd.read_csv(BASE / \"plan_001\" / \"dif_results_ability.csv\")\n\nNAME2ROW = {n: i for i, n in enumerate(MODEL_NAMES)}\nN_MODELS, J_FULL = mat.shape\n\n# θ estimation\nprint(\"Estimating θ...\")\ntotals = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)\nn_items = J_FULL\np_correct = (totals + 0.5) / (n_items + 1.0)\ntheta_all = np.log(p_correct / (1.0 - p_correct))\nprint(f\"  θ range: [{theta_all.min():.3f}, {theta_all.max():.3f}], mean={theta_all.mean():.3f}\")\nprint(f\"  Corr(θ, total): {np.corrcoef(theta_all, totals)[0,1]:.4f}\")\n\n# Baseline items\nmerged = ability_dif.merge(li_labels[[\"item_id\", \"contamination_type\"]], on=\"item_id\", how=\"inner\")\nbaseline_pool = merged[(merged[\"contamination_type\"] == \"clean\") & (merged[\"ets_class\"] == \"A\")]\nbaseline_items = baseline_pool.sample(500, random_state=42)\nbaseline_item_ids = baseline_items[\"item_id\"].values\nbaseline_col_indices = np.array([ITEM2COL[iid] for iid in baseline_item_ids])\n\n# Temporal cohort\ndef get_row_indices(col, values):\n    names = model_meta.loc[model_meta[col].isin(values), \"model_name\"]\n    return np.array([NAME2ROW[n] for n in names if n in NAME2ROW])\n\nref_idx = get_row_indices(\"cohort_temporal\", [\"2023\"])\nfoc_idx = get_row_indices(\"cohort_temporal\", [\"2024\"])\n\nref_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2023\", \"accuracy\"]\nfoc_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2024\", \"accuracy\"]\nt_overlap_min = max(ref_t_acc.min(), foc_t_acc.min())\nt_overlap_max = min(ref_t_acc.max(), foc_t_acc.max())\nfoc_t_inject_mask = (\n    (model_meta[\"cohort_temporal\"] == \"2024\") &\n    (model_meta[\"accuracy\"] >= t_overlap_min) &\n    (model_meta[\"accuracy\"] <= t_overlap_max)\n)\nfoc_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_t_inject_mask, \"model_name\"] if n in NAME2ROW])\n\nprint(f\"  Ref: {len(ref_idx)}, Foc: {len(foc_idx)}, Inject: {len(foc_inject_idx)}\")\n\nX_base = mat[:, baseline_col_indices].toarray().astype(np.int8)\n\n# θ for cohort\ntheta_ref = theta_all[ref_idx]\ntheta_foc = theta_all[foc_idx]\n\n# External total scores\nfull_totals = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)\next_ref = full_totals[ref_idx]\next_foc = full_totals[foc_idx]\n\n\ndef _nan_row(j):\n    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n\n\ndef mh_dif_theta(X_ref, X_foc, theta_ref, theta_foc, n_strata=10):\n    J = X_ref.shape[1]\n    theta_all = np.concatenate([theta_ref, theta_foc])\n    theta_min, theta_max = theta_all.min(), theta_all.max()\n    edges = np.linspace(theta_min, theta_max, n_strata + 1)\n    edges[0] -= 0.001\n    edges[-1] += 0.001\n\n    k_ref = np.digitize(theta_ref, edges[1:-1])\n    k_foc = np.digitize(theta_foc, edges[1:-1])\n\n    rows = []\n    for j in range(J):\n        R = S = 0.0\n        sum_diff = 0.0\n        sum_var = 0.0\n        pr = ps_qr = qs = 0.0\n        n_ok = 0\n\n        for k in range(n_strata):\n            mr = (k_ref == k)\n            mf = (k_foc == k)\n            n1 = int(mr.sum())\n            n0 = int(mf.sum())\n            if n1 == 0 or n0 == 0:\n                continue\n            A = float(X_ref[mr, j].sum())\n            B = float(n1 - A)\n            C = float(X_foc[mf, j].sum())\n            D = float(n0 - C)\n            Nk = float(n1 + n0)\n            m1 = A + C\n            m0 = B + D\n            if m1 == 0 or m0 == 0 or Nk <= 1:\n                continue\n            n_ok += 1\n            Rk = A * D / Nk\n            Sk = B * C / Nk\n            R += Rk; S += Sk\n            EA = n1 * m1 / Nk\n            sum_diff += A - EA\n            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n            Pk = (A + D) / Nk\n            Qk = (B + C) / Nk\n            pr += Pk * Rk\n            ps_qr += Pk * Sk + Qk * Rk\n            qs += Qk * Sk\n\n        if n_ok == 0 or (R == 0 and S == 0):\n            rows.append(_nan_row(j))\n            continue\n        if S == 0:\n            alpha, delta, se = np.inf, -np.inf, np.nan\n        elif R == 0:\n            alpha, delta, se = 0.0, np.inf, np.nan\n        else:\n            alpha = R / S\n            delta = -2.35 * np.log(alpha)\n            v = pr / (2*R*R) + ps_qr / (2*R*S) + qs / (2*S*S)\n            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n        if sum_var > 0:\n            chi2_stat = max(abs(sum_diff) - 0.5, 0)**2 / sum_var\n            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n        else:\n            chi2_stat = pval = np.nan\n        ad = abs(delta) if np.isfinite(delta) else np.inf\n        if ad < 1.0:\n            ets = \"A\"\n        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n            ets = \"C\"\n        else:\n            ets = \"B\"\n        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n    return pd.DataFrame(rows)\n\n\n# Test p=0 and p=0.5\nfor p in [0.0, 0.5]:\n    rng = np.random.RandomState(1)\n    contam_local_idx = rng.choice(500, 100, replace=False)\n    contam_set = set(contam_local_idx.tolist())\n\n    X_inj = X_base.copy()\n    n_flipped = 0\n    if p > 0:\n        for local_j in contam_local_idx:\n            for model_row in foc_inject_idx:\n                if X_inj[model_row, local_j] == 0:\n                    if rng.random() < p:\n                        X_inj[model_row, local_j] = 1\n                        n_flipped += 1\n\n    X_ref_sub = X_inj[ref_idx]\n    X_foc_sub = X_inj[foc_idx]\n\n    t0 = time.time()\n    dif_results = mh_dif_theta(X_ref_sub, X_foc_sub, theta_ref, theta_foc, n_strata=10)\n    elapsed = time.time() - t0\n\n    contam_mask = dif_results[\"col_idx\"].isin(contam_set)\n    n_c_contam = (dif_results[contam_mask][\"ets_class\"] == \"C\").sum()\n    n_c_clean = (dif_results[~contam_mask][\"ets_class\"] == \"C\").sum()\n    tpr = n_c_contam / 100\n    fpr = n_c_clean / 400\n\n    print(f\"\\n  p={p}: TPR={tpr:.3f}, FPR={fpr:.3f}, flipped={n_flipped}, \"\n          f\"time={elapsed:.1f}s\")\n    print(f\"    ETS distribution: {dif_results['ets_class'].value_counts().to_dict()}\")\n\n    # Also check strata distribution\n    theta_all_cohort = np.concatenate([theta_ref, theta_foc])\n    edges = np.linspace(theta_all_cohort.min() - 0.001, theta_all_cohort.max() + 0.001, 11)\n    k_ref_bins = np.digitize(theta_ref, edges[1:-1])\n    k_foc_bins = np.digitize(theta_foc, edges[1:-1])\n    print(f\"    θ ref strata sizes: {np.bincount(k_ref_bins, minlength=10)}\")\n    print(f\"    θ foc strata sizes: {np.bincount(k_foc_bins, minlength=10)}\")\n\nprint(\"\\nSmoke test passed!\")\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T22:09:08.089176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/test_small.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T22:09:08.089306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012 && python3 test_small.py 2>&1",
+              "description": "Run smoke test",
+              "timeout": "300000"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T22:09:08.089446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Loading data...\nEstimating θ...\n  θ range: [-3.310, 2.330], mean=0.382\n  Corr(θ, total): 0.9986\n  Ref: 1080, Foc: 807, Inject: 787\n\n  p=0.0: TPR=0.360, FPR=0.328, flipped=0, time=0.2s\n    ETS distribution: {'A': 251, 'C': 167, 'B': 82}\n    θ ref strata sizes: [ 23  78  16  21  95 131 323 319  32  42]\n    θ foc strata sizes: [ 13  55  18  58  24  47  92 388  63  49]\n\n  p=0.5: TPR=0.870, FPR=0.328, flipped=15024, time=0.2s\n    ETS distribution: {'C': 218, 'A': 214, 'B': 68}\n    θ ref strata sizes: [ 23  78  16  21  95 131 323 319  32  42]\n    θ foc strata sizes: [ 13  55  18  58  24  47  92 388  63  49]\n\nSmoke test passed!"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T22:09:08.089614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_irt_theta_analysis.py",
+              "offset": "0",
+              "limit": "50"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T22:09:08.089794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t#!/usr/bin/env python3\n1\t\"\"\"\n2\tplan_012_irt_theta_analysis.py — IRT θ-Conditioning MH-DIF Analysis\n3\t\n4\tUses IRT-based θ estimates (logit of proportion correct) instead of raw total\n5\tscores for MH-DIF stratification. Tests whether finer ability matching reduces\n6\tthe high baseline FPR from plan_011 (temporal ~31%, ability ~49%) while\n7\tpreserving detection power for differential contamination.\n8\t\n9\tOutputs (all in plan_012/):\n10\t  theta_estimates.csv, dose_response_theta.csv, enrichment_theta.csv,\n11\t  plan_012_report.md\n12\t\"\"\"\n13\t\n14\timport numpy as np\n15\timport pandas as pd\n16\tfrom scipy.sparse import load_npz\n17\tfrom scipy.stats import chi2 as chi2_dist, fisher_exact\n18\tfrom pathlib import Path\n19\timport time\n20\timport warnings\n21\t\n22\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n23\t\n24\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\n25\tOUT = BASE / \"plan_012\"\n26\tOUT.mkdir(exist_ok=True)\n27\t\n28\tINJECTION_PS = [0.0, 0.3, 0.5, 0.7, 1.0]\n29\tN_SEEDS = 5\n30\tN_BASELINE = 500\n31\tN_CONTAMINATED = 100\n32\tSTRATA_COUNTS = [10, 15, 20]\n33\t\n34\t\n35\t# ════════════════════════════════════════════════════════════════════════════\n36\t#  IRT θ ESTIMATION\n37\t# ════════════════════════════════════════════════════════════════════════════\n38\tdef estimate_theta_logit(response_matrix_sparse):\n39\t    \"\"\"\n40\t    Estimate θ using logit(proportion correct) — monotone transform of\n41\t    the Rasch model sufficient statistic. Better ability matching than\n42\t    raw total scores because it maps onto the logit scale where IRT\n43\t    operates.\n44\t\n45\t    Handles edge cases (0% or 100% correct) with Laplace smoothing.\n46\t    \"\"\"\n47\t    n_models, n_items = response_matrix_sparse.shape\n48\t    totals = np.asarray(response_matrix_sparse.sum(axis=1)).ravel().astype(np.float64)\n49\t    n_responded = np.asarray((response_matrix_sparse != 0).sum(axis=1)).ravel().astype(np.float64)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T22:09:08.090057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_irt_theta_analysis.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"\nplan_012_irt_theta_analysis.py — IRT θ-Conditioning MH-DIF Analysis\n\nUses IRT-based θ estimates (logit of proportion correct) instead of raw total\nscores for MH-DIF stratification. Tests whether finer ability matching reduces\nthe high baseline FPR from plan_011 (temporal ~31%, ability ~49%) while\npreserving detection power for differential contamination.\n\nVariants tested:\n  - theta_eq_K   : equal-width bins on θ (K=10,15,20)\n  - theta_qt_K   : quantile bins on θ (K=10,15,20)\n  - external_5   : plan_011 baseline (5-quantile bins on full-matrix total score)\n\nOutputs (all in plan_012/):\n  theta_estimates.csv, dose_response_theta.csv, enrichment_theta.csv,\n  plan_012_report.md\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.sparse import load_npz\nfrom scipy.stats import chi2 as chi2_dist, fisher_exact\nfrom pathlib import Path\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\nOUT = BASE / \"plan_012\"\nOUT.mkdir(exist_ok=True)\n\nINJECTION_PS = [0.0, 0.3, 0.5, 0.7, 1.0]\nN_SEEDS = 5\nN_BASELINE = 500\nN_CONTAMINATED = 100\nSTRATA_COUNTS = [10, 15, 20]\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  MH-DIF CORE\n# ════════════════════════════════════════════════════════════════════════════\ndef _nan_row(j):\n    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n\n\ndef _compute_mh_item(X_ref_j, X_foc_j, k_ref, k_foc, n_bins):\n    \"\"\"Compute MH statistics for a single item given pre-computed bin assignments.\"\"\"\n    R = S = 0.0\n    sum_diff = 0.0\n    sum_var = 0.0\n    pr = ps_qr = qs = 0.0\n    n_ok = 0\n\n    for k in range(n_bins):\n        mr = (k_ref == k)\n        mf = (k_foc == k)\n        n1 = int(mr.sum())\n        n0 = int(mf.sum())\n        if n1 == 0 or n0 == 0:\n            continue\n\n        A = float(X_ref_j[mr].sum())\n        B = float(n1 - A)\n        C = float(X_foc_j[mf].sum())\n        D = float(n0 - C)\n        Nk = float(n1 + n0)\n        m1 = A + C\n        m0 = B + D\n\n        if m1 == 0 or m0 == 0 or Nk <= 1:\n            continue\n        n_ok += 1\n\n        Rk = A * D / Nk\n        Sk = B * C / Nk\n        R += Rk\n        S += Sk\n\n        EA = n1 * m1 / Nk\n        sum_diff += A - EA\n        sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n\n        Pk = (A + D) / Nk\n        Qk = (B + C) / Nk\n        pr += Pk * Rk\n        ps_qr += Pk * Sk + Qk * Rk\n        qs += Qk * Sk\n\n    if n_ok == 0 or (R == 0 and S == 0):\n        return None\n\n    if S == 0:\n        alpha, delta, se = np.inf, -np.inf, np.nan\n    elif R == 0:\n        alpha, delta, se = 0.0, np.inf, np.nan\n    else:\n        alpha = R / S\n        delta = -2.35 * np.log(alpha)\n        v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n        se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n\n    if sum_var > 0:\n        chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n        pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n    else:\n        chi2_stat = pval = np.nan\n\n    ad = abs(delta) if np.isfinite(delta) else np.inf\n    if ad < 1.0:\n        ets = \"A\"\n    elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n        ets = \"C\"\n    else:\n        ets = \"B\"\n\n    return dict(alpha_mh=alpha, delta_mh=delta, se=se,\n                chi2=chi2_stat, p_value=pval, ets_class=ets)\n\n\ndef mh_dif_with_bins(X_ref, X_foc, scores_ref, scores_foc, n_strata, bin_mode=\"equal\"):\n    \"\"\"\n    MH-DIF with pre-computed ability scores.\n\n    bin_mode:\n      \"equal\"   — equal-width bins on score scale\n      \"quantile\" — quantile bins (equal-count)\n    \"\"\"\n    J = X_ref.shape[1]\n    s_all = np.concatenate([scores_ref, scores_foc])\n\n    if bin_mode == \"equal\":\n        edges = np.linspace(s_all.min() - 0.001, s_all.max() + 0.001, n_strata + 1)\n        n_bins = n_strata\n    else:\n        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n        n_bins = len(edges) - 1\n\n    if n_bins < 2:\n        return pd.DataFrame([_nan_row(j) for j in range(J)])\n\n    k_ref = np.digitize(scores_ref, edges[1:-1])\n    k_foc = np.digitize(scores_foc, edges[1:-1])\n\n    rows = []\n    for j in range(J):\n        result = _compute_mh_item(X_ref[:, j], X_foc[:, j], k_ref, k_foc, n_bins)\n        if result is None:\n            rows.append(_nan_row(j))\n        else:\n            result[\"col_idx\"] = j\n            rows.append(result)\n\n    return pd.DataFrame(rows)\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  DATA LOADING\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"=== Loading data ===\")\nmat = load_npz(BASE / \"response_matrix.npz\")\nidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\nMODEL_NAMES = idx[\"model_names\"]\nITEM_IDS = idx[\"item_ids\"]\nITEM2COL = {iid: i for i, iid in enumerate(ITEM_IDS)}\n\nmodel_meta = pd.read_csv(BASE / \"model_metadata.csv\")\nli_labels = pd.read_csv(BASE / \"mmlu_li2024_proxy_labels.csv\")\nability_dif = pd.read_csv(BASE / \"plan_001\" / \"dif_results_ability.csv\")\n\nNAME2ROW = {n: i for i, n in enumerate(MODEL_NAMES)}\nN_MODELS, J_FULL = mat.shape\nprint(f\"  Matrix: {N_MODELS} x {J_FULL}\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 1: IRT θ ESTIMATION\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 1: IRT theta estimation ===\")\ntotals_all = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)\np_correct = (totals_all + 0.5) / (J_FULL + 1.0)\ntheta_all = np.log(p_correct / (1.0 - p_correct))\n\nprint(f\"  θ range: [{theta_all.min():.3f}, {theta_all.max():.3f}]\")\nprint(f\"  θ mean: {theta_all.mean():.3f}, std: {theta_all.std():.3f}\")\n\ncorr = np.corrcoef(theta_all, totals_all)[0, 1]\nprint(f\"  Correlation(θ, total_score): {corr:.4f}\")\n\ntheta_df = pd.DataFrame({\n    \"model_name\": MODEL_NAMES,\n    \"theta\": theta_all,\n    \"total_score\": totals_all,\n    \"method\": \"logit_laplace\"\n})\ntheta_df.to_csv(OUT / \"theta_estimates.csv\", index=False)\nprint(f\"  Saved theta_estimates.csv ({len(theta_df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 2: SELECT BASELINE ITEMS (same as plan_011)\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 2: Selecting baseline items ===\")\nmerged = ability_dif.merge(li_labels[[\"item_id\", \"contamination_type\"]], on=\"item_id\", how=\"inner\")\nbaseline_pool = merged[(merged[\"contamination_type\"] == \"clean\") & (merged[\"ets_class\"] == \"A\")]\nprint(f\"  Baseline pool (clean + ETS A): {len(baseline_pool)}\")\n\nbaseline_items = baseline_pool.sample(N_BASELINE, random_state=42)\nbaseline_item_ids = baseline_items[\"item_id\"].values\nbaseline_col_indices = np.array([ITEM2COL[iid] for iid in baseline_item_ids])\nprint(f\"  Selected {N_BASELINE} baseline items\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 3: DEFINE COHORTS\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 3: Defining cohorts ===\")\n\n\ndef get_row_indices(col, values):\n    names = model_meta.loc[model_meta[col].isin(values), \"model_name\"]\n    return np.array([NAME2ROW[n] for n in names if n in NAME2ROW])\n\n\ncohort_defs = {}\n\n# (a) Ability cohort\nref_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [1, 2])\nfoc_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [4, 5])\n\nref_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([1, 2]), \"accuracy\"]\nfoc_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]), \"accuracy\"]\nab_overlap_min = max(ref_acc.min(), foc_acc.min())\nab_overlap_max = min(ref_acc.max(), foc_acc.max())\n\nif ab_overlap_min <= ab_overlap_max:\n    foc_ab_inject_mask = (\n        model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]) &\n        (model_meta[\"accuracy\"] >= ab_overlap_min) &\n        (model_meta[\"accuracy\"] <= ab_overlap_max)\n    )\n    foc_ab_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_ab_inject_mask, \"model_name\"] if n in NAME2ROW])\nelse:\n    foc_ab_inject_idx = foc_ability_idx\n\nprint(f\"  Ability: ref={len(ref_ability_idx)} (Q1-2), foc={len(foc_ability_idx)} (Q4-5)\")\n\ncohort_defs[\"ability\"] = dict(\n    ref_idx=ref_ability_idx, foc_idx=foc_ability_idx,\n    foc_inject_idx=foc_ab_inject_idx\n)\n\n# (b) Temporal cohort\nref_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2023\"])\nfoc_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2024\"])\n\nref_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2023\", \"accuracy\"]\nfoc_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2024\", \"accuracy\"]\nt_overlap_min = max(ref_t_acc.min(), foc_t_acc.min())\nt_overlap_max = min(ref_t_acc.max(), foc_t_acc.max())\n\nfoc_t_inject_mask = (\n    (model_meta[\"cohort_temporal\"] == \"2024\") &\n    (model_meta[\"accuracy\"] >= t_overlap_min) &\n    (model_meta[\"accuracy\"] <= t_overlap_max)\n)\nfoc_t_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_t_inject_mask, \"model_name\"] if n in NAME2ROW])\n\nprint(f\"  Temporal: ref={len(ref_temporal_idx)} (2023), foc={len(foc_temporal_idx)} (2024)\")\nprint(f\"    Inject: {len(foc_t_inject_idx)} focal models in accuracy overlap\")\n\ncohort_defs[\"temporal\"] = dict(\n    ref_idx=ref_temporal_idx, foc_idx=foc_temporal_idx,\n    foc_inject_idx=foc_t_inject_idx\n)\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 4: SEMI-SYNTHETIC INJECTION + θ-CONDITIONED MH-DIF\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 4: Semi-Synthetic Injection + MH-DIF ===\")\n\nX_base = mat[:, baseline_col_indices].toarray().astype(np.int8)\nfull_totals = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)\nprint(f\"  Baseline submatrix: {X_base.shape}, density: {X_base.mean():.4f}\")\n\n# Build variant list: theta_eq_K, theta_qt_K, external_5\nMH_VARIANTS = []\nfor ns in STRATA_COUNTS:\n    MH_VARIANTS.append(f\"theta_eq_{ns}\")\n    MH_VARIANTS.append(f\"theta_qt_{ns}\")\nMH_VARIANTS.append(\"external_5\")\n\ninjection_rows = []\n\ntotal_runs = len(INJECTION_PS) * N_SEEDS * len(cohort_defs) * len(MH_VARIANTS)\nrun_count = 0\nt_start = time.time()\n\nfor cohort_name, cdef in cohort_defs.items():\n    ref_idx = cdef[\"ref_idx\"]\n    foc_idx = cdef[\"foc_idx\"]\n    foc_inject_idx = cdef[\"foc_inject_idx\"]\n\n    theta_ref = theta_all[ref_idx]\n    theta_foc = theta_all[foc_idx]\n    ext_ref = full_totals[ref_idx]\n    ext_foc = full_totals[foc_idx]\n\n    for p in INJECTION_PS:\n        for seed in range(1, N_SEEDS + 1):\n            rng = np.random.RandomState(seed)\n\n            contam_local_idx = rng.choice(N_BASELINE, N_CONTAMINATED, replace=False)\n            contam_set = set(contam_local_idx.tolist())\n\n            X_inj = X_base.copy()\n            n_flipped = 0\n\n            if p > 0:\n                for local_j in contam_local_idx:\n                    for model_row in foc_inject_idx:\n                        if X_inj[model_row, local_j] == 0:\n                            if rng.random() < p:\n                                X_inj[model_row, local_j] = 1\n                                n_flipped += 1\n\n            X_ref = X_inj[ref_idx]\n            X_foc = X_inj[foc_idx]\n\n            for variant in MH_VARIANTS:\n                run_count += 1\n\n                if variant.startswith(\"theta_eq_\"):\n                    ns = int(variant.split(\"_\")[2])\n                    dif_results = mh_dif_with_bins(\n                        X_ref, X_foc, theta_ref, theta_foc,\n                        n_strata=ns, bin_mode=\"equal\"\n                    )\n                    strata_count = ns\n                elif variant.startswith(\"theta_qt_\"):\n                    ns = int(variant.split(\"_\")[2])\n                    dif_results = mh_dif_with_bins(\n                        X_ref, X_foc, theta_ref, theta_foc,\n                        n_strata=ns, bin_mode=\"quantile\"\n                    )\n                    strata_count = ns\n                elif variant == \"external_5\":\n                    dif_results = mh_dif_with_bins(\n                        X_ref, X_foc, ext_ref, ext_foc,\n                        n_strata=5, bin_mode=\"quantile\"\n                    )\n                    strata_count = 5\n\n                contam_mask = dif_results[\"col_idx\"].isin(contam_set)\n                contam_results = dif_results[contam_mask]\n                clean_results = dif_results[~contam_mask]\n\n                n_c_contam = (contam_results[\"ets_class\"] == \"C\").sum()\n                n_c_clean = (clean_results[\"ets_class\"] == \"C\").sum()\n                tpr = n_c_contam / N_CONTAMINATED\n                fpr = n_c_clean / (N_BASELINE - N_CONTAMINATED)\n\n                table = [[n_c_contam, N_CONTAMINATED - n_c_contam],\n                         [n_c_clean, (N_BASELINE - N_CONTAMINATED) - n_c_clean]]\n                fisher_or, fisher_p = fisher_exact(table)\n\n                injection_rows.append(dict(\n                    p=p, seed=seed, cohort_type=cohort_name,\n                    mh_variant=variant,\n                    strata_count=strata_count,\n                    tpr=tpr, fpr=fpr,\n                    fisher_or=fisher_or, fisher_p=fisher_p,\n                    n_responses_flipped=n_flipped,\n                ))\n\n                elapsed = time.time() - t_start\n                if run_count % 35 == 0 or (p in [0.0, 1.0] and seed == 1 and \"theta_eq_10\" in variant):\n                    print(f\"  [{run_count}/{total_runs}] {cohort_name} {variant:14s} p={p} seed={seed}: \"\n                          f\"TPR={tpr:.3f} FPR={fpr:.3f} ({elapsed:.0f}s)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 5: AGGREGATE & SAVE\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 5: Aggregating results ===\")\n\ninj_df = pd.DataFrame(injection_rows)\n\nsummary_rows = []\nfor (p_val, cohort, variant), grp in inj_df.groupby([\"p\", \"cohort_type\", \"mh_variant\"]):\n    summary_rows.append(dict(\n        p=p_val, cohort_type=cohort, mh_variant=variant,\n        strata_count=grp[\"strata_count\"].iloc[0],\n        tpr_mean=grp[\"tpr\"].mean(), tpr_std=grp[\"tpr\"].std(),\n        fpr_mean=grp[\"fpr\"].mean(), fpr_std=grp[\"fpr\"].std(),\n        fisher_or_mean=grp[\"fisher_or\"].mean(),\n        fisher_p_median=grp[\"fisher_p\"].median(),\n    ))\nsummary_df = pd.DataFrame(summary_rows)\n\ninj_df.to_csv(OUT / \"injection_results.csv\", index=False)\nsummary_df.to_csv(OUT / \"dose_response_theta.csv\", index=False)\nprint(f\"  Saved injection_results.csv ({len(inj_df)} rows)\")\nprint(f\"  Saved dose_response_theta.csv ({len(summary_df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 6: REAL DATA DIF — ENRICHMENT AGAINST LI ET AL. LABELS\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 6: Real data DIF (no injection) — enrichment vs Li et al. ===\")\n\nli_item_ids = li_labels[\"item_id\"].values\nli_col_indices = np.array([ITEM2COL[iid] for iid in li_item_ids if iid in ITEM2COL])\nli_item_ids_valid = np.array([iid for iid in li_item_ids if iid in ITEM2COL])\n\nli_labels_valid = li_labels[li_labels[\"item_id\"].isin(li_item_ids_valid)].copy()\nli_labels_valid = li_labels_valid.set_index(\"item_id\").loc[li_item_ids_valid].reset_index()\n\nX_li = mat[:, li_col_indices].toarray().astype(np.int8)\nprint(f\"  Li et al. items submatrix: {X_li.shape}\")\n\nenrichment_rows = []\n\nfor cohort_name in [\"temporal\"]:\n    cdef = cohort_defs[cohort_name]\n    ref_idx = cdef[\"ref_idx\"]\n    foc_idx = cdef[\"foc_idx\"]\n\n    X_ref_li = X_li[ref_idx]\n    X_foc_li = X_li[foc_idx]\n\n    theta_ref = theta_all[ref_idx]\n    theta_foc = theta_all[foc_idx]\n    ext_ref = full_totals[ref_idx]\n    ext_foc = full_totals[foc_idx]\n\n    for variant in MH_VARIANTS:\n        if variant.startswith(\"theta_eq_\"):\n            ns = int(variant.split(\"_\")[2])\n            dif_results = mh_dif_with_bins(X_ref_li, X_foc_li, theta_ref, theta_foc,\n                                           n_strata=ns, bin_mode=\"equal\")\n            sc = ns\n        elif variant.startswith(\"theta_qt_\"):\n            ns = int(variant.split(\"_\")[2])\n            dif_results = mh_dif_with_bins(X_ref_li, X_foc_li, theta_ref, theta_foc,\n                                           n_strata=ns, bin_mode=\"quantile\")\n            sc = ns\n        elif variant == \"external_5\":\n            dif_results = mh_dif_with_bins(X_ref_li, X_foc_li, ext_ref, ext_foc,\n                                           n_strata=5, bin_mode=\"quantile\")\n            sc = 5\n\n        dif_results[\"item_id\"] = li_item_ids_valid[dif_results[\"col_idx\"].values]\n        dif_merged = dif_results.merge(li_labels_valid[[\"item_id\", \"contamination_type\"]], on=\"item_id\")\n\n        is_contam = dif_merged[\"contamination_type\"] != \"clean\"\n        is_clean = dif_merged[\"contamination_type\"] == \"clean\"\n        is_c = dif_merged[\"ets_class\"] == \"C\"\n\n        rate_contam = (is_c & is_contam).sum() / is_contam.sum() if is_contam.sum() > 0 else 0\n        rate_clean = (is_c & is_clean).sum() / is_clean.sum() if is_clean.sum() > 0 else 0\n        enrichment = rate_contam / rate_clean if rate_clean > 0 else np.inf\n\n        enrichment_rows.append(dict(\n            cohort=cohort_name,\n            mh_variant=variant,\n            strata_count=sc,\n            n_items=len(dif_merged),\n            n_contam=int(is_contam.sum()),\n            n_clean=int(is_clean.sum()),\n            rate_contam=rate_contam,\n            rate_clean=rate_clean,\n            fpr_clean=rate_clean,\n            enrichment=enrichment,\n        ))\n\n        print(f\"  {variant:14s}: rate_contam={rate_contam:.4f}, \"\n              f\"rate_clean={rate_clean:.4f}, enrichment={enrichment:.3f}\")\n\nenrichment_df = pd.DataFrame(enrichment_rows)\nenrichment_df.to_csv(OUT / \"enrichment_theta.csv\", index=False)\nprint(f\"  Saved enrichment_theta.csv ({len(enrichment_df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  REPORT\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Generating report ===\")\n\nL = []\ndef w(s=\"\"):\n    L.append(s)\n\nw(\"# Plan 012: IRT θ-Conditioning MH-DIF Analysis\")\nw()\nw(\"## 1. Objective\")\nw()\nw(\"Replace raw total scores with IRT-based θ estimates as the MH-DIF stratification\")\nw(\"variable. Test whether finer ability matching reduces the high baseline FPR from\")\nw(\"plan_011 (temporal ~31%, ability ~49%) while preserving detection power (TPR).\")\nw()\n\nw(\"## 2. θ Estimation Method\")\nw()\nw(\"**Method**: Logit of proportion correct with Laplace smoothing\")\nw(\"```\")\nw(\"θ = log((total + 0.5) / (N_items + 1 - total - 0.5))\")\nw(\"```\")\nw(f\"- N models: {N_MODELS}\")\nw(f\"- N items (full matrix): {J_FULL}\")\nw(f\"- θ range: [{theta_all.min():.3f}, {theta_all.max():.3f}]\")\nw(f\"- θ mean±std: {theta_all.mean():.3f}±{theta_all.std():.3f}\")\nw(f\"- Correlation(θ, total_score): {corr:.4f}\")\nw()\nw(\"This is a monotone transformation of the Rasch model sufficient statistic.\")\nw(\"Two binning strategies are compared:\")\nw(\"- **Equal-width (eq)**: equal intervals on the logit scale — respects IRT metric\")\nw(\"- **Quantile (qt)**: equal-count bins — ensures balanced strata\")\nw()\n\nw(\"## 3. Experimental Design\")\nw()\nw(f\"- Baseline items: {N_BASELINE}\")\nw(f\"- Contaminated per run: {N_CONTAMINATED}\")\nw(f\"- Injection probabilities: {INJECTION_PS}\")\nw(f\"- Seeds per p: {N_SEEDS}\")\nw(f\"- Strata counts tested: {STRATA_COUNTS}\")\nw()\nw(\"### Cohort definitions\")\nw()\nfor cn, cd in cohort_defs.items():\n    w(f\"- **{cn}**: ref N={len(cd['ref_idx'])}, foc N={len(cd['foc_idx'])}, \"\n      f\"foc inject N={len(cd['foc_inject_idx'])}\")\nw()\nw(\"### MH variants\")\nw()\nw(\"| Variant | Stratification | Description |\")\nw(\"|---------|---------------|-------------|\")\nfor ns in STRATA_COUNTS:\n    w(f\"| theta_eq_{ns} | Equal-width θ bins | {ns} equal intervals on logit scale |\")\n    w(f\"| theta_qt_{ns} | Quantile θ bins | {ns} equal-count bins on θ |\")\nw(\"| external_5 | Quantile total-score | 5 bins on full-matrix total (plan_011 baseline) |\")\nw()\n\n# ─── Results tables ───\nw(\"## 4. Semi-Synthetic Results\")\nw()\n\nfor cohort in [\"temporal\", \"ability\"]:\n    w(f\"### {cohort.capitalize()} cohort\")\n    w()\n\n    # Baseline FPR table\n    w(\"#### Baseline FPR (p=0)\")\n    w()\n    w(\"| Variant | FPR (mean±std) |\")\n    w(\"|---------|----------------|\")\n    sub = summary_df[(summary_df[\"p\"] == 0.0) & (summary_df[\"cohort_type\"] == cohort)]\n    for _, r in sub.sort_values(\"mh_variant\").iterrows():\n        w(f\"| {r.mh_variant} | {r.fpr_mean:.3f}±{r.fpr_std:.3f} |\")\n    w()\n\n    # Dose-response table (selected variants)\n    w(\"#### Dose-response (key variants)\")\n    w()\n    key_variants = [\"theta_eq_10\", \"theta_qt_10\", \"theta_qt_20\", \"external_5\"]\n    w(\"| Variant | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |\")\n    w(\"|---------|---|----------------|----------------|------|-----------|----------|\")\n    for variant in key_variants:\n        sub_v = summary_df[(summary_df[\"cohort_type\"] == cohort) & (summary_df[\"mh_variant\"] == variant)]\n        if len(sub_v) == 0:\n            continue\n        base_tpr = sub_v[sub_v[\"p\"] == 0.0][\"tpr_mean\"].values\n        base_tpr = base_tpr[0] if len(base_tpr) > 0 else 0\n        for _, r in sub_v.sort_values(\"p\").iterrows():\n            d_tpr = r.tpr_mean - base_tpr\n            w(f\"| {r.mh_variant} | {r.p} | {r.tpr_mean:.3f}±{r.tpr_std:.3f} | \"\n              f\"{r.fpr_mean:.3f}±{r.fpr_std:.3f} | {d_tpr:+.3f} | \"\n              f\"{r.fisher_or_mean:.2f} | {r.fisher_p_median:.2e} |\")\n    w()\n\n# ─── Success criteria ───\nw(\"## 5. Success Criteria Evaluation\")\nw()\nw(\"**Target**: baseline FPR < 0.10, TPR > 0.70 at p=0.5 (temporal cohort)\")\nw()\n\nfor variant in MH_VARIANTS:\n    sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") & (summary_df[\"mh_variant\"] == variant)]\n    fpr0 = sub[sub[\"p\"] == 0.0][\"fpr_mean\"].values\n    tpr05 = sub[sub[\"p\"] == 0.5][\"tpr_mean\"].values\n    if len(fpr0) > 0 and len(tpr05) > 0:\n        fpr_ok = \"PASS\" if fpr0[0] < 0.10 else \"FAIL\"\n        tpr_ok = \"PASS\" if tpr05[0] > 0.70 else \"FAIL\"\n        w(f\"- **{variant}**: FPR={fpr0[0]:.3f} [{fpr_ok}], TPR@p=0.5={tpr05[0]:.3f} [{tpr_ok}]\")\nw()\n\n# ─── Enrichment ───\nw(\"## 6. Enrichment Against Li et al. Labels (No Injection)\")\nw()\nw(\"| Variant | Strata | Rate(contam) | Rate(clean) | Enrichment |\")\nw(\"|---------|--------|-------------|-------------|------------|\")\nfor _, r in enrichment_df.iterrows():\n    w(f\"| {r.mh_variant} | {r.strata_count} | {r.rate_contam:.4f} | \"\n      f\"{r.rate_clean:.4f} | {r.enrichment:.3f} |\")\nw()\nw(\"(plan_001 reference: enrichment = 0.96 with 5-strata total-score MH)\")\nw()\n\n# ─── Analysis ───\nw(\"## 7. Analysis & Conclusions\")\nw()\n\n# Find best variant\nbest_variant = None\nbest_fpr = 1.0\nfor variant in MH_VARIANTS:\n    sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") &\n                     (summary_df[\"mh_variant\"] == variant) & (summary_df[\"p\"] == 0.0)]\n    if len(sub) > 0:\n        fpr = sub.iloc[0][\"fpr_mean\"]\n        if fpr < best_fpr:\n            best_fpr = fpr\n            best_variant = variant\n\next_sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") &\n                     (summary_df[\"mh_variant\"] == \"external_5\") & (summary_df[\"p\"] == 0.0)]\next_fpr = ext_sub.iloc[0][\"fpr_mean\"] if len(ext_sub) > 0 else None\n\nw(\"### θ vs total-score stratification\")\nw()\nif ext_fpr is not None:\n    w(f\"- Plan_011 external (5 quantile strata, total score) FPR: {ext_fpr:.3f}\")\nw(f\"- Best θ variant ({best_variant}) FPR: {best_fpr:.3f}\")\nif ext_fpr is not None:\n    w(f\"- FPR difference: {best_fpr - ext_fpr:+.3f}\")\nw()\n\nw(\"### Equal-width vs quantile binning\")\nw()\nfor ns in STRATA_COUNTS:\n    eq_sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") &\n                        (summary_df[\"mh_variant\"] == f\"theta_eq_{ns}\") & (summary_df[\"p\"] == 0.0)]\n    qt_sub = summary_df[(summary_df[\"cohort_type\"] == \"temporal\") &\n                        (summary_df[\"mh_variant\"] == f\"theta_qt_{ns}\") & (summary_df[\"p\"] == 0.0)]\n    if len(eq_sub) > 0 and len(qt_sub) > 0:\n        w(f\"- K={ns}: equal-width FPR={eq_sub.iloc[0]['fpr_mean']:.3f}, \"\n          f\"quantile FPR={qt_sub.iloc[0]['fpr_mean']:.3f}\")\nw()\n\nw(\"### Why FPR remains elevated\")\nw()\nw(\"Possible explanations if FPR stays high despite θ-conditioning:\")\nw(\"1. Real DIF exists between cohorts — genuine differential item functioning\")\nw(\"   (2023 vs 2024 models genuinely differ on certain items beyond overall ability)\")\nw(\"2. Cohorts differ on dimensions not captured by a single θ parameter\")\nw(\"   (e.g., training data composition, architecture effects)\")\nw(\"3. The logit(p) θ estimate has correlation >.999 with raw total scores,\")\nw(\"   so quantile bins on θ produce nearly identical strata to quantile bins on totals\")\nw(\"4. MH-DIF's power to distinguish real DIF from ability confounding is limited\")\nw(\"   when the grouping variable (year/quintile) correlates strongly with ability\")\nw()\n\nw(\"### Recommendations\")\nw()\nw(\"Based on these results:\")\nw()\nsub_t = summary_df[summary_df[\"cohort_type\"] == \"temporal\"]\nfor variant in [\"theta_eq_10\", \"theta_qt_10\", \"theta_qt_20\", \"external_5\"]:\n    v_sub = sub_t[sub_t[\"mh_variant\"] == variant]\n    fpr0 = v_sub[v_sub[\"p\"] == 0.0][\"fpr_mean\"].values\n    tpr05 = v_sub[v_sub[\"p\"] == 0.5][\"tpr_mean\"].values\n    tpr1 = v_sub[v_sub[\"p\"] == 1.0][\"tpr_mean\"].values\n    if len(fpr0) > 0 and len(tpr05) > 0 and len(tpr1) > 0:\n        w(f\"- {variant}: FPR₀={fpr0[0]:.3f}, TPR@0.5={tpr05[0]:.3f}, TPR@1.0={tpr1[0]:.3f}\")\nw()\n\n(OUT / \"plan_012_report.md\").write_text(\"\\n\".join(L) + \"\\n\")\nprint(\"  Report written to plan_012_report.md\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  CONSOLE SUMMARY\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\" * 70)\nprint(\"SUMMARY — Baseline FPR (p=0)\")\nprint(\"=\" * 70)\nfor cohort in [\"temporal\", \"ability\"]:\n    print(f\"\\n  {cohort}:\")\n    sub = summary_df[(summary_df[\"p\"] == 0.0) & (summary_df[\"cohort_type\"] == cohort)]\n    for _, r in sub.sort_values(\"mh_variant\").iterrows():\n        print(f\"    {r.mh_variant:14s}: FPR={r.fpr_mean:.3f}±{r.fpr_std:.3f}\")\n\nprint(\"\\n\" + \"=\" * 70)\nprint(\"SUMMARY — TPR at p=0.5 (temporal)\")\nprint(\"=\" * 70)\nsub = summary_df[(summary_df[\"p\"] == 0.5) & (summary_df[\"cohort_type\"] == \"temporal\")]\nfor _, r in sub.sort_values(\"mh_variant\").iterrows():\n    print(f\"  {r.mh_variant:14s}: TPR={r.tpr_mean:.3f}±{r.tpr_std:.3f}\")\n\nprint(\"\\n\" + \"=\" * 70)\nprint(\"SUMMARY — Enrichment (Li et al.)\")\nprint(\"=\" * 70)\nfor _, r in enrichment_df.iterrows():\n    print(f\"  {r.mh_variant:14s}: enrichment={r.enrichment:.3f}\")\n\ntotal_elapsed = time.time() - t_start\nprint(f\"\\nTotal time: {total_elapsed:.0f}s\")\nprint(f\"All outputs saved to {OUT}\")\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T22:09:08.090953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_irt_theta_analysis.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T22:09:08.091172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 plan_012_irt_theta_analysis.py 2>&1",
+              "description": "Run full plan_012 analysis",
+              "timeout": "600000"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T22:09:08.091375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Loading data ===\n  Matrix: 5227 x 12508\n\n=== Step 1: IRT theta estimation ===\n  θ range: [-3.310, 2.330]\n  θ mean: 0.382, std: 0.702\n  Correlation(θ, total_score): 0.9986\n  Saved theta_estimates.csv (5227 rows)\n\n=== Step 2: Selecting baseline items ===\n  Baseline pool (clean + ETS A): 4931\n  Selected 500 baseline items\n\n=== Step 3: Defining cohorts ===\n  Ability: ref=2092 (Q1-2), foc=2089 (Q4-5)\n  Temporal: ref=1080 (2023), foc=807 (2024)\n    Inject: 787 focal models in accuracy overlap\n\n=== Step 4: Semi-Synthetic Injection + MH-DIF ===\n  Baseline submatrix: (5227, 500), density: 0.5812\n  [1/350] ability theta_eq_10    p=0.0 seed=1: TPR=0.000 FPR=0.000 (0s)\n  [35/350] ability external_5     p=0.0 seed=5: TPR=0.460 FPR=0.502 (4s)\n  [70/350] ability external_5     p=0.3 seed=5: TPR=0.660 FPR=0.502 (8s)\n  [105/350] ability external_5     p=0.5 seed=5: TPR=0.720 FPR=0.502 (12s)\n  [140/350] ability external_5     p=0.7 seed=5: TPR=0.780 FPR=0.502 (17s)\n  [141/350] ability theta_eq_10    p=1.0 seed=1: TPR=0.000 FPR=0.000 (17s)\n  [175/350] ability external_5     p=1.0 seed=5: TPR=0.780 FPR=0.502 (21s)\n  [176/350] temporal theta_eq_10    p=0.0 seed=1: TPR=0.360 FPR=0.328 (21s)\n  [210/350] temporal external_5     p=0.0 seed=5: TPR=0.380 FPR=0.300 (27s)\n  [245/350] temporal external_5     p=0.3 seed=5: TPR=0.510 FPR=0.300 (34s)\n  [280/350] temporal external_5     p=0.5 seed=5: TPR=0.790 FPR=0.300 (41s)\n  [315/350] temporal external_5     p=0.7 seed=5: TPR=0.980 FPR=0.300 (48s)\n  [316/350] temporal theta_eq_10    p=1.0 seed=1: TPR=1.000 FPR=0.328 (48s)\n  [350/350] temporal external_5     p=1.0 seed=5: TPR=1.000 FPR=0.300 (55s)\n\n=== Step 5: Aggregating results ===\n  Saved injection_results.csv (350 rows)\n  Saved dose_response_theta.csv (70 rows)\n\n=== Step 6: Real data DIF (no injection) — enrichment vs Li et al. ===\n  Li et al. items submatrix: (5227, 12508)\n  theta_eq_10   : rate_contam=0.3325, rate_clean=0.3370, enrichment=0.986\n  theta_qt_10   : rate_contam=0.3582, rate_\n…[truncated 2179 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T22:09:08.091572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/dose_response_theta.csv"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T22:09:08.091755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tp,cohort_type,mh_variant,strata_count,tpr_mean,tpr_std,fpr_mean,fpr_std,fisher_or_mean,fisher_p_median\n2\t0.0,ability,external_5,5,0.49800000000000005,0.040865633483405106,0.493,0.010216408370851257,1.0376862626110337,0.5025492358221133\n3\t0.0,ability,theta_eq_10,10,0.0,0.0,0.0,0.0,,1.0\n4\t0.0,ability,theta_eq_15,15,0.5239999999999999,0.0403732584763727,0.514,0.010093314619093187,1.0591429036920574,0.5023722091399012\n5\t0.0,ability,theta_eq_20,20,0.0,0.0,0.0,0.0,,1.0\n6\t0.0,ability,theta_qt_10,10,0.08800000000000001,0.017888543819998312,0.093,0.004472135954999576,0.9562831165334869,0.8464990783281309\n7\t0.0,ability,theta_qt_15,15,0.366,0.0403732584763727,0.3635,0.010093314619093184,1.0267874017014427,0.4175073431442684\n8\t0.0,ability,theta_qt_20,20,0.08600000000000001,0.026076809620810597,0.07850000000000001,0.006519202405202649,1.1502783119171422,1.0\n9\t0.0,temporal,external_5,5,0.32599999999999996,0.03507135583350037,0.3135,0.008767838958375098,1.0732098198053222,0.7202868041451116\n10\t0.0,temporal,theta_eq_10,10,0.32999999999999996,0.03391164991562634,0.33499999999999996,0.008477912478906576,0.9892343782022444,0.5545935483877842\n11\t0.0,temporal,theta_eq_15,15,0.31799999999999995,0.04919349550499536,0.3105,0.012298373876248854,1.0625191100121787,0.33631706094391867\n12\t0.0,temporal,theta_eq_20,20,0.32999999999999996,0.03741657386773942,0.32249999999999995,0.009354143466934863,1.0500471570510637,0.6332747397354055\n13\t0.0,temporal,theta_qt_10,10,0.362,0.058906705900092574,0.352,0.014726676475023131,1.0845990257297495,0.6404907181548222\n14\t0.0,temporal,theta_qt_15,15,0.34199999999999997,0.027748873851023217,0.337,0.0069372184627558104,1.0309375796401248,0.9061979444146373\n15\t0.0,temporal,theta_qt_20,20,0.31000000000000005,0.03391164991562634,0.3125,0.008477912478906594,1.000823069930904,0.6310703109776168\n16\t0.3,ability,external_5,5,0.662,0.04438468204234428,0.493,0.010216408370851257,2.069855540970715,0.005067695426382491\n17\t0.3,ability,theta_eq_10,10,0.0,0.0,0.0,0.0,,1.0\n1\n…[truncated 6247 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T22:09:08.091937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T22:09:08.092064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T22:09:08.092183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_012_irt_theta_analysis",
+              "type": "intermediate",
+              "description": "IRT θ-Conditioning MH-DIF analysis script — tests logit(p) θ estimates with equal-width and quantile bins (K=10,15,20) as MH stratification variable",
+              "project": "irt_equated_bench_regen",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_irt_theta_analysis.py",
+              "tags": "['plan_012', 'IRT', 'MH-DIF', 'theta']"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T22:09:08.092335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_1f6523\\\", \\\"name\\\": \\\"plan_012_irt_theta_analysis\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"IRT θ-Conditioning MH-DIF analysis script — tests logit(p) θ estimates with equal-width and quantile bins (K=10,15,20) as MH stratification variable\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/intermediate/plan_012_irt_theta_analysis.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T22:08:32.637225+00:00\\\", \\\"tags\\\": [\\\"plan_012\\\", \\\"IRT\\\", \\\"MH-DIF\\\", \\\"theta\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T22:09:08.092465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_012_theta_estimates",
+              "type": "data",
+              "description": "IRT θ estimates (logit with Laplace smoothing) for 5227 models — columns: model_name, theta, total_score, method",
+              "project": "irt_equated_bench_regen",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/theta_estimates.csv",
+              "tags": "['plan_012', 'IRT', 'theta']"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T22:09:08.092910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_3ad7ec\\\", \\\"name\\\": \\\"plan_012_theta_estimates\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"IRT θ estimates (logit with Laplace smoothing) for 5227 models — columns: model_name, theta, total_score, method\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/theta_estimates.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T22:08:35.749196+00:00\\\", \\\"tags\\\": [\\\"plan_012\\\", \\\"IRT\\\", \\\"theta\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T22:09:08.093052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_012_dose_response",
+              "type": "data",
+              "description": "Semi-synthetic dose-response results for θ-conditioned MH-DIF — TPR/FPR across injection probabilities, 7 MH variants, 2 cohorts",
+              "project": "irt_equated_bench_regen",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/dose_response_theta.csv",
+              "tags": "['plan_012', 'MH-DIF', 'dose-response']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T22:09:08.093194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_36bd61\\\", \\\"name\\\": \\\"plan_012_dose_response\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Semi-synthetic dose-response results for θ-conditioned MH-DIF — TPR/FPR across injection probabilities, 7 MH variants, 2 cohorts\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/dose_response_theta.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T22:08:38.674316+00:00\\\", \\\"tags\\\": [\\\"plan_012\\\", \\\"MH-DIF\\\", \\\"dose-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T22:09:08.093329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_012_enrichment",
+              "type": "data",
+              "description": "Enrichment of MH-DIF C-class items against Li et al. contamination labels — temporal cohort, 7 variants",
+              "project": "irt_equated_bench_regen",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/enrichment_theta.csv",
+              "tags": "['plan_012', 'enrichment', 'Li-et-al']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T22:09:08.093470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_392c47\\\", \\\"name\\\": \\\"plan_012_enrichment\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Enrichment of MH-DIF C-class items against Li et al. contamination labels — temporal cohort, 7 variants\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/enrichment_theta.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T22:08:41.119573+00:00\\\", \\\"tags\\\": [\\\"plan_012\\\", \\\"enrichment\\\", \\\"Li-et-al\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T22:09:08.093596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_012_report",
+              "type": "report",
+              "description": "Plan 012 report — IRT θ-conditioning does NOT reduce temporal FPR (~31-35% across all variants), but quantile θ bins dramatically reduce ability FPR (49%→8%)",
+              "project": "irt_equated_bench_regen",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/plan_012_report.md",
+              "tags": "['plan_012', 'report']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T22:09:08.093751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_509b47\\\", \\\"name\\\": \\\"plan_012_report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Plan 012 report — IRT θ-conditioning does NOT reduce temporal FPR (~31-35% across all variants), but quantile θ bins dramatically reduce ability FPR (49%→8%)\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/report/plan_012_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T22:08:44.063079+00:00\\\", \\\"tags\\\": [\\\"plan_012\\\", \\\"report\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T22:09:08.093903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "rm /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_012/test_small.py",
+              "description": "Remove smoke test file"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T22:09:08.094018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T22:09:08.094169+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n**成功标准未达成**（temporal cohort，FPR < 0.10 且 TPR > 0.70 @ p=0.5）。\n\n### 核心发现\n\n**Temporal cohort — θ-conditioning 无效**：\n| Variant | Baseline FPR | TPR@p=0.5 |\n|---------|-------------|-----------|\n| external_5 (plan_011) | 0.314 | 0.834 |\n| theta_eq_10 | 0.335 | 0.882 |\n| theta_qt_20 | 0.312 | 0.876 |\n\nFPR 在 31-35% 范围内，所有 θ 变体与 plan_011 的 total-score 基线无实质差异。原因：logit(p) 与 total score 相关性 0.9986，分层效果几乎等价。\n\n**Ability cohort — quantile θ bins 大幅降低 FPR**：\n| Variant | Baseline FPR | TPR@p=0.5 | TPR@p=1.0 |\n|---------|-------------|-----------|-----------|\n| external_5 | 0.493 | 0.756 | 0.800 |\n| theta_qt_10 | **0.093** | 0.206 | 0.544 |\n| theta_qt_20 | **0.079** | 0.210 | 0.544 |\n\nFPR 从 49% 降到 8%，但 TPR 也从 76% 降到 21%（p=0.5）。更精确的能力匹配同时消除了 FPR 和 TPR——说明 plan_011 中 ability cohort 的高 TPR 主要来自能力差异的混淆，而非真正的 DIF 检测。\n\n**Enrichment（Li et al.）**：所有变体 enrichment ≈ 0.97-1.00，与 plan_001 的 0.96 一致——Li et al. 标记的污染仍然是 non-differential 的。\n\n### 关键结论\n\n1. Temporal cohort 的 ~31% baseline FPR 是**真实 DIF**（2023 vs 2024 模型在某些 items 上的真实差异），而非能力匹配不精确造成的伪阳性。更精细的 θ 分层无法消除它。\n2. 简单的 logit θ 变换与原始总分几乎完全共线，不提供额外的匹配价值。真正的改进需要多维 IRT 或其他非线性能力估计。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_012_irt_theta_20260520T215924"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/code-plan-012-irt-theta.md"
+}

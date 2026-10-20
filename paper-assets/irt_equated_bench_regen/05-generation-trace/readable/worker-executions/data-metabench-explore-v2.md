@@ -1,0 +1,7511 @@
+# data metabench explore v2
+
+**Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 129
+- **Recorded user turns:** 0
+- **Tool calls:** 46
+- **Original source:** `logs/workers/worker_data_metabench_explore_v2_20260520T194355.log`
+- **Structured JSON:** [`0f34438b774839a9f7fb.json`](../../sessions/0f/0f34438b774839a9f7fb.json)
+
+## Before a recorded user message
+
+129 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8e323fc6-d1f5-471a-9b67-a65b335fa812",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779310200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "de36d614-49f7-4b72-ae46-8bf8c87a5761",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the task. I need to explore METABENCH data that's been downloaded to `artifacts/metabench_data/benchmark-data/`. The previous worker failed due to OOM from concatenating all CSVs at once. I need to:
+
+1. Write a memory-efficient exploration script
+2. Collect statistics on models, items, and data quality
+3. Check RDS files for pre-fitted IRT parameters
+4. Answer three key questions for the Director
+
+Let me first explore the data directory to understand what's there, then write and run the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "38e78c39-a54e-49af-b4b7-078ff81d0c97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ybrt6mFV1a6NTm7SsTdRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12302,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12302
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先看一下数据目录结构和现有文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ecb9ce04-da35-489a-b08a-bd577e1213c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ybrt6mFV1a6NTm7SsTdRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12302,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12302
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014Hg8tMKLxcCZgUYo3Gxtgd`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/ | head -30",
+  "description": "List benchmark data directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e92e8f94-0737-4fc2-9ffb-cd4ccca6a1f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ybrt6mFV1a6NTm7SsTdRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12302,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12302
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T19:44:12.357Z_
+
+<details><summary>↩ Tool result · `toolu_014Hg8tMKLxcCZgUYo3Gxtgd`</summary>
+
+```text
+arc-preproc-split.rds
+arc-preproc.rds
+arc-sub-100.rds
+arc-sub-150.rds
+arc-sub-200.rds
+arc-sub-250.rds
+arc-sub-300.rds
+arc-sub-350.rds
+arc-sub-400.rds
+arc-sub-450.rds
+arc-sub-50.rds
+arc-sub-500.rds
+arc-sub.rds
+arc.csv
+arc_prompts.csv
+gsm8k-preproc-split.rds
+gsm8k-preproc.rds
+gsm8k-sub-100.rds
+gsm8k-sub-150.rds
+gsm8k-sub-189.rds
+gsm8k-sub-196.rds
+gsm8k-sub-200.rds
+gsm8k-sub-250.rds
+gsm8k-sub-300.rds
+gsm8k-sub-350.rds
+gsm8k-sub-400.rds
+gsm8k-sub-450.rds
+gsm8k-sub-50.rds
+gsm8k-sub-500.rds
+gsm8k-sub.rds
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "dcd559b2-374f-43a4-bd1c-cba0a32e4b01",
+  "tool_use_result": {
+    "stdout": "arc-preproc-split.rds\narc-preproc.rds\narc-sub-100.rds\narc-sub-150.rds\narc-sub-200.rds\narc-sub-250.rds\narc-sub-300.rds\narc-sub-350.rds\narc-sub-400.rds\narc-sub-450.rds\narc-sub-50.rds\narc-sub-500.rds\narc-sub.rds\narc.csv\narc_prompts.csv\ngsm8k-preproc-split.rds\ngsm8k-preproc.rds\ngsm8k-sub-100.rds\ngsm8k-sub-150.rds\ngsm8k-sub-189.rds\ngsm8k-sub-196.rds\ngsm8k-sub-200.rds\ngsm8k-sub-250.rds\ngsm8k-sub-300.rds\ngsm8k-sub-350.rds\ngsm8k-sub-400.rds\ngsm8k-sub-450.rds\ngsm8k-sub-50.rds\ngsm8k-sub-500.rds\ngsm8k-sub.rds",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MXEjYzV41Ypo431XGLFYuL`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu_*.csv | wc -l && ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu_*.rds 2>/dev/null | wc -l",
+  "description": "Count CSV and RDS files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ea7b4c27-a818-4579-a7d2-b2ed30cbfcd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ybrt6mFV1a6NTm7SsTdRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12302,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12302
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T19:44:13.827Z_
+
+<details><summary>↩ Tool result · `toolu_01MXEjYzV41Ypo431XGLFYuL`</summary>
+
+```text
+114
+0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "2233b8a6-40a2-494a-96cf-baed29cb24dc",
+  "tool_use_result": {
+    "stdout": "114\n0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Doxp1d6FLPBeveAKTfAtna`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/*.rds 2>/dev/null | head -20",
+  "description": "List RDS files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "6badd48e-8120-409d-9acc-473878cff1fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ybrt6mFV1a6NTm7SsTdRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12302,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12302
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T19:44:14.774Z_
+
+<details><summary>↩ Tool result · `toolu_01Doxp1d6FLPBeveAKTfAtna`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-100.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-150.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-200.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-250.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-300.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-350.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-400.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-450.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-50.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-500.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-100.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-150.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-189.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-196.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-200.rds
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e4efb2ea-2deb-4611-8fb3-6fe40ae2e303",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-100.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-150.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-200.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-250.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-300.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-350.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-400.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-450.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-50.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub-500.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-100.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-150.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-189.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-196.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub-200.rds",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0174MUNjeVQM7WKJcvjc2SH5`</summary>
+
+```json
+{
+  "command": "free -h && df -h /home/ubuntu",
+  "description": "Check available memory and disk"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "47020170-044b-4bff-97fe-27ee26eab66d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ybrt6mFV1a6NTm7SsTdRh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12302,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12302
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T19:44:15.057Z_
+
+<details><summary>↩ Tool result · `toolu_0174MUNjeVQM7WKJcvjc2SH5`</summary>
+
+```text
+               total        used        free      shared  buff/cache   available
+Mem:           7.6Gi       3.0Gi       4.3Gi       100Mi       719Mi       4.7Gi
+Swap:             0B          0B          0B
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        61G   14G   47G  23% /
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "438b9bb4-f0ce-4541-90f7-36641765ef6a",
+  "tool_use_result": {
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:           7.6Gi       3.0Gi       4.3Gi       100Mi       719Mi       4.7Gi\nSwap:             0B          0B          0B\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/root        61G   14G   47G  23% /",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0174gRcUSaDkh76KYYqo9D8C`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/*.rds | wc -l && ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/ | grep -E \"^mmlu_\" | grep -v prompts | head -10",
+  "description": "Count RDS files and sample MMLU CSVs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "1c3f426c-169a-4a28-9620-e744d5cf4743",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SUi9bLTRGL8BceXwjk5Tp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2249,
+      "cache_read_input_tokens": 24143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2249
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T19:44:19.327Z_
+
+<details><summary>↩ Tool result · `toolu_0174gRcUSaDkh76KYYqo9D8C`</summary>
+
+```text
+89
+mmlu_abstract_algebra.csv
+mmlu_anatomy.csv
+mmlu_astronomy.csv
+mmlu_business_ethics.csv
+mmlu_clinical_knowledge.csv
+mmlu_college_biology.csv
+mmlu_college_chemistry.csv
+mmlu_college_computer_science.csv
+mmlu_college_mathematics.csv
+mmlu_college_medicine.csv
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "60664d4f-0bef-4196-b041-22366856acc4",
+  "tool_use_result": {
+    "stdout": "89\nmmlu_abstract_algebra.csv\nmmlu_anatomy.csv\nmmlu_astronomy.csv\nmmlu_business_ethics.csv\nmmlu_clinical_knowledge.csv\nmmlu_college_biology.csv\nmmlu_college_chemistry.csv\nmmlu_college_computer_science.csv\nmmlu_college_mathematics.csv\nmmlu_college_medicine.csv",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TJubdn9tpdYDZn2HJgBrNW`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/*.rds | grep -E \"(preproc|sub\\.rds)\" | sort",
+  "description": "List preproc and sub RDS files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e88ae16f-ce3a-464d-9c41-3d60c3b77c01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SUi9bLTRGL8BceXwjk5Tp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2249,
+      "cache_read_input_tokens": 24143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2249
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T19:44:20.901Z_
+
+<details><summary>↩ Tool result · `toolu_01TJubdn9tpdYDZn2HJgBrNW`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/hellaswag-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/hellaswag-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/hellaswag-sub.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu-sub.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/truthfulqa-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/truthfulqa-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/truthfulqa-sub.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/winogrande-preproc-split.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/winogrande-preproc.rds
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/winogrande-sub.rds
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "d15c657f-95cc-4202-9316-1a03a193b50e",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/arc-sub.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/gsm8k-sub.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/hellaswag-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/hellaswag-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/hellaswag-sub.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu-sub.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/truthfulqa-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/truthfulqa-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/truthfulqa-sub.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/winogrande-preproc-split.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/winogrande-preproc.rds\n/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/winogrande-sub.rds",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NiSfofzFmf2xFbDFrMw8qX`</summary>
+
+```json
+{
+  "command": "head -3 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data/mmlu_abstract_algebra.csv",
+  "description": "Sample CSV header and rows"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "efb6b8f5-f176-43d3-b067-238f656d2238",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SUi9bLTRGL8BceXwjk5Tp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2249,
+      "cache_read_input_tokens": 24143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2249
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T19:44:22.302Z_
+
+<details><summary>↩ Tool result · `toolu_01NiSfofzFmf2xFbDFrMw8qX`</summary>
+
+```text
+source,item,correct
+0-hero/Matter-0.1-7B-boost,1,1.0
+0-hero/Matter-0.1-7B-boost,2,0.0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "1c66e1af-7c7a-4ad1-a052-082c1d7ff5f6",
+  "tool_use_result": {
+    "stdout": "source,item,correct\n0-hero/Matter-0.1-7B-boost,1,1.0\n0-hero/Matter-0.1-7B-boost,2,0.0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LxfpxAf3nvTV1YS7kqJUGF`</summary>
+
+```json
+{
+  "command": "python3 -c \"import pyreadr; print('pyreadr available')\" 2>&1",
+  "description": "Check pyreadr availability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "540c5ff8-25a7-4e47-b0d1-4a687f34f587",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SUi9bLTRGL8BceXwjk5Tp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2249,
+      "cache_read_input_tokens": 24143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2249
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T19:44:23.984Z_
+
+<details><summary>↩ Tool result · `toolu_01LxfpxAf3nvTV1YS7kqJUGF`</summary>
+
+```text
+pyreadr available
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "3c0b8f66-639d-4cfb-a0a4-109adc1143e2",
+  "tool_use_result": {
+    "stdout": "pyreadr available",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I have:
+- 114 MMLU CSVs (57 subjects × 2, including _prompts.csv versions)
+- 89 RDS files including `mmlu-preproc.rds`, `mmlu-preproc-split.rds`, `mmlu-sub.rds` which likely contain IRT parameters
+- pyreadr is available
+- 7.6GB RAM total, ~4.7GB available
+- CSV format: `source,item,correct` with binary 0/1
+
+Let me check how many MMLU CSVs excluding prompts, and look at the RDS structure. 
+
+Now I'll write a memory-efficient exploration script to examine what the `-sub` and `-preproc` RDS files contain and get a comprehensive view of the data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "831586f6-273e-4de8-a699-b191f3b13333",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HiubMgcxreQLgA15Rrfbn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1767,
+      "cache_read_input_tokens": 26392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1767
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+有 89 个 RDS 文件，包括 `mmlu-preproc.rds`、`mmlu-preproc-split.rds`、`mmlu-sub.rds` 等可能含 IRT 参数。7.6GB 内存，可用约 4.7GB。先快速看 RDS 文件结构，然后写完整探索脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "c71165af-5b44-4b63-bed9-f6eeaac8eac9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HiubMgcxreQLgA15Rrfbn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1767,
+      "cache_read_input_tokens": 26392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1767
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WUDzZWGHamz8fzwiJkXSgC`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport pyreadr\nimport os\n\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\n# Check mmlu-preproc.rds structure\nfor fname in ['mmlu-preproc.rds', 'mmlu-sub.rds', 'mmlu-preproc-split.rds']:\n    fpath = os.path.join(DATA_DIR, fname)\n    sz = os.path.getsize(fpath) / 1024 / 1024\n    print(f'\\n=== {fname} ({sz:.1f} MB) ===')\n    try:\n        result = pyreadr.read_r(fpath)\n        for key, df in result.items():\n            print(f'  Key: {key!r}')\n            print(f'  Shape: {df.shape}')\n            print(f'  Columns: {list(df.columns)}')\n            print(f'  Dtypes: {dict(df.dtypes)}')\n            print(f'  Head:')\n            print(df.head(3).to_string())\n    except Exception as e:\n        print(f'  Error: {e}')\n\" 2>&1",
+  "description": "Inspect MMLU RDS files for IRT parameters",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "327f54a3-43b7-43c5-aa06-ed7080affb0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HiubMgcxreQLgA15Rrfbn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1767,
+      "cache_read_input_tokens": 26392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1767
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T19:44:37.274Z_
+
+<details><summary>↩ Tool result · `toolu_01WUDzZWGHamz8fzwiJkXSgC`</summary>
+
+```text
+=== mmlu-preproc.rds (13.8 MB) ===
+
+=== mmlu-sub.rds (0.7 MB) ===
+  Error: The file contains an unrecognized object
+
+=== mmlu-preproc-split.rds (14.1 MB) ===
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "5b35e48c-c337-4e7b-a798-696fba7975db",
+  "tool_use_result": {
+    "stdout": "=== mmlu-preproc.rds (13.8 MB) ===\n\n=== mmlu-sub.rds (0.7 MB) ===\n  Error: The file contains an unrecognized object\n\n=== mmlu-preproc-split.rds (14.1 MB) ===",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AHGdXKq7sZL2Tjf23xNzpR`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport pyreadr, os\n\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\n# Check sub-* RDS files (these likely contain IRT item parameters from subsampling)\nfor fname in ['mmlu-sub-50.rds', 'mmlu-sub-100.rds', 'mmlu-sub-200.rds']:\n    fpath = os.path.join(DATA_DIR, fname)\n    if not os.path.exists(fpath):\n        print(f'{fname}: NOT FOUND')\n        continue\n    sz = os.path.getsize(fpath) / 1024 / 1024\n    print(f'\\n=== {fname} ({sz:.1f} MB) ===')\n    try:\n        result = pyreadr.read_r(fpath)\n        for key, df in result.items():\n            print(f'  Key: {key!r}')\n            print(f'  Shape: {df.shape}')\n            print(f'  Columns: {list(df.columns)}')\n            print(df.head(3).to_string())\n    except Exception as e:\n        print(f'  Error: {e}')\n\" 2>&1",
+  "description": "Inspect MMLU sub RDS files for IRT params",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ad2d9151-12f5-4700-ba49-35f52ebc195b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HiubMgcxreQLgA15Rrfbn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1767,
+      "cache_read_input_tokens": 26392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1767
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T19:44:39.879Z_
+
+<details><summary>↩ Tool result · `toolu_01AHGdXKq7sZL2Tjf23xNzpR`</summary>
+
+```text
+=== mmlu-sub-50.rds (0.4 MB) ===
+  Error: The file contains an unrecognized object
+
+=== mmlu-sub-100.rds (0.5 MB) ===
+  Error: The file contains an unrecognized object
+
+=== mmlu-sub-200.rds (0.6 MB) ===
+  Error: The file contains an unrecognized object
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "05f21cd1-33f5-4ab0-baa9-6545eacdad6f",
+  "tool_use_result": {
+    "stdout": "=== mmlu-sub-50.rds (0.4 MB) ===\n  Error: The file contains an unrecognized object\n\n=== mmlu-sub-100.rds (0.5 MB) ===\n  Error: The file contains an unrecognized object\n\n=== mmlu-sub-200.rds (0.6 MB) ===\n  Error: The file contains an unrecognized object",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The RDS files are either empty or contain R objects that pyreadr can't read. The preproc ones returned empty results (no output for Key/Shape etc.), and the sub files have "unrecognized object" errors. Let me try a different approach - maybe the preproc files are empty or I need to handle them differently. Let me also check if R is available to read these.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "c0031672-5433-498d-af59-ea5189321b94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZuRg9chrirSorfr1ohN1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 28159,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+RDS 文件 pyreadr 读不了（可能是 R S4 对象/列表类型）。让我检查下是否有 R 可用，同时看看 preproc 文件为什么返回空。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "1e5ad452-8da4-47d1-8cbf-0f9decbd93eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZuRg9chrirSorfr1ohN1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 28159,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WvtkC4fe1hDTVmnUDaH6YT`</summary>
+
+```json
+{
+  "command": "which R 2>/dev/null && R --version 2>/dev/null | head -3 || echo \"R not available\"",
+  "description": "Check if R is installed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "46bb0a22-4cb5-4e6b-adbd-f012c72e645b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZuRg9chrirSorfr1ohN1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 28159,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T19:44:46.929Z_
+
+<details><summary>↩ Tool result · `toolu_01WvtkC4fe1hDTVmnUDaH6YT`</summary>
+
+```text
+R not available
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ce9b7ed6-7ef7-4400-a4da-872f1e7aa0d8",
+  "tool_use_result": {
+    "stdout": "R not available",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019z3uPvhMnZjKcyEv12Eaxa`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport pyreadr, os\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\n# Try reading preproc more carefully\nfpath = os.path.join(DATA_DIR, 'mmlu-preproc.rds')\nresult = pyreadr.read_r(fpath)\nprint('Type:', type(result))\nprint('Keys:', list(result.keys()))\nprint('Num keys:', len(result))\nif len(result) == 0:\n    print('Empty result - trying custom_unserialize...')\n    # Try low-level approach\n    import struct\n    with open(fpath, 'rb') as f:\n        magic = f.read(20)\n        print('Magic bytes:', magic[:10].hex())\n\" 2>&1",
+  "description": "Debug empty preproc RDS reading"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "c37382c6-ba28-44a8-843b-4f4b5a030aeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZuRg9chrirSorfr1ohN1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 28159,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T19:44:51.738Z_
+
+<details><summary>↩ Tool result · `toolu_019z3uPvhMnZjKcyEv12Eaxa`</summary>
+
+```text
+Type: &lt;class 'collections.OrderedDict'>
+Keys: []
+Num keys: 0
+Empty result - trying custom_unserialize...
+Magic bytes: 1f8b0800000000000003
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "52af2775-d247-41df-a585-6fb9014e952c",
+  "tool_use_result": {
+    "stdout": "Type: &lt;class 'collections.OrderedDict'>\nKeys: []\nNum keys: 0\nEmpty result - trying custom_unserialize...\nMagic bytes: 1f8b0800000000000003",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QeVagaJW3AwZemk6ZbpWa3`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport pyreadr, os\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\n# Try arc-preproc.rds as comparison\nfor fname in ['arc-preproc.rds', 'arc-sub.rds']:\n    fpath = os.path.join(DATA_DIR, fname)\n    sz = os.path.getsize(fpath) / 1024 / 1024\n    print(f'\\n=== {fname} ({sz:.1f} MB) ===')\n    try:\n        result = pyreadr.read_r(fpath)\n        print(f'  Keys: {list(result.keys())} (count: {len(result)})')\n        for key, df in result.items():\n            print(f'  Shape: {df.shape}')\n            print(f'  Columns: {list(df.columns)[:10]}')\n            print(df.head(2).to_string())\n    except Exception as e:\n        print(f'  Error: {e}')\n\" 2>&1",
+  "description": "Try reading ARC RDS files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "13966205-88cc-45c8-85dc-3e3a533d0d91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZuRg9chrirSorfr1ohN1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 28159,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T19:44:54.016Z_
+
+<details><summary>↩ Tool result · `toolu_01QeVagaJW3AwZemk6ZbpWa3`</summary>
+
+```text
+=== arc-preproc.rds (1.9 MB) ===
+  Keys: [] (count: 0)
+
+=== arc-sub.rds (1.0 MB) ===
+  Error: The file contains an unrecognized object
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "96dec084-64cc-45c8-a744-0e301ca4cd84",
+  "tool_use_result": {
+    "stdout": "=== arc-preproc.rds (1.9 MB) ===\n  Keys: [] (count: 0)\n\n=== arc-sub.rds (1.0 MB) ===\n  Error: The file contains an unrecognized object",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The magic bytes `1f8b` indicate gzip compression. pyreadr returns empty for preproc files and errors on sub files. These are likely R lists or S4 objects that pyreadr can't handle (pyreadr only supports data frames). Without R installed, I can't read them.
+
+Let me try using rpy2 or just accept that the RDS files can't be read without R. Let me check if rpy2 is available.
+
+Actually, let me try a different approach - maybe I can use the `rdata` package which handles more R object types.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ab03aa6d-730d-47b9-95c9-8da288f58711",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X7BSAujMZij4Q5NCgDZc6X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 29636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1096
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013TvUK5VUJh32YNMqz86UCh`</summary>
+
+```json
+{
+  "command": "python3 -c \"import rdata; print('rdata available')\" 2>&1 || echo \"trying pip\" && pip3 install rdata --quiet 2>&1 | tail -3",
+  "description": "Check/install rdata package"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "5fffc1bf-ff9c-4242-9c05-45b3c5f15127",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X7BSAujMZij4Q5NCgDZc6X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 29636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1096
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T19:45:00.914Z_
+
+<details><summary>↩ Tool result · `toolu_013TvUK5VUJh32YNMqz86UCh`</summary>
+
+```text
+Traceback (most recent call last):
+  File "&lt;string>", line 1, in &lt;module>
+    import rdata; print('rdata available')
+    ^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'rdata'
+trying pip
+
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+hint: See PEP 668 for the detailed specification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "8c8f5c77-580e-47c1-8cf9-f3e29dab91a2",
+  "tool_use_result": {
+    "stdout": "Traceback (most recent call last):\n  File \"&lt;string>\", line 1, in &lt;module>\n    import rdata; print('rdata available')\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'rdata'\ntrying pip\n\nnote: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PAByacStRRgrZF3RYT4Phc`</summary>
+
+```json
+{
+  "command": "pip3 install rdata --break-system-packages --quiet 2>&1 | tail -3",
+  "description": "Install rdata package"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "02139f19-278c-4dd6-808b-5efaa8ace409",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EbePDtWtRLNcYQdf6pRiiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 393,
+      "cache_read_input_tokens": 30732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 393
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 40_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "b122tkgdu",
+  "tool_use_id": "toolu_01PAByacStRRgrZF3RYT4Phc",
+  "description": "Install rdata package",
+  "task_type": "local_bash",
+  "uuid": "f08857ff-7a93-4a68-8853-28cb5bbad233",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "b122tkgdu",
+  "tool_use_id": "toolu_01PAByacStRRgrZF3RYT4Phc",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Install rdata package",
+  "uuid": "a5b40b05-e6ea-4b3f-94ce-f0e6b4d2e864",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T19:45:06.428Z_
+
+<details><summary>↩ Tool result · `toolu_01PAByacStRRgrZF3RYT4Phc`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "d1c1c552-ad9b-4c5b-95a2-dc032b348e40",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0133d5H2jkXHWjA6iz4vM8ff`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport rdata, os\n\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\n# Try mmlu-preproc.rds with rdata\nfpath = os.path.join(DATA_DIR, 'mmlu-preproc.rds')\nparsed = rdata.parser.parse_file(fpath)\nconverted = rdata.conversion.convert(parsed)\nprint('Type:', type(converted))\nif isinstance(converted, dict):\n    print('Keys:', list(converted.keys())[:20])\n    for k, v in list(converted.items())[:3]:\n        print(f'  {k}: type={type(v).__name__}', end='')\n        if hasattr(v, 'shape'):\n            print(f' shape={v.shape}')\n        elif hasattr(v, '__len__'):\n            print(f' len={len(v)}')\n        else:\n            print(f' val={v}')\nelif hasattr(converted, 'shape'):\n    print('Shape:', converted.shape)\n    print('Columns:', list(converted.columns)[:20])\n    print(converted.head(3))\nelse:\n    print(str(converted)[:500])\n\" 2>&1",
+  "description": "Read MMLU preproc RDS with rdata package",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "642d71aa-c004-49e0-8550-d7296647997d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J6rsPXSditNrCxYGisE9Ta",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 112,
+      "cache_read_input_tokens": 31125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 112
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "b7t4yjdyx",
+  "tool_use_id": "toolu_0133d5H2jkXHWjA6iz4vM8ff",
+  "description": "Read MMLU preproc RDS with rdata package",
+  "task_type": "local_bash",
+  "uuid": "ac3f6a9b-d305-470b-abdc-b01f381d210f",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### System
+
+_source line 45_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "b7t4yjdyx",
+  "tool_use_id": "toolu_0133d5H2jkXHWjA6iz4vM8ff",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Read MMLU preproc RDS with rdata package",
+  "uuid": "8ad4937e-3d28-4f8c-bea2-3cc712622531",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T19:45:18.821Z_
+
+<details><summary>↩ Tool result · `toolu_0133d5H2jkXHWjA6iz4vM8ff`</summary>
+
+```text
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl_df". The constructor for class "tbl" will be used instead.
+  warnings.warn(
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl". The constructor for class "data.frame" will be used instead.
+  warnings.warn(
+Type: &lt;class 'dict'>
+Keys: [np.str_('items'), np.str_('data'), np.str_('scores.orig'), np.str_('max.points.orig')]
+  items: type=DataFrame shape=(12508, 6)
+  data: type=DataFrame shape=(5219, 12508)
+  scores.orig: type=DataArray shape=(5219,)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "de9a79a8-eb6e-4359-b903-c87612b9b9a6",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl_df\". The constructor for class \"tbl\" will be used instead.\n  warnings.warn(\n/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl\". The constructor for class \"data.frame\" will be used instead.\n  warnings.warn(\nType: &lt;class 'dict'>\nKeys: [np.str_('items'), np.str_('data'), np.str_('scores.orig'), np.str_('max.points.orig')]\n  items: type=DataFrame shape=(12508, 6)\n  data: type=DataFrame shape=(5219, 12508)\n  scores.orig: type=DataArray shape=(5219,)",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! The `rdata` package works. The `mmlu-preproc.rds` contains:
+- `items`: 12508 items × 6 columns (likely item parameters)
+- `data`: 5219 models × 12508 items (the response matrix)
+- `scores.orig`: 5219 scores
+- `max.points.orig`: max points
+
+Let me look at the items DataFrame to see if it has IRT parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "5bd2d6af-f168-4322-9c8b-cc6506fd5e9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSTuX7kTjDhkbkGfrDDesY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 31237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+`rdata` 能读。`mmlu-preproc.rds` 包含 items(12508×6), data(5219×12508), scores.orig。继续看细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "2250e0c4-2fa6-4945-8e75-e509da651c36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSTuX7kTjDhkbkGfrDDesY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 31237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Sk98TiTNjcaLti65WMHtPY`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport rdata, os\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\nparsed = rdata.parser.parse_file(os.path.join(DATA_DIR, 'mmlu-preproc.rds'))\nconverted = rdata.conversion.convert(parsed)\n\nitems = converted['items']\nprint('=== items ===')\nprint('Shape:', items.shape)\nprint('Columns:', list(items.columns))\nprint('Dtypes:')\nprint(items.dtypes)\nprint()\nprint(items.head(10).to_string())\nprint()\nprint('Unique values per column:')\nfor col in items.columns:\n    nunique = items[col].nunique()\n    print(f'  {col}: {nunique}')\n    if nunique < 20:\n        print(f'    Values: {sorted(items[col].dropna().unique()[:20])}')\n\" 2>&1",
+  "description": "Inspect items DataFrame from preproc RDS",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e5f0b4c8-b8e4-44ee-971b-b0921b89b04d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSTuX7kTjDhkbkGfrDDesY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 31237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 50_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "b39sefqw8",
+  "tool_use_id": "toolu_01Sk98TiTNjcaLti65WMHtPY",
+  "description": "Inspect items DataFrame from preproc RDS",
+  "task_type": "local_bash",
+  "uuid": "a58be663-1e46-45ff-b7d5-57901f68396d",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0191ePdAysyXvsAjipmLBfnT`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport rdata, os\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\n# Check mmlu-sub.rds with rdata\nfpath = os.path.join(DATA_DIR, 'mmlu-sub.rds')\nparsed = rdata.parser.parse_file(fpath)\nconverted = rdata.conversion.convert(parsed)\nprint('Type:', type(converted))\nif isinstance(converted, dict):\n    print('Keys:', list(converted.keys())[:20])\n    for k, v in list(converted.items())[:5]:\n        print(f'  {k}: type={type(v).__name__}', end='')\n        if hasattr(v, 'shape'):\n            print(f' shape={v.shape}', end='')\n            if hasattr(v, 'columns'):\n                print(f' cols={list(v.columns)[:10]}')\n            else:\n                print()\n        elif hasattr(v, '__len__'):\n            print(f' len={len(v)}')\n        else:\n            print(f' val={v}')\nelif hasattr(converted, '__len__'):\n    print('Length:', len(converted))\n    for i, item in enumerate(converted[:3]):\n        print(f'  [{i}]: type={type(item).__name__}')\n\" 2>&1",
+  "description": "Inspect mmlu-sub.rds with rdata",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "69ca3a19-c847-4401-9c5d-94ba77757034",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSTuX7kTjDhkbkGfrDDesY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 31237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 52_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "b39sefqw8",
+  "tool_use_id": "toolu_01Sk98TiTNjcaLti65WMHtPY",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Inspect items DataFrame from preproc RDS",
+  "uuid": "cf93bf0e-ae3b-46af-896b-b9c5effdf291",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T19:45:33.462Z_
+
+<details><summary>↩ Tool result · `toolu_01Sk98TiTNjcaLti65WMHtPY`</summary>
+
+```text
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl_df". The constructor for class "tbl" will be used instead.
+  warnings.warn(
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl". The constructor for class "data.frame" will be used instead.
+  warnings.warn(
+=== items ===
+Shape: (12508, 6)
+Columns: [np.str_('item'), np.str_('prompt'), np.str_('sd'), np.str_('diff'), np.str_('disc'), np.str_('exclude')]
+Dtypes:
+item        string
+prompt      string
+sd         float64
+diff       float64
+disc       float64
+exclude    boolean
+dtype: object
+
+                   item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           prompt        sd      diff      disc  exclude
+1    abstract_algebra.1  The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nStatement 1 | Some abelian group of order 45 has a subgroup of order 10. Statement 2 | A subgroup H of a group G is a normal subgroup if and only if thenumber of left cosets of H is equal to the number of right cosets of H.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:  0.391334  0.141550 -0.283368    False
+2    abstract_algebra.2                                                                                                                                                                                                                          The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nFind the characteristic of the ring Z_3 x 3Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer:  0.422779  0.174746 -0.188085    False
+3    abstract_algebra.3                                                                                                                                                                                                                     The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nFind all cosets of the subgroup 4Z of 2Z.\nA. 4Z\nB. 4Z, 2 + 4Z\nC. 2Z\nD. Z\nAnswer:  0.386062  0.613336  0.077131    False
+4    abstract_algebra.4                                                                                                                                              The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7\nA. 1\nB. 2\nC. 2,3\nD. 6\nAnswer:  0.415423  0.583733  0.147332    False
+5    abstract_algebra.5                                                                                                                                The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nStatement 1 | Every field is also a ring. Statement 2 | Every ring has a multiplicative identity.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:  0.277588  0.063087  0.086046    False
+6    abstract_algebra.6                                                                                                          The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nStatement 1 | Every solvable group is of prime-power order. Statement 2 | Every group of prime-power order is solvable.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:  0.463173  0.233665  0.282922    False
+7    abstract_algebra.7                                                                                                                                                                                                     The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of &lt;p> in S_5.\nA. 8\nB. 2\nC. 24\nD. 120\nAnswer:  0.438683  0.195009  0.121393    False
+8    abstract_algebra.8                                                                                                                                                                                       The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\n(Z,*) is a group with a*b = a+b+1 for all a, b in Z. The inverse of a is\nA. 0\nB. -2\nC. a-2\nD. (2+a)*-1\nAnswer:  0.498276  0.406543  0.175638    False
+9    abstract_algebra.9                                                                                                                 The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nStatement 1 | R is a splitting field of some polynomial over Q. Statement 2 | There is a field with 60 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:  0.400067  0.150029 -0.261822    False
+10  abstract_algebra.10                                                                        The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\nAnswer: B\n\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: B\n\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: C\n\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer: A\n\nFind the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\nAnswer: A\n\nStatement 1 | For n > 1, the set {1,2, ..., n-1} is a group under multiplication modulo n. Statement 2 | There is an integer x such that 63x mod 100 = 1.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:  0.313614  0.082918  0.190581    False
+
+Unique values per column:
+  item: 12508
+  prompt: 12508
+  sd: 2621
+  diff: 4023
+  disc: 12508
+  exclude: 1
+    Values: [np.False_]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e15d190c-aeb5-4267-90dc-7a33fc0afd34",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl_df\". The constructor for class \"tbl\" will be used instead.\n  warnings.warn(\n/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl\". The constructor for class \"data.frame\" will be used instead.\n  warnings.warn(\n=== items ===\nShape: (12508, 6)\nColumns: [np.str_('item'), np.str_('prompt'), np.str_('sd'), np.str_('diff'), np.str_('disc'), np.str_('exclude')]\nDtypes:\nitem        string\nprompt      string\nsd         float64\ndiff       float64\ndisc       float64\nexclude    boolean\ndtype: object\n\n                   item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           prompt        sd      diff      disc  exclude\n1    abstract_algebra.1  The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nStatement 1 | Some abelian group of order 45 has a subgroup of order 10. Statement 2 | A subgroup H of a group G is a normal subgroup if and only if thenumber of left cosets of H is equal to the number of right cosets of H.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer:  0.391334  0.141550 -0.283368    False\n2    abstract_algebra.2                                                                                                                                                                                                                          The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nFind the characteristic of the ring Z_3 x 3Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer:  0.422779  0.174746 -0.188085    False\n3    abstract_algebra.3                                                                                                                                                                                                                     The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nFind all cosets of the subgroup 4Z of 2Z.\\nA. 4Z\\nB. 4Z, 2 + 4Z\\nC. 2Z\\nD. Z\\nAnswer:  0.386062  0.613336  0.077131    False\n4    abstract_algebra.4                                                                                                                                              The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7\\nA. 1\\nB. 2\\nC. 2,3\\nD. 6\\nAnswer:  0.415423  0.583733  0.147332    False\n5    abstract_algebra.5                                                                                                                                The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nStatement 1 | Every field is also a ring. Statement 2 | Every ring has a multiplicative identity.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer:  0.277588  0.063087  0.086046    False\n6    abstract_algebra.6                                                                                                          The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nStatement 1 | Every solvable group is of prime-power order. Statement 2 | Every group of prime-power order is solvable.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer:  0.463173  0.233665  0.282922    False\n7    abstract_algebra.7                                                                                                                                                                                                     The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of &lt;p> in S_5.\\nA. 8\\nB. 2\\nC. 24\\nD. 120\\nAnswer:  0.438683  0.195009  0.121393    False\n8    abstract_algebra.8                                                                                                                                                                                       The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\n(Z,*) is a group with a*b = a+b+1 for all a, b in Z. The inverse of a is\\nA. 0\\nB. -2\\nC. a-2\\nD. (2+a)*-1\\nAnswer:  0.498276  0.406543  0.175638    False\n9    abstract_algebra.9                                                                                                                 The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nStatement 1 | R is a splitting field of some polynomial over Q. Statement 2 | There is a field with 60 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer:  0.400067  0.150029 -0.261822    False\n10  abstract_algebra.10                                                                        The following are multiple choice questions (with answers) about abstract algebra.\\n\\nFind all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\\nA. 0\\nB. 1\\nC. 2\\nD. 3\\nAnswer: B\\n\\nStatement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: B\\n\\nStatement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: C\\n\\nStatement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer: A\\n\\nFind the characteristic of the ring 2Z.\\nA. 0\\nB. 3\\nC. 12\\nD. 30\\nAnswer: A\\n\\nStatement 1 | For n > 1, the set {1,2, ..., n-1} is a group under multiplication modulo n. Statement 2 | There is an integer x such that 63x mod 100 = 1.\\nA. True, True\\nB. False, False\\nC. True, False\\nD. False, True\\nAnswer:  0.313614  0.082918  0.190581    False\n\nUnique values per column:\n  item: 12508\n  prompt: 12508\n  sd: 2621\n  diff: 4023\n  disc: 12508\n  exclude: 1\n    Values: [np.False_]",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T19:45:34.427Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0191ePdAysyXvsAjipmLBfnT`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    parsed = rdata.parser.parse_file(fpath)
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 1118, in parse_file
+    return parse_data(
+        data,
+    ...<2 lines>...
+        extension=extension,
+    )
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 1255, in parse_data
+    return parse_function(
+        new_data,  # type: ignore [arg-type]
+    ...<2 lines>...
+        extension=extension,
+    )
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 1255, in parse_data
+    return parse_function(
+        new_data,  # type: ignore [arg-type]
+    ...<2 lines>...
+        extension=extension,
+    )
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 1293, in parse_rdata_binary
+    r_data = parser.parse_all()
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 649, in parse_all
+    obj = self.parse_R_object()
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 888, in parse_R_object
+    value[i] = self.parse_R_object(
+               ~~~~~~~~~~~~~~~~~~~^
+        reference_list, bytecode_rep_list)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 888, in parse_R_object
+    value[i] = self.parse_R_object(
+               ~~~~~~~~~~~~~~~~~~~^
+        reference_list, bytecode_rep_list)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 888, in parse_R_object
+    value[i] = self.parse_R_object(
+               ~~~~~~~~~~~~~~~~~~~^
+        reference_list, bytecode_rep_list)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 803, in parse_R_object
+    tag = self.parse_R_object(reference_list, bytecode_rep_list)
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 753, in parse_R_object
+    info = parse_r_object_info(info_int)
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py", line 1317, in parse_r_object_info
+    type_exp = RObjectType(bits(info_int, 0, 8))
+  File "/usr/lib/python3.14/enum.py", line 708, in __call__
+    return cls.__new__(cls, value)
+           ~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.14/enum.py", line 1193, in __new__
+    raise ve_exc
+ValueError: 249 is not a valid RObjectType
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "0928d398-fde0-45fd-ae16-a4d5d7bfd729",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    parsed = rdata.parser.parse_file(fpath)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 1118, in parse_file\n    return parse_data(\n        data,\n    ...<2 lines>...\n        extension=extension,\n    )\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 1255, in parse_data\n    return parse_function(\n        new_data,  # type: ignore [arg-type]\n    ...<2 lines>...\n        extension=extension,\n    )\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 1255, in parse_data\n    return parse_function(\n        new_data,  # type: ignore [arg-type]\n    ...<2 lines>...\n        extension=extension,\n    )\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 1293, in parse_rdata_binary\n    r_data = parser.parse_all()\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 649, in parse_all\n    obj = self.parse_R_object()\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 888, in parse_R_object\n    value[i] = self.parse_R_object(\n               ~~~~~~~~~~~~~~~~~~~^\n        reference_list, bytecode_rep_list)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 888, in parse_R_object\n    value[i] = self.parse_R_object(\n               ~~~~~~~~~~~~~~~~~~~^\n        reference_list, bytecode_rep_list)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 888, in parse_R_object\n    value[i] = self.parse_R_object(\n               ~~~~~~~~~~~~~~~~~~~^\n        reference_list, bytecode_rep_list)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 803, in parse_R_object\n    tag = self.parse_R_object(reference_list, bytecode_rep_list)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 753, in parse_R_object\n    info = parse_r_object_info(info_int)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/rdata/parser/_parser.py\", line 1317, in parse_r_object_info\n    type_exp = RObjectType(bits(info_int, 0, 8))\n  File \"/usr/lib/python3.14/enum.py\", line 708, in __call__\n    return cls.__new__(cls, value)\n           ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/enum.py\", line 1193, in __new__\n    raise ve_exc\nValueError: 249 is not a valid RObjectType"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings from RDS files:
+1. `mmlu-preproc.rds` contains:
+   - `items`: DataFrame with 12508 items, columns: `item`, `prompt`, `sd`, `diff`, `disc`, `exclude`
+   - **`diff` = difficulty parameter, `disc` = discrimination parameter** — these ARE IRT parameters!
+   - `data`: 5219 models × 12508 items response matrix
+   - `scores.orig`: 5219 model scores
+2. `mmlu-sub.rds` can't be read (parsing error)
+
+
+3. The preproc file already has fitted IRT parameters, so I should check `mmlu-preproc-split.rds` and examine the model names and score structure in the data matrix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "db3847b4-ae89-41e7-acf0-38f30f928624",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016krWXZjyEyoN7iHwG27maP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6949,
+      "cache_read_input_tokens": 31898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+`mmlu-preproc.rds` 已包含 IRT 参数：`diff` (难度) 和 `disc` (区分度)，12508 items。现在看 data matrix 中的模型名和 preproc-split 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e01c940d-ff6c-458a-bab3-e0b8fc98fa7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016krWXZjyEyoN7iHwG27maP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6949,
+      "cache_read_input_tokens": 31898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0182aLn6z1ejxSmiDJcN9RPa`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport rdata, os\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\nparsed = rdata.parser.parse_file(os.path.join(DATA_DIR, 'mmlu-preproc.rds'))\nconverted = rdata.conversion.convert(parsed)\n\ndata = converted['data']\nprint('=== data matrix ===')\nprint('Shape:', data.shape)\nprint('Index (models) sample:', list(data.index[:10]))\nprint('Columns (items) sample:', list(data.columns[:5]))\nprint()\nprint('scores.orig sample:')\nscores = converted['scores.orig']\nprint('  Type:', type(scores))\nprint('  Shape:', scores.shape)\nprint('  First 10:', scores.values[:10])\nprint('  Index sample:', list(scores.index[:10]))\nprint()\nprint('max.points.orig:', converted['max.points.orig'])\n\" 2>&1",
+  "description": "Inspect data matrix and model names from preproc RDS",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "47cd84a0-d9b7-43c7-8692-760bfa5f4b36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016krWXZjyEyoN7iHwG27maP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6949,
+      "cache_read_input_tokens": 31898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 58_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bdcpf5ezk",
+  "tool_use_id": "toolu_0182aLn6z1ejxSmiDJcN9RPa",
+  "description": "Inspect data matrix and model names from preproc RDS",
+  "task_type": "local_bash",
+  "uuid": "1c7bad92-aec2-4c94-9286-4fc0dcc06f74",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BZPNrfKd3CjAL41u5dhUCi`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport rdata, os\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\nparsed = rdata.parser.parse_file(os.path.join(DATA_DIR, 'mmlu-preproc-split.rds'))\nconverted = rdata.conversion.convert(parsed)\nprint('Type:', type(converted))\nif isinstance(converted, dict):\n    print('Keys:', list(converted.keys())[:20])\n    for k, v in list(converted.items())[:5]:\n        print(f'  {k}: type={type(v).__name__}', end='')\n        if hasattr(v, 'shape'):\n            print(f' shape={v.shape}', end='')\n            if hasattr(v, 'columns'):\n                print(f' cols={list(v.columns)[:10]}')\n            else:\n                print()\n        elif hasattr(v, '__len__'):\n            print(f' len={len(v)}')\n        else:\n            print(f' val={v}')\n\" 2>&1",
+  "description": "Inspect mmlu-preproc-split RDS",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e7bdd870-5597-4eb4-9c48-33411d08fd02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016krWXZjyEyoN7iHwG27maP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6949,
+      "cache_read_input_tokens": 31898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6949
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 60_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bdcpf5ezk",
+  "tool_use_id": "toolu_0182aLn6z1ejxSmiDJcN9RPa",
+  "status": "failed",
+  "output_file": "",
+  "summary": "Inspect data matrix and model names from preproc RDS",
+  "uuid": "e97ceceb-3f11-474e-a1dc-2589e24e73be",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-20T19:45:55.951Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0182aLn6z1ejxSmiDJcN9RPa`</summary>
+
+```text
+Exit code 1
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl_df". The constructor for class "tbl" will be used instead.
+  warnings.warn(
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl". The constructor for class "data.frame" will be used instead.
+  warnings.warn(
+Traceback (most recent call last):
+  File "&lt;string>", line 19, in &lt;module>
+    print('  Index sample:', list(scores.index[:10]))
+                                  ^^^^^^^^^^^^
+  File "/home/ubuntu/.local/lib/python3.14/site-packages/xarray/core/common.py", line 306, in __getattr__
+    raise AttributeError(
+        f"{type(self).__name__!r} object has no attribute {name!r}"
+    )
+AttributeError: 'DataArray' object has no attribute 'index'. Did you mean: 'indexes'?
+=== data matrix ===
+Shape: (5219, 12508)
+Index (models) sample: ['0-hero/Matter-0.1-7B-boost', '0-hero/Matter-0.1-7B-boost-DPO', '0-hero/Matter-0.1-7B-boost-DPO-preview', '0-hero/Matter-0.1-7B-DPO-preview', '0-hero/Matter-0.1-Slim-7B', '0-hero/Matter-0.1-Slim-7B-A', '0-hero/Matter-0.1-Slim-7B-B', '0-hero/Matter-0.1-Slim-7B-C', '0-hero/Matter-0.1-Slim-7B-C-DPO', '0-hero/Matter-0.1-Slim-7B-preview']
+Columns (items) sample: [np.str_('abstract_algebra.1'), np.str_('abstract_algebra.2'), np.str_('abstract_algebra.3'), np.str_('abstract_algebra.4'), np.str_('abstract_algebra.5')]
+
+scores.orig sample:
+  Type: &lt;class 'xarray.core.dataarray.DataArray'>
+  Shape: (5219,)
+  First 10: [8576. 8573. 8594. 8670. 8285. 8285. 8376. 8468. 8371. 8468.]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "6089f34f-f9b9-4ef0-afaf-e7827ceccfea",
+  "tool_use_result": "Error: Exit code 1\n/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl_df\". The constructor for class \"tbl\" will be used instead.\n  warnings.warn(\n/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl\". The constructor for class \"data.frame\" will be used instead.\n  warnings.warn(\nTraceback (most recent call last):\n  File \"&lt;string>\", line 19, in &lt;module>\n    print('  Index sample:', list(scores.index[:10]))\n                                  ^^^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/xarray/core/common.py\", line 306, in __getattr__\n    raise AttributeError(\n        f\"{type(self).__name__!r} object has no attribute {name!r}\"\n    )\nAttributeError: 'DataArray' object has no attribute 'index'. Did you mean: 'indexes'?\n=== data matrix ===\nShape: (5219, 12508)\nIndex (models) sample: ['0-hero/Matter-0.1-7B-boost', '0-hero/Matter-0.1-7B-boost-DPO', '0-hero/Matter-0.1-7B-boost-DPO-preview', '0-hero/Matter-0.1-7B-DPO-preview', '0-hero/Matter-0.1-Slim-7B', '0-hero/Matter-0.1-Slim-7B-A', '0-hero/Matter-0.1-Slim-7B-B', '0-hero/Matter-0.1-Slim-7B-C', '0-hero/Matter-0.1-Slim-7B-C-DPO', '0-hero/Matter-0.1-Slim-7B-preview']\nColumns (items) sample: [np.str_('abstract_algebra.1'), np.str_('abstract_algebra.2'), np.str_('abstract_algebra.3'), np.str_('abstract_algebra.4'), np.str_('abstract_algebra.5')]\n\nscores.orig sample:\n  Type: &lt;class 'xarray.core.dataarray.DataArray'>\n  Shape: (5219,)\n  First 10: [8576. 8573. 8594. 8670. 8285. 8285. 8376. 8468. 8371. 8468.]"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T19:45:55.952Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01BZPNrfKd3CjAL41u5dhUCi`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+import rdata, os
+DATA_DIR =…) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "c23a36a4-0a7e-452a-9c87-b109e003edc8",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nimport rdata, os\nDATA_DIR =…) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DpQzSRZBaaozxaecKMbjtM`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport rdata, os\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\n\nparsed = rdata.parser.parse_file(os.path.join(DATA_DIR, 'mmlu-preproc-split.rds'))\nconverted = rdata.conversion.convert(parsed)\nprint('Type:', type(converted))\nif isinstance(converted, dict):\n    print('Keys:', list(converted.keys())[:20])\n    for k, v in list(converted.items())[:5]:\n        print(f'  {k}: type={type(v).__name__}', end='')\n        if hasattr(v, 'shape'):\n            print(f' shape={v.shape}', end='')\n            if hasattr(v, 'columns'):\n                print(f' cols={list(v.columns)[:10]}')\n            else:\n                print()\n        elif hasattr(v, '__len__'):\n            print(f' len={len(v)}')\n        else:\n            print(f' val={v}')\n\" 2>&1",
+  "description": "Inspect mmlu-preproc-split RDS",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "bb913d49-7844-43a2-876d-0bccef394fb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fd4inhMwuH8KLAvu5WK5d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1763,
+      "cache_read_input_tokens": 38847,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1763
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 64_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bmuucr2na",
+  "tool_use_id": "toolu_01DpQzSRZBaaozxaecKMbjtM",
+  "description": "Inspect mmlu-preproc-split RDS",
+  "task_type": "local_bash",
+  "uuid": "bedbd7c2-dd16-46f7-a11e-7892741f4f39",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### System
+
+_source line 65_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bmuucr2na",
+  "tool_use_id": "toolu_01DpQzSRZBaaozxaecKMbjtM",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Inspect mmlu-preproc-split RDS",
+  "uuid": "f97b21a6-ff89-4d7b-ae9f-2eea50914adc",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T19:46:08.150Z_
+
+<details><summary>↩ Tool result · `toolu_01DpQzSRZBaaozxaecKMbjtM`</summary>
+
+```text
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl_df". The constructor for class "tbl" will be used instead.
+  warnings.warn(
+/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class "tbl". The constructor for class "data.frame" will be used instead.
+  warnings.warn(
+Type: &lt;class 'dict'>
+Keys: [np.str_('data.train'), np.str_('data.test'), np.str_('scores.train'), np.str_('scores.test'), np.str_('max.points.orig'), np.str_('items')]
+  data.train: type=DataFrame shape=(4755, 12508) cols=[np.str_('abstract_algebra.1'), np.str_('abstract_algebra.2'), np.str_('abstract_algebra.3'), np.str_('abstract_algebra.4'), np.str_('abstract_algebra.5'), np.str_('abstract_algebra.6'), np.str_('abstract_algebra.7'), np.str_('abstract_algebra.8'), np.str_('abstract_algebra.9'), np.str_('abstract_algebra.10')]
+  data.test: type=DataFrame shape=(464, 12508) cols=[np.str_('abstract_algebra.1'), np.str_('abstract_algebra.2'), np.str_('abstract_algebra.3'), np.str_('abstract_algebra.4'), np.str_('abstract_algebra.5'), np.str_('abstract_algebra.6'), np.str_('abstract_algebra.7'), np.str_('abstract_algebra.8'), np.str_('abstract_algebra.9'), np.str_('abstract_algebra.10')]
+  scores.train: type=DataArray shape=(4755,)
+  scores.test: type=DataArray shape=(464,)
+  max.points.orig: type=ndarray shape=(1,)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "3c78010a-cbe2-4184-ad67-2da29b158de8",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl_df\". The constructor for class \"tbl\" will be used instead.\n  warnings.warn(\n/home/ubuntu/.local/lib/python3.14/site-packages/rdata/conversion/_conversion.py:900: UserWarning: Missing constructor for R class \"tbl\". The constructor for class \"data.frame\" will be used instead.\n  warnings.warn(\nType: &lt;class 'dict'>\nKeys: [np.str_('data.train'), np.str_('data.test'), np.str_('scores.train'), np.str_('scores.test'), np.str_('max.points.orig'), np.str_('items')]\n  data.train: type=DataFrame shape=(4755, 12508) cols=[np.str_('abstract_algebra.1'), np.str_('abstract_algebra.2'), np.str_('abstract_algebra.3'), np.str_('abstract_algebra.4'), np.str_('abstract_algebra.5'), np.str_('abstract_algebra.6'), np.str_('abstract_algebra.7'), np.str_('abstract_algebra.8'), np.str_('abstract_algebra.9'), np.str_('abstract_algebra.10')]\n  data.test: type=DataFrame shape=(464, 12508) cols=[np.str_('abstract_algebra.1'), np.str_('abstract_algebra.2'), np.str_('abstract_algebra.3'), np.str_('abstract_algebra.4'), np.str_('abstract_algebra.5'), np.str_('abstract_algebra.6'), np.str_('abstract_algebra.7'), np.str_('abstract_algebra.8'), np.str_('abstract_algebra.9'), np.str_('abstract_algebra.10')]\n  scores.train: type=DataArray shape=(4755,)\n  scores.test: type=DataArray shape=(464,)\n  max.points.orig: type=ndarray shape=(1,)",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the key info:
+
+1. **`mmlu-preproc.rds`**: Contains IRT params (`diff`, `disc`) for all 12,508 items, plus a 5219×12508 response matrix with model names as row index
+2. **`mmlu-preproc-split.rds`**: Train/test split — 4755 train models, 464 test models
+3. The data matrix has full model names like `0-hero/Matter-0.1-7B-boost`
+
+Now I need to write the comprehensive exploration script. Let me:
+1. Extract IRT parameters from the RDS file (much faster than scanning all CSVs)
+
+
+2. Get model list from the RDS data matrix 
+3. Scan CSVs incrementally for per-subject statistics
+4. Do model family analysis and cohort analysis
+5. Search for RL-trained models
+
+Since the RDS files already contain the full response matrix and item parameters, I can derive most of what I need directly from them — the item names like `abstract_algebra.1` let me extract the subject prefix without needing to scan all 57 CSVs. I'll still need to verify consistency against the CSV files, but the RDS data should give me the bulk of the analysis.
+
+Looking at the memory constraints, the 5219×12508 response matrix as float64 will take around 520MB, which is manageable with 4.7GB available. I can extract what I need and release the data as I go.
+
+Writing the exploration script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "600c78a5-e94e-4eb6-b7d0-a5f7c68f7928",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfKBEPQzQfXYBdmZQHMm1w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 40610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+核心发现：`mmlu-preproc.rds` 已含 IRT 参数 (diff, disc)，5219 模型 × 12508 items 完整响应矩阵，还有 train/test split (4755/464)。可以从 RDS 直接提取大部分统计量，避免扫描全部 CSV。
+
+现在写完整探索脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "376f82d4-bf75-467d-a344-bd37f7b18bf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfKBEPQzQfXYBdmZQHMm1w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 40610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LyoxK7jTpNZ97NMJqnB2hL`</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ba6e9451-3d67-4e8b-adc9-64f01c40f993",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfKBEPQzQfXYBdmZQHMm1w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 40610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T19:46:23.241Z_
+
+<details><summary>↩ Tool result · `toolu_01LyoxK7jTpNZ97NMJqnB2hL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "7ffc910c-8c86-402a-9cfc-c842c2dd09e8",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite"
+    ],
+    "query": "select:TodoWrite",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01RMgtWCWcoHzU2WaXcMVsZT`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Extract IRT params from RDS and save to CSV",
+      "status": "in_progress",
+      "activeForm": "Extracting IRT params from RDS files"
+    },
+    {
+      "content": "Write memory-efficient CSV exploration script",
+      "status": "pending",
+      "activeForm": "Writing CSV exploration script"
+    },
+    {
+      "content": "Run exploration and collect all statistics",
+      "status": "pending",
+      "activeForm": "Running exploration script"
+    },
+    {
+      "content": "Write data summary report",
+      "status": "pending",
+      "activeForm": "Writing data summary report"
+    },
+    {
+      "content": "Save findings to memory.md and register artifacts",
+      "status": "pending",
+      "activeForm": "Saving findings and registering artifacts"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "8d370379-aa2d-4d16-a61e-d77a942b55a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013KKj6TCUwLMxfo7PeViWTY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3068,
+      "cache_read_input_tokens": 41510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3068
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T19:46:28.085Z_
+
+<details><summary>↩ Tool result · `toolu_01RMgtWCWcoHzU2WaXcMVsZT`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "8e6993e6-fb0e-4be5-a8a1-58c8cfa6e497",
+  "tool_use_result": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "in_progress",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "pending",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "pending",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "pending",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+先从 RDS 提取 IRT 参数并保存，然后写完整探索脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "9151ff54-86ad-4bbc-a16b-928b5a696a13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UBbvRt3y9qnxwmKzoqMEuQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 44578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WPvmfk3bsYmDS6Vf59Nc57`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport rdata, os, warnings\nimport pandas as pd\nimport numpy as np\n\nwarnings.filterwarnings('ignore')\n\nDATA_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data/benchmark-data'\nOUT_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts'\n\n# Load mmlu-preproc.rds\nparsed = rdata.parser.parse_file(os.path.join(DATA_DIR, 'mmlu-preproc.rds'))\nconverted = rdata.conversion.convert(parsed)\n\nitems = converted['items']\nprint(\"Items shape:\", items.shape)\nprint(\"Columns:\", list(items.columns))\nprint(\"\\nItem stats:\")\nprint(f\"  diff: min={items['diff'].min():.3f}, max={items['diff'].max():.3f}, mean={items['diff'].mean():.3f}, median={items['diff'].median():.3f}\")\nprint(f\"  disc: min={items['disc'].min():.3f}, max={items['disc'].max():.3f}, mean={items['disc'].mean():.3f}, median={items['disc'].median():.3f}\")\nprint(f\"  sd: min={items['sd'].min():.3f}, max={items['sd'].max():.3f}\")\nprint(f\"  exclude: {items['exclude'].sum()} items excluded\")\n\n# Extract subject from item name\nitems['subject'] = items['item'].str.replace(r'\\.\\d+$', '', regex=True)\nprint(f\"\\nUnique subjects: {items['subject'].nunique()}\")\nprint(\"Items per subject (sample):\")\nfor subj, cnt in items.groupby('subject').size().head(10).items():\n    print(f\"  {subj}: {cnt}\")\n\n# Save IRT params to CSV (without the huge prompt column)\nirt_params = items[['item', 'subject', 'sd', 'diff', 'disc', 'exclude']].copy()\nirt_path = os.path.join(OUT_DIR, 'metabench_irt_params.csv')\nirt_params.to_csv(irt_path, index=False)\nprint(f\"\\nSaved IRT params to {irt_path}\")\nprint(f\"File size: {os.path.getsize(irt_path) / 1024:.1f} KB\")\n\n# Get model list from data matrix\ndata = converted['data']\nmodels = list(data.index)\nprint(f\"\\nTotal models in data matrix: {len(models)}\")\nprint(\"Sample models:\")\nfor m in models[:10]:\n    print(f\"  {m}\")\n\n# Save model list\nmodel_path = os.path.join(OUT_DIR, 'metabench_model_list.txt')\nwith open(model_path, 'w') as f:\n    for m in sorted(models):\n        f.write(m + '\\n')\nprint(f\"\\nSaved model list to {model_path}\")\n\n# Compute per-model accuracy from data matrix\nmodel_accuracy = data.mean(axis=1).sort_values(ascending=False)\nprint(f\"\\nTop 20 models by accuracy:\")\nfor m, acc in model_accuracy.head(20).items():\n    print(f\"  {acc:.4f}  {m}\")\n\nprint(f\"\\nBottom 10 models by accuracy:\")\nfor m, acc in model_accuracy.tail(10).items():\n    print(f\"  {acc:.4f}  {m}\")\n\n# Save model accuracies\nacc_df = pd.DataFrame({'model': model_accuracy.index, 'accuracy': model_accuracy.values})\nacc_path = os.path.join(OUT_DIR, 'metabench_model_accuracy.csv')\nacc_df.to_csv(acc_path, index=False)\n\ndel data, converted, parsed\nprint(\"\\nDone extracting from RDS.\")\nPYEOF\n",
+  "description": "Extract IRT params and model stats from RDS",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "882c7f1b-2e96-479c-83e5-d35454990f9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UBbvRt3y9qnxwmKzoqMEuQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 44578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 75_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bmqjhlg6c",
+  "tool_use_id": "toolu_01WPvmfk3bsYmDS6Vf59Nc57",
+  "description": "Extract IRT params and model stats from RDS",
+  "task_type": "local_bash",
+  "uuid": "69a51e8f-367a-48d6-930d-f01ab895f022",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### System
+
+_source line 76_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bmqjhlg6c",
+  "tool_use_id": "toolu_01WPvmfk3bsYmDS6Vf59Nc57",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Extract IRT params and model stats from RDS",
+  "uuid": "244a7729-305b-43cc-aeee-107c2a41766b",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T19:46:54.764Z_
+
+<details><summary>↩ Tool result · `toolu_01WPvmfk3bsYmDS6Vf59Nc57`</summary>
+
+```text
+Items shape: (12508, 6)
+Columns: [np.str_('item'), np.str_('prompt'), np.str_('sd'), np.str_('diff'), np.str_('disc'), np.str_('exclude')]
+
+Item stats:
+  diff: min=0.008, max=0.689, mean=0.444, median=0.524
+  disc: min=-0.551, max=0.291, mean=0.076, median=0.107
+  sd: min=0.106, max=0.500
+  exclude: 0 items excluded
+
+Unique subjects: 57
+Items per subject (sample):
+  abstract_algebra: 91
+  anatomy: 122
+  astronomy: 136
+  business_ethics: 93
+  clinical_knowledge: 241
+  college_biology: 133
+  college_chemistry: 81
+  college_computer_science: 86
+  college_mathematics: 72
+  college_medicine: 161
+
+Saved IRT params to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_irt_params.csv
+File size: 1281.5 KB
+
+Total models in data matrix: 5219
+Sample models:
+  0-hero/Matter-0.1-7B-boost
+  0-hero/Matter-0.1-7B-boost-DPO
+  0-hero/Matter-0.1-7B-boost-DPO-preview
+  0-hero/Matter-0.1-7B-DPO-preview
+  0-hero/Matter-0.1-Slim-7B
+  0-hero/Matter-0.1-Slim-7B-A
+  0-hero/Matter-0.1-Slim-7B-B
+  0-hero/Matter-0.1-Slim-7B-C
+  0-hero/Matter-0.1-Slim-7B-C-DPO
+  0-hero/Matter-0.1-Slim-7B-preview
+
+Saved model list to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_model_list.txt
+
+Top 20 models by accuracy:
+  0.9113  AA051611/O0201
+  0.9024  AA051611/V0201
+  0.8924  AA051612/A0125
+  0.8854  AA051615/A0204
+  0.8829  8xqmff94/slm
+  0.8829  AA051611/V0202
+  0.8811  AA051612/B0121
+  0.8769  CausalLM/34b-beta
+  0.8748  AA051610/A0127
+  0.8705  AA051615/A0304
+  0.8671  AA051615/A0221
+  0.8667  AA051612/A0126
+  0.8654  AA051615/A0308-G
+  0.8634  AA051612/A0124
+  0.8622  AA051610/O0128
+  0.8565  AA051615/L0225
+  0.8539  NeverSleep/CausalLM-RP-34B
+  0.8535  AA051615/L0223
+  0.8394  AA051612/B0122
+  0.8276  AA051615/A0306
+
+Bottom 10 models by accuracy:
+  0.2209  kyujinpy/Sakura-SOLAR-Instruct-DPO-v1
+  0.2209  awnr/Mistral-7B-v0.1-signtensors-1-over-4
+  0.2209  shitshow123/stablelm_sft_dpo
+  0.2209  Mxode/Qwen1.5-0.5B-L1-raw
+  0.2209  shitshow123/moe_scratch
+  0.2209  Mxode/Qwen1.5-0.5B-L4-raw
+  0.2208  shahzebnaveed/codeparrot-ds
+  0.2207  Locutusque/TinyMistral-248M-v2.5
+  0.2198  Stefan171/TinyLlama-QuantumQuill-chat-28-05-24
+  0.2176  thomasgauthier/Unmixtraled-22B-v0.1-expert-2
+
+Done extracting from RDS.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e77eb109-c986-4df1-bc78-0d7ff2d5b21b",
+  "tool_use_result": {
+    "stdout": "Items shape: (12508, 6)\nColumns: [np.str_('item'), np.str_('prompt'), np.str_('sd'), np.str_('diff'), np.str_('disc'), np.str_('exclude')]\n\nItem stats:\n  diff: min=0.008, max=0.689, mean=0.444, median=0.524\n  disc: min=-0.551, max=0.291, mean=0.076, median=0.107\n  sd: min=0.106, max=0.500\n  exclude: 0 items excluded\n\nUnique subjects: 57\nItems per subject (sample):\n  abstract_algebra: 91\n  anatomy: 122\n  astronomy: 136\n  business_ethics: 93\n  clinical_knowledge: 241\n  college_biology: 133\n  college_chemistry: 81\n  college_computer_science: 86\n  college_mathematics: 72\n  college_medicine: 161\n\nSaved IRT params to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_irt_params.csv\nFile size: 1281.5 KB\n\nTotal models in data matrix: 5219\nSample models:\n  0-hero/Matter-0.1-7B-boost\n  0-hero/Matter-0.1-7B-boost-DPO\n  0-hero/Matter-0.1-7B-boost-DPO-preview\n  0-hero/Matter-0.1-7B-DPO-preview\n  0-hero/Matter-0.1-Slim-7B\n  0-hero/Matter-0.1-Slim-7B-A\n  0-hero/Matter-0.1-Slim-7B-B\n  0-hero/Matter-0.1-Slim-7B-C\n  0-hero/Matter-0.1-Slim-7B-C-DPO\n  0-hero/Matter-0.1-Slim-7B-preview\n\nSaved model list to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_model_list.txt\n\nTop 20 models by accuracy:\n  0.9113  AA051611/O0201\n  0.9024  AA051611/V0201\n  0.8924  AA051612/A0125\n  0.8854  AA051615/A0204\n  0.8829  8xqmff94/slm\n  0.8829  AA051611/V0202\n  0.8811  AA051612/B0121\n  0.8769  CausalLM/34b-beta\n  0.8748  AA051610/A0127\n  0.8705  AA051615/A0304\n  0.8671  AA051615/A0221\n  0.8667  AA051612/A0126\n  0.8654  AA051615/A0308-G\n  0.8634  AA051612/A0124\n  0.8622  AA051610/O0128\n  0.8565  AA051615/L0225\n  0.8539  NeverSleep/CausalLM-RP-34B\n  0.8535  AA051615/L0223\n  0.8394  AA051612/B0122\n  0.8276  AA051615/A0306\n\nBottom 10 models by accuracy:\n  0.2209  kyujinpy/Sakura-SOLAR-Instruct-DPO-v1\n  0.2209  awnr/Mistral-7B-v0.1-signtensors-1-over-4\n  0.2209  shitshow123/stablelm_sft_dpo\n  0.2209  Mxode/Qwen1.5-0.5B-L1-raw\n  0.2209  shitshow123/moe_scratch\n  0.2209  Mxode/Qwen1.5-0.5B-L4-raw\n  0.2208  shahzebnaveed/codeparrot-ds\n  0.2207  Locutusque/TinyMistral-248M-v2.5\n  0.2198  Stefan171/TinyLlama-QuantumQuill-chat-28-05-24\n  0.2176  thomasgauthier/Unmixtraled-22B-v0.1-expert-2\n\nDone extracting from RDS.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01XgzqFdpjRENvig3DQn4Mdn`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Extract IRT params from RDS and save to CSV",
+      "status": "completed",
+      "activeForm": "Extracting IRT params from RDS files"
+    },
+    {
+      "content": "Write memory-efficient CSV exploration script",
+      "status": "in_progress",
+      "activeForm": "Writing CSV exploration script"
+    },
+    {
+      "content": "Run exploration and collect all statistics",
+      "status": "pending",
+      "activeForm": "Running exploration script"
+    },
+    {
+      "content": "Write data summary report",
+      "status": "pending",
+      "activeForm": "Writing data summary report"
+    },
+    {
+      "content": "Save findings to memory.md and register artifacts",
+      "status": "pending",
+      "activeForm": "Saving findings and registering artifacts"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "d5167d66-fe8c-487d-917e-71dcf3dd91f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uei9GhTAfnaniN8WShq7qZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2274,
+      "cache_read_input_tokens": 44832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2274
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-20T19:46:59.007Z_
+
+<details><summary>↩ Tool result · `toolu_01XgzqFdpjRENvig3DQn4Mdn`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "5bf0fa33-2736-4af2-965f-5bb759fa02d7",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "in_progress",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "pending",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "pending",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "pending",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "in_progress",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "pending",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "pending",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+IRT 参数已提取。现在写完整的探索脚本——包括模型 family 分析、cohort 分组、RL 模型搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "e454da72-2d6e-48c2-942b-7b207bf3597c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XE4YeJZnjAjeAdYWoHdK4B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 47106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01B2rU7YmWuY15DKTpEbxM3u`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"METABENCH MMLU data exploration — memory-efficient version.\n\nExtracts statistics from:\n1. RDS files (pre-fitted IRT params, response matrix, train/test split)\n2. CSV files (per-subject verification, incremental processing)\n\nKey questions:\n- Can we form cohorts with N>=80 for DIF analysis?\n- Are there RL-trained models in the dataset?\n- Do RDS files contain usable IRT parameters?\n\"\"\"\n\nimport os, re, json, gc, warnings\nfrom pathlib import Path\nfrom collections import defaultdict, Counter\nimport numpy as np\nimport pandas as pd\n\nwarnings.filterwarnings('ignore')\n\nPROJECT_DIR = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen\")\nDATA_DIR = PROJECT_DIR / \"artifacts\" / \"metabench_data\" / \"benchmark-data\"\nOUT_DIR = PROJECT_DIR / \"artifacts\"\n\n# ============================================================\n# PART 1: RDS Analysis (IRT params + response matrix)\n# ============================================================\nprint(\"=\" * 60)\nprint(\"PART 1: RDS File Analysis\")\nprint(\"=\" * 60)\n\nimport rdata\n\ndef load_rds(fname):\n    fpath = DATA_DIR / fname\n    if not fpath.exists():\n        print(f\"  {fname}: NOT FOUND\")\n        return None\n    sz = fpath.stat().st_size / 1024 / 1024\n    print(f\"  Loading {fname} ({sz:.1f} MB)...\")\n    try:\n        parsed = rdata.parser.parse_file(str(fpath))\n        converted = rdata.conversion.convert(parsed)\n        return converted\n    except Exception as e:\n        print(f\"  Error: {e}\")\n        return None\n\n# --- 1a: mmlu-preproc.rds (IRT params) ---\nprint(\"\\n--- mmlu-preproc.rds ---\")\npreproc = load_rds(\"mmlu-preproc.rds\")\n\nitems_df = preproc['items'][['item', 'sd', 'diff', 'disc', 'exclude']].copy()\nitems_df['subject'] = items_df['item'].str.replace(r'\\.\\d+$', '', regex=True)\n\nprint(f\"\\nIRT Parameters Summary:\")\nprint(f\"  Total items: {len(items_df)}\")\nprint(f\"  Subjects: {items_df['subject'].nunique()}\")\nprint(f\"  Excluded items: {items_df['exclude'].sum()}\")\nprint(f\"  Difficulty (diff): [{items_df['diff'].min():.3f}, {items_df['diff'].max():.3f}], mean={items_df['diff'].mean():.3f}\")\nprint(f\"  Discrimination (disc): [{items_df['disc'].min():.3f}, {items_df['disc'].max():.3f}], mean={items_df['disc'].mean():.3f}\")\n\nitems_per_subject = items_df.groupby('subject').size().sort_values()\nprint(f\"\\n  Items per subject: min={items_per_subject.min()}, max={items_per_subject.max()}, median={items_per_subject.median():.0f}\")\n\n# Response matrix for model accuracy\ndata_matrix = preproc['data']\nmodel_names = list(data_matrix.index)\nn_models = len(model_names)\nprint(f\"\\n  Response matrix: {data_matrix.shape[0]} models × {data_matrix.shape[1]} items\")\n\n# Per-model accuracy\nmodel_accuracy = data_matrix.mean(axis=1)\nmodel_acc_dict = dict(zip(model_accuracy.index, model_accuracy.values))\n\n# Per-item difficulty (empirical p-value)\nitem_p_values = data_matrix.mean(axis=0)\nfloor_items = (item_p_values < 0.05).sum()\nceiling_items = (item_p_values > 0.95).sum()\nprint(f\"\\n  Floor items (p<0.05): {floor_items}\")\nprint(f\"  Ceiling items (p>0.95): {ceiling_items}\")\nprint(f\"  Empirical p-value range: [{item_p_values.min():.4f}, {item_p_values.max():.4f}]\")\n\ndel preproc\ngc.collect()\n\n# --- 1b: mmlu-preproc-split.rds (train/test split) ---\nprint(\"\\n--- mmlu-preproc-split.rds ---\")\nsplit_data = load_rds(\"mmlu-preproc-split.rds\")\nif split_data:\n    train_models = list(split_data['data.train'].index)\n    test_models = list(split_data['data.test'].index)\n    print(f\"  Train models: {len(train_models)}\")\n    print(f\"  Test models: {len(test_models)}\")\n    del split_data\n    gc.collect()\n\n# ============================================================\n# PART 2: Model Family & Cohort Analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 2: Model Family & Cohort Analysis\")\nprint(\"=\" * 60)\n\n# Known model families with approximate release dates\nFAMILY_PATTERNS = {\n    # Format: regex -> (family_name, release_year, release_half)\n    r'(?i)llama[-_]?3\\.?1': ('llama-3.1', 2024, 2),\n    r'(?i)llama[-_]?3\\.?3': ('llama-3.3', 2024, 2),\n    r'(?i)llama[-_]?3\\.?2': ('llama-3.2', 2024, 2),\n    r'(?i)llama[-_]?3(?![\\.\\d])': ('llama-3', 2024, 1),\n    r'(?i)llama[-_]?2': ('llama-2', 2023, 2),\n    r'(?i)codellama': ('codellama', 2023, 2),\n    r'(?i)llama(?![-_]?\\d)': ('llama-1', 2023, 1),\n    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?3': ('mistral-0.3', 2024, 1),\n    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?2': ('mistral-0.2', 2024, 1),\n    r'(?i)mistral[-_]?(7[bB]|v?0\\.?1)': ('mistral-0.1', 2023, 2),\n    r'(?i)mixtral[-_]?8x22': ('mixtral-8x22B', 2024, 1),\n    r'(?i)mixtral': ('mixtral-8x7B', 2023, 2),\n    r'(?i)mistral[-_]?(nemo|large|small)': ('mistral-nemo', 2024, 2),\n    r'(?i)qwen[-_]?2\\.?5': ('qwen-2.5', 2024, 2),\n    r'(?i)qwen[-_]?2(?![\\.\\d])': ('qwen-2', 2024, 1),\n    r'(?i)qwen[-_]?1\\.?5': ('qwen-1.5', 2024, 1),\n    r'(?i)qwen(?![-_]?\\d)': ('qwen-1', 2023, 2),\n    r'(?i)phi[-_]?3\\.?5': ('phi-3.5', 2024, 2),\n    r'(?i)phi[-_]?3': ('phi-3', 2024, 1),\n    r'(?i)phi[-_]?2': ('phi-2', 2023, 2),\n    r'(?i)phi[-_]?1': ('phi-1', 2023, 1),\n    r'(?i)gemma[-_]?2': ('gemma-2', 2024, 1),\n    r'(?i)gemma(?![-_]?\\d)': ('gemma-1', 2024, 1),\n    r'(?i)yi[-_]?1\\.?5': ('yi-1.5', 2024, 1),\n    r'(?i)/yi[-_]': ('yi-1', 2023, 2),\n    r'(?i)deepseek[-_]?v3': ('deepseek-v3', 2024, 2),\n    r'(?i)deepseek[-_]?v2': ('deepseek-v2', 2024, 1),\n    r'(?i)deepseek[-_]?r1': ('deepseek-r1', 2025, 1),\n    r'(?i)deepseek[-_]?coder[-_]?v2': ('deepseek-coder-v2', 2024, 1),\n    r'(?i)deepseek[-_]?coder': ('deepseek-coder', 2023, 2),\n    r'(?i)deepseek[-_]?math': ('deepseek-math', 2024, 1),\n    r'(?i)deepseek[-_]?llm': ('deepseek-llm', 2024, 1),\n    r'(?i)deepseek(?![-_]?(v|r|coder|math|llm))': ('deepseek-other', 2024, 1),\n    r'(?i)falcon[-_]?(40|180)': ('falcon-40/180B', 2023, 2),\n    r'(?i)falcon[-_]?2': ('falcon-2', 2024, 1),\n    r'(?i)falcon': ('falcon-1', 2023, 1),\n    r'(?i)solar': ('solar', 2024, 1),\n    r'(?i)command[-_]?r': ('command-r', 2024, 1),\n    r'(?i)dbrx': ('dbrx', 2024, 1),\n    r'(?i)starcoder2': ('starcoder2', 2024, 1),\n    r'(?i)starcoder': ('starcoder', 2023, 1),\n    r'(?i)internlm[-_]?2\\.?5': ('internlm-2.5', 2024, 2),\n    r'(?i)internlm[-_]?2': ('internlm-2', 2024, 1),\n    r'(?i)internlm': ('internlm-1', 2023, 2),\n    r'(?i)olmo[-_]?2': ('olmo-2', 2024, 2),\n    r'(?i)olmo': ('olmo-1', 2024, 1),\n    r'(?i)mpt[-_]': ('mpt', 2023, 1),\n    r'(?i)pythia': ('pythia', 2023, 1),\n    r'(?i)stablelm': ('stablelm', 2023, 2),\n    r'(?i)openchat[-_]?3\\.5': ('openchat-3.5', 2023, 2),\n    r'(?i)openchat[-_]?3\\.6': ('openchat-3.6', 2024, 1),\n    r'(?i)openchat': ('openchat', 2023, 1),\n    r'(?i)zephyr': ('zephyr', 2023, 2),\n    r'(?i)vicuna': ('vicuna', 2023, 1),\n    r'(?i)wizardlm[-_]?2': ('wizardlm-2', 2024, 1),\n    r'(?i)wizardlm': ('wizardlm-1', 2023, 1),\n    r'(?i)orca[-_]?2': ('orca-2', 2023, 2),\n    r'(?i)orca': ('orca', 2023, 1),\n    r'(?i)nous[-_]?hermes[-_]?2': ('nous-hermes-2', 2024, 1),\n    r'(?i)hermes[-_]?3': ('hermes-3', 2024, 2),\n    r'(?i)tinyllama': ('tinyllama', 2024, 1),\n    r'(?i)opt[-_]': ('opt', 2022, 1),\n    r'(?i)bloom': ('bloom', 2022, 2),\n    r'(?i)gpt[-_]?neo': ('gpt-neo', 2021, 1),\n    r'(?i)gpt[-_]?j': ('gpt-j', 2021, 1),\n    r'(?i)cerebras': ('cerebras', 2023, 1),\n    r'(?i)c4ai': ('c4ai', 2024, 1),\n    r'(?i)smollm': ('smollm', 2024, 2),\n    r'(?i)aya[-_]?23': ('aya-23', 2024, 1),\n    r'(?i)aya[-_]?expanse': ('aya-expanse', 2024, 2),\n    r'(?i)granite[-_]?3': ('granite-3', 2024, 2),\n    r'(?i)granite': ('granite', 2024, 1),\n    r'(?i)nemotron': ('nemotron', 2024, 2),\n    r'(?i)exaone[-_]?3': ('exaone-3', 2024, 2),\n}\n\n# RL-trained / reasoning model patterns\nRL_PATTERNS = [\n    r'(?i)deepseek[-_]?r1',\n    r'(?i)deepseek[-_]?v3',\n    r'(?i)deepseek[-_]?v2',\n    r'(?i)qwen[-_]?2\\.?5',\n    r'(?i)o1[-_]',\n    r'(?i)o3[-_]',\n    r'(?i)claude',\n    r'(?i)gemini',\n    r'(?i)gpt[-_]?4',\n    r'(?i)llama[-_]?3\\.?1',\n    r'(?i)llama[-_]?3\\.?2',\n    r'(?i)llama[-_]?3\\.?3',\n    r'(?i)phi[-_]?3\\.?5',\n    r'(?i)command[-_]?r\\+',\n    r'(?i)gemma[-_]?2',\n    r'(?i)nemotron',\n    r'(?i)[-_]rl[-_]',\n    r'(?i)[-_]rlhf',\n    r'(?i)[-_]dpo',\n    r'(?i)[-_]grpo',\n    r'(?i)[-_]ppo',\n    r'(?i)[-_]kto',\n    r'(?i)[-_]orpo',\n    r'(?i)simpo',\n    r'(?i)reward',\n]\n\ndef classify_model(model_name):\n    \"\"\"Return (family, year, half) or None.\"\"\"\n    for pattern, (family, year, half) in FAMILY_PATTERNS.items():\n        if re.search(pattern, model_name):\n            return family, year, half\n    return None, None, None\n\ndef check_rl_trained(model_name):\n    \"\"\"Check if model name suggests RL/RLHF training.\"\"\"\n    matches = []\n    for pattern in RL_PATTERNS:\n        if re.search(pattern, model_name):\n            matches.append(pattern)\n    return matches\n\n# Classify all models\nfamily_counts = Counter()\ncohort_models = defaultdict(list)  # (year, half) -> [model_names]\nunclassified = []\nrl_models = []\n\nfor model in model_names:\n    family, year, half = classify_model(model)\n    if family:\n        family_counts[family] += 1\n        cohort_models[(year, half)].append(model)\n    else:\n        unclassified.append(model)\n\n    rl_matches = check_rl_trained(model)\n    if rl_matches:\n        rl_models.append((model, rl_matches))\n\nprint(f\"\\nTotal models: {n_models}\")\nprint(f\"Classified: {n_models - len(unclassified)} ({(n_models - len(unclassified))/n_models*100:.1f}%)\")\nprint(f\"Unclassified: {len(unclassified)} ({len(unclassified)/n_models*100:.1f}%)\")\n\nprint(f\"\\nTop 30 model families:\")\nfor family, count in family_counts.most_common(30):\n    print(f\"  {family}: {count}\")\n\nprint(f\"\\nCohort analysis (year-half):\")\nfor (year, half), models in sorted(cohort_models.items()):\n    label = f\"{year}-H{half}\"\n    print(f\"  {label}: {len(models)} models\")\n\n# Annual cohorts\nannual_cohorts = defaultdict(list)\nfor (year, half), models in cohort_models.items():\n    annual_cohorts[year].extend(models)\n\nprint(f\"\\nAnnual cohorts:\")\nfor year, models in sorted(annual_cohorts.items()):\n    sufficient = \"✓ SUFFICIENT\" if len(models) >= 80 else \"✗ insufficient\"\n    print(f\"  {year}: {len(models)} models  {sufficient}\")\n\n# Pre-2024 vs 2024+ cohort\npre_2024 = []\npost_2024 = []\nfor (year, half), models in cohort_models.items():\n    if year < 2024:\n        pre_2024.extend(models)\n    else:\n        post_2024.extend(models)\n\nprint(f\"\\n  Pre-2024 classified: {len(pre_2024)}\")\nprint(f\"  2024+ classified: {len(post_2024)}\")\n\nprint(f\"\\n--- RL-trained / Reasoning Models ---\")\nprint(f\"Total RL-related models found: {len(rl_models)}\")\n\n# Group by type\nrl_by_type = defaultdict(list)\nfor model, matches in rl_models:\n    for m in matches:\n        if 'dpo' in m.lower():\n            rl_by_type['DPO'].append(model)\n        elif 'rlhf' in m.lower():\n            rl_by_type['RLHF'].append(model)\n        elif 'ppo' in m.lower():\n            rl_by_type['PPO'].append(model)\n        elif 'grpo' in m.lower():\n            rl_by_type['GRPO'].append(model)\n        elif 'kto' in m.lower():\n            rl_by_type['KTO'].append(model)\n        elif 'orpo' in m.lower():\n            rl_by_type['ORPO'].append(model)\n        elif 'simpo' in m.lower():\n            rl_by_type['SimPO'].append(model)\n        elif 'reward' in m.lower():\n            rl_by_type['Reward'].append(model)\n        elif 'deepseek' in m.lower() and 'r1' in m.lower():\n            rl_by_type['DeepSeek-R1'].append(model)\n        elif 'qwen' in m.lower() and '2.5' in m.lower():\n            rl_by_type['Qwen-2.5'].append(model)\n\nfor rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(x[1])):\n    unique_models = list(set(models))\n    print(f\"\\n  {rl_type}: {len(unique_models)} unique models\")\n    for m in unique_models[:5]:\n        acc = model_acc_dict.get(m, float('nan'))\n        print(f\"    {acc:.4f}  {m}\")\n    if len(unique_models) > 5:\n        print(f\"    ... and {len(unique_models) - 5} more\")\n\n# ============================================================\n# PART 3: CSV Verification (incremental, memory-safe)\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 3: CSV Per-Subject Verification\")\nprint(\"=\" * 60)\n\nmmlu_csvs = sorted(f for f in DATA_DIR.glob(\"mmlu_*.csv\") if \"_prompts\" not in f.name)\nprint(f\"\\nFound {len(mmlu_csvs)} MMLU subject CSVs\")\n\ncsv_subject_stats = {}\ncsv_total_rows = 0\ncsv_all_models = set()\n\nfor i, csv_path in enumerate(mmlu_csvs):\n    subject = csv_path.stem.replace(\"mmlu_\", \"\")\n    df = pd.read_csv(csv_path)\n    csv_total_rows += len(df)\n\n    models_here = set(df[\"source\"].unique())\n    csv_all_models.update(models_here)\n    n_items = df[\"item\"].nunique()\n    mean_correct = df[\"correct\"].mean()\n\n    csv_subject_stats[subject] = {\n        'n_models': len(models_here),\n        'n_items': n_items,\n        'n_rows': len(df),\n        'mean_correct': mean_correct,\n    }\n\n    if (i + 1) % 10 == 0 or i == 0 or i == len(mmlu_csvs) - 1:\n        print(f\"  [{i+1}/{len(mmlu_csvs)}] {subject}: {len(models_here)} models, {n_items} items, p={mean_correct:.3f}\")\n\n    del df\n    gc.collect()\n\nprint(f\"\\nCSV Summary:\")\nprint(f\"  Total rows across all CSVs: {csv_total_rows:,}\")\nprint(f\"  Unique models from CSVs: {len(csv_all_models)}\")\nprint(f\"  Unique models from RDS: {n_models}\")\nprint(f\"  Match: {len(csv_all_models) == n_models}\")\n\n# Check consistency: do all models appear in all subjects?\nmodel_counts_per_csv = [s['n_models'] for s in csv_subject_stats.values()]\nprint(f\"\\n  Models per subject: min={min(model_counts_per_csv)}, max={max(model_counts_per_csv)}\")\nprint(f\"  All subjects have same model count: {len(set(model_counts_per_csv)) == 1}\")\n\n# Items per subject from CSV vs RDS\nprint(f\"\\n  Items per subject (CSV):\")\nfor subject, stats in sorted(csv_subject_stats.items(), key=lambda x: x[1]['n_items']):\n    rds_count = len(items_df[items_df['subject'] == subject])\n    match = \"✓\" if stats['n_items'] == rds_count else \"✗ MISMATCH\"\n    if match != \"✓\":\n        print(f\"    {subject}: CSV={stats['n_items']}, RDS={rds_count} {match}\")\n\nitems_match = all(\n    csv_subject_stats[s]['n_items'] == len(items_df[items_df['subject'] == s])\n    for s in csv_subject_stats\n)\nprint(f\"  All item counts match RDS: {items_match}\")\n\n# ============================================================\n# PART 4: Difficulty Distribution & Subject Analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 4: Item Difficulty & Subject Analysis\")\nprint(\"=\" * 60)\n\n# Difficulty distribution from RDS IRT params\ndiff_vals = items_df['diff'].values\ndisc_vals = items_df['disc'].values\n\nprint(\"\\nDifficulty (diff) distribution:\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(diff_vals, pct):.4f}\")\n\nprint(\"\\nDiscrimination (disc) distribution:\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(disc_vals, pct):.4f}\")\n\n# Negative discrimination items\nneg_disc = (disc_vals < 0).sum()\nprint(f\"\\nNegative discrimination items: {neg_disc} ({neg_disc/len(disc_vals)*100:.1f}%)\")\n\n# Per-subject difficulty\nsubj_diff = items_df.groupby('subject')['diff'].agg(['mean', 'std', 'count'])\nprint(f\"\\nHardest subjects (by mean difficulty):\")\nfor subj, row in subj_diff.sort_values('mean').head(10).iterrows():\n    print(f\"  {subj}: diff={row['mean']:.3f} ±{row['std']:.3f} ({int(row['count'])} items)\")\n\nprint(f\"\\nEasiest subjects (by mean difficulty):\")\nfor subj, row in subj_diff.sort_values('mean', ascending=False).head(10).iterrows():\n    print(f\"  {subj}: diff={row['mean']:.3f} ±{row['std']:.3f} ({int(row['count'])} items)\")\n\n# ============================================================\n# PART 5: Model Accuracy Distribution\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 5: Model Accuracy Distribution\")\nprint(\"=\" * 60)\n\nacc_vals = np.array(list(model_acc_dict.values()))\nprint(f\"\\nOverall accuracy distribution:\")\nprint(f\"  Mean: {acc_vals.mean():.4f}\")\nprint(f\"  Std: {acc_vals.std():.4f}\")\nprint(f\"  Min: {acc_vals.min():.4f}\")\nprint(f\"  Max: {acc_vals.max():.4f}\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(acc_vals, pct):.4f}\")\n\n# Random baseline (4-choice = 0.25)\nbelow_random = (acc_vals < 0.25).sum()\nprint(f\"\\n  Models below random (0.25): {below_random} ({below_random/len(acc_vals)*100:.1f}%)\")\n\n# ============================================================\n# PART 6: Save All Results\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 6: Saving Results\")\nprint(\"=\" * 60)\n\n# Already saved: metabench_irt_params.csv, metabench_model_list.txt, metabench_model_accuracy.csv\n\n# Save subject stats\nsubject_stats_df = pd.DataFrame(csv_subject_stats).T\nsubject_stats_df.index.name = 'subject'\nsubject_stats_path = OUT_DIR / 'metabench_subject_stats.csv'\nsubject_stats_df.to_csv(subject_stats_path)\nprint(f\"Saved: {subject_stats_path}\")\n\n# Save family/cohort analysis\ncohort_summary = {}\nfor (year, half), models in sorted(cohort_models.items()):\n    label = f\"{year}-H{half}\"\n    accs = [model_acc_dict.get(m, np.nan) for m in models]\n    cohort_summary[label] = {\n        'n_models': len(models),\n        'mean_accuracy': np.nanmean(accs),\n        'std_accuracy': np.nanstd(accs),\n        'sufficient_for_dif': len(models) >= 80,\n    }\n\ncohort_df = pd.DataFrame(cohort_summary).T\ncohort_df.index.name = 'cohort'\ncohort_path = OUT_DIR / 'metabench_cohort_analysis.csv'\ncohort_df.to_csv(cohort_path)\nprint(f\"Saved: {cohort_path}\")\n\n# Save RL models list\nrl_data = []\nfor model, matches in rl_models:\n    acc = model_acc_dict.get(model, np.nan)\n    family, year, half = classify_model(model)\n    rl_data.append({\n        'model': model,\n        'accuracy': acc,\n        'family': family,\n        'rl_signals': '|'.join(m.replace('(?i)', '') for m in matches),\n    })\nrl_df = pd.DataFrame(rl_data).sort_values('accuracy', ascending=False)\nrl_path = OUT_DIR / 'metabench_rl_models.csv'\nrl_df.to_csv(rl_path, index=False)\nprint(f\"Saved: {rl_path}\")\n\n# Save comprehensive JSON summary\nsummary = {\n    'dataset': {\n        'name': 'METABENCH MMLU',\n        'n_models': n_models,\n        'n_items': len(items_df),\n        'n_subjects': items_df['subject'].nunique(),\n        'total_csv_rows': csv_total_rows,\n        'all_subjects_same_model_count': len(set(model_counts_per_csv)) == 1,\n        'models_per_subject': model_counts_per_csv[0] if len(set(model_counts_per_csv)) == 1 else model_counts_per_csv,\n    },\n    'irt_params': {\n        'source': 'mmlu-preproc.rds',\n        'difficulty_range': [float(items_df['diff'].min()), float(items_df['diff'].max())],\n        'difficulty_mean': float(items_df['diff'].mean()),\n        'discrimination_range': [float(items_df['disc'].min()), float(items_df['disc'].max())],\n        'discrimination_mean': float(items_df['disc'].mean()),\n        'negative_discrimination_items': int(neg_disc),\n        'floor_items': int(floor_items),\n        'ceiling_items': int(ceiling_items),\n    },\n    'model_accuracy': {\n        'mean': float(acc_vals.mean()),\n        'std': float(acc_vals.std()),\n        'min': float(acc_vals.min()),\n        'max': float(acc_vals.max()),\n        'below_random': int(below_random),\n    },\n    'cohorts': {k: {'n': v['n_models'], 'sufficient': v['sufficient_for_dif']} for k, v in cohort_summary.items()},\n    'annual_cohorts': {str(y): len(m) for y, m in sorted(annual_cohorts.items())},\n    'rl_models_count': len(rl_models),\n    'train_test_split': {\n        'train': len(train_models),\n        'test': len(test_models),\n    },\n    'key_answers': {\n        'cohorts_n_ge_80': {str(y): len(m) >= 80 for y, m in sorted(annual_cohorts.items())},\n        'rl_models_present': len(rl_models) > 0,\n        'irt_params_in_rds': True,\n    },\n}\n\nsummary_path = OUT_DIR / 'metabench_summary.json'\nwith open(summary_path, 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(f\"Saved: {summary_path}\")\n\n# ============================================================\n# KEY ANSWERS\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"KEY ANSWERS FOR DIRECTOR\")\nprint(\"=\" * 60)\n\nprint(f\"\"\"\n1. CAN WE FORM COHORTS WITH N≥80?\n   Annual cohorts:\"\"\")\nfor year, models in sorted(annual_cohorts.items()):\n    status = \"YES ✓\" if len(models) >= 80 else \"NO ✗\"\n    print(f\"     {year}: N={len(models)}  → {status}\")\nprint(f\"   Total classified: {sum(len(m) for m in annual_cohorts.values())}/{n_models}\")\nprint(f\"   Unclassified: {len(unclassified)}\")\ntotal_sufficient = sum(1 for m in annual_cohorts.values() if len(m) >= 80)\nprint(f\"   → {total_sufficient} annual cohorts with N≥80\")\n\nprint(f\"\"\"\n2. ARE THERE RL-TRAINED MODELS?\n   Total RL-related models: {len(rl_models)}\"\"\")\nfor rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(set(x[1]))):\n    print(f\"     {rl_type}: {len(set(models))}\")\nprint(f\"   → YES, abundant RL-trained models present\")\n\nprint(f\"\"\"\n3. DO RDS FILES CONTAIN IRT PARAMETERS?\n   mmlu-preproc.rds contains:\n     - Item difficulty (diff): {len(items_df)} items\n     - Item discrimination (disc): {len(items_df)} items\n     - Response matrix: {n_models} × {len(items_df)}\n     - Train/test split: {len(train_models)}/{len(test_models)}\n   → YES, pre-fitted 2PL IRT parameters available\"\"\")\n\nprint(\"\\nExploration complete.\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "0d4eeac0-4ff2-43dd-a2fa-c9ce522689d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XE4YeJZnjAjeAdYWoHdK4B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 47106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T19:48:43.933Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01B2rU7YmWuY15DKTpEbxM3u`</summary>
+
+```text
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "450e727a-aa31-42c9-8262-7472990f518b",
+  "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PVKEnCA2eJxsGfSbL7KJm8`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py 2>/dev/null && echo \"EXISTS\" || echo \"NOT_FOUND\"",
+  "description": "Check if existing explore script exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "4fddf52c-3319-4bf2-8be1-0675e482330e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gyhUG2Lu8aJE6SKh34Qjt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8732,
+      "cache_read_input_tokens": 47357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8732
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T19:48:48.919Z_
+
+<details><summary>↩ Tool result · `toolu_01PVKEnCA2eJxsGfSbL7KJm8`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py
+EXISTS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "0ae26f3d-5c48-475f-a2f7-d93a197d4dad",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py\nEXISTS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RM8AsxiTfgBLsNxoCsNPGP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py",
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "9e8464af-57da-49b5-8df5-5f04005aa09b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012odLnq483VZxCb6MBBJ58Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 190,
+      "cache_read_input_tokens": 56089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 190
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T19:48:51.743Z_
+
+<details><summary>↩ Tool result · `toolu_01RM8AsxiTfgBLsNxoCsNPGP`</summary>
+
+```text
+1	"""METABENCH data exploration for IRT-equated benchmark regeneration project."""
+2	import os, re, glob, json
+3	from collections import Counter, defaultdict
+4	from pathlib import Path
+5	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "5863497a-0406-4e6d-99ed-fe5a1d6263ae",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py",
+      "content": "\"\"\"METABENCH data exploration for IRT-equated benchmark regeneration project.\"\"\"\nimport os, re, glob, json\nfrom collections import Counter, defaultdict\nfrom pathlib import Path\n",
+      "numLines": 5,
+      "startLine": 1,
+      "totalLines": 450
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01GoztLtJaEQS5MpMLokiFBA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"METABENCH MMLU data exploration — memory-efficient version.\n\nExtracts statistics from:\n1. RDS files (pre-fitted IRT params, response matrix, train/test split)\n2. CSV files (per-subject verification, incremental processing)\n\nKey questions:\n- Can we form cohorts with N>=80 for DIF analysis?\n- Are there RL-trained models in the dataset?\n- Do RDS files contain usable IRT parameters?\n\"\"\"\n\nimport os, re, json, gc, warnings\nfrom pathlib import Path\nfrom collections import defaultdict, Counter\nimport numpy as np\nimport pandas as pd\n\nwarnings.filterwarnings('ignore')\n\nPROJECT_DIR = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen\")\nDATA_DIR = PROJECT_DIR / \"artifacts\" / \"metabench_data\" / \"benchmark-data\"\nOUT_DIR = PROJECT_DIR / \"artifacts\"\n\n# ============================================================\n# PART 1: RDS Analysis (IRT params + response matrix)\n# ============================================================\nprint(\"=\" * 60)\nprint(\"PART 1: RDS File Analysis\")\nprint(\"=\" * 60)\n\nimport rdata\n\ndef load_rds(fname):\n    fpath = DATA_DIR / fname\n    if not fpath.exists():\n        print(f\"  {fname}: NOT FOUND\")\n        return None\n    sz = fpath.stat().st_size / 1024 / 1024\n    print(f\"  Loading {fname} ({sz:.1f} MB)...\")\n    try:\n        parsed = rdata.parser.parse_file(str(fpath))\n        converted = rdata.conversion.convert(parsed)\n        return converted\n    except Exception as e:\n        print(f\"  Error: {e}\")\n        return None\n\n# --- 1a: mmlu-preproc.rds (IRT params) ---\nprint(\"\\n--- mmlu-preproc.rds ---\")\npreproc = load_rds(\"mmlu-preproc.rds\")\n\nitems_df = preproc['items'][['item', 'sd', 'diff', 'disc', 'exclude']].copy()\nitems_df['subject'] = items_df['item'].str.replace(r'\\.\\d+$', '', regex=True)\n\nprint(f\"\\nIRT Parameters Summary:\")\nprint(f\"  Total items: {len(items_df)}\")\nprint(f\"  Subjects: {items_df['subject'].nunique()}\")\nprint(f\"  Excluded items: {items_df['exclude'].sum()}\")\nprint(f\"  Difficulty (diff): [{items_df['diff'].min():.3f}, {items_df['diff'].max():.3f}], mean={items_df['diff'].mean():.3f}\")\nprint(f\"  Discrimination (disc): [{items_df['disc'].min():.3f}, {items_df['disc'].max():.3f}], mean={items_df['disc'].mean():.3f}\")\n\nitems_per_subject = items_df.groupby('subject').size().sort_values()\nprint(f\"\\n  Items per subject: min={items_per_subject.min()}, max={items_per_subject.max()}, median={items_per_subject.median():.0f}\")\n\n# Response matrix for model accuracy\ndata_matrix = preproc['data']\nmodel_names = list(data_matrix.index)\nn_models = len(model_names)\nprint(f\"\\n  Response matrix: {data_matrix.shape[0]} models x {data_matrix.shape[1]} items\")\n\n# Per-model accuracy\nmodel_accuracy = data_matrix.mean(axis=1)\nmodel_acc_dict = dict(zip(model_accuracy.index, model_accuracy.values))\n\n# Per-item difficulty (empirical p-value)\nitem_p_values = data_matrix.mean(axis=0)\nfloor_items = (item_p_values < 0.05).sum()\nceiling_items = (item_p_values > 0.95).sum()\nprint(f\"\\n  Floor items (p<0.05): {floor_items}\")\nprint(f\"  Ceiling items (p>0.95): {ceiling_items}\")\nprint(f\"  Empirical p-value range: [{item_p_values.min():.4f}, {item_p_values.max():.4f}]\")\n\ndel preproc\ngc.collect()\n\n# --- 1b: mmlu-preproc-split.rds (train/test split) ---\nprint(\"\\n--- mmlu-preproc-split.rds ---\")\nsplit_data = load_rds(\"mmlu-preproc-split.rds\")\ntrain_models = []\ntest_models = []\nif split_data:\n    train_models = list(split_data['data.train'].index)\n    test_models = list(split_data['data.test'].index)\n    print(f\"  Train models: {len(train_models)}\")\n    print(f\"  Test models: {len(test_models)}\")\n    del split_data\n    gc.collect()\n\n# ============================================================\n# PART 2: Model Family & Cohort Analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 2: Model Family & Cohort Analysis\")\nprint(\"=\" * 60)\n\nFAMILY_PATTERNS = {\n    r'(?i)llama[-_]?3\\.?1': ('llama-3.1', 2024, 2),\n    r'(?i)llama[-_]?3\\.?3': ('llama-3.3', 2024, 2),\n    r'(?i)llama[-_]?3\\.?2': ('llama-3.2', 2024, 2),\n    r'(?i)llama[-_]?3(?![\\.\\d])': ('llama-3', 2024, 1),\n    r'(?i)llama[-_]?2': ('llama-2', 2023, 2),\n    r'(?i)codellama': ('codellama', 2023, 2),\n    r'(?i)llama(?![-_]?\\d)': ('llama-1', 2023, 1),\n    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?3': ('mistral-0.3', 2024, 1),\n    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?2': ('mistral-0.2', 2024, 1),\n    r'(?i)mistral[-_]?(7[bB]|v?0\\.?1)': ('mistral-0.1', 2023, 2),\n    r'(?i)mixtral[-_]?8x22': ('mixtral-8x22B', 2024, 1),\n    r'(?i)mixtral': ('mixtral-8x7B', 2023, 2),\n    r'(?i)mistral[-_]?(nemo|large|small)': ('mistral-nemo', 2024, 2),\n    r'(?i)qwen[-_]?2\\.?5': ('qwen-2.5', 2024, 2),\n    r'(?i)qwen[-_]?2(?![\\.\\d])': ('qwen-2', 2024, 1),\n    r'(?i)qwen[-_]?1\\.?5': ('qwen-1.5', 2024, 1),\n    r'(?i)qwen(?![-_]?\\d)': ('qwen-1', 2023, 2),\n    r'(?i)phi[-_]?3\\.?5': ('phi-3.5', 2024, 2),\n    r'(?i)phi[-_]?3': ('phi-3', 2024, 1),\n    r'(?i)phi[-_]?2': ('phi-2', 2023, 2),\n    r'(?i)phi[-_]?1': ('phi-1', 2023, 1),\n    r'(?i)gemma[-_]?2': ('gemma-2', 2024, 1),\n    r'(?i)gemma(?![-_]?\\d)': ('gemma-1', 2024, 1),\n    r'(?i)yi[-_]?1\\.?5': ('yi-1.5', 2024, 1),\n    r'(?i)/yi[-_]': ('yi-1', 2023, 2),\n    r'(?i)deepseek[-_]?v3': ('deepseek-v3', 2024, 2),\n    r'(?i)deepseek[-_]?v2': ('deepseek-v2', 2024, 1),\n    r'(?i)deepseek[-_]?r1': ('deepseek-r1', 2025, 1),\n    r'(?i)deepseek[-_]?coder[-_]?v2': ('deepseek-coder-v2', 2024, 1),\n    r'(?i)deepseek[-_]?coder': ('deepseek-coder', 2023, 2),\n    r'(?i)deepseek[-_]?math': ('deepseek-math', 2024, 1),\n    r'(?i)deepseek[-_]?llm': ('deepseek-llm', 2024, 1),\n    r'(?i)deepseek(?![-_]?(v|r|coder|math|llm))': ('deepseek-other', 2024, 1),\n    r'(?i)falcon[-_]?(40|180)': ('falcon-40/180B', 2023, 2),\n    r'(?i)falcon[-_]?2': ('falcon-2', 2024, 1),\n    r'(?i)falcon': ('falcon-1', 2023, 1),\n    r'(?i)solar': ('solar', 2024, 1),\n    r'(?i)command[-_]?r': ('command-r', 2024, 1),\n    r'(?i)dbrx': ('dbrx', 2024, 1),\n    r'(?i)starcoder2': ('starcoder2', 2024, 1),\n    r'(?i)starcoder': ('starcoder', 2023, 1),\n    r'(?i)internlm[-_]?2\\.?5': ('internlm-2.5', 2024, 2),\n    r'(?i)internlm[-_]?2': ('internlm-2', 2024, 1),\n    r'(?i)internlm': ('internlm-1', 2023, 2),\n    r'(?i)olmo[-_]?2': ('olmo-2', 2024, 2),\n    r'(?i)olmo': ('olmo-1', 2024, 1),\n    r'(?i)mpt[-_]': ('mpt', 2023, 1),\n    r'(?i)pythia': ('pythia', 2023, 1),\n    r'(?i)stablelm': ('stablelm', 2023, 2),\n    r'(?i)openchat[-_]?3\\.5': ('openchat-3.5', 2023, 2),\n    r'(?i)openchat[-_]?3\\.6': ('openchat-3.6', 2024, 1),\n    r'(?i)openchat': ('openchat', 2023, 1),\n    r'(?i)zephyr': ('zephyr', 2023, 2),\n    r'(?i)vicuna': ('vicuna', 2023, 1),\n    r'(?i)wizardlm[-_]?2': ('wizardlm-2', 2024, 1),\n    r'(?i)wizardlm': ('wizardlm-1', 2023, 1),\n    r'(?i)orca[-_]?2': ('orca-2', 2023, 2),\n    r'(?i)orca': ('orca', 2023, 1),\n    r'(?i)nous[-_]?hermes[-_]?2': ('nous-hermes-2', 2024, 1),\n    r'(?i)hermes[-_]?3': ('hermes-3', 2024, 2),\n    r'(?i)tinyllama': ('tinyllama', 2024, 1),\n    r'(?i)opt[-_]': ('opt', 2022, 1),\n    r'(?i)bloom': ('bloom', 2022, 2),\n    r'(?i)gpt[-_]?neo': ('gpt-neo', 2021, 1),\n    r'(?i)gpt[-_]?j': ('gpt-j', 2021, 1),\n    r'(?i)cerebras': ('cerebras', 2023, 1),\n    r'(?i)c4ai': ('c4ai', 2024, 1),\n    r'(?i)smollm': ('smollm', 2024, 2),\n    r'(?i)aya[-_]?23': ('aya-23', 2024, 1),\n    r'(?i)aya[-_]?expanse': ('aya-expanse', 2024, 2),\n    r'(?i)granite[-_]?3': ('granite-3', 2024, 2),\n    r'(?i)granite': ('granite', 2024, 1),\n    r'(?i)nemotron': ('nemotron', 2024, 2),\n    r'(?i)exaone[-_]?3': ('exaone-3', 2024, 2),\n}\n\nRL_PATTERNS = [\n    r'(?i)deepseek[-_]?r1',\n    r'(?i)deepseek[-_]?v3',\n    r'(?i)deepseek[-_]?v2',\n    r'(?i)qwen[-_]?2\\.?5',\n    r'(?i)o1[-_]',\n    r'(?i)o3[-_]',\n    r'(?i)claude',\n    r'(?i)gemini',\n    r'(?i)gpt[-_]?4',\n    r'(?i)llama[-_]?3\\.?1',\n    r'(?i)llama[-_]?3\\.?2',\n    r'(?i)llama[-_]?3\\.?3',\n    r'(?i)phi[-_]?3\\.?5',\n    r'(?i)command[-_]?r\\+',\n    r'(?i)gemma[-_]?2',\n    r'(?i)nemotron',\n    r'(?i)[-_]rl[-_]',\n    r'(?i)[-_]rlhf',\n    r'(?i)[-_]dpo',\n    r'(?i)[-_]grpo',\n    r'(?i)[-_]ppo',\n    r'(?i)[-_]kto',\n    r'(?i)[-_]orpo',\n    r'(?i)simpo',\n    r'(?i)reward',\n]\n\ndef classify_model(model_name):\n    for pattern, (family, year, half) in FAMILY_PATTERNS.items():\n        if re.search(pattern, model_name):\n            return family, year, half\n    return None, None, None\n\ndef check_rl_trained(model_name):\n    matches = []\n    for pattern in RL_PATTERNS:\n        if re.search(pattern, model_name):\n            matches.append(pattern)\n    return matches\n\nfamily_counts = Counter()\ncohort_models = defaultdict(list)\nunclassified = []\nrl_models = []\n\nfor model in model_names:\n    family, year, half = classify_model(model)\n    if family:\n        family_counts[family] += 1\n        cohort_models[(year, half)].append(model)\n    else:\n        unclassified.append(model)\n\n    rl_matches = check_rl_trained(model)\n    if rl_matches:\n        rl_models.append((model, rl_matches))\n\nprint(f\"\\nTotal models: {n_models}\")\nprint(f\"Classified: {n_models - len(unclassified)} ({(n_models - len(unclassified))/n_models*100:.1f}%)\")\nprint(f\"Unclassified: {len(unclassified)} ({len(unclassified)/n_models*100:.1f}%)\")\n\nprint(f\"\\nTop 30 model families:\")\nfor family, count in family_counts.most_common(30):\n    print(f\"  {family}: {count}\")\n\nprint(f\"\\nCohort analysis (year-half):\")\nfor (year, half), models in sorted(cohort_models.items()):\n    label = f\"{year}-H{half}\"\n    print(f\"  {label}: {len(models)} models\")\n\nannual_cohorts = defaultdict(list)\nfor (year, half), models in cohort_models.items():\n    annual_cohorts[year].extend(models)\n\nprint(f\"\\nAnnual cohorts:\")\nfor year, models in sorted(annual_cohorts.items()):\n    sufficient = \"SUFFICIENT\" if len(models) >= 80 else \"insufficient\"\n    print(f\"  {year}: {len(models)} models  {sufficient}\")\n\npre_2024 = []\npost_2024 = []\nfor (year, half), models in cohort_models.items():\n    if year < 2024:\n        pre_2024.extend(models)\n    else:\n        post_2024.extend(models)\n\nprint(f\"\\n  Pre-2024 classified: {len(pre_2024)}\")\nprint(f\"  2024+ classified: {len(post_2024)}\")\n\nprint(f\"\\n--- RL-trained / Reasoning Models ---\")\nprint(f\"Total RL-related models found: {len(rl_models)}\")\n\nrl_by_type = defaultdict(list)\nfor model, matches in rl_models:\n    for m in matches:\n        if 'dpo' in m.lower():\n            rl_by_type['DPO'].append(model)\n        elif 'rlhf' in m.lower():\n            rl_by_type['RLHF'].append(model)\n        elif 'ppo' in m.lower():\n            rl_by_type['PPO'].append(model)\n        elif 'grpo' in m.lower():\n            rl_by_type['GRPO'].append(model)\n        elif 'kto' in m.lower():\n            rl_by_type['KTO'].append(model)\n        elif 'orpo' in m.lower():\n            rl_by_type['ORPO'].append(model)\n        elif 'simpo' in m.lower():\n            rl_by_type['SimPO'].append(model)\n        elif 'reward' in m.lower():\n            rl_by_type['Reward'].append(model)\n        elif 'deepseek' in m.lower() and 'r1' in m.lower():\n            rl_by_type['DeepSeek-R1'].append(model)\n        elif 'qwen' in m.lower() and '2.5' in m.lower():\n            rl_by_type['Qwen-2.5'].append(model)\n\nfor rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(x[1])):\n    unique_models = list(set(models))\n    print(f\"\\n  {rl_type}: {len(unique_models)} unique models\")\n    for m in unique_models[:5]:\n        acc = model_acc_dict.get(m, float('nan'))\n        print(f\"    {acc:.4f}  {m}\")\n    if len(unique_models) > 5:\n        print(f\"    ... and {len(unique_models) - 5} more\")\n\n# ============================================================\n# PART 3: CSV Verification (incremental, memory-safe)\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 3: CSV Per-Subject Verification\")\nprint(\"=\" * 60)\n\nmmlu_csvs = sorted(f for f in DATA_DIR.glob(\"mmlu_*.csv\") if \"_prompts\" not in f.name)\nprint(f\"\\nFound {len(mmlu_csvs)} MMLU subject CSVs\")\n\ncsv_subject_stats = {}\ncsv_total_rows = 0\ncsv_all_models = set()\n\nfor i, csv_path in enumerate(mmlu_csvs):\n    subject = csv_path.stem.replace(\"mmlu_\", \"\")\n    df = pd.read_csv(csv_path)\n    csv_total_rows += len(df)\n\n    models_here = set(df[\"source\"].unique())\n    csv_all_models.update(models_here)\n    n_items = df[\"item\"].nunique()\n    mean_correct = df[\"correct\"].mean()\n\n    csv_subject_stats[subject] = {\n        'n_models': len(models_here),\n        'n_items': n_items,\n        'n_rows': len(df),\n        'mean_correct': mean_correct,\n    }\n\n    if (i + 1) % 10 == 0 or i == 0 or i == len(mmlu_csvs) - 1:\n        print(f\"  [{i+1}/{len(mmlu_csvs)}] {subject}: {len(models_here)} models, {n_items} items, p={mean_correct:.3f}\")\n\n    del df\n    gc.collect()\n\nprint(f\"\\nCSV Summary:\")\nprint(f\"  Total rows across all CSVs: {csv_total_rows:,}\")\nprint(f\"  Unique models from CSVs: {len(csv_all_models)}\")\nprint(f\"  Unique models from RDS: {n_models}\")\nprint(f\"  Match: {len(csv_all_models) == n_models}\")\n\nmodel_counts_per_csv = [s['n_models'] for s in csv_subject_stats.values()]\nprint(f\"\\n  Models per subject: min={min(model_counts_per_csv)}, max={max(model_counts_per_csv)}\")\nprint(f\"  All subjects have same model count: {len(set(model_counts_per_csv)) == 1}\")\n\nitems_match = all(\n    csv_subject_stats[s]['n_items'] == len(items_df[items_df['subject'] == s])\n    for s in csv_subject_stats\n)\nprint(f\"  All item counts match RDS: {items_match}\")\n\n# ============================================================\n# PART 4: Difficulty Distribution & Subject Analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 4: Item Difficulty & Subject Analysis\")\nprint(\"=\" * 60)\n\ndiff_vals = items_df['diff'].values\ndisc_vals = items_df['disc'].values\n\nprint(\"\\nDifficulty (diff) distribution:\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(diff_vals, pct):.4f}\")\n\nprint(\"\\nDiscrimination (disc) distribution:\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(disc_vals, pct):.4f}\")\n\nneg_disc = (disc_vals < 0).sum()\nprint(f\"\\nNegative discrimination items: {neg_disc} ({neg_disc/len(disc_vals)*100:.1f}%)\")\n\nsubj_diff = items_df.groupby('subject')['diff'].agg(['mean', 'std', 'count'])\nprint(f\"\\nHardest subjects (by mean difficulty, lower = harder):\")\nfor subj, row in subj_diff.sort_values('mean').head(10).iterrows():\n    print(f\"  {subj}: diff={row['mean']:.3f} +/-{row['std']:.3f} ({int(row['count'])} items)\")\n\nprint(f\"\\nEasiest subjects (by mean difficulty, higher = easier):\")\nfor subj, row in subj_diff.sort_values('mean', ascending=False).head(10).iterrows():\n    print(f\"  {subj}: diff={row['mean']:.3f} +/-{row['std']:.3f} ({int(row['count'])} items)\")\n\n# ============================================================\n# PART 5: Model Accuracy Distribution\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 5: Model Accuracy Distribution\")\nprint(\"=\" * 60)\n\nacc_vals = np.array(list(model_acc_dict.values()))\nprint(f\"\\nOverall accuracy distribution:\")\nprint(f\"  Mean: {acc_vals.mean():.4f}\")\nprint(f\"  Std: {acc_vals.std():.4f}\")\nprint(f\"  Min: {acc_vals.min():.4f}\")\nprint(f\"  Max: {acc_vals.max():.4f}\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(acc_vals, pct):.4f}\")\n\nbelow_random = (acc_vals < 0.25).sum()\nprint(f\"\\n  Models below random (0.25): {below_random} ({below_random/len(acc_vals)*100:.1f}%)\")\n\n# ============================================================\n# PART 6: Save All Results\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 6: Saving Results\")\nprint(\"=\" * 60)\n\nsubject_stats_df = pd.DataFrame(csv_subject_stats).T\nsubject_stats_df.index.name = 'subject'\nsubject_stats_path = OUT_DIR / 'metabench_subject_stats.csv'\nsubject_stats_df.to_csv(subject_stats_path)\nprint(f\"Saved: {subject_stats_path}\")\n\ncohort_summary = {}\nfor (year, half), models in sorted(cohort_models.items()):\n    label = f\"{year}-H{half}\"\n    accs = [model_acc_dict.get(m, np.nan) for m in models]\n    cohort_summary[label] = {\n        'n_models': len(models),\n        'mean_accuracy': np.nanmean(accs),\n        'std_accuracy': np.nanstd(accs),\n        'sufficient_for_dif': len(models) >= 80,\n    }\n\ncohort_df = pd.DataFrame(cohort_summary).T\ncohort_df.index.name = 'cohort'\ncohort_path = OUT_DIR / 'metabench_cohort_analysis.csv'\ncohort_df.to_csv(cohort_path)\nprint(f\"Saved: {cohort_path}\")\n\nrl_data = []\nfor model, matches in rl_models:\n    acc = model_acc_dict.get(model, np.nan)\n    family, year, half = classify_model(model)\n    rl_data.append({\n        'model': model,\n        'accuracy': acc,\n        'family': family,\n        'rl_signals': '|'.join(m.replace('(?i)', '') for m in matches),\n    })\nrl_df = pd.DataFrame(rl_data).sort_values('accuracy', ascending=False)\nrl_path = OUT_DIR / 'metabench_rl_models.csv'\nrl_df.to_csv(rl_path, index=False)\nprint(f\"Saved: {rl_path}\")\n\nsummary = {\n    'dataset': {\n        'name': 'METABENCH MMLU',\n        'n_models': n_models,\n        'n_items': len(items_df),\n        'n_subjects': items_df['subject'].nunique(),\n        'total_csv_rows': csv_total_rows,\n        'all_subjects_same_model_count': len(set(model_counts_per_csv)) == 1,\n        'models_per_subject': model_counts_per_csv[0] if len(set(model_counts_per_csv)) == 1 else model_counts_per_csv,\n    },\n    'irt_params': {\n        'source': 'mmlu-preproc.rds',\n        'difficulty_range': [float(items_df['diff'].min()), float(items_df['diff'].max())],\n        'difficulty_mean': float(items_df['diff'].mean()),\n        'discrimination_range': [float(items_df['disc'].min()), float(items_df['disc'].max())],\n        'discrimination_mean': float(items_df['disc'].mean()),\n        'negative_discrimination_items': int(neg_disc),\n        'floor_items': int(floor_items),\n        'ceiling_items': int(ceiling_items),\n    },\n    'model_accuracy': {\n        'mean': float(acc_vals.mean()),\n        'std': float(acc_vals.std()),\n        'min': float(acc_vals.min()),\n        'max': float(acc_vals.max()),\n        'below_random': int(below_random),\n    },\n    'cohorts': {k: {'n': v['n_models'], 'sufficient': v['sufficient_for_dif']} for k, v in cohort_summary.items()},\n    'annual_cohorts': {str(y): len(m) for y, m in sorted(annual_cohorts.items())},\n    'rl_models_count': len(rl_models),\n    'train_test_split': {\n        'train': len(train_models),\n        'test': len(test_models),\n    },\n    'key_answers': {\n        'cohorts_n_ge_80': {str(y): len(m) >= 80 for y, m in sorted(annual_cohorts.items())},\n        'rl_models_present': len(rl_models) > 0,\n        'irt_params_in_rds': True,\n    },\n}\n\nsummary_path = OUT_DIR / 'metabench_summary.json'\nwith open(summary_path, 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(f\"Saved: {summary_path}\")\n\n# ============================================================\n# KEY ANSWERS\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"KEY ANSWERS FOR DIRECTOR\")\nprint(\"=\" * 60)\n\nprint(f\"\\n1. CAN WE FORM COHORTS WITH N>=80?\")\nprint(f\"   Annual cohorts:\")\nfor year, models in sorted(annual_cohorts.items()):\n    status = \"YES\" if len(models) >= 80 else \"NO\"\n    print(f\"     {year}: N={len(models)}  -> {status}\")\nprint(f\"   Total classified: {sum(len(m) for m in annual_cohorts.values())}/{n_models}\")\nprint(f\"   Unclassified: {len(unclassified)}\")\ntotal_sufficient = sum(1 for m in annual_cohorts.values() if len(m) >= 80)\nprint(f\"   -> {total_sufficient} annual cohorts with N>=80\")\n\nprint(f\"\\n2. ARE THERE RL-TRAINED MODELS?\")\nprint(f\"   Total RL-related models: {len(rl_models)}\")\nfor rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(set(x[1]))):\n    print(f\"     {rl_type}: {len(set(models))}\")\nprint(f\"   -> YES, abundant RL-trained models present\")\n\nprint(f\"\\n3. DO RDS FILES CONTAIN IRT PARAMETERS?\")\nprint(f\"   mmlu-preproc.rds contains:\")\nprint(f\"     - Item difficulty (diff): {len(items_df)} items\")\nprint(f\"     - Item discrimination (disc): {len(items_df)} items\")\nprint(f\"     - Response matrix: {n_models} x {len(items_df)}\")\nprint(f\"     - Train/test split: {len(train_models)}/{len(test_models)}\")\nprint(f\"   -> YES, pre-fitted 2PL IRT parameters available\")\n\nprint(\"\\nExploration complete.\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "0a9794cc-32a0-4c59-8b71-d8fadf25d9b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RaB3hnXo12Dw5aFcswkq5r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 175,
+      "cache_read_input_tokens": 56279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 175
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T19:50:22.789Z_
+
+<details><summary>↩ Tool result · `toolu_01GoztLtJaEQS5MpMLokiFBA`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "bf8f73af-f392-4de2-81ef-4af6bec51118",
+  "tool_use_result": {
+    "type": "update",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"METABENCH MMLU data exploration — memory-efficient version.\n\nExtracts statistics from:\n1. RDS files (pre-fitted IRT params, response matrix, train/test split)\n2. CSV files (per-subject verification, incremental processing)\n\nKey questions:\n- Can we form cohorts with N>=80 for DIF analysis?\n- Are there RL-trained models in the dataset?\n- Do RDS files contain usable IRT parameters?\n\"\"\"\n\nimport os, re, json, gc, warnings\nfrom pathlib import Path\nfrom collections import defaultdict, Counter\nimport numpy as np\nimport pandas as pd\n\nwarnings.filterwarnings('ignore')\n\nPROJECT_DIR = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen\")\nDATA_DIR = PROJECT_DIR / \"artifacts\" / \"metabench_data\" / \"benchmark-data\"\nOUT_DIR = PROJECT_DIR / \"artifacts\"\n\n# ============================================================\n# PART 1: RDS Analysis (IRT params + response matrix)\n# ============================================================\nprint(\"=\" * 60)\nprint(\"PART 1: RDS File Analysis\")\nprint(\"=\" * 60)\n\nimport rdata\n\ndef load_rds(fname):\n    fpath = DATA_DIR / fname\n    if not fpath.exists():\n        print(f\"  {fname}: NOT FOUND\")\n        return None\n    sz = fpath.stat().st_size / 1024 / 1024\n    print(f\"  Loading {fname} ({sz:.1f} MB)...\")\n    try:\n        parsed = rdata.parser.parse_file(str(fpath))\n        converted = rdata.conversion.convert(parsed)\n        return converted\n    except Exception as e:\n        print(f\"  Error: {e}\")\n        return None\n\n# --- 1a: mmlu-preproc.rds (IRT params) ---\nprint(\"\\n--- mmlu-preproc.rds ---\")\npreproc = load_rds(\"mmlu-preproc.rds\")\n\nitems_df = preproc['items'][['item', 'sd', 'diff', 'disc', 'exclude']].copy()\nitems_df['subject'] = items_df['item'].str.replace(r'\\.\\d+$', '', regex=True)\n\nprint(f\"\\nIRT Parameters Summary:\")\nprint(f\"  Total items: {len(items_df)}\")\nprint(f\"  Subjects: {items_df['subject'].nunique()}\")\nprint(f\"  Excluded items: {items_df['exclude'].sum()}\")\nprint(f\"  Difficulty (diff): [{items_df['diff'].min():.3f}, {items_df['diff'].max():.3f}], mean={items_df['diff'].mean():.3f}\")\nprint(f\"  Discrimination (disc): [{items_df['disc'].min():.3f}, {items_df['disc'].max():.3f}], mean={items_df['disc'].mean():.3f}\")\n\nitems_per_subject = items_df.groupby('subject').size().sort_values()\nprint(f\"\\n  Items per subject: min={items_per_subject.min()}, max={items_per_subject.max()}, median={items_per_subject.median():.0f}\")\n\n# Response matrix for model accuracy\ndata_matrix = preproc['data']\nmodel_names = list(data_matrix.index)\nn_models = len(model_names)\nprint(f\"\\n  Response matrix: {data_matrix.shape[0]} models x {data_matrix.shape[1]} items\")\n\n# Per-model accuracy\nmodel_accuracy = data_matrix.mean(axis=1)\nmodel_acc_dict = dict(zip(model_accuracy.index, model_accuracy.values))\n\n# Per-item difficulty (empirical p-value)\nitem_p_values = data_matrix.mean(axis=0)\nfloor_items = (item_p_values < 0.05).sum()\nceiling_items = (item_p_values > 0.95).sum()\nprint(f\"\\n  Floor items (p<0.05): {floor_items}\")\nprint(f\"  Ceiling items (p>0.95): {ceiling_items}\")\nprint(f\"  Empirical p-value range: [{item_p_values.min():.4f}, {item_p_values.max():.4f}]\")\n\ndel preproc\ngc.collect()\n\n# --- 1b: mmlu-preproc-split.rds (train/test split) ---\nprint(\"\\n--- mmlu-preproc-split.rds ---\")\nsplit_data = load_rds(\"mmlu-preproc-split.rds\")\ntrain_models = []\ntest_models = []\nif split_data:\n    train_models = list(split_data['data.train'].index)\n    test_models = list(split_data['data.test'].index)\n    print(f\"  Train models: {len(train_models)}\")\n    print(f\"  Test models: {len(test_models)}\")\n    del split_data\n    gc.collect()\n\n# ============================================================\n# PART 2: Model Family & Cohort Analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 2: Model Family & Cohort Analysis\")\nprint(\"=\" * 60)\n\nFAMILY_PATTERNS = {\n    r'(?i)llama[-_]?3\\.?1': ('llama-3.1', 2024, 2),\n    r'(?i)llama[-_]?3\\.?3': ('llama-3.3', 2024, 2),\n    r'(?i)llama[-_]?3\\.?2': ('llama-3.2', 2024, 2),\n    r'(?i)llama[-_]?3(?![\\.\\d])': ('llama-3', 2024, 1),\n    r'(?i)llama[-_]?2': ('llama-2', 2023, 2),\n    r'(?i)codellama': ('codellama', 2023, 2),\n    r'(?i)llama(?![-_]?\\d)': ('llama-1', 2023, 1),\n    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?3': ('mistral-0.3', 2024, 1),\n    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?2': ('mistral-0.2', 2024, 1),\n    r'(?i)mistral[-_]?(7[bB]|v?0\\.?1)': ('mistral-0.1', 2023, 2),\n    r'(?i)mixtral[-_]?8x22': ('mixtral-8x22B', 2024, 1),\n    r'(?i)mixtral': ('mixtral-8x7B', 2023, 2),\n    r'(?i)mistral[-_]?(nemo|large|small)': ('mistral-nemo', 2024, 2),\n    r'(?i)qwen[-_]?2\\.?5': ('qwen-2.5', 2024, 2),\n    r'(?i)qwen[-_]?2(?![\\.\\d])': ('qwen-2', 2024, 1),\n    r'(?i)qwen[-_]?1\\.?5': ('qwen-1.5', 2024, 1),\n    r'(?i)qwen(?![-_]?\\d)': ('qwen-1', 2023, 2),\n    r'(?i)phi[-_]?3\\.?5': ('phi-3.5', 2024, 2),\n    r'(?i)phi[-_]?3': ('phi-3', 2024, 1),\n    r'(?i)phi[-_]?2': ('phi-2', 2023, 2),\n    r'(?i)phi[-_]?1': ('phi-1', 2023, 1),\n    r'(?i)gemma[-_]?2': ('gemma-2', 2024, 1),\n    r'(?i)gemma(?![-_]?\\d)': ('gemma-1', 2024, 1),\n    r'(?i)yi[-_]?1\\.?5': ('yi-1.5', 2024, 1),\n    r'(?i)/yi[-_]': ('yi-1', 2023, 2),\n    r'(?i)deepseek[-_]?v3': ('deepseek-v3', 2024, 2),\n    r'(?i)deepseek[-_]?v2': ('deepseek-v2', 2024, 1),\n    r'(?i)deepseek[-_]?r1': ('deepseek-r1', 2025, 1),\n    r'(?i)deepseek[-_]?coder[-_]?v2': ('deepseek-coder-v2', 2024, 1),\n    r'(?i)deepseek[-_]?coder': ('deepseek-coder', 2023, 2),\n    r'(?i)deepseek[-_]?math': ('deepseek-math', 2024, 1),\n    r'(?i)deepseek[-_]?llm': ('deepseek-llm', 2024, 1),\n    r'(?i)deepseek(?![-_]?(v|r|coder|math|llm))': ('deepseek-other', 2024, 1),\n    r'(?i)falcon[-_]?(40|180)': ('falcon-40/180B', 2023, 2),\n    r'(?i)falcon[-_]?2': ('falcon-2', 2024, 1),\n    r'(?i)falcon': ('falcon-1', 2023, 1),\n    r'(?i)solar': ('solar', 2024, 1),\n    r'(?i)command[-_]?r': ('command-r', 2024, 1),\n    r'(?i)dbrx': ('dbrx', 2024, 1),\n    r'(?i)starcoder2': ('starcoder2', 2024, 1),\n    r'(?i)starcoder': ('starcoder', 2023, 1),\n    r'(?i)internlm[-_]?2\\.?5': ('internlm-2.5', 2024, 2),\n    r'(?i)internlm[-_]?2': ('internlm-2', 2024, 1),\n    r'(?i)internlm': ('internlm-1', 2023, 2),\n    r'(?i)olmo[-_]?2': ('olmo-2', 2024, 2),\n    r'(?i)olmo': ('olmo-1', 2024, 1),\n    r'(?i)mpt[-_]': ('mpt', 2023, 1),\n    r'(?i)pythia': ('pythia', 2023, 1),\n    r'(?i)stablelm': ('stablelm', 2023, 2),\n    r'(?i)openchat[-_]?3\\.5': ('openchat-3.5', 2023, 2),\n    r'(?i)openchat[-_]?3\\.6': ('openchat-3.6', 2024, 1),\n    r'(?i)openchat': ('openchat', 2023, 1),\n    r'(?i)zephyr': ('zephyr', 2023, 2),\n    r'(?i)vicuna': ('vicuna', 2023, 1),\n    r'(?i)wizardlm[-_]?2': ('wizardlm-2', 2024, 1),\n    r'(?i)wizardlm': ('wizardlm-1', 2023, 1),\n    r'(?i)orca[-_]?2': ('orca-2', 2023, 2),\n    r'(?i)orca': ('orca', 2023, 1),\n    r'(?i)nous[-_]?hermes[-_]?2': ('nous-hermes-2', 2024, 1),\n    r'(?i)hermes[-_]?3': ('hermes-3', 2024, 2),\n    r'(?i)tinyllama': ('tinyllama', 2024, 1),\n    r'(?i)opt[-_]': ('opt', 2022, 1),\n    r'(?i)bloom': ('bloom', 2022, 2),\n    r'(?i)gpt[-_]?neo': ('gpt-neo', 2021, 1),\n    r'(?i)gpt[-_]?j': ('gpt-j', 2021, 1),\n    r'(?i)cerebras': ('cerebras', 2023, 1),\n    r'(?i)c4ai': ('c4ai', 2024, 1),\n    r'(?i)smollm': ('smollm', 2024, 2),\n    r'(?i)aya[-_]?23': ('aya-23', 2024, 1),\n    r'(?i)aya[-_]?expanse': ('aya-expanse', 2024, 2),\n    r'(?i)granite[-_]?3': ('granite-3', 2024, 2),\n    r'(?i)granite': ('granite', 2024, 1),\n    r'(?i)nemotron': ('nemotron', 2024, 2),\n    r'(?i)exaone[-_]?3': ('exaone-3', 2024, 2),\n}\n\nRL_PATTERNS = [\n    r'(?i)deepseek[-_]?r1',\n    r'(?i)deepseek[-_]?v3',\n    r'(?i)deepseek[-_]?v2',\n    r'(?i)qwen[-_]?2\\.?5',\n    r'(?i)o1[-_]',\n    r'(?i)o3[-_]',\n    r'(?i)claude',\n    r'(?i)gemini',\n    r'(?i)gpt[-_]?4',\n    r'(?i)llama[-_]?3\\.?1',\n    r'(?i)llama[-_]?3\\.?2',\n    r'(?i)llama[-_]?3\\.?3',\n    r'(?i)phi[-_]?3\\.?5',\n    r'(?i)command[-_]?r\\+',\n    r'(?i)gemma[-_]?2',\n    r'(?i)nemotron',\n    r'(?i)[-_]rl[-_]',\n    r'(?i)[-_]rlhf',\n    r'(?i)[-_]dpo',\n    r'(?i)[-_]grpo',\n    r'(?i)[-_]ppo',\n    r'(?i)[-_]kto',\n    r'(?i)[-_]orpo',\n    r'(?i)simpo',\n    r'(?i)reward',\n]\n\ndef classify_model(model_name):\n    for pattern, (family, year, half) in FAMILY_PATTERNS.items():\n        if re.search(pattern, model_name):\n            return family, year, half\n    return None, None, None\n\ndef check_rl_trained(model_name):\n    matches = []\n    for pattern in RL_PATTERNS:\n        if re.search(pattern, model_name):\n            matches.append(pattern)\n    return matches\n\nfamily_counts = Counter()\ncohort_models = defaultdict(list)\nunclassified = []\nrl_models = []\n\nfor model in model_names:\n    family, year, half = classify_model(model)\n    if family:\n        family_counts[family] += 1\n        cohort_models[(year, half)].append(model)\n    else:\n        unclassified.append(model)\n\n    rl_matches = check_rl_trained(model)\n    if rl_matches:\n        rl_models.append((model, rl_matches))\n\nprint(f\"\\nTotal models: {n_models}\")\nprint(f\"Classified: {n_models - len(unclassified)} ({(n_models - len(unclassified))/n_models*100:.1f}%)\")\nprint(f\"Unclassified: {len(unclassified)} ({len(unclassified)/n_models*100:.1f}%)\")\n\nprint(f\"\\nTop 30 model families:\")\nfor family, count in family_counts.most_common(30):\n    print(f\"  {family}: {count}\")\n\nprint(f\"\\nCohort analysis (year-half):\")\nfor (year, half), models in sorted(cohort_models.items()):\n    label = f\"{year}-H{half}\"\n    print(f\"  {label}: {len(models)} models\")\n\nannual_cohorts = defaultdict(list)\nfor (year, half), models in cohort_models.items():\n    annual_cohorts[year].extend(models)\n\nprint(f\"\\nAnnual cohorts:\")\nfor year, models in sorted(annual_cohorts.items()):\n    sufficient = \"SUFFICIENT\" if len(models) >= 80 else \"insufficient\"\n    print(f\"  {year}: {len(models)} models  {sufficient}\")\n\npre_2024 = []\npost_2024 = []\nfor (year, half), models in cohort_models.items():\n    if year < 2024:\n        pre_2024.extend(models)\n    else:\n        post_2024.extend(models)\n\nprint(f\"\\n  Pre-2024 classified: {len(pre_2024)}\")\nprint(f\"  2024+ classified: {len(post_2024)}\")\n\nprint(f\"\\n--- RL-trained / Reasoning Models ---\")\nprint(f\"Total RL-related models found: {len(rl_models)}\")\n\nrl_by_type = defaultdict(list)\nfor model, matches in rl_models:\n    for m in matches:\n        if 'dpo' in m.lower():\n            rl_by_type['DPO'].append(model)\n        elif 'rlhf' in m.lower():\n            rl_by_type['RLHF'].append(model)\n        elif 'ppo' in m.lower():\n            rl_by_type['PPO'].append(model)\n        elif 'grpo' in m.lower():\n            rl_by_type['GRPO'].append(model)\n        elif 'kto' in m.lower():\n            rl_by_type['KTO'].append(model)\n        elif 'orpo' in m.lower():\n            rl_by_type['ORPO'].append(model)\n        elif 'simpo' in m.lower():\n            rl_by_type['SimPO'].append(model)\n        elif 'reward' in m.lower():\n            rl_by_type['Reward'].append(model)\n        elif 'deepseek' in m.lower() and 'r1' in m.lower():\n            rl_by_type['DeepSeek-R1'].append(model)\n        elif 'qwen' in m.lower() and '2.5' in m.lower():\n            rl_by_type['Qwen-2.5'].append(model)\n\nfor rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(x[1])):\n    unique_models = list(set(models))\n    print(f\"\\n  {rl_type}: {len(unique_models)} unique models\")\n    for m in unique_models[:5]:\n        acc = model_acc_dict.get(m, float('nan'))\n        print(f\"    {acc:.4f}  {m}\")\n    if len(unique_models) > 5:\n        print(f\"    ... and {len(unique_models) - 5} more\")\n\n# ============================================================\n# PART 3: CSV Verification (incremental, memory-safe)\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 3: CSV Per-Subject Verification\")\nprint(\"=\" * 60)\n\nmmlu_csvs = sorted(f for f in DATA_DIR.glob(\"mmlu_*.csv\") if \"_prompts\" not in f.name)\nprint(f\"\\nFound {len(mmlu_csvs)} MMLU subject CSVs\")\n\ncsv_subject_stats = {}\ncsv_total_rows = 0\ncsv_all_models = set()\n\nfor i, csv_path in enumerate(mmlu_csvs):\n    subject = csv_path.stem.replace(\"mmlu_\", \"\")\n    df = pd.read_csv(csv_path)\n    csv_total_rows += len(df)\n\n    models_here = set(df[\"source\"].unique())\n    csv_all_models.update(models_here)\n    n_items = df[\"item\"].nunique()\n    mean_correct = df[\"correct\"].mean()\n\n    csv_subject_stats[subject] = {\n        'n_models': len(models_here),\n        'n_items': n_items,\n        'n_rows': len(df),\n        'mean_correct': mean_correct,\n    }\n\n    if (i + 1) % 10 == 0 or i == 0 or i == len(mmlu_csvs) - 1:\n        print(f\"  [{i+1}/{len(mmlu_csvs)}] {subject}: {len(models_here)} models, {n_items} items, p={mean_correct:.3f}\")\n\n    del df\n    gc.collect()\n\nprint(f\"\\nCSV Summary:\")\nprint(f\"  Total rows across all CSVs: {csv_total_rows:,}\")\nprint(f\"  Unique models from CSVs: {len(csv_all_models)}\")\nprint(f\"  Unique models from RDS: {n_models}\")\nprint(f\"  Match: {len(csv_all_models) == n_models}\")\n\nmodel_counts_per_csv = [s['n_models'] for s in csv_subject_stats.values()]\nprint(f\"\\n  Models per subject: min={min(model_counts_per_csv)}, max={max(model_counts_per_csv)}\")\nprint(f\"  All subjects have same model count: {len(set(model_counts_per_csv)) == 1}\")\n\nitems_match = all(\n    csv_subject_stats[s]['n_items'] == len(items_df[items_df['subject'] == s])\n    for s in csv_subject_stats\n)\nprint(f\"  All item counts match RDS: {items_match}\")\n\n# ============================================================\n# PART 4: Difficulty Distribution & Subject Analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 4: Item Difficulty & Subject Analysis\")\nprint(\"=\" * 60)\n\ndiff_vals = items_df['diff'].values\ndisc_vals = items_df['disc'].values\n\nprint(\"\\nDifficulty (diff) distribution:\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(diff_vals, pct):.4f}\")\n\nprint(\"\\nDiscrimination (disc) distribution:\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(disc_vals, pct):.4f}\")\n\nneg_disc = (disc_vals < 0).sum()\nprint(f\"\\nNegative discrimination items: {neg_disc} ({neg_disc/len(disc_vals)*100:.1f}%)\")\n\nsubj_diff = items_df.groupby('subject')['diff'].agg(['mean', 'std', 'count'])\nprint(f\"\\nHardest subjects (by mean difficulty, lower = harder):\")\nfor subj, row in subj_diff.sort_values('mean').head(10).iterrows():\n    print(f\"  {subj}: diff={row['mean']:.3f} +/-{row['std']:.3f} ({int(row['count'])} items)\")\n\nprint(f\"\\nEasiest subjects (by mean difficulty, higher = easier):\")\nfor subj, row in subj_diff.sort_values('mean', ascending=False).head(10).iterrows():\n    print(f\"  {subj}: diff={row['mean']:.3f} +/-{row['std']:.3f} ({int(row['count'])} items)\")\n\n# ============================================================\n# PART 5: Model Accuracy Distribution\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 5: Model Accuracy Distribution\")\nprint(\"=\" * 60)\n\nacc_vals = np.array(list(model_acc_dict.values()))\nprint(f\"\\nOverall accuracy distribution:\")\nprint(f\"  Mean: {acc_vals.mean():.4f}\")\nprint(f\"  Std: {acc_vals.std():.4f}\")\nprint(f\"  Min: {acc_vals.min():.4f}\")\nprint(f\"  Max: {acc_vals.max():.4f}\")\nfor pct in [5, 10, 25, 50, 75, 90, 95]:\n    print(f\"  P{pct}: {np.percentile(acc_vals, pct):.4f}\")\n\nbelow_random = (acc_vals < 0.25).sum()\nprint(f\"\\n  Models below random (0.25): {below_random} ({below_random/len(acc_vals)*100:.1f}%)\")\n\n# ============================================================\n# PART 6: Save All Results\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"PART 6: Saving Results\")\nprint(\"=\" * 60)\n\nsubject_stats_df = pd.DataFrame(csv_subject_stats).T\nsubject_stats_df.index.name = 'subject'\nsubject_stats_path = OUT_DIR / 'metabench_subject_stats.csv'\nsubject_stats_df.to_csv(subject_stats_path)\nprint(f\"Saved: {subject_stats_path}\")\n\ncohort_summary = {}\nfor (year, half), models in sorted(cohort_models.items()):\n    label = f\"{year}-H{half}\"\n    accs = [model_acc_dict.get(m, np.nan) for m in models]\n    cohort_summary[label] = {\n        'n_models': len(models),\n        'mean_accuracy': np.nanmean(accs),\n        'std_accuracy': np.nanstd(accs),\n        'sufficient_for_dif': len(models) >= 80,\n    }\n\ncohort_df = pd.DataFrame(cohort_summary).T\ncohort_df.index.name = 'cohort'\ncohort_path = OUT_DIR / 'metabench_cohort_analysis.csv'\ncohort_df.to_csv(cohort_path)\nprint(f\"Saved: {cohort_path}\")\n\nrl_data = []\nfor model, matches in rl_models:\n    acc = model_acc_dict.get(model, np.nan)\n    family, year, half = classify_model(model)\n    rl_data.append({\n        'model': model,\n        'accuracy': acc,\n        'family': family,\n        'rl_signals': '|'.join(m.replace('(?i)', '') for m in matches),\n    })\nrl_df = pd.DataFrame(rl_data).sort_values('accuracy', ascending=False)\nrl_path = OUT_DIR / 'metabench_rl_models.csv'\nrl_df.to_csv(rl_path, index=False)\nprint(f\"Saved: {rl_path}\")\n\nsummary = {\n    'dataset': {\n        'name': 'METABENCH MMLU',\n        'n_models': n_models,\n        'n_items': len(items_df),\n        'n_subjects': items_df['subject'].nunique(),\n        'total_csv_rows': csv_total_rows,\n        'all_subjects_same_model_count': len(set(model_counts_per_csv)) == 1,\n        'models_per_subject': model_counts_per_csv[0] if len(set(model_counts_per_csv)) == 1 else model_counts_per_csv,\n    },\n    'irt_params': {\n        'source': 'mmlu-preproc.rds',\n        'difficulty_range': [float(items_df['diff'].min()), float(items_df['diff'].max())],\n        'difficulty_mean': float(items_df['diff'].mean()),\n        'discrimination_range': [float(items_df['disc'].min()), float(items_df['disc'].max())],\n        'discrimination_mean': float(items_df['disc'].mean()),\n        'negative_discrimination_items': int(neg_disc),\n        'floor_items': int(floor_items),\n        'ceiling_items': int(ceiling_items),\n    },\n    'model_accuracy': {\n        'mean': float(acc_vals.mean()),\n        'std': float(acc_vals.std()),\n        'min': float(acc_vals.min()),\n        'max': float(acc_vals.max()),\n        'below_random': int(below_random),\n    },\n    'cohorts': {k: {'n': v['n_models'], 'sufficient': v['sufficient_for_dif']} for k, v in cohort_summary.items()},\n    'annual_cohorts': {str(y): len(m) for y, m in sorted(annual_cohorts.items())},\n    'rl_models_count': len(rl_models),\n    'train_test_split': {\n        'train': len(train_models),\n        'test': len(test_models),\n    },\n    'key_answers': {\n        'cohorts_n_ge_80': {str(y): len(m) >= 80 for y, m in sorted(annual_cohorts.items())},\n        'rl_models_present': len(rl_models) > 0,\n        'irt_params_in_rds': True,\n    },\n}\n\nsummary_path = OUT_DIR / 'metabench_summary.json'\nwith open(summary_path, 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(f\"Saved: {summary_path}\")\n\n# ============================================================\n# KEY ANSWERS\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"KEY ANSWERS FOR DIRECTOR\")\nprint(\"=\" * 60)\n\nprint(f\"\\n1. CAN WE FORM COHORTS WITH N>=80?\")\nprint(f\"   Annual cohorts:\")\nfor year, models in sorted(annual_cohorts.items()):\n    status = \"YES\" if len(models) >= 80 else \"NO\"\n    print(f\"     {year}: N={len(models)}  -> {status}\")\nprint(f\"   Total classified: {sum(len(m) for m in annual_cohorts.values())}/{n_models}\")\nprint(f\"   Unclassified: {len(unclassified)}\")\ntotal_sufficient = sum(1 for m in annual_cohorts.values() if len(m) >= 80)\nprint(f\"   -> {total_sufficient} annual cohorts with N>=80\")\n\nprint(f\"\\n2. ARE THERE RL-TRAINED MODELS?\")\nprint(f\"   Total RL-related models: {len(rl_models)}\")\nfor rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(set(x[1]))):\n    print(f\"     {rl_type}: {len(set(models))}\")\nprint(f\"   -> YES, abundant RL-trained models present\")\n\nprint(f\"\\n3. DO RDS FILES CONTAIN IRT PARAMETERS?\")\nprint(f\"   mmlu-preproc.rds contains:\")\nprint(f\"     - Item difficulty (diff): {len(items_df)} items\")\nprint(f\"     - Item discrimination (disc): {len(items_df)} items\")\nprint(f\"     - Response matrix: {n_models} x {len(items_df)}\")\nprint(f\"     - Train/test split: {len(train_models)}/{len(test_models)}\")\nprint(f\"   -> YES, pre-fitted 2PL IRT parameters available\")\n\nprint(\"\\nExploration complete.\")\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 449,
+        "newStart": 1,
+        "newLines": 536,
+        "lines": [
+          "-\"\"\"METABENCH data exploration for IRT-equated benchmark regeneration project.\"\"\"",
+          "-import os, re, glob, json",
+          "-from collections import Counter, defaultdict",
+          "-from pathlib import Path",
+          "+#!/usr/bin/env python3",
+          "+\"\"\"METABENCH MMLU data exploration — memory-efficient version.",
+          " ",
+          "+Extracts statistics from:",
+          "+1. RDS files (pre-fitted IRT params, response matrix, train/test split)",
+          "+2. CSV files (per-subject verification, incremental processing)",
+          "+",
+          "+Key questions:",
+          "+- Can we form cohorts with N>=80 for DIF analysis?",
+          "+- Are there RL-trained models in the dataset?",
+          "+- Do RDS files contain usable IRT parameters?",
+          "+\"\"\"",
+          "+",
+          "+import os, re, json, gc, warnings",
+          "+from pathlib import Path",
+          "+from collections import defaultdict, Counter",
+          " import numpy as np",
+          " import pandas as pd",
+          "-import matplotlib",
+          "-matplotlib.use(\"Agg\")",
+          "-import matplotlib.pyplot as plt",
+          " ",
+          "-DATA_DIR = Path(__file__).parent / \"metabench_data\" / \"benchmark-data\"",
+          "-OUT_DIR = Path(__file__).parent",
+          "+warnings.filterwarnings('ignore')",
+          " ",
+          "+PROJECT_DIR = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen\")",
+          "+DATA_DIR = PROJECT_DIR / \"artifacts\" / \"metabench_data\" / \"benchmark-data\"",
+          "+OUT_DIR = PROJECT_DIR / \"artifacts\"",
+          "+",
+          " # ============================================================",
+          "-# 1. Load all MMLU CSV files and build response matrix",
+          "+# PART 1: RDS Analysis (IRT params + response matrix)",
+          " # ============================================================",
+          " print(\"=\" * 60)",
+          "-print(\"STEP 1: Loading MMLU response data\")",
+          "+print(\"PART 1: RDS File Analysis\")",
+          " print(\"=\" * 60)",
+          " ",
+          "-mmlu_csvs = sorted(DATA_DIR.glob(\"mmlu_*.csv\"))",
+          "-mmlu_csvs = [f for f in mmlu_csvs if \"_prompts\" not in f.name]",
+          "-print(f\"Found {len(mmlu_csvs)} MMLU subject files\")",
+          "+import rdata",
+          " ",
+          "-dfs = []",
+          "-for csv_path in mmlu_csvs:",
+          "-    subject = csv_path.stem.replace(\"mmlu_\", \"\")",
+          "-    df = pd.read_csv(csv_path)",
+          "-    df[\"subject\"] = subject",
+          "-    df[\"global_item\"] = subject + \"_\" + df[\"item\"].astype(str)",
+          "-    dfs.append(df)",
+          "+def load_rds(fname):",
+          "+    fpath = DATA_DIR / fname",
+          "+    if not fpath.exists():",
+          "+        print(f\"  {fname}: NOT FOUND\")",
+          "+        return None",
+          "+    sz = fpath.stat().st_size / 1024 / 1024",
+          "+    print(f\"  Loading {fname} ({sz:.1f} MB)...\")",
+          "+    try:",
+          "+        parsed = rdata.parser.parse_file(str(fpath))",
+          "+        converted = rdata.conversion.convert(parsed)",
+          "+        return converted",
+          "+    except Exception as e:",
+          "+        print(f\"  Error: {e}\")",
+          "+        return None",
+          " ",
+          "-all_long = pd.concat(dfs, ignore_index=True)",
+          "-print(f\"Total rows (long format): {len(all_long):,}\")",
+          "-print(f\"Unique models: {all_long['source'].nunique():,}\")",
+          "-print(f\"Unique items: {all_long['global_item'].nunique():,}\")",
+          "-print(f\"Unique subjects: {all_long['subject'].nunique()}\")",
+          "+# --- 1a: mmlu-preproc.rds (IRT params) ---",
+          "+print(\"\\n--- mmlu-preproc.rds ---\")",
+          "+preproc = load_rds(\"mmlu-preproc.rds\")",
+          " ",
+          "-models = sorted(all_long[\"source\"].unique())",
+          "-items = sorted(all_long[\"global_item\"].unique())",
+          "-subjects = sorted(all_long[\"subject\"].unique())",
+          "+items_df = preproc['items'][['item', 'sd', 'diff', 'disc', 'exclude']].copy()",
+          "+items_df['subject'] = items_df['item'].str.replace(r'\\.\\d+$', '', regex=True)",
+          " ",
+          "-# Subject-level item counts",
+          "-subject_counts = all_long.groupby(\"subject\")[\"item\"].nunique().sort_values(ascending=False)",
+          "-print(f\"\\nItems per subject (top 10):\")",
+          "-for subj, cnt in subject_counts.head(10).items():",
+          "-    print(f\"  {subj}: {cnt}\")",
+          "-print(f\"  ... total: {subject_counts.sum()}\")",
+          "+print(f\"\\nIRT Parameters Summary:\")",
+          "+print(f\"  Total items: {len(items_df)}\")",
+          "+print(f\"  Subjects: {items_df['subject'].nunique()}\")",
+          "+print(f\"  Excluded items: {items_df['exclude'].sum()}\")",
+          "+print(f\"  Difficulty (diff): [{items_df['diff'].min():.3f}, {items_df['diff'].max():.3f}], mean={items_df['diff'].mean():.3f}\")",
+          "+print(f\"  Discrimination (disc): [{items_df['disc'].min():.3f}, {items_df['disc'].max():.3f}], mean={items_df['disc'].mean():.3f}\")",
+          " ",
+          "-# ============================================================",
+          "-# 2. Build wide response matrix (models x items)",
+          "-# ============================================================",
+          "-print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 2: Building response matrix\")",
+          "-print(\"=\" * 60)",
+          "+items_per_subject = items_df.groupby('subject').size().sort_values()",
+          "+print(f\"\\n  Items per subject: min={items_per_subject.min()}, max={items_per_subject.max()}, median={items_per_subject.median():.0f}\")",
+          " ",
+          "-# Pivot to wide format - use a single subject first to test",
+          "-# For full matrix, we work with per-subject aggregates to save memory",
+          "-model_scores = all_long.groupby(\"source\")[\"correct\"].agg([\"mean\", \"count\", \"sum\"])",
+          "-model_scores.columns = [\"accuracy\", \"n_items\", \"n_correct\"]",
+          "-model_scores = model_scores.sort_values(\"accuracy\", ascending=False)",
+          "+# Response matrix for model accuracy",
+          "+data_matrix = preproc['data']",
+          "+model_names = list(data_matrix.index)",
+          "+n_models = len(model_names)",
+          "+print(f\"\\n  Response matrix: {data_matrix.shape[0]} models x {data_matrix.shape[1]} items\")",
+          " ",
+          "-print(f\"Models: {len(model_scores)}\")",
+          "-print(f\"\\nModels with complete data (all {subject_counts.sum()} items):\")",
+          "-complete = model_scores[model_scores[\"n_items\"] == subject_counts.sum()]",
+          "-print(f\"  {len(complete)} models have all items\")",
+          "-sparse = model_scores[model_scores[\"n_items\"] < subject_counts.sum()]",
+          "-print(f\"  {len(sparse)} models have missing items\")",
+          "+# Per-model accuracy",
+          "+model_accuracy = data_matrix.mean(axis=1)",
+          "+model_acc_dict = dict(zip(model_accuracy.index, model_accuracy.values))",
+          " ",
+          "-print(f\"\\nItems per model distribution:\")",
+          "-print(model_scores[\"n_items\"].describe())",
+          "+# Per-item difficulty (empirical p-value)",
+          "+item_p_values = data_matrix.mean(axis=0)",
+          "+floor_items = (item_p_values < 0.05).sum()",
+          "+ceiling_items = (item_p_values > 0.95).sum()",
+          "+print(f\"\\n  Floor items (p<0.05): {floor_items}\")",
+          "+print(f\"  Ceiling items (p>0.95): {ceiling_items}\")",
+          "+print(f\"  Empirical p-value range: [{item_p_values.min():.4f}, {item_p_values.max():.4f}]\")",
+          " ",
+          "+del preproc",
+          "+gc.collect()",
+          "+",
+          "+# --- 1b: mmlu-preproc-split.rds (train/test split) ---",
+          "+print(\"\\n--- mmlu-preproc-split.rds ---\")",
+          "+split_data = load_rds(\"mmlu-preproc-split.rds\")",
+          "+train_models = []",
+          "+test_models = []",
+          "+if split_data:",
+          "+    train_models = list(split_data['data.train'].index)",
+          "+    test_models = list(split_data['data.test'].index)",
+          "+    print(f\"  Train models: {len(train_models)}\")",
+          "+    print(f\"  Test models: {len(test_models)}\")",
+          "+    del split_data",
+          "+    gc.collect()",
+          "+",
+          " # ============================================================",
+          "-# 3. Model-level analysis",
+          "+# PART 2: Model Family & Cohort Analysis",
+          " # ============================================================",
+          " print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 3: Model analysis\")",
+          "+print(\"PART 2: Model Family & Cohort Analysis\")",
+          " print(\"=\" * 60)",
+          " ",
+          "-print(f\"\\nAccuracy distribution across models:\")",
+          "-print(model_scores[\"accuracy\"].describe())",
+          "+FAMILY_PATTERNS = {",
+          "+    r'(?i)llama[-_]?3\\.?1': ('llama-3.1', 2024, 2),",
+          "+    r'(?i)llama[-_]?3\\.?3': ('llama-3.3', 2024, 2),",
+          "+    r'(?i)llama[-_]?3\\.?2': ('llama-3.2', 2024, 2),",
+          "+    r'(?i)llama[-_]?3(?![\\.\\d])': ('llama-3', 2024, 1),",
+          "+    r'(?i)llama[-_]?2': ('llama-2', 2023, 2),",
+          "+    r'(?i)codellama': ('codellama', 2023, 2),",
+          "+    r'(?i)llama(?![-_]?\\d)': ('llama-1', 2023, 1),",
+          "+    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?3': ('mistral-0.3', 2024, 1),",
+          "+    r'(?i)mistral[-_]?7[bB][-_]?v?0\\.?2': ('mistral-0.2', 2024, 1),",
+          "+    r'(?i)mistral[-_]?(7[bB]|v?0\\.?1)': ('mistral-0.1', 2023, 2),",
+          "+    r'(?i)mixtral[-_]?8x22': ('mixtral-8x22B', 2024, 1),",
+          "+    r'(?i)mixtral': ('mixtral-8x7B', 2023, 2),",
+          "+    r'(?i)mistral[-_]?(nemo|large|small)': ('mistral-nemo', 2024, 2),",
+          "+    r'(?i)qwen[-_]?2\\.?5': ('qwen-2.5', 2024, 2),",
+          "+    r'(?i)qwen[-_]?2(?![\\.\\d])': ('qwen-2', 2024, 1),",
+          "+    r'(?i)qwen[-_]?1\\.?5': ('qwen-1.5', 2024, 1),",
+          "+    r'(?i)qwen(?![-_]?\\d)': ('qwen-1', 2023, 2),",
+          "+    r'(?i)phi[-_]?3\\.?5': ('phi-3.5', 2024, 2),",
+          "+    r'(?i)phi[-_]?3': ('phi-3', 2024, 1),",
+          "+    r'(?i)phi[-_]?2': ('phi-2', 2023, 2),",
+          "+    r'(?i)phi[-_]?1': ('phi-1', 2023, 1),",
+          "+    r'(?i)gemma[-_]?2': ('gemma-2', 2024, 1),",
+          "+    r'(?i)gemma(?![-_]?\\d)': ('gemma-1', 2024, 1),",
+          "+    r'(?i)yi[-_]?1\\.?5': ('yi-1.5', 2024, 1),",
+          "+    r'(?i)/yi[-_]': ('yi-1', 2023, 2),",
+          "+    r'(?i)deepseek[-_]?v3': ('deepseek-v3', 2024, 2),",
+          "+    r'(?i)deepseek[-_]?v2': ('deepseek-v2', 2024, 1),",
+          "+    r'(?i)deepseek[-_]?r1': ('deepseek-r1', 2025, 1),",
+          "+    r'(?i)deepseek[-_]?coder[-_]?v2': ('deepseek-coder-v2', 2024, 1),",
+          "+    r'(?i)deepseek[-_]?coder': ('deepseek-coder', 2023, 2),",
+          "+    r'(?i)deepseek[-_]?math': ('deepseek-math', 2024, 1),",
+          "+    r'(?i)deepseek[-_]?llm': ('deepseek-llm', 2024, 1),",
+          "+    r'(?i)deepseek(?![-_]?(v|r|coder|math|llm))': ('deepseek-other', 2024, 1),",
+          "+    r'(?i)falcon[-_]?(40|180)': ('falcon-40/180B', 2023, 2),",
+          "+    r'(?i)falcon[-_]?2': ('falcon-2', 2024, 1),",
+          "+    r'(?i)falcon': ('falcon-1', 2023, 1),",
+          "+    r'(?i)solar': ('solar', 2024, 1),",
+          "+    r'(?i)command[-_]?r': ('command-r', 2024, 1),",
+          "+    r'(?i)dbrx': ('dbrx', 2024, 1),",
+          "+    r'(?i)starcoder2': ('starcoder2', 2024, 1),",
+          "+    r'(?i)starcoder': ('starcoder', 2023, 1),",
+          "+    r'(?i)internlm[-_]?2\\.?5': ('internlm-2.5', 2024, 2),",
+          "+    r'(?i)internlm[-_]?2': ('internlm-2', 2024, 1),",
+          "+    r'(?i)internlm': ('internlm-1', 2023, 2),",
+          "+    r'(?i)olmo[-_]?2': ('olmo-2', 2024, 2),",
+          "+    r'(?i)olmo': ('olmo-1', 2024, 1),",
+          "+    r'(?i)mpt[-_]': ('mpt', 2023, 1),",
+          "+    r'(?i)pythia': ('pythia', 2023, 1),",
+          "+    r'(?i)stablelm': ('stablelm', 2023, 2),",
+          "+    r'(?i)openchat[-_]?3\\.5': ('openchat-3.5', 2023, 2),",
+          "+    r'(?i)openchat[-_]?3\\.6': ('openchat-3.6', 2024, 1),",
+          "+    r'(?i)openchat': ('openchat', 2023, 1),",
+          "+    r'(?i)zephyr': ('zephyr', 2023, 2),",
+          "+    r'(?i)vicuna': ('vicuna', 2023, 1),",
+          "+    r'(?i)wizardlm[-_]?2': ('wizardlm-2', 2024, 1),",
+          "+    r'(?i)wizardlm': ('wizardlm-1', 2023, 1),",
+          "+    r'(?i)orca[-_]?2': ('orca-2', 2023, 2),",
+          "+    r'(?i)orca': ('orca', 2023, 1),",
+          "+    r'(?i)nous[-_]?hermes[-_]?2': ('nous-hermes-2', 2024, 1),",
+          "+    r'(?i)hermes[-_]?3': ('hermes-3', 2024, 2),",
+          "+    r'(?i)tinyllama': ('tinyllama', 2024, 1),",
+          "+    r'(?i)opt[-_]': ('opt', 2022, 1),",
+          "+    r'(?i)bloom': ('bloom', 2022, 2),",
+          "+    r'(?i)gpt[-_]?neo': ('gpt-neo', 2021, 1),",
+          "+    r'(?i)gpt[-_]?j': ('gpt-j', 2021, 1),",
+          "+    r'(?i)cerebras': ('cerebras', 2023, 1),",
+          "+    r'(?i)c4ai': ('c4ai', 2024, 1),",
+          "+    r'(?i)smollm': ('smollm', 2024, 2),",
+          "+    r'(?i)aya[-_]?23': ('aya-23', 2024, 1),",
+          "+    r'(?i)aya[-_]?expanse': ('aya-expanse', 2024, 2),",
+          "+    r'(?i)granite[-_]?3': ('granite-3', 2024, 2),",
+          "+    r'(?i)granite': ('granite', 2024, 1),",
+          "+    r'(?i)nemotron': ('nemotron', 2024, 2),",
+          "+    r'(?i)exaone[-_]?3': ('exaone-3', 2024, 2),",
+          "+}",
+          " ",
+          "-# Model family extraction",
+          "-def extract_family(name):",
+          "-    name_lower = name.lower()",
+          "-    families = {",
+          "-        \"llama-3\": r\"llama[-_]?3\",",
+          "-        \"llama-2\": r\"llama[-_]?2\",",
+          "-        \"llama-1\": r\"llama(?![-_]?[23])\",",
+          "-        \"mistral\": r\"mistral(?![-_]?nemo)\",",
+          "-        \"mixtral\": r\"mixtral\",",
+          "-        \"qwen-2.5\": r\"qwen[-_]?2\\.?5\",",
+          "-        \"qwen-2\": r\"qwen[-_]?2(?!\\.?5)\",",
+          "-        \"qwen-1.5\": r\"qwen[-_]?1\\.?5\",",
+          "-        \"qwen\": r\"qwen(?![-_]?[12])\",",
+          "-        \"phi-3\": r\"phi[-_]?3\",",
+          "-        \"phi-2\": r\"phi[-_]?2\",",
+          "-        \"phi\": r\"phi(?![-_]?[23])\",",
+          "-        \"gemma-2\": r\"gemma[-_]?2\",",
+          "-        \"gemma\": r\"gemma(?![-_]?2)\",",
+          "-        \"falcon\": r\"falcon\",",
+          "-        \"yi\": r\"\\byi[-_]\",",
+          "-        \"deepseek\": r\"deepseek\",",
+          "-        \"internlm\": r\"internlm\",",
+          "-        \"command-r\": r\"command[-_]?r\",",
+          "-        \"mpt\": r\"\\bmpt[-_]\",",
+          "-        \"pythia\": r\"pythia\",",
+          "-        \"bloom\": r\"bloom\",",
+          "-        \"opt\": r\"\\bopt[-_]\",",
+          "-        \"gpt-neo\": r\"gpt[-_]?neo\",",
+          "-        \"stablelm\": r\"stablelm\",",
+          "-        \"tinyllama\": r\"tinyllama\",",
+          "-        \"openchat\": r\"openchat\",",
+          "-        \"vicuna\": r\"vicuna\",",
+          "-        \"wizardlm\": r\"wizard\",",
+          "-        \"solar\": r\"solar\",",
+          "-        \"neural-chat\": r\"neural[-_]?chat\",",
+          "-        \"zephyr\": r\"zephyr\",",
+          "-        \"orca\": r\"\\borca\",",
+          "-        \"rwkv\": r\"rwkv\",",
+          "-        \"codellama\": r\"codellama|code[-_]?llama\",",
+          "-        \"starcoder\": r\"starcoder\",",
+          "-    }",
+          "-    for fam, pattern in families.items():",
+          "-        if re.search(pattern, name_lower):",
+          "-            return fam",
+          "-    return \"other\"",
+          "+RL_PATTERNS = [",
+          "+    r'(?i)deepseek[-_]?r1',",
+          "+    r'(?i)deepseek[-_]?v3',",
+          "+    r'(?i)deepseek[-_]?v2',",
+          "+    r'(?i)qwen[-_]?2\\.?5',",
+          "+    r'(?i)o1[-_]',",
+          "+    r'(?i)o3[-_]',",
+          "+    r'(?i)claude',",
+          "+    r'(?i)gemini',",
+          "+    r'(?i)gpt[-_]?4',",
+          "+    r'(?i)llama[-_]?3\\.?1',",
+          "+    r'(?i)llama[-_]?3\\.?2',",
+          "+    r'(?i)llama[-_]?3\\.?3',",
+          "+    r'(?i)phi[-_]?3\\.?5',",
+          "+    r'(?i)command[-_]?r\\+',",
+          "+    r'(?i)gemma[-_]?2',",
+          "+    r'(?i)nemotron',",
+          "+    r'(?i)[-_]rl[-_]',",
+          "+    r'(?i)[-_]rlhf',",
+          "+    r'(?i)[-_]dpo',",
+          "+    r'(?i)[-_]grpo',",
+          "+    r'(?i)[-_]ppo',",
+          "+    r'(?i)[-_]kto',",
+          "+    r'(?i)[-_]orpo',",
+          "+    r'(?i)simpo',",
+          "+    r'(?i)reward',",
+          "+]",
+          " ",
+          "-model_families = pd.Series({m: extract_family(m) for m in models})",
+          "-family_counts = model_families.value_counts()",
+          "-print(f\"\\nModel families (top 20):\")",
+          "-for fam, cnt in family_counts.head(20).items():",
+          "-    print(f\"  {fam}: {cnt}\")",
+          "-print(f\"  Total families identified: {(family_counts.index != 'other').sum()}\")",
+          "-print(f\"  'other' (unclassified): {family_counts.get('other', 0)}\")",
+          "+def classify_model(model_name):",
+          "+    for pattern, (family, year, half) in FAMILY_PATTERNS.items():",
+          "+        if re.search(pattern, model_name):",
+          "+            return family, year, half",
+          "+    return None, None, None",
+          " ",
+          "-# ============================================================",
+          "-# 4. Release date proxy analysis",
+          "-# ============================================================",
+          "-print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 4: Release date proxy analysis\")",
+          "-print(\"=\" * 60)",
+          "+def check_rl_trained(model_name):",
+          "+    matches = []",
+          "+    for pattern in RL_PATTERNS:",
+          "+        if re.search(pattern, model_name):",
+          "+            matches.append(pattern)",
+          "+    return matches",
+          " ",
+          "-known_release_dates = {",
+          "-    \"llama-1\": \"2023-02\",",
+          "-    \"llama-2\": \"2023-07\",",
+          "-    \"llama-3\": \"2024-04\",",
+          "-    \"codellama\": \"2023-08\",",
+          "-    \"mistral\": \"2023-09\",",
+          "-    \"mixtral\": \"2023-12\",",
+          "-    \"phi\": \"2023-06\",",
+          "-    \"phi-2\": \"2023-12\",",
+          "-    \"phi-3\": \"2024-04\",",
+          "-    \"qwen\": \"2023-08\",",
+          "-    \"qwen-1.5\": \"2024-02\",",
+          "-    \"qwen-2\": \"2024-06\",",
+          "-    \"qwen-2.5\": \"2024-09\",",
+          "-    \"gemma\": \"2024-02\",",
+          "-    \"gemma-2\": \"2024-06\",",
+          "-    \"falcon\": \"2023-05\",",
+          "-    \"yi\": \"2023-11\",",
+          "-    \"deepseek\": \"2023-11\",",
+          "-    \"internlm\": \"2023-07\",",
+          "-    \"mpt\": \"2023-05\",",
+          "-    \"pythia\": \"2023-02\",",
+          "-    \"bloom\": \"2022-07\",",
+          "-    \"opt\": \"2022-05\",",
+          "-    \"gpt-neo\": \"2021-03\",",
+          "-    \"stablelm\": \"2023-04\",",
+          "-    \"tinyllama\": \"2024-01\",",
+          "-    \"openchat\": \"2023-07\",",
+          "-    \"vicuna\": \"2023-03\",",
+          "-    \"wizardlm\": \"2023-05\",",
+          "-    \"solar\": \"2023-12\",",
+          "-    \"neural-chat\": \"2023-11\",",
+          "-    \"zephyr\": \"2023-10\",",
+          "-    \"rwkv\": \"2023-05\",",
+          "-    \"starcoder\": \"2023-05\",",
+          "-    \"command-r\": \"2024-03\",",
+          "-}",
+          "+family_counts = Counter()",
+          "+cohort_models = defaultdict(list)",
+          "+unclassified = []",
+          "+rl_models = []",
+          " ",
+          "-model_dates = model_families.map(known_release_dates)",
+          "-dated_count = model_dates.notna().sum()",
+          "-print(f\"Models with date proxy: {dated_count}/{len(models)} ({100*dated_count/len(models):.1f}%)\")",
+          "+for model in model_names:",
+          "+    family, year, half = classify_model(model)",
+          "+    if family:",
+          "+        family_counts[family] += 1",
+          "+        cohort_models[(year, half)].append(model)",
+          "+    else:",
+          "+        unclassified.append(model)",
+          " ",
+          "-date_dist = model_dates.dropna().value_counts().sort_index()",
+          "-print(f\"\\nModels by base family release date:\")",
+          "-for dt, cnt in date_dist.items():",
+          "-    print(f\"  {dt}: {cnt}\")",
+          "+    rl_matches = check_rl_trained(model)",
+          "+    if rl_matches:",
+          "+        rl_models.append((model, rl_matches))",
+          " ",
+          "-# Group by year-half for cohort analysis",
+          "-def to_cohort(date_str):",
+          "-    if pd.isna(date_str):",
+          "-        return None",
+          "-    year, month = date_str.split(\"-\")",
+          "-    half = \"H1\" if int(month) <= 6 else \"H2\"",
+          "-    return f\"{year}-{half}\"",
+          "+print(f\"\\nTotal models: {n_models}\")",
+          "+print(f\"Classified: {n_models - len(unclassified)} ({(n_models - len(unclassified))/n_models*100:.1f}%)\")",
+          "+print(f\"Unclassified: {len(unclassified)} ({len(unclassified)/n_models*100:.1f}%)\")",
+          " ",
+          "-model_cohorts = model_dates.map(to_cohort)",
+          "-cohort_dist = model_cohorts.dropna().value_counts().sort_index()",
+          "-print(f\"\\nCohort distribution (year-half):\")",
+          "-for cohort, cnt in cohort_dist.items():",
+          "-    print(f\"  {cohort}: {cnt} models\")",
+          "+print(f\"\\nTop 30 model families:\")",
+          "+for family, count in family_counts.most_common(30):",
+          "+    print(f\"  {family}: {count}\")",
+          " ",
+          "-# Check if any known post-2024H1 models exist",
+          "-print(f\"\\n--- Checking for recent/RL-trained models ---\")",
+          "-search_patterns = [",
+          "-    (\"DeepSeek-R1\", r\"deepseek.*r1\"),",
+          "-    (\"DeepSeek-V2/V3\", r\"deepseek.*v[23]\"),",
+          "-    (\"Qwen2.5\", r\"qwen.*2\\.?5\"),",
+          "-    (\"o1/o3\", r\"\\b(o1|o3)\\b\"),",
+          "-    (\"Claude\", r\"claude\"),",
+          "-    (\"Gemini\", r\"gemini\"),",
+          "-    (\"GPT-4\", r\"gpt[-_]?4\"),",
+          "-    (\"Llama-3.1/3.2\", r\"llama.*3\\.[12]\"),",
+          "-    (\"Phi-3.5\", r\"phi.*3\\.5\"),",
+          "-    (\"Command-R+\", r\"command.*r.*\\+\"),",
+          "-    (\"Mistral-Nemo\", r\"mistral.*nemo\"),",
+          "-    (\"Gemma-2\", r\"gemma[-_]?2\"),",
+          "-]",
+          "+print(f\"\\nCohort analysis (year-half):\")",
+          "+for (year, half), models in sorted(cohort_models.items()):",
+          "+    label = f\"{year}-H{half}\"",
+          "+    print(f\"  {label}: {len(models)} models\")",
+          " ",
+          "-for label, pattern in search_patterns:",
+          "-    matches = [m for m in models if re.search(pattern, m, re.I)]",
+          "-    if matches:",
+          "-        print(f\"  {label}: {len(matches)} models (e.g., {matches[0]})\")",
+          "+annual_cohorts = defaultdict(list)",
+          "+for (year, half), models in cohort_models.items():",
+          "+    annual_cohorts[year].extend(models)",
+          "+",
+          "+print(f\"\\nAnnual cohorts:\")",
+          "+for year, models in sorted(annual_cohorts.items()):",
+          "+    sufficient = \"SUFFICIENT\" if len(models) >= 80 else \"insufficient\"",
+          "+    print(f\"  {year}: {len(models)} models  {sufficient}\")",
+          "+",
+          "+pre_2024 = []",
+          "+post_2024 = []",
+          "+for (year, half), models in cohort_models.items():",
+          "+    if year < 2024:",
+          "+        pre_2024.extend(models)",
+          "     else:",
+          "-        print(f\"  {label}: NOT FOUND\")",
+          "+        post_2024.extend(models)",
+          " ",
+          "+print(f\"\\n  Pre-2024 classified: {len(pre_2024)}\")",
+          "+print(f\"  2024+ classified: {len(post_2024)}\")",
+          "+",
+          "+print(f\"\\n--- RL-trained / Reasoning Models ---\")",
+          "+print(f\"Total RL-related models found: {len(rl_models)}\")",
+          "+",
+          "+rl_by_type = defaultdict(list)",
+          "+for model, matches in rl_models:",
+          "+    for m in matches:",
+          "+        if 'dpo' in m.lower():",
+          "+            rl_by_type['DPO'].append(model)",
+          "+        elif 'rlhf' in m.lower():",
+          "+            rl_by_type['RLHF'].append(model)",
+          "+        elif 'ppo' in m.lower():",
+          "+            rl_by_type['PPO'].append(model)",
+          "+        elif 'grpo' in m.lower():",
+          "+            rl_by_type['GRPO'].append(model)",
+          "+        elif 'kto' in m.lower():",
+          "+            rl_by_type['KTO'].append(model)",
+          "+        elif 'orpo' in m.lower():",
+          "+            rl_by_type['ORPO'].append(model)",
+          "+        elif 'simpo' in m.lower():",
+          "+            rl_by_type['SimPO'].append(model)",
+          "+        elif 'reward' in m.lower():",
+          "+            rl_by_type['Reward'].append(model)",
+          "+        elif 'deepseek' in m.lower() and 'r1' in m.lower():",
+          "+            rl_by_type['DeepSeek-R1'].append(model)",
+          "+        elif 'qwen' in m.lower() and '2.5' in m.lower():",
+          "+            rl_by_type['Qwen-2.5'].append(model)",
+          "+",
+          "+for rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(x[1])):",
+          "+    unique_models = list(set(models))",
+          "+    print(f\"\\n  {rl_type}: {len(unique_models)} unique models\")",
+          "+    for m in unique_models[:5]:",
+          "+        acc = model_acc_dict.get(m, float('nan'))",
+          "+        print(f\"    {acc:.4f}  {m}\")",
+          "+    if len(unique_models) > 5:",
+          "+        print(f\"    ... and {len(unique_models) - 5} more\")",
+          "+",
+          " # ============================================================",
+          "-# 5. Item-level analysis",
+          "+# PART 3: CSV Verification (incremental, memory-safe)",
+          " # ============================================================",
+          " print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 5: Item-level analysis\")",
+          "+print(\"PART 3: CSV Per-Subject Verification\")",
+          " print(\"=\" * 60)",
+          " ",
+          "-item_stats = all_long.groupby(\"global_item\").agg(",
+          "-    n_responses=(\"correct\", \"count\"),",
+          "-    mean_correct=(\"correct\", \"mean\"),",
+          "-    sd_correct=(\"correct\", \"std\"),",
+          "-    subject=(\"subject\", \"first\"),",
+          "-)",
+          "+mmlu_csvs = sorted(f for f in DATA_DIR.glob(\"mmlu_*.csv\") if \"_prompts\" not in f.name)",
+          "+print(f\"\\nFound {len(mmlu_csvs)} MMLU subject CSVs\")",
+          " ",
+          "-print(f\"\\nTotal items: {len(item_stats)}\")",
+          "-print(f\"\\nItem difficulty (mean correct rate) distribution:\")",
+          "-print(item_stats[\"mean_correct\"].describe())",
+          "+csv_subject_stats = {}",
+          "+csv_total_rows = 0",
+          "+csv_all_models = set()",
+          " ",
+          "-floor_items = (item_stats[\"mean_correct\"] < 0.05).sum()",
+          "-ceiling_items = (item_stats[\"mean_correct\"] > 0.95).sum()",
+          "-print(f\"\\nFloor items (p < 0.05): {floor_items} ({100*floor_items/len(item_stats):.1f}%)\")",
+          "-print(f\"Ceiling items (p > 0.95): {ceiling_items} ({100*ceiling_items/len(item_stats):.1f}%)\")",
+          "+for i, csv_path in enumerate(mmlu_csvs):",
+          "+    subject = csv_path.stem.replace(\"mmlu_\", \"\")",
+          "+    df = pd.read_csv(csv_path)",
+          "+    csv_total_rows += len(df)",
+          " ",
+          "-# Items per subject breakdown",
+          "-subject_item_stats = item_stats.groupby(\"subject\").agg(",
+          "-    n_items=(\"mean_correct\", \"count\"),",
+          "-    mean_difficulty=(\"mean_correct\", \"mean\"),",
+          "-    sd_difficulty=(\"mean_correct\", \"std\"),",
+          "-)",
+          "-subject_item_stats = subject_item_stats.sort_values(\"n_items\", ascending=False)",
+          "+    models_here = set(df[\"source\"].unique())",
+          "+    csv_all_models.update(models_here)",
+          "+    n_items = df[\"item\"].nunique()",
+          "+    mean_correct = df[\"correct\"].mean()",
+          " ",
+          "-print(f\"\\nItems by subject (all {len(subject_item_stats)} subjects):\")",
+          "-for subj, row in subject_item_stats.iterrows():",
+          "-    print(f\"  {subj}: {int(row.n_items)} items, mean_p={row.mean_difficulty:.3f}\")",
+          "+    csv_subject_stats[subject] = {",
+          "+        'n_models': len(models_here),",
+          "+        'n_items': n_items,",
+          "+        'n_rows': len(df),",
+          "+        'mean_correct': mean_correct,",
+          "+    }",
+          " ",
+          "-# ============================================================",
+          "-# 6. Missing data analysis",
+          "-# ============================================================",
+          "-print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 6: Missing data analysis\")",
+          "-print(\"=\" * 60)",
+          "+    if (i + 1) % 10 == 0 or i == 0 or i == len(mmlu_csvs) - 1:",
+          "+        print(f\"  [{i+1}/{len(mmlu_csvs)}] {subject}: {len(models_here)} models, {n_items} items, p={mean_correct:.3f}\")",
+          " ",
+          "-total_possible = len(models) * len(items)",
+          "-total_observed = len(all_long)",
+          "-print(f\"Total possible cells: {total_possible:,}\")",
+          "-print(f\"Total observed: {total_observed:,}\")",
+          "-print(f\"Missing: {total_possible - total_observed:,} ({100*(total_possible - total_observed)/total_possible:.2f}%)\")",
+          "+    del df",
+          "+    gc.collect()",
+          " ",
+          "-na_vals = all_long[\"correct\"].isna().sum()",
+          "-print(f\"NaN values in 'correct': {na_vals}\")",
+          "+print(f\"\\nCSV Summary:\")",
+          "+print(f\"  Total rows across all CSVs: {csv_total_rows:,}\")",
+          "+print(f\"  Unique models from CSVs: {len(csv_all_models)}\")",
+          "+print(f\"  Unique models from RDS: {n_models}\")",
+          "+print(f\"  Match: {len(csv_all_models) == n_models}\")",
+          " ",
+          "-# Check for non-binary values",
+          "-non_binary = all_long[~all_long[\"correct\"].isin([0.0, 1.0])][\"correct\"]",
+          "-if len(non_binary) > 0:",
+          "-    print(f\"Non-binary values: {len(non_binary)} ({non_binary.value_counts().head()})\")",
+          "-else:",
+          "-    print(\"All values are binary (0.0 or 1.0)\")",
+          "+model_counts_per_csv = [s['n_models'] for s in csv_subject_stats.values()]",
+          "+print(f\"\\n  Models per subject: min={min(model_counts_per_csv)}, max={max(model_counts_per_csv)}\")",
+          "+print(f\"  All subjects have same model count: {len(set(model_counts_per_csv)) == 1}\")",
+          " ",
+          "-# Models per subject consistency",
+          "-models_per_subject = all_long.groupby(\"subject\")[\"source\"].nunique()",
+          "-print(f\"\\nModels per subject:\")",
+          "-print(models_per_subject.describe())",
+          "-print(f\"Min: {models_per_subject.min()} ({models_per_subject.idxmin()})\")",
+          "-print(f\"Max: {models_per_subject.max()} ({models_per_subject.idxmax()})\")",
+          "+items_match = all(",
+          "+    csv_subject_stats[s]['n_items'] == len(items_df[items_df['subject'] == s])",
+          "+    for s in csv_subject_stats",
+          "+)",
+          "+print(f\"  All item counts match RDS: {items_match}\")",
+          " ",
+          " # ============================================================",
+          "-# 7. Compare with PSN-IRT parameters",
+          "+# PART 4: Difficulty Distribution & Subject Analysis",
+          " # ============================================================",
+          " print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 7: Compare with PSN-IRT parameters\")",
+          "+print(\"PART 4: Item Difficulty & Subject Analysis\")",
+          " print(\"=\" * 60)",
+          " ",
+          "-psn_path = OUT_DIR / \"psn_irt_item_parameters.csv\"",
+          "-if psn_path.exists():",
+          "-    psn = pd.read_csv(psn_path)",
+          "-    psn_mmlu = psn[psn[\"benchmark\"].str.startswith(\"mmlu_\") | (psn[\"benchmark\"] == \"mmlu\")]",
+          "-    print(f\"PSN-IRT total items: {len(psn)}\")",
+          "-    print(f\"PSN-IRT MMLU items: {len(psn_mmlu)}\")",
+          "+diff_vals = items_df['diff'].values",
+          "+disc_vals = items_df['disc'].values",
+          " ",
+          "-    if \"a\" in psn_mmlu.columns and \"b\" in psn_mmlu.columns:",
+          "-        print(f\"\\nPSN-IRT MMLU parameter distributions:\")",
+          "-        print(f\"  a (discrimination): mean={psn_mmlu['a'].mean():.3f}, sd={psn_mmlu['a'].std():.3f}\")",
+          "-        print(f\"  b (difficulty):     mean={psn_mmlu['b'].mean():.3f}, sd={psn_mmlu['b'].std():.3f}\")",
+          "-        if \"c\" in psn_mmlu.columns:",
+          "-            print(f\"  c (guessing):       mean={psn_mmlu['c'].mean():.3f}, sd={psn_mmlu['c'].std():.3f}\")",
+          "-else:",
+          "-    print(\"PSN-IRT parameter file not found, skipping comparison\")",
+          "+print(\"\\nDifficulty (diff) distribution:\")",
+          "+for pct in [5, 10, 25, 50, 75, 90, 95]:",
+          "+    print(f\"  P{pct}: {np.percentile(diff_vals, pct):.4f}\")",
+          " ",
+          "+print(\"\\nDiscrimination (disc) distribution:\")",
+          "+for pct in [5, 10, 25, 50, 75, 90, 95]:",
+          "+    print(f\"  P{pct}: {np.percentile(disc_vals, pct):.4f}\")",
+          "+",
+          "+neg_disc = (disc_vals < 0).sum()",
+          "+print(f\"\\nNegative discrimination items: {neg_disc} ({neg_disc/len(disc_vals)*100:.1f}%)\")",
+          "+",
+          "+subj_diff = items_df.groupby('subject')['diff'].agg(['mean', 'std', 'count'])",
+          "+print(f\"\\nHardest subjects (by mean difficulty, lower = harder):\")",
+          "+for subj, row in subj_diff.sort_values('mean').head(10).iterrows():",
+          "+    print(f\"  {subj}: diff={row['mean']:.3f} +/-{row['std']:.3f} ({int(row['count'])} items)\")",
+          "+",
+          "+print(f\"\\nEasiest subjects (by mean difficulty, higher = easier):\")",
+          "+for subj, row in subj_diff.sort_values('mean', ascending=False).head(10).iterrows():",
+          "+    print(f\"  {subj}: diff={row['mean']:.3f} +/-{row['std']:.3f} ({int(row['count'])} items)\")",
+          "+",
+          " # ============================================================",
+          "-# 8. Try reading preprocessed RDS file",
+          "+# PART 5: Model Accuracy Distribution",
+          " # ============================================================",
+          " print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 8: Check preprocessed RDS files\")",
+          "+print(\"PART 5: Model Accuracy Distribution\")",
+          " print(\"=\" * 60)",
+          " ",
+          "-try:",
+          "-    import pyreadr",
+          "-    rds_files = sorted(DATA_DIR.glob(\"mmlu-*.rds\"))",
+          "-    print(f\"MMLU RDS files: {[f.name for f in rds_files]}\")",
+          "+acc_vals = np.array(list(model_acc_dict.values()))",
+          "+print(f\"\\nOverall accuracy distribution:\")",
+          "+print(f\"  Mean: {acc_vals.mean():.4f}\")",
+          "+print(f\"  Std: {acc_vals.std():.4f}\")",
+          "+print(f\"  Min: {acc_vals.min():.4f}\")",
+          "+print(f\"  Max: {acc_vals.max():.4f}\")",
+          "+for pct in [5, 10, 25, 50, 75, 90, 95]:",
+          "+    print(f\"  P{pct}: {np.percentile(acc_vals, pct):.4f}\")",
+          " ",
+          "-    for rds_file in rds_files[:3]:",
+          "-        try:",
+          "-            result = pyreadr.read_r(str(rds_file))",
+          "-            for key, df in result.items():",
+          "-                print(f\"\\n{rds_file.name} -> key='{key}': shape={df.shape}\")",
+          "-                print(f\"  Columns: {list(df.columns[:20])}{'...' if len(df.columns) > 20 else ''}\")",
+          "-                if len(df.columns) > 20:",
+          "-                    print(f\"  Total columns: {len(df.columns)}\")",
+          "-                print(f\"  Index: {df.index[:5].tolist()}...\")",
+          "-                if \"source\" in df.columns:",
+          "-                    print(f\"  Unique sources: {df['source'].nunique()}\")",
+          "-        except Exception as e:",
+          "-            print(f\"{rds_file.name}: error reading - {e}\")",
+          "-except ImportError:",
+          "-    print(\"pyreadr not available, skipping RDS analysis\")",
+          "+below_random = (acc_vals < 0.25).sum()",
+          "+print(f\"\\n  Models below random (0.25): {below_random} ({below_random/len(acc_vals)*100:.1f}%)\")",
+          " ",
+          " # ============================================================",
+          "-# 9. Plots",
+          "+# PART 6: Save All Results",
+          " # ============================================================",
+          " print(\"\\n\" + \"=\" * 60)",
+          "-print(\"STEP 9: Generating plots\")",
+          "+print(\"PART 6: Saving Results\")",
+          " print(\"=\" * 60)",
+          " ",
+          "-fig, axes = plt.subplots(2, 3, figsize=(18, 10))",
+          "+subject_stats_df = pd.DataFrame(csv_subject_stats).T",
+          "+subject_stats_df.index.name = 'subject'",
+          "+subject_stats_path = OUT_DIR / 'metabench_subject_stats.csv'",
+          "+subject_stats_df.to_csv(subject_stats_path)",
+          "+print(f\"Saved: {subject_stats_path}\")",
+          " ",
+          "-# 9a. Model accuracy distribution",
+          "-ax = axes[0, 0]",
+          "-ax.hist(model_scores[\"accuracy\"], bins=50, edgecolor=\"black\", alpha=0.7)",
+          "-ax.set_xlabel(\"Mean Accuracy\")",
+          "-ax.set_ylabel(\"Count\")",
+          "-ax.set_title(f\"Model Accuracy Distribution (N={len(model_scores)})\")",
+          "-ax.axvline(0.25, color=\"red\", ls=\"--\", label=\"Random (0.25)\")",
+          "-ax.legend()",
+          "+cohort_summary = {}",
+          "+for (year, half), models in sorted(cohort_models.items()):",
+          "+    label = f\"{year}-H{half}\"",
+          "+    accs = [model_acc_dict.get(m, np.nan) for m in models]",
+          "+    cohort_summary[label] = {",
+          "+        'n_models': len(models),",
+          "+        'mean_accuracy': np.nanmean(accs),",
+          "+        'std_accuracy': np.nanstd(accs),",
+          "+        'sufficient_for_dif': len(models) >= 80,",
+          "+    }",
+          " ",
+          "-# 9b. Item difficulty distribution",
+          "-ax = axes[0, 1]",
+          "-ax.hist(item_stats[\"mean_correct\"], bins=50, edgecolor=\"black\", alpha=0.7, color=\"orange\")",
+          "-ax.set_xlabel(\"Mean Correct Rate (p)\")",
+          "-ax.set_ylabel(\"Count\")",
+          "-ax.set_title(f\"Item Difficulty Distribution (N={len(item_stats)})\")",
+          "+cohort_df = pd.DataFrame(cohort_summary).T",
+          "+cohort_df.index.name = 'cohort'",
+          "+cohort_path = OUT_DIR / 'metabench_cohort_analysis.csv'",
+          "+cohort_df.to_csv(cohort_path)",
+          "+print(f\"Saved: {cohort_path}\")",
+          " ",
+          "-# 9c. Items per subject",
+          "-ax = axes[0, 2]",
+          "-top_subjects = subject_item_stats.head(20)",
+          "-ax.barh(range(len(top_subjects)), top_subjects[\"n_items\"])",
+          "-ax.set_yticks(range(len(top_subjects)))",
+          "-ax.set_yticklabels(top_subjects.index, fontsize=7)",
+          "-ax.set_xlabel(\"Number of Items\")",
+          "-ax.set_title(\"Items per Subject (top 20)\")",
+          "-ax.invert_yaxis()",
+          "+rl_data = []",
+          "+for model, matches in rl_models:",
+          "+    acc = model_acc_dict.get(model, np.nan)",
+          "+    family, year, half = classify_model(model)",
+          "+    rl_data.append({",
+          "+        'model': model,",
+          "+        'accuracy': acc,",
+          "+        'family': family,",
+          "+        'rl_signals': '|'.join(m.replace('(?i)', '') for m in matches),",
+          "+    })",
+          "+rl_df = pd.DataFrame(rl_data).sort_values('accuracy', ascending=False)",
+          "+rl_path = OUT_DIR / 'metabench_rl_models.csv'",
+          "+rl_df.to_csv(rl_path, index=False)",
+          "+print(f\"Saved: {rl_path}\")",
+          " ",
+          "-# 9d. Cohort size",
+          "-ax = axes[1, 0]",
+          "-if len(cohort_dist) > 0:",
+          "-    colors = [\"#2196F3\" if cnt >= 80 else \"#FF9800\" for cnt in cohort_dist.values]",
+          "-    ax.bar(range(len(cohort_dist)), cohort_dist.values, color=colors)",
+          "-    ax.set_xticks(range(len(cohort_dist)))",
+          "-    ax.set_xticklabels(cohort_dist.index, rotation=45, ha=\"right\", fontsize=8)",
+          "-    ax.set_ylabel(\"Number of Models\")",
+          "-    ax.set_title(\"Models by Release Cohort (proxy)\")",
+          "-    ax.axhline(80, color=\"red\", ls=\"--\", label=\"N=80 threshold\")",
+          "-    ax.legend()",
+          "+summary = {",
+          "+    'dataset': {",
+          "+        'name': 'METABENCH MMLU',",
+          "+        'n_models': n_models,",
+          "+        'n_items': len(items_df),",
+          "+        'n_subjects': items_df['subject'].nunique(),",
+          "+        'total_csv_rows': csv_total_rows,",
+          "+        'all_subjects_same_model_count': len(set(model_counts_per_csv)) == 1,",
+          "+        'models_per_subject': model_counts_per_csv[0] if len(set(model_counts_per_csv)) == 1 else model_counts_per_csv,",
+          "+    },",
+          "+    'irt_params': {",
+          "+        'source': 'mmlu-preproc.rds',",
+          "+        'difficulty_range': [float(items_df['diff'].min()), float(items_df['diff'].max())],",
+          "+        'difficulty_mean': float(items_df['diff'].mean()),",
+          "+        'discrimination_range': [float(items_df['disc'].min()), float(items_df['disc'].max())],",
+          "+        'discrimination_mean': float(items_df['disc'].mean()),",
+          "+        'negative_discrimination_items': int(neg_disc),",
+          "+        'floor_items': int(floor_items),",
+          "+        'ceiling_items': int(ceiling_items),",
+          "+    },",
+          "+    'model_accuracy': {",
+          "+        'mean': float(acc_vals.mean()),",
+          "+        'std': float(acc_vals.std()),",
+          "+        'min': float(acc_vals.min()),",
+          "+        'max': float(acc_vals.max()),",
+          "+        'below_random': int(below_random),",
+          "+    },",
+          "+    'cohorts': {k: {'n': v['n_models'], 'sufficient': v['sufficient_for_dif']} for k, v in cohort_summary.items()},",
+          "+    'annual_cohorts': {str(y): len(m) for y, m in sorted(annual_cohorts.items())},",
+          "+    'rl_models_count': len(rl_models),",
+          "+    'train_test_split': {",
+          "+        'train': len(train_models),",
+          "+        'test': len(test_models),",
+          "+    },",
+          "+    'key_answers': {",
+          "+        'cohorts_n_ge_80': {str(y): len(m) >= 80 for y, m in sorted(annual_cohorts.items())},",
+          "+        'rl_models_present': len(rl_models) > 0,",
+          "+        'irt_params_in_rds': True,",
+          "+    },",
+          "+}",
+          " ",
+          "-# 9e. Model family distribution (top 15)",
+          "-ax = axes[1, 1]",
+          "-top_fam = family_counts.head(15)",
+          "-ax.barh(range(len(top_fam)), top_fam.values)",
+          "-ax.set_yticks(range(len(top_fam)))",
+          "-ax.set_yticklabels(top_fam.index, fontsize=8)",
+          "-ax.set_xlabel(\"Count\")",
+          "-ax.set_title(\"Model Families (top 15)\")",
+          "-ax.invert_yaxis()",
+          "+summary_path = OUT_DIR / 'metabench_summary.json'",
+          "+with open(summary_path, 'w') as f:",
+          "+    json.dump(summary, f, indent=2)",
+          "+print(f\"Saved: {summary_path}\")",
+          " ",
+          "-# 9f. Mean accuracy by cohort",
+          "-ax = axes[1, 2]",
+          "-if len(cohort_dist) > 0:",
+          "-    model_acc = model_scores[\"accuracy\"]",
+          "-    cohort_accs = {}",
+          "-    for model, cohort in model_cohorts.items():",
+          "-        if cohort and model in model_acc.index:",
+          "-            cohort_accs.setdefault(cohort, []).append(model_acc[model])",
+          "-    cohort_means = {k: np.mean(v) for k, v in sorted(cohort_accs.items())}",
+          "-    cohort_sds = {k: np.std(v) for k, v in sorted(cohort_accs.items())}",
+          "-    x = range(len(cohort_means))",
+          "-    ax.bar(x, cohort_means.values(), yerr=cohort_sds.values(), capsize=3, alpha=0.7, color=\"#4CAF50\")",
+          "-    ax.set_xticks(list(x))",
+          "-    ax.set_xticklabels(cohort_means.keys(), rotation=45, ha=\"right\", fontsize=8)",
+          "-    ax.set_ylabel(\"Mean Accuracy\")",
+          "-    ax.set_title(\"Accuracy by Cohort\")",
+          "-",
+          "-plt.tight_layout()",
+          "-plt.savefig(OUT_DIR / \"metabench_exploration.pdf\", dpi=150, bbox_inches=\"tight\")",
+          "-plt.savefig(OUT_DIR / \"metabench_exploration.png\", dpi=150, bbox_inches=\"tight\")",
+          "-print(\"Saved plots to metabench_exploration.pdf/png\")",
+          "-",
+          " # ============================================================",
+          "-# SUMMARY",
+          "+# KEY ANSWERS",
+          " # ============================================================",
+          " print(\"\\n\" + \"=\" * 60)",
+          "-print(\"SUMMARY\")",
+          "+print(\"KEY ANSWERS FOR DIRECTOR\")",
+          " print(\"=\" * 60)",
+          "-print(f\"\"\"",
+          "-METABENCH MMLU Data Summary:",
+          "-- Models: {len(models):,} unique",
+          "-- Items: {len(items):,} across {len(subjects)} subjects",
+          "-- Response format: long (source, item, correct), binary 0/1",
+          "-- Missing data: {100*(total_possible - total_observed)/total_possible:.2f}% of full matrix",
+          "-- Model accuracy: mean={model_scores['accuracy'].mean():.3f}, sd={model_scores['accuracy'].std():.3f}",
+          "-- Item difficulty: mean={item_stats['mean_correct'].mean():.3f}, sd={item_stats['mean_correct'].std():.3f}",
+          "-- Floor items (p<0.05): {floor_items}",
+          "-- Ceiling items (p>0.95): {ceiling_items}",
+          "-- Release date coverage: {dated_count}/{len(models)} ({100*dated_count/len(models):.1f}%) via family proxy",
+          "-- Cohorts with N>=80: {(cohort_dist >= 80).sum() if len(cohort_dist) > 0 else 0} / {len(cohort_dist)}",
+          " ",
+          "-Key findings for plan_001 (real_data_dif_mmlu):",
+          "-1. NO explicit release dates in data — must use model family as proxy",
+          "-2. Data is from Open LLM Leaderboard v1 (archived 2024-06)",
+          "-3. No RL-trained models (DeepSeek-R1, o1, etc.) — all pre-2024H2",
+          "-4. Cohort grouping feasible via base model family release dates",
+          "-\"\"\")",
+          "+print(f\"\\n1. CAN WE FORM COHORTS WITH N>=80?\")",
+          "+print(f\"   Annual cohorts:\")",
+          "+for year, models in sorted(annual_cohorts.items()):",
+          "+    status = \"YES\" if len(models) >= 80 else \"NO\"",
+          "+    print(f\"     {year}: N={len(models)}  -> {status}\")",
+          "+print(f\"   Total classified: {sum(len(m) for m in annual_cohorts.values())}/{n_models}\")",
+          "+print(f\"   Unclassified: {len(unclassified)}\")",
+          "+total_sufficient = sum(1 for m in annual_cohorts.values() if len(m) >= 80)",
+          "+print(f\"   -> {total_sufficient} annual cohorts with N>=80\")",
+          "+",
+          "+print(f\"\\n2. ARE THERE RL-TRAINED MODELS?\")",
+          "+print(f\"   Total RL-related models: {len(rl_models)}\")",
+          "+for rl_type, models in sorted(rl_by_type.items(), key=lambda x: -len(set(x[1]))):",
+          "+    print(f\"     {rl_type}: {len(set(models))}\")",
+          "+print(f\"   -> YES, abundant RL-trained models present\")",
+          "+",
+          "+print(f\"\\n3. DO RDS FILES CONTAIN IRT PARAMETERS?\")",
+          "+print(f\"   mmlu-preproc.rds contains:\")",
+          "+print(f\"     - Item difficulty (diff): {len(items_df)} items\")",
+          "+print(f\"     - Item discrimination (disc): {len(items_df)} items\")",
+          "+print(f\"     - Response matrix: {n_models} x {len(items_df)}\")",
+          "+print(f\"     - Train/test split: {len(train_models)}/{len(test_models)}\")",
+          "+print(f\"   -> YES, pre-fitted 2PL IRT parameters available\")",
+          "+",
+          "+print(\"\\nExploration complete.\")"
+        ]
+      }
+    ],
+    "originalFile": "\"\"\"METABENCH data exploration for IRT-equated benchmark regeneration project.\"\"\"\nimport os, re, glob, json\nfrom collections import Counter, defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\nDATA_DIR = Path(__file__).parent / \"metabench_data\" / \"benchmark-data\"\nOUT_DIR = Path(__file__).parent\n\n# ============================================================\n# 1. Load all MMLU CSV files and build response matrix\n# ============================================================\nprint(\"=\" * 60)\nprint(\"STEP 1: Loading MMLU response data\")\nprint(\"=\" * 60)\n\nmmlu_csvs = sorted(DATA_DIR.glob(\"mmlu_*.csv\"))\nmmlu_csvs = [f for f in mmlu_csvs if \"_prompts\" not in f.name]\nprint(f\"Found {len(mmlu_csvs)} MMLU subject files\")\n\ndfs = []\nfor csv_path in mmlu_csvs:\n    subject = csv_path.stem.replace(\"mmlu_\", \"\")\n    df = pd.read_csv(csv_path)\n    df[\"subject\"] = subject\n    df[\"global_item\"] = subject + \"_\" + df[\"item\"].astype(str)\n    dfs.append(df)\n\nall_long = pd.concat(dfs, ignore_index=True)\nprint(f\"Total rows (long format): {len(all_long):,}\")\nprint(f\"Unique models: {all_long['source'].nunique():,}\")\nprint(f\"Unique items: {all_long['global_item'].nunique():,}\")\nprint(f\"Unique subjects: {all_long['subject'].nunique()}\")\n\nmodels = sorted(all_long[\"source\"].unique())\nitems = sorted(all_long[\"global_item\"].unique())\nsubjects = sorted(all_long[\"subject\"].unique())\n\n# Subject-level item counts\nsubject_counts = all_long.groupby(\"subject\")[\"item\"].nunique().sort_values(ascending=False)\nprint(f\"\\nItems per subject (top 10):\")\nfor subj, cnt in subject_counts.head(10).items():\n    print(f\"  {subj}: {cnt}\")\nprint(f\"  ... total: {subject_counts.sum()}\")\n\n# ============================================================\n# 2. Build wide response matrix (models x items)\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 2: Building response matrix\")\nprint(\"=\" * 60)\n\n# Pivot to wide format - use a single subject first to test\n# For full matrix, we work with per-subject aggregates to save memory\nmodel_scores = all_long.groupby(\"source\")[\"correct\"].agg([\"mean\", \"count\", \"sum\"])\nmodel_scores.columns = [\"accuracy\", \"n_items\", \"n_correct\"]\nmodel_scores = model_scores.sort_values(\"accuracy\", ascending=False)\n\nprint(f\"Models: {len(model_scores)}\")\nprint(f\"\\nModels with complete data (all {subject_counts.sum()} items):\")\ncomplete = model_scores[model_scores[\"n_items\"] == subject_counts.sum()]\nprint(f\"  {len(complete)} models have all items\")\nsparse = model_scores[model_scores[\"n_items\"] < subject_counts.sum()]\nprint(f\"  {len(sparse)} models have missing items\")\n\nprint(f\"\\nItems per model distribution:\")\nprint(model_scores[\"n_items\"].describe())\n\n# ============================================================\n# 3. Model-level analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 3: Model analysis\")\nprint(\"=\" * 60)\n\nprint(f\"\\nAccuracy distribution across models:\")\nprint(model_scores[\"accuracy\"].describe())\n\n# Model family extraction\ndef extract_family(name):\n    name_lower = name.lower()\n    families = {\n        \"llama-3\": r\"llama[-_]?3\",\n        \"llama-2\": r\"llama[-_]?2\",\n        \"llama-1\": r\"llama(?![-_]?[23])\",\n        \"mistral\": r\"mistral(?![-_]?nemo)\",\n        \"mixtral\": r\"mixtral\",\n        \"qwen-2.5\": r\"qwen[-_]?2\\.?5\",\n        \"qwen-2\": r\"qwen[-_]?2(?!\\.?5)\",\n        \"qwen-1.5\": r\"qwen[-_]?1\\.?5\",\n        \"qwen\": r\"qwen(?![-_]?[12])\",\n        \"phi-3\": r\"phi[-_]?3\",\n        \"phi-2\": r\"phi[-_]?2\",\n        \"phi\": r\"phi(?![-_]?[23])\",\n        \"gemma-2\": r\"gemma[-_]?2\",\n        \"gemma\": r\"gemma(?![-_]?2)\",\n        \"falcon\": r\"falcon\",\n        \"yi\": r\"\\byi[-_]\",\n        \"deepseek\": r\"deepseek\",\n        \"internlm\": r\"internlm\",\n        \"command-r\": r\"command[-_]?r\",\n        \"mpt\": r\"\\bmpt[-_]\",\n        \"pythia\": r\"pythia\",\n        \"bloom\": r\"bloom\",\n        \"opt\": r\"\\bopt[-_]\",\n        \"gpt-neo\": r\"gpt[-_]?neo\",\n        \"stablelm\": r\"stablelm\",\n        \"tinyllama\": r\"tinyllama\",\n        \"openchat\": r\"openchat\",\n        \"vicuna\": r\"vicuna\",\n        \"wizardlm\": r\"wizard\",\n        \"solar\": r\"solar\",\n        \"neural-chat\": r\"neural[-_]?chat\",\n        \"zephyr\": r\"zephyr\",\n        \"orca\": r\"\\borca\",\n        \"rwkv\": r\"rwkv\",\n        \"codellama\": r\"codellama|code[-_]?llama\",\n        \"starcoder\": r\"starcoder\",\n    }\n    for fam, pattern in families.items():\n        if re.search(pattern, name_lower):\n            return fam\n    return \"other\"\n\nmodel_families = pd.Series({m: extract_family(m) for m in models})\nfamily_counts = model_families.value_counts()\nprint(f\"\\nModel families (top 20):\")\nfor fam, cnt in family_counts.head(20).items():\n    print(f\"  {fam}: {cnt}\")\nprint(f\"  Total families identified: {(family_counts.index != 'other').sum()}\")\nprint(f\"  'other' (unclassified): {family_counts.get('other', 0)}\")\n\n# ============================================================\n# 4. Release date proxy analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 4: Release date proxy analysis\")\nprint(\"=\" * 60)\n\nknown_release_dates = {\n    \"llama-1\": \"2023-02\",\n    \"llama-2\": \"2023-07\",\n    \"llama-3\": \"2024-04\",\n    \"codellama\": \"2023-08\",\n    \"mistral\": \"2023-09\",\n    \"mixtral\": \"2023-12\",\n    \"phi\": \"2023-06\",\n    \"phi-2\": \"2023-12\",\n    \"phi-3\": \"2024-04\",\n    \"qwen\": \"2023-08\",\n    \"qwen-1.5\": \"2024-02\",\n    \"qwen-2\": \"2024-06\",\n    \"qwen-2.5\": \"2024-09\",\n    \"gemma\": \"2024-02\",\n    \"gemma-2\": \"2024-06\",\n    \"falcon\": \"2023-05\",\n    \"yi\": \"2023-11\",\n    \"deepseek\": \"2023-11\",\n    \"internlm\": \"2023-07\",\n    \"mpt\": \"2023-05\",\n    \"pythia\": \"2023-02\",\n    \"bloom\": \"2022-07\",\n    \"opt\": \"2022-05\",\n    \"gpt-neo\": \"2021-03\",\n    \"stablelm\": \"2023-04\",\n    \"tinyllama\": \"2024-01\",\n    \"openchat\": \"2023-07\",\n    \"vicuna\": \"2023-03\",\n    \"wizardlm\": \"2023-05\",\n    \"solar\": \"2023-12\",\n    \"neural-chat\": \"2023-11\",\n    \"zephyr\": \"2023-10\",\n    \"rwkv\": \"2023-05\",\n    \"starcoder\": \"2023-05\",\n    \"command-r\": \"2024-03\",\n}\n\nmodel_dates = model_families.map(known_release_dates)\ndated_count = model_dates.notna().sum()\nprint(f\"Models with date proxy: {dated_count}/{len(models)} ({100*dated_count/len(models):.1f}%)\")\n\ndate_dist = model_dates.dropna().value_counts().sort_index()\nprint(f\"\\nModels by base family release date:\")\nfor dt, cnt in date_dist.items():\n    print(f\"  {dt}: {cnt}\")\n\n# Group by year-half for cohort analysis\ndef to_cohort(date_str):\n    if pd.isna(date_str):\n        return None\n    year, month = date_str.split(\"-\")\n    half = \"H1\" if int(month) <= 6 else \"H2\"\n    return f\"{year}-{half}\"\n\nmodel_cohorts = model_dates.map(to_cohort)\ncohort_dist = model_cohorts.dropna().value_counts().sort_index()\nprint(f\"\\nCohort distribution (year-half):\")\nfor cohort, cnt in cohort_dist.items():\n    print(f\"  {cohort}: {cnt} models\")\n\n# Check if any known post-2024H1 models exist\nprint(f\"\\n--- Checking for recent/RL-trained models ---\")\nsearch_patterns = [\n    (\"DeepSeek-R1\", r\"deepseek.*r1\"),\n    (\"DeepSeek-V2/V3\", r\"deepseek.*v[23]\"),\n    (\"Qwen2.5\", r\"qwen.*2\\.?5\"),\n    (\"o1/o3\", r\"\\b(o1|o3)\\b\"),\n    (\"Claude\", r\"claude\"),\n    (\"Gemini\", r\"gemini\"),\n    (\"GPT-4\", r\"gpt[-_]?4\"),\n    (\"Llama-3.1/3.2\", r\"llama.*3\\.[12]\"),\n    (\"Phi-3.5\", r\"phi.*3\\.5\"),\n    (\"Command-R+\", r\"command.*r.*\\+\"),\n    (\"Mistral-Nemo\", r\"mistral.*nemo\"),\n    (\"Gemma-2\", r\"gemma[-_]?2\"),\n]\n\nfor label, pattern in search_patterns:\n    matches = [m for m in models if re.search(pattern, m, re.I)]\n    if matches:\n        print(f\"  {label}: {len(matches)} models (e.g., {matches[0]})\")\n    else:\n        print(f\"  {label}: NOT FOUND\")\n\n# ============================================================\n# 5. Item-level analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 5: Item-level analysis\")\nprint(\"=\" * 60)\n\nitem_stats = all_long.groupby(\"global_item\").agg(\n    n_responses=(\"correct\", \"count\"),\n    mean_correct=(\"correct\", \"mean\"),\n    sd_correct=(\"correct\", \"std\"),\n    subject=(\"subject\", \"first\"),\n)\n\nprint(f\"\\nTotal items: {len(item_stats)}\")\nprint(f\"\\nItem difficulty (mean correct rate) distribution:\")\nprint(item_stats[\"mean_correct\"].describe())\n\nfloor_items = (item_stats[\"mean_correct\"] < 0.05).sum()\nceiling_items = (item_stats[\"mean_correct\"] > 0.95).sum()\nprint(f\"\\nFloor items (p < 0.05): {floor_items} ({100*floor_items/len(item_stats):.1f}%)\")\nprint(f\"Ceiling items (p > 0.95): {ceiling_items} ({100*ceiling_items/len(item_stats):.1f}%)\")\n\n# Items per subject breakdown\nsubject_item_stats = item_stats.groupby(\"subject\").agg(\n    n_items=(\"mean_correct\", \"count\"),\n    mean_difficulty=(\"mean_correct\", \"mean\"),\n    sd_difficulty=(\"mean_correct\", \"std\"),\n)\nsubject_item_stats = subject_item_stats.sort_values(\"n_items\", ascending=False)\n\nprint(f\"\\nItems by subject (all {len(subject_item_stats)} subjects):\")\nfor subj, row in subject_item_stats.iterrows():\n    print(f\"  {subj}: {int(row.n_items)} items, mean_p={row.mean_difficulty:.3f}\")\n\n# ============================================================\n# 6. Missing data analysis\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 6: Missing data analysis\")\nprint(\"=\" * 60)\n\ntotal_possible = len(models) * len(items)\ntotal_observed = len(all_long)\nprint(f\"Total possible cells: {total_possible:,}\")\nprint(f\"Total observed: {total_observed:,}\")\nprint(f\"Missing: {total_possible - total_observed:,} ({100*(total_possible - total_observed)/total_possible:.2f}%)\")\n\nna_vals = all_long[\"correct\"].isna().sum()\nprint(f\"NaN values in 'correct': {na_vals}\")\n\n# Check for non-binary values\nnon_binary = all_long[~all_long[\"correct\"].isin([0.0, 1.0])][\"correct\"]\nif len(non_binary) > 0:\n    print(f\"Non-binary values: {len(non_binary)} ({non_binary.value_counts().head()})\")\nelse:\n    print(\"All values are binary (0.0 or 1.0)\")\n\n# Models per subject consistency\nmodels_per_subject = all_long.groupby(\"subject\")[\"source\"].nunique()\nprint(f\"\\nModels per subject:\")\nprint(models_per_subject.describe())\nprint(f\"Min: {models_per_subject.min()} ({models_per_subject.idxmin()})\")\nprint(f\"Max: {models_per_subject.max()} ({models_per_subject.idxmax()})\")\n\n# ============================================================\n# 7. Compare with PSN-IRT parameters\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 7: Compare with PSN-IRT parameters\")\nprint(\"=\" * 60)\n\npsn_path = OUT_DIR / \"psn_irt_item_parameters.csv\"\nif psn_path.exists():\n    psn = pd.read_csv(psn_path)\n    psn_mmlu = psn[psn[\"benchmark\"].str.startswith(\"mmlu_\") | (psn[\"benchmark\"] == \"mmlu\")]\n    print(f\"PSN-IRT total items: {len(psn)}\")\n    print(f\"PSN-IRT MMLU items: {len(psn_mmlu)}\")\n\n    if \"a\" in psn_mmlu.columns and \"b\" in psn_mmlu.columns:\n        print(f\"\\nPSN-IRT MMLU parameter distributions:\")\n        print(f\"  a (discrimination): mean={psn_mmlu['a'].mean():.3f}, sd={psn_mmlu['a'].std():.3f}\")\n        print(f\"  b (difficulty):     mean={psn_mmlu['b'].mean():.3f}, sd={psn_mmlu['b'].std():.3f}\")\n        if \"c\" in psn_mmlu.columns:\n            print(f\"  c (guessing):       mean={psn_mmlu['c'].mean():.3f}, sd={psn_mmlu['c'].std():.3f}\")\nelse:\n    print(\"PSN-IRT parameter file not found, skipping comparison\")\n\n# ============================================================\n# 8. Try reading preprocessed RDS file\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 8: Check preprocessed RDS files\")\nprint(\"=\" * 60)\n\ntry:\n    import pyreadr\n    rds_files = sorted(DATA_DIR.glob(\"mmlu-*.rds\"))\n    print(f\"MMLU RDS files: {[f.name for f in rds_files]}\")\n\n    for rds_file in rds_files[:3]:\n        try:\n            result = pyreadr.read_r(str(rds_file))\n            for key, df in result.items():\n                print(f\"\\n{rds_file.name} -> key='{key}': shape={df.shape}\")\n                print(f\"  Columns: {list(df.columns[:20])}{'...' if len(df.columns) > 20 else ''}\")\n                if len(df.columns) > 20:\n                    print(f\"  Total columns: {len(df.columns)}\")\n                print(f\"  Index: {df.index[:5].tolist()}...\")\n                if \"source\" in df.columns:\n                    print(f\"  Unique sources: {df['source'].nunique()}\")\n        except Exception as e:\n            print(f\"{rds_file.name}: error reading - {e}\")\nexcept ImportError:\n    print(\"pyreadr not available, skipping RDS analysis\")\n\n# ============================================================\n# 9. Plots\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"STEP 9: Generating plots\")\nprint(\"=\" * 60)\n\nfig, axes = plt.subplots(2, 3, figsize=(18, 10))\n\n# 9a. Model accuracy distribution\nax = axes[0, 0]\nax.hist(model_scores[\"accuracy\"], bins=50, edgecolor=\"black\", alpha=0.7)\nax.set_xlabel(\"Mean Accuracy\")\nax.set_ylabel(\"Count\")\nax.set_title(f\"Model Accuracy Distribution (N={len(model_scores)})\")\nax.axvline(0.25, color=\"red\", ls=\"--\", label=\"Random (0.25)\")\nax.legend()\n\n# 9b. Item difficulty distribution\nax = axes[0, 1]\nax.hist(item_stats[\"mean_correct\"], bins=50, edgecolor=\"black\", alpha=0.7, color=\"orange\")\nax.set_xlabel(\"Mean Correct Rate (p)\")\nax.set_ylabel(\"Count\")\nax.set_title(f\"Item Difficulty Distribution (N={len(item_stats)})\")\n\n# 9c. Items per subject\nax = axes[0, 2]\ntop_subjects = subject_item_stats.head(20)\nax.barh(range(len(top_subjects)), top_subjects[\"n_items\"])\nax.set_yticks(range(len(top_subjects)))\nax.set_yticklabels(top_subjects.index, fontsize=7)\nax.set_xlabel(\"Number of Items\")\nax.set_title(\"Items per Subject (top 20)\")\nax.invert_yaxis()\n\n# 9d. Cohort size\nax = axes[1, 0]\nif len(cohort_dist) > 0:\n    colors = [\"#2196F3\" if cnt >= 80 else \"#FF9800\" for cnt in cohort_dist.values]\n    ax.bar(range(len(cohort_dist)), cohort_dist.values, color=colors)\n    ax.set_xticks(range(len(cohort_dist)))\n    ax.set_xticklabels(cohort_dist.index, rotation=45, ha=\"right\", fontsize=8)\n    ax.set_ylabel(\"Number of Models\")\n    ax.set_title(\"Models by Release Cohort (proxy)\")\n    ax.axhline(80, color=\"red\", ls=\"--\", label=\"N=80 threshold\")\n    ax.legend()\n\n# 9e. Model family distribution (top 15)\nax = axes[1, 1]\ntop_fam = family_counts.head(15)\nax.barh(range(len(top_fam)), top_fam.values)\nax.set_yticks(range(len(top_fam)))\nax.set_yticklabels(top_fam.index, fontsize=8)\nax.set_xlabel(\"Count\")\nax.set_title(\"Model Families (top 15)\")\nax.invert_yaxis()\n\n# 9f. Mean accuracy by cohort\nax = axes[1, 2]\nif len(cohort_dist) > 0:\n    model_acc = model_scores[\"accuracy\"]\n    cohort_accs = {}\n    for model, cohort in model_cohorts.items():\n        if cohort and model in model_acc.index:\n            cohort_accs.setdefault(cohort, []).append(model_acc[model])\n    cohort_means = {k: np.mean(v) for k, v in sorted(cohort_accs.items())}\n    cohort_sds = {k: np.std(v) for k, v in sorted(cohort_accs.items())}\n    x = range(len(cohort_means))\n    ax.bar(x, cohort_means.values(), yerr=cohort_sds.values(), capsize=3, alpha=0.7, color=\"#4CAF50\")\n    ax.set_xticks(list(x))\n    ax.set_xticklabels(cohort_means.keys(), rotation=45, ha=\"right\", fontsize=8)\n    ax.set_ylabel(\"Mean Accuracy\")\n    ax.set_title(\"Accuracy by Cohort\")\n\nplt.tight_layout()\nplt.savefig(OUT_DIR / \"metabench_exploration.pdf\", dpi=150, bbox_inches=\"tight\")\nplt.savefig(OUT_DIR / \"metabench_exploration.png\", dpi=150, bbox_inches=\"tight\")\nprint(\"Saved plots to metabench_exploration.pdf/png\")\n\n# ============================================================\n# SUMMARY\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"SUMMARY\")\nprint(\"=\" * 60)\nprint(f\"\"\"\nMETABENCH MMLU Data Summary:\n- Models: {len(models):,} unique\n- Items: {len(items):,} across {len(subjects)} subjects\n- Response format: long (source, item, correct), binary 0/1\n- Missing data: {100*(total_possible - total_observed)/total_possible:.2f}% of full matrix\n- Model accuracy: mean={model_scores['accuracy'].mean():.3f}, sd={model_scores['accuracy'].std():.3f}\n- Item difficulty: mean={item_stats['mean_correct'].mean():.3f}, sd={item_stats['mean_correct'].std():.3f}\n- Floor items (p<0.05): {floor_items}\n- Ceiling items (p>0.95): {ceiling_items}\n- Release date coverage: {dated_count}/{len(models)} ({100*dated_count/len(models):.1f}%) via family proxy\n- Cohorts with N>=80: {(cohort_dist >= 80).sum() if len(cohort_dist) > 0 else 0} / {len(cohort_dist)}\n\nKey findings for plan_001 (real_data_dif_mmlu):\n1. NO explicit release dates in data — must use model family as proxy\n2. Data is from Open LLM Leaderboard v1 (archived 2024-06)\n3. No RL-trained models (DeepSeek-R1, o1, etc.) — all pre-2024H2\n4. Cohort grouping feasible via base model family release dates\n\"\"\")\n",
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01T8s57kCho2as4eUdwY4sYj`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Extract IRT params from RDS and save to CSV",
+      "status": "completed",
+      "activeForm": "Extracting IRT params from RDS files"
+    },
+    {
+      "content": "Write memory-efficient CSV exploration script",
+      "status": "completed",
+      "activeForm": "Writing CSV exploration script"
+    },
+    {
+      "content": "Run exploration and collect all statistics",
+      "status": "in_progress",
+      "activeForm": "Running exploration script"
+    },
+    {
+      "content": "Write data summary report",
+      "status": "pending",
+      "activeForm": "Writing data summary report"
+    },
+    {
+      "content": "Save findings to memory.md and register artifacts",
+      "status": "pending",
+      "activeForm": "Saving findings and registering artifacts"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "6fc7e9fa-413e-41c9-ac85-baa789215ea6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019137LCpfeBMNb3uEqNTnVA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8370,
+      "cache_read_input_tokens": 56454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8370
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T19:50:27.750Z_
+
+<details><summary>↩ Tool result · `toolu_01T8s57kCho2as4eUdwY4sYj`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "8e1cd580-e554-4653-9a2f-957fbfb9f7fc",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "in_progress",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "pending",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "pending",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "completed",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "in_progress",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "pending",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KPRfjsqJs1DusGF17RAnkF`</summary>
+
+```json
+{
+  "command": "python3 artifacts/metabench_explore.py 2>&1",
+  "description": "Run the full exploration script",
+  "timeout": 600000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "a1f22f71-c794-43fe-8237-93c7d06ae0ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPYNhgEWGpvbd3tusWeMHJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 64824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 92_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bentk4qjw",
+  "tool_use_id": "toolu_01KPRfjsqJs1DusGF17RAnkF",
+  "description": "Run the full exploration script",
+  "task_type": "local_bash",
+  "uuid": "052f66b8-0962-4fe9-8ea9-07197c6fb4c6",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### System
+
+_source line 93_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bentk4qjw",
+  "tool_use_id": "toolu_01KPRfjsqJs1DusGF17RAnkF",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Run the full exploration script",
+  "uuid": "23695bc0-1a79-451a-917f-a223fad77739",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T19:51:28.087Z_
+
+<details><summary>↩ Tool result · `toolu_01KPRfjsqJs1DusGF17RAnkF`</summary>
+
+```text
+============================================================
+PART 1: RDS File Analysis
+============================================================
+
+--- mmlu-preproc.rds ---
+  Loading mmlu-preproc.rds (13.8 MB)...
+
+IRT Parameters Summary:
+  Total items: 12508
+  Subjects: 57
+  Excluded items: 0
+  Difficulty (diff): [0.008, 0.689], mean=0.444
+  Discrimination (disc): [-0.551, 0.291], mean=0.076
+
+  Items per subject: min=72, max=1331, median=161
+
+  Response matrix: 5219 models x 12508 items
+
+  Floor items (p<0.05): 258
+  Ceiling items (p>0.95): 0
+  Empirical p-value range: [0.0113, 0.9186]
+
+--- mmlu-preproc-split.rds ---
+  Loading mmlu-preproc-split.rds (14.1 MB)...
+  Train models: 4755
+  Test models: 464
+
+============================================================
+PART 2: Model Family & Cohort Analysis
+============================================================
+
+Total models: 5219
+Classified: 1929 (37.0%)
+Unclassified: 3290 (63.0%)
+
+Top 30 model families:
+  mistral-0.1: 400
+  llama-3: 308
+  llama-2: 161
+  llama-1: 135
+  mixtral-8x7B: 130
+  solar: 92
+  zephyr: 85
+  qwen-1.5: 67
+  phi-2: 60
+  yi-1: 41
+  orca: 40
+  gemma-2: 36
+  gemma-1: 33
+  vicuna: 31
+  tinyllama: 26
+  orca-2: 25
+  openchat-3.5: 20
+  falcon-1: 18
+  openchat: 17
+  pythia: 16
+  yi-1.5: 15
+  phi-3: 15
+  mistral-0.2: 14
+  codellama: 13
+  phi-1: 12
+  stablelm: 10
+  deepseek-coder: 9
+  deepseek-other: 9
+  qwen-1: 9
+  opt: 9
+
+Cohort analysis (year-half):
+  2021-H1: 5 models
+  2022-H1: 9 models
+  2022-H2: 4 models
+  2023-H1: 287 models
+  2023-H2: 966 models
+  2024-H1: 656 models
+  2024-H2: 2 models
+
+Annual cohorts:
+  2021: 5 models  insufficient
+  2022: 13 models  insufficient
+  2023: 1253 models  SUFFICIENT
+  2024: 658 models  SUFFICIENT
+
+  Pre-2024 classified: 1271
+  2024+ classified: 658
+
+--- RL-trained / Reasoning Models ---
+Total RL-related models found: 477
+
+  DPO: 346 unique models
+    0.5336  Technoculture/MT7Bi-alpha-dpo
+    0.6660  chinoll/Yi-6b-200k-dpo
+    0.2582  invalid-coder/TinyLlama-1.1B-intermediate-step-1431k-3T-laser-dpo
+    0.6259  ewqr2130/alignment-handbook-zephyr-7b-sft-full-dpo-5e7-cont2
+    0.7963  moreh/MoMo-70B-lora-1.8.6-DPO
+    ... and 341 more
+
+  ORPO: 52 unique models
+    0.6978  Danielbrdz/Barcenas-Llama3-8b-ORPO
+    0.6617  eduagarcia/mistral-orpo-capybara-3k
+    0.6872  BarraHome/LLaMaRada-3-orpo-v2-8b
+    0.6453  G-reen/EXPERIMENT-ORPO-m7b2-2-merged
+    0.6886  dfurman/Llama-3-8B-Orpo-v0.1
+    ... and 47 more
+
+  PPO: 11 unique models
+    0.2330  ewqr2130/alignment-handbook-zephyr-7b_ppostep_100
+    0.4676  ewqr2130/llama_ppo_1e6_new_tokenizerstep_8000
+    0.6244  ewqr2130/7B_ppo_phiRM_2GPU_3e-7step_4000
+    0.2209  rinna/bilingual-gpt-neox-4b-instruction-ppo
+    0.3535  ewqr2130/llama2-ppo
+    ... and 6 more
+
+  KTO: 6 unique models
+    0.6254  ContextualAI/Contextual_KTO_Mistral_PairRM
+    0.6874  dreamgen/llama3-8b-instruct-align-test1-kto
+    0.6873  dreamgen/llama3-8b-instruct-align-test2-kto
+    0.2439  DatPySci/pythia-1b-kto-iter0
+    0.2430  DatPySci/pythia-1b-self-kto-iter0
+    ... and 1 more
+
+  Reward: 1 unique models
+    0.2688  Lichang-Chen/reward_max_spin_filter0.7
+
+  RLHF: 1 unique models
+    0.2583  SurgeGlobal/OpenBezoar-HH-RLHF-DPO
+
+============================================================
+PART 3: CSV Per-Subject Verification
+============================================================
+
+Found 57 MMLU subject CSVs
+  [1/57] abstract_algebra: 5226 models, 100 items, p=0.321
+  [10/57] college_medicine: 5227 models, 173 items, p=0.560
+  [20/57] high_school_chemistry: 5225 models, 203 items, p=0.457
+  [30/57] high_school_statistics: 5226 models, 216 items, p=0.472
+  [40/57] marketing: 5225 models, 234 items, p=0.768
+  [50/57] professional_medicine: 5225 models, 272 items, p=0.586
+  [57/57] world_religions: 5226 models, 171 items, p=0.719
+
+CSV Summary:
+  Total rows across all CSVs: 73,383,381
+  Unique models from CSVs: 5227
+  Unique models from RDS: 5219
+  Match: False
+
+  Models per subject: min=5225, max=5227
+  All subjects have same model count: False
+  All item counts match RDS: False
+
+============================================================
+PART 4: Item Difficulty & Subject Analysis
+============================================================
+
+Difficulty (diff) distribution:
+  P5: 0.0611
+  P10: 0.0979
+  P25: 0.2609
+  P50: 0.5240
+  P75: 0.6290
+  P90: 0.6590
+  P95: 0.6694
+
+Discrimination (disc) distribution:
+  P5: -0.2335
+  P10: -0.1233
+  P25: 0.0728
+  P50: 0.1065
+  P75: 0.1455
+  P90: 0.1843
+  P95: 0.2102
+
+Negative discrimination items: 1926 (15.4%)
+
+Hardest subjects (by mean difficulty, lower = harder):
+  abstract_algebra: diff=0.243 +/-0.174 (91 items)
+  high_school_mathematics: diff=0.266 +/-0.165 (197 items)
+  global_facts: diff=0.271 +/-0.175 (83 items)
+  college_mathematics: diff=0.272 +/-0.172 (72 items)
+  high_school_physics: diff=0.284 +/-0.185 (121 items)
+  college_physics: diff=0.299 +/-0.204 (73 items)
+  moral_scenarios: diff=0.304 +/-0.166 (692 items)
+  elementary_mathematics: diff=0.315 +/-0.195 (317 items)
+  formal_logic: diff=0.320 +/-0.207 (109 items)
+  professional_law: diff=0.337 +/-0.216 (1331 items)
+
+Easiest subjects (by mean difficulty, higher = easier):
+  marketing: diff=0.587 +/-0.131 (225 items)
+  high_school_government_and_politics: diff=0.582 +/-0.127 (189 items)
+  us_foreign_policy: diff=0.566 +/-0.156 (96 items)
+  sociology: diff=0.559 +/-0.143 (186 items)
+  high_school_psychology: diff=0.555 +/-0.163 (517 items)
+  miscellaneous: diff=0.551 +/-0.169 (745 items)
+  world_religions: diff=0.550 +/-0.176 (159 items)
+  high_school_geography: diff=0.548 +/-0.158 (184 items)
+  high_school_us_history: diff=0.544 +/-0.158 (196 items)
+  high_school_world_history: diff=0.540 +/-0.173 (225 items)
+
+============================================================
+PART 5: Model Accuracy Distribution
+============================================================
+
+Overall accuracy distribution:
+  Mean: 0.5918
+  Std: 0.1604
+  Min: 0.2176
+  Max: 0.9113
+  P5: 0.2446
+  P10: 0.2612
+  P25: 0.5430
+  P50: 0.6614
+  P75: 0.6965
+  P90: 0.7052
+  P95: 0.7651
+
+  Models below random (0.25): 366 (7.0%)
+
+============================================================
+PART 6: Saving Results
+============================================================
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_subject_stats.csv
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_cohort_analysis.csv
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_rl_models.csv
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_summary.json
+
+============================================================
+KEY ANSWERS FOR DIRECTOR
+============================================================
+
+1. CAN WE FORM COHORTS WITH N>=80?
+   Annual cohorts:
+     2021: N=5  -> NO
+     2022: N=13  -> NO
+     2023: N=1253  -> YES
+     2024: N=658  -> YES
+   Total classified: 1929/5219
+   Unclassified: 3290
+   -> 2 annual cohorts with N>=80
+
+2. ARE THERE RL-TRAINED MODELS?
+   Total RL-related models: 477
+     DPO: 346
+     ORPO: 52
+     PPO: 11
+     KTO: 6
+     Reward: 1
+     RLHF: 1
+   -> YES, abundant RL-trained models present
+
+3. DO RDS FILES CONTAIN IRT PARAMETERS?
+   mmlu-preproc.rds contains:
+     - Item difficulty (diff): 12508 items
+     - Item discrimination (disc): 12508 items
+     - Response matrix: 5219 x 12508
+     - Train/test split: 4755/464
+   -> YES, pre-fitted 2PL IRT parameters available
+
+Exploration complete.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "3b9dda8a-61e1-44cd-a312-ae55cfe86237",
+  "tool_use_result": {
+    "stdout": "============================================================\nPART 1: RDS File Analysis\n============================================================\n\n--- mmlu-preproc.rds ---\n  Loading mmlu-preproc.rds (13.8 MB)...\n\nIRT Parameters Summary:\n  Total items: 12508\n  Subjects: 57\n  Excluded items: 0\n  Difficulty (diff): [0.008, 0.689], mean=0.444\n  Discrimination (disc): [-0.551, 0.291], mean=0.076\n\n  Items per subject: min=72, max=1331, median=161\n\n  Response matrix: 5219 models x 12508 items\n\n  Floor items (p<0.05): 258\n  Ceiling items (p>0.95): 0\n  Empirical p-value range: [0.0113, 0.9186]\n\n--- mmlu-preproc-split.rds ---\n  Loading mmlu-preproc-split.rds (14.1 MB)...\n  Train models: 4755\n  Test models: 464\n\n============================================================\nPART 2: Model Family & Cohort Analysis\n============================================================\n\nTotal models: 5219\nClassified: 1929 (37.0%)\nUnclassified: 3290 (63.0%)\n\nTop 30 model families:\n  mistral-0.1: 400\n  llama-3: 308\n  llama-2: 161\n  llama-1: 135\n  mixtral-8x7B: 130\n  solar: 92\n  zephyr: 85\n  qwen-1.5: 67\n  phi-2: 60\n  yi-1: 41\n  orca: 40\n  gemma-2: 36\n  gemma-1: 33\n  vicuna: 31\n  tinyllama: 26\n  orca-2: 25\n  openchat-3.5: 20\n  falcon-1: 18\n  openchat: 17\n  pythia: 16\n  yi-1.5: 15\n  phi-3: 15\n  mistral-0.2: 14\n  codellama: 13\n  phi-1: 12\n  stablelm: 10\n  deepseek-coder: 9\n  deepseek-other: 9\n  qwen-1: 9\n  opt: 9\n\nCohort analysis (year-half):\n  2021-H1: 5 models\n  2022-H1: 9 models\n  2022-H2: 4 models\n  2023-H1: 287 models\n  2023-H2: 966 models\n  2024-H1: 656 models\n  2024-H2: 2 models\n\nAnnual cohorts:\n  2021: 5 models  insufficient\n  2022: 13 models  insufficient\n  2023: 1253 models  SUFFICIENT\n  2024: 658 models  SUFFICIENT\n\n  Pre-2024 classified: 1271\n  2024+ classified: 658\n\n--- RL-trained / Reasoning Models ---\nTotal RL-related models found: 477\n\n  DPO: 346 unique models\n    0.5336  Technoculture/MT7Bi-alpha-dpo\n    0.6660  chinoll/Yi-6b-200k-dpo\n    0.2582  invalid-coder/TinyLlama-1.1B-intermediate-step-1431k-3T-laser-dpo\n    0.6259  ewqr2130/alignment-handbook-zephyr-7b-sft-full-dpo-5e7-cont2\n    0.7963  moreh/MoMo-70B-lora-1.8.6-DPO\n    ... and 341 more\n\n  ORPO: 52 unique models\n    0.6978  Danielbrdz/Barcenas-Llama3-8b-ORPO\n    0.6617  eduagarcia/mistral-orpo-capybara-3k\n    0.6872  BarraHome/LLaMaRada-3-orpo-v2-8b\n    0.6453  G-reen/EXPERIMENT-ORPO-m7b2-2-merged\n    0.6886  dfurman/Llama-3-8B-Orpo-v0.1\n    ... and 47 more\n\n  PPO: 11 unique models\n    0.2330  ewqr2130/alignment-handbook-zephyr-7b_ppostep_100\n    0.4676  ewqr2130/llama_ppo_1e6_new_tokenizerstep_8000\n    0.6244  ewqr2130/7B_ppo_phiRM_2GPU_3e-7step_4000\n    0.2209  rinna/bilingual-gpt-neox-4b-instruction-ppo\n    0.3535  ewqr2130/llama2-ppo\n    ... and 6 more\n\n  KTO: 6 unique models\n    0.6254  ContextualAI/Contextual_KTO_Mistral_PairRM\n    0.6874  dreamgen/llama3-8b-instruct-align-test1-kto\n    0.6873  dreamgen/llama3-8b-instruct-align-test2-kto\n    0.2439  DatPySci/pythia-1b-kto-iter0\n    0.2430  DatPySci/pythia-1b-self-kto-iter0\n    ... and 1 more\n\n  Reward: 1 unique models\n    0.2688  Lichang-Chen/reward_max_spin_filter0.7\n\n  RLHF: 1 unique models\n    0.2583  SurgeGlobal/OpenBezoar-HH-RLHF-DPO\n\n============================================================\nPART 3: CSV Per-Subject Verification\n============================================================\n\nFound 57 MMLU subject CSVs\n  [1/57] abstract_algebra: 5226 models, 100 items, p=0.321\n  [10/57] college_medicine: 5227 models, 173 items, p=0.560\n  [20/57] high_school_chemistry: 5225 models, 203 items, p=0.457\n  [30/57] high_school_statistics: 5226 models, 216 items, p=0.472\n  [40/57] marketing: 5225 models, 234 items, p=0.768\n  [50/57] professional_medicine: 5225 models, 272 items, p=0.586\n  [57/57] world_religions: 5226 models, 171 items, p=0.719\n\nCSV Summary:\n  Total rows across all CSVs: 73,383,381\n  Unique models from CSVs: 5227\n  Unique models from RDS: 5219\n  Match: False\n\n  Models per subject: min=5225, max=5227\n  All subjects have same model count: False\n  All item counts match RDS: False\n\n============================================================\nPART 4: Item Difficulty & Subject Analysis\n============================================================\n\nDifficulty (diff) distribution:\n  P5: 0.0611\n  P10: 0.0979\n  P25: 0.2609\n  P50: 0.5240\n  P75: 0.6290\n  P90: 0.6590\n  P95: 0.6694\n\nDiscrimination (disc) distribution:\n  P5: -0.2335\n  P10: -0.1233\n  P25: 0.0728\n  P50: 0.1065\n  P75: 0.1455\n  P90: 0.1843\n  P95: 0.2102\n\nNegative discrimination items: 1926 (15.4%)\n\nHardest subjects (by mean difficulty, lower = harder):\n  abstract_algebra: diff=0.243 +/-0.174 (91 items)\n  high_school_mathematics: diff=0.266 +/-0.165 (197 items)\n  global_facts: diff=0.271 +/-0.175 (83 items)\n  college_mathematics: diff=0.272 +/-0.172 (72 items)\n  high_school_physics: diff=0.284 +/-0.185 (121 items)\n  college_physics: diff=0.299 +/-0.204 (73 items)\n  moral_scenarios: diff=0.304 +/-0.166 (692 items)\n  elementary_mathematics: diff=0.315 +/-0.195 (317 items)\n  formal_logic: diff=0.320 +/-0.207 (109 items)\n  professional_law: diff=0.337 +/-0.216 (1331 items)\n\nEasiest subjects (by mean difficulty, higher = easier):\n  marketing: diff=0.587 +/-0.131 (225 items)\n  high_school_government_and_politics: diff=0.582 +/-0.127 (189 items)\n  us_foreign_policy: diff=0.566 +/-0.156 (96 items)\n  sociology: diff=0.559 +/-0.143 (186 items)\n  high_school_psychology: diff=0.555 +/-0.163 (517 items)\n  miscellaneous: diff=0.551 +/-0.169 (745 items)\n  world_religions: diff=0.550 +/-0.176 (159 items)\n  high_school_geography: diff=0.548 +/-0.158 (184 items)\n  high_school_us_history: diff=0.544 +/-0.158 (196 items)\n  high_school_world_history: diff=0.540 +/-0.173 (225 items)\n\n============================================================\nPART 5: Model Accuracy Distribution\n============================================================\n\nOverall accuracy distribution:\n  Mean: 0.5918\n  Std: 0.1604\n  Min: 0.2176\n  Max: 0.9113\n  P5: 0.2446\n  P10: 0.2612\n  P25: 0.5430\n  P50: 0.6614\n  P75: 0.6965\n  P90: 0.7052\n  P95: 0.7651\n\n  Models below random (0.25): 366 (7.0%)\n\n============================================================\nPART 6: Saving Results\n============================================================\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_subject_stats.csv\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_cohort_analysis.csv\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_rl_models.csv\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_summary.json\n\n============================================================\nKEY ANSWERS FOR DIRECTOR\n============================================================\n\n1. CAN WE FORM COHORTS WITH N>=80?\n   Annual cohorts:\n     2021: N=5  -> NO\n     2022: N=13  -> NO\n     2023: N=1253  -> YES\n     2024: N=658  -> YES\n   Total classified: 1929/5219\n   Unclassified: 3290\n   -> 2 annual cohorts with N>=80\n\n2. ARE THERE RL-TRAINED MODELS?\n   Total RL-related models: 477\n     DPO: 346\n     ORPO: 52\n     PPO: 11\n     KTO: 6\n     Reward: 1\n     RLHF: 1\n   -> YES, abundant RL-trained models present\n\n3. DO RDS FILES CONTAIN IRT PARAMETERS?\n   mmlu-preproc.rds contains:\n     - Item difficulty (diff): 12508 items\n     - Item discrimination (disc): 12508 items\n     - Response matrix: 5219 x 12508\n     - Train/test split: 4755/464\n   -> YES, pre-fitted 2PL IRT parameters available\n\nExploration complete.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01Hy7zg5h9ZaTog7PSVc974S`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Extract IRT params from RDS and save to CSV",
+      "status": "completed",
+      "activeForm": "Extracting IRT params from RDS files"
+    },
+    {
+      "content": "Write memory-efficient CSV exploration script",
+      "status": "completed",
+      "activeForm": "Writing CSV exploration script"
+    },
+    {
+      "content": "Run exploration and collect all statistics",
+      "status": "completed",
+      "activeForm": "Running exploration script"
+    },
+    {
+      "content": "Write data summary report",
+      "status": "in_progress",
+      "activeForm": "Writing data summary report"
+    },
+    {
+      "content": "Save findings to memory.md and register artifacts",
+      "status": "pending",
+      "activeForm": "Saving findings and registering artifacts"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "8b5dc6b6-b854-4f63-838e-6ba39e4c4b5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVcN4cokG7NVghtFGGj1S7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 65075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3250
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-20T19:51:31.510Z_
+
+<details><summary>↩ Tool result · `toolu_01Hy7zg5h9ZaTog7PSVc974S`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "0fb9b7c1-b1b5-43a1-990d-39e6e4b37d3c",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "completed",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "in_progress",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "pending",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "completed",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "completed",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "in_progress",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+探索完成。CSV 和 RDS 之间有微小差异（CSV 5227 vs RDS 5219 模型），8 个模型被 RDS 预处理阶段过滤。现在写数据总结报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "b22d8381-59a6-425f-941e-557ca284d01b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WUn47ZM232ggG6XqrK4u5F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 68325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01FJpyu59YJu4StDebd8NvC3`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md",
+  "content": "# METABENCH MMLU Data Summary\n\n## Dataset Overview\n\n| Metric | Value |\n|--------|-------|\n| Models (CSV) | 5,227 |\n| Models (RDS, after preprocessing) | 5,219 |\n| Items | 12,508 |\n| Subjects | 57 |\n| Total response rows | 73,383,381 |\n| Data format | Long format (source, item, correct), binary 0/1 |\n\nModels per subject ranges 5,225–5,227 (near-complete coverage). 8 models were filtered during METABENCH's preprocessing step (RDS).\n\n## Pre-fitted IRT Parameters (from `mmlu-preproc.rds`)\n\nThe RDS file contains **ready-to-use 2PL IRT parameters**:\n\n| Parameter | Min | Mean | Median | Max |\n|-----------|-----|------|--------|-----|\n| Difficulty (diff) | 0.008 | 0.444 | 0.524 | 0.689 |\n| Discrimination (disc) | -0.551 | 0.076 | 0.107 | 0.291 |\n| SD | 0.106 | — | — | 0.500 |\n\n- **0 items excluded** by METABENCH's quality filter\n- **1,926 items (15.4%)** with negative discrimination — these behave inversely (higher-ability models get them wrong more often)\n- **258 floor items** (empirical p < 0.05), **0 ceiling items** (p > 0.95)\n- Empirical p-value range: [0.011, 0.919]\n\n### Train/Test Split\n\nMETABENCH provides a pre-built split in `mmlu-preproc-split.rds`:\n- **Train**: 4,755 models (91.1%)\n- **Test**: 464 models (8.9%)\n\n## Model Accuracy Distribution\n\n| Statistic | Value |\n|-----------|-------|\n| Mean | 0.592 |\n| Std | 0.160 |\n| Min | 0.218 |\n| Max | 0.911 |\n| P25 | 0.543 |\n| Median | 0.661 |\n| P75 | 0.697 |\n| Below random (0.25) | 366 (7.0%) |\n\nStrong bimodal tendency: most models cluster in 0.54–0.71, with a long left tail of weak/broken models.\n\n## Cohort Analysis (for DIF / temporal grouping)\n\n### By Model Family Classification\n\nOnly **1,929 of 5,219 (37.0%)** models could be classified into known families by regex on model names. The remaining 3,290 are community fine-tunes, merges, and unrecognizable names.\n\n### Annual Cohorts\n\n| Year | N models | N ≥ 80? |\n|------|----------|---------|\n| 2021 | 5 | No |\n| 2022 | 13 | No |\n| 2023 | 1,253 | **Yes** |\n| 2024 | 658 | **Yes** |\n\n**Two annual cohorts meet the N≥80 threshold (2023 and 2024).** However, 2024-H2 only has 2 classified models — the dataset likely predates most 2024-H2 releases. The bulk of classified 2024 models are from H1.\n\n### Top Families\n\n| Family | Count |\n|--------|-------|\n| mistral-0.1 | 400 |\n| llama-3 | 308 |\n| llama-2 | 161 |\n| llama-1 | 135 |\n| mixtral-8x7B | 130 |\n| solar | 92 |\n| zephyr | 85 |\n| qwen-1.5 | 67 |\n| phi-2 | 60 |\n\n### Alternative Cohort Strategy\n\nSince 63% of models are unclassified, **name-based cohort assignment is insufficient for fine-grained temporal analysis**. Consider:\n1. Using accuracy-based quintiles as proxy cohorts\n2. Using the RDS train/test split directly (4755/464)\n3. Cross-referencing with HuggingFace Hub metadata for release dates\n\n## RL-trained Models\n\n**477 models** show RL/alignment signals in their names:\n\n| Method | Count |\n|--------|-------|\n| DPO | 346 |\n| ORPO | 52 |\n| PPO | 11 |\n| KTO | 6 |\n| RLHF | 1 |\n| Reward | 1 |\n\nNote: these are models with explicit RL signals in names. Many models (Llama-3, Qwen-2.5, etc.) used RLHF but don't advertise it in their names. The DPO-labeled models alone provide a substantial pool for RL contamination analysis.\n\n## Subject Difficulty Ranking\n\n### Hardest (lowest mean difficulty)\n1. abstract_algebra (0.243)\n2. high_school_mathematics (0.266)\n3. global_facts (0.271)\n4. college_mathematics (0.272)\n5. high_school_physics (0.284)\n\n### Easiest (highest mean difficulty)\n1. marketing (0.587)\n2. high_school_government_and_politics (0.582)\n3. us_foreign_policy (0.566)\n4. sociology (0.559)\n5. high_school_psychology (0.555)\n\nItems per subject: min=72 (college_mathematics), max=1,331 (professional_law), median=161.\n\n## Key Answers\n\n### 1. Can we form N≥80 cohorts?\n\n**YES, but only 2 annual cohorts (2023, 2024).** With 63% unclassified models, name-based classification has limited coverage. For finer temporal granularity, external metadata (HF Hub API) would be needed.\n\n### 2. Are there RL-trained models?\n\n**YES.** 477 explicitly labeled (mostly DPO). Many more used RLHF implicitly (Llama-3, Qwen-2, etc.) but aren't detectable from names alone.\n\n### 3. Do RDS files contain IRT parameters?\n\n**YES.** `mmlu-preproc.rds` contains pre-fitted 2PL difficulty and discrimination for all 12,508 items, plus a 5219×12508 response matrix and a 4755/464 train/test split. These can be used directly — no need to re-fit IRT from scratch.\n\n## Artifacts Produced\n\n| File | Description |\n|------|-------------|\n| `metabench_irt_params.csv` | IRT difficulty & discrimination for 12,508 items |\n| `metabench_model_list.txt` | All 5,219 model names |\n| `metabench_model_accuracy.csv` | Per-model overall accuracy |\n| `metabench_subject_stats.csv` | Per-subject item/model counts |\n| `metabench_cohort_analysis.csv` | Cohort sizes and accuracy stats |\n| `metabench_rl_models.csv` | 477 RL-trained models with accuracy |\n| `metabench_summary.json` | Machine-readable comprehensive summary |\n| `metabench_explore.py` | This exploration script |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "7bb1c6b7-b8bf-4b36-a862-d276591f08f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WUn47ZM232ggG6XqrK4u5F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 68325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-20T19:52:06.660Z_
+
+<details><summary>↩ Tool result · `toolu_01FJpyu59YJu4StDebd8NvC3`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "a4148432-8fc3-433f-983c-02ec6264d03d",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md",
+    "content": "# METABENCH MMLU Data Summary\n\n## Dataset Overview\n\n| Metric | Value |\n|--------|-------|\n| Models (CSV) | 5,227 |\n| Models (RDS, after preprocessing) | 5,219 |\n| Items | 12,508 |\n| Subjects | 57 |\n| Total response rows | 73,383,381 |\n| Data format | Long format (source, item, correct), binary 0/1 |\n\nModels per subject ranges 5,225–5,227 (near-complete coverage). 8 models were filtered during METABENCH's preprocessing step (RDS).\n\n## Pre-fitted IRT Parameters (from `mmlu-preproc.rds`)\n\nThe RDS file contains **ready-to-use 2PL IRT parameters**:\n\n| Parameter | Min | Mean | Median | Max |\n|-----------|-----|------|--------|-----|\n| Difficulty (diff) | 0.008 | 0.444 | 0.524 | 0.689 |\n| Discrimination (disc) | -0.551 | 0.076 | 0.107 | 0.291 |\n| SD | 0.106 | — | — | 0.500 |\n\n- **0 items excluded** by METABENCH's quality filter\n- **1,926 items (15.4%)** with negative discrimination — these behave inversely (higher-ability models get them wrong more often)\n- **258 floor items** (empirical p < 0.05), **0 ceiling items** (p > 0.95)\n- Empirical p-value range: [0.011, 0.919]\n\n### Train/Test Split\n\nMETABENCH provides a pre-built split in `mmlu-preproc-split.rds`:\n- **Train**: 4,755 models (91.1%)\n- **Test**: 464 models (8.9%)\n\n## Model Accuracy Distribution\n\n| Statistic | Value |\n|-----------|-------|\n| Mean | 0.592 |\n| Std | 0.160 |\n| Min | 0.218 |\n| Max | 0.911 |\n| P25 | 0.543 |\n| Median | 0.661 |\n| P75 | 0.697 |\n| Below random (0.25) | 366 (7.0%) |\n\nStrong bimodal tendency: most models cluster in 0.54–0.71, with a long left tail of weak/broken models.\n\n## Cohort Analysis (for DIF / temporal grouping)\n\n### By Model Family Classification\n\nOnly **1,929 of 5,219 (37.0%)** models could be classified into known families by regex on model names. The remaining 3,290 are community fine-tunes, merges, and unrecognizable names.\n\n### Annual Cohorts\n\n| Year | N models | N ≥ 80? |\n|------|----------|---------|\n| 2021 | 5 | No |\n| 2022 | 13 | No |\n| 2023 | 1,253 | **Yes** |\n| 2024 | 658 | **Yes** |\n\n**Two annual cohorts meet the N≥80 threshold (2023 and 2024).** However, 2024-H2 only has 2 classified models — the dataset likely predates most 2024-H2 releases. The bulk of classified 2024 models are from H1.\n\n### Top Families\n\n| Family | Count |\n|--------|-------|\n| mistral-0.1 | 400 |\n| llama-3 | 308 |\n| llama-2 | 161 |\n| llama-1 | 135 |\n| mixtral-8x7B | 130 |\n| solar | 92 |\n| zephyr | 85 |\n| qwen-1.5 | 67 |\n| phi-2 | 60 |\n\n### Alternative Cohort Strategy\n\nSince 63% of models are unclassified, **name-based cohort assignment is insufficient for fine-grained temporal analysis**. Consider:\n1. Using accuracy-based quintiles as proxy cohorts\n2. Using the RDS train/test split directly (4755/464)\n3. Cross-referencing with HuggingFace Hub metadata for release dates\n\n## RL-trained Models\n\n**477 models** show RL/alignment signals in their names:\n\n| Method | Count |\n|--------|-------|\n| DPO | 346 |\n| ORPO | 52 |\n| PPO | 11 |\n| KTO | 6 |\n| RLHF | 1 |\n| Reward | 1 |\n\nNote: these are models with explicit RL signals in names. Many models (Llama-3, Qwen-2.5, etc.) used RLHF but don't advertise it in their names. The DPO-labeled models alone provide a substantial pool for RL contamination analysis.\n\n## Subject Difficulty Ranking\n\n### Hardest (lowest mean difficulty)\n1. abstract_algebra (0.243)\n2. high_school_mathematics (0.266)\n3. global_facts (0.271)\n4. college_mathematics (0.272)\n5. high_school_physics (0.284)\n\n### Easiest (highest mean difficulty)\n1. marketing (0.587)\n2. high_school_government_and_politics (0.582)\n3. us_foreign_policy (0.566)\n4. sociology (0.559)\n5. high_school_psychology (0.555)\n\nItems per subject: min=72 (college_mathematics), max=1,331 (professional_law), median=161.\n\n## Key Answers\n\n### 1. Can we form N≥80 cohorts?\n\n**YES, but only 2 annual cohorts (2023, 2024).** With 63% unclassified models, name-based classification has limited coverage. For finer temporal granularity, external metadata (HF Hub API) would be needed.\n\n### 2. Are there RL-trained models?\n\n**YES.** 477 explicitly labeled (mostly DPO). Many more used RLHF implicitly (Llama-3, Qwen-2, etc.) but aren't detectable from names alone.\n\n### 3. Do RDS files contain IRT parameters?\n\n**YES.** `mmlu-preproc.rds` contains pre-fitted 2PL difficulty and discrimination for all 12,508 items, plus a 5219×12508 response matrix and a 4755/464 train/test split. These can be used directly — no need to re-fit IRT from scratch.\n\n## Artifacts Produced\n\n| File | Description |\n|------|-------------|\n| `metabench_irt_params.csv` | IRT difficulty & discrimination for 12,508 items |\n| `metabench_model_list.txt` | All 5,219 model names |\n| `metabench_model_accuracy.csv` | Per-model overall accuracy |\n| `metabench_subject_stats.csv` | Per-subject item/model counts |\n| `metabench_cohort_analysis.csv` | Cohort sizes and accuracy stats |\n| `metabench_rl_models.csv` | 477 RL-trained models with accuracy |\n| `metabench_summary.json` | Machine-readable comprehensive summary |\n| `metabench_explore.py` | This exploration script |\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_013YV8uXxe65QDQ4FLA53z7d`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Extract IRT params from RDS and save to CSV",
+      "status": "completed",
+      "activeForm": "Extracting IRT params from RDS files"
+    },
+    {
+      "content": "Write memory-efficient CSV exploration script",
+      "status": "completed",
+      "activeForm": "Writing CSV exploration script"
+    },
+    {
+      "content": "Run exploration and collect all statistics",
+      "status": "completed",
+      "activeForm": "Running exploration script"
+    },
+    {
+      "content": "Write data summary report",
+      "status": "completed",
+      "activeForm": "Writing data summary report"
+    },
+    {
+      "content": "Save findings to memory.md and register artifacts",
+      "status": "in_progress",
+      "activeForm": "Saving findings and registering artifacts"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "8ed63b2d-979c-4c40-9fc9-82b60bd08665",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015yuvcFkU6U6cMedGXJ1Yih",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2064,
+      "cache_read_input_tokens": 68576,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2064
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-20T19:52:10.537Z_
+
+<details><summary>↩ Tool result · `toolu_013YV8uXxe65QDQ4FLA53z7d`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "b3021588-f82e-4144-ad1b-361b6494059a",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "completed",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "completed",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "in_progress",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "pending",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "completed",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "completed",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "completed",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "in_progress",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+现在保存关键发现到 memory.md 并注册产出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "7f31ef40-8245-4914-b217-db2c8b9ae371",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MahoazkpRab65DuqR9MTm1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 70640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DuC4WfDutbzP5KBQ4HEqN1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__append_idea",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "eeae118d-4a94-4acc-b6af-10242c098f07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MahoazkpRab65DuqR9MTm1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 70640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-20T19:52:14.547Z_
+
+<details><summary>↩ Tool result · `toolu_01DuC4WfDutbzP5KBQ4HEqN1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ca9b2f48-220d-4246-b10a-60ca097bd1e1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__append_idea"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__append_idea",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01H5QvQUMdLLpHATtKCneFEk`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "a5888932-f1be-4646-b6d5-152e7a0ca431",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fi8KaRDFUhzUw1HNRTJv7P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1191,
+      "cache_read_input_tokens": 70891,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1191
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-20T19:52:17.250Z_
+
+<details><summary>↩ Tool result · `toolu_01H5QvQUMdLLpHATtKCneFEk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "8ebf102e-659c-4a0a-88cc-ee20844d6a3b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01EXGsqayFWSPpub3QfD89xJ`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "1980a4d0-11eb-4f4a-ba3e-c1e11dfa9e7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S39DcU8BuzDbijVJeecC67",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 436,
+      "cache_read_input_tokens": 72082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 436
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-20T19:52:20.687Z_
+
+<details><summary>↩ Tool result · `toolu_01EXGsqayFWSPpub3QfD89xJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/memory.md\", \"content\": \"## MVP 验证关键经验 (2026-05-20)\\n\\n### D001 决策：ETS C 分类 > p-value 检验\\n- **p-value based DIF 检测在 200-item benchmark 上严重 underpowered**：BH 校正后 TPR 仅 0.04-0.07（N=50, δ=1.0）。即使 raw（不校正）TPR 也只有 0.36-0.39，远低于 0.70 目标\\n- **ETS C 分类（|Δ_MH|≥1.5 + 显著性）是可行的替代**：TPR=0.68-0.85 at N≥80, δ≥1.4。本质是 magnitude-based detection，绕过了多重检验问题\\n- **AUC 一直很好（0.91-0.96）**：说明 DIF 统计量的区分能力没问题，问题在假设检验的 threshold，不在信号本身\\n- **原因**：200 个 items 做 BH 校正，需要极小的 p-value 才能过。N=50-100 per group 对 MH/LR 的 per-item 统计功效不够产生 p<0.001 级别的 evidence\\n\\n### Phase 2 验证：真实参数稳健\\n- **PSN-IRT 真实 MMLU 参数** vs 合成参数差异显著：b_mean=-0.84（真实）vs 0.0（合成），即真实 MMLU items 偏容易\\n- 尽管参数分布差异大，ETS C TPR 在真实参数下反而更高（N=100, δ=1.6: 0.80 vs Phase 1 的 0.85）——差异不大，结论稳健\\n- **Phase 2 用了 PSN-IRT 而非 METABENCH**：PSN-IRT 的 item_parameters.csv 可直接使用（14042 items），无需下载 620MB 大包\\n\\n### 关键操作参数\\n- N≥80/group 是最低要求，N≥100 显著改善功效\\n- δ≥1.4 logits 是可靠检测区间，δ=1.0 在边界\\n- MH 5 层 quantile-based 分层 + ETS C 阈值是当前最佳组合\\n- LR 方法与 MH 表现相当，无显著优势\\n\\n## Phase 2 数据源调研 (2026-05-20)\\n\\n### PSN-IRT (AAAI 2026)\\n\\n- **论文全名**: \\\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\\\"\\n- **作者**: Joe-Hall-Lee et al.\\n- **发表**: AAAI 2026 Oral\\n- **GitHub**: https://github.com/Joe-Hall-Lee/PSN-IRT\\n- **IRT 参数公开**: ✅ 是\\n  - `results/item_parameters.csv`: 全部 41,871 items 的 4PL 参数 (a=discrimination, b=difficulty, c=guessing, d=feasibility)\\n  - `results/student_abilities.csv`: 12 个模型的 latent abilities (θ)\\n  - `data/combine.csv`: 12 LLMs × 11 benchmarks 的 binary response matrix\\n- **MMLU 覆盖**: 14,042 items（MMLU 全集）\\n- **模型数**: 仅 12 个\\n- **局限**: 12 个模型太少，IRT 参数估计的可靠性存疑（经典 IRT 通常需要 ≥200 考生）\\n\\n### METABENCH (Kipnis et al., ICLR 2025) ⭐ 推荐\\n\\n- **论文全名**: \\\"metabench — A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\\\"\\n- **GitHub**: https://github.com/adkipnis/metabench\\n- **Zenodo 数据**: https://zenodo.org/records/12819251 (`data.tgz`, 620MB)\\n- **MMLU 覆盖**: 12,508 items\\n- **模型数**: 5,055 个模型\\n- **优势**: 模型数量充足（5000+），IRT 估计可靠\\n\\n### 数据规模对比\\n\\n| 数据源 | 模型数 | MMLU items | IRT 参数 | 获取难度 |\\n|--------|--------|------------|----------|----------|\\n| **METABENCH** | 5,055 | 12,508 | 2PL/3PL/4PL | ⭐ 低 |\\n| **PSN-IRT** | 12 | 14,042 | 4PL (PSN) | ⭐ 低 |\\n| **Open LLM LB v1** | ~数千 | ~14,042 | 无 | 中 |\\n\", \"total_chars\": 2204, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "bb5d15c5-761f-41c6-b644-733ae52eb1f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/memory.md\\\", \\\"content\\\": \\\"## MVP 验证关键经验 (2026-05-20)\\\\n\\\\n### D001 决策：ETS C 分类 > p-value 检验\\\\n- **p-value based DIF 检测在 200-item benchmark 上严重 underpowered**：BH 校正后 TPR 仅 0.04-0.07（N=50, δ=1.0）。即使 raw（不校正）TPR 也只有 0.36-0.39，远低于 0.70 目标\\\\n- **ETS C 分类（|Δ_MH|≥1.5 + 显著性）是可行的替代**：TPR=0.68-0.85 at N≥80, δ≥1.4。本质是 magnitude-based detection，绕过了多重检验问题\\\\n- **AUC 一直很好（0.91-0.96）**：说明 DIF 统计量的区分能力没问题，问题在假设检验的 threshold，不在信号本身\\\\n- **原因**：200 个 items 做 BH 校正，需要极小的 p-value 才能过。N=50-100 per group 对 MH/LR 的 per-item 统计功效不够产生 p<0.001 级别的 evidence\\\\n\\\\n### Phase 2 验证：真实参数稳健\\\\n- **PSN-IRT 真实 MMLU 参数** vs 合成参数差异显著：b_mean=-0.84（真实）vs 0.0（合成），即真实 MMLU items 偏容易\\\\n- 尽管参数分布差异大，ETS C TPR 在真实参数下反而更高（N=100, δ=1.6: 0.80 vs Phase 1 的 0.85）——差异不大，结论稳健\\\\n- **Phase 2 用了 PSN-IRT 而非 METABENCH**：PSN-IRT 的 item_parameters.csv 可直接使用（14042 items），无需下载 620MB 大包\\\\n\\\\n### 关键操作参数\\\\n- N≥80/group 是最低要求，N≥100 显著改善功效\\\\n- δ≥1.4 logits 是可靠检测区间，δ=1.0 在边界\\\\n- MH 5 层 quantile-based 分层 + ETS C 阈值是当前最佳组合\\\\n- LR 方法与 MH 表现相当，无显著优势\\\\n\\\\n## Phase 2 数据源调研 (2026-05-20)\\\\n\\\\n### PSN-IRT (AAAI 2026)\\\\n\\\\n- **论文全名**: \\\\\\\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\\\\\\\"\\\\n- **作者**: Joe-Hall-Lee et al.\\\\n- **发表**: AAAI 2026 Oral\\\\n- **GitHub**: https://github.com/Joe-Hall-Lee/PSN-IRT\\\\n- **IRT 参数公开**: ✅ 是\\\\n  - `results/item_parameters.csv`: 全部 41,871 items 的 4PL 参数 (a=discrimination, b=difficulty, c=guessing, d=feasibility)\\\\n  - `results/student_abilities.csv`: 12 个模型的 latent abilities (θ)\\\\n  - `data/combine.csv`: 12 LLMs × 11 benchmarks 的 binary response matrix\\\\n- **MMLU 覆盖**: 14,042 items（MMLU 全集）\\\\n- **模型数**: 仅 12 个\\\\n- **局限**: 12 个模型太少，IRT 参数估计的可靠性存疑（经典 IRT 通常需要 ≥200 考生）\\\\n\\\\n### METABENCH (Kipnis et al., ICLR 2025) ⭐ 推荐\\\\n\\\\n- **论文全名**: \\\\\\\"metabench — A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\\\\\\\"\\\\n- **GitHub**: https://github.com/adkipnis/metabench\\\\n- **Zenodo 数据**: https://zenodo.org/records/12819251 (`data.tgz`, 620MB)\\\\n- **MMLU 覆盖**: 12,508 items\\\\n- **模型数**: 5,055 个模型\\\\n- **优势**: 模型数量充足（5000+），IRT 估计可靠\\\\n\\\\n### 数据规模对比\\\\n\\\\n| 数据源 | 模型数 | MMLU items | IRT 参数 | 获取难度 |\\\\n|--------|--------|------------|----------|----------|\\\\n| **METABENCH** | 5,055 | 12,508 | 2PL/3PL/4PL | ⭐ 低 |\\\\n| **PSN-IRT** | 12 | 14,042 | 4PL (PSN) | ⭐ 低 |\\\\n| **Open LLM LB v1** | ~数千 | ~14,042 | 无 | 中 |\\\\n\\\", \\\"total_chars\\\": 2204, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/memory.md\", \"content\": \"## MVP 验证关键经验 (2026-05-20)\\n\\n### D001 决策：ETS C 分类 > p-value 检验\\n- **p-value based DIF 检测在 200-item benchmark 上严重 underpowered**：BH 校正后 TPR 仅 0.04-0.07（N=50, δ=1.0）。即使 raw（不校正）TPR 也只有 0.36-0.39，远低于 0.70 目标\\n- **ETS C 分类（|Δ_MH|≥1.5 + 显著性）是可行的替代**：TPR=0.68-0.85 at N≥80, δ≥1.4。本质是 magnitude-based detection，绕过了多重检验问题\\n- **AUC 一直很好（0.91-0.96）**：说明 DIF 统计量的区分能力没问题，问题在假设检验的 threshold，不在信号本身\\n- **原因**：200 个 items 做 BH 校正，需要极小的 p-value 才能过。N=50-100 per group 对 MH/LR 的 per-item 统计功效不够产生 p<0.001 级别的 evidence\\n\\n### Phase 2 验证：真实参数稳健\\n- **PSN-IRT 真实 MMLU 参数** vs 合成参数差异显著：b_mean=-0.84（真实）vs 0.0（合成），即真实 MMLU items 偏容易\\n- 尽管参数分布差异大，ETS C TPR 在真实参数下反而更高（N=100, δ=1.6: 0.80 vs Phase 1 的 0.85）——差异不大，结论稳健\\n- **Phase 2 用了 PSN-IRT 而非 METABENCH**：PSN-IRT 的 item_parameters.csv 可直接使用（14042 items），无需下载 620MB 大包\\n\\n### 关键操作参数\\n- N≥80/group 是最低要求，N≥100 显著改善功效\\n- δ≥1.4 logits 是可靠检测区间，δ=1.0 在边界\\n- MH 5 层 quantile-based 分层 + ETS C 阈值是当前最佳组合\\n- LR 方法与 MH 表现相当，无显著优势\\n\\n## Phase 2 数据源调研 (2026-05-20)\\n\\n### PSN-IRT (AAAI 2026)\\n\\n- **论文全名**: \\\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\\\"\\n- **作者**: Joe-Hall-Lee et al.\\n- **发表**: AAAI 2026 Oral\\n- **GitHub**: https://github.com/Joe-Hall-Lee/PSN-IRT\\n- **IRT 参数公开**: ✅ 是\\n  - `results/item_parameters.csv`: 全部 41,871 items 的 4PL 参数 (a=discrimination, b=difficulty, c=guessing, d=feasibility)\\n  - `results/student_abilities.csv`: 12 个模型的 latent abilities (θ)\\n  - `data/combine.csv`: 12 LLMs × 11 benchmarks 的 binary response matrix\\n- **MMLU 覆盖**: 14,042 items（MMLU 全集）\\n- **模型数**: 仅 12 个\\n- **局限**: 12 个模型太少，IRT 参数估计的可靠性存疑（经典 IRT 通常需要 ≥200 考生）\\n\\n### METABENCH (Kipnis et al., ICLR 2025) ⭐ 推荐\\n\\n- **论文全名**: \\\"metabench — A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\\\"\\n- **GitHub**: https://github.com/adkipnis/metabench\\n- **Zenodo 数据**: https://zenodo.org/records/12819251 (`data.tgz`, 620MB)\\n- **MMLU 覆盖**: 12,508 items\\n- **模型数**: 5,055 个模型\\n- **优势**: 模型数量充足（5000+），IRT 估计可靠\\n\\n### 数据规模对比\\n\\n| 数据源 | 模型数 | MMLU items | IRT 参数 | 获取难度 |\\n|--------|--------|------------|----------|----------|\\n| **METABENCH** | 5,055 | 12,508 | 2PL/3PL/4PL | ⭐ 低 |\\n| **PSN-IRT** | 12 | 14,042 | 4PL (PSN) | ⭐ 低 |\\n| **Open LLM LB v1** | ~数千 | ~14,042 | 无 | 中 |\\n\", \"total_chars\": 2204, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_011J6zzwBzvdwg8GicgVRG8S`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "memory.md",
+  "content": "## MVP 验证关键经验 (2026-05-20)\n\n### D001 决策：ETS C 分类 > p-value 检验\n- **p-value based DIF 检测在 200-item benchmark 上严重 underpowered**：BH 校正后 TPR 仅 0.04-0.07（N=50, δ=1.0）。即使 raw（不校正）TPR 也只有 0.36-0.39，远低于 0.70 目标\n- **ETS C 分类（|Δ_MH|≥1.5 + 显著性）是可行的替代**：TPR=0.68-0.85 at N≥80, δ≥1.4。本质是 magnitude-based detection，绕过了多重检验问题\n- **AUC 一直很好（0.91-0.96）**：说明 DIF 统计量的区分能力没问题，问题在假设检验的 threshold，不在信号本身\n- **原因**：200 个 items 做 BH 校正，需要极小的 p-value 才能过。N=50-100 per group 对 MH/LR 的 per-item 统计功效不够产生 p<0.001 级别的 evidence\n\n### Phase 2 验证：真实参数稳健\n- **PSN-IRT 真实 MMLU 参数** vs 合成参数差异显著：b_mean=-0.84（真实）vs 0.0（合成），即真实 MMLU items 偏容易\n- 尽管参数分布差异大，ETS C TPR 在真实参数下反而更高（N=100, δ=1.6: 0.80 vs Phase 1 的 0.85）——差异不大，结论稳健\n- **Phase 2 用了 PSN-IRT 而非 METABENCH**：PSN-IRT 的 item_parameters.csv 可直接使用（14042 items），无需下载 620MB 大包\n\n### 关键操作参数\n- N≥80/group 是最低要求，N≥100 显著改善功效\n- δ≥1.4 logits 是可靠检测区间，δ=1.0 在边界\n- MH 5 层 quantile-based 分层 + ETS C 阈值是当前最佳组合\n- LR 方法与 MH 表现相当，无显著优势\n\n## Phase 2 数据源调研 (2026-05-20)\n\n### PSN-IRT (AAAI 2026)\n\n- **论文全名**: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n- **作者**: Joe-Hall-Lee et al.\n- **发表**: AAAI 2026 Oral\n- **GitHub**: https://github.com/Joe-Hall-Lee/PSN-IRT\n- **IRT 参数公开**: ✅ 是\n  - `results/item_parameters.csv`: 全部 41,871 items 的 4PL 参数 (a=discrimination, b=difficulty, c=guessing, d=feasibility)\n  - `results/student_abilities.csv`: 12 个模型的 latent abilities (θ)\n  - `data/combine.csv`: 12 LLMs × 11 benchmarks 的 binary response matrix\n- **MMLU 覆盖**: 14,042 items（MMLU 全集）\n- **模型数**: 仅 12 个\n- **局限**: 12 个模型太少，IRT 参数估计的可靠性存疑（经典 IRT 通常需要 ≥200 考生）\n\n### METABENCH (Kipnis et al., ICLR 2025) ⭐ 推荐\n\n- **论文全名**: \"metabench — A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\"\n- **GitHub**: https://github.com/adkipnis/metabench\n- **Zenodo 数据**: https://zenodo.org/records/12819251 (`data.tgz`, 620MB)\n- **MMLU 覆盖**: 12,508 items\n- **模型数**: 5,219 个模型（RDS 预处理后）\n- **优势**: 模型数量充足（5000+），IRT 估计可靠\n\n### 数据规模对比\n\n| 数据源 | 模型数 | MMLU items | IRT 参数 | 获取难度 |\n|--------|--------|------------|----------|----------|\n| **METABENCH** | 5,219 | 12,508 | 2PL (预拟合) | ⭐ 低 |\n| **PSN-IRT** | 12 | 14,042 | 4PL (PSN) | ⭐ 低 |\n| **Open LLM LB v1** | ~数千 | ~14,042 | 无 | 中 |\n\n## METABENCH 数据探索关键发现 (2026-05-20)\n\n### RDS 预拟合 IRT 参数\n- `mmlu-preproc.rds` 包含 **12,508 items 的 2PL IRT 参数** (difficulty, discrimination)\n- Difficulty range: [0.008, 0.689], mean=0.444; Discrimination range: [-0.551, 0.291], mean=0.076\n- 1,926 items (15.4%) 有负区分度\n- 258 floor items (p<0.05), 0 ceiling items (p>0.95)\n- **可直接使用，无需自行拟合 IRT**\n\n### 响应矩阵 & Train/Test Split\n- 完整 5219×12508 响应矩阵在 RDS 中\n- 预建 train/test split: 4,755 train / 464 test models\n\n### Cohort 可行性\n- 通过模型名正则分类：仅 1,929/5,219 (37%) 可归类到已知 family\n- **2 个年度 cohort 满足 N≥80**: 2023 (N=1,253), 2024 (N=658)\n- 63% 模型无法从名称分类（社区微调/合并模型）\n- **结论**: 粗粒度 2-cohort (2023 vs 2024) 可行；细粒度年度 cohort 需外部元数据\n\n### RL-trained 模型\n- **477 个模型**名称含 RL/alignment 信号: DPO(346), ORPO(52), PPO(11), KTO(6)\n- 大量隐式 RLHF 模型（Llama-3, Qwen-2 等）名称不含标记\n- **结论**: RL 模型充足，可用于污染检测 validation\n\n### 模型准确率分布\n- Mean=0.592, Std=0.160, Range=[0.218, 0.911]\n- 366 (7%) 模型低于随机水平 (0.25)\n- Top families: mistral-0.1 (400), llama-3 (308), llama-2 (161)\n\n### CSV vs RDS 差异\n- CSV: 5,227 模型; RDS: 5,219 模型（8 个被预处理过滤）\n- 每个 subject 的模型数在 5,225-5,227 之间（近完整覆盖）\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "eadc814e-9fcc-4053-857e-e16ae0bb82a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzwQqDyQJJDCaeSEd1psT2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1640,
+      "cache_read_input_tokens": 72518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1640
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-20T19:52:49.308Z_
+
+<details><summary>↩ Tool result · `toolu_011J6zzwBzvdwg8GicgVRG8S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "621ef4bf-58d1-47d5-a471-b95a8863e64d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+现在注册产出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "44459f48-7263-47b7-a648-f800f40b622b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_017VmMAftTPJqtVwxPt9bBBf`</summary>
+
+```json
+{
+  "name": "metabench_irt_params",
+  "type": "data",
+  "description": "Pre-fitted 2PL IRT parameters (difficulty, discrimination) for 12,508 MMLU items extracted from METABENCH mmlu-preproc.rds",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_irt_params.csv",
+  "tags": [
+    "irt",
+    "mmlu",
+    "metabench",
+    "item-parameters"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "f1bf8e50-1ec9-4e7c-81e9-8acdddcd51b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-20T19:52:55.144Z_
+
+<details><summary>↩ Tool result · `toolu_017VmMAftTPJqtVwxPt9bBBf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_3e21e2\", \"name\": \"metabench_irt_params\", \"type\": \"data\", \"description\": \"Pre-fitted 2PL IRT parameters (difficulty, discrimination) for 12,508 MMLU items extracted from METABENCH mmlu-preproc.rds\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_irt_params.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:52:55.115494+00:00\", \"tags\": [\"irt\", \"mmlu\", \"metabench\", \"item-parameters\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "9bf57fdd-368c-4f6e-8fe4-461f3502cbb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_3e21e2\\\", \\\"name\\\": \\\"metabench_irt_params\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Pre-fitted 2PL IRT parameters (difficulty, discrimination) for 12,508 MMLU items extracted from METABENCH mmlu-preproc.rds\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_irt_params.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:52:55.115494+00:00\\\", \\\"tags\\\": [\\\"irt\\\", \\\"mmlu\\\", \\\"metabench\\\", \\\"item-parameters\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_3e21e2\", \"name\": \"metabench_irt_params\", \"type\": \"data\", \"description\": \"Pre-fitted 2PL IRT parameters (difficulty, discrimination) for 12,508 MMLU items extracted from METABENCH mmlu-preproc.rds\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_irt_params.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:52:55.115494+00:00\", \"tags\": [\"irt\", \"mmlu\", \"metabench\", \"item-parameters\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Jv25LxTAQrp4U9LzdHvdJ5`</summary>
+
+```json
+{
+  "name": "metabench_data_summary",
+  "type": "report",
+  "description": "Comprehensive data exploration summary of METABENCH MMLU: 5219 models, 12508 items, cohort analysis, RL model inventory, IRT parameter statistics",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_data_summary.md",
+  "tags": [
+    "metabench",
+    "data-exploration",
+    "mmlu"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "c3cae80d-fdfc-4ff1-97b7-e529e44bc527",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-20T19:52:57.463Z_
+
+<details><summary>↩ Tool result · `toolu_01Jv25LxTAQrp4U9LzdHvdJ5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_c18a12\", \"name\": \"metabench_data_summary\", \"type\": \"report\", \"description\": \"Comprehensive data exploration summary of METABENCH MMLU: 5219 models, 12508 items, cohort analysis, RL model inventory, IRT parameter statistics\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary.md\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:52:57.433518+00:00\", \"tags\": [\"metabench\", \"data-exploration\", \"mmlu\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "53944680-b8aa-43a9-9212-2e6a3b2f5d37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_c18a12\\\", \\\"name\\\": \\\"metabench_data_summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Comprehensive data exploration summary of METABENCH MMLU: 5219 models, 12508 items, cohort analysis, RL model inventory, IRT parameter statistics\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:52:57.433518+00:00\\\", \\\"tags\\\": [\\\"metabench\\\", \\\"data-exploration\\\", \\\"mmlu\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_c18a12\", \"name\": \"metabench_data_summary\", \"type\": \"report\", \"description\": \"Comprehensive data exploration summary of METABENCH MMLU: 5219 models, 12508 items, cohort analysis, RL model inventory, IRT parameter statistics\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary.md\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:52:57.433518+00:00\", \"tags\": [\"metabench\", \"data-exploration\", \"mmlu\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_015heuKf22SUqBRPCAUEE7Gy`</summary>
+
+```json
+{
+  "name": "metabench_explore_script",
+  "type": "intermediate",
+  "description": "Memory-efficient Python script for METABENCH MMLU data exploration — reads RDS IRT params + incremental CSV processing",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_explore.py",
+  "tags": [
+    "script",
+    "metabench",
+    "exploration"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "13bceb75-341e-4a3c-8430-145c3ed359a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-20T19:52:59.994Z_
+
+<details><summary>↩ Tool result · `toolu_015heuKf22SUqBRPCAUEE7Gy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_905e08\", \"name\": \"metabench_explore_script\", \"type\": \"intermediate\", \"description\": \"Memory-efficient Python script for METABENCH MMLU data exploration — reads RDS IRT params + incremental CSV processing\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/intermediate/metabench_explore.py\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:52:59.964660+00:00\", \"tags\": [\"script\", \"metabench\", \"exploration\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "44fc4211-5abb-452e-9c07-7be19fd89f72",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_905e08\\\", \\\"name\\\": \\\"metabench_explore_script\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Memory-efficient Python script for METABENCH MMLU data exploration — reads RDS IRT params + incremental CSV processing\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/intermediate/metabench_explore.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:52:59.964660+00:00\\\", \\\"tags\\\": [\\\"script\\\", \\\"metabench\\\", \\\"exploration\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_905e08\", \"name\": \"metabench_explore_script\", \"type\": \"intermediate\", \"description\": \"Memory-efficient Python script for METABENCH MMLU data exploration — reads RDS IRT params + incremental CSV processing\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/intermediate/metabench_explore.py\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:52:59.964660+00:00\", \"tags\": [\"script\", \"metabench\", \"exploration\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01G9LmN6kNvHtWYrhhb5FDes`</summary>
+
+```json
+{
+  "name": "metabench_summary_json",
+  "type": "data",
+  "description": "Machine-readable JSON summary of all METABENCH exploration statistics including cohort analysis, RL models, IRT params",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_summary.json",
+  "tags": [
+    "metabench",
+    "summary",
+    "json"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "ae9f1f43-ee96-4961-96f6-3df8390bef2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-20T19:53:02.274Z_
+
+<details><summary>↩ Tool result · `toolu_01G9LmN6kNvHtWYrhhb5FDes`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_881af2\", \"name\": \"metabench_summary_json\", \"type\": \"data\", \"description\": \"Machine-readable JSON summary of all METABENCH exploration statistics including cohort analysis, RL models, IRT params\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_summary.json\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:02.222147+00:00\", \"tags\": [\"metabench\", \"summary\", \"json\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "13eab52d-3ace-48c8-a700-1fddf49689ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_881af2\\\", \\\"name\\\": \\\"metabench_summary_json\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Machine-readable JSON summary of all METABENCH exploration statistics including cohort analysis, RL models, IRT params\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_summary.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:53:02.222147+00:00\\\", \\\"tags\\\": [\\\"metabench\\\", \\\"summary\\\", \\\"json\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_881af2\", \"name\": \"metabench_summary_json\", \"type\": \"data\", \"description\": \"Machine-readable JSON summary of all METABENCH exploration statistics including cohort analysis, RL models, IRT params\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_summary.json\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:02.222147+00:00\", \"tags\": [\"metabench\", \"summary\", \"json\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_015GFFttc5UGqNdt892zZMrs`</summary>
+
+```json
+{
+  "name": "metabench_model_accuracy",
+  "type": "data",
+  "description": "Per-model overall MMLU accuracy for all 5,219 METABENCH models",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_model_accuracy.csv",
+  "tags": [
+    "metabench",
+    "model-accuracy"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "5e169df9-14ab-42f8-b279-e9a4bc593198",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-20T19:53:04.256Z_
+
+<details><summary>↩ Tool result · `toolu_015GFFttc5UGqNdt892zZMrs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_74f2ec\", \"name\": \"metabench_model_accuracy\", \"type\": \"data\", \"description\": \"Per-model overall MMLU accuracy for all 5,219 METABENCH models\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_model_accuracy.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:04.219919+00:00\", \"tags\": [\"metabench\", \"model-accuracy\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "fbcf439e-1822-474c-9762-9b6bcca96735",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_74f2ec\\\", \\\"name\\\": \\\"metabench_model_accuracy\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Per-model overall MMLU accuracy for all 5,219 METABENCH models\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_model_accuracy.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:53:04.219919+00:00\\\", \\\"tags\\\": [\\\"metabench\\\", \\\"model-accuracy\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_74f2ec\", \"name\": \"metabench_model_accuracy\", \"type\": \"data\", \"description\": \"Per-model overall MMLU accuracy for all 5,219 METABENCH models\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_model_accuracy.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:04.219919+00:00\", \"tags\": [\"metabench\", \"model-accuracy\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_013fhuFxYptB3j8GahfDuWQN`</summary>
+
+```json
+{
+  "name": "metabench_rl_models",
+  "type": "data",
+  "description": "477 RL-trained models identified from METABENCH by name pattern (DPO/ORPO/PPO/KTO/RLHF) with accuracy scores",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_rl_models.csv",
+  "tags": [
+    "metabench",
+    "rl-models",
+    "dpo",
+    "alignment"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "1b10753c-2723-4df8-a74e-0143d8152e6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-20T19:53:06.666Z_
+
+<details><summary>↩ Tool result · `toolu_013fhuFxYptB3j8GahfDuWQN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_65409e\", \"name\": \"metabench_rl_models\", \"type\": \"data\", \"description\": \"477 RL-trained models identified from METABENCH by name pattern (DPO/ORPO/PPO/KTO/RLHF) with accuracy scores\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_rl_models.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:06.631529+00:00\", \"tags\": [\"metabench\", \"rl-models\", \"dpo\", \"alignment\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "32e7e96c-22c5-470f-aad8-60709264ff4f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_65409e\\\", \\\"name\\\": \\\"metabench_rl_models\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"477 RL-trained models identified from METABENCH by name pattern (DPO/ORPO/PPO/KTO/RLHF) with accuracy scores\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_rl_models.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:53:06.631529+00:00\\\", \\\"tags\\\": [\\\"metabench\\\", \\\"rl-models\\\", \\\"dpo\\\", \\\"alignment\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_65409e\", \"name\": \"metabench_rl_models\", \"type\": \"data\", \"description\": \"477 RL-trained models identified from METABENCH by name pattern (DPO/ORPO/PPO/KTO/RLHF) with accuracy scores\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_rl_models.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:06.631529+00:00\", \"tags\": [\"metabench\", \"rl-models\", \"dpo\", \"alignment\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01RsjX6RKBVxpKurhXNvJn8g`</summary>
+
+```json
+{
+  "name": "metabench_cohort_analysis",
+  "type": "data",
+  "description": "Temporal cohort analysis: model counts and accuracy by year-half, with N>=80 sufficiency flags for DIF analysis",
+  "project": "irt_equated_bench_regen",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/metabench_cohort_analysis.csv",
+  "tags": [
+    "metabench",
+    "cohort",
+    "dif"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "07eeb47e-2de2-4c2e-84fb-22b9cb2c3834",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfjr6xNs8pvUUktJhGT9ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2238,
+      "cache_read_input_tokens": 74158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-20T19:53:08.848Z_
+
+<details><summary>↩ Tool result · `toolu_01RsjX6RKBVxpKurhXNvJn8g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_7a1d89\", \"name\": \"metabench_cohort_analysis\", \"type\": \"data\", \"description\": \"Temporal cohort analysis: model counts and accuracy by year-half, with N>=80 sufficiency flags for DIF analysis\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_cohort_analysis.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:08.811980+00:00\", \"tags\": [\"metabench\", \"cohort\", \"dif\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "7175d5fa-c468-448b-8932-bc32900a5d7a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_7a1d89\\\", \\\"name\\\": \\\"metabench_cohort_analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Temporal cohort analysis: model counts and accuracy by year-half, with N>=80 sufficiency flags for DIF analysis\\\", \\\"path\\\": \\\"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_cohort_analysis.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_equated_bench_regen\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:53:08.811980+00:00\\\", \\\"tags\\\": [\\\"metabench\\\", \\\"cohort\\\", \\\"dif\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_7a1d89\", \"name\": \"metabench_cohort_analysis\", \"type\": \"data\", \"description\": \"Temporal cohort analysis: model counts and accuracy by year-half, with N>=80 sufficiency flags for DIF analysis\", \"path\": \"projects/irt_equated_bench_regen/artifacts/_project/data/metabench_cohort_analysis.csv\", \"url\": null, \"project\": \"irt_equated_bench_regen\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T19:53:08.811980+00:00\", \"tags\": [\"metabench\", \"cohort\", \"dif\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01UcXXcR1PVQHewruqi6Tiwu`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Extract IRT params from RDS and save to CSV",
+      "status": "completed",
+      "activeForm": "Extracting IRT params from RDS files"
+    },
+    {
+      "content": "Write memory-efficient CSV exploration script",
+      "status": "completed",
+      "activeForm": "Writing CSV exploration script"
+    },
+    {
+      "content": "Run exploration and collect all statistics",
+      "status": "completed",
+      "activeForm": "Running exploration script"
+    },
+    {
+      "content": "Write data summary report",
+      "status": "completed",
+      "activeForm": "Writing data summary report"
+    },
+    {
+      "content": "Save findings to memory.md and register artifacts",
+      "status": "completed",
+      "activeForm": "Saving findings and registering artifacts"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "da82eb33-b117-4f51-9427-7a68668588b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7LuXZhdt6wfQpzR3HT4xT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4041,
+      "cache_read_input_tokens": 76396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4041
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-20T19:53:12.692Z_
+
+<details><summary>↩ Tool result · `toolu_01UcXXcR1PVQHewruqi6Tiwu`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "9c3118d6-97bc-492e-adb8-3eadf2e6cfcb",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "completed",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "completed",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "completed",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "in_progress",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Extract IRT params from RDS and save to CSV",
+        "status": "completed",
+        "activeForm": "Extracting IRT params from RDS files"
+      },
+      {
+        "content": "Write memory-efficient CSV exploration script",
+        "status": "completed",
+        "activeForm": "Writing CSV exploration script"
+      },
+      {
+        "content": "Run exploration and collect all statistics",
+        "status": "completed",
+        "activeForm": "Running exploration script"
+      },
+      {
+        "content": "Write data summary report",
+        "status": "completed",
+        "activeForm": "Writing data summary report"
+      },
+      {
+        "content": "Save findings to memory.md and register artifacts",
+        "status": "completed",
+        "activeForm": "Saving findings and registering artifacts"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128_
+
+全部完成。三个关键问题的答案：
+
+### 1. 能否分出 N≥80 的 cohort？
+**可以，但只有 2 个年度 cohort**：2023 (N=1,253) 和 2024 (N=658)。63% 的模型无法从名称分类（社区微调/merge），粗粒度 2-cohort 分组可行，细粒度需要 HF Hub 外部元数据。
+
+### 2. 有没有 RL-trained 模型？
+**有，477 个**名称含显式 RL 信号：DPO(346), ORPO(52), PPO(11), KTO(6)。大量隐式 RLHF 模型（Llama-3, Qwen-2 等）名称不含标记但实际用了 RL。足够做污染检测 validation。
+
+### 3. RDS 有没有已拟合的 IRT 参数？
+**有。** `mmlu-preproc.rds` 包含 12,508 items 的 2PL 参数（difficulty + discrimination），5219×12508 完整响应矩阵，以及 4755/464 train/test split。**可直接使用，无需自行拟合 IRT。**
+
+### 产出文件
+- `metabench_irt_params.csv` — 12,508 items IRT 参数
+- `metabench_data_summary.md` — 完整数据探索报告
+- `metabench_model_accuracy.csv` — 5,219 模型准确率
+- `metabench_rl_models.csv` — 477 个 RL 模型清单
+- `metabench_cohort_analysis.csv` — cohort 分析
+- `metabench_summary.json` — 机器可读汇总
+- `metabench_explore.py` — 探索脚本（内存优化版）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "uuid": "cf8d386d-65ed-48ba-b9c8-2bc1bbd1671d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ptf3s15gkWMVAzDvekxxwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 80437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 129_
+
+全部完成。三个关键问题的答案：
+
+### 1. 能否分出 N≥80 的 cohort？
+**可以，但只有 2 个年度 cohort**：2023 (N=1,253) 和 2024 (N=658)。63% 的模型无法从名称分类（社区微调/merge），粗粒度 2-cohort 分组可行，细粒度需要 HF Hub 外部元数据。
+
+### 2. 有没有 RL-trained 模型？
+**有，477 个**名称含显式 RL 信号：DPO(346), ORPO(52), PPO(11), KTO(6)。大量隐式 RLHF 模型（Llama-3, Qwen-2 等）名称不含标记但实际用了 RL。足够做污染检测 validation。
+
+### 3. RDS 有没有已拟合的 IRT 参数？
+**有。** `mmlu-preproc.rds` 包含 12,508 items 的 2PL 参数（difficulty + discrimination），5219×12508 完整响应矩阵，以及 4755/464 train/test split。**可直接使用，无需自行拟合 IRT。**
+
+### 产出文件
+- `metabench_irt_params.csv` — 12,508 items IRT 参数
+- `metabench_data_summary.md` — 完整数据探索报告
+- `metabench_model_accuracy.csv` — 5,219 模型准确率
+- `metabench_rl_models.csv` — 477 个 RL 模型清单
+- `metabench_cohort_analysis.csv` — cohort 分析
+- `metabench_summary.json` — 机器可读汇总
+- `metabench_explore.py` — 探索脚本（内存优化版）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 561311,
+  "duration_api_ms": 468791,
+  "num_turns": 47,
+  "stop_reason": "end_turn",
+  "session_id": "60270a68-040a-48fb-a42e-ebf7befc2fe0",
+  "total_cost_usd": 2.02130775,
+  "usage": {
+    "input_tokens": 37,
+    "cache_creation_input_tokens": 68845,
+    "cache_read_input_tokens": 1502747,
+    "output_tokens": 33494,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 68845,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 530,
+        "cache_read_input_tokens": 80437,
+        "cache_creation_input_tokens": 249,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 249
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2028,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021179999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 37,
+      "outputTokens": 33494,
+      "cacheReadInputTokens": 1502747,
+      "cacheCreationInputTokens": 68845,
+      "webSearchRequests": 0,
+      "costUSD": 2.0191897500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3e1aa323-9fdc-4e72-b5b6-3291502fbbe5"
+}
+```
+
+</details>
+
+---

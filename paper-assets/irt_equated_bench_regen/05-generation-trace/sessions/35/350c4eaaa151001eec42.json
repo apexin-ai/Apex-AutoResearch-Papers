@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "350c4eaaa151001eec42",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "data metabench explore v2",
+  "task_key": "worker_data_metabench_explore_v2_20260520T194355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_metabench_explore_v2_20260520T194355_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "202e37b93664051b43699dd1370f07e75a65db7207728b75130f1300a27590d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。三个关键问题的答案：\n\n### 1. 能否分出 N≥80 的 cohort？\n**可以，但只有 2 个年度 cohort**：2023 (N=1,253) 和 2024 (N=658)。63% 的模型无法从名称分类（社区微调/merge），粗粒度 2-cohort 分组可行，细粒度需要 HF Hub 外部元数据。\n\n### 2. 有没有 RL-trained 模型？\n**有，477 个**名称含显式 RL 信号：DPO(346), ORPO(52), PPO(11), KTO(6)。大量隐式 RLHF 模型（Llama-3, Qwen-2 等）名称不含标记但实际用了 RL。足够做污染检测 validation。\n\n### 3. RDS 有没有已拟合的 IRT 参数？\n**有。** `mmlu-preproc.rds` 包含 12,508 items 的 2PL 参数（difficulty + discrimination），5219×12508 完整响应矩阵，以及 4755/464 train/test split。**可直接使用，无需自行拟合 IRT。**\n\n### 产出文件\n- `metabench_irt_params.csv` — 12,508 items IRT 参数\n- `metabench_data_summary.md` — 完整数据探索报告\n- `metabench_model_accuracy.csv` — 5,219 模型准确率\n- `metabench_rl_models.csv` — 477 个 RL 模型清单\n- `metabench_cohort_analysis.csv` — cohort 分析\n- `metabench_summary.json` — 机器可读汇总\n- `metabench_explore.py` — 探索脚本（内存优化版）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-metabench-explore-v2.md"
+}

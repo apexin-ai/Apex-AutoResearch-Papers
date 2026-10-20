@@ -1,0 +1,77 @@
+paper_key: "maiapolo2024tinybenchmarks"
+title: "tinyBenchmarks: evaluating LLMs with fewer examples"
+venue: "ICML 2024"
+full_text_available: true
+
+research:
+  baselines: [random sampling, stratified random sampling, correctness-based clustering]
+  metrics:
+    - {name: "absolute estimation error (%)", direction: "lower_better"}
+    - {name: "Spearman rank correlation", direction: "higher_better"}
+  datasets:
+    - {name: "Open LLM Leaderboard", size: "6 scenarios, ~29K examples, 395 LLMs"}
+    - {name: "MMLU", size: "57 subjects, ~14K examples, 395 LLMs"}
+    - {name: "HELM Lite", size: "10 scenarios, ~10K examples, 30 models"}
+    - {name: "AlpacaEval 2.0", size: "805 examples, 100 LLMs"}
+  ablation_dimensions: [example count (25-300), selection strategy, train-test split method (random vs temporal), specialized vs general LLMs, non-binary score handling]
+  training_recipe: {optimizer: "variational inference for IRT", lr: "N/A", hardware: "N/A"}
+  method_family: "IRT-based efficient evaluation"
+
+positioning:
+  core_claim: "100 curated examples足以在~2%误差内估计LLM在完整benchmark上的表现——通过IRT选择anchor points并结合概率预测补全未评估样本"
+  key_results: "MMLU: 14K→100 examples (140×减少), ≈2%误差; Open LLM Leaderboard: 29K→30/scenario (160×减少); IRT-based clustering对specialized LLMs最鲁棒"
+  limitations:
+    - "Severe distribution shifts (models fail simple questions but answer complex ones) may degrade estimates"
+    - "Rapid capability increases may produce out-of-distribution estimates"
+    - "IRT model misspecification degrades p-IRT performance"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Benchmarks由数万examples组成，使得LLM评估非常昂贵"
+  tension: "完整评估成本高 vs 简单子采样引入大方差和偏差"
+  key_insight: "在Section 3-4揭示：IRT提供低维表征(difficulty+discrimination)用于选择informative anchor points，p-IRT estimator结合观测分数和概率预测实现bias-variance平衡"
+  argument_chain: "evaluation cost → subsampling problem → IRT framework → anchor selection strategies → p-IRT/gp-IRT estimators → empirical validation (4 benchmarks) → practical tools release"
+  contribution_framing: "强调实用性：释放evaluation tools + tiny benchmark datasets + Python package + Colab notebooks"
+  intro_structure: "3段：evaluation成本问题 → 解决方案概述(IRT+anchor) → 关键结果预告"
+  notable_technique: "提供完整的practical toolkit（HuggingFace datasets + Python package + Colab），降低adoption门槛"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "teaser_result"
+    description: "展示100 examples即可达到~2%误差的核心结果"
+    narrative_role: "在intro中直接展示核心卖点——评估成本可大幅降低"
+    design_elements: ["error vs sample size曲线", "benchmark对比"]
+    visual_style: "多线图，x轴example数量，y轴estimation error"
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "不同策略在specialized LLMs上的性能"
+      how_gain_highlighted: "correctness clustering在specialized models上退化，IRT-based保持稳定"
+      design_note: "展示IRT方法的鲁棒性优势"
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      what_compared: "MMLU上100 examples的worst-case error分布"
+      how_gain_highlighted: "几乎所有模型worst case ≤4%"
+      design_note: "用直方图展示error分布的集中度"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (核心结果) → Figures 2-4 (不同benchmark详细结果) → Figure 5 (鲁棒性) → Figure 6 (worst case)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "N/A (primarily figure-based results)"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "mean absolute error"
+    num_baselines: 3
+    design_note: "主要用figures展示结果，tables用于理论分析和数据集描述"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "理论证明(Proposition 4.1)、额外benchmark结果、prompt evaluation扩展"
+    reason: "理论细节和扩展实验放附录，主文聚焦核心方法和关键实验"

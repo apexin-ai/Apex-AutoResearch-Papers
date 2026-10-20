@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "586284519a1a5b291f4f",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "data build response matrix",
+  "task_key": "worker_data_build_response_matrix_20260520T203701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_build_response_matrix_20260520T203701_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "100b0075a9af0641c3603bfe3d42cf01e211b6f8e3e7feb1e97bd28be5585cc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证全部通过：\n\n- **Shape**: (5227, 12508) — 12508 items 精确匹配 IRT 参数，5227 models = 5219 (accuracy CSV) + 8 个只出现在部分 subject 的额外模型\n- **Density**: 59.1% — 与预期均值 accuracy ~0.59 完全吻合\n- **Model accuracy cross-check**: 5 个随机模型 delta 全为 0.0000\n- **Item IRT match**: 12508/12508 (100%)\n- **Missing entries**: 仅 12,611 (0.019%)\n\n产出文件：\n| 文件 | 大小 | 说明 |\n|------|------|------|\n| `response_matrix.npz` | 48.3MB | CSR sparse (5227×12508), int8 |\n| `response_matrix_index.npz` | 0.1MB | model_names + item_ids 索引 |\n| `item_metadata.csv` | 1.5MB | 12508 items, IRT params + empirical_p |\n| `model_metadata.csv` | 0.4MB | 5227 models, family/cohort/accuracy |\n\n`empirical_p` 和 `irt_diff` 的关系符合预期：diff 是 IRT 估计的难度参数（logistic scale），empirical_p 是原始正确率，两者呈单调正相关但非线性（empirical_p ≈ 0.75× irt_diff 的逆 logit 映射）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-build-response-matrix.md"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "mvp_dif_power_sim_phase2",
+  "project": "irt_equated_bench_regen",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:52:34.145Z",
+    "updated_at": "2026-05-20T19:30:13.165Z",
+    "hypothesis": "ETS C 分类在 METABENCH 真实 MMLU 2PL IRT 参数（非理想化分布）下，仍能在 N≥80/group、δ≥1.4 时达到 TPR≥0.65、FPR≤0.10。Phase 1 用合成参数（a~LogNormal, b~N(0,1)）条件性通过，需验证真实参数分布（可能有偏态、聚集、极端值）不会降解检测功效。",
+    "parent": "mvp_dif_power_sim",
+    "spec": {
+      "command": "python dif_phase2_simulation.py 1000",
+      "server": "local (CPU)",
+      "data_path": "PSN-IRT item_parameters.csv (14042 MMLU items, 4PL→2PL)",
+      "data_count": "15_conditions_x_1000_reps",
+      "model_name": "N/A (Monte Carlo simulation with real IRT params)",
+      "seed": 42,
+      "checkpoint_source": "mvp_dif_power_sim",
+      "eval_data": "PSN-IRT MMLU 14042 items real 2PL parameters (a, b)"
+    },
+    "checkpoint_path": "artifacts/dif_phase2_results.csv",
+    "log_path": "logs/workers/worker_code_mvp_dif_power_sim_phase2_20260520T185329.log",
+    "metrics": {
+      "ets_c_tpr_N80_d14": 0.6823,
+      "ets_c_tpr_N80_d16": 0.7223,
+      "ets_c_tpr_N100_d14": 0.7582,
+      "ets_c_tpr_N100_d16": 0.7966,
+      "ets_c_fpr_range": "0.036-0.042",
+      "best_auc_mh": 0.9254,
+      "best_auc_lr": 0.9405,
+      "verdict": "PASS",
+      "pass_plus_met": true,
+      "real_param_a_mean": 1.2,
+      "real_param_b_mean": -0.84
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T19:30:13.173757+00:00",
+  "trigger": "update_registry"
+}

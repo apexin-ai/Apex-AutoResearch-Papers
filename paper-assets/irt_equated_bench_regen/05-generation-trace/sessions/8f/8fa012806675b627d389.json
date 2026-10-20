@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "8fa012806675b627d389",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code mvp dif power sim v2",
+  "task_key": "worker_code_mvp_dif_power_sim_v2_20260520T172217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_dif_power_sim_v2_20260520T172217.log",
+    "occurrence": 1,
+    "bytes": 1248853,
+    "sha256": "c0194c7a01eae0b390a268d05d0ff382838469bf63aa130a13628b3e265a1c67"
+  },
+  "statistics": {
+    "messages": 1179,
+    "user_turns": 1,
+    "tool_calls": 487,
+    "roles": {
+      "log": 1,
+      "system": 57,
+      "record": 1,
+      "assistant": 121,
+      "tool_call": 487,
+      "tool_result": 487,
+      "user": 1,
+      "result": 24
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1064,
+      "chunks": [
+        {
+          "path": "8fa012806675b627d389-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fa012806675b627d389-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fa012806675b627d389-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fa012806675b627d389-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fa012806675b627d389-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fa012806675b627d389-part-0006.json",
+          "message_count": 164
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "8fa012806675b627d389-part-0006.json",
+          "message_count": 16
+        },
+        {
+          "path": "8fa012806675b627d389-part-0007.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-dif-power-sim-v2.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_001_real_data_dif_mmlu",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:54:53.883Z",
+    "updated_at": "2026-05-20T20:54:53.883Z"
+  },
+  "timestamp": "2026-05-20T20:54:53.895676+00:00",
+  "trigger": "update_registry"
+}

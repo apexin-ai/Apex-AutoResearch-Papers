@@ -1,0 +1,66 @@
+{
+  "exp_id": "plan_034_multi_subject_injection",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:12.118Z",
+    "updated_at": "2026-05-21T16:02:32.549Z",
+    "hypothesis": "Proposition 1 声称当污染局限于单一 subject 时 ΔFPR=0（cross-subject matching 不受污染）。当同时污染 k∈{1,2,3,5,10,20} 个 subject 时，matching variable 被逐步污染，ΔFPR(k) 将随 k 单调递增。具体预测：k≤3 时 ΔFPR<0.02（matching variable 被稀释），k≥10 时 ΔFPR>0.05（matching variable 严重受污）。ΔTPR(k) 在 k=1 与 k=20 之间保持稳定（>0.3 at p=0.5），因为 detection 对 target subject 内的 signal 而非 matching quality 更敏感。",
+    "parent": "plan_016_within_subject_semi_synthetic",
+    "conclusion": "success",
+    "metrics": {
+      "grid": {
+        "k_values": [
+          1,
+          2,
+          3,
+          5,
+          10,
+          20
+        ],
+        "p_values": [
+          0.1,
+          0.3,
+          0.5
+        ],
+        "seeds_per_k": 5,
+        "total_runs": 90
+      },
+      "n_ref": 1080,
+      "n_foc": 807,
+      "n_foc_inject": 787,
+      "proposition_1_boundary": "k≈5-10 subjects",
+      "non_target_delta_fpr": {
+        "k1_p05": 0.002,
+        "k2_p05": 0.002,
+        "k3_p05": -0.001,
+        "k5_p05": 0.007,
+        "k10_p03": 0.026,
+        "k10_p05": 0.069,
+        "k20_p03": 0.072,
+        "k20_p05": 0.167
+      },
+      "target_tpr": {
+        "k1_p05": 0.834,
+        "k5_p05": 0.734,
+        "k10_p05": 0.67,
+        "k20_p05": 0.611
+      },
+      "key_findings": {
+        "k_le_5_robust": true,
+        "k_le_5_max_delta_fpr": 0.007,
+        "k10_significant_at_p03": true,
+        "k20_massive_inflation": true,
+        "p01_robust_all_k": true,
+        "tpr_dilution_with_k": true,
+        "boundary_rule": "cross-subject DIF reliable when contaminated fraction <10%"
+      }
+    },
+    "notes": "Proposition 1 robustness boundary 实验完成。核心结论：cross-subject MH-DIF 在 k≤5 subjects (≤8.8%) 同时污染时 ΔFPR<0.007，Proposition 1 实际成立。k=10 (17.5%) 开始 p≥0.3 时 ΔFPR 显著（+0.026~+0.069）。k=20 (35.1%) 大规模膨胀（p=0.5 时 ΔFPR=+0.167）。低强度 p=0.1 在所有 k 值下都 robust。TPR 随 k 增大而下降（0.834→0.611 at p=0.5），因为 matching variable 吸收了部分 DIF 信号。实际意义：real-world 污染通常影响少数 subjects，cross-subject auditing 有足够 safety margin。"
+  },
+  "timestamp": "2026-05-21T16:02:32.596452+00:00",
+  "trigger": "update_registry"
+}

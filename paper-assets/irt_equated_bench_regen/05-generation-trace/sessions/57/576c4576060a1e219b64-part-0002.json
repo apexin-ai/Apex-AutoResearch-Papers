@@ -1,0 +1,444 @@
+{
+  "schema_version": "1.0",
+  "session_id": "576c4576060a1e219b64",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-22T19:00:56.364Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018o4tcavKoLHwJ7FtHy7Vxz",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_semisynthetic_gradient/semisynthetic_gradient.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "uuid": "3b32a86e-13ac-4479-8852-17acfbf48a95",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r19_semisynthetic_gradient/semisynthetic_gradient.py",
+              "oldString": "report_lines.append(f\"\\n## Interpretation\\n\")\nreport_lines.append(\"- **Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring\")\nreport_lines.append(\"- **Δδ = δ_after − δ_before**: positive Δδ means injection shifted item toward focal-favoring\")\nreport_lines.append(\"- **ρ(diff, Δδ)** is the key metric: isolates whether injection-induced DIF shift correlates with difficulty\")\nreport_lines.append(\"- **Scheme A**: injection ∝ difficulty → easy items get larger Δδ → ρ(diff, Δδ) > 0\")\nreport_lines.append(\"- **Scheme B**: uniform p=0.5 injection → Δδ independent of difficulty → ρ(diff, Δδ) ≈ 0\")\nreport_lines.append(\"- **ρ(diff, δ)**: dominated by ~3900 baseline C items, less sensitive to injection\")",
+              "newString": "report_lines.append(f\"\\n## Interpretation\\n\")\nreport_lines.append(\"**Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring. \"\n                    \"Δδ = δ_after − δ_before; positive Δδ = injection shifted item toward focal-favoring.\\n\")\nreport_lines.append(\"### Key finding: three schemes produce cleanly separable ρ(diff, Δδ) signatures\\n\")\nreport_lines.append(\"1. **Scheme A** (capability-like): ρ(diff, Δδ) ≈ **+0.77**. \"\n                    \"Injection probability ∝ item accuracy → easy items receive more flips → \"\n                    \"larger focal-favoring Δδ on easy items. Strong positive correlation.\")\nreport_lines.append(\"2. **Scheme B** (contamination-like): ρ(diff, Δδ) ≈ **−0.52** (NOT ≈ 0 as naively expected). \"\n                    \"Uniform p=0.5 injection gives equal probability per response, but hard items \"\n                    \"have more 0→1 flippable responses (ceiling effect). \"\n                    \"Result: hard items accumulate more flips → larger Δδ on hard items → negative ρ.\")\nreport_lines.append(\"3. **Scheme C** (mixed): ρ(diff, Δδ) ≈ **+0.39**, intermediate between A and B, \"\n                    \"as expected from mixing both injection mechanisms.\\n\")\nreport_lines.append(\"### Ceiling effect insight\\n\")\nreport_lines.append(\"The Scheme B result (ρ ≈ −0.5 instead of 0) reveals that **uniform memorization probability \"\n                    \"does NOT produce uniform DIF**. Easy items have high baseline accuracy → few 0s to flip → \"\n                    \"small Δδ even at p=0.5. Hard items have low accuracy → many 0s → large Δδ. \"\n                    \"This ceiling effect is an inherent property of binary response matrices and means \"\n                    \"the capability vs. contamination distinction is NOT simply 'correlated vs. uncorrelated with difficulty,' \"\n                    \"but rather the SIGN and MAGNITUDE of the difficulty-DIF gradient.\\n\")\nreport_lines.append(\"### Discriminability\\n\")\nreport_lines.append(\"- A vs B separation: Δρ ≈ 1.29 (0.77 − (−0.52)), massive and non-overlapping across all seeds\")\nreport_lines.append(\"- A vs C separation: Δρ ≈ 0.38, clear but smaller\")\nreport_lines.append(\"- The three patterns are unambiguously distinguishable by ρ(diff, Δδ) alone\")",
+              "originalFile": "\"\"\"\nR19 Exp 4 — Difficulty-Dependent Semi-Synthetic Injection\nTests whether MH-DIF can distinguish capability-like vs contamination-like DIF patterns.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import sparse, stats\nfrom scipy.stats import chi2 as chi2_dist\nimport time, os, sys\n\nROOT = \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\"\nOUT = os.path.join(ROOT, \"r19_semisynthetic_gradient\")\n\nN_SEEDS = 5\nN_STRATA = 5\nFOC_INJECT_FRAC = 0.30\nITEM_INJECT_FRAC = 0.24\n\n# ════════════════════════════════════════════════════════════════════════════\n#  VECTORIZED MH-DIF — returns per-item results\n# ════════════════════════════════════════════════════════════════════════════\ndef mh_dif_vec(X_ref, X_foc, n_strata=N_STRATA):\n    \"\"\"Vectorized MH-DIF returning per-item delta_mh, p_value, is_c, direction.\"\"\"\n    n_ref, J = X_ref.shape\n    n_foc = X_foc.shape[0]\n\n    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n    s_all = np.concatenate([tot_ref, tot_foc])\n\n    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n    n_bins = len(edges) - 1\n    if n_bins < 1:\n        return np.zeros(J), np.ones(J), np.zeros(J, dtype=bool)\n\n    k_ref = np.digitize(tot_ref, edges[1:-1])\n    k_foc = np.digitize(tot_foc, edges[1:-1])\n\n    n1 = np.zeros(n_bins, dtype=np.float64)\n    n0 = np.zeros(n_bins, dtype=np.float64)\n    A = np.zeros((n_bins, J), dtype=np.float64)\n    C_mat = np.zeros((n_bins, J), dtype=np.float64)\n\n    for k in range(n_bins):\n        mr = (k_ref == k)\n        mf = (k_foc == k)\n        n1[k] = mr.sum()\n        n0[k] = mf.sum()\n        if mr.any():\n            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n        if mf.any():\n            C_mat[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n\n    B = n1[:, None] - A\n    D = n0[:, None] - C_mat\n    Nk = (n1 + n0)[:, None]\n    m1 = A + C_mat\n    m0 = B + D\n\n    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n             (Nk > 1) & (m1 > 0) & (m0 > 0))\n\n    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n    Sj = np.where(valid, B * C_mat / Nk, 0).sum(axis=0)\n\n    finite_mask = (Rj > 0) & (Sj > 0)\n\n    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n\n    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n\n    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n    sum_var = np.where(\n        valid,\n        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n        0,\n    ).sum(axis=0)\n\n    chi2_j = np.where(\n        sum_var > 0,\n        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n        0,\n    )\n    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n\n    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n\n    return delta_j, pval_j, is_c\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  LOAD DATA\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"Loading data...\")\nrm = np.load(f\"{ROOT}/response_matrix.npz\")\nX_sparse = sparse.csr_matrix((rm['data'], rm['indices'], rm['indptr']), shape=tuple(rm['shape']))\nidx = np.load(f\"{ROOT}/response_matrix_index.npz\", allow_pickle=True)\nmodel_names = idx['model_names']\nitem_ids = idx['item_ids']\n\nmeta = pd.read_csv(f\"{ROOT}/model_metadata.csv\")\nname_to_row = {n: i for i, n in enumerate(model_names)}\n\nref_models = meta[meta['cohort_temporal'] == '2023']['model_name'].values\nfoc_models = meta[meta['cohort_temporal'] == '2024']['model_name'].values\n\nref_idx = np.array([name_to_row[n] for n in ref_models if n in name_to_row])\nfoc_idx = np.array([name_to_row[n] for n in foc_models if n in name_to_row])\n\nN_ref, N_foc, J = len(ref_idx), len(foc_idx), len(item_ids)\nN_inject_models = int(N_foc * FOC_INJECT_FRAC)\nN_inject_items = int(J * ITEM_INJECT_FRAC)\n\nprint(f\"  Ref: {N_ref}, Foc: {N_foc}, Items: {J}\")\nprint(f\"  Injection targets: {N_inject_models} models, {N_inject_items} items\")\n\n# Densify the ref/foc submatrices\nX_ref_base = X_sparse[ref_idx].toarray().astype(np.float64)\nX_foc_base = X_sparse[foc_idx].toarray().astype(np.float64)\n\n# Ref cohort accuracy per item (= item difficulty proxy)\nitem_difficulty = X_ref_base.mean(axis=0)  # shape (J,)\n\nprint(f\"  Item difficulty: mean={item_difficulty.mean():.3f}, \"\n      f\"min={item_difficulty.min():.3f}, max={item_difficulty.max():.3f}\")\n\n# Get MMLU subjects per item for Scheme B (format: subject_name.question_number)\nitem_subjects = np.array([str(iid).rsplit('.', 1)[0] for iid in item_ids])\nunique_subjects = np.unique(item_subjects)\nprint(f\"  Unique subjects: {len(unique_subjects)}\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  INJECTION SCHEMES\n# ════════════════════════════════════════════════════════════════════════════\ndef inject_scheme_a(X_foc, inject_model_mask, inject_item_idx, item_diff, rng):\n    \"\"\"Capability-like: injection probability ∝ difficulty (easy items more likely flipped).\"\"\"\n    X = X_foc.copy()\n    n_flipped = 0\n    for j in inject_item_idx:\n        p_inject = max(0.0, min(1.0, (item_diff[j] - 0.2) / 0.6))\n        for i in np.where(inject_model_mask)[0]:\n            if X[i, j] == 0 and rng.random() < p_inject:\n                X[i, j] = 1\n                n_flipped += 1\n    return X, n_flipped\n\n\ndef inject_scheme_b(X_foc, inject_model_mask, inject_item_idx, rng, p_const=0.5):\n    \"\"\"Contamination-like: uniform injection probability, restricted to 5 random subjects.\"\"\"\n    X = X_foc.copy()\n    n_flipped = 0\n    for j in inject_item_idx:\n        for i in np.where(inject_model_mask)[0]:\n            if X[i, j] == 0 and rng.random() < p_const:\n                X[i, j] = 1\n                n_flipped += 1\n    return X, n_flipped\n\n\ndef inject_scheme_c(X_foc, inject_model_mask, inject_item_idx_a, inject_item_idx_b,\n                    item_diff, rng, p_const=0.5):\n    \"\"\"Mixed: half items use scheme A, half use scheme B.\"\"\"\n    X = X_foc.copy()\n    n_flipped = 0\n    # Scheme A half\n    for j in inject_item_idx_a:\n        p_inject = max(0.0, min(1.0, (item_diff[j] - 0.2) / 0.6))\n        for i in np.where(inject_model_mask)[0]:\n            if X[i, j] == 0 and rng.random() < p_inject:\n                X[i, j] = 1\n                n_flipped += 1\n    # Scheme B half\n    for j in inject_item_idx_b:\n        for i in np.where(inject_model_mask)[0]:\n            if X[i, j] == 0 and rng.random() < p_const:\n                X[i, j] = 1\n                n_flipped += 1\n    return X, n_flipped\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  BASELINE (no injection)\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Baseline (no injection) ===\")\ndelta_base, pval_base, is_c_base = mh_dif_vec(X_ref_base, X_foc_base, n_strata=N_STRATA)\nc_idx_base = np.where(is_c_base)[0]\nrho_base, _ = stats.spearmanr(item_difficulty[c_idx_base], delta_base[c_idx_base])\nn_c_base = is_c_base.sum()\n# δ > 0 = focal-favoring, δ < 0 = ref-favoring\nn_focal_base = (is_c_base & (delta_base > 0)).sum()\nn_ref_base = (is_c_base & (delta_base < 0)).sum()\nprint(f\"  Baseline C%: {n_c_base/J*100:.2f}%, ρ={rho_base:.3f}, \"\n      f\"focal%={n_focal_base/n_c_base*100:.1f}%, ref%={n_ref_base/n_c_base*100:.1f}%, N_C={n_c_base}\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  RUN EXPERIMENTS\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Running experiments ===\")\nresults = []\nt0 = time.time()\n\nfor seed in range(1, N_SEEDS + 1):\n    rng = np.random.RandomState(seed * 42)\n\n    # Select injection models and items (shared across schemes within seed)\n    inject_model_idx = rng.choice(N_foc, N_inject_models, replace=False)\n    inject_model_mask = np.zeros(N_foc, dtype=bool)\n    inject_model_mask[inject_model_idx] = True\n\n    inject_item_idx_all = rng.choice(J, N_inject_items, replace=False)\n\n    # Scheme B: select 5 random subjects, pick injection items from those subjects\n    selected_subjects = rng.choice(unique_subjects, 5, replace=False)\n    subject_mask = np.isin(item_subjects, selected_subjects)\n    subject_item_pool = np.where(subject_mask)[0]\n    n_b_items = min(N_inject_items, len(subject_item_pool))\n    inject_item_idx_b = rng.choice(subject_item_pool, n_b_items, replace=False)\n\n    # Scheme C: split A items in half\n    half = N_inject_items // 2\n    inject_item_idx_c_a = inject_item_idx_all[:half]\n    # For scheme C's B half, pick from 5 random subjects\n    selected_subjects_c = rng.choice(unique_subjects, 5, replace=False)\n    subject_mask_c = np.isin(item_subjects, selected_subjects_c)\n    subject_pool_c = np.where(subject_mask_c)[0]\n    # Exclude items already used by A half\n    subject_pool_c = np.setdiff1d(subject_pool_c, inject_item_idx_c_a)\n    n_c_b = min(half, len(subject_pool_c))\n    inject_item_idx_c_b = rng.choice(subject_pool_c, n_c_b, replace=False)\n\n    schemes = {\n        'A_capability': lambda: inject_scheme_a(\n            X_foc_base, inject_model_mask, inject_item_idx_all, item_difficulty, rng),\n        'B_contamination': lambda: inject_scheme_b(\n            X_foc_base, inject_model_mask, inject_item_idx_b, rng),\n        'C_mixed': lambda: inject_scheme_c(\n            X_foc_base, inject_model_mask, inject_item_idx_c_a, inject_item_idx_c_b,\n            item_difficulty, rng),\n    }\n\n    for scheme_name, inject_fn in schemes.items():\n        t1 = time.time()\n\n        X_foc_inj, n_flipped = inject_fn()\n\n        # Determine which items were injected for this scheme\n        if scheme_name == 'A_capability':\n            injected_items = set(inject_item_idx_all)\n        elif scheme_name == 'B_contamination':\n            injected_items = set(inject_item_idx_b)\n        else:  # C_mixed\n            injected_items = set(inject_item_idx_c_a) | set(inject_item_idx_c_b)\n\n        # Run MH-DIF\n        delta_j, pval_j, is_c = mh_dif_vec(X_ref_base, X_foc_inj, n_strata=N_STRATA)\n\n        # Delta change from baseline (isolates injection effect)\n        # δ > 0 = focal-favoring; injection flips focal 0→1 → pushes δ positive\n        ddelta = delta_j - delta_base\n\n        # C% among all / injected / non-injected items\n        inj_arr = np.array(sorted(injected_items))\n        non_inj_arr = np.array(sorted(set(range(J)) - injected_items))\n        c_pct_all = is_c.sum() / J * 100\n        c_pct_inj = is_c[inj_arr].sum() / len(inj_arr) * 100 if len(inj_arr) > 0 else 0\n        c_pct_noninj = is_c[non_inj_arr].sum() / len(non_inj_arr) * 100\n\n        # ρ(difficulty, δ) among all C items\n        c_idx = np.where(is_c)[0]\n        rho_all = np.nan\n        if len(c_idx) >= 3:\n            rho_all, _ = stats.spearmanr(item_difficulty[c_idx], delta_j[c_idx])\n\n        # ρ(difficulty, δ) among injected C items\n        c_inj_mask = is_c & np.isin(np.arange(J), inj_arr)\n        c_inj_idx = np.where(c_inj_mask)[0]\n        rho_inj = np.nan\n        if len(c_inj_idx) >= 3:\n            rho_inj, _ = stats.spearmanr(item_difficulty[c_inj_idx], delta_j[c_inj_idx])\n\n        # ρ(difficulty, Δδ) among injected items — KEY METRIC isolating injection signal\n        rho_ddelta_inj = np.nan\n        if len(inj_arr) >= 3:\n            rho_ddelta_inj, _ = stats.spearmanr(item_difficulty[inj_arr], ddelta[inj_arr])\n\n        # ρ(difficulty, Δδ) among all items\n        rho_ddelta_all = np.nan\n        if J >= 3:\n            rho_ddelta_all, _ = stats.spearmanr(item_difficulty, ddelta)\n\n        # Direction distribution: δ > 0 = focal-favoring, δ < 0 = ref-favoring\n        n_c_total = is_c.sum()\n        n_focal_favoring = (is_c & (delta_j > 0)).sum()\n        n_ref_favoring = (is_c & (delta_j < 0)).sum()\n        pct_focal = n_focal_favoring / n_c_total * 100 if n_c_total > 0 else 0\n\n        # Direction among injected C items\n        n_c_inj = c_inj_mask.sum()\n        n_focal_inj = (c_inj_mask & (delta_j > 0)).sum()\n        pct_focal_inj = n_focal_inj / n_c_inj * 100 if n_c_inj > 0 else 0\n\n        # Newly flagged items (C after injection but not in baseline)\n        newly_c = is_c & ~is_c_base\n        n_newly_c = newly_c.sum()\n        newly_c_inj = newly_c & np.isin(np.arange(J), inj_arr)\n        n_newly_c_inj = newly_c_inj.sum()\n\n        # Mean Δδ among injected items (injection effect magnitude)\n        mean_ddelta_inj = ddelta[inj_arr].mean()\n\n        # Per-quintile analysis\n        quintile_edges = np.quantile(item_difficulty, [0, 0.2, 0.4, 0.6, 0.8, 1.0])\n        quintile_labels = np.digitize(item_difficulty, quintile_edges[1:-1])\n        quintile_data = {}\n        for q in range(5):\n            q_mask = (quintile_labels == q)\n            q_items = np.where(q_mask)[0]\n            q_inj_items = np.intersect1d(q_items, inj_arr)\n            q_c = is_c[q_items].sum()\n            q_total = len(q_items)\n            q_c_pct = q_c / q_total * 100 if q_total > 0 else 0\n            q_focal = (is_c[q_items] & (delta_j[q_items] > 0)).sum()\n            q_pct_focal = q_focal / q_c * 100 if q_c > 0 else 0\n            q_c_inj = is_c[q_inj_items].sum() if len(q_inj_items) > 0 else 0\n            q_c_pct_inj = q_c_inj / len(q_inj_items) * 100 if len(q_inj_items) > 0 else 0\n            q_mean_ddelta = ddelta[q_inj_items].mean() if len(q_inj_items) > 0 else 0\n            quintile_data[f'q{q+1}_c_pct'] = q_c_pct\n            quintile_data[f'q{q+1}_pct_focal'] = q_pct_focal\n            quintile_data[f'q{q+1}_n_c'] = q_c\n            quintile_data[f'q{q+1}_c_pct_inj'] = q_c_pct_inj\n            quintile_data[f'q{q+1}_n_inj'] = len(q_inj_items)\n            quintile_data[f'q{q+1}_mean_ddelta'] = q_mean_ddelta\n\n        elapsed = time.time() - t1\n        row = dict(\n            scheme=scheme_name, seed=seed,\n            n_inject_models=N_inject_models,\n            n_inject_items=len(injected_items),\n            n_flipped=n_flipped,\n            c_pct_all=c_pct_all,\n            c_pct_inj=c_pct_inj,\n            c_pct_noninj=c_pct_noninj,\n            n_c_total=n_c_total,\n            n_c_inj=n_c_inj,\n            rho_all=rho_all,\n            rho_inj=rho_inj,\n            rho_ddelta_inj=rho_ddelta_inj,\n            rho_ddelta_all=rho_ddelta_all,\n            pct_focal=pct_focal,\n            pct_focal_inj=pct_focal_inj,\n            n_focal_favoring=n_focal_favoring,\n            n_ref_favoring=n_ref_favoring,\n            n_newly_c=n_newly_c,\n            n_newly_c_inj=n_newly_c_inj,\n            mean_ddelta_inj=mean_ddelta_inj,\n            elapsed_sec=elapsed,\n        )\n        row.update(quintile_data)\n        results.append(row)\n        print(f\"  [{scheme_name}] seed={seed}: C%={c_pct_all:.1f}%, \"\n              f\"ρ_all={rho_all:.3f}, ρ_Δδ_inj={rho_ddelta_inj:.3f}, \"\n              f\"focal_inj%={pct_focal_inj:.1f}%, flips={n_flipped}, {elapsed:.1f}s\")\n\ntotal_time = time.time() - t0\nprint(f\"\\nTotal time: {total_time:.0f}s\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  SAVE RESULTS\n# ════════════════════════════════════════════════════════════════════════════\ndf = pd.DataFrame(results)\ndf.to_csv(os.path.join(OUT, \"semisynthetic_results.csv\"), index=False)\nprint(f\"\\nSaved: semisynthetic_results.csv ({len(df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  GENERATE REPORT\n# ════════════════════════════════════════════════════════════════════════════\nreport_lines = [\"# R19 Exp 4 — Difficulty-Dependent Semi-Synthetic Injection\\n\"]\nreport_lines.append(f\"**Date**: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M')}\\n\")\nreport_lines.append(f\"**Config**: {N_SEEDS} seeds, {N_ref} ref models (2023), \"\n                    f\"{N_foc} foc models (2024), {J} items\\n\")\nreport_lines.append(f\"**Injection**: {N_inject_models} foc models ({FOC_INJECT_FRAC*100:.0f}%), \"\n                    f\"~{N_inject_items} items ({ITEM_INJECT_FRAC*100:.0f}%)\\n\")\n\nreport_lines.append(f\"\\n## Baseline (no injection)\\n\")\nreport_lines.append(f\"- C%: {n_c_base/J*100:.2f}%\")\nreport_lines.append(f\"- ρ(difficulty, δ_MH) among C: {rho_base:.3f}\")\nreport_lines.append(f\"- % focal-favoring (δ>0): {n_focal_base/n_c_base*100:.1f}%\")\nreport_lines.append(f\"- % ref-favoring (δ<0): {n_ref_base/n_c_base*100:.1f}%\")\nreport_lines.append(f\"- N DIF-C: {n_c_base}\")\n\nfor scheme in ['A_capability', 'B_contamination', 'C_mixed']:\n    sub = df[df['scheme'] == scheme]\n    report_lines.append(f\"\\n## Scheme {scheme.split('_')[0]} — {scheme.split('_',1)[1].replace('_',' ').title()}\\n\")\n\n    report_lines.append(f\"| Metric | Mean ± SD |\")\n    report_lines.append(f\"|--------|-----------|\")\n    report_lines.append(f\"| C% (all items) | {sub['c_pct_all'].mean():.2f} ± {sub['c_pct_all'].std():.2f} |\")\n    report_lines.append(f\"| C% (injected items) | {sub['c_pct_inj'].mean():.2f} ± {sub['c_pct_inj'].std():.2f} |\")\n    report_lines.append(f\"| C% (non-injected) | {sub['c_pct_noninj'].mean():.2f} ± {sub['c_pct_noninj'].std():.2f} |\")\n    report_lines.append(f\"| ρ(diff, δ) all C | {sub['rho_all'].mean():.3f} ± {sub['rho_all'].std():.3f} |\")\n    report_lines.append(f\"| ρ(diff, δ) injected C | {sub['rho_inj'].mean():.3f} ± {sub['rho_inj'].std():.3f} |\")\n    report_lines.append(f\"| **ρ(diff, Δδ) injected items** | **{sub['rho_ddelta_inj'].mean():.3f} ± {sub['rho_ddelta_inj'].std():.3f}** |\")\n    report_lines.append(f\"| ρ(diff, Δδ) all items | {sub['rho_ddelta_all'].mean():.3f} ± {sub['rho_ddelta_all'].std():.3f} |\")\n    report_lines.append(f\"| % focal-favoring (all C, δ>0) | {sub['pct_focal'].mean():.1f} ± {sub['pct_focal'].std():.1f} |\")\n    report_lines.append(f\"| % focal-favoring (inj C, δ>0) | {sub['pct_focal_inj'].mean():.1f} ± {sub['pct_focal_inj'].std():.1f} |\")\n    report_lines.append(f\"| N DIF-C items | {sub['n_c_total'].mean():.0f} ± {sub['n_c_total'].std():.0f} |\")\n    report_lines.append(f\"| N DIF-C (injected) | {sub['n_c_inj'].mean():.0f} ± {sub['n_c_inj'].std():.0f} |\")\n    report_lines.append(f\"| Newly flagged C | {sub['n_newly_c'].mean():.0f} ± {sub['n_newly_c'].std():.0f} |\")\n    report_lines.append(f\"| Mean Δδ (injected items) | {sub['mean_ddelta_inj'].mean():.3f} ± {sub['mean_ddelta_inj'].std():.3f} |\")\n    report_lines.append(f\"| Responses flipped | {sub['n_flipped'].mean():.0f} ± {sub['n_flipped'].std():.0f} |\")\n    report_lines.append(f\"| Items injected | {sub['n_inject_items'].mean():.0f} |\")\n\n    report_lines.append(f\"\\n### Quintile Breakdown\\n\")\n    report_lines.append(f\"| Quintile | C% (all) | C% (inj) | % Focal | Mean Δδ (inj) | N_C | N_inj |\")\n    report_lines.append(f\"|----------|----------|----------|---------|---------------|-----|-------|\")\n    for q in range(1, 6):\n        cols = {k: f'q{q}_{k}' for k in ['c_pct', 'c_pct_inj', 'pct_focal', 'mean_ddelta', 'n_c', 'n_inj']}\n        if cols['c_pct'] in sub.columns:\n            report_lines.append(\n                f\"| Q{q} | {sub[cols['c_pct']].mean():.1f} | \"\n                f\"{sub[cols['c_pct_inj']].mean():.1f} | \"\n                f\"{sub[cols['pct_focal']].mean():.1f} | \"\n                f\"{sub[cols['mean_ddelta']].mean():.3f} | \"\n                f\"{sub[cols['n_c']].mean():.0f} | \"\n                f\"{sub[cols['n_inj']].mean():.0f} |\")\n\nreport_lines.append(f\"\\n## Key Comparison: ρ(difficulty, Δδ) — injection signal isolated\\n\")\nreport_lines.append(\"Δδ = δ_after − δ_baseline isolates the injection-induced DIF shift.\\n\")\nreport_lines.append(f\"| Scheme | ρ(diff, Δδ) injected | ρ(diff, Δδ) all | Expected |\")\nreport_lines.append(f\"|--------|---------------------|-----------------|----------|\")\nfor scheme, expected in [('A_capability', 'positive (easy→more focal DIF)'),\n                         ('B_contamination', '≈ 0 (uniform)'),\n                         ('C_mixed', 'intermediate')]:\n    sub = df[df['scheme'] == scheme]\n    report_lines.append(f\"| {scheme} | {sub['rho_ddelta_inj'].mean():.3f} ± {sub['rho_ddelta_inj'].std():.3f} | \"\n                       f\"{sub['rho_ddelta_all'].mean():.3f} ± {sub['rho_ddelta_all'].std():.3f} | {expected} |\")\n\nreport_lines.append(f\"\\n## Interpretation\\n\")\nreport_lines.append(\"- **Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring\")\nreport_lines.append(\"- **Δδ = δ_after − δ_before**: positive Δδ means injection shifted item toward focal-favoring\")\nreport_lines.append(\"- **ρ(diff, Δδ)** is the key metric: isolates whether injection-induced DIF shift correlates with difficulty\")\nreport_lines.append(\"- **Scheme A**: injection ∝ difficulty → easy items get larger Δδ → ρ(diff, Δδ) > 0\")\nreport_lines.append(\"- **Scheme B**: uniform p=0.5 injection → Δδ independent of difficulty → ρ(diff, Δδ) ≈ 0\")\nreport_lines.append(\"- **ρ(diff, δ)**: dominated by ~3900 baseline C items, less sensitive to injection\")\n\nreport_text = \"\\n\".join(report_lines) + \"\\n\"\n\nwith open(os.path.join(OUT, \"semisynthetic_gradient_report.md\"), \"w\") as f:\n    f.write(report_text)\n\nprint(f\"Saved: semisynthetic_gradient_report.md\")\nprint(\"\\n\" + report_text)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 443,
+                  "oldLines": 12,
+                  "newStart": 443,
+                  "newLines": 29,
+                  "lines": [
+                    "                        f\"{sub['rho_ddelta_all'].mean():.3f} ± {sub['rho_ddelta_all'].std():.3f} | {expected} |\")",
+                    " ",
+                    " report_lines.append(f\"\\n## Interpretation\\n\")",
+                    "-report_lines.append(\"- **Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring\")",
+                    "-report_lines.append(\"- **Δδ = δ_after − δ_before**: positive Δδ means injection shifted item toward focal-favoring\")",
+                    "-report_lines.append(\"- **ρ(diff, Δδ)** is the key metric: isolates whether injection-induced DIF shift correlates with difficulty\")",
+                    "-report_lines.append(\"- **Scheme A**: injection ∝ difficulty → easy items get larger Δδ → ρ(diff, Δδ) > 0\")",
+                    "-report_lines.append(\"- **Scheme B**: uniform p=0.5 injection → Δδ independent of difficulty → ρ(diff, Δδ) ≈ 0\")",
+                    "-report_lines.append(\"- **ρ(diff, δ)**: dominated by ~3900 baseline C items, less sensitive to injection\")",
+                    "+report_lines.append(\"**Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring. \"",
+                    "+                    \"Δδ = δ_after − δ_before; positive Δδ = injection shifted item toward focal-favoring.\\n\")",
+                    "+report_lines.append(\"### Key finding: three schemes produce cleanly separable ρ(diff, Δδ) signatures\\n\")",
+                    "+report_lines.append(\"1. **Scheme A** (capability-like): ρ(diff, Δδ) ≈ **+0.77**. \"",
+                    "+                    \"Injection probability ∝ item accuracy → easy items receive more flips → \"",
+                    "+                    \"larger focal-favoring Δδ on easy items. Strong positive correlation.\")",
+                    "+report_lines.append(\"2. **Scheme B** (contamination-like): ρ(diff, Δδ) ≈ **−0.52** (NOT ≈ 0 as naively expected). \"",
+                    "+                    \"Uniform p=0.5 injection gives equal probability per response, but hard items \"",
+                    "+                    \"have more 0→1 flippable responses (ceiling effect). \"",
+                    "+                    \"Result: hard items accumulate more flips → larger Δδ on hard items → negative ρ.\")",
+                    "+report_lines.append(\"3. **Scheme C** (mixed): ρ(diff, Δδ) ≈ **+0.39**, intermediate between A and B, \"",
+                    "+                    \"as expected from mixing both injection mechanisms.\\n\")",
+                    "+report_lines.append(\"### Ceiling effect insight\\n\")",
+                    "+report_lines.append(\"The Scheme B result (ρ ≈ −0.5 instead of 0) reveals that **uniform memorization probability \"",
+                    "+                    \"does NOT produce uniform DIF**. Easy items have high baseline accuracy → few 0s to flip → \"",
+                    "+                    \"small Δδ even at p=0.5. Hard items have low accuracy → many 0s → large Δδ. \"",
+                    "+                    \"This ceiling effect is an inherent property of binary response matrices and means \"",
+                    "+                    \"the capability vs. contamination distinction is NOT simply 'correlated vs. uncorrelated with difficulty,' \"",
+                    "+                    \"but rather the SIGN and MAGNITUDE of the difficulty-DIF gradient.\\n\")",
+                    "+report_lines.append(\"### Discriminability\\n\")",
+                    "+report_lines.append(\"- A vs B separation: Δρ ≈ 1.29 (0.77 − (−0.52)), massive and non-overlapping across all seeds\")",
+                    "+report_lines.append(\"- A vs C separation: Δρ ≈ 0.38, clear but smaller\")",
+                    "+report_lines.append(\"- The three patterns are unambiguously distinguishable by ρ(diff, Δδ) alone\")",
+                    " ",
+                    " report_text = \"\\n\".join(report_lines) + \"\\n\"",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0111ra7MDHWHqcz7jJ9KaEbB",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/r19_semisynthetic_gradient/semisynthetic_gradient.py 2>&1 | tail -50",
+                "description": "Re-run and check final report",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "uuid": "f1a71231-5565-4b1e-baee-b3d413ef1b1e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01254LvW5GvhpM2sRu18uRLT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 92374,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1186
+                },
+                "output_tokens": 49,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bu0bnen4r",
+                "tool_use_id": "toolu_0111ra7MDHWHqcz7jJ9KaEbB",
+                "description": "Re-run and check final report",
+                "task_type": "local_bash",
+                "uuid": "653ae510-b376-41ba-b4d3-e2f7256e1126",
+                "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67"
+              }
+            }
+          ],
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bu0bnen4r",
+                "tool_use_id": "toolu_0111ra7MDHWHqcz7jJ9KaEbB",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Re-run and check final report",
+                "uuid": "8f41be71-169e-4f4c-9973-a746b9f63f3d",
+                "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67"
+              }
+            }
+          ],
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-22T19:01:12.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0111ra7MDHWHqcz7jJ9KaEbB",
+              "type": "tool_result",
+              "content": "| ρ(diff, Δδ) all items | -0.008 ± 0.101 |\n| % focal-favoring (all C, δ>0) | 45.8 ± 1.6 |\n| % focal-favoring (inj C, δ>0) | 83.8 ± 2.7 |\n| N DIF-C items | 4000 ± 67 |\n| N DIF-C (injected) | 749 ± 99 |\n| Newly flagged C | 626 ± 51 |\n| Mean Δδ (injected items) | 0.850 ± 0.039 |\n| Responses flipped | 93752 ± 14432 |\n| Items injected | 2407 |\n\n### Quintile Breakdown\n\n| Quintile | C% (all) | C% (inj) | % Focal | Mean Δδ (inj) | N_C | N_inj |\n|----------|----------|----------|---------|---------------|-----|-------|\n| Q1 | 37.2 | 53.8 | 89.2 | 0.600 | 931 | 469 |\n| Q2 | 39.1 | 36.4 | 60.0 | 0.554 | 978 | 493 |\n| Q3 | 32.6 | 30.1 | 29.5 | 0.926 | 815 | 467 |\n| Q4 | 29.7 | 23.6 | 17.8 | 1.169 | 735 | 474 |\n| Q5 | 21.4 | 12.5 | 8.3 | 1.029 | 542 | 503 |\n\n## Key Comparison: ρ(difficulty, Δδ) — injection signal isolated\n\nΔδ = δ_after − δ_baseline isolates the injection-induced DIF shift.\n\n| Scheme | ρ(diff, Δδ) injected | ρ(diff, Δδ) all | Expected |\n|--------|---------------------|-----------------|----------|\n| A_capability | 0.771 ± 0.029 | -0.160 ± 0.131 | positive (easy→more focal DIF) |\n| B_contamination | -0.517 ± 0.107 | 0.181 ± 0.136 | ≈ 0 (uniform) |\n| C_mixed | 0.394 ± 0.053 | -0.008 ± 0.101 | intermediate |\n\n## Interpretation\n\n**Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring. Δδ = δ_after − δ_before; positive Δδ = injection shifted item toward focal-favoring.\n\n### Key finding: three schemes produce cleanly separable ρ(diff, Δδ) signatures\n\n1. **Scheme A** (capability-like): ρ(diff, Δδ) ≈ **+0.77**. Injection probability ∝ item accuracy → easy items receive more flips → larger focal-favoring Δδ on easy items. Strong positive correlation.\n2. **Scheme B** (contamination-like): ρ(diff, Δδ) ≈ **−0.52** (NOT ≈ 0 as naively expected). Uniform p=0.5 injection gives equal probability per response, but hard items have more 0→1 flippable responses (ceiling effect). Result: hard items accumulate more flips → larger Δδ on hard items → negative ρ.\n3. **Scheme C** (mixed): ρ(diff, Δδ) ≈ **+0.39**, intermediate between A and B, as expected from mixing both injection mechanisms.\n\n### Ceiling effect insight\n\nThe Scheme B result (ρ ≈ −0.5 instead of 0) reveals that **uniform memorization probability does NOT produce uniform DIF**. Easy items have high baseline accuracy → few 0s to flip → small Δδ even at p=0.5. Hard items have low accuracy → many 0s → large Δδ. This ceiling effect is an inherent property of binary response matrices and means the capability vs. contamination distinction is NOT simply 'correlated vs. uncorrelated with difficulty,' but rather the SIGN and MAGNITUDE of the difficulty-DIF gradient.\n\n### Discriminability\n\n- A vs B separation: Δρ ≈ 1.29 (0.77 − (−0.52)), massive and non-overlapping across all seeds\n- A vs C separation: Δρ ≈ 0.38, clear but smaller\n- The three patterns are unambiguously distinguishable by ρ(diff, Δδ) alone",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "uuid": "72146c03-dc1e-4536-b2ce-d84a94a3efe5",
+            "tool_use_result": {
+              "stdout": "| ρ(diff, Δδ) all items | -0.008 ± 0.101 |\n| % focal-favoring (all C, δ>0) | 45.8 ± 1.6 |\n| % focal-favoring (inj C, δ>0) | 83.8 ± 2.7 |\n| N DIF-C items | 4000 ± 67 |\n| N DIF-C (injected) | 749 ± 99 |\n| Newly flagged C | 626 ± 51 |\n| Mean Δδ (injected items) | 0.850 ± 0.039 |\n| Responses flipped | 93752 ± 14432 |\n| Items injected | 2407 |\n\n### Quintile Breakdown\n\n| Quintile | C% (all) | C% (inj) | % Focal | Mean Δδ (inj) | N_C | N_inj |\n|----------|----------|----------|---------|---------------|-----|-------|\n| Q1 | 37.2 | 53.8 | 89.2 | 0.600 | 931 | 469 |\n| Q2 | 39.1 | 36.4 | 60.0 | 0.554 | 978 | 493 |\n| Q3 | 32.6 | 30.1 | 29.5 | 0.926 | 815 | 467 |\n| Q4 | 29.7 | 23.6 | 17.8 | 1.169 | 735 | 474 |\n| Q5 | 21.4 | 12.5 | 8.3 | 1.029 | 542 | 503 |\n\n## Key Comparison: ρ(difficulty, Δδ) — injection signal isolated\n\nΔδ = δ_after − δ_baseline isolates the injection-induced DIF shift.\n\n| Scheme | ρ(diff, Δδ) injected | ρ(diff, Δδ) all | Expected |\n|--------|---------------------|-----------------|----------|\n| A_capability | 0.771 ± 0.029 | -0.160 ± 0.131 | positive (easy→more focal DIF) |\n| B_contamination | -0.517 ± 0.107 | 0.181 ± 0.136 | ≈ 0 (uniform) |\n| C_mixed | 0.394 ± 0.053 | -0.008 ± 0.101 | intermediate |\n\n## Interpretation\n\n**Sign convention**: δ > 0 = focal-favoring, δ < 0 = ref-favoring. Δδ = δ_after − δ_before; positive Δδ = injection shifted item toward focal-favoring.\n\n### Key finding: three schemes produce cleanly separable ρ(diff, Δδ) signatures\n\n1. **Scheme A** (capability-like): ρ(diff, Δδ) ≈ **+0.77**. Injection probability ∝ item accuracy → easy items receive more flips → larger focal-favoring Δδ on easy items. Strong positive correlation.\n2. **Scheme B** (contamination-like): ρ(diff, Δδ) ≈ **−0.52** (NOT ≈ 0 as naively expected). Uniform p=0.5 injection gives equal probability per response, but hard items have more 0→1 flippable responses (ceiling effect). Result: hard items accumulate more flips → larger Δδ on hard items → negative ρ.\n3. **Scheme C** (mixed): ρ(diff, Δδ) ≈ **+0.39**, intermediate between A and B, as expected from mixing both injection mechanisms.\n\n### Ceiling effect insight\n\nThe Scheme B result (ρ ≈ −0.5 instead of 0) reveals that **uniform memorization probability does NOT produce uniform DIF**. Easy items have high baseline accuracy → few 0s to flip → small Δδ even at p=0.5. Hard items have low accuracy → many 0s → large Δδ. This ceiling effect is an inherent property of binary response matrices and means the capability vs. contamination distinction is NOT simply 'correlated vs. uncorrelated with difficulty,' but rather the SIGN and MAGNITUDE of the difficulty-DIF gradient.\n\n### Discriminability\n\n- A vs B separation: Δρ ≈ 1.29 (0.77 − (−0.52)), massive and non-overlapping across all seeds\n- A vs C separation: Δρ ≈ 0.38, clear but smaller\n- The three patterns are unambiguously distinguishable by ρ(diff, Δδ) alone",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are clean and the experiment is complete. Let me verify the output files exist."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "uuid": "387ac976-44b1-45ca-942b-f8edf90f5edf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MA6gc1FLbCvwf2RS2swyfN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1347,
+                "cache_read_input_tokens": 93560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EFDZ3SKsMA1xVAbHoJPL9u",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la artifacts/r19_semisynthetic_gradient/",
+                "description": "Verify output files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "uuid": "3d1045ff-9a7b-451f-b201-8e20ec92ccaf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MA6gc1FLbCvwf2RS2swyfN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1347,
+                "cache_read_input_tokens": 93560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-22T19:01:19.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EFDZ3SKsMA1xVAbHoJPL9u",
+              "type": "tool_result",
+              "content": "total 56\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 19:00 .\ndrwxr-xr-x 89 ubuntu ubuntu  4096 May 22 18:50 ..\n-rw-r--r--  1 ubuntu ubuntu 24788 May 22 19:00 semisynthetic_gradient.py\n-rw-r--r--  1 ubuntu ubuntu  5964 May 22 19:01 semisynthetic_gradient_report.md\n-rw-r--r--  1 ubuntu ubuntu 10700 May 22 19:01 semisynthetic_results.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "uuid": "3ff72fc0-f9ff-4703-a076-c678a0e4bc43",
+            "tool_use_result": {
+              "stdout": "total 56\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 19:00 .\ndrwxr-xr-x 89 ubuntu ubuntu  4096 May 22 18:50 ..\n-rw-r--r--  1 ubuntu ubuntu 24788 May 22 19:00 semisynthetic_gradient.py\n-rw-r--r--  1 ubuntu ubuntu  5964 May 22 19:01 semisynthetic_gradient_report.md\n-rw-r--r--  1 ubuntu ubuntu 10700 May 22 19:01 semisynthetic_results.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three output files produced. Summary:\n\n**R19 Exp 4 — Results**\n\n| Scheme | ρ(diff, Δδ) injected | % focal-favoring (inj C) | C% (all) |\n|--------|---------------------|--------------------------|----------|\n| **A** (capability-like) | **+0.771 ± 0.029** | 85.2% | 31.9% |\n| **B** (contamination-like) | **−0.517 ± 0.107** | 85.7% | 32.1% |\n| **C** (mixed) | **+0.394 ± 0.053** | 83.8% | 32.0% |\n| Baseline | — | 43.9% | 31.3% |\n\nThe key Δδ metric (delta change from baseline) cleanly separates all three injection patterns with Δρ_AB ≈ 1.29 and zero overlap across seeds.\n\nUnexpected but informative: Scheme B gives ρ ≈ −0.5 rather than ≈ 0 due to ceiling effect — hard items have more 0→1 flippable responses, so uniform injection probability produces difficulty-dependent DIF. This means the capability vs. contamination distinction is about the **sign** of the difficulty-DIF gradient (+0.77 vs −0.52), not \"correlated vs uncorrelated.\""
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "uuid": "ef501797-14b2-4c09-941f-a5d62bcad585",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TWfA4h2BnduwaZ9c4T2Kd5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 279,
+                "cache_read_input_tokens": 94907,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 279
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three output files produced. Summary:\n\n**R19 Exp 4 — Results**\n\n| Scheme | ρ(diff, Δδ) injected | % focal-favoring (inj C) | C% (all) |\n|--------|---------------------|--------------------------|----------|\n| **A** (capability-like) | **+0.771 ± 0.029** | 85.2% | 31.9% |\n| **B** (contamination-like) | **−0.517 ± 0.107** | 85.7% | 32.1% |\n| **C** (mixed) | **+0.394 ± 0.053** | 83.8% | 32.0% |\n| Baseline | — | 43.9% | 31.3% |\n\nThe key Δδ metric (delta change from baseline) cleanly separates all three injection patterns with Δρ_AB ≈ 1.29 and zero overlap across seeds.\n\nUnexpected but informative: Scheme B gives ρ ≈ −0.5 rather than ≈ 0 due to ceiling effect — hard items have more 0→1 flippable responses, so uniform injection probability produces difficulty-dependent DIF. This means the capability vs. contamination distinction is about the **sign** of the difficulty-DIF gradient (+0.77 vs −0.52), not \"correlated vs uncorrelated.\""
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 779552,
+            "duration_api_ms": 726825,
+            "num_turns": 32,
+            "stop_reason": "end_turn",
+            "session_id": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "total_cost_usd": 2.4469819500000005,
+            "usage": {
+              "input_tokens": 33,
+              "cache_creation_input_tokens": 83345,
+              "cache_read_input_tokens": 1755619,
+              "output_tokens": 39252,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 83345,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 348,
+                  "cache_read_input_tokens": 94907,
+                  "cache_creation_input_tokens": 279,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 279
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1735,
+                "outputTokens": 4861,
+                "cacheReadInputTokens": 132062,
+                "cacheCreationInputTokens": 22044,
+                "webSearchRequests": 0,
+                "costUSD": 0.0668012,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 33,
+                "outputTokens": 39252,
+                "cacheReadInputTokens": 1755619,
+                "cacheCreationInputTokens": 83345,
+                "webSearchRequests": 0,
+                "costUSD": 2.3801807500000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d9916b84-2eb9-4a19-9e66-ae3d5104896e"
+          },
+          "id": "event-000128"
+        }
+      ]
+    }
+  ]
+}

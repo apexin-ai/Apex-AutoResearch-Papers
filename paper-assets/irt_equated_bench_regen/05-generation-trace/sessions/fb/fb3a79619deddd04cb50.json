@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb3a79619deddd04cb50",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 028 mmlu bootstrap ci fast",
+  "task_key": "worker_code_plan_028_mmlu_bootstrap_ci_fast_20260521T135310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_028_mmlu_bootstrap_ci_fast_20260521T135310_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "b1484a613d215ecea63fbe76ad738a41d16336c3da1b887fcd59af82febfd8e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**MMLU temporal DIF C% = 31.32%, 95% bootstrap CI = [29.38%, 38.05%]**\n\n| 指标 | 值 |\n|------|-----|\n| 原始 C% | 31.32% |\n| Bootstrap 95% CI | [29.38%, 38.05%] |\n| Bootstrap mean / SD | 33.14% / 2.30% |\n| CI 宽度 | 8.67pp |\n| 随机切分对照 C% | 0.10% ± 0.11% |\n\n关键发现：\n- CI 下界 29.4%，远高于 0 —— C% 统计显著\n- 随机切分对照仅 0.1%（vs 31.3%）—— 确认 DIF 是时间效应，非抽样噪声\n- 正偏差 +1.82pp 说明 bootstrap 分布右偏（部分重抽样放大了 DIF 信号）\n\n输出文件（`artifacts/plan_028_bootstrap_ci/`）：\n- `mmlu_bootstrap_ci.py` — 向量化脚本（196x 加速，2.4min 完成 1000 轮）\n- `mmlu_bootstrap_results.csv` — 1000 轮 C% 值\n- `mmlu_bootstrap_summary.csv` — 汇总统计\n- `mmlu_bootstrap_report.md` — 报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-028-mmlu-bootstrap-ci-fast.md"
+}

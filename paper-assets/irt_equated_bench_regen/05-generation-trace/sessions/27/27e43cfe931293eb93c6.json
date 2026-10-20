@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27e43cfe931293eb93c6",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 enrichment ci",
+  "task_key": "worker_code_r17_enrichment_ci_20260522T155232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_enrichment_ci_20260522T155232_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "c25ab564553c713c263813dd8a03b0b2c1261d16c307a10f6500f00c212ebaa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n- **Enrichment = 0.978**, 95% CI **[0.944, 1.017]** — CI 跨越 1.0\n- Fisher exact OR = 0.948, p = 0.25 — 不显著\n- φ = -0.012 — 几乎无关联\n\n结论：DIF-C 分类与 Li et al. web-overlap 标签之间无显著关联。DIF 检测到的 contamination 信号并非来自简单的 web-overlap。\n\n输出文件：\n- `artifacts/r17_enrichment_ci/enrichment_ci_report.md`\n- `artifacts/r17_enrichment_ci/enrichment_ci_results.csv` (1000 bootstrap reps)\n\n注意：观测 enrichment 为 0.978 而非任务描述中的 0.964，可能是之前计算用了不同的 missing data 处理方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-enrichment-ci.md"
+}

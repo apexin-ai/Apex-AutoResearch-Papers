@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7766a7961677eeeafd52",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "code final data audit full",
+  "task_key": "worker_code_final_data_audit_full_20260524T042720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_final_data_audit_full_20260524T042720.log",
+    "occurrence": 1,
+    "bytes": 629439,
+    "sha256": "d4974a1e98024e9fcdf6db6aff57e75453b3d9e635d21dbec6abffe9c24dc829"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 26,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 61,
+      "tool_result": 61,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "7766a7961677eeeafd52-part-0001.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "7766a7961677eeeafd52-part-0001.json",
+          "message_count": 103
+        },
+        {
+          "path": "7766a7961677eeeafd52-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-final-data-audit-full.md"
+}

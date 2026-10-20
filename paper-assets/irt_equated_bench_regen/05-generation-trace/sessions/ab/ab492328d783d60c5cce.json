@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab492328d783d60c5cce",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper figure fig 1 global vs differential",
+  "task_key": "worker_paper_figure_fig_1_global_vs_differential_20260521T011552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_1_global_vs_differential_20260521T011552_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "fdbd3c7995ca38319418b74eb756b4131cf218926f71d05a242052fe4be106af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and registered (`art_20260521_1a7f36`).\n\n**Output files:**\n- PDF: `figures/paper/fig_1_global_vs_differential.pdf` (41 KB, vector)\n- PNG: `figures/paper/fig_1_global_vs_differential.png` (304 KB, 300 DPI)\n- Script: `figures/paper/fig_1_global_vs_differential.py`\n\n**What's in the figure:**\n- **Left panel** — two perfectly overlapping ICC curves (Reference blue solid, Focal orange dashed). Annotated: Li et al. flags it as contaminated, but DIF finds no group difference (Δ_MH ≈ 0).\n- **Right panel** — focal curve shifted left (b = −1.2), creating a visible divergence with orange shaded DIF area. Annotated: |Δ_MH| ≥ 1.5 (ETS C), Li et al. may or may not flag.\n- **Bottom text** — \"Enrichment ≈ 1.0: most MMLU items are globally contaminated (left), not differentially (right)\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-1-global-vs-differential.md"
+}

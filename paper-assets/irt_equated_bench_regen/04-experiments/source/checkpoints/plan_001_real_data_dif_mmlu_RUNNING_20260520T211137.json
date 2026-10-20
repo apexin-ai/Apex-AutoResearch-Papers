@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan_001_real_data_dif_mmlu",
+  "project": "irt_equated_bench_regen",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:54:53.883Z",
+    "updated_at": "2026-05-20T21:11:37.509Z",
+    "hypothesis": "MH-DIF 在 METABENCH 真实 MMLU 数据（5227 模型 × 12508 items）上，用时间 cohort (2023 vs 2024) 和能力分位 cohort 分组时，ETS C 标记的 items 在 Li et al. clean items 中的 FPR ≤ 0.05，且 ETS C 标记在 contaminated items 中的比例显著高于 clean items。这验证 DIF 在真实数据上不会产生过多假阳性，且能捕捉到与 web-overlap 污染信号一致的差异性。",
+    "parent": "mvp_dif_power_sim_phase2",
+    "spec": {
+      "command": "python plan_001_analysis.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/response_matrix.npz + model_metadata.csv + item_metadata.csv + mmlu_li2024_proxy_labels.csv",
+      "data_count": "5227_models_x_12508_items",
+      "model_name": "N/A (MH-DIF statistical analysis)",
+      "seed": 42,
+      "checkpoint_source": "mvp_dif_power_sim_phase2 (MH-DIF methodology validated)",
+      "eval_data": "METABENCH MMLU 5227 models × 12508 items binary responses + Li et al. 2024 proxy labels (9229 items)"
+    }
+  },
+  "timestamp": "2026-05-20T21:11:37.543740+00:00",
+  "trigger": "update_registry"
+}

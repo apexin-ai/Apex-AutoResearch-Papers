@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a832c347f0f39cb54eeb",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code sf1 cluster bootstrap v2",
+  "task_key": "worker_code_sf1_cluster_bootstrap_v2_20260522T035327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sf1_cluster_bootstrap_v2_20260522T035327_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "e73bf9db86366650bc672559141380478d361d94d9bc757205d92d820ad4c302"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出在 `artifacts/sf1_cluster_bootstrap/`：\n\n**结果摘要**：\n\n| | Cluster Bootstrap | Model Bootstrap |\n|---|---|---|\n| 95% CI | [26.73%, 53.17%] | [29.23%, 37.75%] |\n| CI width | 26.44 pp | 8.52 pp |\n| SD | 6.79% | 2.19% |\n\n- **CI 宽度比**: 3.10× (cluster / model)\n- 29 个 families (size ≥ 3), 1882 models\n- Point estimate C% = 31.30%（与原始 5227 模型的 31.32% 一致）\n\n**关键发现**：每个 family 100% 属于单一 cohort（无跨 cohort family），导致 cluster bootstrap 同时改变 ref/focal 比例，是 CI 大幅变宽的主因。即便如此，cluster CI 下界仍为 26.73%，C% 显著非零的结论稳健。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sf1-cluster-bootstrap-v2.md"
+}

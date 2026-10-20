@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0292660ae88de7629cc",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r22 deff simulation",
+  "task_key": "worker_code_r22_deff_simulation_20260523T081051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r22_deff_simulation_20260523T081051_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "9c27e9a4676c042045d6845dc1c53b4f052b8236a123e5d147c3588e82b0b1aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 outputs are generated. Summary:\n\n**Simulation results** (2000 items, 30% GT DIF, 50 seeds per scenario):\n\n| Scenario | DEFF(simple) | DEFF(weighted) | Emp MH DEFF | Adj C%(s) | Adj C%(w) | Winner |\n|---|---|---|---|---|---|---|\n| **B (METABENCH-like)** | 3.08 | 9.93 | 5.45 | **26.8%** (−3.2%) | 1.6% (−28.4%) | **Simple** |\n| C (extreme skew) | 1.78 | 7.51 | 5.50 | **37.4%** (+7.4%) | 2.4% (−27.6%) | **Simple** |\n| D (homog ICC) | 3.00 | 9.57 | 7.04 | **34.1%** (+4.1%) | 2.2% (−27.8%) | **Simple** |\n\n**Key mechanism**: MH stratification reduces effective DEFF to 3.7–7.0 (far below the analytical DEFF of 8–26). Simple-mean DEFF (≈3) is much closer to this reduced effective DEFF than weighted-mean (≈10), so its Rao-Scott correction preserves true DIF items while weighted overcorrects and destroys signal.\n\nFor Scenario B (mimicking METABENCH), simple-mean recovers GT within 3.2 percentage points — nearly matching the paper's empirical finding of Adj C% = 29.2% vs GT ≈ 30%."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r22-deff-simulation.md"
+}

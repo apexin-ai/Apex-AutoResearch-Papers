@@ -1,0 +1,84 @@
+{
+  "exp_id": "plan_033_subject_dif_concentration",
+  "project": "irt_equated_bench_regen",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:41:16.628Z",
+    "updated_at": "2026-05-21T13:42:01.616Z",
+    "hypothesis": "DIF 在 MMLU 57 个 subject 间分布不均匀，且 STEM vs Humanities 存在系统性差异。控制 item difficulty 和 discrimination 后，特定 subject 的 content 本身预测 DIF 概率——这说明 DIF 不仅由 psychometric properties 驱动，还受知识领域内容特征影响。同时，DIF 的方向（favor 2023 vs 2024）可能在不同领域呈现不同模式。",
+    "parent": "plan_001_real_data_dif_mmlu",
+    "spec": {
+      "command": "python3 plan_033_subject_dif_concentration.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/plan_001/dif_results_temporal.csv + item_metadata.csv + model_metadata.csv",
+      "data_count": "12508 items × 57 subjects",
+      "model_name": "N/A (CPU analysis)",
+      "seed": 42,
+      "checkpoint_source": "plan_001_real_data_dif_mmlu",
+      "eval_data": "METABENCH MMLU ETS classification + item metadata",
+      "checkpoint_path": "artifacts/plan_033_subject_dif_concentration/",
+      "log_path": "logs/workers/worker_code_plan_033_subject_dif_concentration_20260521T133500.log"
+    },
+    "metrics": {
+      "n_subjects": 57,
+      "all_subjects_have_dif": true,
+      "mean_pct_c": 30.6,
+      "median_pct_c": 29.7,
+      "sd_pct_c": 5.5,
+      "range_pct_c": [
+        20.7,
+        48.4
+      ],
+      "top3_subjects": {
+        "business_ethics": 48.4,
+        "human_aging": 41.9,
+        "formal_logic": 40.4
+      },
+      "bottom3_subjects": {
+        "computer_security": 20.7,
+        "marketing": 20.9,
+        "management": 21.7
+      },
+      "domain_pct_c": {
+        "STEM": 30.9,
+        "Humanities": 31.1,
+        "Social_Science": 31.6
+      },
+      "stem_vs_humanities_p": 0.611,
+      "kruskal_wallis_p": 0.78,
+      "logistic_regression": {
+        "difficulty_OR": 0.086,
+        "discrimination_OR": 57.2,
+        "pseudo_r2": 0.042
+      },
+      "excess_dif_subjects": [
+        "professional_law",
+        "human_aging",
+        "world_religions",
+        "business_ethics",
+        "professional_medicine"
+      ],
+      "overall_pct_favor_2024": 43.9,
+      "temporal_asymmetry": {
+        "STEM_pct_favor_2024": 55.4,
+        "Humanities_pct_favor_2024": 35.6,
+        "Social_Science_pct_favor_2024": 42
+      },
+      "unidirectional_subjects": {
+        "world_religions": {
+          "pct_favor_2024": 16.9
+        },
+        "logical_fallacies": {
+          "pct_favor_2024": 20
+        }
+      }
+    },
+    "notes": "Hypothesis 部分验证：DIF rate 跨 domain 无显著差异 (STEM 30.9% vs Humanities 31.1%, p=0.61)，但 DIF direction 有强领域依赖——STEM 55.4% DIF items 偏向 2024 模型（能力提升），Humanities 仅 35.6%（64.4% 偏向 2023）。world_religions 和 logical_fallacies 呈近单向偏向 2023 (≥80%)。Logistic regression: discrimination OR=57.2, difficulty OR=0.086, 但 pseudo R²=0.042——item properties 仅解释 4% DIF variance，content 特征是主要驱动力。5 个 subject 控制 item props 后仍有 excess DIF (professional_law, human_aging, world_religions, business_ethics, professional_medicine)。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T13:42:01.798741+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bc71d3e1a5e44555421",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper research cluster 1 contamination detection",
+  "task_key": "worker_paper_research_cluster_1_contamination_detection_20260521T013704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster_1_contamination_detection_20260521T013704_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "c99f1bc75f42378f283bbf98ebf2c4384956dbe47217c027d2088e7543bdeb55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cluster 1 complete. 10 verified contamination detection papers.\n\n**Verified existing (4):**\n- `wang2026fragility` — ICLR 2026, confirmed on OpenReview + arXiv\n- `liang2026dvd` — arXiv 2601.04895, confirmed\n- `tao2026selfcritique` — ICLR 2026, confirmed on OpenReview + arXiv\n- `zhang2024gsm1k` — arXiv 2405.00332, confirmed\n\n**Must-cite added (3):**\n- `li2024contamination` — Li et al., Findings of EMNLP 2024. Web-overlap contamination labels for MMLU (our ground-truth comparison). DOI: 10.18653/v1/2024.findings-emnlp.30\n- `shi2024mink` — Shi et al., ICLR 2024. Min-K% Prob + WikiMIA benchmark (key baseline). S2 ID confirmed.\n- `balloccu2024leak` — Balloccu et al., EACL 2024. \"Leak, Cheat, Repeat\" contamination survey. DOI: 10.18653/v1/2024.eacl-long.5\n\n**Additional papers added (3):**\n- `dekoninck2024constat` — ConStat, NeurIPS 2024. Performance-based contamination via perturbation; closest methodological parallel to our DIF approach.\n- `golchin2024timetravel` — Time Travel in LLMs, ICLR 2024. Instance-level contamination detection baseline.\n- `zhang2024minkpp` — Min-K%++, arXiv 2024. Improved Min-K% baseline; its degradation under RL training (AUC 0.43–0.68) directly motivates our work.\n\n**No must-cite papers were unfindable** — all 3 located and verified."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster-1-contamination-detection.md"
+}

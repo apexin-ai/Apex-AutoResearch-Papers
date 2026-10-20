@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebf924d0e9855a9c9d79",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 023 item characterization",
+  "task_key": "worker_code_plan_023_item_characterization_20260521T055425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_023_item_characterization_20260521T055425_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "ba483f1ac3c82432a8173def5f71e0e757c663d1302533cda40c999971b99dbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心发现：\n\n**Difficulty**: DIF-C items 更难（proportion correct 0.409 vs 0.460，d = −0.247），DIF-C 率在中等难度（decile 3）峰值 47.5%，最易 items（decile 10）仅 8.4%。\n\n**Discrimination**: DIF-C items 区分度更高（d = 0.230），Q4（高区分度）DIF-C 率 40.6%，Q1（低区分度）仅 24.7%。\n\n**Domain**: 四大领域 DIF-C 率无显著差异（30.5%–32.3%，χ² p = 0.32）。Subject 层面有变异——business_ethics 最高 48.4%，computer_security 最低 20.7%。\n\n**Direction**: 56.1% reference-favoring（2023 模型更好）vs 43.9% focal-favoring（2024 模型更好），不平衡显著（binomial p = 2.35e-14）。\n\n**Difficulty × Direction 交互**（最关键）: Spearman ρ = −0.597。难的 DIF-C items 绝大多数 focal-favoring（decile 1: 88.7%），易的绝大多数 reference-favoring（decile 10: 96.2%）。解释：2024 模型在难题上进步，但在简单题上优势消失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-023-item-characterization.md"
+}

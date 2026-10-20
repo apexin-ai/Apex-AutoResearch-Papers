@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan_011_semi_synthetic_validation",
+  "project": "irt_equated_bench_regen",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:35:55.290Z",
+    "updated_at": "2026-05-20T21:52:14.284Z",
+    "hypothesis": "在 METABENCH 真实响应矩阵上注入已知差异性污染（focal group 指定 items 的 incorrect→correct 翻转）后，MH-DIF 的 ETS C 分类能在 ability-quintile cohort 上达到 TPR>0.5 (p=1.0) 且 FPR<0.05。如果成功，说明 plan_001/001b 的 enrichment≈1.0 是 Li et al. ground truth 不匹配（全局性 vs 差异性污染），而非 DIF 方法本身失败。",
+    "parent": "plan_001b_matched_ability_dif",
+    "spec": {
+      "command": "python plan_011_analysis.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/response_matrix.npz + plan_001 results + Li labels",
+      "data_count": "500_baseline_items_x_5_p_x_5_seeds_x_2_cohorts_x_3_mh_variants",
+      "model_name": "N/A (semi-synthetic injection + MH-DIF)",
+      "seed": "1-5 per condition",
+      "checkpoint_source": "plan_001_real_data_dif_mmlu",
+      "eval_data": "METABENCH 5227×12508 response matrix with injected differential contamination"
+    },
+    "metrics": {
+      "temporal_external_tpr_p0": 0.326,
+      "temporal_external_tpr_p03": 0.548,
+      "temporal_external_tpr_p05": 0.834,
+      "temporal_external_tpr_p07": 0.99,
+      "temporal_external_tpr_p10": 1,
+      "temporal_external_fpr": 0.314,
+      "temporal_external_delta_tpr_p10": 0.674,
+      "ability_external_tpr_p0": 0.498,
+      "ability_external_tpr_p10": 0.8,
+      "ability_external_fpr": 0.493,
+      "ability_external_delta_tpr_p10": 0.302,
+      "standard_mh_fpr_inflation": "temporal 0.298→0.616 at p=1.0",
+      "matching_variable_contamination_confirmed": true,
+      "bug_fix": "inf-delta classified as extreme DIF not class A"
+    },
+    "checkpoint_path": "artifacts/plan_011/",
+    "log_path": "logs/workers/worker_code_plan_011_semi_synthetic_20260520T213716.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T21:52:14.300850+00:00",
+  "trigger": "update_registry"
+}

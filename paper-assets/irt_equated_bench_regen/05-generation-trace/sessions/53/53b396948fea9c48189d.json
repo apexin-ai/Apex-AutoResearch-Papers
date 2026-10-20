@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53b396948fea9c48189d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 031 temporal granularity",
+  "task_key": "worker_code_plan_031_temporal_granularity_20260521T123458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_031_temporal_granularity_20260521T123458_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "08ff3f1f816e1edce5ae89399ad2b3a2ef61fabbbc5b2a64a7d3ac45805aba5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键发现：\n\n**MMLU 时间粒度**：\n| 比较 | 时间距离 | N_ref | N_foc | C% | Random C% |\n|------|---------|-------|-------|----|-----------|\n| 2023 vs 2024 | 1yr | 1080 | 807 | 31.3% | 0.02% |\n| 2023-H2 vs 2024-H1 | 0.5yr | 1018 | 807 | **34.4%** | 0.19% |\n| 2023-H1 vs 2023-H2 | 0.5yr | 62 | 1018 | 22.6% | 0.18% |\n\n**意外结果**：6个月的 2023-H2 vs 2024-H1 比较 C%=34.4%，比 1年的全量比较 (31.3%) 还高。这不符合\"时间距离越大 DIF 越大\"的线性预期，但有合理解释——2023-H2 vs 2024-H1 删除了 2023-H1 的 62 个\"早期\"模型（它们可能还没来得及被 benchmark 污染），使 reference group 更纯粹地由 2023 下半年模型组成，反而让 cohort 差异更锐利。\n\n**跨 benchmark**：所有 benchmark 的 2023-H2 vs 2024-H1 C% 都略高于全量 2023 vs 2024，同样趋势一致。所有 C% >> random C%，确认信号是真实的时间效应。\n\n输出文件在 `artifacts/plan_031_temporal_granularity/`：\n- `plan_031_temporal_granularity.py`\n- `temporal_granularity_results.csv`\n- `plan_031_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-031-temporal-granularity.md"
+}

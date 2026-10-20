@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e218f90c65fa7c1107d9",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r22 base instruct composition",
+  "task_key": "worker_code_r22_base_instruct_composition_20260523T081029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r22_base_instruct_composition_20260523T081029_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "4f912c118c1ff94b22f61cd40a75de6b36af3ec5a57fe248905a97617a7ac94c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果清晰：\n\n**Original C% = 31.32%**\n**Balanced C% = 30.25% ± 1.32% (95% CI: [27.65%, 32.84%])**\n**Δ = 1.08 pp**\n\n均衡 base/instruct 比例后（两个 cohort 都调到 67.9% base），C% 几乎不变——从 31.32% 降到 30.25%，差异仅 1.08 pp，在抽样噪声范围内。10 次重复的 C% 都在 28.3%–32.7% 之间波动。\n\n结论：DIF 不是由 base/instruct composition shift 驱动的。所有输出已保存到 `artifacts/r22_composition_control/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r22-base-instruct-composition.md"
+}

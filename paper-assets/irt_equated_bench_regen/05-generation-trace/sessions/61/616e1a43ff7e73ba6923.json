@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "616e1a43ff7e73ba6923",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code rank shift distribution",
+  "task_key": "worker_code_rank_shift_distribution_20260521T080448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rank_shift_distribution_20260521T080448_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "fa686f6d1379711721b9046d811d0e78a72dba2f0ea600802b2e9ac688baad2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 artifacts registered. Key findings from 5,227 models (all cohort):\n\n**全模型分布**: Mean ΔRank = 0.0 ± 127.1, Median = −3, IQR = (−45, +30). 75% 模型 |ΔRank| < 100，仅 1.2% 超过 500。\n\n**Family 关键对比** — 论文中 \"+700–850\" 是个体极端值，不是 family 均值：\n\n| Family | N | Mean ΔRank | Median | Individual Max |\n|--------|---|-----------|--------|----------------|\n| phi-3 | 20 | +254.5 | +20 | +809 |\n| llama-3 | 315 | +120.8 | +53 | +793 |\n| mistral | 547 | −53.9 | −35 | +182 |\n\nphi-3 mean 很高但 N 只有 20 且 SD=359.3（被少数极端值拉动）。llama-3 的 median 仅 +53，远低于个体极端的 +793。\n\n输出文件：\n- `artifacts/plan_017_supplement/rank_shift_distribution_report.md`\n- `artifacts/plan_017_supplement/rank_shift_stats.json`\n- `artifacts/plan_017_supplement/rank_shift_analysis.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rank-shift-distribution.md"
+}

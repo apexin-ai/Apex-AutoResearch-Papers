@@ -1,0 +1,19 @@
+paper_key: "hardy2026scalability"
+title: "Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [standard IRT discrimination, manual item review]
+  metrics:
+    - {name: "scalability coefficients", direction: "informational"}
+    - {name: "bad item detection rate", direction: "higher_better"}
+  datasets:
+    - {name: "LLM benchmarks with thousands of items", size: "N/A"}
+  ablation_dimensions: []
+  training_recipe: {optimizer: "nonparametric isotonic regression", lr: "N/A", hardware: "N/A"}
+  method_family: "nonparametric psychometric item analysis"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

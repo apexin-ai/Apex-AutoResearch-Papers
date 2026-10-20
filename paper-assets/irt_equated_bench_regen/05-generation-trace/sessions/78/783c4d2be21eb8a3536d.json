@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "783c4d2be21eb8a3536d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper b9 fix",
+  "task_key": "worker_paper_b9_fix_20260522T223532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_b9_fix_20260522T223532_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "a7269a9398aad51dadf95748750bf30f9e7c326dae1160e0b4dfb7d475e51b30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Committed as `b9a8595`.\n\n**Summary:**\n\n**Restored:**\n- `\\subsection{What Drives Temporal DIF?}` + `\\label{sec:disc_temporal}` (was `\\noindent\\textbf{}`)\n- `\\subsection{Recommended DIF Audit Protocol}` + `\\label{sec:disc_protocol}` (was `\\noindent\\textbf{}`)\n- B1 alternative explanation paragraph (~90 words): \"An alternative explanation---that easy items are uniformly contaminated...yet we observe opposite patterns\"\n\n**Page budget rebalancing:**\n- `\\enlargethispage*{10\\baselineskip}` on page 8 (was 8)\n- `\\enlargethispage*{4\\baselineskip}` on page 7 (new, in experiments.tex §4.3)\n- Tightened exclusion arguments phrasing in §5.1 ¶1 (kept all data: 2.4 pp, <0.1%, p=0.23, Jaccard=0.206)\n- Tightened §5.1 ¶2 transition: \"This reversal supports mechanism separation.\" (was longer)\n- `\\vspace{-8pt}` before each `\\subsection`, `\\vspace{-6pt}` after\n- Conclusion vspace: -28pt (was -18pt)\n\n**Verification:**\n- `\\Cref{sec:disc_temporal}` → Section 5.1 on page 8\n- `\\Cref{sec:disc_protocol}` → Section 5.2 on page 8\n- Conclusion last line on page 8 (line 709); Limitations starts on page 9\n- 0 undefined references, 16 pages total"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-b9-fix.md"
+}

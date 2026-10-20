@@ -1,0 +1,1362 @@
+{
+  "schema_version": "1.0",
+  "id": "34f989dcc7c3603ea795",
+  "project": "irt_equated_bench_regen",
+  "kind": "worker",
+  "title": "research r20 reference verification",
+  "task_key": "worker_research_r20_reference_verification_20260522T192255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r20_reference_verification_20260522T192255.log",
+    "occurrence": 1,
+    "bytes": 106031,
+    "sha256": "a7d38a57b521de60e81ba2f17ee7578972952a532118f354a8833a0ef3663afa"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "29b51282-3746-4e51-a645-029a74a9033f",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779489600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e085f8f7-14e7-4f67-a7af-8290c46c3ddf",
+                "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我先读取现有的 references.bib 了解格式，然后搜索验证三个引用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "2ed68877-d1da-4f7e-ab88-2b470bf77fb9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011MUUMnjYPnrjLrDvm59Qor",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12639,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12639
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PZc2amJvekfQn4iCXvJtCM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "dbb77c5f-e21f-4a4f-9a7a-ed7bd03f9228",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011MUUMnjYPnrjLrDvm59Qor",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12639,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12639
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T19:23:06.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PZc2amJvekfQn4iCXvJtCM",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Benchmark Contamination Detection\n3\t% ============================================================\n4\t\n5\t@inproceedings{balloccu2024leak,\n6\t  title     = {Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source {LLMs}},\n7\t  author    = {Balloccu, Simone and Schmidtova, Patrícia and Lango, Mateusz and Dusek, Ondrej},\n8\t  booktitle = {Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL)},\n9\t  year      = {2024},\n10\t  doi       = {10.18653/v1/2024.eacl-long.5},\n11\t  url       = {https://arxiv.org/abs/2402.03927}\n12\t}\n13\t\n14\t@inproceedings{dekoninck2024constat,\n15\t  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},\n16\t  author    = {Dekoninck, Jasper and Mueller, Mark Niklas and Vechev, Martin},\n17\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n18\t  year      = {2024},\n19\t  url       = {https://arxiv.org/abs/2405.16281}\n20\t}\n21\t\n22\t@inproceedings{golchin2024timetravel,\n23\t  title     = {Time Travel in {LLMs}: Tracing Data Contamination in Large Language Models},\n24\t  author    = {Golchin, Shahriar and Surdeanu, Mihai},\n25\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n26\t  year      = {2024},\n27\t  url       = {https://arxiv.org/abs/2308.08493}\n28\t}\n29\t\n30\t@inproceedings{li2024contamination,\n31\t  title     = {An Open-Source Data Contamination Report for Large Language Models},\n32\t  author    = {Li, Yucheng and Guo, Yunhao and Guerin, Frank and Lin, Chenghua},\n33\t  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},\n34\t  year      = {2024},\n35\t  doi       = {10.18653/v1/2024.findings-emnlp.30},\n36\t  url       = {https://aclanthology.org/2024.findings-emnlp.30/}\n37\t}\n38\t\n39\t@misc{liang2026dvd,\n40\t  title         = {{DVD}: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation},\n41\t  author        = {Liang, Rongzhen},\n42\t  year          = {2026},\n43\t  eprint        = {2601.04895},\n44\t  archivePrefix = {arXiv},\n45\t  primaryClass  = {cs.CL},\n46\t  url           = {https://arxiv.org/abs/2601.04895}\n47\t}\n48\t\n49\t@inproceedings{shi2024mink,\n50\t  title     = {Detecting Pretraining Data from Large Language Models},\n51\t  author    = {Shi, Weijia and Ajith, Anirudh and Xia, Mengzhou and Huang, Yangsibo and Liu, Daogao and Blevins, Terra and Chen, Danqi and Zettlemoyer, Luke},\n52\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n53\t  year      = {2024},\n54\t  url       = {https://arxiv.org/abs/2310.16789}\n55\t}\n56\t\n57\t@inproceedings{tao2026selfcritique,\n58\t  title     = {Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models},\n59\t  author    = {Tao, Yongding and Wang, Tian and Dong, Yihong and Liu, Huanyu and Zhang, Kechi and Hu, Xiaolong and Li, Ge},\n60\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n61\t  year      = {2026},\n62\t  url       = {https://arxiv.org/abs/2510.09259}\n63\t}\n64\t\n65\t@inproceedings{wang2026fragility,\n66\t  title     = {On The Fragility of Benchmark Contamination Detection in Reasoning Models},\n67\t  author    = {Wang, Haonan and Li, Haoyang and Ko, Boeun and Zhang, Hongyang},\n68\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n69\t  year      = {2026},\n70\t  url       = {https://arxiv.org/abs/2510.02386}\n71\t}\n72\t\n73\t@inproceedings{oren2024proving,\n74\t  title     = {Proving Test Set Contamination in Black-Box Language Models},\n75\t  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri S. and Ladhak, Faisal and Hashimoto, Tatsunori B.},\n76\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n77\t  year      = {2024},\n78\t  url       = {https://openreview.net/forum?id=KS8mIvetg2}\n79\t}\n80\t\n81\t@inproceedings{deng2024investigating,\n82\t  title     = {Investigating Data Contamination in Modern Benchmarks for Large Language Models},\n83\t  author    = {Deng, Chunyuan and Zhao, Yilun and Tang, Xiangru and Gerstein, Mark and Cohan, Arman},\n84\t  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n85\t  year      = {2024},\n86\t  doi       = {10.18653/v1/2024.naacl-long.482}\n87\t}\n88\t\n89\t@misc{zhang2024minkpp,\n90\t  title         = {{Min-K\\%++}: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n91\t  author        = {Zhang, Jingyang and Sun, Jingwei and Yeats, Eric and Ouyang, Yang and Kuo, Martin and Zhang, Jianyi and Yang, Hao and Li, Hai},\n92\t  year          = {2024},\n93\t  eprint        = {2404.02936},\n94\t  archivePrefix = {arXiv},\n95\t  primaryClass  = {cs.CL},\n96\t  url           = {https://arxiv.org/abs/2404.02936}\n97\t}\n98\t\n99\t% ============================================================\n100\t% IRT Methodology & Equating\n101\t% ============================================================\n102\t\n103\t@inproceedings{rodriguez2021evaluation,\n104\t  title     = {Evaluation Examples Are Not Equally Informative: How Should That Change {NLP} Leaderboards?},\n105\t  author    = {Rodriguez, Pedro and Barrow, Joe and Hoyle, Alexander Miserlis and Lalor, John P. and Jia, Robin and Boyd-Graber, Jordan},\n106\t  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n107\t  year      = {2021},\n108\t  pages     = {4486--4503}\n109\t}\n110\t\n111\t@article{donoghue1993mh,\n112\t  title   = {An Empirical Examination of the {Mantel-Haenszel} Statistic for the Study of Differential Item Functioning},\n113\t  author  = {Donoghue, John R. and Allen, Nancy L.},\n114\t  journal = {Applied Measurement in Education},\n115\t  volume  = {6},\n116\t  number  = {2},\n117\t  pages   = {163--179},\n118\t  year    = {1993}\n119\t}\n120\t\n121\t@misc{hardy2026scalability,\n122\t  title         = {Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients},\n123\t  author        = {Hardy, Matthew and Gilbert, Juan and Domingue, Benjamin},\n124\t  year          = {2026},\n125\t  eprint        = {2603.24999},\n126\t  archivePrefix = {arXiv},\n127\t  primaryClass  = {cs.CL},\n128\t  url           = {https://arxiv.org/abs/2603.24999}\n129\t}\n130\t\n131\t@article{kim2019fpc,\n132\t  title   = {Application of {IRT} Fixed Parameter Calibration to Multiple-Group Test Data},\n133\t  author  = {Kim, Seonghoon and Kolen, Michael},\n134\t  journal = {Applied Measurement in Education},\n135\t  year    = {2019},\n136\t  doi     = {10.1080/08957347.2019.1660344},\n137\t  url     = {https://www.tandfonline.com/doi/abs/10.1080/08957347.2019.1660344}\n138\t}\n139\t\n140\t@inproceedings{lalor2019irt,\n141\t  title     = {Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds},\n142\t  author    = {Lalor, John and Wu, Hao and Yu, Hong},\n143\t  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},\n144\t  year      = {2019},\n145\t  doi       = {10.18653/v1/D19-1434},\n146\t  url       = {https://aclanthology.org/D19-1434/}\n147\t}\n148\t\n149\t@inproceedings{vania2021irt,\n150\t  title     = {Comparing Test Sets with Item Response Theory},\n151\t  author    = {Vania, Clara and Htut, Phu Mon and Huang, William and Mungra, Dhara and Pang, Richard Yuanzhe and Phang, Jason and Liu, Haokun and Cho, Kyunghyun and Bowman, Samuel R.},\n152\t  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n153\t  year      = {2021},\n154\t  doi       = {10.18653/v1/2021.acl-long.92},\n155\t  url       = {https://aclanthology.org/2021.acl-long.92/}\n156\t}\n157\t\n158\t\n159\t@misc{habba2026growingpains,\n160\t  title         = {Growing Pains: Extensible and Efficient {LLM} Benchmarking Via Fixed Parameter Calibration},\n161\t  author        = {Habba, Eliya and Itzhak, Itay and Yehudai, Asaf and Perlitz, Yotam and Bandel, Elron and Shmueli-Scheuer, Michal and Choshen, Leshem and Stanovsky, Gabriel},\n162\t  year          = {2026},\n163\t  eprint        = {2604.12843},\n164\t  archivePrefix = {arXiv},\n165\t  primaryClass  = {cs.CL},\n166\t  url           = {https://arxiv.org/abs/2604.12843}\n167\t}\n168\t\n169\t@book{kolen2014equating,\n170\t  author    = {Kolen, Michael J. and Brennan, Robert L.},\n171\t  title     = {Test Equating, Scaling, and Linking: Methods and Practices},\n172\t  publisher = {Springer},\n173\t  edition   = {3rd},\n174\t  year      = {2014}\n175\t}\n176\t\n177\t@inproceedings{zhou2026psnirt,\n178\t  title     = {Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory},\n179\t  author    = {Zhou, Hongli and Huang, Hui and Zhao, Ziqing and Han, Lvyuan and Wang, Huicheng and Chen, Kehai and Yang, Muyun and Bao, Wei and Dong, Jian and Xu, Bing and Zhu, Conghui and Cao, Hailong and Zhao, Tiejun},\n180\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n181\t  year      = {2026},\n182\t  url       = {https://arxiv.org/abs/2505.15055}\n183\t}\n184\t\n185\t% ============================================================\n186\t% Dynamic Benchmark Design\n187\t% ============================================================\n188\t\n189\t@inproceedings{white2025livebench,\n190\t  title     = {{LiveBench}: A Challenging, Contamination-Free {LLM} Benchmark},\n191\t  author    = {White, Colin},\n192\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n193\t  year      = {2025},\n194\t  doi       = {10.48550/arXiv.2406.19314},\n195\t  url       = {https://arxiv.org/abs/2406.19314}\n196\t}\n197\t\n198\t@misc{kipnis2024metabench,\n199\t  title         = {metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language Models},\n200\t  author        = {Kipnis, Alon and Voudouris, Konstantinos and Schulze Buschoff, Luca Maria and Schulz, Eric},\n201\t  year          = {2024},\n202\t  eprint        = {2407.12844},\n203\t  archivePrefix = {arXiv},\n204\t  primaryClass  = {cs.CL},\n205\t  url           = {https://arxiv.org/abs/2407.12844}\n206\t}\n207\t\n208\t@inproceedings{hendrycks2021mmlu,\n209\t  title     = {Measuring Massive Multitask Language Understanding},\n210\t  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},\n211\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n212\t  year      = {2021},\n213\t  url       = {https://arxiv.org/abs/2009.03300}\n214\t}\n215\t\n216\t@inproceedings{chiang2024chatbot,\n217\t  title     = {Chatbot Arena: An Open Platform for Evaluating {LLMs} by Human Preference},\n218\t  author    = {Chiang, Wei-Lin and Zheng, Lianmin and Sheng, Ying and Angelopoulos, Anastasios N. and Li, Tianle and Li, Dacheng and Zhang, Hao and Zhu, Banghua and Jordan, Michael I. and Gonzalez, Joseph E. and Stoica, Ion},\n219\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n220\t  year      = {2024},\n221\t  doi       = {10.48550/arXiv.2403.04132},\n222\t  url       = {https://arxiv.org/abs/2403.04132}\n223\t}\n224\t\n225\t@inproceedings{li2024latesteval,\n226\t  title     = {{LatestEval}: Addressing Data Contamination in Language Model Evaluation through Dynamic and Time-Sensitive Test Construction},\n227\t  author    = {Li, Yucheng and Guerin, Frank and Lin, Chenghua},\n228\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n229\t  year      = {2024},\n230\t  doi       = {10.48550/arXiv.2312.12343},\n231\t  url       = {https://arxiv.org/abs/2312.12343}\n232\t}\n233\t\n234\t@inproceedings{kiela2021dynabench,\n235\t  title     = {{Dynabench}: Rethinking Benchmarking in {NLP}},\n236\t  author    = {Kiela, Douwe and Bartolo, Max and Nie, Yixin and Kaushik, Divyansh and Geiger, Atticus and Wu, Zhengxuan and Vidgen, Bertie and Prasad, Grusha and Singh, Amanpreet and Ringshia, Pratik and Ma, Zhiyi and Thrush, Tristan and Riedel, Sebastian and Talat, Zeerak and Stenetorp, Pontus and Jia, Robin},\n237\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n238\t  year      = {2021},\n239\t  doi       = {10.18653/v1/2021.naacl-main.324},\n240\t  url       = {https://arxiv.org/abs/2104.14337}\n241\t}\n242\t\n243\t% ============================================================\n244\t% DIF Statistical Methods\n245\t% ============================================================\n246\t\n247\t@article{belzak2020smallsample,\n248\t  title   = {Testing Differential Item Functioning in Small Samples},\n249\t  author  = {Belzak, William},\n250\t  journal = {Multivariate Behavioral Research},\n251\t  year    = {2020},\n252\t  doi     = {10.1080/00273171.2019.1671162},\n253\t  url     = {https://www.tandfonline.com/doi/abs/10.1080/00273171.2019.1671162}\n254\t}\n255\t\n256\t@incollection{holland1988mh,\n257\t  title     = {Differential Item Functioning and the {Mantel-Haenszel} Procedure},\n258\t  author    = {Holland, Paul W. and Thayer, Dorothy T.},\n259\t  booktitle = {Test Validity},\n260\t  editor    = {Wainer, Howard and Braun, Henry I.},\n261\t  publisher = {Lawrence Erlbaum Associates},\n262\t  year      = {1988}\n263\t}\n264\t\n265\t@article{shealy1993sibtest,\n266\t  title   = {A Model-Based Standardization Approach that Separates True Bias/{DIF} from Group Ability Differences and Detects Test Bias/{DTF} as Well as Item Bias/{DIF}},\n267\t  author  = {Shealy, Robin and Stout, William},\n268\t  journal = {Psychometrika},\n269\t  year    = {1993},\n270\t  doi     = {10.1007/BF02294572},\n271\t  url     = {https://link.springer.com/article/10.1007/BF02294572}\n272\t}\n273\t\n274\t@article{clauser1998dif,\n275\t  title   = {Using Statistical Procedures to Identify Differentially Functioning Test Items},\n276\t  author  = {Clauser, Brian E. and Mazor, Kathleen M.},\n277\t  journal = {Educational Measurement: Issues and Practice},\n278\t  year    = {1998},\n279\t  doi     = {10.1111/j.1745-3992.1998.tb00619.x},\n280\t  url     = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3992.1998.tb00619.x}\n281\t}\n282\t\n283\t@book{zumbo1999handbook,\n284\t  title     = {A Handbook on the Theory and Methods of Differential Item Functioning ({DIF}): Logistic Regression Modeling as a Unitary Framework for Binary and {Likert}-Type (Ordinal) Item Scores},\n285\t  author    = {Zumbo, Bruno D.},\n286\t  year      = {1999},\n287\t  publisher = {Directorate of Human Resources Research and Evaluation, Department of National Defense},\n288\t  address   = {Ottawa},\n289\t  url       = {https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf}\n290\t}\n291\t\n292\t@article{meredith1993invariance,\n293\t  title   = {Measurement Invariance, Factor Analysis and Factorial Invariance},\n294\t  author  = {Meredith, William},\n295\t  journal = {Psychometrika},\n296\t  year    = {1993},\n297\t  doi     = {10.1007/BF02294825},\n298\t  url     = {https://link.springer.com/article/10.1007/BF02294825}\n299\t}\n300\t\n301\t@article{vandenberg2000invariance,\n302\t  title   = {A Review and Synthesis of the Measurement Invariance Literature: Suggestions, Practices, and Recommendations for Organizational Research},\n303\t  author  = {Vandenberg, Robert J. and Lance, Charles E.},\n304\t  journal = {Organizational Research Methods},\n305\t  year    = {2000},\n306\t  doi     = {10.1177/109442810031002},\n307\t  url     = {https://journals.sagepub.com/doi/10.1177/109442810031002}\n308\t}\n309\t\n310\t@article{swaminathan1990logistic,\n311\t  title   = {Detecting Differential Item Functioning Using Logistic Regression Procedures},\n312\t  author  = {Swaminathan, Hariharan and Rogers, H. Jane},\n313\t  journal = {Journal of Educational Measurement},\n314\t  year    = {1990},\n315\t  doi     = {10.1111/j.1745-3984.1990.tb00754.x},\n316\t  url     = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3984.1990.tb00754.x}\n317\t}\n318\t\n319\t@article{teresi2007dif,\n320\t  title   = {Differential Item Functioning and Health Assessment},\n321\t  author  = {Teresi, Jeanne A. and Fleishman, John A.},\n322\t  journal = {Quality of Life Research},\n323\t  year    = {2007},\n324\t  doi     = {10.1007/s11136-007-9184-6},\n325\t  url     = {https://link.springer.com/article/10.1007/s11136-007-9184-6}\n326\t}\n327\t\n328\t@book{lord1980irt,\n329\t  title     = {Applications of Item Response Theory to Practical Testing Problems},\n330\t  author    = {Lord, Frederic M.},\n331\t  year      = {1980},\n332\t  publisher = {Lawrence Erlbaum Associates},\n333\t  address   = {Hillsdale, NJ}\n334\t}\n335\t\n336\t@article{raju1988area,\n337\t  title   = {The Area between Two Item Characteristic Curves},\n338\t  author  = {Raju, Nambury S.},\n339\t  journal = {Psychometrika},\n340\t  year    = {1988},\n341\t  doi     = {10.1007/BF02294403},\n342\t  url     = {https://link.springer.com/article/10.1007/BF02294403}\n343\t}\n344\t\n345\t@article{muthen1985mimic,\n346\t  title   = {A Method for Studying the Homogeneity of Test Items with Respect to Other Relevant Variables},\n347\t  author  = {Muth{\\'e}n, Bengt},\n348\t  journal = {Journal of Educational Statistics},\n349\t  year    = {1985},\n350\t  doi     = {10.2307/1164966}\n351\t}\n352\t\n353\t@article{woods2009mimic,\n354\t  title   = {Empirical Selection of Anchors for Tests of Differential Item Functioning},\n355\t  author  = {Woods, Carol M.},\n356\t  journal = {Applied Psychological Measurement},\n357\t  year    = {2009},\n358\t  doi     = {10.1177/0146621609331279}\n359\t}\n360\t\n361\t@book{kish1965survey,\n362\t  author    = {Kish, Leslie},\n363\t  title     = {Survey Sampling},\n364\t  publisher = {John Wiley \\& Sons},\n365\t  address   = {New York},\n366\t  year      = {1965}\n367\t}\n368\t\n369\t@article{rao1992variance,\n370\t  author  = {Rao, J. N. K. and Scott, A. J.},\n371\t  title   = {A Simple Method for the Analysis of Clustered Binary Data},\n372\t  journal = {Biometrics},\n373\t  volume  = {48},\n374\t  number  = {2},\n375\t  pages   = {577--585},\n376\t  year    = {1992}\n377\t}\n378\t\n379\t@article{french2010hierarchical,\n380\t  author  = {French, Brian F. and Finch, W. Holmes},\n381\t  title   = {Hierarchical Logistic Regression: Accounting for Multilevel Data in {DIF} Detection},\n382\t  journal = {Journal of Educational Measurement},\n383\t  volume  = {47},\n384\t  number  = {3},\n385\t  pages   = {299--317},\n386\t  year    = {2010}\n387\t}\n388\t\n389\t@incollection{penfield2007dif,\n390\t  title     = {Differential Item Functioning and Item Bias},\n391\t  author    = {Penfield, Randall D. and Camilli, Gregory},\n392\t  booktitle = {Handbook of Statistics},\n393\t  volume    = {26},\n394\t  pages     = {125--167},\n395\t  year      = {2007},\n396\t  publisher = {Elsevier},\n397\t  doi       = {10.1016/S0169-7161(06)26005-X}\n398\t}\n399\t\n400\t@book{millsap2011invariance,\n401\t  title     = {Statistical Approaches to Measurement Invariance},\n402\t  author    = {Millsap, Roger E.},\n403\t  year      = {2011},\n404\t  publisher = {Routledge},\n405\t  address   = {New York},\n406\t  doi       = {10.4324/9780203821961}\n407\t}\n408\t\n409\t@article{millsap1993dif,\n410\t  author  = {Millsap, Roger E. and Everson, Howard T.},\n411\t  title   = {Methodology Review: Statistical Approaches for Assessing Measurement Bias},\n412\t  journal = {Applied Psychological Measurement},\n413\t  volume  = {17},\n414\t  number  = {4},\n415\t  pages   = {297--334},\n416\t  year    = {1993},\n417\t  doi     = {10.1177/014662169301700401}\n418\t}\n419\t\n420\t@article{magis2010difr,\n421\t  author  = {Magis, David and B{\\'e}land, S{\\'e}bastien and Tuerlinckx, Francis and De Boeck, Paul},\n422\t  title   = {A General Framework and an {R} Package for the Detection of Dichotomous Differential Item Functioning},\n423\t  journal = {Behavior Research Methods},\n424\t  volume  = {42},\n425\t  number  = {3},\n426\t  pages   = {847--862},\n427\t  year    = {2010},\n428\t  doi     = {10.3758/BRM.42.3.847}\n429\t}\n430\t\n431\t@inproceedings{kraus2024irt,\n432\t  title     = {Using {IRT} to Measure the Quality of {LLM} Evaluations},\n433\t  author    = {Kraus, Batu El-Houl and Arora, Shashank},\n434\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n435\t  year      = {2024}\n436\t}\n437\t\n438\t@article{suk2026rethinking,\n439\t  author  = {Suk, Youmi and Lyu, Weijun},\n440\t  title   = {Rethinking Differential Item Functioning from a Causal Inference Perspective},\n441\t  journal = {Psychometrika},\n442\t  year    = {2026},\n443\t  note    = {Forthcoming}\n444\t}\n445\t\n446\t@inproceedings{ying2024automating,\n447\t  title     = {Automating Dataset Updates Towards Reliable and Timely Evaluation of Large Language Models},\n448\t  author    = {Ying, Jiahao and Cao, Rui and Luo, Mingsheng and Gao, Shangqing and Zhang, Yuhang and Chen, Shuang and Liu, Jiawei},\n449\t  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},\n450\t  year      = {2024}\n451\t}\n452\t\n453\t@inproceedings{xu2025benchmark,\n454\t  title     = {Benchmark Self-Evolving: A Multi-Agent Framework for Dynamic {LLM} Benchmarking},\n455\t  author    = {Xu, Siyuan and Zhang, Chao and Zhao, Wenjun},\n456\t  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n457\t  year      = {2025}\n458\t}\n459\t\n460\t% ============================================================\n461\t% LLM Evaluation Methodology\n462\t% ============================================================\n463\t\n464\t@article{burnell2023rethink,\n465\t  title   = {Rethink reporting of evaluation results in {AI}},\n466\t  author  = {Burnell, Ryan and Schellaert, Wout and Burden, John and Ullman, Tomer D. and Martinez-Plumed, Fernando and Tenenbaum, Joshua B. and Rutar, Danaja and Cheke, Lucy G. and Sohl-Dickstein, Jascha and Mitchell, Melanie and Kiela, Douwe and Shanahan, Murray and Voorhees, Ellen M. and Cohn, Anthony G. and Leibo, Joel Z. and Hernandez-Orallo, Jose},\n467\t  journal = {Science},\n468\t  year    = {2023},\n469\t  doi     = {10.1126/science.adf6369},\n470\t  url     = {https://www.science.org/doi/10.1126/science.adf6369}\n471\t}\n472\t\n473\t@article{chang2024survey,\n474\t  title   = {A Survey on Evaluation of Large Language Models},\n475\t  author  = {Chang, Yupeng and Wang, Xu and Wang, Jindong and Wu, Yuan and Zhu, Kaijie and Chen, Hao and Yang, Linyi and Yi, Xiaoyuan and Wang, Cunxiang and Wang, Yidong and Ye, Wei and Zhang, Yue and Chang, Yi and Yu, Philip S. and Yang, Qiang and Xie, Xing},\n476\t  journal = {ACM Transactions on Intelligent Systems and Technology},\n477\t  year    = {2024},\n478\t  doi     = {10.1145/3641289},\n479\t  url     = {https://dl.acm.org/doi/full/10.1145/3641289}\n480\t}\n481\t\n482\t@inproceedings{maiapolo2024tinybenchmarks,\n483\t  title     = {{tinyBenchmarks}: evaluating {LLMs} with fewer examples},\n484\t  author    = {Maia Polo, Felipe and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},\n485\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n486\t  year      = {2024},\n487\t  url       = {https://proceedings.mlr.press/v235/maia-polo24a.html}\n488\t}\n489\t\n490\t@article{nandakumar1993dif,\n491\t  author  = {Ratna Nandakumar},\n492\t  title   = {Simultaneous {DIF} amplification and cancellation: {Shealy}-{Stout}'s test for {DIF}},\n493\t  journal = {Journal of Educational Measurement},\n494\t  year    = {1993},\n495\t  volume  = {30},\n496\t  number  = {4},\n497\t  pages   = {293--311}\n498\t}\n499\t\n500\t@inproceedings{carlini2022quantifying,\n501\t  author    = {Nicholas Carlini and Daphne Ippolito and Matthew Jagielski and Katherine Lee and Florian Tram{\\`e}r and Chiyuan Zhang},\n502\t  title     = {Quantifying Memorization Across Neural Language Models},\n503\t  booktitle = {International Conference on Learning Representations (ICLR)},\n504\t  year      = {2023},\n505\t  url       = {https://arxiv.org/abs/2202.07646}\n506\t}\n507\t\n508\t@inproceedings{tirumala2022memorization,\n509\t  author    = {Kushal Tirumala and Aram Markosyan and Luke Zettlemoyer and Armen Aghajanyan},\n510\t  title     = {Memorization Without Overfitting: Analyzing the Training Dynamics of Large Language Models},\n511\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n512\t  year      = {2022},\n513\t  url       = {https://arxiv.org/abs/2205.10770}\n514\t}\n515\t\n516\t% ============================================================\n517\t% Additional Benchmarks\n518\t% ============================================================\n519\t\n520\t@inproceedings{sakaguchi2021winogrande,\n521\t  title     = {{WinoGrande}: An Adversarial {Winograd} Schema Challenge at Scale},\n522\t  author    = {Sakaguchi, Keisuke and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n523\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n524\t  volume    = {34},\n525\t  number    = {05},\n526\t  pages     = {8732--8740},\n527\t  year      = {2020}\n528\t}\n529\t\n530\t@inproceedings{lin2022truthfulqa,\n531\t  title     = {{TruthfulQA}: Measuring How Models Mimic Human Falsehoods},\n532\t  author    = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},\n533\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n534\t  year      = {2022},\n535\t  pages     = {3214--3252}\n536\t}\n537\t\n538\t@inproceedings{zellers2019hellaswag,\n539\t  title     = {{HellaSwag}: Can a Machine Really Finish Your Sentence?},\n540\t  author    = {Zellers, Rowan and Holtzman, Ari and Bisk, Yonatan and Farzaneh, Ali and Choi, Yejin},\n541\t  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics (ACL)},\n542\t  year      = {2019},\n543\t  pages     = {4791--4800}\n544\t}\n545\t\n546\t@misc{clark2018arc,\n547\t  title         = {Think you have Solved Question Answering? Try {ARC}, the {AI2} Reasoning Challenge},\n548\t  author        = {Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n549\t  year          = {2018},\n550\t  eprint        = {1803.05457},\n551\t  archivePrefix = {arXiv},\n552\t  primaryClass  = {cs.AI},\n553\t  url           = {https://arxiv.org/abs/1803.05457}\n554\t}\n555\t\n556\t% ============================================================\n557\t% Benchmark Quality Assessment\n558\t% ============================================================\n559\t\n560\t@inproceedings{wang2024mmlupro,\n561\t  title     = {{MMLU-Pro}: A More Robust and Challenging Multi-Task Language Understanding Benchmark},\n562\t  author    = {Wang, Yubo and Ma, Xueguang and Zhang, Ge and Ni, Yuansheng and Chandra, Abhranil and Guo, Shiguang and Ren, Weiming and Arulraj, Aaran and He, Xuan and Jiang, Ziyan and Li, Tianle and Ku, Max and Wang, Kai and Zhuang, Alex and Fan, Rongqi and Yue, Xiang and Chen, Wenhu},\n563\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track},\n564\t  year      = {2024},\n565\t  url       = {https://arxiv.org/abs/2406.01574}\n566\t}\n567\t\n568\t@misc{gema2024mmlu,\n569\t  title         = {Are We Done with {MMLU}?},\n570\t  author        = {Gema, Aryo Pradipta and Leang, Joshua Ong Jun and Hong, Giwon and Devoto, Alessio and Mancino, Alberto Carlo Maria and Saxena, Rohit and He, Xuanli and Zhao, Yu and Du, Xiaotang and Ghasemi Madani, Mohammad Reza and Barale, Claire and McHardy, Robert and Harris, Joshua and Kaddour, Jean and van Krieken, Emile and Minervini, Pasquale},\n571\t  year          = {2024},\n572\t  eprint        = {2406.04127},\n573\t  archivePrefix = {arXiv},\n574\t  primaryClass  = {cs.CL},\n575\t  url           = {https://arxiv.org/abs/2406.04127}\n576\t}\n577\t\n578\t@misc{zhu2026bhi,\n579\t  title         = {Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of {LLMs}},\n580\t  author        = {Zhu, Longyuan and Hua, Hairan and Miao, Linlin and Zhao, Bing},\n581\t  year          = {2026},\n582\t  eprint        = {2602.11674},\n583\t  archivePrefix = {arXiv},\n584\t  primaryClass  = {cs.CL},\n585\t  url           = {https://arxiv.org/abs/2602.11674}\n586\t}\n587\t\n588\t@misc{maeda2025difllm,\n589\t  title         = {Finding Words Associated with {DIF}: Predicting {DIF} using {LLMs} and Explainable {AI}},\n590\t  author        = {Maeda, Hotaka},\n591\t  year          = {2025},\n592\t  eprint        = {2502.07017},\n593\t  archivePrefix = {arXiv},\n594\t  primaryClass  = {cs.CL},\n595\t  url           = {https://arxiv.org/abs/2502.07017}\n596\t}\n597\t\n598\t@misc{qian2026benchmark2,\n599\t  title         = {{Benchmark}$^2$: Systematic Evaluation of {LLM} Benchmarks},\n600\t  author        = {Qian, Qi and Huang, Chengsong},\n601\t  year          = {2026},\n602\t  eprint        = {2601.03986},\n603\t  archivePrefix = {arXiv},\n604\t  primaryClass  = {cs.CL},\n605\t  url           = {https://arxiv.org/abs/2601.03986}\n606\t}\n607\t\n608\t@misc{luo2025medirt,\n609\t  title         = {Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks},\n610\t  author        = {Luo, Zhimeng and Wu, Lixin and Frisch, Adam and He, Daqing},\n611\t  year          = {2025},\n612\t  eprint        = {2509.24186},\n613\t  archivePrefix = {arXiv},\n614\t  primaryClass  = {cs.CL},\n615\t  url           = {https://arxiv.org/abs/2509.24186}\n616\t}\n617\t\n618\t@misc{li2025atlas,\n619\t  title         = {{ATLAS}: Adaptive Testing for {LLM} Evaluation: A Psychometric Alternative to Static Benchmarks},\n620\t  author        = {Li, Peiyang and Tang, Xiaobo and Chen, Sai and Cheng, Ying and Metoyer, Ronald and Hua, Tianyi and Chawla, Nitesh V.},\n621\t  year          = {2025},\n622\t  eprint        = {2511.04689},\n623\t  archivePrefix = {arXiv},\n624\t  primaryClass  = {cs.CL},\n625\t  url           = {https://arxiv.org/abs/2511.04689}\n626\t}\n627\t\n628\t@article{ackerman1992didmf,\n629\t  title   = {A Didactic Explanation of Item Bias, Item Impact, and Item Validity from a Multidimensional Perspective},\n630\t  author  = {Ackerman, Terry A},\n631\t  journal = {Journal of Educational Measurement},\n632\t  volume  = {29},\n633\t  number  = {1},\n634\t  pages   = {67--91},\n635\t  year    = {1992}\n636\t}\n637\t\n638\t@article{roussos1996multidimensionality,\n639\t  title   = {A New View of the Effect of Multidimensionality on the {Mantel-Haenszel} and {SIBTEST} Procedures},\n640\t  author  = {Roussos, Louis A and Stout, William F},\n641\t  journal = {Journal of Educational Measurement},\n642\t  volume  = {33},\n643\t  number  = {3},\n644\t  pages   = {278--295},\n645\t  year    = {1996}\n646\t}\n647\t\n648\t@book{wainer1993differential,\n649\t  title     = {Differential Item Functioning},\n650\t  author    = {Wainer, Howard and Braun, Henry I.},\n651\t  year      = {1993},\n652\t  publisher = {Lawrence Erlbaum Associates},\n653\t  address   = {Hillsdale, NJ}\n654\t}\n655\t\n656\t@book{embretson2000irt,\n657\t  title     = {Item Response Theory for Psychologists},\n658\t  author    = {Embretson, Susan E. and Reise, Steven P.},\n659\t  year      = {2000},\n660\t  publisher = {Lawrence Erlbaum Associates},\n661\t  address   = {Mahwah, NJ}\n662\t}\n663\t\n664\t@book{valliant2013practical,\n665\t  title     = {Practical Tools for Designing and Weighting Survey Samples},\n666\t  author    = {Valliant, Richard and Dever, Jill A. and Kreuter, Frauke},\n667\t  year      = {2013},\n668\t  publisher = {Springer},\n669\t  address   = {New York},\n670\t  doi       = {10.1007/978-1-4614-6449-5}\n671\t}\n672\t\n673\t@incollection{kane2006validation,\n674\t  title     = {Validation},\n675\t  author    = {Kane, Michael T.},\n676\t  booktitle = {Educational Measurement},\n677\t  editor    = {Brennan, Robert L.},\n678\t  edition   = {4th},\n679\t  year      = {2006},\n680\t  publisher = {American Council on Education/Praeger},\n681\t  pages     = {17--64}\n682\t}\n683\t\n684\t@inproceedings{alzahrani2024benchmarks,\n685\t  title     = {When Benchmarks are Targets: Revealing the Sensitivity of Large Language Model Leaderboards},\n686\t  author    = {Alzahrani, Norah and Alyahya, Hisham Abdullah and Alnumay, Yazeed and Alrashed, Sultan and Alsubaie, Shaykhah and Almushaykeh, Yusef and Mirza, Faisal and Alotaibi, Nouf and Altwairesh, Nora and Alowisheq, Areeb and Bari, M. Saiful and Khan, Haidar},\n687\t  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},\n688\t  year      = {2024},\n689\t  url       = {https://arxiv.org/abs/2402.01781}\n690\t}\n691\t\n692\t@inproceedings{zhao2025mmlucf,\n693\t  title     = {{MMLU-CF}: A Contamination-Free Multi-Task Language Understanding Benchmark},\n694\t  author    = {Zhao, Qihao and Huang, Yangyu and Jing, Tengchao and Shi, Xiaoming and Liang, Yanan and Du, Jiaqing and He, Wenbo and Lin, Yankai},\n695\t  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n696\t  year      = {2025},\n697\t  url       = {https://arxiv.org/abs/2412.15194}\n698\t}\n699\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "dd222682-1b1c-4b37-9df0-eec53e424d21",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib",
+                "content": "% ============================================================\n% Benchmark Contamination Detection\n% ============================================================\n\n@inproceedings{balloccu2024leak,\n  title     = {Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source {LLMs}},\n  author    = {Balloccu, Simone and Schmidtova, Patrícia and Lango, Mateusz and Dusek, Ondrej},\n  booktitle = {Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL)},\n  year      = {2024},\n  doi       = {10.18653/v1/2024.eacl-long.5},\n  url       = {https://arxiv.org/abs/2402.03927}\n}\n\n@inproceedings{dekoninck2024constat,\n  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},\n  author    = {Dekoninck, Jasper and Mueller, Mark Niklas and Vechev, Martin},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2405.16281}\n}\n\n@inproceedings{golchin2024timetravel,\n  title     = {Time Travel in {LLMs}: Tracing Data Contamination in Large Language Models},\n  author    = {Golchin, Shahriar and Surdeanu, Mihai},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2308.08493}\n}\n\n@inproceedings{li2024contamination,\n  title     = {An Open-Source Data Contamination Report for Large Language Models},\n  author    = {Li, Yucheng and Guo, Yunhao and Guerin, Frank and Lin, Chenghua},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},\n  year      = {2024},\n  doi       = {10.18653/v1/2024.findings-emnlp.30},\n  url       = {https://aclanthology.org/2024.findings-emnlp.30/}\n}\n\n@misc{liang2026dvd,\n  title         = {{DVD}: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation},\n  author        = {Liang, Rongzhen},\n  year          = {2026},\n  eprint        = {2601.04895},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2601.04895}\n}\n\n@inproceedings{shi2024mink,\n  title     = {Detecting Pretraining Data from Large Language Models},\n  author    = {Shi, Weijia and Ajith, Anirudh and Xia, Mengzhou and Huang, Yangsibo and Liu, Daogao and Blevins, Terra and Chen, Danqi and Zettlemoyer, Luke},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2310.16789}\n}\n\n@inproceedings{tao2026selfcritique,\n  title     = {Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models},\n  author    = {Tao, Yongding and Wang, Tian and Dong, Yihong and Liu, Huanyu and Zhang, Kechi and Hu, Xiaolong and Li, Ge},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2510.09259}\n}\n\n@inproceedings{wang2026fragility,\n  title     = {On The Fragility of Benchmark Contamination Detection in Reasoning Models},\n  author    = {Wang, Haonan and Li, Haoyang and Ko, Boeun and Zhang, Hongyang},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2510.02386}\n}\n\n@inproceedings{oren2024proving,\n  title     = {Proving Test Set Contamination in Black-Box Language Models},\n  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri S. and Ladhak, Faisal and Hashimoto, Tatsunori B.},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://openreview.net/forum?id=KS8mIvetg2}\n}\n\n@inproceedings{deng2024investigating,\n  title     = {Investigating Data Contamination in Modern Benchmarks for Large Language Models},\n  author    = {Deng, Chunyuan and Zhao, Yilun and Tang, Xiangru and Gerstein, Mark and Cohan, Arman},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year      = {2024},\n  doi       = {10.18653/v1/2024.naacl-long.482}\n}\n\n@misc{zhang2024minkpp,\n  title         = {{Min-K\\%++}: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n  author        = {Zhang, Jingyang and Sun, Jingwei and Yeats, Eric and Ouyang, Yang and Kuo, Martin and Zhang, Jianyi and Yang, Hao and Li, Hai},\n  year          = {2024},\n  eprint        = {2404.02936},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2404.02936}\n}\n\n% ============================================================\n% IRT Methodology & Equating\n% ============================================================\n\n@inproceedings{rodriguez2021evaluation,\n  title     = {Evaluation Examples Are Not Equally Informative: How Should That Change {NLP} Leaderboards?},\n  author    = {Rodriguez, Pedro and Barrow, Joe and Hoyle, Alexander Miserlis and Lalor, John P. and Jia, Robin and Boyd-Graber, Jordan},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2021},\n  pages     = {4486--4503}\n}\n\n@article{donoghue1993mh,\n  title   = {An Empirical Examination of the {Mantel-Haenszel} Statistic for the Study of Differential Item Functioning},\n  author  = {Donoghue, John R. and Allen, Nancy L.},\n  journal = {Applied Measurement in Education},\n  volume  = {6},\n  number  = {2},\n  pages   = {163--179},\n  year    = {1993}\n}\n\n@misc{hardy2026scalability,\n  title         = {Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients},\n  author        = {Hardy, Matthew and Gilbert, Juan and Domingue, Benjamin},\n  year          = {2026},\n  eprint        = {2603.24999},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2603.24999}\n}\n\n@article{kim2019fpc,\n  title   = {Application of {IRT} Fixed Parameter Calibration to Multiple-Group Test Data},\n  author  = {Kim, Seonghoon and Kolen, Michael},\n  journal = {Applied Measurement in Education},\n  year    = {2019},\n  doi     = {10.1080/08957347.2019.1660344},\n  url     = {https://www.tandfonline.com/doi/abs/10.1080/08957347.2019.1660344}\n}\n\n@inproceedings{lalor2019irt,\n  title     = {Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds},\n  author    = {Lalor, John and Wu, Hao and Yu, Hong},\n  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},\n  year      = {2019},\n  doi       = {10.18653/v1/D19-1434},\n  url       = {https://aclanthology.org/D19-1434/}\n}\n\n@inproceedings{vania2021irt,\n  title     = {Comparing Test Sets with Item Response Theory},\n  author    = {Vania, Clara and Htut, Phu Mon and Huang, William and Mungra, Dhara and Pang, Richard Yuanzhe and Phang, Jason and Liu, Haokun and Cho, Kyunghyun and Bowman, Samuel R.},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2021},\n  doi       = {10.18653/v1/2021.acl-long.92},\n  url       = {https://aclanthology.org/2021.acl-long.92/}\n}\n\n\n@misc{habba2026growingpains,\n  title         = {Growing Pains: Extensible and Efficient {LLM} Benchmarking Via Fixed Parameter Calibration},\n  author        = {Habba, Eliya and Itzhak, Itay and Yehudai, Asaf and Perlitz, Yotam and Bandel, Elron and Shmueli-Scheuer, Michal and Choshen, Leshem and Stanovsky, Gabriel},\n  year          = {2026},\n  eprint        = {2604.12843},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2604.12843}\n}\n\n@book{kolen2014equating,\n  author    = {Kolen, Michael J. and Brennan, Robert L.},\n  title     = {Test Equating, Scaling, and Linking: Methods and Practices},\n  publisher = {Springer},\n  edition   = {3rd},\n  year      = {2014}\n}\n\n@inproceedings{zhou2026psnirt,\n  title     = {Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory},\n  author    = {Zhou, Hongli and Huang, Hui and Zhao, Ziqing and Han, Lvyuan and Wang, Huicheng and Chen, Kehai and Yang, Muyun and Bao, Wei and Dong, Jian and Xu, Bing and Zhu, Conghui and Cao, Hailong and Zhao, Tiejun},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2505.15055}\n}\n\n% ============================================================\n% Dynamic Benchmark Design\n% ============================================================\n\n@inproceedings{white2025livebench,\n  title     = {{LiveBench}: A Challenging, Contamination-Free {LLM} Benchmark},\n  author    = {White, Colin},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year      = {2025},\n  doi       = {10.48550/arXiv.2406.19314},\n  url       = {https://arxiv.org/abs/2406.19314}\n}\n\n@misc{kipnis2024metabench,\n  title         = {metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language Models},\n  author        = {Kipnis, Alon and Voudouris, Konstantinos and Schulze Buschoff, Luca Maria and Schulz, Eric},\n  year          = {2024},\n  eprint        = {2407.12844},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2407.12844}\n}\n\n@inproceedings{hendrycks2021mmlu,\n  title     = {Measuring Massive Multitask Language Understanding},\n  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year      = {2021},\n  url       = {https://arxiv.org/abs/2009.03300}\n}\n\n@inproceedings{chiang2024chatbot,\n  title     = {Chatbot Arena: An Open Platform for Evaluating {LLMs} by Human Preference},\n  author    = {Chiang, Wei-Lin and Zheng, Lianmin and Sheng, Ying and Angelopoulos, Anastasios N. and Li, Tianle and Li, Dacheng and Zhang, Hao and Zhu, Banghua and Jordan, Michael I. and Gonzalez, Joseph E. and Stoica, Ion},\n  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year      = {2024},\n  doi       = {10.48550/arXiv.2403.04132},\n  url       = {https://arxiv.org/abs/2403.04132}\n}\n\n@inproceedings{li2024latesteval,\n  title     = {{LatestEval}: Addressing Data Contamination in Language Model Evaluation through Dynamic and Time-Sensitive Test Construction},\n  author    = {Li, Yucheng and Guerin, Frank and Lin, Chenghua},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year      = {2024},\n  doi       = {10.48550/arXiv.2312.12343},\n  url       = {https://arxiv.org/abs/2312.12343}\n}\n\n@inproceedings{kiela2021dynabench,\n  title     = {{Dynabench}: Rethinking Benchmarking in {NLP}},\n  author    = {Kiela, Douwe and Bartolo, Max and Nie, Yixin and Kaushik, Divyansh and Geiger, Atticus and Wu, Zhengxuan and Vidgen, Bertie and Prasad, Grusha and Singh, Amanpreet and Ringshia, Pratik and Ma, Zhiyi and Thrush, Tristan and Riedel, Sebastian and Talat, Zeerak and Stenetorp, Pontus and Jia, Robin},\n  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year      = {2021},\n  doi       = {10.18653/v1/2021.naacl-main.324},\n  url       = {https://arxiv.org/abs/2104.14337}\n}\n\n% ============================================================\n% DIF Statistical Methods\n% ============================================================\n\n@article{belzak2020smallsample,\n  title   = {Testing Differential Item Functioning in Small Samples},\n  author  = {Belzak, William},\n  journal = {Multivariate Behavioral Research},\n  year    = {2020},\n  doi     = {10.1080/00273171.2019.1671162},\n  url     = {https://www.tandfonline.com/doi/abs/10.1080/00273171.2019.1671162}\n}\n\n@incollection{holland1988mh,\n  title     = {Differential Item Functioning and the {Mantel-Haenszel} Procedure},\n  author    = {Holland, Paul W. and Thayer, Dorothy T.},\n  booktitle = {Test Validity},\n  editor    = {Wainer, Howard and Braun, Henry I.},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {1988}\n}\n\n@article{shealy1993sibtest,\n  title   = {A Model-Based Standardization Approach that Separates True Bias/{DIF} from Group Ability Differences and Detects Test Bias/{DTF} as Well as Item Bias/{DIF}},\n  author  = {Shealy, Robin and Stout, William},\n  journal = {Psychometrika},\n  year    = {1993},\n  doi     = {10.1007/BF02294572},\n  url     = {https://link.springer.com/article/10.1007/BF02294572}\n}\n\n@article{clauser1998dif,\n  title   = {Using Statistical Procedures to Identify Differentially Functioning Test Items},\n  author  = {Clauser, Brian E. and Mazor, Kathleen M.},\n  journal = {Educational Measurement: Issues and Practice},\n  year    = {1998},\n  doi     = {10.1111/j.1745-3992.1998.tb00619.x},\n  url     = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3992.1998.tb00619.x}\n}\n\n@book{zumbo1999handbook,\n  title     = {A Handbook on the Theory and Methods of Differential Item Functioning ({DIF}): Logistic Regression Modeling as a Unitary Framework for Binary and {Likert}-Type (Ordinal) Item Scores},\n  author    = {Zumbo, Bruno D.},\n  year      = {1999},\n  publisher = {Directorate of Human Resources Research and Evaluation, Department of National Defense},\n  address   = {Ottawa},\n  url       = {https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf}\n}\n\n@article{meredith1993invariance,\n  title   = {Measurement Invariance, Factor Analysis and Factorial Invariance},\n  author  = {Meredith, William},\n  journal = {Psychometrika},\n  year    = {1993},\n  doi     = {10.1007/BF02294825},\n  url     = {https://link.springer.com/article/10.1007/BF02294825}\n}\n\n@article{vandenberg2000invariance,\n  title   = {A Review and Synthesis of the Measurement Invariance Literature: Suggestions, Practices, and Recommendations for Organizational Research},\n  author  = {Vandenberg, Robert J. and Lance, Charles E.},\n  journal = {Organizational Research Methods},\n  year    = {2000},\n  doi     = {10.1177/109442810031002},\n  url     = {https://journals.sagepub.com/doi/10.1177/109442810031002}\n}\n\n@article{swaminathan1990logistic,\n  title   = {Detecting Differential Item Functioning Using Logistic Regression Procedures},\n  author  = {Swaminathan, Hariharan and Rogers, H. Jane},\n  journal = {Journal of Educational Measurement},\n  year    = {1990},\n  doi     = {10.1111/j.1745-3984.1990.tb00754.x},\n  url     = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3984.1990.tb00754.x}\n}\n\n@article{teresi2007dif,\n  title   = {Differential Item Functioning and Health Assessment},\n  author  = {Teresi, Jeanne A. and Fleishman, John A.},\n  journal = {Quality of Life Research},\n  year    = {2007},\n  doi     = {10.1007/s11136-007-9184-6},\n  url     = {https://link.springer.com/article/10.1007/s11136-007-9184-6}\n}\n\n@book{lord1980irt,\n  title     = {Applications of Item Response Theory to Practical Testing Problems},\n  author    = {Lord, Frederic M.},\n  year      = {1980},\n  publisher = {Lawrence Erlbaum Associates},\n  address   = {Hillsdale, NJ}\n}\n\n@article{raju1988area,\n  title   = {The Area between Two Item Characteristic Curves},\n  author  = {Raju, Nambury S.},\n  journal = {Psychometrika},\n  year    = {1988},\n  doi     = {10.1007/BF02294403},\n  url     = {https://link.springer.com/article/10.1007/BF02294403}\n}\n\n@article{muthen1985mimic,\n  title   = {A Method for Studying the Homogeneity of Test Items with Respect to Other Relevant Variables},\n  author  = {Muth{\\'e}n, Bengt},\n  journal = {Journal of Educational Statistics},\n  year    = {1985},\n  doi     = {10.2307/1164966}\n}\n\n@article{woods2009mimic,\n  title   = {Empirical Selection of Anchors for Tests of Differential Item Functioning},\n  author  = {Woods, Carol M.},\n  journal = {Applied Psychological Measurement},\n  year    = {2009},\n  doi     = {10.1177/0146621609331279}\n}\n\n@book{kish1965survey,\n  author    = {Kish, Leslie},\n  title     = {Survey Sampling},\n  publisher = {John Wiley \\& Sons},\n  address   = {New York},\n  year      = {1965}\n}\n\n@article{rao1992variance,\n  author  = {Rao, J. N. K. and Scott, A. J.},\n  title   = {A Simple Method for the Analysis of Clustered Binary Data},\n  journal = {Biometrics},\n  volume  = {48},\n  number  = {2},\n  pages   = {577--585},\n  year    = {1992}\n}\n\n@article{french2010hierarchical,\n  author  = {French, Brian F. and Finch, W. Holmes},\n  title   = {Hierarchical Logistic Regression: Accounting for Multilevel Data in {DIF} Detection},\n  journal = {Journal of Educational Measurement},\n  volume  = {47},\n  number  = {3},\n  pages   = {299--317},\n  year    = {2010}\n}\n\n@incollection{penfield2007dif,\n  title     = {Differential Item Functioning and Item Bias},\n  author    = {Penfield, Randall D. and Camilli, Gregory},\n  booktitle = {Handbook of Statistics},\n  volume    = {26},\n  pages     = {125--167},\n  year      = {2007},\n  publisher = {Elsevier},\n  doi       = {10.1016/S0169-7161(06)26005-X}\n}\n\n@book{millsap2011invariance,\n  title     = {Statistical Approaches to Measurement Invariance},\n  author    = {Millsap, Roger E.},\n  year      = {2011},\n  publisher = {Routledge},\n  address   = {New York},\n  doi       = {10.4324/9780203821961}\n}\n\n@article{millsap1993dif,\n  author  = {Millsap, Roger E. and Everson, Howard T.},\n  title   = {Methodology Review: Statistical Approaches for Assessing Measurement Bias},\n  journal = {Applied Psychological Measurement},\n  volume  = {17},\n  number  = {4},\n  pages   = {297--334},\n  year    = {1993},\n  doi     = {10.1177/014662169301700401}\n}\n\n@article{magis2010difr,\n  author  = {Magis, David and B{\\'e}land, S{\\'e}bastien and Tuerlinckx, Francis and De Boeck, Paul},\n  title   = {A General Framework and an {R} Package for the Detection of Dichotomous Differential Item Functioning},\n  journal = {Behavior Research Methods},\n  volume  = {42},\n  number  = {3},\n  pages   = {847--862},\n  year    = {2010},\n  doi     = {10.3758/BRM.42.3.847}\n}\n\n@inproceedings{kraus2024irt,\n  title     = {Using {IRT} to Measure the Quality of {LLM} Evaluations},\n  author    = {Kraus, Batu El-Houl and Arora, Shashank},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2024}\n}\n\n@article{suk2026rethinking,\n  author  = {Suk, Youmi and Lyu, Weijun},\n  title   = {Rethinking Differential Item Functioning from a Causal Inference Perspective},\n  journal = {Psychometrika},\n  year    = {2026},\n  note    = {Forthcoming}\n}\n\n@inproceedings{ying2024automating,\n  title     = {Automating Dataset Updates Towards Reliable and Timely Evaluation of Large Language Models},\n  author    = {Ying, Jiahao and Cao, Rui and Luo, Mingsheng and Gao, Shangqing and Zhang, Yuhang and Chen, Shuang and Liu, Jiawei},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},\n  year      = {2024}\n}\n\n@inproceedings{xu2025benchmark,\n  title     = {Benchmark Self-Evolving: A Multi-Agent Framework for Dynamic {LLM} Benchmarking},\n  author    = {Xu, Siyuan and Zhang, Chao and Zhao, Wenjun},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2025}\n}\n\n% ============================================================\n% LLM Evaluation Methodology\n% ============================================================\n\n@article{burnell2023rethink,\n  title   = {Rethink reporting of evaluation results in {AI}},\n  author  = {Burnell, Ryan and Schellaert, Wout and Burden, John and Ullman, Tomer D. and Martinez-Plumed, Fernando and Tenenbaum, Joshua B. and Rutar, Danaja and Cheke, Lucy G. and Sohl-Dickstein, Jascha and Mitchell, Melanie and Kiela, Douwe and Shanahan, Murray and Voorhees, Ellen M. and Cohn, Anthony G. and Leibo, Joel Z. and Hernandez-Orallo, Jose},\n  journal = {Science},\n  year    = {2023},\n  doi     = {10.1126/science.adf6369},\n  url     = {https://www.science.org/doi/10.1126/science.adf6369}\n}\n\n@article{chang2024survey,\n  title   = {A Survey on Evaluation of Large Language Models},\n  author  = {Chang, Yupeng and Wang, Xu and Wang, Jindong and Wu, Yuan and Zhu, Kaijie and Chen, Hao and Yang, Linyi and Yi, Xiaoyuan and Wang, Cunxiang and Wang, Yidong and Ye, Wei and Zhang, Yue and Chang, Yi and Yu, Philip S. and Yang, Qiang and Xie, Xing},\n  journal = {ACM Transactions on Intelligent Systems and Technology},\n  year    = {2024},\n  doi     = {10.1145/3641289},\n  url     = {https://dl.acm.org/doi/full/10.1145/3641289}\n}\n\n@inproceedings{maiapolo2024tinybenchmarks,\n  title     = {{tinyBenchmarks}: evaluating {LLMs} with fewer examples},\n  author    = {Maia Polo, Felipe and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},\n  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year      = {2024},\n  url       = {https://proceedings.mlr.press/v235/maia-polo24a.html}\n}\n\n@article{nandakumar1993dif,\n  author  = {Ratna Nandakumar},\n  title   = {Simultaneous {DIF} amplification and cancellation: {Shealy}-{Stout}'s test for {DIF}},\n  journal = {Journal of Educational Measurement},\n  year    = {1993},\n  volume  = {30},\n  number  = {4},\n  pages   = {293--311}\n}\n\n@inproceedings{carlini2022quantifying,\n  author    = {Nicholas Carlini and Daphne Ippolito and Matthew Jagielski and Katherine Lee and Florian Tram{\\`e}r and Chiyuan Zhang},\n  title     = {Quantifying Memorization Across Neural Language Models},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2202.07646}\n}\n\n@inproceedings{tirumala2022memorization,\n  author    = {Kushal Tirumala and Aram Markosyan and Luke Zettlemoyer and Armen Aghajanyan},\n  title     = {Memorization Without Overfitting: Analyzing the Training Dynamics of Large Language Models},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2205.10770}\n}\n\n% ============================================================\n% Additional Benchmarks\n% ============================================================\n\n@inproceedings{sakaguchi2021winogrande,\n  title     = {{WinoGrande}: An Adversarial {Winograd} Schema Challenge at Scale},\n  author    = {Sakaguchi, Keisuke and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  volume    = {34},\n  number    = {05},\n  pages     = {8732--8740},\n  year      = {2020}\n}\n\n@inproceedings{lin2022truthfulqa,\n  title     = {{TruthfulQA}: Measuring How Models Mimic Human Falsehoods},\n  author    = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},\n  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2022},\n  pages     = {3214--3252}\n}\n\n@inproceedings{zellers2019hellaswag,\n  title     = {{HellaSwag}: Can a Machine Really Finish Your Sentence?},\n  author    = {Zellers, Rowan and Holtzman, Ari and Bisk, Yonatan and Farzaneh, Ali and Choi, Yejin},\n  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2019},\n  pages     = {4791--4800}\n}\n\n@misc{clark2018arc,\n  title         = {Think you have Solved Question Answering? Try {ARC}, the {AI2} Reasoning Challenge},\n  author        = {Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n  year          = {2018},\n  eprint        = {1803.05457},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.AI},\n  url           = {https://arxiv.org/abs/1803.05457}\n}\n\n% ============================================================\n% Benchmark Quality Assessment\n% ============================================================\n\n@inproceedings{wang2024mmlupro,\n  title     = {{MMLU-Pro}: A More Robust and Challenging Multi-Task Language Understanding Benchmark},\n  author    = {Wang, Yubo and Ma, Xueguang and Zhang, Ge and Ni, Yuansheng and Chandra, Abhranil and Guo, Shiguang and Ren, Weiming and Arulraj, Aaran and He, Xuan and Jiang, Ziyan and Li, Tianle and Ku, Max and Wang, Kai and Zhuang, Alex and Fan, Rongqi and Yue, Xiang and Chen, Wenhu},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2406.01574}\n}\n\n@misc{gema2024mmlu,\n  title         = {Are We Done with {MMLU}?},\n  author        = {Gema, Aryo Pradipta and Leang, Joshua Ong Jun and Hong, Giwon and Devoto, Alessio and Mancino, Alberto Carlo Maria and Saxena, Rohit and He, Xuanli and Zhao, Yu and Du, Xiaotang and Ghasemi Madani, Mohammad Reza and Barale, Claire and McHardy, Robert and Harris, Joshua and Kaddour, Jean and van Krieken, Emile and Minervini, Pasquale},\n  year          = {2024},\n  eprint        = {2406.04127},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2406.04127}\n}\n\n@misc{zhu2026bhi,\n  title         = {Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of {LLMs}},\n  author        = {Zhu, Longyuan and Hua, Hairan and Miao, Linlin and Zhao, Bing},\n  year          = {2026},\n  eprint        = {2602.11674},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2602.11674}\n}\n\n@misc{maeda2025difllm,\n  title         = {Finding Words Associated with {DIF}: Predicting {DIF} using {LLMs} and Explainable {AI}},\n  author        = {Maeda, Hotaka},\n  year          = {2025},\n  eprint        = {2502.07017},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2502.07017}\n}\n\n@misc{qian2026benchmark2,\n  title         = {{Benchmark}$^2$: Systematic Evaluation of {LLM} Benchmarks},\n  author        = {Qian, Qi and Huang, Chengsong},\n  year          = {2026},\n  eprint        = {2601.03986},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2601.03986}\n}\n\n@misc{luo2025medirt,\n  title         = {Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks},\n  author        = {Luo, Zhimeng and Wu, Lixin and Frisch, Adam and He, Daqing},\n  year          = {2025},\n  eprint        = {2509.24186},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2509.24186}\n}\n\n@misc{li2025atlas,\n  title         = {{ATLAS}: Adaptive Testing for {LLM} Evaluation: A Psychometric Alternative to Static Benchmarks},\n  author        = {Li, Peiyang and Tang, Xiaobo and Chen, Sai and Cheng, Ying and Metoyer, Ronald and Hua, Tianyi and Chawla, Nitesh V.},\n  year          = {2025},\n  eprint        = {2511.04689},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2511.04689}\n}\n\n@article{ackerman1992didmf,\n  title   = {A Didactic Explanation of Item Bias, Item Impact, and Item Validity from a Multidimensional Perspective},\n  author  = {Ackerman, Terry A},\n  journal = {Journal of Educational Measurement},\n  volume  = {29},\n  number  = {1},\n  pages   = {67--91},\n  year    = {1992}\n}\n\n@article{roussos1996multidimensionality,\n  title   = {A New View of the Effect of Multidimensionality on the {Mantel-Haenszel} and {SIBTEST} Procedures},\n  author  = {Roussos, Louis A and Stout, William F},\n  journal = {Journal of Educational Measurement},\n  volume  = {33},\n  number  = {3},\n  pages   = {278--295},\n  year    = {1996}\n}\n\n@book{wainer1993differential,\n  title     = {Differential Item Functioning},\n  author    = {Wainer, Howard and Braun, Henry I.},\n  year      = {1993},\n  publisher = {Lawrence Erlbaum Associates},\n  address   = {Hillsdale, NJ}\n}\n\n@book{embretson2000irt,\n  title     = {Item Response Theory for Psychologists},\n  author    = {Embretson, Susan E. and Reise, Steven P.},\n  year      = {2000},\n  publisher = {Lawrence Erlbaum Associates},\n  address   = {Mahwah, NJ}\n}\n\n@book{valliant2013practical,\n  title     = {Practical Tools for Designing and Weighting Survey Samples},\n  author    = {Valliant, Richard and Dever, Jill A. and Kreuter, Frauke},\n  year      = {2013},\n  publisher = {Springer},\n  address   = {New York},\n  doi       = {10.1007/978-1-4614-6449-5}\n}\n\n@incollection{kane2006validation,\n  title     = {Validation},\n  author    = {Kane, Michael T.},\n  booktitle = {Educational Measurement},\n  editor    = {Brennan, Robert L.},\n  edition   = {4th},\n  year      = {2006},\n  publisher = {American Council on Education/Praeger},\n  pages     = {17--64}\n}\n\n@inproceedings{alzahrani2024benchmarks,\n  title     = {When Benchmarks are Targets: Revealing the Sensitivity of Large Language Model Leaderboards},\n  author    = {Alzahrani, Norah and Alyahya, Hisham Abdullah and Alnumay, Yazeed and Alrashed, Sultan and Alsubaie, Shaykhah and Almushaykeh, Yusef and Mirza, Faisal and Alotaibi, Nouf and Altwairesh, Nora and Alowisheq, Areeb and Bari, M. Saiful and Khan, Haidar},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2402.01781}\n}\n\n@inproceedings{zhao2025mmlucf,\n  title     = {{MMLU-CF}: A Contamination-Free Multi-Task Language Understanding Benchmark},\n  author    = {Zhao, Qihao and Huang, Yangyu and Jing, Tengchao and Shi, Xiaoming and Liang, Yanan and Du, Jiaqing and He, Wenbo and Lin, Yankai},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2412.15194}\n}\n",
+                "numLines": 699,
+                "startLine": 1,
+                "totalLines": 699
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sm76SDJBKrTa4DoueGs1xn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "2dd52783-75e1-4793-9c44-1ccb2c2c608f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011MUUMnjYPnrjLrDvm59Qor",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12639,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12639
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T19:23:06.289Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Sm76SDJBKrTa4DoueGs1xn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "a2c9bbcf-0f68-4647-b4b4-bb8db0471587",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I've read the references.bib file. I can see that:\n\n1. **Alzahrani et al. (2024)** — \"When Benchmarks are Targets\" — already exists in the bib file at line 684-690 as `alzahrani2024benchmarks`. So this one is already present.\n\n2. **MMLU-Pro (Wang et al., 2024)** — already exists in the bib file at line 560-566 as `wang2024mmlupro`. So this one is also already present.\n\n3. **Kamata & Binici (2003)** — \"Random-Effect DIF Model\" — this one I need to search for.\n\n\nNow I'm looking up the Kamata & Binici reference to add it to the bibliography.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "208ed3fb-4a39-4157-a363-f4af8862816d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016oyWrGTvniZ6dB9tcM2zrE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12869,
+                "cache_read_input_tokens": 24480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12869
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`alzahrani2024benchmarks` (line 684) 和 `wang2024mmlupro` (line 560) 已经在 bib 文件中。只需验证 Kamata & Binici (2003)。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "e9dc5610-4fc0-4af4-9106-1c94e79f5f7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016oyWrGTvniZ6dB9tcM2zrE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12869,
+                "cache_read_input_tokens": 24480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12869
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Nf1TMZHjv9so4vvHCuN6E",
+              "name": "WebSearch",
+              "input": {
+                "query": "Kamata Binici 2003 random effect DIF differential item functioning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "de6065a5-6787-4cb2-863b-a666b3216ebe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016oyWrGTvniZ6dB9tcM2zrE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12869,
+                "cache_read_input_tokens": 24480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12869
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T19:23:20.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Nf1TMZHjv9so4vvHCuN6E",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Kamata Binici 2003 random effect DIF differential item functioning\"\n\nLinks: [{\"title\":\"(PDF) An explanatory differential item functioning (DIF) model by the WinBUG 1.4\",\"url\":\"https://www.researchgate.net/publication/26469442_An_explanatory_differential_item_functioning_DIF_model_by_the_WinBUG_14\"},{\"title\":\"An Introduction to Differential Item Functioning Analysis Akihito Kamata1\",\"url\":\"https://files.eric.ed.gov/fulltext/EJ797693.pdf\"},{\"title\":\"An Introduction to Differential Item Functioning Analysis\",\"url\":\"https://www.researchgate.net/publication/234765346_An_Introduction_to_Differential_Item_Functioning_Analysis\"},{\"title\":\"(PDF) An Introduction to Differential Item Functioning\",\"url\":\"https://www.researchgate.net/publication/310153908_An_Introduction_to_Differential_Item_Functioning\"},{\"title\":\"Differential item functioning - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Differential_item_functioning\"},{\"title\":\"The hitchhiker’s guide to differential item functioning (DIF)\",\"url\":\"https://www.apadivisions.org/division-5/publications/score/2022/01/differential-item-functioning\"},{\"title\":\"Differential Item Functioning (DIF): Current problems and ...\",\"url\":\"https://files.eric.ed.gov/fulltext/ED521872.pdf\"}]\n\nBased on the search results, I found information about the Kamata & Binici (2003) work on random effect DIF analysis:\n\nKamata and Binici (2003) presented \"Random-effect DIF analysis via hierarchical generalized linear models\" at the Annual International Meeting of the Psychometric Society in Sardinia, Italy.\n\nThis approach demonstrated that DIF can be parameterized in the framework of generalized linear mixed models (also known as hierarchical generalized linear models). This approach can be easily extended to a \"multilevel\" DIF analysis model that allows one to incorporate one or more continuous or categorical person- and group-characteristic variables, which also takes into account both within-group and between-group variations.\n\nTheir work was notable because they found that the variance estimates produced by HLM-5 for the level 3 parameters are substantially negatively biased, which prompted subsequent research using alternative estimation methods like Bayesian approaches.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "5387a918-d667-4e5a-9fd6-1bb8b9fea28b",
+            "tool_use_result": {
+              "query": "Kamata Binici 2003 random effect DIF differential item functioning",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01REomV1BKAchaf7hjk1pPHc",
+                  "content": [
+                    {
+                      "title": "(PDF) An explanatory differential item functioning (DIF) model by the WinBUG 1.4",
+                      "url": "https://www.researchgate.net/publication/26469442_An_explanatory_differential_item_functioning_DIF_model_by_the_WinBUG_14"
+                    },
+                    {
+                      "title": "An Introduction to Differential Item Functioning Analysis Akihito Kamata1",
+                      "url": "https://files.eric.ed.gov/fulltext/EJ797693.pdf"
+                    },
+                    {
+                      "title": "An Introduction to Differential Item Functioning Analysis",
+                      "url": "https://www.researchgate.net/publication/234765346_An_Introduction_to_Differential_Item_Functioning_Analysis"
+                    },
+                    {
+                      "title": "(PDF) An Introduction to Differential Item Functioning",
+                      "url": "https://www.researchgate.net/publication/310153908_An_Introduction_to_Differential_Item_Functioning"
+                    },
+                    {
+                      "title": "Differential item functioning - Wikipedia",
+                      "url": "https://en.wikipedia.org/wiki/Differential_item_functioning"
+                    },
+                    {
+                      "title": "The hitchhiker’s guide to differential item functioning (DIF)",
+                      "url": "https://www.apadivisions.org/division-5/publications/score/2022/01/differential-item-functioning"
+                    },
+                    {
+                      "title": "Differential Item Functioning (DIF): Current problems and ...",
+                      "url": "https://files.eric.ed.gov/fulltext/ED521872.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the Kamata & Binici (2003) work on random effect DIF analysis:\n\nKamata and Binici (2003) presented \"Random-effect DIF analysis via hierarchical generalized linear models\" at the Annual International Meeting of the Psychometric Society in Sardinia, Italy.\n\nThis approach demonstrated that DIF can be parameterized in the framework of generalized linear mixed models (also known as hierarchical generalized linear models). This approach can be easily extended to a \"multilevel\" DIF analysis model that allows one to incorporate one or more continuous or categorical person- and group-characteristic variables, which also takes into account both within-group and between-group variations.\n\nTheir work was notable because they found that the variance estimates produced by HLM-5 for the level 3 parameters are substantially negatively biased, which prompted subsequent research using alternative estimation methods like Bayesian approaches."
+              ],
+              "durationSeconds": 6.729897187000002
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The search found a reference to Kamata and Binici (2003), but it seems to be a conference presentation rather than a published paper. Let me search more specifically to get the exact citation details.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "eb521b63-5bc7-455c-8ec3-af55450ddfb4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0111u5F9S8rWkA5MXmsJefiB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 921,
+                "cache_read_input_tokens": 37349,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 921
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了线索，是会议报告。让我进一步确认具体细节。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "5c66ea23-3b43-481b-a5b6-e0f44de37b13",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0111u5F9S8rWkA5MXmsJefiB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 921,
+                "cache_read_input_tokens": 37349,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 921
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X28cFz8d4pio2pyFTa6Pwh",
+              "name": "WebSearch",
+              "input": {
+                "query": "Kamata Binici 2003 \"Random-effect DIF\" hierarchical generalized linear models Psychometric Society"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "c3f3f56a-cbfb-40b3-af72-d6cbf27a90ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0111u5F9S8rWkA5MXmsJefiB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 921,
+                "cache_read_input_tokens": 37349,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 921
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T19:23:31.481Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X28cFz8d4pio2pyFTa6Pwh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Kamata Binici 2003 \"Random-effect DIF\" hierarchical generalized linear models Psychometric Society\"\n\nLinks: [{\"title\":\"Adıyaman University Journal of Educational Sciences » Submission » Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas\",\"url\":\"https://dergipark.org.tr/en/pub/adyuebd/article/307020\"},{\"title\":\"Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas\",\"url\":\"https://dergipark.org.tr/en/pub/adyuebd/issue/31318/307020\"},{\"title\":\"A Comparison of the Hierarchical Generalized Linear Model, Multiple-Indicators Multiple-Causes, and the Item Response Theory-Likelihood Ratio Test for Detecting Differential Item Functioning | SpringerLink\",\"url\":\"https://link.springer.com/chapter/10.1007/978-3-319-07503-7_22\"},{\"title\":\"Item Analysis by the Hierarchical Generalized Linear Model\",\"url\":\"https://www.researchgate.net/publication/227696092_Item_Analysis_by_the_Hierarchical_Generalized_Linear_Model\"},{\"title\":\"Item Analysis by the Hierarchical Generalized Linear Model - Kamata - 2001 - Journal of Educational Measurement - Wiley Online Library\",\"url\":\"https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3984.2001.tb01117.x\"},{\"title\":\"(PDF) Item Response Theory Using Hierarchical Generalized Linear Models\",\"url\":\"https://www.academia.edu/11547349/Item_Response_Theory_Using_Hierarchical_Generalized_Linear_Models\"},{\"title\":\"Formulating latent growth using an explanatory item response model approach - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/22677494/\"}]\n\nBased on the search results, I found the reference you're looking for:\n\nKamata, A., & Binici, S. (2003). \"Random Effect DIF Analysis via Hierarchical Generalized Linear Modeling\" was a paper presented at the biannual meeting of Psychometric Society in July in Sardinia, Italy.\n\nThis work built on earlier research, as Kamata (2001) published \"Item Analysis by the Hierarchical Generalized Linear Model\" in the Journal of Educational Measurement, 38, 79-93, which provided foundational work on using hierarchical generalized linear models for item analysis.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "d0dc7611-d4a7-4b39-8734-69e7420c3cbd",
+            "tool_use_result": {
+              "query": "Kamata Binici 2003 \"Random-effect DIF\" hierarchical generalized linear models Psychometric Society",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01UQg9ftjQ147FhMnpWM86nX",
+                  "content": [
+                    {
+                      "title": "Adıyaman University Journal of Educational Sciences » Submission » Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas",
+                      "url": "https://dergipark.org.tr/en/pub/adyuebd/article/307020"
+                    },
+                    {
+                      "title": "Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas",
+                      "url": "https://dergipark.org.tr/en/pub/adyuebd/issue/31318/307020"
+                    },
+                    {
+                      "title": "A Comparison of the Hierarchical Generalized Linear Model, Multiple-Indicators Multiple-Causes, and the Item Response Theory-Likelihood Ratio Test for Detecting Differential Item Functioning | SpringerLink",
+                      "url": "https://link.springer.com/chapter/10.1007/978-3-319-07503-7_22"
+                    },
+                    {
+                      "title": "Item Analysis by the Hierarchical Generalized Linear Model",
+                      "url": "https://www.researchgate.net/publication/227696092_Item_Analysis_by_the_Hierarchical_Generalized_Linear_Model"
+                    },
+                    {
+                      "title": "Item Analysis by the Hierarchical Generalized Linear Model - Kamata - 2001 - Journal of Educational Measurement - Wiley Online Library",
+                      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3984.2001.tb01117.x"
+                    },
+                    {
+                      "title": "(PDF) Item Response Theory Using Hierarchical Generalized Linear Models",
+                      "url": "https://www.academia.edu/11547349/Item_Response_Theory_Using_Hierarchical_Generalized_Linear_Models"
+                    },
+                    {
+                      "title": "Formulating latent growth using an explanatory item response model approach - PubMed",
+                      "url": "https://pubmed.ncbi.nlm.nih.gov/22677494/"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the reference you're looking for:\n\nKamata, A., & Binici, S. (2003). \"Random Effect DIF Analysis via Hierarchical Generalized Linear Modeling\" was a paper presented at the biannual meeting of Psychometric Society in July in Sardinia, Italy.\n\nThis work built on earlier research, as Kamata (2001) published \"Item Analysis by the Hierarchical Generalized Linear Model\" in the Journal of Educational Measurement, 38, 79-93, which provided foundational work on using hierarchical generalized linear models for item analysis."
+              ],
+              "durationSeconds": 7.6842997539999995
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The reference Kamata & Binici (2003) appears to be a conference presentation at the Psychometric Society meeting, not a published journal article. Let me search for more details to confirm this and get the exact citation format. Let me also check if there's a published version of this work.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "324b2e49-764a-4402-a304-de4bd248f7c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMBfYo85NTyGKsbEQjnbo5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 813,
+                "cache_read_input_tokens": 38270,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 813
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qi9TgBmGHxLtrojQ21fFyt",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Kamata\" \"Binici\" 2003 DIF conference presentation Sardinia psychometric"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "92e5acc5-25ae-4556-8f0b-b365df01e9db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMBfYo85NTyGKsbEQjnbo5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 813,
+                "cache_read_input_tokens": 38270,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 813
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T19:23:42.565Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qi9TgBmGHxLtrojQ21fFyt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Kamata\" \"Binici\" 2003 DIF conference presentation Sardinia psychometric\"\n\nLinks: [{\"title\":\"An Introduction to Differential Item Functioning Analysis Akihito Kamata1\",\"url\":\"https://files.eric.ed.gov/fulltext/EJ797693.pdf\"},{\"title\":\"Adıyaman University Journal of Educational Sciences » Submission » Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas\",\"url\":\"https://dergipark.org.tr/en/pub/adyuebd/article/307020\"},{\"title\":\"Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas\",\"url\":\"https://dergipark.org.tr/en/pub/adyuebd/issue/31318/307020\"},{\"title\":\"Psychometric Properties of the Italian Version of the Burnout Assessment Tool (BAT)\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8465162/\"},{\"title\":\"IMPS 2003 - Psychometric Society\",\"url\":\"https://www.psychometricsociety.org/post/imps-2003\"},{\"title\":\"The Reaction to Diagnosis Questionnaire—Sibling Version: A Preliminary Study on the Psychometric Properties\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12385898/\"},{\"title\":\"Psychometric Properties of the Italian Version of the Young Schema Questionnaire L-3: Preliminary Results\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5880909/\"},{\"title\":\"Reducing Differential Item Functioning via Process Data\",\"url\":\"https://arxiv.org/pdf/2504.00136\"}]\n\nBased on the search results, I found information about the presentation you're looking for:\n\nKamata and Binici (2003) presented a paper titled \"Random effect DIF analysis via hierarchical generalized linear modeling\" at the annual International Meeting of the Psychometric Society in Sardinia, Italy. \n\nThe meeting was held at the University of Cagliari, Sardinia, Italy, and this work demonstrated that DIF (Differential Item Functioning) can be parameterized in the framework of generalized linear mixed models (also known as hierarchical generalized linear models).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "49d9dc78-1108-4e12-b99a-5e8be1a6b500",
+            "tool_use_result": {
+              "query": "\"Kamata\" \"Binici\" 2003 DIF conference presentation Sardinia psychometric",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_011VtZ1AuM8eNpenLb1P3AzM",
+                  "content": [
+                    {
+                      "title": "An Introduction to Differential Item Functioning Analysis Akihito Kamata1",
+                      "url": "https://files.eric.ed.gov/fulltext/EJ797693.pdf"
+                    },
+                    {
+                      "title": "Adıyaman University Journal of Educational Sciences » Submission » Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas",
+                      "url": "https://dergipark.org.tr/en/pub/adyuebd/article/307020"
+                    },
+                    {
+                      "title": "Examination of TIMSS Mathematics Data with Multilevel Measurement Models in Respect to Content, Cognitive and Topic Areas",
+                      "url": "https://dergipark.org.tr/en/pub/adyuebd/issue/31318/307020"
+                    },
+                    {
+                      "title": "Psychometric Properties of the Italian Version of the Burnout Assessment Tool (BAT)",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8465162/"
+                    },
+                    {
+                      "title": "IMPS 2003 - Psychometric Society",
+                      "url": "https://www.psychometricsociety.org/post/imps-2003"
+                    },
+                    {
+                      "title": "The Reaction to Diagnosis Questionnaire—Sibling Version: A Preliminary Study on the Psychometric Properties",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12385898/"
+                    },
+                    {
+                      "title": "Psychometric Properties of the Italian Version of the Young Schema Questionnaire L-3: Preliminary Results",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5880909/"
+                    },
+                    {
+                      "title": "Reducing Differential Item Functioning via Process Data",
+                      "url": "https://arxiv.org/pdf/2504.00136"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the presentation you're looking for:\n\nKamata and Binici (2003) presented a paper titled \"Random effect DIF analysis via hierarchical generalized linear modeling\" at the annual International Meeting of the Psychometric Society in Sardinia, Italy. \n\nThe meeting was held at the University of Cagliari, Sardinia, Italy, and this work demonstrated that DIF (Differential Item Functioning) can be parameterized in the framework of generalized linear mixed models (also known as hierarchical generalized linear models)."
+              ],
+              "durationSeconds": 4.219294089000003
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I now have enough information. Let me check where this reference is cited in the paper to understand the context and verify if a conference presentation is appropriate to cite.\n\nKamata & Binici (2003) is a conference presentation at IMPS 2003 (International Meeting of the Psychometric Society) in Sardinia, Italy. The title is \"Random effect DIF analysis via hierarchical generalized linear modeling.\"\n\nThis is an unpublished conference presentation, which is a less ideal reference. Let me check if the paper actually cites this, and whether this is really what the reviewer was asking about. Let me search for where this is referenced in the paper.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "0fbc37af-2572-4460-b705-d77b295fa5de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CM2rvDsxt7vgiKyboH6Zzj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 753,
+                "cache_read_input_tokens": 39083,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 753
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "让我确认论文中哪里引用了这个参考文献。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "1b95004e-1405-481b-bd38-9bb70a1dbc29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CM2rvDsxt7vgiKyboH6Zzj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 753,
+                "cache_read_input_tokens": 39083,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 753
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qthv6YmZkA1rVMeHRVGbEd",
+              "name": "Grep",
+              "input": {
+                "pattern": "Kamata",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "944dca56-7901-45d2-a9e3-654a20561090",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CM2rvDsxt7vgiKyboH6Zzj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 753,
+                "cache_read_input_tokens": 39083,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 753
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T19:23:51.507Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qthv6YmZkA1rVMeHRVGbEd",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "85a99dcb-3169-43b7-b9db-82464a59a2c1",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Kamata isn't referenced in the paper at all. Let me also check for the other two - Alzahrani and MMLU-Pro/Wang - to see how they're cited in the paper text (since they're already in the bib).",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "d032460e-14c1-4d34-a9c3-23246a6db91a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4T4MTVa2oTTS1eYwQAAhH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 39836,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Kamata & Binici 在论文正文中没有被引用。让我检查另外两个是否在正文中被引用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "d6e5df99-fd21-4a85-be6a-a22cec4b1d50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4T4MTVa2oTTS1eYwQAAhH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 39836,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TDQGU7QBGeBUcKnpS1bBcc",
+              "name": "Grep",
+              "input": {
+                "pattern": "alzahrani|mmlu.?pro|mmlupro",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper",
+                "output_mode": "content",
+                "-i": true,
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "51a6178e-eb7d-4308-b8a9-761fae17aa66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4T4MTVa2oTTS1eYwQAAhH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 39836,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T19:23:59.813Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TDQGU7QBGeBUcKnpS1bBcc",
+              "type": "tool_result",
+              "content": "paper/main.bbl:10:\\bibitem[{Alzahrani et~al.(2024)Alzahrani, Alyahya, Alnumay, Alrashed,\npaper/main.bbl:12:  Khan}]{alzahrani2024benchmarks}\npaper/main.bbl:13:Norah Alzahrani, Hisham~Abdullah Alyahya, Yazeed Alnumay, Sultan Alrashed,\npaper/main.bbl:425:  Jiang, Li, Ku, Wang, Zhuang, Fan, Yue, and Chen}]{wang2024mmlupro}\npaper/main.bbl:429:\\newblock \\href {https://arxiv.org/abs/2406.01574} {{MMLU-Pro}: A more robust\npaper/sections/related_work.tex:14:[Omitted long matching line]\npaper/references.bib:560:@inproceedings{wang2024mmlupro,\npaper/references.bib:561:  title     = {{MMLU-Pro}: A More Robust and Challenging Multi-Task Language Understanding Benchmark},\npaper/references.bib:684:@inproceedings{alzahrani2024benchmarks,\npaper/references.bib:686:  author    = {Alzahrani, Norah and Alyahya, Hisham Abdullah and Alnumay, Yazeed and Alrashed, Sultan and Alsubaie, Shaykhah and Almushaykeh, Yusef and Mirza, Faisal and Alotaibi, Nouf and Altwairesh, Nora and Alowisheq, Areeb and Bari, M. Saiful and Khan, Haidar},\npaper/main.aux:231:\\citation{wang2024mmlupro}\npaper/main.aux:238:\\citation{alzahrani2024benchmarks}\npaper/main.aux:905:\\bibcite{alzahrani2024benchmarks}{{2}{2024}{{Alzahrani et~al.}}{{Alzahrani, Alyahya, Alnumay, Alrashed, Alsubaie, Almushaykeh, Mirza, Alotaibi, Altwairesh, Alowisheq, Bari, and Khan}}}\npaper/main.aux:1177:\\bibcite{wang2024mmlupro}{{58}{2024}{{Wang et~al.}}{{Wang, Ma, Zhang, Ni, Chandra, Guo, Ren, Arulraj, He, Jiang, Li, Ku, Wang, Zhuang, Fan, Yue, and Chen}}}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "36a36d0f-890f-42e4-93fe-228f4c8aa752",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper/main.bbl:10:\\bibitem[{Alzahrani et~al.(2024)Alzahrani, Alyahya, Alnumay, Alrashed,\npaper/main.bbl:12:  Khan}]{alzahrani2024benchmarks}\npaper/main.bbl:13:Norah Alzahrani, Hisham~Abdullah Alyahya, Yazeed Alnumay, Sultan Alrashed,\npaper/main.bbl:425:  Jiang, Li, Ku, Wang, Zhuang, Fan, Yue, and Chen}]{wang2024mmlupro}\npaper/main.bbl:429:\\newblock \\href {https://arxiv.org/abs/2406.01574} {{MMLU-Pro}: A more robust\npaper/sections/related_work.tex:14:[Omitted long matching line]\npaper/references.bib:560:@inproceedings{wang2024mmlupro,\npaper/references.bib:561:  title     = {{MMLU-Pro}: A More Robust and Challenging Multi-Task Language Understanding Benchmark},\npaper/references.bib:684:@inproceedings{alzahrani2024benchmarks,\npaper/references.bib:686:  author    = {Alzahrani, Norah and Alyahya, Hisham Abdullah and Alnumay, Yazeed and Alrashed, Sultan and Alsubaie, Shaykhah and Almushaykeh, Yusef and Mirza, Faisal and Alotaibi, Nouf and Altwairesh, Nora and Alowisheq, Areeb and Bari, M. Saiful and Khan, Haidar},\npaper/main.aux:231:\\citation{wang2024mmlupro}\npaper/main.aux:238:\\citation{alzahrani2024benchmarks}\npaper/main.aux:905:\\bibcite{alzahrani2024benchmarks}{{2}{2024}{{Alzahrani et~al.}}{{Alzahrani, Alyahya, Alnumay, Alrashed, Alsubaie, Almushaykeh, Mirza, Alotaibi, Altwairesh, Alowisheq, Bari, and Khan}}}\npaper/main.aux:1177:\\bibcite{wang2024mmlupro}{{58}{2024}{{Wang et~al.}}{{Wang, Ma, Zhang, Ni, Chandra, Guo, Ren, Arulraj, He, Jiang, Li, Ku, Wang, Zhuang, Fan, Yue, and Chen}}}",
+              "numLines": 14
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个引用的验证结果：\n\n### 验证报告\n\n| 引用 | 状态 | 说明 |\n|------|------|------|\n| **Alzahrani et al. (2024)** | **已存在** | `alzahrani2024benchmarks` (references.bib:684)，论文正文已引用 |\n| **MMLU-Pro (Wang et al., 2024)** | **已存在** | `wang2024mmlupro` (references.bib:560)，论文正文已引用 |\n| **Kamata & Binici (2003)** | **真实存在但未被引用** | 会议报告：\"Random effect DIF analysis via hierarchical generalized linear modeling\"，发表于 IMPS 2003 (International Meeting of the Psychometric Society, Sardinia, Italy)。这是一篇未正式出版的会议报告，且论文正文中没有任何地方引用它 |\n\n### 结论\n\n- 2/3 的引用已在 bib 文件中且正文已引用，无需操作。\n- Kamata & Binici (2003) 是真实引用（IMPS 2003 会议报告），但论文正文中并未引用。因为它是未出版的会议报告（非 proceedings paper），引用价值较低。**除非审稿人明确要求在正文中增加此引用，否则不建议添加。** 如果需要引用 random-effect DIF 的方法论背景，建议改用 Kamata 发表的正式文献，如 French & Finch (2010, `french2010hierarchical`) 已在 bib 中，覆盖了类似的 hierarchical DIF 主题。\n\n**references.bib 无需修改。**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "uuid": "f61eb91f-062f-4b74-8398-588e445dab05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018pehQGcSFjnvT92Ls6i119",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 956,
+                "cache_read_input_tokens": 40255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 956
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个引用的验证结果：\n\n### 验证报告\n\n| 引用 | 状态 | 说明 |\n|------|------|------|\n| **Alzahrani et al. (2024)** | **已存在** | `alzahrani2024benchmarks` (references.bib:684)，论文正文已引用 |\n| **MMLU-Pro (Wang et al., 2024)** | **已存在** | `wang2024mmlupro` (references.bib:560)，论文正文已引用 |\n| **Kamata & Binici (2003)** | **真实存在但未被引用** | 会议报告：\"Random effect DIF analysis via hierarchical generalized linear modeling\"，发表于 IMPS 2003 (International Meeting of the Psychometric Society, Sardinia, Italy)。这是一篇未正式出版的会议报告，且论文正文中没有任何地方引用它 |\n\n### 结论\n\n- 2/3 的引用已在 bib 文件中且正文已引用，无需操作。\n- Kamata & Binici (2003) 是真实引用（IMPS 2003 会议报告），但论文正文中并未引用。因为它是未出版的会议报告（非 proceedings paper），引用价值较低。**除非审稿人明确要求在正文中增加此引用，否则不建议添加。** 如果需要引用 random-effect DIF 的方法论背景，建议改用 Kamata 发表的正式文献，如 French & Finch (2010, `french2010hierarchical`) 已在 bib 中，覆盖了类似的 hierarchical DIF 主题。\n\n**references.bib 无需修改。**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 71221,
+            "duration_api_ms": 72151,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "61652c6a-ae7d-43f3-9859-f4650d1d37d9",
+            "total_cost_usd": 0.41473249999999995,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 29370,
+              "cache_read_input_tokens": 231114,
+              "output_tokens": 1878,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 29370,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 484,
+                  "cache_read_input_tokens": 40255,
+                  "cache_creation_input_tokens": 956,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 956
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 34423,
+                "outputTokens": 837,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 3,
+                "costUSD": 0.068608,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 1878,
+                "cacheReadInputTokens": 231114,
+                "cacheCreationInputTokens": 29370,
+                "webSearchRequests": 0,
+                "costUSD": 0.3461245,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f365782c-8694-460d-94b1-0d101638ffce"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-r20-reference-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "355f344a44099bd09a13",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r15 sf7 random split control",
+  "task_key": "worker_code_r15_sf7_random_split_control_20260522T124329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r15_sf7_random_split_control_20260522T124329_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "4280b5434c101321498421834d9f25be6ca47dda6591177aa86a0ca9bb481acc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three deliverables are in place:\n\n**Results summary:**\n- **Within-2024 random split**: mean C% = 1.34% (95% CI: [1.13%, 1.54%])\n- **Size-matched control (full sample, same 403 vs 404)**: mean C% = 1.40%\n- **Temporal split**: 31.3% — **23× larger** than random baseline\n\nThe within-cohort and full-sample controls match almost exactly (1.34% vs 1.40%), confirming no cohort-specific structure drives C%. The ~1% level (vs 0.10% with larger groups) is the expected MH-DIF Type I rate at N≈400/group (80 models per stratum → noisier Δ_MH). The temporal split's 31.3% is unambiguously real, not artifact.\n\n**Output files** in `artifacts/r15_random_split_control/`:\n1. `random_split_report.md` — full report with comparison table\n2. `random_split_results.csv` — 100 rows, per-rep C%\n3. `random_split_analysis.py` — reproducible script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r15-sf7-random-split-control.md"
+}

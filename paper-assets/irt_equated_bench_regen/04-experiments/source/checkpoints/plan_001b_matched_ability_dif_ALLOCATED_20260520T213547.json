@@ -1,0 +1,20 @@
+{
+  "exp_id": "plan_001b_matched_ability_dif",
+  "project": "irt_equated_bench_regen",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:35:08.552Z",
+    "updated_at": "2026-05-20T21:35:47.627Z",
+    "hypothesis": "在每个 accuracy quintile 内部做 temporal cohort MH-DIF（控制能力后），enrichment 将从 plan_001 的 0.96 提升到 >1.5，证明能力匹配能隔离出污染信号。",
+    "parent": "plan_001_real_data_dif_mmlu",
+    "conclusion": "negative",
+    "notes": "D005: Matched-ability DIF 失败。所有 quintile enrichment 0.94-1.04。能力匹配未能隔离出污染信号。Reviewer 洞察：Li et al. web-overlap 是全局性污染标注（Common Crawl 对所有模型可用），不会产生 group-specific DIF。enrichment≈1.0 可能不是 DIF 方法失败，而是 ground truth 与 DIF 度量的东西根本不同——DIF 检测差异性训练数据包含，Li 检测存在性污染。",
+    "checkpoint_path": "artifacts/plan_001b/",
+    "log_path": "logs/workers/worker_code_plan_001b_matched_ability_dif_20260520T211545.log"
+  },
+  "timestamp": "2026-05-20T21:35:47.640229+00:00",
+  "trigger": "update_registry"
+}

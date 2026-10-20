@@ -1,0 +1,92 @@
+paper_key: "li2024contamination"
+title: "An Open-Source Data Contamination Report for Large Language Models"
+venue: "Findings of EMNLP 2024"
+full_text_available: true
+
+research:
+  baselines: [OpenAI GPT-4 internal contamination report, Llama-2 contamination analysis]
+  metrics:
+    - {name: "contamination rate (%)", direction: "informational"}
+    - {name: "METEOR score (overlap detection)", direction: "higher_means_contaminated"}
+    - {name: "accuracy on clean vs contaminated splits", direction: "informational"}
+  datasets:
+    - {name: "MMLU", size: "29.1% contaminated"}
+    - {name: "C-Eval", size: "45.8% contaminated"}
+    - {name: "ARC", size: "28.7% contaminated"}
+    - {name: "Hellaswag", size: "12.4% contaminated"}
+    - {name: "CommonsenseQA", size: "1.6% contaminated"}
+    - {name: "Winogrande", size: "1.1% contaminated"}
+  ablation_dimensions: [model family (LLaMA/Llama-2/Yi/Mistral/Qwen/Baichuan2), model scale, contamination type (input-only vs input-and-label), temporal window, domain analysis]
+  training_recipe: {optimizer: "N/A (detection pipeline)", lr: "N/A", hardware: "Bing Search API (~$900)"}
+  method_family: "web search-based contamination detection"
+
+positioning:
+  core_claim: "提供首个公开透明的大规模contamination报告——覆盖15+模型×6 benchmarks，揭示contamination从1%到45.8%不等，且contamination不均匀地影响性能（C-Eval/Hellaswag显著提升，MMLU几乎不变）"
+  key_results: "C-Eval 45.8%, MMLU 29.1%, ARC 28.7%, Hellaswag 12.4%; C-Eval accuracy boost 14%, Hellaswag 7%; larger models exploit contamination more"
+  limitations:
+    - "Search API costs (~$900) and query length restrictions limit analysis scope"
+    - "Cannot detect contamination from non-crawled proprietary sources"
+    - "Limited to Common Crawl coverage"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "现有contamination分析由LLM开发者内部进行，缺乏透明度"
+  tension: "OpenAI的GPT-4 report仅覆盖部分benchmark，Llama-2分析仅2/20+ benchmarks——社区需要全面、公开的contamination数据"
+  key_insight: "在方法section揭示：两步验证流程——先用Bing搜索检查test examples是否online存在，再验证URL是否在Common Crawl中"
+  argument_chain: "transparency gap → open pipeline (Bing+Common Crawl) → comprehensive analysis (15+ models × 6 benchmarks) → nuanced findings (contamination ≠ performance boost) → temporal trend → domain analysis"
+  contribution_framing: "5条贡献：comprehensive analysis → open-source pipeline → temporal analysis → performance impact → domain analysis"
+  intro_structure: "3段：transparency问题 → 本文目标 → 关键发现预告"
+  notable_technique: "发现contamination不等于performance boost的nuanced insight——C-Eval +14%但MMLU几乎无变化——避免了'contamination=bad'的简单叙事"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "contaminated test samples的分类流程图（clean vs contaminated子集）"
+    narrative_role: "展示检测pipeline的分类逻辑"
+    design_elements: ["流程图", "分类分支"]
+    visual_style: "树形分类图"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "2017-2020 vs 2020-2023的contamination变化"
+      how_gain_highlighted: "学术benchmark在近期contamination增加21%"
+      design_note: "temporal对比突出contamination恶化趋势"
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "METEOR score与Llama-2 70B accuracy的相关性"
+      how_gain_highlighted: "higher overlap → better performance的正相关"
+      design_note: "scatter + 趋势线展示contamination-performance关系"
+  ablation_figures:
+    - figure_id: "Figures 3,5,6"
+      viz_type: "bar_chart"
+      dimensions_varied: ["domain sources for different benchmarks"]
+      design_note: "域分析图展示contamination集中在特定网站（如WikiHow for Hellaswag）"
+  figure_narrative_role: "Figure 1 (方法) → Figure 2 (temporal) → Figure 3-6 (domain analysis) → Figure 4 (performance correlation)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "benchmarks"
+    col_axis: "contamination metrics (online presence, Common Crawl, input-only, input-and-label)"
+    row_organization: "flat"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "N/A (all numbers informational)"
+    statistical_reporting: "percentages"
+    num_baselines: 0
+    design_note: "概览表展示6个benchmark的contamination全景"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["model", "benchmark", "contamination status (clean/input-only/input-and-label)"]
+      variation_style: "full_numbers"
+      design_note: "核心表格：按contamination状态拆分的模型性能对比"
+    - table_id: "Table 3"
+      what_varied: ["C-Eval specific: multilingual vs English-only models"]
+      variation_style: "full_numbers"
+      design_note: "展示多语言模型在contaminated split上+14%"
+  supplementary_tables:
+    in_appendix: true
+    content: "Llama模型详细breakdown (Tables 4-5), MMLU子类别分析"
+    reason: "单模型系列深入分析放附录，主表聚焦跨模型全景"

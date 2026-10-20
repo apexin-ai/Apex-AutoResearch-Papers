@@ -1,0 +1,80 @@
+paper_key: "tao2026selfcritique"
+title: "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines: [Perplexity, Min-K%, Min-K%++, Recall, CDD, Entropy-Temp, Entropy-Noise]
+  metrics:
+    - {name: "AUC", direction: "higher_better"}
+    - {name: "F1 (at Youden threshold)", direction: "higher_better"}
+  datasets:
+    - {name: "AIME 2024", size: "math reasoning"}
+    - {name: "AIME 2025", size: "math reasoning"}
+    - {name: "Knights & Knaves", size: "synthetic logical reasoning"}
+    - {name: "SAT", size: "logical reasoning"}
+    - {name: "OpenR1-Math-46K", size: "RL training base corpus"}
+  ablation_dimensions: [RL algorithm (PPO/GRPO/DAPO), top-K entropy approximation, dual-stage contamination conditioning]
+  training_recipe: {optimizer: "GRPO/PPO/DAPO", lr: "N/A", hardware: "8× NVIDIA A100 40GB, VeRL framework"}
+  method_family: "entropy-based active probing"
+
+positioning:
+  core_claim: "RL post-training erases likelihood signals that traditional contamination detectors rely on; policy collapse (convergence to narrow reasoning paths) creates a new detectable signal via token-level entropy comparison"
+  key_results: "Self-Critique AUC=0.70 avg on Qwen2.5-7B (+19% vs best baseline); likelihood-based detectors at random chance (~0.50) on RL-trained models"
+  limitations:
+    - "Primarily tested on math and logic reasoning domains"
+    - "Experiments limited to models ≤7B parameters"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "RL post-training是LLM训练的关键阶段，但现有contamination检测方法完全忽略了这个阶段"
+  tension: "RL通过reward maximization而非likelihood optimization训练，'erases the very signals that traditional detectors rely on'"
+  key_insight: "在方法论section揭示：contaminated样本在RL后出现policy collapse——模型无法生成替代推理路径，两次生成的entropy序列高度相似"
+  argument_chain: "gap identification (RL phase unaddressed) → signal analysis (likelihood erased) → new signal (policy collapse) → method (Self-Critique entropy comparison) → benchmark (RL-MIA) → validation"
+  contribution_framing: "3条贡献：首个系统研究 → Self-Critique方法(+30% AUC) → RL-MIA benchmark。强调'first systematic study'"
+  intro_structure: "4段：背景(contamination问题) → RL阶段特殊性 → 核心观察(policy collapse) → 方法概述与贡献"
+  notable_technique: "用Figure 1的entropy分布对比直观展示contaminated vs clean样本的差异，让读者在看方法细节前就理解直觉"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "motivation"
+    description: "entropy分布稀疏性对比：contaminated样本的两次生成entropy模式相似，clean样本差异大；附Self-Critique AUC曲线"
+    narrative_role: "提供方法的直觉基础——为什么entropy比较能检测contamination"
+    design_elements: ["对比布局(contaminated vs clean)", "entropy分布可视化", "AUC曲线"]
+    visual_style: "三面板布局：(a)contaminated entropy, (b)clean entropy, (c)ROC曲线"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "不同pretraining contamination程度下Self-Critique的AUC变化"
+      how_gain_highlighted: "低pretraining contamination子集上AUC显著提升(~55%)"
+      design_note: "分位数分析展示dual-stage contamination的影响，随contamination降低性能改善"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation: entropy差异) → Figure 2 (method workflow) → Figure 3 (dual-stage分析)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "datasets × metrics (F1, AUC)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run metrics"
+    num_baselines: 7
+    design_note: "按方法类型分组(likelihood-based vs entropy-based)，突出likelihood方法在RL场景下接近随机"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["RL algorithm (PPO, GRPO, DAPO)"]
+      variation_style: "full_numbers"
+      design_note: "展示算法无关性——Self-Critique在三种RL算法下表现一致"
+    - table_id: "Table 4"
+      what_varied: ["top-K entropy approximation (K=3,5,10,full)"]
+      variation_style: "full_numbers"
+      design_note: "展示K=3即可获得接近完整计算的性能，支持实际部署"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "N/A"

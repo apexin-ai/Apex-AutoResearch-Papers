@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ba83fdf5dfee75c435c",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper figure fig 4 downstream impact",
+  "task_key": "worker_paper_figure_fig_4_downstream_impact_20260521T011143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_4_downstream_impact_20260521T011143_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "cbd0732b75999153ebbb4e554ecd5b11ac137090485de8ba8d231dfbc4d6f9ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出文件：\n\n- **PDF**: `figures/paper/fig_4_downstream_impact.pdf` (144K, 矢量)\n- **PNG**: `figures/paper/fig_4_downstream_impact.png` (427K, 300 DPI)\n- **脚本**: `figures/paper/fig_4_downstream_impact.py`\n- **Artifact ID**: `art_20260521_a951ac`\n\n图表特征：\n- 5,227 models (cohort=\"all\")，背景灰点 alpha=0.15 处理过绘\n- |Δrank| > 200 的点按 family 着色（LLaMA 蓝/Mistral 橙/Phi 绿/Qwen 粉/Other 天蓝）\n- 标注 3 个正向 extreme movers（14B-Glacier-Stack +851, phi-3 +809, llama-3-dragonmaid +793）和 2 个负向（Blurstral-7b −587, flammen26-mistral-7B −542）\n- 右下角 stats box 含 ρ=0.996、DIF removal z=−14.9、1.09× cross-cohort ratio"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-4-downstream-impact.md"
+}

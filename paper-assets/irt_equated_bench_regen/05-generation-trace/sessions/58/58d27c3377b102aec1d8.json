@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58d27c3377b102aec1d8",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 014 within subject dif",
+  "task_key": "worker_code_plan_014_within_subject_dif_20260520T222310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_014_within_subject_dif_20260520T222310_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "77675bde09fae000632bb06651c02cd228cd866057cf702b5d45b233acb627dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。核心结论：\n\n## 结果摘要\n\n### Part 1: Within-Subject Temporal DIF\n\n| Subject | N items | Within C% |\n|---------|---------|-----------|\n| business_ethics | 93 | 45.2% |\n| human_aging | 203 | 33.0% |\n| formal_logic | 109 | 39.4% |\n| professional_medicine | 248 | 31.0% |\n| high_school_statistics | 181 | 42.0% |\n| **平均** | | **38.1%** |\n\n### Part 2: Within vs Cross-Subject Matching\n\n两种 matching 的 C% 差异很小（平均 Δ = -2.4pp），信号对 matching variable 选择不敏感。\n\n### Part 3: SIBTEST\n\nR 不可用，Python 也无 SIBTEST 实现（PyPI 上无 pysibtest 包）。\n\n### 判断\n\n**Within-subject C% = 38.1% → HIGH (>25%)**。\n\nTemporal DIF 在隔离到单个 subject 后仍然很高，不是 between-subject 能力差异的伪影——2023→2024 的 temporal 效应渗透到每个内容领域内部。Bifactor 模型单独不够，需要：\n1. 分析哪些 item 特征（难度水平）驱动 within-subject C%\n2. 自行实现 SIBTEST（无现成包可用）\n3. 基于 IRT 参数的 Lord's χ² per subject"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-014-within-subject-dif.md"
+}

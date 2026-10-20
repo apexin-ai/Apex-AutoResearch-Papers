@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "73729c7de1d1b74e2e89",
+  "project": "irt_equated_bench_regen",
+  "kind": "conversation",
+  "title": "code data audit experiments tables",
+  "task_key": "worker_code_data_audit_experiments_tables_20260523T193629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_data_audit_experiments_tables_20260523T193629.jsonl",
+    "occurrence": 1,
+    "bytes": 617905,
+    "sha256": "09dacb678e372fca2b55d387564abf8531c9707d8b28616b7503b69d938ada40"
+  },
+  "statistics": {
+    "messages": 673,
+    "user_turns": 0,
+    "tool_calls": 336,
+    "roles": {
+      "tool_call": 336,
+      "tool_result": 336,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 673,
+      "chunks": [
+        {
+          "path": "73729c7de1d1b74e2e89-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "73729c7de1d1b74e2e89-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "73729c7de1d1b74e2e89-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "73729c7de1d1b74e2e89-part-0004.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/code-data-audit-experiments-tables.md"
+}

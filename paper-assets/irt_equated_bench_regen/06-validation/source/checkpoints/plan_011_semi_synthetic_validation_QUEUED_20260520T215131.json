@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_011_semi_synthetic_validation",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:35:55.290Z",
+    "updated_at": "2026-05-20T21:51:31.452Z",
+    "hypothesis": "在 METABENCH 真实响应矩阵上注入已知差异性污染（focal group 指定 items 的 incorrect→correct 翻转）后，MH-DIF 的 ETS C 分类能在 ability-quintile cohort 上达到 TPR>0.5 (p=1.0) 且 FPR<0.05。如果成功，说明 plan_001/001b 的 enrichment≈1.0 是 Li et al. ground truth 不匹配（全局性 vs 差异性污染），而非 DIF 方法本身失败。",
+    "parent": "plan_001b_matched_ability_dif"
+  },
+  "timestamp": "2026-05-20T21:51:31.489336+00:00",
+  "trigger": "update_registry"
+}

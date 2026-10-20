@@ -1,0 +1,597 @@
+{
+  "schema_version": "1.0",
+  "id": "24b4599c2304977c77c7",
+  "project": "irt_equated_bench_regen",
+  "kind": "conversation",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260521T050016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_discussion_20260521T050016.jsonl",
+    "occurrence": 1,
+    "bytes": 31425,
+    "sha256": "4e4d67194c563fa5b0666b8e088dece7fa7af93ce1db1d4358cc7eef23c96b48"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T05:02:18.975506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T05:02:18.976235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T05:02:18.976458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T05:02:18.976833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T05:02:18.977006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T05:02:18.977170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen we say ``Model B outperforms Model A on MMLU,'' we implicitly assume that the benchmark measures the same construct in the same way for both models. This assumption of temporal comparability underpins every cross-generation comparison published on leaderboards and in model reports, yet it is rarely tested. Applying Mantel-Haenszel Differential Item Functioning (MH-DIF) analysis~\\citep{holland1988mh} with Educational Testing Service (ETS) severity classification to the METABENCH response matrix~\\citep{kipnis2024metabench}, we find that 31\\% of MMLU~\\citep{hendrycks2021mmlu} items receive ETS Category~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$, $p < 0.05$), indicating large shifts in item functioning between models released in 2023 and 2024. This is not statistical noise: a random-split control within the 2023 cohort yields only 0.18\\% ETS~C items. The instability persists within every MMLU subject domain, with domain-level C\\% ranging from 31\\% to 45\\% (mean 38.1\\%), and item-level regression shows that 92.4\\% of this instability is unrelated to aggregate domain-level accuracy gains. Nearly one in three MMLU items behaves differently depending on when the evaluated models were trained. Crucially, this instability does not threaten benchmark validity: Spearman rank correlation between model rankings computed on all items versus stable-only items is $\\rho \\approx 0.997$. The instability is diagnostic, not destructive; it reveals which capability dimensions shift across model generations rather than rendering MMLU scores unreliable.\n5\t\n6\tA growing body of contamination detection research has produced sophisticated item-level methods, from membership inference approaches such as Min-K\\%~\\citep{shi2024mink} to performance-based detectors such as ConStat~\\citep{dekoninck2024constat}, DVD~\\citep{liang2026dvd}, and Self-Critique~\\citep{tao2026selfcritique}. These methods validate detection accuracy primar\n…[truncated 5879 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T05:02:18.977322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T05:02:18.977536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe apply MH-DIF to the METABENCH dataset~\\citep{kipnis2024metabench}, which provides sparse response matrices for 5,227 models evaluated on 12,508 MMLU items~\\citep{hendrycks2021mmlu}. All temporal analyses define reference and focal cohorts by model release date (2023 vs.\\ 2024). We validate detection power through simulation, characterize temporal instability across multiple cohort designs, evaluate the relationship between DIF flags and existing contamination labels, and assess downstream consequences for benchmark rankings. Replication on GSM8K with cross-benchmark contamination validation appears in \\Cref{sec:gsm8k}.\n5\t\n6\t\\subsection{Validation: DIF Detection Power}\n7\t\\label{sec:validation}\n8\t\n9\tTo confirm that MH-DIF detects differential item functioning at the sample sizes available in METABENCH, we conduct a power analysis using empirical MMLU IRT parameters. We simulate item response matrices where a controlled subset of items has injected DIF of varying magnitude ($|\\Delta_{\\mathrm{MH}}| \\geq 1.4$) and evaluate ETS~C classification across sample sizes $N \\in \\{40, 80, 160, 320\\}$ per cohort. At $N \\geq 80$, ETS~C achieves true positive rates of 0.68--0.80 with false positive rates of 0.036--0.042 and AUC of 0.93--0.94. The temporal cohort sizes in our analysis ($N_{\\mathrm{ref}} = 1{,}080$, $N_{\\mathrm{focal}} = 807$) far exceed this threshold, and statistical power is not a limiting factor for the results reported below. Full simulation results with confidence intervals appear in Appendix~Table~A1.\n10\t\n11\t\\subsection{Temporal Comparability: 31\\% Item Instability}\n12\t\\label{sec:temporal}\n13\t\n14\tThe central finding of this paper is that a substantial fraction of MMLU items behave differently across model generations. Comparing models released in 2023 ($N = 1{,}080$) against models released in 2024 ($N = 807$), 31.3\\% of items receive ETS~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$). Applying Ben\n…[truncated 17629 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T05:02:18.977688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T05:02:18.977889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe adopt Differential Item Functioning (DIF) analysis from educational measurement to assess whether individual benchmark items behave consistently across groups of LLMs. The procedure requires only a binary response matrix and group labels, with no access to model internals or training data. Below we define the data, the statistical test, the cohort designs, a semi-synthetic validation framework, diagnostic checks, and statistical controls.\n5\t\n6\t\\subsection{Data}\n7\t\\label{sec:data}\n8\t\n9\tThe primary dataset is the METABENCH response matrix~\\citep{kipnis2024metabench}, which records binary outcomes (1~=~correct, 0~=~incorrect) for 5,227 models evaluated on 12,508 MMLU items~\\citep{hendrycks2021mmlu}. Models span release dates from 2023 to 2024, drawn from the Open LLM Leaderboard. MMLU covers 57 subjects grouped into five broad domains (STEM, Humanities, Social Sciences, Other, and a mixed category). We supplement the response matrix with the web-overlap contamination labels of \\citet{li2024contamination}, which classify 9,229 of 12,508 items (73.8\\% coverage) as ``contaminated'' or ``clean'' based on verbatim matches in publicly accessible web corpora. These labels serve as an external reference for evaluating the relationship between DIF flags and existing contamination indicators.\n10\t\n11\t\\subsection{Mantel-Haenszel DIF and ETS Classification}\n12\t\\label{sec:mhdif}\n13\t\n14\tIn educational testing, Differential Item Functioning (DIF) occurs when an item's statistical relationship to the latent trait $\\theta$ differs between two groups after conditioning on ability level. An item with DIF is not merely harder for one group; it functions differently relative to what the group's overall ability would predict. The standard terminology refers to test-takers as ``examinees'' and questions as ``items.'' In our setting, examinees are LLMs and items are benchmark questions.\n15\t\n16\tThe Mantel-Haenszel (MH) procedure~\\citep{holland1988\n…[truncated 8923 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T05:02:18.978059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T05:02:18.978181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/math_commands.tex\npaper/main.tex\npaper/sections/experiments.tex\npaper/sections/appendix.tex\npaper/sections/abstract.tex\npaper/sections/discussion.tex\npaper/sections/conclusion.tex\npaper/sections/introduction.tex\npaper/sections/related_work.tex\npaper/sections/method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T05:02:18.978300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T05:02:18.978421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Placeholder for discussion\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T05:02:18.978578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
+              "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{Implications for Benchmark Temporal Comparability}\n\\label{sec:disc_temporal}\n\nThe 31\\% ETS~C instability rate is robust across thresholds (10\\% at $|\\Delta_{\\mathrm{MH}}| \\geq 2.5$, rising to 49\\% at $\\geq 1.0$), and three structural controls (\\Cref{sec:structural}) confirm it is not a methodological artifact. This means that cross-generation MMLU score comparisons carry uncontrolled item-level variance: nearly one in three items functions differently depending on when the evaluated model was trained. The instability decomposition (\\Cref{sec:temporal}) sharpens this interpretation. Domain-level accuracy improvement explains only 2.4 percentage points of the 31.3\\% C\\% (pseudo $R^2 = 0.0007$), so 92.4\\% of the instability is unrelated to aggregate capability gains. The items that change are not simply the ones that newer models answer correctly because they are better at a domain; instead, they change in item-specific ways that domain-level trends do not predict.\n\nThis instability does not invalidate MMLU as a ranking instrument. Spearman $\\rho \\approx 0.997$ between full and stable-item rankings confirms that aggregate model ordering is preserved. The instability is diagnostic, not destructive: it identifies which measurement units shift across model generations without rendering the overall score unreliable. Benchmark designers should therefore consider monitoring DIF as a quality diagnostic alongside accuracy metrics. An item pool where C\\% grows over successive model cohorts signals that the benchmark's measurement properties are drifting, even if rank ordering remains intact.\n\n\\subsection{Ground Truth Meta-Critique}\n\\label{sec:disc_groundtruth}\n\nThe near-chance enrichment (0.96) between DIF flags and web-overlap labels raises a question that extends beyond our specific analysis. All prior work that validates item-level contamination detectors against web-overlap or $n$-gram labels faces the same methodological gap: these labels measure whether an item exists in publicly accessible training corpora, not whether exposure differentially affects model behavior. Global exposure is a property of the data ecosystem; differential functioning is a property of how model cohorts interact with individual items. Most MMLU items are globally contaminated in the sense that they appear in web text, so web-overlap labels identify a condition shared by nearly all items rather than one that differentiates model cohorts. Validating differential detectors against such labels conflates two distinct phenomena.\n\nThis observation constitutes a meta-contribution to the contamination detection literature. The enrichment ratio of $\\approx 1.0$ is not evidence that DIF fails; it is the expected outcome when a differential method is evaluated against a global-exposure reference. Semi-synthetic injection confirms that DIF detects differential contamination when present ($\\Delta\\mathrm{TPR} = {+}0.508$ at $p = 0.5$; \\Cref{sec:semisynthetic}). The field needs validation methodologies that match the granularity of the detection task: item-level differential detectors require item-level differential ground truth, not item-level global-exposure labels.\n\n\\subsection{DIF as Diagnostic Lens}\n\\label{sec:disc_diagnostic}\n\n\\paragraph{Capability diagnostic.} The GSM1K correlation ($r = -0.478$, $p = 0.005$, $N = 33$; \\Cref{sec:gsm8k}) provides evidence that DIF-flagged items capture behavioral change distinct from memorization. Models with larger contamination gaps (higher GSM8K minus GSM1K accuracy) benefit \\emph{less} from DIF-C items, the opposite of what a pure memorization account would predict. Of the 249 focal-favoring DIF-C items, 171 have discrimination $\\alpha < 1$, and the negative correlation concentrates in this low-discrimination subset. This pattern suggests that contamination produces a ``shallow'' performance boost on items that DIF does not flag, while DIF-C items capture genuine capability differences that contamination does not confer. Partial correlation ($r = -0.385$, $p = 0.027$) after controlling for overall accuracy confirms that the effect is not an artifact of general model quality. Several caveats apply: the confidence interval is wide (95\\% CI $= [-0.71, -0.16]$), item difficulty as a confound is not fully excluded, and $N = 33$ limits generalizability. This result is suggestive and warrants replication with larger model populations.\n\n\\paragraph{Structural constraints on DIF applicability.} Systematic experimentation reveals three structural constraints that jointly limit DIF utility in LLM benchmarks. First, 1D IRT model fit is imperfect: MMLU's multi-domain structure produces mild local dependence (11.3\\% of within-subject item pairs exceed $|Q3| > 0.20$; \\Cref{sec:structural}), which elevates within-subject DIF rates relative to cross-subject baselines. Second, the power analysis (\\Cref{sec:validation}) establishes minimum requirements of $N \\geq 80$ per cohort and $|\\Delta_{\\mathrm{MH}}| \\geq 1.4$ for reliable detection. Benchmarks with small model populations or modest effect sizes will lack statistical power for DIF analysis. Third, ability differences between temporal cohorts confound the DIF signal: the within-family comparison (Llama-2 vs.\\ Llama-3) produces 61.3\\% C\\%, elevated above the 31.3\\% temporal rate by the large ability gap between model generations. These are structural constraints revealed by our experimentation, not fundamental impossibilities. Higher-level methods (MIMIC models, propensity-score matching, multidimensional IRT) may address individual constraints, and their investigation on LLM benchmark data is a natural next step.\n\n\\subsection{Limitations}\n\\label{sec:disc_limitations}\n\n\\paragraph{(a) Ecological vs.\\ item-level decomposition.} The ecological correlation between subject-level C\\% and accuracy improvement is $\\rho = 0.307$ ($p = 0.02$), but item-level decomposition shows that domain improvement explains only 2.4 percentage points (7.6\\%) of 31.3\\% C\\%. The remaining 92.4\\% cannot be fully attributed to contamination; other sources of capability change (training methodology, data composition, optimization procedures) may contribute, and our analysis does not isolate these factors.\n\n\\paragraph{(b) Instability attribution.} The 31\\% C\\% measures items that function differently across cohorts, but the method does not distinguish contamination from legitimate capability change. DIF identifies \\emph{that} items changed, not \\emph{why}. The semi-synthetic framework validates detection power for one specific mechanism (differential exposure), but real-world instability likely reflects multiple interacting causes.\n\n\\paragraph{(c) Semi-synthetic injection fidelity.} The injection procedure flips incorrect responses to correct at a specified rate, simulating an idealized contamination scenario. Real contamination may manifest as partial knowledge, format memorization, or selective retrieval rather than wholesale answer flipping. The gap between our injection model and realistic contamination mechanisms is unknown.\n\n\\paragraph{(d) Benchmark scope.} The primary analysis covers MMLU with cross-benchmark validation on GSM8K (\\Cref{sec:gsm8k}). GSM8K replication confirms framework portability and provides the GSM1K contamination correlation ($N = 33$), but full temporal DIF characterization on diverse benchmarks (code generation, long-form reasoning, multimodal tasks) has not been conducted. The GSM1K sample ($N = 33$) produces wide confidence intervals that limit the precision of the negative correlation estimate.\n\n\\paragraph{(e) Cross-subject baseline false positive rate.} The cross-subject matching protocol achieves $\\Delta\\mathrm{FPR} = 0.000$ for injected contamination but does not reduce the baseline temporal FPR of 33--53\\% across subjects. This rate is stable across injection levels, confirming it reflects genuine temporal instability rather than methodological error, but it means that a large fraction of flagged items in temporal comparisons are not attributable to the specific contamination mechanism under test.\n\n\\paragraph{(f) RL model robustness.} Reinforcement learning from human feedback may alter item-level response patterns in ways that differ from pretraining-based contamination. The theoretical motivation for DIF robustness to RL (RL modifies the ability distribution rather than item parameters) is plausible but empirically unvalidated with adequate sample size: METABENCH contains only $N = 13$ models with documented reasoning-RL training.\n\n\\paragraph{(g) Model family coverage.} Downstream impact analysis is limited to families with $N \\geq 20$ models (Llama, Mistral, Qwen, Phi). Among the top 50 rank movers, 49 of 50 belong to the ``unknown'' family category in METABENCH, precluding interpretation of what training choices produce large rank shifts.\n\n\\paragraph{(h) Future directions.} Cross-benchmark generalization to code, multimodal, and long-form reasoning benchmarks would test DIF applicability beyond factual knowledge tasks. RL model cohorts with adequate $N$ would enable empirical validation of the RL robustness hypothesis. MIMIC models and propensity-score matching could address the ability confounding that the current MH-DIF framework does not fully resolve.\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T05:02:18.978844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T05:02:18.979004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections && cat discussion.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//g' | wc -w",
+              "description": "Count words in discussion.tex (approximate, stripping LaTeX commands)"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T05:02:18.979128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "709"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T05:02:18.979251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—|–",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T05:02:18.979371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T05:02:18.979483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[.?!]\\s*$|ing\\.\\s*\\\\|ing,\\s*(which|and|or|but|so)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T05:02:18.979598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38:\\paragraph{(f) RL model robustness.} Reinforcement learning from human feedback may alter item-level response patterns in ways that differ from pretraining-based contamination. The theoretical motivation for DIF robustness to RL (RL modifies the ability distribution rather than item parameters) is plausible but empirically unvalidated with adequate sample size: METABENCH contains only $N = 13$ models with documented reasoning-RL training."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T05:02:18.979786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "detex discussion.tex 2>/dev/null | wc -w || (cat discussion.tex | grep -v '^\\s*\\\\' | grep -v '^\\s*%' | sed 's/\\\\[a-zA-Z]*//g; s/[{}$~^]//g; s/\\\\//g' | wc -w)",
+              "description": "More accurate word count for discussion.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T05:02:18.979964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1156"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T05:02:18.980108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[.,]?\\s*$",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T05:02:18.980244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38:\\paragraph{(f) RL model robustness.} Reinforcement learning from human feedback may alter item-level response patterns in ways that differ from pretraining-based contamination. The theoretical motivation for DIF robustness to RL (RL modifies the ability distribution rather than item parameters) is plausible but empirically unvalidated with adequate sample size: METABENCH contains only $N = 13$ models with documented reasoning-RL training."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T05:02:18.980374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "(?<!\\\\)%",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T05:02:18.980487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T05:02:18.980635+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion 章节已写入 `paper/sections/discussion.tex`。\n\n验证结果：\n- 约 1,156 words（detex 统计），略超 1000 目标，主要因为 Limitations 8 个子段按要求全部展开\n- 无 em-dash / en-dash\n- 无 -ing 分词短语结尾句\n- 无 LaTeX comments\n- 4 个 subsection 结构完整：§5.1 Temporal Comparability, §5.2 Ground Truth Meta-Critique, §5.3 DIF as Diagnostic Lens, §5.4 Limitations (a)-(h)\n- 所有关键数字与 introduction.tex / experiments.tex 保持一致\n- \"instability ≠ invalidity\" 在 §5.1 明确强化\n- 无 pivot 叙事，全程从 benchmark temporal comparability 视角"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260521T050016"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-discussion.md"
+}

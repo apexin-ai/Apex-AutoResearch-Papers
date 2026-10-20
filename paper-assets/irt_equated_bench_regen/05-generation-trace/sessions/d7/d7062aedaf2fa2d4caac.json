@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7062aedaf2fa2d4caac",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code mvp dif power sim phase2",
+  "task_key": "worker_code_mvp_dif_power_sim_phase2_20260520T185329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_dif_power_sim_phase2_20260520T185329_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "7122ba5b023d3beacc99afc157719446cfb939c72740bceae62833b2d825443a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 artifacts 全部注册成功。任务完成，总结如下：\n\n---\n\n## Phase 2 半合成验证结果：**PASS**\n\n### 参数来源\nPSN-IRT 4PL 模型的 MMLU 14,042 items（取 a, b 两参数用于 2PL）\n\n### 真实 vs 合成参数差异\n| 参数 | 真实 MMLU | 合成 (Phase 1) |\n|------|-----------|----------------|\n| a (discrimination) | mean=1.20, std=0.54 | mean≈1.13, std≈0.60 |\n| b (difficulty) | mean=**-0.84**, std=0.79 | mean=0.00, std=1.00 |\n\n关键差异：真实 MMLU items 平均难度低 0.84 logits（更容易），区分度略低。\n\n### Core Region 结果（δ≥1.4, N≥80, ETS C 分类）\n\n| N | δ | ETS-C TPR | ETS-C FPR | Verdict |\n|---|---|-----------|-----------|---------|\n| 80 | 1.4 | **0.682** | 0.036 | PASS |\n| 80 | 1.6 | **0.722** | 0.039 | PASS |\n| 100 | 1.4 | **0.758** | 0.040 | PASS |\n| 100 | 1.6 | **0.797** | 0.042 | PASS |\n\n- **4/4 core conditions PASS**（ETS-C TPR≥0.65, FPR≤0.10）\n- **Pass+ MET**：δ≥1.4, N≥100 时 min ETS-C TPR = 0.758 ≥ 0.75\n- **零 FPR>0.15 violations**\n\n### 结论\nPhase 1 用合成参数得到的 DIF 检测功效结论在真实 MMLU IRT 参数下**稳健成立**。尽管真实参数分布存在显著差异（difficulty 左移、discrimination 略低），ETS C 分类在 N≥80, δ≥1.4 条件下仍可靠检测污染（TPR 0.68-0.80, FPR 0.04）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-dif-power-sim-phase2.md"
+}

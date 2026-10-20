@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fed763012071b8ef280c",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r18 base vs instruct dif",
+  "task_key": "worker_code_r18_base_vs_instruct_dif_20260522T174522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r18_base_vs_instruct_dif_20260522T174522_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "3c43179879d53a23970af5ee86cd64da6297b67f383290c0009554292e0b7401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。三个产出文件均已生成。\n\n**核心发现：**\n\n| 指标 | Base | Instruct |\n|------|------|----------|\n| 样本量 | 861+548=1409 | 219+259=478 |\n| C% | 32.1% | 36.5% |\n| ρ(difficulty, Δ_MH) | **−0.570** | −0.079 |\n| DIF 方向 | 60.1% ref-favoring | 65.6% focal-favoring |\n\n关键解读：\n1. **C% 差异不显著**（−4.4 pp, 95% CI [−13.4, 4.3] 包含 0），instruct 稍高但 bootstrap CI 宽\n2. **Difficulty gradient 差异极大**：base 组 ρ=−0.57（容易题 DIF 大），instruct 组几乎无梯度（ρ=−0.08）——说明 base 和 instruct 的 DIF 机制不同\n3. **方向完全相反**：base 组以 ref-favoring（2023↑）为主，instruct 组以 focal-favoring（2024↑）为主，χ²=562.7, p<10⁻¹²⁴\n4. **Overlap 中等** (Jaccard=0.314, 1.5× 独立基线)：约一半 DIF items 是 group-specific 的"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r18-base-vs-instruct-dif.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "845e1518573cbff31923",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 035 q3 inflation sim",
+  "task_key": "worker_code_plan_035_q3_inflation_sim_20260521T154538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_035_q3_inflation_sim_20260521T154538_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "23f734a3f44f5fd37f8330bde6399985f935013e7519b9c23b9867a740a4c3bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 035 完成。全部产出：\n\n**产出文件：**\n- `artifacts/plan_035_q3_inflation_sim/plan_035_q3_inflation_sim.py` — 向量化模拟脚本\n- `artifacts/plan_035_q3_inflation_sim/permutation_null_results.csv` — 8000 行详细结果\n- `artifacts/plan_035_q3_inflation_sim/inflation_summary.csv` — 8 subjects 汇总\n- `artifacts/plan_035_q3_inflation_sim/plan_035_report.md` — 完整报告\n\n**核心结论：**\n\n| 指标 | LD 膨胀 (pp) | 判定 |\n|------|-------------|------|\n| ETS-C | +0.0004 pp (最大 +0.0010 pp) | 远 < 3 pp |\n| p<0.05 | −0.0019 pp | 无膨胀（甚至略反向） |\n\nCross-subject matching 完全隔离了 within-subject LD 对 MH-DIF FPR 的影响。即使 moral_scenarios 有 34.2% item pairs |Q3|>0.20，ETS-C 膨胀仍 < 0.01 pp。两个原因：\n1. Cross-subject matching 变量不含当前 subject 的 items，LD 无法污染 matching\n2. ETS-C 的 |Δ|≥1.5 阈值本身极其保守（实际 FPR 仅 ~0.1%，远低于 nominal 5%）\n\nQ3 与膨胀无显著相关（Spearman ρ = −0.24, p = 0.57）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-035-q3-inflation-sim.md"
+}

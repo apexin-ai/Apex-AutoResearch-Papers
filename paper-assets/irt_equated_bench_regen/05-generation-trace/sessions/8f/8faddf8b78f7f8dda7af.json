@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8faddf8b78f7f8dda7af",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 jaccard permutation",
+  "task_key": "worker_code_r17_jaccard_permutation_20260522T155242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_jaccard_permutation_20260522T155242_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "b1f4844797a07c66f7ec2db5d21d0ae0651a073e533e7f984521594abf90242c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入 `artifacts/r17_jaccard_permutation/`：\n\n**结果摘要**：\n- Observed Jaccard = **0.206**, Null mean = **0.212**, p = **0.88**\n- Observed 落在 null 95% CI [0.203, 0.222] 正中，甚至略低于 null mean (0.97x)\n- **结论**：DIF-C 与 Li contamination labels 的重叠完全由 marginal rates 解释，两种方法检测的是独立信号"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-jaccard-permutation.md"
+}

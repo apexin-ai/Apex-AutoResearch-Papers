@@ -1,0 +1,7 @@
+scenario,n_ref,n_foc,type,c_pct_mean,c_pct_sd,n_reps
+remove_mistral,1080,807,full,31.323952670291018,0.0,1
+remove_mistral,533,807,random_subsample,30.90993763991046,2.073049627201676,200
+remove_mistral,533,807,lofo_observed,22.473616885193476,0.0,1
+remove_llama3,1080,807,full,31.323952670291018,0.0,1
+remove_llama3,1080,492,random_subsample,32.235809082187394,1.4167950979302246,200
+remove_llama3,1080,492,lofo_observed,24.06459865685961,0.0,1

@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan_032_dif_cleaned_mmlu",
+  "project": "irt_equated_bench_regen",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:38:51.707Z",
+    "updated_at": "2026-05-21T13:39:13.917Z",
+    "hypothesis": "虽然 DIF-cleaned MMLU 的全局 rank correlation 很高 (ρ≈0.997)，但局部排名变化将揭示 DIF 的实际影响：特定模型家族（尤其是 2024 年新模型如 phi-3, llama-3）将在移除 C-flagged items 后排名显著下降，而 2023 年模型排名上升。这证明 DIF items 虽然不改变全局趋势，但系统性地偏向特定模型代际，构成 benchmark fairness 问题。",
+    "parent": "plan_017_downstream_impact",
+    "spec": {
+      "command": "python3 plan_032_dif_cleaned_mmlu.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/plan_001/dif_results_temporal.csv + response_matrix.npz + model_metadata.csv + item_metadata.csv",
+      "data_count": "5227 models × 12508 items, 3918 C-flagged items removed",
+      "model_name": "N/A (CPU analysis)",
+      "seed": 42,
+      "checkpoint_source": "plan_001_real_data_dif_mmlu + plan_017_downstream_impact",
+      "eval_data": "METABENCH MMLU ETS classification + full response matrix"
+    }
+  },
+  "timestamp": "2026-05-21T13:39:14.028526+00:00",
+  "trigger": "update_registry"
+}

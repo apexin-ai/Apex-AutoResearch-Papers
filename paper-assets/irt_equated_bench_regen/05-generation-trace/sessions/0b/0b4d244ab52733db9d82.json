@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b4d244ab52733db9d82",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 004 step1 gsm8k temporal dif",
+  "task_key": "worker_code_plan_004_step1_gsm8k_temporal_dif_20260521T003053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_step1_gsm8k_temporal_dif_20260521T003053_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "a54f49b6562aee0d2876d03dd5b9d1aa0eb5f357826d188b19adc73204892ba4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**GSM8K temporal DIF 跨 benchmark 泛化确认成功。**\n\n| Matching | A | B | C | %C |\n|----------|---|---|---|----|\n| Standard (purified GSM8K) | 825 | 245 | 249 | **18.9%** |\n| External (4 benchmarks) | 412 | 282 | 625 | **47.4%** |\n| Sanity (random split) | 1236 | 79 | 4 | **0.3%** |\n\n关键发现：\n- **Standard matching**: 18.9% items 有显著 DIF (ETS-C)，远高于 sanity check 的 0.3%\n- **External matching**: C% 飙升到 47.4%。这符合预期——purified total score 会部分吸收 contamination 效应（contaminated items 同时抬高了 matching variable），导致 DIF 被低估；external matching 用完全独立的 benchmark 分数分层，contamination 信号无处隐藏\n- **Standard vs External 高度相关**: Spearman ρ=0.926, Pearson r=0.943，两种方法检测到的 DIF pattern 一致，只是 external 的 effect size 更大\n- **DIF 方向偏斜**: ETS-C items 中 171 个 favor 2024, 78 个 favor 2023（2:1），2024 模型在特定 items 上不成比例地表现更好\n- **Cohort sizes 充足**: ref=1017, foc=804\n\n产出文件均已注册到 `artifacts/plan_004/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-step1-gsm8k-temporal-dif.md"
+}

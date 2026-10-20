@@ -1,0 +1,1017 @@
+{
+  "schema_version": "1.0",
+  "id": "efb6ee2622e52140d6bb",
+  "project": "irt_equated_bench_regen",
+  "kind": "conversation",
+  "title": "research psn irt data survey",
+  "task_key": "worker_research_psn_irt_data_survey_20260520T180227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_psn_irt_data_survey_20260520T180227.jsonl",
+    "occurrence": 1,
+    "bytes": 59199,
+    "sha256": "16bdcecdd1e6a8171ede13e28bb10b0ede90ea761184af667d1809c37a5c9719"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T18:06:40.233682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T18:06:40.234111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T18:06:40.234385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "irt_equated_bench_regen",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T18:06:40.234587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No memory.md found for 'irt_equated_bench_regen'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T18:06:40.234794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "PSN-IRT AAAI 2026 IRT LLM benchmark parameters MMLU"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T18:06:40.234981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "IRT item response theory LLM benchmark MMLU parameters dataset 2024 2025"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T18:06:40.235174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "HELM Stanford MMLU per-instance model predictions download"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T18:06:40.235366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Open LLM Leaderboard HuggingFace per-question response data MMLU"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T18:06:40.235546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "tinyBenchmarks Polo 2024 IRT MMLU item parameters data"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T18:06:40.235833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"IRT item response theory LLM benchmark MMLU parameters dataset 2024 2025\"\n\nLinks: [{\"title\":\"IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory\",\"url\":\"https://arxiv.org/html/2506.01048v2\"},{\"title\":\"(PDF) Learning Compact Representations of LLM Abilities via Item Response Theory\",\"url\":\"https://www.researchgate.net/publication/396094822_Learning_Compact_Representations_of_LLM_Abilities_via_Item_Response_Theory\"},{\"title\":\"Latency-Response Theory Model: Evaluating Large Language Models via Response Accuracy and Chain-of-Thought Length\",\"url\":\"https://arxiv.org/html/2512.07019v1\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v2\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2505.15055\"},{\"title\":\"Learning Compact Representations of LLM Abilities via Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2510.00844\"},{\"title\":\"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/abs/2505.15055\"}]\n\nBased on the search results, here's what I found related to your query about IRT, item response theory, LLM benchmarks, MMLU parameters, and datasets from 2024-2025:\n\n## Recent Research on IRT and LLM Benchmarks\n\nA recent paper proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), an enhanced IRT framework that incorporates a rich set of item parameters, and conducts extensive analysis on 11 LLM benchmarks comprising 41,871 items.\n\nOne study used datasets containing 35,673 queries from 10 public benchmarks, including MMLU (Hendrycks et al., 2021), and evaluated the correctness of answers from 112 open-source language models to those queries.\n\nItem Response Theory is a psychometric framework widely used in educational assessment, analyzes item prope\n…[truncated 730 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T18:06:40.236198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"PSN-IRT AAAI 2026 IRT LLM benchmark parameters MMLU\"\n\nLinks: [{\"title\":\"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub\",\"url\":\"https://github.com/Joe-Hall-Lee/PSN-IRT\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/40814\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v2\"},{\"title\":\"LLM Benchmarks Compared: MMLU, HumanEval, GSM8K and More (2026)\",\"url\":\"https://www.lxt.ai/blog/llm-benchmarks/\"},{\"title\":\"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\",\"url\":\"https://arxiv.org/html/2604.12843\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2505.15055\"},{\"title\":\"LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing\",\"url\":\"https://iternal.ai/llm-selection-guide\"}]\n\nBased on the search results, here's what I found about PSN-IRT for AAAI 2026:\n\n## Overview\nPSN-IRT is a framework based on Item Response Theory (IRT) for a deep analysis of LLM benchmark quality. The paper was presented at the AAAI Conference on Artificial Intelligence in 2026.\n\n## Benchmark Parameters\nPSN-IRT is an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture. Specifically, it infers one property for each model (model-ability) and four properties for each benchmark item (discriminability, difficulty, guessing-rate, and feasibility).\n\n## Evaluation Scope\nThe framework contains evaluation results of 12 LLMs on 11 benchmarks, totaling 41,871 items. The analysis reveals significant and v\n…[truncated 554 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T18:06:40.236543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Open LLM Leaderboard HuggingFace per-question response data MMLU\"\n\nLinks: [{\"title\":\"blog/open-llm-leaderboard-mmlu.md at main · huggingface/blog\",\"url\":\"https://github.com/huggingface/blog/blob/main/open-llm-leaderboard-mmlu.md\"},{\"title\":\"Open LLM Leaderboard - a Hugging Face Space by open-llm-leaderboard\",\"url\":\"https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard\"},{\"title\":\"open-llm-leaderboard (Open LLM Leaderboard)\",\"url\":\"https://huggingface.co/open-llm-leaderboard\"},{\"title\":\"What's going on with the Open LLM Leaderboard?\",\"url\":\"https://huggingface.co/blog/open-llm-leaderboard-mmlu\"},{\"title\":\"Open LLM Leaderboard v1 · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/open_llm_leaderboard/archive\"},{\"title\":\"GitHub - VILA-Lab/Open-LLM-Leaderboard: Open-LLM-Leaderboard: Open-Style Question Evaluation. Paper at https://arxiv.org/abs/2406.07545 · GitHub\",\"url\":\"https://github.com/VILA-Lab/Open-LLM-Leaderboard\"},{\"title\":\"Open LLM Leaderboard - Hugging Face Open LLM Leaderboard | LLM Benchmark | LLMIndex | LLMIndex\",\"url\":\"https://llmindex.net/benchmarks/open-llm-leaderboard\"},{\"title\":\"About · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/en/open_llm_leaderboard/about\"},{\"title\":\"Leaderboards and Evaluations · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/index\"},{\"title\":\"open-llm-leaderboard/open_llm_leaderboard · MMLU blog post discussion\",\"url\":\"https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard/discussions/82\"}]\n\nBased on the search results, here's what I found about the Open LLM Leaderboard, HuggingFace, and MMLU per-question response data:\n\n## Overview\n\nThe Open LLM Leaderboard is maintained by HuggingFace, and the organization has detailed results and queries available for the models on the leaderboard.\n\n## MMLU Evaluation\n\nThe Open LLM Leaderboard is a wrapper running the open-source benchmarking library Eleuther AI LM Evaluation Harness\n…[truncated 986 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T18:06:40.236949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"HELM Stanford MMLU per-instance model predictions download\"\n\nLinks: [{\"title\":\"helm/src/helm/benchmark/static/schema_classic.yaml at main · stanford-crfm/helm\",\"url\":\"https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/static/schema_classic.yaml\"},{\"title\":\"GitHub - stanford-crfm/helm: Holistic Evaluation of Language Models (HELM) is an open source Python framework created by the Center for Research on Foundation Models (CRFM) at Stanford for holistic, reproducible and transparent evaluation of foundation models, including large language models (LLMs) and multimodal models. · GitHub\",\"url\":\"https://github.com/stanford-crfm/helm\"},{\"title\":\"Tutorial - CRFM HELM - Read the Docs\",\"url\":\"https://crfm-helm.readthedocs.io/en/v0.3.0/tutorial/\"},{\"title\":\"helm/docs/tutorial.md at main · stanford-crfm/helm\",\"url\":\"https://github.com/stanford-crfm/helm/blob/main/docs/tutorial.md\"},{\"title\":\"Releases · stanford-crfm/helm\",\"url\":\"https://github.com/stanford-crfm/helm/releases\"},{\"title\":\"Massive Multitask Language Understanding (MMLU)\",\"url\":\"https://crfm.stanford.edu/2024/05/01/helm-mmlu.html\"},{\"title\":\"HELM Capabilities\",\"url\":\"https://crfm.stanford.edu/2025/03/20/helm-capabilities.html\"}]\n\nBased on the search results, I found information about HELM and MMLU model predictions:\n\nHELM (Holistic Evaluation of Language Models) is an open source Python framework created by the Center for Research on Foundation Models (CRFM) at Stanford for holistic, reproducible and transparent evaluation of foundation models, including large language models (LLMs) and multimodal models.\n\nRegarding per-instance model predictions, HELM generates a per_instance_stats.json file that contains a serialized list of PerInstanceStats, which contains the statistics produced for the metrics for each instance. Additionally, the results on the HELM MMLU leaderboard include full transparency of all raw prompts and predictions, allowing users to drill down into the\n…[truncated 765 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T18:06:40.237301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"tinyBenchmarks Polo 2024 IRT MMLU item parameters data\"\n\nLinks: [{\"title\":\"(PDF) tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://www.researchgate.net/publication/383238265_tinyBenchmarks_evaluating_LLMs_with_fewer_examples\"},{\"title\":\"tinyBenchmarks/README.md at main · felipemaiapolo/tinyBenchmarks\",\"url\":\"https://github.com/felipemaiapolo/tinyBenchmarks/blob/main/README.md\"},{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://arxiv.org/pdf/2402.14992\"},{\"title\":\"README.md · tinyBenchmarks/tinyMMLU at main\",\"url\":\"https://huggingface.co/datasets/tinyBenchmarks/tinyMMLU/blob/main/README.md\"},{\"title\":\"GitHub - felipemaiapolo/tinyBenchmarks: Evaluating LLMs with fewer examples · GitHub\",\"url\":\"https://github.com/felipemaiapolo/tinyBenchmarks\"},{\"title\":\"tinyBenchmarks/tinyMMLU · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/tinyBenchmarks/tinyMMLU\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v2\"},{\"title\":\"How Reliable is Language Model Micro-Benchmarking?\",\"url\":\"https://arxiv.org/html/2510.08730v1\"}]\n\nBased on the search results, I found information about tinyBenchmarks and its application to MMLU with IRT methods:\n\n## Overview\n\nPolo et al. (2024) propose tinyBenchmarks, an efficient evaluation method that uses IRT to model the discriminative power of benchmark examples, allowing the selection of a small yet representative subset of items.\n\n## IRT Item Parameters for tinyMMLU\n\nTo construct tinyMMLU, they chose 100 examples and weights identified by the IRT anchor point approach corresponding to the best test performance across random seeds. Items have non-negative weights that sum to 1, and tinyMMLU has more uniform weights compared to its correctness-based counterpart.\n\n## How the IRT Method Works\n\nThe tinyBenchmarks IRT method aims to select a micro-benchmark that minimize\n…[truncated 660 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T18:06:40.237644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/Joe-Hall-Lee/PSN-IRT",
+              "prompt": "List the contents of this GitHub repo. Does it contain any data files with IRT parameters (difficulty, discrimination, guessing) for MMLU items? Look for CSV files, JSON files, or data directories. Also check if there's a link to download the response matrix or item parameters. What benchmarks are included? List all data files and directories."
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T18:06:40.237865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/felipemaiapolo/tinyBenchmarks",
+              "prompt": "List the contents of this GitHub repo. Does it contain IRT item parameters for MMLU? Look for data files (CSV, JSON, pkl) that contain item difficulty, discrimination parameters, or response matrices. What data is available for download? Check if there's a response matrix of models x items."
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T18:06:40.238049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://crfm.stanford.edu/2024/05/01/helm-mmlu.html",
+              "prompt": "Does HELM provide downloadable per-instance prediction data for MMLU? How can I access raw model predictions per question? Is there a dataset or API to download the response matrix (which model got which question right/wrong)?"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T18:06:40.238226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "open-llm-leaderboard details results dataset HuggingFace per-instance predictions MMLU download"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T18:06:40.238423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# PSN-IRT Repository Contents\n\n## Data Files Present\n\nThe repository contains the following data-related files:\n\n1. **data/combine.csv** - The unified binary response matrix with evaluation results from 12 LLMs across 11 benchmarks (41,871 items total)\n\n2. **results/student_abilities.csv** - Estimated latent abilities (θ) for each of the 12 models\n\n3. **results/item_parameters.csv** - Estimated IRT parameters for all 41,871 items, including \"discriminability (a), difficulty (b), guessing-rate (c), and feasibility (d) parameters from the 4PL model\"\n\n4. **dataset_analysis.csv** and **dataset_analysis_rankings.csv**\n\n## Benchmarks Included\n\nThe repository evaluates 11 benchmarks, though specific names aren't listed in the provided content. The evaluation was conducted using OpenCompass.\n\n## MMLU-Specific Data\n\nThe repository does not explicitly mention MMLU items or provide MMLU-specific IRT parameters. The data focuses on a broader set of 41,871 items across multiple benchmarks.\n\n## Note\n\nThe CSV files containing item parameters and model abilities are already stored in the repository and available for download directly from the `/results/` directory."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T18:06:40.238625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Vania\" OR \"Lalor\" IRT benchmark LLM MMLU item parameters dataset GitHub 2024 2025"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T18:06:40.238850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# tinyBenchmarks Repository Contents\n\nBased on the GitHub page, this repository contains:\n\n**Main Directories:**\n- `demo/` - demonstration files\n- `tinyBenchmarks/` - the Python package\n- `tutorials/` - instructional materials\n\n**Key Files:**\n- `tinyBenchmarks_MMLU_demo.ipynb` - Jupyter notebook demonstrating MMLU evaluation\n- `setup.py` and `setup.cfg` - package configuration\n- `README.md` and `LICENSE`\n\n## IRT Item Parameters for MMLU\n\n**No, the repository does not contain IRT item parameters.** The page makes no mention of downloadable CSV, JSON, or pickle files containing item difficulty, discrimination parameters, or response matrices.\n\n## Available Data\n\nThe actual datasets are hosted separately on HuggingFace. The repository states: \"Please check our HuggingFace community with tiny datasets, each one containing 100 examples.\" These include tiny versions of MMLU, TruthfulQA, GSM8K, and other benchmarks—but the detailed parameter files are not stored in this GitHub repository itself.\n\nThe code demonstrates **using** pre-existing tiny datasets for evaluation, not distributing the underlying IRT parameters or raw model response matrices."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T18:06:40.239055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the webpage content provided, yes, HELM does offer access to raw prediction data. The page states that \"The results on the HELM MMLU leaderboard also include full transparency of all raw prompts and predictions, allowing users to drill down into the individual model requests.\"\n\nHowever, the document does not explicitly describe a downloadable dataset format or API endpoint for accessing the response matrix you're asking about. The page emphasizes transparency and includes a screenshot showing how users can explore individual model predictions through the leaderboard interface, but specific technical details about download options or programmatic access aren't provided in this content.\n\nTo get complete information about data download methods and API availability, you would need to consult the [HELM documentation](https://crfm-helm.readthedocs.io/en/latest/) or visit the [HELM MMLU leaderboard](https://crfm.stanford.edu/helm/mmlu/latest/) directly."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T18:06:40.239306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"open-llm-leaderboard details results dataset HuggingFace per-instance predictions MMLU download\"\n\nLinks: [{\"title\":\"blog/open-llm-leaderboard-mmlu.md at main · huggingface/blog\",\"url\":\"https://github.com/huggingface/blog/blob/main/open-llm-leaderboard-mmlu.md\"},{\"title\":\"Open LLM Leaderboard - a Hugging Face Space by open-llm-leaderboard\",\"url\":\"https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard\"},{\"title\":\"open-llm-leaderboard (Open LLM Leaderboard)\",\"url\":\"https://huggingface.co/open-llm-leaderboard\"},{\"title\":\"Open LLM Leaderboard v1 · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/open_llm_leaderboard/archive\"},{\"title\":\"What's going on with the Open LLM Leaderboard?\",\"url\":\"https://huggingface.co/blog/open-llm-leaderboard-mmlu\"},{\"title\":\"Open LLM Leaderboard - Hugging Face Open LLM Leaderboard | LLM Benchmark | LLMIndex | LLMIndex\",\"url\":\"https://llmindex.net/benchmarks/open-llm-leaderboard\"},{\"title\":\"Leaderboards and Evaluations · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/index\"},{\"title\":\"About · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about\"},{\"title\":\"Open LLM Leaderboard 2 - a open-llm-leaderboard Collection\",\"url\":\"https://huggingface.co/collections/open-llm-leaderboard/open-llm-leaderboard-2\"},{\"title\":\"Open-LLM performances are plateauing, let’s make the leaderboard steep again - a Hugging Face Space by open-llm-leaderboard\",\"url\":\"https://huggingface.co/spaces/open-llm-leaderboard/blog\"}]\n\nBased on the search results, here's what I found about the Open LLM Leaderboard and accessing detailed results and per-instance predictions:\n\n## Overview\n\nThe Open LLM Leaderboard is a hub organization that maintains detailed results and queries for the models on the leaderboard. The Open LLM Leaderboard is a wrapper running the open-source Eleuther AI LM Evaluation Harness, which runs evaluations on Hugging Face's compute cluster and st\n…[truncated 1021 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T18:06:40.239567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Vania\" OR \"Lalor\" IRT benchmark LLM MMLU item parameters dataset GitHub 2024 2025\"\n\nLinks: [{\"title\":\"Estimating Exam Item Difficulty with LLMs: A Benchmark on Brazil's ENEM Corpus\",\"url\":\"https://arxiv.org/pdf/2602.06631\"},{\"title\":\"GitHub - VyetGokyra/awaresome_LLM_eval_benchmark: 250 LLM Benchmarks & Evaluation Datasets · GitHub\",\"url\":\"https://github.com/VyetGokyra/awaresome_LLM_eval_benchmark\"},{\"title\":\"Published as a conference paper at COLM 2025 Fluid Language Model Benchmarking\",\"url\":\"https://www.arxiv.org/pdf/2509.11106\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v2\"},{\"title\":\"Reconstructing Item Characteristic Curves using Fine-Tuned Large Language Models\",\"url\":\"https://arxiv.org/pdf/2601.02580\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2505.15055\"}]\n\nBased on the search results, I found relevant information about IRT (Item Response Theory) applications to LLM benchmarking, though the specific combination you're searching for appears limited in the results.\n\nHere are the key findings:\n\n**IRT and LLM Benchmarking Work:**\nWithin NLP, IRT has been primarily utilized to diagnose fundamental item properties such as difficulty and discriminability, including work by Vania et al. 2021.\n\n**Recent IRT-Based LLM Benchmark Studies (2024-2025):**\n\n1. A study proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), which incorporates a rich set of item parameters within an IRT-grounded architecture and was utilized for analysis on 11 LLM benchmarks comprising 41,871 items. Code is available at https://github.com/Joe-Hall-Lee/PSN-IRT.\n\n2. Two IRT-based methods mentioned are TINYBENCHMARKS (Polo et al., 2024) and METABENCH (Kipnis et al., 2025).\n\n3. **MMLU Related:** There is a Global MMLU benchmark that includes cultural sensitivity anno\n…[truncated 423 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T18:06:40.239858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2505.15055",
+              "prompt": "List all 11 benchmarks that PSN-IRT evaluated. Is MMLU one of them? How many models were evaluated? What are the model names? How many items does each benchmark contribute?"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T18:06:40.240068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "METABENCH Kipnis 2025 IRT LLM benchmark response matrix per-item data GitHub"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T18:06:40.240267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "open-llm-leaderboard-results HuggingFace dataset details_model per-instance MMLU"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T18:06:40.240438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "tinyBenchmarks response matrix models MMLU HuggingFace dataset IRT embeddings"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T18:06:40.240619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Analysis of PSN-IRT Benchmark Evaluation\n\nBased on the provided content, I can offer limited information:\n\n## Available Information\n\nThe abstract states that PSN-IRT conducted \"extensive analysis on 11 LLM benchmarks comprising 41,871 items,\" but **the specific names of these 11 benchmarks are not listed in the provided webpage content**. Therefore, I cannot confirm whether MMLU is included or identify the individual benchmark names.\n\nSimilarly, the document does not specify:\n- The exact number of models evaluated\n- The names of individual models tested\n- How many items each benchmark contributed\n\n## What We Know\n\nThe paper was \"Accepted to AAAI 2026 (Oral)\" and analyzes \"results from diverse models,\" but the full details would require accessing the complete PDF or HTML version of the paper, which are linked but not excerpted in the content provided.\n\nTo obtain this detailed information, you would need to review the full paper directly through the \"[View PDF](/pdf/2505.15055)\" or \"[HTML (experimental)](https://arxiv.org/html/2505.15055v3)\" links."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T18:06:40.240878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"METABENCH Kipnis 2025 IRT LLM benchmark response matrix per-item data GitHub\"\n\nLinks: [{\"title\":\"metabench A Sparse Benchmark to Measure General Ability in Large Language Models\",\"url\":\"https://arxiv.org/html/2407.12844v1\"},{\"title\":\"GitHub - adkipnis/metabench: A principled reduction of six benchmarks from the Open LLM Leaderboard to a single sparse benchmark. · GitHub\",\"url\":\"https://github.com/adkipnis/metabench\"},{\"title\":\"MT-Bench: Multi-Turn Evaluation Framework\",\"url\":\"https://www.emergentmind.com/topics/mt-bench-756edf8b-73a3-47a0-8a7a-1f34e95aacd1\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/html/2511.04689\"},{\"title\":\"7 Ways MetaBench Can Improve Your ML Evaluation Pipeline – e\",\"url\":\"https://learnpageflowhub.monster/7-ways-metabench-can-improve-your-ml-evaluation-pipeline/\"},{\"title\":\"metabench A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\",\"url\":\"https://arxiv.org/html/2407.12844v2\"},{\"title\":\"MetaBench: A Multi-task Benchmark for Assessing LLMs in Metabolomics\",\"url\":\"https://arxiv.org/pdf/2510.14944\"},{\"title\":\"METABENCH A SPARSE BENCHMARK OF REASONING ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/4ebc26584810a189ef1e4f173aba4319-Paper-Conference.pdf\"},{\"title\":\"[2407.12844] metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\",\"url\":\"https://arxiv.org/abs/2407.12844\"}]\n\nBased on the search results, I found relevant information about METABENCH by Kipnis and colleagues:\n\n## Key Findings:\n\nAll reported analyses and results are available on https://github.com/adkipnis/metabench.\n\n### About METABENCH:\n\nMETABENCH compresses six widely adopted LLM testbeds (ARC, GSM8K, HellaSwag, MMLU, TruthfulQA, and WinoGrande) into a subset representing less than 3% of the original items while preserving nearly all evaluative information through cross-validated sampling and Item Response\n…[truncated 1115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T18:06:40.241134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"tinyBenchmarks response matrix models MMLU HuggingFace dataset IRT embeddings\"\n\nLinks: [{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://www.emergentmind.com/papers/2402.14992\"},{\"title\":\"GitHub - felipemaiapolo/tinyBenchmarks: Evaluating LLMs with fewer examples · GitHub\",\"url\":\"https://github.com/felipemaiapolo/tinyBenchmarks\"},{\"title\":\"tinyBenchmarks/tinyMMLU · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/tinyBenchmarks/tinyMMLU\"},{\"title\":\"(PDF) tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://www.researchgate.net/publication/383238265_tinyBenchmarks_evaluating_LLMs_with_fewer_examples\"},{\"title\":\"README.md · tinyBenchmarks/tinyMMLU at main\",\"url\":\"https://huggingface.co/datasets/tinyBenchmarks/tinyMMLU/blob/main/README.md\"},{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://arxiv.org/html/2402.14992v1\"},{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://arxiv.org/pdf/2402.14992\"}]\n\nBased on the search results, here's what I found about tinyBenchmarks:\n\ntinyBenchmarks provides evaluation tools and tiny versions of popular benchmarks including MMLU, available through HuggingFace. The HuggingFace community contains tiny datasets with 100 examples each, including a tiny version of MMLU.\n\n**Key Technical Approach:**\n\nThe methodology involves finding anchor points using IRT embeddings and selecting the dataset version that performs better on average in the test set considering the IRT estimate. IRT-based methods perform consistently well across benchmarks, with the gp-IRT variation improving upon the vanilla counterpart while adding only minimal evaluation time.\n\n**Dataset and Response Matrix:**\n\nThe research demonstrates that 100 curated examples per scenario are sufficient to reliably estimate the performance of various LLMs with about 2% error on average. For MMLU, this reduces evaluation cost by a factor of 140 \n…[truncated 425 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T18:06:40.241382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"open-llm-leaderboard-results HuggingFace dataset details_model per-instance MMLU\"\n\nLinks: [{\"title\":\"blog/open-llm-leaderboard-mmlu.md at main · huggingface/blog\",\"url\":\"https://github.com/huggingface/blog/blob/main/open-llm-leaderboard-mmlu.md\"},{\"title\":\"Open LLM Leaderboard v1 · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/en/open_llm_leaderboard/archive\"},{\"title\":\"What's going on with the Open LLM Leaderboard?\",\"url\":\"https://huggingface.co/blog/open-llm-leaderboard-mmlu\"},{\"title\":\"open-llm-leaderboard/results · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/open-llm-leaderboard/results\"},{\"title\":\"Open LLM Leaderboard - a Hugging Face Space by open-llm-leaderboard\",\"url\":\"https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard\"},{\"title\":\"open-llm-leaderboard (Open LLM Leaderboard)\",\"url\":\"https://huggingface.co/open-llm-leaderboard\"},{\"title\":\"HuggingFaceH4/open-llm-leaderboard-evaluations-results · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HuggingFaceH4/open-llm-leaderboard-evaluations-results\"},{\"title\":\"About · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about\"},{\"title\":\"Open-LLM-Leaderboard: From Multi-choice to Open-style Questions for LLMs   Evaluation, Benchmark, and Arena\",\"url\":\"https://arxiv.org/pdf/2406.07545\"}]\n\nBased on the search results, here's what I found about the Open LLM Leaderboard and its datasets:\n\n## Overview\n\nThe Open LLM Leaderboard stores evaluation results in a dataset on the Hugging Face hub that are then displayed on the leaderboard online space. In the Open LLM Leaderboard organization, you can find the dataset with detailed results and queries for the models on the leaderboard.\n\n## MMLU Evaluation Details\n\nThe Open LLM Leaderboard is a wrapper running the open-source benchmarking library Eleuther AI LM Evaluation Harness, which stores results in a dataset on the hub. MMLU is evaluated\n…[truncated 768 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T18:06:40.241652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/adkipnis/metabench",
+              "prompt": "List the repo structure including all directories and data files. Does it contain: 1) A response matrix (models x items binary responses)? 2) IRT item parameters (difficulty, discrimination)? 3) How many models are included? 4) Which benchmarks and how many items per benchmark? 5) What format are the data files in? Look for CSV, parquet, pickle files in data directories."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T18:06:40.241870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2505.15055v2",
+              "prompt": "Find the list of all 11 benchmarks used in PSN-IRT. Is MMLU (Massive Multitask Language Understanding) one of them? Also list all 12 LLMs evaluated. How many items does each benchmark contribute? Look in tables, sections describing experiments or datasets."
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T18:06:40.242056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/datasets/open-llm-leaderboard/results",
+              "prompt": "What is the structure of this dataset? Does it contain per-instance/per-question MMLU results for each model? How many models are included? What format is the data in? Can I download it programmatically?"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T18:06:40.242247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "open-llm-leaderboard details per-instance results MMLU HuggingFace \"details\" dataset per-question correct incorrect"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T18:06:40.242468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Metabench Repository Structure Analysis\n\nBased on the GitHub page provided, I cannot fully answer your detailed questions because **the actual data files are not shown in the visible repository structure**.\n\n## What's Documented:\n\nThe page shows these directories:\n- analysis, bash, figures, finetuning, harness-results, items, scraping\n\nHowever, **specific data file details are not visible** on this GitHub page view.\n\n## Key Information Available:\n\nThe repository indicates that:\n\n- **Data location**: \"Complete datasets used in this project\" are hosted separately on Zenodo (zenodo.org/records/12819251), requiring users to \"download and extract `data.tar.gz`\"\n\n- **Benchmarks covered**: The paper addresses six benchmarks—\"ARC, GSM8K, HellaSwag, MMLU, TruthfulQA and WinoGrande\"\n\n- **Models analyzed**: The project evaluated \"over 5000 LLMs\" during item response theory analyses\n\n- **Primary languages**: R (67.7%) and Python (29.7%)\n\n## To Answer Your Questions:\n\nYou would need to either:\n1. Download the external Zenodo dataset package\n2. Review the actual analysis scripts in the `/analysis` directory on GitHub\n3. Consult the referenced ICLR paper for technical specifications\n\nThe GitHub page alone doesn't expose the response matrices, IRT parameters, or file formats you're asking about."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T18:06:40.242746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# PSN-IRT Benchmarks and Models\n\n## All 11 Benchmarks\n\nYes, MMLU is included. The complete list from Table 1:\n\n1. ARC-C (295 items)\n2. BBH (6,511 items)\n3. Chinese SimpleQA (3,000 items)\n4. GPQA Diamond (198 items)\n5. GSM8K (1,319 items)\n6. HellaSwag (10,042 items)\n7. HumanEval (164 items)\n8. MATH (5,000 items)\n9. MBPP (500 items)\n10. MMLU (14,042 items)\n11. TheoremQA (800 items)\n\n**Total: 41,871 items** across all benchmarks.\n\n## The 12 LLMs Evaluated\n\nThe paper tested 12 models across these benchmarks:\n\n**High-performing models:** 360GPT2-Pro, DeepSeek-V3, Doubao-Pro, Gemini-1.5, Hunyuan-Turbo, Moonshot-v1, Qwen-Plus, Yi-Lightning\n\n**Weaker models:** Gemma-2B-it, Mistral-7B-Instruct-v0.1, Qwen2.5-3B-Instruct, Vicuna-7B-v1.3\n\nThe researchers deliberately included lower-capability models to ensure comprehensive evaluation of test discriminability across the entire ability spectrum."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T18:06:40.243024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"open-llm-leaderboard details per-instance results MMLU HuggingFace \"details\" dataset per-question correct incorrect\"\n\nLinks: [{\"title\":\"open-llm-leaderboard (Open LLM Leaderboard)\",\"url\":\"https://huggingface.co/open-llm-leaderboard\"},{\"title\":\"blog/open-llm-leaderboard-mmlu.md at main · huggingface/blog\",\"url\":\"https://github.com/huggingface/blog/blob/main/open-llm-leaderboard-mmlu.md\"},{\"title\":\"Open LLM Leaderboard - a Hugging Face Space by open-llm-leaderboard\",\"url\":\"https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard\"},{\"title\":\"What's going on with the Open LLM Leaderboard?\",\"url\":\"https://huggingface.co/blog/open-llm-leaderboard-mmlu\"},{\"title\":\"Open LLM Leaderboard v1 · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/open_llm_leaderboard/archive\"},{\"title\":\"Leaderboards and Evaluations · Hugging Face\",\"url\":\"https://huggingface.co/docs/leaderboards/index\"},{\"title\":\"Open LLM Leaderboard - Hugging Face Open LLM Leaderboard | LLM Benchmark | LLMIndex | LLMIndex\",\"url\":\"https://llmindex.net/benchmarks/open-llm-leaderboard\"},{\"title\":\"Simplifying Huggingface’s open LLM leaderboard to select the right model | by Neel Das | Medium\",\"url\":\"https://medium.com/@nilakashdas/simplifying-huggingfaces-open-llm-leaderboard-to-select-the-right-model-8a513d6465d9\"},{\"title\":\"Open-LLM performances are plateauing, let’s make the leaderboard steep again - a Hugging Face Space by open-llm-leaderboard\",\"url\":\"https://huggingface.co/spaces/open-llm-leaderboard/blog\"},{\"title\":\"GitHub - VILA-Lab/Open-LLM-Leaderboard: Open-LLM-Leaderboard: Open-Style Question Evaluation. Paper at https://arxiv.org/abs/2406.07545 · GitHub\",\"url\":\"https://github.com/VILA-Lab/Open-LLM-Leaderboard\"}]\n\nBased on the search results, here's what I found regarding detailed per-question results for the Open LLM Leaderboard:\n\n## Available Detailed Results\n\nThe Open LLM Leaderboard hub organization maintains a dataset with detailed results and qu\n…[truncated 1281 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T18:06:40.243361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Open LLM Leaderboard Results Dataset Analysis\n\nBased on the webpage content, here's what I can determine about this dataset:\n\n## Structure Issues\n\n**The dataset viewer is currently broken** with a `DatasetGenerationError`. The system is unable to cast the data structure properly, which prevents full inspection of the dataset.\n\n## What We Know\n\n### Data Schema\nFrom the error traceback, the dataset contains these fields:\n\n- **Task metadata**: `task`, `group`, `dataset_path`, `dataset_name`, `test_split`, `description`\n- **Evaluation config**: `doc_to_text`, `doc_to_target`, `doc_to_choice`, `fewshot_config`, `num_fewshot`\n- **Metrics**: `metric_list` (with metric name, aggregation method, and higher_is_better flag)\n- **Model info**: `model_name`, `model_source`, `model_args`, `model_num_parameters`, `model_dtype`\n- **Results**: `results` (dict), with per-task and per-group performance metrics\n- **Evaluation metadata**: `git_hash`, `date`, `transformers_version`, `start_time`, `end_time`, `total_evaluation_time_seconds`\n\n### Dataset Organization\n\n- **Splits**: Contains `train` and `test` splits\n- **Subsets**: Has a `default` subset\n- **Sample metrics shown**:\n  - `prompt_level_loose_acc`\n  - `exact_match`\n  - `acc_norm`\n  - Task-specific results (MMLU, BBH subtasks, MUSR, etc.)\n\n### Model Count\nThe preview shows **at least 3+ models** evaluated, including:\n- `ontocord/Llama_3.2_1b-autoredteam_helpfulness-train`\n- `ontocord/RedPajama3b_v1-autoredteam_helpfulness-train`\n- `ehristoforu/Gemma2-9b-it-train6`\n\n## Programmatic Access\n\n```python\nfrom datasets import load_dataset\n\n# Load the dataset\ndataset = load_dataset(\"open-llm-leaderboard/results\")\n```\n\nHowever, **due to the current error**, this may fail. You might need to:\n1. Check the [documentation on dataset viewer configuration](https://huggingface.co/docs/hub/datasets-data-files-configuration)\n2. Open a [discussion on the dataset repo](https://huggingface.co/datasets/open-llm-leaderboard/results/discussions) for s\n…[truncated 134 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T18:06:40.243783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://zenodo.org/records/12819251",
+              "prompt": "What files are available for download? List all file names and sizes. Is there a response matrix file? IRT parameter files? What is the total data size? What format are the files in?"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T18:06:40.244041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "metabench Kipnis response matrix \"5000\" models items MMLU IRT parameters difficulty discrimination data format"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T18:06:40.244262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/docs/leaderboards/en/open_llm_leaderboard/archive",
+              "prompt": "For the Open LLM Leaderboard v1 (which used MMLU), how can I access the per-instance/per-question evaluation results? Is there a \"details\" dataset with per-item model responses? How many models were evaluated on MMLU? What is the data format?"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T18:06:40.244522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Open LLM Leaderboard v1\n\nEvaluating and comparing LLMs is hard. Our RLHF team realized this a year ago when they wanted to reproduce and compare results from several published models. It was a nearly impossible task: scores in papers or marketing releases were given without any reproducible code, sometimes doubtful, but in most cases, just using optimized prompts or evaluation setup to give the best chances to the models. They therefore decided to create a place where reference models would be evaluated in the exact same setup (same questions, asked in the same order, etc.) to gather completely reproducible and comparable results; and that’s how the Open LLM Leaderboard was born!\n\nFollowing a series of highly visible model releases, it became a widely used resource in the ML community and beyond, visited by more than 2 million unique people over the last 10 months.\n\nAround 300,000 community members used and collaborated on it monthly through submissions and discussions, usually to:\n\n- Find state-of-the-art open-source releases as the leaderboard provides reproducible scores separating marketing fluff from actual progress in the field.\n- Evaluate their work, be it pretraining or finetuning, comparing methods in the open and to the best existing models, and earning public recognition.\n\nIn June 2024, we archived it, and it was replaced by a newer version, but below, you'll find all relevant information about it!\n\n### Tasks\n\n📈 We evaluated models on 6 key benchmarks using the   Eleuther AI Language Model Evaluation Harness , a unified framework to test generative language models on a large number of different evaluation tasks.\n-   AI2 Reasoning Challenge  (25-shot) - a set of grade-school science questions.\n-   HellaSwag  (10-shot) - a test of commonsense inference, which is easy for humans (~95%) but challenging for SOTA models.\n-   MMLU   (5-shot) - a test to measure a text model's multitask accuracy. The test covers 57 tasks including elementary mathematics, US his\n…[truncated 4682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T18:06:40.244797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# metabench Dataset Files\n\n**Available Files:**\nOnly one downloadable file is listed:\n- `data.tgz` (620.4 MB)\n\n**File Format:**\nThe data is provided as a compressed tar archive (`.tgz` format).\n\n**Total Data Size:**\nThe dataset shows \"70.7 GB\" listed under total data volume, though the single downloadable file is 620.4 MB.\n\n**Regarding Specific File Types:**\nThe webpage does not mention a response matrix file or IRT parameter files specifically. The description only notes that the archive contains \"item-wise accuracies in six benchmarks from Open LLM Leaderboard 1\" and \"datasets with RMSE's for random benchmark subsets.\"\n\nTo determine what specific files exist within the compressed archive, you would need to download and extract the `data.tgz` file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T18:06:40.245060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"metabench Kipnis response matrix \"5000\" models items MMLU IRT parameters difficulty discrimination data format\"\n\nLinks: [{\"title\":\"MT-Bench: Multi-Turn Evaluation Framework\",\"url\":\"https://www.emergentmind.com/topics/mt-bench-756edf8b-73a3-47a0-8a7a-1f34e95aacd1\"},{\"title\":\"metabench A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\",\"url\":\"https://arxiv.org/html/2407.12844v2\"},{\"title\":\"(PDF) \\\\texttt{metabench}$ -- A Sparse Benchmark to Measure General Ability in Large Language Models\",\"url\":\"https://www.researchgate.net/publication/382363780_textttmetabench_--_A_Sparse_Benchmark_to_Measure_General_Ability_in_Large_Language_Models\"},{\"title\":\"metabench A Sparse Benchmark to Measure General Ability in Large Language Models\",\"url\":\"https://arxiv.org/html/2407.12844v1\"},{\"title\":\"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\",\"url\":\"https://arxiv.org/html/2604.12843\"},{\"title\":\"GitHub - adkipnis/metabench: A principled reduction of six benchmarks from the Open LLM Leaderboard to a single sparse benchmark. · GitHub\",\"url\":\"https://github.com/adkipnis/metabench\"},{\"title\":\"7 Ways MetaBench Can Improve Your ML Evaluation Pipeline – e\",\"url\":\"https://learnpageflowhub.monster/7-ways-metabench-can-improve-your-ml-evaluation-pipeline/\"},{\"title\":\"[2407.12844] metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\",\"url\":\"https://arxiv.org/abs/2407.12844\"}]\n\nBased on the search results, I found detailed information about metabench and the Kipnis research:\n\nThe metabench study used data from more than 5000 LLMs to identify the most informative items of six benchmarks including MMLU, with a total of 28,632 items.\n\n**Response Matrix and Data Collection:**\nThe research involved collecting item-wise accuracies from all available LLMs for each benchmark on the Open LLM Leaderboard.\n\n**Methodology:**\nThe approach involved several steps:\n1. Removing items based\n…[truncated 960 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T18:06:40.245355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2407.12844v2",
+              "prompt": "Find: 1) How many items does MMLU contribute to the dataset? 2) How many models were used in IRT fitting? 3) What IRT model was used (1PL, 2PL, 3PL)? 4) Are the fitted IRT parameters (a, b/delta) available for download? 5) What is the format of the response matrix? 6) How many items were selected for the final metabench from MMLU? Look in the methods, experiments, and data sections."
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T18:06:40.245562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# MetaBench Analysis: MMLU Contribution and IRT Methodology\n\n## 1. MMLU Items in Dataset\nMMLU contributed **12,508 items** after preprocessing (14,042 before preprocessing). The document notes that \"1507 items were uninformative\" and 27 had duplicate prompts.\n\n## 2. Models Used in IRT Fitting\nThe researchers analyzed data from **over 5,000 LLMs**. Specifically, \"5055 have been evaluated on all six benchmarks,\" with the full dataset containing 6,875 unique models across benchmarks.\n\n## 3. IRT Model Type\nThe study employed **2PL, 3PL, and 4PL models**. The researchers tested multiple variants: \"a 2PL model, a 3PL model with an additional lower asymptote parameter, a 4PL model with an additional upper asymptote parameter.\"\n\n## 4. IRT Parameters Availability\nThe document does not specify whether fitted IRT parameters are publicly available for download, though it mentions \"All reported analyses and results can be viewed on www.github.com/adkipnis/metabench.\"\n\n## 5. Response Matrix Format\nThe paper does not explicitly describe the response matrix format beyond mentioning \"item-wise accuracies\" collected from HuggingFace Datasets.\n\n## 6. Final MMLU Items Selected\n**96 items** were selected from MMLU for the final metabench, representing less than 1% of the original benchmark size."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T18:06:40.245866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "irt_equated_bench_regen",
+              "file": "memory.md",
+              "content": "## Phase 2 数据源调研 (2026-05-20)\n\n### PSN-IRT (AAAI 2026)\n\n- **论文全名**: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n- **作者**: Joe-Hall-Lee et al.\n- **发表**: AAAI 2026 Oral\n- **GitHub**: https://github.com/Joe-Hall-Lee/PSN-IRT\n- **IRT 参数公开**: ✅ 是\n  - `results/item_parameters.csv`: 全部 41,871 items 的 4PL 参数 (a=discrimination, b=difficulty, c=guessing, d=feasibility)\n  - `results/student_abilities.csv`: 12 个模型的 latent abilities (θ)\n  - `data/combine.csv`: 12 LLMs × 11 benchmarks 的 binary response matrix\n- **MMLU 覆盖**: 14,042 items（MMLU 全集）\n- **模型数**: 仅 12 个（360GPT2-Pro, DeepSeek-V3, Doubao-Pro, Gemini-1.5, Hunyuan-Turbo, Moonshot-v1, Qwen-Plus, Yi-Lightning + 4 个弱模型）\n- **IRT 方法**: Pseudo-Siamese Network (PSN)，非经典 EM/MCMC 估计\n- **局限**: 12 个模型太少，IRT 参数估计的可靠性存疑（经典 IRT 通常需要 ≥200 考生）\n\n### METABENCH (Kipnis et al., ICLR 2025) ⭐ 推荐\n\n- **论文全名**: \"metabench — A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\"\n- **GitHub**: https://github.com/adkipnis/metabench\n- **Zenodo 数据**: https://zenodo.org/records/12819251 (`data.tgz`, 620MB)\n- **IRT 参数公开**: ✅ 是（在 Zenodo 数据包中）\n- **数据来源**: 从 Open LLM Leaderboard v1 抓取的 per-item 评测数据\n- **MMLU 覆盖**: 12,508 items（原始 14,042 去除 1,507 无信息项 + 27 重复项）\n- **模型数**: 5,055 个模型（在全部 6 个 benchmark 上都有评测结果）；总计 6,875 个唯一模型\n- **IRT 方法**: 测试了 2PL / 3PL / 4PL 模型\n- **数据格式**: item-wise accuracies，JSONL 格式（通过 lm-evaluation-harness 输出）\n- **最终 metabench**: 从 MMLU 选出 96 items，但完整的 response matrix 和 IRT 参数在 Zenodo 中\n- **优势**: 模型数量充足（5000+），IRT 估计可靠；数据开放可下载\n\n### Open LLM Leaderboard v1 (HuggingFace)\n\n- **来源**: https://huggingface.co/open-llm-leaderboard\n- **详细结果**: https://huggingface.co/datasets/open-llm-leaderboard-old/results\n- **MMLU 评测**: 5-shot，57 个 subject tasks，~14K items\n- **per-instance 数据**: 每个模型有独立的 \"details\" 数据集，包含 per-question 结果\n- **模型数**: 数千个\n- **格式**: Parquet / JSON（每个模型单独存储）\n- **说明**: 这是 METABENCH 的原始数据来源。如果 METABENCH Zenodo 数据不满足需求，可从这里直接组装 response matrix\n- **状态**: v1 已于 2024-06 归档，v2 使用 MMLU-PRO（10 选项）替代 MMLU\n\n### tinyBenchmarks (Polo et al., 2024)\n\n- **论文**: \"tinyBenchmarks: evaluating LLMs with fewer examples\" (arXiv:2402.14992)\n- **GitHub**: https://github.com/felipemaiapolo/tinyBenchmarks\n- **HuggingFace**: https://huggingface.co/datasets/tinyBenchmarks/tinyMMLU\n- **MMLU 覆盖**: 仅 100 items（IRT anchor point 选出的子集）\n- **IRT 参数**: 未公开完整 IRT 参数，仅公开选出的 100 items 及其权重\n- **模型数**: 未公开完整 response matrix\n- **局限**: item 数量太少（100/14K），不适合做完整的 MMLU IRT 分析\n\n### HELM (Stanford CRFM)\n\n- **MMLU 排行榜**: https://crfm.stanford.edu/helm/mmlu/latest/\n- **per-instance 数据**: 有，web 界面可逐条查看 raw prompts 和 predictions\n- **批量下载**: ❌ 无直接批量下载 API，需要运行 HELM 框架本地生成或从 web 界面逐条提取\n- **局限**: 获取完整 response matrix 需要大量工程工作（scraping 或自行运行评测）\n\n### 数据规模对比\n\n| 数据源 | 模型数 | MMLU items | IRT 参数 | 数据格式 | 获取难度 |\n|--------|--------|------------|----------|----------|----------|\n| **METABENCH** | 5,055 | 12,508 | 2PL/3PL/4PL | Zenodo 下载 | ⭐ 低 |\n| **PSN-IRT** | 12 | 14,042 | 4PL (PSN) | GitHub CSV | ⭐ 低 |\n| **Open LLM LB v1** | ~数千 | ~14,042 | 无（需自拟合） | HF datasets | 中 |\n| **tinyBenchmarks** | N/A | 100 | 部分 | HF datasets | 低但无用 |\n| **HELM** | ~数十 | ~14,042 | 无 | Web scraping | 高 |\n\n### 推荐方案\n\n**首选：METABENCH Zenodo 数据**\n- 理由：5,055 个模型 × 12,508 MMLU items 的 response matrix，IRT 参数已拟合，数据完整且可直接下载\n- 操作：下载 `data.tgz`（620MB），提取 MMLU 部分的 response matrix 和 IRT 参数\n- IRT 拟合的模型数远超标准要求（5000 >> 200），参数估计可靠\n\n**辅助：PSN-IRT item_parameters.csv**\n- 理由：提供了 MMLU 全集（14,042 items）的 4PL 参数，可作为参考对比\n- 局限：仅基于 12 个模型，参数精度不如 METABENCH\n- 用途：可与 METABENCH 参数做交叉验证\n\n**备选：Open LLM Leaderboard v1 原始数据**\n- 理由：METABENCH 的数据来源，如需更灵活的 IRT 拟合可回到原始数据\n- 操作：从 HuggingFace 逐模型下载 details 数据，组装 response matrix，自行拟合 IRT\n\n### 下一步行动\n1. 下载 METABENCH Zenodo `data.tgz`，检查内部结构和 MMLU 数据格式\n2. 下载 PSN-IRT `results/item_parameters.csv`，检查 MMLU 相关 items\n3. 确认两个数据源的 item ID 是否可以与原始 MMLU 数据集对齐\n4. 选定数据源后开始 Phase 2 半合成验证实验\n"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T18:06:40.246144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T18:06:40.246381+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已写入 `memory.md`。核心结论：\n\n**首选数据源：METABENCH (Kipnis et al., ICLR 2025)**\n- 5,055 个模型 × 12,508 MMLU items 的完整 response matrix\n- 已拟合 2PL/3PL/4PL IRT 参数\n- Zenodo 一键下载（620MB）：https://zenodo.org/records/12819251\n- GitHub：https://github.com/adkipnis/metabench\n\n**辅助参考：PSN-IRT (AAAI 2026)**\n- MMLU 全集 14,042 items 的 4PL 参数直接可用（`results/item_parameters.csv`）\n- 但仅基于 12 个模型，参数可靠性不如 METABENCH\n- GitHub：https://github.com/Joe-Hall-Lee/PSN-IRT\n\n**其他数据源**（Open LLM Leaderboard v1 原始数据、tinyBenchmarks、HELM）要么是 METABENCH 的上游数据需要大量组装工作，要么覆盖太少，不推荐直接使用。\n\n下一步：下载 METABENCH 和 PSN-IRT 数据，确认 item ID 与原始 MMLU 的对齐方式。\n\nSources:\n- [PSN-IRT GitHub](https://github.com/Joe-Hall-Lee/PSN-IRT)\n- [PSN-IRT Paper](https://arxiv.org/abs/2505.15055)\n- [METABENCH GitHub](https://github.com/adkipnis/metabench)\n- [METABENCH Paper](https://arxiv.org/abs/2407.12844)\n- [METABENCH Zenodo Data](https://zenodo.org/records/12819251)\n- [Open LLM Leaderboard v1 Archive](https://huggingface.co/docs/leaderboards/en/open_llm_leaderboard/archive)\n- [tinyBenchmarks](https://github.com/felipemaiapolo/tinyBenchmarks)\n- [HELM MMLU](https://crfm.stanford.edu/2024/05/01/helm-mmlu.html)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_psn_irt_data_survey_20260520T180227"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/conversations/research-psn-irt-data-survey.md"
+}

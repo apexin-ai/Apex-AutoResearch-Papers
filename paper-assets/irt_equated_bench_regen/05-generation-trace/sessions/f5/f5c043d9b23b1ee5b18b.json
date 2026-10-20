@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c043d9b23b1ee5b18b",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "research psn irt data survey",
+  "task_key": "worker_research_psn_irt_data_survey_20260520T180227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_psn_irt_data_survey_20260520T180227_result.json",
+    "occurrence": 1,
+    "bytes": 1452,
+    "sha256": "2e8a18f4dfbd8e35771e16ab51b9098de9dc4209b7603cd50cb1267a35df5416"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已写入 `memory.md`。核心结论：\n\n**首选数据源：METABENCH (Kipnis et al., ICLR 2025)**\n- 5,055 个模型 × 12,508 MMLU items 的完整 response matrix\n- 已拟合 2PL/3PL/4PL IRT 参数\n- Zenodo 一键下载（620MB）：https://zenodo.org/records/12819251\n- GitHub：https://github.com/adkipnis/metabench\n\n**辅助参考：PSN-IRT (AAAI 2026)**\n- MMLU 全集 14,042 items 的 4PL 参数直接可用（`results/item_parameters.csv`）\n- 但仅基于 12 个模型，参数可靠性不如 METABENCH\n- GitHub：https://github.com/Joe-Hall-Lee/PSN-IRT\n\n**其他数据源**（Open LLM Leaderboard v1 原始数据、tinyBenchmarks、HELM）要么是 METABENCH 的上游数据需要大量组装工作，要么覆盖太少，不推荐直接使用。\n\n下一步：下载 METABENCH 和 PSN-IRT 数据，确认 item ID 与原始 MMLU 的对齐方式。\n\nSources:\n- [PSN-IRT GitHub](https://github.com/Joe-Hall-Lee/PSN-IRT)\n- [PSN-IRT Paper](https://arxiv.org/abs/2505.15055)\n- [METABENCH GitHub](https://github.com/adkipnis/metabench)\n- [METABENCH Paper](https://arxiv.org/abs/2407.12844)\n- [METABENCH Zenodo Data](https://zenodo.org/records/12819251)\n- [Open LLM Leaderboard v1 Archive](https://huggingface.co/docs/leaderboards/en/open_llm_leaderboard/archive)\n- [tinyBenchmarks](https://github.com/felipemaiapolo/tinyBenchmarks)\n- [HELM MMLU](https://crfm.stanford.edu/2024/05/01/helm-mmlu.html)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-psn-irt-data-survey.md"
+}

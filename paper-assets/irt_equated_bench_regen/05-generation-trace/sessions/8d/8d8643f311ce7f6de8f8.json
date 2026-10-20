@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d8643f311ce7f6de8f8",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper research cluster 5 llm evaluation",
+  "task_key": "worker_paper_research_cluster_5_llm_evaluation_20260521T034721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster_5_llm_evaluation_20260521T034721_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "fa928372f5e6fe38f4983c4d5055d599911fb01505737c78e683e8eddb6ac9f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 papers added successfully (total now 45). Here's what was added to the `llm_evaluation` cluster:\n\n| Key | Paper | Venue | Role |\n|-----|-------|-------|------|\n| `burnell2023rethink` | Rethink reporting of evaluation results in AI | Science 2023 | background |\n| `chang2024survey` | A Survey on Evaluation of Large Language Models | ACM TIST 2024 | background |\n| `maiapolo2024tinybenchmarks` | tinyBenchmarks: evaluating LLMs with fewer examples | ICML 2024 | direct-competitor |\n| `wang2024mmlupro` | MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark | NeurIPS 2024 | evaluation |\n| `ott2022benchmark` | Mapping global dynamics of benchmark creation and saturation in AI | Nature Communications 2022 | background |\n\nAll 5 verified via web search against publisher pages (Science, ACM DL, PMLR, NeurIPS proceedings, Nature). DOIs confirmed for 3; the ICML and NeurIPS entries use proceedings/arXiv URLs."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster-5-llm-evaluation.md"
+}

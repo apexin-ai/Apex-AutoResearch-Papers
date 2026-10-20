@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2295c4b8e674810b9c8",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code predictive model phase1",
+  "task_key": "worker_code_predictive_model_phase1_20260522T091330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_predictive_model_phase1_20260522T091330_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "a7342bcd9a1f8a60d416ba7eb9ecc113e84178ac7f5503f4d82ce08b9d91ca19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 1 完成。输出摘要：\n\n**数据探测**：所有 6 个数据源均可用，包括 MetaBench 57 个 MMLU subject 的 prompts CSV（含完整题目文本），12508 items 文本特征覆盖率 100%。\n\n**特征提取结果**：`artifacts/predictive_model/` 下 3 个文件——\n\n| 文件 | 内容 |\n|------|------|\n| `features.csv` | 12508 items × 36 列 |\n| `target.csv` | 12508 items × dif_c (0/1) |\n| `feature_inventory.md` | 特征清单 + 来源 |\n\n**36 个特征分三类**：\n- **统计特征 (11)**：difficulty（整体/ref/foc/other）、difficulty_change、item_variance、discrimination_ptbis（整体/ref/foc）、discrimination_change\n- **结构特征 (12)**：subject、subject_c_pct/b_pct、subject_mean_diff_change/n_items/mean_difficulty、difficulty_vs_subject、alpha_mh/delta_mh/se/p_value、li_label/li_contamination_type\n- **文本特征 (13)**：question_length/word_count、option_count/length_mean/length_std、has_negation、prompt_total_length、qtype_factual/reasoning/statement_eval/other\n\n**Target**：31.3% positive rate（3918 ETS-C / 8590 non-C），中等不平衡。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-predictive-model-phase1.md"
+}

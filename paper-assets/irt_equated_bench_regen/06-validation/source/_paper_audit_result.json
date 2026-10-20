@@ -1,0 +1,923 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{#1} has no matching \\label",
+          "location": "math_commands.tex:22"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{#2} has no matching \\label",
+          "location": "math_commands.tex:25"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{#3} has no matching \\label",
+          "location": "math_commands.tex:26"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{#4} has no matching \\label",
+          "location": "math_commands.tex:26"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Limitations' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "5 critical, 1 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper",
+      "sections": [
+        {
+          "file": "math_commands.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ackerman1992didmf' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'alzahrani2024benchmarks' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'balkir2026confident' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'balloccu2024leak' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'belzak2020smallsample' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'burnell2023rethink' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'camilli1994methods' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'carlini2022quantifying' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chai2026benchmarksleak' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chang2024survey' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'clauser1998dif' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dekoninck2024constat' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'deng2024investigating' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'donoghue1993mh' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'french2010hierarchical' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gema2024mmlu' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'golchin2024timetravel' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'habba2026growingpains' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hardy2026scalability' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hendrycks2021mmlu' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'holland1988mh' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kiela2021dynabench' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kim2019fpc' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kipnis2024metabench' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kish1965survey' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kolen2014equating' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kraus2024irt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lalor2019irt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2024contamination' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2024latesteval' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2025atlas' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'liang2026dvd' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lord1980irt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'luo2025medirt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'maeda2025difllm' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'magis2010difr' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'maiapolo2024tinybenchmarks' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'meredith1993invariance' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'millsap1993dif' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'millsap2011invariance' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'muthen1985mimic' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'nandakumar1993dif' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'oren2024proving' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'penfield2007dif' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'qian2026benchmark2' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'raju1988area' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'rao1992variance' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'rodriguez2021evaluation' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'roussos1996multidimensionality' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'shealy1993sibtest' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'shi2024mink' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'suk2026rethinking' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'swaminathan1990logistic' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'tao2026selfcritique' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'teresi2007dif' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'tirumala2022memorization' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'vandenberg2000invariance' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'vania2021irt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wainer1993differential' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wang2024mmlupro' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wang2026fragility' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'white2025livebench' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'woods2009mimic' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'xu2025benchmark' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'yao2025jeirt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ying2024automating' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zawalski2026codec' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zellers2019hellaswag' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhang2024minkpp' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhao2025mmlucf' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhou2026psnirt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhu2026bhi' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zumbo1999handbook' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "math_commands": [
+              "\\ell",
+              "\\eta"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 73,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/_audit_compile_koq0qga0",
+        "main_tex": "main.tex",
+        "log_tail": "(pdftex.def)             Requested size: 219.08614pt x 210.77646pt.\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[14]\nUnderfull \\hbox (badness 1389) in paragraph at lines 300--301\n\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\n []\n\n\nUnderfull \\hbox (badness 3780) in paragraph at lines 300--301\n\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\n []\n\n[15 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\nOverfull \\hbox (19.13397pt too wide) in paragraph at lines 332--341\n [][] \n []\n\n\nOverfull \\hbox (11.42276pt too wide) in paragraph at lines 353--363\n [][] \n []\n\n[16 <../figures/paper/fig_4_downstream_impact.pdf>]\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3\n99.\n\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\n)\nUnderfull \\hbox (badness 1092) in paragraph at lines 399--400\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [17\n\n] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\n ) \nHere is how much of TeX's memory you used:\n 18590 strings out of 469438\n 303206 string characters out of 5468411\n 806386 words of memory out of 5000000\n 46377 multiletter control sequences out of 15000+600000\n 711267 words of font info for 427 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,12n,93p,1841b,634s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim\nes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (17 pages, 1058620 bytes).\nPDF statistics:\n 892 PDF objects out of 1000 (max. 8388607)\n 747 compressed objects within 8 object streams\n 144 named destinations out of 1000 (max. 500000)\n 70484 words of extra memory for PDF output out of 74296 (max. 10000000)\n",
+        "error": "",
+        "pages": 17,
+        "warnings": [
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 17,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 1762) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 2012) in paragraph at lines 5--6",
+        "Underfull \\hbox (badness 2142) in paragraph at lines 5--6",
+        "Underfull \\hbox (badness 4403) in paragraph at lines 5--6",
+        "Underfull \\hbox (badness 1019) in paragraph at lines 5--6",
+        "Underfull \\hbox (badness 1917) in paragraph at lines 5--6",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1033) in paragraph at lines 6--7",
+        "Underfull \\hbox (badness 2293) in paragraph at lines 6--7",
+        "Underfull \\vbox (badness 4316) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1558) in paragraph at lines 10--11",
+        "Underfull \\hbox (badness 1728) in paragraph at lines 10--11",
+        "Underfull \\hbox (badness 1253) in paragraph at lines 10--11",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 14--1",
+        "Underfull \\hbox (badness 4328) in paragraph at lines 14--1",
+        "Underfull \\vbox (badness 4505) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1057) in paragraph at lines 41--42",
+        "Underfull \\hbox (badness 2799) in paragraph at lines 63--64",
+        "Underfull \\hbox (badness 2368) in paragraph at lines 63--64",
+        "Underfull \\hbox (badness 2564) in paragraph at lines 12--13",
+        "Underfull \\hbox (badness 1571) in paragraph at lines 25--26",
+        "Underfull \\hbox (badness 2173) in paragraph at lines 25--26",
+        "Underfull \\hbox (badness 1048) in paragraph at lines 25--26",
+        "Underfull \\hbox (badness 2790) in paragraph at lines 28--29",
+        "Underfull \\hbox (badness 2111) in paragraph at lines 28--29",
+        "Underfull \\hbox (badness 1603) in paragraph at lines 28--29",
+        "Underfull \\hbox (badness 2547) in paragraph at lines 64--65",
+        "Underfull \\hbox (badness 6032) in paragraph at lines 77--78",
+        "Underfull \\hbox (badness 2073) in paragraph at lines 77--78",
+        "Underfull \\hbox (badness 1077) in paragraph at lines 77--78",
+        "Underfull \\hbox (badness 1436) in paragraph at lines 90--91",
+        "Underfull \\hbox (badness 1303) in paragraph at lines 90--91",
+        "Underfull \\hbox (badness 8000) in paragraph at lines 96--97",
+        "Underfull \\hbox (badness 2073) in paragraph at lines 96--97",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 96--97",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 96--97",
+        "Underfull \\hbox (badness 2111) in paragraph at lines 96--97",
+        "Underfull \\vbox (badness 1215) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1990) in paragraph at lines 8--9",
+        "Underfull \\hbox (badness 2744) in paragraph at lines 8--9",
+        "Underfull \\hbox (badness 3612) in paragraph at lines 8--9",
+        "Underfull \\hbox (badness 4556) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1248) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1158) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 2065) in paragraph at lines 6--3",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 6--3",
+        "Underfull \\hbox (badness 1067) in paragraph at lines 6--7",
+        "Underfull \\hbox (badness 1622) in paragraph at lines 6--7",
+        "Underfull \\hbox (badness 1189) in paragraph at lines 6--7",
+        "Underfull \\hbox (badness 5592) in paragraph at lines 9--37",
+        "Underfull \\hbox (badness 1946) in paragraph at lines 9--37",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 20--21",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 20--21",
+        "Underfull \\hbox (badness 1484) in paragraph at lines 20--21",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 2253) in paragraph at lines 24--25",
+        "Overfull \\hbox (18.40866pt too wide) in paragraph at lines 58--69",
+        "Overfull \\hbox (4.9852pt too wide) in paragraph at lines 164--176",
+        "Overfull \\hbox (4.78798pt too wide) in paragraph at lines 194--206",
+        "Overfull \\hbox (3.6588pt too wide) in paragraph at lines 242--254",
+        "Underfull \\hbox (badness 1389) in paragraph at lines 300--301",
+        "Underfull \\hbox (badness 3780) in paragraph at lines 300--301",
+        "Overfull \\hbox (19.13397pt too wide) in paragraph at lines 332--341",
+        "Overfull \\hbox (11.42276pt too wide) in paragraph at lines 353--363",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 399--400"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract→Intro→Method→Experiments→Discussion→Conclusion 主线高度一致：问题(temporal score incomparability)→方法(MH-DIF)→发现(29-31% C%)→对照(web-overlap independence)→建议(Monitor/Triage/Correct)。未检测到叙事漂移。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "Contribution 3 (audit protocol) 覆盖面较薄。Introduction 将其列为独立贡献，但正文仅在 Discussion §5.2 用~6行描述三步协议。协议的经验阈值确实源自实验数据，但作为独立贡献的发展深度可能不够让审稿人信服。建议扩展，或降级为\"附带的实践建议\"而非独立贡献。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Introduction ¶1 极度密集：一段内引入5个核心概念(measurement invariance, DIF, temporal score incomparability, MH-DIF, ETS classification)，并给出主要发现(31% C%)和对照(0.62% baseline, ρ≈0.997)。功能上可行但审稿人可能觉得信息过载。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "Introduction ¶1 报告 ρ ≈ 0.997（MMLU-specific），Abstract 和 Conclusion 报告 ρ ≥ 0.994（跨6个benchmark最小值）。两者在各自语境中准确，但读者如果只看 Intro 会高估跨 benchmark 的 ranking 稳定性。建议 Intro 中明确标注\"on MMLU\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答了四个必答问题（问题/方法/结果/意义），~140 词，简洁高效。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 采用压缩3段结构（¶1背景+问题+结果, ¶2 gap, ¶3贡献+控制）而非标准5段。对信息密度大的论文可行，但非典型。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按主题组织（Psychometric Methods / Contamination Detection / Benchmark Quality），非堆砌式。✓"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "Related Work 末尾含优先级声明 \"To our knowledge, no prior work applies DIF to benchmark temporal comparability\"（related_work.tex:6）。按规范，contribution/priority claims 应在 Introduction 中，不在 Related Work 中。建议移至 Intro 或改写为 positioning 表述。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "Conclusion 仅一句话（conclusion.tex:6）。虽然涵盖核心发现，但过度压缩。审稿人可能期望2-3句，包含broader implications或open questions。理解这是8页限制下的空间取舍。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献对齐",
+      "message": "三项贡献均有对应正文支撑：C1→§4.2/4.3/4.6/Table 1/3, C2→§3.4/4.4/Fig 3, C3→§5.2。无孤儿章节。Title \"5,227 Models\" 与 Data section 一致。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "claim强度",
+      "message": "\"robust\" (intro:5 \"rankings are robust\") 有 ρ≈0.997 支撑。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "claim强度",
+      "message": "\"consistently\" (experiments:96) 有6个benchmark数据支撑。✓ 适当加了 hedge \"These differences may partly reflect item difficulty distributions; we treat them as descriptive.\""
+    },
+    {
+      "severity": "info",
+      "dimension": "claim强度",
+      "message": "\"to our knowledge\" 适当 hedge 优先级声明。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "claim强度",
+      "message": "\"near-independent\" 有 Jaccard=0.206, φ=0.012, p=0.88 支撑。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "claim强度",
+      "message": "\"confirming structured capability shifts beyond contamination\" (abstract) — χ²=562.7 + mixed-mechanism injection无法完全复现 instruct gradient。\"confirming\" 在此处含义为\"证实存在超越contamination的结构化能力变化\"，证据充分。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "主结果表（Table 1, 3）为点估计，无 error bar。但正文提供 bootstrap 95% CI ([29.2%, 37.8%]; cluster: [26.7%, 53.2%])，且 DEFF 给出范围估计 (13.5-29.2%)。对于统计分析型论文（非ML训练），这种做法可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Semi-synthetic injection 使用5个random seeds做不确定性估计。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "多重对照充分：random split (0.62%)、ability-quintile (2.9%)、within-family、matched-ability、LOFO、composition control。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "代码/数据匿名链接在 Abstract 脚注。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "方法参数充分披露（K=5, exploitation rates, seed count 等）。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "AI 助手使用声明在 Appendix §A.10。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "统计分析型论文，无需 GPU/训练时间披露。N/A"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "核心符号（DIF, C%, Δ_MH, α_MH, DEFF, ΔFPR, ΔTPR）首次出现时均有定义，全文使用一致。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "缩写（LLM, DIF, ETS, MH, MMLU, IRT, METABENCH 等）首次出现时展开。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "各章节间无显式过渡句，但逻辑流自然（Method→Experiments→Discussion）。对8页密集论文可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Discussion",
+      "message": "§5.1 提供了高层解读（base/instruct reversal 的结构性含义），非简单重复结果数字。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Discussion",
+      "message": "§5.2 提供了基于数据的实践建议。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "3个实质性限制点：(1)stylized injection model (2)independence violation (3)cross-subject matching assumption。非回避式，直面方法局限。✓"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:5 em-dash: \"cohorts---versus 0.62\\%\"。应改为逗号或句号分隔。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:7 双 em-dash 括注: \"exposure}---whether items appear in training corpora---through\"。应改为逗号或圆括号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:64 em-dash: \"functioning}---complementary diagnostic dimensions\"。应改为句号或冒号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:77 em-dash: \"$0.167$---still insufficient\"。应改为逗号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:96 双 em-dash 括注: \"benchmarks---including ARC---consistently\"。应改为逗号或圆括号。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "主文共7处解释性 em-dash (---), Appendix 中另有数处。按规范应全部消除（数字范围 `--` 和表格缺失值 `---` 除外）。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "limitations.tex:9 filler word: \"Additionally, model release dates...\"。应删除 \"Additionally\" 直接写。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 \"delve/leverage/utilize/myriad/plethora\" 等黑名单词汇。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "未检测到过度分段（2-3句一段）。段落长度正常。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 \"It is worth noting\" / \"Notably\" / 连续 Furthermore/Moreover。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "未检测到内部实验编号、服务器名、IP 地址、内部路径等。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "未检测到语义级内部流程泄露。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract ~140 words，未超过 200 word 限制。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "仅一个 Limitations section，位于正文（limitations.tex）。Appendix 无 limitations section。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations 覆盖3个核心点，篇幅适当。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "论文 PDF 中无 ARR Responsible NLP Checklist（正确，应在 OpenReview submission form 中填写）。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "8页正文限制：从 \\enlargethispage{12\\baselineskip}（conclusion.tex:1）判断，正文紧贴8页边界。Limitations 不计入页数限制，设置了 \\enlargethispage{-6\\baselineskip} 将其推至下页。布局可行但激进。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item，第一个 display item（Figure 1 pipeline 图）出现在 page 2 顶部，在前 3 页内，可接受。Figure 1 传达核心四阶段审计流程，与 Title/Abstract 故事一致。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title/Author/Abstract 排版整洁专业，无拥挤感。Abstract 含脚注（代码链接），位置合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主文本 8 页含 4 figures + 2 tables = 6 个 display items（0.75/页），实证类论文密度合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 3,5",
+      "message": "Page 3 和 page 5 各为纯文本页，但中间隔有 Figure 2（page 4）和 Figure 3（page 6），无连续 2 页以上纯文本。节奏可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Page 8 集中了 Figure 4（全宽 6 子图）+ Figure 5 + Discussion + Conclusion，内容密集但未溢出，空间利用充分。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 2",
+      "message": "Figure 1 pipeline 图：右侧 ETS Classification 面板和 Mantel-Haenszel 列联表中的文字/公式非常小（估计 ≤ 正文字号的 50%），打印后难以辨认。建议放大关键数字或简化面板内文本。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Figure 4（6 个 ranking degradation 子图）：轴标签（Items Removed）和图例文字过小，6 子图压缩到全宽后每个子图面积有限。建议增大 axis label 字号或减少 tick label 密度。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 ICC 曲线：分辨率足够，颜色可区分（蓝色 vs 暖色调），caption 自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 3 dose-response 曲线：设计干净，误差带清晰，caption 自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 5 bar chart：单栏图，颜色可区分，caption 自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 使用蓝色+暖色方案，Figure 4 使用蓝色+橙色方案（色盲友好）。Figure 5 的绿色/红色对比可能对红绿色盲不够友好，但影响较小。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 1 和 Table 2 均使用 booktabs 风格（水平线），无竖线，格式规范。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 1 和 Table 2 为描述性统计表，非方法对比表，无需加粗最优值。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 11",
+      "message": "Table 3（附录）：booktabs 风格，数据对齐良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "所有 Figure/Table 均出现在首次引用附近（同页或下一页），无 float 漂移到论文末尾。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 4 为 figure*（全宽），适合 6 子图布局。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "最后一页（附录）内容仅占约 40%，约 60% 空白。但此为附录末页（Section P Composition Control + Section Q Use of AI Assistants），属常见情况，非主文本页。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主文本页面无异常大面积空白，双栏间距均匀。无 margin 溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-17",
+      "message": "公式渲染正确（公式 1-2 及行内公式），无 LaTeX 错误残留。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "无 section heading 孤悬页底——所有标题后均有 ≥2 行正文。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-10",
+      "message": "参考文献格式统一，无 [?] 未解析引用，编号连续。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract 约 141 词，远低于 200 词上限。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations 章节仅出现一次，位于 page 9 主文本中（非附录），约 1 段覆盖 3 个要点。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "PDF 中未包含 ARR Responsible NLP Checklist（应在 OpenReview submission form 中填写）。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "主文本（Title 到 Conclusion）恰好 8 页（pages 1-8）。Limitations（page 9）和 References（pages 9-10）不计入页数。符合 EMNLP 2026 long paper 8 页限制。✓"
+    }
+  ],
+  "counts": {
+    "critical": 5,
+    "warning": 166,
+    "info": 58
+  },
+  "error": "",
+  "timestamp": "2026-05-25T11:46:08.018741+00:00"
+}

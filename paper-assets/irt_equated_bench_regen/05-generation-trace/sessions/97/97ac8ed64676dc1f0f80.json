@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97ac8ed64676dc1f0f80",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260521T042708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260521T042708_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "ffa336dc5b4948d015f13db04e8726536fb606997a356c38ead6b0e0f5a9f475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction written to `paper/sections/introduction.tex` (~1010 words). Structure:\n\n1. **Hook** (P1): 31% MMLU instability finding with random-split control (0.18%) and within-domain persistence (38.1%)\n2. **Gap** (P2): Web-overlap labels measure global exposure, not differential functioning; Figure 1 placed here with ICC illustration\n3. **Discovery narrative** (P3): Honest pivot from contamination detection hypothesis to benchmark characterization, citing Wang et al. fragility and Habba et al. as motivation/complement\n4. **Tension resolution** (P4): 31% instability vs. ρ=0.997 ranking stability, resolved via measurement redundancy; DIF as diagnostic lens with model-family-specific rank shifts\n5. **Novelty statement** (P5): Scale, cross-subject matching, ground truth meta-critique, cross-benchmark replication\n6. **Contributions list**: 4 numbered claims with section references\n\nAll style constraints verified: no em-dashes, no -ing phrase endings, no banned transition words, no LaTeX comments, paragraphs 5-8 sentences, `\\centering` instead of `\\begin{center}`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

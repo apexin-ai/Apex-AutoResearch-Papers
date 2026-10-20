@@ -1,0 +1,83 @@
+paper_key: "li2024latesteval"
+title: "LatestEval: Addressing Data Contamination in Language Model Evaluation through Dynamic and Time-Sensitive Test Construction"
+venue: "AAAI 2024"
+full_text_available: true
+
+research:
+  baselines: [SQuADv2, BoolQ, QuAC, NewWiki, Wikitext]
+  metrics:
+    - {name: "perplexity (contamination detection)", direction: "lower_means_contaminated"}
+    - {name: "LLM-as-judge score", direction: "higher_better"}
+    - {name: "pairwise win rate", direction: "higher_better"}
+    - {name: "human evaluation (faithfulness/answerability/copyability)", direction: "informational"}
+  datasets:
+    - {name: "LatestEval", size: "6,899 QA pairs from 1,500 passages (arXiv/BBC/GitHub)"}
+    - {name: "SQuADv2", size: "standard"}
+    - {name: "BoolQ", size: "standard"}
+    - {name: "QuAC", size: "standard"}
+  ablation_dimensions: [source type (arXiv/BBC/GitHub), question type (terminology/summary/purpose/example/future)]
+  training_recipe: {optimizer: "N/A (benchmark)", lr: "N/A", hardware: "GPT-4 for generation and judging"}
+  method_family: "temporal contamination-resistant benchmarking"
+
+positioning:
+  core_claim: "通过只使用最新发布的文本构建reading comprehension测试，从时间维度根本性地消除contamination，同时用answer removal策略鼓励推理而非复制"
+  key_results: "LatestEval perplexity接近fresh Wiki text（无contamination信号）；BoolQ/QuAC perplexity接近Wikitext（强contamination信号）；Human eval: 4.5% unfaithful, 5.7% unanswerable, 2.1% copyable"
+  limitations:
+    - "4.5% examples show GPT-4 using internal knowledge rather than passage content"
+    - "5.7% questions become unanswerable after answer removal"
+    - "仅覆盖reading comprehension任务"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "超过90%的Quac/SQuADv2/DROP样本被标记为contaminated；现有decontamination方法需要训练数据访问"
+  tension: "三个难题：(1)closed models无法检查训练数据 (2)人工评估成本高 (3)海量数据使回溯decontamination极其困难"
+  key_insight: "在pipeline设计处揭示：利用时间差——只用模型训练截止日期之后的文本，从源头消除contamination可能"
+  argument_chain: "contamination widespread → existing solutions limited → temporal solution (latest texts) → scope analysis (1000 real queries) → pipeline (collect→extract→generate) → validation (perplexity + human eval)"
+  contribution_framing: "6条贡献覆盖分析、检测、pipeline、方法创新、实证、实际方案。措辞突出'first'和'novel'"
+  intro_structure: "4段：contamination现状(引用具体数字) → 三个核心问题 → 解决方案概述 → 结果预告"
+  notable_technique: "先用1000条真实Human-AI对话做scope analysis，确定评估应覆盖哪些query类型，让benchmark设计有empirical grounding"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "LatestEval五步pipeline示意图：收集最新文本 → 构建答案 → 构建查询 → 准备段落"
+    narrative_role: "展示完整pipeline流程，作为方法section的可视化摘要"
+    design_elements: ["流程图", "输入输出示例", "数据源标注"]
+    visual_style: "纵向流程图，每步一个框，附文档源图标"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "不同数据集在多个模型上的perplexity比较"
+      how_gain_highlighted: "LatestEval的perplexity线接近fresh Wiki(高)，BoolQ/QuAC接近Wikitext(低=contaminated)"
+      design_note: "多线对比图，用颜色区分contaminated vs clean datasets，读者一眼看出差异"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "5个模型在5种query类型上的单答案分数和pairwise win rate"
+      how_gain_highlighted: "GPT-4在所有类别领先，foundation models表现差"
+      design_note: "双面板(单答案+pairwise)，展示benchmark的区分能力"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (pipeline) → Figure 2 (contamination验证) → Figure 3 (memorization实例) → Figure 4 (模型评估)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "sources × question types"
+    col_axis: "statistics (counts)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "N/A (descriptive statistics)"
+    statistical_reporting: "counts"
+    num_baselines: 0
+    design_note: "数据集统计表，展示LatestEval的规模和多样性"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["source (arXiv/BBC/GitHub)", "quality dimensions (faithfulness/answerability/copyability)"]
+      variation_style: "full_numbers"
+      design_note: "Human evaluation结果分source和question type细分，展示质量分布"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "N/A"

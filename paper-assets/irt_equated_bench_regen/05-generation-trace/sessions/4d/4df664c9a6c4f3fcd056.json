@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4df664c9a6c4f3fcd056",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 m3 gema enrichment ci",
+  "task_key": "worker_code_r17_m3_gema_enrichment_ci_20260522T160033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_m3_gema_enrichment_ci_20260522T160033_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "cf9ef47a1500ff5fe06ff8561d3b1b11c375a4d61c69d6f2f74a07d9f01e3457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three outputs produced. Summary of results:\n\n**DIF-C × Gema MMLU-Redux Error Enrichment:**\n- Universe: 5,069 items (vs task's expected ~4,802 — difference due to the original R14-SF5 having applied a li_label filter)\n- Enrichment = **1.10×** (slightly above 1.0, not below)\n- Bootstrap 95% CI: **[0.92, 1.27]** — includes 1.0\n- Fisher exact: OR=1.156, p=0.235\n- φ = 0.017\n\nThe CI comfortably spans 1.0, consistent with the Fisher p=0.235. DIF-C items are not significantly enriched among Gema-annotated error items. The point estimate differs from the R14-SF5 value (0.92×) because that analysis applied an additional `li_label` filter reducing the universe; the current analysis uses the natural DIF × Redux join.\n\nOutputs:\n- Script: `artifacts/r17_gema_enrichment_ci/gema_enrichment_ci.py`\n- CSV (1000 bootstrap reps): `artifacts/r17_gema_enrichment_ci/gema_enrichment_ci_results.csv`\n- Report: `artifacts/r17_gema_enrichment_ci/gema_enrichment_ci_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-m3-gema-enrichment-ci.md"
+}

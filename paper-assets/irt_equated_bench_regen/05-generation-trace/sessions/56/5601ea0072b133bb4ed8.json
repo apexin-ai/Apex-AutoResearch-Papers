@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5601ea0072b133bb4ed8",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code data audit experiments tables",
+  "task_key": "worker_code_data_audit_experiments_tables_20260523T193629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_audit_experiments_tables_20260523T193629_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "4c3a919271b391b4b57d8e672df10f8d9b404a4aabb13df75cd001d0c6454b01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/data_audit_part2.md`。\n\n核查覆盖了 3 个 Table（62 cells）+ experiments.tex（~55 个数字）+ discussion.tex（~17 个数字）。\n\n**需立即修正的 4 项**：\n\n1. **Table 1 Ability quintile N**: 论文写 `~2,600/~2,600`，实际 `2,092/2,089` — 多报约 500/组\n2. **§5.2 bootstrap CI [29.4%, 38.1%]**: 从 bootstrap_results.csv 计算为 `[29.2%, 37.8%]`\n3. **§5.6 τ=0.958**: 六个 benchmark 的均值 τ=0.962、中位数 0.959、最小值 0.943 — 无解释可得 0.958\n4. **§5.6 flip rate ≤2.8%**: WinoGrande=2.84%，超过 2.8%\n\n其余 ⚠️ 项为措辞/四舍五入/上下文问题（AUC at N≥80 措辞、18.3%→18.4% 四舍五入、±800 对称性等），不影响结论但值得注意。\n\nk=10/20/30 ΔFPR 值（summary_by_k_full.csv）、Table 3 全部 42 cells、base/instruct 分层数据均与源文件完全匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-audit-experiments-tables.md"
+}

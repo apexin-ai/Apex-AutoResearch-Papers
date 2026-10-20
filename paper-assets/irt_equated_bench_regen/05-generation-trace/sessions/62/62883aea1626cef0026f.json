@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62883aea1626cef0026f",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r17 web overlap k distribution",
+  "task_key": "worker_code_r17_web_overlap_k_distribution_20260523T120838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r17_web_overlap_k_distribution_20260523T120838_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "92ec21ae870aa667196f126844c7f7012b6ba51d0868d356dd6e030696db280e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**结果概要：**\n\n- 57 个 subject 全部有标注数据，其中 **54 个** 检出 contamination（prevalence > 0%），仅 3 个为 0%（high_school_european_history, high_school_us_history, moral_scenarios）\n- Prevalence 分布：mean 38.4%, median 39.8%, 范围 [0%, 76.4%]，标准差 20.8%\n- 16 个 subject 超过 50%，41 个超过 25%，50 个超过 10%\n- **k 参数约束**：经验上界 k ≤ 54，contamination 跨 subject 分布极广泛，支持在模拟中使用高 k 值（k ≥ 30）\n\n输出文件：\n- `artifacts/r17_evidence/web_overlap_k_distribution.py` — 分析脚本\n- `artifacts/r17_evidence/web_overlap_k_distribution.md` — 完整报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r17-web-overlap-k-distribution.md"
+}

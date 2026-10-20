@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32dcb4c9fa15b710961d",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper research cluster 4 benchmark design",
+  "task_key": "worker_paper_research_cluster_4_benchmark_design_20260521T033325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster_4_benchmark_design_20260521T033325_result.json",
+    "occurrence": 1,
+    "bytes": 1491,
+    "sha256": "7c22ff3843db78a906dd07d139e419af2b50142e3c94a59f8ad72c8b4ca1b9b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 8 benchmark_design papers are verified. Here's the summary:\n\n**Verified (1):**\n- `white2025livebench` — updated with full author list, S2 ID, DOI, venue confirmed as ICLR 2025\n\n**Added (7):**\n| Key | Title | Venue | Role |\n|-----|-------|-------|------|\n| `kipnis2024metabench` | metabench — A Sparse Benchmark of Reasoning and Knowledge in LLMs | arXiv | foundation (primary data source) |\n| `hendrycks2021mmlu` | Measuring Massive Multitask Language Understanding | ICLR 2021 | foundation |\n| `liang2023helm` | Holistic Evaluation of Language Models | TMLR 2023 | foundation |\n| `chiang2024chatbot` | Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference | ICML 2024 | method-component |\n| `mialon2023gaia` | GAIA: a benchmark for General AI Assistants | arXiv | method-component |\n| `li2024latesteval` | LatestEval: Dynamic and Time-Sensitive Test Construction | AAAI 2024 | direct-competitor |\n| `kiela2021dynabench` | Dynabench: Rethinking Benchmarking in NLP | NAACL 2021 | foundation |\n\n**Notes:**\n- Open LLM Leaderboard (Beeching/Fourrier) has no formal publication — replaced with DynaBench (seminal dynamic benchmarking paper) and LatestEval (contamination-free construction)\n- METABENCH is by Kipnis et al. (not Guérin); the Guérin connection is actually Frank Guerin from LatestEval/Li et al. contamination report\n- `zhang2024gsm1k` remains in contamination_detection as a cross-reference\n- Total papers in map: 40"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster-4-benchmark-design.md"
+}

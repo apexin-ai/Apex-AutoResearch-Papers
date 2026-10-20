@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e08331cb2ab209281d37",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "paper figure fig A1 subject heatmap",
+  "task_key": "worker_paper_figure_fig_A1_subject_heatmap_20260521T002027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_A1_subject_heatmap_20260521T002027_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "3f1cc1f4138bd6ccd1df18fd1c20d20109458f1f0573abd3d965cd260000ea87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册完毕。\n\n**产出文件：**\n- PDF: `figures/paper/fig_A1_subject_heatmap.pdf`\n- PNG: `figures/paper/fig_A1_subject_heatmap.png`\n- 脚本: `figures/paper/fig_A1_subject_heatmap.py`\n- Artifact ID: `art_20260521_f338b5`\n\n**验证：** 57 个 subject 按 C% 降序排列，Business Ethics (48.4%) 居首，Computer Security (20.7%) 垫底，Mean = 31.3% 虚线清晰，5 个 domain group 颜色区分正确。图表支持 narrative intent——temporal DIF 广泛分布于所有 MMLU subjects，非集中于少数领域。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-a1-subject-heatmap.md"
+}

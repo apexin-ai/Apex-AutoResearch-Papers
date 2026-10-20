@@ -1,0 +1,143 @@
+{
+  "dataset": {
+    "name": "METABENCH MMLU",
+    "n_models": 5219,
+    "n_items": 12508,
+    "n_subjects": 57,
+    "total_csv_rows": 73383381,
+    "all_subjects_same_model_count": false,
+    "models_per_subject": [
+      5226,
+      5227,
+      5226,
+      5227,
+      5227,
+      5227,
+      5227,
+      5226,
+      5226,
+      5227,
+      5227,
+      5227,
+      5227,
+      5227,
+      5227,
+      5226,
+      5226,
+      5226,
+      5226,
+      5225,
+      5225,
+      5225,
+      5225,
+      5226,
+      5226,
+      5225,
+      5226,
+      5225,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5225,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5225,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5225,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226,
+      5226
+    ]
+  },
+  "irt_params": {
+    "source": "mmlu-preproc.rds",
+    "difficulty_range": [
+      0.008478635753975857,
+      0.6889250814332247
+    ],
+    "difficulty_mean": 0.4438316825382742,
+    "discrimination_range": [
+      -0.5506028215010862,
+      0.2909499687185291
+    ],
+    "discrimination_mean": 0.07581981898369987,
+    "negative_discrimination_items": 1926,
+    "floor_items": 258,
+    "ceiling_items": 0
+  },
+  "model_accuracy": {
+    "mean": 0.5917755767176989,
+    "std": 0.16040958355794102,
+    "min": 0.21762072273744804,
+    "max": 0.9113367444835305,
+    "below_random": 366
+  },
+  "cohorts": {
+    "2021-H1": {
+      "n": 5,
+      "sufficient": false
+    },
+    "2022-H1": {
+      "n": 9,
+      "sufficient": false
+    },
+    "2022-H2": {
+      "n": 4,
+      "sufficient": false
+    },
+    "2023-H1": {
+      "n": 287,
+      "sufficient": true
+    },
+    "2023-H2": {
+      "n": 966,
+      "sufficient": true
+    },
+    "2024-H1": {
+      "n": 656,
+      "sufficient": true
+    },
+    "2024-H2": {
+      "n": 2,
+      "sufficient": false
+    }
+  },
+  "annual_cohorts": {
+    "2021": 5,
+    "2022": 13,
+    "2023": 1253,
+    "2024": 658
+  },
+  "rl_models_count": 477,
+  "train_test_split": {
+    "train": 4755,
+    "test": 464
+  },
+  "key_answers": {
+    "cohorts_n_ge_80": {
+      "2021": false,
+      "2022": false,
+      "2023": true,
+      "2024": true
+    },
+    "rl_models_present": true,
+    "irt_params_in_rds": true
+  }
+}

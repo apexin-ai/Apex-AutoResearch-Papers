@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf81ece45cb273cadd32",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 004 bootstrap ci",
+  "task_key": "worker_code_plan_004_bootstrap_ci_20260521T033133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_bootstrap_ci_20260521T033133_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "536acb2703b4c0ae0781724f87b7f88c2de4a2e4a25c4c239c980d18ff56738b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。BCa bootstrap (n=10,000) 结果：\n\n| Statistic | Estimate | 95% BCa CI | p |\n|-----------|----------|------------|---|\n| Pearson r (gap vs dif_advantage) | −0.478 | [−0.714, −0.155] | 0.005 |\n| Spearman ρ (gap vs dif_advantage) | −0.403 | [−0.687, −0.031] | 0.020 |\n| Partial r (controlling gsm8k_acc) | −0.385 | [−0.640, −0.058] | 0.030 |\n\n三个 CI 均不跨零，点估计与 Step 3 报告完全一致。Spearman ρ 的 CI 上界接近零（−0.031），说明 rank-based 估计的不确定性较大，但仍显著。\n\n产出已注册：`art_20260521_882fe3`（报告）、`art_20260521_9315bd`（脚本）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-bootstrap-ci.md"
+}

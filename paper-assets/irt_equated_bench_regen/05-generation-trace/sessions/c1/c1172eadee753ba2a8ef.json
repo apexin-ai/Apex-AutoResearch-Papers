@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1172eadee753ba2a8ef",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code plan 016 within subject injection",
+  "task_key": "worker_code_plan_016_within_subject_injection_20260520T223139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_016_within_subject_injection_20260520T223139_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "f5e0f9a71f2a4961a9ecdcdea4592c62f6c45b2fc0449026199b4bfc99977bbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 016 完成。核心结果：\n\n**成功标准达成（2/3 subjects ΔTPR > 0.3 at p=0.5）**\n\n| Subject | N items | ΔTPR(p=0.5) | ΔTPR(p=1.0) | Fisher p(0.5) |\n|---------|---------|-------------|-------------|---------------|\n| human_aging | 203 | **+0.385** | +0.685 | 0.0013 |\n| professional_medicine | 248 | **+0.327** | +0.694 | 0.006 |\n| business_ethics | 93 | -0.078 | +0.400 | 0.60 |\n\n关键发现：\n- **≥200 items 的 subject**：within-subject MH-DIF 在 p=0.5 即可显著检测注入信号，ΔTPR 与 plan_011 全局结果量级一致\n- **business_ethics（93 items）**：baseline FPR 已达 56%（matching variable 只有 93 项，精度不足），p=0.5 信号被噪声淹没，但 p=1.0 仍能完美检测（TPR=1.0, Fisher p=0.001）\n- 这验证了 plan_014 发现的 ~38% within-subject temporal C% 是真实信号，而非方法缺陷"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-016-within-subject-injection.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_dif_power_sim",
+  "project": "irt_equated_bench_regen",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:16:29.354Z",
+    "updated_at": "2026-05-20T18:47:54.519Z",
+    "hypothesis": "DIF 跨模型批次分析（MH + Logistic Regression）在 N=50-80/group、污染效应量 δ≥1.0 logits 时，对 10% 污染 items 的检测功效 TPR≥0.70 且 FPR≤0.10。这是整个 pipeline 的前提假设——若 DIF 在理想合成数据上都 underpowered，则后续真实数据方案不成立。"
+  },
+  "timestamp": "2026-05-20T18:47:54.558226+00:00",
+  "trigger": "update_registry"
+}

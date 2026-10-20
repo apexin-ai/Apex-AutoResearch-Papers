@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b55f25b835e27a701abe",
+  "project": "irt_equated_bench_regen",
+  "kind": "result",
+  "title": "code r20 size stratified deff",
+  "task_key": "worker_code_r20_size_stratified_deff_20260522T192219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r20_size_stratified_deff_20260522T192219_result.json",
+    "occurrence": 1,
+    "bytes": 1297,
+    "sha256": "c5f290f90c270a55fec0573af5a843d82640570c7ce00fe1a79c3c5dc7f18452"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 deliverables produced. Summary of results:\n\n**Part A1 — Size-Stratified DEFF:**\n\n| Tier | Families | Mean m̄ | ICC | DEFF | Adj C% |\n|------|----------|--------|------|------|--------|\n| 2–10 | 9 | 5.3 | 0.2458 | 2.07 | 31.3% |\n| 11–50 | 11 | 22.1 | 0.2264 | 5.78 | 24.6% |\n| 51–200 | 8 | 91.4 | 0.1365 | 13.34 | 13.7% |\n| >200 | 2 | 431.0 | 0.0817 | 36.11 | 9.0% |\n| Simple m̄ | 30 | 62.8 | 0.0465 | 3.87 | **29.2%** |\n| Weighted m̄ | 30 | 254.5 | 0.0465 | 12.79 | **13.5%** |\n\nPer-tier ICC is much higher than overall ICC (0.08–0.25 vs 0.047) because the ANOVA ICC computed across all 30 families is diluted by size heterogeneity. The parameterization curve shows a smooth monotonic decrease from ~31% to ~8% as m̄ increases from 2 to 350.\n\n**Part A2 — Family Sensitivity:**\n\n| | Fine-grained | Coarse |\n|--|-------------|--------|\n| Families | 30 | 22 |\n| DEFF (simple) | 3.87 | 3.57 |\n| DEFF (weighted) | 12.79 | 12.81 |\n| C% (simple) | 29.2% | 29.4% |\n| C% (weighted) | 13.5% | 13.2% |\n\nCoarse grouping barely changes the adjusted C% — ICC drops (0.047→0.030) because merged sub-families are heterogeneous, but larger m̄ (63→86) compensates, yielding nearly identical DEFF. The result is robust to family definition choice."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r20-size-stratified-deff.md"
+}
