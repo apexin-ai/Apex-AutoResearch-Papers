@@ -177,6 +177,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 936
+        },
+        "contrastive_trace_safety": {
+          "status": "uploaded",
+          "project": "contrastive_trace_safety",
+          "collection": "contrastive_trace_safety--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "35da90aaabcac52cff1b855666b4e9fa294b9ac06b3b533c986120f4906f3f80",
+          "indexed_members": 1907,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1902
         }
       },
       "status": "in_progress",
