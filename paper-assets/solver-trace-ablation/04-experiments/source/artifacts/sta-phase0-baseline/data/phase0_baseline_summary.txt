@@ -1,0 +1,28 @@
+Phase 0 ISR Baseline Results
+=============================
+Model: Qwen3-4B (base, no fine-tuning)
+Data: 100 FOLIO FOL problems
+Solver: Prover9
+
+Summary:
+- n_problems: 100
+- n_proved: 12 (12.0%)
+- mean_isr: 0.0641 +/- 0.1983
+- median_isr: 0.0
+- range: [0.0, 0.889]
+
+By answer type:
+- true:    n=34, proved=9 (26.5%), ISR=0.1345
+- false:   n=25, proved=1 (4.0%),  ISR=0.0240
+- unknown: n=41, proved=2 (4.9%),  ISR=0.0302
+
+Top ISR (proved):
+- folio_1255: ISR=0.889 (9 components, 8 necessary)
+- folio_833:  ISR=0.833 (6 components, 5 necessary)
+
+Bottom ISR (proved):
+- folio_960:  ISR=0.125 (8 components, 1 necessary)
+- folio_167:  ISR=0.143 (7 components, 1 necessary)
+
+Runtime: 336s (3.4s/sample)
+Full results: server:/root/solver-trace-ablation/outputs/phase0_baseline.json

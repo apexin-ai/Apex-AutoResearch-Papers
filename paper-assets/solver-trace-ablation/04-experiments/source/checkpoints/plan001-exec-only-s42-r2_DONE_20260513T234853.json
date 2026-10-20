@@ -1,0 +1,71 @@
+{
+  "exp_id": "plan001-exec-only-s42-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-13T22:40:41.773Z",
+    "updated_at": "2026-05-13T23:48:53.807Z",
+    "completed_at": "",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      },
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T23:46:01.596431+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "GRPO exec-only 500 steps",
+      "server": "westd-39279",
+      "data_path": "/root/autodl-tmp/outputs/plan001_exec_only_s42/",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B (exec-only fine-tuned)",
+      "seed": 42,
+      "hypothesis": "500-step exec-only baseline for STA comparison (K=8)",
+      "pid": "84901"
+    },
+    "notes": "Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。",
+    "reproduce": {
+      "finished_at": "2026-05-13T23:46:00.369Z"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500",
+    "log_path": "/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl",
+    "metrics": {
+      "total_steps": 500,
+      "duration_min": 62.2,
+      "overall_prove_rate": 0.6743,
+      "overall_isr": 0.6677,
+      "first20_prove_rate": 0.1625,
+      "first20_isr": 0.1625,
+      "last50_prove_rate": 0.8525,
+      "last50_isr": 0.8525,
+      "last100_prove_rate": 0.865,
+      "last100_isr": 0.8612,
+      "window_1_50_pr": 0.185,
+      "window_51_100_pr": 0.2375,
+      "window_101_200_pr": 0.6625,
+      "window_201_300_pr": 0.7837,
+      "window_301_400_pr": 0.8488,
+      "window_401_500_pr": 0.865,
+      "first_sustained_0.8_step": 133,
+      "first_prove_1.0_step": 109,
+      "steps_at_1.0": 166,
+      "pct_steps_at_1.0": 0.332,
+      "max_rolling10_jump": 0.1042,
+      "mean_loss": 0.0067,
+      "last50_loss": 0.0089,
+      "isr_pr_diff_steps": 13,
+      "parse_rate": 1
+    }
+  },
+  "timestamp": "2026-05-13T23:48:53.904864+00:00",
+  "trigger": "update_registry"
+}

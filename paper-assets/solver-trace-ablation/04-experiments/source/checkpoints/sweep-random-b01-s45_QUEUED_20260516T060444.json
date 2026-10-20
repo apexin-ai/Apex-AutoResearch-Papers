@@ -1,0 +1,17 @@
+{
+  "exp_id": "sweep-random-b01-s45",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:42:13.324Z",
+    "updated_at": "2026-05-16T06:04:43.785Z",
+    "hypothesis": "W4: Random β=0.1 s45 extends random control to 5-seed for matched comparison with ISR β=0.1",
+    "conclusion": "killed",
+    "notes": "去重取消：与 plan018-additive-random-b01-s45 重复（同 Random β=0.1, seed=45）"
+  },
+  "timestamp": "2026-05-16T06:04:44.032648+00:00",
+  "trigger": "update_registry"
+}

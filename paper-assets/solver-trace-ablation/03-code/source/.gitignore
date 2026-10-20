@@ -1,0 +1,26 @@
+_anonymous_repo.json
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# Claude Code sessions
+.claude/sessions/
+
+# Project management files
+_last_visual_review.json
+_paper_audit_result.json
+_paper_figure.lock
+_paper_figure_result.json
+constraints.lock
+decisions.lock
+ROADMAP.lock
+
+# Temporary files
+distill_tmp/

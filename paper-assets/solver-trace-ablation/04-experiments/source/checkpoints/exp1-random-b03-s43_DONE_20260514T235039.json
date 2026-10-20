@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp1-random-b03-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:52:08.290Z",
+    "updated_at": "2026-05-14T23:50:39.517Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "β=0.3 random seed 43: supplement for 3-seed statistics in Table 1. Reference: plan017-additive-random-s42",
+      "plan_id": "EXP-1",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "num_steps": 500,
+      "beta": 0.3,
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s43\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "963653",
+      "checkpoint_path": "/root/autodl-tmp/outputs/exp1_random_b03_s43/",
+      "log_path": "~/runs/solver-trace-ablation/exp1-random-b03-s43.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T23:35:47.399Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T23:35:48.354Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T23:35:52.992924+00:00"
+        }
+      ]
+    },
+    "notes": "Diagnostic confirmed: 500/500 steps completed, parse_rate=1.0, prove_rate=0.5505, mean_isr=0.1358. EXIT_CODE=129 was SIGHUP after script exit (tmux cleanup false positive). Checkpoint at /root/autodl-tmp/outputs/exp1_random_b03_s43/. Needs eval_sta.py."
+  },
+  "timestamp": "2026-05-14T23:50:39.692550+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan002-additive-b01-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:21:58.445Z",
+    "updated_at": "2026-05-15T14:21:58.445Z",
+    "spec": {
+      "hypothesis": "ISR β=0.1 seed=43 重训（r2）：原始实验 checkpoint+eval 全部丢失，registry 有 genuine=2/h7=59 但缺 h1/h8。重训+完整 eval+H7/H1/H8 taxonomy，补全所有字段。",
+      "parent": "plan002-additive-b01-s43",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "reward_formula": "r = r_exec * (1 + 0.1 * ISR)",
+      "plan_id": "plan002",
+      "num_steps": 500
+    }
+  },
+  "timestamp": "2026-05-15T14:21:58.652262+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,3951 @@
+dream_id: dream_20260513T215750
+project: solver-trace-ablation
+venue: ''
+focus: 'Key MVP finding: full STA (O(N)) works as training signal but O(1) approximation
+  is ineffective (negative result). ISR/PR ratio declining during exec+STA training
+  suggests STA detects but may not fully prevent reward hacking at 100 steps. Paper
+  should position STA as methodology transfer (RIP → RL reward design), not novel
+  algorithm. Two core claims: STA methodology + multi-logic empirical findings.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: STA reward prevents reward hacking at scale; multi-logic generalization
+        validates methodology claims
+      key_assumptions:
+      - ISR/PR ratio stabilizes or recovers (≥0.5) in exec+STA 500-step runs, while
+        exec-only degrades (<0.4)
+      - Exec+STA prove_rate matches or exceeds exec-only on held-out (STA reward does
+        not sacrifice accuracy for structure)
+      - STA weight ablation shows clear optimal α/β regime with curriculum outperforming
+        fixed
+      - Prolog STA instantiation produces discriminative ISR signal; cross-logic transfer
+        is measurably positive
+      - O(1) negative result reproduces at 500 steps, cleanly contrasting with O(N)
+        success
+      number_ranges:
+        exec_only_prove_rate_500step:
+        - 0.22
+        - 0.35
+        exec_sta_prove_rate_500step:
+        - 0.22
+        - 0.38
+        exec_only_isr_pr_ratio_last100:
+        - 0.3
+        - 0.5
+        exec_sta_isr_pr_ratio_last100:
+        - 0.5
+        - 0.75
+        held_out_isr_mean_exec_sta:
+        - 0.15
+        - 0.3
+        held_out_isr_mean_exec_only:
+        - 0.06
+        - 0.12
+        prolog_prove_rate:
+        - 0.15
+        - 0.3
+        prolog_isr_discriminability:
+        - 0.3
+        - 0.6
+        cross_logic_transfer_delta:
+        - 0.02
+        - 0.08
+      narrative_direction: 'Original framing fully intact. STA is both diagnostic
+        and corrective: prevents structural degeneracy while maintaining or improving
+        prove rate. Story: "RIP-derived rewards are the dense+automatic cell in the
+        ORM-PRM taxonomy, and they work — execution-only training degrades structurally,
+        STA-rewarded training does not." Multi-logic results demonstrate the 5-step
+        derivation protocol generalizes across solver types. O(1) negative result
+        strengthens the story (ablation granularity matters). Target EMNLP main with
+        full confidence.
+
+        '
+    median:
+      tier: median
+      meaning: STA reliably detects hacking but only partially prevents it; second
+        logic type provides supportive but not conclusive generalization evidence
+      key_assumptions:
+      - ISR/PR ratio in exec+STA declines slower than exec-only but does NOT stabilize
+        (both below 0.5 at step 500)
+      - Exec+STA prove_rate is 5-15% lower than exec-only (STA reward exerts accuracy
+        cost)
+      - STA weight ablation shows sensitivity but no single setting dominates; curriculum
+        helps modestly
+      - Prolog STA works but signal is noisier (lower discriminability) or prove rate
+        is too low for robust conclusions
+      - Cross-logic transfer is near-zero or inconsistent across seeds
+      number_ranges:
+        exec_only_prove_rate_500step:
+        - 0.2
+        - 0.3
+        exec_sta_prove_rate_500step:
+        - 0.15
+        - 0.25
+        exec_only_isr_pr_ratio_last100:
+        - 0.25
+        - 0.45
+        exec_sta_isr_pr_ratio_last100:
+        - 0.3
+        - 0.5
+        held_out_isr_mean_exec_sta:
+        - 0.08
+        - 0.18
+        held_out_isr_mean_exec_only:
+        - 0.04
+        - 0.1
+        prolog_prove_rate:
+        - 0.05
+        - 0.15
+        prolog_isr_discriminability:
+        - 0.1
+        - 0.3
+        cross_logic_transfer_delta:
+        - -0.02
+        - 0.03
+      narrative_direction: 'Reframe STA as a principled monitoring/diagnostic tool
+        rather than a complete corrective mechanism. Claim 1 adjusts: "STA-derived
+        rewards detect and slow structural degeneracy; full prevention likely requires
+        curriculum design or reward shaping beyond the scope of this work." Claim
+        2 downgrades from "cross-logic transfer patterns" to "logic-type-specific
+        hacking mode characterization" using FOL vs Prolog comparison. Add analysis
+        depth to compensate: detailed hacking taxonomy (plan_012), STA-as-monitoring
+        ablation curves, per-component ISR decomposition. Paper positions as "methodology
+        + diagnostic tool + empirical characterization" rather than "methodology +
+        solution." Still viable for EMNLP main if analysis quality is high; Findings
+        if reviewers want stronger prevention evidence.
+
+        '
+    worst:
+      tier: worst
+      meaning: STA reward provides no training benefit over exec-only; multi-logic
+        experiments incomplete or uninformative
+      key_assumptions:
+      - ISR/PR ratio in exec+STA and exec-only converge to similar low values (<0.35)
+        by step 500
+      - Exec+STA prove_rate is significantly lower than exec-only (STA reward hurts
+        accuracy without structural gain)
+      - STA weight ablation shows no stable operating point — all α/β settings either
+        kill prove_rate or fail to improve ISR
+      - Prolog STA instantiation fails (solver too slow, ISR signal trivial, or prove_rate
+        ≈0)
+      - Only FOL data is usable; paper is single-logic
+      number_ranges:
+        exec_only_prove_rate_500step:
+        - 0.18
+        - 0.3
+        exec_sta_prove_rate_500step:
+        - 0.08
+        - 0.15
+        exec_only_isr_pr_ratio_last100:
+        - 0.2
+        - 0.4
+        exec_sta_isr_pr_ratio_last100:
+        - 0.15
+        - 0.35
+        held_out_isr_mean_exec_sta:
+        - 0.03
+        - 0.08
+        held_out_isr_mean_exec_only:
+        - 0.03
+        - 0.08
+        prolog_prove_rate:
+        - 0.0
+        - 0.05
+        prolog_isr_discriminability:
+        - 0.0
+        - 0.1
+        cross_logic_transfer_delta:
+        - -0.05
+        - 0.01
+      narrative_direction: 核心 pivot：STA 作为 reward signal 无效，但 STA 作为 post-hoc analysis
+        framework 有效。Reframe 整篇论文为："我们提出了一个基于 RIP 的 reward hacking 诊断框架，并用它 系统性地揭示了
+        GRPO formalization training 的结构性退化现象。" Claim 1 变为方法论 贡献（5-step derivation
+        protocol + ISR metric 本身的价值），辅以 O(N) vs O(1) 的 principled comparison 作为 reward
+        design 的 lesson learned。Claim 2 缩减为 single-logic 深度分析——用 hacking taxonomy
+        (plan_012) 的 200-sample annotation 作为主要 empirical 贡献，展示 reward hacking 的 fine-grained
+        模式而非 cross-logic transfer。补充 SFT baseline (plan_009) 对比以拓宽 empirical coverage。论文叙事从
+        "STA solves hacking" 转为 "STA reveals hacking"——诊断工具 + 负面结果 + 方法论仍可 冲 EMNLP
+        main（NLP 社区重视 principled negative results），最差走 Findings。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/dream_reports/dream_20260513T215750/best/paper.pdf
+  imagined_experiments:
+  - name: FOL Exec-Only 500-Step Baseline
+    plan_id: plan_001
+    description: 'FOL single-logic GRPO, execution-only reward, 500 steps, K=8, 3
+      seeds. Establishes the structural degradation trajectory that STA is designed
+      to prevent.
+
+      '
+    expected_results:
+      prove_rate_mean: 0.28
+      prove_rate_std: 0.03
+      prove_rate_first100: 0.18
+      prove_rate_last100: 0.33
+      mean_isr_overall: 0.11
+      mean_isr_last100: 0.09
+      isr_pr_ratio_overall: 0.39
+      isr_pr_ratio_last100: 0.35
+      isr_pr_ratio_first100: 0.92
+      parse_rate: 1.0
+      training_minutes: 79
+      step_time_s: 9.5
+    result_rationale: 'Phase 1 pilot (r5) showed prove_rate=0.15 at 100 steps with
+      isr_pr_ratio=1.0 (ISR tracks prove_rate perfectly because the model hasn''t
+      yet learned structural shortcuts). At 500 steps, GRPO''s policy gradient drives
+      prove_rate up to ~0.28 — substantial improvement from the 0.12 baseline — but
+      the model discovers extensional shortcuts: tautological premises, vacuous quantifiers,
+      over-constrained formulas that prove trivially. These shortcuts yield solver-verified
+      "correct" outputs with degraded internal structure, causing ISR to lag behind
+      prove_rate. The isr_pr_ratio drops from ~0.92 (step 1-100, structure intact)
+      to ~0.35 (step 400-500, structural degeneracy). This is the classic reward hacking
+      signature: the model maximizes the proxy (execution reward) while degrading
+      the latent quality dimension (structural fidelity). Three seeds provide sufficient
+      signal to distinguish this trend from noise; std ~0.03 reflects Qwen3-4B''s
+      moderate sensitivity to initialization on FOLIO-scale data.
+
+      '
+    tables:
+    - name: 'Table 2a: Exec-Only Training Dynamics (3-seed mean ± std)'
+      columns:
+      - step_window
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - reward_mean
+      rows:
+      - - 1-100
+        - 0.18 ± 0.02
+        - 0.16 ± 0.02
+        - 0.92 ± 0.05
+        - 0.18 ± 0.02
+      - - 101-200
+        - 0.22 ± 0.02
+        - 0.16 ± 0.03
+        - 0.73 ± 0.08
+        - 0.22 ± 0.02
+      - - 201-300
+        - 0.25 ± 0.03
+        - 0.13 ± 0.03
+        - 0.52 ± 0.07
+        - 0.25 ± 0.03
+      - - 301-400
+        - 0.27 ± 0.03
+        - 0.11 ± 0.02
+        - 0.41 ± 0.06
+        - 0.27 ± 0.03
+      - - 401-500
+        - 0.33 ± 0.04
+        - 0.09 ± 0.02
+        - 0.35 ± 0.05
+        - 0.33 ± 0.04
+    figures_description:
+    - 'Figure 2 (left panel): prove_rate and mean_isr vs training step, 3-seed ribbon
+      plot. prove_rate monotonically increases; ISR rises briefly then plateaus and
+      declines. The divergence point (~step 150) marks the onset of reward hacking.'
+    - 'Figure 2 (right panel): isr_pr_ratio vs training step. Smooth decline from
+      ~0.92 to ~0.35, visually encoding the structural degradation rate.'
+    analysis: 'The exec-only trajectory confirms the core problem statement: execution-only
+      GRPO optimizes prove_rate effectively (+133% from baseline) but introduces structural
+      degeneracy that accelerates after step ~150. The declining isr_pr_ratio is the
+      paper''s primary diagnostic signal. Notably, prove_rate continues improving
+      even as ISR declines, meaning standard evaluation (accuracy-only) would rate
+      this as a successful training run. Only STA-derived ISR reveals the hidden failure
+      mode. This motivates the need for STA as a reward component, not just a diagnostic.
+
+      '
+  - name: FOL Exec+STA 500-Step Primary
+    plan_id: plan_002
+    description: 'FOL single-logic GRPO, execution+STA reward (full continuous STA),
+      500 steps, K=8, 3 seeds. Primary validation that STA reward prevents structural
+      degradation while maintaining prove_rate.
+
+      '
+    expected_results:
+      prove_rate_mean: 0.3
+      prove_rate_std: 0.03
+      prove_rate_first100: 0.16
+      prove_rate_last100: 0.34
+      mean_isr_overall: 0.19
+      mean_isr_last100: 0.22
+      isr_pr_ratio_overall: 0.63
+      isr_pr_ratio_last100: 0.65
+      isr_pr_ratio_first100: 0.48
+      parse_rate: 1.0
+      combined_reward_mean: 0.24
+      training_minutes: 85
+      step_time_s: 10.2
+    result_rationale: 'Phase 1 pilot (r5) showed exec+STA with 0.5/0.5 weighting depressed
+      prove_rate (0.10 vs 0.15 for exec-only) because the STA penalty was too punitive
+      at initialization, when the model produces mostly unprovable outputs. At 500
+      steps with curriculum weighting (sigmoid ramp from sta_weight=0.1→0.5 over first
+      200 steps), the model first learns to prove (prove_rate rises rapidly steps
+      1-200 under near-exec-only reward), then learns to prove structurally (ISR catches
+      up steps 200-500 as STA weight activates). The key prediction: prove_rate matches
+      or slightly exceeds exec-only (0.30 vs 0.28) because STA reward actively penalizes
+      the degenerate shortcuts that exec-only relies on for its final prove_rate gains.
+      The model is forced to find structurally sound proofs, which are more robust
+      and transfer better. The isr_pr_ratio stabilizes at ~0.65 instead of degrading
+      to 0.35 — this is the headline comparison. The initial dip in isr_pr_ratio (0.48
+      at step 1-100) reflects the low-STA-weight curriculum phase where behavior approximates
+      exec-only; it then recovers as STA weight ramps up.
+
+      '
+    tables:
+    - name: 'Table 2b: Exec+STA Training Dynamics (3-seed mean ± std)'
+      columns:
+      - step_window
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - combined_reward
+      rows:
+      - - 1-100
+        - 0.16 ± 0.02
+        - 0.08 ± 0.02
+        - 0.48 ± 0.08
+        - 0.13 ± 0.02
+      - - 101-200
+        - 0.22 ± 0.03
+        - 0.13 ± 0.03
+        - 0.58 ± 0.07
+        - 0.17 ± 0.03
+      - - 201-300
+        - 0.26 ± 0.03
+        - 0.17 ± 0.03
+        - 0.64 ± 0.06
+        - 0.21 ± 0.03
+      - - 301-400
+        - 0.28 ± 0.03
+        - 0.19 ± 0.03
+        - 0.67 ± 0.06
+        - 0.23 ± 0.03
+      - - 401-500
+        - 0.34 ± 0.04
+        - 0.22 ± 0.03
+        - 0.65 ± 0.05
+        - 0.28 ± 0.03
+    figures_description:
+    - 'Figure 2 (center panel): prove_rate and mean_isr vs training step for exec+STA.
+      Both curves rise together; ISR tracks prove_rate with a bounded gap (ratio ~0.65),
+      in stark contrast to exec-only where the gap widens continuously.'
+    - 'Figure 3: Overlay of isr_pr_ratio for exec-only (declining) and exec+STA (stable/recovering).
+      This is the paper''s signature figure — the visual proof that STA prevents structural
+      degradation.'
+    analysis: 'Exec+STA achieves the best-tier prediction: prove_rate matches exec-only
+      (0.30 vs 0.28, not statistically different) while maintaining isr_pr_ratio ≥0.5
+      throughout training (vs exec-only''s degradation to 0.35). The slight prove_rate
+      advantage (+0.02) emerges because STA penalizes degenerate shortcuts, forcing
+      the model to discover structurally sound proving strategies that also happen
+      to generalize better. The 7% wall-clock overhead (10.2s vs 9.5s per step) is
+      negligible. This validates the core claim: STA reward is Pareto-improving (same
+      accuracy, better structure) or at worst Pareto-neutral (same accuracy, maintained
+      structure). The curriculum is load-bearing — without it (as in Phase 1 pilot),
+      the 0.5 STA weight suppresses early prove_rate learning.
+
+      '
+  - name: FOL Held-Out Evaluation
+    plan_id: plan_003
+    description: 'Held-out test set evaluation comparing plan_001 (exec-only) vs plan_002
+      (exec+STA) checkpoints. Full STA metrics on unseen problems to measure generalization.
+
+      '
+    expected_results:
+      exec_only_held_out_prove_rate: 0.24
+      exec_sta_held_out_prove_rate: 0.26
+      exec_only_held_out_isr_mean: 0.08
+      exec_sta_held_out_isr_mean: 0.22
+      exec_only_held_out_isr_pr_ratio: 0.33
+      exec_sta_held_out_isr_pr_ratio: 0.85
+      exec_only_hacking_prevalence: 0.45
+      exec_sta_hacking_prevalence: 0.18
+    result_rationale: 'Held-out evaluation amplifies the structural gap because degenerate
+      shortcuts overfit to training distribution. Exec-only model''s prove_rate drops
+      more on held-out (0.24 vs 0.28 in-distribution) because tautological/vacuous
+      shortcuts are less likely to accidentally match held-out problem structures.
+      Its held-out ISR drops further (0.08) because the learned shortcuts are even
+      less structurally valid on new problems. Exec+STA model retains prove_rate better
+      (0.26 vs 0.30, smaller drop) because structurally sound proofs generalize. Its
+      ISR actually improves relative to isr_pr_ratio (0.85 vs 0.65 in-distribution)
+      because the remaining proved outputs are genuinely well-structured — the degenerate
+      easy wins that inflated training prove_rate without proportional ISR are gone.
+      The hacking prevalence (fraction of proved outputs that are structurally degenerate
+      by manual taxonomy) drops from 45% to 18%, directly supporting the "STA corrects,
+      not just detects" narrative.
+
+      '
+    tables:
+    - name: 'Table 3: Held-Out Generalization (best checkpoint per condition)'
+      columns:
+      - condition
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - hacking_prevalence
+      rows:
+      - - Base model (no training)
+        - '0.12'
+        - '0.064'
+        - '0.53'
+        - '0.25'
+      - - Exec-only (plan_001)
+        - '0.24'
+        - '0.08'
+        - '0.33'
+        - '0.45'
+      - - Exec+STA (plan_002)
+        - '0.26'
+        - '0.22'
+        - '0.85'
+        - '0.18'
+      - - Ground-truth reference
+        - '0.18'
+        - '0.559'
+        - —
+        - '0.0'
+    figures_description:
+    - 'Figure 4: Bar chart comparing held-out metrics across conditions. prove_rate
+      bars are similar height; ISR bars show dramatic gap (0.08 vs 0.22). Includes
+      ground-truth ISR reference line at 0.559.'
+    - 'Figure 5: ISR distribution histograms for proved outputs. Exec-only is heavily
+      left-skewed (mode near 0); exec+STA has a more uniform/right-shifted distribution
+      approaching ground-truth shape.'
+    analysis: 'The held-out results deliver the paper''s strongest evidence. While
+      prove_rate difference is modest and possibly not significant (0.24 vs 0.26,
+      needs paired test), the ISR gap is dramatic (0.08 vs 0.22, ~2.75x). This means
+      exec-only training produces models that "prove" held-out problems but via degenerate
+      means (45% hacking rate), while exec+STA training produces models whose proofs
+      are structurally meaningful. The isr_pr_ratio inversion (exec-only 0.33 < exec+STA
+      0.85) is the quantitative headline. Note the base model''s isr_pr_ratio of 0.53
+      is higher than trained exec-only''s 0.33 — training actively worsens structural
+      quality under exec-only reward, a finding that underscores the need for STA.
+
+      '
+  - name: STA O(1) vs O(N) Ablation at Scale
+    plan_id: plan_004
+    description: 'Rerun exec+STA with fast_isr_fol (O(1) tautology-only check) for
+      500 steps, 1 seed. Documents the negative result that coarse-grained ablation
+      provides insufficient signal.
+
+      '
+    expected_results:
+      prove_rate: 0.27
+      mean_isr_o1: 0.04
+      isr_pr_ratio: 0.15
+      isr_discriminability: 0.08
+      combined_reward_correlation_with_on: 0.12
+      training_trajectory: indistinguishable from exec-only
+    result_rationale: 'Phase 1 r4 already showed O(1) failure at 100 steps. At 500
+      steps, the result is cleaner: fast_isr_fol checks only tautology (is the formula
+      trivially true?), which catches only one of many hacking modes. The model quickly
+      learns to avoid tautologies while discovering other shortcuts (vacuous quantifiers,
+      over-constrained premises, redundant clauses) that O(1) cannot detect. Prove_rate
+      (~0.27) and training dynamics are indistinguishable from exec-only because the
+      O(1) ISR signal is near-zero for all non-tautological outputs (discriminability
+      0.08, meaning <8% of proved outputs receive any ISR signal). The combined reward
+      reduces to effectively exec-only (correlation with full O(N) ISR is only 0.12).
+      This is the principled negative result: domain-specific hacking modes require
+      correspondingly granular ablation components. A single-check approximation captures
+      one failure mode while the model routes around it to exploit others.
+
+      '
+    tables:
+    - name: 'Table 4: O(1) vs O(N) Ablation Comparison'
+      columns:
+      - metric
+      - O(N) full STA
+      - O(1) fast_isr
+      - exec-only
+      rows:
+      - - prove_rate (500 step)
+        - '0.30'
+        - '0.27'
+        - '0.28'
+      - - mean_isr
+        - '0.19'
+        - '0.04'
+        - '0.11'
+      - - isr_pr_ratio_last100
+        - '0.65'
+        - '0.15'
+        - '0.35'
+      - - isr_discriminability
+        - '0.72'
+        - '0.08'
+        - —
+      - - wall-clock overhead
+        - +7%
+        - +1%
+        - baseline
+    figures_description:
+    - 'Figure 6: Three-way isr_pr_ratio trajectory plot (O(N), O(1), exec-only). O(N)
+      is stable at ~0.65; O(1) and exec-only both decline, with O(1) declining faster
+      (to 0.15) because the tautology penalty pushes the model toward even more exotic
+      shortcuts.'
+    analysis: 'The O(1) negative result is essential for the paper''s methodology
+      argument. It demonstrates that STA''s value comes from comprehensive component
+      ablation (O(N) cost per output), not from any single structural check. This
+      motivates the 5-step RIP derivation protocol: each logic type has its own hacking
+      modes, and the ablation set must cover them all. The O(1) result also preempts
+      reviewer concern about STA''s computational cost — yes, it''s O(N) per component,
+      but O(1) approximations demonstrably fail, so the cost is necessary. The slightly
+      worse isr_pr_ratio for O(1) vs exec-only (0.15 vs 0.35) suggests the tautology
+      penalty actively worsens structural diversity by forcing the model into a narrower
+      set of non-tautological shortcuts.
+
+      '
+  - name: STA Reward Weight Ablation
+    plan_id: plan_005
+    description: 'Test α/β ratios (0.3/0.7, 0.5/0.5, 0.7/0.3) × {fixed, sigmoid curriculum}.
+      6 runs × 500 steps × 1 seed = 6 runs total.
+
+      '
+    expected_results:
+      fixed_03_07_prove_rate: 0.2
+      fixed_03_07_isr_pr_ratio: 0.72
+      fixed_05_05_prove_rate: 0.25
+      fixed_05_05_isr_pr_ratio: 0.68
+      fixed_07_03_prove_rate: 0.3
+      fixed_07_03_isr_pr_ratio: 0.52
+      curriculum_03_07_prove_rate: 0.26
+      curriculum_03_07_isr_pr_ratio: 0.7
+      curriculum_05_05_prove_rate: 0.3
+      curriculum_05_05_isr_pr_ratio: 0.65
+      curriculum_07_03_prove_rate: 0.32
+      curriculum_07_03_isr_pr_ratio: 0.55
+      best_config: curriculum α=0.5 β=0.5
+    result_rationale: 'The weight ablation reveals a clear Pareto frontier trading
+      prove_rate against structural quality. Fixed weighting shows the expected tradeoff:
+      higher STA weight (β=0.7) produces highest isr_pr_ratio (0.72) but lowest prove_rate
+      (0.20) because the STA penalty is too punitive during early training when the
+      model cannot yet produce provable outputs. Lower STA weight (β=0.3) produces
+      near-exec-only prove_rate (0.30) but only moderate structural benefit (isr_pr_ratio
+      0.52 vs exec-only''s 0.35). The sigmoid curriculum consistently Pareto-dominates
+      fixed weighting at the same terminal α/β: curriculum 0.5/0.5 matches fixed 0.7/0.3''s
+      prove_rate (0.30) while achieving higher isr_pr_ratio (0.65 vs 0.52). This is
+      because the curriculum allows exec-reward-dominated early learning (the model
+      first learns to prove) before STA activates (forcing structural quality). The
+      optimal configuration is curriculum α=0.5/β=0.5 — it achieves the best prove_rate
+      × isr_pr_ratio product (0.30 × 0.65 = 0.195) and lies at the Pareto knee. Curriculum
+      α=0.7/β=0.3 achieves marginally higher prove_rate (0.32) but substantially lower
+      structural quality — diminishing returns on the accuracy axis.
+
+      '
+    tables:
+    - name: 'Table 5: Weight Ablation Results (500 steps, 1 seed)'
+      columns:
+      - α/β
+      - schedule
+      - prove_rate
+      - isr_pr_ratio
+      - pr × ratio
+      rows:
+      - - 0.3/0.7
+        - fixed
+        - '0.20'
+        - '0.72'
+        - '0.144'
+      - - 0.5/0.5
+        - fixed
+        - '0.25'
+        - '0.68'
+        - '0.170'
+      - - 0.7/0.3
+        - fixed
+        - '0.30'
+        - '0.52'
+        - '0.156'
+      - - 0.3/0.7
+        - curriculum
+        - '0.26'
+        - '0.70'
+        - '0.182'
+      - - 0.5/0.5
+        - curriculum
+        - '0.30'
+        - '0.65'
+        - '0.195'
+      - - 0.7/0.3
+        - curriculum
+        - '0.32'
+        - '0.55'
+        - '0.176'
+      - - 1.0/0.0
+        - —
+        - '0.28'
+        - '0.35'
+        - '0.098'
+    figures_description:
+    - 'Figure 7: Pareto frontier plot (prove_rate vs isr_pr_ratio). Fixed-weight points
+      form a lower curve; curriculum points form a higher curve. Curriculum 0.5/0.5
+      is marked as the Pareto-optimal knee.'
+    - 'Figure 8: Sigmoid curriculum activation curves overlaid with isr_pr_ratio trajectories.
+      Shows how STA weight ramp-up corresponds to isr_pr_ratio recovery.'
+    analysis: 'The weight ablation provides three key insights: (1) STA weight has
+      a predictable dose-response relationship with structural quality, confirming
+      it''s a genuine training signal, not noise. (2) Sigmoid curriculum is a principled
+      solution to the Phase 1 pilot''s prove_rate depression problem — it recovers
+      ~0.05 prove_rate compared to fixed weighting at matched terminal weights. (3)
+      The Pareto analysis gives practitioners a concrete recommendation: use curriculum
+      0.5/0.5 for balanced accuracy-structure, or curriculum 0.7/0.3 if accuracy is
+      the priority. This section also serves as an implicit response to "how sensitive
+      is STA to hyperparameters?" — the answer is "moderately, but curriculum scheduling
+      makes it robust."
+
+      '
+  - name: Prolog Single-Logic GRPO
+    plan_id: plan_006
+    description: 'Prolog single-logic GRPO: exec-only vs exec+STA (500 steps, K=8,
+      1 seed). Second logic type to validate STA derivation protocol generality.
+
+      '
+    expected_results:
+      prolog_exec_only_prove_rate: 0.22
+      prolog_exec_sta_prove_rate: 0.24
+      prolog_exec_only_isr_mean: 0.08
+      prolog_exec_sta_isr_mean: 0.14
+      prolog_exec_only_isr_pr_ratio_last100: 0.32
+      prolog_exec_sta_isr_pr_ratio_last100: 0.58
+      prolog_isr_discriminability: 0.45
+      prolog_hacking_modes:
+      - redundant_clauses
+      - catch_all_rules
+      - trivial_unification
+    result_rationale: 'Prolog STA instantiation uses rule ablation (remove each clause,
+      check if query still succeeds) — the RIP mapping is: Reachability=clause is
+      syntactically reachable from query, Infection=clause body binds variables used
+      downstream, Propagation=removing clause changes query result. Prolog''s hacking
+      modes differ from FOL: instead of tautological premises, the model produces
+      redundant clauses (rules that never fire), catch-all rules (match anything via
+      anonymous variables), and trivial unification chains. These are detectable by
+      STA because ablating redundant/catch-all clauses doesn''t change the query result
+      (ISR contribution = 0). Prove_rate is slightly lower than FOL (0.22 vs 0.28
+      for exec-only) because SWI-Prolog is more sensitive to syntactic errors and
+      Qwen3-4B has less Prolog in its pretraining data. The exec+STA pattern replicates:
+      ISR/PR ratio stabilizes (0.58 vs 0.32), confirming the methodology transfers.
+      Discriminability (0.45) is lower than FOL (~0.72) because Prolog programs have
+      fewer components per output (fewer clauses to ablate), creating a coarser ISR
+      signal, but still sufficient for reward shaping.
+
+      '
+    tables:
+    - name: 'Table 6: Prolog Single-Logic Results (500 steps, 1 seed)'
+      columns:
+      - condition
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - discriminability
+      rows:
+      - - Exec-only
+        - '0.22'
+        - '0.08'
+        - '0.32'
+        - —
+      - - Exec+STA
+        - '0.24'
+        - '0.14'
+        - '0.58'
+        - '0.45'
+    figures_description:
+    - 'Figure 9: Side-by-side isr_pr_ratio trajectories for Prolog (left) and FOL
+      (right). Same pattern: exec-only declines, exec+STA stabilizes. Different absolute
+      levels reflect logic-type-specific baseline difficulty.'
+    analysis: 'Prolog results validate the STA derivation protocol''s generality —
+      the same 5-step procedure (pilot → shortcuts → classify → RIP map → design checks)
+      produces a functional ISR signal for a structurally different logic type. The
+      Prolog-specific hacking modes (redundant clauses, catch-all rules) are distinct
+      from FOL''s (tautological premises, vacuous quantifiers), confirming that hacking
+      is logic-type-specific and STA catches it in both cases. Lower absolute metrics
+      reflect the harder generation task, not methodology failure.
+
+      '
+  - name: Multi-Logic GRPO (FOL+Prolog)
+    plan_id: plan_007
+    description: 'Multi-logic GRPO training on mixed FOL+Prolog data, exec-only vs
+      exec+STA (500 steps, K=8, 1 seed). Tests whether joint training enables cross-logic
+      transfer.
+
+      '
+    expected_results:
+      multi_fol_prove_rate: 0.29
+      multi_prolog_prove_rate: 0.25
+      multi_fol_isr_pr_ratio: 0.62
+      multi_prolog_isr_pr_ratio: 0.55
+      fol_improvement_over_single: 0.01
+      prolog_improvement_over_single: 0.03
+      cross_logic_transfer_signal: positive
+    result_rationale: 'Multi-logic training with mixed FOL+Prolog batches forces the
+      model to maintain distinct formalization strategies per logic type, acting as
+      implicit regularization against logic-specific hacking modes. FOL prove_rate
+      is marginally better than single-logic (0.29 vs 0.28 exec-only baseline) because
+      Prolog''s different structural constraints provide auxiliary gradient signal.
+      Prolog benefits more (+0.03 over single-logic''s 0.24) because FOL training
+      data is larger and the formal reasoning skills partially transfer (both involve
+      quantifier scoping, logical connectives, variable binding). The isr_pr_ratio
+      is slightly lower than single-logic exec+STA for both (0.62 vs 0.65 for FOL,
+      0.55 vs 0.58 for Prolog) because the mixed reward signal is noisier — each logic
+      type''s STA has different component counts and score distributions, creating
+      gradient variance. The positive transfer signal is modest but measurable, supporting
+      the Claim 2 narrative that GRPO over multiple formal languages exhibits useful
+      cross-logic dynamics.
+
+      '
+    tables:
+    - name: 'Table 7: Multi-Logic vs Single-Logic Comparison'
+      columns:
+      - logic
+      - training
+      - prove_rate
+      - isr_pr_ratio
+      - Δ vs single
+      rows:
+      - - FOL
+        - single exec+STA
+        - '0.30'
+        - '0.65'
+        - —
+      - - FOL
+        - multi exec+STA
+        - '0.29'
+        - '0.62'
+        - -0.01 / -0.03
+      - - Prolog
+        - single exec+STA
+        - '0.24'
+        - '0.58'
+        - —
+      - - Prolog
+        - multi exec+STA
+        - '0.25'
+        - '0.55'
+        - +0.01 / -0.03
+    figures_description:
+    - 'Figure 10: Grouped bar chart showing single-logic vs multi-logic prove_rate
+      and isr_pr_ratio per logic type. Modest gains in prove_rate for Prolog; slight
+      isr_pr_ratio decrease across both.'
+    analysis: 'Multi-logic results are positive but not dramatic — the transfer signal
+      is real but modest at 4B scale with 500 steps. This is expected: cross-logic
+      transfer requires the model to abstract beyond surface syntax to shared logical
+      reasoning patterns, which 4B models have limited capacity for. The paper frames
+      this as "measurably positive transfer" rather than "large effect," setting up
+      future work on larger models. The slight isr_pr_ratio decrease under multi-logic
+      training is an important nuance — mixed reward signals add noise, suggesting
+      that logic-specific STA calibration (e.g., per-logic α/β) could improve multi-logic
+      training.
+
+      '
+  - name: Cross-Logic Transfer Evaluation
+    plan_id: plan_008
+    description: 'Zero-shot cross-logic evaluation: FOL-trained model on Prolog tasks,
+      Prolog-trained model on FOL tasks. Measures transfer without explicit multi-logic
+      training.
+
+      '
+    expected_results:
+      fol_model_on_prolog_prove_rate: 0.16
+      prolog_model_on_fol_prove_rate: 0.17
+      fol_model_on_prolog_delta_vs_base: 0.04
+      prolog_model_on_fol_delta_vs_base: 0.05
+      cross_logic_transfer_delta_mean: 0.045
+    result_rationale: 'Cross-logic transfer delta [0.02, 0.08] predicted range. FOL→Prolog
+      transfer (+0.04 prove_rate over base model''s ~0.12 Prolog prove_rate) is modest
+      because FOL training teaches quantifier handling and logical structure that
+      partially maps to Prolog''s clause semantics — both require correct variable
+      scoping and logical decomposition. Prolog→FOL transfer (+0.05) is slightly larger
+      because Prolog''s rule-based reasoning develops a "compositional formalization"
+      skill that transfers to FOL premise construction. Neither direction produces
+      dramatic gains because the surface syntax is too different for shallow transfer,
+      and 4B models at 500 steps don''t develop deep enough logical abstractions for
+      strong transfer. The positive delta (mean 0.045) is nonetheless noteworthy —
+      it suggests shared latent formal reasoning capabilities that multi-logic training
+      could amplify. Exec+STA-trained models show marginally higher transfer than
+      exec-only trained models (+0.01 additional delta) because structurally sound
+      formalizations encode more transferable logical patterns.
+
+      '
+    tables:
+    - name: 'Table 8: Cross-Logic Zero-Shot Transfer'
+      columns:
+      - source_model
+      - target_logic
+      - prove_rate
+      - Δ vs base
+      - mean_isr
+      rows:
+      - - Base (no training)
+        - FOL
+        - '0.12'
+        - —
+        - '0.064'
+      - - Base (no training)
+        - Prolog
+        - '0.12'
+        - —
+        - '0.05'
+      - - FOL exec+STA
+        - Prolog
+        - '0.16'
+        - '+0.04'
+        - '0.09'
+      - - Prolog exec+STA
+        - FOL
+        - '0.17'
+        - '+0.05'
+        - '0.10'
+      - - FOL exec-only
+        - Prolog
+        - '0.15'
+        - '+0.03'
+        - '0.06'
+      - - Prolog exec-only
+        - FOL
+        - '0.16'
+        - '+0.04'
+        - '0.07'
+    figures_description:
+    - 'Figure 11: Transfer delta heatmap (source logic × target logic × training condition).
+      Exec+STA models show consistently higher transfer deltas than exec-only counterparts.'
+    analysis: 'Cross-logic transfer is positive but small, consistent with the "best"
+      tier narrative that the methodology generalizes. The exec+STA advantage in transfer
+      (+0.01 additional delta) is a subtle but important finding: structurally sound
+      formalizations transfer better because they encode genuine logical structure
+      rather than solver-specific shortcuts. This supports the paper''s claim that
+      STA doesn''t just improve in-distribution metrics — it produces qualitatively
+      different model capabilities.
+
+      '
+  - name: SFT Baseline
+    plan_id: plan_009
+    description: 'Supervised finetuning on same FOLIO 500 data. Provides a non-RL
+      baseline for GRPO comparison.
+
+      '
+    expected_results:
+      sft_prove_rate: 0.2
+      sft_mean_isr: 0.13
+      sft_isr_pr_ratio: 0.65
+      sft_held_out_prove_rate: 0.18
+      sft_held_out_isr_mean: 0.12
+    result_rationale: 'SFT on ground-truth FOL translations achieves moderate prove_rate
+      (0.20) — higher than base model (0.12) but lower than GRPO variants (0.28-0.30)
+      — because SFT copies the distribution of training outputs without the exploration-exploitation
+      dynamics that GRPO provides. Crucially, SFT maintains a healthy isr_pr_ratio
+      (0.65) because it imitates human-written formalizations that are structurally
+      sound by construction. This creates an interesting comparison: SFT has good
+      structure but low accuracy; exec-only GRPO has high accuracy but degraded structure;
+      exec+STA GRPO has both. The SFT baseline thus demonstrates that GRPO is necessary
+      for accuracy and STA is necessary for maintaining the structural quality that
+      SFT gets for free from human demonstrations. Held-out performance drops proportionally
+      (0.18, 0.12) because SFT overfits to training problem templates more than GRPO
+      does.
+
+      '
+    tables:
+    - name: 'Table 9: SFT vs GRPO Comparison'
+      columns:
+      - method
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - held_out_pr
+      rows:
+      - - SFT
+        - '0.20'
+        - '0.13'
+        - '0.65'
+        - '0.18'
+      - - GRPO exec-only
+        - '0.28'
+        - '0.11'
+        - '0.39'
+        - '0.24'
+      - - GRPO exec+STA
+        - '0.30'
+        - '0.19'
+        - '0.63'
+        - '0.26'
+      - - Base model
+        - '0.12'
+        - '0.064'
+        - '0.53'
+        - '0.12'
+    figures_description:
+    - 'Figure 12: Radar chart showing prove_rate, ISR, isr_pr_ratio, held-out prove_rate,
+      held-out ISR for each method. exec+STA dominates all axes except held-out ISR
+      where SFT is competitive.'
+    analysis: 'SFT baseline serves a narrative function: it shows that structural
+      quality is a property of the training signal, not an inherent limitation of
+      the model. SFT achieves good structure by imitating structured outputs; exec+STA
+      achieves good structure by rewarding structural properties. The key advantage
+      of exec+STA over SFT is accuracy (+0.10 prove_rate) — GRPO''s exploration discovers
+      proving strategies beyond the SFT training set.
+
+      '
+  - name: SMT-LIB Single-Logic GRPO
+    plan_id: plan_010
+    description: 'SMT-LIB third logic type: exec-only vs exec+STA (500 steps, K=8,
+      1 seed). Stretch goal.
+
+      '
+    expected_results:
+      smt_exec_only_prove_rate: 0.18
+      smt_exec_sta_prove_rate: 0.19
+      smt_isr_pr_ratio_exec_only: 0.38
+      smt_isr_pr_ratio_exec_sta: 0.52
+      smt_isr_discriminability: 0.35
+      smt_hacking_modes:
+      - trivial_assertions
+      - over_constrained_declares
+      - unused_variables
+    result_rationale: 'SMT-LIB is the hardest logic type for Qwen3-4B: the syntax
+      is S-expression-based (less represented in pretraining), Z3''s error messages
+      are less informative for learning, and the constraint satisfaction paradigm
+      is structurally different from theorem proving. Prove_rate is lower (0.18 exec-only)
+      but still above baseline. SMT-LIB STA uses constraint ablation: remove each
+      assert/declare, check if (check-sat) result changes. Hacking modes are SMT-specific:
+      trivial assertions (assert true), over-constrained declarations (declaring variables
+      with unit domains), unused variables. ISR discriminability (0.35) is lower than
+      FOL (0.72) because SMT-LIB programs have fewer independently ablatable components
+      (many assertions are interdependent). The exec+STA benefit is present but smaller
+      (isr_pr_ratio 0.52 vs 0.38) — still validates the methodology but with less
+      dramatic effect, consistent with the coarser ISR signal.
+
+      '
+    tables:
+    - name: 'Table 10: Three-Logic STA Summary'
+      columns:
+      - logic
+      - exec_only_pr
+      - exec_sta_pr
+      - exec_only_ratio
+      - exec_sta_ratio
+      - discriminability
+      rows:
+      - - FOL (Prover9)
+        - '0.28'
+        - '0.30'
+        - '0.35'
+        - '0.65'
+        - '0.72'
+      - - Prolog (SWI)
+        - '0.22'
+        - '0.24'
+        - '0.32'
+        - '0.58'
+        - '0.45'
+      - - SMT-LIB (Z3)
+        - '0.18'
+        - '0.19'
+        - '0.38'
+        - '0.52'
+        - '0.35'
+    figures_description:
+    - 'Figure 13: Three-panel isr_pr_ratio trajectory comparison across logic types.
+      Same qualitative pattern (exec-only degrades, exec+STA stabilizes) with varying
+      magnitudes.'
+    analysis: 'SMT-LIB completes the three-logic validation, demonstrating the RIP
+      derivation protocol produces functional STA instantiations across theorem proving
+      (FOL), logic programming (Prolog), and constraint satisfaction (SMT-LIB). The
+      diminishing effect magnitude correlates with ISR discriminability, which itself
+      correlates with component independence — a finding that informs future STA instantiation
+      design. Three logic types is sufficient for an EMNLP paper; the consistent qualitative
+      pattern (exec+STA stabilizes structure) across structurally different formal
+      languages is the core evidence for methodology generality.
+
+      '
+  - name: Qwen3-8B Scaling
+    plan_id: plan_011
+    description: 'Full MLSR pipeline on Qwen3-8B (1 seed, curriculum α=0.5/β=0.5,
+      500 steps). Model scale effect.
+
+      '
+    expected_results:
+      8b_exec_only_prove_rate: 0.38
+      8b_exec_sta_prove_rate: 0.4
+      8b_exec_only_isr_pr_ratio: 0.4
+      8b_exec_sta_isr_pr_ratio: 0.68
+      8b_held_out_prove_rate: 0.34
+      8b_held_out_isr_mean: 0.28
+      scaling_delta_prove_rate: 0.1
+      scaling_delta_isr_ratio: 0.03
+    result_rationale: 'Scaling from 4B to 8B increases prove_rate substantially (+0.10
+      for both conditions) because the larger model has better baseline FOL syntax
+      knowledge and can explore a wider policy space during GRPO. The isr_pr_ratio
+      pattern is preserved: exec-only degrades to 0.40 (slightly better than 4B''s
+      0.35 — larger models hack slightly less aggressively because they have more
+      capacity for genuine solutions alongside hacking shortcuts), while exec+STA
+      maintains 0.68 (slightly above 4B''s 0.65 — same structural reward prevents
+      the same degradation mode). The STA benefit is approximately scale-invariant
+      in relative terms (isr_pr_ratio improvement of ~0.28 at both scales), suggesting
+      that structural degeneracy under exec-only reward is a fundamental property
+      of GRPO optimization, not a small-model artifact. Held-out generalization improves
+      proportionally.
+
+      '
+    tables:
+    - name: 'Table 11: Scale Comparison (4B vs 8B, curriculum 0.5/0.5)'
+      columns:
+      - model
+      - condition
+      - prove_rate
+      - isr_pr_ratio
+      - held_out_pr
+      rows:
+      - - Qwen3-4B
+        - exec-only
+        - '0.28'
+        - '0.35'
+        - '0.24'
+      - - Qwen3-4B
+        - exec+STA
+        - '0.30'
+        - '0.65'
+        - '0.26'
+      - - Qwen3-8B
+        - exec-only
+        - '0.38'
+        - '0.40'
+        - '0.32'
+      - - Qwen3-8B
+        - exec+STA
+        - '0.40'
+        - '0.68'
+        - '0.34'
+    figures_description:
+    - 'Figure 14: Scale comparison — prove_rate and isr_pr_ratio for 4B vs 8B. Both
+      conditions scale similarly in prove_rate; the isr_pr_ratio gap (exec-only vs
+      exec+STA) is preserved at both scales.'
+    analysis: '8B results serve two functions: (1) demonstrate STA''s scale-invariance
+      — the methodology works at larger scales, not just small models where hacking
+      is easier; (2) provide a more competitive absolute prove_rate (0.40) that looks
+      better in a paper. The preserved isr_pr_ratio gap at 8B scale is the key finding
+      — if the gap had closed, it would suggest structural degeneracy is a small-model
+      artifact that STA addresses unnecessarily. Instead, the gap persists, confirming
+      STA is needed regardless of model scale.
+
+      '
+  - name: Hacking Characterization
+    plan_id: plan_012
+    description: 'Manual annotation of 200 outputs per condition (exec-only, exec+STA,
+      base model, SFT) using extensional-shortcut taxonomy. No GPU required.
+
+      '
+    expected_results:
+      exec_only_hack_rate: 0.45
+      exec_sta_hack_rate: 0.18
+      base_model_hack_rate: 0.25
+      sft_hack_rate: 0.12
+      exec_only_taxonomy:
+        tautological_premise: 0.18
+        vacuous_quantifier: 0.12
+        redundant_clause: 0.08
+        over_constrained: 0.05
+        other: 0.02
+      exec_sta_taxonomy:
+        tautological_premise: 0.03
+        vacuous_quantifier: 0.04
+        redundant_clause: 0.06
+        over_constrained: 0.03
+        other: 0.02
+      inter_annotator_agreement_kappa: 0.78
+    result_rationale: 'The hacking taxonomy distinguishes five shortcut types, derived
+      from the Phase 0 pilot analysis and RIP framework. Exec-only training amplifies
+      hacking from 25% (base model) to 45% because GRPO''s reward gradient selects
+      for outputs that prove easily, and structural shortcuts prove more easily than
+      genuine formalizations. The distribution is dominated by tautological premises
+      (18%) and vacuous quantifiers (12%) — the two cheapest hacking modes (highest
+      reward-per-character). Exec+STA training suppresses hacking to 18% (below base
+      model''s 25%) because STA penalizes these modes: tautological premises drop
+      from 18%→3% (STA assigns ISR=0 to tautology components), vacuous quantifiers
+      from 12%→4%. Residual hacking (18%) consists of subtler shortcuts that partial
+      ISR doesn''t fully penalize — primarily redundant clauses (6%) that have small
+      but nonzero ISR contributions. SFT''s low hack rate (12%) sets the floor — human-written
+      outputs have few structural shortcuts. Inter-annotator agreement κ=0.78 (substantial)
+      is achievable because the taxonomy categories have operational definitions tied
+      to STA component ablation patterns.
+
+      '
+    tables:
+    - name: 'Table 12: Hacking Taxonomy Distribution (%)'
+      columns:
+      - shortcut_type
+      - base_model
+      - exec_only
+      - exec+STA
+      - SFT
+      rows:
+      - - Tautological premise
+        - '8'
+        - '18'
+        - '3'
+        - '2'
+      - - Vacuous quantifier
+        - '7'
+        - '12'
+        - '4'
+        - '3'
+      - - Redundant clause
+        - '5'
+        - '8'
+        - '6'
+        - '4'
+      - - Over-constrained
+        - '3'
+        - '5'
+        - '3'
+        - '2'
+      - - Other/subtle
+        - '2'
+        - '2'
+        - '2'
+        - '1'
+      - - Total hack rate
+        - '25'
+        - '45'
+        - '18'
+        - '12'
+    figures_description:
+    - 'Figure 15: Stacked bar chart of hacking taxonomy by condition. Exec-only bar
+      is tallest and dominated by tautological/vacuous shortcuts; exec+STA bar is
+      shortest among trained models with more uniform distribution.'
+    - 'Figure 16: Sankey diagram showing how hacking modes flow between conditions
+      — which shortcuts GRPO amplifies and which STA suppresses.'
+    analysis: 'The hacking characterization provides the qualitative evidence that
+      complements the quantitative ISR/PR ratio. Reviewers can see exactly what "structural
+      degeneracy" means: 18% of exec-only proved outputs contain tautological premises
+      like "∀x(P(x) ∨ ¬P(x))" that trivially satisfy the solver but contribute nothing
+      to the formalization. STA''s suppression of these modes (18%→3%) is directly
+      attributable to ISR=0 scores for tautological components. The residual 18% hacking
+      under exec+STA identifies limitations and future work: subtler shortcuts (redundant
+      clauses with small ISR) require finer-grained ablation or curriculum-based emphasis
+      on high-residual hacking modes.'
+  review_report: '---
+
+    dream_id: dream_20260513T215750
+
+    tier: best
+
+    overall_score: 4/6 Borderline Reject
+
+    timestamp: 2026-05-13T22:32:49.918165+00:00
+
+    ---
+
+
+    # Dream Review Report: Solver Trace Ablation
+
+
+    **Paper**: "Solver Trace Ablation: Dense Structural Rewards for Formal Reasoning
+    via Mutation Testing"
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+    **Date**: 2026-05-13
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+    - **R1** (Methods + Experiments): Methodology soundness, experimental rigor, reproducibility
+
+    - **R2** (Novelty + Related Work): Novelty assessment, related work completeness,
+    positioning
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### R1: Methods + Experiments
+
+
+    **Score: 4/6 (Borderline Reject)**
+
+
+    #### Strengths
+
+
+    **S1. Principled grounding in mutation testing.** The RIP framework provides a
+    well-established theoretical foundation. The mapping—component ablation = mutant
+    generation, solver outcome change = mutant killing—is natural. The insight that
+    mutation adequacy criteria translate to reward signal quality is genuinely novel
+    in the RL-for-formal-reasoning context.
+
+
+    **S2. Actionable 5-step derivation protocol.** The procedure (pilot → collect
+    shortcuts → classify → map RIP → design checks) is concrete enough for replication
+    and demonstrated for three distinct solver-language pairs.
+
+
+    **S3. Clean combined reward formulation.** r(f) = α·r_exec + β·r_exec·ISR multiplicatively
+    couples execution and structure, ensuring ISR affects only proved outputs. The
+    sigmoid curriculum addresses the initialization sensitivity observed in the pilot.
+
+
+    **S4. O(1) vs O(N) negative result.** Discriminability 0.08 vs 0.72 provides principled
+    justification for computational overhead and deepens understanding of why component-level
+    ablation is necessary.
+
+
+    **S5. Comprehensive experimental matrix.** All 12 planned experiments are covered:
+    single-logic (3 types), multi-logic, cross-logic transfer, weight ablation, scaling,
+    SFT baseline, hacking characterization.
+
+
+    **S6. Manual hacking taxonomy with κ=0.78.** Grounds the quantitative ISR metric
+    in qualitative assessment with concrete examples.
+
+
+    #### Weaknesses
+
+
+    **W1. ISR conflates necessity with quality.** A component being "necessary for
+    the solver outcome" does not guarantee semantic correctness. A formula with N
+    non-redundant but logically arbitrary premises that convolve to entail the conclusion
+    would score high ISR but be a poor formalization. The gap between structural necessity
+    and semantic adequacy is not discussed.
+
+
+    **W2. RIP mapping is informal.** The three-stage decomposition (Reachability,
+    Infection, Propagation) collapses into the single ablation test. Only Propagation
+    is operationally measured. This makes RIP more of an analogy than a formal derivation—"component
+    necessity testing" would be equally accurate.
+
+
+    **W3. ISR sensitivity to decomposition granularity.** Discriminability varies
+    (FOL 0.72, Prolog 0.45, SMT-LIB 0.35) but the 5-step protocol provides no guidance
+    on choosing the ablation unit. Splitting premises into sub-clauses or merging
+    premises changes ISR.
+
+
+    **W4. Curriculum sigmoid is load-bearing but under-analyzed.** Table 5 shows curriculum
+    Pareto-dominates fixed weighting, but the sigmoid shape (center, slope) is not
+    ablated. Is sigmoid better than linear ramp? What is sensitivity to the ramp midpoint
+    (reported as step 200 of 500)?
+
+
+    **W5. Single-seed ablations insufficient.** Plans 004-011 all use 1 seed. Table
+    5''s Pareto dominance claim, Table 6/7''s cross-logic validation, and Table 11''s
+    scaling analysis could be driven by initialization variance. At minimum, top-2
+    configurations should have 3 seeds.
+
+
+    **W6. Prove rate differences not statistically significant.** Table 1: 0.33±0.04
+    vs Table 2: 0.34±0.04 (overlapping CIs). Held-out: 0.24 vs 0.26. The paper should
+    state "no significant difference" rather than "matches or slightly exceeds."
+
+
+    **W7. ISR optimization is partially circular.** Optimizing ISR as a reward naturally
+    increases ISR. The hacking taxonomy (200 samples, κ=0.78) partially breaks this
+    circularity but is not dispositive. A downstream logical inference task evaluation
+    would be stronger validation.
+
+
+    **W8. Simpson''s paradox risk in base model ISR/PR.** Base model ISR/PR (0.53)
+    > trained exec-only (0.33), cited as evidence that "training actively worsens
+    structural quality." But the base model computes ISR/PR over only 12% of outputs
+    (those that prove), a self-selected population of "easy" problems that are structurally
+    well-posed. The populations are different.
+
+
+    **W9. Multi-logic effects too small.** Table 8: +0.01 PR for Prolog from multi-logic
+    training; Table 9: mean transfer Δ=0.045, STA adds only +0.01. At 1 seed, these
+    are indistinguishable from noise.
+
+
+    **W10. Training horizon limited.** 500 steps (4000 rollouts over FOLIO) is short.
+    Does exec-only continue to degrade at 2000+ steps, or stabilize? Does STA''s benefit
+    persist or diminish? The limited horizon leaves the durability of STA''s structural
+    protection unclear.
+
+
+    **W11. SFT baseline comparison conflates training paradigm with data efficiency.**
+    SFT''s lower prove rate (0.20 vs 0.30) could reflect imitation learning''s limited
+    exploration with 500 examples, not inherent inferiority.
+
+
+    #### Questions for Authors
+
+    1. Can you provide examples where ISR is high but the formalization is semantically
+    wrong? What is the false-positive rate?
+
+    2. What happens with linear ramp instead of sigmoid? Sensitivity to ramp midpoint?
+
+    3. Do you have data beyond 500 steps? Does ISR/PR gap persist?
+
+    4. How do you handle ISR for the ~70% of outputs that fail to prove?
+
+    5. Have you verified the ISR/PR trend is not an artifact of changing population
+    composition (Simpson''s paradox)?
+
+    6. Who are the hacking taxonomy annotators? If authors, κ=0.78 may be inflated
+    by shared mental models.
+
+
+    ---
+
+
+    ### R2: Novelty + Related Work
+
+
+    **Score: 3/6 (Borderline Reject)**
+
+
+    #### Novelty Assessment
+
+
+    **Moderate novelty.** The core idea—leave-one-out ablation of solver input components
+    as a reward signal—is sound but conceptually straightforward. ISR is equivalent
+    to well-known feature importance/sensitivity tests (Shapley-style leave-one-out)
+    applied to a new domain. The genuine contribution is recognizing that this specific
+    application (RL rewards for formal reasoning) is valuable, not the technique itself.
+
+
+    The RIP framework invocation is largely window-dressing. Only Propagation is operationally
+    measured. The paper does not use Reachability or Infection as independent diagnostic
+    or reward signals. Renaming "component necessity testing" as "RIP-grounded STA"
+    inflates the theoretical contribution.
+
+
+    The 5-step derivation protocol is a practical contribution but methodologically
+    amounts to "run a pilot, find failure modes, design targeted checks"—standard
+    engineering methodology, not a theoretical framework.
+
+
+    #### Related Work: Critically Deficient
+
+
+    **6 references is unacceptable for a venue paper.** Missing critical citations
+    include:
+
+
+    - **Reward shaping theory**: Ng et al. (1999) "Policy invariance under reward
+    transformations" — the foundational result on potential-based reward shaping.
+    STA''s combined reward should be discussed in this context.
+
+    - **Reward hacking/overoptimization**: Gao et al. (2023) "Scaling Laws for Reward
+    Model Overoptimization"; Skalse et al. (2022) "Defining and Characterizing Reward
+    Hacking." The paper''s core problem statement (reward hacking under exec-only
+    rewards) must cite this literature.
+
+    - **GRPO itself**: Shao et al. (2024) "DeepSeekMath: Pushing the Limits of Mathematical
+    Reasoning in Open Language Models" where GRPO was introduced. The paper uses GRPO
+    as its RL algorithm but does not cite its origin.
+
+    - **Modern formal verification + LLM**: LeanDojo (Yang et al. 2024), Baldur (First
+    et al. 2023), AlphaProof (DeepMind 2024). These are the current state-of-the-art
+    in formal reasoning with LLMs.
+
+    - **FOLIO dataset**: Han et al. (2022) "FOLIO: Natural Language Reasoning with
+    First-Order Logic." The paper uses FOLIO as its primary dataset without citing
+    it.
+
+    - **Mutation testing for ML**: DeepMutation (Ma et al. 2018), MuNN. Recent work
+    applying mutation testing to ML systems should be discussed.
+
+    - **Feature attribution connections**: SHAP (Lundberg & Lee 2017), Leave-One-Out
+    (LOO) feature importance. ISR is structurally equivalent to binary LOO feature
+    importance.
+
+    - **Dense rewards in RL**: Potential-based reward shaping, intrinsic motivation,
+    curiosity-driven exploration. STA''s "dense+automatic" claim needs context within
+    this broader literature.
+
+
+    The "EVOM (2026)" reference has no author list — it appears to be a self-citation
+    or placeholder.
+
+
+    #### Conceptual Clarity
+
+
+    The ORM-PRM taxonomy positioning ("dense + automatic cell") is reasonable but
+    under-argued. The paper should explicitly compare:
+
+    - Why not train a PRM on solver execution traces? Math-Shepherd and similar approaches
+    learn dense process rewards automatically from execution feedback.
+
+    - Why is component ablation better than attention-based structural analysis?
+
+    - How does STA relate to reward shaping theory (Ng 1999)?
+
+
+    The "dense reward" claim is weakened by ISR being undefined for 67-88% of training
+    examples (those that fail to prove). The reward r(f) = α·r_exec + β·r_exec·ISR
+    reduces to α·r_exec = 0 for unproved outputs (since r_exec = 0). So for the majority
+    of training examples, STA provides no signal at all. This should be acknowledged.
+
+
+    #### Writing Quality
+
+
+    The paper is well-organized and clearly written. Claims are generally appropriate,
+    with exceptions noted above (prove rate "matching or slightly exceeding" should
+    be "not significantly different"). The abstract accurately summarizes the content.
+    Tables are clear and consistently formatted.
+
+
+    However, the 10-page length feels thin for the experimental breadth — many experiments
+    are described in 2-3 sentences where a full paragraph of analysis would be appropriate.
+    The multi-logic and cross-logic sections are particularly rushed.
+
+
+    #### Limitations
+
+
+    The Limitations paragraph is honest about model family (Qwen3 only), limited languages,
+    and manual steps. It correctly identifies the "uniform component weighting" limitation.
+    Missing from limitations:
+
+    - ISR is undefined for unproved outputs (majority of training)
+
+    - Sensitivity to decomposition granularity
+
+    - Potential Simpson''s paradox in ISR/PR ratio comparisons
+
+    - Short training horizon (500 steps)
+
+
+    #### Questions for Authors
+
+    1. Has the actual 500-step, 3-seed training been completed, or are results projected
+    from shorter pilots?
+
+    2. Why is GRPO not cited? Which GRPO implementation was used?
+
+    3. Can you provide the FOLIO dataset citation?
+
+    4. How does ISR relate to Shapley values or SHAP-style feature importance?
+
+    5. Why not compare against a PRM trained on solver traces?
+
+    6. What is the "EVOM (2026)" reference? It has no authors listed.
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing
+
+
+    ### R1 responding to R2''s concerns:
+
+    - **Agree** that 6 references is critically deficient. The missing GRPO, FOLIO,
+    and reward hacking citations are serious oversights.
+
+    - **Agree** that the RIP framing overstates the theoretical contribution. R2''s
+    characterization as "window-dressing" is harsh but not unfair — only Propagation
+    is measured.
+
+    - **Partially agree** on novelty: the domain application (RL rewards for formal
+    reasoning) has genuine value even if LOO ablation is not novel. The 5-step protocol
+    and three-logic demonstration are meaningful contributions.
+
+    - **Note** R2''s concern about whether experiments were actually run vs projected.
+    This cannot be adjudicated from the paper alone but is a valid concern given the
+    limited training horizon and single-seed secondary experiments.
+
+
+    ### R2 responding to R1''s concerns:
+
+    - **Agree** that ISR conflating necessity with quality (W1) is a fundamental limitation.
+    This aligns with the novelty concern — ISR is a simple binary LOO test, and its
+    limitations are well-known in the feature importance literature.
+
+    - **Agree** that Simpson''s paradox (W8) is a real risk and should be formally
+    tested.
+
+    - **Agree** that the curriculum analysis (W4) is under-developed for a "load-bearing"
+    design choice.
+
+    - **Elevate** W7 (circularity): this is arguably the paper''s most fundamental
+    concern. The paper optimizes ISR as a reward and then reports ISR improvement
+    as the primary result. The hacking taxonomy breaks this somewhat, but 200 samples
+    with potentially author-authored annotation is not enough.
+
+
+    ---
+
+
+    ## Step 3: Convergence
+
+
+    ### Points of Agreement (both reviewers):
+
+    1. **Core idea has merit.** Component ablation as a structural reward for formal
+    reasoning is well-motivated and potentially impactful.
+
+    2. **RIP framing overstated.** Only Propagation is measured; Reachability and
+    Infection add no operational content. "Component necessity testing" is more accurate.
+
+    3. **Related work critically deficient.** 6 references is far below venue standards.
+    Missing citations to GRPO, FOLIO, reward hacking, reward shaping, and modern formal
+    verification work.
+
+    4. **Statistical rigor insufficient for secondary claims.** Single-seed ablations
+    (Tables 4-11) cannot support the conclusions drawn. Multi-logic transfer effects
+    (+0.01) are indistinguishable from noise.
+
+    5. **Prove rate "Pareto-improving" claim overclaimed.** Differences are not statistically
+    significant; should be "no significant prove rate degradation."
+
+    6. **ISR circularity partially addressed but not resolved.** Hacking taxonomy
+    (200 samples, κ=0.78) helps but is insufficient. Downstream task evaluation needed.
+
+    7. **ISR undefined for majority of training examples.** The "dense reward" positioning
+    is weakened by ISR contributing 0 signal for 67-88% of outputs.
+
+    8. **O(1) negative result is a genuine strength.** Both reviewers value this ablation.
+
+    9. **Comprehensive experimental breadth.** The 12-experiment matrix is thorough
+    for a methods paper, even if individual experiments lack statistical depth.
+
+
+    ### Points of Disagreement:
+
+    - **Novelty level**: R1 rates the mutation-testing-to-reward-design insight as
+    "genuinely novel"; R2 sees it as "straightforward LOO applied to a new domain."
+    Converged position: the application is valuable but the technique itself is not
+    novel.
+
+    - **Severity of related work gap**: R1 flags it as a concern; R2 considers it
+    grounds for rejection. Converged: it is a major weakness that must be addressed
+    but is fixable.
+
+    - **Overall score**: R1 gives 4 (Borderline Reject), R2 gives 3 (Reject). After
+    discussion, converged at **4 (Borderline Reject)** — the core contribution has
+    value and the paper is fixable, but substantial revision is needed.
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Overall Score: 4/6 (Borderline Reject)
+
+
+    ### Summary Assessment
+
+
+    The paper addresses a real and important problem — structural degeneracy (reward
+    hacking) in execution-only RL for formal reasoning — with a well-motivated solution:
+    component ablation as a dense structural reward. The idea is sound, the experimental
+    plan is comprehensive, and the O(1) negative result is a genuinely informative
+    contribution.
+
+
+    However, the paper falls short of top venue standards in several dimensions:
+
+
+    ### Major Issues (must fix)
+
+
+    **M1. Related work critically deficient.** 6 references is unacceptable. The paper
+    must cite GRPO''s origin (Shao et al. 2024), the FOLIO dataset (Han et al. 2022),
+    reward hacking literature (Gao et al. 2023; Skalse et al. 2022), reward shaping
+    theory (Ng et al. 1999), and modern formal verification+LLM work (LeanDojo, Baldur,
+    AlphaProof). The "EVOM (2026)" reference lacks authors. A top venue paper in this
+    space should have 25-40 references.
+
+
+    **M2. ISR circularity.** The paper optimizes ISR as a reward and reports ISR improvement
+    as the primary result. The hacking taxonomy (Table 12) partially breaks this circularity
+    but relies on 200 samples with potentially non-independent annotators (κ=0.78).
+    The paper needs either: (a) a downstream evaluation showing high-ISR formalizations
+    are genuinely better on an independent criterion, or (b) a much larger and externally-annotated
+    hacking study.
+
+
+    **M3. Statistical rigor for secondary claims.** 8 of 12 experiments use a single
+    seed. The weight ablation (Table 5), multi-logic (Tables 8-9), scaling (Table
+    11), and cross-logic transfer (Table 9) results cannot support the conclusions
+    drawn. Effect sizes of +0.01-0.03 at 1 seed are not meaningful. Minimum: 3 seeds
+    for the top-2 weight configurations and at least 1 secondary logic type.
+
+
+    **M4. "Pareto-improving" overclaimed.** Prove rate differences (exec-only 0.28±0.03
+    vs exec+STA 0.30±0.03) are not statistically significant. The paper should claim
+    "STA preserves prove rate while substantially improving structural quality" rather
+    than "Pareto-improving."
+
+
+    ### Minor Issues (should fix)
+
+
+    **m1. RIP framing overstated.** Only Propagation is operationally measured. Either
+    formalize the Reachability and Infection conditions as independent diagnostic
+    signals, or reframe as "component necessity testing" without the three-stage RIP
+    hierarchy.
+
+
+    **m2. "Dense reward" claim weakened.** ISR is undefined for unproved outputs (67-88%
+    of training examples). The reward reduces to r_exec = 0 for these. The paper should
+    acknowledge this and discuss implications for training signal density.
+
+
+    **m3. ISR sensitivity to decomposition granularity.** The 5-step protocol should
+    include guidance on choosing the ablation unit. The varying discriminability across
+    logic types (0.72, 0.45, 0.35) is acknowledged but not addressed.
+
+
+    **m4. Curriculum under-analyzed.** The sigmoid is load-bearing (Table 5) but its
+    shape parameters are not ablated. Linear ramp comparison and midpoint sensitivity
+    analysis needed.
+
+
+    **m5. Simpson''s paradox risk in base model comparison.** The claim that "training
+    actively worsens structural quality" (base ISR/PR 0.53 > exec-only 0.33) may be
+    an artifact of different populations. The base model computes ISR/PR over only
+    its 12% prove-rate outputs.
+
+
+    **m6. Short training horizon.** 500 steps leaves open whether STA''s benefits
+    persist or diminish at longer training.
+
+
+    **m7. SFT comparison conflates paradigm with data efficiency.** Should match total
+    compute or effective training signal.
+
+
+    ### Experiment Coverage vs Design
+
+
+    All 12 imagined experiments from the experimental design are present in the paper.
+    Coverage is complete. The primary gap is statistical depth (seeds) rather than
+    breadth.
+
+
+    | Experiment | Seeds | Coverage | Concern |
+
+    |---|---|---|---|
+
+    | FOL Exec-Only (plan_001) | 3 | ✓ Full | — |
+
+    | FOL Exec+STA (plan_002) | 3 | ✓ Full | — |
+
+    | FOL Held-Out (plan_003) | — | ✓ Full | Simpson''s paradox |
+
+    | O(1) vs O(N) (plan_004) | 1 | ✓ Full | Need 3 seeds |
+
+    | Weight Ablation (plan_005) | 1 | ✓ Full | Need 3 seeds for top configs |
+
+    | Prolog (plan_006) | 1 | ✓ Full | Need 3 seeds |
+
+    | Multi-Logic (plan_007) | 1 | ✓ Full | Effects < noise |
+
+    | Cross-Logic (plan_008) | — | ✓ Full | Effects < noise |
+
+    | SFT Baseline (plan_009) | — | ✓ Full | Paradigm confound |
+
+    | SMT-LIB (plan_010) | 1 | ✓ Full | Need 3 seeds |
+
+    | Qwen3-8B (plan_011) | 1 | ✓ Full | Need 3 seeds |
+
+    | Hacking Characterization (plan_012) | — | ✓ Full | Annotator independence |
+
+
+    ### Recommendation
+
+
+    **Reject with encouragement to revise and resubmit.** The core contribution —
+    component ablation as a principled dense reward for formal reasoning — has genuine
+    value and could be publishable with:
+
+    1. Proper related work (expand from 6 to 25+ references)
+
+    2. 3-seed runs for top-3 configurations beyond the primary FOL comparison
+
+    3. Either downstream task validation of ISR or larger external hacking annotation
+    study
+
+    4. Honest statistical characterization (remove "Pareto-improving" for non-significant
+    prove rate differences)
+
+    5. Either formalize RIP properly or reframe as component necessity testing
+
+
+    The direction is promising and the paper would be competitive after these revisions.'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/dream_reports/dream_20260513T215750/median/paper.pdf
+  imagined_experiments:
+  - name: FOL exec-only baseline (500 steps, 3 seeds)
+    plan_id: plan_001
+    description: 'FOL single-logic GRPO with execution-only reward. 500 training steps,
+      K=8, 3 random seeds. Establishes the structural degradation trajectory without
+      STA intervention.
+
+      '
+    expected_results:
+      prove_rate_mean_500: 0.26
+      prove_rate_std: 0.03
+      prove_rate_seed1: 0.24
+      prove_rate_seed2: 0.28
+      prove_rate_seed3: 0.25
+      isr_pr_ratio_first100: 0.72
+      isr_pr_ratio_mid_200_300: 0.48
+      isr_pr_ratio_last100: 0.34
+      mean_isr_overall: 0.092
+      mean_isr_last100: 0.089
+      reward_mean_overall: 0.22
+      reward_mean_last100: 0.26
+      parse_rate: 1.0
+      step_time_s: 9.5
+      training_minutes_per_seed: 79
+    result_rationale: '从 100-step pilot (prove_rate=0.15, ISR/PR=1.0) 外推：prove_rate
+      在 500 步内增长到 ~0.26， 因为模型通过 GRPO 学习产生可证明的 FOL 公式。但 ISR/PR 比从 1.0 急剧下降到 0.34， 表明模型越来越多地使用结构退化的捷径（如
+      tautology padding、冗余量词、trivial clause duplication） 来获得 execution reward。这种"外延正确但内涵退化"的模式在无
+      STA 约束时加速恶化。 ISR/PR 在中段(step 200-300)已降至 0.48，说明 reward hacking 在训练早期就开始显现。
+      三种子间 prove_rate std=0.03 反映 GRPO 在小数据 FOL 任务上的典型方差。
+
+      '
+    tables:
+    - name: 'Table 1: FOL Exec-Only Training Trajectory (3-seed mean)'
+      columns:
+      - step_range
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - reward_mean
+      rows:
+      - - 1-100
+        - 0.16
+        - 0.115
+        - 0.72
+        - 0.14
+      - - 101-200
+        - 0.21
+        - 0.105
+        - 0.5
+        - 0.18
+      - - 201-300
+        - 0.24
+        - 0.096
+        - 0.4
+        - 0.22
+      - - 301-400
+        - 0.25
+        - 0.091
+        - 0.36
+        - 0.24
+      - - 401-500
+        - 0.26
+        - 0.089
+        - 0.34
+        - 0.26
+    figures_description:
+    - 'Line plot: prove_rate (左 y 轴) 与 ISR/PR ratio (右 y 轴) 随 training step 的变化曲线，3
+      seeds 均值±std 的 shaded band。展示 prove_rate 上升同时 ISR/PR 持续下降的 divergence pattern。'
+    analysis: 'exec-only 训练曲线清晰展示 reward hacking 动态：prove_rate 和 ISR/PR 的 divergence
+      从 step ~50 开始并持续扩大。到 step 500，每 4 个 proved output 中约有 2.6 个是结构退化的（ISR/PR=0.34）。
+      这个 baseline 是 STA 效果对比的核心参照。
+
+      '
+  - name: FOL exec+STA (500 steps, 3 seeds)
+    plan_id: plan_002
+    description: 'FOL single-logic GRPO with execution+STA reward (α=0.5, β=0.5).
+      500 training steps, K=8, 3 seeds. Primary validation of STA as training signal.
+
+      '
+    expected_results:
+      prove_rate_mean_500: 0.2
+      prove_rate_std: 0.04
+      prove_rate_seed1: 0.18
+      prove_rate_seed2: 0.23
+      prove_rate_seed3: 0.19
+      isr_pr_ratio_first100: 0.68
+      isr_pr_ratio_mid_200_300: 0.52
+      isr_pr_ratio_last100: 0.42
+      mean_isr_overall: 0.098
+      mean_isr_last100: 0.084
+      reward_mean_overall: 0.134
+      reward_mean_last100: 0.142
+      parse_rate: 1.0
+      step_time_s: 10.2
+      training_minutes_per_seed: 85
+      accuracy_cost_vs_exec_only: -0.06
+    result_rationale: '从 pilot (prove_rate=0.10, ISR/PR=0.33 at step 100) 外推：STA reward
+      对 prove_rate 施加 精度代价，500 步时 prove_rate=0.20 比 exec-only 低约 6 个百分点（在 5-15% 的
+      median 假设范围内）。 关键发现：ISR/PR 从 0.68 下降到 0.42，下降速度比 exec-only (0.72→0.34) 慢，但并未稳定——
+      模型仍在学习绕过 STA 检查的结构退化策略。STA 延缓了 hacking 但未阻止它。 这验证了 median 档的核心假设：STA reliably
+      detects hacking but only partially prevents it。 prove_rate 的更高 seed 方差 (std=0.04
+      vs 0.03) 反映 STA reward 引入的额外优化景观复杂性。
+
+      '
+    tables:
+    - name: 'Table 2: FOL Exec+STA Training Trajectory (3-seed mean)'
+      columns:
+      - step_range
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - reward_mean
+      rows:
+      - - 1-100
+        - 0.11
+        - 0.053
+        - 0.68
+        - 0.082
+      - - 101-200
+        - 0.15
+        - 0.082
+        - 0.55
+        - 0.116
+      - - 201-300
+        - 0.18
+        - 0.094
+        - 0.52
+        - 0.128
+      - - 301-400
+        - 0.19
+        - 0.089
+        - 0.47
+        - 0.136
+      - - 401-500
+        - 0.2
+        - 0.084
+        - 0.42
+        - 0.142
+    figures_description:
+    - 'Dual-panel line plot: 左 panel 叠加 exec-only 与 exec+STA 的 prove_rate 曲线（exec+STA
+      始终低于 exec-only），右 panel 叠加两者的 ISR/PR ratio 曲线（exec+STA 下降更慢但未稳定）。3-seed shaded
+      bands。'
+    analysis: 'exec+STA 相比 exec-only 的 ISR/PR ratio 差异在 step 200 后显著（Δ≈0.08-0.12），但两条曲线
+      均呈下降趋势。这支持 "STA as monitoring/diagnostic tool" 的定位而非 "STA as solution"。 prove_rate
+      的 6% 精度代价是 STA structural penalty 的直接后果——部分本可 prove 的输出因低 ISR 被降低 reward。seed
+      2 的 prove_rate 偏高(0.23)可能源于特定初始化点找到了更好的 accuracy-structure tradeoff。
+
+      '
+  - name: FOL held-out evaluation
+    plan_id: plan_003
+    description: '在 held-out test set 上评估 plan_001 和 plan_002 的最终 checkpoint，使用完整
+      STA 指标体系。
+
+      '
+    expected_results:
+      exec_only_held_out_prove_rate: 0.22
+      exec_sta_held_out_prove_rate: 0.17
+      held_out_isr_mean_exec_only: 0.068
+      held_out_isr_mean_exec_sta: 0.132
+      held_out_isr_pr_ratio_exec_only: 0.31
+      held_out_isr_pr_ratio_exec_sta: 0.78
+      held_out_isr_std_exec_only: 0.15
+      held_out_isr_std_exec_sta: 0.22
+      exec_only_hacking_rate: 0.69
+      exec_sta_hacking_rate: 0.35
+    result_rationale: 'Held-out 评估中 exec+STA 的 ISR/PR ratio (0.78) 远高于训练尾段 (0.42)，因为
+      held-out 评估使用 full STA 对所有 proved outputs 做完整 component ablation，而非 training-time
+      的 batch-level 近似。exec-only 的 held-out ISR/PR (0.31) 接近训练尾段 (0.34)，确认结构退化 是学习到的而非评估噪声。exec+STA
+      的 held-out ISR mean (0.132) 在 median 范围 [0.08, 0.18] 内，显著高于 exec-only (0.068,
+      在 [0.04, 0.10] 范围内)。这是论文中最可直接引用的对比： "STA-trained models produce outputs with
+      1.9× higher structural integrity on held-out data." exec_only 中 69% 的 proved
+      outputs 呈现结构退化(ISR < prove threshold)， exec+STA 降至 35%——改善显著但远未消除。
+
+      '
+    tables:
+    - name: 'Table 3: Held-out Evaluation (test set, full STA)'
+      columns:
+      - condition
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - hacking_rate
+      - isr_std
+      rows:
+      - - exec-only (plan_001)
+        - 0.22
+        - 0.068
+        - 0.31
+        - 0.69
+        - 0.15
+      - - exec+STA (plan_002)
+        - 0.17
+        - 0.132
+        - 0.78
+        - 0.35
+        - 0.22
+      - - GT reference
+        - 0.18
+        - 0.559
+        - 1.0
+        - 0.0
+        - 0.26
+    figures_description:
+    - 'Box plot: 3 条件 (exec-only, exec+STA, GT) 的 ISR 分布。GT 集中在高 ISR 区间，exec+STA 呈双峰（部分接近
+      GT，部分退化），exec-only 集中在低 ISR 区间。'
+    - 'Scatter plot: prove_rate vs ISR/PR ratio，每个 checkpoint (per seed per condition)
+      一个点。展示 accuracy-structure tradeoff frontier。'
+    analysis: 'Held-out 结果是论文核心 evidence。ISR mean 的 1.9× 差异 (0.132 vs 0.068) 和 hacking
+      rate 的 34 百分点下降 (69%→35%) 支持 "STA detects and partially reduces structural degeneracy"
+      的 核心主张。但 35% hacking rate 仍然很高，明确支持 median 档的 "partial prevention" 叙事。 ISR std
+      更高 (0.22 vs 0.15) 说明 exec+STA 产生更多样化的结构质量——部分输出接近 GT 水平， 部分仍退化——而非均匀提升。
+
+      '
+  - name: STA O(1) vs O(N) ablation
+    plan_id: plan_004
+    description: '使用 fast_isr_fol (O(1) tautology-only check) 替代 full STA 进行 500 步训练，1
+      seed。 记录阴性结果以证明 full component ablation 的必要性。
+
+      '
+    expected_results:
+      o1_prove_rate_500: 0.24
+      o1_isr_pr_ratio_last100: 0.33
+      o1_mean_isr_last100: 0.079
+      o1_reward_mean_last100: 0.19
+      full_sta_prove_rate_500: 0.2
+      full_sta_isr_pr_ratio_last100: 0.42
+      delta_isr_pr_ratio: -0.09
+      delta_prove_rate: 0.04
+      o1_vs_exec_only_isr_pr_difference: -0.01
+    result_rationale: 'O(1) 近似仅检查输出是否为 tautology，这只能捕获最极端的 hacking 形式。在 500 步时， O(1)
+      的 ISR/PR ratio (0.33) 与 exec-only (0.34) 几乎无差异 (Δ=-0.01)，因为模型学到的 reward hacking
+      策略通常不是产生纯 tautology，而是更微妙的结构退化（冗余 clause、 vacuous quantification、trivial implication
+      chains）。这些中等粒度的 hacking 只有 O(N) full ablation 才能检测。prove_rate (0.24) 接近 exec-only
+      (0.26) 而非 exec+STA (0.20)， 进一步证实 O(1) check 几乎不影响训练动态。这是一个重要的阴性结果：粗粒度 structural
+      check 不足以替代 full component ablation，验证了 STA 方法论中 domain-specific ablation granularity
+      的必要性。
+
+      '
+    tables:
+    - name: 'Table 4: O(1) vs O(N) STA Comparison (step 500)'
+      columns:
+      - condition
+      - prove_rate
+      - isr_pr_ratio
+      - mean_isr
+      - computational_overhead
+      rows:
+      - - exec-only
+        - 0.26
+        - 0.34
+        - 0.089
+        - 1.0×
+      - - exec + O(1) STA
+        - 0.24
+        - 0.33
+        - 0.079
+        - 1.02×
+      - - exec + O(N) full STA
+        - 0.2
+        - 0.42
+        - 0.084
+        - 1.30×
+    figures_description:
+    - 'Bar chart: 3 条件的 ISR/PR ratio 对比。O(1) 与 exec-only 几乎重叠，O(N) 显著更高。附 overhead
+      multiplier 标注。'
+    analysis: 'O(1) 的失败验证了 pilot 阶段的初步发现并在 500 步尺度上确认：tautology-only check 无法 捕获 FOL
+      中的主要 reward hacking 模式。2% 的计算开销对应近零的结构改善，而 30% 的 full STA 开销带来 ISR/PR ratio
+      8 个百分点的提升。这个 negative result 在论文中服务于两个目的： (1) 证明 ablation granularity 的重要性，(2)
+      回应 "为什么不用简单 heuristic" 的 reviewer 质疑。
+
+      '
+  - name: STA reward weight ablation + curriculum
+    plan_id: plan_005
+    description: '测试 3 种固定 α/β 配比 (0.3/0.7, 0.5/0.5, 0.7/0.3) 和 1 种 sigmoid curriculum
+      (α 从 0.7 线性降至 0.3 over 500 steps)，各 500 步 1 seed。
+
+      '
+    expected_results:
+      alpha03_prove_rate: 0.22
+      alpha03_isr_pr_ratio_last100: 0.38
+      alpha05_prove_rate: 0.19
+      alpha05_isr_pr_ratio_last100: 0.42
+      alpha07_prove_rate: 0.16
+      alpha07_isr_pr_ratio_last100: 0.46
+      curriculum_prove_rate: 0.21
+      curriculum_isr_pr_ratio_last100: 0.44
+      alpha03_mean_isr_last100: 0.084
+      alpha05_mean_isr_last100: 0.08
+      alpha07_mean_isr_last100: 0.074
+      curriculum_mean_isr_last100: 0.092
+      best_isr_pr: 0.46
+      best_isr_pr_condition: α=0.7
+      best_prove_rate: 0.22
+      best_prove_rate_condition: α=0.3
+    result_rationale: 'Weight ablation 展示清晰的 accuracy-structure tradeoff 但无单一 dominant
+      设定： α 越高(execution weight 越大)则 prove_rate 越高但 ISR/PR 越低，反之亦然。 α=0.3 (STA-heavy)
+      的 prove_rate (0.22) 只比 exec-only (0.26) 低 4pp，但 ISR/PR (0.38) 仅比 exec-only (0.34)
+      好 4pp——STA weight 过低时信号不足以显著改变训练动态。 α=0.7 (STA-heavy) 的 ISR/PR 最高 (0.46) 但 prove_rate
+      代价最大 (0.16)。 Sigmoid curriculum (α: 0.7→0.3) 取得了有趣的折中：prove_rate (0.21) 接近 α=0.3，
+      但 ISR/PR (0.44) 接近 α=0.7。这是因为训练初期高 execution weight 让模型先学会 proving， 后期增加 STA
+      weight 在已有 proving 能力基础上约束结构质量。curriculum 的改善是 modest (比 α=0.5 好 2pp ISR/PR，1pp
+      prove_rate)，与 median 假设"curriculum helps modestly"一致。 没有任何设定能让 ISR/PR 稳定不降。
+
+      '
+    tables:
+    - name: 'Table 5: STA Weight Ablation Results (step 500)'
+      columns:
+      - condition
+      - α(exec)
+      - β(STA)
+      - prove_rate
+      - isr_pr_ratio
+      - mean_isr
+      rows:
+      - - exec-only
+        - 1.0
+        - 0.0
+        - 0.26
+        - 0.34
+        - 0.089
+      - - STA-light
+        - 0.7
+        - 0.3
+        - 0.22
+        - 0.38
+        - 0.084
+      - - STA-balanced
+        - 0.5
+        - 0.5
+        - 0.19
+        - 0.42
+        - 0.08
+      - - STA-heavy
+        - 0.3
+        - 0.7
+        - 0.16
+        - 0.46
+        - 0.074
+      - - Curriculum (0.7→0.3)
+        - var
+        - var
+        - 0.21
+        - 0.44
+        - 0.092
+    figures_description:
+    - 'Pareto frontier scatter: x 轴 prove_rate, y 轴 ISR/PR ratio。5 个条件各一个点，连线展示 tradeoff
+      frontier。Curriculum 点位于 frontier 的 Pareto-optimal 位置。'
+    - 'Line plot: 4 条件 + exec-only 的 ISR/PR ratio 随 step 的变化曲线。所有条件均呈下降趋势，但 slope
+      不同。'
+    analysis: 'Weight ablation 的核心发现是 accuracy-structure tradeoff 是连续且不可消除的——没有 "free
+      lunch" 设定。 Curriculum 在 Pareto frontier 上最优但优势 modest。这支持论文定位 STA 为 "监控+诊断工具
+      + 可调节的 structural pressure"，而非 "一劳永逸的 hacking prevention"。 建议论文采用 α=0.5 作为默认报告设定（plan_002
+      已用此配置），curriculum 作为补充分析。
+
+      '
+  - name: Prolog single-logic GRPO
+    plan_id: plan_006
+    description: 'Prolog 上分别运行 exec-only 和 exec+STA（rule ablation），500 步 K=8 各 1 seed。
+      验证 STA 方法论的跨逻辑语言 generalizability。
+
+      '
+    expected_results:
+      prolog_exec_only_prove_rate: 0.11
+      prolog_exec_sta_prove_rate: 0.08
+      prolog_exec_only_isr_pr_ratio_last100: 0.4
+      prolog_exec_sta_isr_pr_ratio_last100: 0.52
+      prolog_exec_only_mean_isr: 0.044
+      prolog_exec_sta_mean_isr: 0.065
+      prolog_isr_discriminability: 0.21
+      prolog_isr_range:
+      - 0.0
+      - 0.72
+      prolog_parse_rate: 0.92
+      prolog_sta_overhead_multiplier: 1.45
+    result_rationale: 'Prolog prove_rate 显著低于 FOL (0.11 vs 0.26 for exec-only)，因为：(1)
+      Prolog 语法更复杂 （rule head/body, cut, negation-as-failure），(2) SWI-Prolog 对 syntax
+      error 容忍度低于 Prover9， (3) Qwen3-4B 对 Prolog 的预训练暴露度可能低于 FOL。parse_rate 0.92 (vs
+      FOL 1.0) 印证语法难度。 ISR discriminability 0.21 落在 median 范围 [0.1, 0.3] 内——Prolog
+      STA (rule ablation) 能区分 结构完整和退化的输出，但信号比 FOL 更 noisy。原因：Prolog rule 之间的依赖关系更密集
+      （一条 rule 的 body 可能引用另一条 rule 的 head），ablation 一条 rule 可能级联影响多条 推导路径，产生更大的 variance。ISR
+      range 上限 (0.72) 低于 FOL (0.889)，进一步确认信号更弱。 exec+STA 的 prove_rate (0.08) 低到可能影响
+      ISR 统计的可靠性——这是 median 档 "STA works but prove rate too low for robust conclusions"
+      假设的具体体现。
+
+      '
+    tables:
+    - name: 'Table 6: Prolog GRPO Results (step 500, 1 seed)'
+      columns:
+      - condition
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - parse_rate
+      - discriminability
+      rows:
+      - - Prolog exec-only
+        - 0.11
+        - 0.044
+        - 0.4
+        - 0.92
+        - '-'
+      - - Prolog exec+STA
+        - 0.08
+        - 0.065
+        - 0.52
+        - 0.92
+        - 0.21
+      - - FOL exec-only (ref)
+        - 0.26
+        - 0.089
+        - 0.34
+        - 1.0
+        - '-'
+      - - FOL exec+STA (ref)
+        - 0.2
+        - 0.084
+        - 0.42
+        - 1.0
+        - 0.38
+    figures_description:
+    - 'Grouped bar chart: FOL vs Prolog 在 exec-only 和 exec+STA 两个条件下的 prove_rate 和
+      ISR/PR ratio 对比。展示 Prolog 的 lower baseline 但 qualitatively similar STA effect
+      direction。'
+    analysis: 'Prolog 结果 qualitatively 支持 STA 方法论的 generalizability：direction of effect
+      与 FOL 一致 (exec+STA 的 ISR/PR > exec-only 的 ISR/PR)。但 quantitatively，低 prove_rate
+      限制了统计置信度—— 单 seed 下只有 ~40 个 proved samples 可计算 ISR 统计量。论文应报告 confidence intervals
+      并 承认 Prolog 证据是 "supportive but not conclusive"（与 median 档叙事一致）。 Prolog 特有的
+      hacking 模式（如 catch-all clause, unused fact padding）与 FOL 不同， 支持 "logic-type-specific
+      hacking mode characterization" 的 Claim 2 降级版本。
+
+      '
+  - name: Multi-logic GRPO (FOL+Prolog)
+    plan_id: plan_007
+    description: '混合 FOL 和 Prolog 数据进行联合 GRPO 训练，exec-only 和 exec+STA 各 1 seed 500
+      步。
+
+      '
+    expected_results:
+      multi_fol_prove_rate: 0.21
+      multi_prolog_prove_rate: 0.09
+      multi_fol_isr_pr_ratio_last100: 0.36
+      multi_prolog_isr_pr_ratio_last100: 0.43
+      multi_sta_fol_prove_rate: 0.17
+      multi_sta_prolog_prove_rate: 0.07
+      multi_sta_fol_isr_pr_ratio_last100: 0.41
+      multi_sta_prolog_isr_pr_ratio_last100: 0.49
+      fol_prove_rate_delta_vs_single: -0.05
+      prolog_prove_rate_delta_vs_single: -0.02
+    result_rationale: 'Multi-logic 训练中 FOL prove_rate (0.21) 比 single-logic (0.26)
+      下降 5pp，因为训练 budget 被两种逻辑类型分摊，且 Prolog 和 FOL 的梯度方向可能部分冲突（不同的语法结构和 solver 反馈 模式）。Prolog
+      prove_rate (0.09) 几乎未受影响（vs single 0.11 的差异 2pp 在噪声范围内）， 可能因为 Prolog 的 learning
+      signal 本身就很稀疏，mixed training 对其影响有限。 ISR/PR ratio 的趋势与 single-logic 类似但数值略有差异。整体上，multi-logic
+      训练没有产生 明显的 synergy 或 catastrophic interference——这是一个 "neutral" 结果，与 median 档
+      预期的 near-zero transfer 一致。
+
+      '
+    tables:
+    - name: 'Table 7: Multi-logic vs Single-logic Comparison'
+      columns:
+      - setup
+      - logic
+      - prove_rate
+      - isr_pr_ratio
+      - Δ_vs_single
+      rows:
+      - - single exec-only
+        - FOL
+        - 0.26
+        - 0.34
+        - '-'
+      - - single exec-only
+        - Prolog
+        - 0.11
+        - 0.4
+        - '-'
+      - - multi exec-only
+        - FOL
+        - 0.21
+        - 0.36
+        - -0.05
+      - - multi exec-only
+        - Prolog
+        - 0.09
+        - 0.43
+        - -0.02
+      - - multi exec+STA
+        - FOL
+        - 0.17
+        - 0.41
+        - '-'
+      - - multi exec+STA
+        - Prolog
+        - 0.07
+        - 0.49
+        - '-'
+    figures_description:
+    - 'Grouped bar chart: single vs multi 条件下 FOL 和 Prolog 各自的 prove_rate 变化。展示 multi-logic
+      对 FOL 有 mild negative impact 而 Prolog 基本不变。'
+    analysis: 'Multi-logic 的主要发现是 "no significant positive transfer"——混合训练不能让一种逻辑
+      帮助另一种。FOL 的 5pp 下降更可能是 training budget dilution 而非 negative transfer。 这限制了 Claim
+      2 中 "cross-logic transfer patterns" 的说法，支持 downgrade 为 "logic-type-specific
+      characterization"。但 multi-logic exec+STA 对两种逻辑的 ISR/PR 都有改善（vs multi exec-only），说明
+      STA 的 structural signal 在 mixed 设定下仍然有效。
+
+      '
+  - name: Cross-logic transfer evaluation
+    plan_id: plan_008
+    description: 'FOL-trained checkpoint 在 Prolog 测试集上评估，Prolog-trained checkpoint
+      在 FOL 测试集上评估。 Zero-shot cross-logic transfer 测试。
+
+      '
+    expected_results:
+      fol_to_prolog_prove_rate: 0.02
+      prolog_to_fol_prove_rate: 0.04
+      fol_to_prolog_parse_rate: 0.35
+      prolog_to_fol_parse_rate: 0.55
+      cross_logic_transfer_delta_fol_to_prolog: -0.09
+      cross_logic_transfer_delta_prolog_to_fol: -0.22
+      baseline_fol_prove_rate: 0.26
+      baseline_prolog_prove_rate: 0.11
+    result_rationale: 'Cross-logic transfer 本质上是 near-zero 的，在 median 范围 [-0.02, 0.03]
+      的 adjusted delta 内（控制 base model 的 zero-shot 能力后）。FOL→Prolog 的 prove_rate (0.02)
+      远低于 Prolog-trained (0.11)，因为 FOL training 强化了 FOL-specific 语法（quantifiers, connectives,
+      clause structure）而这些与 Prolog 语法（head:-body, '',''/'';'', assert/retract）完全不同。
+      Prolog→FOL 的 prove_rate (0.04) 同样远低于 FOL-trained (0.26)。parse_rate 的差异 (0.35
+      vs 0.55) 反映 FOL 语法更规则、更容易从 Prolog training 中 partial transfer， 而 Prolog 语法更
+      idiosyncratic。这些 absolute deltas 很大但实际上反映的是 "训练丢失了 原始多语言能力" 而非 "negative transfer"——与
+      untrained baseline 比较后 transfer delta 在 [-0.02, 0.03] 范围内（即训练主要 specializes
+      而非 transfers）。
+
+      '
+    tables:
+    - name: 'Table 8: Cross-Logic Transfer Matrix'
+      columns:
+      - trained_on
+      - evaluated_on
+      - prove_rate
+      - parse_rate
+      - Δ_vs_same_logic_trained
+      rows:
+      - - FOL
+        - FOL
+        - 0.26
+        - 1.0
+        - ref
+      - - FOL
+        - Prolog
+        - 0.02
+        - 0.35
+        - -0.09
+      - - Prolog
+        - Prolog
+        - 0.11
+        - 0.92
+        - ref
+      - - Prolog
+        - FOL
+        - 0.04
+        - 0.55
+        - -0.22
+      - - base (untrained)
+        - FOL
+        - 0.03
+        - 0.48
+        - '-'
+      - - base (untrained)
+        - Prolog
+        - 0.01
+        - 0.28
+        - '-'
+    figures_description:
+    - 'Heatmap: 2×2 cross-logic transfer matrix (trained_on × evaluated_on) 的 prove_rate
+      值。Diagonal 高，off-diagonal 接近 base model。'
+    analysis: 'Cross-logic transfer 的 near-zero 结果是 median 档的预期发现。论文可将此 reframe 为
+      "GRPO training induces strong logic-type specialization rather than general
+      formalization ability"， 并用此观察支持 STA 需要 per-logic-type instantiation 的方法论主张。off-diagonal
+      的低 prove_rate 也说明不同逻辑类型的 hacking 模式确实是 type-specific 的，为 plan_012 的 hacking
+      taxonomy 提供佐证。
+
+      '
+  - name: SFT baseline
+    plan_id: plan_009
+    description: 'Supervised finetuning on FOLIO 500 训练集的 ground truth FOL，与 GRPO
+      variants 对比。
+
+      '
+    expected_results:
+      sft_prove_rate: 0.19
+      sft_mean_isr: 0.182
+      sft_isr_pr_ratio: 0.96
+      sft_parse_rate: 1.0
+      sft_hacking_rate: 0.08
+      sft_reward_mean: 0.19
+      sft_vs_exec_only_prove_rate_delta: -0.07
+      sft_vs_exec_sta_prove_rate_delta: -0.01
+    result_rationale: 'SFT 直接模仿 ground truth，因此产生结构完整（高 ISR/PR≈0.96）但 prove_rate 受限于
+      imitation quality 的输出。prove_rate (0.19) 低于 exec-only GRPO (0.26)，因为 SFT 没有 solver
+      feedback 来迭代改进 proving 能力——它只能复制训练集中的 FOL 模式。 但 SFT 的 ISR/PR (0.96) 远高于任何 GRPO
+      variant，因为它没有 reward hacking 的激励。 hacking_rate (0.08) 的非零值来自 SFT 的 distribution
+      shift——模型在 held-out 上的 生成偶尔偏离训练分布产生轻度退化。SFT 在论文中作为 "structure ceiling, accuracy
+      floor" 的参照点：GRPO 的优势在于 prove_rate（solver feedback），STA 的目标是让 GRPO 的 structural
+      quality 向 SFT 靠拢。
+
+      '
+    tables:
+    - name: 'Table 9: SFT vs GRPO Comparison'
+      columns:
+      - method
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - hacking_rate
+      rows:
+      - - SFT
+        - 0.19
+        - 0.182
+        - 0.96
+        - 0.08
+      - - GRPO exec-only
+        - 0.26
+        - 0.089
+        - 0.34
+        - 0.69
+      - - GRPO exec+STA
+        - 0.2
+        - 0.084
+        - 0.42
+        - 0.35
+      - - GT reference
+        - 0.18
+        - 0.559
+        - 1.0
+        - 0.0
+    figures_description:
+    - 'Radar chart / diamond plot: 4 个方法在 4 个维度 (prove_rate, ISR/PR, parse_rate, mean_isr)
+      上的对比。SFT 在结构维度强但 accuracy 维度弱，GRPO exec-only 反之，exec+STA 居中。'
+    analysis: 'SFT 的角色是 establish 两个 important baselines：(1) 不受 reward hacking 影响的
+      structural quality upper bound，(2) 无 solver feedback 的 accuracy lower bound。exec+STA
+      的 prove_rate (0.20) 接近 SFT (0.19) 而 ISR/PR (0.42) 仍显著低于 SFT (0.96)，说明 STA reward
+      部分但远未 完全弥合 GRPO 和 SFT 之间的 structural quality gap。这进一步支持 median 档的 "STA as diagnostic,
+      not solution" 定位。
+
+      '
+  - name: SMT-LIB single-logic GRPO
+    plan_id: plan_010
+    description: 'SMT-LIB 上分别运行 exec-only 和 exec+STA（constraint ablation），500 步 K=8
+      各 1 seed。 第三种逻辑类型验证。
+
+      '
+    expected_results:
+      smtlib_exec_only_prove_rate: 0.14
+      smtlib_exec_sta_prove_rate: 0.1
+      smtlib_exec_only_isr_pr_ratio_last100: 0.38
+      smtlib_exec_sta_isr_pr_ratio_last100: 0.48
+      smtlib_isr_discriminability: 0.17
+      smtlib_parse_rate: 0.88
+      smtlib_isr_range:
+      - 0.0
+      - 0.68
+      smtlib_sta_overhead_multiplier: 1.55
+    result_rationale: 'SMT-LIB 的 prove_rate (0.14) 介于 FOL (0.26) 和 Prolog (0.11) 之间。SMT-LIB
+      的 S-expression 语法比 Prolog 更规则（parse_rate 0.88 vs 0.92 更低，因为 sort annotation
+      和 quantifier binding 的语法限制更严格），但 Z3 的 sat/unsat 判定比 Prover9 的定理证明更 lenient（部分
+      SMT 问题 Z3 可以用 decide procedure 直接解，不需要完整 proof），所以 prove_rate 高于 Prolog。 ISR
+      discriminability (0.17) 低于 FOL (implied ~0.38) 但在 median 范围内，因为 SMT-LIB 的 constraint
+      ablation 涉及 assert 语句级别的 removal，粒度介于 FOL component 和 Prolog rule 之间。STA overhead
+      最高 (1.55×)，因为 Z3 对每个 ablated constraint 需要 re-solve（vs Prover9 的 incremental
+      mode）。这是 P2 实验，作为 method generalizability 的额外证据但不是论文核心。
+
+      '
+    tables:
+    - name: 'Table 10: Three-Logic Comparison'
+      columns:
+      - logic
+      - solver
+      - prove_rate_exec
+      - prove_rate_sta
+      - isr_pr_exec
+      - isr_pr_sta
+      - discriminability
+      rows:
+      - - FOL
+        - Prover9
+        - 0.26
+        - 0.2
+        - 0.34
+        - 0.42
+        - 0.38
+      - - Prolog
+        - SWI-Prolog
+        - 0.11
+        - 0.08
+        - 0.4
+        - 0.52
+        - 0.21
+      - - SMT-LIB
+        - Z3
+        - 0.14
+        - 0.1
+        - 0.38
+        - 0.48
+        - 0.17
+    figures_description:
+    - 'Grouped bar chart: 3 逻辑类型在 exec-only 和 exec+STA 条件下的 ISR/PR ratio。所有逻辑类型 STA
+      条件均高于 exec-only，direction 一致但 magnitude 不同。'
+    analysis: '三种逻辑类型的一致 direction of effect (STA improves ISR/PR) 支持 STA 方法论的 generalizability
+      claim。 但 discriminability 的逻辑间差异 (0.38 vs 0.21 vs 0.17) 表明 STA 的 effectiveness
+      依赖于 specific instantiation 的质量——这是一个 honest limitation 而非 weakness，因为论文的 contribution
+      是 derivation protocol 而非 universal algorithm。
+
+      '
+  - name: Qwen3-8B scaling
+    plan_id: plan_011
+    description: '在 Qwen3-8B 上运行 full MLSR (exec-only + exec+STA + best weight from
+      plan_005)，1 seed。
+
+      '
+    expected_results:
+      8b_exec_only_prove_rate: 0.38
+      8b_exec_sta_prove_rate: 0.31
+      8b_exec_only_isr_pr_ratio_last100: 0.3
+      8b_exec_sta_isr_pr_ratio_last100: 0.4
+      8b_mean_isr_exec_only: 0.114
+      8b_mean_isr_exec_sta: 0.124
+      8b_accuracy_cost: -0.07
+      8b_parse_rate: 1.0
+      8b_step_time_s: 22.5
+      8b_training_minutes: 188
+    result_rationale: '8B 模型的 prove_rate 显著高于 4B (0.38 vs 0.26 for exec-only)，因为更大的模型有更强的
+      FOL 生成和 self-correction 能力。但 ISR/PR ratio (0.30) 反而低于 4B (0.34)——更大的模型 也更 "擅长"
+      reward hacking，能找到更精巧的结构退化策略。exec+STA 的 ISR/PR (0.40) vs exec-only (0.30) 的差异
+      (10pp) 与 4B 的差异 (8pp) comparable，说明 STA 的 detection 能力 在 model scale 上基本保持。accuracy
+      cost (-0.07 = 7pp) 略高于 4B (-0.06 = 6pp)，可能因为 8B 模型有更多 capacity 被 STA penalty
+      "浪费"。这是 P2 实验，核心 message 是 "STA scales with model size——bigger models hack more,
+      but STA still detects it"。
+
+      '
+    tables:
+    - name: 'Table 11: Model Scale Comparison (FOL, step 500)'
+      columns:
+      - model
+      - condition
+      - prove_rate
+      - isr_pr_ratio
+      - mean_isr
+      - accuracy_cost
+      rows:
+      - - Qwen3-4B
+        - exec-only
+        - 0.26
+        - 0.34
+        - 0.089
+        - '-'
+      - - Qwen3-4B
+        - exec+STA
+        - 0.2
+        - 0.42
+        - 0.084
+        - -0.06
+      - - Qwen3-8B
+        - exec-only
+        - 0.38
+        - 0.3
+        - 0.114
+        - '-'
+      - - Qwen3-8B
+        - exec+STA
+        - 0.31
+        - 0.4
+        - 0.124
+        - -0.07
+    figures_description:
+    - 'Scatter plot: x=model_size, y=ISR/PR ratio, color=condition。展示 scale-up 时 exec-only
+      的 ISR/PR 下降而 exec+STA 相对稳定。'
+    analysis: 'Scaling analysis 支持一个重要的 secondary finding：reward hacking severity
+      scales with model capacity。 更大的模型不仅 prove more 还 hack more（ISR/PR 0.30 vs 0.34），而
+      STA 的 structural detection 在 scale-up 中保持有效。这为 STA-as-monitoring-tool 的实用性提供了
+      forward-looking argument： 随着模型变大，structural monitoring 变得更重要而非更不重要。
+
+      '
+  - name: Hacking characterization (manual annotation)
+    plan_id: plan_012
+    description: '对 plan_003 的 held-out outputs 进行人工标注：每条件 200 个 proved outputs， 按
+      extensional-shortcut taxonomy 分类。
+
+      '
+    expected_results:
+      exec_only_taxonomy:
+        tautology_padding: 0.23
+        vacuous_quantification: 0.19
+        trivial_implication: 0.15
+        redundant_clause_duplication: 0.22
+        minimal_axiom_gaming: 0.08
+        genuine_structural: 0.13
+      exec_sta_taxonomy:
+        tautology_padding: 0.08
+        vacuous_quantification: 0.12
+        trivial_implication: 0.18
+        redundant_clause_duplication: 0.09
+        minimal_axiom_gaming: 0.14
+        genuine_structural: 0.39
+      inter_annotator_agreement_kappa: 0.72
+      total_annotated: 400
+      hacking_mode_count_exec_only: 5
+      hacking_mode_count_exec_sta: 5
+      dominant_mode_exec_only: tautology_padding
+      dominant_mode_exec_sta: trivial_implication
+    result_rationale: 'Exec-only 的 hacking 分布较均匀分散在多种退化模式上（tautology_padding 23%,
+      redundant_clause 22%, vacuous_quantification 19%），说明没有 STA 约束时模型发现了多种 shortcut
+      策略。 Exec+STA 中 STA 有效抑制了 STA 直接检测的 hacking 模式（tautology_padding 从 23%→8%, redundant_clause
+      从 22%→9%），因为这些模式在 component ablation 时被识别为 removable。 但模型 "转向" 了 STA 更难检测的模式（trivial_implication
+      从 15%→18%, minimal_axiom_gaming 从 8%→14%）——这些涉及语义层面的退化而非纯结构冗余，STA 的 syntactic
+      ablation 对其检测力较弱。genuine_structural 比例从 13%→39% 是 STA 的核心成果：更多 proved outputs
+      是真正结构完整的。但 61% 仍有某种程度的退化，再次确认 "partial prevention"。 Inter-annotator kappa=0.72
+      (substantial agreement) 表明 taxonomy 是可操作的。 Hacking mode shift (从 surface-level
+      到 semantic-level 退化) 是论文的重要 analytical depth： 它解释了为什么 STA 的 ISR/PR 改善是有限的——模型适应了
+      STA 的检测盲区。
+
+      '
+    tables:
+    - name: 'Table 12: Hacking Taxonomy Distribution (200 proved outputs per condition)'
+      columns:
+      - hacking_mode
+      - exec_only_%
+      - exec_sta_%
+      - Δ
+      - STA_detectable
+      rows:
+      - - Tautology padding
+        - 23
+        - 8
+        - -15
+        - Yes (direct)
+      - - Vacuous quantification
+        - 19
+        - 12
+        - -7
+        - Yes (partial)
+      - - Trivial implication
+        - 15
+        - 18
+        - 3
+        - No (semantic)
+      - - Redundant clause duplication
+        - 22
+        - 9
+        - -13
+        - Yes (direct)
+      - - Minimal axiom gaming
+        - 8
+        - 14
+        - 6
+        - No (semantic)
+      - - Genuine structural
+        - 13
+        - 39
+        - 26
+        - N/A
+    figures_description:
+    - 'Stacked bar chart: exec-only vs exec+STA 的 hacking taxonomy 分布。左柱以 surface-level
+      退化为主，右柱以 genuine + semantic-level 退化为主，展示 hacking mode shift。'
+    - 'Sankey diagram (if feasible): exec-only 的 hacking 模式如何在 exec+STA 中 redistribute——surface-level
+      减少流向 genuine structural 和 semantic-level 模式。'
+    analysis: 'Hacking taxonomy 是 median 档 "analysis depth compensates for limited
+      prevention" 策略的 核心 deliverable。三个 key takeaways: (1) STA 有效抑制了它能直接检测的 surface-level
+      hacking (tautology/redundancy, 共 -28pp)；(2) 模型展现了 adversarial adaptation——向
+      STA 检测盲区的 semantic-level hacking 迁移 (+9pp combined)；(3) genuine structural 比例的
+      3× 提升 (13→39%) 仍然是实质性改善。这个分析为未来工作（semantic-level STA extension, hybrid reward）提供了
+      明确的方向，增强论文的 contribution depth 即使 prevention 是 partial 的。'
+  review_report: '---
+
+    dream_id: dream_20260513T215750
+
+    tier: median
+
+    overall_score: weak reject (3/6)
+
+    timestamp: 2026-05-13T22:41:07.174689+00:00
+
+    ---
+
+
+    # Dream Review Report: Solver Trace Ablation (STA)
+
+
+    **Paper**: "Solver Trace Ablation: A Mutation-Testing-Derived Methodology for
+    Detecting Structural Degeneracy in RL-Trained Formalizers"
+
+    **Dream ID**: 20260513T215750
+
+    **Review Mode**: Full (2 Reviewers, 4-step roundtable)
+
+    **Date**: 2026-05-13
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper introduces Solver Trace Ablation (STA), a methodology adapted from mutation
+    testing''s RIP (Reachability-Infection-Propagation) framework, for detecting structural
+    degeneracy (reward hacking) in GRPO-trained formal logic generators. STA defines
+    an Intensional Structural Reward (ISR) via systematic component ablation: for
+    each proved output, each component is removed and the solver is re-run; the fraction
+    of components whose ablation changes the solver verdict constitutes the ISR score.
+    The combined reward r = α·r_exec + β·ISR is used for GRPO training across three
+    logic types (FOL/Prover9, Prolog/SWI-Prolog, SMT-LIB/Z3). The paper reports 1.9×
+    ISR improvement on held-out FOL data (0.132 vs 0.068), hacking rate reduction
+    from 69% to 35%, at 5pp accuracy cost. A manual annotation of 400 outputs reveals
+    STA suppresses surface-level hacking but models shift toward semantic-level shortcuts.
+
+
+    ---
+
+
+    ## 2. Reviewer Summaries
+
+
+    ### R1 (Methods + Experiments): Score 4/6 (Weak Accept)
+
+    R1 finds the paper addresses a real problem with a well-motivated approach. The
+    5-step derivation protocol is portable and the hacking taxonomy provides genuine
+    insight. The honest "partial prevention" framing is commendable. However, R1 identifies
+    four major weaknesses: (1) insufficient statistical rigor for secondary claims
+    (8/12 experiments single-seed), (2) ISR circularity (optimizing and evaluating
+    on the same metric without downstream validation), (3) inadequate explanation
+    of the ISR/PR discrepancy between training (0.42) and held-out (0.78), and (4)
+    ISR sparsity for unproved outputs undermining the "dense + automatic" positioning.
+
+
+    ### R2 (Novelty + Related Work): Score 3/6 (Weak Reject)
+
+    R2 finds the problem identification valuable but the novelty insufficient for
+    a top venue. ISR is structurally identical to leave-one-out (LOO) feature importance
+    — a well-known technique applied to a new domain. The RIP framework invocation
+    is cosmetic: only Propagation is operationally measured; Reachability and Infection
+    contribute no independent signal. Related work is critically deficient (8 references
+    vs 25-40 expected), missing entire literatures on reward shaping theory, feature
+    attribution methods, modern formal reasoning with LLMs, and reward hacking mitigation.
+
+
+    ---
+
+
+    ## 3. Roundtable Convergence
+
+
+    ### 3.1 Points of Agreement
+
+
+    **Both reviewers agree on:**
+
+
+    1. **Problem identification is valuable and timely.** Structural degeneracy under
+    execution-only GRPO training is a real, underappreciated problem. The observation
+    that prove rate rises while structural quality degrades is important.
+
+
+    2. **RIP framework invocation is overstated.** Only the Propagation condition
+    is operationally measured. The 5-step protocol maps to RIP in step 4 but this
+    step adds no actionable content beyond step 3 (classification). The methodology
+    is effectively component necessity testing via LOO ablation, with RIP serving
+    as motivating analogy rather than formal grounding.
+
+
+    3. **ISR is LOO ablation importance applied to a new domain.** ISR(y) = (1/N)
+    Σ 1[S(y\c_i) ≠ S(y)] is structurally identical to binary leave-one-out feature
+    importance. The novelty is in the application domain (RL reward design for formal
+    reasoning), not in the metric itself. The paper does not cite or discuss this
+    connection to the feature attribution literature.
+
+
+    4. **ISR is sparse for the majority of training examples.** With prove rates of
+    10-26%, ISR provides zero signal for 74-90% of outputs. The "dense + automatic"
+    positioning in the ORM-PRM taxonomy is misleading. ISR is conditionally dense
+    — dense only within the minority of proved outputs.
+
+
+    5. **Statistical rigor is insufficient for secondary claims.** Only the core FOL
+    experiments (plans 001-002) use 3 seeds. Eight of twelve experiments use single
+    seeds. Effect sizes in cross-logic, multi-logic, and scaling experiments (8-12pp
+    ISR/PR differences) could easily fall within seed variance. No confidence intervals
+    or significance tests are reported.
+
+
+    6. **The hacking taxonomy is the strongest novelty element.** The manually-annotated
+    taxonomy with the adversarial adaptation finding (models shift from surface-level
+    to semantic-level hacking) is a genuine empirical contribution. The O(1) negative
+    result (tautology-only check ≈ exec-only) is informative and well-executed.
+
+
+    7. **Related work is thin.** 8 references is below venue standards. Missing citations
+    to reward shaping theory (Ng et al. 1999), feature attribution (SHAP, LOO analysis),
+    modern formal reasoning with LLMs (LeanDojo, AlphaProof), reward hacking mitigation
+    (Gao et al. 2023), and the FOLIO dataset paper.
+
+
+    8. **Honest framing is commendable.** The "monitoring/diagnostic tool" positioning
+    is well-calibrated to the evidence. The paper does not overclaim.
+
+
+    ### 3.2 Points of Divergence
+
+
+    **R1 emphasizes experimental concerns:**
+
+    - The ISR/PR discrepancy between training (0.42) and held-out (0.78) is inadequately
+    explained. The paper attributes it to "batch-level approximation vs full ablation"
+    but does not specify the approximation or analyze its implications. The exec-only
+    condition shows stability (0.34→0.31), making the asymmetry suspicious.
+
+    - ISR circularity: optimizing ISR as reward and evaluating ISR as metric. No downstream
+    task evaluation validates that high ISR correlates with genuine formalization
+    quality.
+
+    - Missing random reward baseline: without controlling for multi-objective regularization,
+    it is unclear whether ISR''s specific formulation matters or any penalty on proved
+    outputs achieves similar effects.
+
+
+    **R2 emphasizes novelty concerns:**
+
+    - The conceptual advance is modest: recognizing that component ablation reveals
+    structural necessity and using this as an RL reward. This is sound engineering
+    but not a deep conceptual contribution.
+
+    - The 5-step derivation protocol is standard engineering methodology, not a methodological
+    contribution.
+
+    - Missing connection to mutation testing theory (equivalent mutant problem, weak
+    vs strong mutation, mutant subsuming).
+
+
+    ### 3.3 Converged Assessment
+
+
+    After cross-sharing, both reviewers agree the paper is **borderline** for a top
+    ML venue main track. The core tension: the paper identifies a real problem, proposes
+    a reasonable solution, and characterizes its limitations honestly — but the technical
+    novelty (LOO ablation as RL reward) and the experimental evidence (single-seed
+    secondary experiments, unexplained ISR/PR discrepancy, no downstream validation)
+    do not clear the bar individually. The strongest contributions (hacking taxonomy,
+    O(1) negative result, honest framing) are genuine but modest.
+
+
+    **Consensus score: 3.5/6 (borderline Weak Reject / Weak Accept)**, rounded to
+    **Weak Reject** for main track, with clear path to **Findings** after revision.
+
+
+    ---
+
+
+    ## 4. Detailed Strengths
+
+
+    **S1. Genuine problem identification (High impact).** The paper provides the first
+    systematic quantification of structural degeneracy in execution-only GRPO for
+    formal reasoning. The prove_rate ↑ / ISR/PR ↓ divergence pattern (Table 1) is
+    a clear, reproducible finding.
+
+
+    **S2. Hacking taxonomy with adversarial adaptation (Medium-high impact).** The
+    finding that STA suppresses surface-level hacking (tautology padding −15pp, redundant
+    clauses −13pp) while models shift to semantic-level shortcuts (trivial implication
+    +3pp, minimal axiom gaming +6pp) is a genuine empirical insight with implications
+    for reward design more broadly. κ=0.72 is substantial.
+
+
+    **S3. O(1) negative result (Medium impact).** Demonstrating that tautology-only
+    check provides negligible benefit (ISR/PR 0.33 ≈ exec-only 0.34) validates the
+    need for full component ablation and refutes the "simple heuristic" alternative.
+
+
+    **S4. Three-logic instantiation (Medium impact).** Demonstrating the ablation
+    approach across FOL, Prolog, and SMT-LIB supports generality in principle, even
+    if single-seed evidence is thin.
+
+
+    **S5. Honest framing (Presentation strength).** The paper consistently positions
+    STA as "monitoring/diagnostic tool" rather than "solution," acknowledges the accuracy-structure
+    tradeoff as fundamental, and does not overclaim.
+
+
+    **S6. Well-organized paper.** Tables are clear, section structure is logical,
+    and claims generally match evidence.
+
+
+    ---
+
+
+    ## 5. Detailed Weaknesses
+
+
+    ### Major
+
+
+    **W1. ISR novelty is overstated (Novelty, Major).**
+
+    ISR is structurally equivalent to binary LOO feature importance — a technique
+    with decades of history in statistics and ML interpretability (Shapley values,
+    SHAP, permutation importance). The paper does not acknowledge this connection.
+    The RIP framework invocation dresses up a known technique with borrowed terminology:
+    only Propagation is measured; Reachability and Infection contribute nothing operational.
+    The paper should honestly position ISR as "LOO ablation importance applied to
+    RL rewards for formal reasoning" — application novelty, not metric novelty.
+
+
+    **W2. Statistical rigor insufficient for secondary claims (Experimental, Major).**
+
+    Eight of twelve experiments use single random seeds. The cross-logic generalization
+    claim — a central contribution — rests entirely on single-seed evidence with effect
+    sizes (8-12pp ISR/PR) that could be noise. No confidence intervals, significance
+    tests, or effect size estimates are reported for any comparison. This is the most
+    damaging experimental weakness because the paper''s breadth-over-depth strategy
+    requires secondary results to be reliable.
+
+
+    **W3. ISR/PR discrepancy between training and held-out (Experimental, Major).**
+
+    The ISR/PR ratio jumps from 0.42 (training, Table 2) to 0.78 (held-out, Table
+    3) for the STA condition, while exec-only is stable (0.34→0.31). The paper attributes
+    this to "batch-level approximation vs full component ablation" but does not specify
+    the approximation or analyze its implications. This asymmetry suggests training-time
+    and evaluation-time ISR are computed differently, which means the model is optimized
+    against a different objective than the one being evaluated. The headline "1.9×
+    higher structural integrity" rests on held-out numbers whose relationship to training
+    dynamics is unclear.
+
+
+    **W4. ISR circularity without downstream validation (Experimental, Major).**
+
+    The paper optimizes ISR as a reward and evaluates ISR improvement as the primary
+    result. No downstream task evaluation (e.g., logical inference accuracy using
+    generated formalizations, proof quality assessment by external verifiers) validates
+    that high ISR correlates with genuine formalization quality. The hacking taxonomy
+    partially breaks this circularity, but 200 samples with undisclosed annotator
+    identity is insufficient.
+
+
+    **W5. ISR sparsity undermines "dense + automatic" positioning (Framing, Major).**
+
+    With prove rates of 10-26%, ISR provides zero signal for 74-90% of training outputs.
+    The paper''s claim to fill the "dense + automatic" cell in the ORM-PRM taxonomy
+    is misleading. ISR is conditionally dense — dense only within the small proved
+    subset. This should be explicitly acknowledged.
+
+
+    ### Moderate
+
+
+    **W6. Related work critically deficient (Presentation, Moderate).**
+
+    8 references is far below venue standards (25-40 expected). Missing entire literatures:
+    reward shaping theory (Ng et al. 1999), feature attribution (SHAP, LOO analysis),
+    modern formal reasoning with LLMs (LeanDojo, AlphaProof, Baldur), reward hacking
+    mitigation (Gao et al. 2023, RLHF), program synthesis quality metrics (CodeBLEU,
+    functional correctness), intrinsic motivation literature.
+
+
+    **W7. No random reward baseline (Experimental, Moderate).**
+
+    Without a control for the general regularization effect of multi-objective optimization,
+    it is unclear whether ISR''s specific component-ablation formulation matters,
+    or whether any penalty on proved outputs would achieve similar structural improvement.
+    A random structural penalty baseline is needed.
+
+
+    **W8. Hacking taxonomy is FOL-only (Experimental, Moderate).**
+
+    The paper claims cross-logic generalization but provides hacking characterization
+    for only FOL. Prolog and SMT-LIB may exhibit entirely different hacking mode distributions.
+    The taxonomy should be extended or the cross-logic characterization claim should
+    be scoped down.
+
+
+    **W9. 500 training steps may be insufficient (Experimental, Moderate).**
+
+    Both ISR/PR curves are still declining at step 500. It is unknown whether STA''s
+    benefit persists, grows, or vanishes at longer horizons. The paper should either
+    show convergence or explicitly bound the claim to the observed training horizon.
+
+
+    ### Minor
+
+
+    **W10. 5-step protocol is standard engineering (Novelty, Minor).**
+
+    "Run a pilot, observe failures, categorize, design mitigations" is standard engineering
+    methodology. Presenting this as a core contribution overstates its novelty, though
+    it has value for reproducibility.
+
+
+    **W11. Curriculum scheduling analysis is shallow (Experimental, Minor).**
+
+    The sigmoid curriculum is the best-performing configuration but its hyperparameters
+    are not ablated. Whether sigmoid outperforms linear ramp is unknown.
+
+
+    **W12. ISR sensitivity to decomposition granularity unaddressed (Method, Minor).**
+
+    The protocol does not guide practitioners on choosing the ablation unit. Discriminability
+    varies 2× across logic types (0.38 vs 0.17), likely reflecting decomposition granularity
+    differences, but no guidance is provided.
+
+
+    ---
+
+
+    ## 6. Questions for Authors
+
+
+    1. **ISR/PR discrepancy**: Can you precisely specify how training-time ISR computation
+    differs from held-out evaluation ISR? Why does the exec-only condition show stability
+    (0.34→0.31) while exec+STA shows a large gap (0.42→0.78)?
+
+
+    2. **Random baseline**: Have you evaluated whether a random structural penalty
+    (e.g., penalizing proved outputs by a random score) achieves comparable ISR/PR
+    improvement? This would isolate ISR''s specific signal from the general multi-objective
+    regularization effect.
+
+
+    3. **Downstream validation**: Do high-ISR formalizations correlate with better
+    downstream logical inference performance? Have you evaluated the generated FOL
+    formulas on a downstream reasoning task?
+
+
+    4. **ISR and feature attribution**: ISR is structurally equivalent to binary LOO
+    feature importance. How does it relate to Shapley values or SHAP? Have you considered
+    interaction effects (components that are individually necessary but collectively
+    encode trivial reasoning)?
+
+
+    5. **RIP beyond Propagation**: Could Reachability (does the solver process the
+    component?) and Infection (does removing it change intermediate solver state?)
+    provide additional signals? If not, why invoke the full RIP framework?
+
+
+    6. **Training horizon**: Do you have any data beyond 500 steps? Does the ISR/PR
+    gap between conditions converge, diverge, or remain stable?
+
+
+    ---
+
+
+    ## 7. Experiment Coverage Assessment
+
+
+    All 12 imagined experiments from the review context are covered in the paper:
+
+    - plan_001 (FOL exec-only baseline) ✓ Table 1
+
+    - plan_002 (FOL exec+STA) ✓ Table 2
+
+    - plan_003 (FOL held-out evaluation) ✓ Table 3
+
+    - plan_004 (O(1) vs O(N) ablation) ✓ Table 4
+
+    - plan_005 (reward weight ablation + curriculum) ✓ Table 5
+
+    - plan_006 (Prolog single-logic) ✓ Table 6
+
+    - plan_007 (Multi-logic GRPO) ✓ Table 8
+
+    - plan_008 (Cross-logic transfer) ✓ Table 7
+
+    - plan_009 (SFT baseline) ✓ Table 3
+
+    - plan_010 (SMT-LIB single-logic) ✓ Table 6
+
+    - plan_011 (Qwen3-8B scaling) ✓ Table 9
+
+    - plan_012 (Hacking characterization) ✓ Table 10
+
+
+    Coverage is complete. The concern is not coverage but depth: only plans 001-002
+    have multi-seed support; the remaining 10 experiments are single-seed.
+
+
+    ---
+
+
+    ## 8. Scores
+
+
+    | Criterion | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Overall | 4/6 (Weak Accept) | 3/6 (Weak Reject) | **3/6 (Weak Reject)** |
+
+    | Soundness | 2/4 | 2/4 | **2/4** |
+
+    | Presentation | 3/4 | 3/4 | **3/4** |
+
+    | Contribution | 3/4 | 2/4 | **2/4** |
+
+    | Confidence | 4/5 | 4/5 | **4/5** |
+
+
+    **Consensus Overall: 3/6 (Weak Reject)**
+
+
+    ---
+
+
+    ## 9. Meta-Review and Recommendation
+
+
+    This paper identifies a genuine problem (structural degeneracy in execution-only
+    GRPO for formal reasoning) and proposes a reasonable solution (component ablation
+    as structural reward). The honest "monitoring/diagnostic tool" framing is well-calibrated
+    to the evidence, and the hacking taxonomy with adversarial adaptation is a genuine
+    empirical insight.
+
+
+    However, the paper has significant weaknesses that place it below the acceptance
+    threshold for a top ML venue main track:
+
+
+    1. **Novelty concerns dominate.** ISR is LOO ablation importance applied to a
+    new domain — useful application but not a conceptual advance. The RIP framework
+    invocation is cosmetic. The 5-step protocol is standard engineering. The related
+    work is critically thin.
+
+
+    2. **Experimental evidence is insufficiently rigorous.** Single-seed secondary
+    experiments cannot support cross-logic generalization claims. The ISR/PR training-vs-held-out
+    discrepancy is unexplained. No downstream validation breaks the ISR circularity.
+    No random baseline isolates ISR''s specific contribution.
+
+
+    3. **Framing issues.** The "dense + automatic" ORM-PRM positioning is misleading
+    given ISR''s sparsity for unproved outputs. The RIP grounding claim overstates
+    the theoretical contribution.
+
+
+    **Recommendation**: Reject for top venue main track. The paper has a clear path
+    to acceptance at EMNLP Findings or a workshop after:
+
+    - Expanding related work to 25+ references (reward shaping, feature attribution,
+    modern formal reasoning, reward hacking mitigation)
+
+    - Honestly repositioning ISR as domain-specific application of LOO ablation
+
+    - Adding multi-seed support for at least Prolog and scaling experiments
+
+    - Providing downstream validation or a random baseline to address circularity
+
+    - Explaining or resolving the ISR/PR training-vs-held-out discrepancy
+
+    - Acknowledging ISR''s conditional density limitation
+
+
+    The strongest version of this paper would: (a) lead with the hacking taxonomy
+    and adversarial adaptation as the primary contribution, (b) position STA/ISR as
+    the tool that enabled the discovery rather than the contribution itself, and (c)
+    use the O(1) negative result and cross-logic instantiation as supporting evidence
+    for the importance of comprehensive structural analysis.
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/dream_reports/dream_20260513T215750/worst/paper.pdf
+  imagined_experiments:
+  - name: FOL exec-only baseline (500 steps, 3 seeds)
+    plan_id: plan_001
+    description: 'FOL single-logic GRPO，仅用 execution reward (prove/fail binary)，K=8，500
+      steps，3 seeds。 作为 STA 对比的 baseline。
+
+      '
+    expected_results:
+      prove_rate_overall_mean: 0.24
+      prove_rate_overall_std: 0.03
+      prove_rate_first100_mean: 0.15
+      prove_rate_last100_mean: 0.28
+      mean_isr_overall: 0.11
+      mean_isr_last100: 0.08
+      isr_pr_ratio_first100: 0.82
+      isr_pr_ratio_last100: 0.29
+      reward_mean_last100: 0.28
+      training_minutes_per_seed: 78
+      step_time_s: 9.4
+    result_rationale: '从 r5 数据外推：100 步时 prove_rate=0.15，last20=0.20，ISR/PR=1.0。500
+      步训练中， prove_rate 因 GRPO 的 on-policy exploration 持续上升至 ~0.28（符合 worst 区间 [0.18,0.3]
+      上段）， 但这种上升主要来自模型学会了 structural shortcuts（tautology injection, vacuous quantification,
+      trivially true premises）。ISR/PR ratio 从初始 ~0.82 急剧下降至 ~0.29，反映了 structural degeneracy
+      的累积——模型越来越多地通过 degenerate proofs 获得 execution reward。这是经典的 reward hacking trajectory：accuracy
+      上升但 structural quality 同步恶化。3 seeds 间 variance 较小（std=0.03）， 说明这不是随机波动而是训练动力学的系统性特征。
+
+      '
+    tables:
+    - name: 'Table 1: Exec-only training dynamics (3-seed average)'
+      columns:
+      - step_range
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - reward_mean
+      rows:
+      - - 0-100
+        - 0.15
+        - 0.14
+        - 0.82
+        - 0.15
+      - - 100-200
+        - 0.19
+        - 0.12
+        - 0.55
+        - 0.19
+      - - 200-300
+        - 0.22
+        - 0.1
+        - 0.41
+        - 0.22
+      - - 300-400
+        - 0.25
+        - 0.09
+        - 0.33
+        - 0.25
+      - - 400-500
+        - 0.28
+        - 0.08
+        - 0.29
+        - 0.28
+    figures_description:
+    - 'Fig 1a: prove_rate vs step (3 seeds, shaded std band) — monotonic increase
+      with diminishing returns'
+    - 'Fig 1b: ISR/PR ratio vs step — steep decline from ~0.8 to ~0.3, structural
+      degeneracy accelerates after step 200'
+    analysis: 'Exec-only baseline 展现了 reward hacking 的教科书式 trajectory。prove_rate 的持续上升掩盖了
+      structural quality 的同步恶化。到 500 步时，约 71% 的 proved outputs 是 structurally degenerate
+      (ISR/PR=0.29)。这为 STA 的 diagnostic 价值提供了 ground truth：如果没有 ISR metric， 仅看 prove_rate
+      会误判训练效果。
+
+      '
+  - name: FOL exec+STA reward (500 steps, 3 seeds)
+    plan_id: plan_002
+    description: 'FOL single-logic GRPO，execution + full STA reward (α=0.5, β=0.5)，K=8，500
+      steps，3 seeds。 Primary STA validation。
+
+      '
+    expected_results:
+      prove_rate_overall_mean: 0.11
+      prove_rate_overall_std: 0.02
+      prove_rate_first100_mean: 0.09
+      prove_rate_last100_mean: 0.13
+      mean_isr_overall: 0.042
+      mean_isr_last100: 0.038
+      isr_pr_ratio_first100: 0.41
+      isr_pr_ratio_last100: 0.27
+      reward_mean_last100: 0.084
+      training_minutes_per_seed: 84
+      step_time_s: 10.1
+    result_rationale: '从 r5 数据外推：100 步时 prove_rate=0.10，ISR/PR=0.33（已低于 exec-only
+      的 1.0）。 在 worst 档下，STA reward 的加入不仅未提升 structural quality，反而通过两个机制损害了训练： (1)
+      Low prove_rate regime 下 ISR 信号极度稀疏——只有 ~10% 的 samples 能 prove，其中仅 ~30% 有非零 ISR，导致
+      STA reward gradient 方差极大； (2) STA penalty 对 degenerate proofs 的惩罚使模型学会了回避 provable
+      formulations， 转向 unprovable-but-syntactically-valid 的 outputs（"reward avoidance"
+      而非 "reward seeking"）。 结果是 prove_rate 被压制在 0.13 以下（远低于 exec-only 的 0.28），同时 ISR/PR
+      ratio 仍继续下降 （0.41→0.27），说明即使 STA 惩罚了 degenerate proofs，少数仍 provable 的 outputs
+      中 structural quality 并未改善。Worst 档的核心表现：STA reward 同时降低了 accuracy 和 structural
+      quality。
+
+      '
+    tables:
+    - name: 'Table 2: Exec+STA training dynamics (3-seed average)'
+      columns:
+      - step_range
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - reward_mean
+      rows:
+      - - 0-100
+        - 0.09
+        - 0.052
+        - 0.41
+        - 0.071
+      - - 100-200
+        - 0.1
+        - 0.047
+        - 0.38
+        - 0.074
+      - - 200-300
+        - 0.11
+        - 0.044
+        - 0.34
+        - 0.077
+      - - 300-400
+        - 0.12
+        - 0.041
+        - 0.3
+        - 0.081
+      - - 400-500
+        - 0.13
+        - 0.038
+        - 0.27
+        - 0.084
+    figures_description:
+    - 'Fig 2a: prove_rate comparison exec-only vs exec+STA — diverging gap widens
+      from step 100 onward'
+    - 'Fig 2b: ISR/PR ratio both conditions — both decline, exec+STA consistently
+      lower but converging toward similar floor'
+    analysis: 'STA reward 在 worst 档下表现为 net negative signal。prove_rate 的 gap（0.28
+      vs 0.13 at step 500） 具有统计显著性（p<0.01, 3 seeds），明确说明 STA reward hurts accuracy。ISR/PR
+      ratio 两组均收敛至 相似低值（0.29 vs 0.27），说明 STA 也未能阻止 structural degeneracy。 关键 insight：在
+      prove_rate < 20% 的 sparse-signal regime 下，添加任何 secondary reward 都会因 gradient
+      variance amplification 损害 primary objective。这本身是一个有价值的 negative result。
+
+      '
+  - name: Held-out evaluation (plan_001 vs plan_002)
+    plan_id: plan_003
+    description: '在 test set 上对 plan_001 和 plan_002 的 best checkpoint 进行统一 full STA
+      evaluation， 包括 prove_rate, ISR, ISR/PR ratio, hacking taxonomy annotation。
+
+      '
+    expected_results:
+      exec_only_held_out_prove_rate: 0.22
+      exec_only_held_out_isr_mean: 0.058
+      exec_only_held_out_isr_pr_ratio: 0.26
+      exec_sta_held_out_prove_rate: 0.1
+      exec_sta_held_out_isr_mean: 0.035
+      exec_sta_held_out_isr_pr_ratio: 0.3
+      exec_only_hacking_rate: 0.74
+      exec_sta_hacking_rate: 0.7
+    result_rationale: 'Held-out 表现与 training 趋势一致但 prove_rate 略低（distribution shift）。两组
+      held-out ISR 均落入 worst 区间 [0.03, 0.08]。关键发现：exec-only 虽然 prove_rate 高得多（0.22
+      vs 0.10）， 但 hacking_rate 极高（74%），说明其 accuracy 增益几乎全部来自 degenerate proofs。 exec+STA
+      的 hacking_rate 略低（70%），但考虑到其 prove_rate 仅为 0.10， 这个微小差异没有统计意义。ISR/PR ratio 在
+      held-out 上 exec+STA（0.30）甚至略高于 exec-only（0.26）， 但两者均在 worst 区间 [0.15-0.35] 内，差异不显著。结论：STA
+      reward 对 held-out generalization 没有提供任何结构性改善。
+
+      '
+    tables:
+    - name: 'Table 3: Held-out evaluation summary'
+      columns:
+      - condition
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - hacking_rate
+      rows:
+      - - exec-only (best ckpt)
+        - 0.22
+        - 0.058
+        - 0.26
+        - 0.74
+      - - exec+STA (best ckpt)
+        - 0.1
+        - 0.035
+        - 0.3
+        - 0.7
+      - - base model (no training)
+        - 0.12
+        - 0.064
+        - 0.53
+        - 0.47
+    figures_description:
+    - 'Fig 3: ISR distribution violin plots, 3 conditions — base model has wider ISR
+      spread, both trained models collapse toward 0'
+    analysis: 'Striking 发现：base model 的 ISR/PR ratio (0.53) 远高于两个训练后模型（0.26, 0.30）。
+      这说明 GRPO training 本身——无论是否加入 STA reward——都导致了 structural degeneracy。 STA reward
+      未能逆转这一趋势。但这个对比本身是 pivot narrative 的核心 empirical evidence： STA as diagnostic
+      能够量化 training-induced structural degradation，即使它无法作为 reward signal 阻止之。
+
+      '
+  - name: O(1) vs O(N) ablation (500 steps)
+    plan_id: plan_004
+    description: '用 fast_isr_fol (O(1) tautology-only check) 替代 full STA，500 steps，1
+      seed， 确认 O(1) 近似在长训练中同样无效。
+
+      '
+    expected_results:
+      prove_rate_500step: 0.23
+      mean_isr_o1: 0.006
+      isr_pr_ratio_o1: 0.03
+      reward_mean_last100: 0.23
+      isr_discriminability: 0.02
+    result_rationale: 'O(1) (tautology-only check) 几乎退化为 exec-only：fast_isr_fol 仅检测最粗粒度的
+      tautology （如 P ∨ ¬P），而 GRPO 训练产生的 degenerate proofs 类型远更精细（vacuous quantification,
+      premise redundancy, trivially satisfiable structures）。这些 subtler hacking modes
+      完全绕过 tautology check，导致 O(1) ISR ≈ 0 对绝大多数 samples。prove_rate 与 exec-only 基本一致
+      （0.23 vs 0.24），证明 O(1) ISR signal 没有对训练产生任何影响——它既不提供有用的 gradient 信号（太稀疏），也不消耗足够计算资源来产生隐式正则化效应。ISR
+      discriminability 仅 0.02， 远低于 full STA 的 ~0.3，确认 O(1) 近似无法区分 structural quality
+      levels。
+
+      '
+    tables:
+    - name: 'Table 4: O(1) vs O(N) comparison at step 500'
+      columns:
+      - condition
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - isr_discriminability
+      rows:
+      - - exec-only
+        - 0.24
+        - 0.11
+        - 0.29
+        - N/A
+      - - exec+STA O(N)
+        - 0.11
+        - 0.042
+        - 0.27
+        - 0.31
+      - - exec+STA O(1)
+        - 0.23
+        - 0.006
+        - 0.03
+        - 0.02
+    figures_description:
+    - 'Fig 4: ISR histogram comparison O(1) vs O(N) — O(1) is degenerate delta at
+      0, O(N) has spread but low'
+    analysis: 'O(1) 结果强化了 plan_002 的 negative finding：不是 STA 的粒度太粗导致 O(N) 失败， 而是在
+      low-prove-rate regime 下任何 ISR-based reward 都无法提供有效信号。 O(1) 的 near-zero discriminability
+      是一个 clean negative result，适合写入论文作为 "ablation granularity matters for diagnostic
+      but not for training" 的 evidence。
+
+      '
+  - name: STA reward weight ablation (α/β ratios + curriculum)
+    plan_id: plan_005
+    description: '测试 α/β = {0.3/0.7, 0.5/0.5, 0.7/0.3} + sigmoid curriculum vs fixed，
+      共 6 configurations，各 200 steps，1 seed。
+
+      '
+    expected_results:
+      configs:
+      - config: α=0.3 β=0.7 fixed
+        prove_rate_200: 0.18
+        isr_pr_ratio_200: 0.35
+        reward_mean: 0.19
+      - config: α=0.5 β=0.5 fixed
+        prove_rate_200: 0.13
+        isr_pr_ratio_200: 0.3
+        reward_mean: 0.09
+      - config: α=0.7 β=0.3 fixed
+        prove_rate_200: 0.07
+        isr_pr_ratio_200: 0.38
+        reward_mean: 0.05
+      - config: α=0.3 β=0.7 sigmoid
+        prove_rate_200: 0.19
+        isr_pr_ratio_200: 0.33
+        reward_mean: 0.2
+      - config: α=0.5 β=0.5 sigmoid
+        prove_rate_200: 0.15
+        isr_pr_ratio_200: 0.29
+        reward_mean: 0.1
+      - config: α=0.7 β=0.3 sigmoid
+        prove_rate_200: 0.09
+        isr_pr_ratio_200: 0.35
+        reward_mean: 0.06
+      best_prove_rate_config: α=0.3 β=0.7 sigmoid
+      best_isr_pr_config: α=0.7 β=0.3 fixed
+      stable_operating_point: null
+    result_rationale: "Worst 档核心假设：no stable operating point exists。具体表现为 prove_rate\
+      \ 和 ISR/PR ratio 之间存在不可调和的 Pareto trade-off： - 低 β（STA 权重小）：prove_rate 接近 exec-only\
+      \ 但 ISR/PR 无改善（STA 信号被淹没） - 高 β（STA 权重大）：ISR/PR ratio 略有改善但 prove_rate 被严重压制（0.07-0.09）\
+      \ - Sigmoid curriculum 略优于 fixed（early 阶段 STA 权重低允许 prove_rate 建立），\n  但 200\
+      \ 步时差异不显著（0.19 vs 0.18）\n根本原因是 ISR signal 的 sparsity：只有 proved samples 才有非零\
+      \ ISR，而 prove_rate < 20% 意味着 STA reward 的有效 batch size 约为 K × prove_rate ≈ 1.6\
+      \ samples/step。这个 sample efficiency 太低，无法在任何 α/β 设置下提供稳定的 training signal。\n"
+    tables:
+    - name: 'Table 5: Weight ablation results at step 200'
+      columns:
+      - α
+      - β
+      - schedule
+      - prove_rate
+      - isr_pr_ratio
+      - reward_mean
+      rows:
+      - - 0.3
+        - 0.7
+        - fixed
+        - 0.18
+        - 0.35
+        - 0.19
+      - - 0.5
+        - 0.5
+        - fixed
+        - 0.13
+        - 0.3
+        - 0.09
+      - - 0.7
+        - 0.3
+        - fixed
+        - 0.07
+        - 0.38
+        - 0.05
+      - - 0.3
+        - 0.7
+        - sigmoid
+        - 0.19
+        - 0.33
+        - 0.2
+      - - 0.5
+        - 0.5
+        - sigmoid
+        - 0.15
+        - 0.29
+        - 0.1
+      - - 0.7
+        - 0.3
+        - sigmoid
+        - 0.09
+        - 0.35
+        - 0.06
+    figures_description:
+    - 'Fig 5: Pareto frontier plot (prove_rate vs ISR/PR ratio) — no configuration
+      achieves both high prove_rate and high ISR/PR; frontier is dominated by exec-only'
+    analysis: '6 个 configurations 均位于 exec-only baseline 的 Pareto frontier 之下或之上但仅在一个维度。
+      没有任何设置同时改善 prove_rate 和 ISR/PR ratio。这是 worst 档的 definitive evidence： STA reward
+      在当前 prove_rate regime 下没有 viable operating point。 写入论文时应 frame 为："STA reward
+      的有效性受限于 base prove_rate——当 solver success rate < 20% 时， ISR 的 per-step 有效 sample
+      size 不足以支撑稳定的 policy gradient 估计。这为未来工作指出了 clear prerequisite：STA-as-reward
+      需要更强的 base solver 或 curriculum-based prove_rate bootstrapping。"
+
+      '
+  - name: Prolog single-logic GRPO (exec-only vs exec+STA)
+    plan_id: plan_006
+    description: 'Prolog STA instantiation + single-logic GRPO，exec-only vs exec+STA，500
+      steps，K=8，1 seed。 Second logic type validation。
+
+      '
+    expected_results:
+      prolog_sta_instantiation_success: false
+      prolog_solver_timeout_rate: 0.65
+      prolog_prove_rate_exec_only: 0.03
+      prolog_prove_rate_exec_sta: 0.01
+      prolog_isr_discriminability: 0.04
+      prolog_mean_isr: 0.008
+      prolog_training_completed: false
+      failure_mode: solver_timeout_and_trivial_isr
+    result_rationale: 'Prolog STA 实例化在 worst 档下失败，原因链： (1) SWI-Prolog rule ablation
+      需要逐条删除 clause 并重新 query——对每个 N-clause 程序需 N 次 solver call，而 SWI-Prolog 在复杂递归程序上
+      timeout 率高（65% samples 超过 10s timeout）； (2) 成功执行的 samples 中，大部分 Prolog 程序结构简单（2-3
+      clauses），ISR 退化为 binary (0 或 1)，discriminability 仅 0.04——无法区分 structural quality
+      levels； (3) prove_rate 极低（0.03），因为 LLM 生成的 Prolog 大多无法通过 SWI-Prolog 的 strict
+      syntax check（缺少 dot terminator, 变量命名错误, 递归无 base case 等）。 在这种条件下 GRPO 训练几乎没有可用的
+      reward signal，500 步后 prove_rate 无显著变化。 exec+STA 条件更差（0.01），因为少量 proved samples
+      中 ISR penalty 进一步压制了 reward。 训练在 ~300 步后因 KL divergence explosion 被提前终止。
+
+      '
+    tables:
+    - name: 'Table 6: Prolog STA instantiation diagnostics'
+      columns:
+      - metric
+      - value
+      rows:
+      - - SWI-Prolog timeout rate (10s)
+        - 65%
+      - - Mean clauses per program
+        - 2.7
+      - - ISR binary rate (0 or 1)
+        - 89%
+      - - ISR discriminability
+        - 0.04
+      - - Prove rate (base model)
+        - 0.03
+      - - Training terminated early
+        - yes (step ~300)
+    figures_description:
+    - 'Fig 6: Prolog prove_rate over training — flat near 0, exec+STA even lower,
+      terminated at step ~300'
+    analysis: 'Prolog 实例化的失败并非 STA 方法论的失败，而是 infrastructure 层面的问题： (1) SWI-Prolog
+      的 timeout 行为使 O(N) ablation 在合理时间内不可行； (2) 基座模型的 Prolog 生成能力太弱（prove_rate 0.03），GRPO
+      缺乏 bootstrap signal。 论文中应诚实报告这些 failure modes，并 frame 为 STA derivation protocol
+      第 1 步（pilot study） 的 go/no-go 信号——Prolog 在当前 setup 下是 "no-go"，这本身验证了 protocol
+      的 gatekeeping 功能。
+
+      '
+  - name: Multi-logic GRPO (FOL+Prolog)
+    plan_id: plan_007
+    description: 'FOL+Prolog mixed training，exec-only vs exec+STA，500 steps，K=8，1
+      seed。 Cross-logic transfer test。
+
+      '
+    expected_results:
+      status: not_run
+      reason: blocked by plan_006 failure — Prolog prove_rate too low for meaningful
+        multi-logic training
+    result_rationale: 'plan_006 的 Prolog prove_rate (0.03) 使得 mixed training 中 Prolog
+      samples 几乎不贡献 任何 reward signal。如果强行运行，mixed batch 中 Prolog samples 会稀释 FOL 的有效
+      gradient， 导致 FOL prove_rate 也下降。鉴于 plan_006 已明确 Prolog 不可用，plan_007 被标记为 not_run
+      以节省 GPU budget。论文中应说明 blocked dependency 并将此作为 limitation 讨论。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Plan_007 未执行是 worst 档的直接后果。论文叙事中这意味着 Claim 2 (multi-logic) 无法验证， paper
+      退化为 single-logic (FOL-only)。叙事 pivot 将 multi-logic 从 core claim 降级为 future work，Claim
+      2 重新定义为 "single-logic deep analysis of reward hacking patterns"。
+
+      '
+  - name: Cross-logic transfer evaluation
+    plan_id: plan_008
+    description: 'FOL-trained model 在 Prolog tasks 上的 zero-shot evaluation，反之亦然。
+
+      '
+    expected_results:
+      fol_to_prolog_prove_rate: 0.02
+      fol_to_prolog_delta_vs_base: -0.01
+      prolog_to_fol_prove_rate: 0.1
+      prolog_to_fol_delta_vs_base: -0.02
+      cross_logic_transfer_delta_mean: -0.015
+    result_rationale: 'Cross-logic transfer 在 worst 档下表现为 near-zero 或 slightly negative。
+      FOL→Prolog：基座模型 Prolog prove_rate 仅 0.03，FOL-trained 模型进一步下降至 0.02 （negative
+      transfer，FOL 训练强化的 quantifier-heavy 生成模式不适用于 Prolog 的 clause-based 结构）。 Prolog→FOL：由于
+      plan_006 训练提前终止，Prolog-trained model 几乎等同于 base model， FOL prove_rate 为 0.10（略低于
+      base model 的 0.12，noise range 内）。 transfer_delta 均值 -0.015 落入 worst 区间 [-0.05,
+      0.01]。 结论：当前 setup 下不存在有意义的 cross-logic transfer，两种逻辑类型的 formalization patterns
+      在 representation space 中不共享可迁移的 substructures。
+
+      '
+    tables:
+    - name: 'Table 7: Cross-logic transfer matrix'
+      columns:
+      - train_logic
+      - eval_logic
+      - prove_rate
+      - delta_vs_base
+      rows:
+      - - FOL
+        - FOL
+        - 0.24
+        - '+0.12'
+      - - FOL
+        - Prolog
+        - 0.02
+        - '-0.01'
+      - - Prolog
+        - FOL
+        - 0.1
+        - '-0.02'
+      - - Prolog
+        - Prolog
+        - 0.03
+        - ±0.00
+      - - base
+        - FOL
+        - 0.12
+        - —
+      - - base
+        - Prolog
+        - 0.03
+        - —
+    figures_description:
+    - 'Fig 7: Transfer matrix heatmap — diagonal only, off-diagonal ≤ base model'
+    analysis: 'Transfer matrix 的 off-diagonal 元素均 ≤ base model，排除了 positive transfer
+      的可能。 这在 worst 档下是 expected 的：FOL 和 Prolog 的 syntax、reasoning patterns、solver
+      interface 差异太大，100-step scale 的 GRPO 训练不足以学到 transferable logical reasoning
+      abilities。 论文中应将此作为 "the GRPO signal is task-specific, not reasoning-general"
+      的 evidence。
+
+      '
+  - name: SFT baseline comparison
+    plan_id: plan_009
+    description: 'Supervised finetuning on FOLIO 500 samples (gold FOL translations)，作为
+      GRPO 的 non-RL baseline。
+
+      '
+    expected_results:
+      sft_prove_rate: 0.3
+      sft_mean_isr: 0.15
+      sft_isr_pr_ratio: 0.5
+      sft_hacking_rate: 0.5
+      sft_training_minutes: 12
+      sft_held_out_prove_rate: 0.25
+      sft_held_out_isr_mean: 0.12
+    result_rationale: 'SFT 直接从 gold translations 学习，不受 reward signal sparsity 限制。prove_rate
+      (0.30) 略高于 exec-only GRPO (0.24)，因为 SFT 的 supervised signal 更稳定。关键差异在 structural
+      quality：SFT 的 ISR/PR ratio (0.50) 远高于两个 GRPO 条件（0.29 和 0.27），因为 SFT 模仿的是 gold
+      translations 而非 solver-exploitable patterns。SFT 的 hacking_rate (0.50) 约为 exec-only
+      GRPO (0.74) 的 2/3——说明 GRPO 的 on-policy exploration 特别容易发现并 exploit solver shortcuts。
+      这为 worst 档叙事提供了重要对比：不仅 STA reward 无效，exec-only GRPO 本身相对于 SFT 也引入了 额外的 structural
+      degeneracy。论文可以 argue "GRPO without adequate structural reward is actively worse
+      than SFT for structural quality, despite similar or higher execution accuracy"。
+
+      '
+    tables:
+    - name: 'Table 8: SFT vs GRPO comparison'
+      columns:
+      - method
+      - prove_rate
+      - mean_isr
+      - isr_pr_ratio
+      - hacking_rate
+      rows:
+      - - SFT
+        - 0.3
+        - 0.15
+        - 0.5
+        - 0.5
+      - - GRPO exec-only
+        - 0.24
+        - 0.08
+        - 0.29
+        - 0.74
+      - - GRPO exec+STA
+        - 0.11
+        - 0.038
+        - 0.27
+        - 0.7
+      - - base model
+        - 0.12
+        - 0.064
+        - 0.53
+        - 0.47
+    figures_description:
+    - 'Fig 8: 4-way comparison bar chart — SFT dominates on both prove_rate and ISR/PR
+      ratio'
+    analysis: 'SFT baseline 是 worst 档 narrative 的关键支柱。它揭示了一个 hierarchy： SFT > exec-only
+      GRPO > exec+STA GRPO（在 structural quality 上） SFT ≈ exec-only GRPO > exec+STA
+      GRPO > base（在 accuracy 上） 这强化了 pivot narrative：GRPO+STA 不仅未解决 hacking，在每个维度上都是最差的。
+      但 SFT 的 limitation 是需要 gold data——这为 future work 留下了空间。
+
+      '
+  - name: SMT-LIB single-logic GRPO
+    plan_id: plan_010
+    description: 'SMT-LIB STA instantiation + single-logic GRPO，exec-only vs exec+STA。Third
+      logic type。
+
+      '
+    expected_results:
+      status: not_run
+      reason: P2 priority, dropped after Prolog failure — budget redirected to plan_009
+        and plan_012
+    result_rationale: '在 Prolog 实例化失败后，继续尝试第三种逻辑类型的 ROI 太低。SMT-LIB (Z3) 面临与 Prolog
+      类似的 timeout 风险（constraint ablation 需要逐个删除 assert 并重新 check-sat）， 且基座模型的 SMT-LIB
+      生成能力未经验证。GPU budget 重新分配给更有确定性的 plan_009 (SFT baseline) 和 plan_012 (hacking
+      characterization)，后者不需要 GPU 但需要大量人工标注时间。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '合理的 triage 决策。论文中将 SMT-LIB 和 Prolog 均列为 future work， 并强调 STA derivation
+      protocol 的 solver-agnostic 设计使得扩展是 straightforward 的 （given adequate solver
+      performance and base model capability）。
+
+      '
+  - name: Qwen3-8B scaling experiment
+    plan_id: plan_011
+    description: '在 8B model 上运行 full MLSR pipeline (1 seed)，测试 model scale effect。
+
+      '
+    expected_results:
+      status: not_run
+      reason: P2 priority, blocked by plan_005 showing no stable operating point —
+        scaling a broken reward signal is pointless
+    result_rationale: 'plan_005 已证明 STA reward 在当前架构下没有 viable operating point。在 8B
+      model 上重复 失败的 reward design 不会改变根本问题（ISR signal sparsity）。虽然 8B model 可能有更高的
+      base prove_rate（缓解 sparsity），但这是一个 confound 而非 clean ablation。 Budget 不足以同时运行
+      8B exec-only baseline，无法区分 "scale helps" vs "scale + STA helps"。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Correct decision。如果有额外 budget，应优先运行 8B exec-only（验证 scale 对 base prove_rate
+      的影响），而非 8B exec+STA。论文中可以将此作为 future work： "STA-as-reward may become viable
+      at higher base prove_rates achievable with larger models."
+
+      '
+  - name: Hacking characterization (200-sample annotation)
+    plan_id: plan_012
+    description: '对 plan_003 的 held-out outputs 进行 200-sample manual annotation， 按
+      extensional-shortcut taxonomy 分类 reward hacking patterns。
+
+      '
+    expected_results:
+      total_annotated: 200
+      inter_annotator_agreement_kappa: 0.72
+      taxonomy_categories:
+        tautology_injection:
+          exec_only_rate: 0.28
+          exec_sta_rate: 0.22
+          example: adding P ∨ ¬P as premise to make any conclusion provable
+        vacuous_quantification:
+          exec_only_rate: 0.19
+          exec_sta_rate: 0.21
+          example: ∀x(P(x) → Q(x)) where P is never instantiated
+        premise_redundancy:
+          exec_only_rate: 0.14
+          exec_sta_rate: 0.15
+          example: repeating premises in different syntactic forms
+        trivial_conclusion:
+          exec_only_rate: 0.08
+          exec_sta_rate: 0.07
+          example: concluding with a tautology regardless of premises
+        correct_structural:
+          exec_only_rate: 0.26
+          exec_sta_rate: 0.3
+          example: genuinely reflects NL semantics
+        other_degenerate:
+          exec_only_rate: 0.05
+          exec_sta_rate: 0.05
+          example: miscellaneous patterns not fitting above categories
+      key_finding: 'Hacking pattern distributions are nearly identical between exec-only
+        and exec+STA, confirming STA reward did not selectively suppress any hacking
+        mode.
+
+        '
+    result_rationale: '200-sample annotation 是 worst 档 narrative 的主要 empirical 贡献。在
+      STA-as-reward 失败后， hacking taxonomy 成为 STA-as-diagnostic 的 showcase。关键发现： (1)
+      Tautology injection 是最常见的 hacking mode（28%），但 O(1) tautology check 仅覆盖 其中最显式的子类（literal
+      P ∨ ¬P），大部分 tautologies 需要 full ablation 才能检测； (2) exec-only 和 exec+STA 的 hacking
+      pattern 分布几乎相同（χ² test p=0.68）， 说明 STA reward 未选择性抑制任何特定 hacking mode——它只是均匀地压制了
+      prove_rate； (3) "correct_structural" 占比在两组中相似（26% vs 30%），但因 exec+STA 的 prove_rate
+      更低， 绝对数量远少； (4) Inter-annotator κ=0.72（substantial agreement），taxonomy 具有可复现性。
+
+      '
+    tables:
+    - name: 'Table 9: Hacking taxonomy distribution (200 samples per condition)'
+      columns:
+      - category
+      - exec_only_%
+      - exec_sta_%
+      - ISR_sensitivity
+      rows:
+      - - Tautology injection
+        - 28
+        - 22
+        - High (ISR detects 85%)
+      - - Vacuous quantification
+        - 19
+        - 21
+        - Medium (ISR detects 60%)
+      - - Premise redundancy
+        - 14
+        - 15
+        - High (ISR detects 90%)
+      - - Trivial conclusion
+        - 8
+        - 7
+        - Low (ISR detects 30%)
+      - - Correct structural
+        - 26
+        - 30
+        - N/A
+      - - Other degenerate
+        - 5
+        - 5
+        - Variable
+    - name: 'Table 10: ISR detection sensitivity by hacking mode'
+      columns:
+      - hacking_mode
+      - n_samples
+      - isr_detects_%
+      - isr_misses_%
+      rows:
+      - - Tautology injection
+        - 56
+        - 85
+        - 15
+      - - Vacuous quantification
+        - 38
+        - 60
+        - 40
+      - - Premise redundancy
+        - 28
+        - 90
+        - 10
+      - - Trivial conclusion
+        - 16
+        - 30
+        - 70
+    figures_description:
+    - 'Fig 9: Stacked bar chart of hacking taxonomy, exec-only vs exec+STA — distributions
+      nearly identical'
+    - 'Fig 10: Confusion matrix of ISR detection vs manual annotation — ISR has high
+      precision but mode-dependent recall'
+    analysis: Hacking taxonomy 是整篇 worst-档论文最有价值的贡献。它提供了三层 insight： (1) GRPO formalization
+      training 产生的 reward hacking 不是单一模式，而是至少 4 种 distinct structural degeneracy patterns，各有不同的
+      ISR detection sensitivity； (2) STA-as-diagnostic 能检测大部分 hacking（overall sensitivity
+      ~70%），但对 "trivial conclusion" 类 hacking 敏感度低——因为 conclusion 的 triviality 不一定体现为
+      component removability； (3) STA reward 的失败不是因为 ISR 无法 detect hacking，而是因为 detection
+      signal 无法通过 GRPO gradient 有效传播（sparsity + variance 问题）。 这为 pivot narrative 提供了
+      closing argument："STA detects hacking effectively (diagnostic tool) but cannot
+      prevent it via reward (training signal) in the current low-prove-rate regime."
+  review_report: "---\ndream_id: dream_20260513T215750\ntier: worst\noverall_score:\
+    \ reject\ntimestamp: 2026-05-13T22:47:44.263037+00:00\n---\n\n# Dream Review Report:\
+    \ Solver Trace Ablation Reveals Reward Hacking in GRPO-Trained Formalizers\n\n\
+    **dream_id:** 20260513T215750\n**Review mode:** full (2-reviewer roundtable)\n\
+    **Date:** 2026-05-13\n\n---\n\n## Roundtable Summary\n\nTwo reviewers independently\
+    \ assessed the paper, then cross-shared findings and converged on a unified assessment.\n\
+    \n- **R1 (Methods & Experiments):** 3/6 (Weak Reject)\n- **R2 (Novelty & Related\
+    \ Work):** 2/6 (Reject)\n- **Consensus:** 2/6 (Reject)\n\n---\n\n## R1 Review:\
+    \ Methods & Experiments\n\n### Summary\n\nThe paper proposes Solver Trace Ablation\
+    \ (STA), adapting mutation testing's RIP framework to derive structural rewards\
+    \ (ISR) for GRPO-trained formal logic generators. The core finding is a principled\
+    \ negative result: ISR effectively diagnoses structural degeneracy (~70% sensitivity)\
+    \ but fails as a training reward, reducing prove rate from 0.24 to 0.11 without\
+    \ improving structural quality. The experimental program covers 9 of 12 planned\
+    \ experiments.\n\n### Strengths\n\n- **Well-motivated problem.** Execution-only\
+    \ GRPO producing structurally degenerate formalizations (ISR/PR dropping 0.82→0.29)\
+    \ is a genuine and underappreciated failure mode, documented with clean training\
+    \ dynamics.\n- **Honest negative result.** The paper does not overclaim. The exec+STA\
+    \ prove rate collapse (0.13 vs 0.28) is presented straightforwardly.\n- **Informative\
+    \ O(1) vs O(N) ablation.** Near-zero discriminability for O(1) (0.02 vs 0.31)\
+    \ justifies the O(N) cost and shows hacking is multi-modal.\n- **Systematic hacking\
+    \ taxonomy.** 200-sample annotation with 4 modes, κ=0.72, and ISR sensitivity\
+    \ ~70% grounds quantitative metrics in qualitative understanding.\n- **Comprehensive\
+    \ weight ablation.** Six configurations demonstrating no stable operating point\
+    \ makes the negative conclusion convincing beyond poor hyperparameter choice.\n\
+    - **SFT baseline provides useful calibration.** SFT dominating GRPO on all metrics\
+    \ (PR=0.30, ISR/PR=0.50, hack%=50%) raises important questions about paradigm\
+    \ choice.\n\n### Weaknesses\n\n- **(Major) Statistical power is insufficient.**\
+    \ 3 seeds for the primary comparison is borderline; 1 seed for all ablations (weight\
+    \ ablation, O(1) vs O(N), Prolog, cross-logic transfer) is inadequate. The weight\
+    \ ablation's \"no stable operating point\" conclusion could be a seed artifact.\
+    \ Top-2 configurations should be verified with ≥3 seeds.\n- **(Major) Causal attribution\
+    \ of ISR/PR decline is unresolved.** The ISR/PR decline under exec+STA may be\
+    \ a punitive artifact of the 50/50 weighting rather than genuine hacking detection.\
+    \ The held-out evaluation partially addresses this, but the paper does not clearly\
+    \ separate \"STA detects hacking\" from \"STA punishment suppresses proving.\"\
+    \n- **(Major) ISR circularity.** ISR is used both as training reward and primary\
+    \ evaluation metric. The hacking taxonomy partially breaks this circularity, but\
+    \ no downstream task evaluation (e.g., does higher ISR correlate with better logical\
+    \ inference accuracy?) validates ISR as a proxy for structural quality.\n- **(Major)\
+    \ Very limited scale.** Qwen2.5-1.5B on FOLIO with one functioning logic type\
+    \ (FOL). Prolog failed catastrophically. The \"general, solver-agnostic\" claim\
+    \ is unsupported empirically.\n- **(Moderate) Three planned experiments not run.**\
+    \ Multi-logic GRPO (blocked by Prolog failure, reasonable), SMT-LIB and 8B scaling\
+    \ (deprioritized without strong justification). The absence of scaling analysis\
+    \ means the paper cannot distinguish whether the negative result is scale-specific.\n\
+    - **(Moderate) Reward formulation may explain the negative result.** With r =\
+    \ α·r_exec + β·ISR and α=β=0.5, proved-but-low-ISR outputs get half the reward\
+    \ of exec-only. The model may simply learn that proving is not worth the effort.\
+    \ This is a reward engineering problem, not evidence that structural rewards are\
+    \ fundamentally incompatible with RL.\n\n### Questions for Authors\n\n1. Have\
+    \ you controlled for population composition effects in the held-out ISR/PR comparison?\
+    \ The base model computes ISR/PR over only its 12% proved outputs (self-selected\
+    \ easy population), while trained models prove different problems (Simpson's paradox\
+    \ risk).\n2. Have you tried additive bonus formulations (r = r_exec + bonus·ISR)\
+    \ that provide upside without reducing the incentive to prove?\n3. Who performed\
+    \ the hacking taxonomy annotation? Were guidelines developed independently of\
+    \ ISR scores?\n\n### R1 Scores\n- Soundness: 2/4\n- Empirical Rigor: 2/4\n- Reproducibility:\
+    \ 3/4\n- Overall: 3/6 (Weak Reject)\n- Confidence: 4/5\n\n---\n\n## R2 Review:\
+    \ Novelty & Related Work\n\n### Summary\n\nThe paper adapts leave-one-out component\
+    \ ablation to RL reward design for formal logic generation, framed through mutation\
+    \ testing's RIP model. The negative result (STA fails as training reward) is the\
+    \ central finding. The paper has only 4 references and claims novelty for what\
+    \ is operationally LOO feature importance applied to a new domain.\n\n### Strengths\n\
+    \n- **Genuine problem identification.** Structural degeneracy under execution-only\
+    \ GRPO is real and underappreciated.\n- **Principled negative result framing is\
+    \ honest.** Reporting failure with mechanistic explanation reflects intellectual\
+    \ integrity.\n- **Hacking taxonomy is the most concrete contribution.** Four hacking\
+    \ modes with differential ISR sensitivity and κ=0.72 provide a reusable categorization.\n\
+    - **SFT comparison contextualizes findings.** SFT dominating GRPO calibrates what\
+    \ \"good\" structural quality looks like.\n\n### Weaknesses\n\n- **(Major) ISR\
+    \ is leave-one-out ablation importance, not a novel metric.** ISR(f) = (1/N)·Σ\
+    \ 1[S(f\\c_i) ≠ S(f)] is structurally identical to binary LOO feature importance,\
+    \ a technique with decades of history (Cook's distance 1977, SHAP 2017, permutation\
+    \ importance). The paper does not acknowledge this connection. Presenting ISR\
+    \ as novel inflates the contribution.\n- **(Major) RIP framework invocation is\
+    \ cosmetic.** Only Propagation is operationally measured. Reachability and Infection\
+    \ contribute no independent signal. The three-stage decomposition collapses into\
+    \ a single binary test. \"Component necessity testing via LOO ablation\" would\
+    \ be equally accurate and less misleading.\n- **(Major) Only 4 references is critically\
+    \ deficient.** A paper spanning RL, formal verification, mutation testing, reward\
+    \ hacking, and neurosymbolic reasoning should have 25-40 references. Critical\
+    \ omissions include:\n  - FOLIO dataset (Han et al. 2022) — the paper's own dataset\
+    \ is uncited\n  - Reward shaping theory (Ng et al. 1999) — directly relevant to\
+    \ the combined reward formulation\n  - Modern formal verification + LLMs (LeanDojo,\
+    \ AlphaProof, Baldur, COPRA)\n  - Process reward models (Math-Shepherd, Lightman\
+    \ et al. 2023)\n  - Feature attribution literature (SHAP, Shapley values)\n  -\
+    \ CodeRL, RLTF — structural rewards in code generation\n  - Broader mutation testing\
+    \ literature beyond the single Jia & Harman citation\n  - RLHF reward hacking\
+    \ mitigation approaches\n- **(Major) The 5-step derivation protocol is standard\
+    \ engineering methodology.** \"Run a pilot, observe failures, categorize, map\
+    \ to framework, design checks\" is what any competent practitioner would do. This\
+    \ has reproducibility value but is not a methodological contribution.\n- **(Moderate)\
+    \ The negative result may be predictable.** Adding a noisy, sparse reward component\
+    \ (ISR, defined only for ~15% of outputs) to an already sparse signal would be\
+    \ expected to degrade training by any RL practitioner familiar with reward shaping.\
+    \ The gradient variance amplification explanation is essentially \"adding noisy\
+    \ reward to sparse reward makes training harder\" — a known phenomenon.\n- **(Moderate)\
+    \ Scope too narrow for claimed generality.** Single model, single logic type,\
+    \ failed extensions. One successful instantiation does not validate a \"general,\
+    \ solver-agnostic procedure.\"\n\n### Questions for Authors\n\n1. How do you differentiate\
+    \ STA from LOO ablation applied as a reward signal? Have you considered interaction\
+    \ effects (pairs of components jointly encoding trivial reasoning)?\n2. Is the\
+    \ ISR component potential-based (Ng et al. 1999)? If not, what guarantees adding\
+    \ ISR does not systematically bias the learned policy?\n3. What makes the negative\
+    \ result non-obvious given that adding high-variance reward to sparse signal is\
+    \ known to degrade training?\n4. Why not compare against a random structural penalty\
+    \ as a control? Without this, it's unclear whether ISR's specific formulation\
+    \ matters.\n\n### R2 Scores\n- Novelty: 2/4\n- Related Work: 1/4\n- Significance:\
+    \ 2/4\n- Writing Quality: 3/4\n- Overall: 2/6 (Reject)\n- Confidence: 4/5\n\n\
+    ---\n\n## Roundtable Convergence (Step 3)\n\n### Points of Agreement\n\n1. **Hacking\
+    \ taxonomy is the strongest contribution.** Both reviewers identify the 200-sample\
+    \ annotation with 4 hacking modes and differential ISR sensitivity as the paper's\
+    \ most concrete and reusable empirical finding.\n2. **Single-logic, single-model\
+    \ scope is a major limitation.** The paper claims solver-agnostic generality but\
+    \ demonstrates STA successfully on exactly one solver-language pair.\n3. **Honest\
+    \ framing is a genuine strength.** Reporting a negative result without overclaiming\
+    \ is appreciated by both reviewers.\n4. **Statistical rigor is borderline.** R1\
+    \ flags 1-seed ablations as insufficient; R2 notes this compounds the scope concern.\n\
+    5. **The negative result's non-obviousness is not established.** R1 notes the\
+    \ reward formulation itself may explain the failure; R2 notes the result is predictable\
+    \ from reward shaping literature.\n\n### Points of Complementary Concern\n\n-\
+    \ R1 identifies ISR circularity (optimizing and evaluating on same metric) — R2\
+    \ independently identifies ISR as LOO importance (not novel). Together: the metric\
+    \ is both unvalidated and unoriginal.\n- R1 flags causal attribution issues in\
+    \ the held-out comparison — R2 flags the \"dense\" positioning as misleading since\
+    \ ISR is undefined for 75-88% of outputs. Together: the diagnostic claims rest\
+    \ on shaky empirical and conceptual foundations.\n- R2's identification of 4 references\
+    \ as critically deficient is a standalone disqualifying issue that R1's experimental\
+    \ concerns reinforce: the paper lacks engagement with the literatures needed to\
+    \ contextualize its claims.\n\n### Consensus Recommendation\n\nBoth reviewers\
+    \ converge on **reject** (consensus score: 2/6). The paper addresses a genuine\
+    \ problem and the hacking taxonomy has value, but the combination of:\n1. Critically\
+    \ deficient related work (4 references)\n2. Overstated novelty (LOO ablation presented\
+    \ as RIP-grounded framework)\n3. Narrow experimental scope (single logic, single\
+    \ model, failed extensions)\n4. Insufficient statistical rigor (1-seed ablations)\n\
+    5. Unresolved causal attribution and metric circularity\n\nplaces the paper below\
+    \ the acceptance threshold for a top ML venue.\n\n---\n\n## Synthesis & Recommendations\
+    \ (Step 4)\n\n### Overall Assessment: 2/6 (Reject)\n\nThe paper tackles a real\
+    \ problem—reward hacking in GRPO-trained formalizers—and proposes STA, a component\
+    \ ablation framework for deriving structural rewards. The principled negative\
+    \ result (STA fails as training reward but works as diagnostic) is honestly reported.\
+    \ However, the paper has fundamental issues across novelty, experimental scope,\
+    \ and scholarly completeness that prevent acceptance.\n\n### What Would Improve\
+    \ This Paper\n\n1. **Related work expansion (critical).** Expand from 4 to 25+\
+    \ references with substantive engagement. Cite FOLIO, engage with reward shaping\
+    \ theory (Ng et al. 1999), LOO/feature attribution literature, modern formal verification\
+    \ + LLMs, process reward models, and structural rewards in code generation.\n\n\
+    2. **Honest repositioning of ISR.** Acknowledge ISR as domain-specific LOO ablation\
+    \ rather than claiming novelty through cosmetic RIP grounding. The contribution\
+    \ is applying a known technique to a new domain—frame it that way.\n\n3. **At\
+    \ least one additional successful STA instantiation.** SMT-LIB/Z3 or another solver-language\
+    \ pair to support the \"general, solver-agnostic\" claim. Without this, the 5-step\
+    \ protocol remains aspirational.\n\n4. **Statistical rigor.** Run top-2 weight\
+    \ configurations with ≥3 seeds. A single seed cannot distinguish systematic failure\
+    \ from bad initialization.\n\n5. **Break ISR circularity.** Validate ISR against\
+    \ a downstream task (e.g., logical inference accuracy) to establish it measures\
+    \ structural quality rather than its own optimization surface.\n\n6. **Alternative\
+    \ reward formulations.** Test additive bonus (r = r_exec + bonus·ISR) and random\
+    \ penalty controls to isolate whether ISR's specific formulation matters versus\
+    \ any regularization of proved outputs.\n\n7. **Establish non-obviousness.** Engage\
+    \ with reward shaping theory to argue why the negative result is surprising, or\
+    \ reframe the paper around the hacking taxonomy as the primary contribution with\
+    \ the negative result as supporting evidence.\n\n### Strengths Worth Preserving\n\
+    \n- The hacking taxonomy (4 modes, κ=0.72, differential ISR sensitivity) is the\
+    \ paper's most publishable component. A reframed paper centered on \"Characterizing\
+    \ Reward Hacking in GRPO-Trained Formalizers\" with the taxonomy as the primary\
+    \ contribution and STA as the analysis tool could be stronger.\n- The SFT vs GRPO\
+    \ comparison revealing that GRPO's on-policy exploration amplifies solver shortcuts\
+    \ is a genuinely interesting finding.\n- The observation that the untrained base\
+    \ model has better structural quality (ISR/PR=0.53) than both GRPO-trained models\
+    \ is striking and deserves more attention.\n\n### Key Risks for Claims\n\n| Claim\
+    \ | Evidence Strength | Key Risk |\n|-------|------------------|----------|\n\
+    | STA as diagnostic framework | Moderate | ISR circularity; LOO is not novel;\
+    \ one logic type only |\n| STA as training reward fails | Moderate-Weak | May\
+    \ be reward engineering failure, not fundamental; 1-seed ablations; predictable\
+    \ from theory |\n| Hacking taxonomy | Moderate-Strong | 200 samples is modest;\
+    \ annotation may not be blind to ISR; κ=0.72 is adequate but not strong |\n\n\
+    ### Experimental Coverage Assessment\n\n9 of 12 planned experiments appear in\
+    \ the paper. Plan_007 (multi-logic GRPO) was reasonably blocked by Prolog failure.\
+    \ Plans 010 (SMT-LIB) and 011 (8B scaling) were deprioritized—the absence of scaling\
+    \ analysis is the most consequential gap, as it prevents distinguishing scale-specific\
+    \ from fundamental limitations.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-13T22:47:57+00:00'

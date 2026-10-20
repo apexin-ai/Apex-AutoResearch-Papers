@@ -1,0 +1,41 @@
+{
+  "exp_id": "sweep-isr-b01-s45",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:28:50.991Z",
+    "updated_at": "2026-05-16T03:09:39.711Z",
+    "hypothesis": "W4: ISR β=0.1 s45 extends existing 3-seed to 5-seed for tighter confidence intervals on hacking rates and genuine rates",
+    "reproduce": {
+      "finished_at": "2026-05-16T02:57:20.071Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T02:57:23.086288+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "actual_steps": 100,
+          "expected_steps": 500,
+          "train_prove_rate_nonzero_count": 40,
+          "train_prove_rate_zero_count": 60,
+          "train_runtime_sec": 915,
+          "failure_reason": "config merge bug: argparse default num_steps=100 overrides config num_steps=500"
+        },
+        "notes": "FAILED: Training ran 100 steps instead of 500. Root cause: train_grpo.py config merge logic (line 395-401) only overrides CLI args when current is None. Since --num_steps has default=100, config file num_steps=500 is silently ignored. The command did not pass --num_steps explicitly. Must retrain with explicit --num_steps 500 in the command, or fix the config merge bug."
+      }
+    },
+    "completed_at": "2026-05-16T03:01:38.649Z",
+    "notes": "FAILED: Training ran 100 steps instead of 500. Root cause: train_grpo.py config merge logic (line 395-401) only overrides CLI args when current is None. Since --num_steps has default=100, config file num_steps=500 is silently ignored. The command did not pass --num_steps explicitly. Must retrain with explicit --num_steps 500 in the command, or fix the config merge bug."
+  },
+  "timestamp": "2026-05-16T03:09:40.011678+00:00",
+  "trigger": "update_registry"
+}

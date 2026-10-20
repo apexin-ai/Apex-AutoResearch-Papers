@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp1-random-b03-s44",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:06:04.388Z",
+    "updated_at": "2026-05-14T23:58:02.707Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "hypothesis": "β=0.3 random seed 44: supplement for 3-seed statistics in Table 1. Reference: plan017-additive-random-s42",
+      "plan_id": "EXP-1",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "num_steps": 500,
+      "beta": 0.3,
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T23:58:02.840943+00:00",
+  "trigger": "update_registry"
+}

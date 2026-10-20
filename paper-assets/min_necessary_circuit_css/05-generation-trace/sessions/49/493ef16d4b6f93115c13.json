@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "493ef16d4b6f93115c13",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "ops code sync westd",
+  "task_key": "worker_ops_code-sync-westd_20260513T062336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_code-sync-westd_20260513T062336_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "57195df677b226763f12d75a65a6eb5392c49d6376d3a0aebc722992a929999b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n### 结果汇总\n\n**同步文件清单（22 个）：**\n\n| 文件 | 大小 |\n|------|------|\n| config.py | 868B |\n| css.py | 5,443B |\n| circus.py | 6,001B |\n| cross_tabulate.py | 4,091B |\n| circuit_discovery.py | 6,533B |\n| evaluation.py | 4,295B |\n| run_mvp.py | 12,870B |\n| edge_pruning_l0.py | 9,819B |\n| ifr_discovery.py | 5,467B |\n| ifr_scoring.py | 10,413B |\n| analysis_fix_v3.py | 12,959B |\n| eval_faithfulness.py | 5,787B |\n| eval_mean_ablation.py | 15,176B |\n| eval_topk_faithfulness.py | 17,573B |\n| acdc_topk_sweep.py | 5,822B |\n| run_arithmetic.py | 15,953B |\n| run_circus_fix.py | 9,726B |\n| run_phase_d_only.py | 7,277B |\n| run_phase2_experiment.py | 17,344B |\n| run_circus.py | 10,187B |\n| run_sva.py | 21,684B |\n| phase2_configs.yaml | 8,956B |\n\n**CUDA guard 更新：**\n- `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"5\"` → `\"0\"` （11 个入口脚本）\n- `os.environ.setdefault(\"CUDA_VISIBLE_DEVICES\", \"5\")` → `\"0\"` （8 个库模块）\n- `os.environ.get(\"CUDA_VISIBLE_DEVICES\", \"5\")` → `\"0\"` （run_phase2_experiment.py 的 fallback）\n- `gpu_id: \"5\"` → `\"0\"` （phase2_configs.yaml）\n\n**Import 验证：** `circuit_discovery`, `css`, `evaluation` — ALL IMPORTS OK\n\n**传输方式：** 临时 SSH 密钥 scp（已清理密钥和临时文件）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-code-sync-westd.md"
+}

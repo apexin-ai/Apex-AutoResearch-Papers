@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp1-isr-b03-s42-1000",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:55:55.364Z",
+    "updated_at": "2026-05-15T09:15:47.673Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "ISR β=0.3 1000步: 高剂量时间维度。500步 s42 PR=18% (reward collapse)，1000步是否恢复或进一步崩塌？与 ISR β=0.1 1000步 (H7=92%) 对比 dose-response。",
+      "reward_formula": "r = r_exec * (1 + 0.3 * ISR)",
+      "num_steps": 1000,
+      "beta": 0.3,
+      "plan_id": "exp1",
+      "parent": "exp1-isr-b03-s42"
+    }
+  },
+  "timestamp": "2026-05-15T09:15:47.859009+00:00",
+  "trigger": "update_registry"
+}

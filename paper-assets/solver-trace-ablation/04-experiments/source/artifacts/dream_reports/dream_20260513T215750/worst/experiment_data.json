@@ -1,0 +1,679 @@
+[
+  {
+    "name": "FOL exec-only baseline (500 steps, 3 seeds)",
+    "description": "FOL single-logic GRPO，仅用 execution reward (prove/fail binary)，K=8，500 steps，3 seeds。 作为 STA 对比的 baseline。\n",
+    "results": {
+      "prove_rate_overall_mean": 0.24,
+      "prove_rate_overall_std": 0.03,
+      "prove_rate_first100_mean": 0.15,
+      "prove_rate_last100_mean": 0.28,
+      "mean_isr_overall": 0.11,
+      "mean_isr_last100": 0.08,
+      "isr_pr_ratio_first100": 0.82,
+      "isr_pr_ratio_last100": 0.29,
+      "reward_mean_last100": 0.28,
+      "training_minutes_per_seed": 78,
+      "step_time_s": 9.4
+    },
+    "tables": [
+      {
+        "name": "Table 1: Exec-only training dynamics (3-seed average)",
+        "columns": [
+          "step_range",
+          "prove_rate",
+          "mean_isr",
+          "isr_pr_ratio",
+          "reward_mean"
+        ],
+        "rows": [
+          [
+            "0-100",
+            0.15,
+            0.14,
+            0.82,
+            0.15
+          ],
+          [
+            "100-200",
+            0.19,
+            0.12,
+            0.55,
+            0.19
+          ],
+          [
+            "200-300",
+            0.22,
+            0.1,
+            0.41,
+            0.22
+          ],
+          [
+            "300-400",
+            0.25,
+            0.09,
+            0.33,
+            0.25
+          ],
+          [
+            "400-500",
+            0.28,
+            0.08,
+            0.29,
+            0.28
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Exec-only baseline 展现了 reward hacking 的教科书式 trajectory。prove_rate 的持续上升掩盖了 structural quality 的同步恶化。到 500 步时，约 71% 的 proved outputs 是 structurally degenerate (ISR/PR=0.29)。这为 STA 的 diagnostic 价值提供了 ground truth：如果没有 ISR metric， 仅看 prove_rate 会误判训练效果。\n\n\n从 r5 数据外推：100 步时 prove_rate=0.15，last20=0.20，ISR/PR=1.0。500 步训练中， prove_rate 因 GRPO 的 on-policy exploration 持续上升至 ~0.28（符合 worst 区间 [0.18,0.3] 上段）， 但这种上升主要来自模型学会了 structural shortcuts（tautology injection, vacuous quantification, trivially true premises）。ISR/PR ratio 从初始 ~0.82 急剧下降至 ~0.29，反映了 structural degeneracy 的累积——模型越来越多地通过 degenerate proofs 获得 execution reward。这是经典的 reward hacking trajectory：accuracy 上升但 structural quality 同步恶化。3 seeds 间 variance 较小（std=0.03）， 说明这不是随机波动而是训练动力学的系统性特征。\n"
+  },
+  {
+    "name": "FOL exec+STA reward (500 steps, 3 seeds)",
+    "description": "FOL single-logic GRPO，execution + full STA reward (α=0.5, β=0.5)，K=8，500 steps，3 seeds。 Primary STA validation。\n",
+    "results": {
+      "prove_rate_overall_mean": 0.11,
+      "prove_rate_overall_std": 0.02,
+      "prove_rate_first100_mean": 0.09,
+      "prove_rate_last100_mean": 0.13,
+      "mean_isr_overall": 0.042,
+      "mean_isr_last100": 0.038,
+      "isr_pr_ratio_first100": 0.41,
+      "isr_pr_ratio_last100": 0.27,
+      "reward_mean_last100": 0.084,
+      "training_minutes_per_seed": 84,
+      "step_time_s": 10.1
+    },
+    "tables": [
+      {
+        "name": "Table 2: Exec+STA training dynamics (3-seed average)",
+        "columns": [
+          "step_range",
+          "prove_rate",
+          "mean_isr",
+          "isr_pr_ratio",
+          "reward_mean"
+        ],
+        "rows": [
+          [
+            "0-100",
+            0.09,
+            0.052,
+            0.41,
+            0.071
+          ],
+          [
+            "100-200",
+            0.1,
+            0.047,
+            0.38,
+            0.074
+          ],
+          [
+            "200-300",
+            0.11,
+            0.044,
+            0.34,
+            0.077
+          ],
+          [
+            "300-400",
+            0.12,
+            0.041,
+            0.3,
+            0.081
+          ],
+          [
+            "400-500",
+            0.13,
+            0.038,
+            0.27,
+            0.084
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "STA reward 在 worst 档下表现为 net negative signal。prove_rate 的 gap（0.28 vs 0.13 at step 500） 具有统计显著性（p<0.01, 3 seeds），明确说明 STA reward hurts accuracy。ISR/PR ratio 两组均收敛至 相似低值（0.29 vs 0.27），说明 STA 也未能阻止 structural degeneracy。 关键 insight：在 prove_rate < 20% 的 sparse-signal regime 下，添加任何 secondary reward 都会因 gradient variance amplification 损害 primary objective。这本身是一个有价值的 negative result。\n\n\n从 r5 数据外推：100 步时 prove_rate=0.10，ISR/PR=0.33（已低于 exec-only 的 1.0）。 在 worst 档下，STA reward 的加入不仅未提升 structural quality，反而通过两个机制损害了训练： (1) Low prove_rate regime 下 ISR 信号极度稀疏——只有 ~10% 的 samples 能 prove，其中仅 ~30% 有非零 ISR，导致 STA reward gradient 方差极大； (2) STA penalty 对 degenerate proofs 的惩罚使模型学会了回避 provable formulations， 转向 unprovable-but-syntactically-valid 的 outputs（\"reward avoidance\" 而非 \"reward seeking\"）。 结果是 prove_rate 被压制在 0.13 以下（远低于 exec-only 的 0.28），同时 ISR/PR ratio 仍继续下降 （0.41→0.27），说明即使 STA 惩罚了 degenerate proofs，少数仍 provable 的 outputs 中 structural quality 并未改善。Worst 档的核心表现：STA reward 同时降低了 accuracy 和 structural quality。\n"
+  },
+  {
+    "name": "Held-out evaluation (plan_001 vs plan_002)",
+    "description": "在 test set 上对 plan_001 和 plan_002 的 best checkpoint 进行统一 full STA evaluation， 包括 prove_rate, ISR, ISR/PR ratio, hacking taxonomy annotation。\n",
+    "results": {
+      "exec_only_held_out_prove_rate": 0.22,
+      "exec_only_held_out_isr_mean": 0.058,
+      "exec_only_held_out_isr_pr_ratio": 0.26,
+      "exec_sta_held_out_prove_rate": 0.1,
+      "exec_sta_held_out_isr_mean": 0.035,
+      "exec_sta_held_out_isr_pr_ratio": 0.3,
+      "exec_only_hacking_rate": 0.74,
+      "exec_sta_hacking_rate": 0.7
+    },
+    "tables": [
+      {
+        "name": "Table 3: Held-out evaluation summary",
+        "columns": [
+          "condition",
+          "prove_rate",
+          "mean_isr",
+          "isr_pr_ratio",
+          "hacking_rate"
+        ],
+        "rows": [
+          [
+            "exec-only (best ckpt)",
+            0.22,
+            0.058,
+            0.26,
+            0.74
+          ],
+          [
+            "exec+STA (best ckpt)",
+            0.1,
+            0.035,
+            0.3,
+            0.7
+          ],
+          [
+            "base model (no training)",
+            0.12,
+            0.064,
+            0.53,
+            0.47
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Striking 发现：base model 的 ISR/PR ratio (0.53) 远高于两个训练后模型（0.26, 0.30）。 这说明 GRPO training 本身——无论是否加入 STA reward——都导致了 structural degeneracy。 STA reward 未能逆转这一趋势。但这个对比本身是 pivot narrative 的核心 empirical evidence： STA as diagnostic 能够量化 training-induced structural degradation，即使它无法作为 reward signal 阻止之。\n\n\nHeld-out 表现与 training 趋势一致但 prove_rate 略低（distribution shift）。两组 held-out ISR 均落入 worst 区间 [0.03, 0.08]。关键发现：exec-only 虽然 prove_rate 高得多（0.22 vs 0.10）， 但 hacking_rate 极高（74%），说明其 accuracy 增益几乎全部来自 degenerate proofs。 exec+STA 的 hacking_rate 略低（70%），但考虑到其 prove_rate 仅为 0.10， 这个微小差异没有统计意义。ISR/PR ratio 在 held-out 上 exec+STA（0.30）甚至略高于 exec-only（0.26）， 但两者均在 worst 区间 [0.15-0.35] 内，差异不显著。结论：STA reward 对 held-out generalization 没有提供任何结构性改善。\n"
+  },
+  {
+    "name": "O(1) vs O(N) ablation (500 steps)",
+    "description": "用 fast_isr_fol (O(1) tautology-only check) 替代 full STA，500 steps，1 seed， 确认 O(1) 近似在长训练中同样无效。\n",
+    "results": {
+      "prove_rate_500step": 0.23,
+      "mean_isr_o1": 0.006,
+      "isr_pr_ratio_o1": 0.03,
+      "reward_mean_last100": 0.23,
+      "isr_discriminability": 0.02
+    },
+    "tables": [
+      {
+        "name": "Table 4: O(1) vs O(N) comparison at step 500",
+        "columns": [
+          "condition",
+          "prove_rate",
+          "mean_isr",
+          "isr_pr_ratio",
+          "isr_discriminability"
+        ],
+        "rows": [
+          [
+            "exec-only",
+            0.24,
+            0.11,
+            0.29,
+            "N/A"
+          ],
+          [
+            "exec+STA O(N)",
+            0.11,
+            0.042,
+            0.27,
+            0.31
+          ],
+          [
+            "exec+STA O(1)",
+            0.23,
+            0.006,
+            0.03,
+            0.02
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "O(1) 结果强化了 plan_002 的 negative finding：不是 STA 的粒度太粗导致 O(N) 失败， 而是在 low-prove-rate regime 下任何 ISR-based reward 都无法提供有效信号。 O(1) 的 near-zero discriminability 是一个 clean negative result，适合写入论文作为 \"ablation granularity matters for diagnostic but not for training\" 的 evidence。\n\n\nO(1) (tautology-only check) 几乎退化为 exec-only：fast_isr_fol 仅检测最粗粒度的 tautology （如 P ∨ ¬P），而 GRPO 训练产生的 degenerate proofs 类型远更精细（vacuous quantification, premise redundancy, trivially satisfiable structures）。这些 subtler hacking modes 完全绕过 tautology check，导致 O(1) ISR ≈ 0 对绝大多数 samples。prove_rate 与 exec-only 基本一致 （0.23 vs 0.24），证明 O(1) ISR signal 没有对训练产生任何影响——它既不提供有用的 gradient 信号（太稀疏），也不消耗足够计算资源来产生隐式正则化效应。ISR discriminability 仅 0.02， 远低于 full STA 的 ~0.3，确认 O(1) 近似无法区分 structural quality levels。\n"
+  },
+  {
+    "name": "STA reward weight ablation (α/β ratios + curriculum)",
+    "description": "测试 α/β = {0.3/0.7, 0.5/0.5, 0.7/0.3} + sigmoid curriculum vs fixed， 共 6 configurations，各 200 steps，1 seed。\n",
+    "results": {
+      "configs": [
+        {
+          "config": "α=0.3 β=0.7 fixed",
+          "prove_rate_200": 0.18,
+          "isr_pr_ratio_200": 0.35,
+          "reward_mean": 0.19
+        },
+        {
+          "config": "α=0.5 β=0.5 fixed",
+          "prove_rate_200": 0.13,
+          "isr_pr_ratio_200": 0.3,
+          "reward_mean": 0.09
+        },
+        {
+          "config": "α=0.7 β=0.3 fixed",
+          "prove_rate_200": 0.07,
+          "isr_pr_ratio_200": 0.38,
+          "reward_mean": 0.05
+        },
+        {
+          "config": "α=0.3 β=0.7 sigmoid",
+          "prove_rate_200": 0.19,
+          "isr_pr_ratio_200": 0.33,
+          "reward_mean": 0.2
+        },
+        {
+          "config": "α=0.5 β=0.5 sigmoid",
+          "prove_rate_200": 0.15,
+          "isr_pr_ratio_200": 0.29,
+          "reward_mean": 0.1
+        },
+        {
+          "config": "α=0.7 β=0.3 sigmoid",
+          "prove_rate_200": 0.09,
+          "isr_pr_ratio_200": 0.35,
+          "reward_mean": 0.06
+        }
+      ],
+      "best_prove_rate_config": "α=0.3 β=0.7 sigmoid",
+      "best_isr_pr_config": "α=0.7 β=0.3 fixed",
+      "stable_operating_point": null
+    },
+    "tables": [
+      {
+        "name": "Table 5: Weight ablation results at step 200",
+        "columns": [
+          "α",
+          "β",
+          "schedule",
+          "prove_rate",
+          "isr_pr_ratio",
+          "reward_mean"
+        ],
+        "rows": [
+          [
+            0.3,
+            0.7,
+            "fixed",
+            0.18,
+            0.35,
+            0.19
+          ],
+          [
+            0.5,
+            0.5,
+            "fixed",
+            0.13,
+            0.3,
+            0.09
+          ],
+          [
+            0.7,
+            0.3,
+            "fixed",
+            0.07,
+            0.38,
+            0.05
+          ],
+          [
+            0.3,
+            0.7,
+            "sigmoid",
+            0.19,
+            0.33,
+            0.2
+          ],
+          [
+            0.5,
+            0.5,
+            "sigmoid",
+            0.15,
+            0.29,
+            0.1
+          ],
+          [
+            0.7,
+            0.3,
+            "sigmoid",
+            0.09,
+            0.35,
+            0.06
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "6 个 configurations 均位于 exec-only baseline 的 Pareto frontier 之下或之上但仅在一个维度。 没有任何设置同时改善 prove_rate 和 ISR/PR ratio。这是 worst 档的 definitive evidence： STA reward 在当前 prove_rate regime 下没有 viable operating point。 写入论文时应 frame 为：\"STA reward 的有效性受限于 base prove_rate——当 solver success rate < 20% 时， ISR 的 per-step 有效 sample size 不足以支撑稳定的 policy gradient 估计。这为未来工作指出了 clear prerequisite：STA-as-reward 需要更强的 base solver 或 curriculum-based prove_rate bootstrapping。\"\n\n\nWorst 档核心假设：no stable operating point exists。具体表现为 prove_rate 和 ISR/PR ratio 之间存在不可调和的 Pareto trade-off： - 低 β（STA 权重小）：prove_rate 接近 exec-only 但 ISR/PR 无改善（STA 信号被淹没） - 高 β（STA 权重大）：ISR/PR ratio 略有改善但 prove_rate 被严重压制（0.07-0.09） - Sigmoid curriculum 略优于 fixed（early 阶段 STA 权重低允许 prove_rate 建立），\n  但 200 步时差异不显著（0.19 vs 0.18）\n根本原因是 ISR signal 的 sparsity：只有 proved samples 才有非零 ISR，而 prove_rate < 20% 意味着 STA reward 的有效 batch size 约为 K × prove_rate ≈ 1.6 samples/step。这个 sample efficiency 太低，无法在任何 α/β 设置下提供稳定的 training signal。\n"
+  },
+  {
+    "name": "Prolog single-logic GRPO (exec-only vs exec+STA)",
+    "description": "Prolog STA instantiation + single-logic GRPO，exec-only vs exec+STA，500 steps，K=8，1 seed。 Second logic type validation。\n",
+    "results": {
+      "prolog_sta_instantiation_success": false,
+      "prolog_solver_timeout_rate": 0.65,
+      "prolog_prove_rate_exec_only": 0.03,
+      "prolog_prove_rate_exec_sta": 0.01,
+      "prolog_isr_discriminability": 0.04,
+      "prolog_mean_isr": 0.008,
+      "prolog_training_completed": false,
+      "failure_mode": "solver_timeout_and_trivial_isr"
+    },
+    "tables": [
+      {
+        "name": "Table 6: Prolog STA instantiation diagnostics",
+        "columns": [
+          "metric",
+          "value"
+        ],
+        "rows": [
+          [
+            "SWI-Prolog timeout rate (10s)",
+            "65%"
+          ],
+          [
+            "Mean clauses per program",
+            2.7
+          ],
+          [
+            "ISR binary rate (0 or 1)",
+            "89%"
+          ],
+          [
+            "ISR discriminability",
+            0.04
+          ],
+          [
+            "Prove rate (base model)",
+            0.03
+          ],
+          [
+            "Training terminated early",
+            "yes (step ~300)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Prolog 实例化的失败并非 STA 方法论的失败，而是 infrastructure 层面的问题： (1) SWI-Prolog 的 timeout 行为使 O(N) ablation 在合理时间内不可行； (2) 基座模型的 Prolog 生成能力太弱（prove_rate 0.03），GRPO 缺乏 bootstrap signal。 论文中应诚实报告这些 failure modes，并 frame 为 STA derivation protocol 第 1 步（pilot study） 的 go/no-go 信号——Prolog 在当前 setup 下是 \"no-go\"，这本身验证了 protocol 的 gatekeeping 功能。\n\n\nProlog STA 实例化在 worst 档下失败，原因链： (1) SWI-Prolog rule ablation 需要逐条删除 clause 并重新 query——对每个 N-clause 程序需 N 次 solver call，而 SWI-Prolog 在复杂递归程序上 timeout 率高（65% samples 超过 10s timeout）； (2) 成功执行的 samples 中，大部分 Prolog 程序结构简单（2-3 clauses），ISR 退化为 binary (0 或 1)，discriminability 仅 0.04——无法区分 structural quality levels； (3) prove_rate 极低（0.03），因为 LLM 生成的 Prolog 大多无法通过 SWI-Prolog 的 strict syntax check（缺少 dot terminator, 变量命名错误, 递归无 base case 等）。 在这种条件下 GRPO 训练几乎没有可用的 reward signal，500 步后 prove_rate 无显著变化。 exec+STA 条件更差（0.01），因为少量 proved samples 中 ISR penalty 进一步压制了 reward。 训练在 ~300 步后因 KL divergence explosion 被提前终止。\n"
+  },
+  {
+    "name": "Multi-logic GRPO (FOL+Prolog)",
+    "description": "FOL+Prolog mixed training，exec-only vs exec+STA，500 steps，K=8，1 seed。 Cross-logic transfer test。\n",
+    "results": {
+      "status": "not_run",
+      "reason": "blocked by plan_006 failure — Prolog prove_rate too low for meaningful multi-logic training"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Plan_007 未执行是 worst 档的直接后果。论文叙事中这意味着 Claim 2 (multi-logic) 无法验证， paper 退化为 single-logic (FOL-only)。叙事 pivot 将 multi-logic 从 core claim 降级为 future work，Claim 2 重新定义为 \"single-logic deep analysis of reward hacking patterns\"。\n\n\nplan_006 的 Prolog prove_rate (0.03) 使得 mixed training 中 Prolog samples 几乎不贡献 任何 reward signal。如果强行运行，mixed batch 中 Prolog samples 会稀释 FOL 的有效 gradient， 导致 FOL prove_rate 也下降。鉴于 plan_006 已明确 Prolog 不可用，plan_007 被标记为 not_run 以节省 GPU budget。论文中应说明 blocked dependency 并将此作为 limitation 讨论。\n"
+  },
+  {
+    "name": "Cross-logic transfer evaluation",
+    "description": "FOL-trained model 在 Prolog tasks 上的 zero-shot evaluation，反之亦然。\n",
+    "results": {
+      "fol_to_prolog_prove_rate": 0.02,
+      "fol_to_prolog_delta_vs_base": -0.01,
+      "prolog_to_fol_prove_rate": 0.1,
+      "prolog_to_fol_delta_vs_base": -0.02,
+      "cross_logic_transfer_delta_mean": -0.015
+    },
+    "tables": [
+      {
+        "name": "Table 7: Cross-logic transfer matrix",
+        "columns": [
+          "train_logic",
+          "eval_logic",
+          "prove_rate",
+          "delta_vs_base"
+        ],
+        "rows": [
+          [
+            "FOL",
+            "FOL",
+            0.24,
+            "+0.12"
+          ],
+          [
+            "FOL",
+            "Prolog",
+            0.02,
+            "-0.01"
+          ],
+          [
+            "Prolog",
+            "FOL",
+            0.1,
+            "-0.02"
+          ],
+          [
+            "Prolog",
+            "Prolog",
+            0.03,
+            "±0.00"
+          ],
+          [
+            "base",
+            "FOL",
+            0.12,
+            "—"
+          ],
+          [
+            "base",
+            "Prolog",
+            0.03,
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Transfer matrix 的 off-diagonal 元素均 ≤ base model，排除了 positive transfer 的可能。 这在 worst 档下是 expected 的：FOL 和 Prolog 的 syntax、reasoning patterns、solver interface 差异太大，100-step scale 的 GRPO 训练不足以学到 transferable logical reasoning abilities。 论文中应将此作为 \"the GRPO signal is task-specific, not reasoning-general\" 的 evidence。\n\n\nCross-logic transfer 在 worst 档下表现为 near-zero 或 slightly negative。 FOL→Prolog：基座模型 Prolog prove_rate 仅 0.03，FOL-trained 模型进一步下降至 0.02 （negative transfer，FOL 训练强化的 quantifier-heavy 生成模式不适用于 Prolog 的 clause-based 结构）。 Prolog→FOL：由于 plan_006 训练提前终止，Prolog-trained model 几乎等同于 base model， FOL prove_rate 为 0.10（略低于 base model 的 0.12，noise range 内）。 transfer_delta 均值 -0.015 落入 worst 区间 [-0.05, 0.01]。 结论：当前 setup 下不存在有意义的 cross-logic transfer，两种逻辑类型的 formalization patterns 在 representation space 中不共享可迁移的 substructures。\n"
+  },
+  {
+    "name": "SFT baseline comparison",
+    "description": "Supervised finetuning on FOLIO 500 samples (gold FOL translations)，作为 GRPO 的 non-RL baseline。\n",
+    "results": {
+      "sft_prove_rate": 0.3,
+      "sft_mean_isr": 0.15,
+      "sft_isr_pr_ratio": 0.5,
+      "sft_hacking_rate": 0.5,
+      "sft_training_minutes": 12,
+      "sft_held_out_prove_rate": 0.25,
+      "sft_held_out_isr_mean": 0.12
+    },
+    "tables": [
+      {
+        "name": "Table 8: SFT vs GRPO comparison",
+        "columns": [
+          "method",
+          "prove_rate",
+          "mean_isr",
+          "isr_pr_ratio",
+          "hacking_rate"
+        ],
+        "rows": [
+          [
+            "SFT",
+            0.3,
+            0.15,
+            0.5,
+            0.5
+          ],
+          [
+            "GRPO exec-only",
+            0.24,
+            0.08,
+            0.29,
+            0.74
+          ],
+          [
+            "GRPO exec+STA",
+            0.11,
+            0.038,
+            0.27,
+            0.7
+          ],
+          [
+            "base model",
+            0.12,
+            0.064,
+            0.53,
+            0.47
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "SFT baseline 是 worst 档 narrative 的关键支柱。它揭示了一个 hierarchy： SFT > exec-only GRPO > exec+STA GRPO（在 structural quality 上） SFT ≈ exec-only GRPO > exec+STA GRPO > base（在 accuracy 上） 这强化了 pivot narrative：GRPO+STA 不仅未解决 hacking，在每个维度上都是最差的。 但 SFT 的 limitation 是需要 gold data——这为 future work 留下了空间。\n\n\nSFT 直接从 gold translations 学习，不受 reward signal sparsity 限制。prove_rate (0.30) 略高于 exec-only GRPO (0.24)，因为 SFT 的 supervised signal 更稳定。关键差异在 structural quality：SFT 的 ISR/PR ratio (0.50) 远高于两个 GRPO 条件（0.29 和 0.27），因为 SFT 模仿的是 gold translations 而非 solver-exploitable patterns。SFT 的 hacking_rate (0.50) 约为 exec-only GRPO (0.74) 的 2/3——说明 GRPO 的 on-policy exploration 特别容易发现并 exploit solver shortcuts。 这为 worst 档叙事提供了重要对比：不仅 STA reward 无效，exec-only GRPO 本身相对于 SFT 也引入了 额外的 structural degeneracy。论文可以 argue \"GRPO without adequate structural reward is actively worse than SFT for structural quality, despite similar or higher execution accuracy\"。\n"
+  },
+  {
+    "name": "SMT-LIB single-logic GRPO",
+    "description": "SMT-LIB STA instantiation + single-logic GRPO，exec-only vs exec+STA。Third logic type。\n",
+    "results": {
+      "status": "not_run",
+      "reason": "P2 priority, dropped after Prolog failure — budget redirected to plan_009 and plan_012"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "合理的 triage 决策。论文中将 SMT-LIB 和 Prolog 均列为 future work， 并强调 STA derivation protocol 的 solver-agnostic 设计使得扩展是 straightforward 的 （given adequate solver performance and base model capability）。\n\n\n在 Prolog 实例化失败后，继续尝试第三种逻辑类型的 ROI 太低。SMT-LIB (Z3) 面临与 Prolog 类似的 timeout 风险（constraint ablation 需要逐个删除 assert 并重新 check-sat）， 且基座模型的 SMT-LIB 生成能力未经验证。GPU budget 重新分配给更有确定性的 plan_009 (SFT baseline) 和 plan_012 (hacking characterization)，后者不需要 GPU 但需要大量人工标注时间。\n"
+  },
+  {
+    "name": "Qwen3-8B scaling experiment",
+    "description": "在 8B model 上运行 full MLSR pipeline (1 seed)，测试 model scale effect。\n",
+    "results": {
+      "status": "not_run",
+      "reason": "P2 priority, blocked by plan_005 showing no stable operating point — scaling a broken reward signal is pointless"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Correct decision。如果有额外 budget，应优先运行 8B exec-only（验证 scale 对 base prove_rate 的影响），而非 8B exec+STA。论文中可以将此作为 future work： \"STA-as-reward may become viable at higher base prove_rates achievable with larger models.\"\n\n\nplan_005 已证明 STA reward 在当前架构下没有 viable operating point。在 8B model 上重复 失败的 reward design 不会改变根本问题（ISR signal sparsity）。虽然 8B model 可能有更高的 base prove_rate（缓解 sparsity），但这是一个 confound 而非 clean ablation。 Budget 不足以同时运行 8B exec-only baseline，无法区分 \"scale helps\" vs \"scale + STA helps\"。\n"
+  },
+  {
+    "name": "Hacking characterization (200-sample annotation)",
+    "description": "对 plan_003 的 held-out outputs 进行 200-sample manual annotation， 按 extensional-shortcut taxonomy 分类 reward hacking patterns。\n",
+    "results": {
+      "total_annotated": 200,
+      "inter_annotator_agreement_kappa": 0.72,
+      "taxonomy_categories": {
+        "tautology_injection": {
+          "exec_only_rate": 0.28,
+          "exec_sta_rate": 0.22,
+          "example": "adding P ∨ ¬P as premise to make any conclusion provable"
+        },
+        "vacuous_quantification": {
+          "exec_only_rate": 0.19,
+          "exec_sta_rate": 0.21,
+          "example": "∀x(P(x) → Q(x)) where P is never instantiated"
+        },
+        "premise_redundancy": {
+          "exec_only_rate": 0.14,
+          "exec_sta_rate": 0.15,
+          "example": "repeating premises in different syntactic forms"
+        },
+        "trivial_conclusion": {
+          "exec_only_rate": 0.08,
+          "exec_sta_rate": 0.07,
+          "example": "concluding with a tautology regardless of premises"
+        },
+        "correct_structural": {
+          "exec_only_rate": 0.26,
+          "exec_sta_rate": 0.3,
+          "example": "genuinely reflects NL semantics"
+        },
+        "other_degenerate": {
+          "exec_only_rate": 0.05,
+          "exec_sta_rate": 0.05,
+          "example": "miscellaneous patterns not fitting above categories"
+        }
+      },
+      "key_finding": "Hacking pattern distributions are nearly identical between exec-only and exec+STA, confirming STA reward did not selectively suppress any hacking mode.\n"
+    },
+    "tables": [
+      {
+        "name": "Table 9: Hacking taxonomy distribution (200 samples per condition)",
+        "columns": [
+          "category",
+          "exec_only_%",
+          "exec_sta_%",
+          "ISR_sensitivity"
+        ],
+        "rows": [
+          [
+            "Tautology injection",
+            28,
+            22,
+            "High (ISR detects 85%)"
+          ],
+          [
+            "Vacuous quantification",
+            19,
+            21,
+            "Medium (ISR detects 60%)"
+          ],
+          [
+            "Premise redundancy",
+            14,
+            15,
+            "High (ISR detects 90%)"
+          ],
+          [
+            "Trivial conclusion",
+            8,
+            7,
+            "Low (ISR detects 30%)"
+          ],
+          [
+            "Correct structural",
+            26,
+            30,
+            "N/A"
+          ],
+          [
+            "Other degenerate",
+            5,
+            5,
+            "Variable"
+          ]
+        ]
+      },
+      {
+        "name": "Table 10: ISR detection sensitivity by hacking mode",
+        "columns": [
+          "hacking_mode",
+          "n_samples",
+          "isr_detects_%",
+          "isr_misses_%"
+        ],
+        "rows": [
+          [
+            "Tautology injection",
+            56,
+            85,
+            15
+          ],
+          [
+            "Vacuous quantification",
+            38,
+            60,
+            40
+          ],
+          [
+            "Premise redundancy",
+            28,
+            90,
+            10
+          ],
+          [
+            "Trivial conclusion",
+            16,
+            30,
+            70
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Hacking taxonomy 是整篇 worst-档论文最有价值的贡献。它提供了三层 insight： (1) GRPO formalization training 产生的 reward hacking 不是单一模式，而是至少 4 种 distinct structural degeneracy patterns，各有不同的 ISR detection sensitivity； (2) STA-as-diagnostic 能检测大部分 hacking（overall sensitivity ~70%），但对 \"trivial conclusion\" 类 hacking 敏感度低——因为 conclusion 的 triviality 不一定体现为 component removability； (3) STA reward 的失败不是因为 ISR 无法 detect hacking，而是因为 detection signal 无法通过 GRPO gradient 有效传播（sparsity + variance 问题）。 这为 pivot narrative 提供了 closing argument：\"STA detects hacking effectively (diagnostic tool) but cannot prevent it via reward (training signal) in the current low-prove-rate regime.\"\n\n200-sample annotation 是 worst 档 narrative 的主要 empirical 贡献。在 STA-as-reward 失败后， hacking taxonomy 成为 STA-as-diagnostic 的 showcase。关键发现： (1) Tautology injection 是最常见的 hacking mode（28%），但 O(1) tautology check 仅覆盖 其中最显式的子类（literal P ∨ ¬P），大部分 tautologies 需要 full ablation 才能检测； (2) exec-only 和 exec+STA 的 hacking pattern 分布几乎相同（χ² test p=0.68）， 说明 STA reward 未选择性抑制任何特定 hacking mode——它只是均匀地压制了 prove_rate； (3) \"correct_structural\" 占比在两组中相似（26% vs 30%），但因 exec+STA 的 prove_rate 更低， 绝对数量远少； (4) Inter-annotator κ=0.72（substantial agreement），taxonomy 具有可复现性。\n"
+  }
+]

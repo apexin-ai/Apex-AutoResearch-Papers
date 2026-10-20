@@ -1,0 +1,56 @@
+{
+  "exp_id": "sweep-isr-b005-s42",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 2,
+    "created_at": "2026-05-16T02:28:49.503Z",
+    "updated_at": "2026-05-17T20:15:16.593Z",
+    "hypothesis": "W3: β=0.05 ISR bonus produces less aggressive hacking than β=0.1/0.3 while retaining structural signal — tests Goodhart's Law dose-response",
+    "reproduce": {
+      "finished_at": "2026-05-16T03:28:39.948Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T02:57:31.723279+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:28:45.235348+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "negative",
+        "metrics": {
+          "prove_rate": 0.888,
+          "eval_prove_rate": 0.55,
+          "eval_mean_isr": 0.602,
+          "eval_proved_only_isr": 0.759,
+          "genuine_rate": 0,
+          "h7a_rate": 1,
+          "h7b_rate": 0,
+          "h1_rate": 0,
+          "h8_rate": 0,
+          "single_premise_pct": 1,
+          "content_independent_pct": 1,
+          "isr_075_pct": 0.964,
+          "isr_100_pct": 0.036,
+          "note": "CORRECTED: ISR=0.75 is NOT multi-step reasoning but single-premise tautology in 4-component STA structure. genuine=0%, not ≥75%"
+        },
+        "notes": "Loop 16 发现实验已成功完成（500/500 steps, EXIT_CODE=0），之前被错误标记为 killed。输出: /root/autodl-tmp/outputs/sweep_isr_b005_s42/"
+      }
+    },
+    "notes": "Loop 16 发现实验已成功完成（500/500 steps, EXIT_CODE=0），之前被错误标记为 killed。输出: /root/autodl-tmp/outputs/sweep_isr_b005_s42/",
+    "completed_at": "2026-05-16T03:04:59.530Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T20:15:16.914512+00:00",
+  "trigger": "update_registry"
+}

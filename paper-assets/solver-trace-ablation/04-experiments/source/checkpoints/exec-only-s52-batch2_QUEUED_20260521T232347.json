@@ -1,0 +1,15 @@
+{
+  "exp_id": "exec-only-s52-batch2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:23:33.152Z",
+    "updated_at": "2026-05-21T23:23:46.704Z",
+    "hypothesis": "Exec-only GRPO seed 52: expanding statistical sample for cross-seed analysis. Same config as existing exec-only seeds (500 steps, execution_only reward, Qwen3-4B)."
+  },
+  "timestamp": "2026-05-21T23:23:47.218046+00:00",
+  "trigger": "update_registry"
+}

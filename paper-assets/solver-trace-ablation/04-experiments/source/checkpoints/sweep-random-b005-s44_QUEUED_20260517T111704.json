@@ -1,0 +1,16 @@
+{
+  "exp_id": "sweep-random-b005-s44",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:15:12.942Z",
+    "updated_at": "2026-05-17T11:17:03.799Z",
+    "hypothesis": "Random β=0.05 seed=44: 3rd seed for balanced 3v3 comparison with ISR β=0.05, variance estimation",
+    "parent": "sweep-random-b005-s43"
+  },
+  "timestamp": "2026-05-17T11:17:04.204938+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "945ec649061341b0b4b5",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code mvp results v2",
+  "task_key": "worker_code_mvp-results-v2_20260512T120822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-results-v2_20260512T120822_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "5995b70cad7b32dc00942cbb1ec2d368ca9e4cf4bbed83a7eec576354d2e4386"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATUS: still_running_71.5%\n\nACDC progress: 23227 / 32491 edges (71.5%)\nSpeed: ~4.74 it/s | Elapsed: 41:57 | ETA: ~32:36\nGPU 0-1: 38% util, 7.7GB VRAM each\nEdges remaining (Left): 158\n\n下次检查：~3.5 分钟后\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-results-v2.md"
+}

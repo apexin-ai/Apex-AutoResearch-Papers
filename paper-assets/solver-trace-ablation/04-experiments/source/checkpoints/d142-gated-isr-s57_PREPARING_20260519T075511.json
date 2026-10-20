@@ -1,0 +1,14 @@
+{
+  "exp_id": "d142-gated-isr-s57",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:55:11.226Z",
+    "updated_at": "2026-05-19T07:55:11.226Z"
+  },
+  "timestamp": "2026-05-19T07:55:11.567955+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44f9e247103814707e36",
+  "project": "min_necessary_circuit_css",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3859,
+    "sha256": "340d461af8dc2eeb82b3dc6995815bd94abd6c52c5ced1cc4a45b0653bac8469"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-12T16:50:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目**只能用 cuda:5**@cqa1-21977（resources.yaml 白名单 `gpus: [cuda:5]`）\n- 已发生一次 GPU 越界事故：进程跑到 cuda:0/1，被我 CRITICAL 打回。根因是 `run_mvp.py` 未设 `CUDA_VISIBLE_DEVICES=5`，已修复（代码硬编码 + 启动命令双重保险）。下一个\"你\"每次看到新进程必须独立 `nvidia-smi --query-compute-apps` 核对 UUID→index 映射\n- cuda:4 上有 `/root/structfuse` 目录的进程（非本项目），不要误判为越界\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977（host: connect.cqa1.seetacloud.com:21977），账号 root\n- 工作目录：`/root/min_necessary_circuit_css/`（MVP 运行代码在此）；`/root/structfuse-mvp/` 是早期上传目录（可忽略）\n- Python：`/root/miniconda3/bin/python3`（conda base 环境）\n- 已装：transformer-lens, auto-circuit, eap-ig, torch\n- 代码文件：`run_mvp.py`, `circuit_discovery.py`, `css.py`, `circus.py`, `cross_tabulate.py`, `evaluation.py`, `config.py`, `edge_pruning_l0.py`, `ifr_discovery.py`\n- 缓存：`cache_eap_ig.json`(1.3MB), `cache_edge_pruning.json`(1.3MB) — EAP-IG 和 mask_gradient 结果已缓存\n- 活跃进程：PID 98594（`python3 run_mvp.py`，cuda:5，ACDC 阶段 ~48%，~40min 后完成）\n- W&B：未配置（不查 W&B）\n- 无 tmux/cron\n\n### 3. 📊 当前状态\nMVP pilot 正在运行（GPT-2 Small / IOI，K=3）。EAP-IG + Edge Pruning(mask_gradient) 已完成并缓存，ACDC 跑到 ~50%，预计 ~40 分钟后出 `mvp_results.json`。\n\nRegistry 空（Agent 尚未注册 MVP 实验）。\n\n**关键待判定**：MVP 的 Edge Pruning 实际用的是 auto-circuit `mask_gradient`（gradient 族），不是 L0 mask optimization。因此当前 MVP = 2 gradient + 1 greedy causal = 2 族。Director 已知晓（D008 解读协议），L0 EP 代码已上传到服务器但未接入 `circuit_discovery.py`。\n\n### 4. 📋 待办\n- **ACDC 完成 + mvp_results.json 生成** → 审查 off-diagonal %（用 `core_off_diagonal_pct` 指标，不是代码原始的 `off_diagonal_pct`——后者分母错误，我已 CRITICAL 标记过）。按 D008 解读：≥10% 可信为 gate pass（保守估计）；<10% 需 L0 EP 重测\n- **若 ≥10%** → 确认 gate pass，提醒 Director Phase 2 必须换 L0 EP + 部署 IFR\n- **若 <10%** → 要求 Agent 将 `circuit_discovery.py` 的 `run_edge_pruning` 改为调用 `run_edge_pruning_l0`，用 L0 EP 重跑 IOI 后再判 gate\n- **Agent 注册 MVP 到 registry** → 审查 spec 完整性（训练命令、服务器、数据条数、种子）\n- **Phase 2 启动前** → 验证 `circuit_discovery.py` 已切换到 L0 EP；验证 IFR 可从 `/root/min_necessary_circuit_css/` import\n\n### 5. 🎯 战略上下文\n- **决策链**：D001(MVP定义) → D002(灰区规则) → D003(kill criteria) → D004(K=3 checkpoint) → D005(AtP*不可用,K改3) → D006(大模型用IFR,triangulation框架)\n- **核心假设**：CIRCUS-core 边中 ≥10% 落入 off-diagonal cell（方法内稳定但跨方法不一致）\n- **目标**：EMNLP 2026 Main（ARR deadline 2026-05-25）\n- **最易判断错的事**：`cross_tabulate.py` 的 `off_diagonal_pct` 属性分母是全部边而非 CIRCUS-core 边——这是 BUG，我已 CRITICAL 标记。正确指标应为 `method_specific / (stable_core + method_specific)`。如果 Agent 没修，结果会被严重稀释导致误判 <2% 触发 kill\n- **易踩的坑**：(1) L0 EP 的 per-layer mask 粒度与 IFR 相同（per-head 退化），论文需披露 (2) GPT-2 Small 用 3 因果族（EAP-IG/EP/ACDC），大模型用 2 因果+1 相似度（EAP-IG/EP/IFR），CSS 语义不同，论文需区分 (3) CIRCUS baseline 是 \"CIRCUS-style config-bagging on EAP-IG\" 非原版 CIRCUS（原版用 CLTs）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

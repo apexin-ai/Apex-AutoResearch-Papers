@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e04b3c60ce70b03d810",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "research ifr code survey",
+  "task_key": "worker_research_ifr-code-survey_20260513T021046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ifr-code-survey_20260513T021046_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "909f5418781b13a11340f4d7a9458063fbc3156f373e8f5745fb48627b005df7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册。核心发现：\n\n**IFR = Information Flow Routes** (Ferrando & Voita, EMNLP 2024)，基于 ALTI 的归因方法，单次前向传播即可完成，比 ACDC 快 ~100x。\n\n**项目现状比预期好**：\n- `ifr_discovery.py` (TransformerLens 版) 已在服务器上\n- `artifacts/ifr_scoring.py` (HuggingFace 版，支持 Llama/Qwen2/Gemma2) 已在本地\n- `phase2_configs.yaml` 全部 16 个实验已规划\n- 服务器依赖齐全，无需额外安装\n\n**主要集成工作**：\n1. 部署 `ifr_scoring.py` + `run_phase2_experiment.py` 到服务器\n2. `circuit_discovery.py` 添加 IFR normalizer\n3. `css.py` 添加 IFR 二值化策略\n4. 下载 3 个目标模型 (Qwen-2.5 0.5B, Gemma-2 2B, Llama-3.1 8B)\n\n**风险点**：IFR 非因果性（但作为 K=3 ensemble 的多样性视角是其价值）、同层头共享 score、Gemma-2 残差流近似、8B 模型 EP 显存可能紧张。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ifr-code-survey.md"
+}

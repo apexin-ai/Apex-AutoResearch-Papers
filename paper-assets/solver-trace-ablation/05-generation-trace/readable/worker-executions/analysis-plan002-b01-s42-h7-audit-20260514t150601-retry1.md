@@ -1,0 +1,2086 @@
+# analysis plan002 b01 s42 h7 audit 20260514T150601 retry1
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_analysis_plan002-b01-s42-h7-audit_20260514T150601_retry1.log`
+- **Structured JSON:** [`56a81114b42adc2bdc95.json`](../../sessions/56/56a81114b42adc2bdc95.json)
+
+## Before a recorded user message
+
+42 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "29609eb4-b535-4c14-bc0d-88706653d2f2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778785200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8eae9782-7fd5-4b7f-9708-53b23d1177d9",
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "79b98f9b-1f56-4cce-95a6-04d1d01960f3",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01S4bqsRDUx4P2HCGVLcso4L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15908,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15908
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HbsHc6Nmm2yZ7i3PT4ENtu`</summary>
+
+```json
+{
+  "query": "select:ssh_read_only,ssh_execute,update_registry,read_registry",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "ba9938a1-f0ca-4999-a6c1-e4fbf19ed592",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01S4bqsRDUx4P2HCGVLcso4L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15908,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15908
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T15:06:21.617Z_
+
+<details><summary>↩ Tool result · `toolu_01HbsHc6Nmm2yZ7i3PT4ENtu`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "97367611-a6cc-418a-ab10-67d63137e247",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:ssh_read_only,ssh_execute,update_registry,read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GnZageS39QChTVyiFDA9BF`</summary>
+
+```json
+{
+  "query": "ssh",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "40ab62bf-75f5-48b7-a52e-4553c77c7996",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018or2koWmU1JX4qiQz49yn7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 188,
+      "cache_read_input_tokens": 32149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 188
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T15:06:24.050Z_
+
+<details><summary>↩ Tool result · `toolu_01GnZageS39QChTVyiFDA9BF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "2cd45ffc-b6ae-44b9-8743-ce0d1273222e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job"
+    ],
+    "query": "ssh",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HkZCu6HFwxdLnuGTAMmrhG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "8c0985ea-f21d-43e3-b93f-49a3f5c4146c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01TRoJvApW1L5ZGWegdck41E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 17460,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17460
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29744
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T15:06:27.344Z_
+
+<details><summary>↩ Tool result · `toolu_01HkZCu6HFwxdLnuGTAMmrhG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "911a6587-06de-499f-86f1-c091d2d01ced",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011c4jLnF8Qibea58Lh2sstH`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan002_additive_b01_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "f8f52a56-4bed-487d-a824-c719d2c22fd9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KDBGhQcbkongdMJr1r2pw8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 1141,
+      "cache_read_input_tokens": 33794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1141
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T15:06:31.801Z_
+
+<details><summary>↩ Tool result · `toolu_011c4jLnF8Qibea58Lh2sstH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 336\\ndrwxr-xr-x  2 root root     71 May 14 19:43 .\\ndrwxr-xr-x 17 root root   4096 May 14 21:44 ..\\n-rw-r--r--  1 root root 216048 May 14 14:45 eval_sta_results.json\\n-rw-r--r--  1 root root 122633 May 14 14:35 reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "0f74885e-120d-42d7-91b8-af514b28d1a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 336\\\\ndrwxr-xr-x  2 root root     71 May 14 19:43 .\\\\ndrwxr-xr-x 17 root root   4096 May 14 21:44 ..\\\\n-rw-r--r--  1 root root 216048 May 14 14:45 eval_sta_results.json\\\\n-rw-r--r--  1 root root 122633 May 14 14:35 reward_log.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 336\\ndrwxr-xr-x  2 root root     71 May 14 19:43 .\\ndrwxr-xr-x 17 root root   4096 May 14 21:44 ..\\n-rw-r--r--  1 root root 216048 May 14 14:45 eval_sta_results.json\\n-rw-r--r--  1 root root 122633 May 14 14:35 reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FfkXAV1SUcsivP8W7P4Zbv`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -c 3000 /root/autodl-tmp/outputs/plan002_additive_b01_s42/eval_sta_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "355703b3-db81-4f10-a37e-c2111ce76e3b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01EvNM4UJ3SthFVH6HwQnAWM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 403,
+      "cache_read_input_tokens": 34935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 403
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T15:06:35.235Z_
+
+<details><summary>↩ Tool result · `toolu_01FfkXAV1SUcsivP8W7P4Zbv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 81,\\n    \\\"prove_rate\\\": 0.81,\\n    \\\"mean_isr\\\": 0.3365,\\n    \\\"isr_std\\\": 0.3227,\\n    \\\"median_isr\\\": 0.2,\\n    \\\"isr_pr_ratio\\\": 0.4154,\\n    \\\"proved_only_mean_isr\\\": 0.4154,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 1.0,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 22,\\n        \\\"prove_rate\\\": 0.88,\\n        \\\"mean_isr\\\": 0.3514761904761905\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 34,\\n        \\\"prove_rate\\\": 0.8292682926829268,\\n        \\\"mean_isr\\\": 0.3684378629500581\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 25,\\n        \\\"prove_rate\\\": 0.7352941176470589,\\n        \\\"mean_isr\\\": 0.28686974789915964\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 234.3,\\n    \\\"avg_time_per_sample\\\": 2.3,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:  \\\\n1. ∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))  \\\\n2. ∀x (Lawyer(x) → WhiteCollarWorker(x))  \\\\n3. ∀x (Advocate(x) → Lawyer(x))  \\\\n4. ¬(Lawyer(Mary) ∨ TippedEmployee(Mary))  \\\\n5. Advocate(Mary)  \\\\n\\\\nConclusion: ¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\\",\\n      \\\"gen_time\\\": 2.88,\\n      \\\"eval_time\\\": 0.03,\\n      \\\"execution_reward\\\": 1.0,\\n      \\\"sta_reward\\\": 0.3333333333333333,\\n      \\\"combined_reward\\\": 0.6666666666666666,\\n      \\\"details\\\": {\\n        \\\"premises\\\": [\\n          \\\"∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\\",\\n          \\\"∀x (Lawyer(x) → WhiteCollarWorker(x))\\\",\\n          \\\"∀x (Advocate(x) → Lawyer(x))\\\",\\n          \\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\\",\\n          \\\"Advocate(Mary)\\\"\\n        ],\\n        \\\"conclusion\\\": \\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\\",\\n        \\\"n_components\\\": 6,\\n        \\\"n_necessary\\\": 2,\\n        \\\"isr\\\": 0.3333333333333333,\\n        \\\"components\\\": [\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\\",\\n            \\\"is_necessary\\\": false\\n          },\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"∀x (Lawyer(x) → WhiteCollarWorker(x))\\\",\\n            \\\"is_necessary\\\": false\\n          },\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"∀x (Advocate(x) → Lawyer(x))\\\",\\n            \\\"is_necessary\\\": false\\n          },\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\\",\\n            \\\"is_neces\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "5f1b0583-ea07-46a6-9354-9d97c4e5de04",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 81,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.81,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.3365,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.3227,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.2,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.4154,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.4154,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 22,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.88,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.3514761904761905\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 34,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.8292682926829268,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.3684378629500581\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 25,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.7352941176470589,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.28686974789915964\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 234.3,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 2.3,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:  \\\\\\\\n1. ∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))  \\\\\\\\n2. ∀x (Lawyer(x) → WhiteCollarWorker(x))  \\\\\\\\n3. ∀x (Advocate(x) → Lawyer(x))  \\\\\\\\n4. ¬(Lawyer(Mary) ∨ TippedEmployee(Mary))  \\\\\\\\n5. Advocate(Mary)  \\\\\\\\n\\\\\\\\nConclusion: ¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\\\\\\",\\\\n      \\\\\\\"gen_time\\\\\\\": 2.88,\\\\n      \\\\\\\"eval_time\\\\\\\": 0.03,\\\\n      \\\\\\\"execution_reward\\\\\\\": 1.0,\\\\n      \\\\\\\"sta_reward\\\\\\\": 0.3333333333333333,\\\\n      \\\\\\\"combined_reward\\\\\\\": 0.6666666666666666,\\\\n      \\\\\\\"details\\\\\\\": {\\\\n        \\\\\\\"premises\\\\\\\": [\\\\n          \\\\\\\"∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\\\\\\",\\\\n          \\\\\\\"∀x (Lawyer(x) → WhiteCollarWorker(x))\\\\\\\",\\\\n          \\\\\\\"∀x (Advocate(x) → Lawyer(x))\\\\\\\",\\\\n          \\\\\\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\\\\\\",\\\\n          \\\\\\\"Advocate(Mary)\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"conclusion\\\\\\\": \\\\\\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\\\\\\",\\\\n        \\\\\\\"n_components\\\\\\\": 6,\\\\n        \\\\\\\"n_necessary\\\\\\\": 2,\\\\n        \\\\\\\"isr\\\\\\\": 0.3333333333333333,\\\\n        \\\\\\\"components\\\\\\\": [\\\\n          {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"premise\\\\\\\",\\\\n            \\\\\\\"content\\\\\\\": \\\\\\\"∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\\\\\\",\\\\n            \\\\\\\"is_necessary\\\\\\\": false\\\\n          },\\\\n          {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"premise\\\\\\\",\\\\n            \\\\\\\"content\\\\\\\": \\\\\\\"∀x (Lawyer(x) → WhiteCollarWorker(x))\\\\\\\",\\\\n            \\\\\\\"is_necessary\\\\\\\": false\\\\n          },\\\\n          {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"premise\\\\\\\",\\\\n            \\\\\\\"content\\\\\\\": \\\\\\\"∀x (Advocate(x) → Lawyer(x))\\\\\\\",\\\\n            \\\\\\\"is_necessary\\\\\\\": false\\\\n          },\\\\n          {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"premise\\\\\\\",\\\\n            \\\\\\\"content\\\\\\\": \\\\\\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\\\\\\",\\\\n            \\\\\\\"is_neces\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 81,\\n    \\\"prove_rate\\\": 0.81,\\n    \\\"mean_isr\\\": 0.3365,\\n    \\\"isr_std\\\": 0.3227,\\n    \\\"median_isr\\\": 0.2,\\n    \\\"isr_pr_ratio\\\": 0.4154,\\n    \\\"proved_only_mean_isr\\\": 0.4154,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 1.0,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 22,\\n        \\\"prove_rate\\\": 0.88,\\n        \\\"mean_isr\\\": 0.3514761904761905\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 34,\\n        \\\"prove_rate\\\": 0.8292682926829268,\\n        \\\"mean_isr\\\": 0.3684378629500581\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 25,\\n        \\\"prove_rate\\\": 0.7352941176470589,\\n        \\\"mean_isr\\\": 0.28686974789915964\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 234.3,\\n    \\\"avg_time_per_sample\\\": 2.3,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:  \\\\n1. ∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))  \\\\n2. ∀x (Lawyer(x) → WhiteCollarWorker(x))  \\\\n3. ∀x (Advocate(x) → Lawyer(x))  \\\\n4. ¬(Lawyer(Mary) ∨ TippedEmployee(Mary))  \\\\n5. Advocate(Mary)  \\\\n\\\\nConclusion: ¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\\",\\n      \\\"gen_time\\\": 2.88,\\n      \\\"eval_time\\\": 0.03,\\n      \\\"execution_reward\\\": 1.0,\\n      \\\"sta_reward\\\": 0.3333333333333333,\\n      \\\"combined_reward\\\": 0.6666666666666666,\\n      \\\"details\\\": {\\n        \\\"premises\\\": [\\n          \\\"∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\\",\\n          \\\"∀x (Lawyer(x) → WhiteCollarWorker(x))\\\",\\n          \\\"∀x (Advocate(x) → Lawyer(x))\\\",\\n          \\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\\",\\n          \\\"Advocate(Mary)\\\"\\n        ],\\n        \\\"conclusion\\\": \\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\\",\\n        \\\"n_components\\\": 6,\\n        \\\"n_necessary\\\": 2,\\n        \\\"isr\\\": 0.3333333333333333,\\n        \\\"components\\\": [\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\\",\\n            \\\"is_necessary\\\": false\\n          },\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"∀x (Lawyer(x) → WhiteCollarWorker(x))\\\",\\n            \\\"is_necessary\\\": false\\n          },\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"∀x (Advocate(x) → Lawyer(x))\\\",\\n            \\\"is_necessary\\\": false\\n          },\\n          {\\n            \\\"type\\\": \\\"premise\\\",\\n            \\\"content\\\": \\\"¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\\",\\n            \\\"is_neces\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "7afb6ba4-cbb6-4843-b63e-4cc38583b4e3",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014WxcWiNpx8FkXAWbWQ32kF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2367,
+      "cache_read_input_tokens": 35338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2367
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TW1HM9W5TnyyNijdJ8kgGw`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat > /tmp/h7_audit.py << 'PYEOF'\nimport json\nimport re\nimport sys\n\nEVAL_PATH = \"/root/autodl-tmp/outputs/plan002_additive_b01_s42/eval_sta_results.json\"\n\ndef normalize(s):\n    if s is None:\n        return \"\"\n    s = s.strip()\n    # Strip outer parentheses repeatedly\n    while len(s) >= 2 and s[0] == '(' and s[-1] == ')':\n        # only strip if matched\n        depth = 0\n        ok = True\n        for i, c in enumerate(s):\n            if c == '(':\n                depth += 1\n            elif c == ')':\n                depth -= 1\n                if depth == 0 and i != len(s) - 1:\n                    ok = False\n                    break\n        if ok:\n            s = s[1:-1].strip()\n        else:\n            break\n    # remove all whitespace\n    s = re.sub(r\"\\s+\", \"\", s)\n    # case fold\n    s = s.lower()\n    return s\n\nwith open(EVAL_PATH) as f:\n    data = json.load(f)\n\nresults = data[\"results\"]\nproved = [r for r in results if r.get(\"details\", {}).get(\"premises\") and r.get(\"execution_reward\", 0) >= 1.0]\n# 'proved' definition: execution_reward == 1.0 (FOL solver proved)\n\n# But more reliable: check if details exist and components evaluated -> means proved\n# Use execution_reward >= 1.0 as proved\nprint(f\"Total samples: {len(results)}\")\nprint(f\"Proved (execution_reward>=1.0): {len(proved)}\")\n\nh7_samples = []  # single premise == conclusion\nh1_samples = []  # multi-premise, one == conclusion\ngenuine_samples = []  # no premise == conclusion\n\nfor r in proved:\n    details = r.get(\"details\", {})\n    premises = details.get(\"premises\", []) or []\n    conclusion = details.get(\"conclusion\", \"\") or \"\"\n    isr = details.get(\"isr\", None)\n    n_components = details.get(\"n_components\", 0)\n    n_necessary = details.get(\"n_necessary\", 0)\n\n    norm_concl = normalize(conclusion)\n    norm_prems = [normalize(p) for p in premises]\n\n    has_dup = any(np == norm_concl for np in norm_prems) if norm_concl else False\n    n_prems = len(premises)\n\n    record = {\n        \"id\": r.get(\"id\"),\n        \"index\": r.get(\"index\"),\n        \"premises\": premises,\n        \"conclusion\": conclusion,\n        \"isr\": isr,\n        \"n_components\": n_components,\n        \"n_necessary\": n_necessary,\n        \"n_premises\": n_prems,\n    }\n\n    if has_dup and n_prems == 1:\n        h7_samples.append(record)\n    elif has_dup and n_prems > 1:\n        h1_samples.append(record)\n    else:\n        genuine_samples.append(record)\n\nn_proved = len(proved)\nprint()\nprint(\"=\" * 60)\nprint(\"H7 AUDIT REPORT - plan002-additive-b01-s42\")\nprint(\"=\" * 60)\nprint(f\"Total proved: {n_proved}\")\nprint(f\"H7 (single premise = conclusion):     {len(h7_samples)} ({100*len(h7_samples)/n_proved:.1f}%)\")\nprint(f\"H1 (multi-premise, one = conclusion): {len(h1_samples)} ({100*len(h1_samples)/n_proved:.1f}%)\")\nprint(f\"Genuine (no conclusion duplicate):    {len(genuine_samples)} ({100*len(genuine_samples)/n_proved:.1f}%)\")\nprint()\n\ndef mean(xs):\n    xs = [x for x in xs if x is not None]\n    return sum(xs)/len(xs) if xs else 0.0\n\nprint(f\"Mean ISR H7:     {mean([s['isr'] for s in h7_samples]):.3f}\")\nprint(f\"Mean ISR H1:     {mean([s['isr'] for s in h1_samples]):.3f}\")\nprint(f\"Mean ISR genuine: {mean([s['isr'] for s in genuine_samples]):.3f}\")\nprint()\n\ndef show(label, samples, n=3):\n    print(f\"--- {label} examples (up to {n}) ---\")\n    for s in samples[:n]:\n        print(f\"  id={s['id']}, idx={s['index']}, isr={s['isr']:.3f}, n_comp={s['n_components']}, n_nec={s['n_necessary']}, n_prems={s['n_premises']}\")\n        print(f\"  premises:\")\n        for p in s['premises']:\n            print(f\"    - {p}\")\n        print(f\"  conclusion: {s['conclusion']}\")\n        print()\n\nshow(\"H7 (single premise = conclusion)\", h7_samples)\nshow(\"H1 (multi-premise, one = conclusion)\", h1_samples)\nshow(\"Genuine\", genuine_samples)\n\n# Output JSON summary for registry\nsummary = {\n    \"n_proved\": n_proved,\n    \"h7_count\": len(h7_samples),\n    \"h7_rate\": round(len(h7_samples)/n_proved, 4),\n    \"h1_count\": len(h1_samples),\n    \"h1_rate\": round(len(h1_samples)/n_proved, 4),\n    \"genuine_count\": len(genuine_samples),\n    \"genuine_rate\": round(len(genuine_samples)/n_proved, 4),\n    \"mean_isr_h7\": round(mean([s['isr'] for s in h7_samples]), 4),\n    \"mean_isr_h1\": round(mean([s['isr'] for s in h1_samples]), 4),\n    \"mean_isr_genuine\": round(mean([s['isr'] for s in genuine_samples]), 4),\n}\nprint()\nprint(\"JSON_SUMMARY:\", json.dumps(summary))\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/h7_audit.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "122fb511-a5f4-4946-8131-09281d752b02",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014WxcWiNpx8FkXAWbWQ32kF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2367,
+      "cache_read_input_tokens": 35338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2367
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T15:06:56.543Z_
+
+<details><summary>↩ Tool result · `toolu_01TW1HM9W5TnyyNijdJ8kgGw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total samples: 100\\nProved (execution_reward>=1.0): 81\\n\\n============================================================\\nH7 AUDIT REPORT - plan002-additive-b01-s42\\n============================================================\\nTotal proved: 81\\nH7 (single premise = conclusion):     13 (16.0%)\\nH1 (multi-premise, one = conclusion): 42 (51.9%)\\nGenuine (no conclusion duplicate):    26 (32.1%)\\n\\nMean ISR H7:     0.660\\nMean ISR H1:     0.224\\nMean ISR genuine: 0.601\\n\\n--- H7 (single premise = conclusion) examples (up to 3) ---\\n  id=folio_556, idx=6, isr=0.750, n_comp=4, n_nec=3, n_prems=1\\n  premises:\\n    - ∀x (AssessesSAT(x) → MathSkills(x))\\n  conclusion: ∀x (AssessesSAT(x) → MathSkills(x))\\n\\n  id=folio_160, idx=11, isr=0.750, n_comp=4, n_nec=3, n_prems=1\\n  premises:\\n    - ∀x (IsBatteryTower(x) → ∀y (AdjacentWall(x, y) → Height(x) > Height(y)))\\n  conclusion: ∀x (IsBatteryTower(x) → ∀y (AdjacentWall(x, y) → Height(x) > Height(y)))\\n\\n  id=folio_304, idx=15, isr=0.333, n_comp=3, n_nec=1, n_prems=1\\n  premises:\\n    - ∀x (¬Braz(x) ∨ ¬PlaysForNautico(x))\\n  conclusion: ∀x (¬Braz(x) ∨ ¬PlaysForNautico(x))\\n\\n--- H1 (multi-premise, one = conclusion) examples (up to 3) ---\\n  id=folio_66, idx=2, isr=0.143, n_comp=7, n_nec=1, n_prems=6\\n  premises:\\n    - ∀x (W(x) → S(x))\\n    - ∃x (W(x) ∧ H(x))\\n    - ∀x (A(x) → F(x))\\n    - W(c) ∧ S(c)\\n    - A(c)\\n    - W(c) ∧ H(c)\\n  conclusion: W(c) ∧ H(c)\\n\\n  id=folio_1378, idx=3, isr=0.100, n_comp=10, n_nec=1, n_prems=9\\n  premises:\\n    - ∀x (EntitledToCoverage(x) → PartialCoverage(x))\\n    - ∀x (IsPRCNational(x) → EntitledToCoverage(x))\\n    - ∀x (AtConference(x) → (IsPRCNational(x) ∨ IsFrenchNational(x) ∧ ¬(IsPRCNational(x) ∧ IsFrenchNational(x))))\\n    - ∀x (IsFrenchNational(x) → IsEUCitizen(x))\\n    - ∀x (IsSpanishNational(x) → IsEUCitizen(x))\\n    - ∀x (IsNorthKoreanNational(x) → ¬IsEUCitizen(x))\\n    - AtConference(Mei)\\n    - (IsNorthKoreanNational(Mei) ∧ PartialCoverage(Mei)) ∨ ��(IsNorthKoreanNational(Mei) ∨ PartialCoverage(Mei))\\n    - IsPRCNational(Mei)\\n  conclusion: IsPRCNational(Mei)\\n\\n  id=folio_1119, idx=10, isr=0.600, n_comp=5, n_nec=3, n_prems=2\\n  premises:\\n    - ∀x (LikesCheese(x) ∨ Francophile(x) → StudiesSpanish(x) ∨ LikesSpain(x))\\n    - ∃x (LikesCheese(x) ∨ Francophile(x) ∧ ¬(StudiesSpanish(x) ∧ LikesCheese(x)) ∧ ¬(StudiesSpanish(x) ∧ LikesSpain(x)))\\n  conclusion: ∀x (LikesCheese(x) ∨ Francophile(x) → StudiesSpanish(x) ∨ LikesSpain(x))\\n\\n--- Genuine examples (up to 3) ---\\n  id=folio_765, idx=0, isr=0.333, n_comp=6, n_nec=2, n_prems=5\\n  premises:\\n    - ∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\n    - ∀x (Lawyer(x) → WhiteCollarWorker(x))\\n    - ∀x (Advocate(x) → Lawyer(x))\\n    - ¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\n    - Advocate(Mary)\\n  conclusion: ¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\n\\n  id=folio_592, idx=4, isr=0.600, n_comp=5, n_nec=3, n_prems=2\\n  premises:\\n    - ∀x (PaidSoftware(x) → ¬GPL(x))\\n    - ∃x PaidSoftware(x) ∧ GPL(x)\\n  conclusion: ∀x (PaidSoftware(x) → ¬GPL(x)) ∧ ∃x PaidSoftware(x) ∧ GPL(x)\\n\\n  id=folio_71, idx=5, isr=0.500, n_comp=6, n_nec=3, n_prems=5\\n  premises:\\n    - ∀x (Easy(x) → ACRateLow(x))\\n    - ∀x (RecommendedToNovice(x) → Easy(x))\\n    - ∀x (Easy(x) ∨ Hard(x))\\n    - ∀x (StarredMoreThan1000(x) → Hard(x))\\n    - RecommendedToNovice(2Sum) ∧ StarredMoreThan1000(4Sum) ∧ ¬ACRateLow(2Sum)\\n  conclusion: ¬(Easy(2Sum) ∨ Hard(2Sum))\\n\\n\\nJSON_SUMMARY: {\\\"n_proved\\\": 81, \\\"h7_count\\\": 13, \\\"h7_rate\\\": 0.1605, \\\"h1_count\\\": 42, \\\"h1_rate\\\": 0.5185, \\\"genuine_count\\\": 26, \\\"genuine_rate\\\": 0.321, \\\"mean_isr_h7\\\": 0.6603, \\\"mean_isr_h1\\\": 0.2245, \\\"mean_isr_genuine\\\": 0.6014}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "d5fdf4e7-201f-480e-920d-c064a0a50132",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total samples: 100\\\\nProved (execution_reward>=1.0): 81\\\\n\\\\n============================================================\\\\nH7 AUDIT REPORT - plan002-additive-b01-s42\\\\n============================================================\\\\nTotal proved: 81\\\\nH7 (single premise = conclusion):     13 (16.0%)\\\\nH1 (multi-premise, one = conclusion): 42 (51.9%)\\\\nGenuine (no conclusion duplicate):    26 (32.1%)\\\\n\\\\nMean ISR H7:     0.660\\\\nMean ISR H1:     0.224\\\\nMean ISR genuine: 0.601\\\\n\\\\n--- H7 (single premise = conclusion) examples (up to 3) ---\\\\n  id=folio_556, idx=6, isr=0.750, n_comp=4, n_nec=3, n_prems=1\\\\n  premises:\\\\n    - ∀x (AssessesSAT(x) → MathSkills(x))\\\\n  conclusion: ∀x (AssessesSAT(x) → MathSkills(x))\\\\n\\\\n  id=folio_160, idx=11, isr=0.750, n_comp=4, n_nec=3, n_prems=1\\\\n  premises:\\\\n    - ∀x (IsBatteryTower(x) → ∀y (AdjacentWall(x, y) → Height(x) > Height(y)))\\\\n  conclusion: ∀x (IsBatteryTower(x) → ∀y (AdjacentWall(x, y) → Height(x) > Height(y)))\\\\n\\\\n  id=folio_304, idx=15, isr=0.333, n_comp=3, n_nec=1, n_prems=1\\\\n  premises:\\\\n    - ∀x (¬Braz(x) ∨ ¬PlaysForNautico(x))\\\\n  conclusion: ∀x (¬Braz(x) ∨ ¬PlaysForNautico(x))\\\\n\\\\n--- H1 (multi-premise, one = conclusion) examples (up to 3) ---\\\\n  id=folio_66, idx=2, isr=0.143, n_comp=7, n_nec=1, n_prems=6\\\\n  premises:\\\\n    - ∀x (W(x) → S(x))\\\\n    - ∃x (W(x) ∧ H(x))\\\\n    - ∀x (A(x) → F(x))\\\\n    - W(c) ∧ S(c)\\\\n    - A(c)\\\\n    - W(c) ∧ H(c)\\\\n  conclusion: W(c) ∧ H(c)\\\\n\\\\n  id=folio_1378, idx=3, isr=0.100, n_comp=10, n_nec=1, n_prems=9\\\\n  premises:\\\\n    - ∀x (EntitledToCoverage(x) → PartialCoverage(x))\\\\n    - ∀x (IsPRCNational(x) → EntitledToCoverage(x))\\\\n    - ∀x (AtConference(x) → (IsPRCNational(x) ∨ IsFrenchNational(x) ∧ ¬(IsPRCNational(x) ∧ IsFrenchNational(x))))\\\\n    - ∀x (IsFrenchNational(x) → IsEUCitizen(x))\\\\n    - ∀x (IsSpanishNational(x) → IsEUCitizen(x))\\\\n    - ∀x (IsNorthKoreanNational(x) → ¬IsEUCitizen(x))\\\\n    - AtConference(Mei)\\\\n    - (IsNorthKoreanNational(Mei) ∧ PartialCoverage(Mei)) ∨ ��(IsNorthKoreanNational(Mei) ∨ PartialCoverage(Mei))\\\\n    - IsPRCNational(Mei)\\\\n  conclusion: IsPRCNational(Mei)\\\\n\\\\n  id=folio_1119, idx=10, isr=0.600, n_comp=5, n_nec=3, n_prems=2\\\\n  premises:\\\\n    - ∀x (LikesCheese(x) ∨ Francophile(x) → StudiesSpanish(x) ∨ LikesSpain(x))\\\\n    - ∃x (LikesCheese(x) ∨ Francophile(x) ∧ ¬(StudiesSpanish(x) ∧ LikesCheese(x)) ∧ ¬(StudiesSpanish(x) ∧ LikesSpain(x)))\\\\n  conclusion: ∀x (LikesCheese(x) ∨ Francophile(x) → StudiesSpanish(x) ∨ LikesSpain(x))\\\\n\\\\n--- Genuine examples (up to 3) ---\\\\n  id=folio_765, idx=0, isr=0.333, n_comp=6, n_nec=2, n_prems=5\\\\n  premises:\\\\n    - ∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\\\n    - ∀x (Lawyer(x) → WhiteCollarWorker(x))\\\\n    - ∀x (Advocate(x) → Lawyer(x))\\\\n    - ¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\\\n    - Advocate(Mary)\\\\n  conclusion: ¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\\\n\\\\n  id=folio_592, idx=4, isr=0.600, n_comp=5, n_nec=3, n_prems=2\\\\n  premises:\\\\n    - ∀x (PaidSoftware(x) → ¬GPL(x))\\\\n    - ∃x PaidSoftware(x) ∧ GPL(x)\\\\n  conclusion: ∀x (PaidSoftware(x) → ¬GPL(x)) ∧ ∃x PaidSoftware(x) ∧ GPL(x)\\\\n\\\\n  id=folio_71, idx=5, isr=0.500, n_comp=6, n_nec=3, n_prems=5\\\\n  premises:\\\\n    - ∀x (Easy(x) → ACRateLow(x))\\\\n    - ∀x (RecommendedToNovice(x) → Easy(x))\\\\n    - ∀x (Easy(x) ∨ Hard(x))\\\\n    - ∀x (StarredMoreThan1000(x) → Hard(x))\\\\n    - RecommendedToNovice(2Sum) ∧ StarredMoreThan1000(4Sum) ∧ ¬ACRateLow(2Sum)\\\\n  conclusion: ¬(Easy(2Sum) ∨ Hard(2Sum))\\\\n\\\\n\\\\nJSON_SUMMARY: {\\\\\\\"n_proved\\\\\\\": 81, \\\\\\\"h7_count\\\\\\\": 13, \\\\\\\"h7_rate\\\\\\\": 0.1605, \\\\\\\"h1_count\\\\\\\": 42, \\\\\\\"h1_rate\\\\\\\": 0.5185, \\\\\\\"genuine_count\\\\\\\": 26, \\\\\\\"genuine_rate\\\\\\\": 0.321, \\\\\\\"mean_isr_h7\\\\\\\": 0.6603, \\\\\\\"mean_isr_h1\\\\\\\": 0.2245, \\\\\\\"mean_isr_genuine\\\\\\\": 0.6014}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total samples: 100\\nProved (execution_reward>=1.0): 81\\n\\n============================================================\\nH7 AUDIT REPORT - plan002-additive-b01-s42\\n============================================================\\nTotal proved: 81\\nH7 (single premise = conclusion):     13 (16.0%)\\nH1 (multi-premise, one = conclusion): 42 (51.9%)\\nGenuine (no conclusion duplicate):    26 (32.1%)\\n\\nMean ISR H7:     0.660\\nMean ISR H1:     0.224\\nMean ISR genuine: 0.601\\n\\n--- H7 (single premise = conclusion) examples (up to 3) ---\\n  id=folio_556, idx=6, isr=0.750, n_comp=4, n_nec=3, n_prems=1\\n  premises:\\n    - ∀x (AssessesSAT(x) → MathSkills(x))\\n  conclusion: ∀x (AssessesSAT(x) → MathSkills(x))\\n\\n  id=folio_160, idx=11, isr=0.750, n_comp=4, n_nec=3, n_prems=1\\n  premises:\\n    - ∀x (IsBatteryTower(x) → ∀y (AdjacentWall(x, y) → Height(x) > Height(y)))\\n  conclusion: ∀x (IsBatteryTower(x) → ∀y (AdjacentWall(x, y) → Height(x) > Height(y)))\\n\\n  id=folio_304, idx=15, isr=0.333, n_comp=3, n_nec=1, n_prems=1\\n  premises:\\n    - ∀x (¬Braz(x) ∨ ¬PlaysForNautico(x))\\n  conclusion: ∀x (¬Braz(x) ∨ ¬PlaysForNautico(x))\\n\\n--- H1 (multi-premise, one = conclusion) examples (up to 3) ---\\n  id=folio_66, idx=2, isr=0.143, n_comp=7, n_nec=1, n_prems=6\\n  premises:\\n    - ∀x (W(x) → S(x))\\n    - ∃x (W(x) ∧ H(x))\\n    - ∀x (A(x) → F(x))\\n    - W(c) ∧ S(c)\\n    - A(c)\\n    - W(c) ∧ H(c)\\n  conclusion: W(c) ∧ H(c)\\n\\n  id=folio_1378, idx=3, isr=0.100, n_comp=10, n_nec=1, n_prems=9\\n  premises:\\n    - ∀x (EntitledToCoverage(x) → PartialCoverage(x))\\n    - ∀x (IsPRCNational(x) → EntitledToCoverage(x))\\n    - ∀x (AtConference(x) → (IsPRCNational(x) ∨ IsFrenchNational(x) ∧ ¬(IsPRCNational(x) ∧ IsFrenchNational(x))))\\n    - ∀x (IsFrenchNational(x) → IsEUCitizen(x))\\n    - ∀x (IsSpanishNational(x) → IsEUCitizen(x))\\n    - ∀x (IsNorthKoreanNational(x) → ¬IsEUCitizen(x))\\n    - AtConference(Mei)\\n    - (IsNorthKoreanNational(Mei) ∧ PartialCoverage(Mei)) ∨ ��(IsNorthKoreanNational(Mei) ∨ PartialCoverage(Mei))\\n    - IsPRCNational(Mei)\\n  conclusion: IsPRCNational(Mei)\\n\\n  id=folio_1119, idx=10, isr=0.600, n_comp=5, n_nec=3, n_prems=2\\n  premises:\\n    - ∀x (LikesCheese(x) ∨ Francophile(x) → StudiesSpanish(x) ∨ LikesSpain(x))\\n    - ∃x (LikesCheese(x) ∨ Francophile(x) ∧ ¬(StudiesSpanish(x) ∧ LikesCheese(x)) ∧ ¬(StudiesSpanish(x) ∧ LikesSpain(x)))\\n  conclusion: ∀x (LikesCheese(x) ∨ Francophile(x) → StudiesSpanish(x) ∨ LikesSpain(x))\\n\\n--- Genuine examples (up to 3) ---\\n  id=folio_765, idx=0, isr=0.333, n_comp=6, n_nec=2, n_prems=5\\n  premises:\\n    - ∀x (WhiteCollarWorker(x) → EntitledToMinimumWage(x))\\n    - ∀x (Lawyer(x) → WhiteCollarWorker(x))\\n    - ∀x (Advocate(x) → Lawyer(x))\\n    - ¬(Lawyer(Mary) ∨ TippedEmployee(Mary))\\n    - Advocate(Mary)\\n  conclusion: ¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)\\n\\n  id=folio_592, idx=4, isr=0.600, n_comp=5, n_nec=3, n_prems=2\\n  premises:\\n    - ∀x (PaidSoftware(x) → ¬GPL(x))\\n    - ∃x PaidSoftware(x) ∧ GPL(x)\\n  conclusion: ∀x (PaidSoftware(x) → ¬GPL(x)) ∧ ∃x PaidSoftware(x) ∧ GPL(x)\\n\\n  id=folio_71, idx=5, isr=0.500, n_comp=6, n_nec=3, n_prems=5\\n  premises:\\n    - ∀x (Easy(x) → ACRateLow(x))\\n    - ∀x (RecommendedToNovice(x) → Easy(x))\\n    - ∀x (Easy(x) ∨ Hard(x))\\n    - ∀x (StarredMoreThan1000(x) → Hard(x))\\n    - RecommendedToNovice(2Sum) ∧ StarredMoreThan1000(4Sum) ∧ ¬ACRateLow(2Sum)\\n  conclusion: ¬(Easy(2Sum) ∨ Hard(2Sum))\\n\\n\\nJSON_SUMMARY: {\\\"n_proved\\\": 81, \\\"h7_count\\\": 13, \\\"h7_rate\\\": 0.1605, \\\"h1_count\\\": 42, \\\"h1_rate\\\": 0.5185, \\\"genuine_count\\\": 26, \\\"genuine_rate\\\": 0.321, \\\"mean_isr_h7\\\": 0.6603, \\\"mean_isr_h1\\\": 0.2245, \\\"mean_isr_genuine\\\": 0.6014}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "35d15924-853e-44aa-a81a-8b94fb9aadd2",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BMLaM4i6r4FHVBSUwvjudu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4740,
+      "cache_read_input_tokens": 37705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4740
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+H7 audit complete. Now updating registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "99cbd2e3-38f1-4959-a1ec-56d98fa2af03",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BMLaM4i6r4FHVBSUwvjudu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4740,
+      "cache_read_input_tokens": 37705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4740
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Ctm2n7Rw5Xna4v9ZonFpX2`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "plan002-additive-b01-s42"
+  },
+  "fields": [
+    "exp_id",
+    "notes"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "c31ace49-fe88-4a34-9885-1db4b604d7b4",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BMLaM4i6r4FHVBSUwvjudu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4740,
+      "cache_read_input_tokens": 37705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4740
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T15:07:12.960Z_
+
+<details><summary>↩ Tool result · `toolu_01Ctm2n7Rw5Xna4v9ZonFpX2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0001}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "4e268c84-c811-4b21-898e-f768ae6beece",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0001}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0197Xuib6PJnXv3yTFhouDXf`</summary>
+
+```json
+{
+  "filters": {},
+  "fields": [
+    "exp_id"
+  ],
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "e3704041-bf51-4e2f-a08a-7cf7d10867fb",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01GeCWQbHMctecLpYeRaR3XU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 42445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T15:07:16.083Z_
+
+<details><summary>↩ Tool result · `toolu_0197Xuib6PJnXv3yTFhouDXf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0001}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "56b556a8-710b-42b3-8d34-4546675b94da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0001}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_012TcUAKfXouJSw4NqohLTPK`</summary>
+
+```json
+{
+  "filters": {},
+  "fields": [
+    "*"
+  ],
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "de16cb74-8896-4ac7-ba63-3ae1e7a2c06e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01B18rqc1mmtVUthLLPgHJmN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 43672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T15:07:18.875Z_
+
+<details><summary>↩ Tool result · `toolu_012TcUAKfXouJSw4NqohLTPK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0001}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "c2b7ffde-1c7a-4b3f-b1ca-8a54317aaba0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0001}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "6361e985-5a03-4c12-ac73-cda3637ea9e5",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JTc8PzjBsWaXxQnzBQAsEL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 383,
+      "cache_read_input_tokens": 43903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 383
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01G2ijy2QayVwZYYDxhJYwBG`</summary>
+
+```json
+{
+  "filters": {},
+  "project": "solver-trace-ablation",
+  "fields": [
+    "exp_id",
+    "notes"
+  ],
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "2f30cf9f-cea2-4eec-a941-6ebb7089cfa9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JTc8PzjBsWaXxQnzBQAsEL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 383,
+      "cache_read_input_tokens": 43903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 383
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T15:07:23.403Z_
+
+<details><summary>↩ Tool result · `toolu_01G2ijy2QayVwZYYDxhJYwBG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s43-r2\": {}, \"plan018-additive-random-b01-s44\": {\"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"}, \"plan009-sft-baseline-s42-r4\": {\"notes\": \"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\"}, \"plan009-sft-baseline-s42\": {\"notes\": \"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\"}, \"plan006-prolog-exec-s43-r3\": {\"notes\": \"RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).\"}}, \"count\": 5, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1606}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "d16ccafd-2ca2-4438-b210-379f7e70b3ec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {}, \\\"plan018-additive-random-b01-s44\\\": {\\\"notes\\\": \\\"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"notes\\\": \\\"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\\\"}, \\\"plan009-sft-baseline-s42\\\": {\\\"notes\\\": \\\"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\\\"}, \\\"plan006-prolog-exec-s43-r3\\\": {\\\"notes\\\": \\\"RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).\\\"}}, \\\"count\\\": 5, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1606}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s43-r2\": {}, \"plan018-additive-random-b01-s44\": {\"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"}, \"plan009-sft-baseline-s42-r4\": {\"notes\": \"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\"}, \"plan009-sft-baseline-s42\": {\"notes\": \"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\"}, \"plan006-prolog-exec-s43-r3\": {\"notes\": \"RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).\"}}, \"count\": 5, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1606}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01SJBcxvJk6NNf41VMXJtbpu`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "plan002-additive-b01-s42"
+  },
+  "project": "solver-trace-ablation",
+  "fields": [
+    "exp_id",
+    "notes",
+    "status"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "e420ed7a-b887-4f64-89f3-8cdaa7e6747b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_019tUDNqQ7rq1rUE9SgL5V4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1083,
+      "cache_read_input_tokens": 44286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1083
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T15:07:26.584Z_
+
+<details><summary>↩ Tool result · `toolu_01SJBcxvJk6NNf41VMXJtbpu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1634}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "99f18e4c-6105-4887-897c-64a67e51427e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1634}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1634}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PZDZdweTvqxrqW1zoNsmEf`</summary>
+
+```json
+{
+  "filters": {},
+  "project": "solver-trace-ablation",
+  "fields": [
+    "exp_id"
+  ],
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "3bf2c44a-222e-4f61-84c2-0c8597ce2cc4",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01RRkCxygQ7zw5cLDy7VoWkd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 265,
+      "cache_read_input_tokens": 45369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 265
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T15:07:29.552Z_
+
+<details><summary>↩ Tool result · `toolu_01PZDZdweTvqxrqW1zoNsmEf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s43-r2\": {}, \"plan018-additive-random-b01-s44\": {}, \"plan009-sft-baseline-s42-r4\": {}, \"plan009-sft-baseline-s42\": {}, \"plan006-prolog-exec-s43-r3\": {}, \"plan006-prolog-exec-s44\": {}, \"plan006-prolog-exec-s43-r2\": {}, \"plan006-prolog-sta-s44\": {}, \"plan006-prolog-sta-s43\": {}, \"plan006-prolog-exec-s42\": {}, \"plan006-prolog-exec-s43\": {}, \"plan009-sft-baseline-s42-r3\": {}, \"plan009-sft-baseline-s42-r2\": {}, \"plan018-additive-random-b01-s43\": {}, \"plan006-prolog-sta-s42\": {}, \"plan002-additive-b01-s44\": {}, \"plan002-additive-b01-s43\": {}, \"plan012-hacking-taxonomy\": {}, \"plan018-additive-random-b01-s42\": {}, \"plan002-additive-b01-s42\": {}, \"plan016-extended-1000-s42\": {}, \"plan005-sta-low-s42\": {}, \"plan001-exec-only-s43-r4\": {}, \"plan017-additive-random-s42\": {}, \"plan001-exec-only-s44\": {}, \"plan014-downstream-nli-s42\": {}, \"plan002-additive-b03-s42\": {}, \"plan013-random-reward-s42-r4\": {}, \"plan001-exec-only-s42-r2\": {}, \"plan001-exec-only-s43-r3\": {}, \"plan013-random-reward-s42-r3\": {}, \"plan001-exec-only-s43-r2\": {}, \"plan013-random-reward-s42-r2\": {}, \"plan013-random-reward-s42\": {}, \"plan001-exec-only-s43\": {}, \"plan001-exec-only-s42\": {}, \"plan003-eval-exec-only-r5\": {}, \"plan001-exec-only-s42-r3\": {}, \"sta-phase1-exec-sta-r5\": {}, \"sta-phase1-exec-only-r5\": {}, \"sta-phase1-exec-sta-r4\": {}, \"sta-phase1-exec-only-r4\": {}, \"sta-phase1-exec-only-r3\": {}, \"sta-phase1-exec-sta-r3\": {}, \"sta-phase1-exec-sta-r2\": {}, \"sta-phase1-exec-only-r2\": {}, \"sta-phase1-exec-sta\": {}, \"sta-phase1-exec-only\": {}, \"sta-gt-isr-baseline\": {}, \"sta-phase0-baseline\": {}}, \"count\": 50, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1642}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "3811c406-7469-4bef-a0e9-82fe2194c568",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {}, \\\"plan018-additive-random-b01-s44\\\": {}, \\\"plan009-sft-baseline-s42-r4\\\": {}, \\\"plan009-sft-baseline-s42\\\": {}, \\\"plan006-prolog-exec-s43-r3\\\": {}, \\\"plan006-prolog-exec-s44\\\": {}, \\\"plan006-prolog-exec-s43-r2\\\": {}, \\\"plan006-prolog-sta-s44\\\": {}, \\\"plan006-prolog-sta-s43\\\": {}, \\\"plan006-prolog-exec-s42\\\": {}, \\\"plan006-prolog-exec-s43\\\": {}, \\\"plan009-sft-baseline-s42-r3\\\": {}, \\\"plan009-sft-baseline-s42-r2\\\": {}, \\\"plan018-additive-random-b01-s43\\\": {}, \\\"plan006-prolog-sta-s42\\\": {}, \\\"plan002-additive-b01-s44\\\": {}, \\\"plan002-additive-b01-s43\\\": {}, \\\"plan012-hacking-taxonomy\\\": {}, \\\"plan018-additive-random-b01-s42\\\": {}, \\\"plan002-additive-b01-s42\\\": {}, \\\"plan016-extended-1000-s42\\\": {}, \\\"plan005-sta-low-s42\\\": {}, \\\"plan001-exec-only-s43-r4\\\": {}, \\\"plan017-additive-random-s42\\\": {}, \\\"plan001-exec-only-s44\\\": {}, \\\"plan014-downstream-nli-s42\\\": {}, \\\"plan002-additive-b03-s42\\\": {}, \\\"plan013-random-reward-s42-r4\\\": {}, \\\"plan001-exec-only-s42-r2\\\": {}, \\\"plan001-exec-only-s43-r3\\\": {}, \\\"plan013-random-reward-s42-r3\\\": {}, \\\"plan001-exec-only-s43-r2\\\": {}, \\\"plan013-random-reward-s42-r2\\\": {}, \\\"plan013-random-reward-s42\\\": {}, \\\"plan001-exec-only-s43\\\": {}, \\\"plan001-exec-only-s42\\\": {}, \\\"plan003-eval-exec-only-r5\\\": {}, \\\"plan001-exec-only-s42-r3\\\": {}, \\\"sta-phase1-exec-sta-r5\\\": {}, \\\"sta-phase1-exec-only-r5\\\": {}, \\\"sta-phase1-exec-sta-r4\\\": {}, \\\"sta-phase1-exec-only-r4\\\": {}, \\\"sta-phase1-exec-only-r3\\\": {}, \\\"sta-phase1-exec-sta-r3\\\": {}, \\\"sta-phase1-exec-sta-r2\\\": {}, \\\"sta-phase1-exec-only-r2\\\": {}, \\\"sta-phase1-exec-sta\\\": {}, \\\"sta-phase1-exec-only\\\": {}, \\\"sta-gt-isr-baseline\\\": {}, \\\"sta-phase0-baseline\\\": {}}, \\\"count\\\": 50, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1642}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s43-r2\": {}, \"plan018-additive-random-b01-s44\": {}, \"plan009-sft-baseline-s42-r4\": {}, \"plan009-sft-baseline-s42\": {}, \"plan006-prolog-exec-s43-r3\": {}, \"plan006-prolog-exec-s44\": {}, \"plan006-prolog-exec-s43-r2\": {}, \"plan006-prolog-sta-s44\": {}, \"plan006-prolog-sta-s43\": {}, \"plan006-prolog-exec-s42\": {}, \"plan006-prolog-exec-s43\": {}, \"plan009-sft-baseline-s42-r3\": {}, \"plan009-sft-baseline-s42-r2\": {}, \"plan018-additive-random-b01-s43\": {}, \"plan006-prolog-sta-s42\": {}, \"plan002-additive-b01-s44\": {}, \"plan002-additive-b01-s43\": {}, \"plan012-hacking-taxonomy\": {}, \"plan018-additive-random-b01-s42\": {}, \"plan002-additive-b01-s42\": {}, \"plan016-extended-1000-s42\": {}, \"plan005-sta-low-s42\": {}, \"plan001-exec-only-s43-r4\": {}, \"plan017-additive-random-s42\": {}, \"plan001-exec-only-s44\": {}, \"plan014-downstream-nli-s42\": {}, \"plan002-additive-b03-s42\": {}, \"plan013-random-reward-s42-r4\": {}, \"plan001-exec-only-s42-r2\": {}, \"plan001-exec-only-s43-r3\": {}, \"plan013-random-reward-s42-r3\": {}, \"plan001-exec-only-s43-r2\": {}, \"plan013-random-reward-s42-r2\": {}, \"plan013-random-reward-s42\": {}, \"plan001-exec-only-s43\": {}, \"plan001-exec-only-s42\": {}, \"plan003-eval-exec-only-r5\": {}, \"plan001-exec-only-s42-r3\": {}, \"sta-phase1-exec-sta-r5\": {}, \"sta-phase1-exec-only-r5\": {}, \"sta-phase1-exec-sta-r4\": {}, \"sta-phase1-exec-only-r4\": {}, \"sta-phase1-exec-only-r3\": {}, \"sta-phase1-exec-sta-r3\": {}, \"sta-phase1-exec-sta-r2\": {}, \"sta-phase1-exec-only-r2\": {}, \"sta-phase1-exec-sta\": {}, \"sta-phase1-exec-only\": {}, \"sta-gt-isr-baseline\": {}, \"sta-phase0-baseline\": {}}, \"count\": 50, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1642}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01TUZDdS84V3jd1ihcNVDXXD`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "plan002-additive-b01-s42"
+  },
+  "project": "solver-trace-ablation",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "a32545c8-48f6-410d-828a-c246c8f4bd67",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_019P1ww9CKDBo6nnTw6We1FV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1278,
+      "cache_read_input_tokens": 45634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1278
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T15:07:32.266Z_
+
+<details><summary>↩ Tool result · `toolu_01TUZDdS84V3jd1ihcNVDXXD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1611}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "df256484-f1f1-4251-835f-118d94ea6974",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1611}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1611}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "73ce2a6f-807d-487e-8adb-5919f12825cb",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017mPaMn8zwB2XqqK5tBeVjC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 255,
+      "cache_read_input_tokens": 46912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 255
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01EYHSRcAYpE5q6LG4Q6M8Rg`</summary>
+
+```json
+{
+  "filters": {
+    "status": "DONE"
+  },
+  "project": "solver-trace-ablation",
+  "fields": [
+    "notes"
+  ],
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "3935af04-988f-48df-a24e-8888ab46dfab",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017mPaMn8zwB2XqqK5tBeVjC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 255,
+      "cache_read_input_tokens": 46912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 255
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T15:07:36.462Z_
+
+<details><summary>↩ Tool result · `toolu_01EYHSRcAYpE5q6LG4Q6M8Rg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s44\": {\"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"}, \"plan009-sft-baseline-s42-r4\": {\"notes\": \"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\"}, \"plan009-sft-baseline-s42\": {\"notes\": \"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\"}, \"plan006-prolog-exec-s43-r2\": {\"notes\": \"OOM 诊断：非 batch size 问题。根因是 kill_job 只杀了 tmux 包装进程 (PID 587155)，训练子进程 587159/587160 残留在 cuda:1 上占 78.09 GiB 显存。s43-r2 启动时 cuda:1 仅剩 40 MiB free，首次前向传播即 OOM (尝试分配 48 MiB)。教训：kill_job 后必须 SSH 确认子进程也已终止（ps aux grep + nvidia-smi），不能只看 PID 返回成功。\"}, \"plan006-prolog-exec-s42\": {\"notes\": \"Eval (eval_sta.py) 完成。PR=83%, mean_ISR=0.031, proved_only_ISR=0.037, H7=0%, H1=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比。exec-only 产生完全不同的 hacking 模式：ground fact enumeration（倾泻大量无关 ground facts，query 作为其中一个 fact 平凡成功），而非 sta-s42 的 tautological collapse。两种 reward signal 驱动两种不同的 hacking 策略。对论文是 positive finding：强化 Claim 1 且揭示 reward-specific hacking 机制。\"}, \"plan006-prolog-exec-s43\": {\"notes\": \"KILLED at step 36/500: warmup_ratio=0.1 与 s42 (0.0) 不一致，3-seed 对比无效。重启为 plan006-prolog-exec-s43-r2 (warmup_ratio=0.0)。\"}, \"plan009-sft-baseline-s42-r3\": {\"notes\": \"r3 crash root cause: wandb.init() failed because no W&B API key configured on server (no .netrc, no WANDB_API_KEY). Fix: add --no_wandb flag. Secondary issue: both GPUs currently near-full, need to wait for GPU availability before r4. Correct r4 command: export CUDA_VISIBLE_DEVICES=N && ... python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 --num_steps 500 --seed 42 --no_wandb\"}, \"plan009-sft-baseline-s42-r2\": {\"notes\": \"SFT baseline with Qwen3-4B (same model as GRPO experiments). Replaces killed plan009-sft-baseline-s42 which incorrectly used Qwen2.5-1.5B. cuda:1, seed=42, 500 steps, FOLIO data (data/train_500_seed42.jsonl). Dream 审稿三档均指出缺 SFT baseline 是 gap。**FAILED**: 两个问题：(1) W&B API key 未配置，trainer.train() 启动时 wandb callback 报 UsageError; (2) device_map='auto' 把模型分到多 GPU，需改为单卡绑定。修复方案：加 WANDB_MODE=disabled + 改 train_sft.py 的 device_map 为单卡。\"}, \"plan018-additive-random-b01-s43\": {\"notes\": \"Disk full (os error 28) at step 200/500 during checkpoint save. Training ran fine for 200 steps but safetensors serialization failed with \\\"No space left on device\\\". No checkpoint saved. Disk now has 109G free. Retryable as-is.\"}, \"plan006-prolog-sta-s42\": {\"notes\": \"训练：step ~100 饱和 (PR=1.0, ISR=1.0), completion 120→27 tokens, entropy→0.01。Eval：PR=50%, proved-only ISR=1.0, 100% proved 样本是 H7（单 clause=query，零推理）。50% 失败源于格式解析错误非策略差异。Prolog hacking 比 FOL 更极端（Prolog H7=100% vs FOL s42=16%）。Reviewer 确认：FOL源数据 + Prolog提示词 + Prolog reward 是正确设计（控制难度、隔离形式主义变量）。\"}, \"plan002-additive-b01-s44\": {\"notes\": \"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\"}, \"plan002-additive-b01-s43\": {\"notes\": \"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\"}, \"plan012-hacking-taxonomy\": {\"notes\": \"D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。\"}, \"plan018-additive-random-b01-s42\": {\"notes\": \"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- Median ISR: 0.036 vs plan002未记录\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\n- Tautological collapse: 无 (component_2_ratio=0)\\n\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\n\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\"}, \"plan002-additive-b01-s42\": {\"notes\": \"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\"}, \"plan016-extended-1000-s42\": {\"notes\": \"Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\\\n\\\\n## 500 vs 1000 step comparison (eval_sta.py):\\\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\\\n|--------|-------------------|-----------------|--------|\\\\n| eval PR | 0.93 | 0.96 | +3.2% |\\\\n| eval ISR | 0.123 | 0.0027 | -97.8% |\\\\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\\\\n| components | 6.58 | 18.55 | +182% |\\\\n| ISR=0 ratio | - | 94.8% | - |\\\\n| n_necessary=0 ratio | - | 94.8% | - |\\\\n\\\\n## Key findings:\\\\n1. PR improves (+3%) but ISR collapses near-zero (0.0027). The model gets BETTER at proving while becoming WORSE at faithful reasoning.\\\\n2. Component count nearly tripled (6.58→18.55). Model generates longer proofs with more components, but 94.8% have ZERO necessary components.\\\\n3. NOT tautological collapse (comp=2 ratio=0). Instead: contradiction-based collapse — model embeds P(a) and ¬P(a) among many irrelevant premises, making anything provable via explosion.\\\\n4. Windowed ISR trend is monotonically decreasing: 0.1115 (101-200) → 0.0433 (401-500) → 0.0200 (601-700) → 0.0144 (901-1000). No recovery signal.\\\\n5. The exec-only reward creates a pure reward hacking incentive: the model discovers that contradictions + trivially true conclusions always satisfy the prover.\\\\n\\\\n## Implication for paper:\\\\nExtended training is a clean ablation showing exec-only reward's failure mode worsens over time. The 500-step ISR of 0.123 was not a floor — it was a snapshot of ongoing collapse.\"}, \"plan005-sta-low-s42\": {\"notes\": \"conclusion=negative 基于 prove_rate 下降（last100 0.7725 vs exec-only 0.865）。但结构性发现：ISR/PR ratio=0.298，99/100 步 ISR &lt; PR，说明 STA=0.1 维持了 ISR 与 PR 的持续分离——模型未通过 hacking prove_rate 绕过 STA penalty。此观察支持论文 \\\"STA 抑制 reward hacking\\\" claim。windowed ISR/PR: 1-50 (0.51), 51-100 (0.47), 101-200 (0.29), 201-300 (0.27), 301-400 (0.28), 401-500 (0.30) — 分离在100步后稳定。D030 决策：checkpoint 已删除，不重训。论文用训练曲线 windowed ISR/PR 数据作为证据。\"}, \"plan001-exec-only-s43-r4\": {\"notes\": \"训练 PR(last100)=0.883 但 eval PR=14% (sampling, T=0.7), ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。⚠️ 评估方法：sampling eval (T=0.7)，其他组用 eval_sta.py full STA。D029 决策：不重训，论文标注方法差异。PR=14% 是 failure case，eval 方法不影响结论。\"}, \"plan017-additive-random-s42\": {\"notes\": \"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\"}, \"plan001-exec-only-s44\": {\"notes\": \"TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。\"}, \"plan014-downstream-nli-s42\": {\"notes\": \"Negative: ISR 作为 downstream NLI quality proxy 无效。Spearman ρ(ISR, correct)=-0.049 (p=0.187)，Best-of-N ISR 仅 +0.9pp over random (不显著)。主因：模型严重 true-bias (false accuracy=0%)，NLI accuracy 天花板仅 34.1%，ISR 无区分空间。ISR bucket 层面有弱单调趋势 (high=75% > mid=37.7% > low=32.7%) 但 high bucket 仅 12 样本。quartile 分析非单调。\"}, \"plan002-additive-b03-s42\": {\"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\"}, \"plan013-random-reward-s42-r4\": {\"notes\": \"⚠️ 训练日志 ISR 为 binary approximation (_fast_fn)，ISR≈prove_rate，不含结构信息。真实 ISR 需通过 eval_sta.py (full STA) 在 checkpoint-500 上重新评估。final_mean_isr=0.6705 实为 binary 近似值，禁止用于论文或跨实验 ISR 对比。\"}, \"plan001-exec-only-s42-r2\": {\"notes\": \"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\"}, \"plan001-exec-only-s43-r3\": {}, \"plan013-random-reward-s42-r3\": {}, \"plan001-exec-only-s43-r2\": {}, \"plan013-random-reward-s42-r2\": {}, \"plan013-random-reward-s42\": {}, \"plan001-exec-only-s43\": {}, \"plan001-exec-only-s42\": {}, \"plan003-eval-exec-only-r5\": {}, \"plan001-exec-only-s42-r3\": {}, \"sta-phase1-exec-sta-r5\": {}, \"sta-phase1-exec-only-r5\": {}, \"sta-phase1-exec-sta-r4\": {\"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，exec+STA reward ≈ exec-only reward。连续 ISR 才能产生有意义的差异信号。→ r5 改用 full sta_reward (continuous ISR 0.0-1.0) + K=8\"}, \"sta-phase1-exec-only-r4\": {\"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，导致 exec+STA ≈ exec-only。prove_rate 从 baseline 12% → last20 20%（微弱提升）。K=4 导致大量全零 reward batch。→ r5 改用 full STA + K=8\"}, \"sta-phase1-exec-only-r3\": {\"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~276s. 同 sta-phase1-exec-sta-r3 一起诊断中\"}, \"sta-phase1-exec-sta-r3\": {\"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~278s. 诊断中: worker_diagnose_sta-phase1-r3-oom_20260513T202300\"}, \"sta-phase1-exec-sta-r2\": {}, \"sta-phase1-exec-only-r2\": {}, \"sta-phase1-exec-sta\": {}, \"sta-phase1-exec-only\": {}, \"sta-gt-isr-baseline\": {}, \"sta-phase0-baseline\": {}}, \"count\": 45, \"total\": 45, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1832}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "f59df428-71f6-4447-85bf-62d1efb27f4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s44\\\": {\\\"notes\\\": \\\"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"notes\\\": \\\"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\\\"}, \\\"plan009-sft-baseline-s42\\\": {\\\"notes\\\": \\\"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\\\"}, \\\"plan006-prolog-exec-s43-r2\\\": {\\\"notes\\\": \\\"OOM 诊断：非 batch size 问题。根因是 kill_job 只杀了 tmux 包装进程 (PID 587155)，训练子进程 587159/587160 残留在 cuda:1 上占 78.09 GiB 显存。s43-r2 启动时 cuda:1 仅剩 40 MiB free，首次前向传播即 OOM (尝试分配 48 MiB)。教训：kill_job 后必须 SSH 确认子进程也已终止（ps aux grep + nvidia-smi），不能只看 PID 返回成功。\\\"}, \\\"plan006-prolog-exec-s42\\\": {\\\"notes\\\": \\\"Eval (eval_sta.py) 完成。PR=83%, mean_ISR=0.031, proved_only_ISR=0.037, H7=0%, H1=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比。exec-only 产生完全不同的 hacking 模式：ground fact enumeration（倾泻大量无关 ground facts，query 作为其中一个 fact 平凡成功），而非 sta-s42 的 tautological collapse。两种 reward signal 驱动两种不同的 hacking 策略。对论文是 positive finding：强化 Claim 1 且揭示 reward-specific hacking 机制。\\\"}, \\\"plan006-prolog-exec-s43\\\": {\\\"notes\\\": \\\"KILLED at step 36/500: warmup_ratio=0.1 与 s42 (0.0) 不一致，3-seed 对比无效。重启为 plan006-prolog-exec-s43-r2 (warmup_ratio=0.0)。\\\"}, \\\"plan009-sft-baseline-s42-r3\\\": {\\\"notes\\\": \\\"r3 crash root cause: wandb.init() failed because no W&B API key configured on server (no .netrc, no WANDB_API_KEY). Fix: add --no_wandb flag. Secondary issue: both GPUs currently near-full, need to wait for GPU availability before r4. Correct r4 command: export CUDA_VISIBLE_DEVICES=N && ... python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 --num_steps 500 --seed 42 --no_wandb\\\"}, \\\"plan009-sft-baseline-s42-r2\\\": {\\\"notes\\\": \\\"SFT baseline with Qwen3-4B (same model as GRPO experiments). Replaces killed plan009-sft-baseline-s42 which incorrectly used Qwen2.5-1.5B. cuda:1, seed=42, 500 steps, FOLIO data (data/train_500_seed42.jsonl). Dream 审稿三档均指出缺 SFT baseline 是 gap。**FAILED**: 两个问题：(1) W&B API key 未配置，trainer.train() 启动时 wandb callback 报 UsageError; (2) device_map='auto' 把模型分到多 GPU，需改为单卡绑定。修复方案：加 WANDB_MODE=disabled + 改 train_sft.py 的 device_map 为单卡。\\\"}, \\\"plan018-additive-random-b01-s43\\\": {\\\"notes\\\": \\\"Disk full (os error 28) at step 200/500 during checkpoint save. Training ran fine for 200 steps but safetensors serialization failed with \\\\\\\"No space left on device\\\\\\\". No checkpoint saved. Disk now has 109G free. Retryable as-is.\\\"}, \\\"plan006-prolog-sta-s42\\\": {\\\"notes\\\": \\\"训练：step ~100 饱和 (PR=1.0, ISR=1.0), completion 120→27 tokens, entropy→0.01。Eval：PR=50%, proved-only ISR=1.0, 100% proved 样本是 H7（单 clause=query，零推理）。50% 失败源于格式解析错误非策略差异。Prolog hacking 比 FOL 更极端（Prolog H7=100% vs FOL s42=16%）。Reviewer 确认：FOL源数据 + Prolog提示词 + Prolog reward 是正确设计（控制难度、隔离形式主义变量）。\\\"}, \\\"plan002-additive-b01-s44\\\": {\\\"notes\\\": \\\"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\\\"}, \\\"plan002-additive-b01-s43\\\": {\\\"notes\\\": \\\"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\\\"}, \\\"plan012-hacking-taxonomy\\\": {\\\"notes\\\": \\\"D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。\\\"}, \\\"plan018-additive-random-b01-s42\\\": {\\\"notes\\\": \\\"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\\\n\\\\n对比 plan002-b01 (ISR β=0.1):\\\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\\\n- Median ISR: 0.036 vs plan002未记录\\\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\\\n- Tautological collapse: 无 (component_2_ratio=0)\\\\n\\\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\\\n\\\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\\\"}, \\\"plan002-additive-b01-s42\\\": {\\\"notes\\\": \\\"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\\\"}, \\\"plan016-extended-1000-s42\\\": {\\\"notes\\\": \\\"Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\\\\\\\n\\\\\\\\n## 500 vs 1000 step comparison (eval_sta.py):\\\\\\\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\\\\\\\n|--------|-------------------|-----------------|--------|\\\\\\\\n| eval PR | 0.93 | 0.96 | +3.2% |\\\\\\\\n| eval ISR | 0.123 | 0.0027 | -97.8% |\\\\\\\\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\\\\\\\\n| components | 6.58 | 18.55 | +182% |\\\\\\\\n| ISR=0 ratio | - | 94.8% | - |\\\\\\\\n| n_necessary=0 ratio | - | 94.8% | - |\\\\\\\\n\\\\\\\\n## Key findings:\\\\\\\\n1. PR improves (+3%) but ISR collapses near-zero (0.0027). The model gets BETTER at proving while becoming WORSE at faithful reasoning.\\\\\\\\n2. Component count nearly tripled (6.58→18.55). Model generates longer proofs with more components, but 94.8% have ZERO necessary components.\\\\\\\\n3. NOT tautological collapse (comp=2 ratio=0). Instead: contradiction-based collapse — model embeds P(a) and ¬P(a) among many irrelevant premises, making anything provable via explosion.\\\\\\\\n4. Windowed ISR trend is monotonically decreasing: 0.1115 (101-200) → 0.0433 (401-500) → 0.0200 (601-700) → 0.0144 (901-1000). No recovery signal.\\\\\\\\n5. The exec-only reward creates a pure reward hacking incentive: the model discovers that contradictions + trivially true conclusions always satisfy the prover.\\\\\\\\n\\\\\\\\n## Implication for paper:\\\\\\\\nExtended training is a clean ablation showing exec-only reward's failure mode worsens over time. The 500-step ISR of 0.123 was not a floor — it was a snapshot of ongoing collapse.\\\"}, \\\"plan005-sta-low-s42\\\": {\\\"notes\\\": \\\"conclusion=negative 基于 prove_rate 下降（last100 0.7725 vs exec-only 0.865）。但结构性发现：ISR/PR ratio=0.298，99/100 步 ISR &lt; PR，说明 STA=0.1 维持了 ISR 与 PR 的持续分离——模型未通过 hacking prove_rate 绕过 STA penalty。此观察支持论文 \\\\\\\"STA 抑制 reward hacking\\\\\\\" claim。windowed ISR/PR: 1-50 (0.51), 51-100 (0.47), 101-200 (0.29), 201-300 (0.27), 301-400 (0.28), 401-500 (0.30) — 分离在100步后稳定。D030 决策：checkpoint 已删除，不重训。论文用训练曲线 windowed ISR/PR 数据作为证据。\\\"}, \\\"plan001-exec-only-s43-r4\\\": {\\\"notes\\\": \\\"训练 PR(last100)=0.883 但 eval PR=14% (sampling, T=0.7), ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。⚠️ 评估方法：sampling eval (T=0.7)，其他组用 eval_sta.py full STA。D029 决策：不重训，论文标注方法差异。PR=14% 是 failure case，eval 方法不影响结论。\\\"}, \\\"plan017-additive-random-s42\\\": {\\\"notes\\\": \\\"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\\\"}, \\\"plan001-exec-only-s44\\\": {\\\"notes\\\": \\\"TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。\\\"}, \\\"plan014-downstream-nli-s42\\\": {\\\"notes\\\": \\\"Negative: ISR 作为 downstream NLI quality proxy 无效。Spearman ρ(ISR, correct)=-0.049 (p=0.187)，Best-of-N ISR 仅 +0.9pp over random (不显著)。主因：模型严重 true-bias (false accuracy=0%)，NLI accuracy 天花板仅 34.1%，ISR 无区分空间。ISR bucket 层面有弱单调趋势 (high=75% > mid=37.7% > low=32.7%) 但 high bucket 仅 12 样本。quartile 分析非单调。\\\"}, \\\"plan002-additive-b03-s42\\\": {\\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\"}, \\\"plan013-random-reward-s42-r4\\\": {\\\"notes\\\": \\\"⚠️ 训练日志 ISR 为 binary approximation (_fast_fn)，ISR≈prove_rate，不含结构信息。真实 ISR 需通过 eval_sta.py (full STA) 在 checkpoint-500 上重新评估。final_mean_isr=0.6705 实为 binary 近似值，禁止用于论文或跨实验 ISR 对比。\\\"}, \\\"plan001-exec-only-s42-r2\\\": {\\\"notes\\\": \\\"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\\\"}, \\\"plan001-exec-only-s43-r3\\\": {}, \\\"plan013-random-reward-s42-r3\\\": {}, \\\"plan001-exec-only-s43-r2\\\": {}, \\\"plan013-random-reward-s42-r2\\\": {}, \\\"plan013-random-reward-s42\\\": {}, \\\"plan001-exec-only-s43\\\": {}, \\\"plan001-exec-only-s42\\\": {}, \\\"plan003-eval-exec-only-r5\\\": {}, \\\"plan001-exec-only-s42-r3\\\": {}, \\\"sta-phase1-exec-sta-r5\\\": {}, \\\"sta-phase1-exec-only-r5\\\": {}, \\\"sta-phase1-exec-sta-r4\\\": {\\\"notes\\\": \\\"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，exec+STA reward ≈ exec-only reward。连续 ISR 才能产生有意义的差异信号。→ r5 改用 full sta_reward (continuous ISR 0.0-1.0) + K=8\\\"}, \\\"sta-phase1-exec-only-r4\\\": {\\\"notes\\\": \\\"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，导致 exec+STA ≈ exec-only。prove_rate 从 baseline 12% → last20 20%（微弱提升）。K=4 导致大量全零 reward batch。→ r5 改用 full STA + K=8\\\"}, \\\"sta-phase1-exec-only-r3\\\": {\\\"notes\\\": \\\"EXIT_CODE=137 (OOM/SIGKILL) after ~276s. 同 sta-phase1-exec-sta-r3 一起诊断中\\\"}, \\\"sta-phase1-exec-sta-r3\\\": {\\\"notes\\\": \\\"EXIT_CODE=137 (OOM/SIGKILL) after ~278s. 诊断中: worker_diagnose_sta-phase1-r3-oom_20260513T202300\\\"}, \\\"sta-phase1-exec-sta-r2\\\": {}, \\\"sta-phase1-exec-only-r2\\\": {}, \\\"sta-phase1-exec-sta\\\": {}, \\\"sta-phase1-exec-only\\\": {}, \\\"sta-gt-isr-baseline\\\": {}, \\\"sta-phase0-baseline\\\": {}}, \\\"count\\\": 45, \\\"total\\\": 45, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1832}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s44\": {\"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"}, \"plan009-sft-baseline-s42-r4\": {\"notes\": \"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\"}, \"plan009-sft-baseline-s42\": {\"notes\": \"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\"}, \"plan006-prolog-exec-s43-r2\": {\"notes\": \"OOM 诊断：非 batch size 问题。根因是 kill_job 只杀了 tmux 包装进程 (PID 587155)，训练子进程 587159/587160 残留在 cuda:1 上占 78.09 GiB 显存。s43-r2 启动时 cuda:1 仅剩 40 MiB free，首次前向传播即 OOM (尝试分配 48 MiB)。教训：kill_job 后必须 SSH 确认子进程也已终止（ps aux grep + nvidia-smi），不能只看 PID 返回成功。\"}, \"plan006-prolog-exec-s42\": {\"notes\": \"Eval (eval_sta.py) 完成。PR=83%, mean_ISR=0.031, proved_only_ISR=0.037, H7=0%, H1=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比。exec-only 产生完全不同的 hacking 模式：ground fact enumeration（倾泻大量无关 ground facts，query 作为其中一个 fact 平凡成功），而非 sta-s42 的 tautological collapse。两种 reward signal 驱动两种不同的 hacking 策略。对论文是 positive finding：强化 Claim 1 且揭示 reward-specific hacking 机制。\"}, \"plan006-prolog-exec-s43\": {\"notes\": \"KILLED at step 36/500: warmup_ratio=0.1 与 s42 (0.0) 不一致，3-seed 对比无效。重启为 plan006-prolog-exec-s43-r2 (warmup_ratio=0.0)。\"}, \"plan009-sft-baseline-s42-r3\": {\"notes\": \"r3 crash root cause: wandb.init() failed because no W&B API key configured on server (no .netrc, no WANDB_API_KEY). Fix: add --no_wandb flag. Secondary issue: both GPUs currently near-full, need to wait for GPU availability before r4. Correct r4 command: export CUDA_VISIBLE_DEVICES=N && ... python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 --num_steps 500 --seed 42 --no_wandb\"}, \"plan009-sft-baseline-s42-r2\": {\"notes\": \"SFT baseline with Qwen3-4B (same model as GRPO experiments). Replaces killed plan009-sft-baseline-s42 which incorrectly used Qwen2.5-1.5B. cuda:1, seed=42, 500 steps, FOLIO data (data/train_500_seed42.jsonl). Dream 审稿三档均指出缺 SFT baseline 是 gap。**FAILED**: 两个问题：(1) W&B API key 未配置，trainer.train() 启动时 wandb callback 报 UsageError; (2) device_map='auto' 把模型分到多 GPU，需改为单卡绑定。修复方案：加 WANDB_MODE=disabled + 改 train_sft.py 的 device_map 为单卡。\"}, \"plan018-additive-random-b01-s43\": {\"notes\": \"Disk full (os error 28) at step 200/500 during checkpoint save. Training ran fine for 200 steps but safetensors serialization failed with \\\"No space left on device\\\". No checkpoint saved. Disk now has 109G free. Retryable as-is.\"}, \"plan006-prolog-sta-s42\": {\"notes\": \"训练：step ~100 饱和 (PR=1.0, ISR=1.0), completion 120→27 tokens, entropy→0.01。Eval：PR=50%, proved-only ISR=1.0, 100% proved 样本是 H7（单 clause=query，零推理）。50% 失败源于格式解析错误非策略差异。Prolog hacking 比 FOL 更极端（Prolog H7=100% vs FOL s42=16%）。Reviewer 确认：FOL源数据 + Prolog提示词 + Prolog reward 是正确设计（控制难度、隔离形式主义变量）。\"}, \"plan002-additive-b01-s44\": {\"notes\": \"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\"}, \"plan002-additive-b01-s43\": {\"notes\": \"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\"}, \"plan012-hacking-taxonomy\": {\"notes\": \"D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。\"}, \"plan018-additive-random-b01-s42\": {\"notes\": \"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- Median ISR: 0.036 vs plan002未记录\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\n- Tautological collapse: 无 (component_2_ratio=0)\\n\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\n\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\"}, \"plan002-additive-b01-s42\": {\"notes\": \"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\"}, \"plan016-extended-1000-s42\": {\"notes\": \"Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\\\n\\\\n## 500 vs 1000 step comparison (eval_sta.py):\\\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\\\n|--------|-------------------|-----------------|--------|\\\\n| eval PR | 0.93 | 0.96 | +3.2% |\\\\n| eval ISR | 0.123 | 0.0027 | -97.8% |\\\\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\\\\n| components | 6.58 | 18.55 | +182% |\\\\n| ISR=0 ratio | - | 94.8% | - |\\\\n| n_necessary=0 ratio | - | 94.8% | - |\\\\n\\\\n## Key findings:\\\\n1. PR improves (+3%) but ISR collapses near-zero (0.0027). The model gets BETTER at proving while becoming WORSE at faithful reasoning.\\\\n2. Component count nearly tripled (6.58→18.55). Model generates longer proofs with more components, but 94.8% have ZERO necessary components.\\\\n3. NOT tautological collapse (comp=2 ratio=0). Instead: contradiction-based collapse — model embeds P(a) and ¬P(a) among many irrelevant premises, making anything provable via explosion.\\\\n4. Windowed ISR trend is monotonically decreasing: 0.1115 (101-200) → 0.0433 (401-500) → 0.0200 (601-700) → 0.0144 (901-1000). No recovery signal.\\\\n5. The exec-only reward creates a pure reward hacking incentive: the model discovers that contradictions + trivially true conclusions always satisfy the prover.\\\\n\\\\n## Implication for paper:\\\\nExtended training is a clean ablation showing exec-only reward's failure mode worsens over time. The 500-step ISR of 0.123 was not a floor — it was a snapshot of ongoing collapse.\"}, \"plan005-sta-low-s42\": {\"notes\": \"conclusion=negative 基于 prove_rate 下降（last100 0.7725 vs exec-only 0.865）。但结构性发现：ISR/PR ratio=0.298，99/100 步 ISR &lt; PR，说明 STA=0.1 维持了 ISR 与 PR 的持续分离——模型未通过 hacking prove_rate 绕过 STA penalty。此观察支持论文 \\\"STA 抑制 reward hacking\\\" claim。windowed ISR/PR: 1-50 (0.51), 51-100 (0.47), 101-200 (0.29), 201-300 (0.27), 301-400 (0.28), 401-500 (0.30) — 分离在100步后稳定。D030 决策：checkpoint 已删除，不重训。论文用训练曲线 windowed ISR/PR 数据作为证据。\"}, \"plan001-exec-only-s43-r4\": {\"notes\": \"训练 PR(last100)=0.883 但 eval PR=14% (sampling, T=0.7), ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。⚠️ 评估方法：sampling eval (T=0.7)，其他组用 eval_sta.py full STA。D029 决策：不重训，论文标注方法差异。PR=14% 是 failure case，eval 方法不影响结论。\"}, \"plan017-additive-random-s42\": {\"notes\": \"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\"}, \"plan001-exec-only-s44\": {\"notes\": \"TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。\"}, \"plan014-downstream-nli-s42\": {\"notes\": \"Negative: ISR 作为 downstream NLI quality proxy 无效。Spearman ρ(ISR, correct)=-0.049 (p=0.187)，Best-of-N ISR 仅 +0.9pp over random (不显著)。主因：模型严重 true-bias (false accuracy=0%)，NLI accuracy 天花板仅 34.1%，ISR 无区分空间。ISR bucket 层面有弱单调趋势 (high=75% > mid=37.7% > low=32.7%) 但 high bucket 仅 12 样本。quartile 分析非单调。\"}, \"plan002-additive-b03-s42\": {\"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\"}, \"plan013-random-reward-s42-r4\": {\"notes\": \"⚠️ 训练日志 ISR 为 binary approximation (_fast_fn)，ISR≈prove_rate，不含结构信息。真实 ISR 需通过 eval_sta.py (full STA) 在 checkpoint-500 上重新评估。final_mean_isr=0.6705 实为 binary 近似值，禁止用于论文或跨实验 ISR 对比。\"}, \"plan001-exec-only-s42-r2\": {\"notes\": \"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\"}, \"plan001-exec-only-s43-r3\": {}, \"plan013-random-reward-s42-r3\": {}, \"plan001-exec-only-s43-r2\": {}, \"plan013-random-reward-s42-r2\": {}, \"plan013-random-reward-s42\": {}, \"plan001-exec-only-s43\": {}, \"plan001-exec-only-s42\": {}, \"plan003-eval-exec-only-r5\": {}, \"plan001-exec-only-s42-r3\": {}, \"sta-phase1-exec-sta-r5\": {}, \"sta-phase1-exec-only-r5\": {}, \"sta-phase1-exec-sta-r4\": {\"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，exec+STA reward ≈ exec-only reward。连续 ISR 才能产生有意义的差异信号。→ r5 改用 full sta_reward (continuous ISR 0.0-1.0) + K=8\"}, \"sta-phase1-exec-only-r4\": {\"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，导致 exec+STA ≈ exec-only。prove_rate 从 baseline 12% → last20 20%（微弱提升）。K=4 导致大量全零 reward batch。→ r5 改用 full STA + K=8\"}, \"sta-phase1-exec-only-r3\": {\"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~276s. 同 sta-phase1-exec-sta-r3 一起诊断中\"}, \"sta-phase1-exec-sta-r3\": {\"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~278s. 诊断中: worker_diagnose_sta-phase1-r3-oom_20260513T202300\"}, \"sta-phase1-exec-sta-r2\": {}, \"sta-phase1-exec-only-r2\": {}, \"sta-phase1-exec-sta\": {}, \"sta-phase1-exec-only\": {}, \"sta-gt-isr-baseline\": {}, \"sta-phase0-baseline\": {}}, \"count\": 45, \"total\": 45, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1832}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "ea03f3db-9b2d-4870-9e3c-b2a3cd1b1c6f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01CTJBzpRf7GLXWLTPfDNmMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7247,
+      "cache_read_input_tokens": 47167,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7247
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UXV2ZjUFKUccTUobGuouMe`</summary>
+
+```json
+{
+  "exp_id": "plan002-additive-b01-s42",
+  "field": "notes",
+  "value": "SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\n\n[H7 逐样本审查 2026-05-14] strict exact normalized match (与 D044 一致): 81 proved 样本分类\n- H7 (single premise = conclusion): 13/81 = 16.0% (确认 D044)\n- H1 (multi-premise, one = conclusion): 42/81 = 51.9%\n- Genuine (no conclusion duplicate): 26/81 = 32.1%\n- Mean ISR by class: H7=0.660, H1=0.224, Genuine=0.601\n关键结论: H7 mean ISR (0.660) 与 Genuine (0.601) 接近, H7 inflation 有限 (per-clause STA 对单 premise 分解, ISR≈0.75 而非 1.0)。H1 反而 deflate (mean 0.224, 因 conclusion 仅占多 premise 中一个, n_necessary=1, ISR 低)。整体 mean_isr 0.4154 由 Genuine (32%) + H7 (16%) 共同驱动, 非 H7 主导。NOT critical finding。与 Prolog s42 (H7=100%) / s44 (94% tautological) 对比, FOL β=0.1 s42 显示 minority hacking pattern, genuine guidance 仍是主要信号源。审查报告 saved /tmp/h7_audit.py。",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "ea582dd5-bbdc-4142-9414-e1455aa4c55f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01CTJBzpRf7GLXWLTPfDNmMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7247,
+      "cache_read_input_tokens": 47167,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7247
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T15:07:55.587Z_
+
+<details><summary>↩ Tool result · `toolu_01UXV2ZjUFKUccTUobGuouMe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan002-additive-b01-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:29:08.138Z\", \"updated_at\": \"2026-05-14T15:07:55.450Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"262261\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\", \"submitted_at\": \"2026-05-14T05:32:32.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"plan_id\": \"plan002\", \"reward_formula\": \"r_exec * (1 + 0.1 * ISR)\", \"num_steps\": 500, \"wall_clock_seconds\": 4493.9, \"gpu_hours\": 1.25, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\"}, \"parent\": \"plan002-additive-b03-s42\", \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"262261\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\", \"finished_at\": \"2026-05-14T06:37:58.285Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:37:59.656631+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.81, \"eval_mean_isr\": 0.3365, \"eval_isr_std\": 0.3227, \"eval_proved_only_isr\": 0.4154, \"eval_median_isr\": 0.2, \"eval_n_proved\": 81, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 5.58, \"eval_component_count_2_ratio\": 0.037, \"eval_isr_1_ratio\": 0.124, \"eval_isr_0_ratio\": 0.037, \"eval_by_type_false_pr\": 0.88, \"eval_by_type_false_isr\": 0.3515, \"eval_by_type_unknown_pr\": 0.83, \"eval_by_type_unknown_isr\": 0.3684, \"eval_by_type_true_pr\": 0.74, \"eval_by_type_true_isr\": 0.2869, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 63, \"train_last100_pr\": 0.6875, \"train_last100_isr\": 0.1954, \"train_last100_loss\": 0.015}, \"notes\": \"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\\n\\n[H7 逐样本审查 2026-05-14] strict exact normalized match (与 D044 一致): 81 proved 样本分类\\n- H7 (single premise = conclusion): 13/81 = 16.0% (确认 D044)\\n- H1 (multi-premise, one = conclusion): 42/81 = 51.9%\\n- Genuine (no conclusion duplicate): 26/81 = 32.1%\\n- Mean ISR by class: H7=0.660, H1=0.224, Genuine=0.601\\n关键结论: H7 mean ISR (0.660) 与 Genuine (0.601) 接近, H7 inflation 有限 (per-clause STA 对单 premise 分解, ISR≈0.75 而非 1.0)。H1 反而 deflate (mean 0.224, 因 conclusion 仅占多 premise 中一个, n_necessary=1, ISR 低)。整体 mean_isr 0.4154 由 Genuine (32%) + H7 (16%) 共同驱动, 非 H7 主导。NOT critical finding。与 Prolog s42 (H7=100%) / s44 (94% tautological) 对比, FOL β=0.1 s42 显示 minority hacking pattern, genuine guidance 仍是主要信号源。审查报告 saved /tmp/h7_audit.py。\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\", \"completed_at\": \"2026-05-14T06:47:26.358Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2883}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "e990e9e9-6722-4eef-8f0f-d842abad517a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b01-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:29:08.138Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:07:55.450Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"262261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:32:32.415Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"plan_id\\\": \\\"plan002\\\", \\\"reward_formula\\\": \\\"r_exec * (1 + 0.1 * ISR)\\\", \\\"num_steps\\\": 500, \\\"wall_clock_seconds\\\": 4493.9, \\\"gpu_hours\\\": 1.25, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"}, \\\"parent\\\": \\\"plan002-additive-b03-s42\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"262261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T06:37:58.285Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:37:59.656631+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.81, \\\"eval_mean_isr\\\": 0.3365, \\\"eval_isr_std\\\": 0.3227, \\\"eval_proved_only_isr\\\": 0.4154, \\\"eval_median_isr\\\": 0.2, \\\"eval_n_proved\\\": 81, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 5.58, \\\"eval_component_count_2_ratio\\\": 0.037, \\\"eval_isr_1_ratio\\\": 0.124, \\\"eval_isr_0_ratio\\\": 0.037, \\\"eval_by_type_false_pr\\\": 0.88, \\\"eval_by_type_false_isr\\\": 0.3515, \\\"eval_by_type_unknown_pr\\\": 0.83, \\\"eval_by_type_unknown_isr\\\": 0.3684, \\\"eval_by_type_true_pr\\\": 0.74, \\\"eval_by_type_true_isr\\\": 0.2869, \\\"tautological_collapse\\\": false, \\\"train_total_steps\\\": 500, \\\"train_duration_min\\\": 63, \\\"train_last100_pr\\\": 0.6875, \\\"train_last100_isr\\\": 0.1954, \\\"train_last100_loss\\\": 0.015}, \\\"notes\\\": \\\"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\\\\n\\\\n[H7 逐样本审查 2026-05-14] strict exact normalized match (与 D044 一致): 81 proved 样本分类\\\\n- H7 (single premise = conclusion): 13/81 = 16.0% (确认 D044)\\\\n- H1 (multi-premise, one = conclusion): 42/81 = 51.9%\\\\n- Genuine (no conclusion duplicate): 26/81 = 32.1%\\\\n- Mean ISR by class: H7=0.660, H1=0.224, Genuine=0.601\\\\n关键结论: H7 mean ISR (0.660) 与 Genuine (0.601) 接近, H7 inflation 有限 (per-clause STA 对单 premise 分解, ISR≈0.75 而非 1.0)。H1 反而 deflate (mean 0.224, 因 conclusion 仅占多 premise 中一个, n_necessary=1, ISR 低)。整体 mean_isr 0.4154 由 Genuine (32%) + H7 (16%) 共同驱动, 非 H7 主导。NOT critical finding。与 Prolog s42 (H7=100%) / s44 (94% tautological) 对比, FOL β=0.1 s42 显示 minority hacking pattern, genuine guidance 仍是主要信号源。审查报告 saved /tmp/h7_audit.py。\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42\\\", \\\"completed_at\\\": \\\"2026-05-14T06:47:26.358Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2883}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan002-additive-b01-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:29:08.138Z\", \"updated_at\": \"2026-05-14T15:07:55.450Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"262261\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\", \"submitted_at\": \"2026-05-14T05:32:32.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"plan_id\": \"plan002\", \"reward_formula\": \"r_exec * (1 + 0.1 * ISR)\", \"num_steps\": 500, \"wall_clock_seconds\": 4493.9, \"gpu_hours\": 1.25, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\"}, \"parent\": \"plan002-additive-b03-s42\", \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"262261\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\", \"finished_at\": \"2026-05-14T06:37:58.285Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:37:59.656631+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.81, \"eval_mean_isr\": 0.3365, \"eval_isr_std\": 0.3227, \"eval_proved_only_isr\": 0.4154, \"eval_median_isr\": 0.2, \"eval_n_proved\": 81, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 5.58, \"eval_component_count_2_ratio\": 0.037, \"eval_isr_1_ratio\": 0.124, \"eval_isr_0_ratio\": 0.037, \"eval_by_type_false_pr\": 0.88, \"eval_by_type_false_isr\": 0.3515, \"eval_by_type_unknown_pr\": 0.83, \"eval_by_type_unknown_isr\": 0.3684, \"eval_by_type_true_pr\": 0.74, \"eval_by_type_true_isr\": 0.2869, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 63, \"train_last100_pr\": 0.6875, \"train_last100_isr\": 0.1954, \"train_last100_loss\": 0.015}, \"notes\": \"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\\n\\n[H7 逐样本审查 2026-05-14] strict exact normalized match (与 D044 一致): 81 proved 样本分类\\n- H7 (single premise = conclusion): 13/81 = 16.0% (确认 D044)\\n- H1 (multi-premise, one = conclusion): 42/81 = 51.9%\\n- Genuine (no conclusion duplicate): 26/81 = 32.1%\\n- Mean ISR by class: H7=0.660, H1=0.224, Genuine=0.601\\n关键结论: H7 mean ISR (0.660) 与 Genuine (0.601) 接近, H7 inflation 有限 (per-clause STA 对单 premise 分解, ISR≈0.75 而非 1.0)。H1 反而 deflate (mean 0.224, 因 conclusion 仅占多 premise 中一个, n_necessary=1, ISR 低)。整体 mean_isr 0.4154 由 Genuine (32%) + H7 (16%) 共同驱动, 非 H7 主导。NOT critical finding。与 Prolog s42 (H7=100%) / s44 (94% tautological) 对比, FOL β=0.1 s42 显示 minority hacking pattern, genuine guidance 仍是主要信号源。审查报告 saved /tmp/h7_audit.py。\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\", \"completed_at\": \"2026-05-14T06:47:26.358Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2883}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+H7 审查完成，registry 已更新。
+
+## H7 逐样本审查报告 — plan002-additive-b01-s42
+
+**Eval 数据**: `/root/autodl-tmp/outputs/plan002_additive_b01_s42/eval_sta_results.json` (100 problems, 81 proved)
+
+**分类结果** (strict exact normalized match, 与 D044 一致):
+
+| 类别 | Count | Rate | Mean ISR |
+|------|-------|------|----------|
+| **H7** (single premise = conclusion) | 13/81 | **16.0%** | 0.660 |
+| **H1** (multi-premise, one = conclusion) | 42/81 | 51.9% | 0.224 |
+| **Genuine** (no conclusion duplicate) | 26/81 | 32.1% | 0.601 |
+
+**典型 H7 样本**:
+- `folio_556`: prem=`∀x(AssessesSAT(x)→MathSkills(x))`, concl=同, ISR=0.750
+- `folio_160`: prem=`∀x(IsBatteryTower(x)→...)`, concl=同, ISR=0.750
+- `folio_304`: prem=`∀x(¬Braz(x)∨¬PlaysForNautico(x))`, concl=同, ISR=0.333
+
+**典型 Genuine 样本**:
+- `folio_765`: 5 premises, conclusion 是新合取式, n_nec=2, ISR=0.333
+- `folio_592`: 2 premises, conclusion 合并两者, n_nec=3, ISR=0.600
+- `folio_71`: 5 premises, conclusion `¬(Easy(2Sum)∨Hard(2Sum))`, n_nec=3, ISR=0.500
+
+## 关键判断: **NOT critical finding**
+
+1. **H7 = 16.0% 确认 D044**, 远低于 50% 阈值
+2. **H7 ISR (0.660) ≈ Genuine ISR (0.601)**: per-clause STA 对单 premise 也做子句分解, ISR≈0.75 而非 1.0, inflation 有限
+3. **H1 反而 deflate** (mean 0.224): 多 premise 中一个 = conclusion → n_necessary=1, ISR 拉低
+4. **整体 mean_isr 0.4154 主要由 Genuine (32%) + H7 (16%) 贡献**, 非 H7 主导
+
+**论文 Claim 2 framing 不需要重写**: ISR β=0.1 s42 的 genuine structural guidance 主张成立。可在论文中坦诚披露 H7=16% 作为 minor caveat, 同时强调 Genuine 32% (mean ISR 0.601) 才是 metric 的主要驱动力, 对比 Prolog s42 H7=100%、exec-only s44 tautological=94% 形成清晰光谱。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "uuid": "42e95aa9-44ed-4f83-8434-416ea445fbc6",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01CgEWzyoSCeyd8kqibhLaWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3827,
+      "cache_read_input_tokens": 54414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3827
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 42_
+
+H7 审查完成，registry 已更新。
+
+## H7 逐样本审查报告 — plan002-additive-b01-s42
+
+**Eval 数据**: `/root/autodl-tmp/outputs/plan002_additive_b01_s42/eval_sta_results.json` (100 problems, 81 proved)
+
+**分类结果** (strict exact normalized match, 与 D044 一致):
+
+| 类别 | Count | Rate | Mean ISR |
+|------|-------|------|----------|
+| **H7** (single premise = conclusion) | 13/81 | **16.0%** | 0.660 |
+| **H1** (multi-premise, one = conclusion) | 42/81 | 51.9% | 0.224 |
+| **Genuine** (no conclusion duplicate) | 26/81 | 32.1% | 0.601 |
+
+**典型 H7 样本**:
+- `folio_556`: prem=`∀x(AssessesSAT(x)→MathSkills(x))`, concl=同, ISR=0.750
+- `folio_160`: prem=`∀x(IsBatteryTower(x)→...)`, concl=同, ISR=0.750
+- `folio_304`: prem=`∀x(¬Braz(x)∨¬PlaysForNautico(x))`, concl=同, ISR=0.333
+
+**典型 Genuine 样本**:
+- `folio_765`: 5 premises, conclusion 是新合取式, n_nec=2, ISR=0.333
+- `folio_592`: 2 premises, conclusion 合并两者, n_nec=3, ISR=0.600
+- `folio_71`: 5 premises, conclusion `¬(Easy(2Sum)∨Hard(2Sum))`, n_nec=3, ISR=0.500
+
+## 关键判断: **NOT critical finding**
+
+1. **H7 = 16.0% 确认 D044**, 远低于 50% 阈值
+2. **H7 ISR (0.660) ≈ Genuine ISR (0.601)**: per-clause STA 对单 premise 也做子句分解, ISR≈0.75 而非 1.0, inflation 有限
+3. **H1 反而 deflate** (mean 0.224): 多 premise 中一个 = conclusion → n_necessary=1, ISR 拉低
+4. **整体 mean_isr 0.4154 主要由 Genuine (32%) + H7 (16%) 贡献**, 非 H7 主导
+
+**论文 Claim 2 framing 不需要重写**: ISR β=0.1 s42 的 genuine structural guidance 主张成立。可在论文中坦诚披露 H7=16% 作为 minor caveat, 同时强调 Genuine 32% (mean ISR 0.601) 才是 metric 的主要驱动力, 对比 Prolog s42 H7=100%、exec-only s44 tautological=94% 形成清晰光谱。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 111544,
+  "duration_api_ms": 109665,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "03970d2b-60c2-4e46-b4d0-e0489880b47f",
+  "total_cost_usd": 0.86500675,
+  "usage": {
+    "input_tokens": 31,
+    "cache_creation_input_tokens": 58003,
+    "cache_read_input_tokens": 620298,
+    "output_tokens": 7584,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 58003,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 976,
+        "cache_read_input_tokens": 54414,
+        "cache_creation_input_tokens": 3827,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3827
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2459,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002584,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 31,
+      "outputTokens": 7584,
+      "cacheReadInputTokens": 620298,
+      "cacheCreationInputTokens": 58003,
+      "webSearchRequests": 0,
+      "costUSD": 0.8624227499999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c7c06273-cfb7-4c66-b403-26f9e7cb0c1a"
+}
+```
+
+</details>
+
+---

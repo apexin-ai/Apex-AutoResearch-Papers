@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa69605e07d384f287ac",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "research related work literature",
+  "task_key": "worker_research_related-work-literature_20260513T021053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-literature_20260513T021053_result.json",
+    "occurrence": 1,
+    "bytes": 2200,
+    "sha256": "21ae3b995d17b094cae7d3009c140fec3c427078d495083c880e13efe33b115c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用。文件已直接保存到 artifacts 目录。\n\n产出总结：\n\n**文件位置：** `artifacts/literature_survey_related_work.md`\n\n**覆盖 20 篇论文，按 4 个方向组织：**\n\n**Direction 1 — Cross-method Consensus (4篇)**\n- **CIRCUS (Parekh, 2026)** — 直接竞争对手。在单一归因方法上变化剪枝阈值取共识。CSS 的差异化：跨方法多样性 > 阈值多样性\n- Certified Circuits (Anani et al., 2026) — 数据扰动稳定性，互补\n- Open Problems in MI (Sharkey et al., 2025) — 明确呼吁报告 explanation ensembles，直接支持 CSS\n- Circuit Tracing (Anthropic, 2025) — feature-level 平行方向\n\n**Direction 2 — Faithfulness Evaluation (4篇)**\n- **Miller et al. (COLM 2024)** — faithfulness metrics 对消融方法极其敏感，强支持 CSS\n- Hanna et al. (COLM 2024) — EAP-IG 原论文，overlap ≠ faithfulness\n- MIB Benchmark (2025–2026) — 标准化评估框架\n- DiscoGP (Yu et al., 2024) — weight+edge 联合剪枝\n\n**Direction 3 — Binary vs Continuous Scoring (5篇)**\n- Edge Pruning (Bhaskar et al., NeurIPS 2024) — CSS 基础方法，binary masks\n- Syed et al. (BlackboxNLP 2024) — EAP vs ACDC 方法间差异\n- HAP (NeurIPS 2025) — EAP→EP 串行组合，与 CSS 的并行共识互补\n- Sparse Feature Circuits (ICLR 2025 Oral) — feature-level circuits\n- Transcoders (NeurIPS 2024) — 替代 circuit 表征\n\n**Direction 4 — Single-method Instability (6篇)**\n- **Méloux et al. (2025–2026)** — 定量证明 EAP/EAP-IG 电路高方差，强支持 CSS\n- Sun (ACL 2025) — 形式化 circuit stability 概念\n- Franco et al. (2026) — IOI 无单一电路，prompt-specific\n- Formal MI (ICLR 2026) — 可证明保证方向\n- CD-T (ICLR 2025) — 潜在可纳入 CSS 的新方法\n- ACDC (NeurIPS 2023) — CSS 基础方法\n\n**关键定位建议：**\n1. CIRCUS 是最大竞争对手——核心区分点是 method diversity vs threshold diversity\n2. 分布偏移下的鲁棒性评估是 CSS 独有的贡献\n3. Binary consensus 避免了跨方法分数校准问题\n4. 文献充分支持\"单方法不稳定\"的前提"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-literature.md"
+}

@@ -1,0 +1,93 @@
+{
+  "exp_id": "plan002-additive-b01-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:36:17.298Z",
+    "updated_at": "2026-05-14T09:35:22.894Z",
+    "hypothesis": "ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。",
+    "parent": "plan002-additive-b01-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T08:45:11.826Z",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s44\"",
+      "finished_at": "2026-05-14T09:28:10.836Z",
+      "training_hours": 0.72
+    },
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --mode additive_bonus --isr_beta 0.1 --seed 44",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "466540",
+      "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s44.log",
+      "submitted_at": "2026-05-14T08:46:23.037Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44
+    },
+    "pid": "466540",
+    "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s44.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T09:28:12.416418+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_total_steps": 500,
+      "train_duration_min": 40.8,
+      "train_loss": 0.006,
+      "train_overall_pr": 0.6808,
+      "train_overall_isr": 0.5109,
+      "train_last100_pr": 0.9337,
+      "train_last100_isr": 0.9049,
+      "train_window_001_100_pr": 0.165,
+      "train_window_001_100_isr": 0.0863,
+      "train_window_101_200_pr": 0.4313,
+      "train_window_101_200_isr": 0.2237,
+      "train_window_201_300_pr": 0.9313,
+      "train_window_201_300_isr": 0.5835,
+      "train_window_301_400_pr": 0.9425,
+      "train_window_301_400_isr": 0.756,
+      "train_window_401_500_pr": 0.9337,
+      "train_window_401_500_isr": 0.9049,
+      "eval_prove_rate": 0.89,
+      "eval_mean_isr": 0.803,
+      "eval_isr_std": 0.3418,
+      "eval_median_isr": 1,
+      "eval_proved_only_isr": 0.9022,
+      "eval_n_proved": 89,
+      "eval_n_problems": 100,
+      "eval_component_count_mean": 4.33,
+      "eval_component_count_2_ratio": 0.0225,
+      "eval_isr_1_ratio": 0.65,
+      "eval_isr_0_ratio": 0.12,
+      "eval_by_type_false_pr": 0.88,
+      "eval_by_type_false_isr": 0.824,
+      "eval_by_type_unknown_pr": 0.927,
+      "eval_by_type_unknown_isr": 0.837,
+      "eval_by_type_true_pr": 0.853,
+      "eval_by_type_true_isr": 0.747,
+      "tautological_collapse": false
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T09:35:22.989931+00:00",
+  "trigger": "update_registry"
+}

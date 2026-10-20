@@ -1,0 +1,47 @@
+{
+  "exp_id": "exec-only-s43-1000step-r7",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T00:41:14.461Z",
+    "updated_at": "2026-05-17T03:44:35.592Z",
+    "spec": {
+      "hypothesis": "s43 exec-only 1000-step 恢复轨迹：500-step s43 PR=76% 是否在延长训练后恢复到 s42/s44 水平(~90%), 回答 Reviewer Q1 seed variance 问题",
+      "parent": "plan001-exec-only-s43-1000",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 43 --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 43,
+      "pid": "996789",
+      "submitted_at": "2026-05-17T00:22:00Z",
+      "submitted_via": "manual_tmux",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "hypothesis": "Exec-only 1000-step seed=43: tests whether extended training recovers genuine proofs from the degenerate s43 seed (500-step s43 yielded PR=14%, ISR=0, 100% H1). If 1000 steps still collapses, confirms s43 degradation is irreversible under exec-only reward",
+    "parent": "plan001-exec-only-s43-r4",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/checkpoint-1000",
+    "log_path": "/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/reward_log.jsonl",
+    "metrics": {
+      "eval_prove_rate": 0.96,
+      "eval_mean_isr": 0.0818,
+      "h7_count": 0,
+      "h1_count": 90,
+      "h8_count": 0,
+      "genuine_count": 6,
+      "genuine_rate": 0.062,
+      "content_independent": 4
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T03:44:35.893991+00:00",
+  "trigger": "update_registry"
+}

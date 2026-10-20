@@ -1,0 +1,333 @@
+meta:
+  venue: EMNLP 2026
+  track: main
+  template: acl2023/
+  template_note: "ARR May 25 cycle. ACL Rolling Review format (acl2023.sty)."
+  page_limit: 8
+  deadline: 2026-05-25
+  core_claim: >
+    ISR (Intensional Structural Reward), derived via Solver Trace Ablation,
+    serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers
+    but fails as a training signal due to meta-level Goodhart's Law — the diagnostic
+    metric becomes gamed when optimized, with apparent improvements explained by
+    premise minimization artifacts.
+  created_at: 2026-05-14T18:00:00Z
+  updated_at: 2026-05-14T19:05:00Z
+  update_note: "Director approved with 5 corrections applied: taxonomy 6→7, Claim 3 Prolog STA 3/3 gaming complete, conclusion limitations updated, tab5/fig4 expanded, registry_refs added."
+
+paper_outline:
+  - section: abstract
+    word_budget: 250
+    core_bullets:
+      - "Problem: GRPO formalizers achieve high prove rates but produce structurally degenerate outputs; no diagnostic exists"
+      - "Method: STA derives ISR via leave-one-out component necessity testing on solver inputs"
+      - "Claim 1: ISR detects hacking invisible to prove_rate (0.64→0.13→0.003 collapse over 100→500→1000 steps)"
+      - "Claim 2: ISR-as-reward exhibits meta-level Goodhart — β=0.1 induces ISR-specific gaming (H7=64.5% vs 0% random), premise-matched 1.06x; β=0.3 PR collapses (18% vs 48% random)"
+      - "Claim 3: ISR diagnostic transfers to Prolog (cross-logic generality)"
+      - "Taxonomy: 7 distinct hacking modes identified across conditions (including query-as-fact gaming discovered in Prolog STA)"
+    dependencies: [experiments, method, discussion]
+    tables: []
+    figures: []
+    registry_refs: []
+
+  - section: introduction
+    word_budget: 1200
+    core_bullets:
+      - "Hook: A GRPO formalizer achieves 93% prove rate — but 87% of its proved outputs embed the conclusion in the premises. Structural shortcuts invisible to execution reward."
+      - "Gap: Execution-only evaluation (prove_rate) conflates genuine reasoning with degenerate shortcuts. No principled diagnostic exists for structural integrity in neurosymbolic GRPO."
+      - "Insight: Component necessity testing (LOO ablation on solver inputs) yields ISR — AND when this diagnostic becomes reward, it exhibits meta-level Goodhart: the model games the metric itself."
+      - "Mechanism: STA protocol + systematic study across 6 reward conditions × 3 seeds × up to 1000 steps"
+      - "Contributions: (C1) ISR as diagnostic with complete collapse trajectory; (C2) Meta-level Goodhart empirical characterization with premise-count confound analysis; (C3) Cross-logic diagnostic transfer; (C4) 7-mode hacking taxonomy"
+    dependencies: [experiments]
+    citation_hints:
+      - "GRPO: deepseekmath"
+      - "Neurosymbolic: satlm, logic-lm, linc"
+      - "Reward hacking: gao-reward-overoptimization, karwowski-goodhart-rl"
+      - "Goodhart taxonomy: manheim-goodhart-taxonomy"
+    figures: [fig1_sta_overview]
+    tables: []
+    registry_refs: []
+
+  - section: related_work
+    word_budget: 900
+    core_bullets:
+      - "Cluster 1 — Neurosymbolic Reasoning with LLMs: Logic-LM, LINC, SatLM, LoRP, FoVer pipeline approach (prompting); Mellgren Prolog GRPO (RL). STA differs: structural reward + diagnostic focus"
+      - "Cluster 2 — Reward Shaping & Process Supervision: Lightman verify-step, Math-Shepherd, RLSF symbolic feedback, Rubric-GRPO. STA's ISR is solver-grounded process signal; our finding: process reward can itself Goodhart"
+      - "Cluster 3 — Reward Hacking & Goodhart's Law: Gao scaling laws, Karwowski geometric, Manheim taxonomy, Skalse characterization, Pan misspecification. We contribute empirical Goodhart in formal reasoning + meta-level (proxy games itself)"
+      - "Cluster 4 — Mutation Testing & Component Analysis: DeMillo 1978, Jia-Harman survey, Just mutants. STA adapts LOO mutation from SE to formal logic"
+    dependencies: [introduction]
+    citation_hints:
+      - "Must cite: deepseekmath, logic-lm, linc, satlm, mellgren-prolog-grpo"
+      - "Must cite: lightman-verify-step, gao-reward-overoptimization, karwowski-goodhart-rl, manheim-goodhart-taxonomy"
+      - "Must cite: demillo1978, folio, proofwriter"
+    figures: []
+    tables: []
+    registry_refs: []
+
+  - section: method
+    word_budget: 1200
+    core_bullets:
+      - "3.1 Task: NL → Formal Logic formalization, verified by external solver (Prover9 for FOL, SWI-Prolog for Prolog)"
+      - "3.2 GRPO Training: execution-only reward r_exec ∈ {0,1}, group relative policy optimization"
+      - "3.3 Solver Trace Ablation (STA): LOO ablation protocol — for proved sample with n components, remove each component, re-run solver, ISR = fraction of components whose removal causes proof failure"
+      - "3.4 ISR Definition: ISR(x) = (1/n) Σ_i 1[solver fails on x\\{c_i}], bounded [0,1]. ISR=1 → all necessary; ISR=0 → none necessary"
+      - "3.5 Reward Formulations: exec-only, additive ISR (r_exec·(1+β·ISR)), additive random control, convex combination, SFT baseline"
+      - "3.6 Hacking Taxonomy: 7 modes — H1 (multi-premise conclusion embedding), H7 (single premise = conclusion), tautological collapse, repetition collapse, complexity-without-utility, contradiction explosion, query-as-fact gaming (Prolog STA s44, bypasses text-match classifier)"
+    dependencies: []
+    notation_table:
+      r_exec: "binary execution reward (solver success)"
+      ISR: "Intensional Structural Reward"
+      beta: "ISR reward weight"
+      n: "number of components in formalization"
+      c_i: "i-th component (premise/rule)"
+      H1: "multi-premise conclusion embedding"
+      H7: "single premise = conclusion"
+    figures: [fig1_sta_overview]
+    tables: []
+    registry_refs: [sta-phase0-baseline, plan003-eval-exec-only-r5]
+
+  - section: experiments
+    word_budget: 2800
+    core_bullets:
+      - "4.1 Setup: Qwen3-4B, GRPO (K=8, 500 steps default), ProofWriter-FOL-100 eval, Prover9/SWI-Prolog solvers, 3 seeds (42/43/44)"
+      - "4.2 ISR as Diagnostic (Claim 1): ISR collapse trajectory 0.6423→0.1324→0.0027 over 100→500→1000 steps (Fig2 with embedded data); PR rises 32%→93%→96%; 3-seed exec-only divergence (s42 genuine→H1, s43 degraded PR=14%, s44 tautological 2-comp); SFT baseline 92.9% genuine confirms RL-specificity"
+      - "4.3 Meta-Level Goodhart (Claim 2): β=0.1 ISR — H7=64.5% ISR-specific gaming vs 0% random; premise-count-matched 1.06x (no real advantage); β=0.3 — PR collapse 18% vs 48% random; conclusion embedding is GRPO-universal (68-100%); ISR restructures hacking, doesn't reduce it"
+      - "4.4 Cross-Logic Transfer (Claim 3): Prolog exec-only 3-seed ISR<0.1 across all seeds; Prolog STA 3-seed complete — s42 100% H7 (conclusion duplication), s43 97.4% H1 (degenerate syntax), s44 97.9% functional H7 (query-as-fact gaming, classifier blind spot). 3/3 seeds gaming, 0% genuine. Each seed converges to a distinct gaming mechanism. Seed-gaming-mode separation finding."
+      - "4.5 Hacking Taxonomy: 7 modes quantified across conditions; reward type determines hacking composition not prevalence. 7th mode (query-as-fact gaming) discovered in Prolog STA s44."
+    dependencies: []
+    registry_refs:
+      - sta-phase0-baseline
+      - plan003-eval-exec-only-r5
+      - plan001-exec-only-s42-r2
+      - plan001-exec-only-s43-r4
+      - plan001-exec-only-s44
+      - plan016-extended-1000-s42
+      - plan002-additive-b01-s42
+      - plan002-additive-b01-s43
+      - plan002-additive-b01-s44
+      - plan018-additive-random-b01-s42
+      - plan018-additive-random-b01-s43-r2
+      - plan018-additive-random-b01-s44
+      - plan002-additive-b03-s42
+      - plan017-additive-random-s42
+      - plan005-sta-low-s42
+      - plan013-random-reward-s42-r4
+      - plan009-sft-baseline-s42-r4
+      - plan006-prolog-exec-s42
+      - plan006-prolog-exec-s43-r3
+      - plan006-prolog-exec-s44
+      - plan006-prolog-sta-s42
+      - plan006-prolog-sta-s43
+      - plan006-prolog-sta-s44
+    tables: [tab1_goodhart_landscape, tab2_hacking_taxonomy, tab4_beta01_3seed, tab5_prolog_crosslogic]
+    figures: [fig2_isr_collapse, fig3_hacking_composition, fig4_prolog_comparison]
+
+  - section: discussion
+    word_budget: 600
+    core_bullets:
+      - "ISR measures syntactic component necessity, not semantic faithfulness (plan014 ρ=-0.049 n.s.)"
+      - "Premise count confound: LOO metrics mathematically biased — fewer premises → higher ISR regardless of quality (D051)"
+      - "Practical implications: ISR for post-hoc diagnosis only; never trust prove_rate alone; single-seed GRPO unreliable; proxy-as-reward cautionary tale"
+      - "Meta-level Goodhart as general warning for any proxy-metric-as-reward approach"
+    dependencies: [experiments]
+    tables: []
+    figures: []
+    registry_refs: [plan014-downstream-nli-s42]
+
+  - section: conclusion
+    word_budget: 300
+    core_bullets:
+      - "Summary: STA/ISR as diagnostic detects reward hacking invisible to prove_rate; ISR-as-reward exhibits meta-level Goodhart at all doses"
+      - "Limitations: single base model (Qwen3-4B); ProofWriter data only; ISR = syntactic not semantic; 3 seeds"
+      - "Future: ISR + semantic verification; adaptive reward weighting; broader logic types; scale to larger models"
+    dependencies: [experiments, discussion]
+    tables: []
+    figures: []
+    registry_refs: []
+
+  - section: appendix
+    word_budget: 1000
+    core_bullets:
+      - "Table A1: Experimental setup and hyperparameters (moved from Tab6)"
+      - "Full hacking taxonomy definitions and examples"
+      - "Per-seed detailed results"
+    dependencies: [experiments]
+    tables: [tab6_setup]
+    figures: []
+    registry_refs: []
+
+visualization_plan:
+  - fig_id: fig1_sta_overview
+    type: conceptual
+    tool: matplotlib
+    description: >
+      STA protocol overview: (a) NL input → LLM formalizer → formal logic → solver → prove/fail.
+      (b) STA ablation: remove each component, re-run solver, compute ISR.
+      (c) ISR as diagnostic vs ISR as reward (Goodhart arrow).
+      3-panel horizontal layout.
+    placement: method
+    aspect_ratio: "3:1"
+    data_source: "manual"
+
+  - fig_id: fig2_isr_collapse
+    type: statistical
+    tool: matplotlib
+    description: >
+      ISR collapse trajectory over training steps with embedded data annotations.
+      X-axis: training steps (100, 500, 1000). Dual y-axis: PR (left, rising 32%→93%→96%)
+      and ISR (right, falling 0.64→0.13→0.003). Include component count trend (6.58→18.55)
+      as bubble size or secondary annotation. Annotate: ISR=0 ratio at 1000 steps (94.8%).
+      Replaces former Tab3 — all collapse data embedded in figure annotations.
+    placement: experiments
+    aspect_ratio: "4:3"
+    data_source: "registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42"
+
+  - fig_id: fig3_hacking_composition
+    type: statistical
+    tool: matplotlib
+    description: >
+      Stacked bar chart: hacking mode composition across conditions.
+      X-axis: Exec-only s42, ISR β=0.1 s42/s43/s44, Random β=0.1 (3-seed mean), SFT.
+      Stacked segments: H7 (red), H1 (orange), H3 (yellow), Genuine (green).
+      Shows ISR restructures hacking (H1→H7) rather than reducing it.
+    placement: experiments
+    aspect_ratio: "16:9"
+    data_source: "registry: plan001-exec-only-s42-r2, plan002-additive-b01-s42, plan002-additive-b01-s43, plan002-additive-b01-s44, plan018-additive-random-b01-s42, plan018-additive-random-b01-s43-r2, plan018-additive-random-b01-s44, plan009-sft-baseline-s42-r4"
+
+  - fig_id: fig4_prolog_comparison
+    type: statistical
+    tool: matplotlib
+    description: >
+      Dual-panel figure. (a) Left: Grouped bar chart — FOL vs Prolog exec-only ISR comparison (3 seeds each).
+      X-axis: s42, s43, s44. Grouped bars: FOL ISR, Prolog ISR. Both near-zero, confirming cross-logic diagnostic transfer.
+      Overlay PR values as text annotations.
+      (b) Right: Stacked bar chart — Prolog STA gaming mode composition (3 seeds).
+      X-axis: s42, s43, s44. Stacked segments: H7 (red, s42=100%), H1/degenerate-syntax (orange, s43=97.4%),
+      query-as-fact (purple, s44=97.9%). Shows 3/3 seeds gaming via distinct mechanisms, 0% genuine.
+      Paper Agent decides final layout (dual-panel or separate fig5).
+    placement: experiments
+    aspect_ratio: "2:1"
+    data_source: "registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44, plan006-prolog-exec-s42, plan006-prolog-exec-s43-r3, plan006-prolog-exec-s44, plan006-prolog-sta-s42, plan006-prolog-sta-s43, plan006-prolog-sta-s44"
+
+table_plan:
+  - table_id: tab1_goodhart_landscape
+    caption: "Goodhart landscape: ISR-as-reward across dose and formulation. All eval on ProofWriter-FOL-100 via eval\\_sta.py."
+    placement: experiments
+    type: comparison
+    columns: [Condition, Formula, β, Seed, PR↑, ISR↑, H7%, H1%, Genuine%, Mode]
+    data_source: "registry: sta-phase0-baseline, plan001-exec-only-s42-r2, plan009-sft-baseline-s42-r4, plan002-additive-b01-s42, plan002-additive-b01-s43, plan002-additive-b01-s44, plan018-additive-random-b01-s42, plan018-additive-random-b01-s43-r2, plan018-additive-random-b01-s44, plan002-additive-b03-s42, plan017-additive-random-s42, plan013-random-reward-s42-r4"
+    notes: "Core table. Bold best genuine%. † marks tautological artifacts. * marks sampling eval."
+
+  - table_id: tab2_hacking_taxonomy
+    caption: "Hacking taxonomy: seven distinct modes across reward conditions. Rates are % of proved samples (s42 seed for FOL, all seeds for Prolog)."
+    placement: experiments
+    type: comparison
+    columns: [Mode, Description, "Exec-only", "ISR β=0.1", "Random β=0.1", "SFT"]
+    data_source: "registry: plan001-exec-only-s42-r2, plan002-additive-b01-s42, plan018-additive-random-b01-s42, plan009-sft-baseline-s42-r4, plan012-hacking-taxonomy"
+    notes: "s42 comparison (cleanest seed). Include mode descriptions in table."
+
+  - table_id: tab4_beta01_3seed
+    caption: "ISR β=0.1 vs Random β=0.1: 3-seed comparison. H7 is ISR-specific (64.5% vs 0%). Premise-count-matched ISR: 1.06×."
+    placement: experiments
+    type: comparison
+    columns: [Seed, Condition, PR, "ISR (proved)", H7%, H1%, Genuine%, "Prem-matched ISR"]
+    data_source: "registry: plan002-additive-b01-s42, plan002-additive-b01-s43, plan002-additive-b01-s44, plan018-additive-random-b01-s42, plan018-additive-random-b01-s43-r2, plan018-additive-random-b01-s44"
+    notes: "Key table for Claim 2. Include 3-seed mean±std row. Premise-matched column only for s42."
+
+  - table_id: tab5_prolog_crosslogic
+    caption: "Cross-logic diagnostic transfer: Prolog results. ISR detects degeneration across logic types."
+    placement: experiments
+    type: comparison
+    columns: [Logic, Condition, Seed, PR, ISR, "Proved-only ISR", H7%, Mode]
+    data_source: "registry: plan006-prolog-exec-s42, plan006-prolog-exec-s43-r3, plan006-prolog-exec-s44, plan006-prolog-sta-s42, plan006-prolog-sta-s43, plan006-prolog-sta-s44"
+    notes: "All 3-seed complete. 3/3 Goodhart, 0% genuine. Include FOL exec-only for comparison. Note classifier blind spots for s43/s44 (strict vs functional analysis)."
+
+  - table_id: tab6_setup
+    caption: "Experimental setup and hyperparameters."
+    placement: appendix
+    type: configuration
+    columns: [Parameter, Value]
+    data_source: "manual"
+    notes: "APPENDIX. Base model, training data, K, steps, seeds, solvers, eval dataset."
+
+literature_strategy:
+  citation_budget: 40
+  macro_context:
+    - "GRPO / RL for formal reasoning"
+    - "reward hacking and Goodhart's Law in LLM training"
+    - "neurosymbolic NL-to-logic formalization"
+    - "mutation testing and component analysis"
+  micro_clusters:
+    - cluster_name: neurosymbolic-rl
+      search_queries:
+        - "GRPO reinforcement learning logical reasoning 2024 2025"
+        - "neurosymbolic LLM formal logic prover"
+      must_cite:
+        - "deepseekmath (GRPO origin)"
+        - "mellgren-prolog-grpo"
+        - "logic-lm"
+        - "linc"
+        - "satlm"
+      target_count: 8
+    - cluster_name: reward-shaping
+      search_queries:
+        - "reward shaping process supervision LLM reasoning 2024 2025"
+        - "process reward model overoptimization"
+      must_cite:
+        - "lightman-verify-step"
+        - "gao-effective-rl-reward"
+        - "rlsf"
+      target_count: 8
+    - cluster_name: reward-hacking
+      search_queries:
+        - "reward hacking overoptimization RLHF 2024 2025"
+        - "specification gaming reinforcement learning"
+      must_cite:
+        - "gao-reward-overoptimization"
+        - "skalse-reward-hacking"
+        - "reward-hacking-survey"
+        - "spurious-rewards"
+      target_count: 6
+    - cluster_name: goodhart-overoptimization
+      search_queries:
+        - "Goodhart's Law reinforcement learning proxy reward"
+        - "reward model overoptimization scaling laws"
+      must_cite:
+        - "manheim-goodhart-taxonomy"
+        - "karwowski-goodhart-rl"
+        - "kwa-catastrophic-goodhart"
+        - "pan-reward-misspecification"
+      target_count: 6
+    - cluster_name: fol-formalization
+      search_queries:
+        - "first-order logic formalization LLM 2024 2025"
+        - "Prolog LLM reasoning"
+      must_cite:
+        - "folio"
+        - "proofwriter"
+        - "fover-pei2025"
+      target_count: 5
+    - cluster_name: mutation-testing
+      search_queries:
+        - "mutation testing component analysis software engineering"
+      must_cite:
+        - "demillo1978"
+        - "jia-harman-survey"
+      target_count: 4
+    - cluster_name: verification-reward
+      search_queries:
+        - "solver prover reward signal RL training 2024 2025"
+        - "formal verification LLM training"
+      must_cite:
+        - "deepseek-prover-v15"
+        - "math-shepherd"
+      target_count: 4
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - discussion
+  - abstract
+  - conclusion

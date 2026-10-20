@@ -1,0 +1,1 @@
+Random s43-r3 H7 subtypes: 36/36 H7a (text-match), 0 H7b. Multi-premise (single_premise_count=0). Exec-only s43 verification: 90/90 H7a, 0 H7b, all single-premise. D088 correction: H7a NOT additive-reward-specific. H7b confirmed ISR-specific. Remote: /root/solver-trace-ablation/analysis/d093_h7_subtype_analysis.json

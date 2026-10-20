@@ -1,0 +1,26 @@
+{
+  "exp_id": "d129-1.7b-isr-b01-s44",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:08:05.523Z",
+    "updated_at": "2026-05-17T22:14:15.635Z",
+    "hypothesis": "D129: 1.7B ISR β=0.1 s44 cross-scale replication — tests determinism of H1 fixed-template collapse mode observed in s42 at 1.7B scale",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 44,
+      "reward_mode": "additive_bonus",
+      "beta": 0.1,
+      "num_steps": 500,
+      "checkpoint_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s44",
+      "log_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s44.log"
+    }
+  },
+  "timestamp": "2026-05-17T22:14:15.958832+00:00",
+  "trigger": "update_registry"
+}

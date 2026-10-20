@@ -1,0 +1,84 @@
+{
+  "exp_id": "plan009-sft-baseline-s43-1000",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:28:46.064Z",
+    "updated_at": "2026-05-15T13:24:51.178Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000 --num_steps 1000 --seed 43 --no_wandb --gpu 0\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "352137",
+      "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s43-1000.log",
+      "submitted_at": "2026-05-15T12:48:13.521Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。",
+    "parent": "plan009-sft-baseline-s43",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "352137",
+    "log_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/checkpoint-1000/trainer_state.json",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000 --num_steps 1000 --seed 43 --no_wandb --gpu 0\"",
+      "finished_at": "2026-05-15T13:15:26.388Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T13:15:29.227018+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "prove_rate": 0.11,
+      "n_proved": 11,
+      "n_problems": 100,
+      "mean_isr": 0.0699,
+      "isr_std": 0.2155,
+      "median_isr": 0,
+      "proved_only_mean_isr": 0.6352,
+      "max_isr": 1,
+      "by_answer_type": {
+        "true": {
+          "count": 34,
+          "proved": 11,
+          "prove_rate": 0.3235,
+          "mean_isr": 0.2055
+        },
+        "false": {
+          "count": 25,
+          "proved": 0,
+          "prove_rate": 0,
+          "mean_isr": 0
+        },
+        "unknown": {
+          "count": 41,
+          "proved": 0,
+          "prove_rate": 0,
+          "mean_isr": 0
+        }
+      },
+      "train_loss_final": 0.0167,
+      "train_loss_avg": 0.1551,
+      "mean_token_accuracy": 0.9954,
+      "train_runtime_seconds": 1584.8,
+      "eval_runtime_seconds": 326.1
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/checkpoint-1000",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T13:24:51.371389+00:00",
+  "trigger": "update_registry"
+}

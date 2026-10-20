@@ -1,0 +1,1015 @@
+# analysis evidence chain status 20260514T150201 retry1
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_analysis_evidence-chain-status_20260514T150201_retry1.log`
+- **Structured JSON:** [`acf677524ca336728dd7.json`](../../sessions/ac/acf677524ca336728dd7.json)
+
+## Before a recorded user message
+
+20 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2e6e2e7d-9af3-49de-9274-2a7b0ecfde38",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778785200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2f39cefd-5fa2-4a56-8e0a-a846dcd0fd5f",
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "c9d8f8d3-151b-4889-84d1-4edead63f0f7",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Uv9etRH38jnRp9NX9ivduE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15947,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K8z9mhkLrraCexUHyknREM`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "21f30621-6da3-4e27-b845-ff70ff7404fb",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Uv9etRH38jnRp9NX9ivduE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15947,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T15:02:18.377Z_
+
+<details><summary>↩ Tool result · `toolu_01K8z9mhkLrraCexUHyknREM`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "3b9ad47a-34ea-4208-b90e-c4f04753a22c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GjJFwUg8cEaokCKaLtPG9G`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "e1bb1cae-c6cd-4037-8e53-f77afddce7e8",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01AmvT5XfpoQrUVUaGscgQqv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 17900,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17900
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29479
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T15:02:24.634Z_
+
+<details><summary>↩ Tool result · `toolu_01GjJFwUg8cEaokCKaLtPG9G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s43-r2\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-14T14:01:24.111Z\", \"updated_at\": \"2026-05-14T15:00:35.829Z\", \"hypothesis\": \"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\", \"parent\": \"plan018-additive-random-b01-s43\"}, \"plan018-additive-random-b01-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:18.722Z\", \"updated_at\": \"2026-05-14T15:00:09.178Z\", \"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\", \"parent\": \"plan018-additive-random-b01-s42\", \"metrics\": {\"prove_rate\": 0.89, \"mean_isr\": 0.0619, \"isr_std\": 0.1756, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0695, \"n_proved\": 89, \"n_problems\": 100, \"max_isr\": 1, \"min_isr\": 0, \"isr_pr_ratio\": 0.0695, \"isr_zero_count\": 72, \"isr_one_count\": 2, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 21, \"prove_rate\": 0.84, \"mean_isr\": 0.0533}, \"unknown\": {\"count\": 41, \"proved\": 40, \"prove_rate\": 0.976, \"mean_isr\": 0.0892}, \"true\": {\"count\": 34, \"proved\": 28, \"prove_rate\": 0.824, \"mean_isr\": 0.0353}}, \"elapsed_seconds\": 1012.7, \"eval_method\": \"eval_sta.py with Prover9Solver, FOL\"}, \"conclusion\": \"success\", \"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"}, \"plan009-sft-baseline-s42-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:40:28.142Z\", \"updated_at\": \"2026-05-14T14:22:57.766Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.\", \"parent\": \"plan009-sft-baseline-s42-r2\", \"notes\": \"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\", \"metrics\": {\"eval_prove_rate\": 0.14, \"eval_mean_isr\": 0.08, \"eval_isr_std\": 0.214, \"eval_median_isr\": 0, \"eval_max_isr\": 0.833, \"eval_proved_only_isr\": 0.571, \"eval_n_proved\": 14, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"train_final_loss\": 0.0287, \"train_token_accuracy\": 0.9935, \"train_epochs\": 7.94, \"train_runtime_sec\": 789.6, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 13, \"pr\": 0.382, \"isr\": 0.226}, \"unknown\": {\"count\": 41, \"proved\": 1, \"pr\": 0.024, \"isr\": 0.008}, \"false\": {\"count\": 25, \"proved\": 0, \"pr\": 0, \"isr\": 0}}, \"hacking_patterns\": \"none\", \"tautological_collapse\": false}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:51:58.328Z\", \"updated_at\": \"2026-05-14T14:20:43.363Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.\", \"conclusion\": \"killed\", \"notes\": \"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\"}, \"plan006-prolog-exec-s43-r3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T12:38:23.818Z\", \"updated_at\": \"2026-05-14T13:44:48.516Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。\", \"notes\": \"RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).\"}, \"plan006-prolog-exec-s44\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T07:13:35.647Z\", \"updated_at\": \"2026-05-14T13:44:46.914Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper.\", \"notes\": \"RUNNING on cuda:0, PID 479357. Config: configs/grpo_prolog_exec_only.yaml, seed=44, 500 steps. Model: Qwen3-4B. Data: in config yaml (不传 --data_path). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s44. warmup_ratio=0.0 (config default, 与 s42 一致).\"}, \"plan006-prolog-exec-s43-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T12:32:37.140Z\", \"updated_at\": \"2026-05-14T13:43:01.701Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.\", \"parent\": \"plan006-prolog-exec-s43\", \"conclusion\": \"failed\", \"notes\": \"OOM 诊断：非 batch size 问题。根因是 kill_job 只杀了 tmux 包装进程 (PID 587155)，训练子进程 587159/587160 残留在 cuda:1 上占 78.09 GiB 显存。s43-r2 启动时 cuda:1 仅剩 40 MiB free，首次前向传播即 OOM (尝试分配 48 MiB)。教训：kill_job 后必须 SSH 确认子进程也已终止（ps aux grep + nvidia-smi），不能只看 PID 返回成功。\"}, \"plan006-prolog-sta-s44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T09:19:39.743Z\", \"updated_at\": \"2026-05-14T12:34:35.309Z\", \"hypothesis\": \"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\", \"notes\": \"PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=44. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s44. 等 GPU 释放。\"}, \"plan006-prolog-sta-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T09:19:39.141Z\", \"updated_at\": \"2026-05-14T12:34:33.817Z\", \"hypothesis\": \"Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。\", \"notes\": \"PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=43. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s43. 等 GPU 释放。\"}, \"plan006-prolog-exec-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:13:34.169Z\", \"updated_at\": \"2026-05-14T12:33:17.845Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.\", \"notes\": \"Eval (eval_sta.py) 完成。PR=83%, mean_ISR=0.031, proved_only_ISR=0.037, H7=0%, H1=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比。exec-only 产生完全不同的 hacking 模式：ground fact enumeration（倾泻大量无关 ground facts，query 作为其中一个 fact 平凡成功），而非 sta-s42 的 tautological collapse。两种 reward signal 驱动两种不同的 hacking 策略。对论文是 positive finding：强化 Claim 1 且揭示 reward-specific hacking 机制。\", \"metrics\": {\"eval_prove_rate\": 0.83, \"eval_mean_isr\": 0.031, \"eval_proved_only_isr\": 0.037, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2, \"eval_isr_std\": 0.0534, \"h7_rate\": 0, \"h1_rate\": 0, \"isr_1_rate\": 0, \"single_premise_rate\": 0, \"by_answer_type\": {\"true\": {\"proved\": 37, \"count\": 40, \"pr\": 0.925, \"isr\": 0.037}, \"false\": {\"proved\": 21, \"count\": 29, \"pr\": 0.724, \"isr\": 0.038}, \"unknown\": {\"proved\": 25, \"count\": 31, \"pr\": 0.806, \"isr\": 0.016}}}, \"conclusion\": \"negative\"}, \"plan006-prolog-exec-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:13:35.078Z\", \"updated_at\": \"2026-05-14T12:32:13.799Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.\", \"notes\": \"KILLED at step 36/500: warmup_ratio=0.1 与 s42 (0.0) 不一致，3-seed 对比无效。重启为 plan006-prolog-exec-s43-r2 (warmup_ratio=0.0)。\", \"conclusion\": \"killed\"}, \"plan009-sft-baseline-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:37:49.306Z\", \"updated_at\": \"2026-05-14T11:48:05.087Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"parent\": \"plan009-sft-baseline-s42-r2\", \"wandb_run_id\": \"plan009-sft-s42-r3\", \"conclusion\": \"failed\", \"notes\": \"r3 crash root cause: wandb.init() failed because no W&B API key configured on server (no .netrc, no WANDB_API_KEY). Fix: add --no_wandb flag. Secondary issue: both GPUs currently near-full, need to wait for GPU availability before r4. Correct r4 command: export CUDA_VISIBLE_DEVICES=N && ... python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 --num_steps 500 --seed 42 --no_wandb\"}, \"plan009-sft-baseline-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:02:25.369Z\", \"updated_at\": \"2026-05-14T11:43:20.347Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"notes\": \"SFT baseline with Qwen3-4B (same model as GRPO experiments). Replaces killed plan009-sft-baseline-s42 which incorrectly used Qwen2.5-1.5B. cuda:1, seed=42, 500 steps, FOLIO data (data/train_500_seed42.jsonl). Dream 审稿三档均指出缺 SFT baseline 是 gap。**FAILED**: 两个问题：(1) W&B API key 未配置，trainer.train() 启动时 wandb callback 报 UsageError; (2) device_map='auto' 把模型分到多 GPU，需改为单卡绑定。修复方案：加 WANDB_MODE=disabled + 改 train_sft.py 的 device_map 为单卡。\", \"conclusion\": \"failed\"}, \"plan018-additive-random-b01-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:18.260Z\", \"updated_at\": \"2026-05-14T11:42:09.950Z\", \"hypothesis\": \"Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s43 下是否成立。\", \"parent\": \"plan018-additive-random-b01-s42\", \"conclusion\": \"failed\", \"notes\": \"Disk full (os error 28) at step 200/500 during checkpoint save. Training ran fine for 200 steps but safetensors serialization failed with \\\"No space left on device\\\". No checkpoint saved. Disk now has 109G free. Retryable as-is.\"}, \"plan006-prolog-sta-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:19:38.117Z\", \"updated_at\": \"2026-05-14T11:13:50.916Z\", \"hypothesis\": \"Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。\", \"notes\": \"训练：step ~100 饱和 (PR=1.0, ISR=1.0), completion 120→27 tokens, entropy→0.01。Eval：PR=50%, proved-only ISR=1.0, 100% proved 样本是 H7（单 clause=query，零推理）。50% 失败源于格式解析错误非策略差异。Prolog hacking 比 FOL 更极端（Prolog H7=100% vs FOL s42=16%）。Reviewer 确认：FOL源数据 + Prolog提示词 + Prolog reward 是正确设计（控制难度、隔离形式主义变量）。\", \"conclusion\": \"negative\", \"metrics\": {\"cumulative_prove_rate\": 0.848, \"cumulative_mean_isr\": 0.787, \"final_prove_rate\": 1, \"final_isr\": 1, \"final_reward\": 1, \"saturation_onset_step\": 100, \"train_loss\": 0.00716, \"training_hours\": 0.78, \"final_entropy\": 0.01, \"final_completion_length\": 27, \"initial_completion_length\": 120, \"steps_at_perfect_reward\": 400, \"train_runtime_sec\": 2791, \"eval_prove_rate\": 0.5, \"eval_mean_isr\": 0.5, \"eval_proved_only_isr\": 1, \"eval_h7_rate\": 1, \"eval_h7_count\": 50, \"eval_proved_count\": 50, \"eval_total_count\": 100, \"eval_n_clauses_mean\": 1, \"eval_isr_distribution\": \"binary: 50x0 + 50x1\"}}, \"plan002-additive-b01-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:17.298Z\", \"updated_at\": \"2026-05-14T10:12:40.545Z\", \"hypothesis\": \"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\", \"parent\": \"plan002-additive-b01-s42\", \"metrics\": {\"eval_prove_rate\": 0.89, \"eval_mean_isr\": 0.803, \"eval_isr_std\": 0.3418, \"eval_median_isr\": 1, \"component_count_mean\": 4.33, \"component_count_2_ratio\": 0.022, \"tautological_collapse\": false, \"isr_0_ratio\": 0.12, \"isr_1_ratio\": 0.73, \"proved_single_premise_ratio\": 1, \"h7_rate_calibrated\": 0.865, \"h7_definition\": \"single_premise AND premise==conclusion (normalized)\", \"hacking_mode\": \"conclusion_duplication_isr_inflation\", \"conclusion_embedding\": true, \"component_dist\": {\"2\": 2, \"4\": 54, \"5\": 33}, \"by_answer_type\": {\"false\": {\"n\": 25, \"proved\": 22, \"PR\": 0.88, \"ISR\": 0.824}, \"unknown\": {\"n\": 41, \"proved\": 38, \"PR\": 0.927, \"ISR\": 0.837}, \"true\": {\"n\": 34, \"proved\": 29, \"PR\": 0.853, \"ISR\": 0.747}}}, \"conclusion\": \"negative\", \"notes\": \"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\"}, \"plan002-additive-b01-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:16.367Z\", \"updated_at\": \"2026-05-14T10:12:36.502Z\", \"hypothesis\": \"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\", \"parent\": \"plan002-additive-b01-s42\", \"metrics\": {\"eval_prove_rate\": 0.61, \"eval_mean_isr\": 0.5063, \"eval_isr_std\": 0.4518, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.8301, \"component_count_mean\": 4.03, \"component_count_2_ratio\": 0, \"tautological_collapse\": false, \"isr_0_ratio\": 0.39, \"isr_1_ratio\": 0.656, \"proved_single_premise_ratio\": 1, \"h7_rate_calibrated\": 0.967, \"h7_definition\": \"single_premise AND premise==conclusion (normalized)\", \"hacking_mode\": \"conclusion_duplication_isr_inflation\", \"conclusion_embedding\": true, \"by_answer_type\": {\"false\": {\"n\": 25, \"proved\": 18, \"PR\": 0.72, \"ISR\": 0.6}, \"unknown\": {\"n\": 41, \"proved\": 22, \"PR\": 0.537, \"ISR\": 0.442}, \"true\": {\"n\": 34, \"proved\": 21, \"PR\": 0.618, \"ISR\": 0.515}}, \"train_total_steps\": 500, \"train_duration_min\": 53, \"train_loss\": 0.012}, \"conclusion\": \"negative\", \"notes\": \"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\"}, \"plan012-hacking-taxonomy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:06:38.613Z\", \"updated_at\": \"2026-05-14T09:07:42.314Z\", \"conclusion\": \"success\", \"hypothesis\": \"ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。\", \"metrics\": {\"isr_b01_genuine_rate\": 0.259, \"random_b01_genuine_rate\": 0.177, \"genuine_rate_delta_pp\": 8.2, \"isr_b01_conclusion_embedding_rate\": 0.728, \"random_b01_conclusion_embedding_rate\": 0.785, \"isr_b01_genuine_mean_isr\": 0.6723, \"random_b01_genuine_mean_isr\": 0.3427, \"isr_b01_complexity_wo_utility_rate\": 0, \"random_b01_complexity_wo_utility_rate\": 0.038, \"isr_b01_hacking_rate\": 0.741, \"random_b01_hacking_rate\": 0.823}, \"notes\": \"D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。\"}, \"plan018-additive-random-b01-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:55:48.888Z\", \"updated_at\": \"2026-05-14T08:32:44.808Z\", \"hypothesis\": \"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\", \"parent\": \"plan002-additive-b01-s42\", \"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.79, \"eval_mean_isr\": 0.1038, \"eval_isr_std\": 0.1369, \"eval_median_isr\": 0.0357, \"eval_proved_only_isr\": 0.1314, \"eval_n_proved\": 79, \"eval_n_problems\": 100, \"eval_component_count_mean\": 8.46, \"eval_component_count_median\": 8, \"eval_component_count_2_ratio\": 0, \"eval_isr_1_ratio\": 0, \"eval_isr_0_ratio\": 0.367, \"eval_isr_gt0_ratio\": 0.633, \"eval_by_type_false_pr\": 0.8, \"eval_by_type_false_isr\": 0.1318, \"eval_by_type_unknown_pr\": 0.7317, \"eval_by_type_unknown_isr\": 0.0944, \"eval_by_type_true_pr\": 0.8529, \"eval_by_type_true_isr\": 0.0945, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 70.5, \"train_last100_pr\": 0.805, \"train_last100_isr\": 0.1432, \"train_loss\": 0.005}, \"notes\": \"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- Median ISR: 0.036 vs plan002未记录\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\n- Tautological collapse: 无 (component_2_ratio=0)\\n\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\n\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\"}, \"plan002-additive-b01-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:29:08.138Z\", \"updated_at\": \"2026-05-14T08:32:21.912Z\", \"parent\": \"plan002-additive-b03-s42\", \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.81, \"eval_mean_isr\": 0.3365, \"eval_isr_std\": 0.3227, \"eval_proved_only_isr\": 0.4154, \"eval_median_isr\": 0.2, \"eval_n_proved\": 81, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 5.58, \"eval_component_count_2_ratio\": 0.037, \"eval_isr_1_ratio\": 0.124, \"eval_isr_0_ratio\": 0.037, \"eval_by_type_false_pr\": 0.88, \"eval_by_type_false_isr\": 0.3515, \"eval_by_type_unknown_pr\": 0.83, \"eval_by_type_unknown_isr\": 0.3684, \"eval_by_type_true_pr\": 0.74, \"eval_by_type_true_isr\": 0.2869, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 63, \"train_last100_pr\": 0.6875, \"train_last100_isr\": 0.1954, \"train_last100_loss\": 0.015}, \"notes\": \"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\"}, \"plan016-extended-1000-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:29:47.634Z\", \"updated_at\": \"2026-05-14T08:15:33.185Z\", \"hypothesis\": \"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？\", \"parent\": \"plan001-exec-only-s42-r2\", \"metrics\": {\"train\": {\"total_steps\": 1000, \"duration_min\": 146, \"final_prove_rate\": 0.8396, \"final_mean_isr\": 0.0503, \"train_loss\": 0.0125, \"epoch\": 4, \"windowed\": {\"steps_001_100\": {\"pr\": 0.19, \"isr\": 0.0859}, \"steps_101_200\": {\"pr\": 0.66, \"isr\": 0.1115}, \"steps_201_300\": {\"pr\": 0.838, \"isr\": 0.0985}, \"steps_301_400\": {\"pr\": 0.907, \"isr\": 0.054}, \"steps_401_500\": {\"pr\": 0.927, \"isr\": 0.0433}, \"steps_501_600\": {\"pr\": 0.963, \"isr\": 0.0408}, \"steps_601_700\": {\"pr\": 0.965, \"isr\": 0.02}, \"steps_701_800\": {\"pr\": 0.988, \"isr\": 0.0178}, \"steps_801_900\": {\"pr\": 0.978, \"isr\": 0.017}, \"steps_901_1000\": {\"pr\": 0.981, \"isr\": 0.0144}}}, \"eval\": {\"prove_rate\": 0.96, \"n_proved\": 96, \"n_problems\": 100, \"mean_isr\": 0.0027, \"isr_std\": 0.0118, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0028, \"min_isr\": 0, \"max_isr\": 0.0588, \"isr_0_ratio\": 0.9479, \"isr_1_ratio\": 0, \"component_count_mean\": 18.55, \"component_count_2_ratio\": 0, \"mean_n_necessary\": 0.052, \"n_necessary_0_ratio\": 0.9479, \"tautological_collapse\": false, \"by_answer_type\": {\"false\": {\"count\": 29, \"proved\": 26, \"prove_rate\": 0.8966, \"mean_isr\": 0}, \"unknown\": {\"count\": 31, \"proved\": 30, \"prove_rate\": 0.9677, \"mean_isr\": 0.0053}, \"true\": {\"count\": 40, \"proved\": 40, \"prove_rate\": 1, \"mean_isr\": 0.0026}}, \"eval_time_seconds\": 396.3}}, \"conclusion\": \"success\", \"notes\": \"Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\\\n\\\\n## 500 vs 1000 step comparison (eval_sta.py):\\\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\\\n|--------|-------------------|-----------------|--------|\\\\n| eval PR | 0.93 | 0.96 | +3.2% |\\\\n| eval ISR | 0.123 | 0.0027 | -97.8% |\\\\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\\\\n| components | 6.58 | 18.55 | +182% |\\\\n| ISR=0 ratio | - | 94.8% | - |\\\\n| n_necessary=0 ratio | - | 94.8% | - |\\\\n\\\\n## Key findings:\\\\n1. PR improves (+3%) but ISR collapses near-zero (0.0027). The model gets BETTER at proving while becoming WORSE at faithful reasoning.\\\\n2. Component count nearly tripled (6.58→18.55). Model generates longer proofs with more components, but 94.8% have ZERO necessary components.\\\\n3. NOT tautological collapse (comp=2 ratio=0). Instead: contradiction-based collapse — model embeds P(a) and ¬P(a) among many irrelevant premises, making anything provable via explosion.\\\\n4. Windowed ISR trend is monotonically decreasing: 0.1115 (101-200) → 0.0433 (401-500) → 0.0200 (601-700) → 0.0144 (901-1000). No recovery signal.\\\\n5. The exec-only reward creates a pure reward hacking incentive: the model discovers that contradictions + trivially true conclusions always satisfy the prover.\\\\n\\\\n## Implication for paper:\\\\nExtended training is a clean ablation showing exec-only reward's failure mode worsens over time. The 500-step ISR of 0.123 was not a floor — it was a snapshot of ongoing collapse.\"}, \"plan005-sta-low-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-14T06:31:05.119Z\", \"conclusion\": \"negative\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": {\"pr\": 0.6713, \"isr\": 0.1791}, \"301-400\": {\"pr\": 0.7013, \"isr\": 0.1984}, \"401-500\": {\"pr\": 0.7725, \"isr\": 0.2299}}}, \"notes\": \"conclusion=negative 基于 prove_rate 下降（last100 0.7725 vs exec-only 0.865）。但结构性发现：ISR/PR ratio=0.298，99/100 步 ISR &lt; PR，说明 STA=0.1 维持了 ISR 与 PR 的持续分离——模型未通过 hacking prove_rate 绕过 STA penalty。此观察支持论文 \\\"STA 抑制 reward hacking\\\" claim。windowed ISR/PR: 1-50 (0.51), 51-100 (0.47), 101-200 (0.29), 201-300 (0.27), 301-400 (0.28), 401-500 (0.30) — 分离在100步后稳定。D030 决策：checkpoint 已删除，不重训。论文用训练曲线 windowed ISR/PR 数据作为证据。\"}, \"plan001-exec-only-s43-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:40:37.808Z\", \"updated_at\": \"2026-05-14T06:30:57.539Z\", \"metrics\": {\"eval_sampling_prove_rate\": 0.14, \"eval_sampling_mean_isr\": 0, \"eval_sampling_n_proved\": 14, \"eval_sampling_temperature\": 0.7, \"eval_sampling_method\": \"do_sample=True, temperature=0.7\", \"eval_sampling_by_answer\": {\"true\": {\"count\": 34, \"proved\": 6, \"prove_rate\": 0.176}, \"false\": {\"count\": 25, \"proved\": 2, \"prove_rate\": 0.08}, \"unknown\": {\"count\": 41, \"proved\": 6, \"prove_rate\": 0.146}}}, \"conclusion\": \"negative\", \"notes\": \"训练 PR(last100)=0.883 但 eval PR=14% (sampling, T=0.7), ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。⚠️ 评估方法：sampling eval (T=0.7)，其他组用 eval_sta.py full STA。D029 决策：不重训，论文标注方法差异。PR=14% 是 failure case，eval 方法不影响结论。\"}, \"plan017-additive-random-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:11:14.694Z\", \"updated_at\": \"2026-05-14T05:33:25.603Z\", \"hypothesis\": \"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\", \"parent\": \"plan013-random-reward-s42-r4\", \"conclusion\": \"negative\", \"notes\": \"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\", \"metrics\": {\"eval_prove_rate\": 0.48, \"eval_mean_isr\": 0.0453, \"eval_isr_std\": 0.0759, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2857, \"eval_proved_only_isr\": 0.0943, \"eval_n_proved\": 48, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 9.6, \"eval_component_count_2_ratio\": 0, \"eval_isr_pr_ratio\": 0.0943, \"eval_elapsed_s\": 542.3, \"eval_by_type_false_pr\": 0.32, \"eval_by_type_false_isr\": 0.0254, \"eval_by_type_unknown_pr\": 0.51, \"eval_by_type_unknown_isr\": 0.0518, \"eval_by_type_true_pr\": 0.56, \"eval_by_type_true_isr\": 0.052, \"tautological_collapse\": false}}, \"plan001-exec-only-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:57:09.690Z\", \"updated_at\": \"2026-05-14T05:14:31.732Z\", \"hypothesis\": \"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\", \"metrics\": {\"eval_prove_rate\": 0.98, \"eval_mean_isr\": 0.57, \"eval_isr_std\": 0.2013, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5816, \"eval_n_proved\": 98, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 2.04, \"eval_component_count_2\": 94, \"eval_component_count_3\": 4, \"eval_by_type_false_pr\": 1, \"eval_by_type_false_isr\": 0.62, \"eval_by_type_unknown_pr\": 0.976, \"eval_by_type_unknown_isr\": 0.524, \"eval_by_type_true_pr\": 0.971, \"eval_by_type_true_isr\": 0.588, \"train_last100_pr\": 0.9988, \"train_last100_isr\": 0.5611, \"train_last100_loss\": 0.000419, \"train_duration_min\": 36.8, \"tautological_collapse\": true}, \"conclusion\": \"negative\", \"notes\": \"TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。\"}, \"plan014-downstream-nli-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:43:37.925Z\", \"updated_at\": \"2026-05-14T04:29:48.645Z\", \"hypothesis\": \"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\", \"notes\": \"Negative: ISR 作为 downstream NLI quality proxy 无效。Spearman ρ(ISR, correct)=-0.049 (p=0.187)，Best-of-N ISR 仅 +0.9pp over random (不显著)。主因：模型严重 true-bias (false accuracy=0%)，NLI accuracy 天花板仅 34.1%，ISR 无区分空间。ISR bucket 层面有弱单调趋势 (high=75% > mid=37.7% > low=32.7%) 但 high bucket 仅 12 样本。quartile 分析非单调。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 0.341, \"proved_rate\": 0.915, \"proved_count\": 732, \"total_generations\": 800, \"parse_errors\": 0, \"accuracy_by_label\": {\"true\": 0.912, \"false\": 0, \"unknown\": 0.076}, \"spearman_rho\": -0.049, \"spearman_p\": 0.187, \"mann_whitney_U\": 17202, \"mann_whitney_p\": 0.288, \"bon_isr_accuracy\": 0.35, \"bon_random_accuracy\": 0.341, \"bon_oracle_accuracy\": 0.44, \"bon_prove_first_accuracy\": 0.35, \"isr_bucket_high_acc\": 0.75, \"isr_bucket_mid_acc\": 0.377, \"isr_bucket_low_acc\": 0.327, \"runtime_inference_s\": 408.8, \"runtime_eval_s\": 13.6}}, \"plan002-additive-b03-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T04:27:38.822Z\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"first20_prove_rate\": 0.15625, \"last50_prove_rate\": 0.555, \"last100_prove_rate\": 0.5525, \"mean_loss\": 0.008914, \"last100_loss\": 0.014469, \"parse_rate\": 1, \"w1_50_prove_rate\": 0.13, \"w51_100_prove_rate\": 0.095, \"w101_200_prove_rate\": 0.185, \"w201_300_prove_rate\": 0.375, \"w301_400_prove_rate\": 0.47625, \"w401_500_prove_rate\": 0.5525, \"steps_ge_085\": 52, \"first_step_ge_085\": 46, \"final_prove_rate\": 1, \"final_isr_mean\": 0.3089, \"final_reward_mean\": 1.0927}, \"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\", \"conclusion\": \"negative\"}, \"plan013-random-reward-s42-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T03:45:53.344Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 1, \"eval_mean_isr\": 0.535, \"eval_isr_std\": 0.1282, \"eval_proved_only_isr\": 0.535, \"eval_median_isr\": 0.5, \"eval_n_proved\": 100, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_note\": \"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\"}, \"notes\": \"⚠️ 训练日志 ISR 为 binary approximation (_fast_fn)，ISR≈prove_rate，不含结构信息。真实 ISR 需通过 eval_sta.py (full STA) 在 checkpoint-500 上重新评估。final_mean_isr=0.6705 实为 binary 近似值，禁止用于论文或跨实验 ISR 对比。\"}, \"plan001-exec-only-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:40:41.773Z\", \"updated_at\": \"2026-05-14T03:45:49.703Z\", \"notes\": \"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\", \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.93, \"eval_mean_isr\": 0.1232, \"eval_isr_std\": 0.1887, \"eval_proved_only_isr\": 0.1324, \"eval_median_isr\": 0, \"eval_n_proved\": 93, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\"}}, \"plan001-exec-only-s43-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:02:31.830Z\", \"updated_at\": \"2026-05-14T01:41:28.427Z\", \"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:02:30.063Z\", \"updated_at\": \"2026-05-14T01:41:28.122Z\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s43-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:22:12.292Z\", \"updated_at\": \"2026-05-14T01:01:56.416Z\", \"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:22:10.140Z\", \"updated_at\": \"2026-05-14T01:01:55.694Z\", \"conclusion\": \"failed\"}, \"plan013-random-reward-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:56:44.062Z\", \"updated_at\": \"2026-05-14T00:21:05.430Z\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:55:08.635Z\", \"updated_at\": \"2026-05-14T00:21:04.003Z\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:19:41.568Z\", \"updated_at\": \"2026-05-13T23:03:42.892Z\", \"conclusion\": \"failed\"}, \"plan003-eval-exec-only-r5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:21:48.691Z\", \"updated_at\": \"2026-05-13T23:03:19.945Z\", \"metrics\": {\"prove_rate\": 0.32, \"mean_isr\": 0.2055, \"isr_std\": 0.3194, \"proved_only_isr\": 0.6423, \"isr_by_type\": {\"true\": 0.3598, \"false\": 0.1723, \"unknown\": 0.0979}, \"total_samples\": 100, \"proved_count\": 32, \"runtime_s\": 251.7}, \"conclusion\": \"success\"}, \"plan001-exec-only-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:42:40.242Z\", \"updated_at\": \"2026-05-13T23:03:11.395Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:54:31.353Z\", \"updated_at\": \"2026-05-13T22:20:41.274Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1, \"mean_isr\": 0.04347, \"last20_prove_rate\": 0.15, \"last20_isr_mean\": 0.04956, \"first20_prove_rate\": 0.08125, \"first20_isr_mean\": 0.05182, \"overall_reward_mean\": 0.07174, \"last20_reward_mean\": 0.09978, \"training_steps\": 100, \"training_minutes\": 16.9, \"step_time_s\": 10.13, \"isr_pr_ratio_overall\": 0.43, \"isr_pr_ratio_last20\": 0.33, \"K\": 8}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:54:27.505Z\", \"updated_at\": \"2026-05-13T21:53:04.486Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_prove_rate\": 0.11875, \"first20_isr_mean\": 0.11875, \"overall_reward_mean\": 0.15125, \"last20_reward_mean\": 0.2, \"training_steps\": 100, \"training_minutes\": 15.7, \"step_time_s\": 9.44, \"isr_pr_ratio_last20\": 1, \"K\": 8}, \"conclusion\": \"success\"}, \"sta-phase1-exec-sta-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:28:22.778Z\", \"updated_at\": \"2026-05-13T20:52:58.761Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1575, \"mean_isr\": 0.1525, \"last20_prove_rate\": 0.2125, \"last20_isr_mean\": 0.2125, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\", \"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，exec+STA reward ≈ exec-only reward。连续 ISR 才能产生有意义的差异信号。→ r5 改用 full sta_reward (continuous ISR 0.0-1.0) + K=8\"}, \"sta-phase1-exec-only-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:28:18.040Z\", \"updated_at\": \"2026-05-13T20:52:56.416Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\", \"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，导致 exec+STA ≈ exec-only。prove_rate 从 baseline 12% → last20 20%（微弱提升）。K=4 导致大量全零 reward batch。→ r5 改用 full STA + K=8\"}, \"sta-phase1-exec-only-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:15:04.067Z\", \"updated_at\": \"2026-05-13T20:23:15.460Z\", \"conclusion\": \"failed\", \"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~276s. 同 sta-phase1-exec-sta-r3 一起诊断中\"}, \"sta-phase1-exec-sta-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:15:08.133Z\", \"updated_at\": \"2026-05-13T20:23:14.516Z\", \"conclusion\": \"failed\", \"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~278s. 诊断中: worker_diagnose_sta-phase1-r3-oom_20260513T202300\"}, \"sta-phase1-exec-sta-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:55:08.640Z\", \"updated_at\": \"2026-05-13T19:55:41.544Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-only-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:55:04.711Z\", \"updated_at\": \"2026-05-13T19:55:37.426Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-sta\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T18:26:53.258Z\", \"updated_at\": \"2026-05-13T19:33:03.905Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T18:26:46.351Z\", \"updated_at\": \"2026-05-13T19:33:01.169Z\", \"conclusion\": \"failed\"}, \"sta-gt-isr-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T18:11:13.283Z\", \"updated_at\": \"2026-05-13T18:12:44.147Z\", \"conclusion\": \"success\", \"metrics\": {\"gt_prove_rate\": 0.18, \"gt_mean_isr\": 0.5588, \"gt_isr_std\": 0.2582, \"gt_isr_median\": 0.6125, \"solver_execution_rate\": 1, \"true_prove_rate\": 0.5, \"true_mean_isr\": 0.5833}}, \"sta-phase0-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:51:48.853Z\", \"updated_at\": \"2026-05-13T18:10:40.982Z\", \"metrics\": {\"mean_isr\": 0.0641, \"isr_std\": 0.1983, \"median_isr\": 0, \"isr_range\": [0, 0.889], \"prove_rate\": 0.12, \"proved_count\": 12, \"total_samples\": 100, \"xor_affected_samples\": 34, \"effective_prove_rate_no_xor\": 0.182, \"avg_time_per_sample_s\": 3.4, \"total_runtime_s\": 336, \"isr_by_answer\": {\"true\": {\"n\": 34, \"proved\": 9, \"prove_rate\": 0.265, \"mean_isr\": 0.1345}, \"false\": {\"n\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.024}, \"unknown\": {\"n\": 41, \"proved\": 2, \"prove_rate\": 0.049, \"mean_isr\": 0.0302}}}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1959}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "3e5770fe-5290-4fd7-82df-aef21904215d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-14T14:01:24.111Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:00:35.829Z\\\", \\\"hypothesis\\\": \\\"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\\\", \\\"parent\\\": \\\"plan018-additive-random-b01-s43\\\"}, \\\"plan018-additive-random-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:36:18.722Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:00:09.178Z\\\", \\\"hypothesis\\\": \\\"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\\\", \\\"parent\\\": \\\"plan018-additive-random-b01-s42\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.89, \\\"mean_isr\\\": 0.0619, \\\"isr_std\\\": 0.1756, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.0695, \\\"n_proved\\\": 89, \\\"n_problems\\\": 100, \\\"max_isr\\\": 1, \\\"min_isr\\\": 0, \\\"isr_pr_ratio\\\": 0.0695, \\\"isr_zero_count\\\": 72, \\\"isr_one_count\\\": 2, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 21, \\\"prove_rate\\\": 0.84, \\\"mean_isr\\\": 0.0533}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 40, \\\"prove_rate\\\": 0.976, \\\"mean_isr\\\": 0.0892}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 28, \\\"prove_rate\\\": 0.824, \\\"mean_isr\\\": 0.0353}}, \\\"elapsed_seconds\\\": 1012.7, \\\"eval_method\\\": \\\"eval_sta.py with Prover9Solver, FOL\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T11:40:28.142Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:22:57.766Z\\\", \\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s42-r2\\\", \\\"notes\\\": \\\"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.14, \\\"eval_mean_isr\\\": 0.08, \\\"eval_isr_std\\\": 0.214, \\\"eval_median_isr\\\": 0, \\\"eval_max_isr\\\": 0.833, \\\"eval_proved_only_isr\\\": 0.571, \\\"eval_n_proved\\\": 14, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"train_final_loss\\\": 0.0287, \\\"train_token_accuracy\\\": 0.9935, \\\"train_epochs\\\": 7.94, \\\"train_runtime_sec\\\": 789.6, \\\"by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 13, \\\"pr\\\": 0.382, \\\"isr\\\": 0.226}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 1, \\\"pr\\\": 0.024, \\\"isr\\\": 0.008}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 0, \\\"pr\\\": 0, \\\"isr\\\": 0}}, \\\"hacking_patterns\\\": \\\"none\\\", \\\"tautological_collapse\\\": false}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:51:58.328Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:20:43.363Z\\\", \\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\\\"}, \\\"plan006-prolog-exec-s43-r3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T12:38:23.818Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:48.516Z\\\", \\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。\\\", \\\"notes\\\": \\\"RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).\\\"}, \\\"plan006-prolog-exec-s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T07:13:35.647Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:46.914Z\\\", \\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper.\\\", \\\"notes\\\": \\\"RUNNING on cuda:0, PID 479357. Config: configs/grpo_prolog_exec_only.yaml, seed=44, 500 steps. Model: Qwen3-4B. Data: in config yaml (不传 --data_path). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s44. warmup_ratio=0.0 (config default, 与 s42 一致).\\\"}, \\\"plan006-prolog-exec-s43-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T12:32:37.140Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:43:01.701Z\\\", \\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.\\\", \\\"parent\\\": \\\"plan006-prolog-exec-s43\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"OOM 诊断：非 batch size 问题。根因是 kill_job 只杀了 tmux 包装进程 (PID 587155)，训练子进程 587159/587160 残留在 cuda:1 上占 78.09 GiB 显存。s43-r2 启动时 cuda:1 仅剩 40 MiB free，首次前向传播即 OOM (尝试分配 48 MiB)。教训：kill_job 后必须 SSH 确认子进程也已终止（ps aux grep + nvidia-smi），不能只看 PID 返回成功。\\\"}, \\\"plan006-prolog-sta-s44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T09:19:39.743Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:34:35.309Z\\\", \\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\\\", \\\"notes\\\": \\\"PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=44. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s44. 等 GPU 释放。\\\"}, \\\"plan006-prolog-sta-s43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T09:19:39.141Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:34:33.817Z\\\", \\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。\\\", \\\"notes\\\": \\\"PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=43. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s43. 等 GPU 释放。\\\"}, \\\"plan006-prolog-exec-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:13:34.169Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:33:17.845Z\\\", \\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.\\\", \\\"notes\\\": \\\"Eval (eval_sta.py) 完成。PR=83%, mean_ISR=0.031, proved_only_ISR=0.037, H7=0%, H1=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比。exec-only 产生完全不同的 hacking 模式：ground fact enumeration（倾泻大量无关 ground facts，query 作为其中一个 fact 平凡成功），而非 sta-s42 的 tautological collapse。两种 reward signal 驱动两种不同的 hacking 策略。对论文是 positive finding：强化 Claim 1 且揭示 reward-specific hacking 机制。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.83, \\\"eval_mean_isr\\\": 0.031, \\\"eval_proved_only_isr\\\": 0.037, \\\"eval_median_isr\\\": 0, \\\"eval_max_isr\\\": 0.2, \\\"eval_isr_std\\\": 0.0534, \\\"h7_rate\\\": 0, \\\"h1_rate\\\": 0, \\\"isr_1_rate\\\": 0, \\\"single_premise_rate\\\": 0, \\\"by_answer_type\\\": {\\\"true\\\": {\\\"proved\\\": 37, \\\"count\\\": 40, \\\"pr\\\": 0.925, \\\"isr\\\": 0.037}, \\\"false\\\": {\\\"proved\\\": 21, \\\"count\\\": 29, \\\"pr\\\": 0.724, \\\"isr\\\": 0.038}, \\\"unknown\\\": {\\\"proved\\\": 25, \\\"count\\\": 31, \\\"pr\\\": 0.806, \\\"isr\\\": 0.016}}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan006-prolog-exec-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:13:35.078Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:32:13.799Z\\\", \\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.\\\", \\\"notes\\\": \\\"KILLED at step 36/500: warmup_ratio=0.1 与 s42 (0.0) 不一致，3-seed 对比无效。重启为 plan006-prolog-exec-s43-r2 (warmup_ratio=0.0)。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan009-sft-baseline-s42-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T11:37:49.306Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:48:05.087Z\\\", \\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s42-r2\\\", \\\"wandb_run_id\\\": \\\"plan009-sft-s42-r3\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"r3 crash root cause: wandb.init() failed because no W&B API key configured on server (no .netrc, no WANDB_API_KEY). Fix: add --no_wandb flag. Secondary issue: both GPUs currently near-full, need to wait for GPU availability before r4. Correct r4 command: export CUDA_VISIBLE_DEVICES=N && ... python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 --num_steps 500 --seed 42 --no_wandb\\\"}, \\\"plan009-sft-baseline-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T11:02:25.369Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:43:20.347Z\\\", \\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\\\", \\\"notes\\\": \\\"SFT baseline with Qwen3-4B (same model as GRPO experiments). Replaces killed plan009-sft-baseline-s42 which incorrectly used Qwen2.5-1.5B. cuda:1, seed=42, 500 steps, FOLIO data (data/train_500_seed42.jsonl). Dream 审稿三档均指出缺 SFT baseline 是 gap。**FAILED**: 两个问题：(1) W&B API key 未配置，trainer.train() 启动时 wandb callback 报 UsageError; (2) device_map='auto' 把模型分到多 GPU，需改为单卡绑定。修复方案：加 WANDB_MODE=disabled + 改 train_sft.py 的 device_map 为单卡。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan018-additive-random-b01-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:36:18.260Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:42:09.950Z\\\", \\\"hypothesis\\\": \\\"Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s43 下是否成立。\\\", \\\"parent\\\": \\\"plan018-additive-random-b01-s42\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Disk full (os error 28) at step 200/500 during checkpoint save. Training ran fine for 200 steps but safetensors serialization failed with \\\\\\\"No space left on device\\\\\\\". No checkpoint saved. Disk now has 109G free. Retryable as-is.\\\"}, \\\"plan006-prolog-sta-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T09:19:38.117Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:13:50.916Z\\\", \\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。\\\", \\\"notes\\\": \\\"训练：step ~100 饱和 (PR=1.0, ISR=1.0), completion 120→27 tokens, entropy→0.01。Eval：PR=50%, proved-only ISR=1.0, 100% proved 样本是 H7（单 clause=query，零推理）。50% 失败源于格式解析错误非策略差异。Prolog hacking 比 FOL 更极端（Prolog H7=100% vs FOL s42=16%）。Reviewer 确认：FOL源数据 + Prolog提示词 + Prolog reward 是正确设计（控制难度、隔离形式主义变量）。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"cumulative_prove_rate\\\": 0.848, \\\"cumulative_mean_isr\\\": 0.787, \\\"final_prove_rate\\\": 1, \\\"final_isr\\\": 1, \\\"final_reward\\\": 1, \\\"saturation_onset_step\\\": 100, \\\"train_loss\\\": 0.00716, \\\"training_hours\\\": 0.78, \\\"final_entropy\\\": 0.01, \\\"final_completion_length\\\": 27, \\\"initial_completion_length\\\": 120, \\\"steps_at_perfect_reward\\\": 400, \\\"train_runtime_sec\\\": 2791, \\\"eval_prove_rate\\\": 0.5, \\\"eval_mean_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 1, \\\"eval_h7_rate\\\": 1, \\\"eval_h7_count\\\": 50, \\\"eval_proved_count\\\": 50, \\\"eval_total_count\\\": 100, \\\"eval_n_clauses_mean\\\": 1, \\\"eval_isr_distribution\\\": \\\"binary: 50x0 + 50x1\\\"}}, \\\"plan002-additive-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:36:17.298Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:12:40.545Z\\\", \\\"hypothesis\\\": \\\"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\\\", \\\"parent\\\": \\\"plan002-additive-b01-s42\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.89, \\\"eval_mean_isr\\\": 0.803, \\\"eval_isr_std\\\": 0.3418, \\\"eval_median_isr\\\": 1, \\\"component_count_mean\\\": 4.33, \\\"component_count_2_ratio\\\": 0.022, \\\"tautological_collapse\\\": false, \\\"isr_0_ratio\\\": 0.12, \\\"isr_1_ratio\\\": 0.73, \\\"proved_single_premise_ratio\\\": 1, \\\"h7_rate_calibrated\\\": 0.865, \\\"h7_definition\\\": \\\"single_premise AND premise==conclusion (normalized)\\\", \\\"hacking_mode\\\": \\\"conclusion_duplication_isr_inflation\\\", \\\"conclusion_embedding\\\": true, \\\"component_dist\\\": {\\\"2\\\": 2, \\\"4\\\": 54, \\\"5\\\": 33}, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"n\\\": 25, \\\"proved\\\": 22, \\\"PR\\\": 0.88, \\\"ISR\\\": 0.824}, \\\"unknown\\\": {\\\"n\\\": 41, \\\"proved\\\": 38, \\\"PR\\\": 0.927, \\\"ISR\\\": 0.837}, \\\"true\\\": {\\\"n\\\": 34, \\\"proved\\\": 29, \\\"PR\\\": 0.853, \\\"ISR\\\": 0.747}}}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\\\"}, \\\"plan002-additive-b01-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:36:16.367Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:12:36.502Z\\\", \\\"hypothesis\\\": \\\"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\\\", \\\"parent\\\": \\\"plan002-additive-b01-s42\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.61, \\\"eval_mean_isr\\\": 0.5063, \\\"eval_isr_std\\\": 0.4518, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.8301, \\\"component_count_mean\\\": 4.03, \\\"component_count_2_ratio\\\": 0, \\\"tautological_collapse\\\": false, \\\"isr_0_ratio\\\": 0.39, \\\"isr_1_ratio\\\": 0.656, \\\"proved_single_premise_ratio\\\": 1, \\\"h7_rate_calibrated\\\": 0.967, \\\"h7_definition\\\": \\\"single_premise AND premise==conclusion (normalized)\\\", \\\"hacking_mode\\\": \\\"conclusion_duplication_isr_inflation\\\", \\\"conclusion_embedding\\\": true, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"n\\\": 25, \\\"proved\\\": 18, \\\"PR\\\": 0.72, \\\"ISR\\\": 0.6}, \\\"unknown\\\": {\\\"n\\\": 41, \\\"proved\\\": 22, \\\"PR\\\": 0.537, \\\"ISR\\\": 0.442}, \\\"true\\\": {\\\"n\\\": 34, \\\"proved\\\": 21, \\\"PR\\\": 0.618, \\\"ISR\\\": 0.515}}, \\\"train_total_steps\\\": 500, \\\"train_duration_min\\\": 53, \\\"train_loss\\\": 0.012}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\\\"}, \\\"plan012-hacking-taxonomy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T09:06:38.613Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:07:42.314Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。\\\", \\\"metrics\\\": {\\\"isr_b01_genuine_rate\\\": 0.259, \\\"random_b01_genuine_rate\\\": 0.177, \\\"genuine_rate_delta_pp\\\": 8.2, \\\"isr_b01_conclusion_embedding_rate\\\": 0.728, \\\"random_b01_conclusion_embedding_rate\\\": 0.785, \\\"isr_b01_genuine_mean_isr\\\": 0.6723, \\\"random_b01_genuine_mean_isr\\\": 0.3427, \\\"isr_b01_complexity_wo_utility_rate\\\": 0, \\\"random_b01_complexity_wo_utility_rate\\\": 0.038, \\\"isr_b01_hacking_rate\\\": 0.741, \\\"random_b01_hacking_rate\\\": 0.823}, \\\"notes\\\": \\\"D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。\\\"}, \\\"plan018-additive-random-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:55:48.888Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:32:44.808Z\\\", \\\"hypothesis\\\": \\\"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\\\", \\\"parent\\\": \\\"plan002-additive-b01-s42\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.79, \\\"eval_mean_isr\\\": 0.1038, \\\"eval_isr_std\\\": 0.1369, \\\"eval_median_isr\\\": 0.0357, \\\"eval_proved_only_isr\\\": 0.1314, \\\"eval_n_proved\\\": 79, \\\"eval_n_problems\\\": 100, \\\"eval_component_count_mean\\\": 8.46, \\\"eval_component_count_median\\\": 8, \\\"eval_component_count_2_ratio\\\": 0, \\\"eval_isr_1_ratio\\\": 0, \\\"eval_isr_0_ratio\\\": 0.367, \\\"eval_isr_gt0_ratio\\\": 0.633, \\\"eval_by_type_false_pr\\\": 0.8, \\\"eval_by_type_false_isr\\\": 0.1318, \\\"eval_by_type_unknown_pr\\\": 0.7317, \\\"eval_by_type_unknown_isr\\\": 0.0944, \\\"eval_by_type_true_pr\\\": 0.8529, \\\"eval_by_type_true_isr\\\": 0.0945, \\\"tautological_collapse\\\": false, \\\"train_total_steps\\\": 500, \\\"train_duration_min\\\": 70.5, \\\"train_last100_pr\\\": 0.805, \\\"train_last100_isr\\\": 0.1432, \\\"train_loss\\\": 0.005}, \\\"notes\\\": \\\"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\\\n\\\\n对比 plan002-b01 (ISR β=0.1):\\\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\\\n- Median ISR: 0.036 vs plan002未记录\\\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\\\n- Tautological collapse: 无 (component_2_ratio=0)\\\\n\\\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\\\n\\\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\\\"}, \\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:29:08.138Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:32:21.912Z\\\", \\\"parent\\\": \\\"plan002-additive-b03-s42\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.81, \\\"eval_mean_isr\\\": 0.3365, \\\"eval_isr_std\\\": 0.3227, \\\"eval_proved_only_isr\\\": 0.4154, \\\"eval_median_isr\\\": 0.2, \\\"eval_n_proved\\\": 81, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 5.58, \\\"eval_component_count_2_ratio\\\": 0.037, \\\"eval_isr_1_ratio\\\": 0.124, \\\"eval_isr_0_ratio\\\": 0.037, \\\"eval_by_type_false_pr\\\": 0.88, \\\"eval_by_type_false_isr\\\": 0.3515, \\\"eval_by_type_unknown_pr\\\": 0.83, \\\"eval_by_type_unknown_isr\\\": 0.3684, \\\"eval_by_type_true_pr\\\": 0.74, \\\"eval_by_type_true_isr\\\": 0.2869, \\\"tautological_collapse\\\": false, \\\"train_total_steps\\\": 500, \\\"train_duration_min\\\": 63, \\\"train_last100_pr\\\": 0.6875, \\\"train_last100_isr\\\": 0.1954, \\\"train_last100_loss\\\": 0.015}, \\\"notes\\\": \\\"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\\\"}, \\\"plan016-extended-1000-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:29:47.634Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:15:33.185Z\\\", \\\"hypothesis\\\": \\\"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？\\\", \\\"parent\\\": \\\"plan001-exec-only-s42-r2\\\", \\\"metrics\\\": {\\\"train\\\": {\\\"total_steps\\\": 1000, \\\"duration_min\\\": 146, \\\"final_prove_rate\\\": 0.8396, \\\"final_mean_isr\\\": 0.0503, \\\"train_loss\\\": 0.0125, \\\"epoch\\\": 4, \\\"windowed\\\": {\\\"steps_001_100\\\": {\\\"pr\\\": 0.19, \\\"isr\\\": 0.0859}, \\\"steps_101_200\\\": {\\\"pr\\\": 0.66, \\\"isr\\\": 0.1115}, \\\"steps_201_300\\\": {\\\"pr\\\": 0.838, \\\"isr\\\": 0.0985}, \\\"steps_301_400\\\": {\\\"pr\\\": 0.907, \\\"isr\\\": 0.054}, \\\"steps_401_500\\\": {\\\"pr\\\": 0.927, \\\"isr\\\": 0.0433}, \\\"steps_501_600\\\": {\\\"pr\\\": 0.963, \\\"isr\\\": 0.0408}, \\\"steps_601_700\\\": {\\\"pr\\\": 0.965, \\\"isr\\\": 0.02}, \\\"steps_701_800\\\": {\\\"pr\\\": 0.988, \\\"isr\\\": 0.0178}, \\\"steps_801_900\\\": {\\\"pr\\\": 0.978, \\\"isr\\\": 0.017}, \\\"steps_901_1000\\\": {\\\"pr\\\": 0.981, \\\"isr\\\": 0.0144}}}, \\\"eval\\\": {\\\"prove_rate\\\": 0.96, \\\"n_proved\\\": 96, \\\"n_problems\\\": 100, \\\"mean_isr\\\": 0.0027, \\\"isr_std\\\": 0.0118, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.0028, \\\"min_isr\\\": 0, \\\"max_isr\\\": 0.0588, \\\"isr_0_ratio\\\": 0.9479, \\\"isr_1_ratio\\\": 0, \\\"component_count_mean\\\": 18.55, \\\"component_count_2_ratio\\\": 0, \\\"mean_n_necessary\\\": 0.052, \\\"n_necessary_0_ratio\\\": 0.9479, \\\"tautological_collapse\\\": false, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 29, \\\"proved\\\": 26, \\\"prove_rate\\\": 0.8966, \\\"mean_isr\\\": 0}, \\\"unknown\\\": {\\\"count\\\": 31, \\\"proved\\\": 30, \\\"prove_rate\\\": 0.9677, \\\"mean_isr\\\": 0.0053}, \\\"true\\\": {\\\"count\\\": 40, \\\"proved\\\": 40, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.0026}}, \\\"eval_time_seconds\\\": 396.3}}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\\\\\\\n\\\\\\\\n## 500 vs 1000 step comparison (eval_sta.py):\\\\\\\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\\\\\\\n|--------|-------------------|-----------------|--------|\\\\\\\\n| eval PR | 0.93 | 0.96 | +3.2% |\\\\\\\\n| eval ISR | 0.123 | 0.0027 | -97.8% |\\\\\\\\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\\\\\\\\n| components | 6.58 | 18.55 | +182% |\\\\\\\\n| ISR=0 ratio | - | 94.8% | - |\\\\\\\\n| n_necessary=0 ratio | - | 94.8% | - |\\\\\\\\n\\\\\\\\n## Key findings:\\\\\\\\n1. PR improves (+3%) but ISR collapses near-zero (0.0027). The model gets BETTER at proving while becoming WORSE at faithful reasoning.\\\\\\\\n2. Component count nearly tripled (6.58→18.55). Model generates longer proofs with more components, but 94.8% have ZERO necessary components.\\\\\\\\n3. NOT tautological collapse (comp=2 ratio=0). Instead: contradiction-based collapse — model embeds P(a) and ¬P(a) among many irrelevant premises, making anything provable via explosion.\\\\\\\\n4. Windowed ISR trend is monotonically decreasing: 0.1115 (101-200) → 0.0433 (401-500) → 0.0200 (601-700) → 0.0144 (901-1000). No recovery signal.\\\\\\\\n5. The exec-only reward creates a pure reward hacking incentive: the model discovers that contradictions + trivially true conclusions always satisfy the prover.\\\\\\\\n\\\\\\\\n## Implication for paper:\\\\\\\\nExtended training is a clean ablation showing exec-only reward's failure mode worsens over time. The 500-step ISR of 0.123 was not a floor — it was a snapshot of ongoing collapse.\\\"}, \\\"plan005-sta-low-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:20:47.812Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:31:05.119Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 71, \\\"parse_rate\\\": 1, \\\"overall_prove_rate\\\": 0.5657, \\\"overall_isr\\\": 0.1682, \\\"last50_prove_rate\\\": 0.77, \\\"last50_isr\\\": 0.2559, \\\"last100_prove_rate\\\": 0.7725, \\\"last100_isr\\\": 0.2299, \\\"last100_loss\\\": 0.022752, \\\"overall_loss\\\": 0.017296, \\\"last100_isr_pr_ratio\\\": 0.298, \\\"last100_isr_lt_pr_count\\\": \\\"99/100\\\", \\\"first_rolling10_pr_ge_0.8\\\": 178, \\\"first_rolling10_pr_ge_0.9\\\": 439, \\\"max_rolling10_pr\\\": 0.9375, \\\"max_rolling10_isr\\\": 0.3282, \\\"windowed\\\": {\\\"1-50\\\": {\\\"pr\\\": 0.1775, \\\"isr\\\": 0.0906}, \\\"51-100\\\": {\\\"pr\\\": 0.1775, \\\"isr\\\": 0.0835}, \\\"101-200\\\": {\\\"pr\\\": 0.5062, \\\"isr\\\": 0.1463}, \\\"201-300\\\": {\\\"pr\\\": 0.6713, \\\"isr\\\": 0.1791}, \\\"301-400\\\": {\\\"pr\\\": 0.7013, \\\"isr\\\": 0.1984}, \\\"401-500\\\": {\\\"pr\\\": 0.7725, \\\"isr\\\": 0.2299}}}, \\\"notes\\\": \\\"conclusion=negative 基于 prove_rate 下降（last100 0.7725 vs exec-only 0.865）。但结构性发现：ISR/PR ratio=0.298，99/100 步 ISR &lt; PR，说明 STA=0.1 维持了 ISR 与 PR 的持续分离——模型未通过 hacking prove_rate 绕过 STA penalty。此观察支持论文 \\\\\\\"STA 抑制 reward hacking\\\\\\\" claim。windowed ISR/PR: 1-50 (0.51), 51-100 (0.47), 101-200 (0.29), 201-300 (0.27), 301-400 (0.28), 401-500 (0.30) — 分离在100步后稳定。D030 决策：checkpoint 已删除，不重训。论文用训练曲线 windowed ISR/PR 数据作为证据。\\\"}, \\\"plan001-exec-only-s43-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T01:40:37.808Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:30:57.539Z\\\", \\\"metrics\\\": {\\\"eval_sampling_prove_rate\\\": 0.14, \\\"eval_sampling_mean_isr\\\": 0, \\\"eval_sampling_n_proved\\\": 14, \\\"eval_sampling_temperature\\\": 0.7, \\\"eval_sampling_method\\\": \\\"do_sample=True, temperature=0.7\\\", \\\"eval_sampling_by_answer\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.176}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 2, \\\"prove_rate\\\": 0.08}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.146}}}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"训练 PR(last100)=0.883 但 eval PR=14% (sampling, T=0.7), ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。⚠️ 评估方法：sampling eval (T=0.7)，其他组用 eval_sta.py full STA。D029 决策：不重训，论文标注方法差异。PR=14% 是 failure case，eval 方法不影响结论。\\\"}, \\\"plan017-additive-random-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T03:11:14.694Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:33:25.603Z\\\", \\\"hypothesis\\\": \\\"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\\\", \\\"parent\\\": \\\"plan013-random-reward-s42-r4\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.48, \\\"eval_mean_isr\\\": 0.0453, \\\"eval_isr_std\\\": 0.0759, \\\"eval_median_isr\\\": 0, \\\"eval_max_isr\\\": 0.2857, \\\"eval_proved_only_isr\\\": 0.0943, \\\"eval_n_proved\\\": 48, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 9.6, \\\"eval_component_count_2_ratio\\\": 0, \\\"eval_isr_pr_ratio\\\": 0.0943, \\\"eval_elapsed_s\\\": 542.3, \\\"eval_by_type_false_pr\\\": 0.32, \\\"eval_by_type_false_isr\\\": 0.0254, \\\"eval_by_type_unknown_pr\\\": 0.51, \\\"eval_by_type_unknown_isr\\\": 0.0518, \\\"eval_by_type_true_pr\\\": 0.56, \\\"eval_by_type_true_isr\\\": 0.052, \\\"tautological_collapse\\\": false}}, \\\"plan001-exec-only-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T03:57:09.690Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:14:31.732Z\\\", \\\"hypothesis\\\": \\\"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.98, \\\"eval_mean_isr\\\": 0.57, \\\"eval_isr_std\\\": 0.2013, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5816, \\\"eval_n_proved\\\": 98, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 2.04, \\\"eval_component_count_2\\\": 94, \\\"eval_component_count_3\\\": 4, \\\"eval_by_type_false_pr\\\": 1, \\\"eval_by_type_false_isr\\\": 0.62, \\\"eval_by_type_unknown_pr\\\": 0.976, \\\"eval_by_type_unknown_isr\\\": 0.524, \\\"eval_by_type_true_pr\\\": 0.971, \\\"eval_by_type_true_isr\\\": 0.588, \\\"train_last100_pr\\\": 0.9988, \\\"train_last100_isr\\\": 0.5611, \\\"train_last100_loss\\\": 0.000419, \\\"train_duration_min\\\": 36.8, \\\"tautological_collapse\\\": true}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。\\\"}, \\\"plan014-downstream-nli-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T03:43:37.925Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:29:48.645Z\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\\\", \\\"notes\\\": \\\"Negative: ISR 作为 downstream NLI quality proxy 无效。Spearman ρ(ISR, correct)=-0.049 (p=0.187)，Best-of-N ISR 仅 +0.9pp over random (不显著)。主因：模型严重 true-bias (false accuracy=0%)，NLI accuracy 天花板仅 34.1%，ISR 无区分空间。ISR bucket 层面有弱单调趋势 (high=75% > mid=37.7% > low=32.7%) 但 high bucket 仅 12 样本。quartile 分析非单调。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"overall_accuracy\\\": 0.341, \\\"proved_rate\\\": 0.915, \\\"proved_count\\\": 732, \\\"total_generations\\\": 800, \\\"parse_errors\\\": 0, \\\"accuracy_by_label\\\": {\\\"true\\\": 0.912, \\\"false\\\": 0, \\\"unknown\\\": 0.076}, \\\"spearman_rho\\\": -0.049, \\\"spearman_p\\\": 0.187, \\\"mann_whitney_U\\\": 17202, \\\"mann_whitney_p\\\": 0.288, \\\"bon_isr_accuracy\\\": 0.35, \\\"bon_random_accuracy\\\": 0.341, \\\"bon_oracle_accuracy\\\": 0.44, \\\"bon_prove_first_accuracy\\\": 0.35, \\\"isr_bucket_high_acc\\\": 0.75, \\\"isr_bucket_mid_acc\\\": 0.377, \\\"isr_bucket_low_acc\\\": 0.327, \\\"runtime_inference_s\\\": 408.8, \\\"runtime_eval_s\\\": 13.6}}, \\\"plan002-additive-b03-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:27:38.822Z\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan013-random-reward-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T01:40:35.587Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:45:53.344Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 1, \\\"eval_mean_isr\\\": 0.535, \\\"eval_isr_std\\\": 0.1282, \\\"eval_proved_only_isr\\\": 0.535, \\\"eval_median_isr\\\": 0.5, \\\"eval_n_proved\\\": 100, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_note\\\": \\\"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\\\"}, \\\"notes\\\": \\\"⚠️ 训练日志 ISR 为 binary approximation (_fast_fn)，ISR≈prove_rate，不含结构信息。真实 ISR 需通过 eval_sta.py (full STA) 在 checkpoint-500 上重新评估。final_mean_isr=0.6705 实为 binary 近似值，禁止用于论文或跨实验 ISR 对比。\\\"}, \\\"plan001-exec-only-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:40:41.773Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:45:49.703Z\\\", \\\"notes\\\": \\\"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.93, \\\"eval_mean_isr\\\": 0.1232, \\\"eval_isr_std\\\": 0.1887, \\\"eval_proved_only_isr\\\": 0.1324, \\\"eval_median_isr\\\": 0, \\\"eval_n_proved\\\": 93, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\"}}, \\\"plan001-exec-only-s43-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T01:02:31.830Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:41:28.427Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan013-random-reward-s42-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T01:02:30.063Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:41:28.122Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan001-exec-only-s43-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T00:22:12.292Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:01:56.416Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan013-random-reward-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T00:22:10.140Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:01:55.694Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan013-random-reward-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T23:56:44.062Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:21:05.430Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan001-exec-only-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T23:55:08.635Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:21:04.003Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan001-exec-only-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:19:41.568Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:03:42.892Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan003-eval-exec-only-r5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:21:48.691Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:03:19.945Z\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.32, \\\"mean_isr\\\": 0.2055, \\\"isr_std\\\": 0.3194, \\\"proved_only_isr\\\": 0.6423, \\\"isr_by_type\\\": {\\\"true\\\": 0.3598, \\\"false\\\": 0.1723, \\\"unknown\\\": 0.0979}, \\\"total_samples\\\": 100, \\\"proved_count\\\": 32, \\\"runtime_s\\\": 251.7}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan001-exec-only-s42-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:42:40.242Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:03:11.395Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-sta-r5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T20:54:31.353Z\\\", \\\"updated_at\\\": \\\"2026-05-13T22:20:41.274Z\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.1, \\\"mean_isr\\\": 0.04347, \\\"last20_prove_rate\\\": 0.15, \\\"last20_isr_mean\\\": 0.04956, \\\"first20_prove_rate\\\": 0.08125, \\\"first20_isr_mean\\\": 0.05182, \\\"overall_reward_mean\\\": 0.07174, \\\"last20_reward_mean\\\": 0.09978, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 16.9, \\\"step_time_s\\\": 10.13, \\\"isr_pr_ratio_overall\\\": 0.43, \\\"isr_pr_ratio_last20\\\": 0.33, \\\"K\\\": 8}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"sta-phase1-exec-only-r5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T20:54:27.505Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:53:04.486Z\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.15125, \\\"mean_isr\\\": 0.1475, \\\"last20_prove_rate\\\": 0.2, \\\"last20_isr_mean\\\": 0.2, \\\"first20_prove_rate\\\": 0.11875, \\\"first20_isr_mean\\\": 0.11875, \\\"overall_reward_mean\\\": 0.15125, \\\"last20_reward_mean\\\": 0.2, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 15.7, \\\"step_time_s\\\": 9.44, \\\"isr_pr_ratio_last20\\\": 1, \\\"K\\\": 8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"sta-phase1-exec-sta-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T20:28:22.778Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:52:58.761Z\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.1575, \\\"mean_isr\\\": 0.1525, \\\"last20_prove_rate\\\": 0.2125, \\\"last20_isr_mean\\\": 0.2125, \\\"first20_reward_mean\\\": 0.119, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 15}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，exec+STA reward ≈ exec-only reward。连续 ISR 才能产生有意义的差异信号。→ r5 改用 full sta_reward (continuous ISR 0.0-1.0) + K=8\\\"}, \\\"sta-phase1-exec-only-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T20:28:18.040Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:52:56.416Z\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.15125, \\\"mean_isr\\\": 0.1475, \\\"last20_prove_rate\\\": 0.2, \\\"last20_isr_mean\\\": 0.2, \\\"first20_reward_mean\\\": 0.119, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 15}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，导致 exec+STA ≈ exec-only。prove_rate 从 baseline 12% → last20 20%（微弱提升）。K=4 导致大量全零 reward batch。→ r5 改用 full STA + K=8\\\"}, \\\"sta-phase1-exec-only-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T20:15:04.067Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:23:15.460Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"EXIT_CODE=137 (OOM/SIGKILL) after ~276s. 同 sta-phase1-exec-sta-r3 一起诊断中\\\"}, \\\"sta-phase1-exec-sta-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T20:15:08.133Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:23:14.516Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"EXIT_CODE=137 (OOM/SIGKILL) after ~278s. 诊断中: worker_diagnose_sta-phase1-r3-oom_20260513T202300\\\"}, \\\"sta-phase1-exec-sta-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T19:55:08.640Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:55:41.544Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-only-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T19:55:04.711Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:55:37.426Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-sta\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T18:26:53.258Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:33:03.905Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T18:26:46.351Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:33:01.169Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-gt-isr-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T18:11:13.283Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:12:44.147Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gt_prove_rate\\\": 0.18, \\\"gt_mean_isr\\\": 0.5588, \\\"gt_isr_std\\\": 0.2582, \\\"gt_isr_median\\\": 0.6125, \\\"solver_execution_rate\\\": 1, \\\"true_prove_rate\\\": 0.5, \\\"true_mean_isr\\\": 0.5833}}, \\\"sta-phase0-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T17:51:48.853Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:10:40.982Z\\\", \\\"metrics\\\": {\\\"mean_isr\\\": 0.0641, \\\"isr_std\\\": 0.1983, \\\"median_isr\\\": 0, \\\"isr_range\\\": [0, 0.889], \\\"prove_rate\\\": 0.12, \\\"proved_count\\\": 12, \\\"total_samples\\\": 100, \\\"xor_affected_samples\\\": 34, \\\"effective_prove_rate_no_xor\\\": 0.182, \\\"avg_time_per_sample_s\\\": 3.4, \\\"total_runtime_s\\\": 336, \\\"isr_by_answer\\\": {\\\"true\\\": {\\\"n\\\": 34, \\\"proved\\\": 9, \\\"prove_rate\\\": 0.265, \\\"mean_isr\\\": 0.1345}, \\\"false\\\": {\\\"n\\\": 25, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.04, \\\"mean_isr\\\": 0.024}, \\\"unknown\\\": {\\\"n\\\": 41, \\\"proved\\\": 2, \\\"prove_rate\\\": 0.049, \\\"mean_isr\\\": 0.0302}}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 50, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1959}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s43-r2\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-14T14:01:24.111Z\", \"updated_at\": \"2026-05-14T15:00:35.829Z\", \"hypothesis\": \"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\", \"parent\": \"plan018-additive-random-b01-s43\"}, \"plan018-additive-random-b01-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:18.722Z\", \"updated_at\": \"2026-05-14T15:00:09.178Z\", \"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\", \"parent\": \"plan018-additive-random-b01-s42\", \"metrics\": {\"prove_rate\": 0.89, \"mean_isr\": 0.0619, \"isr_std\": 0.1756, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0695, \"n_proved\": 89, \"n_problems\": 100, \"max_isr\": 1, \"min_isr\": 0, \"isr_pr_ratio\": 0.0695, \"isr_zero_count\": 72, \"isr_one_count\": 2, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 21, \"prove_rate\": 0.84, \"mean_isr\": 0.0533}, \"unknown\": {\"count\": 41, \"proved\": 40, \"prove_rate\": 0.976, \"mean_isr\": 0.0892}, \"true\": {\"count\": 34, \"proved\": 28, \"prove_rate\": 0.824, \"mean_isr\": 0.0353}}, \"elapsed_seconds\": 1012.7, \"eval_method\": \"eval_sta.py with Prover9Solver, FOL\"}, \"conclusion\": \"success\", \"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"}, \"plan009-sft-baseline-s42-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:40:28.142Z\", \"updated_at\": \"2026-05-14T14:22:57.766Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.\", \"parent\": \"plan009-sft-baseline-s42-r2\", \"notes\": \"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\", \"metrics\": {\"eval_prove_rate\": 0.14, \"eval_mean_isr\": 0.08, \"eval_isr_std\": 0.214, \"eval_median_isr\": 0, \"eval_max_isr\": 0.833, \"eval_proved_only_isr\": 0.571, \"eval_n_proved\": 14, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"train_final_loss\": 0.0287, \"train_token_accuracy\": 0.9935, \"train_epochs\": 7.94, \"train_runtime_sec\": 789.6, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 13, \"pr\": 0.382, \"isr\": 0.226}, \"unknown\": {\"count\": 41, \"proved\": 1, \"pr\": 0.024, \"isr\": 0.008}, \"false\": {\"count\": 25, \"proved\": 0, \"pr\": 0, \"isr\": 0}}, \"hacking_patterns\": \"none\", \"tautological_collapse\": false}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:51:58.328Z\", \"updated_at\": \"2026-05-14T14:20:43.363Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.\", \"conclusion\": \"killed\", \"notes\": \"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\"}, \"plan006-prolog-exec-s43-r3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T12:38:23.818Z\", \"updated_at\": \"2026-05-14T13:44:48.516Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。\", \"notes\": \"RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).\"}, \"plan006-prolog-exec-s44\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T07:13:35.647Z\", \"updated_at\": \"2026-05-14T13:44:46.914Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper.\", \"notes\": \"RUNNING on cuda:0, PID 479357. Config: configs/grpo_prolog_exec_only.yaml, seed=44, 500 steps. Model: Qwen3-4B. Data: in config yaml (不传 --data_path). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s44. warmup_ratio=0.0 (config default, 与 s42 一致).\"}, \"plan006-prolog-exec-s43-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T12:32:37.140Z\", \"updated_at\": \"2026-05-14T13:43:01.701Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.\", \"parent\": \"plan006-prolog-exec-s43\", \"conclusion\": \"failed\", \"notes\": \"OOM 诊断：非 batch size 问题。根因是 kill_job 只杀了 tmux 包装进程 (PID 587155)，训练子进程 587159/587160 残留在 cuda:1 上占 78.09 GiB 显存。s43-r2 启动时 cuda:1 仅剩 40 MiB free，首次前向传播即 OOM (尝试分配 48 MiB)。教训：kill_job 后必须 SSH 确认子进程也已终止（ps aux grep + nvidia-smi），不能只看 PID 返回成功。\"}, \"plan006-prolog-sta-s44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T09:19:39.743Z\", \"updated_at\": \"2026-05-14T12:34:35.309Z\", \"hypothesis\": \"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\", \"notes\": \"PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=44. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s44. 等 GPU 释放。\"}, \"plan006-prolog-sta-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T09:19:39.141Z\", \"updated_at\": \"2026-05-14T12:34:33.817Z\", \"hypothesis\": \"Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。\", \"notes\": \"PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=43. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s43. 等 GPU 释放。\"}, \"plan006-prolog-exec-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:13:34.169Z\", \"updated_at\": \"2026-05-14T12:33:17.845Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.\", \"notes\": \"Eval (eval_sta.py) 完成。PR=83%, mean_ISR=0.031, proved_only_ISR=0.037, H7=0%, H1=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比。exec-only 产生完全不同的 hacking 模式：ground fact enumeration（倾泻大量无关 ground facts，query 作为其中一个 fact 平凡成功），而非 sta-s42 的 tautological collapse。两种 reward signal 驱动两种不同的 hacking 策略。对论文是 positive finding：强化 Claim 1 且揭示 reward-specific hacking 机制。\", \"metrics\": {\"eval_prove_rate\": 0.83, \"eval_mean_isr\": 0.031, \"eval_proved_only_isr\": 0.037, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2, \"eval_isr_std\": 0.0534, \"h7_rate\": 0, \"h1_rate\": 0, \"isr_1_rate\": 0, \"single_premise_rate\": 0, \"by_answer_type\": {\"true\": {\"proved\": 37, \"count\": 40, \"pr\": 0.925, \"isr\": 0.037}, \"false\": {\"proved\": 21, \"count\": 29, \"pr\": 0.724, \"isr\": 0.038}, \"unknown\": {\"proved\": 25, \"count\": 31, \"pr\": 0.806, \"isr\": 0.016}}}, \"conclusion\": \"negative\"}, \"plan006-prolog-exec-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:13:35.078Z\", \"updated_at\": \"2026-05-14T12:32:13.799Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.\", \"notes\": \"KILLED at step 36/500: warmup_ratio=0.1 与 s42 (0.0) 不一致，3-seed 对比无效。重启为 plan006-prolog-exec-s43-r2 (warmup_ratio=0.0)。\", \"conclusion\": \"killed\"}, \"plan009-sft-baseline-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:37:49.306Z\", \"updated_at\": \"2026-05-14T11:48:05.087Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"parent\": \"plan009-sft-baseline-s42-r2\", \"wandb_run_id\": \"plan009-sft-s42-r3\", \"conclusion\": \"failed\", \"notes\": \"r3 crash root cause: wandb.init() failed because no W&B API key configured on server (no .netrc, no WANDB_API_KEY). Fix: add --no_wandb flag. Secondary issue: both GPUs currently near-full, need to wait for GPU availability before r4. Correct r4 command: export CUDA_VISIBLE_DEVICES=N && ... python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 --num_steps 500 --seed 42 --no_wandb\"}, \"plan009-sft-baseline-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:02:25.369Z\", \"updated_at\": \"2026-05-14T11:43:20.347Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"notes\": \"SFT baseline with Qwen3-4B (same model as GRPO experiments). Replaces killed plan009-sft-baseline-s42 which incorrectly used Qwen2.5-1.5B. cuda:1, seed=42, 500 steps, FOLIO data (data/train_500_seed42.jsonl). Dream 审稿三档均指出缺 SFT baseline 是 gap。**FAILED**: 两个问题：(1) W&B API key 未配置，trainer.train() 启动时 wandb callback 报 UsageError; (2) device_map='auto' 把模型分到多 GPU，需改为单卡绑定。修复方案：加 WANDB_MODE=disabled + 改 train_sft.py 的 device_map 为单卡。\", \"conclusion\": \"failed\"}, \"plan018-additive-random-b01-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:18.260Z\", \"updated_at\": \"2026-05-14T11:42:09.950Z\", \"hypothesis\": \"Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s43 下是否成立。\", \"parent\": \"plan018-additive-random-b01-s42\", \"conclusion\": \"failed\", \"notes\": \"Disk full (os error 28) at step 200/500 during checkpoint save. Training ran fine for 200 steps but safetensors serialization failed with \\\"No space left on device\\\". No checkpoint saved. Disk now has 109G free. Retryable as-is.\"}, \"plan006-prolog-sta-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:19:38.117Z\", \"updated_at\": \"2026-05-14T11:13:50.916Z\", \"hypothesis\": \"Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。\", \"notes\": \"训练：step ~100 饱和 (PR=1.0, ISR=1.0), completion 120→27 tokens, entropy→0.01。Eval：PR=50%, proved-only ISR=1.0, 100% proved 样本是 H7（单 clause=query，零推理）。50% 失败源于格式解析错误非策略差异。Prolog hacking 比 FOL 更极端（Prolog H7=100% vs FOL s42=16%）。Reviewer 确认：FOL源数据 + Prolog提示词 + Prolog reward 是正确设计（控制难度、隔离形式主义变量）。\", \"conclusion\": \"negative\", \"metrics\": {\"cumulative_prove_rate\": 0.848, \"cumulative_mean_isr\": 0.787, \"final_prove_rate\": 1, \"final_isr\": 1, \"final_reward\": 1, \"saturation_onset_step\": 100, \"train_loss\": 0.00716, \"training_hours\": 0.78, \"final_entropy\": 0.01, \"final_completion_length\": 27, \"initial_completion_length\": 120, \"steps_at_perfect_reward\": 400, \"train_runtime_sec\": 2791, \"eval_prove_rate\": 0.5, \"eval_mean_isr\": 0.5, \"eval_proved_only_isr\": 1, \"eval_h7_rate\": 1, \"eval_h7_count\": 50, \"eval_proved_count\": 50, \"eval_total_count\": 100, \"eval_n_clauses_mean\": 1, \"eval_isr_distribution\": \"binary: 50x0 + 50x1\"}}, \"plan002-additive-b01-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:17.298Z\", \"updated_at\": \"2026-05-14T10:12:40.545Z\", \"hypothesis\": \"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\", \"parent\": \"plan002-additive-b01-s42\", \"metrics\": {\"eval_prove_rate\": 0.89, \"eval_mean_isr\": 0.803, \"eval_isr_std\": 0.3418, \"eval_median_isr\": 1, \"component_count_mean\": 4.33, \"component_count_2_ratio\": 0.022, \"tautological_collapse\": false, \"isr_0_ratio\": 0.12, \"isr_1_ratio\": 0.73, \"proved_single_premise_ratio\": 1, \"h7_rate_calibrated\": 0.865, \"h7_definition\": \"single_premise AND premise==conclusion (normalized)\", \"hacking_mode\": \"conclusion_duplication_isr_inflation\", \"conclusion_embedding\": true, \"component_dist\": {\"2\": 2, \"4\": 54, \"5\": 33}, \"by_answer_type\": {\"false\": {\"n\": 25, \"proved\": 22, \"PR\": 0.88, \"ISR\": 0.824}, \"unknown\": {\"n\": 41, \"proved\": 38, \"PR\": 0.927, \"ISR\": 0.837}, \"true\": {\"n\": 34, \"proved\": 29, \"PR\": 0.853, \"ISR\": 0.747}}}, \"conclusion\": \"negative\", \"notes\": \"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\"}, \"plan002-additive-b01-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:16.367Z\", \"updated_at\": \"2026-05-14T10:12:36.502Z\", \"hypothesis\": \"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\", \"parent\": \"plan002-additive-b01-s42\", \"metrics\": {\"eval_prove_rate\": 0.61, \"eval_mean_isr\": 0.5063, \"eval_isr_std\": 0.4518, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.8301, \"component_count_mean\": 4.03, \"component_count_2_ratio\": 0, \"tautological_collapse\": false, \"isr_0_ratio\": 0.39, \"isr_1_ratio\": 0.656, \"proved_single_premise_ratio\": 1, \"h7_rate_calibrated\": 0.967, \"h7_definition\": \"single_premise AND premise==conclusion (normalized)\", \"hacking_mode\": \"conclusion_duplication_isr_inflation\", \"conclusion_embedding\": true, \"by_answer_type\": {\"false\": {\"n\": 25, \"proved\": 18, \"PR\": 0.72, \"ISR\": 0.6}, \"unknown\": {\"n\": 41, \"proved\": 22, \"PR\": 0.537, \"ISR\": 0.442}, \"true\": {\"n\": 34, \"proved\": 21, \"PR\": 0.618, \"ISR\": 0.515}}, \"train_total_steps\": 500, \"train_duration_min\": 53, \"train_loss\": 0.012}, \"conclusion\": \"negative\", \"notes\": \"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\"}, \"plan012-hacking-taxonomy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:06:38.613Z\", \"updated_at\": \"2026-05-14T09:07:42.314Z\", \"conclusion\": \"success\", \"hypothesis\": \"ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。\", \"metrics\": {\"isr_b01_genuine_rate\": 0.259, \"random_b01_genuine_rate\": 0.177, \"genuine_rate_delta_pp\": 8.2, \"isr_b01_conclusion_embedding_rate\": 0.728, \"random_b01_conclusion_embedding_rate\": 0.785, \"isr_b01_genuine_mean_isr\": 0.6723, \"random_b01_genuine_mean_isr\": 0.3427, \"isr_b01_complexity_wo_utility_rate\": 0, \"random_b01_complexity_wo_utility_rate\": 0.038, \"isr_b01_hacking_rate\": 0.741, \"random_b01_hacking_rate\": 0.823}, \"notes\": \"D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。\"}, \"plan018-additive-random-b01-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:55:48.888Z\", \"updated_at\": \"2026-05-14T08:32:44.808Z\", \"hypothesis\": \"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\", \"parent\": \"plan002-additive-b01-s42\", \"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.79, \"eval_mean_isr\": 0.1038, \"eval_isr_std\": 0.1369, \"eval_median_isr\": 0.0357, \"eval_proved_only_isr\": 0.1314, \"eval_n_proved\": 79, \"eval_n_problems\": 100, \"eval_component_count_mean\": 8.46, \"eval_component_count_median\": 8, \"eval_component_count_2_ratio\": 0, \"eval_isr_1_ratio\": 0, \"eval_isr_0_ratio\": 0.367, \"eval_isr_gt0_ratio\": 0.633, \"eval_by_type_false_pr\": 0.8, \"eval_by_type_false_isr\": 0.1318, \"eval_by_type_unknown_pr\": 0.7317, \"eval_by_type_unknown_isr\": 0.0944, \"eval_by_type_true_pr\": 0.8529, \"eval_by_type_true_isr\": 0.0945, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 70.5, \"train_last100_pr\": 0.805, \"train_last100_isr\": 0.1432, \"train_loss\": 0.005}, \"notes\": \"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- Median ISR: 0.036 vs plan002未记录\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\n- Tautological collapse: 无 (component_2_ratio=0)\\n\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\n\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\"}, \"plan002-additive-b01-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:29:08.138Z\", \"updated_at\": \"2026-05-14T08:32:21.912Z\", \"parent\": \"plan002-additive-b03-s42\", \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.81, \"eval_mean_isr\": 0.3365, \"eval_isr_std\": 0.3227, \"eval_proved_only_isr\": 0.4154, \"eval_median_isr\": 0.2, \"eval_n_proved\": 81, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 5.58, \"eval_component_count_2_ratio\": 0.037, \"eval_isr_1_ratio\": 0.124, \"eval_isr_0_ratio\": 0.037, \"eval_by_type_false_pr\": 0.88, \"eval_by_type_false_isr\": 0.3515, \"eval_by_type_unknown_pr\": 0.83, \"eval_by_type_unknown_isr\": 0.3684, \"eval_by_type_true_pr\": 0.74, \"eval_by_type_true_isr\": 0.2869, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 63, \"train_last100_pr\": 0.6875, \"train_last100_isr\": 0.1954, \"train_last100_loss\": 0.015}, \"notes\": \"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\"}, \"plan016-extended-1000-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:29:47.634Z\", \"updated_at\": \"2026-05-14T08:15:33.185Z\", \"hypothesis\": \"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？\", \"parent\": \"plan001-exec-only-s42-r2\", \"metrics\": {\"train\": {\"total_steps\": 1000, \"duration_min\": 146, \"final_prove_rate\": 0.8396, \"final_mean_isr\": 0.0503, \"train_loss\": 0.0125, \"epoch\": 4, \"windowed\": {\"steps_001_100\": {\"pr\": 0.19, \"isr\": 0.0859}, \"steps_101_200\": {\"pr\": 0.66, \"isr\": 0.1115}, \"steps_201_300\": {\"pr\": 0.838, \"isr\": 0.0985}, \"steps_301_400\": {\"pr\": 0.907, \"isr\": 0.054}, \"steps_401_500\": {\"pr\": 0.927, \"isr\": 0.0433}, \"steps_501_600\": {\"pr\": 0.963, \"isr\": 0.0408}, \"steps_601_700\": {\"pr\": 0.965, \"isr\": 0.02}, \"steps_701_800\": {\"pr\": 0.988, \"isr\": 0.0178}, \"steps_801_900\": {\"pr\": 0.978, \"isr\": 0.017}, \"steps_901_1000\": {\"pr\": 0.981, \"isr\": 0.0144}}}, \"eval\": {\"prove_rate\": 0.96, \"n_proved\": 96, \"n_problems\": 100, \"mean_isr\": 0.0027, \"isr_std\": 0.0118, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0028, \"min_isr\": 0, \"max_isr\": 0.0588, \"isr_0_ratio\": 0.9479, \"isr_1_ratio\": 0, \"component_count_mean\": 18.55, \"component_count_2_ratio\": 0, \"mean_n_necessary\": 0.052, \"n_necessary_0_ratio\": 0.9479, \"tautological_collapse\": false, \"by_answer_type\": {\"false\": {\"count\": 29, \"proved\": 26, \"prove_rate\": 0.8966, \"mean_isr\": 0}, \"unknown\": {\"count\": 31, \"proved\": 30, \"prove_rate\": 0.9677, \"mean_isr\": 0.0053}, \"true\": {\"count\": 40, \"proved\": 40, \"prove_rate\": 1, \"mean_isr\": 0.0026}}, \"eval_time_seconds\": 396.3}}, \"conclusion\": \"success\", \"notes\": \"Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\\\n\\\\n## 500 vs 1000 step comparison (eval_sta.py):\\\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\\\n|--------|-------------------|-----------------|--------|\\\\n| eval PR | 0.93 | 0.96 | +3.2% |\\\\n| eval ISR | 0.123 | 0.0027 | -97.8% |\\\\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\\\\n| components | 6.58 | 18.55 | +182% |\\\\n| ISR=0 ratio | - | 94.8% | - |\\\\n| n_necessary=0 ratio | - | 94.8% | - |\\\\n\\\\n## Key findings:\\\\n1. PR improves (+3%) but ISR collapses near-zero (0.0027). The model gets BETTER at proving while becoming WORSE at faithful reasoning.\\\\n2. Component count nearly tripled (6.58→18.55). Model generates longer proofs with more components, but 94.8% have ZERO necessary components.\\\\n3. NOT tautological collapse (comp=2 ratio=0). Instead: contradiction-based collapse — model embeds P(a) and ¬P(a) among many irrelevant premises, making anything provable via explosion.\\\\n4. Windowed ISR trend is monotonically decreasing: 0.1115 (101-200) → 0.0433 (401-500) → 0.0200 (601-700) → 0.0144 (901-1000). No recovery signal.\\\\n5. The exec-only reward creates a pure reward hacking incentive: the model discovers that contradictions + trivially true conclusions always satisfy the prover.\\\\n\\\\n## Implication for paper:\\\\nExtended training is a clean ablation showing exec-only reward's failure mode worsens over time. The 500-step ISR of 0.123 was not a floor — it was a snapshot of ongoing collapse.\"}, \"plan005-sta-low-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-14T06:31:05.119Z\", \"conclusion\": \"negative\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": {\"pr\": 0.6713, \"isr\": 0.1791}, \"301-400\": {\"pr\": 0.7013, \"isr\": 0.1984}, \"401-500\": {\"pr\": 0.7725, \"isr\": 0.2299}}}, \"notes\": \"conclusion=negative 基于 prove_rate 下降（last100 0.7725 vs exec-only 0.865）。但结构性发现：ISR/PR ratio=0.298，99/100 步 ISR &lt; PR，说明 STA=0.1 维持了 ISR 与 PR 的持续分离——模型未通过 hacking prove_rate 绕过 STA penalty。此观察支持论文 \\\"STA 抑制 reward hacking\\\" claim。windowed ISR/PR: 1-50 (0.51), 51-100 (0.47), 101-200 (0.29), 201-300 (0.27), 301-400 (0.28), 401-500 (0.30) — 分离在100步后稳定。D030 决策：checkpoint 已删除，不重训。论文用训练曲线 windowed ISR/PR 数据作为证据。\"}, \"plan001-exec-only-s43-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:40:37.808Z\", \"updated_at\": \"2026-05-14T06:30:57.539Z\", \"metrics\": {\"eval_sampling_prove_rate\": 0.14, \"eval_sampling_mean_isr\": 0, \"eval_sampling_n_proved\": 14, \"eval_sampling_temperature\": 0.7, \"eval_sampling_method\": \"do_sample=True, temperature=0.7\", \"eval_sampling_by_answer\": {\"true\": {\"count\": 34, \"proved\": 6, \"prove_rate\": 0.176}, \"false\": {\"count\": 25, \"proved\": 2, \"prove_rate\": 0.08}, \"unknown\": {\"count\": 41, \"proved\": 6, \"prove_rate\": 0.146}}}, \"conclusion\": \"negative\", \"notes\": \"训练 PR(last100)=0.883 但 eval PR=14% (sampling, T=0.7), ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。⚠️ 评估方法：sampling eval (T=0.7)，其他组用 eval_sta.py full STA。D029 决策：不重训，论文标注方法差异。PR=14% 是 failure case，eval 方法不影响结论。\"}, \"plan017-additive-random-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:11:14.694Z\", \"updated_at\": \"2026-05-14T05:33:25.603Z\", \"hypothesis\": \"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\", \"parent\": \"plan013-random-reward-s42-r4\", \"conclusion\": \"negative\", \"notes\": \"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\", \"metrics\": {\"eval_prove_rate\": 0.48, \"eval_mean_isr\": 0.0453, \"eval_isr_std\": 0.0759, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2857, \"eval_proved_only_isr\": 0.0943, \"eval_n_proved\": 48, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 9.6, \"eval_component_count_2_ratio\": 0, \"eval_isr_pr_ratio\": 0.0943, \"eval_elapsed_s\": 542.3, \"eval_by_type_false_pr\": 0.32, \"eval_by_type_false_isr\": 0.0254, \"eval_by_type_unknown_pr\": 0.51, \"eval_by_type_unknown_isr\": 0.0518, \"eval_by_type_true_pr\": 0.56, \"eval_by_type_true_isr\": 0.052, \"tautological_collapse\": false}}, \"plan001-exec-only-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:57:09.690Z\", \"updated_at\": \"2026-05-14T05:14:31.732Z\", \"hypothesis\": \"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\", \"metrics\": {\"eval_prove_rate\": 0.98, \"eval_mean_isr\": 0.57, \"eval_isr_std\": 0.2013, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5816, \"eval_n_proved\": 98, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 2.04, \"eval_component_count_2\": 94, \"eval_component_count_3\": 4, \"eval_by_type_false_pr\": 1, \"eval_by_type_false_isr\": 0.62, \"eval_by_type_unknown_pr\": 0.976, \"eval_by_type_unknown_isr\": 0.524, \"eval_by_type_true_pr\": 0.971, \"eval_by_type_true_isr\": 0.588, \"train_last100_pr\": 0.9988, \"train_last100_isr\": 0.5611, \"train_last100_loss\": 0.000419, \"train_duration_min\": 36.8, \"tautological_collapse\": true}, \"conclusion\": \"negative\", \"notes\": \"TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。\"}, \"plan014-downstream-nli-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:43:37.925Z\", \"updated_at\": \"2026-05-14T04:29:48.645Z\", \"hypothesis\": \"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\", \"notes\": \"Negative: ISR 作为 downstream NLI quality proxy 无效。Spearman ρ(ISR, correct)=-0.049 (p=0.187)，Best-of-N ISR 仅 +0.9pp over random (不显著)。主因：模型严重 true-bias (false accuracy=0%)，NLI accuracy 天花板仅 34.1%，ISR 无区分空间。ISR bucket 层面有弱单调趋势 (high=75% > mid=37.7% > low=32.7%) 但 high bucket 仅 12 样本。quartile 分析非单调。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 0.341, \"proved_rate\": 0.915, \"proved_count\": 732, \"total_generations\": 800, \"parse_errors\": 0, \"accuracy_by_label\": {\"true\": 0.912, \"false\": 0, \"unknown\": 0.076}, \"spearman_rho\": -0.049, \"spearman_p\": 0.187, \"mann_whitney_U\": 17202, \"mann_whitney_p\": 0.288, \"bon_isr_accuracy\": 0.35, \"bon_random_accuracy\": 0.341, \"bon_oracle_accuracy\": 0.44, \"bon_prove_first_accuracy\": 0.35, \"isr_bucket_high_acc\": 0.75, \"isr_bucket_mid_acc\": 0.377, \"isr_bucket_low_acc\": 0.327, \"runtime_inference_s\": 408.8, \"runtime_eval_s\": 13.6}}, \"plan002-additive-b03-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T04:27:38.822Z\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"first20_prove_rate\": 0.15625, \"last50_prove_rate\": 0.555, \"last100_prove_rate\": 0.5525, \"mean_loss\": 0.008914, \"last100_loss\": 0.014469, \"parse_rate\": 1, \"w1_50_prove_rate\": 0.13, \"w51_100_prove_rate\": 0.095, \"w101_200_prove_rate\": 0.185, \"w201_300_prove_rate\": 0.375, \"w301_400_prove_rate\": 0.47625, \"w401_500_prove_rate\": 0.5525, \"steps_ge_085\": 52, \"first_step_ge_085\": 46, \"final_prove_rate\": 1, \"final_isr_mean\": 0.3089, \"final_reward_mean\": 1.0927}, \"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\", \"conclusion\": \"negative\"}, \"plan013-random-reward-s42-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T03:45:53.344Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 1, \"eval_mean_isr\": 0.535, \"eval_isr_std\": 0.1282, \"eval_proved_only_isr\": 0.535, \"eval_median_isr\": 0.5, \"eval_n_proved\": 100, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_note\": \"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\"}, \"notes\": \"⚠️ 训练日志 ISR 为 binary approximation (_fast_fn)，ISR≈prove_rate，不含结构信息。真实 ISR 需通过 eval_sta.py (full STA) 在 checkpoint-500 上重新评估。final_mean_isr=0.6705 实为 binary 近似值，禁止用于论文或跨实验 ISR 对比。\"}, \"plan001-exec-only-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:40:41.773Z\", \"updated_at\": \"2026-05-14T03:45:49.703Z\", \"notes\": \"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\", \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.93, \"eval_mean_isr\": 0.1232, \"eval_isr_std\": 0.1887, \"eval_proved_only_isr\": 0.1324, \"eval_median_isr\": 0, \"eval_n_proved\": 93, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\"}}, \"plan001-exec-only-s43-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:02:31.830Z\", \"updated_at\": \"2026-05-14T01:41:28.427Z\", \"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:02:30.063Z\", \"updated_at\": \"2026-05-14T01:41:28.122Z\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s43-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:22:12.292Z\", \"updated_at\": \"2026-05-14T01:01:56.416Z\", \"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:22:10.140Z\", \"updated_at\": \"2026-05-14T01:01:55.694Z\", \"conclusion\": \"failed\"}, \"plan013-random-reward-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:56:44.062Z\", \"updated_at\": \"2026-05-14T00:21:05.430Z\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:55:08.635Z\", \"updated_at\": \"2026-05-14T00:21:04.003Z\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:19:41.568Z\", \"updated_at\": \"2026-05-13T23:03:42.892Z\", \"conclusion\": \"failed\"}, \"plan003-eval-exec-only-r5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:21:48.691Z\", \"updated_at\": \"2026-05-13T23:03:19.945Z\", \"metrics\": {\"prove_rate\": 0.32, \"mean_isr\": 0.2055, \"isr_std\": 0.3194, \"proved_only_isr\": 0.6423, \"isr_by_type\": {\"true\": 0.3598, \"false\": 0.1723, \"unknown\": 0.0979}, \"total_samples\": 100, \"proved_count\": 32, \"runtime_s\": 251.7}, \"conclusion\": \"success\"}, \"plan001-exec-only-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:42:40.242Z\", \"updated_at\": \"2026-05-13T23:03:11.395Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:54:31.353Z\", \"updated_at\": \"2026-05-13T22:20:41.274Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1, \"mean_isr\": 0.04347, \"last20_prove_rate\": 0.15, \"last20_isr_mean\": 0.04956, \"first20_prove_rate\": 0.08125, \"first20_isr_mean\": 0.05182, \"overall_reward_mean\": 0.07174, \"last20_reward_mean\": 0.09978, \"training_steps\": 100, \"training_minutes\": 16.9, \"step_time_s\": 10.13, \"isr_pr_ratio_overall\": 0.43, \"isr_pr_ratio_last20\": 0.33, \"K\": 8}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:54:27.505Z\", \"updated_at\": \"2026-05-13T21:53:04.486Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_prove_rate\": 0.11875, \"first20_isr_mean\": 0.11875, \"overall_reward_mean\": 0.15125, \"last20_reward_mean\": 0.2, \"training_steps\": 100, \"training_minutes\": 15.7, \"step_time_s\": 9.44, \"isr_pr_ratio_last20\": 1, \"K\": 8}, \"conclusion\": \"success\"}, \"sta-phase1-exec-sta-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:28:22.778Z\", \"updated_at\": \"2026-05-13T20:52:58.761Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1575, \"mean_isr\": 0.1525, \"last20_prove_rate\": 0.2125, \"last20_isr_mean\": 0.2125, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\", \"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，exec+STA reward ≈ exec-only reward。连续 ISR 才能产生有意义的差异信号。→ r5 改用 full sta_reward (continuous ISR 0.0-1.0) + K=8\"}, \"sta-phase1-exec-only-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:28:18.040Z\", \"updated_at\": \"2026-05-13T20:52:56.416Z\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\", \"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，导致 exec+STA ≈ exec-only。prove_rate 从 baseline 12% → last20 20%（微弱提升）。K=4 导致大量全零 reward batch。→ r5 改用 full STA + K=8\"}, \"sta-phase1-exec-only-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:15:04.067Z\", \"updated_at\": \"2026-05-13T20:23:15.460Z\", \"conclusion\": \"failed\", \"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~276s. 同 sta-phase1-exec-sta-r3 一起诊断中\"}, \"sta-phase1-exec-sta-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T20:15:08.133Z\", \"updated_at\": \"2026-05-13T20:23:14.516Z\", \"conclusion\": \"failed\", \"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~278s. 诊断中: worker_diagnose_sta-phase1-r3-oom_20260513T202300\"}, \"sta-phase1-exec-sta-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:55:08.640Z\", \"updated_at\": \"2026-05-13T19:55:41.544Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-only-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:55:04.711Z\", \"updated_at\": \"2026-05-13T19:55:37.426Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-sta\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T18:26:53.258Z\", \"updated_at\": \"2026-05-13T19:33:03.905Z\", \"conclusion\": \"failed\"}, \"sta-phase1-exec-only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T18:26:46.351Z\", \"updated_at\": \"2026-05-13T19:33:01.169Z\", \"conclusion\": \"failed\"}, \"sta-gt-isr-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T18:11:13.283Z\", \"updated_at\": \"2026-05-13T18:12:44.147Z\", \"conclusion\": \"success\", \"metrics\": {\"gt_prove_rate\": 0.18, \"gt_mean_isr\": 0.5588, \"gt_isr_std\": 0.2582, \"gt_isr_median\": 0.6125, \"solver_execution_rate\": 1, \"true_prove_rate\": 0.5, \"true_mean_isr\": 0.5833}}, \"sta-phase0-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:51:48.853Z\", \"updated_at\": \"2026-05-13T18:10:40.982Z\", \"metrics\": {\"mean_isr\": 0.0641, \"isr_std\": 0.1983, \"median_isr\": 0, \"isr_range\": [0, 0.889], \"prove_rate\": 0.12, \"proved_count\": 12, \"total_samples\": 100, \"xor_affected_samples\": 34, \"effective_prove_rate_no_xor\": 0.182, \"avg_time_per_sample_s\": 3.4, \"total_runtime_s\": 336, \"isr_by_answer\": {\"true\": {\"n\": 34, \"proved\": 9, \"prove_rate\": 0.265, \"mean_isr\": 0.1345}, \"false\": {\"n\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.024}, \"unknown\": {\"n\": 41, \"proved\": 2, \"prove_rate\": 0.049, \"mean_isr\": 0.0302}}}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1959}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "742a70a6-e39e-4c0e-9755-2560397dd5d5",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UQZSD4k92VMQtN4eMwVYZo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23138,
+      "cache_read_input_tokens": 34234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23138
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Now I have all the data. Let me write the two artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "a5bc7c93-96ce-4aa8-bd9e-fb7eab4f9b37",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UQZSD4k92VMQtN4eMwVYZo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23138,
+      "cache_read_input_tokens": 34234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23138
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QCKoWRJo4Pof7KY3Hv7GkQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md",
+  "content": "# Evidence Chain Status — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Source**: registry (50 experiments total, filtered to evidence-bearing runs)\n**Eval standard**: eval_sta.py full STA on proofwriter_fol_100.jsonl (FOL) / Prolog eval (Prolog)\n\n---\n\n## Claim 1 — Exec-only GRPO causes ISR collapse / reward hacking\n\n**Status: COMPLETE (3-seed FOL evidence + extended-horizon confirmation)**\n\n| Exp ID | Seed | Steps | Eval PR | Eval ISR | Components | Failure Mode | Status |\n|--------|------|-------|---------|----------|------------|--------------|--------|\n| plan001-exec-only-s42-r2 | 42 | 500 | 0.93 | 0.123 | 6.58 | partial-genuine (best seed) | ✅ DONE |\n| plan001-exec-only-s43-r4 | 43 | 500 | 0.14 | 0.00 | n/a | degraded (87% hit max_tokens) | ✅ DONE† |\n| plan001-exec-only-s44   | 44 | 500 | 0.98 | 0.57 | 2.04 | tautological collapse (94% 2-comp) | ✅ DONE |\n| plan016-extended-1000-s42 | 42 | 1000 | 0.96 | 0.0027 | 18.55 | contradiction explosion (94.8% ISR=0) | ✅ DONE |\n\n**3-seed result**: 1/3 partial-genuine (s42), 1/3 degraded (s43), 1/3 tautological (s44). PR mean=0.683 std=0.467; ISR mean=0.231 std=0.314 — extreme cross-seed variance.\n\n**Extended-horizon finding**: At 1000 steps, PR keeps climbing (+3pp) while ISR collapses 97.8% (0.123→0.0027). Windowed ISR is monotonically decreasing (0.1115→0.0144). 500-step ISR was not a floor, it was mid-collapse.\n\n†Note: plan001-s43-r4 used sampling eval (T=0.7), not eval_sta.py. PR=14% is unambiguous failure regardless of eval method (D029). **Mark in paper.**\n\n---\n\n## Claim 2 — ISR β=0.1 additive bonus + Goodhart risk\n\n**Status: NEAR-COMPLETE (1 cell remaining: random β=0.1 s43)**\n\n### ISR β=0.1 additive (r = r_exec·(1+0.1·ISR))\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Component mean | Hacking mode | Status |\n|--------|------|---------|----------|-----|----------------|--------------|--------|\n| plan002-additive-b01-s42 | 42 | 0.81 | 0.337 | n/a | 5.58 | partial-genuine (best) | ✅ DONE |\n| plan002-additive-b01-s43 | 43 | 0.61 | 0.506 | 96.7% | 4.03 | conclusion duplication | ✅ DONE |\n| plan002-additive-b01-s44 | 44 | 0.89 | 0.803 | 86.5% | 4.33 | conclusion duplication | ✅ DONE |\n\n**3-seed status**: ✅ all three eval'd. 2/3 hacking via conclusion duplication (premise≈conclusion, single-premise inflates ISR).\n\n### Random β=0.1 control (variance regularization baseline)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Component mean | Status |\n|--------|------|---------|----------|----------------|--------|\n| plan018-random-b01-s42 | 42 | 0.79 | 0.104 | 8.46 | ✅ DONE |\n| plan018-random-b01-s43 | 43 | — | — | — | ⏳ ALLOCATED (r2 retry; r1 disk-full @ step 200) |\n| plan018-random-b01-s44 | 44 | 0.89 | 0.062 | n/a | ✅ DONE |\n\n**ISR vs Random @ β=0.1 contrast (s42)**: PR 0.81 vs 0.79 (≈match); ISR 0.337 vs 0.104 (**3.2× higher**). Same PR, very different ISR → ISR signal is structural, not variance-noise. Replicated at s44 (0.803 vs 0.062 = 13×, but s44 ISR inflated by hacking).\n\n### Higher-dose collapse (β=0.3)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Status | Notes |\n|--------|------|---------|----------|--------|-------|\n| plan002-additive-b03-s42 | 42 | 0.340 (overall) / 0.553 (last100) | 0.309 (final) | ✅ DONE | not saturated; PR collapse |\n| plan017-random-b03-s42 | 42 | 0.48 | 0.045 | ✅ DONE | complexity-without-utility |\n\n### Supporting cells\n\n| Exp ID | Result | Role | Status |\n|--------|--------|------|--------|\n| plan012-hacking-taxonomy | ISR genuine +8.2pp, ISR conclusion-embedding 72.8% vs Random 78.5%, ISR eliminates complexity-w/o-utility hacking | hacking taxonomy quantification | ✅ DONE |\n| plan009-sft-baseline-s42-r4 | PR=0.14, ISR=0.08, proved-only ISR=0.571, hacking=none | confirms hacking is GRPO-specific not finetuning artifact | ✅ DONE |\n\n**Remaining gap**: plan018-random-b01-s43 (ALLOCATED → run). Needed for 3-seed mean±std on random control. Without it, single-seed random comparisons at s43 not possible.\n\n---\n\n## Claim 3 — Cross-logic generalization (Prolog)\n\n**Status: PARTIAL (s42 complete; s43/s44 in progress)**\n\n### Prolog exec-only\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-exec-s42 | 42 | 0.83 | 0.031 | 0% | ground-fact enumeration (C006 redundancy) | ✅ DONE |\n| plan006-prolog-exec-s43-r3 | 43 | — | — | — | — | ⏳ RUNNING (cuda:1, PID 483820) |\n| plan006-prolog-exec-s44 | 44 | — | — | — | — | ⏳ RUNNING (cuda:0, PID 479357) |\n\n### Prolog exec+STA (ISR-as-reward)\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-sta-s42 | 42 | 0.50 | 1.0 (proved-only) | 100% | single-clause query (Goodhart) | ✅ DONE |\n| plan006-prolog-sta-s43 | 43 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n| plan006-prolog-sta-s44 | 44 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n\n**s42 cross-type finding**: exec-only Prolog (PR=0.83, ISR=0.031) vs exec-only FOL (PR=0.93, ISR=0.12) — Prolog ISR even lower, but via different mechanism (C006: ground-fact redundancy n_necessary=0, not contradiction explosion). exec+STA Prolog (ISR=1.0, H7=100%) vs exec+STA FOL — Prolog Goodhart is more extreme (100% single-clause vs FOL ~65–97% conclusion duplication).\n\n**Gap**: 4 of 6 Prolog runs incomplete. Cannot claim 3-seed cross-logic generalization until s43/s44 land for both conditions.\n\n---\n\n## Overall evidence chain summary\n\n| Claim | FOL 3-seed | Prolog 3-seed | Confirmatory | Verdict |\n|-------|-----------|---------------|--------------|---------|\n| C1: Exec-only ISR collapse | ✅ complete | ⏳ 1/3 (s42 only) | ✅ Extended-1000 confirms worsening | **FOL: ready** / Prolog: waiting |\n| C2: ISR β=0.1 + Goodhart | ✅ ISR 3/3, ⏳ Random 2/3 | n/a (single Prolog STA seed) | ✅ Hacking taxonomy, ✅ SFT control, ✅ β=0.3 dose-response | **Near-ready** (1 cell) |\n| C3: Cross-logic | n/a | ⏳ 1/3 exec, 1/3 STA | s42 contrast solid | **Partial** (4 runs pending) |\n\n## Blocking items\n\n1. **plan018-random-b01-s43-r2** — ALLOCATED, needs execution. Required for 3-seed random control mean±std.\n2. **plan006-prolog-exec-s43-r3** — RUNNING. Monitor for completion + eval_sta.py.\n3. **plan006-prolog-exec-s44** — RUNNING. Monitor for completion + eval_sta.py.\n4. **plan006-prolog-sta-s43 / s44** — PREPARING, blocked on GPU. Queue once exec runs finish.\n\n## Non-blocking notes for paper\n\n- All cross-run ISR comparisons must use eval_sta.py numbers (C004). Training-log ISR for plan001-s42-r2, plan002-b03-s42, plan013 was `_fast_fn` binary approximation — DO NOT cite.\n- Prolog ISR semantics differ from FOL ISR (C006). Paper must distinguish: exec-only low ISR (Prolog) = redundancy; exec+STA high ISR (Prolog) = Goodhart. Reviewer flagged this explicitly.\n- plan001-s43-r4 eval used sampling (T=0.7), not eval_sta.py (D029). Footnote in Table 1.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "d630ccdd-5194-47a7-8fc6-bfded9a29720",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UQZSD4k92VMQtN4eMwVYZo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23138,
+      "cache_read_input_tokens": 34234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23138
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T15:03:17.264Z_
+
+<details><summary>↩ Tool result · `toolu_01QCKoWRJo4Pof7KY3Hv7GkQ`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "a9d93274-cc89-46b5-b5ca-ea15514936d6",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md",
+    "content": "# Evidence Chain Status — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Source**: registry (50 experiments total, filtered to evidence-bearing runs)\n**Eval standard**: eval_sta.py full STA on proofwriter_fol_100.jsonl (FOL) / Prolog eval (Prolog)\n\n---\n\n## Claim 1 — Exec-only GRPO causes ISR collapse / reward hacking\n\n**Status: COMPLETE (3-seed FOL evidence + extended-horizon confirmation)**\n\n| Exp ID | Seed | Steps | Eval PR | Eval ISR | Components | Failure Mode | Status |\n|--------|------|-------|---------|----------|------------|--------------|--------|\n| plan001-exec-only-s42-r2 | 42 | 500 | 0.93 | 0.123 | 6.58 | partial-genuine (best seed) | ✅ DONE |\n| plan001-exec-only-s43-r4 | 43 | 500 | 0.14 | 0.00 | n/a | degraded (87% hit max_tokens) | ✅ DONE† |\n| plan001-exec-only-s44   | 44 | 500 | 0.98 | 0.57 | 2.04 | tautological collapse (94% 2-comp) | ✅ DONE |\n| plan016-extended-1000-s42 | 42 | 1000 | 0.96 | 0.0027 | 18.55 | contradiction explosion (94.8% ISR=0) | ✅ DONE |\n\n**3-seed result**: 1/3 partial-genuine (s42), 1/3 degraded (s43), 1/3 tautological (s44). PR mean=0.683 std=0.467; ISR mean=0.231 std=0.314 — extreme cross-seed variance.\n\n**Extended-horizon finding**: At 1000 steps, PR keeps climbing (+3pp) while ISR collapses 97.8% (0.123→0.0027). Windowed ISR is monotonically decreasing (0.1115→0.0144). 500-step ISR was not a floor, it was mid-collapse.\n\n†Note: plan001-s43-r4 used sampling eval (T=0.7), not eval_sta.py. PR=14% is unambiguous failure regardless of eval method (D029). **Mark in paper.**\n\n---\n\n## Claim 2 — ISR β=0.1 additive bonus + Goodhart risk\n\n**Status: NEAR-COMPLETE (1 cell remaining: random β=0.1 s43)**\n\n### ISR β=0.1 additive (r = r_exec·(1+0.1·ISR))\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Component mean | Hacking mode | Status |\n|--------|------|---------|----------|-----|----------------|--------------|--------|\n| plan002-additive-b01-s42 | 42 | 0.81 | 0.337 | n/a | 5.58 | partial-genuine (best) | ✅ DONE |\n| plan002-additive-b01-s43 | 43 | 0.61 | 0.506 | 96.7% | 4.03 | conclusion duplication | ✅ DONE |\n| plan002-additive-b01-s44 | 44 | 0.89 | 0.803 | 86.5% | 4.33 | conclusion duplication | ✅ DONE |\n\n**3-seed status**: ✅ all three eval'd. 2/3 hacking via conclusion duplication (premise≈conclusion, single-premise inflates ISR).\n\n### Random β=0.1 control (variance regularization baseline)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Component mean | Status |\n|--------|------|---------|----------|----------------|--------|\n| plan018-random-b01-s42 | 42 | 0.79 | 0.104 | 8.46 | ✅ DONE |\n| plan018-random-b01-s43 | 43 | — | — | — | ⏳ ALLOCATED (r2 retry; r1 disk-full @ step 200) |\n| plan018-random-b01-s44 | 44 | 0.89 | 0.062 | n/a | ✅ DONE |\n\n**ISR vs Random @ β=0.1 contrast (s42)**: PR 0.81 vs 0.79 (≈match); ISR 0.337 vs 0.104 (**3.2× higher**). Same PR, very different ISR → ISR signal is structural, not variance-noise. Replicated at s44 (0.803 vs 0.062 = 13×, but s44 ISR inflated by hacking).\n\n### Higher-dose collapse (β=0.3)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Status | Notes |\n|--------|------|---------|----------|--------|-------|\n| plan002-additive-b03-s42 | 42 | 0.340 (overall) / 0.553 (last100) | 0.309 (final) | ✅ DONE | not saturated; PR collapse |\n| plan017-random-b03-s42 | 42 | 0.48 | 0.045 | ✅ DONE | complexity-without-utility |\n\n### Supporting cells\n\n| Exp ID | Result | Role | Status |\n|--------|--------|------|--------|\n| plan012-hacking-taxonomy | ISR genuine +8.2pp, ISR conclusion-embedding 72.8% vs Random 78.5%, ISR eliminates complexity-w/o-utility hacking | hacking taxonomy quantification | ✅ DONE |\n| plan009-sft-baseline-s42-r4 | PR=0.14, ISR=0.08, proved-only ISR=0.571, hacking=none | confirms hacking is GRPO-specific not finetuning artifact | ✅ DONE |\n\n**Remaining gap**: plan018-random-b01-s43 (ALLOCATED → run). Needed for 3-seed mean±std on random control. Without it, single-seed random comparisons at s43 not possible.\n\n---\n\n## Claim 3 — Cross-logic generalization (Prolog)\n\n**Status: PARTIAL (s42 complete; s43/s44 in progress)**\n\n### Prolog exec-only\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-exec-s42 | 42 | 0.83 | 0.031 | 0% | ground-fact enumeration (C006 redundancy) | ✅ DONE |\n| plan006-prolog-exec-s43-r3 | 43 | — | — | — | — | ⏳ RUNNING (cuda:1, PID 483820) |\n| plan006-prolog-exec-s44 | 44 | — | — | — | — | ⏳ RUNNING (cuda:0, PID 479357) |\n\n### Prolog exec+STA (ISR-as-reward)\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-sta-s42 | 42 | 0.50 | 1.0 (proved-only) | 100% | single-clause query (Goodhart) | ✅ DONE |\n| plan006-prolog-sta-s43 | 43 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n| plan006-prolog-sta-s44 | 44 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n\n**s42 cross-type finding**: exec-only Prolog (PR=0.83, ISR=0.031) vs exec-only FOL (PR=0.93, ISR=0.12) — Prolog ISR even lower, but via different mechanism (C006: ground-fact redundancy n_necessary=0, not contradiction explosion). exec+STA Prolog (ISR=1.0, H7=100%) vs exec+STA FOL — Prolog Goodhart is more extreme (100% single-clause vs FOL ~65–97% conclusion duplication).\n\n**Gap**: 4 of 6 Prolog runs incomplete. Cannot claim 3-seed cross-logic generalization until s43/s44 land for both conditions.\n\n---\n\n## Overall evidence chain summary\n\n| Claim | FOL 3-seed | Prolog 3-seed | Confirmatory | Verdict |\n|-------|-----------|---------------|--------------|---------|\n| C1: Exec-only ISR collapse | ✅ complete | ⏳ 1/3 (s42 only) | ✅ Extended-1000 confirms worsening | **FOL: ready** / Prolog: waiting |\n| C2: ISR β=0.1 + Goodhart | ✅ ISR 3/3, ⏳ Random 2/3 | n/a (single Prolog STA seed) | ✅ Hacking taxonomy, ✅ SFT control, ✅ β=0.3 dose-response | **Near-ready** (1 cell) |\n| C3: Cross-logic | n/a | ⏳ 1/3 exec, 1/3 STA | s42 contrast solid | **Partial** (4 runs pending) |\n\n## Blocking items\n\n1. **plan018-random-b01-s43-r2** — ALLOCATED, needs execution. Required for 3-seed random control mean±std.\n2. **plan006-prolog-exec-s43-r3** — RUNNING. Monitor for completion + eval_sta.py.\n3. **plan006-prolog-exec-s44** — RUNNING. Monitor for completion + eval_sta.py.\n4. **plan006-prolog-sta-s43 / s44** — PREPARING, blocked on GPU. Queue once exec runs finish.\n\n## Non-blocking notes for paper\n\n- All cross-run ISR comparisons must use eval_sta.py numbers (C004). Training-log ISR for plan001-s42-r2, plan002-b03-s42, plan013 was `_fast_fn` binary approximation — DO NOT cite.\n- Prolog ISR semantics differ from FOL ISR (C006). Paper must distinguish: exec-only low ISR (Prolog) = redundancy; exec+STA high ISR (Prolog) = Goodhart. Reviewer flagged this explicitly.\n- plan001-s43-r4 eval used sampling (T=0.7), not eval_sta.py (D029). Footnote in Table 1.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01U9enr71PdYFqVq5dEMQngN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md",
+  "content": "# Paper Table Drafts v2 — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Eval standard**: all ISR/PR from eval_sta.py full STA on proofwriter_fol_100.jsonl unless noted\n**Training data**: data/train_500_seed42.jsonl (FOLIO; C001 unified)\n**Model**: Qwen3-4B for all conditions\n\n---\n\n## Table 1 — FOL Experiments\n\n| # | Condition | Seed | Eval PR | Eval ISR (mean) | Proved-only ISR | H7% | Component mean | Hacking mode | Notes |\n|---|-----------|------|---------|-----------------|-----------------|-----|----------------|--------------|-------|\n|  | **Exec-only GRPO (500 steps)** | | | | | | | | |\n| 1 | exec-only | 42 | 0.93 | 0.123 | 0.132 | — | 6.58 | partial-genuine | plan001-s42-r2 (anchor) |\n| 2 | exec-only | 43 | 0.14† | 0.000 | 0.000 | — | n/a | degraded (87% max-tok) | plan001-s43-r4 (†sampling eval, T=0.7) |\n| 3 | exec-only | 44 | 0.98 | 0.570 | 0.582 | — | 2.04 | tautological collapse (94% 2-comp) | plan001-s44 |\n|  | **Exec-only extended (1000 steps)** | | | | | | | | |\n| 4 | exec-only-1000 | 42 | 0.96 | 0.0027 | 0.0028 | — | 18.55 | contradiction explosion (94.8% ISR=0) | plan016 |\n|  | **ISR β=0.1 additive (r·(1+0.1·ISR))** | | | | | | | | |\n| 5 | ISR β=0.1 | 42 | 0.81 | 0.337 | 0.415 | — | 5.58 | partial-genuine | plan002-b01-s42 (best ISR cell) |\n| 6 | ISR β=0.1 | 43 | 0.61 | 0.506 | 0.830 | 96.7% | 4.03 | conclusion duplication | plan002-b01-s43 |\n| 7 | ISR β=0.1 | 44 | 0.89 | 0.803 | — | 86.5% | 4.33 | conclusion duplication (Goodhart) | plan002-b01-s44 |\n|  | **ISR β=0.3 additive** | | | | | | | | |\n| 8 | ISR β=0.3 | 42 | 0.34‡ | 0.115‡ | — | — | — | training collapse, not saturated | plan002-b03-s42 (‡training overall, not eval_sta.py) |\n|  | **Random β=0.1 control (variance regularization)** | | | | | | | | |\n| 9 | Random β=0.1 | 42 | 0.79 | 0.104 | 0.131 | — | 8.46 | no tautological collapse; low structure | plan018-random-b01-s42 |\n| 10 | Random β=0.1 | 43 | PENDING | PENDING | — | — | — | — | plan018-s43-r2 ALLOCATED |\n| 11 | Random β=0.1 | 44 | 0.89 | 0.062 | 0.070 | — | n/a | clean baseline | plan018-random-b01-s44 |\n|  | **Random β=0.3 control** | | | | | | | | |\n| 12 | Random β=0.3 | 42 | 0.48 | 0.045 | 0.094 | — | 9.60 | complexity-without-utility | plan017-random-s42 |\n|  | **SFT baseline (supervised, no RL)** | | | | | | | | |\n| 13 | SFT | 42 | 0.14 | 0.080 | 0.571 | — | — | none (no hacking patterns) | plan009-sft-r4 |\n\n### Key contrasts for paper narrative\n\n- **C1 (exec-only collapse)**: rows 1–3 show 3-seed instability (PR span 0.14–0.98, ISR span 0–0.57). Row 4 (1000-step) confirms ongoing collapse: PR↑3pp but ISR↓97.8% from 500-step.\n- **C2a (ISR β=0.1 lifts ISR)**: row 5 vs row 1 at s42: same data, ISR 0.337 vs 0.123 (2.73×); PR 0.81 vs 0.93 (-12pp).\n- **C2b (Goodhart at β=0.1)**: rows 6 & 7: 2/3 seeds collapse to conclusion-duplication, ISR=0.5+0.8 are inflation artifacts (H7 = 96.7%/86.5%).\n- **C2c (ISR signal ≠ noise)**: row 5 vs row 9 (β=0.1 same dose): PR 0.81 vs 0.79; ISR 0.337 vs 0.104 (**3.2×**). ISR is structural, not variance regularization.\n- **C2d (dose response)**: rows 5 → 8: β=0.1 keeps PR; β=0.3 collapses training (PR overall=0.34).\n- **C2e (GRPO specificity)**: row 13 SFT shows no hacking. Confirms hacking is GRPO-specific, not finetuning generic.\n\n### Aggregate (3-seed mean±std, eval_sta.py only)\n\n| Condition | PR mean±std | ISR mean±std | N seeds | Note |\n|-----------|-------------|--------------|---------|------|\n| exec-only | 0.683 ± 0.467 | 0.231 ± 0.314 | 3 | s43 sampling eval; high variance |\n| ISR β=0.1 | 0.770 ± 0.146 | 0.549 ± 0.234 | 3 | ISR inflated by hacking in 2/3 |\n| Random β=0.1 | 0.840 ± 0.071 | 0.083 ± 0.030 | **2** | s43 PENDING; will recompute |\n\n---\n\n## Table 2 — Prolog Experiments (cross-logic generalization)\n\n| # | Condition | Seed | Eval PR | Eval ISR | Proved-only ISR | H7% | Hacking mode | Notes |\n|---|-----------|------|---------|----------|-----------------|-----|--------------|-------|\n|  | **Prolog exec-only GRPO (500 steps)** | | | | | | | |\n| 1 | Prolog exec-only | 42 | 0.83 | 0.031 | 0.037 | 0% | ground-fact enumeration (n_necessary=0, redundancy) | plan006-prolog-exec-s42 |\n| 2 | Prolog exec-only | 43 | PENDING | PENDING | — | — | — | plan006-s43-r3 RUNNING (cuda:1) |\n| 3 | Prolog exec-only | 44 | PENDING | PENDING | — | — | — | plan006-s44 RUNNING (cuda:0) |\n|  | **Prolog exec+STA GRPO (ISR-as-reward, 500 steps)** | | | | | | | |\n| 4 | Prolog exec+STA | 42 | 0.50 | 0.50 | 1.000 | 100% | single-clause query (extreme Goodhart) | plan006-prolog-sta-s42 |\n| 5 | Prolog exec+STA | 43 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s43 PREPARING |\n| 6 | Prolog exec+STA | 44 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s44 PREPARING |\n\n### Prolog s42 narrative (single-seed snapshot)\n\n- **exec-only** (row 1): PR=0.83 with ISR=0.031. Per C006, this **low ISR = redundancy** (model dumps ground facts e.g. `penguin(fido).` 3× — per-clause ablation cannot identify necessary clauses since removing any one duplicate leaves proof intact). NOT no-reasoning; redundant-encoding.\n- **exec+STA** (row 4): PR=0.50, but proved-only ISR=1.000 and H7=100%. Every proved sample is single-clause where the clause IS the query — extreme Goodhart collapse. 50% PR is from format-parse failures, not strategy difference.\n- **FOL vs Prolog at s42**: FOL exec-only (PR 0.93, ISR 0.12) → Prolog exec-only (PR 0.83, ISR 0.03). FOL exec+STA (saturated training) → Prolog exec+STA (H7=100% vs FOL ~65-97%). Prolog hacking is **more extreme** under both reward signals.\n\n### Gaps preventing Table 2 finalization\n\n- 4/6 Prolog cells PENDING. Cannot publish 3-seed mean±std for Prolog yet.\n- s42 single-seed is suggestive, but the FOL evidence (s42 best, s43 degraded, s44 tautological) shows seed variance is large in this regime; Prolog s43/s44 may differ from s42.\n- Until rows 2,3,5,6 land, Claim 3 statement in paper should be: \"preliminary single-seed evidence that hacking generalizes to Prolog with mode-specific (redundancy / single-clause) variants, full 3-seed evidence pending.\"\n\n---\n\n## Footnotes for paper\n\n- † plan001-exec-only-s43-r4 used sampling eval (do_sample=True, T=0.7), other rows use eval_sta.py greedy on identical 100-sample FOL set (D029). PR=0.14 is unambiguous failure regardless of decoding.\n- ‡ plan002-b03-s42 (β=0.3) did not converge at 500 steps; reported numbers are training-overall, not held-out eval. Used qualitatively for dose-response only.\n- All training-log ISR values are excluded — `_fast_fn` binary approximation, not comparable across runs (C004).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "e42e9758-10bf-4e9f-a4c5-37b50d07d4da",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_012gDin7Um4614eaiXVXY2qs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4780,
+      "cache_read_input_tokens": 57372,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4780
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T15:03:56.174Z_
+
+<details><summary>↩ Tool result · `toolu_01U9enr71PdYFqVq5dEMQngN`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "7787ba1c-7a39-4bd1-a4e1-cbf4d154a178",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md",
+    "content": "# Paper Table Drafts v2 — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Eval standard**: all ISR/PR from eval_sta.py full STA on proofwriter_fol_100.jsonl unless noted\n**Training data**: data/train_500_seed42.jsonl (FOLIO; C001 unified)\n**Model**: Qwen3-4B for all conditions\n\n---\n\n## Table 1 — FOL Experiments\n\n| # | Condition | Seed | Eval PR | Eval ISR (mean) | Proved-only ISR | H7% | Component mean | Hacking mode | Notes |\n|---|-----------|------|---------|-----------------|-----------------|-----|----------------|--------------|-------|\n|  | **Exec-only GRPO (500 steps)** | | | | | | | | |\n| 1 | exec-only | 42 | 0.93 | 0.123 | 0.132 | — | 6.58 | partial-genuine | plan001-s42-r2 (anchor) |\n| 2 | exec-only | 43 | 0.14† | 0.000 | 0.000 | — | n/a | degraded (87% max-tok) | plan001-s43-r4 (†sampling eval, T=0.7) |\n| 3 | exec-only | 44 | 0.98 | 0.570 | 0.582 | — | 2.04 | tautological collapse (94% 2-comp) | plan001-s44 |\n|  | **Exec-only extended (1000 steps)** | | | | | | | | |\n| 4 | exec-only-1000 | 42 | 0.96 | 0.0027 | 0.0028 | — | 18.55 | contradiction explosion (94.8% ISR=0) | plan016 |\n|  | **ISR β=0.1 additive (r·(1+0.1·ISR))** | | | | | | | | |\n| 5 | ISR β=0.1 | 42 | 0.81 | 0.337 | 0.415 | — | 5.58 | partial-genuine | plan002-b01-s42 (best ISR cell) |\n| 6 | ISR β=0.1 | 43 | 0.61 | 0.506 | 0.830 | 96.7% | 4.03 | conclusion duplication | plan002-b01-s43 |\n| 7 | ISR β=0.1 | 44 | 0.89 | 0.803 | — | 86.5% | 4.33 | conclusion duplication (Goodhart) | plan002-b01-s44 |\n|  | **ISR β=0.3 additive** | | | | | | | | |\n| 8 | ISR β=0.3 | 42 | 0.34‡ | 0.115‡ | — | — | — | training collapse, not saturated | plan002-b03-s42 (‡training overall, not eval_sta.py) |\n|  | **Random β=0.1 control (variance regularization)** | | | | | | | | |\n| 9 | Random β=0.1 | 42 | 0.79 | 0.104 | 0.131 | — | 8.46 | no tautological collapse; low structure | plan018-random-b01-s42 |\n| 10 | Random β=0.1 | 43 | PENDING | PENDING | — | — | — | — | plan018-s43-r2 ALLOCATED |\n| 11 | Random β=0.1 | 44 | 0.89 | 0.062 | 0.070 | — | n/a | clean baseline | plan018-random-b01-s44 |\n|  | **Random β=0.3 control** | | | | | | | | |\n| 12 | Random β=0.3 | 42 | 0.48 | 0.045 | 0.094 | — | 9.60 | complexity-without-utility | plan017-random-s42 |\n|  | **SFT baseline (supervised, no RL)** | | | | | | | | |\n| 13 | SFT | 42 | 0.14 | 0.080 | 0.571 | — | — | none (no hacking patterns) | plan009-sft-r4 |\n\n### Key contrasts for paper narrative\n\n- **C1 (exec-only collapse)**: rows 1–3 show 3-seed instability (PR span 0.14–0.98, ISR span 0–0.57). Row 4 (1000-step) confirms ongoing collapse: PR↑3pp but ISR↓97.8% from 500-step.\n- **C2a (ISR β=0.1 lifts ISR)**: row 5 vs row 1 at s42: same data, ISR 0.337 vs 0.123 (2.73×); PR 0.81 vs 0.93 (-12pp).\n- **C2b (Goodhart at β=0.1)**: rows 6 & 7: 2/3 seeds collapse to conclusion-duplication, ISR=0.5+0.8 are inflation artifacts (H7 = 96.7%/86.5%).\n- **C2c (ISR signal ≠ noise)**: row 5 vs row 9 (β=0.1 same dose): PR 0.81 vs 0.79; ISR 0.337 vs 0.104 (**3.2×**). ISR is structural, not variance regularization.\n- **C2d (dose response)**: rows 5 → 8: β=0.1 keeps PR; β=0.3 collapses training (PR overall=0.34).\n- **C2e (GRPO specificity)**: row 13 SFT shows no hacking. Confirms hacking is GRPO-specific, not finetuning generic.\n\n### Aggregate (3-seed mean±std, eval_sta.py only)\n\n| Condition | PR mean±std | ISR mean±std | N seeds | Note |\n|-----------|-------------|--------------|---------|------|\n| exec-only | 0.683 ± 0.467 | 0.231 ± 0.314 | 3 | s43 sampling eval; high variance |\n| ISR β=0.1 | 0.770 ± 0.146 | 0.549 ± 0.234 | 3 | ISR inflated by hacking in 2/3 |\n| Random β=0.1 | 0.840 ± 0.071 | 0.083 ± 0.030 | **2** | s43 PENDING; will recompute |\n\n---\n\n## Table 2 — Prolog Experiments (cross-logic generalization)\n\n| # | Condition | Seed | Eval PR | Eval ISR | Proved-only ISR | H7% | Hacking mode | Notes |\n|---|-----------|------|---------|----------|-----------------|-----|--------------|-------|\n|  | **Prolog exec-only GRPO (500 steps)** | | | | | | | |\n| 1 | Prolog exec-only | 42 | 0.83 | 0.031 | 0.037 | 0% | ground-fact enumeration (n_necessary=0, redundancy) | plan006-prolog-exec-s42 |\n| 2 | Prolog exec-only | 43 | PENDING | PENDING | — | — | — | plan006-s43-r3 RUNNING (cuda:1) |\n| 3 | Prolog exec-only | 44 | PENDING | PENDING | — | — | — | plan006-s44 RUNNING (cuda:0) |\n|  | **Prolog exec+STA GRPO (ISR-as-reward, 500 steps)** | | | | | | | |\n| 4 | Prolog exec+STA | 42 | 0.50 | 0.50 | 1.000 | 100% | single-clause query (extreme Goodhart) | plan006-prolog-sta-s42 |\n| 5 | Prolog exec+STA | 43 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s43 PREPARING |\n| 6 | Prolog exec+STA | 44 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s44 PREPARING |\n\n### Prolog s42 narrative (single-seed snapshot)\n\n- **exec-only** (row 1): PR=0.83 with ISR=0.031. Per C006, this **low ISR = redundancy** (model dumps ground facts e.g. `penguin(fido).` 3× — per-clause ablation cannot identify necessary clauses since removing any one duplicate leaves proof intact). NOT no-reasoning; redundant-encoding.\n- **exec+STA** (row 4): PR=0.50, but proved-only ISR=1.000 and H7=100%. Every proved sample is single-clause where the clause IS the query — extreme Goodhart collapse. 50% PR is from format-parse failures, not strategy difference.\n- **FOL vs Prolog at s42**: FOL exec-only (PR 0.93, ISR 0.12) → Prolog exec-only (PR 0.83, ISR 0.03). FOL exec+STA (saturated training) → Prolog exec+STA (H7=100% vs FOL ~65-97%). Prolog hacking is **more extreme** under both reward signals.\n\n### Gaps preventing Table 2 finalization\n\n- 4/6 Prolog cells PENDING. Cannot publish 3-seed mean±std for Prolog yet.\n- s42 single-seed is suggestive, but the FOL evidence (s42 best, s43 degraded, s44 tautological) shows seed variance is large in this regime; Prolog s43/s44 may differ from s42.\n- Until rows 2,3,5,6 land, Claim 3 statement in paper should be: \"preliminary single-seed evidence that hacking generalizes to Prolog with mode-specific (redundancy / single-clause) variants, full 3-seed evidence pending.\"\n\n---\n\n## Footnotes for paper\n\n- † plan001-exec-only-s43-r4 used sampling eval (do_sample=True, T=0.7), other rows use eval_sta.py greedy on identical 100-sample FOL set (D029). PR=0.14 is unambiguous failure regardless of decoding.\n- ‡ plan002-b03-s42 (β=0.3) did not converge at 500 steps; reported numbers are training-overall, not held-out eval. Used qualitatively for dose-response only.\n- All training-log ISR values are excluded — `_fast_fn` binary approximation, not comparable across runs (C004).\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01RSwNm4kYoEYsugfGNyxiXW`</summary>
+
+```json
+{
+  "name": "Evidence Chain Status (2026-05-14)",
+  "type": "report",
+  "description": "Evidence chain completeness check across Claims 1-3. Tabulates per-seed status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended 1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED, prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.",
+  "project": "solver-trace-ablation",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md",
+  "tags": [
+    "evidence-chain",
+    "paper-prep",
+    "registry-audit"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "a851c4dd-a271-4fea-8d76-ebbac72d3288",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KqNjMaS6ZMWVTz4DtWYxVw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 62152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3635
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T15:04:02.414Z_
+
+<details><summary>↩ Tool result · `toolu_01RSwNm4kYoEYsugfGNyxiXW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_8cc22c\", \"name\": \"Evidence Chain Status (2026-05-14)\", \"type\": \"report\", \"description\": \"Evidence chain completeness check across Claims 1-3. Tabulates per-seed status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended 1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED, prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/evidence_chain_status.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T15:04:02.335072+00:00\", \"tags\": [\"evidence-chain\", \"paper-prep\", \"registry-audit\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "913528b3-24a6-44c9-9a0b-54d88c0f6457",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_8cc22c\\\", \\\"name\\\": \\\"Evidence Chain Status (2026-05-14)\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Evidence chain completeness check across Claims 1-3. Tabulates per-seed status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended 1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED, prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/report/evidence_chain_status.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T15:04:02.335072+00:00\\\", \\\"tags\\\": [\\\"evidence-chain\\\", \\\"paper-prep\\\", \\\"registry-audit\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_8cc22c\", \"name\": \"Evidence Chain Status (2026-05-14)\", \"type\": \"report\", \"description\": \"Evidence chain completeness check across Claims 1-3. Tabulates per-seed status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended 1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED, prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/evidence_chain_status.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T15:04:02.335072+00:00\", \"tags\": [\"evidence-chain\", \"paper-prep\", \"registry-audit\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01PnwBxrabKnTia2TLSWyfeC`</summary>
+
+```json
+{
+  "name": "Paper Table Drafts v2 (FOL + Prolog)",
+  "type": "report",
+  "description": "Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary approximation. Includes aggregate 3-seed mean±std and key contrast narrative for Claims 1-3.",
+  "project": "solver-trace-ablation",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md",
+  "tags": [
+    "paper-table",
+    "draft",
+    "fol",
+    "prolog"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "f56cf27e-a494-4b8a-bdb0-be7760f3ffa1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KqNjMaS6ZMWVTz4DtWYxVw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 62152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3635
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T15:04:05.723Z_
+
+<details><summary>↩ Tool result · `toolu_01PnwBxrabKnTia2TLSWyfeC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_552b2e\", \"name\": \"Paper Table Drafts v2 (FOL + Prolog)\", \"type\": \"report\", \"description\": \"Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary approximation. Includes aggregate 3-seed mean±std and key contrast narrative for Claims 1-3.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/table_drafts_v2.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T15:04:05.524752+00:00\", \"tags\": [\"paper-table\", \"draft\", \"fol\", \"prolog\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "627c57eb-87b4-469e-8a55-bf072903304f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_552b2e\\\", \\\"name\\\": \\\"Paper Table Drafts v2 (FOL + Prolog)\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary approximation. Includes aggregate 3-seed mean±std and key contrast narrative for Claims 1-3.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/report/table_drafts_v2.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T15:04:05.524752+00:00\\\", \\\"tags\\\": [\\\"paper-table\\\", \\\"draft\\\", \\\"fol\\\", \\\"prolog\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_552b2e\", \"name\": \"Paper Table Drafts v2 (FOL + Prolog)\", \"type\": \"report\", \"description\": \"Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary approximation. Includes aggregate 3-seed mean±std and key contrast narrative for Claims 1-3.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/table_drafts_v2.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T15:04:05.524752+00:00\", \"tags\": [\"paper-table\", \"draft\", \"fol\", \"prolog\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+两个产出已写入并注册。
+
+**证据链状态摘要**
+- **Claim 1** (exec-only ISR 崩塌): ✅ 完整 — FOL 3-seed (s42 partial-genuine, s43 degraded, s44 tautological) + 1000-step 单调恶化确认
+- **Claim 2** (ISR β=0.1 + Goodhart): 近完整 — ISR 3/3 ✓, Random 2/3（s43 ALLOCATED 待跑），β=0.3 剂量响应 ✓, hacking taxonomy ✓, SFT 对照 ✓
+- **Claim 3** (跨逻辑泛化): 进行中 — Prolog s42 双 condition 完成，s43/s44 共 4 个 cell 运行/排队中
+
+**阻塞项**: 1 个 ALLOCATED (random-b01-s43-r2) + 2 个 RUNNING (prolog-exec s43/s44) + 2 个 PREPARING (prolog-sta s43/s44)
+
+**Artifact IDs**: `art_20260514_8cc22c` (evidence chain), `art_20260514_552b2e` (table drafts)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "uuid": "bd6c5d1d-3be6-4860-9a23-12c6dbdf70dd",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018aAWu5diXFcnsvicD8AFRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1923,
+      "cache_read_input_tokens": 65787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1923
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 20_
+
+两个产出已写入并注册。
+
+**证据链状态摘要**
+- **Claim 1** (exec-only ISR 崩塌): ✅ 完整 — FOL 3-seed (s42 partial-genuine, s43 degraded, s44 tautological) + 1000-step 单调恶化确认
+- **Claim 2** (ISR β=0.1 + Goodhart): 近完整 — ISR 3/3 ✓, Random 2/3（s43 ALLOCATED 待跑），β=0.3 剂量响应 ✓, hacking taxonomy ✓, SFT 对照 ✓
+- **Claim 3** (跨逻辑泛化): 进行中 — Prolog s42 双 condition 完成，s43/s44 共 4 个 cell 运行/排队中
+
+**阻塞项**: 1 个 ALLOCATED (random-b01-s43-r2) + 2 个 RUNNING (prolog-exec s43/s44) + 2 个 PREPARING (prolog-sta s43/s44)
+
+**Artifact IDs**: `art_20260514_8cc22c` (evidence chain), `art_20260514_552b2e` (table drafts)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 119480,
+  "duration_api_ms": 120330,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "c4672fee-3790-4889-9bb2-e8808aa4bd3d",
+  "total_cost_usd": 0.79675175,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 67323,
+    "cache_read_input_tokens": 252120,
+    "output_tokens": 9890,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 67323,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 401,
+        "cache_read_input_tokens": 65787,
+        "cache_creation_input_tokens": 1923,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1923
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2503,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002593,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 16,
+      "outputTokens": 9890,
+      "cacheReadInputTokens": 252120,
+      "cacheCreationInputTokens": 67323,
+      "webSearchRequests": 0,
+      "costUSD": 0.7941587500000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3ef0a261-fc34-4a86-b135-52df4d81df94"
+}
+```
+
+</details>
+
+---

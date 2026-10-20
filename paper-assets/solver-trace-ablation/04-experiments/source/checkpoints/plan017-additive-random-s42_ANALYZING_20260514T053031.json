@@ -1,0 +1,50 @@
+{
+  "exp_id": "plan017-additive-random-s42",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:11:14.694Z",
+    "updated_at": "2026-05-14T05:30:31.061Z",
+    "hypothesis": "Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。",
+    "parent": "plan013-random-reward-s42-r4",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Additive random control: r = r_exec·(1+0.3·random)",
+      "plan_id": "plan017",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "beta": 0.3
+    },
+    "pid": "207116",
+    "log_path": "~/runs/solver-trace-ablation/plan017-additive-random-s42.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\"",
+      "finished_at": "2026-05-14T05:17:13.920Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T05:17:18.376399+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T05:30:31.158308+00:00",
+  "trigger": "update_registry"
+}

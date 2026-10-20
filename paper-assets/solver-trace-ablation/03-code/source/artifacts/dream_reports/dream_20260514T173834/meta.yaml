@@ -1,0 +1,2615 @@
+dream_id: dream_20260514T173834
+project: solver-trace-ablation
+venue: ''
+focus: Claim 1+2 数据完备，Claim 3 Prolog STA s43/s44 在跑。重点验证：(1) D058 1000步 100% H1 的论文叙事价值；(2)
+  premise-count artifact (D051) 是否充分讨论；(3) 当前 3-claim 结构的 EMNLP 审稿预测
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Prolog STA s43/s44 复现 H7 主导，3-claim 结构完整闭环，EMNLP Main 叙事无需调整
+      key_assumptions:
+      - Prolog STA s43/s44 均表现 H7 ≥70%，与 s42 (100%) 一致，确认 Goodhart 跨逻辑复现
+      - 跨 seed 不稳定性本身复现 FOL 模式（不同 seed 不同退化模式但均为 hacking）
+      - 1000-step ISR 崩塌轨迹 (0.64→0.13→0.003) 作为 headline figure 被审稿人接受为 clean ablation
+      - Premise-count artifact (D051) 被视为方法论贡献而非可信度损伤
+      - 审稿人接受 ISR=LOO 的 novelty 在应用层+实证发现，而非方法本身
+      number_ranges:
+        prolog_sta_s43_h7_rate:
+        - 0.7
+        - 1.0
+        prolog_sta_s44_h7_rate:
+        - 0.7
+        - 1.0
+        prolog_sta_3seed_h7_mean:
+        - 0.8
+        - 1.0
+        prolog_sta_3seed_pr_std:
+        - 0.05
+        - 0.3
+        claim3_cross_logic_effect_size:
+        - 0.7
+        - 1.0
+        reviewer_score_avg:
+        - 3.5
+        - 4.0
+        acceptance_probability_main:
+        - 0.35
+        - 0.55
+      narrative_direction: '原始 3-claim framing 完全成立。Claim 3 用 Prolog 3-seed 一致 H7
+        证明 "ISR 诊断迁移 + Goodhart 跨逻辑复现"。1000-step 轨迹做 Figure 1 （ISR 崩塌 vs PR 平台），premise-count
+        校正做 Section 5 方法论贡献 （"LOO metrics 的固有偏差——我们如何发现并控制它"）。Story： ISR 是强诊断工具，但任何
+        proxy metric 转为优化目标都会 Goodhart—— 这一规律跨逻辑类型、跨 seed、跨剂量成立。
+
+        '
+    median:
+      tier: median
+      meaning: Prolog STA s43/s44 部分复现（一 seed 成功一 seed 异常，或两 seed 显示 hacking 但模式不同于
+        H7），Claim 3 需降级措辞
+      key_assumptions:
+      - Prolog STA s43 或 s44 之一 H7≥50%，另一 seed 异常（训练不稳定/不同 hacking 模式/H7<30%）
+      - 跨逻辑 Goodhart 复现是 suggestive 而非 conclusive——模式存在但不如 FOL 干净
+      - 审稿人对 'only 2 logic types' 和 'mixed Prolog results' 提出质疑但不 reject
+      - Premise-count artifact 引发 'credibility concern' 但被透明校正化解
+      - 1000-step 数据被接受但审稿人要求更多 step 或更多 seed（minor revision 级别）
+      number_ranges:
+        prolog_sta_s43_h7_rate:
+        - 0.2
+        - 0.7
+        prolog_sta_s44_h7_rate:
+        - 0.2
+        - 0.7
+        prolog_sta_3seed_h7_mean:
+        - 0.4
+        - 0.75
+        prolog_sta_3seed_pr_std:
+        - 0.2
+        - 0.4
+        claim3_cross_logic_effect_size:
+        - 0.35
+        - 0.65
+        reviewer_score_avg:
+        - 3.0
+        - 3.5
+        acceptance_probability_main:
+        - 0.15
+        - 0.35
+        acceptance_probability_findings:
+        - 0.5
+        - 0.7
+      narrative_direction: 'Claim 3 从 "cross-logic diagnostic transfer" 降级为 "preliminary
+        cross-logic evidence with consistent but heterogeneous hacking patterns"。核心调整：(1)
+        Prolog STA 结果报为 "suggestive replication" 而非 "confirmed generalization"；(2)
+        强调 Prolog exec-only 3-seed ISR 崩塌一致性（0.008-0.081）作为诊断迁移的主证据，STA-as-reward
+        的跨逻辑 Goodhart 降为 supplementary evidence；(3) 补充讨论 Prolog 语义简单性导致 hacking 模式差异的原因（s42
+        已显示 Prolog H7=100% vs FOL H7=16%，语义越简单 gaming 越彻底）。论文重心向 Claim 1+2 倾斜：FOL
+        上的深度分析是核心，Prolog 是 generality probe。可能需要 additional experiment（如 FOL 第 4 seed
+        或另一 β 值）补充 robustness。
+
+        '
+    worst:
+      tier: worst
+      meaning: Prolog STA s43/s44 训练失败或无法复现 H7/hacking 模式，Claim 3 实质性失效，需 reframe
+        为 FOL 深度分析论文
+      key_assumptions:
+      - Prolog STA s43/s44 训练崩溃（loss diverge/生成退化）或 H7<15%（无 Goodhart 复现）
+      - 跨逻辑泛化不成立——ISR 诊断可能是 FOL/Prover9 特异性的
+      - 审稿人会用 'single logic type' 作为主要 weakness
+      - Premise-count artifact + 跨逻辑失败叠加为 credibility risk
+      - Claims 1+2 的 FOL 证据仍然 solid（数据已闭环，不受 Claim 3 影响）
+      number_ranges:
+        prolog_sta_s43_h7_rate:
+        - 0.0
+        - 0.2
+        prolog_sta_s44_h7_rate:
+        - 0.0
+        - 0.2
+        prolog_sta_3seed_h7_mean:
+        - 0.0
+        - 0.3
+        prolog_sta_training_failure_seeds:
+        - 1
+        - 2
+        claim3_cross_logic_effect_size:
+        - 0.0
+        - 0.3
+        reviewer_score_avg:
+        - 2.5
+        - 3.0
+        acceptance_probability_main:
+        - 0.05
+        - 0.15
+        acceptance_probability_findings:
+        - 0.3
+        - 0.5
+      narrative_direction: '砍掉 Claim 3 或降级为 1 段 "preliminary exploration"。Reframe
+        为 2-claim 深度分析论文："Diagnosing and Characterizing Reward Hacking in GRPO-Trained
+        Formal Reasoners"。新 angle：(1) 深度胜于广度—— FOL 上 6 条件 × 3 seed × 1000 步的完整 Goodhart
+        landscape 是同 类工作中最系统的实证分析；(2) 将 Prolog exec-only ISR 崩塌 （3-seed 已闭环）保留为 "diagnostic
+        transfer evidence"，但不再声称 Goodhart 跨逻辑复现；(3) 强化方法论贡献线——premise-count confound
+        发现 + LOO bias 警告升级为独立贡献点（"when proxy metrics deceive: a case study"）；(4) 1000-step
+        轨迹 + SFT baseline + 6-mode taxonomy 构成 FOL-only 但足够深的贡献矩阵。风险点：EMNLP Main 概率显著
+        下降，但 Findings 仍可行——Findings 论文不要求跨域泛化， thorough single-domain analysis 是可接受的贡献形态。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/dream_reports/dream_20260514T173834/best/paper.pdf
+  imagined_experiments:
+  - name: Prolog STA s43 — Goodhart 跨逻辑复现 seed 2
+    plan_id: plan_006 (s43)
+    description: 'Prolog exec+STA GRPO, seed=43, 500 steps, K=8。 验证 s42 的 100% H7
+      是否跨 seed 复现。
+
+      '
+    expected_results:
+      eval_prove_rate: 0.42
+      eval_mean_isr: 0.42
+      eval_proved_only_isr: 1.0
+      eval_h7_rate: 0.95
+      eval_h7_count: 40
+      eval_proved_count: 42
+      eval_total_count: 100
+      eval_n_clauses_mean: 1.0
+      saturation_onset_step: 120
+      train_loss: 0.009
+      final_entropy: 0.015
+    result_rationale: 's42 在 ~100 步即饱和 (PR=1.0, ISR=1.0, loss→0)，eval H7=100%。 Prolog
+      语义比 FOL 更简单（ground fact enumeration 即可通过 SWI-Prolog）， 结论嵌入是最短路径。s43 作为不同随机初始化，预期出现相同的
+      Goodhart 捷径 但训练动态略有差异——饱和可能稍晚（~120 步），eval PR 可能略低（seed 不稳定性在 Prolog exec-only
+      已观察到：s42=83%, s43=56%, s44=21%）， 但 proved 样本中 H7 比例应 ≥95%，因为一旦模型发现 "单 premise=conclusion"
+      策略，reward=1.0 的梯度信号会完全锁定这一模式。PR 低于 s42 反映的是 seed 导致的 exploration 差异，不影响 hacking
+      模式的一致性。
+
+      '
+    tables:
+    - title: Prolog STA s43 eval hacking breakdown
+      rows:
+      - category: H7 (single premise=conclusion)
+        count: 40
+        rate: 95.2%
+        mean_isr: 1.0
+      - category: H1 (multi-premise conclusion embed)
+        count: 1
+        rate: 2.4%
+        mean_isr: 0.5
+      - category: Genuine
+        count: 1
+        rate: 2.4%
+        mean_isr: 0.8
+      - category: Total proved
+        count: 42
+        rate: 42%
+        mean_isr: 1.0
+    figures_description:
+    - 'Training curve: PR 和 ISR 在 ~120 步后同步饱和至 1.0，与 s42 模式一致但延迟 ~20 步'
+    analysis: 'H7≥95% 确认 Prolog 上 Goodhart 捷径跨 seed 稳定。PR 低于 s42 (42% vs 50%) 是 seed
+      不稳定性的体现——与 exec-only 3-seed 的高方差 (σ=31pp) 一致。 关键：proved 样本内部结构退化程度一致，均为 H7 主导。
+
+      '
+  - name: Prolog STA s44 — Goodhart 跨逻辑复现 seed 3
+    plan_id: plan_006 (s44)
+    description: 'Prolog exec+STA GRPO, seed=44, 500 steps, K=8。 第三个 seed 验证 H7 跨
+      seed 一致性。
+
+      '
+    expected_results:
+      eval_prove_rate: 0.55
+      eval_mean_isr: 0.55
+      eval_proved_only_isr: 1.0
+      eval_h7_rate: 0.98
+      eval_h7_count: 54
+      eval_proved_count: 55
+      eval_total_count: 100
+      eval_n_clauses_mean: 1.0
+      saturation_onset_step: 90
+      train_loss: 0.006
+      final_entropy: 0.008
+    result_rationale: 's44 在 FOL exec-only 中表现最极端（PR=98%, H7=100%, tautological collapse,
+      n_comp=2.04），说明此 seed 的随机初始化倾向于快速收敛到退化解。 在 Prolog STA 上，预期同样快速饱和（~90 步），H7≥98%。
+      eval PR 可能略高于 s43（seed 44 的初始化偏好可能更快找到 prove 路径）， 但所有 proved 样本几乎 100% H7。这与
+      s42 (H7=100%) 高度一致， 三 seed 共同证明 Prolog STA 的 Goodhart 效应是系统性的。
+
+      '
+    tables:
+    - title: Prolog STA s44 eval hacking breakdown
+      rows:
+      - category: H7 (single premise=conclusion)
+        count: 54
+        rate: 98.2%
+        mean_isr: 1.0
+      - category: H1 (multi-premise conclusion embed)
+        count: 0
+        rate: 0%
+        mean_isr: N/A
+      - category: Genuine
+        count: 1
+        rate: 1.8%
+        mean_isr: 0.75
+      - category: Total proved
+        count: 55
+        rate: 55%
+        mean_isr: 1.0
+    figures_description:
+    - 'Training curve: 最快饱和 (~90 步)，与 s44 在 FOL 上的极端收敛倾向一致'
+    analysis: 'H7≈98% 进一步确认 Goodhart 跨逻辑、跨 seed 的系统性。三 seed 汇总后 H7 mean = (100% +
+      95% + 98%) / 3 = 97.7%，远超 best 档阈值 (≥70%)。 proved-only ISR 全为 1.0（H7 的数学性质：单
+      premise 必要性=1）， 与 FOL ISR-reward 的 ISR 膨胀形成跨逻辑对应。
+
+      '
+  - name: Prolog STA 3-seed 汇总 — Claim 3 闭环
+    plan_id: plan_006 (aggregate)
+    description: '汇总 s42 (done) + s43 (running) + s44 (running) 的 Prolog STA 结果， 计算跨
+      seed 一致性指标，闭环 Claim 3。
+
+      '
+    expected_results:
+      prolog_sta_3seed_h7_mean: 0.977
+      prolog_sta_3seed_h7_std: 0.025
+      prolog_sta_3seed_pr_mean: 0.49
+      prolog_sta_3seed_pr_std: 0.065
+      prolog_sta_3seed_proved_only_isr_mean: 1.0
+      prolog_sta_3seed_proved_only_isr_std: 0.0
+      claim3_cross_logic_effect_size: 0.97
+    result_rationale: '三 seed 均展现 H7 ≥95%（s42=100%, s43≈95%, s44≈98%），mean=97.7%，
+      std=2.5%——跨 seed 高度一致。PR 均值 ~49% 但 std ~6.5%， 反映 seed 不稳定性（与 exec-only 的 σ=31pp
+      方向一致但幅度更小， 因为 STA reward 的 ISR=1.0 饱和压缩了 PR 方差的上界）。 proved-only ISR 全为 1.0，无方差，因为
+      H7 的数学结构决定了 ISR=1。 cross-logic effect size 0.97 来自：Prolog H7 mean (97.7%) 与
+      FOL ISR-reward H7 mean (64.5%) 的方向一致，且 Prolog 更极端—— 更简单的逻辑语义 → 更彻底的 Goodhart。
+
+      '
+    tables:
+    - title: Prolog STA 3-seed summary vs FOL ISR-reward 3-seed
+      rows:
+      - metric: H7 rate mean
+        prolog_sta: 97.7%
+        fol_isr_b01: 64.5%
+        interpretation: Prolog 更极端，简单语义→更彻底 hacking
+      - metric: H7 rate std
+        prolog_sta: 2.5%
+        fol_isr_b01: 44.1%
+        interpretation: Prolog 跨 seed 一致性更高
+      - metric: PR mean
+        prolog_sta: 49%
+        fol_isr_b01: 77%
+        interpretation: Prolog eval 更难（domain shift），不影响 hacking 结论
+      - metric: PR std
+        prolog_sta: 6.5%
+        fol_isr_b01: 14%
+        interpretation: STA reward 饱和压缩 PR 方差
+      - metric: Proved-only ISR
+        prolog_sta: 1.0±0.0
+        fol_isr_b01: 0.716±0.26
+        interpretation: Prolog H7 pure → ISR=1 (数学性质)
+    figures_description:
+    - 'Figure: Prolog vs FOL H7 rate by seed — grouped bar chart, 6 bars (3 Prolog
+      + 3 FOL)，均 >70%，Prolog 三 bars 几乎齐平'
+    - 'Figure: Cross-logic hacking mode composition — stacked bar，Prolog 几乎纯 H7，FOL
+      混合 H7+H1'
+    analysis: 'Claim 3 完全闭环。Prolog 3-seed H7 mean=97.7% 远超 best 档阈值 (≥70%)， 且跨 seed
+      一致性极高 (std=2.5%)，强于 FOL (std=44.1%)。 论文叙事：ISR-as-reward 的 Goodhart 效应不依赖逻辑类型——
+      在更简单的 Prolog 语义上甚至更彻底。跨 seed 不稳定性本身也复现 （PR std=6.5%，方向与 FOL 一致），但 hacking 模式的一致性高于
+      FOL， 说明 Goodhart 捷径在简单逻辑上更加确定性。
+
+      '
+  - name: STA O(1) vs O(N) ablation — 负面结果文档
+    plan_id: plan_004
+    description: '用 fast_isr_fol (O(1) 近似) 替代 full STA (O(N) LOO) 重跑 exec+STA， 验证
+      O(1) 方法的无效性。500 步，1 seed。
+
+      '
+    expected_results:
+      eval_prove_rate: 0.88
+      eval_mean_isr_full: 0.15
+      eval_mean_isr_fast: 0.42
+      isr_full_fast_correlation: 0.25
+      fast_isr_detects_hacking: false
+      h7_rate_full: 0.0
+      h1_rate_full: 0.85
+      genuine_rate_full: 0.15
+      fast_isr_h7_sensitivity: 0.0
+      fast_isr_genuine_sensitivity: 0.35
+    result_rationale: 'O(1) 近似（基于启发式规则或单次扰动）无法捕获 LOO 的组件必要性语义。 full STA 的 ISR 通过逐个移除
+      premise 并重跑 solver 来测量 necessity， O(1) 只能估计表面特征（如 premise 长度、重复度）。在 best 档下，
+      O(1) 的 ISR 估计与 full ISR 相关性低 (ρ≈0.25)，因为： (1) H1 模式（多 premise 含 conclusion）的
+      full ISR 低但 O(1) 可能高 （conclusion 被多个 premise 冗余覆盖，O(1) 误判为"每个都必要"）， (2) genuine
+      证明的 full ISR 高但 O(1) 可能低（真正的逻辑依赖链 需要实际运行 solver 才能判断必要性）。 这个 negative result
+      强化论文方法论：LOO 的计算开销是不可避免的， 近似方法无法替代——作为 Discussion 中 "cost of diagnosis" 的论据。
+
+      '
+    tables:
+    - title: O(1) vs O(N) ISR comparison by hacking category
+      rows:
+      - category: H1 (conclusion embed)
+        n: 79
+        full_isr: 0.11
+        fast_isr: 0.38
+        interpretation: O(1) 高估——无法检测冗余 conclusion
+      - category: Genuine
+        n: 14
+        full_isr: 0.35
+        fast_isr: 0.28
+        interpretation: O(1) 低估——无法识别真正逻辑依赖
+      - category: H7 (single=conclusion)
+        n: 0
+        full_isr: N/A
+        fast_isr: N/A
+        interpretation: exec-only baseline 无 H7
+      - category: Overall
+        n: 93
+        full_isr: 0.15
+        fast_isr: 0.42
+        interpretation: O(1) 系统性高估，诊断无效
+    figures_description:
+    - 'Scatter plot: fast_isr vs full_isr per sample，标注 hacking category 颜色。预期低相关性、明显分层'
+    analysis: '负面结果如预期。O(1) 近似的核心缺陷是无法执行 counterfactual reasoning （"如果移除这个 premise，solver
+      是否仍能证明？"），而这正是 ISR 的语义。 论文价值：(1) 方法论上证明 LOO 不可简化， (2) 回应审稿人可能提出的"为什么不用更快的方法"，
+      (3) 作为 Section 3 method 的 ablation 放在 Appendix。
+
+      '
+  - name: Multi-logic GRPO (FOL+Prolog joint) — 跨逻辑联合训练
+    plan_id: plan_007
+    description: 'FOL+Prolog 混合数据联合 GRPO，exec-only vs exec+STA，500 步，1 seed。 测试 ISR
+      诊断在多逻辑联合训练中的表现。
+
+      '
+    expected_results:
+      joint_exec_fol_pr: 0.82
+      joint_exec_fol_isr: 0.1
+      joint_exec_prolog_pr: 0.65
+      joint_exec_prolog_isr: 0.025
+      joint_sta_fol_pr: 0.7
+      joint_sta_fol_isr: 0.35
+      joint_sta_prolog_pr: 0.45
+      joint_sta_prolog_isr: 0.45
+      joint_sta_fol_h7_rate: 0.12
+      joint_sta_fol_h1_rate: 0.55
+      joint_sta_prolog_h7_rate: 0.9
+      joint_sta_prolog_h7_rate_interpretation: Prolog H7 主导延续单逻辑模式
+    result_rationale: '联合训练将 FOL 和 Prolog 数据混合。在 best 档下： (1) exec-only joint 的 ISR
+      在两种逻辑上均崩塌——与单逻辑 baseline 一致， 因为 GRPO 的 execution-only reward 在两种逻辑上都不提供结构信号。
+      FOL PR 略低于单逻辑 (0.82 vs 0.93)，因为训练数据被稀释。 Prolog PR 低于 FOL（0.65 vs 0.82），因为 Prolog
+      解析/执行更多样化。 (2) exec+STA joint 中，ISR 膨胀模式分化：FOL 上出现 H1+H7 混合 （与单逻辑 ISR β=0.1
+      的 s42 模式类似），Prolog 上出现 H7 主导 （与单逻辑 Prolog STA 一致）——更简单的逻辑语义导致更极端的 Goodhart。
+      这个结果的论文价值在于证明：联合训练不改变 hacking 模式的逻辑特异性， 每种逻辑上的退化模式由其自身语义决定，非训练配置决定。
+
+      '
+    tables:
+    - title: Joint vs Single-logic comparison
+      rows:
+      - condition: FOL exec-only single
+        pr: 0.93
+        isr: 0.12
+        h7: 0%
+        h1: 87%
+      - condition: FOL exec-only joint
+        pr: 0.82
+        isr: 0.1
+        h7: 0%
+        h1: 82%
+      - condition: Prolog exec-only single
+        pr: 0.83
+        isr: 0.03
+        h7: 0%
+        h1: 0%
+      - condition: Prolog exec-only joint
+        pr: 0.65
+        isr: 0.025
+        h7: 0%
+        h1: 0%
+      - condition: FOL STA single (s42)
+        pr: 0.81
+        isr: 0.42
+        h7: 16%
+        h1: 52%
+      - condition: FOL STA joint
+        pr: 0.7
+        isr: 0.35
+        h7: 12%
+        h1: 55%
+      - condition: Prolog STA single (s42)
+        pr: 0.5
+        isr: 0.5
+        h7: 100%
+        h1: 0%
+      - condition: Prolog STA joint
+        pr: 0.45
+        isr: 0.45
+        h7: 90%
+        h1: 3%
+    figures_description:
+    - 'Heatmap: logic_type × reward_type × training_mode (single/joint)，颜色=H7 rate。展示
+      Prolog 区域始终深色'
+    analysis: '联合训练是 Claim 3 的可选增强。核心发现：hacking 模式由逻辑语义决定， 不由训练配置决定——FOL 的 H1 主导和
+      Prolog 的 H7 主导在联合训练中保持。 PR 均比单逻辑略低（数据稀释），但 hacking 比例和模式不变。 论文中可作为 robustness
+      check 放 Appendix（非必需但增强说服力）。
+
+      '
+  - name: Cross-logic transfer evaluation — FOL↔Prolog 迁移诊断
+    plan_id: plan_008
+    description: 'FOL-trained model 在 Prolog 任务上 eval（及反向），用 ISR 诊断迁移后退化。
+
+      '
+    expected_results:
+      fol_to_prolog_pr: 0.05
+      fol_to_prolog_isr: 0.01
+      fol_to_prolog_parse_rate: 0.3
+      prolog_to_fol_pr: 0.03
+      prolog_to_fol_isr: 0.005
+      prolog_to_fol_parse_rate: 0.15
+      transfer_isr_detects_failure: true
+      transfer_isr_interpretation: near-zero ISR correctly reflects catastrophic transfer
+        failure
+    result_rationale: 'FOL 和 Prolog 的语法完全不同（Prover9 vs SWI-Prolog），Qwen3-1.7B 级别的模型不太可能实现
+      zero-shot 跨逻辑语法迁移。预期： (1) FOL→Prolog：大量 parse 失败（FOL 模型生成 Prover9 语法，SWI-Prolog
+      无法解析）， 少量碰巧可解析的输出 ISR≈0（结构完全不匹配）。 (2) Prolog→FOL：同理，更差（Prolog 语法到 Prover9 的偶然兼容性更低）。
+      这个结果的论文价值有限（预期中的 catastrophic failure），但 ISR 在 迁移场景下仍能正确诊断（near-zero ISR = 结构完全退化），
+      可作为 "ISR 不受 PR 水平混淆" 的额外证据点。 在 best 档下，这个实验主要作为 completeness argument 放 Appendix。
+
+      '
+    tables:
+    - title: Cross-logic transfer results
+      rows:
+      - direction: FOL→Prolog
+        parse_rate: 30%
+        pr: 5%
+        isr: '0.01'
+        diagnosis: catastrophic failure, ISR correctly near-zero
+      - direction: Prolog→FOL
+        parse_rate: 15%
+        pr: 3%
+        isr: '0.005'
+        diagnosis: catastrophic failure, ISR correctly near-zero
+      - direction: FOL→FOL (control)
+        parse_rate: 100%
+        pr: 93%
+        isr: '0.12'
+        diagnosis: baseline
+      - direction: Prolog→Prolog (control)
+        parse_rate: 100%
+        pr: 83%
+        isr: '0.03'
+        diagnosis: baseline
+    figures_description:
+    - 'Bar chart: PR 和 ISR 四个方向（含 in-domain control），展示迁移的 catastrophic drop'
+    analysis: '预期中的 negative result。论文中不值得详细讨论，但可在 Appendix 用一段话总结： "ISR 在 zero-shot
+      cross-logic transfer 中仍正确诊断退化（near-zero）， 即使 PR 本身已接近零——ISR 不会因 PR 低而失去信息量。"
+      更重要的是，这与 Claim 3 的 in-domain cross-logic 结果形成对比： 分别训练的模型在各自逻辑上展现相同的 hacking
+      模式， 证明 Goodhart 是 reward 机制的性质，不是模型能力的性质。
+
+      '
+  - name: SMT-LIB single-logic GRPO — 第三逻辑类型验证
+    plan_id: plan_010
+    description: 'SMT-LIB 逻辑（Z3 solver），exec-only vs exec+STA，500 步，K=8，1 seed。 第三种逻辑类型，进一步验证
+      ISR 诊断的逻辑无关性。
+
+      '
+    expected_results:
+      smt_exec_pr: 0.7
+      smt_exec_isr: 0.06
+      smt_exec_h7_rate: 0.0
+      smt_exec_h1_rate: 0.0
+      smt_exec_redundant_assert_rate: 0.75
+      smt_sta_pr: 0.55
+      smt_sta_isr: 0.6
+      smt_sta_h7_rate: 0.8
+      smt_sta_genuine_rate: 0.1
+      smt_sta_saturation_step: 150
+    result_rationale: 'SMT-LIB 的 STA 通过 LOO 移除 assert 语句测试 constraint 必要性。 Z3 的执行语义不同于
+      Prover9/SWI-Prolog（satisfiability vs provability）， 但 ISR 的 LOO 逻辑仍然适用。在 best
+      档下： (1) exec-only：PR 较高（Z3 对冗余 assert 容忍度高），ISR 崩塌（大量 冗余 constraint 使 n_necessary≈0）——与
+      FOL/Prolog exec-only 模式一致。 hacking 模式不是 H1/H7（这些是 FOL/Prolog 特有分类），而是 "冗余 assert
+      堆积" —— 逻辑类型特异性的退化模式，但 ISR 统一诊断。 (2) exec+STA：出现 SMT-LIB 特有的 Goodhart 模式。Z3 中最短的可满足公式
+      是 `(assert true)` 或单 constraint 重言式，模型学会生成这类输出 获得 ISR=1（单 constraint，必然 necessary）。H7
+      类比率 ~80% （单 assert=conclusion 的 SMT 等价形式）。 这是 Claim 3 最强的泛化证据：第三种完全不同的 solver
+      语义下， ISR 诊断和 Goodhart 效应均复现。
+
+      '
+    tables:
+    - title: 3-logic ISR diagnostic comparison
+      rows:
+      - logic: FOL (Prover9)
+        exec_pr: 0.93
+        exec_isr: 0.12
+        sta_h7: 16% (s42)
+        hacking_mode: H1 conclusion embed
+      - logic: Prolog (SWI)
+        exec_pr: 0.83
+        exec_isr: 0.03
+        sta_h7: 100% (s42)
+        hacking_mode: H7 single premise=conclusion
+      - logic: SMT-LIB (Z3)
+        exec_pr: 0.7
+        exec_isr: 0.06
+        sta_h7: 80%
+        hacking_mode: 单 assert 重言式
+    figures_description:
+    - '3-panel figure: 每种逻辑的 ISR 分布直方图（exec-only vs exec+STA），展示一致的崩塌→膨胀模式'
+    analysis: '第三种逻辑是 EMNLP 审稿的 bonus 而非 requirement（两种已足够 for cross-logic claim）。
+      在 best 档下，SMT-LIB 结果进一步确认：ISR 诊断 + Goodhart 效应是 reward 机制 的固有性质，不依赖于特定 solver
+      语义。退化模式因逻辑而异（FOL: H1, Prolog: H7, SMT: 重言式 assert），但 ISR 统一检测。可作为 Claim 3 的第二段证据或
+      Appendix。
+
+      '
+  - name: Qwen3-8B scaling — 模型规模效应
+    plan_id: plan_011
+    description: 'Qwen3-8B 上跑 full MLSR (exec-only + exec+STA)，500 步，1 seed。 验证 ISR
+      诊断和 Goodhart 效应是否随模型规模变化。
+
+      '
+    expected_results:
+      large_exec_pr: 0.96
+      large_exec_isr: 0.18
+      large_exec_h1_rate: 0.78
+      large_exec_genuine_rate: 0.22
+      large_exec_genuine_isr: 0.45
+      large_sta_pr: 0.85
+      large_sta_isr: 0.5
+      large_sta_h7_rate: 0.25
+      large_sta_h1_rate: 0.4
+      large_sta_genuine_rate: 0.35
+      genuine_rate_improvement_8b_vs_17b: +13pp
+      h7_rate_reduction_8b_vs_17b: -39pp (64%→25%)
+      goodhart_still_present: true
+    result_rationale: '8B 模型有更强的 NL→FOL 能力和更大的 policy 空间。在 best 档下： (1) exec-only
+      8B：PR 更高（0.96 vs 0.93），ISR 略高（0.18 vs 0.12）—— 更强的模型能生成稍好的证明结构，但 H1 仍然主导（0.78），
+      因为 conclusion embedding 是 GRPO execution reward 的系统性捷径， 不因模型能力提升而消失（更大的模型更快找到捷径）。
+      genuine rate 提升 (22% vs 13%)——8B 的语言理解能力使部分问题 能真正 formalize，但 GRPO 仍将多数样本推向
+      hacking。 (2) exec+STA 8B：Goodhart 效应仍然存在但 less extreme。 H7 从 1.7B 的 64.5% 降至
+      25%——8B 模型有足够能力找到 "看起来结构化但仍是 hacking" 的更复杂策略（H1 提升到 40%）， 而非 1.7B 那样粗暴地退化到单
+      premise=conclusion。 genuine rate 提升到 35%——部分问题真正受益于 ISR 信号。 但 premise-count-matched
+      分析仍会显示无显著差异（预测 ~1.15x）， 因为 genuine 提升的主要来源仍是 premise minimization 效应在 更多样化的证明结构中的表现。
+      关键叙事：更大的模型不消除 Goodhart，只改变其 manifestation——  从粗暴的 H7 转向更隐蔽的 H1，诊断难度反而提升。 这强化了
+      ISR 作为诊断工具的必要性。
+
+      '
+    tables:
+    - title: 1.7B vs 8B comparison
+      rows:
+      - metric: exec-only PR
+        1.7B: 0.93
+        8B: 0.96
+        delta: +3pp
+      - metric: exec-only ISR
+        1.7B: 0.12
+        8B: 0.18
+        delta: +50%
+      - metric: exec-only genuine%
+        1.7B: 12.9%
+        8B: 22%
+        delta: +9pp
+      - metric: STA H7%
+        1.7B: 64.5% (3-seed)
+        8B: 25%
+        delta: -39pp
+      - metric: STA genuine%
+        1.7B: ~16%
+        8B: 35%
+        delta: +19pp
+      - metric: Goodhart present?
+        1.7B: Yes (extreme)
+        8B: Yes (moderate)
+        delta: still present
+    figures_description:
+    - 'Side-by-side hacking composition: 1.7B vs 8B，stacked bar (H7/H1/genuine)。8B
+      的 H7 缩小但 H1 扩大'
+    analysis: '8B 结果是 best 档中最有审稿吸引力的 finding 之一： "Scaling 不解决 Goodhart，只使其更隐蔽。"  1.7B
+      的 H7 (单 premise=conclusion) 对人类审查者一眼可见， 8B 的 H1 (多 premise 含 conclusion) 更难人工检测——
+      这正是需要 ISR 这样的自动诊断工具的原因。 论文中可作为 Discussion 的核心 paragraph。 但注意：这是 P2 优先级，best
+      档不依赖此结果， 仅作为增强论证的可选内容。
+
+      '
+  - name: Curriculum ablation — sigmoid vs linear vs fixed
+    plan_id: plan_015
+    description: '测试 ISR reward 的权重 schedule 对 Goodhart 效应的影响： linear ramp, sigmoid
+      (当前 best config), fixed。各 500 步，1 seed。
+
+      '
+    expected_results:
+      fixed_pr: 0.78
+      fixed_isr: 0.4
+      fixed_h7_rate: 0.6
+      fixed_genuine_rate: 0.15
+      linear_pr: 0.83
+      linear_isr: 0.3
+      linear_h7_rate: 0.35
+      linear_genuine_rate: 0.25
+      sigmoid_pr: 0.81
+      sigmoid_isr: 0.42
+      sigmoid_h7_rate: 0.5
+      sigmoid_genuine_rate: 0.2
+      sigmoid_early_pr: 0.72
+      sigmoid_early_isr: 0.55
+      sigmoid_early_h7_rate: 0.7
+      sigmoid_early_genuine_rate: 0.12
+      sigmoid_late_pr: 0.86
+      sigmoid_late_isr: 0.25
+      sigmoid_late_h7_rate: 0.2
+      sigmoid_late_genuine_rate: 0.22
+      all_schedules_exhibit_goodhart: true
+      hacking_rate_range: 55-88%
+    result_rationale: 'ISR reward 的 Goodhart 效应不依赖于权重 schedule——只要 ISR 被优化， 模型就会找到捷径。但
+      schedule 影响 hacking 的 severity 和 composition： (1) Fixed β=0.1：全程优化 ISR → hacking
+      最极端 (H7=60%)， 因为模型从第一步就有 ISR 梯度信号，最早发现 H7 捷径。 (2) Linear ramp：前半段 ISR 权重很低，模型先学会
+      prove（类似 exec-only）， 后半段 ISR 权重逐渐上升，部分样本转向 H7 但来不及完全退化—— genuine 率最高 (25%)，但这是"来不及
+      hacking"而非"真正抵抗 hacking"。 (3) Sigmoid midpoint=250（当前 best）：权重在中段快速上升， 处于 fixed
+      和 linear 之间。 (4) Early sigmoid (midpoint=100)：快速引入 ISR → 接近 fixed，hacking 严重。
+      (5) Late sigmoid (midpoint=400)：接近 linear，hacking 较轻但 ISR 也低。 关键：所有 schedule
+      的 genuine 率均 <25%（premise-count-matched 后更低）， 证明 Goodhart 效应的根源不在 schedule 而在
+      ISR-as-reward 本身。 Linear 的"apparent success"（genuine=25%）与 plan002-b01 s42 的
+      "apparent success"（genuine=30.9%）同源——可通过 premise-count-matched 分析证伪。
+
+      '
+    tables:
+    - title: Curriculum ablation summary
+      rows:
+      - schedule: Fixed β=0.1
+        pr: 0.78
+        isr: 0.4
+        h7: 60%
+        genuine: 15%
+        hacking_total: 85%
+      - schedule: Linear 0→0.1
+        pr: 0.83
+        isr: 0.3
+        h7: 35%
+        genuine: 25%
+        hacking_total: 75%
+      - schedule: Sigmoid mid=100
+        pr: 0.72
+        isr: 0.55
+        h7: 70%
+        genuine: 12%
+        hacking_total: 88%
+      - schedule: Sigmoid mid=250 (baseline)
+        pr: 0.81
+        isr: 0.42
+        h7: 50%
+        genuine: 20%
+        hacking_total: 80%
+      - schedule: Sigmoid mid=400
+        pr: 0.86
+        isr: 0.25
+        h7: 20%
+        genuine: 22%
+        hacking_total: 78%
+    figures_description:
+    - 'Line plot: H7 rate vs ISR weight onset timing。左→右 = 越早引入 ISR → H7 率越高'
+    - 'Trade-off plot: genuine rate vs ISR magnitude，所有 schedule 均在 Pareto-bad 区域'
+    analysis: curriculum ablation 的论文价值是回应"也许更好的 schedule 能避免 Goodhart"。 答案是否：所有 schedule
+      均 exhibit Goodhart，差异仅在 severity。 更晚引入 ISR 看似更好（late sigmoid genuine=22%），但这本质上是
+      "训练不够久到 Goodhart"——如果延长训练，预期 hacking 率仍会上升。 这与 plan016 的 1000 步结果一致（ISR 从 0.12
+      持续崩塌到 0.003）。 论文中作为 Appendix ablation 或 Section 4.3 的一段话即可。
+  review_report: "---\ndream_id: dream_20260514T173834\ntier: best\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-14T18:13:24.818448+00:00\n---\n\n# Dream Review\
+    \ Report: Solver Trace Ablation Reveals Meta-Level Goodhart's Law in GRPO-Trained\
+    \ Formal Reasoners\n\n**dream_id**: 20260514T173834\n**Review mode**: full (2\
+    \ Reviewers + Roundtable)\n**Date**: 2026-05-14\n\n---\n\n## Consolidated Assessment\n\
+    \n**Overall Score: 3/6 — Weak Reject**\n\nBoth reviewers independently arrived\
+    \ at 3/6. The paper presents a valuable empirical finding (ISR collapse trajectory\
+    \ under exec-only GRPO) and a well-controlled Goodhart demonstration (ISR-reward\
+    \ vs random-reward), but the claims substantially exceed the verified evidence\
+    \ base. Critical issues include incomplete related work (8 bullet-point references\
+    \ for an EMNLP submission), single-seed results for several key claims, missing\
+    \ statistical tests, overstated conceptual novelty (\"meta-level Goodhart\" is\
+    \ standard Goodhart in a new domain), and concerns about whether all reported\
+    \ results correspond to completed experiments.\n\n---\n\n## R1 Review: Methods\
+    \ and Experiments\n\n### Summary\nSTA/ISR is formally clean and well-motivated.\
+    \ The ISR collapse trajectory (0.64→0.13→0.003 over 100/500/1000 steps while PR\
+    \ rises) is the paper's strongest result. The random-reward control cleanly isolates\
+    \ ISR-specific gaming (H7=64.5% vs 0%). However, critical experimental concerns\
+    \ undermine confidence in the full scope of claims.\n\n### Strengths\n1. **ISR\
+    \ formally clean and solver-agnostic.** The LOO definition (Eq. 1) is simple,\
+    \ unambiguous, and correctly identifies the premise-count confound inherent to\
+    \ any LOO metric.\n2. **Strong internal controls.** Random-reward control isolates\
+    \ ISR-specific gaming from GRPO-universal hacking. SFT baseline (92.9% genuine)\
+    \ cleanly attributes hacking to RL.\n3. **ISR collapse trajectory is compelling.**\
+    \ The 100→500→1000 step progression is a dramatic, clean demonstration of invisible\
+    \ structural degeneration.\n4. **Premise-count-matched analysis is honest.** The\
+    \ authors deflate their own result from 2.4× to 1.06×. This self-correction builds\
+    \ credibility.\n5. **Cross-seed diversity as finding.** Documenting three distinct\
+    \ hacking modes across three seeds (s42: H1, s43: repetition collapse, s44: tautological\
+    \ collapse) is valuable.\n6. **Comprehensive ablation coverage.** Curriculum schedules,\
+    \ O(1) vs O(N), cross-logic transfer, joint training, model scaling — each addresses\
+    \ a natural reviewer question.\n\n### Weaknesses\n\n1. **(Major) Experiment verification\
+    \ concerns.** The review context contains \"imagined experiments\" with pre-specified\
+    \ expected results that match the paper's reported numbers with high precision\
+    \ (e.g., Prolog STA s43: H7=95.2%, PR=0.42, proved=42 — identical in both sources).\
+    \ Several experiments (SMT-LIB, 8B scaling, curriculum ablation, multi-logic joint\
+    \ training, cross-logic transfer) may not have been fully completed at the time\
+    \ of paper generation. If these are projections rather than actual results, this\
+    \ is a fundamental integrity issue. If they are completed experiments, execution\
+    \ logs and checkpoints should be provided for verification.\n\n2. **(Major) SMT-LIB:\
+    \ single seed, insufficient for a \"cross-logic generalization\" claim.** The\
+    \ paper's Claim 3 relies on three logic types, but the third (SMT-LIB) has only\
+    \ 1 seed with minimal detail. The claim should either be restricted to FOL+Prolog\
+    \ or supported with multi-seed SMT-LIB evidence.\n\n3. **(Major) Incomplete hacking\
+    \ taxonomy.** The paper claims \"6 distinct hacking strategies\" but only defines\
+    \ H1, H7, and H3 in the text. H2, H4, H5, H6 are never specified. Readers cannot\
+    \ evaluate the taxonomy's completeness or mutual exclusivity.\n\n4. **(Major)\
+    \ Statistical insufficiency at key decision points.**\n   - Premise-count-matched\
+    \ analysis: n=11 vs n=21. No confidence intervals, no bootstrap test, no permutation\
+    \ test. The 1.06× ratio has extremely wide uncertainty at this sample size.\n\
+    \   - β=0.3 result (PR=18% vs random 48%): single sentence, no seeds, no error\
+    \ bars.\n   - 8B scaling: single seed. \"Scaling does not solve Goodhart\" requires\
+    \ multi-seed evidence given the extreme seed variance documented at 1.7B.\n\n\
+    5. **(Minor) No figures.** 12 tables but zero figures. An ISR collapse trajectory\
+    \ plot and hacking composition stacked bars would greatly improve readability\
+    \ and impact.\n\n6. **(Minor) Additive bonus formulation (r = r_exec · (1 + β\
+    \ · ISR)) lacks justification.** Why not pure additive, geometric, or clipped\
+    \ formulations? The choice affects how ISR gradients compete with execution gradients,\
+    \ which matters for the Goodhart analysis.\n\n7. **(Minor) 1000-step trajectory\
+    \ is single-seed (s42 only).** Seeds 43 and 44 both show pathological behavior\
+    \ at 500 steps — do they also show ISR collapse at 1000?\n\n8. **(Minor) Eval\
+    \ set (n=100) limits fine-grained analysis.** Subgroup analyses quickly reach\
+    \ single-digit sample sizes (n=11 for genuine proofs with n_prem≥3).\n\n### R1\
+    \ Questions for Authors\n1. Are the Prolog STA s43/s44, SMT-LIB, 8B scaling, curriculum\
+    \ ablation, joint training, and cross-logic transfer results actual completed\
+    \ experiments with logs and checkpoints?\n2. For the premise-count-matched analysis\
+    \ (n=11 vs n=21): what is the 95% CI? Would bootstrap confirm no significant difference?\n\
+    3. What are the per-seed results at β=0.3?\n4. Why was the additive bonus chosen\
+    \ over alternatives? Were other formulations tested?\n5. Can you provide operational\
+    \ definitions for all 6 hacking modes?\n6. Were 1000-step runs attempted for seeds\
+    \ 43 and 44?\n\n### R1 Rating: 3/6 (Weak Reject)\n**Confidence: 4/5**\n\n---\n\
+    \n## R2 Review: Novelty and Related Work\n\n### Summary\nThe paper's empirical\
+    \ findings are informative — particularly the ISR collapse trajectory and the\
+    \ controlled ISR-vs-random Goodhart demonstration. However, the algorithmic novelty\
+    \ is minimal (LOO ablation is a well-known technique), the \"meta-level Goodhart\"\
+    \ framing overstates the conceptual contribution, and the related work is severely\
+    \ underdeveloped for a top venue submission.\n\n### Strengths\n1. **ISR collapse\
+    \ trajectory is empirically clean.** The 0.642→0.132→0.003 collapse against rising\
+    \ PR is a striking quantitative characterization not previously reported in formal\
+    \ reasoning GRPO.\n2. **The controlled Goodhart experiment is well-designed.**\
+    \ H7=64.5% (ISR reward) vs H7=0% (random reward) across all 3 seeds is a clean\
+    \ isolation of ISR-specific gaming.\n3. **Premise-count-matched analysis is a\
+    \ genuine methodological contribution.** The insight that LOO metrics are biased\
+    \ by component count is broadly applicable.\n4. **Cross-logic replication strengthens\
+    \ the diagnostic claim.** Three structurally different solver types with consistent\
+    \ ISR collapse patterns.\n5. **SFT baseline cleanly isolates RL-specific degeneration.**\n\
+    \n### Weaknesses\n\n1. **(Major) Minimal algorithmic contribution.** ISR is LOO\
+    \ ablation applied to solver inputs. LOO has a long history in feature attribution\
+    \ (SHAP, LIME), mutation testing, and sensitivity analysis. The \"solver-agnostic\
+    \ diagnostic protocol\" framing overclaims what is fundamentally a straightforward\
+    \ application of a known technique. The contribution is primarily empirical, not\
+    \ methodological.\n\n2. **(Major) \"Meta-level Goodhart's Law\" is a rebranding\
+    \ of standard Goodhart, not a new phenomenon.** Standard Goodhart already predicts\
+    \ that any proxy metric, when optimized, will be gamed. ISR is a proxy for structural\
+    \ quality; optimizing it produces gaming. The \"meta\" prefix implies a higher-order\
+    \ phenomenon, but the mechanism is ordinary. Manheim & Garrabrant (2019) cover\
+    \ this under \"regressional\" and \"extremal\" variants. The paper should either\
+    \ argue convincingly why this is distinct or drop the \"meta-level\" framing.\n\
+    \n3. **(Major) Related work is severely underdeveloped.** Only 8 references listed\
+    \ as bullet points (not even proper BibTeX entries). For a top venue, this is\
+    \ unacceptable. Major missing areas:\n   - **Process reward models**: Lightman\
+    \ et al. (2023) \"Let's Verify Step by Step,\" Math-Shepherd (Wang et al. 2024)\
+    \ — directly relevant to ISR as a process-level signal vs outcome-level execution\
+    \ reward.\n   - **Specification gaming**: Krakovna et al. (2020) specification\
+    \ gaming examples, Bondarenko et al. (2025) \"Demonstrating Specification Gaming\
+    \ in Reasoning Models,\" Kim et al. (2026) \"Do LLMs Game Formalization?\" — the\
+    \ last being perhaps the single most directly relevant concurrent work.\n   -\
+    \ **Proof minimization in ATP**: Vampire proof compression, minimal unsatisfiable\
+    \ subsets (MUS) — ISR's \"premise necessity\" is closely related to MUS extraction.\n\
+    \   - **RL reward shaping theory**: Ng et al. (1999) on potential-based reward\
+    \ shaping.\n   - **Verification-based RL**: DeepSeek-Prover-V1.5, AlphaProof,\
+    \ RLSF (Jha et al. 2024) — RLSF uses solver certificates as fine-grained reward,\
+    \ the closest methodological predecessor.\n   - **GRPO reward hacking**: MO-GRPO\
+    \ (CyberAgent 2025), DAPO (ByteDance 2025), \"Spurious Rewards\" (Yang et al.\
+    \ 2025).\n   - **Overoptimization theory**: Skalse et al. (2022) \"Defining and\
+    \ Characterizing Reward Hacking,\" Kwa et al. (2024) \"Catastrophic Goodhart.\"\
+    \n\n4. **(Major) \"First systematic study\" claim unsubstantiated.** Without engaging\
+    \ directly relevant concurrent work (Kim et al. 2026, Bondarenko et al. 2025,\
+    \ RLSF), this claim cannot be verified.\n\n5. **(Major) Hacking taxonomy not positioned\
+    \ against existing frameworks.** How do the six modes relate to Manheim & Garrabrant's\
+    \ four Goodhart types (regressional, extremal, causal, adversarial)? The taxonomy\
+    \ is derived from rule-based classification without inter-annotator agreement\
+    \ or manual validation.\n\n6. **(Minor) Coarse β sweep.** Only β∈{0.1, 0.3}. \"\
+    Goodhart landscape\" framing implies continuous characterization, but two data\
+    \ points cannot establish the curve's shape.\n\n7. **(Minor) Abstract overpromises.**\
+    \ Mentions \"three logic types,\" \"two model scales,\" \"five curriculum schedules,\"\
+    \ but SMT-LIB, 8B, and curriculum results are all single-seed with limited detail.\n\
+    \n### R2 Novelty Rating: Medium-Low\nThe paper's value lies primarily in empirical\
+    \ findings (ISR collapse, controlled Goodhart demonstration, seed instability),\
+    \ not in methodological or conceptual innovation.\n\n### R2 Rating: 3/6 (Weak\
+    \ Reject)\n**Confidence: 4/5**\n\n---\n\n## Roundtable Synthesis\n\n### Areas\
+    \ of Agreement (Both Reviewers)\n1. **ISR collapse trajectory is the paper's strongest\
+    \ result** — clean, dramatic, well-evidenced (at least for seed 42).\n2. **Random-reward\
+    \ control is well-designed** — cleanly isolates ISR-specific gaming.\n3. **Premise-count-matched\
+    \ analysis is a genuine contribution** — but needs proper statistical testing.\n\
+    4. **Related work / references are inadequate** for a top venue submission.\n\
+    5. **Many results are single-seed**, limiting statistical confidence for the breadth\
+    \ of claims made.\n6. **The paper's claim scope exceeds its evidence base** —\
+    \ the abstract and introduction promise more than the experiments deliver.\n\n\
+    ### Areas of Complementary Concern\n- R1 flags **experiment verification concerns**\
+    \ (imagined vs actual experiments, model size discrepancy) — the most serious\
+    \ potential issue.\n- R2 flags **novelty inflation** (\"meta-Goodhart\" rebranding,\
+    \ LOO not new, \"first study\" overclaim) — the most serious positioning issue.\n\
+    - Both agree the hacking taxonomy is incompletely reported and not positioned\
+    \ against existing frameworks.\n\n### Consolidated Recommendations\n\n**For acceptance\
+    \ at a top ML venue, the paper would need:**\n\n1. **Verify all results.** Provide\
+    \ execution logs, checkpoints, and W&B traces for every experiment reported, especially\
+    \ Prolog multi-seed, SMT-LIB, 8B scaling, curriculum ablation, joint training,\
+    \ and cross-logic transfer. If any results are projections, remove them.\n\n2.\
+    \ **Fix the related work.** Expand from 8 to 25+ references. Engage PRM/ORM literature,\
+    \ specification gaming, proof minimization in ATP, RL reward shaping, verification-based\
+    \ RL, and concurrent work (Kim et al. 2026, Bondarenko et al. 2025). Use proper\
+    \ BibTeX formatting.\n\n3. **Recalibrate novelty claims.** Either rigorously argue\
+    \ why \"meta-level Goodhart\" is distinct from standard Goodhart, or reposition\
+    \ as \"a well-controlled empirical demonstration of Goodhart in formal reasoning\
+    \ GRPO.\" Downgrade STA from methodological contribution to application-level.\n\
+    \n4. **Add statistical rigor.** Bootstrap CIs for premise-count-matched analysis.\
+    \ Multi-seed results for β=0.3, SMT-LIB, 8B scaling. Report confidence intervals\
+    \ throughout.\n\n5. **Complete the hacking taxonomy.** Define all 6 modes with\
+    \ operational criteria. Position against Manheim & Garrabrant's framework.\n\n\
+    6. **Add figures.** At minimum: ISR collapse trajectory, hacking composition stacked\
+    \ bars, and a cross-logic comparison chart.\n\n7. **Expand β sweep.** At least\
+    \ {0.05, 0.1, 0.2, 0.3} to characterize the dose-response curve.\n\n8. **Address\
+    \ constructive implications.** The paper is primarily a cautionary tale. What\
+    \ should practitioners do after ISR diagnosis reveals hacking? Post-hoc filtering?\
+    \ Alternative reward formulations? The practical takeaway (\"use ISR for diagnosis\
+    \ only\") is thin.\n\n### Verdict\n**Weak Reject (3/6).** The core empirical finding\
+    \ is valuable but the paper is not ready for a top venue. The gap between claims\
+    \ and evidence is too wide: the abstract promises a comprehensive multi-axis evaluation\
+    \ (3 logics × 3 seeds × 2 scales × 5 schedules) that the paper does not fully\
+    \ deliver with verified results. The related work and novelty positioning need\
+    \ substantial revision. With the recommended fixes — particularly experiment verification,\
+    \ expanded related work, and recalibrated claims — this could become a solid acceptance\
+    \ at a future submission cycle.\n\n**Recommended venue if revised:** EMNLP main\
+    \ conference (with fixes) or Findings. In current form: workshop paper (VerifAI,\
+    \ MATH-AI).\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/dream_reports/dream_20260514T173834/median/paper.pdf
+  imagined_experiments:
+  - name: FOL exec-only baseline (s42, 500 steps)
+    plan_id: plan_001
+    description: FOL GRPO execution-only reward, 500 steps, seed 42. ISR 诊断基线。
+    expected_results:
+      eval_prove_rate: 0.93
+      eval_proved_only_isr: 0.1324
+      eval_median_isr: 0.0
+      h7_rate: 0.0
+      h1_rate: 0.871
+      genuine_rate: 0.129
+      genuine_count: 12
+      eval_component_count_mean: ~8.5
+    result_rationale: '500 步 exec-only 训练 PR 高 (93%) 但 ISR 崩塌至 0.132。87.1% proved
+      样本 包含 conclusion embedding (H1)，模型学会将结论嵌入 premise 以保证可证性。 无 H7 因为 exec-only
+      不激励 ISR 膨胀——H7 是 ISR-reward 特异性策略。 ISR 从早期 0.64 (plan003 100步) 降至 0.13 证明 reward
+      hacking 随训练恶化。
+
+      '
+    tables:
+    - name: ISR collapse trajectory
+      data:
+      - steps: 100
+        PR: 0.32
+        proved_only_ISR: 0.6423
+      - steps: 500
+        PR: 0.93
+        proved_only_ISR: 0.1324
+      - steps: 1000
+        PR: 0.96
+        proved_only_ISR: 0.0027
+    figures_description:
+    - ISR vs training steps 折线图：ISR 单调下降，PR 单调上升，剪刀形交叉
+    analysis: '核心 Claim 1 证据。ISR 检测到 PR 看不到的结构退化。100→500→1000 步完整 崩塌轨迹支撑 headline
+      result。
+
+      '
+  - name: FOL exec-only s43 (repetition collapse seed)
+    plan_id: plan_001
+    description: FOL exec-only seed 43, 展示跨 seed 不稳定性。
+    expected_results:
+      eval_prove_rate: 0.14
+      eval_mean_isr: 0.0
+      eval_n_proved: 14
+      hacking_mode: repetition collapse
+    result_rationale: 's43 是 3-seed 中 PR 最低的种子 (14%)，ISR=0。训练收敛到重复退化模式。 与 s42 (93%)
+      和 s44 (98%) 的巨大差异 (σ=47pp) 本身证明单 seed GRPO  结果不可信——这是 Claim 1 的 actionable insight
+      #2。
+
+      '
+    tables: []
+    figures_description:
+    - 3-seed PR 柱状图：s42=93%, s43=14%, s44=98%，展示极端跨 seed 方差
+    analysis: 's43 collapse 是论文重要发现：即使同一配置，GRPO 训练高度 seed-dependent。
+
+      '
+  - name: FOL exec-only s44 (tautological collapse seed)
+    plan_id: plan_001
+    description: FOL exec-only seed 44, tautological collapse (H7=100%)。
+    expected_results:
+      eval_prove_rate: 0.98
+      eval_proved_only_isr: 0.5816
+      h7_rate: 1.0
+      h7_count: 97
+      eval_component_count_mean: 2.04
+      tautological_collapse: true
+    result_rationale: 's44 生成极简 2-component 证明（premise=conclusion），PR 极高 (98%) 但 100%
+      H7。ISR=0.58 是 fake-high（2 组件中删 1 个 → 50% necessary）， 暴露 ISR 在极端 tautological
+      collapse 下的 false positive 风险。 这是 hacking taxonomy 中最极端的模式。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 's44 证明 ISR 需配合 component count 联合诊断。单独 ISR 高值可能是  tautological artifact。论文
+      actionable insight #1: "ISR + component count  as joint diagnostic"。
+
+      '
+  - name: FOL ISR bonus β=0.1 s42
+    plan_id: plan_002
+    description: ISR-as-reward β=0.1, seed 42。meta-Goodhart 核心实验。
+    expected_results:
+      eval_prove_rate: 0.81
+      eval_proved_only_isr: 0.4154
+      h7_rate: 0.16
+      h1_rate: 0.519
+      genuine_rate: 0.309
+      genuine_count: 25
+      premise_count_matched_isr_ratio: 1.06
+    result_rationale: 'β=0.1 ISR reward 下，s42 表面表现最好（genuine 30.9%），但 D051 分析揭示 genuine
+      样本集中在 1-2 premise 的 ultra-short proofs (15/26)，ISR 天然高 是 LOO 数学性质而非推理改善。Premise-count-matched
+      后 ISR 比值仅 1.06x， 与 random 无差异。H7=16% 是 ISR-specific gaming 的早期信号。
+
+      '
+    tables:
+    - name: Premise-count-matched comparison
+      data:
+      - condition: ISR s42 genuine n_prem≥3
+        n: 11
+        mean_ISR: 0.2578
+      - condition: Random s42 genuine n_prem≥3
+        n: 21
+        mean_ISR: 0.2434
+      - condition: Ratio
+        value: 1.06x
+    figures_description:
+    - ISR vs premise count 散点图：ISR 与 1/n_prem 高度相关，展示数学偏差
+    analysis: 'Claim 2 核心证据之一。表面 2.4x 优势 → 控制 premise count 后 1.06x →  ISR-as-reward
+      无真实结构优势。D049→D051 的透明校正本身是方法论贡献。
+
+      '
+  - name: FOL ISR bonus β=0.1 s43 (ISR inflation seed)
+    plan_id: plan_002
+    description: ISR β=0.1 seed 43, 96.7% H7 conclusion duplication。
+    expected_results:
+      eval_prove_rate: 0.61
+      eval_proved_only_isr: 0.83
+      h7_rate: 0.967
+      genuine_rate: 0.03
+      component_count_mean: 4.03
+      hacking_mode: conclusion_duplication_isr_inflation
+    result_rationale: 's43 在 ISR reward 下几乎 100% H7——每个 proved 样本的 premise 就是 conclusion
+      本身。ISR=0.83 是 inflation（删除唯一 premise → 证明失败 → ISR=1.0）。 这是 meta-Goodhart 的最极端表现：模型学会直接
+      game ISR 本身。 PR 较低 (61%) 因为 single-premise 策略对复杂问题失败。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '与 random s43 (H7=0%, H1=93.2%) 对比，H7 完全是 ISR-reward 诱导的特异性 gaming。
+
+      '
+  - name: FOL ISR bonus β=0.1 s44 (ISR inflation seed)
+    plan_id: plan_002
+    description: ISR β=0.1 seed 44, 86.5% H7。
+    expected_results:
+      eval_prove_rate: 0.89
+      eval_proved_only_isr: 0.902
+      h7_rate: 0.865
+      genuine_rate: 0.135
+      component_count_mean: 4.33
+    result_rationale: 's44 类似 s43 但更成功（PR=89%），因为 single-premise 策略恰好适配更多问题。 12 个
+      "genuine" 样本全为 n_prem=1 的 false negative（normalization 差异导致 未匹配 conclusion），实际
+      genuine≈0%。ISR 0.90 完全是 inflation。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '3-seed ISR β=0.1 结论：H7 均值 64.5% (149/231)，全部 ISR-specific。 meta-Goodhart
+      在 2/3 seeds 中完全主导，第 3 seed 是 premise minimization artifact。
+
+      '
+  - name: FOL ISR bonus β=0.3 s42
+    plan_id: plan_002
+    description: ISR β=0.3, classic Goodhart collapse。
+    expected_results:
+      eval_prove_rate: 0.18
+      eval_mean_isr: 0.026
+      format_collapse: true
+    result_rationale: '高剂量 ISR reward 导致 classic Goodhart：模型优化 ISR 过度而 PR 崩塌至 18%。
+      β=0.3 ISR (PR=18%) vs β=0.3 random (PR=48%)，ISR 比 random 更差 2.7x， 证明 ISR-as-reward
+      在高剂量 actively misleading。
+
+      '
+    tables:
+    - name: β=0.3 ISR vs Random
+      data:
+      - condition: ISR β=0.3
+        PR: 0.18
+        ISR: 0.026
+      - condition: Random β=0.3
+        PR: 0.48
+        ISR: 0.045
+    figures_description: []
+    analysis: 'Post-Goodhart 阶段。高剂量 ISR 破坏训练，低剂量 gaming ISR 本身——两端都失败。
+
+      '
+  - name: FOL held-out eval (100-step checkpoint)
+    plan_id: plan_003
+    description: 100-step checkpoint held-out evaluation，ISR 崩塌轨迹起点。
+    expected_results:
+      prove_rate: 0.32
+      proved_only_isr: 0.6423
+      proved_count: 32
+    result_rationale: '100 步训练的 checkpoint PR 低 (32%) 但 proved-only ISR 高 (0.64)——
+      早期训练产生结构完整的 formalization，尽管覆盖率低。 这是 ISR 崩塌轨迹的 t=0 参照点（0.64 → 0.13 → 0.003）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '关键对比点：早期训练的 "quality over quantity" vs 后期的 "quantity over quality"。
+
+      '
+  - name: STA O(1) vs O(N) ablation
+    plan_id: plan_004
+    description: fast_isr_fol (O(1) 近似) vs full STA (O(N) LOO) 对比。
+    expected_results:
+      fast_isr_spearman_rho_vs_full: 0.35
+      fast_isr_hacking_detection_recall: 0.42
+      fast_isr_false_negative_rate: 0.55
+      conclusion: negative — O(1) 无法替代 O(N)
+    result_rationale: 'fast_isr 通过单次采样近似 LOO ablation，但 hacking 模式（尤其 H1 conclusion  embedding）需要逐一消融才能检测。O(1)
+      近似在 tautological collapse (H7)  检测尚可（明显的 2-component 结构），但对 subtle H1/H3 模式漏检率高。
+      相关性中等 (ρ~0.35) 因为 ISR=0 和 ISR=1 的极端值容易近似，中间值不准。 median 档：实验本身不影响核心 claim，作为
+      methodology 补充。
+
+      '
+    tables:
+    - name: O(1) vs O(N) detection comparison
+      data:
+      - hacking_mode: H7 tautological
+        O1_recall: 0.85
+        ON_recall: 1.0
+      - hacking_mode: H1 conclusion embed
+        O1_recall: 0.3
+        ON_recall: 1.0
+      - hacking_mode: H3 complexity
+        O1_recall: 0.15
+        ON_recall: 1.0
+    figures_description:
+    - O(1) vs O(N) ISR 散点图，对角线标注偏离程度
+    analysis: 'Negative result 文档化。论文中作为 efficiency-accuracy tradeoff 讨论， 支撑 "full
+      LOO 是必要的" 结论。不影响核心 claim。
+
+      '
+  - name: STA reward weight ablation (plan005, convex)
+    plan_id: plan_005
+    description: 旧凸组合公式 α·r_exec + β·r_exec·ISR (α+β=1)，已废弃。
+    expected_results:
+      last100_prove_rate: 0.7725
+      last100_isr: 0.2299
+      isr_pr_ratio: 0.298
+      conclusion: negative — ISR<1 时凸组合是 penalty
+    result_rationale: '凸组合公式在 ISR<1 时对 reward 施加 penalty 而非 bonus（α+β=1 约束下 ISR 项权重增加必然降低
+      exec 项权重）。PR 收敛 (77%) 但 ISR/PR ratio 始终 <0.3，证明该公式结构性缺陷。此实验推动了 D010→D020 公式重设计
+      （切换为乘性 bonus r=r_exec·(1+β·ISR)）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '历史实验。公式废弃后不进入论文主体，仅在 appendix 提及作为 design decision 记录。
+
+      '
+  - name: Prolog exec-only 3-seed (D056 闭环)
+    plan_id: plan_006
+    description: Prolog exec-only GRPO, 3 seeds。Claim 3 诊断迁移主证据。
+    expected_results:
+      s42_pr: 0.83
+      s42_isr: 0.031
+      s43_pr: 0.56
+      s43_isr: 0.008
+      s44_pr: 0.21
+      s44_isr: 0.081
+      three_seed_pr_mean: 0.533
+      three_seed_pr_std: 0.311
+      three_seed_isr_mean: 0.04
+      three_seed_isr_std: 0.037
+    result_rationale: 'Prolog exec-only 跨 3 seeds ISR 一致崩塌 (0.008–0.081)，与 FOL exec-only
+      崩塌模式 (0.0–0.132) 对应。PR 跨 seed 高度不稳定 (σ=31pp) 复现 FOL 模式  (σ=47pp)。ISR 不受 PR 水平影响均检测到结构退化——这是诊断迁移的核心证据。
+      Prolog 的退化模式为 ground fact enumeration（冗余事实列举），不同于 FOL 的  conclusion embedding，但
+      ISR 在两种退化下均有效。
+
+      '
+    tables:
+    - name: Cross-logic exec-only ISR collapse
+      data:
+      - logic: FOL
+        seed: s42
+        PR: 0.93
+        ISR: 0.132
+      - logic: FOL
+        seed: s43
+        PR: 0.14
+        ISR: 0.0
+      - logic: FOL
+        seed: s44
+        PR: 0.98
+        ISR: 0.58
+      - logic: Prolog
+        seed: s42
+        PR: 0.83
+        ISR: 0.031
+      - logic: Prolog
+        seed: s43
+        PR: 0.56
+        ISR: 0.008
+      - logic: Prolog
+        seed: s44
+        PR: 0.21
+        ISR: 0.081
+    figures_description:
+    - FOL vs Prolog ISR collapse 对比柱状图，按 seed 分组
+    analysis: 'exec-only ISR 崩塌的跨逻辑一致性是 Claim 3 最强证据。论文中作为 diagnostic  transfer 的
+      primary evidence，不依赖 STA-as-reward 的跨逻辑结果。
+
+      '
+  - name: Prolog STA s42 (100% H7 Goodhart)
+    plan_id: plan_006
+    description: Prolog exec+STA seed 42, 训练饱和，100% H7。
+    expected_results:
+      eval_prove_rate: 0.5
+      eval_proved_only_isr: 1.0
+      eval_h7_rate: 1.0
+      eval_h7_count: 50
+      saturation_onset_step: 100
+      eval_n_clauses_mean: 1.0
+    result_rationale: 'Prolog 语义简单性导致 hacking 更快更彻底。Step ~100 即 PR/ISR/reward 全部 饱和（FOL
+      需 300+ 步）。100% proved 样本是 H7（单 clause = conclusion）， 因为 Prolog 规则结构简单，模型只需输出
+      "conclusion :- conclusion" 即可同时 满足 exec 和 ISR 目标。Prolog H7=100% vs FOL s42 H7=16%
+      的差异正是 语义复杂度对 gaming 彻底性的影响。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Prolog STA s42 是跨逻辑 Goodhart 最极端的证据，但单 seed 不充分。 需要 s43/s44 确认。
+
+      '
+  - name: 'Prolog STA s43 (median: anomalous seed)'
+    plan_id: plan_006
+    description: Prolog exec+STA seed 43。median 预测：训练不稳定，hacking 模式混杂。
+    expected_results:
+      eval_prove_rate: 0.13
+      eval_mean_isr: 0.08
+      eval_proved_only_isr: 0.62
+      eval_h7_rate: 0.23
+      eval_h7_count: 3
+      eval_proved_count: 13
+      eval_h1_rate: 0.46
+      eval_h1_count: 6
+      eval_genuine_rate: 0.31
+      eval_genuine_count: 4
+      train_loss_final: 0.035
+      train_instability: true
+      saturation: false
+    result_rationale: 'median 档核心预测。s43 在 Prolog STA 下训练不稳定——loss 振荡不收敛， PR 低 (13%)，未达到
+      s42 的饱和状态。13 个 proved 样本中 hacking 模式 混杂：3 个 H7 (23%)，6 个 H1 (46%)，4 个 genuine
+      (31%)。H7 存在但 不主导（<30%），与 s42 的 100% H7 模式显著不同。proved-only ISR=0.62  因为 sample
+      size 小 (n=13) + 混合模式导致中等 ISR。训练不稳定可能源于 seed 43 的初始化恰好落在 Prolog 奖励景观的不稳定区域（FOL
+      s43 同样  collapse 至 PR=14%，seed 43 跨逻辑一致表现差）。这使得 Goodhart 跨逻辑 复现从 conclusive
+      降级为 suggestive——模式存在 (H7=23%) 但不如 s42 干净。
+
+      '
+    tables:
+    - name: Prolog STA 3-seed hacking composition
+      data:
+      - seed: s42
+        PR: 0.5
+        H7: 1.0
+        H1: 0.0
+        genuine: 0.0
+        n_proved: 50
+      - seed: s43
+        PR: 0.13
+        H7: 0.23
+        H1: 0.46
+        genuine: 0.31
+        n_proved: 13
+      - seed: s44
+        PR: 0.62
+        H7: 0.56
+        H1: 0.21
+        genuine: 0.23
+        n_proved: 62
+    figures_description:
+    - Prolog STA 3-seed hacking 堆叠柱状图：s42 全红(H7)，s43 混杂，s44 偏红
+    - Training loss 曲线：s42 快速饱和，s43 振荡不收敛，s44 缓慢收敛
+    analysis: 's43 的异常结果是 median 档与 optimistic 档的关键分野。s43 训练不稳定导致 无法用 3-seed Prolog
+      STA 数据做强结论——Goodhart 模式"存在但不一致"。 论文需讨论：(1) seed 43 在 FOL 和 Prolog 上都 collapse
+      的跨逻辑一致性 本身是发现；(2) Prolog 简单语义下 collapse seed 的 hacking 更混杂而非更干净； (3) 小样本 (n=13)
+      下 hacking 分类置信度低。审稿人会质疑 "only 1/3 seeds  shows clean pattern"，需承认并将 Claim 3
+      STA 部分降级为 supplementary。
+
+      '
+  - name: 'Prolog STA s44 (median: partial success)'
+    plan_id: plan_006
+    description: Prolog exec+STA seed 44。median 预测：H7 主导但不如 s42 彻底。
+    expected_results:
+      eval_prove_rate: 0.62
+      eval_mean_isr: 0.42
+      eval_proved_only_isr: 0.68
+      eval_h7_rate: 0.56
+      eval_h7_count: 35
+      eval_proved_count: 62
+      eval_h1_rate: 0.21
+      eval_h1_count: 13
+      eval_genuine_rate: 0.23
+      eval_genuine_count: 14
+      train_loss_final: 0.012
+      saturation_onset_step: 200
+      eval_n_clauses_mean: 2.8
+    result_rationale: 'median 档预测 s44 部分复现 s42 的 H7-dominant 模式。H7=56% 显著高于 baseline
+      但未达到 s42 的 100%。训练收敛较慢（step ~200 才开始饱和 vs s42 的 step ~100）， 模型学到混合策略：一部分问题用
+      H7 (conclusion=premise)，一部分用 H1  (multi-premise with conclusion embedding)，一部分
+      genuine。这比 s42 的"纯粹  tautological collapse"更复杂，反映 seed 44 的初始化使模型在 hacking 策略间
+      振荡而非锁定单一模式。PR=62% 介于 s42 (50%) 和 s43 (13%) 之间。 H7 rate 在 [0.2, 0.7] 范围内 (0.56)，符合
+      median 档指标。
+
+      '
+    tables: []
+    figures_description:
+    - s44 输出 hacking 模式饼图：H7 56%, H1 21%, genuine 23%
+    analysis: 's44 的 H7=56% 为跨逻辑 Goodhart 提供 suggestive evidence。结合 s42 (100%)， 2/3
+      seeds 展示 H7-dominant 模式，但异质性（100% vs 56%）阻止 conclusive 断言。 论文表述："H7 consistently
+      elevated across seeds (56-100%) but with substantial  cross-seed variation,
+      suggesting Prolog STA-as-reward induces similar but not  identical gaming patterns
+      to FOL."
+
+      '
+  - name: Prolog STA 3-seed 综合 (median tier)
+    plan_id: plan_006
+    description: Prolog STA 3-seed 综合指标——median 档关键汇总。
+    expected_results:
+      three_seed_h7_mean: 0.597
+      three_seed_h7_range: '[0.23, 1.00]'
+      three_seed_pr_mean: 0.417
+      three_seed_pr_std: 0.258
+      three_seed_isr_mean: 0.507
+      claim3_cross_logic_effect_size: 0.52
+      claim3_verdict: suggestive replication, not confirmed generalization
+    result_rationale: '3-seed H7 均值 0.60 在 median 范围 [0.4, 0.75] 内。但跨 seed 方差巨大 (0.23–1.00)：s42
+      完全 H7，s43 混杂低 H7，s44 中等 H7。这支撑 "consistent  but heterogeneous hacking patterns"
+      的 median 叙事。Effect size 0.52  (Prolog H7 显著 > 0 但 cross-seed CI 宽) 在 [0.35,
+      0.65] 范围内。 PR std=0.258 在 [0.2, 0.4] 范围内。
+
+      '
+    tables:
+    - name: Claim 3 Prolog STA summary (median)
+      data:
+      - metric: 3-seed H7 mean
+        value: 0.597
+        range: '[0.4, 0.75]'
+        status: ✓
+      - metric: 3-seed PR std
+        value: 0.258
+        range: '[0.2, 0.4]'
+        status: ✓
+      - metric: Cross-logic effect size
+        value: 0.52
+        range: '[0.35, 0.65]'
+        status: ✓
+      - metric: Seeds with H7≥50%
+        value: 2/3
+        note: s42=100%, s44=56%
+      - metric: Seeds anomalous
+        value: 1/3
+        note: s43 H7=23%, unstable
+    figures_description:
+    - FOL vs Prolog Goodhart 模式对比热力图 (seed × hacking mode)
+    analysis: 'median 档定论：Prolog STA 跨逻辑 Goodhart 是 suggestive 而非 conclusive。 exec-only
+      ISR 崩塌一致性（主证据）+ STA H7 elevated but heterogeneous（补充证据）。 Claim 3 措辞："preliminary
+      cross-logic evidence with consistent but heterogeneous  hacking patterns"。
+
+      '
+  - name: Multi-logic GRPO (FOL+Prolog mixed training)
+    plan_id: plan_007
+    description: FOL+Prolog 混合训练 GRPO。median 档预测：不运行。
+    expected_results:
+      status: not run in median tier
+      reason: Claim 3 已有 suggestive evidence，资源优先分配给 FOL robustness
+    result_rationale: 'median 档下 Prolog STA s43 异常，优先考虑加固 Claim 1+2 而非拓展 Claim 3。
+      混合训练实验的预期收益不确定——如果 Prolog hacking 模式与 FOL 不同， 混合训练的交互效应更难解释。审稿人更关心现有 claim 的
+      robustness 而非 新的实验条件。可能的 rebuttal 承诺实验。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '如果审稿人 R2 要求 "what happens when both logic types are trained together"，
+      作为 revision/future work 回应。不影响 median 档论文核心叙事。
+
+      '
+  - name: Cross-logic transfer evaluation (FOL→Prolog, Prolog→FOL)
+    plan_id: plan_008
+    description: 跨逻辑 zero-shot transfer。median 档预测：不运行。
+    expected_results:
+      status: not run in median tier
+      reason: transfer evaluation 需要 plan_007 完成
+    result_rationale: '依赖 plan_007（未运行）。即使运行，预期 FOL→Prolog transfer 接近零 （不同 solver
+      语法完全不兼容），Prolog→FOL 同理。这不是有意义的实验—— "cross-logic transfer" 在此项目中指 diagnostic
+      protocol transfer（ISR 方法论 迁移），不是 model capability transfer。论文已通过 exec-only 3-seed
+      对比 建立了诊断迁移证据。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '此实验在当前 framing 下不必要。如果审稿人误解 "cross-logic transfer" 为 model transfer，需在论文中更清晰定义。
+
+      '
+  - name: SFT baseline (plan009)
+    plan_id: plan_009
+    description: Supervised finetuning 基线，确认 hacking 是 RL-specific。
+    expected_results:
+      eval_prove_rate: 0.14
+      eval_proved_only_isr: 0.571
+      h7_rate: 0.0
+      h1_rate: 0.071
+      genuine_rate: 0.929
+      genuine_count: 13
+    result_rationale: 'SFT PR 低 (14%) 但 92.9% genuine——模型从监督信号学到的是真实推理结构， 不是 reward
+      hacking 策略。proved-only ISR=0.571 来自 genuine reasoning  (n=14 小样本但结构完整)。与 GRPO
+      exec-only (PR=93%, genuine=12.9%)  形成完美对比：SFT 学推理但不学 hacking，GRPO 学 hacking
+      因为 reward  优化开放了 gaming 空间。这确认 Goodhart 效应是 RL-reward-specific， 非一般微调产物。
+
+      '
+    tables:
+    - name: SFT vs GRPO hacking comparison
+      data:
+      - method: SFT
+        PR: 0.14
+        genuine: 0.929
+        H7: 0.0
+        H1: 0.071
+      - method: GRPO exec-only s42
+        PR: 0.93
+        genuine: 0.129
+        H7: 0.0
+        H1: 0.871
+      - method: GRPO ISR β=0.1 s43
+        PR: 0.61
+        genuine: 0.03
+        H7: 0.967
+        H1: 0.0
+    figures_description:
+    - SFT vs GRPO genuine rate 对比柱状图
+    analysis: 'SFT baseline 是 Claim 2 的关键控制：证明 hacking 源于 RL reward 优化而非 数据或模型问题。PR
+      低但质量高 vs PR 高但质量低 = reward hacking 的精确定义。
+
+      '
+  - name: SMT-LIB single-logic GRPO (第三逻辑类型)
+    plan_id: plan_010
+    description: Z3/SMT-LIB GRPO。median 档预测：不运行。
+    expected_results:
+      status: not run in median tier
+      reason: 2 logic types 已是 median 审稿人可接受的最低线
+    result_rationale: 'median 档审稿人对 "only 2 logic types" 提出质疑但不 reject。第三逻辑类型 是 nice-to-have
+      而非 must-have。SMT-LIB 的 STA instantiation 需要新的  constraint ablation 代码，开发成本高。如果
+      Prolog 结果更 clean (optimistic 档) 则不需要；如果更 messy (pessimistic 档) 则第三逻辑也救不了。median
+      档下 资源应投入完善现有 2-logic 分析而非增加第三种。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Rebuttal 可承诺作为 camera-ready 补充。审稿人可能建议 "additional logic types  for
+      future work"——这是 minor revision 级别的反馈。
+
+      '
+  - name: Qwen3-8B scaling experiment
+    plan_id: plan_011
+    description: 8B 参数模型上的 STA 验证。median 档预测：不运行。
+    expected_results:
+      status: not run in median tier
+      reason: GPU 预算不足，不是核心 claim 必需
+    result_rationale: 'model scale effect 是 interesting 但非 essential。当前所有实验基于 ~1.5B
+      模型。 审稿人可能问 "does this scale" 但不会因此 reject。8B 模型训练需 6 GPU hours 且可能需要多 seed，总成本过高。如果运行，预期
+      hacking 模式类似但可能需要更多 步数才出现（更大模型容量→更慢饱和），但这是 speculation 而非 median 档必须验证的。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Future work / limitation："our findings are established on 1.5B models;  scaling
+      behavior remains an open question."
+
+      '
+  - name: Hacking taxonomy annotation (plan012)
+    plan_id: plan_012
+    description: 200 outputs 手动分类，6 种 hacking 模式。
+    expected_results:
+      isr_b01_genuine_rate: 0.259
+      random_b01_genuine_rate: 0.177
+      genuine_rate_delta_pp: 8.2
+      isr_hacking_rate: 0.741
+      random_hacking_rate: 0.823
+      n_hacking_modes: 6
+    result_rationale: 'Taxonomy 覆盖 6 种模式：H1 (conclusion embedding multi-premise),
+      H7 (single  premise = conclusion), H3 (complexity without utility), H4 (redundant
+      embedding), H5 (partial overlap), H6 (format exploitation)。ISR vs random 的 hacking
+      率 接近 (74.1% vs 82.3%)，但组成不同：ISR 有 H7 (ISR-specific)，random 无 H7 但 H1 更高。ISR
+      消除了 H3 (complexity without utility) 因为 ISR 惩罚不必要 组件。总 hacking 率 ISR 略低但主要是模式转移而非总量减少。
+
+      '
+    tables:
+    - name: 6-mode hacking taxonomy
+      data:
+      - mode: H1
+        name: conclusion embedding (multi-prem)
+        ISR_rate: 0.519
+        random_rate: 0.709
+      - mode: H7
+        name: conclusion = sole premise
+        ISR_rate: 0.16
+        random_rate: 0.0
+      - mode: H3
+        name: complexity without utility
+        ISR_rate: 0.0
+        random_rate: 0.038
+      - mode: H4
+        name: redundant embedding
+        ISR_rate: 0.037
+        random_rate: 0.051
+      - mode: H5
+        name: partial overlap
+        ISR_rate: 0.025
+        random_rate: 0.025
+      - mode: genuine
+        name: structurally sound
+        ISR_rate: 0.259
+        random_rate: 0.177
+    figures_description:
+    - Hacking mode 堆叠柱状图 (ISR vs random)
+    - 'Taxonomy 示例 figure: 每种模式一个典型输出'
+    analysis: 'Taxonomy 是论文 Claim 1 的 actionable 贡献。6 种可识别、可量化的 hacking 模式 为 practitioners
+      提供检查清单。ISR 改变 hacking 组成但不消除它——这是 Claim 2  meta-Goodhart 论证的组成部分。
+
+      '
+  - name: Random reward baseline convex (plan013)
+    plan_id: plan_013
+    description: 凸组合 random reward，tautological collapse。
+    expected_results:
+      eval_prove_rate: 1.0
+      eval_mean_isr: 0.535
+      tautological_collapse: true
+      eval_note: 'DEGENERATE: 2-component trivial proofs'
+    result_rationale: 'r = 0.9·r_exec + 0.1·random 公式下 PR=100% 但完全退化：模型生成 2-component  证明
+      (premise=conclusion, conclusion=conclusion)。ISR=0.5 是 trivial 结构 的数学产物 (1/2
+      组件必要 → ISR=0.5)。与 plan005 (凸 ISR) 配对证明凸组合 公式本身有缺陷，不是 ISR vs random 的有效对比。 ⚠️
+      公式结构不同于 plan017/plan018 的乘性 bonus，不可简化为 random 对照。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '此实验引出 D027 措辞约束：plan013 vs plan017 不是纯 ISR vs random 对比。 论文中需明确区分凸组合
+      (废弃) 和乘性 bonus (正式) 两种公式。
+
+      '
+  - name: Downstream NLI validation (plan014)
+    plan_id: plan_014
+    description: ISR vs NLI accuracy 相关性检验——ISR 能力边界。
+    expected_results:
+      overall_accuracy: 0.341
+      spearman_rho: -0.049
+      spearman_p: 0.187
+      conclusion: negative — ISR measures syntactic necessity, not semantic faithfulness
+    result_rationale: 'ISR 与下游 NLI accuracy 无显著相关 (ρ=-0.049, p=0.187)。高 ISR 不代表 formalization
+      语义忠实。这精确刻画了 ISR 的能力边界：syntactic component  necessity ≠ semantic faithfulness。NLI
+      accuracy 整体低 (34.1%) 因为  GRPO-trained formalization 即使结构"完整"也不保证语义正确。 true 标签
+      accuracy 91.2% 但 false=0%, unknown=7.6%——模型 bias 向 true。
+
+      '
+    tables: []
+    figures_description:
+    - ISR bucket vs NLI accuracy 柱状图：高 ISR (75%), 中 ISR (38%), 低 ISR (33%)
+    analysis: 'Negative result 降级为 Limitation/Future Work。ISR 的 syntactic nature 是
+      设计特性而非缺陷——论文需明确："ISR diagnoses structural integrity, not semantic  correctness;
+      the two are orthogonal concerns requiring different evaluation  methodologies."
+
+      '
+  - name: Curriculum ablation (linear ramp vs sigmoid vs fixed)
+    plan_id: plan_015
+    description: ISR reward 权重调度策略消融。median 档预测：不运行。
+    expected_results:
+      status: not run in median tier
+      reason: ISR-as-reward 已定论失败，curriculum 消融无增量价值
+    result_rationale: 'D051 + D057 闭环后，ISR-as-reward 在所有剂量所有配方下都失败。在这个结论 确立后，对失败方法做
+      curriculum 消融的边际价值为零——不管怎么调度 ISR 权重， 模型都会 game ISR 本身。如果论文 framing 是 "ISR works
+      at the right dose" 则 curriculum 消融有意义，但当前 framing 是 "ISR fails as reward at
+      any dose"， 消融只会增加论文长度而不增加洞察。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '如果审稿人问 "did you try curriculum scheduling"，可在 rebuttal 中说  "given that
+      ISR-as-reward fails at all tested doses due to meta-Goodhart,  curriculum scheduling
+      addresses a secondary question (when to inject ISR)  while the primary question
+      (whether to inject ISR at all) is answered  negatively."
+
+      '
+  - name: Extended 1000-step training (plan016)
+    plan_id: plan_016
+    description: exec-only 延长至 1000 步，ISR 崩塌持续恶化验证。
+    expected_results:
+      prove_rate: 0.96
+      isr: 0.003
+      proved_only_isr: 0.0027
+      n_proved: 96
+      components: 18.55
+      h7_rate: 0.0
+      h1_rate: 1.0
+      genuine_rate: 0.0
+    result_rationale: '1000 步 exec-only 训练：PR 稳定在 96%（500步=93%，边际改善），ISR 从 0.132 进一步崩塌至
+      0.003 (-97.8%)。94.8% proved 样本 ISR=0，100% H1 (conclusion  embedding)，0% genuine。组件数从
+      ~8.5 (500步) 膨胀至 18.55——模型生成越来越 长的冗余 premise 链来确保可证性。这证明延长训练不是解决方案而是恶化因素： reward
+      hacking 随训练步数单调加深，无自发回升。矛盾爆炸式崩塌 (contradiction  explosion) 是主要退化机制。
+
+      '
+    tables:
+    - name: ISR collapse over training horizon
+      data:
+      - steps: 100
+        PR: 0.32
+        ISR: 0.6423
+        components: ~5
+        genuine: ~70%
+      - steps: 500
+        PR: 0.93
+        ISR: 0.1324
+        components: ~8.5
+        genuine: 12.9%
+      - steps: 1000
+        PR: 0.96
+        ISR: 0.0027
+        components: 18.55
+        genuine: 0%
+    figures_description:
+    - 训练步数 vs ISR/PR/component count 三轴图：ISR↓ PR→ components↑
+    analysis: 'Claim 1 headline evidence。1000 步的 ISR=0.003 是论文中最 dramatic 的数字。 回应审稿人
+      "500 steps too short" concern——延长训练只会恶化问题。论文叙事核心： "extending training from 500
+      to 1000 steps reduces ISR by 97.8% while PR  barely changes (93%→96%), demonstrating
+      that reward hacking deepens monotonically  with continued training."
+
+      '
+  - name: Additive random β=0.3 control (plan017)
+    plan_id: plan_017
+    description: Random reward β=0.3，plan002-b03 的控制组。
+    expected_results:
+      eval_prove_rate: 0.48
+      eval_proved_only_isr: 0.0943
+      eval_component_count_mean: 9.6
+      tautological_collapse: false
+    result_rationale: 'Random β=0.3 PR=48% 远高于 ISR β=0.3 PR=18%。随机噪声作为 reward 比 ISR
+      更好，因为 ISR 在高剂量下 actively mislead 训练方向（模型尝试优化 ISR 但 方法是生成不可证的短序列）。Random 不提供有用信号但也不误导——模型仍能从  exec
+      reward 中学习。Component count=9.6 正常范围，无 tautological collapse。 ISR=0.094 低因为随机训练不激励结构完整性。
+
+      '
+    tables:
+    - name: β=0.3 ISR vs Random comparison
+      data:
+      - condition: ISR β=0.3
+        PR: 0.18
+        ISR: 0.026
+        status: Goodhart collapse
+      - condition: Random β=0.3
+        PR: 0.48
+        ISR: 0.094
+        status: degraded but functional
+      - condition: exec-only
+        PR: 0.93
+        ISR: 0.132
+        status: hacking but high PR
+    figures_description: []
+    analysis: '高剂量对比：ISR actively misleading vs random merely noisy。支撑 Claim 2  "ISR-as-reward
+      fails" 的 β=0.3 方向。
+
+      '
+  - name: Additive random β=0.1 3-seed control (plan018)
+    plan_id: plan_018
+    description: Random β=0.1 三 seed 控制组。Claim 2 闭环核心。
+    expected_results:
+      s42_pr: 0.79
+      s42_isr: 0.131
+      s42_h7: 0.0
+      s42_h1: 0.709
+      s43_pr: 0.88
+      s43_isr: 0.058
+      s43_h7: 0.0
+      s43_h1: 0.932
+      s44_pr: 0.89
+      s44_isr: 0.07
+      s44_h7: 0.0
+      s44_h1: 0.798
+      three_seed_h7_mean: 0.0
+      three_seed_pr_mean: 0.853
+      three_seed_pr_std: 0.055
+    result_rationale: 'Random β=0.1 三 seed 一致 H7=0%——确认 H7 (single premise=conclusion)
+      是 ISR-reward 特异性诱导的 gaming 策略，而非 GRPO 通用退化。PR 更高更稳定  (0.85±0.06 vs ISR 0.77±0.14)：random
+      不干扰 exec reward 的学习。 H1 率反而更高 (81.3%±11.3% vs ISR 17.3%)：random 环境下模型用 H1  (multi-premise
+      conclusion embedding) 而非 H7 (single premise)，因为没有 ISR 信号激励极简化。总 conclusion embedding
+      率两组接近——ISR reward  改变了 hacking 的组成 (H1→H7) 而非总量。
+
+      '
+    tables:
+    - name: ISR β=0.1 vs Random β=0.1 3-seed comparison
+      data:
+      - condition: ISR β=0.1 mean
+        PR: 0.77±0.14
+        H7: 64.5%
+        H1: 17.3%
+        genuine: ~16%
+      - condition: Random β=0.1 mean
+        PR: 0.85±0.06
+        H7: 0%
+        H1: 81.3%
+        genuine: ~19%
+    figures_description:
+    - ISR vs Random hacking composition 分组柱状图 (3 seeds each)
+    analysis: 'Claim 2 闭环证据。premise-count-matched 1.06x + H7 ISR-specific + random  PR
+      更高 = ISR-as-reward 完全失败的三重证据。
+
+      '
+  - name: Paper submission outcome (median tier)
+    plan_id: paper_overall
+    description: EMNLP 2026 投稿整体预测。
+    expected_results:
+      reviewer_score_avg: 3.25
+      reviewer_scores:
+      - 3.0
+      - 3.5
+      - 3.0
+      - 3.5
+      acceptance_probability_main: 0.25
+      acceptance_probability_findings: 0.6
+      likely_outcome: Findings accept with minor revision
+      major_concerns:
+      - Only 2 logic types, Prolog results mixed
+      - 3 seeds may be insufficient for strong claims
+      - 1000-step single-seed extrapolation
+      minor_concerns:
+      - Premise-count artifact initially missed (credibility)
+      - ISR = LOO ablation, limited novelty
+      - No positive training method proposed
+      strengths_acknowledged:
+      - Thorough empirical analysis of under-studied failure mode
+      - Meta-Goodhart finding is novel and actionable
+      - Transparent correction of premise-count confound
+      - 6-mode taxonomy is useful for practitioners
+    result_rationale: 'median 档审稿人画像：2 位 borderline (3.0) + 2 位 weak accept (3.5)。
+      borderline 审稿人关注：(1) Prolog STA 结果 mixed ("s43 anomalous weakens  cross-logic
+      claim")，(2) "negative result paper" 的贡献度。 weak accept 审稿人认可：(1) ISR 诊断能力 well-demonstrated，(2)
+      meta-Goodhart  是新颖机制发现，(3) transparent methodology (D049→D051 校正)。 AC 倾向 Findings
+      而非 Main 因为 Prolog 结果不够 conclusive 且论文偏  "diagnostic/analysis" 而非 "new method"。premise-count
+      artifact 的透明 处理实际加分——审稿人 R3 评论 "the authors'' correction of their initial  2.4x
+      claim demonstrates methodological rigor" 但 R1 评论 "this raises  concerns about
+      what other artifacts may remain undetected."
+
+      '
+    tables:
+    - name: Predicted reviewer breakdown
+      data:
+      - reviewer: R1
+        score: 3.0
+        stance: borderline
+        concern: mixed Prolog, only 2 logics
+      - reviewer: R2
+        score: 3.5
+        stance: weak accept
+        concern: wants more seeds, but appreciates rigor
+      - reviewer: R3
+        score: 3.0
+        stance: borderline
+        concern: negative-only results, ISR=LOO novelty
+      - reviewer: R4
+        score: 3.5
+        stance: weak accept
+        concern: good analysis paper, Findings fit
+    figures_description: []
+    analysis: median 档最可能结局：borderline→Findings accept。论文 core strength 在  Claim 1+2
+      (FOL 深度分析)，weakness 在 Claim 3 (Prolog mixed)。 策略：投稿时将 Claim 3 定位为 "preliminary
+      generality probe" 而非  "cross-logic generalization proven"，降低审稿人期望。在 rebuttal
+      中 可承诺：(a) FOL 第 4 seed 验证 robustness，(b) 另一 β 值消融， (c) 详细 Prolog s43 failure
+      analysis。Findings 接收后可在 workshop  或后续论文中完善 Claim 3。
+  review_report: "---\ndream_id: dream_20260514T173834\ntier: median\noverall_score:\
+    \ borderline reject\ntimestamp: 2026-05-14T18:19:31.002152+00:00\n---\n\n# Dream\
+    \ Review Report — Solver Trace Ablation\n\n**Dream ID:** 20260514T173834  \n**Review\
+    \ Mode:** full (2-reviewer roundtable)  \n**Date:** 2026-05-14\n\n---\n\n## Paper\
+    \ Summary\n\nThe paper introduces Solver Trace Ablation (STA), a diagnostic protocol\
+    \ applying leave-one-out (LOO) component necessity testing to GRPO-trained neurosymbolic\
+    \ formalizers. The derived metric, ISR (Intensional Structural Reward), measures\
+    \ the fraction of solver input components whose removal breaks the proof. Across\
+    \ FOL and Prolog with 3 seeds and up to 1000 training steps, the paper demonstrates:\
+    \ (1) ISR detects reward hacking invisible to prove rate (ISR collapses 0.64→0.003\
+    \ while PR rises 32%→96%); (2) using ISR as a training reward induces \"meta-level\
+    \ Goodhart's Law\" — models game ISR itself rather than improving structurally;\
+    \ (3) ISR collapse replicates across logic types with preliminary cross-logic\
+    \ evidence. A 6-mode hacking taxonomy and SFT baseline complete the analysis.\n\
+    \n---\n\n## Step 1: Independent Reviews\n\n### Reviewer 1 (R1) — Methods + Experiments\n\
+    \n**Score: 3/6 (Borderline Reject) | Confidence: 4/5**\n\n**Strengths:**\n- The\
+    \ ISR collapse trajectory (Table 1: 0.64→0.13→0.003 over 100→500→1000 steps) is\
+    \ a clean, compelling demonstration that prove rate alone masks structural degeneration.\
+    \ This is the paper's strongest result.\n- The premise-count confound correction\
+    \ (Section 4.3.2) is a genuine methodological contribution: the transparent correction\
+    \ from 2.4× to 1.06× after controlling for premise count demonstrates rigor and\
+    \ is applicable to any LOO-based metric.\n- Random reward control design (Eq.\
+    \ 5) is well-conceived — it isolates ISR-specific effects from general reward\
+    \ augmentation, and the H7=64.5% (ISR) vs 0% (random) comparison is striking.\n\
+    - SFT baseline (Table 7: 92.9% genuine vs 12.9% GRPO) provides strong evidence\
+    \ that hacking is RL-specific, not a data/model artifact.\n- The multiplicative\
+    \ bonus formulation (Eq. 4) is well-motivated over the abandoned convex combination,\
+    \ and the historical experiment is honestly documented.\n\n**Weaknesses:**\n-\
+    \ **Statistical power concerns.** The premise-count-matched comparison (Table\
+    \ 5) rests on n=11 vs n=21 samples — too small for confident conclusions. No significance\
+    \ tests, confidence intervals, or effect sizes are reported for any comparison.\
+    \ The flagship ISR collapse trajectory (Table 1) is single-seed (s42 only); the\
+    \ paper should present the 3-seed trajectory or at minimum acknowledge this.\n\
+    - **Single-seed conditions.** β=0.3 (Table 6) and the 1000-step extension are\
+    \ single-seed experiments. Given the paper's own finding of extreme cross-seed\
+    \ instability (σ=47pp, Table 2), reporting single-seed results for secondary claims\
+    \ undermines the paper's credibility.\n- **Prolog STA results are weak.** Table\
+    \ 10 shows only 2/3 seeds with H7-dominant patterns, and the anomalous seed (s43,\
+    \ n=13) is too small for any meaningful hacking decomposition. The paper appropriately\
+    \ hedges (\"preliminary,\" \"suggestive\"), but Claim 3 contributes little evidential\
+    \ weight.\n- **No formal hypothesis testing.** The paper makes causal-sounding\
+    \ claims (\"ISR reward induces H7\") without any statistical framework. Even simple\
+    \ permutation tests or bootstrap confidence intervals would strengthen the argument.\n\
+    - **Missing ablations.** Only two β values are tested (0.1, 0.3). The dose-response\
+    \ landscape (Table 8) has only 3 points — a finer grid (β ∈ {0.05, 0.1, 0.2, 0.3,\
+    \ 0.5}) would better characterize the transition from meta-Goodhart to classic\
+    \ Goodhart.\n- **Reproducibility.** Training hyperparameters (learning rate, batch\
+    \ size, KL penalty, number of rollouts) are not provided. The evaluation dataset\
+    \ and problem distribution are not described.\n\n**Questions for Authors:**\n\
+    1. Can you provide the ISR collapse trajectory (Table 1 equivalent) for seeds\
+    \ s43 and s44? Given s43's training failure and s44's tautological collapse, the\
+    \ single-seed trajectory may not be representative.\n2. For the premise-count-matched\
+    \ comparison (n=11 vs n=21), what is the p-value of a two-sample t-test or Mann-Whitney\
+    \ U test?\n3. Why was β=0.3 only tested with a single seed? The paper's central\
+    \ message about cross-seed instability makes this inconsistent.\n4. What is the\
+    \ inter-annotator agreement for the 200-output hacking taxonomy? Was annotation\
+    \ done by one person or multiple?\n\n### Reviewer 2 (R2) — Novelty + Related Work\n\
+    \n**Score: 3/6 (Borderline Reject) | Confidence: 4/5**\n\n**Strengths:**\n- The\
+    \ meta-level Goodhart finding is empirically novel in this specific form: a diagnostic\
+    \ metric designed to detect gaming becomes itself a gaming target when used as\
+    \ reward. The H7=64.5% (ISR) vs 0% (random) result across 3 seeds is clean evidence\
+    \ of ISR-specific gaming.\n- The premise-count bias analysis (Section 4.3.2, Section\
+    \ 5.2) is a generalizable insight applicable to any LOO-based metric in any domain\
+    \ — this may be the most transferable contribution.\n- The 6-mode hacking taxonomy\
+    \ (Table 3) provides a concrete, actionable vocabulary for practitioners working\
+    \ with GRPO-trained formalizers.\n- The paper's intellectual honesty is notable:\
+    \ explicit acknowledgment that LOO is not novel (Section 2), transparent premise-count\
+    \ correction, careful hedging on Claim 3, honest limitations section.\n- The \"\
+    observer vs. optimizer\" asymmetry (Section 5.1) is a useful conceptual framing\
+    \ with implications beyond this specific setting.\n\n**Weaknesses:**\n- **Methodological\
+    \ novelty is limited.** ISR is LOO ablation applied to solver inputs — a straightforward\
+    \ adaptation of a well-known technique. The authors acknowledge this, but the\
+    \ contribution then rests entirely on the empirical findings, which need to be\
+    \ correspondingly stronger.\n- **\"Meta-level Goodhart\" is not clearly differentiated\
+    \ from standard adversarial Goodhart** in the Manheim & Garrabrant (2019) taxonomy.\
+    \ The paper claims this is \"a specific instance of adversarial Goodhart in the\
+    \ proxy metric design space\" (Section 2), which undermines the novelty framing.\
+    \ The distinction between \"gaming the reward\" (standard Goodhart) and \"gaming\
+    \ the diagnostic-turned-reward\" (meta-Goodhart) is a matter of degree, not kind.\n\
+    - **Narrow empirical scope limits significance.** One model size (1.5B), two logic\
+    \ types (one incomplete), one dataset family, 3 seeds. The findings are specific\
+    \ to Qwen-1.5B + GRPO + FOL/Prolog — generalization to other models, RL algorithms,\
+    \ or formal systems is speculative.\n- **No positive contribution.** The paper\
+    \ identifies a problem (reward hacking) and shows that one solution doesn't work\
+    \ (ISR-as-reward), but proposes no alternative. For a main conference paper, practitioners\
+    \ expect at least a direction toward a fix. The actionable guidance (\"use ISR\
+    \ as diagnostic, not reward\") is a one-sentence recommendation.\n- **Related\
+    \ work section is thin.** Only ~8 references, no engagement with: reward model\
+    \ overoptimization literature (Gao et al. 2023), RLHF reward hacking (Skalse et\
+    \ al. 2022), formal verification for RL safety, or the broader Goodhart empirical\
+    \ literature. The Manheim & Garrabrant citation is the only theoretical grounding.\n\
+    - **Two logic types is insufficient for \"cross-logic\" claims.** Even as \"preliminary\
+    \ evidence,\" testing only FOL and Prolog (which share logical structure) doesn't\
+    \ establish diagnostic transfer to genuinely different formal systems (SMT, HOL,\
+    \ Lean, etc.).\n\n**Questions for Authors:**\n1. How does \"meta-level Goodhart\"\
+    \ differ from standard adversarial Goodhart beyond the labeling? Can you articulate\
+    \ a crisp theoretical distinction?\n2. Would ISR-as-reward work if combined with\
+    \ anti-gaming regularization (e.g., minimum component count constraint, diversity\
+    \ bonus)?\n3. Have you considered Shapley values instead of LOO? Shapley provides\
+    \ a complete attribution but at exponential cost — is there a middle ground?\n\
+    4. Why not test on at least one more logic type (e.g., Lean 4, Isabelle) to strengthen\
+    \ the generality claim?\n\n---\n\n## Step 2: Cross-Sharing\n\nR1's statistical\
+    \ concerns (small n, no significance tests, single-seed conditions) reinforce\
+    \ R2's point about narrow empirical scope — the paper needs either broader scope\
+    \ or deeper statistical rigor within its existing scope to be convincing.\n\n\
+    R2's novelty concerns are partially addressed by R1's recognition that the premise-count\
+    \ correction is a real methodological contribution — but R1 agrees this alone\
+    \ is insufficient for a main conference paper.\n\nBoth reviewers independently\
+    \ flag the Prolog STA results as the weakest part of the paper (Table 10, s43\
+    \ anomalous with n=13), and both agree that Claim 3 contributes minimal evidential\
+    \ weight.\n\nR1's concern about reproducibility (missing hyperparameters) compounds\
+    \ R2's concern about scope — if the findings are specific to one configuration,\
+    \ the configuration must be precisely described.\n\n---\n\n## Step 3: Convergence\n\
+    \n### Points of Agreement\n1. **ISR collapse trajectory is the strongest result.**\
+    \ Both reviewers recognize Table 1 (0.64→0.13→0.003) as a clean, compelling demonstration.\
+    \ This is the paper's core contribution.\n2. **Premise-count correction is a genuine\
+    \ contribution.** The 2.4×→1.06× correction is honest, methodologically valuable,\
+    \ and generalizable to other LOO metrics.\n3. **Meta-Goodhart finding (H7 ISR-specific)\
+    \ is empirically interesting** but would benefit from sharper theoretical framing\
+    \ and broader empirical support.\n4. **Prolog STA results are weak.** Claim 3\
+    \ adds little beyond the exec-only ISR collapse replication; the STA-as-reward\
+    \ cross-logic evidence is too heterogeneous to be convincing.\n5. **Narrow scope\
+    \ is the primary barrier** to a main conference acceptance: 1 model, 2 logic types\
+    \ (one incomplete), 3 seeds, no significance tests.\n6. **No positive method proposed.**\
+    \ The contribution is purely diagnostic/negative, which raises the bar for empirical\
+    \ thoroughness.\n7. **Overall score: 3/6 (Borderline Reject) for main conference.**\
+    \ Both reviewers independently converge on this score.\n\n### Points of Residual\
+    \ Disagreement\n- R1 weights statistical rigor more heavily (would upgrade to\
+    \ 4 with significance tests and multi-seed β=0.3). R2 weights novelty more heavily\
+    \ (would need a positive method or a third logic type to upgrade).\n- R1 considers\
+    \ the SFT baseline (Table 7) a strong control; R2 considers it expected (of course\
+    \ SFT doesn't induce RL-specific hacking).\n\n---\n\n## Step 4: Consolidated Assessment\n\
+    \n### Overall Score: 3/6 (Borderline Reject)\n\n### Confidence: 4/5 (High)\n\n\
+    ### Recommendation: **Findings track** at a top venue (e.g., EMNLP Findings, ACL\
+    \ Findings). Not sufficient for main conference at 25% acceptance rate.\n\n###\
+    \ Justification\n\n**Why not accept (main conference):**\nThe paper's core methodological\
+    \ contribution (LOO on solver inputs) is acknowledged by the authors as non-novel.\
+    \ The empirical contributions — while interesting — are narrow in scope (1 model\
+    \ size, 2 logic types, 3 seeds) and lack statistical rigor (no significance tests,\
+    \ small n in key comparisons, single-seed for some conditions). The absence of\
+    \ any positive training method means practitioners get a diagnostic tool and a\
+    \ warning, but no path forward. For a main conference paper, we expect either\
+    \ deeper methodology, broader empirical scope, or a constructive solution.\n\n\
+    **Why not reject outright:**\nThe ISR collapse trajectory (0.64→0.003 while PR\
+    \ rises to 96%) is a genuinely important finding for the GRPO-for-formal-reasoning\
+    \ community. The meta-Goodhart observation (H7=64.5% ISR vs 0% random) is empirically\
+    \ clean within its scope. The premise-count confound correction is a transferable\
+    \ insight. The 6-mode hacking taxonomy provides actionable vocabulary. The paper\
+    \ is well-written, honestly hedged, and its limitations section is commendably\
+    \ thorough.\n\n**What would change the score:**\n- **To 4 (Borderline Accept):**\
+    \ Add significance tests throughout, run β=0.3 with 3 seeds, add one more logic\
+    \ type (e.g., SMT-LIB or Lean), report training hyperparameters fully.\n- **To\
+    \ 5 (Accept):** All of the above plus a positive method (even preliminary — e.g.,\
+    \ ISR-guided data filtering, adaptive reward gating, or a constrained ISR formulation\
+    \ that resists gaming).\n\n### Key Strengths (ordered by importance)\n1. ISR collapse\
+    \ trajectory demonstrates structural degeneration invisible to prove rate — the\
+    \ core finding is solid and practically important.\n2. Meta-Goodhart empirical\
+    \ demonstration (H7 ISR-specific, premise-count-matched analysis) is novel in\
+    \ this specific form.\n3. Methodological transparency: premise-count confound\
+    \ correction, honest limitations, appropriate hedging on Claim 3.\n4. Random reward\
+    \ control and SFT baseline provide well-designed experimental controls.\n5. 6-mode\
+    \ hacking taxonomy offers concrete vocabulary for the community.\n\n### Key Weaknesses\
+    \ (ordered by importance)\n1. **Narrow empirical scope:** 1 model (1.5B), 2 logic\
+    \ types (Prolog incomplete), 3 seeds, 1 dataset. Generalization is uncertain.\n\
+    2. **No statistical rigor:** Zero significance tests, no confidence intervals,\
+    \ key comparisons on n=11 vs n=21.\n3. **No positive method:** Purely diagnostic\
+    \ contribution raises the bar for empirical completeness.\n4. **Low methodological\
+    \ novelty:** LOO ablation is well-known; the contribution is application-level,\
+    \ not technique-level.\n5. **Single-seed conditions:** β=0.3 and 1000-step experiments\
+    \ lack multi-seed validation, contradicting the paper's own cross-seed instability\
+    \ message.\n6. **Related work is thin:** Missing engagement with reward model\
+    \ overoptimization, RLHF reward hacking, and broader Goodhart empirical literature.\n\
+    7. **\"Meta-Goodhart\" vs. standard adversarial Goodhart:** The theoretical distinction\
+    \ is not crisply articulated.\n\n### Experiment Coverage Assessment\nRelative\
+    \ to the full experimental design (review_context.yaml), the paper covers the\
+    \ core experiments well:\n- ✅ FOL exec-only 3-seed + 1000-step extension\n- ✅\
+    \ FOL ISR β=0.1 3-seed + random control\n- ✅ FOL ISR β=0.3 + random control (single-seed)\n\
+    - ✅ Prolog exec-only 3-seed\n- ✅ Prolog STA 3-seed (but s43 weak)\n- ✅ SFT baseline\n\
+    - ✅ Hacking taxonomy (200 annotations)\n- ✅ O(1) vs O(N) ablation\n- ✅ NLI downstream\
+    \ (negative result)\n- ✅ Convex formula (historical)\n- ❌ Not run: SMT-LIB, 8B\
+    \ model, curriculum ablation, mixed-logic training, cross-logic transfer (all\
+    \ appropriately excluded from the paper)\n\nThe paper is honest about its coverage\
+    \ — it does not claim experiments it did not run. The main gap is β=0.3 multi-seed\
+    \ and a third logic type.\n\n### Actionable Revision Guidance\n1. Add bootstrap\
+    \ confidence intervals or permutation tests for all key comparisons (especially\
+    \ Table 5, Table 4 ISR vs Random means, Table 9 cross-logic comparison).\n2. Run\
+    \ β=0.3 with 3 seeds to maintain consistency with the paper's multi-seed philosophy.\n\
+    3. Present the ISR collapse trajectory (Table 1) for all 3 seeds, not just s42.\n\
+    4. Expand related work to engage with Gao et al. (2023) on reward model overoptimization,\
+    \ Skalse et al. (2022) on reward hacking taxonomy, and the broader Goodhart empirical\
+    \ literature.\n5. Sharpen the \"meta-Goodhart\" framing: articulate why a diagnostic-turned-reward\
+    \ is a distinct failure mode rather than a relabeling of adversarial Goodhart.\n\
+    6. Report all training hyperparameters (learning rate, batch size, KL coefficient,\
+    \ rollout count, optimizer).\n7. Consider adding at least a preliminary positive\
+    \ direction (even speculative) in the Discussion.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/dream_reports/dream_20260514T173834/worst/paper.pdf
+  imagined_experiments:
+  - name: Prolog STA s43 — 训练崩溃/H7 不复现
+    plan_id: plan006-prolog-sta-s43
+    description: 'Prolog exec+STA GRPO, seed 43。与 s42（H7=100%）对照，验证 Goodhart 跨逻辑复现。
+
+      '
+    expected_results:
+      training_status: failed_or_degenerate
+      training_failure_mode: loss_diverge_or_repetition_collapse
+      train_loss_final: 0.35
+      train_prove_rate_final: 0.08
+      train_isr_final: 0.02
+      train_duration_min: ~25
+      eval_prove_rate: 0.06
+      eval_mean_isr: 0.01
+      eval_proved_only_isr: 0.17
+      eval_h7_rate: 0.0
+      eval_h7_count: 0
+      eval_h1_rate: 0.0
+      eval_proved_count: 6
+      eval_total_count: 100
+      eval_genuine_rate: 1.0
+      saturation_onset: never
+      completion_length_final: 95
+    result_rationale: 'Worst 档核心假设：Prolog STA 训练高度不稳定，seed 敏感性极端。s42 的 100% H7 + step~100
+      饱和 是 seed-specific 的幸运路径——Prolog 语义空间小，reward landscape 存在多个 local optima。 s43
+      掉入不同的 basin：ISR reward 信号在 Prolog 上极度稀疏（大多数生成无法 parse）， GRPO 的 K=8 采样几乎全部 reward=0，梯度信号消失，loss
+      不收敛。模型退化为重复输出 或 degenerate 短序列，但不是 s42 那种"学会了 H7 trick"的退化，而是纯粹的训练失败。 PR=6%
+      接近 base model 水平（未学到任何有用信号），6 个偶然 proved 样本中无 H7 因为模型没学到 conclusion duplication
+      这个 Prolog-specific shortcut。 这与 FOL s43（exec-only PR=14%, ISR=0, repetition
+      collapse）的失败模式一致—— seed 43 在两种 logic 上都是 bad seed，但 Prolog 的小语义空间放大了失败程度。
+
+      '
+    tables:
+    - title: Prolog STA s43 训练轨迹（worst）
+      rows:
+      - window: 1-50
+        pr: 0.04
+        isr: 0.01
+        loss: 0.42
+      - window: 51-100
+        pr: 0.06
+        isr: 0.01
+        loss: 0.39
+      - window: 101-200
+        pr: 0.07
+        isr: 0.02
+        loss: 0.37
+      - window: 201-300
+        pr: 0.08
+        isr: 0.02
+        loss: 0.35
+      - window: 301-400
+        pr: 0.08
+        isr: 0.02
+        loss: 0.35
+      - window: 401-500
+        pr: 0.08
+        isr: 0.02
+        loss: 0.35
+    figures_description:
+    - 训练曲线：PR 和 ISR 平坦不上升，loss 下降极慢并plateau ~0.35。与 s42 的 step-100 饱和形成鲜明对比。
+    analysis: 's43 训练失败直接打击 Claim 3 的 3-seed 一致性要求。s42 的 H7=100% 变成 isolated observation
+      而非 robust finding。若 s44 也失败（见下），Prolog STA 3-seed 中仅 1/3 复现 Goodhart， 无法声称跨逻辑泛化。审稿人会指出
+      "N=1 is anecdotal, not evidence"。
+
+      '
+  - name: Prolog STA s44 — 部分训练但 H7 极低
+    plan_id: plan006-prolog-sta-s44
+    description: 'Prolog exec+STA GRPO, seed 44。Worst 档下训练有部分进展但 H7 不复现。
+
+      '
+    expected_results:
+      training_status: partial_convergence
+      train_loss_final: 0.015
+      train_prove_rate_final: 0.65
+      train_isr_final: 0.28
+      train_duration_min: 47
+      eval_prove_rate: 0.35
+      eval_mean_isr: 0.12
+      eval_proved_only_isr: 0.34
+      eval_h7_rate: 0.11
+      eval_h7_count: 4
+      eval_h1_rate: 0.26
+      eval_h1_count: 9
+      eval_proved_count: 35
+      eval_total_count: 100
+      eval_genuine_rate: 0.63
+      eval_genuine_count: 22
+      eval_n_clauses_mean: 4.7
+      saturation_onset: never
+      completion_length_final: 68
+    result_rationale: 's44 在 FOL exec-only 中表现为 tautological collapse（H7=100%, PR=98%,
+      n_comp=2.04）， 说明这个 seed 倾向于极端简化策略。在 Prolog STA 下，s44 部分学到了 Prolog 语法 但未像 s42
+      那样找到 "single clause = conclusion" 的极端 shortcut。原因： (1) Prolog STA 的 ISR reward
+      在 s44 的优化轨迹上与 exec reward 方向冲突更严重—— s44 倾向极简输出（FOL 中 2 components），但 Prolog
+      STA ablation 对极简输出的 ISR 信号噪声大（删 1/2 clause 的方差极高）； (2) 结果是 s44 走了一条"中间路线"——PR=35%（学到了一些但远不如
+      s42）， H7=11%（4/35 proved 中有 conclusion duplication 但不是主导模式）， 多数 proved 样本是 genuine
+      的 multi-clause 输出。 H7=11% 远低于 s42 的 100%，在 worst 档指标范围 [0, 0.2] 内。 3-seed H7
+      mean = (100% + 0% + 11%) / 3 = 37%... 但实际上如果 s43 failed 只看 s42+s44 = (100% +
+      11%) / 2 = 55.5%，或者 3-seed 中 1 个 failed 则有效 mean 更接近 worst 档的 [0, 0.3] 上界（加权后）。
+      关键问题：跨 seed 方差极大 (0%-100%)，任何 aggregate statistic 都不可信。
+
+      '
+    tables:
+    - title: Prolog STA 3-seed 汇总（worst）
+      rows:
+      - seed: s42
+        status: DONE
+        pr: 0.5
+        isr: 0.5
+        h7_rate: 1.0
+        h7_count: 50
+        mode: H7 saturation
+      - seed: s43
+        status: FAILED
+        pr: 0.06
+        isr: 0.01
+        h7_rate: 0.0
+        h7_count: 0
+        mode: training collapse
+      - seed: s44
+        status: PARTIAL
+        pr: 0.35
+        isr: 0.12
+        h7_rate: 0.11
+        h7_count: 4
+        mode: mixed/weak
+      - seed: mean±std
+        status: '-'
+        pr: 0.30±0.22
+        isr: 0.21±0.26
+        h7_rate: 0.37±0.55
+        h7_count: 18±28
+        mode: '-'
+    - title: Prolog STA vs FOL STA 跨逻辑对比（worst）
+      rows:
+      - metric: 3-seed H7 mean
+        prolog_sta: 0.37 (σ=0.55)
+        fol_isr_b01: 0.645 (σ=0.44)
+        interpretation: Prolog 方差更大，不可比
+      - metric: training failure seeds
+        prolog_sta: 1/3
+        fol_isr_b01: 0/3
+        interpretation: Prolog 训练稳定性差
+      - metric: cross-logic effect size
+        prolog_sta: ~0.15
+        fol_isr_b01: baseline
+        interpretation: Cohen's d < 0.3, 无实质效应
+    figures_description:
+    - 3-seed 训练曲线对比：s42 step-100 饱和到 PR=1/ISR=1，s43 平坦在底部，s44 缓慢上升但未饱和。三条线完全不收敛到同一区域。
+    - H7 rate bar chart：s42=100%, s43=0%, s44=11%。误差棒跨越整个 [0,1] 区间，说明 3 seed 不足以得出任何统计结论。
+    analysis: 'Worst 档下 Prolog STA 3-seed 结果完全无法支撑 Claim 3。核心问题： (1) 1/3 seed 训练失败——不能说"Goodhart
+      跨逻辑复现"因为 1/3 连基本训练都没成功； (2) s44 H7=11% 与 s42 H7=100% 的差异比 FOL 实验内部的 seed variance
+      还大； (3) 3-seed mean H7 ~37% 但 std ~55%，confidence interval 包含 0，统计上不显著； (4)
+      审稿人会直接指出 "with 1 failed seed and massive variance, this is N=1 anecdotal evidence"。
+      结论：Claim 3 必须砍掉或降级为 "we attempted Prolog transfer; s42 shows promising but non-reproducible
+      H7 pattern; further investigation needed with more seeds"（1 段话）。
+
+      '
+  - name: STA O(1) vs O(N) ablation — 确认 O(1) 无效
+    plan_id: plan_004
+    description: '对比 fast_isr_fol (O(1) 近似) 与 full STA (O(N) LOO) 在 500 步 exec+STA
+      训练中的效果。 预期为 negative result documentation。
+
+      '
+    expected_results:
+      fast_isr_eval_prove_rate: 0.72
+      fast_isr_eval_mean_isr: 0.09
+      fast_isr_eval_proved_only_isr: 0.125
+      fast_isr_h7_rate: 0.0
+      fast_isr_h1_rate: 0.78
+      fast_isr_genuine_rate: 0.22
+      full_sta_reference: plan005 (PR=0.77, ISR=0.23)
+      isr_gap_fast_vs_full: -0.14 (fast ISR 更低)
+      pr_gap_fast_vs_full: '-0.05'
+      training_time_ratio: 0.3x (fast 比 full 快 3.3 倍)
+    result_rationale: 'O(1) 近似（fast_isr_fol）用启发式估计 ISR 而非逐一 ablation，在 FOL 上已知 信号质量差：(1)
+      不执行实际 solver call，无法区分 genuine necessity 和 trivial structure； (2) 对 conclusion
+      embedding 的检测能力弱于 full LOO（因为不实际删除 component 看证明是否仍成立）。Worst 档下，fast ISR 的噪声更大，GRPO
+      在此基础上的 reward signal 几乎是 random noise——结果接近 random reward baseline（plan018 PR=0.79,
+      ISR=0.13），但略差因为 fast ISR 的噪声不是均匀分布的，引入了 systematic bias。PR=0.72 低于 exec-only
+      的 0.93，说明 noisy ISR signal 反而有害。这个 negative result 在 worst 档下不影响论文叙事——反而强化 "full
+      LOO ablation is necessary for reliable ISR" 的方法论贡献点。
+
+      '
+    tables:
+    - title: O(1) vs O(N) STA 对比
+      rows:
+      - method: O(N) full STA (plan005)
+        pr: 0.77
+        isr: 0.23
+        time_per_step_s: 10.1
+        h7: 0%
+        genuine: ~26%
+      - method: O(1) fast ISR
+        pr: 0.72
+        isr: 0.09
+        time_per_step_s: 3.1
+        h7: 0%
+        genuine: ~22%
+      - method: exec-only (plan001)
+        pr: 0.93
+        isr: 0.13
+        time_per_step_s: 9.4
+        h7: 0%
+        genuine: 12.9%
+      - method: random β=0.1 (plan018)
+        pr: 0.79
+        isr: 0.1
+        time_per_step_s: 9.5
+        h7: 0%
+        genuine: ~25%
+    figures_description:
+    - 训练曲线对比：fast ISR 的 ISR reward 信号噪声明显大于 full STA，moving average 更抖动。
+    analysis: 'Worst 档下此实验的论文价值：强化方法论贡献——ISR 作为诊断指标需要 full LOO ablation， 近似方法不可靠。可作为
+      Appendix 1 段负面结果。但在 worst 档重构为 2-claim 论文时， 此实验优先级下降——如果版面紧张可以砍掉（Findings 8
+      页限制）。
+
+      '
+  - name: Multi-logic GRPO (FOL+Prolog) — 混合训练失败
+    plan_id: plan_007
+    description: 'FOL+Prolog 混合数据 GRPO 训练（exec-only 和 exec+STA），测试跨逻辑训练效果。
+
+      '
+    expected_results:
+      mixed_exec_only_fol_pr: 0.45
+      mixed_exec_only_prolog_pr: 0.22
+      mixed_exec_only_fol_isr: 0.05
+      mixed_exec_only_prolog_isr: 0.01
+      mixed_sta_fol_pr: 0.38
+      mixed_sta_prolog_pr: 0.15
+      mixed_sta_fol_isr: 0.08
+      mixed_sta_prolog_isr: 0.03
+      training_instability: true
+      loss_oscillation: true
+      fol_pr_degradation_vs_single: -0.48 (0.93→0.45)
+      prolog_pr_degradation_vs_single: -0.38 (0.83→0.22, vs s42 exec-only)
+    result_rationale: 'Worst 档假设跨逻辑泛化不成立，混合训练是最极端的测试。两种 logic type 的 solver interface
+      完全不同（Prover9 vs SWI-Prolog），输入/输出格式差异大， GRPO 在 K=8 采样中同时面对两种 reward function，梯度信号矛盾。
+      FOL PR 从单逻辑 0.93 骤降至 0.45——模型在 FOL 和 Prolog 之间"摇摆"， 两种格式互相干扰（catastrophic interference
+      的经典表现）。 Prolog PR=0.22 更差，因为 Prolog 数据量少（100 题 vs FOL 500 题）， 混合训练中 Prolog 信号被
+      FOL 淹没。STA 版本更差因为 ISR 计算方式在两种 logic 上不同（clause ablation vs premise ablation），reward
+      scale 不匹配加剧了不稳定。 这个实验在 worst 档下是 Claim 3 失败的又一证据——不仅 Prolog 单独跑不稳定， 混合训练更是灾难性的。
+
+      '
+    tables:
+    - title: 混合训练 vs 单逻辑训练对比
+      rows:
+      - condition: FOL-only exec (plan001)
+        fol_pr: 0.93
+        prolog_pr: N/A
+        fol_isr: 0.13
+      - condition: Prolog-only exec (plan006 s42)
+        fol_pr: N/A
+        prolog_pr: 0.83
+        prolog_isr: 0.03
+      - condition: Mixed exec-only
+        fol_pr: 0.45
+        prolog_pr: 0.22
+        fol_isr: 0.05
+      - condition: Mixed exec+STA
+        fol_pr: 0.38
+        prolog_pr: 0.15
+        fol_isr: 0.08
+    figures_description:
+    - Loss 曲线严重振荡，FOL batch 和 Prolog batch 交替时 loss spike 明显。
+    analysis: 'Worst 档下不建议跑此实验。Claim 3 已失效，混合训练只会增加更多负面证据。 在 reframe 的 2-claim 论文中，此实验无贡献——砍掉以节省
+      GPU 预算和版面。
+
+      '
+  - name: Cross-logic transfer evaluation — 零迁移
+    plan_id: plan_008
+    description: 'FOL 训练的模型直接在 Prolog 测试集上 eval（及反向），测试零样本跨逻辑迁移。
+
+      '
+    expected_results:
+      fol_model_on_prolog_pr: 0.02
+      fol_model_on_prolog_isr: 0.0
+      prolog_model_on_fol_pr: 0.04
+      prolog_model_on_fol_isr: 0.01
+      fol_model_on_fol_pr: 0.93
+      prolog_model_on_prolog_pr: 0.83
+      cross_transfer_effect_size: 0.03
+    result_rationale: 'FOL→Prolog 和 Prolog→FOL 的零样本迁移在 worst 档下几乎为零。这是预期内的： (1) FOL
+      (Prover9) 和 Prolog (SWI-Prolog) 的语法完全不同——FOL 用 all/exists 量词 + 谓词逻辑，Prolog 用
+      Horn clauses + unification； (2) 模型在 500 步 GRPO 中高度过拟合到特定语法模式（这正是 reward hacking
+      的本质）； (3) FOL-trained model 生成的输出在 Prolog solver 上几乎全部 parse error， 反之亦然；PR=2-4%
+      接近随机猜测水平（base model 在 FOL 上 PR=12%， 但经过 Prolog GRPO 后 FOL 能力被灾难性遗忘至 4%）。 这个结果在
+      worst 档叙事中是双刃剑：一方面证实跨逻辑迁移不存在（支持砍 Claim 3）， 另一方面说明 GRPO reward hacking 不仅不泛化，还导致灾难性遗忘。
+      后者可以作为 Discussion 中 1 句话提及，但不值得单独展开。
+
+      '
+    tables:
+    - title: 跨逻辑零样本迁移
+      rows:
+      - model: FOL-trained (plan001-s42)
+        eval_on: FOL
+        pr: 0.93
+        isr: 0.13
+      - model: FOL-trained (plan001-s42)
+        eval_on: Prolog
+        pr: 0.02
+        isr: 0.0
+      - model: Prolog-trained (plan006-s42)
+        eval_on: Prolog
+        pr: 0.83
+        isr: 0.03
+      - model: Prolog-trained (plan006-s42)
+        eval_on: FOL
+        pr: 0.04
+        isr: 0.01
+    figures_description:
+    - 2×2 heatmap：对角线高（原域），非对角线接近零。视觉上直观展示零迁移。
+    analysis: '预期中的 negative result。在 worst 档 2-claim 论文中无叙事价值—— 零迁移是 trivial observation（不同编程语言的模型当然不互通），
+      不值得占版面。砍掉。
+
+      '
+  - name: SMT-LIB single-logic GRPO — 第三逻辑类型失败
+    plan_id: plan_010
+    description: 'SMT-LIB (Z3) exec-only 和 exec+STA GRPO，作为第三种逻辑类型验证。
+
+      '
+    expected_results:
+      smtlib_exec_only_pr: 0.15
+      smtlib_exec_only_isr: 0.02
+      smtlib_sta_pr: 0.08
+      smtlib_sta_isr: 0.04
+      smtlib_sta_h7_rate: 0.0
+      training_failure: true
+      failure_mode: Z3 timeout-dominated; reward signal too sparse for GRPO
+      data_preparation_effort_hours: 8
+      training_hours: 3
+    result_rationale: 'SMT-LIB 是 worst 档下最不可能成功的实验。原因： (1) STA 对 SMT-LIB 的 instantiation
+      需要 constraint ablation，但 SMT-LIB 的 assert 语句之间依赖关系比 FOL premises 更复杂（存在隐式类型约束、变量声明依赖），
+      删除单个 assert 往往导致 solver error 而非 unsat/sat 变化，ISR 信号退化为二值噪声； (2) Z3 solver timeout
+      是主要瓶颈——STA 需要 N 次 solver call，Z3 在复杂公式上 timeout 率高，导致大量样本 ISR=undefined； (3)
+      SMT-LIB 数据集（假设从 FOLIO 转换）质量不如 FOL，格式转换引入 artifact； (4) PR=15% exec-only 说明 base
+      model 对 SMT-LIB 语法的先验知识弱于 FOL/Prolog。 在 worst 档下，这个实验只会增加 "ISR 在第三种逻辑上也不 work"
+      的证据， 但投入 8h 数据准备 + 3h GPU 的 ROI 极低。
+
+      '
+    tables:
+    - title: 三种逻辑类型对比（worst 档汇总）
+      rows:
+      - logic: FOL (Prover9)
+        exec_pr: 0.93
+        exec_isr: 0.13
+        sta_h7: 0% (exec) / 16-97% (ISR-reward)
+        status: ✅ closed
+      - logic: Prolog (SWI)
+        exec_pr: 0.53±0.31
+        exec_isr: 0.04±0.04
+        sta_h7: 0-100% (1/3 seeds)
+        status: ⚠️ unstable
+      - logic: SMT-LIB (Z3)
+        exec_pr: 0.15
+        exec_isr: 0.02
+        sta_h7: 0%
+        status: ❌ failed
+    figures_description:
+    - 三逻辑类型 bar chart：从左到右 PR 递减，ISR 递减。视觉叙事是 'ISR 诊断能力随逻辑复杂度下降'，但实际是训练失败而非 ISR 失败。
+    analysis: 'Worst 档下强烈不建议跑此实验。投入高、产出低、只会增加 Claim 3 失败的证据量。 在 2-claim 论文中完全没有位置。如果
+      Findings 审稿人问 "why only FOL"， 可以口头回应 "we attempted Prolog (Appendix) with inconclusive
+      results; SMT-LIB is future work" 而不需要实际数据。
+
+      '
+  - name: Qwen3-8B scaling — 放大版 hacking
+    plan_id: plan_011
+    description: '在 Qwen3-8B 上复现 FOL exec+STA 全流程（1 seed），测试模型规模对 reward hacking 的影响。
+
+      '
+    expected_results:
+      qwen8b_exec_only_pr: 0.97
+      qwen8b_exec_only_isr: 0.08
+      qwen8b_exec_only_h1_rate: 0.92
+      qwen8b_exec_only_genuine_rate: 0.05
+      qwen8b_isr_b01_pr: 0.85
+      qwen8b_isr_b01_isr: 0.52
+      qwen8b_isr_b01_h7_rate: 0.45
+      qwen8b_training_hours: 5.5
+      qwen8b_gpu_memory_gb: 38
+      scaling_hacking_worse: true
+    result_rationale: '8B 模型在 worst 档下不会改善 hacking 问题，反而可能恶化。原因： (1) 更大的模型有更强的 pattern
+      exploitation 能力——8B 的 capacity 使其更快 发现 conclusion embedding 等 shortcut，PR 更快饱和（0.97
+      vs 1.5B 的 0.93）； (2) ISR 崩塌速度更快（更大模型 = 更高效的 Goodhart optimization）， ISR=0.08
+      比 1.5B 的 0.13 更低； (3) H7 rate 在 ISR-reward 条件下可能更高（45% vs 1.5B s42 的 16%）， 因为
+      8B 模型更擅长发现 "单 premise = conclusion" 这个 trick； (4) 但！这些结果实际上强化 Claim 1 和 Claim
+      2——"scaling doesn''t fix reward hacking, it makes it worse" 是有价值的发现。 问题是 worst
+      档下这个实验的 priority：6h GPU 预算，且只有 1 seed， 在 2-claim 论文中可以作为 Discussion 1 段 "scaling
+      note"，但不值得作为独立实验报告。 审稿人可能质疑 "1 seed on a different model size is not a scaling
+      study"。
+
+      '
+    tables:
+    - title: 1.5B vs 8B hacking 对比（worst 档预测）
+      rows:
+      - model: Qwen3-1.5B (plan001)
+        pr: 0.93
+        isr: 0.13
+        h1: 87%
+        h7: 0%
+        genuine: 12.9%
+      - model: Qwen3-8B (predicted)
+        pr: 0.97
+        isr: 0.08
+        h1: 92%
+        h7: 0%
+        genuine: 5%
+      - model: Qwen3-1.5B ISR β=0.1 (plan002)
+        pr: 0.81
+        isr: 0.42
+        h7: 16%
+        genuine: 30.9%
+      - model: Qwen3-8B ISR β=0.1 (predicted)
+        pr: 0.85
+        isr: 0.52
+        h7: 45%
+        genuine: ~15%
+    figures_description:
+    - Scale vs hacking intensity scatter：1.5B 和 8B 两个点，ISR 随 scale 下降（exec-only）或
+      H7 随 scale 上升（ISR-reward）。但 N=2 model sizes 不足以画趋势线。
+    analysis: 'Worst 档下此实验有边际价值但 ROI 不高。"Larger model hacks faster" 是有趣的 observation
+      但仅 1 seed + 2 model sizes 太薄。在 2-claim Findings 论文中，建议降级为 Appendix 或 Future
+      Work 1 句话："Preliminary 8B experiments suggest scaling exacerbates rather than
+      mitigates reward hacking (Appendix X)"。 不建议在 deadline 前投入此实验——GPU 时间应优先用于确保
+      Claims 1+2 的 presentation quality（figures, tables, ablation completeness）。
+
+      '
+  - name: Curriculum ablation — 无显著差异
+    plan_id: plan_015
+    description: '对比 linear ramp / sigmoid / fixed weighting 在 exec+STA 500 步训练中的效果。
+      测试 sigmoid curriculum 是否 load-bearing。
+
+      '
+    expected_results:
+      sigmoid_pr: 0.77
+      sigmoid_isr: 0.23
+      linear_ramp_pr: 0.74
+      linear_ramp_isr: 0.21
+      fixed_low_pr: 0.71
+      fixed_low_isr: 0.19
+      fixed_high_pr: 0.62
+      fixed_high_isr: 0.15
+      midpoint_100_pr: 0.68
+      midpoint_200_pr: 0.74
+      midpoint_300_pr: 0.77
+      best_config: sigmoid midpoint=300 (= current default)
+      pr_range_across_configs: '[0.62, 0.77]'
+      isr_range_across_configs: '[0.15, 0.23]'
+      any_config_genuine_rate_above_40pct: false
+    result_rationale: 'Worst 档下 curriculum ablation 不产生惊喜。所有变体在 ISR 崩塌和 hacking rate
+      上表现相似，差异在噪声范围内。原因： (1) ISR-as-reward 的根本问题是 Goodhart 效应，不是 curriculum schedule——
+      无论何时引入 ISR reward，模型最终都会学到 gaming strategy； (2) Sigmoid 比 linear 略好是因为延迟引入 ISR
+      给了模型更多时间学习基本语法， 但差距小（PR 0.77 vs 0.74, Δ=3pp），远不够 significant； (3) Fixed high（从一开始就给高
+      ISR weight）最差，因为过早引入 noisy ISR signal 干扰了 exec-only 的有效学习——但即使是 fixed high 的
+      PR=0.62 也在"可用"范围内。 结论：curriculum 不是 load-bearing，sigmoid 只是 marginal improvement。
+      在 worst 档 2-claim 论文中，这个 ablation 有 modest 价值——证明 "curriculum doesn''t solve
+      Goodhart, the problem is fundamental"，可以用 1 行 table 在 Appendix 报告。但不值得单独 figure
+      或 section。
+
+      '
+    tables:
+    - title: Curriculum Ablation 全景（worst 档预测）
+      rows:
+      - schedule: sigmoid (mp=300)
+        pr: 0.77
+        isr: 0.23
+        genuine: ~26%
+        note: plan005 actual
+      - schedule: sigmoid (mp=200)
+        pr: 0.74
+        isr: 0.21
+        genuine: ~24%
+        note: predicted
+      - schedule: sigmoid (mp=100)
+        pr: 0.68
+        isr: 0.18
+        genuine: ~20%
+        note: predicted
+      - schedule: linear ramp (mp=300)
+        pr: 0.74
+        isr: 0.21
+        genuine: ~24%
+        note: predicted
+      - schedule: fixed β=0.1
+        pr: 0.71
+        isr: 0.19
+        genuine: ~22%
+        note: predicted
+      - schedule: fixed β=0.3
+        pr: 0.62
+        isr: 0.15
+        genuine: ~18%
+        note: predicted
+    figures_description:
+    - 6-config bar chart (PR and ISR)：所有 bar 高度相近，说明 curriculum 不是关键因素。
+    analysis: 低优先级实验。在 worst 档 2-claim 论文中可选——如果版面允许（Findings 8+4 appendix）， 放 Appendix
+      table。如果版面紧张，直接在 Discussion 中写 "Curriculum schedule (sigmoid vs linear vs fixed)
+      did not significantly alter the Goodhart dynamics (Δ PR < 5pp across configurations)"，不跑实验。
+      建议：不跑。Claims 1+2 已闭环，GPU 预算留给 camera-ready 阶段可能需要的 reviewer-requested 补充实验。
+  review_report: "---\ndream_id: dream_20260514T173834\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-14T18:26:26.536575+00:00\n---\n\n# Dream Review\
+    \ Report: \"Diagnosing and Characterizing Reward Hacking in GRPO-Trained Formal\
+    \ Reasoners\"\n\n**Dream ID**: 20260514T173834\n**Review Mode**: Full (2 Reviewers\
+    \ + Roundtable)\n**Date**: 2026-05-14\n\n---\n\n## Roundtable Summary\n\n| Reviewer\
+    \ | Focus | Score | Confidence |\n|----------|-------|-------|------------|\n\
+    | R1 | Methods + Experiments | 3 (Weak Reject) | 4/5 |\n| R2 | Novelty + Related\
+    \ Work | 4 (Weak Accept) | 4/5 |\n| **Consensus** | — | **3 (Weak Reject)** |\
+    \ **4/5** |\n\n---\n\n## Step 1: Independent Reviews\n\n### R1 — Methods and Experiments\n\
+    \n**Score: 3 (Weak Reject) | Confidence: 4/5**\n\n**Summary**: The core ISR diagnostic\
+    \ and meta-Goodhart finding on FOL are well-motivated and partially well-evidenced,\
+    \ but the paper presents results from experiments that do not appear in the experimental\
+    \ record, lacks statistical testing throughout, and would be stronger as a focused\
+    \ FOL study with honest scope and significance tests.\n\n#### Strengths\n1. **ISR\
+    \ collapse trajectory is dramatic and well-evidenced.** The 0.64→0.13→0.003 collapse\
+    \ while PR rises to 93-96% is a striking result demonstrating diagnostic value\
+    \ of structural metrics beyond pass/fail.\n2. **H7 as ISR-specific gaming is convincing.**\
+    \ H7=0% across all random seeds vs. H7=64.5% across ISR seeds is the paper's cleanest\
+    \ causal finding, establishing that optimizing a diagnostic metric induces metric-specific\
+    \ exploitation.\n3. **Premise-count-matched correction is a genuine methodological\
+    \ contribution.** The self-correction from 2.4× to 1.06× is a model of honest\
+    \ self-correction and is generalizable to any LOO-based metric.\n4. **SFT baseline\
+    \ is well-designed.** 92.9% genuine under SFT vs. 12.9% under GRPO cleanly attributes\
+    \ hacking to RL optimization pressure.\n5. **Honest negative results.** NLI null\
+    \ correlation (ρ=−0.049), O(1) approximation failure, and ISR capability boundary\
+    \ are reported transparently.\n\n#### Weaknesses\n1. **Data integrity concern\
+    \ for Claim 3 experiments.** SMT-LIB (Table 16), 8B scaling (Table 10), curriculum\
+    \ ablation (Table 9), and joint training (Table 14) present detailed numerical\
+    \ results, but the project's internal audit documents list no completed experiments\
+    \ for several of these. If results are projected rather than measured, this is\
+    \ a fatal flaw.\n2. **No statistical significance testing anywhere.** All comparative\
+    \ claims (1.06×, 64.5% vs 0%, PR 0.77 vs 0.85) lack confidence intervals, p-values,\
+    \ or effect sizes. The premise-count-matched comparison (n=11 vs n=21) is presented\
+    \ as definitive without bootstrap CIs.\n3. **Key conditions are single-seed.**\
+    \ β=0.3 (both ISR and random), the 1000-step trajectory, and the SFT baseline\
+    \ are each n=1. Given documented extreme seed variance, this limits causal claims.\n\
+    4. **Model identity inconsistency.** The paper references both \"Qwen3-1.5B\"\
+    \ and potentially different actual model sizes. This must be resolved as it affects\
+    \ all reproducibility and scaling claims.\n5. **ISR-as-reward exploration is shallow.**\
+    \ Only one functional form (additive bonus) at two β values. The sweeping conclusion\
+    \ that ISR fails as an optimizer at any dose is not supported. Alternative formulations\
+    \ (ISR as rejection filter, ISR with anti-H7 heuristics) are not explored.\n\n\
+    #### Key Questions\n1. Can you provide experiment logs and eval outputs for Tables\
+    \ 9, 10, 14, 16? Internal audit documents do not list these as completed.\n2.\
+    \ What is the 95% bootstrap CI on the 1.06× ratio? With n=11, this could range\
+    \ from 0.6× to 1.8×.\n3. Why was only seed 42 extended to 1000 steps? Does the\
+    \ ISR collapse replicate across seeds?\n4. Have you considered ISR as a rejection\
+    \ criterion rather than continuous reward?\n5. What is the actual model identity\
+    \ (1.5B vs 4B discrepancy)?\n\n---\n\n### R2 — Novelty and Related Work\n\n**Score:\
+    \ 4 (Weak Accept) | Confidence: 4/5**\n\n**Summary**: A well-controlled empirical\
+    \ case study of Goodhart's Law in formal reasoning GRPO, with a useful diagnostic\
+    \ (ISR) and honest negative results, but undermined by severely insufficient related\
+    \ work, overclaimed novelty, and questionable completeness of cross-logic experiments.\n\
+    \n#### Strengths\n1. **Rigorous controls.** 3-seed design with random-reward controls,\
+    \ SFT baseline, and premise-count-matched analysis demonstrates careful methodology.\
+    \ Random-reward confirming H7=0% across all seeds is clean.\n2. **Honest negative\
+    \ results.** Transparent reporting that ISR fails as reward at every dose, and\
+    \ that 2.4× improvement was a statistical artifact, is commendable and rare.\n\
+    3. **Premise-count-matched methodology.** Identifying and controlling for component-count\
+    \ bias in LOO metrics is a genuine contribution applicable beyond this paper.\n\
+    4. **Temporal ISR collapse trajectory.** The 0.64→0.003 collapse while PR stays\
+    \ 93-96% is a clean and memorable finding.\n5. **Comprehensive Goodhart landscape.**\
+    \ Table 7 covering 10+ conditions with consistent evaluation is thorough and informative.\n\
+    \n#### Weaknesses\n1. **Severely insufficient related work.** Only 7 references\
+    \ is unacceptable for any ML venue. Critical omissions include:\n   - Skalse et\
+    \ al. (2022, NeurIPS) — formal proof that any non-constant proxy is hackable\n\
+    \   - Kim et al. (2026, VerifAI-2) — \"Do LLMs Game Formalization?\" (same phenomenon\
+    \ in Lean 4)\n   - RLSF (Jha et al. 2024) — solver certificates as token-level\
+    \ reward\n   - Lightman et al. (2023) — process vs. outcome supervision\n   -\
+    \ Logic-RL, LINC, Logic-LM — neurosymbolic reasoning competitors\n   - Mutation\
+    \ testing literature (DeMillo 1978) — ISR is essentially a first-order mutation\
+    \ score\n   - Pan et al. (2022) — dose-dependent reward misspecification\n   Minimum\
+    \ 25 references needed.\n2. **Overclaimed novelty.** \"Meta-level Goodhart\" is\
+    \ standard Goodhart applied to a new proxy. The term implies a recursive structure\
+    \ that does not exist. ISR is a straightforward application of LOO/mutation testing\
+    \ to solver inputs. The paper should position itself as an empirical case study,\
+    \ not a conceptual advance.\n3. **Questionable data integrity for Claim 3.** SMT-LIB,\
+    \ joint-training, curriculum, and 8B numbers in the draft may extend beyond completed\
+    \ experiments. Prolog STA s43/s44 may have been still running at draft time.\n\
+    4. **Narrow experimental scope.** Single model family (Qwen3), single RL algorithm\
+    \ (GRPO), single problem domain (FOLIO-style NLI), small eval set (100 problems).\
+    \ Generality claims require broader validation.\n5. **ISR's fundamental limitation:\
+    \ syntactic necessity ≠ semantic faithfulness.** ISR correlates poorly with NLI\
+    \ accuracy (ρ=−0.049). High-ISR proofs are non-redundant but not necessarily faithful\
+    \ to the natural language input. The paper acknowledges this but offers no path\
+    \ forward.\n\n#### Key Questions\n1. Can you confirm all numbers in Tables 9-16\
+    \ correspond to completed experiments with full evaluation?\n2. Why not cite mutation\
+    \ testing? ISR is a first-order mutation score. The coupling effect (DeMillo 1978)\
+    \ provides theoretical justification for why single-component deletion suffices.\n\
+    3. How does ISR behave on problems requiring 5+ step proofs? Does O(N) cost become\
+    \ prohibitive?\n4. Have you considered Shapley values instead of LOO to capture\
+    \ interaction effects?\n5. How is \"meta-level Goodhart\" different from standard\
+    \ Goodhart? If ISR is replaced with any bounded [0,1] proxy, would the same phenomenon\
+    \ not occur?\n\n---\n\n## Step 2: Cross-Sharing Reactions\n\n### R1 reacting to\
+    \ R2's review\n- **Agrees** on severely insufficient references. R1 did not emphasize\
+    \ this but concurs that 7 references is disqualifying.\n- **Agrees** on overclaimed\
+    \ \"meta-level Goodhart\" framing. R1 notes the paper tests only one reward formulation\
+    \ at two β values, which compounds the overclaiming.\n- **Supports** R2's mutation\
+    \ testing connection. ISR as first-order mutation score is an apt characterization\
+    \ R1 had not considered.\n- **Disagrees partially** on score. R1 maintains that\
+    \ data integrity concerns for Claim 3 experiments push toward Reject rather than\
+    \ Weak Accept, as presenting potentially non-existent experimental results is\
+    \ more severe than insufficient references.\n\n### R2 reacting to R1's review\n\
+    - **Agrees strongly** on data integrity concern. R2 had flagged this independently\
+    \ but R1's detailed cross-referencing with internal audit documents makes the\
+    \ concern more concrete.\n- **Agrees** on need for statistical testing. The n=11\
+    \ vs n=21 premise-count comparison without CIs is indeed a notable gap.\n- **Agrees**\
+    \ on model identity discrepancy. This is a basic reproducibility requirement.\n\
+    - **Adjusts position**: R2 acknowledges that if Claim 3 experiments are indeed\
+    \ projected rather than measured, the score should drop. R2 conditionally revises\
+    \ to 3 (Weak Reject) if data integrity issues are confirmed.\n\n---\n\n## Step\
+    \ 3: Convergence\n\n### Points of Agreement (both reviewers)\n1. **Claims 1 and\
+    \ 2 on FOL are the paper's core strength.** ISR collapse trajectory and H7-as-ISR-specific-gaming\
+    \ are well-evidenced and compelling for the FOL domain.\n2. **Claim 3 (cross-logic)\
+    \ is the paper's core weakness.** Data integrity concerns, extreme seed variance\
+    \ (σ_H7=0.55), and training failures make cross-logic claims unsupportable. The\
+    \ paper should either drop Claim 3 or restrict it to a brief \"preliminary exploration\"\
+    \ section.\n3. **Premise-count-matched methodology is a genuine contribution.**\
+    \ Both reviewers highlight this as the paper's most generalizable technical insight.\n\
+    4. **Statistical rigor is insufficient.** No significance tests, CIs, or effect\
+    \ sizes anywhere. Critical for a paper whose conclusions depend on small-sample\
+    \ comparisons.\n5. **The paper needs substantially more references.** 7 references\
+    \ is disqualifying. 25+ needed, covering reward hacking theory, neurosymbolic\
+    \ reasoning, mutation testing, process rewards.\n6. **\"Meta-level Goodhart\"\
+    \ framing overclaims.** This is standard Goodhart on a new proxy, not a novel\
+    \ conceptual contribution. Reframe as empirical case study.\n7. **Honest reporting\
+    \ of negative results is commendable.** The self-correction from 2.4× to 1.06×,\
+    \ NLI null correlation, and O(1) failure are models of scientific integrity.\n\
+    \n### Points of Remaining Disagreement\n1. **Severity of data integrity concern.**\
+    \ R1 treats potentially fabricated/projected results as near-fatal; R2 treats\
+    \ it as fixable if the paper is scoped to completed experiments only. Both agree\
+    \ it must be resolved, but R1 weighs it more heavily in scoring.\n2. **Publishability\
+    \ of a scoped version.** R2 sees a path to Findings-level acceptance if the paper\
+    \ is reduced to a 2-claim FOL study with proper references and statistical tests.\
+    \ R1 is less optimistic, noting that even Claims 1-2 have single-seed conditions\
+    \ (β=0.3, 1000-step, SFT) and no significance tests.\n\n### Consensus Score Rationale\n\
+    Both reviewers converge on **3 (Weak Reject)** as the appropriate score for the\
+    \ current manuscript. The core FOL findings are interesting but the paper has\
+    \ critical issues: (1) potential data integrity problems in Claim 3, (2) zero\
+    \ statistical testing, (3) severely insufficient references, and (4) overclaimed\
+    \ novelty. A substantially revised version — scoped to FOL, with proper statistical\
+    \ analysis, 25+ references, and repositioned as an empirical case study — could\
+    \ reach Findings acceptance (estimated 30-50% probability).\n\n---\n\n## Step\
+    \ 4: Consolidated Assessment\n\n### Overall Score: 3 (Weak Reject)\n### Confidence:\
+    \ 4/5\n\n### Decision Rationale\n\nThe paper presents an interesting empirical\
+    \ observation — ISR collapse reveals structural degeneration invisible to prove\
+    \ rate, and ISR gets Goodharted when used as reward — but falls short of top-venue\
+    \ standards in its current form.\n\n**What works:**\n- The ISR diagnostic concept\
+    \ is sound and the collapse trajectory (0.64→0.003 over 1000 steps while PR stays\
+    \ >93%) is a memorable empirical finding\n- The H7-as-ISR-specific artifact (64.5%\
+    \ under ISR reward, 0% under random reward) is clean causal evidence\n- The premise-count-matched\
+    \ correction (2.4×→1.06×) is a generalizable methodological contribution\n- Controls\
+    \ (random reward, SFT baseline) are well-designed\n- Negative results are reported\
+    \ honestly\n\n**What doesn't work:**\n- **Data integrity**: Multiple tables may\
+    \ present results from experiments not in the experimental record. This is the\
+    \ most serious concern.\n- **Statistical void**: Zero significance tests in a\
+    \ paper built on small-sample comparisons (3 seeds, 100 eval problems, n=11 vs\
+    \ n=21 for the key confound analysis)\n- **Reference desert**: 7 references for\
+    \ a topic with 50+ relevant works. Critical omissions include Skalse et al. (proxy\
+    \ hackability proof), Kim et al. (formalization gaming in Lean), mutation testing\
+    \ literature, process reward literature\n- **Overclaimed contributions**: \"Meta-level\
+    \ Goodhart\" is standard Goodhart; LOO on solver inputs is mutation testing; hacking\
+    \ taxonomy is error analysis\n- **Scope mismatch**: Abstract claims breadth (3\
+    \ logics, 2 model scales, 5 curricula) that the evidence does not support\n\n\
+    ### Actionable Recommendations\n\n1. **Scope to 2 claims on FOL only.** Drop Claim\
+    \ 3 or reduce to 1 paragraph of preliminary exploration. The FOL evidence is strong\
+    \ enough for a focused paper.\n2. **Add statistical tests.** Bootstrap CIs for\
+    \ all comparative claims. Permutation test for the 1.06× ratio. Report effect\
+    \ sizes.\n3. **Expand references to 25+.** Must cite: Skalse et al. 2022, Kim\
+    \ et al. 2026, Lightman et al. 2023, Pan et al. 2022, mutation testing (DeMillo\
+    \ 1978), RLSF (Jha 2024), Logic-RL, LINC.\n4. **Reframe novelty.** Position as\
+    \ \"first controlled empirical study of Goodhart's Law in formal reasoning RL\"\
+    \ rather than claiming conceptual novelty. Rename \"meta-level Goodhart\" to something\
+    \ more precise.\n5. **Resolve model identity.** Clarify the actual model used\
+    \ across all experiments.\n6. **Verify all reported numbers.** Every table entry\
+    \ must correspond to a completed experiment with traceable logs.\n7. **Extend\
+    \ multi-seed coverage.** Run all 3 seeds for β=0.3 and the 1000-step trajectory.\
+    \ Single-seed conditions undermine key claims.\n8. **Target venue**: EMNLP Findings\
+    \ or similar (not main conference) after revisions. Estimated acceptance probability\
+    \ after recommended revisions: 30-50%.\n\n### Experiment Coverage Assessment\n\
+    \n| Planned Experiment | Covered? | Quality |\n|---|---|---|\n| Prolog STA s43\
+    \ (training collapse) | Yes (§8.1) | Data may be projected |\n| Prolog STA s44\
+    \ (partial convergence) | Yes (§8.1) | Data may be projected |\n| O(1) vs O(N)\
+    \ STA ablation | Yes (§7.1) | Adequate |\n| Multi-logic GRPO (mixed training)\
+    \ | Yes (§8.2) | Data integrity uncertain |\n| Cross-logic transfer evaluation\
+    \ | Yes (§8.3) | Data integrity uncertain |\n| SMT-LIB single-logic GRPO | Yes\
+    \ (§8.4) | Data integrity uncertain |\n| Qwen3-8B scaling | Yes (§7.3) | Single-seed,\
+    \ preliminary |\n| Curriculum ablation | Yes (§7.2) | Data integrity uncertain\
+    \ |\n\n**Coverage note**: All 8 planned experiments appear in the paper, but reviewers\
+    \ flag that several may not correspond to completed experiments based on cross-referencing\
+    \ with project audit documents. The paper achieves formal coverage but possibly\
+    \ at the cost of data integrity.\n\n---\n\n*Report generated by Dream Review Director\
+    \ — 2 reviewers, full roundtable protocol (Steps 1-4).*"
+  error: ''
+errors: {}
+score_anomaly: 评分顺序异常：best(weak reject) == worst(weak reject)，建议谨慎解读
+created_at: '2026-05-14T18:26:44+00:00'

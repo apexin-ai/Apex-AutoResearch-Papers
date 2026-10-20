@@ -1,0 +1,534 @@
+tier: median
+narrative_guidance: 'Route A 叙事成立但 IOI 正例从 clean positive 降级为 marginal/conditional
+  positive。 Size confound 作为显式 limitation 讨论：控制 circuit size 后 CSS 优势缩水 40-70%， 仍存在但不再
+  compelling。Factual Recall 无法提供第二个正例或反例，覆盖面锁定在 5 configs。 Bootstrap CIs 宽且 IOI 的
+  lower bound 接近零，统计 claim 需要降调。 Ablation comparison 未能及时完成，留作 future work。 Jaccard
+  diagnostic 方向正确但 n=5 过小，保持 conjecture 不升级。 论文仍够 Findings，但 limitations section 需要显著扩展（约
+  0.5 页）， explicitly 讨论 size confound、统计 power 不足、task 覆盖度有限。
+
+  '
+imagined_experiments:
+- name: GPT-2 Factual Recall K=3 CSS
+  plan_id: plan_004
+  description: 'GPT-2 Small / Country-Capital factual recall, K=3 (EAP-IG + EP + ACDC
+    top-k). MLP-heavy knowledge retrieval circuit。预期方法间对 MLP 与 attention 的选择分歧大。
+
+    '
+  expected_results:
+    status: inconclusive
+    binarization: top-100
+    css_distribution:
+      '0.33': 71
+      '0.67': 38
+      '1.00': 12
+    pairwise_jaccard:
+      eapig_x_ep: 0.42
+      eapig_x_acdc: 0.18
+      ep_x_acdc: 0.15
+    three_way_jaccard: 0.11
+    max_jaccard: 0.42
+    off_diagonal_pct: 0.89
+    evaluation_mean:
+      css_1.00_cpr: 0.83
+      css_0.67_cpr: 0.79
+      eap_ig_cpr: 0.88
+      ep_cpr: 0.82
+      acdc_cpr: 0.85
+    evaluation_zero:
+      css_1.00_cpr: -0.42
+      eap_ig_cpr: -0.29
+      acdc_cpr: -0.51
+    d025_conditions:
+      cond1_jaccard_lt070: PASS (0.42)
+      cond2_css_geq_2_3: PASS (38)
+      cond3_css_1_count: PASS (12)
+      cond4_cpr_dominance: FAIL (CSS=1.0 mean CPR=0.83 < EAP-IG=0.88)
+    gate_verdict: FAIL (condition 4)
+  result_rationale: 'Factual recall 的 knowledge retrieval circuit 主要依赖中间层 MLP， 但 EAP-IG
+    和 EP 作为梯度方法倾向于选择 attention edges（梯度在 attention 的 softmax 处更大），而 ACDC 的 ablation-based
+    方法能更好定位 MLP。 这导致方法间 Jaccard 偏低（特别是含 ACDC 的 pair），CSS=1.0 仅 12 edges 落在方法交集的 "安全区"
+    但不是最优选择。EAP-IG 单方法因为 top-100 中 包含了 MLP 和 attention 的混合，反而 CPR 更高。整体 inconclusive：
+    CSS 没有帮助但也没有灾难性失败，pattern 与 Arithmetic 的 FAIL 不同 （不是 high Jaccard 导致的退化，而是方法对不同
+    component type 的偏好差异）。 无法作为 Claim 2 的新证据点。
+
+    '
+  tables:
+  - caption: Factual Recall CPR comparison (mean ablation)
+    columns:
+    - Circuit
+    - Edges
+    - CPR↑
+    - CMD↓
+    rows:
+    - - CSS=1.0
+      - 12
+      - 0.83
+      - 0.41
+    - - CSS≥0.67
+      - 38
+      - 0.79
+      - 0.48
+    - - EAP-IG top-100
+      - 100
+      - 0.88
+      - 0.32
+    - - EP top-100
+      - 100
+      - 0.82
+      - 0.43
+    - - ACDC top-100
+      - 100
+      - 0.85
+      - 0.37
+  figures_description:
+  - 'Factual Recall pairwise Jaccard heatmap: EAP-IG×EP=0.42（梯度方法间中等重叠），其余 pair <0.20（ACDC
+    选择不同 component types）'
+  analysis: 'Factual Recall 结果 inconclusive，不能用于支持或反对 CSS。 failure mode 与已有的 Arithmetic（high
+    Jaccard → method correlation） 和 Qwen（scaling → granularity mismatch）都不同，属于第四种
+    pattern： 方法间 component type preference 分歧。但 n=1 且 CPR 差距小（Δ=0.05）， 无法上升到 claim
+    级别。在论文中作为 Table row 列出但不单独讨论。
+
+    '
+- name: IOI size-controlled baseline
+  plan_id: plan_008
+  description: '将 CSS=1.0 的 7 edges 与 top-7 of each single method 以及 random-7 进行 CPR/CMD
+    对比。排除 CSS 优势完全来自 circuit size 更小的混淆因素。
+
+    '
+  expected_results:
+    css_1_00_edges: 7
+    css_1_00_cpr_mean: 0.109
+    eapig_top7_cpr_mean: 0.078
+    ep_top7_cpr_mean: 0.065
+    acdc_top7_cpr_mean: 0.092
+    random_7_cpr_mean: -0.031
+    random_7_cpr_std: 0.045
+    css_vs_best_single_delta: 0.017
+    css_vs_best_single_delta_original: 0.081
+    advantage_retained_pct: 42
+    size_controlled_ranking: CSS=1.0 > ACDC-top7 > EAP-IG-top7 > EP-top7 >> Random
+  result_rationale: '原始比较中 CSS=1.0 (7 edges, CPR=0.109) 对比 EAP-IG (100 edges, CPR=-0.109)
+    有巨大优势，但这混淆了 circuit size 效应（小 circuit 天然 CPR 更高因为 ablation 损失更少）。控制 size=7 后，各方法的
+    top-7 edges 也获得了较高 CPR， 因为它们选出的是各自最确定的 edges。ACDC 的 top-7 尤其接近 CSS=1.0， 因为 CSS=1.0
+    的 7 edges 中有 5-6 个本就是 ACDC isinf 边。 CSS 优势从 Δ=0.081 缩至 Δ=0.017，保留约 42%。这个残余优势虽然方向正确
+    （consensus edges 确实略优于任意单方法的 top edges），但幅度大幅缩水， 需要 bootstrap CI 来判断是否显著。Size
+    confound 是论文必须讨论的 limitation。
+
+    '
+  tables:
+  - caption: IOI size-controlled comparison (N=7 edges, mean ablation)
+    columns:
+    - Circuit
+    - N
+    - CPR
+    - CMD
+    - Δ vs CSS=1.0
+    rows:
+    - - CSS=1.0
+      - 7
+      - 0.109
+      - 0.911
+      - —
+    - - ACDC top-7
+      - 7
+      - 0.092
+      - 0.928
+      - -0.017
+    - - EAP-IG top-7
+      - 7
+      - 0.078
+      - 0.942
+      - -0.031
+    - - EP top-7
+      - 7
+      - 0.065
+      - 0.955
+      - -0.044
+    - - Random-7 (mean±std)
+      - 7
+      - -0.031±0.045
+      - 1.051±0.045
+      - -0.14
+  - caption: Size confound decomposition
+    columns:
+    - Comparison
+    - Original Δ
+    - Size-controlled Δ
+    - Retained %
+    rows:
+    - - CSS=1.0 vs best single (ACDC)
+      - 0.081
+      - 0.017
+      - 42%
+    - - CSS=1.0 vs EAP-IG
+      - 0.218
+      - 0.031
+      - 14%
+    - - CSS=1.0 vs EP
+      - 0.35
+      - 0.044
+      - 13%
+  figures_description:
+  - 'Bar chart: CPR at fixed N=7 across circuit selection strategies, with random-7
+    baseline 的 95% CI shaded band'
+  analysis: 'Size confound 解释了 IOI CSS 优势的 ~58%。残余 42% 优势方向正确但幅度小（Δ=0.017）， 需要 plan_009
+    的 bootstrap CI 才能判断统计显著性。这将 IOI 从 "clean positive" 降级为 "marginal/conditional positive"——consensus
+    选出的 edges 略优但 大部分优势来自 size selection bias。论文需在 Section 4.1 加 "Size Confound" 子节，explicitly
+    承认此 limitation 并展示 decomposition table。
+
+    '
+- name: Bootstrap confidence intervals on CPR
+  plan_id: plan_009
+  description: '对所有已完成实验的 CPR 差值计算 bootstrap 95% CI（B=10000 resamples）。 重点：IOI CSS=1.0
+    vs best single method 的 Δ 是否显著排除零。
+
+    '
+  expected_results:
+    ioi_css_vs_acdc_original:
+      delta_point: 0.081
+      bootstrap_ci_95:
+      - -0.012
+      - 0.174
+      p_value_one_sided: 0.089
+      significant_at_005: false
+    ioi_css_vs_acdc_size_controlled:
+      delta_point: 0.017
+      bootstrap_ci_95:
+      - -0.038
+      - 0.071
+      p_value_one_sided: 0.27
+      significant_at_005: false
+    ioi_css_vs_eapig:
+      delta_point: 0.218
+      bootstrap_ci_95:
+      - 0.095
+      - 0.341
+      p_value_one_sided: 0.002
+      significant_at_005: true
+      note: 但 size confound 解释大部分
+    arithmetic_css_vs_eapig:
+      delta_point: -0.066
+      bootstrap_ci_95:
+      - -0.142
+      - 0.009
+      p_value_one_sided: 0.96
+      significant_at_005: false
+      note: CSS worse, as expected
+    sva_css_vs_acdc:
+      delta_point: 0.013
+      bootstrap_ci_95:
+      - -0.052
+      - 0.078
+      p_value_one_sided: 0.35
+      significant_at_005: false
+  result_rationale: 'Bootstrap CI 宽度受限于 evaluation set size（IOI 100 prompts × 7 edges，
+    有效自由度低）。IOI 原始 Δ=0.081 的 CI 下界在 -0.01 到 0.02 之间 （median tier 定义），对应 p≈0.04-0.10。这里取
+    CI=[-0.012, 0.174]， p=0.089，恰好不显著于 0.05 但接近。Size-controlled 后 Δ=0.017 更弱， CI 完全包含零。其他任务（Arithmetic、SVA）本身是
+    negative/inconclusive， CI 确认了零假设不可排除。唯一"显著"的比较是 CSS vs EAP-IG 原始值 （Δ=0.218），但这已知被
+    size confound 解释。整体：统计证据不足以支撑 IOI positive claim at α=0.05，需在论文中使用 "marginal evidence"
+    措辞。
+
+    '
+  tables:
+  - caption: Bootstrap 95% CIs for CPR differences (B=10000)
+    columns:
+    - Task
+    - Comparison
+    - Δ_CPR
+    - 95% CI
+    - p (one-sided)
+    - Sig?
+    rows:
+    - - IOI
+      - CSS=1.0 vs ACDC (original)
+      - 0.081
+      - '[-0.012, 0.174]'
+      - 0.089
+      - 'No'
+    - - IOI
+      - CSS=1.0 vs ACDC (size-ctrl)
+      - 0.017
+      - '[-0.038, 0.071]'
+      - 0.27
+      - 'No'
+    - - IOI
+      - CSS=1.0 vs EAP-IG (original)
+      - 0.218
+      - '[0.095, 0.341]'
+      - 0.002
+      - Yes*
+    - - Arithmetic
+      - CSS=1.0 vs EAP-IG
+      - -0.066
+      - '[-0.142, 0.009]'
+      - 0.96
+      - 'No'
+    - - SVA
+      - CSS=1.0 vs ACDC
+      - 0.013
+      - '[-0.052, 0.078]'
+      - 0.35
+      - 'No'
+  - caption: 注：* size confound 未控制，显著性不可靠
+    columns: []
+    rows: []
+  figures_description:
+  - 'Forest plot: 所有 task×comparison 的 CPR Δ point estimates + 95% CI error bars，zero
+    line 标注。IOI original 的 CI 下界刚触零线附近，visual impression = marginal'
+  analysis: 'Bootstrap 结果确认 IOI 正例统计上 marginal（p≈0.09，CI 包含零）。 论文不能写 "CSS significantly
+    improves faithfulness on IOI"， 需要改为 "CSS shows a marginal advantage on IOI (Δ=0.08,
+    95% CI [-0.01, 0.17], p=0.09) which is attenuated after controlling for circuit
+    size (Δ=0.02, p=0.27)"。 这实际上 *加强* 了 Route A 的负面发现叙事——连唯一的正例都不robust。 但需要诚实呈现，不能
+    cherry-pick size-controlled 的弱结果来过度推销 negative finding。
+
+    '
+- name: Ablation method comparison (zero vs mean)
+  plan_id: plan_011
+  description: '对 IOI 重跑 zero ablation 和 mean ablation 下的 CSS/single-method faithfulness，
+    检查 IOI 正例是否依赖于 ablation method 选择。
+
+    '
+  expected_results:
+    status: incomplete — only qualitative comparison from existing data
+    completed: false
+    qualitative_observation: '从 plan_001 已有数据看，zero ablation 下所有 circuit 的 CPR 都是负值
+      （CSS=1.0: 0.109, EAP-IG: -0.109, EP: -0.241），但 mean ablation 下 pattern 可能不同。因
+      deadline 压力和 plan_009 优先级更高， 未能完成 mean ablation 的系统对比。
+
+      '
+    partial_evidence:
+      zero_ablation_css_advantage: true
+      mean_ablation_css_advantage: unknown
+      concern_level: medium — zero ablation 对小 circuit 有已知 bias
+  result_rationale: 'Median tier 定义 "Ablation comparison 未完成，只有定性描述"。 实验本身技术上简单（切换
+    ablation mode 重跑 evaluation）， 但 depends_on plan_008（size-controlled baseline），plan_008
+    完成后 剩余时间需优先给 plan_009（bootstrap CI，P1 且被 paper 直接引用）。 Ablation comparison 被降级为
+    "discussed qualitatively in limitations"。 从已有数据可观察到 zero ablation 下 IOI 的 CPR
+    整体偏低（最高 0.109）， 暗示 node-level zero ablation 的破坏性可能放大了 size 效应， 但这只是 post-hoc observation
+    不是 controlled comparison。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '未完成。论文在 limitations 中加一段： "Our evaluation uses zero ablation throughout;
+    mean ablation may yield different rankings between CSS and single-method circuits.
+    We leave systematic ablation method comparison to future work." 这是 reviewer 可能的攻击点但不致命——ablation
+    method 选择是所有 circuit discovery 论文的共性问题，不是本文特有的。
+
+    '
+- name: IFR vs ACDC vs gradient method divergence analysis
+  plan_id: plan_012
+  description: '定性分析 Qwen-0.5B 上 IFR 和 ACDC 都退化为 node-level scoring 的 root cause，
+    作为 Claim 3（component-level scoring 导致 scaling failure）的 case study。
+
+    '
+  expected_results:
+    status: completed (analysis only, no new experiments)
+    ifr_failure_signature:
+      scoring_granularity: block-level (layer chunks)
+      top_edges_layer_distribution: concentrated in layers 0-5 (early MLP → early
+        attention)
+      effective_resolution: ~200 edges per selected block
+    acdc_failure_signature:
+      scoring_granularity: node-level (attention head / MLP block)
+      top_edges_pattern: all edges from selected nodes, creating dense sub-blocks
+      effective_resolution: ~500-2000 edges per selected node
+    shared_root_cause: 'Both methods assign identical scores to all edges entering/leaving
+      the same component (IFR: layer, ACDC: node). On a 179K-edge model, this creates
+      tied-score blocks that binarization cannot meaningfully separate.
+
+      '
+    gradient_method_comparison:
+      eapig_scoring: edge-level (unique score per edge)
+      ep_scoring: edge-level (unique score per edge)
+      eapig_x_ep_jaccard: 0.54
+      note: gradient methods maintain edge-level resolution but agree with each other,
+        not with ablation methods
+    divergence_taxonomy:
+      type_1: IFR block-voting (layer-level granularity)
+      type_2: ACDC node-voting (node-level granularity)
+      type_3: EAP-IG/EP edge-level but mutually correlated
+      implication: K=3 effectively reduces to K≈1.5 — gradient pair + one ablation
+        method with wrong granularity
+  result_rationale: '这是对 plan_006 和 plan_007 已有结果的 post-hoc 分析，不需要新实验。 IFR 的 block-voting
+    已在 D028 文档中记录（top-100 edges 全部来自 m2→a3 这种层间连接），ACDC 的 node-level scoring 在 D034
+    中记录 （所有 edges from 同一 attention head 获得相同分数）。 将这两个独立观察统一为 "component-level scoring
+    granularity mismatch" 的 root cause 是 median tier 可以完成的分析工作，因为它只需要 reorganize 已有信息而非产生新数据。这为
+    Claim 3 提供了 mechanistic explanation：不是方法"随机"失败，而是它们在大模型上退化为更粗粒度的 scoring，使得 edge-level
+    consensus 失去意义。
+
+    '
+  tables:
+  - caption: Scoring granularity comparison across methods on Qwen-0.5B (179K edges)
+    columns:
+    - Method
+    - Scoring Level
+    - Effective Resolution
+    - Unique Scores in Top-100
+    rows:
+    - - EAP-IG
+      - edge
+      - 1 edge
+      - 100
+    - - EP
+      - edge
+      - 1 edge
+      - 100
+    - - IFR
+      - block (layer)
+      - ~200 edges/block
+      - ~3-5
+    - - ACDC
+      - node (head/MLP)
+      - ~500-2K edges/node
+      - ~8-12
+  - caption: Pairwise Jaccard by scoring granularity
+    columns:
+    - Pair
+    - Jaccard
+    - Same Granularity?
+    rows:
+    - - EAP-IG × EP
+      - 0.54
+      - Yes (edge-edge)
+    - - EAP-IG × IFR
+      - 0.0
+      - No (edge-block)
+    - - EAP-IG × ACDC
+      - 0.04
+      - No (edge-node)
+    - - EP × IFR
+      - 0.0
+      - No (edge-block)
+    - - EP × ACDC
+      - 0.04
+      - No (edge-node)
+    - - IFR × ACDC
+      - 0.0
+      - No (block-node)
+  figures_description:
+  - 'Schematic diagram: Qwen-0.5B 的 edge matrix 上标注各方法的 scoring ''footprint''。EAP-IG/EP
+    是散点式（edge-level），IFR 是水平条带（block-level），ACDC 是竖直条带（node-level）。三者几何上正交 → Jaccard≈0'
+  analysis: 'Divergence analysis 确认 Claim 3 的 root cause：component-level scoring 在大模型上退化为
+    node/block 级别，使 edge-level CSS 失去统计基础。 这不是 implementation bug 而是 architectural
+    limitation——IFR 的 forward intervention 天然以 layer 为单位，ACDC 的 activation patching
+    以 node 为单位。只有梯度方法保持 edge-level resolution，但它们彼此高度相关 （Jaccard=0.54），实际独立信息源从 K=3
+    降至 K≈1.5。 论文 Section 5 用此分析支撑 "granularity check" diagnostic guideline： 在尝试 CSS
+    前验证所有方法是否在同一 granularity 上操作。
+
+    '
+- name: Jaccard-CSS scatter plot + correlation
+  plan_id: plan_013
+  description: '汇总所有已完成 task×model 配置的 max pairwise Jaccard vs CSS advantage （Δ_CPR
+    = CSS=1.0 CPR − best single method CPR），绘制 scatter plot 并 报告 Spearman 相关。
+
+    '
+  expected_results:
+    n_datapoints: 5
+    data_points:
+    - config: IOI/GPT-2
+      max_jaccard: 0.307
+      css_delta_cpr: 0.081
+      css_helps: true
+    - config: Arithmetic/GPT-2
+      max_jaccard: 0.695
+      css_delta_cpr: -0.066
+      css_helps: false
+    - config: SVA/GPT-2
+      max_jaccard: 0.653
+      css_delta_cpr: 0.013
+      css_helps: false
+    - config: Factual Recall/GPT-2
+      max_jaccard: 0.42
+      css_delta_cpr: -0.05
+      css_helps: false
+    - config: IOI/Qwen (IFR)
+      max_jaccard: 0.54
+      css_delta_cpr: 0.0
+      css_helps: false
+    spearman_rho: -0.7
+    spearman_p: 0.19
+    significant_at_005: false
+    jaccard_threshold_pattern:
+      below_035:
+        configs:
+        - IOI/GPT-2
+        css_helps_count: 1
+        total: 1
+      between_035_050:
+        configs:
+        - Factual Recall/GPT-2
+        css_helps_count: 0
+        total: 1
+      above_050:
+        configs:
+        - Arithmetic
+        - SVA
+        - Qwen
+        css_helps_count: 0
+        total: 3
+    diagnostic_accuracy: 4/5 (Factual Recall in gap zone 0.35-0.50, mispredicted as
+      potential positive)
+  result_rationale: 'Median tier 定义 jaccard_diagnostic_accuracy = 4/4（已有数据上成立）， 但加入
+    Factual Recall 后变为 4/5。IOI（max Jaccard=0.307, CSS helps） 仍是唯一低 Jaccard + CSS positive
+    的点。Factual Recall 落在 gap zone （Jaccard=0.42, CSS 不 help），这不违反 diagnostic 的方向但模糊了阈值。
+    Spearman ρ=-0.70 方向正确（Jaccard 越高 CSS 越差）但 n=5 下 p=0.19 远不显著。Qwen 的数据点（Jaccard=0.54
+    但 gradient pair 内部， CSS=0 因 granularity mismatch）实际上 confound 了 Jaccard 含义 （这里
+    high Jaccard 来自 EAP-IG×EP 相关，不是 all-method agreement）。 整体：pattern 方向一致但 underpowered，保持
+    "motivated conjecture" 定位。
+
+    '
+  tables:
+  - caption: Max pairwise Jaccard vs CSS advantage across all configurations
+    columns:
+    - Config
+    - Max Jaccard
+    - Δ_CPR (CSS−Best Single)
+    - CSS Helps?
+    rows:
+    - - IOI / GPT-2
+      - 0.307
+      - '+0.081'
+      - Yes (marginal)
+    - - Factual Recall / GPT-2
+      - 0.42
+      - −0.050
+      - 'No'
+    - - IOI / Qwen-0.5B
+      - 0.54
+      - '0.000'
+      - 'No'
+    - - SVA / GPT-2
+      - 0.653
+      - '+0.013'
+      - 'No'
+    - - Arithmetic / GPT-2
+      - 0.695
+      - −0.066
+      - 'No'
+  - caption: Jaccard threshold diagnostic
+    columns:
+    - Jaccard Zone
+    - Configs
+    - CSS Helps Rate
+    rows:
+    - - < 0.35
+      - IOI/GPT-2
+      - 1/1 (100%)
+    - - 0.35 – 0.50
+      - Factual Recall/GPT-2
+      - 0/1 (0%)
+    - - '> 0.50'
+      - Arithmetic, SVA, Qwen
+      - 0/3 (0%)
+  figures_description:
+  - 'Scatter plot: x = max pairwise Jaccard, y = Δ_CPR. 5 个点标注 config 名。Jaccard=0.35
+    处画竖虚线作为 proposed threshold。IOI 在左上（低 Jaccard, positive Δ），其余在右侧或下方。Spearman ρ=−0.70,
+    p=0.19 标注在角落。加 shaded region 标注 gap zone [0.35, 0.50]'
+  analysis: Scatter plot 视觉上支持 negative correlation（Jaccard 越高 CSS 越没用）， 但 n=5 统计功效不足（p=0.19）。Factual
+    Recall 的加入没有提供新的 positive datapoint，反而增加了 gap zone 的模糊性。论文中应： (1) 展示 scatter plot
+    作为 "motivating observation"， (2) Explicitly state n=5 不足以做统计推断， (3) 将 Jaccard
+    < 0.35 threshold 框定为 "practitioner heuristic, not a validated decision boundary"，
+    (4) 在 future work 中写 "validating the Jaccard diagnostic on a broader set of tasks
+    and models is a priority for follow-up work"。 Claim 4 保持 ★★★ 强度，不因 Factual Recall
+    升级也不降级。

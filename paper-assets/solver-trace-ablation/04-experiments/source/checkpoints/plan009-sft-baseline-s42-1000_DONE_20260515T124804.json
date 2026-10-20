@@ -1,0 +1,102 @@
+{
+  "exp_id": "plan009-sft-baseline-s42-1000",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T11:57:52.856Z",
+    "updated_at": "2026-05-15T12:48:03.859Z",
+    "hypothesis": "SFT 1000步延伸：验证 SFT（无 reward optimization）在 1000 步是否维持 genuine rate。500 步 SFT 已达 93% genuine，若 1000 步仍保持高 genuine → Goodhart collapse 是 RL (GRPO) 特有现象，非一般 finetuning 退化。与 exec-only/ISR/random 1000步形成对比。",
+    "parent": "plan009-sft-baseline-s42-r4",
+    "completed_at": "2026-05-15T12:25:32.031Z",
+    "eval_prove_rate": 0.13,
+    "eval_mean_isr": 0.0738,
+    "eval_isr_std": 0.2077,
+    "eval_proved_only_isr": 0.5677,
+    "h7_count": 0,
+    "h7_rate": 0,
+    "h1_count": 1,
+    "h1_rate": 7.7,
+    "genuine_count": 12,
+    "genuine_rate": 92.3,
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success"
+      }
+    },
+    "spec": {
+      "command": "export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000 --num_steps 1000 --seed 42 --no_wandb --bf16",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "gpu": [
+        "cuda:0"
+      ],
+      "submitted_at": "2026-05-15T19:58:15+08:00",
+      "wall_clock_seconds": 1415,
+      "gpu_hours": 0.39,
+      "checkpoint_source": "/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000",
+      "eval_data": "data/proofwriter_fol_100.jsonl"
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000",
+    "log_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000/trainer_state.json",
+    "metrics": {
+      "train_final_loss": 0.0168,
+      "train_last_step_loss": 0.0168,
+      "train_token_accuracy": 0.9955,
+      "train_epochs": 15.88,
+      "train_runtime_sec": 1415,
+      "train_steps": 1000,
+      "eval_prove_rate": 0.13,
+      "eval_n_proved": 13,
+      "eval_n_problems": 100,
+      "eval_mean_isr": 0.0738,
+      "eval_isr_std": 0.2077,
+      "eval_median_isr": 0,
+      "eval_proved_only_isr": 0.5677,
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_method": "eval_sta.py full STA",
+      "eval_output_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json",
+      "h7_strict_count": 0,
+      "h7_strict_rate": 0,
+      "h1_strict_count": 1,
+      "h1_strict_rate": 0.0769,
+      "h8_conjunction_collapse_count": 0,
+      "h8_conjunction_collapse_rate": 0,
+      "genuine_count": 12,
+      "genuine_rate": 0.9231,
+      "conclusion_in_premise_count": 1,
+      "conclusion_in_premise_rate": 0.0769,
+      "isr_1_count": 0,
+      "content_independent_count": 0,
+      "eval_by_answer_type": {
+        "true": {
+          "count": 34,
+          "proved": 12,
+          "prove_rate": 0.353,
+          "mean_isr": 0.209
+        },
+        "false": {
+          "count": 25,
+          "proved": 1,
+          "prove_rate": 0.04,
+          "mean_isr": 0.011
+        },
+        "unknown": {
+          "count": 41,
+          "proved": 0,
+          "prove_rate": 0,
+          "mean_isr": 0
+        }
+      }
+    },
+    "conclusion": "success",
+    "notes": "SFT 1000步 (15.88 epochs): train loss 降至 0.0168（严重过拟合），但 eval genuine_rate=92.31% 与 500步的 92.9% 基本持平。prove_rate 从 0.14 微降至 0.13，h7=0，h1=1。结论：SFT 即使过拟合也不产生 Goodhart collapse（h7/h8=0），验证了 Goodhart 是 RL(GRPO) reward optimization 特有现象。Unknown 类全部 0/41 未 prove（与 500步一致），SFT 不具备泛化到 unknown 类的能力。"
+  },
+  "timestamp": "2026-05-15T12:48:04.125107+00:00",
+  "trigger": "update_registry"
+}

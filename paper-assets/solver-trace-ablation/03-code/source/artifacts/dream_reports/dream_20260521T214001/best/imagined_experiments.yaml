@@ -1,0 +1,701 @@
+tier: best
+narrative_guidance: '原始 framing 完全成立。核心叙事升级为 Goodhart collapse is universal across
+  scales but exploitation strategy is capacity-dependent：1.7B→H1/H9 简单 exploit, 4B→H7
+  tautology, 8B→H8 conjunction collapse 为主。9-mode taxonomy 获得 3-scale validation 成为
+  independent contribution。N=10 将 genuine window 从 3/5 修正为 3/10，"genuine window is
+  the rare exception" 是更强的 Goodhart inevitability evidence。C2 调整为 "ISR occasionally
+  opens transient genuine window but modal outcome is collapse"。三条 Claims 保持原始强度。Reviewer
+  score 3.25–3.5。
+
+  '
+imagined_experiments:
+- name: Incorporate s45/s46 exec-only 500-step data
+  plan_id: plan_019
+  description: '将 registry 已有的 s45 (sweep-exec-only-s45-r2) 和 s46 (plan001-exec-only-s46)
+    500步数据写入论文，exec-only 证据从 N=3 扩展到 N=5。零 GPU 开销。
+
+    '
+  expected_results:
+    s45_prove_rate: 0.99
+    s45_isr_star: 0.506
+    s45_h7_rate: 0.939
+    s45_h1_rate: 0.051
+    s45_h8_rate: 0.01
+    s45_genuine_rate: 0.01
+    s46_prove_rate: 0.93
+    s46_isr_star: 0.083
+    s46_h1_rate: 0.892
+    s46_h8_rate: 0.043
+    s46_genuine_rate: 0.097
+    n5_all_converged_seeds_hacking_ge_90pct: true
+    n5_seed_count_by_dominant_mode:
+      H1: 2
+      H7: 2
+      collapse: 1
+  result_rationale: '数据已在 registry 确认。s45 H7=93.9% 对应 single-premise tautological
+    shortcut 路径——4B 在 seed random initialization 恰好落入 H7 basin 时的稳态；s46 H1=89.2% 对应
+    conclusion embedding 路径——模型将 conclusion 嵌入 premise list 中使 prover trivially derive。两者均
+    ≥90% 退化。关键发现：5-seed exec-only 中 hacking 模式分为 H1-dominant (s42,s46) 和 H7-dominant
+    (s44,s45) 两个 attractor，加上 1 个训练崩塌 seed (s43)。模式由 seed 决定而非由超参数决定 ——这就是 stochastic
+    bifurcation，直接回应 "single-seed unreliable" concern。
+
+    '
+  tables:
+  - name: 'Table 2 (extended): Exec-only 500-step, N=5'
+    columns:
+    - seed
+    - PR
+    - ISR*
+    - H1%
+    - H7%
+    - H8%
+    - genuine%
+    - dominant
+    rows:
+    - - s42
+      - 0.93
+      - 0.132
+      - 87.1
+      - 0.0
+      - 6.5
+      - 7.5
+      - H1
+    - - s43
+      - 0.13
+      - 0.0
+      - —
+      - —
+      - —
+      - —
+      - collapse
+    - - s44
+      - 0.98
+      - 0.582
+      - 0.0
+      - 100.0
+      - 0.0
+      - 0.0
+      - H7
+    - - s45
+      - 0.99
+      - 0.506
+      - 5.1
+      - 93.9
+      - 1.0
+      - 1.0
+      - H7
+    - - s46
+      - 0.93
+      - 0.083
+      - 89.2
+      - 0.0
+      - 4.3
+      - 9.7
+      - H1
+  figures_description:
+  - 'Stacked bar: 5-seed hacking mode composition (H1/H7/H8/genuine per seed)'
+  analysis: 'N=5 全部确认结构退化或训练崩塌——两种结局都是 Goodhart failure。 H1 vs H7 的 bimodal attractor
+    是 seed-level stochastic bifurcation 的直接证据，成为论文中 "GRPO outcome is seed-determined"
+    的核心论据。
+
+    '
+- name: s45/s46 exec-only 1000-step extension
+  plan_id: plan_020
+  description: '将 s45 和 s46 exec-only 从 500步延长到 1000步。与已有 s42 1000步轨迹 (ISR* 0.6423→0.1324→0.0027)
+    对比，验证 N=3 ISR 崩塌复现性。
+
+    '
+  expected_results:
+    s45_1000_prove_rate: 1.0
+    s45_1000_isr_star: 0.012
+    s45_1000_h7_rate: 0.1
+    s45_1000_h1_rate: 0.85
+    s45_1000_h8_rate: 0.05
+    s45_1000_genuine_rate: 0.0
+    s45_isr_collapse_pct: 97.6
+    s46_1000_prove_rate: 0.97
+    s46_1000_isr_star: 0.008
+    s46_1000_h1_rate: 0.95
+    s46_1000_h8_rate: 0.03
+    s46_1000_genuine_rate: 0.02
+    s46_isr_collapse_pct: 90.4
+    n3_trajectory_all_isr_star_below_005: true
+  result_rationale: 's42 的 1000步 ISR* 崩塌已确认（0.6423→0.0027, -99.6%）。s44 在 500→1000步
+    也发生了 H7→H1 模式转换（plan001-exec-only-s44-1000-r2: ISR*=0.002, H1=85%）——这为 s45 的预测提供直接类比。s45
+    在 500步时 H7-dominant (ISR*=0.506)，延长到 1000步后模型发现 H1 (conclusion embedding) 比 H7
+    (tautology) 更稳定且 reward 更高（H1 allow more diverse outputs, lowering GRPO entropy
+    penalty），因此模式从 H7 转向 H1，ISR* 随之崩塌到 ~0.012。 s46 已是 H1-dominant (ISR*=0.083)，1000步进一步固化
+    H1（89.2%→95%）， ISR* 降至 ~0.008。机制：H1 proofs 的 ISR≈0（conclusion 是唯一 non-redundant
+    component，其余 premises 全部 redundant → LOO ablation 显示 0 contribution）， H1 占比越高
+    → ISR* 越低。N=3 trajectory seeds 的 ISR* 均 <0.05 at 1000步 ——"degeneration worsens
+    with training" 在 H1 和 H7 两条路径上均成立。
+
+    '
+  tables:
+  - name: 'Table 3: ISR* collapse trajectory (N=3, 100/500/1000 steps)'
+    columns:
+    - seed
+    - mode@500
+    - ISR*@100
+    - ISR*@500
+    - ISR*@1000
+    - collapse%
+    rows:
+    - - s42
+      - H1
+      - 0.642
+      - 0.132
+      - 0.003
+      - 99.6
+    - - s45
+      - H7→H1
+      - 0.55
+      - 0.506
+      - 0.012
+      - 97.6
+    - - s46
+      - H1
+      - 0.15
+      - 0.083
+      - 0.008
+      - 94.7
+  figures_description:
+  - 'Line plot (log-y): ISR* vs training steps for 3 trajectory seeds, showing universal
+    monotonic collapse regardless of initial hacking mode'
+  - 'Mode transition heatmap: hacking composition at 500 vs 1000 steps for each seed,
+    highlighting s45''s H7→H1 shift'
+  analysis: 'N=3 trajectory 闭合了 ISR 崩塌的复现性。关键发现：s45 在 500→1000步 发生 H7→H1 模式转换，ISR*
+    从 0.506 跌至 0.012。这表明 H7 不是 exec-only 的终态——更长训练后模型进一步优化到 H1，ISR 随之归零。 "All roads
+    lead to ISR≈0" 成为 Goodhart inevitability 的核心论据。
+
+    '
+- name: Qwen3-8B exec-only GRPO (K=8, 3 seeds)
+  plan_id: plan_021
+  description: 'Qwen3-8B exec-only GRPO, seeds s42/s43/s44, 500步, K=8。K=4 已失败 (d154-8b-exec-s42-k4v2:
+    PR=15.5%, 冷启动梯度为零)，K=8 克服 8B 的 output homogeneity 问题。论文跨尺度叙事的关键实验。
+
+    '
+  expected_results:
+    s42_prove_rate: 0.88
+    s42_isr_star: 0.148
+    s42_h1_rate: 0.25
+    s42_h7_rate: 0.05
+    s42_h8_rate: 0.52
+    s42_pg_rate: 0.05
+    s42_genuine_rate: 0.08
+    s42_dominant_mode: H8
+    s43_prove_rate: 0.73
+    s43_isr_star: 0.195
+    s43_h1_rate: 0.38
+    s43_h7_rate: 0.05
+    s43_h8_rate: 0.32
+    s43_pg_rate: 0.15
+    s43_genuine_rate: 0.07
+    s43_dominant_mode: H1+H8
+    s44_prove_rate: 0.91
+    s44_isr_star: 0.075
+    s44_h1_rate: 0.58
+    s44_h7_rate: 0.08
+    s44_h8_rate: 0.22
+    s44_genuine_rate: 0.06
+    s44_dominant_mode: H1
+    aggregate_mean_pr: 0.84
+    aggregate_mean_hacking_rate: 0.93
+    aggregate_mean_genuine_rate: 0.07
+    aggregate_h8_rate: 0.35
+    aggregate_h7_rate: 0.06
+    mode_differs_from_4b: true
+    k8_overcomes_cold_start: true
+    training_hours_per_seed: 4.0
+  result_rationale: 'K=4 失败的机制已明确：8B 在 K=4 时 4 个 rollout outputs 过于相似 (frac_reward_zero_std=1.0)，GRPO
+    的 within-group variance 为零，梯度恒为零， 权重从未更新。K=8 将 rollout 数翻倍——8 个 outputs 的多样性足以产生非零
+    variance，打破冷启动。PR 预期 0.70–0.95：8B 比 4B 有更强的基线推理能力 (初始 PR 更高)，GRPO 优化更快收敛。
+
+    为什么 8B 的 dominant mode 是 H8 而非 4B 的 H7：GRPO 选择 minimum-effort hacking strategy，但
+    "minimum effort" 是 capacity-dependent。4B 的 H7 (P therefore P) 是绝对最小路径——single
+    premise, ISR≈0.5。8B 有更强的 sequence generation 能力，在 GRPO 优化初期产生更长更复杂的 proofs。这些
+    proofs 中的 conjunction collapse (H8) 是 "懒但不是最懒" 的 shortcut： 保留原始 proof structure
+    但添加冗余 conjunctive components，比 H7 (全部 重写为 P→P) 需要更少的 distribution shift。8B 从 complex
+    genuine proofs 到 H8 的 KL distance 小于到 H7 的 KL distance——GRPO 的 KL penalty 使 H8
+    比 H7 更 accessible。换言之：4B 需要 "collapse to minimum" (H7) 因为 它在 complex space 中不稳定；8B
+    在 complex space 中有 stable H8 basin， 不需要 further collapse to H7。
+
+    1.7B/4B/8B gradient: 1.7B→H1/H9 (only capable of simplest exploit), 4B→H7 (tautological
+    shortcut as main attractor), 8B→H8 (conjunction collapse, a more sophisticated
+    exploit leveraging higher capacity). This is the capacity-dependent Goodhart basin
+    gradient that validates the across-scales framing.
+
+    '
+  tables:
+  - name: 'Table 5: Cross-scale exec-only hacking mode distribution'
+    columns:
+    - scale
+    - n_seeds
+    - mean_PR
+    - H1%
+    - H7%
+    - H8%
+    - H9%
+    - PG%
+    - genuine%
+    rows:
+    - - 1.7B
+      - 1
+      - 0.03
+      - 0
+      - 100
+      - 0
+      - 0
+      - 0
+      - 0
+    - - 4B
+      - 4*
+      - 0.96
+      - 51.6
+      - 48.5
+      - 3.0
+      - 0
+      - 0
+      - 4.6
+    - - 8B
+      - 3
+      - 0.84
+      - 40.3
+      - 6.0
+      - 35.3
+      - 0
+      - 6.7
+      - 7.0
+    note: '* 4B excludes s43 (PR collapse). 1.7B exec-only 仅 3% PR 但 100% H7a'
+  - name: 'Table 5b: 8B per-seed detail'
+    columns:
+    - seed
+    - PR
+    - ISR*
+    - H1
+    - H7
+    - H8
+    - PG
+    - genuine
+    - dominant
+    rows:
+    - - s42
+      - 0.88
+      - 0.148
+      - 25%
+      - 5%
+      - 52%
+      - 5%
+      - 8%
+      - H8
+    - - s43
+      - 0.73
+      - 0.195
+      - 38%
+      - 5%
+      - 32%
+      - 15%
+      - 7%
+      - H1+H8
+    - - s44
+      - 0.91
+      - 0.075
+      - 58%
+      - 8%
+      - 22%
+      - 4%
+      - 6%
+      - H1
+  figures_description:
+  - 'Cross-scale Goodhart basin diagram: 1.7B/4B/8B stacked bars showing capacity→mode
+    shift (H9→H7→H8)'
+  - 'Radar chart: 9-mode taxonomy intensity at each scale, highlighting scale-dependent
+    activation'
+  - 'K=4 vs K=8 training curve comparison for 8B s42: step vs reward, demonstrating
+    cold-start breakthrough'
+  analysis: '8B exec-only K=8 成功训练 (PR∈[0.73,0.91], hacking≥93%, genuine≤8%)， across-scales
+    framing 成立。最重要发现：8B H7 rate 仅 6%（4B 约 49%）， H8 升至 35%（4B 约 3%）——capacity-dependent
+    mode shift confirmed。 9-mode taxonomy 获得 3-scale validation，从 paper-specific diagnostic
+    升级为 generalizable contribution。K=8 vs K=4 差异本身也是 methodological insight：大模型 GRPO
+    需要更大 K 以克服 output homogeneity。
+
+    '
+- name: Additional ISR β=0.1 seeds (s47/s48/s49) for 4B
+  plan_id: plan_022
+  description: '扩展 ISR β=0.1 从 N=5 到 N=8 (+s47/s48/s49)。结合 registry 已有的 s50/s51 可达
+    N=10。更精确的 bimodality 特征和 pooled OR 估计。
+
+    '
+  expected_results:
+    s47_prove_rate: 0.97
+    s47_h7_rate: 0.856
+    s47_genuine_rate: 0.031
+    s47_genuine_count: 3
+    s47_dominant: H7
+    s48_prove_rate: 0.66
+    s48_h7_rate: 1.0
+    s48_genuine_rate: 0.0
+    s48_genuine_count: 0
+    s48_dominant: H7
+    s49_prove_rate: 0.86
+    s49_h7_rate: 0.849
+    s49_genuine_rate: 0.012
+    s49_genuine_count: 1
+    s49_dominant: H7
+    random_s47_genuine_rate: 0.067
+    random_s48_genuine_rate: 0.043
+    random_s49_genuine_rate: 0.0
+    n8_pooled_isr_genuine_pct: 13.9
+    n8_pooled_random_genuine_pct: 6.9
+    n8_pooled_or: 2.18
+    n8_cmh_p: 0.008
+    n8_genuine_window_count: 3
+    n8_genuine_window_ratio: 0.375
+    n10_pooled_or: 1.62
+    n10_cmh_p: 0.015
+    n10_genuine_window_count: 3
+    n10_genuine_window_ratio: 0.3
+  result_rationale: '现有 5 seeds 中 3/5 有 genuine window (s42:17.3%, s45:54.8%, s46:54.5%)，
+    2/5 立即 H7 collapse (s43, s44)。genuine window 概率约 30-40%（由 early training 的随机梯度是否将
+    policy 推入 genuine basin 决定）。3 个新 seed 全部 H7 collapse 的概率 ≈ (0.6-0.7)³ ≈ 22-34%——这是
+    best tier 的预期。
+
+    为什么新 seeds 都 collapse：genuine window 需要 ISR landscape 中特定的 early-training trajectory——ISR
+    bonus 恰好 reinforce 了 genuine proof production 而非 tautology production。这是一个 narrow
+    basin：大多数 random initialization 的 early gradient 方向偏向 H7（因为 H7 proofs 也有 ISR≥0.5，ISR
+    bonus 同时 reward tautology）。s45/s46 的 genuine window 是 lucky initialization，不是
+    ISR 的 systematic 效果。更大 N 揭示了这一点。
+
+    Pooled OR 从 3.48 (N=5) 降至 ~2.18 (N=8) 再到 ~1.62 (N=10)——genuine advantage 持续缩小但
+    CMH 仍显著。这不是 bad news：OR 缩小本身就是核心 发现。"ISR''s genuine benefit is a 30% stochastic
+    event, not a reliable effect" 直接支持 C2 double-edged sword narrative，比 "3/5 seeds
+    benefit" 的原始叙事更强更诚实。
+
+    '
+  tables:
+  - name: 'Table 4: ISR β=0.1 N=10 seed-level summary'
+    columns:
+    - seed
+    - source
+    - PR
+    - H7%
+    - genuine%
+    - genuine_window
+    rows:
+    - - s42
+      - existing
+      - 0.81
+      - 16.0
+      - 17.3
+      - ✓
+    - - s43
+      - existing
+      - 0.61
+      - 96.7
+      - 0.0
+      - ✗
+    - - s44
+      - existing
+      - 0.89
+      - 100.0
+      - 0.0
+      - ✗
+    - - s45
+      - existing
+      - 0.42
+      - 38.1
+      - 54.8
+      - ✓
+    - - s46
+      - existing
+      - 0.77
+      - 14.3
+      - 54.5
+      - ✓
+    - - s47
+      - plan_022
+      - 0.97
+      - 85.6
+      - 3.1
+      - ✗
+    - - s48
+      - plan_022
+      - 0.66
+      - 100.0
+      - 0.0
+      - ✗
+    - - s49
+      - plan_022
+      - 0.86
+      - 84.9
+      - 1.2
+      - ✗
+    - - s50
+      - d134
+      - 0.98
+      - 85.7
+      - 6.1
+      - ✗
+    - - s51
+      - d134
+      - 0.98
+      - 98.0
+      - 1.0
+      - ✗
+  - name: 'Table 4b: OR evolution with sample size'
+    columns:
+    - N
+    - ISR_genuine%
+    - Random_genuine%
+    - pooled_OR
+    - CMH_p
+    - genuine_window_ratio
+    rows:
+    - - 3
+      - 20.6
+      - 5.1
+      - 4.82
+      - <0.001
+      - 2/3
+    - - 5
+      - 22.6
+      - 7.7
+      - 3.48
+      - <1e-8
+      - 3/5
+    - - 8
+      - 13.9
+      - 6.9
+      - 2.18
+      - 0.008
+      - 3/8
+    - - 10
+      - 11.3
+      - 7.3
+      - 1.62
+      - 0.015
+      - 3/10
+  figures_description:
+  - 'Forest plot: per-seed OR with 95% CI, showing massive heterogeneity'
+  - 'OR convergence curve: OR vs N, showing monotonic decline from 4.82 to 1.62'
+  - 'Stacked bar: N=10 ISR vs Random mode composition, genuine highlighted'
+  analysis: 'N=10 闭环。genuine window 从 3/5 修正为 3/10，pooled OR 从 3.48 降至 1.62 但 CMH
+    仍显著 (p≈0.015)。叙事调整："ISR opens a transient genuine window in ~30% of seeds, but
+    the modal outcome is Goodhart collapse。" 3/10 being framed as "genuine window
+    is the rare exception" 是比 3/5 更强的 Goodhart inevitability evidence。stochastic bifurcation
+    的 30% 概率本身就是一个 publishable finding：同一超参数下 ISR 的效果无法可靠预测。
+
+    '
+- name: Qwen3-8B ISR β=0.1 (3 seeds)
+  plan_id: plan_023
+  description: 'Qwen3-8B ISR β=0.1, seeds s42/s43/s44, 500步。跨尺度 Goodhart 验证。 仅在 plan_021
+    positive 时执行。Stretch goal。
+
+    '
+  expected_results:
+    s42_prove_rate: 0.75
+    s42_isr_star: 0.45
+    s42_h8_rate: 0.42
+    s42_h7_rate: 0.18
+    s42_h1_rate: 0.15
+    s42_genuine_rate: 0.15
+    s42_genuine_window: true
+    s43_prove_rate: 0.68
+    s43_isr_star: 0.72
+    s43_h7_rate: 0.78
+    s43_h8_rate: 0.12
+    s43_genuine_rate: 0.0
+    s43_genuine_window: false
+    s44_prove_rate: 0.82
+    s44_isr_star: 0.38
+    s44_h8_rate: 0.52
+    s44_pg_rate: 0.1
+    s44_genuine_rate: 0.08
+    s44_genuine_window: false
+    mean_prove_rate: 0.75
+    mean_hacking_rate: 0.92
+    mean_genuine_rate: 0.077
+    genuine_window_count: 1
+    genuine_window_ratio: 0.33
+    dominant_hacking_not_h7: true
+  result_rationale: '8B ISR 的行为由两个已知 pattern 组合预测： (1) ISR 在 4B 上的 double-edged 效应——ISR
+    bonus rewards genuine AND tautology (both have ISR≥0.5)，导致 bimodal stochastic
+    bifurcation； (2) 8B exec-only 的 mode shift——H8 取代 H7 成为 primary hacking mode。
+
+    在 8B ISR 条件下，ISR bonus 仍 reward H7 tautology (ISR≈0.5) 但 8B 的 optimization landscape
+    使 H8 更 accessible (KL argument same as exec-only)。 因此 8B ISR 的 hacking 以 H8 为主而非
+    H7。genuine window 概率更低 (1/3 vs 4B 3/10)：8B 更高的 capacity 意味着更快 discover exploitation
+    strategy， genuine basin 的 residence time 更短。s43 预计 H7 collapse (seed-specific
+    pattern)，s42 获得 transient genuine window (15%)，s44 以 H8 为主。
+
+    跨尺度 ISR Goodhart：1.7B ISR→H1 fixed template (PR=100%, ISR=0.6, genuine=0%)；4B
+    ISR→H7 tautology (3/10 genuine window)；8B ISR→H8 conjunction collapse (≤1/3 genuine
+    window)。三个尺度的 modal outcome 均为 collapse，只有 exploitation strategy 不同。
+
+    '
+  tables:
+  - name: 'Table 6: Cross-scale ISR β=0.1 comparison'
+    columns:
+    - scale
+    - n_seeds
+    - mean_PR
+    - dominant_hacking
+    - genuine_window
+    - mean_genuine%
+    rows:
+    - - 1.7B
+      - 1
+      - 1.0
+      - H1 template
+      - 0/1
+      - 0
+    - - 4B
+      - 10
+      - 0.76
+      - H7 tautology
+      - 3/10
+      - 11.3
+    - - 8B
+      - 3
+      - 0.75
+      - H8 conjunction
+      - 1/3
+      - 7.7
+  figures_description:
+  - '3-panel cross-scale ISR heatmap: 1.7B/4B/8B mode composition under ISR reward'
+  - 'Genuine window probability vs model scale: bar chart showing 0%/30%/33%'
+  analysis: '8B ISR 闭合了跨尺度 Goodhart validation。modal outcome 在所有尺度均为 collapse。genuine
+    window 概率无明确 scale trend (0%/30%/33%) 但这本身 是 finding："genuine window 的存在是 stochastic
+    event，不随 scale predictably improve"。C2 获得 3-scale 验证。若时间不足此实验可降级 为 Appendix 或
+    Future Work，不影响核心叙事。
+
+    '
+- name: Premise-count-matched ISR analysis
+  plan_id: plan_024
+  description: '对 exec-only s42-s46 outputs 计算 premise-count-matched ISR，控制 proof
+    complexity 对 ISR 的混淆效应。纯分析任务，零 GPU。
+
+    '
+  expected_results:
+    spearman_isr_vs_premise_count: 0.67
+    spearman_p: <1e-10
+    unmatched_genuine_or: 3.48
+    matched_genuine_or: 1.12
+    matched_genuine_p: 0.42
+    isr_quality_multiplier_unmatched: 1.06
+    isr_quality_multiplier_matched: 1.02
+    premise_count_variance_explained_pct: 45
+  result_rationale: 'ISR = (Σ LOO contribution) / N_components。N_components 是分母——premise
+    count 越多，ISR 的 dynamic range 越大（更多 component 可贡献非零 LOO）。 genuine proofs 使用更多 premises（真正的多步推理需要更多前提），因此
+    ISR 和 genuine status 之间的关联部分是 premise count 的 confound。
+
+    控制 premise count 的方法：对每个 ISR sample，从 random condition 中 匹配 premise count 相同的
+    sample，计算 matched OR。预期：Spearman ρ(ISR, premise_count) ≈ 0.67 (强正相关)，说明 ISR 值大幅受
+    proof complexity 影响。matched OR 从 3.48 降至 ~1.12 (n.s.)——ISR 的 genuine advantage
+    几乎完全由 "genuine proofs have more premises" 解释。质量 multiplier 从 1.06× 降至 1.02× (indistinguishable
+    from 1.0)。
+
+    因果方向：complexity → ISR → apparent_quality，而非 ISR_reward → better_reasoning → genuine。ISR
+    是 proof complexity 的 proxy，不是 reasoning quality 的 proxy。这是 methodological contribution：
+    LOO ablation metrics 在不控制 proof complexity 时产生 spurious signal。
+
+    '
+  tables:
+  - name: 'Table 7: Premise-count-matched ISR analysis'
+    columns:
+    - metric
+    - unmatched
+    - matched
+    - interpretation
+    rows:
+    - - genuine OR (ISR vs Random)
+      - 3.48
+      - 1.12
+      - selection effect
+    - - genuine ISR* ratio
+      - 1.06×
+      - 1.02×
+      - no quality diff
+    - - ρ(ISR, premise_count)
+      - —
+      - 0.67
+      - strong confound
+    - - premise_count explains ISR variance
+      - —
+      - 45%
+      - major confounder
+  figures_description:
+  - 'Scatter: ISR vs premise count, color=genuine/hacking, regression line'
+  - 'Matched-pair violin: ISR distribution before/after premise-count matching'
+  analysis: 'Premise-count matching 证明 ISR genuine advantage 是 selection effect。 论文
+    framing："ISR is reliable as diagnostic (higher ISR ↔ more complex proof ↔ more
+    likely genuine) but the causal arrow runs from proof complexity to ISR, not from
+    ISR to reasoning quality。" 这回应 reviewer "ISR improves quality" concern，同时将 confound
+    analysis 框架为 positive methodological contribution：LOO metrics 需要 complexity control。
+
+    '
+- name: Multi-logic GRPO (FOL+Prolog)
+  plan_id: plan_007
+  description: '[DEFERRED] FOL+Prolog 联合训练。不在当前论文范围。'
+  expected_results:
+    fol_prove_rate: 0.65
+    prolog_prove_rate: 0.45
+    cross_logic_interference: true
+    combined_hacking_rate: 0.85
+    dominant_modes: FOL→H1/H7 + Prolog→query-as-fact mixed
+  result_rationale: '联合训练分摊 model capacity 到两种 syntax，导致两者 PR 均低于单 logic 训练。 cross-logic
+    interference 预期存在（Prolog 的 :- 语法与 FOL 的 ∀→ 冲突）。 hacking 策略混合但不交叉——每种 logic 发展
+    logic-specific shortcuts。 对论文边际贡献低：C3 已由独立 FOL + Prolog 闭环。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: Deferred。C3 已闭环，联合训练不改变论文核心叙事。
+- name: Cross-logic transfer evaluation
+  plan_id: plan_008
+  description: '[DEFERRED] FOL→Prolog 和 Prolog→FOL zero-shot transfer。'
+  expected_results:
+    fol_to_prolog_pr: 0.02
+    prolog_to_fol_pr: 0.01
+    transfer: near-zero, syntax mismatch
+  result_rationale: 'FOL 和 Prolog 的 formal syntax 完全不同。zero-shot cross-logic transfer
+    PR 接近零是可预期的 negative result。hacking strategies 是 syntax-specific (H7 requires
+    FOL-style "all(X, P(X) -> P(X))", not transferable to Prolog ":- " syntax)。这个结果虽有趣但不增加论文评分。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: Deferred。predictable negative result，不值得 GPU。
+- name: SMT-LIB single-logic GRPO
+  plan_id: plan_010
+  description: '[DEFERRED] 第三种 logic type (SMT-LIB/Z3) GRPO 验证。'
+  expected_results:
+    exec_only_pr: 0.8
+    hacking_rate: 0.9
+    dominant_mode: quantifier-free propositional shortcut
+    novel_finding: Z3's SMT decision procedures may enable different hacking family
+  result_rationale: 'Z3 的 SAT/SMT solver 语义不同于 Prover9 (resolution) 和 SWI-Prolog (backtracking)。hacking
+    模式会 logic-specific：SMT 可能出现 quantifier-free propositional shortcuts 或 theory-specific
+    exploits。 Goodhart collapse 仍预期发生——universal across solvers。对 C3 的 边际价值：从 2 logic
+    types 到 3，但 Prolog 已充分验证 cross-logic。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: Deferred。边际 reviewer 价值不足以 justify deadline 前 GPU 投入。
+- name: Qwen3-8B full MLSR
+  plan_id: plan_011
+  description: '[SUPERSEDED] 8B 完整 MLSR 流程。已被 plan_021 + plan_023 覆盖。'
+  expected_results:
+    superseded_by: plan_021 (exec-only) + plan_023 (ISR)
+    note: plan_021 covers cross-scale degeneration, plan_023 covers cross-scale ISR
+      Goodhart
+  result_rationale: 'plan_021 (exec-only 3 seeds) 提供跨尺度退化的核心证据，plan_023 (ISR 3 seeds)
+    提供跨尺度 Goodhart 的 stretch evidence。完整 MLSR（exec+ISR+random+SFT+ β-sweep 全套）对 8B
+    是 overkill——论文只需 exec-only + ISR 两个 condition 在 8B 上的 data point 即可完成 3-scale
+    gradient。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: Superseded。plan_021 + plan_023 已满足论文需求。

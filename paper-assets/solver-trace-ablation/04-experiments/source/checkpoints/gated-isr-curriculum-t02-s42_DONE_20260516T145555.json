@@ -1,0 +1,36 @@
+{
+  "exp_id": "gated-isr-curriculum-t02-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:51:27.836Z",
+    "updated_at": "2026-05-16T14:55:55.544Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py --config configs/grpo_isr_gated_curriculum.yaml --seed 42",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "pid": 863510,
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "ISR-gated GRPO with curriculum warmup (100 steps exec-only then tau=0.2 gate) avoids death spiral and achieves PR>50% with genuine>30%",
+      "hyperparams": {
+        "tau": 0.2,
+        "warmup_steps": 100,
+        "lr": 1e-06,
+        "reward_mode": "isr_gated",
+        "num_generations": 4,
+        "steps": 500
+      }
+    },
+    "conclusion": "failed",
+    "failure_reason": "Disk full (250G/250G on /root/autodl-tmp). Crashed at ~step 90-100 during checkpoint save. SafetensorError: No space left on device (os error 28)",
+    "completed_at": "2026-05-16T14:55:55.544Z"
+  },
+  "timestamp": "2026-05-16T14:55:55.812498+00:00",
+  "trigger": "update_registry"
+}

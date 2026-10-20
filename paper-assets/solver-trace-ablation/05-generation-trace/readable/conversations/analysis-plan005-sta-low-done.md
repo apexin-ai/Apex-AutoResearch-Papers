@@ -1,0 +1,1233 @@
+# analysis plan005 sta low done
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_analysis_plan005-sta-low-done_20260513T235649.jsonl`
+- **Structured JSON:** [`b1adc120e6995c4f45f9.json`](../../sessions/b1/b1adc120e6995c4f45f9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T00:00:05.821118+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T00:00:05.821527+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T00:00:05.821755+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/ -maxdepth 3 -name \"reward_log.jsonl\" -path \"*plan005*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/solver-trace-ablation/ -maxdepth 3 -name \"reward_log.jsonl\" -path \"*plan005*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T00:00:05.821917+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'plan005-sta-low-s42'}",
+  "project": "solver-trace-ablation",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'plan005-sta-low-s42'}",
+    "project": "solver-trace-ablation",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T00:00:05.822061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T00:00:05.822245+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0531}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T00:00:05.822450+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/ -maxdepth 4 -name \"reward_log.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/solver-trace-ablation/ -maxdepth 4 -name \"reward_log.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T00:00:05.822580+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/solver-trace-ablation/outputs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/solver-trace-ablation/outputs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T00:00:05.822742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T00:00:05.822917+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 456\\ndrwxr-xr-x 2 root root    101 May 14 02:21 .\\ndrwxr-xr-x 8 root root    116 May 14 01:39 ..\\n-rw-r--r-- 1 root root   4478 May 14 02:20 grpo_dryrun.log\\n-rw-r--r-- 1 root root 255038 May 14 02:12 gt_isr_baseline.json\\n-rw-r--r-- 1 root root 199815 May 14 02:03 phase0_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T00:00:05.823047+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/ -maxdepth 5 -name \"reward_log.jsonl\" -newer /root/solver-trace-ablation/outputs/grpo_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/ -maxdepth 5 -name \"reward_log.jsonl\" -newer /root/solver-trace-ablation/outputs/grpo_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T00:00:05.823187+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/grpo_exec_only/reward_log.jsonl\\n/root/autodl-tmp/outputs/grpo_exec_sta/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan001_exec_only_s43/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T00:00:05.823312+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/ -maxdepth 4 -type d -name \"*plan005*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/ -maxdepth 4 -type d -name \"*plan005*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T00:00:05.823432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T00:00:05.823567+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan005_sta_low_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/autodl-tmp/outputs/plan005_sta_low_s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T00:00:05.823719+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15728568\\ndrwxr-xr-x 5 root root       4096 May 14 07:54 .\\ndrwxr-xr-x 7 root root       4096 May 14 07:55 ..\\n-rw-r--r-- 1 root root       1872 May 14 07:54 README.md\\n-rw-r--r-- 1 root root        707 May 14 07:54 added_tokens.json\\n-rw-r--r-- 1 root root       4168 May 14 07:54 chat_template.jinja\\ndrwxr-xr-x 2 root root       4096 May 14 07:47 checkpoint-450\\ndrwxr-xr-x 2 root root       4096 May 14 07:54 checkpoint-500\\ndrwxr-xr-x 2 root root      20480 May 14 07:54 completions\\n-rw-r--r-- 1 root root       1535 May 14 07:54 config.json\\n-rw-r--r-- 1 root root        188 May 14 07:54 generation_config.json\\n-rw-r--r-- 1 root root    1671853 May 14 07:54 merges.txt\\n-rw-r--r-- 1 root root 4990095032 May 14 07:54 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4944309096 May 14 07:54 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4996758848 May 14 07:54 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root 1158754848 May 14 07:54 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      32856 May 14 07:54 model.safetensors.index.json\\n-rw-r--r-- 1 root root     115112 May 14 07:54 reward_log.jsonl\\n-rw-r--r-- 1 root root        613 May 14 07:54 special_tokens_map.json\\n-rw-r--r-- 1 root root   11422654 May 14 07:54 tokenizer.json\\n-rw-r--r-- 1 root root       5459 May 14 07:54 tokenizer_config.json\\n-rw-r--r-- 1 root root       7953 May 14 07:54 training_args.bin\\n-rw-r--r-- 1 root root    2776833 May 14 07:54 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T00:00:05.823864+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "wc -l /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T00:00:05.823982+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -1 /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -1 /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T00:00:05.824096+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"500 /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T00:00:05.824217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 1, \\\"reward_mean\\\": 0.12250000238418579, \\\"reward_std\\\": 0.3464823365211487, \\\"prove_rate\\\": 0.125, \\\"isr_mean\\\": 0.1, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0261, \\\"lr\\\": 1e-06, \\\"timestamp\\\": \\\"2026-05-13T22:43:17.785649+00:00\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T00:00:05.824358+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\nwith open('/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\nn = len(rows)\nsteps = [r['step'] for r in rows]\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\nparse = np.array([r['parse_rate'] for r in rows])\nloss = np.array([r['loss'] for r in rows])\nreward = np.array([r['reward_mean'] for r in rows])\n\n# Overall\nprint('=== OVERALL ===')\nprint(f'total_steps: {n}')\nprint(f'time_start: {rows[0][\\\"timestamp\\\"]}')\nprint(f'time_end: {rows[-1][\\\"timestamp\\\"]}')\nprint(f'prove_rate: {pr.mean():.4f}')\nprint(f'isr_mean: {isr.mean():.4f}')\nprint(f'parse_rate: {parse.mean():.4f}')\nprint(f'reward_mean: {reward.mean():.4f}')\nprint(f'loss_mean: {loss.mean():.6f}')\n\n# Last-50, Last-100\nprint()\nprint('=== LAST-50 ===')\nprint(f'prove_rate: {pr[-50:].mean():.4f}')\nprint(f'isr_mean: {isr[-50:].mean():.4f}')\nprint(f'loss: {loss[-50:].mean():.6f}')\n\nprint()\nprint('=== LAST-100 ===')\nprint(f'prove_rate: {pr[-100:].mean():.4f}')\nprint(f'isr_mean: {isr[-100:].mean():.4f}')\nprint(f'loss: {loss[-100:].mean():.6f}')\n\n# Windows\nprint()\nprint('=== WINDOWED prove_rate / ISR ===')\nwindows = [(1,50),(51,100),(101,200),(201,300),(301,400),(401,500)]\nfor s,e in windows:\n    sl = slice(s-1, e)\n    print(f'  {s:3d}-{e:3d}: prove_rate={pr[sl].mean():.4f}, isr={isr[sl].mean():.4f}, loss={loss[sl].mean():.6f}')\n\n# Rolling-10\nprint()\nprint('=== ROLLING-10 ===')\nroll_pr = np.convolve(pr, np.ones(10)/10, mode='valid')\nroll_isr = np.convolve(isr, np.ones(10)/10, mode='valid')\n\n# First sustained >=0.8 (10 consecutive rolling-10 >= 0.8)\nfirst_08 = None\nfor i in range(len(roll_pr)):\n    if roll_pr[i] >= 0.8:\n        if first_08 is None:\n            first_08 = i + 10  # step number (1-indexed, window ends at i+10)\n        break\nprint(f'first_rolling10_pr>=0.8_step: {first_08}')\n\n# Max jump\ndiffs = np.diff(roll_pr)\nmax_jump_idx = np.argmax(diffs)\nprint(f'max_rolling10_pr_jump: {diffs[max_jump_idx]:.4f} at step ~{max_jump_idx+11}')\n\n# Max rolling-10 values\nprint(f'max_rolling10_pr: {roll_pr.max():.4f}')\nprint(f'max_rolling10_isr: {roll_isr.max():.4f}')\n\n# ISR/PR ratio\nprint()\nprint('=== ISR/PR RATIO ===')\nmask = pr > 0\nratio_valid = isr[mask] / pr[mask]\nprint(f'overall ISR/PR (where PR>0): {ratio_valid.mean():.4f}')\nmask100 = pr[-100:] > 0\nratio100 = isr[-100:][mask100] / pr[-100:][mask100]\nprint(f'last-100 ISR/PR (where PR>0): {ratio100.mean():.4f}')\n\n# Steps where ISR < PR\nisr_lt_pr = np.sum(isr < pr)\nprint(f'steps where ISR < PR: {isr_lt_pr} / {n}')\n\n# Last-100 ISR < PR\nisr_lt_pr_100 = np.sum(isr[-100:] < pr[-100:])\nprint(f'last-100 steps where ISR < PR: {isr_lt_pr_100} / 100')\n\nprint()\nprint('=== CONVERGENCE ===')\n# When did rolling-10 PR first reach 0.5? 0.7? 0.9?\nfor threshold in [0.5, 0.7, 0.8, 0.9]:\n    idx = np.argmax(roll_pr >= threshold)\n    if roll_pr[idx] >= threshold:\n        print(f'rolling10_pr>={threshold}: step {idx+10}')\n    else:\n        print(f'rolling10_pr>={threshold}: never')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\nwith open('/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\nn = len(rows)\nsteps = [r['step'] for r in rows]\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\nparse = np.array([r['parse_rate'] for r in rows])\nloss = np.array([r['loss'] for r in rows])\nreward = np.array([r['reward_mean'] for r in rows])\n\n# Overall\nprint('=== OVERALL ===')\nprint(f'total_steps: {n}')\nprint(f'time_start: {rows[0][\\\"timestamp\\\"]}')\nprint(f'time_end: {rows[-1][\\\"timestamp\\\"]}')\nprint(f'prove_rate: {pr.mean():.4f}')\nprint(f'isr_mean: {isr.mean():.4f}')\nprint(f'parse_rate: {parse.mean():.4f}')\nprint(f'reward_mean: {reward.mean():.4f}')\nprint(f'loss_mean: {loss.mean():.6f}')\n\n# Last-50, Last-100\nprint()\nprint('=== LAST-50 ===')\nprint(f'prove_rate: {pr[-50:].mean():.4f}')\nprint(f'isr_mean: {isr[-50:].mean():.4f}')\nprint(f'loss: {loss[-50:].mean():.6f}')\n\nprint()\nprint('=== LAST-100 ===')\nprint(f'prove_rate: {pr[-100:].mean():.4f}')\nprint(f'isr_mean: {isr[-100:].mean():.4f}')\nprint(f'loss: {loss[-100:].mean():.6f}')\n\n# Windows\nprint()\nprint('=== WINDOWED prove_rate / ISR ===')\nwindows = [(1,50),(51,100),(101,200),(201,300),(301,400),(401,500)]\nfor s,e in windows:\n    sl = slice(s-1, e)\n    print(f'  {s:3d}-{e:3d}: prove_rate={pr[sl].mean():.4f}, isr={isr[sl].mean():.4f}, loss={loss[sl].mean():.6f}')\n\n# Rolling-10\nprint()\nprint('=== ROLLING-10 ===')\nroll_pr = np.convolve(pr, np.ones(10)/10, mode='valid')\nroll_isr = np.convolve(isr, np.ones(10)/10, mode='valid')\n\n# First sustained >=0.8 (10 consecutive rolling-10 >= 0.8)\nfirst_08 = None\nfor i in range(len(roll_pr)):\n    if roll_pr[i] >= 0.8:\n        if first_08 is None:\n            first_08 = i + 10  # step number (1-indexed, window ends at i+10)\n        break\nprint(f'first_rolling10_pr>=0.8_step: {first_08}')\n\n# Max jump\ndiffs = np.diff(roll_pr)\nmax_jump_idx = np.argmax(diffs)\nprint(f'max_rolling10_pr_jump: {diffs[max_jump_idx]:.4f} at step ~{max_jump_idx+11}')\n\n# Max rolling-10 values\nprint(f'max_rolling10_pr: {roll_pr.max():.4f}')\nprint(f'max_rolling10_isr: {roll_isr.max():.4f}')\n\n# ISR/PR ratio\nprint()\nprint('=== ISR/PR RATIO ===')\nmask = pr > 0\nratio_valid = isr[mask] / pr[mask]\nprint(f'overall ISR/PR (where PR>0): {ratio_valid.mean():.4f}')\nmask100 = pr[-100:] > 0\nratio100 = isr[-100:][mask100] / pr[-100:][mask100]\nprint(f'last-100 ISR/PR (where PR>0): {ratio100.mean():.4f}')\n\n# Steps where ISR < PR\nisr_lt_pr = np.sum(isr < pr)\nprint(f'steps where ISR < PR: {isr_lt_pr} / {n}')\n\n# Last-100 ISR < PR\nisr_lt_pr_100 = np.sum(isr[-100:] < pr[-100:])\nprint(f'last-100 steps where ISR < PR: {isr_lt_pr_100} / 100')\n\nprint()\nprint('=== CONVERGENCE ===')\n# When did rolling-10 PR first reach 0.5? 0.7? 0.9?\nfor threshold in [0.5, 0.7, 0.8, 0.9]:\n    idx = np.argmax(roll_pr >= threshold)\n    if roll_pr[idx] >= threshold:\n        print(f'rolling10_pr>={threshold}: step {idx+10}')\n    else:\n        print(f'rolling10_pr>={threshold}: never')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T00:00:05.824533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== OVERALL ===\\ntotal_steps: 500\\ntime_start: 2026-05-13T22:43:17.785649+00:00\\ntime_end: 2026-05-13T23:54:08.820317+00:00\\nprove_rate: 0.5657\\nisr_mean: 0.1682\\nparse_rate: 1.0000\\nreward_mean: 0.5260\\nloss_mean: 0.017296\\n\\n=== LAST-50 ===\\nprove_rate: 0.7700\\nisr_mean: 0.2559\\nloss: 0.030426\\n\\n=== LAST-100 ===\\nprove_rate: 0.7725\\nisr_mean: 0.2299\\nloss: 0.022752\\n\\n=== WINDOWED prove_rate / ISR ===\\n    1- 50: prove_rate=0.1775, isr=0.0906, loss=0.009112\\n   51-100: prove_rate=0.1775, isr=0.0835, loss=0.010856\\n  101-200: prove_rate=0.5062, isr=0.1463, loss=0.019506\\n  201-300: prove_rate=0.6713, isr=0.1791, loss=0.018600\\n  301-400: prove_rate=0.7013, isr=0.1984, loss=0.015639\\n  401-500: prove_rate=0.7725, isr=0.2299, loss=0.022752\\n\\n=== ROLLING-10 ===\\nfirst_rolling10_pr>=0.8_step: 178\\nmax_rolling10_pr_jump: 0.1000 at step ~439\\nmax_rolling10_pr: 0.9375\\nmax_rolling10_isr: 0.3282\\n\\n=== ISR/PR RATIO ===\\noverall ISR/PR (where PR>0): 0.3105\\nlast-100 ISR/PR (where PR>0): 0.2980\\nsteps where ISR < PR: 432 / 500\\nlast-100 steps where ISR < PR: 99 / 100\\n\\n=== CONVERGENCE ===\\nrolling10_pr>=0.5: step 141\\nrolling10_pr>=0.7: step 171\\nrolling10_pr>=0.8: step 178\\nrolling10_pr>=0.9: step 439\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T00:00:05.824732+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\nwith open('/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\n\n# Check reward components if available\nr0 = rows[0]\nprint('Fields in row:', list(r0.keys()))\nprint()\nprint('First 5 rows reward details:')\nfor r in rows[:5]:\n    s = f'step={r[\\\"step\\\"]}, reward={r[\\\"reward_mean\\\"]:.4f}, pr={r[\\\"prove_rate\\\"]:.3f}, isr={r[\\\"isr_mean\\\"]:.3f}'\n    for k in r:\n        if k not in ('step','reward_mean','reward_std','prove_rate','isr_mean','parse_rate','loss','lr','timestamp'):\n            s += f', {k}={r[k]}'\n    print(s)\n\nprint()\nprint('Last 5 rows:')\nfor r in rows[-5:]:\n    s = f'step={r[\\\"step\\\"]}, reward={r[\\\"reward_mean\\\"]:.4f}, pr={r[\\\"prove_rate\\\"]:.3f}, isr={r[\\\"isr_mean\\\"]:.3f}'\n    for k in r:\n        if k not in ('step','reward_mean','reward_std','prove_rate','isr_mean','parse_rate','loss','lr','timestamp'):\n            s += f', {k}={r[k]}'\n    print(s)\n\n# Detailed last-100 distribution\nprint()\nprint('=== LAST-100 ISR distribution ===')\nisr100 = isr[-100:]\npr100 = pr[-100:]\nprint(f'ISR=0 count: {np.sum(isr100==0)}')\nprint(f'ISR in (0,0.25]: {np.sum((isr100>0)&(isr100<=0.25))}')\nprint(f'ISR in (0.25,0.5]: {np.sum((isr100>0.25)&(isr100<=0.5))}')\nprint(f'ISR in (0.5,0.75]: {np.sum((isr100>0.5)&(isr100<=0.75))}')\nprint(f'ISR in (0.75,1.0]: {np.sum((isr100>0.75)&(isr100<=1.0))}')\n\nprint()\nprint('=== LAST-100 PR distribution ===')\nprint(f'PR=0: {np.sum(pr100==0)}')\nprint(f'PR in (0,0.25]: {np.sum((pr100>0)&(pr100<=0.25))}')\nprint(f'PR in (0.25,0.5]: {np.sum((pr100>0.25)&(pr100<=0.5))}')\nprint(f'PR in (0.5,0.75]: {np.sum((pr100>0.5)&(pr100<=0.75))}')\nprint(f'PR in (0.75,1.0]: {np.sum((pr100>0.75)&(pr100<=1.0))}')\n\n# Check if there are STA-specific fields  \nprint()\nprint('Sample row keys:', sorted(rows[0].keys()))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\nwith open('/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\n\n# Check reward components if available\nr0 = rows[0]\nprint('Fields in row:', list(r0.keys()))\nprint()\nprint('First 5 rows reward details:')\nfor r in rows[:5]:\n    s = f'step={r[\\\"step\\\"]}, reward={r[\\\"reward_mean\\\"]:.4f}, pr={r[\\\"prove_rate\\\"]:.3f}, isr={r[\\\"isr_mean\\\"]:.3f}'\n    for k in r:\n        if k not in ('step','reward_mean','reward_std','prove_rate','isr_mean','parse_rate','loss','lr','timestamp'):\n            s += f', {k}={r[k]}'\n    print(s)\n\nprint()\nprint('Last 5 rows:')\nfor r in rows[-5:]:\n    s = f'step={r[\\\"step\\\"]}, reward={r[\\\"reward_mean\\\"]:.4f}, pr={r[\\\"prove_rate\\\"]:.3f}, isr={r[\\\"isr_mean\\\"]:.3f}'\n    for k in r:\n        if k not in ('step','reward_mean','reward_std','prove_rate','isr_mean','parse_rate','loss','lr','timestamp'):\n            s += f', {k}={r[k]}'\n    print(s)\n\n# Detailed last-100 distribution\nprint()\nprint('=== LAST-100 ISR distribution ===')\nisr100 = isr[-100:]\npr100 = pr[-100:]\nprint(f'ISR=0 count: {np.sum(isr100==0)}')\nprint(f'ISR in (0,0.25]: {np.sum((isr100>0)&(isr100<=0.25))}')\nprint(f'ISR in (0.25,0.5]: {np.sum((isr100>0.25)&(isr100<=0.5))}')\nprint(f'ISR in (0.5,0.75]: {np.sum((isr100>0.5)&(isr100<=0.75))}')\nprint(f'ISR in (0.75,1.0]: {np.sum((isr100>0.75)&(isr100<=1.0))}')\n\nprint()\nprint('=== LAST-100 PR distribution ===')\nprint(f'PR=0: {np.sum(pr100==0)}')\nprint(f'PR in (0,0.25]: {np.sum((pr100>0)&(pr100<=0.25))}')\nprint(f'PR in (0.25,0.5]: {np.sum((pr100>0.25)&(pr100<=0.5))}')\nprint(f'PR in (0.5,0.75]: {np.sum((pr100>0.5)&(pr100<=0.75))}')\nprint(f'PR in (0.75,1.0]: {np.sum((pr100>0.75)&(pr100<=1.0))}')\n\n# Check if there are STA-specific fields  \nprint()\nprint('Sample row keys:', sorted(rows[0].keys()))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T00:00:05.824902+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fields in row: ['step', 'reward_mean', 'reward_std', 'prove_rate', 'isr_mean', 'parse_rate', 'loss', 'lr', 'timestamp']\\n\\nFirst 5 rows reward details:\\nstep=1, reward=0.1225, pr=0.125, isr=0.100\\nstep=2, reward=0.0000, pr=0.000, isr=0.000\\nstep=3, reward=0.3562, pr=0.375, isr=0.188\\nstep=4, reward=0.0000, pr=0.000, isr=0.000\\nstep=5, reward=0.3652, pr=0.375, isr=0.277\\n\\nLast 5 rows:\\nstep=496, reward=0.8019, pr=0.875, isr=0.144\\nstep=497, reward=0.7031, pr=0.750, isr=0.281\\nstep=498, reward=0.8146, pr=0.875, isr=0.271\\nstep=499, reward=0.8318, pr=0.875, isr=0.443\\nstep=500, reward=0.5879, pr=0.625, isr=0.254\\n\\n=== LAST-100 ISR distribution ===\\nISR=0 count: 2\\nISR in (0,0.25]: 61\\nISR in (0.25,0.5]: 33\\nISR in (0.5,0.75]: 4\\nISR in (0.75,1.0]: 0\\n\\n=== LAST-100 PR distribution ===\\nPR=0: 1\\nPR in (0,0.25]: 5\\nPR in (0.25,0.5]: 15\\nPR in (0.5,0.75]: 24\\nPR in (0.75,1.0]: 55\\n\\nSample row keys: ['isr_mean', 'loss', 'lr', 'parse_rate', 'prove_rate', 'reward_mean', 'reward_std', 'step', 'timestamp']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T00:00:05.825075+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\n# plan001-r2 = plan001_exec_only_s42\nwith open('/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\nn = len(rows)\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\nloss = np.array([r['loss'] for r in rows])\n\nprint(f'plan001-r2 total steps: {n}')\nprint(f'overall: pr={pr.mean():.4f}, isr={isr.mean():.4f}')\nprint(f'last-50: pr={pr[-50:].mean():.4f}, isr={isr[-50:].mean():.4f}')\nprint(f'last-100: pr={pr[-100:].mean():.4f}, isr={isr[-100:].mean():.4f}')\nprint(f'loss last-100: {loss[-100:].mean():.6f}')\n\n# Rolling-10 convergence\nroll_pr = np.convolve(pr, np.ones(10)/10, mode='valid')\nfor t in [0.5, 0.7, 0.8, 0.9]:\n    idx = np.argmax(roll_pr >= t)\n    if roll_pr[idx] >= t:\n        print(f'rolling10_pr>={t}: step {idx+10}')\n    else:\n        print(f'rolling10_pr>={t}: never')\n\n# ISR/PR ratio\nmask100 = pr[-100:] > 0\nratio100 = isr[-100:][mask100] / pr[-100:][mask100]\nprint(f'last-100 ISR/PR ratio: {ratio100.mean():.4f}')\nisr_lt_pr = np.sum(isr[-100:] < pr[-100:])\nprint(f'last-100 ISR<PR count: {isr_lt_pr}/100')\n\n# Windows\nprint()\nwindows = [(1,50),(51,100),(101,200),(201,300),(301,400),(401,500)]\nfor s,e in windows:\n    if e <= n:\n        sl = slice(s-1, e)\n        print(f'  {s:3d}-{e:3d}: pr={pr[sl].mean():.4f}, isr={isr[sl].mean():.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\n# plan001-r2 = plan001_exec_only_s42\nwith open('/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\nn = len(rows)\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\nloss = np.array([r['loss'] for r in rows])\n\nprint(f'plan001-r2 total steps: {n}')\nprint(f'overall: pr={pr.mean():.4f}, isr={isr.mean():.4f}')\nprint(f'last-50: pr={pr[-50:].mean():.4f}, isr={isr[-50:].mean():.4f}')\nprint(f'last-100: pr={pr[-100:].mean():.4f}, isr={isr[-100:].mean():.4f}')\nprint(f'loss last-100: {loss[-100:].mean():.6f}')\n\n# Rolling-10 convergence\nroll_pr = np.convolve(pr, np.ones(10)/10, mode='valid')\nfor t in [0.5, 0.7, 0.8, 0.9]:\n    idx = np.argmax(roll_pr >= t)\n    if roll_pr[idx] >= t:\n        print(f'rolling10_pr>={t}: step {idx+10}')\n    else:\n        print(f'rolling10_pr>={t}: never')\n\n# ISR/PR ratio\nmask100 = pr[-100:] > 0\nratio100 = isr[-100:][mask100] / pr[-100:][mask100]\nprint(f'last-100 ISR/PR ratio: {ratio100.mean():.4f}')\nisr_lt_pr = np.sum(isr[-100:] < pr[-100:])\nprint(f'last-100 ISR<PR count: {isr_lt_pr}/100')\n\n# Windows\nprint()\nwindows = [(1,50),(51,100),(101,200),(201,300),(301,400),(401,500)]\nfor s,e in windows:\n    if e <= n:\n        sl = slice(s-1, e)\n        print(f'  {s:3d}-{e:3d}: pr={pr[sl].mean():.4f}, isr={isr[sl].mean():.4f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T00:00:05.825226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"plan001-r2 total steps: 500\\noverall: pr=0.6743, isr=0.6677\\nlast-50: pr=0.8525, isr=0.8525\\nlast-100: pr=0.8650, isr=0.8612\\nloss last-100: 0.005478\\nrolling10_pr>=0.5: step 106\\nrolling10_pr>=0.7: step 134\\nrolling10_pr>=0.8: step 142\\nrolling10_pr>=0.9: step 269\\nlast-100 ISR/PR ratio: 0.9959\\nlast-100 ISR<PR count: 2/100\\n\\n    1- 50: pr=0.1850, isr=0.1850\\n   51-100: pr=0.2375, isr=0.2300\\n  101-200: pr=0.6625, isr=0.6538\\n  201-300: pr=0.7837, isr=0.7788\\n  301-400: pr=0.8488, isr=0.8375\\n  401-500: pr=0.8650, isr=0.8612\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T00:00:05.825424+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "status",
+  "value": "DONE",
+  "project": "solver-trace-ablation",
+  "spec": "{'command': 'GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42', 'server': 'westd-39279', 'data_path': '/root/autodl-tmp/outputs/plan005_sta_low_s42/', 'data_count': 500, 'model_name': 'Qwen2.5-7B', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan005-sta-low-s42",
+    "field": "status",
+    "value": "DONE",
+    "project": "solver-trace-ablation",
+    "spec": "{'command': 'GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42', 'server': 'westd-39279', 'data_path': '/root/autodl-tmp/outputs/plan005_sta_low_s42/', 'data_count': 500, 'model_name': 'Qwen2.5-7B', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T00:00:05.825576+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0569}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T00:00:05.825719+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "solver-trace-ablation",
+  "spec": "{'command': 'GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42', 'server': 'westd-39279', 'data_path': '/root/autodl-tmp/outputs/plan005_sta_low_s42/', 'data_count': 500, 'model_name': 'Qwen2.5-7B', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan005-sta-low-s42",
+    "field": "conclusion",
+    "value": "negative",
+    "project": "solver-trace-ablation",
+    "spec": "{'command': 'GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42', 'server': 'westd-39279', 'data_path': '/root/autodl-tmp/outputs/plan005_sta_low_s42/', 'data_count': 500, 'model_name': 'Qwen2.5-7B', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T00:00:05.826115+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:18.333Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1982}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T00:00:05.826326+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan005-sta-low-s42",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500",
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T00:00:05.826490+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:21.939Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1011}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T00:00:05.826629+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan005-sta-low-s42",
+    "field": "log_path",
+    "value": "/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T00:00:05.826810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:22.543Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1076}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T00:00:05.826961+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "status",
+  "value": "DONE",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan005-sta-low-s42",
+    "field": "status",
+    "value": "DONE",
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T00:00:05.827134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:25.396Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\", \"wall_clock_seconds\": 4603.8, \"gpu_hours\": 1.28}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\", \"completed_at\": \"2026-05-13T23:59:25.396Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1746}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T00:00:05.827299+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "metrics",
+  "value": "{'total_steps': 500, 'duration_min': 71, 'parse_rate': 1, 'overall_prove_rate': 0.5657, 'overall_isr': 0.1682, 'last50_prove_rate': 0.77, 'last50_isr': 0.2559, 'last100_prove_rate': 0.7725, 'last100_isr': 0.2299, 'last100_loss': 0.022752, 'overall_loss': 0.017296, 'last100_isr_pr_ratio': 0.298, 'last100_isr_lt_pr_count': '99/100', 'first_rolling10_pr_ge_0.8': 178, 'first_rolling10_pr_ge_0.9': 439, 'max_rolling10_pr': 0.9375, 'max_rolling10_isr': 0.3282, 'windowed': {'1-50': {'pr': 0.1775, 'isr': 0.0906}, '51-100': {'pr': 0.1775, 'isr': 0.0835}, '101-200': {'pr': 0.5062, 'isr': 0.1463}, '201-300': {'pr': 0.6713, 'isr': 0.1791}, '301-400': {'pr': 0.7013, 'isr': 0.1984}, '401-500': {'pr': 0.7725, 'isr': 0.2299}}}",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan005-sta-low-s42",
+    "field": "metrics",
+    "value": "{'total_steps': 500, 'duration_min': 71, 'parse_rate': 1, 'overall_prove_rate': 0.5657, 'overall_isr': 0.1682, 'last50_prove_rate': 0.77, 'last50_isr': 0.2559, 'last100_prove_rate': 0.7725, 'last100_isr': 0.2299, 'last100_loss': 0.022752, 'overall_loss': 0.017296, 'last100_isr_pr_ratio': 0.298, 'last100_isr_lt_pr_count': '99/100', 'first_rolling10_pr_ge_0.8': 178, 'first_rolling10_pr_ge_0.9': 439, 'max_rolling10_pr': 0.9375, 'max_rolling10_isr': 0.3282, 'windowed': {'1-50': {'pr': 0.1775, 'isr': 0.0906}, '51-100': {'pr': 0.1775, 'isr': 0.0835}, '101-200': {'pr': 0.5062, 'isr': 0.1463}, '201-300': {'pr': 0.6713, 'isr': 0.1791}, '301-400': {'pr': 0.7013, 'isr': 0.1984}, '401-500': {'pr': 0.7725, 'isr': 0.2299}}}",
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T00:00:05.827523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:34.587Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\", \"wall_clock_seconds\": 4603.8, \"gpu_hours\": 1.28}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\", \"completed_at\": \"2026-05-13T23:59:25.396Z\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": 
+…[truncated 197 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-14T00:00:05.827749+00:00_
+
+Registry 已更新。以下是完整分析报告。
+
+---
+
+## plan005-sta-low-s42 分析报告
+
+### 1. 完整 Metrics 表
+
+| 指标 | 值 |
+|------|-----|
+| 总步数 | 500 |
+| 训练时长 | ~71 min |
+| parse_rate | 1.0000 |
+| **overall prove_rate** | **0.5657** |
+| **overall ISR** | **0.1682** |
+| **last-50 prove_rate** | **0.7700** |
+| **last-50 ISR** | **0.2559** |
+| **last-100 prove_rate** | **0.7725** |
+| **last-100 ISR** | **0.2299** |
+| last-100 loss | 0.022752 |
+| last-100 ISR/PR ratio | 0.298 |
+| last-100 ISR < PR 步数 | 99/100 |
+| rolling-10 PR ≥ 0.8 首达 | step 178 |
+| rolling-10 PR ≥ 0.9 首达 | step 439 |
+| max rolling-10 PR | 0.9375 |
+| max rolling-10 ISR | 0.3282 |
+
+**分窗口变化：**
+
+| 窗口 | prove_rate | ISR |
+|------|-----------|-----|
+| 1-50 | 0.178 | 0.091 |
+| 51-100 | 0.178 | 0.084 |
+| 101-200 | 0.506 | 0.146 |
+| 201-300 | 0.671 | 0.179 |
+| 301-400 | 0.701 | 0.198 |
+| 401-500 | 0.773 | 0.230 |
+
+### 2. 与 plan001-r2 (exec-only 500步) 对比
+
+| 指标 | plan005 (α=0.9 β=0.1) | plan001-r2 (exec-only) | Δ |
+|------|----------------------|---------------------|---|
+| last-100 prove_rate | 0.7725 | **0.8650** | **-10.7%** |
+| last-100 ISR | 0.2299 | **0.8612** | **-73.3%** |
+| last-100 ISR/PR ratio | 0.298 | 0.996 | -0.698 |
+| last-100 ISR<PR count | 99/100 | 2/100 | — |
+| rolling-10 PR≥0.8 | step 178 | step 142 | +36 步更慢 |
+| rolling-10 PR≥0.9 | step 439 | step 269 | +170 步更慢 |
+| last-100 loss | 0.0228 | 0.0055 | 4.2× 更高 |
+
+### 3. 结论: **NEGATIVE**
+
+即使 STA 权重降到 0.1（exec 占 0.9），依然有严重负面影响：
+
+1. **prove_rate 下降 10.7%** (0.7725 vs 0.865) — STA 信号拖慢了 exec 任务的学习
+2. **ISR 灾难性崩塌 73.3%** (0.2299 vs 0.861) — 这是核心发现。模型学会了 prove，但 solver trace 质量极差。exec-only 的 ISR/PR ≈ 1.0（trace 自然好），加 STA 后 ISR/PR = 0.30（trace 被严重破坏）
+3. **收敛更慢** — PR≥0.9 需要 439 步 vs exec-only 的 269 步，慢 63%
+4. **loss 4× 更高** — STA 产生了 noisy gradients
+
+与 50/50 STA 对比：
+
+| 配置 | prove_rate | ISR | 结论 |
+|------|-----------|-----|------|
+| exec-only (plan001-r2) | 0.865 | 0.861 | baseline |
+| STA 50/50 (r5, 100步) | 0.10 | 0.043 | 灾难退化 |
+| **STA 0.1 (plan005, 500步)** | **0.773** | **0.230** | **严重退化** |
+
+退化程度随 STA 权重降低而减轻，但 0.1 仍远不够低。STA reward 的 penalty effect 在当前实现下是 **系统性的**，不是权重调参能解决的问题。
+
+### 4. 建议下一步
+
+STA 作为 additive reward 的方向已被两组实验否定（0.5 和 0.1 权重）。继续降权重（如 0.01）意义不大——要么效果为零，要么仍然是 penalty。
+
+应转向替代方案：
+- **Curriculum 方案 (plan002)**：先 exec-only 训练到收敛（~300步），再切换到 exec+STA fine-tune。这避免了早期 STA 干扰 exec 学习
+- **STA 作为 filter 而非 reward**：不用 STA 计算 reward，而是用 STA 筛选好的 traces 做 rejection sampling
+- **Post-hoc STA**：先用 exec-only 训练，然后用 STA 评分对 checkpoint 做 best-of-N 选择
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_plan005-sta-low-done_20260513T235649"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,346 @@
+{
+  "metadata": {
+    "generated": "2026-05-14",
+    "source": "registry (read_registry) + eval_sta.py (evidence_tables_d051.md)",
+    "eval_method": "All eval metrics from eval_sta.py (full STA) unless noted",
+    "std_type": "sample std (ddof=1) for all mean±std"
+  },
+  "table1_goodhart_landscape": {
+    "base_model": {
+      "exp_id": "sta-phase0-baseline",
+      "pr": 0.12,
+      "isr": 0.064,
+      "isr_std": 0.198,
+      "notes": "phase0 baseline, n=100"
+    },
+    "sft_baseline": {
+      "exp_id": "plan009-sft-baseline-s42-r4",
+      "seeds": ["s42"],
+      "pr": 0.14,
+      "isr": 0.080,
+      "isr_std": 0.214,
+      "proved_only_isr": 0.571,
+      "n_proved": 14,
+      "h7_rate": 0,
+      "h7_count": 0,
+      "h1_rate": 0.071,
+      "h1_count": 1,
+      "genuine_rate": 0.929,
+      "genuine_count": 13
+    },
+    "exec_only_500": {
+      "seeds": {
+        "s42": {
+          "exp_id": "plan001-exec-only-s42-r2",
+          "pr": 0.93,
+          "isr": 0.123,
+          "isr_std": 0.189,
+          "proved_only_isr": 0.132,
+          "components": 6.58,
+          "n_proved": 93,
+          "h7_rate": 0,
+          "h7_count": 0,
+          "h1_rate": 0.871,
+          "h1_count": 81,
+          "genuine_rate": 0.129,
+          "genuine_count": 12,
+          "hacking_mode": "H1 conclusion embedding (87.1%)"
+        },
+        "s43": {
+          "exp_id": "plan001-exec-only-s43-r4",
+          "pr": 0.14,
+          "isr": 0,
+          "n_proved": 14,
+          "notes": "repetition collapse, do_sample=True eval (temperature=0.7), not comparable (C004)"
+        },
+        "s44": {
+          "exp_id": "plan001-exec-only-s44",
+          "pr": 0.98,
+          "isr": 0.570,
+          "isr_std": 0.201,
+          "proved_only_isr": 0.582,
+          "components": 2.04,
+          "n_proved": 97,
+          "h7_rate": 1.0,
+          "h7_count": 97,
+          "h1_rate": 0,
+          "h1_count": 0,
+          "genuine_rate": 0,
+          "genuine_count": 0,
+          "tautological_collapse": true,
+          "hacking_mode": "tautological collapse (H7=100%)"
+        }
+      },
+      "mean_std": {
+        "pr": "0.68±0.47",
+        "isr": "0.23±0.30",
+        "notes": "3-seed, extreme seed variance (s43 used do_sample=True)"
+      }
+    },
+    "exec_only_1000": {
+      "exp_id": "plan016-extended-1000-s42",
+      "seeds": ["s42"],
+      "pr": 0.96,
+      "isr": 0.003,
+      "isr_std": 0.012,
+      "proved_only_isr": 0.003,
+      "components": 18.55,
+      "n_proved": 96,
+      "hacking_mode": "contradiction explosion"
+    },
+    "isr_b01": {
+      "seeds": {
+        "s42": {
+          "exp_id": "plan002-additive-b01-s42",
+          "pr": 0.81,
+          "isr": 0.337,
+          "isr_std": 0.323,
+          "proved_only_isr": 0.415,
+          "components": 5.58,
+          "n_proved": 81,
+          "h7_rate": 0.160,
+          "h7_count": 13,
+          "h1_rate": 0.519,
+          "h1_count": 42,
+          "genuine_rate": 0.321,
+          "genuine_count": 26
+        },
+        "s43": {
+          "exp_id": "plan002-additive-b01-s43",
+          "pr": 0.61,
+          "isr": 0.506,
+          "isr_std": 0.452,
+          "proved_only_isr": 0.830,
+          "components": 4.03,
+          "n_proved": 61,
+          "h7_rate": 0.967,
+          "h7_count": 59,
+          "h1_rate": 0,
+          "h1_count": 0,
+          "genuine_rate": 0.033,
+          "genuine_count": 2,
+          "hacking_mode": "conclusion_duplication_isr_inflation"
+        },
+        "s44": {
+          "exp_id": "plan002-additive-b01-s44",
+          "pr": 0.89,
+          "isr": 0.803,
+          "isr_std": 0.342,
+          "proved_only_isr": 0.902,
+          "components": 4.33,
+          "n_proved": 89,
+          "h7_rate": 0.865,
+          "h7_count": 77,
+          "h1_rate": 0,
+          "h1_count": 0,
+          "genuine_rate": 0.135,
+          "genuine_count": 12,
+          "hacking_mode": "conclusion_duplication_isr_inflation"
+        }
+      },
+      "mean_std": {
+        "pr": "0.77±0.14",
+        "isr": "0.55±0.24",
+        "proved_only_isr": "0.716±0.26",
+        "components_mean": 4.65,
+        "h7_rate_mean": 0.664,
+        "genuine_rate_mean": 0.163
+      }
+    },
+    "random_b01": {
+      "seeds": {
+        "s42": {
+          "exp_id": "plan018-additive-random-b01-s42",
+          "pr": 0.79,
+          "isr": 0.104,
+          "isr_std": 0.137,
+          "proved_only_isr": 0.131,
+          "components": 8.46,
+          "n_proved": 79,
+          "h7_rate": 0,
+          "h7_count": 0,
+          "h1_rate": 0.709,
+          "h1_count": 56,
+          "genuine_rate": 0.291,
+          "genuine_count": 23
+        },
+        "s43": {
+          "exp_id": "plan018-additive-random-b01-s43-r2",
+          "pr": 0.88,
+          "isr": 0.051,
+          "proved_only_isr": 0.058,
+          "n_proved": 88,
+          "h7_rate": 0,
+          "h7_count": 0,
+          "h1_rate": 0.932,
+          "h1_count": 82,
+          "genuine_rate": 0.068,
+          "genuine_count": 6,
+          "notes": "isr/proved_only_isr from eval_sta.py (not in registry)"
+        },
+        "s44": {
+          "exp_id": "plan018-additive-random-b01-s44",
+          "pr": 0.89,
+          "isr": 0.062,
+          "isr_std": 0.176,
+          "proved_only_isr": 0.070,
+          "n_proved": 89,
+          "h7_rate": 0,
+          "h7_count": 0,
+          "h1_rate": 0.798,
+          "h1_count": 71,
+          "genuine_rate": 0.202,
+          "genuine_count": 18
+        }
+      },
+      "mean_std": {
+        "pr": "0.85±0.06",
+        "isr": "0.07±0.03",
+        "h1_rate_mean": 0.813,
+        "genuine_rate_mean": 0.187
+      }
+    },
+    "isr_b03": {
+      "exp_id": "plan002-additive-b03-s42",
+      "seeds": ["s42"],
+      "pr": 0.18,
+      "isr": 0.026,
+      "isr_std": 0.074,
+      "proved_only_isr": 0.143,
+      "hacking_mode": "format collapse (classic Goodhart)",
+      "notes": "eval metrics from evidence_tables_d051 (registry has training metrics only)"
+    },
+    "random_b03": {
+      "exp_id": "plan017-additive-random-s42",
+      "seeds": ["s42"],
+      "pr": 0.48,
+      "isr": 0.045,
+      "isr_std": 0.076,
+      "proved_only_isr": 0.094,
+      "components": 9.60,
+      "n_proved": 48,
+      "hacking_mode": "complexity-without-utility"
+    },
+    "convex_random": {
+      "exp_id": "plan013-random-reward-s42-r4",
+      "seeds": ["s42"],
+      "pr": 1.00,
+      "isr": 0.535,
+      "isr_std": 0.128,
+      "proved_only_isr": 0.535,
+      "components": 2.0,
+      "n_proved": 100,
+      "hacking_mode": "P→P tautological (H7=100%)"
+    }
+  },
+  "table2_hacking_taxonomy": {
+    "description": "H7/H1/Genuine distribution per condition per seed. H7=premise identical to conclusion (ISR-inflating). H1=conclusion embedded among multi-step premises (GRPO-universal). Genuine=no conclusion duplication detected.",
+    "conditions": {
+      "sft_baseline": {
+        "s42": { "h7_pct": 0, "h7_count": 0, "h1_pct": 7.1, "h1_count": 1, "genuine_pct": 92.9, "genuine_count": 13, "n_proved": 14 }
+      },
+      "exec_only_500": {
+        "s42": { "h7_pct": 0, "h7_count": 0, "h1_pct": 87.1, "h1_count": 81, "genuine_pct": 12.9, "genuine_count": 12, "n_proved": 93 },
+        "s44": { "h7_pct": 100, "h7_count": 97, "h1_pct": 0, "h1_count": 0, "genuine_pct": 0, "genuine_count": 0, "n_proved": 97, "notes": "tautological collapse" }
+      },
+      "isr_b01": {
+        "s42": { "h7_pct": 16.0, "h7_count": 13, "h1_pct": 51.9, "h1_count": 42, "genuine_pct": 32.1, "genuine_count": 26, "n_proved": 81 },
+        "s43": { "h7_pct": 96.7, "h7_count": 59, "h1_pct": 0, "h1_count": 0, "genuine_pct": 3.3, "genuine_count": 2, "n_proved": 61 },
+        "s44": { "h7_pct": 86.5, "h7_count": 77, "h1_pct": 0, "h1_count": 0, "genuine_pct": 13.5, "genuine_count": 12, "n_proved": 89 }
+      },
+      "random_b01": {
+        "s42": { "h7_pct": 0, "h7_count": 0, "h1_pct": 70.9, "h1_count": 56, "genuine_pct": 29.1, "genuine_count": 23, "n_proved": 79 },
+        "s43": { "h7_pct": 0, "h7_count": 0, "h1_pct": 93.2, "h1_count": 82, "genuine_pct": 6.8, "genuine_count": 6, "n_proved": 88 },
+        "s44": { "h7_pct": 0, "h7_count": 0, "h1_pct": 79.8, "h1_count": 71, "genuine_pct": 20.2, "genuine_count": 18, "n_proved": 89 }
+      },
+      "convex_random": {
+        "s42": { "h7_pct": 100, "h7_count": 100, "h1_pct": 0, "h1_count": 0, "genuine_pct": 0, "genuine_count": 0, "n_proved": 100, "notes": "P→P tautological, classified separately from multi-step H7" }
+      }
+    },
+    "key_findings": {
+      "h7_is_isr_specific": "ISR 3-seed H7 mean = 66.4% (149/231), Random H7 = 0% across all seeds",
+      "h1_is_grpo_universal": "Random H1 = 71-93%, ISR s42 H1 = 52%. Conclusion embedding is general GRPO strategy",
+      "isr_changes_composition_not_total": "Overall hacking rate comparable (ISR s42 67.9% vs Random s42 70.9%), but ISR converts H1 → H7",
+      "sft_near_zero_hacking": "1/14 H1, 0 H7, 92.9% genuine — hacking is RL-specific"
+    }
+  },
+  "claim2_isr_vs_random": {
+    "premise_count_matched": {
+      "isr_genuine_isr": 0.2578,
+      "random_genuine_isr": 0.2434,
+      "ratio": 1.06,
+      "notes": "n_prem >= 3 only, strict normalization. Source: plan012-hacking-taxonomy analysis"
+    },
+    "isr_3seed": {
+      "pr": "0.77±0.14",
+      "isr": "0.55±0.24",
+      "h7_mean": 0.664,
+      "h1_mean": 0.173,
+      "genuine_mean": 0.163
+    },
+    "random_3seed": {
+      "pr": "0.85±0.06",
+      "isr": "0.07±0.03",
+      "h7_mean": 0,
+      "h1_mean": 0.813,
+      "genuine_mean": 0.187
+    }
+  },
+  "prolog_exec_only_3seed": {
+    "seeds": {
+      "s42": {
+        "exp_id": "plan006-prolog-exec-s42",
+        "pr": 0.83,
+        "isr": 0.031,
+        "isr_std": 0.053,
+        "proved_only_isr": 0.037,
+        "n_proved": 83,
+        "h7_rate": 0,
+        "h1_rate": 0
+      },
+      "s43": {
+        "exp_id": "plan006-prolog-exec-s43-r3",
+        "pr": 0.56,
+        "isr": 0.008,
+        "isr_std": 0.022,
+        "proved_only_isr": 0.015,
+        "n_proved": 56
+      },
+      "s44": {
+        "exp_id": "plan006-prolog-exec-s44",
+        "pr": 0.21,
+        "isr": 0.081,
+        "isr_std": 0.234,
+        "proved_only_isr": 0.387,
+        "n_proved": 21,
+        "notes": "lowest PR, highest proved_only_isr — small sample artifact"
+      }
+    },
+    "mean_std": {
+      "pr": "0.53±0.31",
+      "isr": "0.040±0.037",
+      "proved_only_isr": "0.146±0.210"
+    }
+  },
+  "prolog_sta": {
+    "s42": {
+      "exp_id": "plan006-prolog-sta-s42",
+      "pr": 0.50,
+      "isr": 0.500,
+      "proved_only_isr": 1.0,
+      "components": 1.0,
+      "n_proved": 50,
+      "h7_rate": 1.0,
+      "h7_count": 50,
+      "hacking_mode": "100% H7 (single clause = query)"
+    },
+    "s43": "RUNNING",
+    "s44": "RUNNING"
+  },
+  "isr_collapse_trajectory": {
+    "description": "ISR diagnostic trajectory for exec-only s42 across training steps",
+    "steps_100": { "pr": 0.32, "isr": 0.642, "exp_id": "plan003-eval-exec-only-r5", "notes": "eval at 100 steps" },
+    "steps_500": { "pr": 0.93, "isr": 0.123, "exp_id": "plan001-exec-only-s42-r2" },
+    "steps_1000": { "pr": 0.96, "isr": 0.003, "exp_id": "plan016-extended-1000-s42" }
+  }
+}

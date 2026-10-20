@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan012-hacking-taxonomy",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:06:38.613Z",
+    "updated_at": "2026-05-14T09:06:38.613Z"
+  },
+  "timestamp": "2026-05-14T09:06:38.730883+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "exec-only-s43-1000step-r3",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:23:41.408Z",
+    "updated_at": "2026-05-16T23:23:52.668Z",
+    "spec": {
+      "hypothesis": "s43 exec-only 1000-step 恢复轨迹：500-step s43 PR=76% 是否在延长训练后恢复到 s42/s44 水平(~90%), 回答 Reviewer Q1 seed variance 问题",
+      "parent": "plan001-exec-only-s43-1000",
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2 --model_path /root/autodl-tmp/models/Qwen3-4B --no_wandb",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 43
+    }
+  },
+  "timestamp": "2026-05-16T23:23:53.204054+00:00",
+  "trigger": "update_registry"
+}

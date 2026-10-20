@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_sva_gpt2_k3_topk",
+  "project": "min_necessary_circuit_css",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:01:43.125Z",
+    "updated_at": "2026-05-13T07:01:43.125Z"
+  },
+  "timestamp": "2026-05-13T07:01:43.141214+00:00",
+  "trigger": "update_registry"
+}

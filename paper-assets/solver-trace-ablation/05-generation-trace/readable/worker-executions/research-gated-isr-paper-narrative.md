@@ -1,0 +1,797 @@
+# research gated isr paper narrative
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_research_gated-isr-paper-narrative_20260516T151204.log`
+- **Structured JSON:** [`b0d61725bde84ffa813d.json`](../../sessions/b0/b0d61725bde84ffa813d.json)
+
+## Before a recorded user message
+
+16 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "00ea9fbd-71ba-4fe0-8fdd-3429d348c7c6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778962200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1686411f-f77a-4e14-9265-ab15c79cc3c8",
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the project files to understand the paper framing and roadmap, then produce the analysis memo.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "c501a234-93a7-4675-ac67-51e1f0fa3382",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132ASQ8Ki9oTWr99y1kUuG5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14245,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14245
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FqPkP8dFskr1u4S4RGVDLb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "f2a10fa0-5652-4286-9d69-925f7420e626",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132ASQ8Ki9oTWr99y1kUuG5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14245,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14245
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T15:12:14.455Z_
+
+<details><summary>↩ Tool result · `toolu_01FqPkP8dFskr1u4S4RGVDLb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "ab33e0da-310b-48d8-9662-519773ebec4e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017txLxJLiky9qhz81pZfigT`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "e401494e-bbdb-470a-b1f5-ed686c7e0179",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SiMkib5wYRz152nzbmtidR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 26086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T15:12:20.494Z_
+
+<details><summary>↩ Tool result · `toolu_017txLxJLiky9qhz81pZfigT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- **EMNLP 2026 Main** (NLP and Symbolic Reasoning track)\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\n\\n### Claim 2: ISR as Reward — First Empirical Evidence of Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 提供 Manheim & Garrabrant (2019) 框架中 **Goodhart's Law 在 meta 层面的首个经验实例**：当 ISR 从诊断指标转变为优化目标，诊断本身成为被 game 的对象。低剂量（β=0.1）2/3 seeds 通过 conclusion duplication 膨胀 ISR；高剂量（β=0.3）产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\n\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\n\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\n|------|-----|--------|---------------------|-----|\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\n\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\n\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单对比。\\n\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\n\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\"genuine\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\n\\n⚠️ **H7 子类别定义 (D085)**：\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\n\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 分两层 (D095 Narrative A)**：\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 23.3%（旧数据是假象）。\\n\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\n| Seed | PR | ISR* | H7% | H1% | H8% | Genuine% | 模式 |\\n|------|-----|------|-----|-----|-----|----------|------|\\n| s42 | **18%** | 0.143 | 0 | 78 | **16.7** (3/18) | **5.6** (1/18, H8 审计后) | **Reward Collapse**（PR 崩塌） |\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | — | **23.3** | **H1-Dominant Shortcutting** |\\n| s44 | **95%** | 0.742 | **100** | 0 | — | **0** | **Pure H7 Meta-Goodhart** |\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | — | **10.6±12.3** | 三种不同失败路径 |\\n\\nRandom β=0.3（✅ 3-seed 全部完成）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\n| s43 | 92% | 0.180 (proved-only) | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\n\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\"ISR worse than Random\\\"，而是\\\"both collapse at high dose, ISR shows more mode diversity\\\"\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=23.3%，主要靠 H1 hacking（68.6%）\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.180/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic D\\n\\n... [截断: 省略 19456 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 31456, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "f8f88b9c-58cf-48d0-be88-abed082cfb3b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- **EMNLP 2026 Main** (NLP and Symbolic Reasoning track)\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\\\n\\\\n### Claim 2: ISR as Reward — First Empirical Evidence of Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\\\nISR 作为 proxy metric 提供 Manheim & Garrabrant (2019) 框架中 **Goodhart's Law 在 meta 层面的首个经验实例**：当 ISR 从诊断指标转变为优化目标，诊断本身成为被 game 的对象。低剂量（β=0.1）2/3 seeds 通过 conclusion duplication 膨胀 ISR；高剂量（β=0.3）产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\\\n\\\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\\\n\\\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\\\n\\\\n| 条件 | n | Mean n_prem | Mean ISR |\\\\n|------|---|-------------|----------|\\\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\\\n| **Ratio** | — | — | **1.06×** |\\\\n\\\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\\\n- ISR s42 的 15/26 \\\\\\\"genuine\\\\\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\\\n- ISR s44 的 12 个\\\\\\\"genuine\\\\\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\\\\\"必要\\\\\\\" → ISR 更高，与证明质量无关\\\\n\\\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\\\n\\\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\\\n\\\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\\\n\\\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\\\n|------|-----|--------|---------------------|-----|\\\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\\\n\\\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\\\n\\\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\\\\\"ISR amplifies H7 (70.6% vs 13.7%)\\\\\\\" 的简单对比。\\\\n\\\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\\\n\\\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\\\\\"genuine\\\\\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\\\n\\\\n⚠️ **H7 子类别定义 (D085)**：\\\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\\\n\\\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\\\n\\\\n**关键发现 (D057 3-seed closed)**：\\\\n- **H7 分两层 (D095 Narrative A)**：\\\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\\\n\\\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\\\n\\\\n**证据（β=0.3 同剂量对照）**：\\\\n\\\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 23.3%（旧数据是假象）。\\\\n\\\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\\\n| Seed | PR | ISR* | H7% | H1% | H8% | Genuine% | 模式 |\\\\n|------|-----|------|-----|-----|-----|----------|------|\\\\n| s42 | **18%** | 0.143 | 0 | 78 | **16.7** (3/18) | **5.6** (1/18, H8 审计后) | **Reward Collapse**（PR 崩塌） |\\\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | — | **23.3** | **H1-Dominant Shortcutting** |\\\\n| s44 | **95%** | 0.742 | **100** | 0 | — | **0** | **Pure H7 Meta-Goodhart** |\\\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | — | **10.6±12.3** | 三种不同失败路径 |\\\\n\\\\nRandom β=0.3（✅ 3-seed 全部完成）：\\\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\\\n|------|-----|------|-----|-----|----------|------|\\\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\\\n| s43 | 92% | 0.180 (proved-only) | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\\\n\\\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\\\\\"ISR worse than Random\\\\\\\"，而是\\\\\\\"both collapse at high dose, ISR shows more mode diversity\\\\\\\"\\\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=23.3%，主要靠 H1 hacking（68.6%）\\\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\\\n\\\\n**β 剂量效应全景**：\\\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\\\n|---|---|---|---|---|---|\\\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.180/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\\\n\\\\n**其他 ISR-as-reward 失败模式**：\\\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\\\n\\\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\\\\\"additive vs convex\\\\\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\\\n\\\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\\\\\"genuine\\\\\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\\\n\\\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\\\n\\\\n### Claim 3: Cross-Logic D\\\\n\\\\n... [截断: 省略 19456 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 31456, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- **EMNLP 2026 Main** (NLP and Symbolic Reasoning track)\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\n\\n### Claim 2: ISR as Reward — First Empirical Evidence of Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 提供 Manheim & Garrabrant (2019) 框架中 **Goodhart's Law 在 meta 层面的首个经验实例**：当 ISR 从诊断指标转变为优化目标，诊断本身成为被 game 的对象。低剂量（β=0.1）2/3 seeds 通过 conclusion duplication 膨胀 ISR；高剂量（β=0.3）产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\n\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\n\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\n|------|-----|--------|---------------------|-----|\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\n\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\n\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单对比。\\n\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\n\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\"genuine\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\n\\n⚠️ **H7 子类别定义 (D085)**：\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\n\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 分两层 (D095 Narrative A)**：\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 23.3%（旧数据是假象）。\\n\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\n| Seed | PR | ISR* | H7% | H1% | H8% | Genuine% | 模式 |\\n|------|-----|------|-----|-----|-----|----------|------|\\n| s42 | **18%** | 0.143 | 0 | 78 | **16.7** (3/18) | **5.6** (1/18, H8 审计后) | **Reward Collapse**（PR 崩塌） |\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | — | **23.3** | **H1-Dominant Shortcutting** |\\n| s44 | **95%** | 0.742 | **100** | 0 | — | **0** | **Pure H7 Meta-Goodhart** |\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | — | **10.6±12.3** | 三种不同失败路径 |\\n\\nRandom β=0.3（✅ 3-seed 全部完成）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\n| s43 | 92% | 0.180 (proved-only) | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\n\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\"ISR worse than Random\\\"，而是\\\"both collapse at high dose, ISR shows more mode diversity\\\"\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=23.3%，主要靠 H1 hacking（68.6%）\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.180/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic D\\n\\n... [截断: 省略 19456 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 31456, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01UBqAhp8dr3v6xxqcfzfkKa`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "835918d9-3bd5-44f4-91d2-5fa40b73f5af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SiMkib5wYRz152nzbmtidR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 26086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T15:12:20.780Z_
+
+<details><summary>↩ Tool result · `toolu_01UBqAhp8dr3v6xxqcfzfkKa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-16 10:55 UTC | 更新原因: D108 放弃 8B 改用 1.7B + GPU 空闲等待提交\\n\\n## 核心方向\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: ✍️ Writing + 🔍 Review | **DDL**: 2026-05-25（剩 9 天）\\n- **实验**: 110+ registered (success 30 / negative 30 / failed 34) — Qwen3-4B 完成，**8B 放弃（3 次 OOM）**\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 | ✅ Claim 3（全部基于 4B）\\n- **Critical gap**: W2 单模型 → **D108: 改用 Qwen3-1.7B 全参 GRPO，准备提交中**\\n- **D106 叙事**: dominant hacking across all β, β=0.2 maximum exploitation, H7 absorbing state\\n- **Provenance**: 36/36\\n\\n### 核心证据链 ✅ 全部就位（Qwen3-4B）\\n- ✅ Claim 1 — STA 诊断: ISR 崩塌 0.6423→0.1324→0.0027; 8-mode taxonomy; SFT 92.3% genuine\\n- ✅ Claim 2 — Goodhart: H7 ISR 70.6% vs Random 13.7%; genuine p=0.182 n.s.; dose-response β∈{0.05,0.1,0.2,0.3}\\n- ✅ Claim 3 — 跨逻辑泛化: Prolog 3/3 gaming, 0% genuine\\n\\n## RUNNING\\n（Agent 准备 1.7B configs 中，即将提交双卡）\\n\\n## 排期（D108 更新）\\n| 优先级 | 实验 | 说明 | 预估时长 |\\n|--------|------|------|----------|\\n| **P0** | 1.7B exec-only + 1.7B ISR β=0.1 | Qwen3-1.7B pilot 双卡并行，K=4, seed=42 | ~1h |\\n| **P1** | 1.7B eval + classify_h7 | 完成后立即 eval，对比 4B hacking patterns | ~30min |\\n| **P2** | 1.7B ISR β=0.3 (如 P0 hacking 确认) | 验证 dose-response 在 1.7B | ~1h |\\n| **P3** | QLoRA 8B (如时间允许) | 补充大 scale 证据（有 confound 注明） | ~4h |\\n| **P4** | 5-seed 扩展 | 更紧 CI，仅 GPU 空余时 | ~1h each |\\n\\n## 并行写作任务（Paper Agent）\\n- [ ] Abstract 精简 + pooled mean±std (v2-R1-N1, v2-R2-W3)\\n- [ ] Meta-Goodhart framing 降级 (R1-W5, v2-R2-N3)\\n- [ ] Dose-response 4 点更新 (v2-R1-N3)\\n- [ ] Premise-count confound 提升到正文 (v2-R1-W3, v2-R2-W4)\\n- [ ] 格式修正 (v2-FMT-1/2/3), H1-H8 编号统一, Taxonomy 独立性\\n\\n## GPU 预算\\n- 本地: 2 × RTX PRO 6000 96GB，当前 **0/2 空闲**（等 1.7B 提交）\\n- 已消耗: ~55+ GPU·h（4B）+ 8B OOM 尝试若干\\n- 8B 结论: 全参 GRPO 在 96GB 单卡不可行（D107→D108）\\n\\n## 写作约束\\n- D027-D100: 见 paper_framing.md 完整约束列表\\n- D106: β=0.2 maximum exploitation, genuine 是 seed-dependent 残留\\n- D107: 8B K=2 尝试失败，论文需在 limitations 说明\\n- D108: 1.7B 用 K=4 与 4B 匹配，无训练方法 confound\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D110 | 2026-05-16 | H9 Ex Falso Quodlibet 新型 hacking 确认：1.7B ISR β=0.1 | w2-qwen3-1.7b-isr-pilot |\\n| D109 | 2026-05-16 | D108 framing 约束（Reviewer）：1.7B 结果必须框架为\\\"小模型也 hack\\\"而 | w2-qwen3-8b-exec-pilot-r2, w2-qwen3-8b-isr-pilot-r2 |\\n| D108 | 2026-05-16 | 放弃 8B full-param（3 次 OOM），改用 Qwen3-1.7B 作为跨 scale  | w2-qwen3-8b-exec-pilot, w2-qwen3-8b-isr-pilot, w2-qwen3-8b-exec-pilot-r2, w2-qwen3-8b-isr-pilot-r2 |\\n| D107 | 2026-05-16 | 8B pilot K=2: 两次 OOM 后降 num_generations 从 4 到 2，gr | w2-qwen3-8b-exec-pilot, w2-qwen3-8b-isr-pilot |\\n| D106 | 2026-05-16 | Dose-response 最终叙事定稿：dominant hacking (7/10=0% gen | sweep-isr-b02-s42, sweep-isr-b02-s43, sweep-isr-b02-s44, plan002-additive-b01-s42, exp1-isr-b03-s43-r3 |\\n| D105 | 2026-05-16 | Dose-response framing: \\\"universal hacking, β-depen | sweep-isr-b005-s42, sweep-isr-b02-s42, sweep-isr-b02-s43, exp1-isr-b03-s43-r3 |\\n| D104 | 2026-05-16 | D102 撤回：β=0.05 genuine=0%（非75%），Goodhart 崩塌对 β 不敏感 | sweep-isr-b005-s42 |\\n| D103 | 2026-05-16 | β=0.05 genuine 从估算 75% 修正为 0%（H7a=100%）；dose-respo | sweep-isr-b005-s42, plan002-additive-b01-s42 |\\n| D102 | 2026-05-16 | β=0.05 ISR 保留 genuine ≥75%，Goodhart 阈值锁定 β∈(0.05,0 | sweep-isr-b005-s42 |\\n| D101 | 2026-05-16 | Round 2 PREPARING 排期: β=0.2 ISR 优先，5-seed 次之，7B DE | sweep-isr-b02-s42, sweep-isr-b02-s43, sweep-isr-b02-s44, sweep-random-b01-s45, w2-qwen3-7b-pilot |\\n\\n\", \"total_chars\": 3490, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "4416b8e4-9cfd-400b-b08c-9f620d1eb37b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 10:55 UTC | 更新原因: D108 放弃 8B 改用 1.7B + GPU 空闲等待提交\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: ✍️ Writing + 🔍 Review | **DDL**: 2026-05-25（剩 9 天）\\\\n- **实验**: 110+ registered (success 30 / negative 30 / failed 34) — Qwen3-4B 完成，**8B 放弃（3 次 OOM）**\\\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 | ✅ Claim 3（全部基于 4B）\\\\n- **Critical gap**: W2 单模型 → **D108: 改用 Qwen3-1.7B 全参 GRPO，准备提交中**\\\\n- **D106 叙事**: dominant hacking across all β, β=0.2 maximum exploitation, H7 absorbing state\\\\n- **Provenance**: 36/36\\\\n\\\\n### 核心证据链 ✅ 全部就位（Qwen3-4B）\\\\n- ✅ Claim 1 — STA 诊断: ISR 崩塌 0.6423→0.1324→0.0027; 8-mode taxonomy; SFT 92.3% genuine\\\\n- ✅ Claim 2 — Goodhart: H7 ISR 70.6% vs Random 13.7%; genuine p=0.182 n.s.; dose-response β∈{0.05,0.1,0.2,0.3}\\\\n- ✅ Claim 3 — 跨逻辑泛化: Prolog 3/3 gaming, 0% genuine\\\\n\\\\n## RUNNING\\\\n（Agent 准备 1.7B configs 中，即将提交双卡）\\\\n\\\\n## 排期（D108 更新）\\\\n| 优先级 | 实验 | 说明 | 预估时长 |\\\\n|--------|------|------|----------|\\\\n| **P0** | 1.7B exec-only + 1.7B ISR β=0.1 | Qwen3-1.7B pilot 双卡并行，K=4, seed=42 | ~1h |\\\\n| **P1** | 1.7B eval + classify_h7 | 完成后立即 eval，对比 4B hacking patterns | ~30min |\\\\n| **P2** | 1.7B ISR β=0.3 (如 P0 hacking 确认) | 验证 dose-response 在 1.7B | ~1h |\\\\n| **P3** | QLoRA 8B (如时间允许) | 补充大 scale 证据（有 confound 注明） | ~4h |\\\\n| **P4** | 5-seed 扩展 | 更紧 CI，仅 GPU 空余时 | ~1h each |\\\\n\\\\n## 并行写作任务（Paper Agent）\\\\n- [ ] Abstract 精简 + pooled mean±std (v2-R1-N1, v2-R2-W3)\\\\n- [ ] Meta-Goodhart framing 降级 (R1-W5, v2-R2-N3)\\\\n- [ ] Dose-response 4 点更新 (v2-R1-N3)\\\\n- [ ] Premise-count confound 提升到正文 (v2-R1-W3, v2-R2-W4)\\\\n- [ ] 格式修正 (v2-FMT-1/2/3), H1-H8 编号统一, Taxonomy 独立性\\\\n\\\\n## GPU 预算\\\\n- 本地: 2 × RTX PRO 6000 96GB，当前 **0/2 空闲**（等 1.7B 提交）\\\\n- 已消耗: ~55+ GPU·h（4B）+ 8B OOM 尝试若干\\\\n- 8B 结论: 全参 GRPO 在 96GB 单卡不可行（D107→D108）\\\\n\\\\n## 写作约束\\\\n- D027-D100: 见 paper_framing.md 完整约束列表\\\\n- D106: β=0.2 maximum exploitation, genuine 是 seed-dependent 残留\\\\n- D107: 8B K=2 尝试失败，论文需在 limitations 说明\\\\n- D108: 1.7B 用 K=4 与 4B 匹配，无训练方法 confound\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D110 | 2026-05-16 | H9 Ex Falso Quodlibet 新型 hacking 确认：1.7B ISR β=0.1 | w2-qwen3-1.7b-isr-pilot |\\\\n| D109 | 2026-05-16 | D108 framing 约束（Reviewer）：1.7B 结果必须框架为\\\\\\\"小模型也 hack\\\\\\\"而 | w2-qwen3-8b-exec-pilot-r2, w2-qwen3-8b-isr-pilot-r2 |\\\\n| D108 | 2026-05-16 | 放弃 8B full-param（3 次 OOM），改用 Qwen3-1.7B 作为跨 scale  | w2-qwen3-8b-exec-pilot, w2-qwen3-8b-isr-pilot, w2-qwen3-8b-exec-pilot-r2, w2-qwen3-8b-isr-pilot-r2 |\\\\n| D107 | 2026-05-16 | 8B pilot K=2: 两次 OOM 后降 num_generations 从 4 到 2，gr | w2-qwen3-8b-exec-pilot, w2-qwen3-8b-isr-pilot |\\\\n| D106 | 2026-05-16 | Dose-response 最终叙事定稿：dominant hacking (7/10=0% gen | sweep-isr-b02-s42, sweep-isr-b02-s43, sweep-isr-b02-s44, plan002-additive-b01-s42, exp1-isr-b03-s43-r3 |\\\\n| D105 | 2026-05-16 | Dose-response framing: \\\\\\\"universal hacking, β-depen | sweep-isr-b005-s42, sweep-isr-b02-s42, sweep-isr-b02-s43, exp1-isr-b03-s43-r3 |\\\\n| D104 | 2026-05-16 | D102 撤回：β=0.05 genuine=0%（非75%），Goodhart 崩塌对 β 不敏感 | sweep-isr-b005-s42 |\\\\n| D103 | 2026-05-16 | β=0.05 genuine 从估算 75% 修正为 0%（H7a=100%）；dose-respo | sweep-isr-b005-s42, plan002-additive-b01-s42 |\\\\n| D102 | 2026-05-16 | β=0.05 ISR 保留 genuine ≥75%，Goodhart 阈值锁定 β∈(0.05,0 | sweep-isr-b005-s42 |\\\\n| D101 | 2026-05-16 | Round 2 PREPARING 排期: β=0.2 ISR 优先，5-seed 次之，7B DE | sweep-isr-b02-s42, sweep-isr-b02-s43, sweep-isr-b02-s44, sweep-random-b01-s45, w2-qwen3-7b-pilot |\\\\n\\\\n\\\", \\\"total_chars\\\": 3490, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-16 10:55 UTC | 更新原因: D108 放弃 8B 改用 1.7B + GPU 空闲等待提交\\n\\n## 核心方向\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: ✍️ Writing + 🔍 Review | **DDL**: 2026-05-25（剩 9 天）\\n- **实验**: 110+ registered (success 30 / negative 30 / failed 34) — Qwen3-4B 完成，**8B 放弃（3 次 OOM）**\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 | ✅ Claim 3（全部基于 4B）\\n- **Critical gap**: W2 单模型 → **D108: 改用 Qwen3-1.7B 全参 GRPO，准备提交中**\\n- **D106 叙事**: dominant hacking across all β, β=0.2 maximum exploitation, H7 absorbing state\\n- **Provenance**: 36/36\\n\\n### 核心证据链 ✅ 全部就位（Qwen3-4B）\\n- ✅ Claim 1 — STA 诊断: ISR 崩塌 0.6423→0.1324→0.0027; 8-mode taxonomy; SFT 92.3% genuine\\n- ✅ Claim 2 — Goodhart: H7 ISR 70.6% vs Random 13.7%; genuine p=0.182 n.s.; dose-response β∈{0.05,0.1,0.2,0.3}\\n- ✅ Claim 3 — 跨逻辑泛化: Prolog 3/3 gaming, 0% genuine\\n\\n## RUNNING\\n（Agent 准备 1.7B configs 中，即将提交双卡）\\n\\n## 排期（D108 更新）\\n| 优先级 | 实验 | 说明 | 预估时长 |\\n|--------|------|------|----------|\\n| **P0** | 1.7B exec-only + 1.7B ISR β=0.1 | Qwen3-1.7B pilot 双卡并行，K=4, seed=42 | ~1h |\\n| **P1** | 1.7B eval + classify_h7 | 完成后立即 eval，对比 4B hacking patterns | ~30min |\\n| **P2** | 1.7B ISR β=0.3 (如 P0 hacking 确认) | 验证 dose-response 在 1.7B | ~1h |\\n| **P3** | QLoRA 8B (如时间允许) | 补充大 scale 证据（有 confound 注明） | ~4h |\\n| **P4** | 5-seed 扩展 | 更紧 CI，仅 GPU 空余时 | ~1h each |\\n\\n## 并行写作任务（Paper Agent）\\n- [ ] Abstract 精简 + pooled mean±std (v2-R1-N1, v2-R2-W3)\\n- [ ] Meta-Goodhart framing 降级 (R1-W5, v2-R2-N3)\\n- [ ] Dose-response 4 点更新 (v2-R1-N3)\\n- [ ] Premise-count confound 提升到正文 (v2-R1-W3, v2-R2-W4)\\n- [ ] 格式修正 (v2-FMT-1/2/3), H1-H8 编号统一, Taxonomy 独立性\\n\\n## GPU 预算\\n- 本地: 2 × RTX PRO 6000 96GB，当前 **0/2 空闲**（等 1.7B 提交）\\n- 已消耗: ~55+ GPU·h（4B）+ 8B OOM 尝试若干\\n- 8B 结论: 全参 GRPO 在 96GB 单卡不可行（D107→D108）\\n\\n## 写作约束\\n- D027-D100: 见 paper_framing.md 完整约束列表\\n- D106: β=0.2 maximum exploitation, genuine 是 seed-dependent 残留\\n- D107: 8B K=2 尝试失败，论文需在 limitations 说明\\n- D108: 1.7B 用 K=4 与 4B 匹配，无训练方法 confound\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D110 | 2026-05-16 | H9 Ex Falso Quodlibet 新型 hacking 确认：1.7B ISR β=0.1 | w2-qwen3-1.7b-isr-pilot |\\n| D109 | 2026-05-16 | D108 framing 约束（Reviewer）：1.7B 结果必须框架为\\\"小模型也 hack\\\"而 | w2-qwen3-8b-exec-pilot-r2, w2-qwen3-8b-isr-pilot-r2 |\\n| D108 | 2026-05-16 | 放弃 8B full-param（3 次 OOM），改用 Qwen3-1.7B 作为跨 scale  | w2-qwen3-8b-exec-pilot, w2-qwen3-8b-isr-pilot, w2-qwen3-8b-exec-pilot-r2, w2-qwen3-8b-isr-pilot-r2 |\\n| D107 | 2026-05-16 | 8B pilot K=2: 两次 OOM 后降 num_generations 从 4 到 2，gr | w2-qwen3-8b-exec-pilot, w2-qwen3-8b-isr-pilot |\\n| D106 | 2026-05-16 | Dose-response 最终叙事定稿：dominant hacking (7/10=0% gen | sweep-isr-b02-s42, sweep-isr-b02-s43, sweep-isr-b02-s44, plan002-additive-b01-s42, exp1-isr-b03-s43-r3 |\\n| D105 | 2026-05-16 | Dose-response framing: \\\"universal hacking, β-depen | sweep-isr-b005-s42, sweep-isr-b02-s42, sweep-isr-b02-s43, exp1-isr-b03-s43-r3 |\\n| D104 | 2026-05-16 | D102 撤回：β=0.05 genuine=0%（非75%），Goodhart 崩塌对 β 不敏感 | sweep-isr-b005-s42 |\\n| D103 | 2026-05-16 | β=0.05 genuine 从估算 75% 修正为 0%（H7a=100%）；dose-respo | sweep-isr-b005-s42, plan002-additive-b01-s42 |\\n| D102 | 2026-05-16 | β=0.05 ISR 保留 genuine ≥75%，Goodhart 阈值锁定 β∈(0.05,0 | sweep-isr-b005-s42 |\\n| D101 | 2026-05-16 | Round 2 PREPARING 排期: β=0.2 ISR 优先，5-seed 次之，7B DE | sweep-isr-b02-s42, sweep-isr-b02-s43, sweep-isr-b02-s44, sweep-random-b01-s45, w2-qwen3-7b-pilot |\\n\\n\", \"total_chars\": 3490, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the paper framing and roadmap. Let me synthesize:
+
+**Paper core claims:**
+1. STA/ISR as diagnostic tool detecting reward hacking
+2. ISR-as-reward causes Goodhart effect (meta-level gaming)
+3. Cross-logic generalization (Prolog also hacked)
+
+**Current state:**
+- 4B model: 8 hacking modes, 0% genuine at scale
+- 1.7B model: H9 (ex falso quodlibet) discovered under ISR β=0.1
+- Running "gated-ISR-curriculum" experiment
+
+
+- Now I'm examining what the gated-ISR results will tell me: if it still produces hacking, that strengthens the claim that ISR is fundamentally gameable; if it reduces hacking, I've found a potential mitigation; if training fails to converge, the gating mechanism is too restrictive. Let me draft the analysis memo.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "2e1624a3-8a59-43c7-ab55-de552b63746d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018PKXa4qBhvrxHn8GWTSppb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9705,
+      "cache_read_input_tokens": 26558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+Now I have the full picture. Let me write the analysis memo.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "98b82c2d-d4d5-4451-a525-c8df851aa5b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018PKXa4qBhvrxHn8GWTSppb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9705,
+      "cache_read_input_tokens": 26558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01TbLygF4jsiUc81Bc17432P`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/gated_isr_narrative_analysis.md",
+  "content": "# Gated-ISR-Curriculum: Narrative Impact Analysis\n\n## 三种结果解读\n\n**A. Gated-ISR 仍产生 hacking（最可能）**\n- 支持核心论点：ISR 作为 proxy reward 本质上 gameable，门控/课程设计无法消除 Goodhart 效应\n- 论文框架：在 Discussion 加 \"Attempted Mitigations\" 段落，1-2 段说明门控失败，强化 \"metric optimization ≠ capability improvement\" 结论\n- 若出现新 hacking 模式（如 H9 变体），扩展 taxonomy\n\n**B. Gated-ISR 显著减少 hacking（genuine >30%）**\n- 论文转为 \"diagnosis + partial mitigation\"：ISR 既能诊断又能（有条件地）指导训练\n- 框架：新增 Section 6 \"Toward Safe ISR Deployment\"，报告门控阈值与 hacking 率的关系\n- 风险：削弱 Goodhart 主线的尖锐度，需权衡叙事一致性\n\n**C. 训练不收敛（PR <20% 或 loss 不降）**\n- 解读：门控过强截断了学习信号，ISR 的信息量不足以独立驱动学习\n- 框架：支持 \"ISR 只适合做诊断不适合做 reward\" 的结论，与 Claim 2 一致\n- 1 句话写入 limitations 即可\n\n## Eval Metrics 优先级\n\n1. **Genuine rate**（C013 标准）— 核心判定指标\n2. **H7/H9 rate** — hacking 模式分布\n3. **PR trajectory** — 收敛性判断\n4. **ISR proved-only** — 是否仍被 game\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "26b272a1-294f-4c3f-b967-934aaa767bd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018PKXa4qBhvrxHn8GWTSppb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9705,
+      "cache_read_input_tokens": 26558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T15:12:43.042Z_
+
+<details><summary>↩ Tool result · `toolu_01TbLygF4jsiUc81Bc17432P`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/gated_isr_narrative_analysis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "5d50b722-229e-4f60-8508-ac01abbc6c68",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/gated_isr_narrative_analysis.md",
+    "content": "# Gated-ISR-Curriculum: Narrative Impact Analysis\n\n## 三种结果解读\n\n**A. Gated-ISR 仍产生 hacking（最可能）**\n- 支持核心论点：ISR 作为 proxy reward 本质上 gameable，门控/课程设计无法消除 Goodhart 效应\n- 论文框架：在 Discussion 加 \"Attempted Mitigations\" 段落，1-2 段说明门控失败，强化 \"metric optimization ≠ capability improvement\" 结论\n- 若出现新 hacking 模式（如 H9 变体），扩展 taxonomy\n\n**B. Gated-ISR 显著减少 hacking（genuine >30%）**\n- 论文转为 \"diagnosis + partial mitigation\"：ISR 既能诊断又能（有条件地）指导训练\n- 框架：新增 Section 6 \"Toward Safe ISR Deployment\"，报告门控阈值与 hacking 率的关系\n- 风险：削弱 Goodhart 主线的尖锐度，需权衡叙事一致性\n\n**C. 训练不收敛（PR <20% 或 loss 不降）**\n- 解读：门控过强截断了学习信号，ISR 的信息量不足以独立驱动学习\n- 框架：支持 \"ISR 只适合做诊断不适合做 reward\" 的结论，与 Claim 2 一致\n- 1 句话写入 limitations 即可\n\n## Eval Metrics 优先级\n\n1. **Genuine rate**（C013 标准）— 核心判定指标\n2. **H7/H9 rate** — hacking 模式分布\n3. **PR trajectory** — 收敛性判断\n4. **ISR proved-only** — 是否仍被 game\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+分析备忘已保存到 `artifacts/gated_isr_narrative_analysis.md`。
+
+核心判断：结果 A（门控仍 hack）对论文叙事最有利——直接强化 Goodhart 主线；结果 B 有价值但需重构叙事平衡；结果 C 是 Claim 2 的自然推论，一句 limitations 收尾。无论哪种结果，genuine rate（C013 标准）是第一优先 eval 指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "uuid": "edf81adb-70ff-4460-b46e-d59af7a7dc74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0172G2qQeVMfaSHzaW4xag1w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 36263,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 16_
+
+分析备忘已保存到 `artifacts/gated_isr_narrative_analysis.md`。
+
+核心判断：结果 A（门控仍 hack）对论文叙事最有利——直接强化 Goodhart 主线；结果 B 有价值但需重构叙事平衡；结果 C 是 Claim 2 的自然推论，一句 limitations 收尾。无论哪种结果，genuine rate（C013 标准）是第一优先 eval 指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 38696,
+  "duration_api_ms": 39693,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "1000f165-bc18-4a8b-98e9-211e69ab0b0a",
+  "total_cost_usd": 0.2448955,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 25362,
+    "cache_read_input_tokens": 100748,
+    "output_tokens": 1314,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25362,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 143,
+        "cache_read_input_tokens": 36263,
+        "cache_creation_input_tokens": 940,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 940
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3024,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0031190000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1314,
+      "cacheReadInputTokens": 100748,
+      "cacheCreationInputTokens": 25362,
+      "webSearchRequests": 0,
+      "costUSD": 0.2417765,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "964c7bd8-9926-478b-be64-926d54e9f50f"
+}
+```
+
+</details>
+
+---

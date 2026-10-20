@@ -1,0 +1,1316 @@
+# cron hook exp1 isr b03 s44
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/cron_hook_exp1-isr-b03-s44.jsonl`
+- **Structured JSON:** [`92e7db361c559ff310ca.json`](../../sessions/92/92e7db361c559ff310ca.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T02:27:00.181161+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #10。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单只有 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止用其他 GPU
+- 所有训练命令必须 `bash -c "export CUDA_VISIBLE_DEVICES=N && ..."` 格式，GPU 编号从 0 开始
+- kill_job 只杀 tmux wrapper 不杀 Python 子进程——kill 后必须 `check_job_status(pid=子进程PID)` 验证真死了，否则会 OOM 后续实验（本 session 刚踩过）
+- 数据约束 C001：所有 EXP-1 实验统一用 `train_500_seed42.jsonl`
+- 磁盘 240G/250G (96%)，output_dir 必须放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`
+- update_registry spec 中不要带 `parent` 字段，会触发 eval 验证要求 checkpoint_source/eval_data
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`westd-39279`，账号 `root`，工作目录 `/root/solver-trace-ablation/`
+- Python：`/root/miniconda3/bin/python`，conda env `base`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型：Qwen3-4B（7.6GB，ModelScope 下载）
+- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500 条 FOLIO）
+- Outputs：`/root/autodl-tmp/outputs/`
+- Solvers：Prover9 (LADR 源码编译)、SWI-Prolog 8.4.2 (`/usr/bin/swipl`)、Z3 4.16.0
+- 活跃进程：
+  - `exp1-isr-b03-s44-r2` — PID 10597, tmux=exp1-isr-b03-s44-r2, cuda:0（ISR β=0.3 s44 重试）
+  - `exp1-random-b03-s43` — PID 963653, tmux session 未知, cuda:1（Random β=0.3 s43）
+- Cron 监控：reconcile 确认两个 job 都在跑
+
+### 3. 📊 当前状态
+刚处理 exp1-isr-b03-s44 的失败回调：诊断为 orphan 进程 OOM → 杀 pid 5480/5475 → 重试为 exp1-isr-b03-s44-r2。已更新 registry、发飞书结果卡片、向 Director 汇报。
+
+**RUNNING (2)**：
+- `exp1-isr-b03-s44-r2` — ISR additive β=0.3 seed 44 重试，cuda:0，刚启动
+- `exp1-random-b03-s43` — Random additive β=0.3 seed 43，cuda:1，运行中
+
+**PREPARING (1)**：
+- `exp1-random-b03-s44` — Random β=0.3 seed 44，等 GPU 空闲
+
+**等待**：两个 cron 回调（exp1-isr-b03-s44-r2 完成 + exp1-random-b03-s43 完成）。无 Worker 回调、无 Director 决策等待。
+
+### 4. 📋 待办
+- exp1-random-b03-s43 cron 完成回调 → on-experiment-done 流程 → cuda:1 空出后提交 exp1-random-b03-s44
+- exp1-isr-b03-s44-r2 cron 完成回调 → on-experiment-done 流程 → 如果 exp1-random-b03-s44 还没提交，可用 cuda:0
+- 两个 β=0.3 三 seed 组（ISR s42/s43/s44 + Random s42/s43/s44）全部完成 → 汇总 Table 1 三 seed 统计 → 向 Director 汇报
+- 论文写作 Workers（Method + Experiments）可能还在进行中——boot 后检查 worker 状态
+- 磁盘 96% → 实验完成后清理旧 checkpoint（`/root/autodl-tmp/outputs/` 下已完成实验的目录）
+
+### 5. 🎯 战略上下文
+**项目阶段**：Writing + 补充实验。DDL 2026-05-25（剩 11 天）。50 个核心实验已完成，3 条 Claim 全部闭环。当前 EXP-1 系列是 β=0.3 的 3-seed 统计补充（Table 1 用）。
+
+**核心结论链**：
+- D051: ISR-as-reward 完全失败。Premise-count-matched 后 ISR vs Random = 1.06x 无差异
+- D057: Claim 2 闭环——Random β=0.1 3-seed H7=0%，ISR H7=16%（ISR-specific gaming）
+- D059: Claim 3 闭环——Prolog STA 3/3 seeds Goodhart，0% genuine，3 种不同 gaming pathway
+
+**易错点**：
+- exp1-isr-b03-s43 的 conclusion=success 但实际是 EXIT_CODE=129 tmux 误报——checkpoint 完整可用，不要重训
+- Prolog s44 PR=0.97 ISR=0.885 看似成功实为 query-as-fact gaming——strict classifier 有盲区，必须交叉验证 n_necessary
+- Raw ISR 对比不可信（D051），论文中所有 ISR 对比必须 premise-count-matched
+- Hacking taxonomy 是 7 种（含第 7 种 query-as-fact），不是 6 种
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息 (2026-05-13)
+
+### westd-39279 服务器
+- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张
+- **CUDA**: 12.8, PyTorch 2.10.0+cu128
+- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **ML 栈**: transformers/trl/vllm/accelerate 全部预装
+- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0
+- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）
+- **代码路径**: `/root/solver-trace-ablation/`
+- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (清理后 ~131G free)
+
+### 决策记录
+- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）
+- Prover9 从 LADR 源码编译（apt 无包）
+- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力
+
+## GPU 隔离教训
+
+### C002: 所有命令必须 `export CUDA_VISIBLE_DEVICES=N`
+- 必须在 `bash -c` 内部 export
+- submit_training_job 命令格式: `bash -c "export CUDA_VISIBLE_DEVICES=N && ..."`
+
+### kill_job 子进程未清理教训 (2026-05-14)
+- kill_job 只杀 tmux wrapper PID，不杀 Python 训练子进程
+- 教训: kill_job 后必须 SSH 验证所有子进程已终止
+
+### 磁盘
+- **C003 约束**: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`
+- 磁盘爆满事故教训：eval 后立即清理 checkpoint
+- **当前状态** (2026-05-15): 240G/250G (96%)，Worker A 正在清理
+
+## 可查的历史
+前 145 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T02:27:21.316949+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T02:27:21.367546+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T02:27:23.679941+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T02:27:24.382534+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T02:27:24.386781+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp1-random-b03-s44-r2\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-15T00:42:02.173Z\", \"updated_at\": \"2026-05-15T02:26:27.676Z\"}, \"exp1-isr-b03-s43-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:02:10.292Z\", \"updated_at\": \"2026-05-15T02:14:30.087Z\", \"conclusion\": \"success\", \"notes\": \"Training completed 500/500 steps in 69min. Final stats: prove_rate=0.56125, mean_isr=0.1515, parse_rate=1.0. Checkpoint saved at checkpoint-500.\", \"metrics\": {\"final_step\": 500, \"prove_rate\": 0.56125, \"mean_isr\": 0.1515, \"parse_rate\": 1, \"train_loss\": 0.0176, \"train_runtime_sec\": 4153.6, \"epoch\": 2}}, \"plan017-additive-random-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:11:14.694Z\", \"updated_at\": \"2026-05-15T02:10:30.226Z\", \"hypothesis\": \"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\", \"parent\": \"plan013-random-reward-s42-r4\", \"conclusion\": \"negative\", \"notes\": \"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\", \"metrics\": {\"eval_prove_rate\": 0.48, \"eval_mean_isr\": 0.0453, \"eval_isr_std\": 0.0759, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2857, \"eval_proved_only_isr\": 0.0943, \"eval_n_proved\": 48, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 9.6, \"eval_component_count_2_ratio\": 0, \"tautological_collapse\": false, \"h7_rate\": 0, \"h7_count\"
+…[truncated 45713 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 706
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T02:27:24.487672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 105
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T02:27:24.689064+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T02:27:24.790009+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T02:26:31Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 62 个实验 — ANALYZING 1, DONE 59, PREPARING 2\\n**DONE 分布**: failed 20, killed 3, negative 19, success 17\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-39279:cuda:0, westd-39279:cuda:1\\n- **空闲（分配了没跑）**: westd-39279:cuda:0, westd-39279:cuda:1\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp1-isr-b03-s43-r3` [success] — 2026-05-15T02:14:30\\n- `plan017-additive-random-s42` [negative] — 2026-05-15T02:10:30\\n- `exp1-random-b03-s43` [success] — 2026-05-15T01:30:34 — EXIT_CODE=129 (non-zero)\\n- `exp1-isr-b03-s43` [success] — 2026-05-15T01:30:33 — EXIT_CODE=129 (non-zero)\\n- `exp1-isr-b03-s44-r2` [success] — 2026-05-15T01:09:36\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp1-random-b03-s44-r2 | — | — | — | — |\\n\\n## 待处理\\n- exp1-isr-b03-s43-r4（准备中）\\n- plan015-linear-s42（准备中）\\n\\n## 近期结论\\n- **exp1-isr-b03-s43-r3** (success): —\\n- **plan017-additive-random-s42** (negative): Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。 ← 基于 plan013-random-reward-s42-r4\\n  [eval_sta_plan017_additive_random_s42](/api/workspace-files/projects/solver-trace-ablation/artifacts/plan017-additive-random-s42/data/eval_sta_plan017_additive_random_s42.txt)\\n- **exp1-random-b03-s43** (success): —\\n\\n## 趋势\\n成功 17 / 负向 19 / 失败 20 / 共 59\\nmean_isr: 0.1515 ↓（近 3 次 success）\\nparse_rate: 1 →（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，
+…[truncated 1172 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T02:27:24.790568+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T02:27:24.891961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-14 18:41 UTC | 更新原因: Reviewer 修正 s44: genuine→query-as-fact gaming, 3/3 Goodhart; taxonomy 6→7 modes\\n\\n## 核心方向\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: ✍️ Writing（论文写作阶段）+ 🚀 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\n- **实验**: 50 个全部完成（success 12 / negative 18 / failed 18 / killed 2）\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 (D057) | ✅ Claim 3 (D059, Reviewer-corrected: 3/3 gaming)\\n- **GPU**: 2 × RTX PRO 6000 96GB — 当前空闲，待写作期间补充实验需求\\n\\n### 核心证据链\\n- ✅ **Claim 1 — STA 诊断能力**: ISR 崩塌轨迹 0.6423→0.1324→0.0027; 3-seed exec-only 多模式退化; SFT 零 hacking 对照; 7-mode taxonomy\\n- ✅ **Claim 2 — Goodhart / ISR 无结构优势** (D057): H7=0% 全 3 seed random 一致; Random PR 0.85±0.06 > ISR 0.77±0.14; premise-count-matched 1.06x 无差异; β 剂量效应\\n- ✅ **Claim 3 — 跨逻辑泛化** (D059, Reviewer-corrected): Prolog exec-only ISR 崩塌复现; **Prolog STA 3/3 seeds gaming, 0% genuine** — 三种不同 gaming 路径 (conclusion duplication / degenerate syntax / query-as-fact)。s44 PR=0.97 看似成功实为 query-as-fact gaming (functional H7=97.9%)\\n- ✅ Hacking taxonomy: **7 modes** (+query-as-fact), conclusion embedding GRPO-universal (68-100%)\\n- ✅ ISR capability boundary: ISR-NLI ρ=-0.049 n.s., syntactic necessity ≠ semantic faithfulness\\n- ✅ 1000步延伸: PR=0.96, ISR=0.003, 崩塌持续恶化\\n\\n## RUNNING\\n（无）\\n\\n## 近期任务\\n- [x] Claim 1/2/3 全部闭环 (D059)\\n- [x] Paper Agent Full Draft 启动 + s44 修正指令已发\\n- [x] writing_plan.yaml 审批（Director approved, 2026-05-14）\\n- [ ] 论文章节草稿（Method + Experiments Workers 进行中）\\n- [ ] 写作期间补充实验（如 Paper Agent/Reviewer 要求）\\n- [ ] 论文初稿 → submit_paper_to_review\\n\\n## GPU 预算\\n- 本地: 2 × RTX PRO 6000 96GB，当前空闲\\n- 已消耗: ~40+ GPU·h\\n- 剩余: 写作期间 on-demand（补
+…[truncated 1877 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T02:28:31.739349+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__check_job_status",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__check_job_status",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T02:28:31.742032+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "ToolSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T02:28:32.900964+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "memory.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "memory.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T02:28:33.001884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\", \"content\": \"# Memory — solver-trace-ablation\\n\\n## 环境信息 (2026-05-13)\\n\\n### westd-39279 服务器\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\n- **代码路径**: `/root/solver-trace-ablation/`\\n- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (清理后 ~131G free)\\n\\n### 决策记录\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\n- Prover9 从 LADR 源码编译（apt 无包）\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\n\\n## GPU 隔离教训\\n\\n### C002: 所有命令必须 `export CUDA_VISIBLE_DEVICES=N`\\n- 必须在 `bash -c` 内部 export\\n- submit_training_job 命令格式: `bash -c \\\"export CUDA_VISIBLE_DEVICES=N && ...\\\"`\\n\\n### kill_job 子进程未清理教训 (2026-05-14)\\n- kill_job 只杀 tmux wrapper PID，不杀 Python 训练子进程\\n- 教训: kill_job 后必须 SSH 验证所有子进程已终止\\n\\n### 磁盘\\n- **C003 约束**: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\\n- 磁盘爆满事故教训：eval 后立即清理 checkpoint\\n- **当前状态** (2026-05-15): 240G/250G (96%)，Worker A 正在清理\\n\\n## exp1-random-b03-s44 失败教训 (2026-05-15)\\n- 原命令缺少 `bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && ...\\\"` 包装和 conda 激活\\n- 导致进程启动后立即死亡（无 GPU 隔离、无 Python 环境）\\n- 教训：所有 submit_training_job 命令必须完整包含 GPU 隔离 + conda 激活 + cd 到工作目录\\n\\n## β=0.3 ISR 叙事 (D060/D061, 2026-05-15)\\n- 三 seed 形成 multimodal Goodhart instability：s42 PR 崩塌(18%), s43 中等 gaming(91%, genuine 67%), s44 完全 H7 gaming(98%, genuine 0%)\\n- 每个 seed 走不同的 Goodhart pathway，高剂量 ISR 不产生单一失败模式而是放大跨 seed 不稳定性\\n- plan002-additive-b03-s42 的 eval PR=18% 数据来源：eval_sta.py 在 checkpoint 上运行，但 registry 只记录了训练指标（eval 数据直接写入论文）\\n\", \"tot
+…[truncated 77 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T02:28:49.243648+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T02:28:49.294408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T02:29:28.716311+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T02:29:28.767059+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T02:29:43.666465+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'exp_id': 'exp1-isr-b03-s43-r3'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'exp_id': 'exp1-isr-b03-s43-r3'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T02:29:44.170017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2353}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T02:29:44.672548+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'exp_id': 'exp1-random-b03-s44-r2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'exp_id': 'exp1-random-b03-s44-r2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T02:29:45.124341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2227}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T02:29:45.175847+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'exp_id': 'exp1-random-b03-s43'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'exp_id': 'exp1-random-b03-s43'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T02:29:45.429971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2583}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 254
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T02:29:51.719377+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T02:29:52.173841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp1-random-b03-s44-r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:42:02.173Z\", \"updated_at\": \"2026-05-15T02:26:27.676Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.3 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s44_r2\\\"\", \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"pid\": 51297, \"log_path\": \"/root/autodl-tmp/outputs/exp1_random_b03_s44_r2/reward_log.jsonl\", \"submitted_at\": \"2026-05-15T00:42:39.447Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 44, \"hypothesis\": \"β=0.3 random s44 retry: supplement for 3-seed statistics in Table 1\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * random[0,1])\", \"plan_id\": \"EXP-1\", \"parent\": \"exp1-random-b03-s44\", \"output_dir\": \"/root/autodl-tmp/outputs/exp1_random_b03_s44_r2\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp1_random_b03_s44_r2\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:26:26.919Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:26:39.221668+00:00\"}]}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2457}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T02:29:52.324808+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "limit": "5",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "limit": "5",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T02:29:52.578511+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp1-random-b03-s44-r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:42:02.173Z\", \"updated_at\": \"2026-05-15T02:26:27.676Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.3 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s44_r2\\\"\", \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"pid\": 51297, \"log_path\": \"/root/autodl-tmp/outputs/exp1_random_b03_s44_r2/reward_log.jsonl\", \"submitted_at\": \"2026-05-15T00:42:39.447Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 44, \"hypothesis\": \"β=0.3 random s44 retry: supplement for 3-seed statistics in Table 1\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * random[0,1])\", \"plan_id\": \"EXP-1\", \"parent\": \"exp1-random-b03-s44\", \"output_dir\": \"/root/autodl-tmp/outputs/exp1_random_b03_s44_r2\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp1_random_b03_s44_r2\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:26:26.919Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:26:39.221668+00:00\"}]}}, \"exp1-isr-b03-s43-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:02:10.292Z\", \"updated_at\": \"2026-05-15T02:14:30.087Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_add
+…[truncated 9136 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 253
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T02:30:54.859595+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp1-random-b03-s43-r2",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "solver-trace-ablation",
+  "spec": "{'data_path': 'data/train_500_seed42.jsonl', 'data_count': 500, 'model_name': 'Qwen3-4B', 'seed': 43, 'hypothesis': 'β=0.3 random s43 retrain: original checkpoint deleted (D062 invalidation). Supplement for 3-seed statistics in Table 1.', 'plan_id': 'EXP-1', 'reward_formula': 'r = r_exec * (1 + 0.3 * random[0,1])', 'num_steps': 500, 'beta': 0.3}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp1-random-b03-s43-r2",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "solver-trace-ablation",
+    "spec": "{'data_path': 'data/train_500_seed42.jsonl', 'data_count': 500, 'model_name': 'Qwen3-4B', 'seed': 43, 'hypothesis': 'β=0.3 random s43 retrain: original checkpoint deleted (D062 invalidation). Supplement for 3-seed statistics in Table 1.', 'plan_id': 'EXP-1', 'reward_formula': 'r = r_exec * (1 + 0.3 * random[0,1])', 'num_steps': 500, 'beta': 0.3}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T02:31:11.614711+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp1-random-b03-s43-r2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T02:30:55.259Z\", \"updated_at\": \"2026-05-15T02:30:55.259Z\", \"spec\": {\"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 43, \"hypothesis\": \"β=0.3 random s43 retrain: original checkpoint deleted (D062 invalidation). Supplement for 3-seed statistics in Table 1.\", \"plan_id\": \"EXP-1\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * random[0,1])\", \"num_steps\": 500, \"beta\": 0.3}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.513}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 16755
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T02:31:11.817333+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "eval:exp1-b03-batch-eval",
+  "project": "solver-trace-ablation",
+  "task_prompt": "## 任务：对两个已完成训练的实验运行 STA eval + H7 分类\n\n### 环境\n- 服务器：westd-39279，账号 root\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码路径：`/root/solver-trace-ablation/`\n- 使用 **cuda:0** 做 eval（cuda:1 将用于训练，不要占用）\n\n### 任务 1：exp1-random-b03-s44-r2 (ANALYZING)\n1. 读训练日志确认完成：`cat /root/autodl-tmp/outputs/exp1_random_b03_s44_r2/reward_log.jsonl | tail -5`，确认跑满 500 步\n2. 确认 checkpoint 存在：`ls /root/autodl-tmp/outputs/exp1_random_b03_s44_r2/checkpoint-500/`\n3. 运行 eval_sta.py：\n```bash\nexport CUDA_VISIBLE_DEVICES=0 && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/exp1_random_b03_s44_r2/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s44_r2.json\n```\n4. 运行 H7 分类：\n```bash\npython3 scripts/classify_h7.py --eval_path /root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s44_r2.json\n```\n5. 读取并汇报所有指标：PR, mean_isr, proved_only_isr, h7_rate, h7_count, h1_rate, h1_count, genuine_rate, genuine_count, component_count_mean\n\n### 任务 2：exp1-isr-b03-s43-r3 (需要 eval)\n1. 确认 checkpoint 存在：`ls /root/autodl-tmp/outputs/exp1_isr_b03_s43_r3/checkpoint-500/`\n2. 运行 eval_sta.py：\n```bash\nexport CUDA_VISIBLE_DEVICES=0 && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/exp1_isr_b03_s43_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json\n```\n3. 运行 H7 分类：\n```bash\npython3 scripts/classify_h7.py --eval_path /root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json\n```\n4. 读取并汇报所有指标\n\n### 执行顺序\n先做任务 1（因为 ANALYZING 优先），完成后做任务 2。两个 eval 都用 cuda:0，**不要同时运行**。\n\n### 磁盘注意\n磁盘 96%（240G/250G）。eval 产出是 JSON 很小。**不要删除任何 checkpoint**——需要等 eval 全部完成且结果录入 registry 后才清理。\n\n### 输出要求\n对每个实验，汇报：\n- 训练日志最后 5 行摘要（步数、PR、ISR、loss）\n- eval 完整指标（上述列表）\n- 明确标注 eval_data = proofwriter_fol_100.jsonl\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:exp1-b03-batch-eval",
+    "project": "solver-trace-ablation",
+    "task_prompt": "## 任务：对两个已完成训练的实验运行 STA eval + H7 分类\n\n### 环境\n- 服务器：westd-39279，账号 root\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码路径：`/root/solver-trace-ablation/`\n- 使用 **cuda:0** 做 eval（cuda:1 将用于训练，不要占用）\n\n### 任务 1：exp1-random-b03-s44-r2 (ANALYZING)\n1. 读训练日志确认完成：`cat /root/autodl-tmp/outputs/exp1_random_b03_s44_r2/reward_log.jsonl | tail -5`，确认跑满 500 步\n2. 确认 checkpoint 存在：`ls /root/autodl-tmp/outputs/exp1_random_b03_s44_r2/checkpoint-500/`\n3. 运行 eval_sta.py：\n```bash\nexport CUDA_VISIBLE_DEVICES=0 && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/exp1_random_b03_s44_r2/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s44_r2.json\n```\n4. 运行 H7 分类：\n```bash\npython3 scripts/classify_h7.py --eval_path /root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s44_r2.json\n```\n5. 读取并汇报所有指标：PR, mean_isr, proved_only_isr, h7_rate, h7_count, h1_rate, h1_count, genuine_rate, genuine_count, component_count_mean\n\n### 任务 2：exp1-isr-b03-s43-r3 (需要 eval)\n1. 确认 checkpoint 存在：`ls /root/autodl-tmp/outputs/exp1_isr_b03_s43_r3/checkpoint-500/`\n2. 运行 eval_sta.py：\n```bash\nexport CUDA_VISIBLE_DEVICES=0 && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/exp1_isr_b03_s43_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json\n```\n3. 运行 H7 分类：\n```bash\npython3 scripts/classify_h7.py --eval_path /root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json\n```\n4. 读取并汇报所有指标\n\n### 执行顺序\n先做任务 1（因为 ANALYZING 优先），完成后做任务 2。两个 eval 都用 cuda:0，**不要同时运行**。\n\n### 磁盘注意\n磁盘 96%（240G/250G）。eval 产出是 JSON 很小。**不要删除任何 checkpoint**——需要等 eval 全部完成且结果录入 registry 后才清理。\n\n### 输出要求\n对每个实验，汇报：\n- 训练日志最后 5 行摘要（步数、PR、ISR、loss）\n- eval 完整指标（上述列表）\n- 明确标注 eval_data = proofwriter_fol_100.jsonl\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T02:31:16.356102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_exp1-b03-batch-eval_20260515T023112\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_eval_exp1-b03-batch-eval_20260515T023112.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_exp1-b03-batch-eval_20260515T023112 started. Use get_worker_status('worker_eval_exp1-b03-batch-eval_20260515T023112') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 4538
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T02:31:26.380888+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "gpu_ids": "['cuda:1']",
+  "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.3 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s43_r2\"",
+  "exp_id": "exp1-random-b03-s43-r2",
+  "project": "solver-trace-ablation",
+  "plan_id": "EXP-1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "westd-39279",
+    "gpu_ids": "['cuda:1']",
+    "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.3 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s43_r2\"",
+    "exp_id": "exp1-random-b03-s43-r2",
+    "project": "solver-trace-ablation",
+    "plan_id": "EXP-1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T02:31:29.081108+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"113288\", \"log_file\": \"~/runs/solver-trace-ablation/exp1-random-b03-s43-r2.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"westd-39279\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"exp1-random-b03-s43-r2\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 2700
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T02:31:41.068386+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "status": "done",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "status": "done",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T02:31:41.120503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_paper_fix-latex-compilation-v3_20260515T010614\", \"task_type\": \"paper:fix-latex-compilation-v3\", \"project\": \"solver-trace-ablation\", \"status\": \"done\", \"started_at\": \"2026-05-15T01:06:15.269523+00:00\", \"ended_at\": \"2026-05-15T01:08:02.812115+00:00\"}, {\"worker_id\": \"worker_ops_check-s42-checkpoint_20260515T010759\", \"task_type\": \"ops:check-s42-checkpoint\", \"project\": \"solver-trace-ablation\", \"status\": \"done\", \"started_at\": \"2026-05-15T01:07:59.735271+00:00\", \"ended_at\": \"2026-05-15T01:09:45.192398+00:00\"}, {\"worker_id\": \"worker_fix_eval-sta-fallback-v2_20260515T013020\", \"task_type\": \"fix:eval-sta-fallback-v2\", \"project\": \"solver-trace-ablation\", \"status\": \"done\", \"started_at\": \"2026-05-15T01:30:20.428285+00:00\", \"ended_at\": \"2026-05-15T01:32:55.641717+00:00\"}, {\"worker_id\": \"worker_ops_sync-eval-sta_20260515T015143\", \"task_type\": \"ops:sync-eval-sta\", \"project\": \"solver-trace-ablation\", \"status\": \"done\", \"started_at\": \"2026-05-15T01:51:43.516946+00:00\", \"ended_at\": \"2026-05-15T01:53:05.372619+00:00\"}, {\"worker_id\": \"worker_ops_classify-h7-random-b03-s42_20260515T020612\", \"task_type\": \"ops:classify-h7-random-b03-s42\", \"project\": \"solver-trace-ablation\", \"status\": \"done\", \"started_at\": \"2026-05-15T02:06:12.754954+00:00\", \"ended_at\": \"2026-05-15T02:06:54.689302+00:00\"}, {\"worker_id\": \"worker_ops_diagnose-exp1-isr-b03-s43-r3_20260515T021339\", \"task_type\": \"ops:diagnose-exp1-isr-b03-s43-r3\", \"project\": \"solver-trace-ablation\", \"status\": \"done\", \"started_at\": \"2026-05-15T02:13:39.438562+00:00\", \"ended_at\": \"2026-05-15T02:14:55.078340+00:00\"}, {\"worker_id\": \"worker_eval_exp1-isr-b03-s43-r3_20260515T021540\", \"task_type\": \"eval:exp1-isr-b03-s43-r3\", \"project\": \"solver-trace-ablation\", \"status\": \"done\", \"started_at\": \"2026-05-15T02:15:40.333754
+…[truncated 1021 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T02:32:21.920310+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 1 (GPU 1 / CPU 0)\n\n## Session #10 启动状态\n\n**β=0.3 3-seed 进度（Table 1 用）**：\n\n| Condition | s42 | s43 | s44 |\n|-----------|-----|-----|-----|\n| ISR β=0.3 | ✅ plan002 (negative, PR=0.18) | ✅ exp1-isr-b03-s43-r3 训练完成，eval 中 | ✅ exp1-isr-b03-s44-r2 (H7=100%, genuine=0%) |\n| Random β=0.3 | ✅ plan017 (negative, PR=0.48) | 🔄 exp1-random-b03-s43-r2 重训中 cuda:1 | 🔄 exp1-random-b03-s44-r2 训练完成，eval 中 |\n\n**当前动作**：\n1. cuda:0: Worker 正在对 exp1-random-b03-s44-r2 + exp1-isr-b03-s43-r3 跑 STA eval + H7 分类\n2. cuda:1: exp1-random-b03-s43-r2 重训已提交（PID 113288），因 D062 checkpoint 误删需要重训\n3. 预计 eval ~20-30 min 完成，retrain ~70 min 完成\n\n**预期**：eval 完成后汇总 β=0.3 ISR 三 seed 统计；random s43 完成后汇总 random 三 seed → Table 1 β=0.3 行闭环。\n\nDDL 2026-05-25（剩 10 天），3 条 Claim 闭环，当前是统计补充阶段。",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 1 (GPU 1 / CPU 0)\n\n## Session #10 启动状态\n\n**β=0.3 3-seed 进度（Table 1 用）**：\n\n| Condition | s42 | s43 | s44 |\n|-----------|-----|-----|-----|\n| ISR β=0.3 | ✅ plan002 (negative, PR=0.18) | ✅ exp1-isr-b03-s43-r3 训练完成，eval 中 | ✅ exp1-isr-b03-s44-r2 (H7=100%, genuine=0%) |\n| Random β=0.3 | ✅ plan017 (negative, PR=0.48) | 🔄 exp1-random-b03-s43-r2 重训中 cuda:1 | 🔄 exp1-random-b03-s44-r2 训练完成，eval 中 |\n\n**当前动作**：\n1. cuda:0: Worker 正在对 exp1-random-b03-s44-r2 + exp1-isr-b03-s43-r3 跑 STA eval + H7 分类\n2. cuda:1: exp1-random-b03-s43-r2 重训已提交（PID 113288），因 D062 checkpoint 误删需要重训\n3. 预计 eval ~20-30 min 完成，retrain ~70 min 完成\n\n**预期**：eval 完成后汇总 β=0.3 ISR 三 seed 统计；random s43 完成后汇总 random 三 seed → Table 1 β=0.3 行闭环。\n\nDDL 2026-05-25（剩 10 天），3 条 Claim 闭环，当前是统计补充阶段。",
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T02:32:27.129909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 5209
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T02:32:57.162208+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "ops:disk-cleanup-and-paper-status",
+  "project": "solver-trace-ablation",
+  "task_prompt": "## 任务：磁盘清理 + 论文写作状态检查\n\n### 环境\n- 服务器：westd-39279，账号 root\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码路径：`/root/solver-trace-ablation/`\n- 磁盘当前 240G/250G (96%)，需要释放空间\n\n### 任务 1：磁盘清理\n\n**规则**：\n- 只清理 `/root/autodl-tmp/outputs/` 下已完成实验的 checkpoint\n- **不要删除以下目录**（正在使用）：\n  - `exp1_isr_b03_s43_r3/` — eval 正在进行\n  - `exp1_random_b03_s44_r2/` — eval 正在进行\n  - `exp1_random_b03_s43_r2/` — 正在训练\n- 其他已完成实验的 checkpoint 可以安全删除\n\n**步骤**：\n1. `du -sh /root/autodl-tmp/outputs/*/` 列出所有输出目录大小\n2. 识别可清理的目录（排除上述 3 个活跃的）\n3. 删除可清理目录中的 checkpoint-*/（保留 eval 产出 JSON）\n4. 如果有 optimizer.pt 单独删除（通常 15GB+）\n5. `df -h /root/autodl-tmp/` 报告清理后磁盘状态\n\n**额外检查**：\n- `du -sh /root/autodl-tmp/models/` 模型缓存大小\n- `du -sh /root/.cache/` 如果存在\n- 不要删除模型文件\n\n### 任务 2：论文写作状态\n\n检查论文目录的当前状态：\n1. `ls -la /root/solver-trace-ablation/paper/` 看有哪些文件\n2. `wc -l /root/solver-trace-ablation/paper/*.tex 2>/dev/null || echo \"no tex files\"`\n3. 本地项目目录也检查：`ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/ 2>/dev/null`\n\n汇报：哪些论文章节已有内容、哪些为空或不存在、总行数。\n\n### 输出\n- 清理前后磁盘用量对比\n- 删除了哪些目录/文件及其大小\n- 论文文件清单和状态\n",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:disk-cleanup-and-paper-status",
+    "project": "solver-trace-ablation",
+    "task_prompt": "## 任务：磁盘清理 + 论文写作状态检查\n\n### 环境\n- 服务器：westd-39279，账号 root\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码路径：`/root/solver-trace-ablation/`\n- 磁盘当前 240G/250G (96%)，需要释放空间\n\n### 任务 1：磁盘清理\n\n**规则**：\n- 只清理 `/root/autodl-tmp/outputs/` 下已完成实验的 checkpoint\n- **不要删除以下目录**（正在使用）：\n  - `exp1_isr_b03_s43_r3/` — eval 正在进行\n  - `exp1_random_b03_s44_r2/` — eval 正在进行\n  - `exp1_random_b03_s43_r2/` — 正在训练\n- 其他已完成实验的 checkpoint 可以安全删除\n\n**步骤**：\n1. `du -sh /root/autodl-tmp/outputs/*/` 列出所有输出目录大小\n2. 识别可清理的目录（排除上述 3 个活跃的）\n3. 删除可清理目录中的 checkpoint-*/（保留 eval 产出 JSON）\n4. 如果有 optimizer.pt 单独删除（通常 15GB+）\n5. `df -h /root/autodl-tmp/` 报告清理后磁盘状态\n\n**额外检查**：\n- `du -sh /root/autodl-tmp/models/` 模型缓存大小\n- `du -sh /root/.cache/` 如果存在\n- 不要删除模型文件\n\n### 任务 2：论文写作状态\n\n检查论文目录的当前状态：\n1. `ls -la /root/solver-trace-ablation/paper/` 看有哪些文件\n2. `wc -l /root/solver-trace-ablation/paper/*.tex 2>/dev/null || echo \"no tex files\"`\n3. 本地项目目录也检查：`ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/ 2>/dev/null`\n\n汇报：哪些论文章节已有内容、哪些为空或不存在、总行数。\n\n### 输出\n- 清理前后磁盘用量对比\n- 删除了哪些目录/文件及其大小\n- 论文文件清单和状态\n",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T02:33:00.364952+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_disk-cleanup-and-paper-status_20260515T023257\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_ops_disk-cleanup-and-paper-status_20260515T023257.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_disk-cleanup-and-paper-status_20260515T023257 started. Use get_worker_status('worker_ops_disk-cleanup-and-paper-status_20260515T023257') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp1-isr-b03-s44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3202
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-15T02:33:11.269868+00:00_
+
+Session #10 初始化完成。当前状态：
+
+- **GPU**: cuda:0 eval Worker 运行中 | cuda:1 exp1-random-b03-s43-r2 训练中 (PID 113288)
+- **Worker 池**: 2（eval + disk-cleanup/paper-status）
+- **等待回调**: eval Worker 完成 → 更新 registry + 汇总 β=0.3 统计；retrain cron → on-experiment-done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp1-isr-b03-s44"
+}
+```
+
+</details>
+
+---

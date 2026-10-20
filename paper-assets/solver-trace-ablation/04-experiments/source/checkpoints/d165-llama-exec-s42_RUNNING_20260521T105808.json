@@ -1,0 +1,68 @@
+{
+  "exp_id": "d165-llama-exec-s42",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:52:23.803Z",
+    "updated_at": "2026-05-21T10:58:07.790Z",
+    "hypothesis": "LLaMA-3.2-3B with SFT warmstart can learn execution-only GRPO reward on FOL formalization task, comparable to Qwen3-4B baseline",
+    "parent": "d158-llama-sft-s42",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python scripts/train_grpo.py --config configs/d165_llama_exec_s42.yaml 2>&1 | tee /tmp/d165_llama_exec_s42_r3.log\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "857887",
+      "log_path": "~/runs/solver-trace-ablation/d165-llama-exec-s42.log",
+      "submitted_at": "2026-05-21T08:37:58.916Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "r3 completed 500/500 steps in 75min. Final stats: prove_rate=0.0993, mean_isr=0.0478. train_loss=0.0665. clipped_ratio mostly 0.125-0.375 (eos fix working). Late steps mostly reward=0 — model did not bootstrap strong PR. Awaiting STA eval for hacking analysis.",
+    "metrics": {
+      "prove_rate": 0.14,
+      "n_proved": 14,
+      "n_problems": 100,
+      "proved_only_mean_isr": 0.5467,
+      "TS_count": 0,
+      "TS_rate": 0,
+      "CE_count": 2,
+      "CE_rate": 0.143,
+      "PG_count": 0,
+      "PG_rate": 0,
+      "CI_count": 2,
+      "CI_rate": 0.143,
+      "genuine_count": 12,
+      "genuine_rate": 0.857,
+      "by_answer_type": {
+        "true": {
+          "count": 34,
+          "proved": 14,
+          "pr": 0.412
+        },
+        "false": {
+          "count": 25,
+          "proved": 0,
+          "pr": 0
+        },
+        "unknown": {
+          "count": 41,
+          "proved": 0,
+          "pr": 0
+        }
+      },
+      "train_prove_rate": 0.0993,
+      "train_mean_isr": 0.0478,
+      "train_loss": 0.0665,
+      "train_runtime_sec": 4513
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T10:58:08.181572+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,11 @@
+\section{Limitations}
+\label{sec:limitations}
+
+Experiments use a single base model (Qwen3-4B); structural degeneration patterns may not transfer to other model families, and cross-scale generalization remains untested (Appendix~\ref{app:8b-results}).
+Three to five seeds per condition demonstrate qualitative divergence but remain underpowered for seed-level significance; pooled statistics treat within-seed samples as independent.
+Seeds 45 and 46 were added post-hoc after observing bimodal behavior in seeds 42--44; the 3/5 gaming rate should therefore be interpreted as an existence demonstration rather than a prevalence estimate.
+The mechanisms driving seed heterogeneity (why 3/5 seeds converge to gaming while 2/5 retain genuine reasoning under identical conditions) remain unexplored; possible explanations include initialization sensitivity, early-training bifurcation dynamics, and loss landscape multi-modality, but causal attribution requires targeted intervention experiments beyond our current scope.
+FOLIO is a relatively small (1,435 examples) synthetic benchmark; generalization of both the degeneration phenomena and the STA diagnostic to larger, naturalistic, or domain-specific corpora (e.g., legal or scientific reasoning) is untested.
+ISR quantifies component necessity, not semantic faithfulness; its diagnostic value is realized through the mode breakdown, not the scalar alone (Appendix~\ref{app:extended-discussion}).
+Given perfect classifier precision (152/152; Appendix~\ref{app:hacking-modes}), measured non-hacking rates of 6--10\% for converged seeds are internally consistent only if classifier recall exceeds ${\sim}90\%$; below this threshold, the implied true non-hacking rate would be negative, indicating that low measured rates are self-validating evidence of high recall.
+Code, training scripts, and evaluation data will be released upon acceptance.

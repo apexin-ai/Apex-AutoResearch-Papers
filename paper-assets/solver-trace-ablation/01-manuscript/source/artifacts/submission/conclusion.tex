@@ -1,0 +1,18 @@
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+
+STA exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\% collapse under exec-only GRPO that PR hides, while SFT localizes the failure to RL optimization (\S\ref{sec:diagnostic}).
+Repurposed as a training signal, ISR induces meta-level Goodhart's Law: at $\beta{=}0.1$, it amplifies H7 tautological gaming ${\sim}5\times$ ($70.6\%$ vs.\ $13.7\%$ random, $p{<}10^{-39}$), and the sole apparent ISR gain vanishes ($1.06\times$) after controlling for premise count; at $\beta{=}0.3$, each seed converges to a distinct failure mode ($\text{PR}{=}66{\pm}42\%$).
+The pattern transfers to Prolog (3/3 seeds, 0\% non-hacking) via distinct mechanisms including query-as-fact gaming that bypasses text-match classifiers (\S\ref{sec:taxonomy}).
+ISR semantics are objective-dependent: exec-only \emph{low} ISR signals redundancy; ISR-rewarded \emph{high} ISR signals metric gaming.
+
+\paragraph{Classifier blind spots.}
+H7b (obfuscated tautology) and Prolog query-as-fact gaming demonstrate that text-match classifiers have systematic blind spots exploitable by optimization.
+In both cases, functional LOO analysis exposed gaming invisible to surface-level detection---H7b via vacuous quantifier wrapping ($10/12$ at $\text{ISR}{\geq}0.83$, triple gaming of execution, ISR, and classifier), query-as-fact via $95/97$ tautological samples the strict classifier labeled non-hacking (\S\ref{sec:crosslogic}).
+Both cases argue for mandatory functional cross-validation of text-based hacking classifiers.
+
+\paragraph{Hacking mode switching.}
+Under identical reward configurations, different seeds converge to qualitatively different modes (Table~\ref{tab:fol-detailed}): random $\beta{=}0.1$ ranges from H8-enriched (s44) to H7-dominant (s43) to highest non-hacking (s42); ISR $\beta{=}0.1$ similarly switches between H1-heavy (s42) and near-pure H7 (s43/s44, ${\geq}97\%$).
+Single-seed results can therefore misrepresent a reward configuration's hacking profile; multi-seed evaluation with per-mode reporting should be standard.
+
+The asymmetry---reliable observer, unreliable optimizer---may generalize to other perturbation-based diagnostics; ISR and similar metrics should serve as post-hoc evaluation tools, with future work targeting gaming-robust rewards and broader logic types.

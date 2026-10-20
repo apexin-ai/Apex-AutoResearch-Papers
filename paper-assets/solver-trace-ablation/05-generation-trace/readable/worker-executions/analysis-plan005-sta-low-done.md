@@ -1,0 +1,2751 @@
+# analysis plan005 sta low done
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_analysis_plan005-sta-low-done_20260513T235649.log`
+- **Structured JSON:** [`c9bcfa5dd9b567147c47.json`](../../sessions/c9/c9bcfa5dd9b567147c47.json)
+
+## Before a recorded user message
+
+54 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d953d41a-177d-4348-99e6-3c74847fb1ab",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778726400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b6c567ea-8ec2-43a7-aa44-61542a794b55",
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the training output on the server and analyzing the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "9e586669-df8e-4f6c-9a68-d467e57ba369",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b7WJsKxP1QDQbpZY2Zt9P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12086,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12086
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始分析 plan005-sta-low-s42 训练结果。先连接服务器找到输出目录和日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "90057556-b6c9-4717-bd99-327daecbaa92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b7WJsKxP1QDQbpZY2Zt9P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12086,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12086
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016TBPbpfVNw2rMo7zrkB1bD`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "6f7fb888-e40c-42c6-a857-3a7e7adc3bac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b7WJsKxP1QDQbpZY2Zt9P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12086,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12086
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T23:57:01.455Z_
+
+<details><summary>↩ Tool result · `toolu_016TBPbpfVNw2rMo7zrkB1bD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "aff05f5f-fa79-4ef2-a130-10bec4bae6c8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0199hzJBN2P3ZFDgQ5mmGdM8`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/ -maxdepth 3 -name \"reward_log.jsonl\" -path \"*plan005*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "52721ea0-6a7e-4556-8b19-bc65c36ca0aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pbYgp3aHk4BdhXhsLzRF9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 23927,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1493
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KUhm2DtcLqG8GBeD1sL3Jo`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "plan005-sta-low-s42"
+  },
+  "project": "solver-trace-ablation",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "df0a66b8-b4e3-4efd-9af9-908fd03ad57b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pbYgp3aHk4BdhXhsLzRF9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 23927,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1493
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T23:57:07.312Z_
+
+<details><summary>↩ Tool result · `toolu_0199hzJBN2P3ZFDgQ5mmGdM8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "2669a7b1-34cb-4ae4-9b93-b3fcc45024c8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T23:57:07.378Z_
+
+<details><summary>↩ Tool result · `toolu_01KUhm2DtcLqG8GBeD1sL3Jo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0531}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "3a800da3-72e0-41f4-8b77-ef46a625669c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0531}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0531}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+没找到精确路径，扩大搜索范围。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "a62e3052-7cb4-4500-9eec-93d445cb486d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BFmq9WoAYhg61eLp6vDdJk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 25420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WMcqGoX7FYKoQRJ4ZYLqKx`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/ -maxdepth 4 -name \"reward_log.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "9da3f2df-aad4-4d1e-9256-f9db1a4e7073",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BFmq9WoAYhg61eLp6vDdJk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 25420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BpkMEkaSZWpYxSxfFy5T8Z`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/solver-trace-ablation/outputs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "ca14074a-92b4-4927-892b-782e932f5736",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BFmq9WoAYhg61eLp6vDdJk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 25420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T23:57:11.547Z_
+
+<details><summary>↩ Tool result · `toolu_01WMcqGoX7FYKoQRJ4ZYLqKx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "b0be4161-ec71-498a-a3d4-9d95e88c7bff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T23:57:12.087Z_
+
+<details><summary>↩ Tool result · `toolu_01BpkMEkaSZWpYxSxfFy5T8Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 456\\ndrwxr-xr-x 2 root root    101 May 14 02:21 .\\ndrwxr-xr-x 8 root root    116 May 14 01:39 ..\\n-rw-r--r-- 1 root root   4478 May 14 02:20 grpo_dryrun.log\\n-rw-r--r-- 1 root root 255038 May 14 02:12 gt_isr_baseline.json\\n-rw-r--r-- 1 root root 199815 May 14 02:03 phase0_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "562d45ca-11ed-4cf6-a92b-4e7822358499",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 456\\\\ndrwxr-xr-x 2 root root    101 May 14 02:21 .\\\\ndrwxr-xr-x 8 root root    116 May 14 01:39 ..\\\\n-rw-r--r-- 1 root root   4478 May 14 02:20 grpo_dryrun.log\\\\n-rw-r--r-- 1 root root 255038 May 14 02:12 gt_isr_baseline.json\\\\n-rw-r--r-- 1 root root 199815 May 14 02:03 phase0_baseline.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 456\\ndrwxr-xr-x 2 root root    101 May 14 02:21 .\\ndrwxr-xr-x 8 root root    116 May 14 01:39 ..\\n-rw-r--r-- 1 root root   4478 May 14 02:20 grpo_dryrun.log\\n-rw-r--r-- 1 root root 255038 May 14 02:12 gt_isr_baseline.json\\n-rw-r--r-- 1 root root 199815 May 14 02:03 phase0_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CBZqc9bxtK185ShU6jpZT5`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/ -maxdepth 5 -name \"reward_log.jsonl\" -newer /root/solver-trace-ablation/outputs/grpo_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "7183757e-f7d5-4895-9b28-c90627f8a624",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jsqdAAXCjpWoqBRB1Zegy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 618,
+      "cache_read_input_tokens": 25870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 618
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T23:57:16.110Z_
+
+<details><summary>↩ Tool result · `toolu_01CBZqc9bxtK185ShU6jpZT5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/grpo_exec_only/reward_log.jsonl\\n/root/autodl-tmp/outputs/grpo_exec_sta/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan001_exec_only_s43/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "2c9296e6-d68e-42a2-a6ef-559bf11e84ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/grpo_exec_only/reward_log.jsonl\\\\n/root/autodl-tmp/outputs/grpo_exec_sta/reward_log.jsonl\\\\n/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl\\\\n/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\\\n/root/autodl-tmp/outputs/plan001_exec_only_s43/reward_log.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/grpo_exec_only/reward_log.jsonl\\n/root/autodl-tmp/outputs/grpo_exec_sta/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\n/root/autodl-tmp/outputs/plan001_exec_only_s43/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HcMMUTwkrWeix8nQAC6UcH`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/ -maxdepth 4 -type d -name \"*plan005*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "c617766b-ea11-435c-89fc-8ff8ec73fa37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jsqdAAXCjpWoqBRB1Zegy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 618,
+      "cache_read_input_tokens": 25870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 618
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T23:57:16.785Z_
+
+<details><summary>↩ Tool result · `toolu_01HcMMUTwkrWeix8nQAC6UcH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "bdc0c4bf-1d74-4a2d-ad3e-1dfa28ed1160",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+找到了 `/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl`。检查目录内容和日志基本信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "375604fc-cca8-45e2-b433-311cc23794e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC3qG1yL7yweApNJToCjQZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 613,
+      "cache_read_input_tokens": 26488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 613
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pkb5Y5TLeJHw5FAko3oYoi`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan005_sta_low_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "6faa645b-e32c-48f7-b9e9-36eefa0bbe4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC3qG1yL7yweApNJToCjQZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 613,
+      "cache_read_input_tokens": 26488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 613
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T23:57:20.917Z_
+
+<details><summary>↩ Tool result · `toolu_01Pkb5Y5TLeJHw5FAko3oYoi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15728568\\ndrwxr-xr-x 5 root root       4096 May 14 07:54 .\\ndrwxr-xr-x 7 root root       4096 May 14 07:55 ..\\n-rw-r--r-- 1 root root       1872 May 14 07:54 README.md\\n-rw-r--r-- 1 root root        707 May 14 07:54 added_tokens.json\\n-rw-r--r-- 1 root root       4168 May 14 07:54 chat_template.jinja\\ndrwxr-xr-x 2 root root       4096 May 14 07:47 checkpoint-450\\ndrwxr-xr-x 2 root root       4096 May 14 07:54 checkpoint-500\\ndrwxr-xr-x 2 root root      20480 May 14 07:54 completions\\n-rw-r--r-- 1 root root       1535 May 14 07:54 config.json\\n-rw-r--r-- 1 root root        188 May 14 07:54 generation_config.json\\n-rw-r--r-- 1 root root    1671853 May 14 07:54 merges.txt\\n-rw-r--r-- 1 root root 4990095032 May 14 07:54 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4944309096 May 14 07:54 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4996758848 May 14 07:54 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root 1158754848 May 14 07:54 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      32856 May 14 07:54 model.safetensors.index.json\\n-rw-r--r-- 1 root root     115112 May 14 07:54 reward_log.jsonl\\n-rw-r--r-- 1 root root        613 May 14 07:54 special_tokens_map.json\\n-rw-r--r-- 1 root root   11422654 May 14 07:54 tokenizer.json\\n-rw-r--r-- 1 root root       5459 May 14 07:54 tokenizer_config.json\\n-rw-r--r-- 1 root root       7953 May 14 07:54 training_args.bin\\n-rw-r--r-- 1 root root    2776833 May 14 07:54 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "53432153-b398-4919-a9f8-e3fd28e564cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15728568\\\\ndrwxr-xr-x 5 root root       4096 May 14 07:54 .\\\\ndrwxr-xr-x 7 root root       4096 May 14 07:55 ..\\\\n-rw-r--r-- 1 root root       1872 May 14 07:54 README.md\\\\n-rw-r--r-- 1 root root        707 May 14 07:54 added_tokens.json\\\\n-rw-r--r-- 1 root root       4168 May 14 07:54 chat_template.jinja\\\\ndrwxr-xr-x 2 root root       4096 May 14 07:47 checkpoint-450\\\\ndrwxr-xr-x 2 root root       4096 May 14 07:54 checkpoint-500\\\\ndrwxr-xr-x 2 root root      20480 May 14 07:54 completions\\\\n-rw-r--r-- 1 root root       1535 May 14 07:54 config.json\\\\n-rw-r--r-- 1 root root        188 May 14 07:54 generation_config.json\\\\n-rw-r--r-- 1 root root    1671853 May 14 07:54 merges.txt\\\\n-rw-r--r-- 1 root root 4990095032 May 14 07:54 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4944309096 May 14 07:54 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4996758848 May 14 07:54 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 1158754848 May 14 07:54 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      32856 May 14 07:54 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root     115112 May 14 07:54 reward_log.jsonl\\\\n-rw-r--r-- 1 root root        613 May 14 07:54 special_tokens_map.json\\\\n-rw-r--r-- 1 root root   11422654 May 14 07:54 tokenizer.json\\\\n-rw-r--r-- 1 root root       5459 May 14 07:54 tokenizer_config.json\\\\n-rw-r--r-- 1 root root       7953 May 14 07:54 training_args.bin\\\\n-rw-r--r-- 1 root root    2776833 May 14 07:54 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 15728568\\ndrwxr-xr-x 5 root root       4096 May 14 07:54 .\\ndrwxr-xr-x 7 root root       4096 May 14 07:55 ..\\n-rw-r--r-- 1 root root       1872 May 14 07:54 README.md\\n-rw-r--r-- 1 root root        707 May 14 07:54 added_tokens.json\\n-rw-r--r-- 1 root root       4168 May 14 07:54 chat_template.jinja\\ndrwxr-xr-x 2 root root       4096 May 14 07:47 checkpoint-450\\ndrwxr-xr-x 2 root root       4096 May 14 07:54 checkpoint-500\\ndrwxr-xr-x 2 root root      20480 May 14 07:54 completions\\n-rw-r--r-- 1 root root       1535 May 14 07:54 config.json\\n-rw-r--r-- 1 root root        188 May 14 07:54 generation_config.json\\n-rw-r--r-- 1 root root    1671853 May 14 07:54 merges.txt\\n-rw-r--r-- 1 root root 4990095032 May 14 07:54 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4944309096 May 14 07:54 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4996758848 May 14 07:54 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root 1158754848 May 14 07:54 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      32856 May 14 07:54 model.safetensors.index.json\\n-rw-r--r-- 1 root root     115112 May 14 07:54 reward_log.jsonl\\n-rw-r--r-- 1 root root        613 May 14 07:54 special_tokens_map.json\\n-rw-r--r-- 1 root root   11422654 May 14 07:54 tokenizer.json\\n-rw-r--r-- 1 root root       5459 May 14 07:54 tokenizer_config.json\\n-rw-r--r-- 1 root root       7953 May 14 07:54 training_args.bin\\n-rw-r--r-- 1 root root    2776833 May 14 07:54 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ANDscbZaQxETTEsLftazjV`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "96291759-8889-4a50-bed1-300351c835cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC3qG1yL7yweApNJToCjQZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 613,
+      "cache_read_input_tokens": 26488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 613
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nu3cJaW9oLe7eE1bjgXRD2`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -1 /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "c7042109-16df-4469-8884-43671f8bbcaa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC3qG1yL7yweApNJToCjQZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 613,
+      "cache_read_input_tokens": 26488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 613
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T23:57:21.869Z_
+
+<details><summary>↩ Tool result · `toolu_01ANDscbZaQxETTEsLftazjV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"500 /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "5799d5db-6cb8-4409-a5c3-1bc369e3a46a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"500 /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"500 /root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T23:57:22.397Z_
+
+<details><summary>↩ Tool result · `toolu_01Nu3cJaW9oLe7eE1bjgXRD2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 1, \\\"reward_mean\\\": 0.12250000238418579, \\\"reward_std\\\": 0.3464823365211487, \\\"prove_rate\\\": 0.125, \\\"isr_mean\\\": 0.1, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0261, \\\"lr\\\": 1e-06, \\\"timestamp\\\": \\\"2026-05-13T22:43:17.785649+00:00\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "1bf21452-b03b-4d2b-b8ee-24d726a7d628",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 1, \\\\\\\"reward_mean\\\\\\\": 0.12250000238418579, \\\\\\\"reward_std\\\\\\\": 0.3464823365211487, \\\\\\\"prove_rate\\\\\\\": 0.125, \\\\\\\"isr_mean\\\\\\\": 0.1, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"loss\\\\\\\": 0.0261, \\\\\\\"lr\\\\\\\": 1e-06, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-13T22:43:17.785649+00:00\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 1, \\\"reward_mean\\\": 0.12250000238418579, \\\"reward_std\\\": 0.3464823365211487, \\\"prove_rate\\\": 0.125, \\\"isr_mean\\\": 0.1, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0261, \\\"lr\\\": 1e-06, \\\"timestamp\\\": \\\"2026-05-13T22:43:17.785649+00:00\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+500 行日志，字段包含 step, reward_mean, prove_rate, isr_mean, parse_rate, loss, lr。现在用 Python 脚本做完整分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "ba1364b3-7aed-4210-b79b-b2761c7b1ddc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ShGy7yNVsFFqDobaJuSRv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1734,
+      "cache_read_input_tokens": 27101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1734
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FNvB7dq33qcT9AJEuFSYm4`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\nwith open('/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\nn = len(rows)\nsteps = [r['step'] for r in rows]\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\nparse = np.array([r['parse_rate'] for r in rows])\nloss = np.array([r['loss'] for r in rows])\nreward = np.array([r['reward_mean'] for r in rows])\n\n# Overall\nprint('=== OVERALL ===')\nprint(f'total_steps: {n}')\nprint(f'time_start: {rows[0][\\\"timestamp\\\"]}')\nprint(f'time_end: {rows[-1][\\\"timestamp\\\"]}')\nprint(f'prove_rate: {pr.mean():.4f}')\nprint(f'isr_mean: {isr.mean():.4f}')\nprint(f'parse_rate: {parse.mean():.4f}')\nprint(f'reward_mean: {reward.mean():.4f}')\nprint(f'loss_mean: {loss.mean():.6f}')\n\n# Last-50, Last-100\nprint()\nprint('=== LAST-50 ===')\nprint(f'prove_rate: {pr[-50:].mean():.4f}')\nprint(f'isr_mean: {isr[-50:].mean():.4f}')\nprint(f'loss: {loss[-50:].mean():.6f}')\n\nprint()\nprint('=== LAST-100 ===')\nprint(f'prove_rate: {pr[-100:].mean():.4f}')\nprint(f'isr_mean: {isr[-100:].mean():.4f}')\nprint(f'loss: {loss[-100:].mean():.6f}')\n\n# Windows\nprint()\nprint('=== WINDOWED prove_rate / ISR ===')\nwindows = [(1,50),(51,100),(101,200),(201,300),(301,400),(401,500)]\nfor s,e in windows:\n    sl = slice(s-1, e)\n    print(f'  {s:3d}-{e:3d}: prove_rate={pr[sl].mean():.4f}, isr={isr[sl].mean():.4f}, loss={loss[sl].mean():.6f}')\n\n# Rolling-10\nprint()\nprint('=== ROLLING-10 ===')\nroll_pr = np.convolve(pr, np.ones(10)/10, mode='valid')\nroll_isr = np.convolve(isr, np.ones(10)/10, mode='valid')\n\n# First sustained >=0.8 (10 consecutive rolling-10 >= 0.8)\nfirst_08 = None\nfor i in range(len(roll_pr)):\n    if roll_pr[i] >= 0.8:\n        if first_08 is None:\n            first_08 = i + 10  # step number (1-indexed, window ends at i+10)\n        break\nprint(f'first_rolling10_pr>=0.8_step: {first_08}')\n\n# Max jump\ndiffs = np.diff(roll_pr)\nmax_jump_idx = np.argmax(diffs)\nprint(f'max_rolling10_pr_jump: {diffs[max_jump_idx]:.4f} at step ~{max_jump_idx+11}')\n\n# Max rolling-10 values\nprint(f'max_rolling10_pr: {roll_pr.max():.4f}')\nprint(f'max_rolling10_isr: {roll_isr.max():.4f}')\n\n# ISR/PR ratio\nprint()\nprint('=== ISR/PR RATIO ===')\nmask = pr > 0\nratio_valid = isr[mask] / pr[mask]\nprint(f'overall ISR/PR (where PR>0): {ratio_valid.mean():.4f}')\nmask100 = pr[-100:] > 0\nratio100 = isr[-100:][mask100] / pr[-100:][mask100]\nprint(f'last-100 ISR/PR (where PR>0): {ratio100.mean():.4f}')\n\n# Steps where ISR < PR\nisr_lt_pr = np.sum(isr < pr)\nprint(f'steps where ISR < PR: {isr_lt_pr} / {n}')\n\n# Last-100 ISR < PR\nisr_lt_pr_100 = np.sum(isr[-100:] < pr[-100:])\nprint(f'last-100 steps where ISR < PR: {isr_lt_pr_100} / 100')\n\nprint()\nprint('=== CONVERGENCE ===')\n# When did rolling-10 PR first reach 0.5? 0.7? 0.9?\nfor threshold in [0.5, 0.7, 0.8, 0.9]:\n    idx = np.argmax(roll_pr >= threshold)\n    if roll_pr[idx] >= threshold:\n        print(f'rolling10_pr>={threshold}: step {idx+10}')\n    else:\n        print(f'rolling10_pr>={threshold}: never')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "26d26e3d-c2eb-410e-8de7-f17da5b677cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ShGy7yNVsFFqDobaJuSRv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1734,
+      "cache_read_input_tokens": 27101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1734
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T23:57:46.967Z_
+
+<details><summary>↩ Tool result · `toolu_01FNvB7dq33qcT9AJEuFSYm4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== OVERALL ===\\ntotal_steps: 500\\ntime_start: 2026-05-13T22:43:17.785649+00:00\\ntime_end: 2026-05-13T23:54:08.820317+00:00\\nprove_rate: 0.5657\\nisr_mean: 0.1682\\nparse_rate: 1.0000\\nreward_mean: 0.5260\\nloss_mean: 0.017296\\n\\n=== LAST-50 ===\\nprove_rate: 0.7700\\nisr_mean: 0.2559\\nloss: 0.030426\\n\\n=== LAST-100 ===\\nprove_rate: 0.7725\\nisr_mean: 0.2299\\nloss: 0.022752\\n\\n=== WINDOWED prove_rate / ISR ===\\n    1- 50: prove_rate=0.1775, isr=0.0906, loss=0.009112\\n   51-100: prove_rate=0.1775, isr=0.0835, loss=0.010856\\n  101-200: prove_rate=0.5062, isr=0.1463, loss=0.019506\\n  201-300: prove_rate=0.6713, isr=0.1791, loss=0.018600\\n  301-400: prove_rate=0.7013, isr=0.1984, loss=0.015639\\n  401-500: prove_rate=0.7725, isr=0.2299, loss=0.022752\\n\\n=== ROLLING-10 ===\\nfirst_rolling10_pr>=0.8_step: 178\\nmax_rolling10_pr_jump: 0.1000 at step ~439\\nmax_rolling10_pr: 0.9375\\nmax_rolling10_isr: 0.3282\\n\\n=== ISR/PR RATIO ===\\noverall ISR/PR (where PR>0): 0.3105\\nlast-100 ISR/PR (where PR>0): 0.2980\\nsteps where ISR < PR: 432 / 500\\nlast-100 steps where ISR < PR: 99 / 100\\n\\n=== CONVERGENCE ===\\nrolling10_pr>=0.5: step 141\\nrolling10_pr>=0.7: step 171\\nrolling10_pr>=0.8: step 178\\nrolling10_pr>=0.9: step 439\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "21728c03-bea9-402c-a6fb-79548cbe3e01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== OVERALL ===\\\\ntotal_steps: 500\\\\ntime_start: 2026-05-13T22:43:17.785649+00:00\\\\ntime_end: 2026-05-13T23:54:08.820317+00:00\\\\nprove_rate: 0.5657\\\\nisr_mean: 0.1682\\\\nparse_rate: 1.0000\\\\nreward_mean: 0.5260\\\\nloss_mean: 0.017296\\\\n\\\\n=== LAST-50 ===\\\\nprove_rate: 0.7700\\\\nisr_mean: 0.2559\\\\nloss: 0.030426\\\\n\\\\n=== LAST-100 ===\\\\nprove_rate: 0.7725\\\\nisr_mean: 0.2299\\\\nloss: 0.022752\\\\n\\\\n=== WINDOWED prove_rate / ISR ===\\\\n    1- 50: prove_rate=0.1775, isr=0.0906, loss=0.009112\\\\n   51-100: prove_rate=0.1775, isr=0.0835, loss=0.010856\\\\n  101-200: prove_rate=0.5062, isr=0.1463, loss=0.019506\\\\n  201-300: prove_rate=0.6713, isr=0.1791, loss=0.018600\\\\n  301-400: prove_rate=0.7013, isr=0.1984, loss=0.015639\\\\n  401-500: prove_rate=0.7725, isr=0.2299, loss=0.022752\\\\n\\\\n=== ROLLING-10 ===\\\\nfirst_rolling10_pr>=0.8_step: 178\\\\nmax_rolling10_pr_jump: 0.1000 at step ~439\\\\nmax_rolling10_pr: 0.9375\\\\nmax_rolling10_isr: 0.3282\\\\n\\\\n=== ISR/PR RATIO ===\\\\noverall ISR/PR (where PR>0): 0.3105\\\\nlast-100 ISR/PR (where PR>0): 0.2980\\\\nsteps where ISR < PR: 432 / 500\\\\nlast-100 steps where ISR < PR: 99 / 100\\\\n\\\\n=== CONVERGENCE ===\\\\nrolling10_pr>=0.5: step 141\\\\nrolling10_pr>=0.7: step 171\\\\nrolling10_pr>=0.8: step 178\\\\nrolling10_pr>=0.9: step 439\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== OVERALL ===\\ntotal_steps: 500\\ntime_start: 2026-05-13T22:43:17.785649+00:00\\ntime_end: 2026-05-13T23:54:08.820317+00:00\\nprove_rate: 0.5657\\nisr_mean: 0.1682\\nparse_rate: 1.0000\\nreward_mean: 0.5260\\nloss_mean: 0.017296\\n\\n=== LAST-50 ===\\nprove_rate: 0.7700\\nisr_mean: 0.2559\\nloss: 0.030426\\n\\n=== LAST-100 ===\\nprove_rate: 0.7725\\nisr_mean: 0.2299\\nloss: 0.022752\\n\\n=== WINDOWED prove_rate / ISR ===\\n    1- 50: prove_rate=0.1775, isr=0.0906, loss=0.009112\\n   51-100: prove_rate=0.1775, isr=0.0835, loss=0.010856\\n  101-200: prove_rate=0.5062, isr=0.1463, loss=0.019506\\n  201-300: prove_rate=0.6713, isr=0.1791, loss=0.018600\\n  301-400: prove_rate=0.7013, isr=0.1984, loss=0.015639\\n  401-500: prove_rate=0.7725, isr=0.2299, loss=0.022752\\n\\n=== ROLLING-10 ===\\nfirst_rolling10_pr>=0.8_step: 178\\nmax_rolling10_pr_jump: 0.1000 at step ~439\\nmax_rolling10_pr: 0.9375\\nmax_rolling10_isr: 0.3282\\n\\n=== ISR/PR RATIO ===\\noverall ISR/PR (where PR>0): 0.3105\\nlast-100 ISR/PR (where PR>0): 0.2980\\nsteps where ISR < PR: 432 / 500\\nlast-100 steps where ISR < PR: 99 / 100\\n\\n=== CONVERGENCE ===\\nrolling10_pr>=0.5: step 141\\nrolling10_pr>=0.7: step 171\\nrolling10_pr>=0.8: step 178\\nrolling10_pr>=0.9: step 439\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+
+**plan005-sta-low-s42 results:**
+- Last-100 prove_rate: 0.7725 vs plan001-r2's 0.865 → **significantly lower** (-0.0925)
+- Last-100 ISR: 0.2299 vs plan001-r2's 0.861 → **dramatically lower** (-0.631)
+- ISR/PR ratio: 0.298 (last-100) → very low, meaning ISR is much lower than prove_rate
+
+
+- Almost all steps (432/500) have ISR < PR, which reveals the core issue: the STA reward is creating a massive divergence between what the model proves and what the solver can actually trace back, whereas in exec-only these metrics track nearly together.
+
+The ISR itself at 0.23 is devastatingly low compared to exec-only's 0.861—both prove_rate and ISR have degraded, suggesting the model learned to generate proofs but with fundamentally broken solver traces. The ISR/PR ratio of 0.30 means only about 30% of intermediate steps in successful proofs are actually valid, which is a serious failure mode that the STA reward seems to have introduced rather than fixed. The question is whether low-weight STA can improve ISR without harming prove_rate, and the data gives a clear answer: no. Both metrics deteriorated significantly—prove_rate fell from 0.865 to 0.7725 and ISR plummeted from 0.861 to 0.2299. The experiment ran for about 1 hour 11 minutes, and this is a strong negative result showing that even a 0.1 weight on STA causes substantial degradation. Now I need to document this finding and update the registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "622d9c2a-cc5f-426b-b429-e1986b080adf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RE3b4oLgqDG48UZBKAnCpM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2254,
+      "cache_read_input_tokens": 28835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+结果已出。关键发现：last-100 prove_rate=0.7725, ISR=0.2299，均远低于 exec-only。这是 **negative** 结果。让我再做一些对比细节分析后更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "99e04377-fd5a-4563-bd87-85bc3b3e3c2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RE3b4oLgqDG48UZBKAnCpM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2254,
+      "cache_read_input_tokens": 28835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NuuzpGpqobFZLnGGR1mA7U`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\nwith open('/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\n\n# Check reward components if available\nr0 = rows[0]\nprint('Fields in row:', list(r0.keys()))\nprint()\nprint('First 5 rows reward details:')\nfor r in rows[:5]:\n    s = f'step={r[\\\"step\\\"]}, reward={r[\\\"reward_mean\\\"]:.4f}, pr={r[\\\"prove_rate\\\"]:.3f}, isr={r[\\\"isr_mean\\\"]:.3f}'\n    for k in r:\n        if k not in ('step','reward_mean','reward_std','prove_rate','isr_mean','parse_rate','loss','lr','timestamp'):\n            s += f', {k}={r[k]}'\n    print(s)\n\nprint()\nprint('Last 5 rows:')\nfor r in rows[-5:]:\n    s = f'step={r[\\\"step\\\"]}, reward={r[\\\"reward_mean\\\"]:.4f}, pr={r[\\\"prove_rate\\\"]:.3f}, isr={r[\\\"isr_mean\\\"]:.3f}'\n    for k in r:\n        if k not in ('step','reward_mean','reward_std','prove_rate','isr_mean','parse_rate','loss','lr','timestamp'):\n            s += f', {k}={r[k]}'\n    print(s)\n\n# Detailed last-100 distribution\nprint()\nprint('=== LAST-100 ISR distribution ===')\nisr100 = isr[-100:]\npr100 = pr[-100:]\nprint(f'ISR=0 count: {np.sum(isr100==0)}')\nprint(f'ISR in (0,0.25]: {np.sum((isr100>0)&(isr100<=0.25))}')\nprint(f'ISR in (0.25,0.5]: {np.sum((isr100>0.25)&(isr100<=0.5))}')\nprint(f'ISR in (0.5,0.75]: {np.sum((isr100>0.5)&(isr100<=0.75))}')\nprint(f'ISR in (0.75,1.0]: {np.sum((isr100>0.75)&(isr100<=1.0))}')\n\nprint()\nprint('=== LAST-100 PR distribution ===')\nprint(f'PR=0: {np.sum(pr100==0)}')\nprint(f'PR in (0,0.25]: {np.sum((pr100>0)&(pr100<=0.25))}')\nprint(f'PR in (0.25,0.5]: {np.sum((pr100>0.25)&(pr100<=0.5))}')\nprint(f'PR in (0.5,0.75]: {np.sum((pr100>0.5)&(pr100<=0.75))}')\nprint(f'PR in (0.75,1.0]: {np.sum((pr100>0.75)&(pr100<=1.0))}')\n\n# Check if there are STA-specific fields  \nprint()\nprint('Sample row keys:', sorted(rows[0].keys()))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "0d7ac46c-f9b9-43ec-80fa-ee6151581ef9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RE3b4oLgqDG48UZBKAnCpM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2254,
+      "cache_read_input_tokens": 28835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T23:58:25.409Z_
+
+<details><summary>↩ Tool result · `toolu_01NuuzpGpqobFZLnGGR1mA7U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fields in row: ['step', 'reward_mean', 'reward_std', 'prove_rate', 'isr_mean', 'parse_rate', 'loss', 'lr', 'timestamp']\\n\\nFirst 5 rows reward details:\\nstep=1, reward=0.1225, pr=0.125, isr=0.100\\nstep=2, reward=0.0000, pr=0.000, isr=0.000\\nstep=3, reward=0.3562, pr=0.375, isr=0.188\\nstep=4, reward=0.0000, pr=0.000, isr=0.000\\nstep=5, reward=0.3652, pr=0.375, isr=0.277\\n\\nLast 5 rows:\\nstep=496, reward=0.8019, pr=0.875, isr=0.144\\nstep=497, reward=0.7031, pr=0.750, isr=0.281\\nstep=498, reward=0.8146, pr=0.875, isr=0.271\\nstep=499, reward=0.8318, pr=0.875, isr=0.443\\nstep=500, reward=0.5879, pr=0.625, isr=0.254\\n\\n=== LAST-100 ISR distribution ===\\nISR=0 count: 2\\nISR in (0,0.25]: 61\\nISR in (0.25,0.5]: 33\\nISR in (0.5,0.75]: 4\\nISR in (0.75,1.0]: 0\\n\\n=== LAST-100 PR distribution ===\\nPR=0: 1\\nPR in (0,0.25]: 5\\nPR in (0.25,0.5]: 15\\nPR in (0.5,0.75]: 24\\nPR in (0.75,1.0]: 55\\n\\nSample row keys: ['isr_mean', 'loss', 'lr', 'parse_rate', 'prove_rate', 'reward_mean', 'reward_std', 'step', 'timestamp']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "9215a701-124d-4d4f-8779-0e365636578c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fields in row: ['step', 'reward_mean', 'reward_std', 'prove_rate', 'isr_mean', 'parse_rate', 'loss', 'lr', 'timestamp']\\\\n\\\\nFirst 5 rows reward details:\\\\nstep=1, reward=0.1225, pr=0.125, isr=0.100\\\\nstep=2, reward=0.0000, pr=0.000, isr=0.000\\\\nstep=3, reward=0.3562, pr=0.375, isr=0.188\\\\nstep=4, reward=0.0000, pr=0.000, isr=0.000\\\\nstep=5, reward=0.3652, pr=0.375, isr=0.277\\\\n\\\\nLast 5 rows:\\\\nstep=496, reward=0.8019, pr=0.875, isr=0.144\\\\nstep=497, reward=0.7031, pr=0.750, isr=0.281\\\\nstep=498, reward=0.8146, pr=0.875, isr=0.271\\\\nstep=499, reward=0.8318, pr=0.875, isr=0.443\\\\nstep=500, reward=0.5879, pr=0.625, isr=0.254\\\\n\\\\n=== LAST-100 ISR distribution ===\\\\nISR=0 count: 2\\\\nISR in (0,0.25]: 61\\\\nISR in (0.25,0.5]: 33\\\\nISR in (0.5,0.75]: 4\\\\nISR in (0.75,1.0]: 0\\\\n\\\\n=== LAST-100 PR distribution ===\\\\nPR=0: 1\\\\nPR in (0,0.25]: 5\\\\nPR in (0.25,0.5]: 15\\\\nPR in (0.5,0.75]: 24\\\\nPR in (0.75,1.0]: 55\\\\n\\\\nSample row keys: ['isr_mean', 'loss', 'lr', 'parse_rate', 'prove_rate', 'reward_mean', 'reward_std', 'step', 'timestamp']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fields in row: ['step', 'reward_mean', 'reward_std', 'prove_rate', 'isr_mean', 'parse_rate', 'loss', 'lr', 'timestamp']\\n\\nFirst 5 rows reward details:\\nstep=1, reward=0.1225, pr=0.125, isr=0.100\\nstep=2, reward=0.0000, pr=0.000, isr=0.000\\nstep=3, reward=0.3562, pr=0.375, isr=0.188\\nstep=4, reward=0.0000, pr=0.000, isr=0.000\\nstep=5, reward=0.3652, pr=0.375, isr=0.277\\n\\nLast 5 rows:\\nstep=496, reward=0.8019, pr=0.875, isr=0.144\\nstep=497, reward=0.7031, pr=0.750, isr=0.281\\nstep=498, reward=0.8146, pr=0.875, isr=0.271\\nstep=499, reward=0.8318, pr=0.875, isr=0.443\\nstep=500, reward=0.5879, pr=0.625, isr=0.254\\n\\n=== LAST-100 ISR distribution ===\\nISR=0 count: 2\\nISR in (0,0.25]: 61\\nISR in (0.25,0.5]: 33\\nISR in (0.5,0.75]: 4\\nISR in (0.75,1.0]: 0\\n\\n=== LAST-100 PR distribution ===\\nPR=0: 1\\nPR in (0,0.25]: 5\\nPR in (0.25,0.5]: 15\\nPR in (0.5,0.75]: 24\\nPR in (0.75,1.0]: 55\\n\\nSample row keys: ['isr_mean', 'loss', 'lr', 'parse_rate', 'prove_rate', 'reward_mean', 'reward_std', 'step', 'timestamp']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very clear pattern:
+- Last-100: 55/100 steps have PR > 0.75, but 0/100 have ISR > 0.75
+- Last-100: 61/100 steps have ISR in (0, 0.25], meaning the model proves problems but with very poor solver traces
+- ISR/PR ratio of ~0.30
+
+This is a clear **negative** result. The model learned to prove (PR=0.7725 last-100) but the solver traces are terrible (ISR=0.2299 last-100). Compared to exec-only where ISR ≈ PR ≈ 0.86.
+
+
+The STA reward is actively backfiring—even at sta_weight=0.1, it's degrading performance. Prove rate dropped 10.7% and ISR collapsed by 73.3%, creating a massive gap between what the model proves and the quality of its reasoning. The combined reward is pushing the model toward a worse optimization landscape than the exec-only baseline.
+
+Let me check the plan001-r2 data to validate this comparison and then finalize the analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "7cfd79c7-39a5-47eb-b521-98917e3cd709",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REvFc5RU6yBVHva9mHwEuM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2587,
+      "cache_read_input_tokens": 31089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2587
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+Let me also grab the plan001-r2 exec-only comparison data for accuracy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "3bed7eb4-3411-4e4a-89c4-6b2a33c6257c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REvFc5RU6yBVHva9mHwEuM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2587,
+      "cache_read_input_tokens": 31089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2587
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016P4DGn7SDQvHMzQpy1ymyG`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\n\n# plan001-r2 = plan001_exec_only_s42\nwith open('/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl') as f:\n    rows = [json.loads(l) for l in f]\n\nn = len(rows)\npr = np.array([r['prove_rate'] for r in rows])\nisr = np.array([r['isr_mean'] for r in rows])\nloss = np.array([r['loss'] for r in rows])\n\nprint(f'plan001-r2 total steps: {n}')\nprint(f'overall: pr={pr.mean():.4f}, isr={isr.mean():.4f}')\nprint(f'last-50: pr={pr[-50:].mean():.4f}, isr={isr[-50:].mean():.4f}')\nprint(f'last-100: pr={pr[-100:].mean():.4f}, isr={isr[-100:].mean():.4f}')\nprint(f'loss last-100: {loss[-100:].mean():.6f}')\n\n# Rolling-10 convergence\nroll_pr = np.convolve(pr, np.ones(10)/10, mode='valid')\nfor t in [0.5, 0.7, 0.8, 0.9]:\n    idx = np.argmax(roll_pr >= t)\n    if roll_pr[idx] >= t:\n        print(f'rolling10_pr>={t}: step {idx+10}')\n    else:\n        print(f'rolling10_pr>={t}: never')\n\n# ISR/PR ratio\nmask100 = pr[-100:] > 0\nratio100 = isr[-100:][mask100] / pr[-100:][mask100]\nprint(f'last-100 ISR/PR ratio: {ratio100.mean():.4f}')\nisr_lt_pr = np.sum(isr[-100:] < pr[-100:])\nprint(f'last-100 ISR<PR count: {isr_lt_pr}/100')\n\n# Windows\nprint()\nwindows = [(1,50),(51,100),(101,200),(201,300),(301,400),(401,500)]\nfor s,e in windows:\n    if e <= n:\n        sl = slice(s-1, e)\n        print(f'  {s:3d}-{e:3d}: pr={pr[sl].mean():.4f}, isr={isr[sl].mean():.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "63fb0cb2-f163-458e-ace5-6ff160a31cae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REvFc5RU6yBVHva9mHwEuM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2587,
+      "cache_read_input_tokens": 31089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2587
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T23:58:52.479Z_
+
+<details><summary>↩ Tool result · `toolu_016P4DGn7SDQvHMzQpy1ymyG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"plan001-r2 total steps: 500\\noverall: pr=0.6743, isr=0.6677\\nlast-50: pr=0.8525, isr=0.8525\\nlast-100: pr=0.8650, isr=0.8612\\nloss last-100: 0.005478\\nrolling10_pr>=0.5: step 106\\nrolling10_pr>=0.7: step 134\\nrolling10_pr>=0.8: step 142\\nrolling10_pr>=0.9: step 269\\nlast-100 ISR/PR ratio: 0.9959\\nlast-100 ISR<PR count: 2/100\\n\\n    1- 50: pr=0.1850, isr=0.1850\\n   51-100: pr=0.2375, isr=0.2300\\n  101-200: pr=0.6625, isr=0.6538\\n  201-300: pr=0.7837, isr=0.7788\\n  301-400: pr=0.8488, isr=0.8375\\n  401-500: pr=0.8650, isr=0.8612\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "a9b252eb-0048-45e5-817d-ff12daeb623e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"plan001-r2 total steps: 500\\\\noverall: pr=0.6743, isr=0.6677\\\\nlast-50: pr=0.8525, isr=0.8525\\\\nlast-100: pr=0.8650, isr=0.8612\\\\nloss last-100: 0.005478\\\\nrolling10_pr>=0.5: step 106\\\\nrolling10_pr>=0.7: step 134\\\\nrolling10_pr>=0.8: step 142\\\\nrolling10_pr>=0.9: step 269\\\\nlast-100 ISR/PR ratio: 0.9959\\\\nlast-100 ISR&lt;PR count: 2/100\\\\n\\\\n    1- 50: pr=0.1850, isr=0.1850\\\\n   51-100: pr=0.2375, isr=0.2300\\\\n  101-200: pr=0.6625, isr=0.6538\\\\n  201-300: pr=0.7837, isr=0.7788\\\\n  301-400: pr=0.8488, isr=0.8375\\\\n  401-500: pr=0.8650, isr=0.8612\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"plan001-r2 total steps: 500\\noverall: pr=0.6743, isr=0.6677\\nlast-50: pr=0.8525, isr=0.8525\\nlast-100: pr=0.8650, isr=0.8612\\nloss last-100: 0.005478\\nrolling10_pr>=0.5: step 106\\nrolling10_pr>=0.7: step 134\\nrolling10_pr>=0.8: step 142\\nrolling10_pr>=0.9: step 269\\nlast-100 ISR/PR ratio: 0.9959\\nlast-100 ISR<PR count: 2/100\\n\\n    1- 50: pr=0.1850, isr=0.1850\\n   51-100: pr=0.2375, isr=0.2300\\n  101-200: pr=0.6625, isr=0.6538\\n  201-300: pr=0.7837, isr=0.7788\\n  301-400: pr=0.8488, isr=0.8375\\n  401-500: pr=0.8650, isr=0.8612\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the comparison data. Let me compile the analysis:
+
+## plan005-sta-low-s42 vs plan001-r2 (exec-only)
+
+| Metric | plan005 (α=0.9, β=0.1) | plan001-r2 (exec-only) | Δ |
+|--------|----------------------|---------------------|---|
+| Last-100 prove_rate | 0.7725 | 0.8650 | -0.0925 (-10.7%) |
+| Last-100 ISR | 0.2299 | 0.8612 | -0.6313 (-73.3%) |
+
+
+| Last-50 prove_rate | 0.7700 | 0.8525 | -0.0825 (-9.7%) |
+| Last-50 ISR | 0.2559 | 0.8525 | -0.5966 (-70.0%) |
+| Last-100 ISR/PR ratio | 0.2980 | 0.9959 | -0.6979 |
+| Last-100 ISR&lt;PR count | 99/100 | 2/100 | - |
+| Rolling-10 PR>=0.8 | step |
+
+The pattern is clear across both windows—plan001-r2 maintains substantially higher ISR values while plan005 shows consistent underperformance, with the ISR-to-prove-rate ratio revealing that plan005 rarely achieves the desired relationship between these metrics. The STA reward is fundamentally problematic regardless of weight—it consistently degrades solver trace quality while slowing convergence, which is the opposite of what we need. Even at 10% weight, the ISR collapse and prove_rate drop confirm that this conflicting optimization signal is harmful. I need to update the registry and finalize the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "91d402ef-e059-4331-9b00-3da4f58f03c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Wd3EYWD7ghmH7QHs8SLq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1651,
+      "cache_read_input_tokens": 33676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1651
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+数据齐全。现在更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "3d338361-1e8f-4c79-91ab-2be0f5c0286a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Wd3EYWD7ghmH7QHs8SLq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1651,
+      "cache_read_input_tokens": 33676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1651
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011r19XowSGpcB8H7nsfCMnv`</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "status",
+  "value": "DONE",
+  "project": "solver-trace-ablation",
+  "spec": {
+    "command": "GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42",
+    "server": "westd-39279",
+    "data_path": "/root/autodl-tmp/outputs/plan005_sta_low_s42/",
+    "data_count": 500,
+    "model_name": "Qwen2.5-7B",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "e3acc34c-f7cf-4a7e-974e-e1775856752a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Wd3EYWD7ghmH7QHs8SLq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1651,
+      "cache_read_input_tokens": 33676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1651
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T23:59:14.320Z_
+
+<details><summary>↩ Tool result · `toolu_011r19XowSGpcB8H7nsfCMnv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0569}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "22b5b74e-e5cf-4ee1-8fda-9a4867f6e661",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0569}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0569}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01VJe4fHTFwpgzVjHK6SVTLV`</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "solver-trace-ablation",
+  "spec": {
+    "command": "GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42",
+    "server": "westd-39279",
+    "data_path": "/root/autodl-tmp/outputs/plan005_sta_low_s42/",
+    "data_count": 500,
+    "model_name": "Qwen2.5-7B",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "41169ab8-a89a-4147-b3fb-e45c9ea62d73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bbyv4sVkUUx23T45qa1HYn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 35327,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1063
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T23:59:18.426Z_
+
+<details><summary>↩ Tool result · `toolu_01VJe4fHTFwpgzVjHK6SVTLV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:18.333Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1982}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "1a6762be-fc80-4c4d-82d0-870daad9b41e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan005-sta-low-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:20:47.812Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:59:18.333Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"85790\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:42:41.563Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:55:02.341Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:55:06.559440+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1982}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:18.333Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1982}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GmZsDbkDe9DEEJgqAKwr4r`</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "bd6cb5b7-e2b2-4e7e-a555-ddf8467d3f40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzjsZSH3o4WRA25tnyB2Jj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 36390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-13T23:59:21.987Z_
+
+<details><summary>↩ Tool result · `toolu_01GmZsDbkDe9DEEJgqAKwr4r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:21.939Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1011}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "a74a3d5c-6a0b-4826-9c7e-1d1175a7b3c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan005-sta-low-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:20:47.812Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:59:21.939Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"85790\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:42:41.563Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:55:02.341Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:55:06.559440+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1011}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:21.939Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1011}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UZXAzSk4ZiSK7jqszw6orq`</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "e0b9d475-bcb3-4445-9d67-c5dff081f357",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzjsZSH3o4WRA25tnyB2Jj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 36390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-13T23:59:22.616Z_
+
+<details><summary>↩ Tool result · `toolu_01UZXAzSk4ZiSK7jqszw6orq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:22.543Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1076}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "644968ac-4ab1-4fce-863a-0f54e8f89438",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan005-sta-low-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:20:47.812Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:59:22.543Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"85790\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:42:41.563Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:55:02.341Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:55:06.559440+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1076}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:22.543Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1076}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Mt7wzgq4XvhXyY6ZDgPAqs`</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "status",
+  "value": "DONE",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "c467d2a9-8fe4-4e9e-a8bf-f2f2f5572e52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S8EgLkMXz7sudCVvVqHvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1577,
+      "cache_read_input_tokens": 37145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1577
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-13T23:59:25.518Z_
+
+<details><summary>↩ Tool result · `toolu_01Mt7wzgq4XvhXyY6ZDgPAqs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:25.396Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\", \"wall_clock_seconds\": 4603.8, \"gpu_hours\": 1.28}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\", \"completed_at\": \"2026-05-13T23:59:25.396Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1746}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "95c6e80e-1876-481e-abad-58ecf8bc29fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan005-sta-low-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:20:47.812Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:59:25.396Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"85790\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:42:41.563Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\\\", \\\"wall_clock_seconds\\\": 4603.8, \\\"gpu_hours\\\": 1.28}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:55:02.341Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:55:06.559440+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\\", \\\"completed_at\\\": \\\"2026-05-13T23:59:25.396Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1746}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:25.396Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\", \"wall_clock_seconds\": 4603.8, \"gpu_hours\": 1.28}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\", \"completed_at\": \"2026-05-13T23:59:25.396Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1746}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HJ62pJCw4Tm3gmSp7FtwhQ`</summary>
+
+```json
+{
+  "exp_id": "plan005-sta-low-s42",
+  "field": "metrics",
+  "value": {
+    "total_steps": 500,
+    "duration_min": 71,
+    "parse_rate": 1,
+    "overall_prove_rate": 0.5657,
+    "overall_isr": 0.1682,
+    "last50_prove_rate": 0.77,
+    "last50_isr": 0.2559,
+    "last100_prove_rate": 0.7725,
+    "last100_isr": 0.2299,
+    "last100_loss": 0.022752,
+    "overall_loss": 0.017296,
+    "last100_isr_pr_ratio": 0.298,
+    "last100_isr_lt_pr_count": "99/100",
+    "first_rolling10_pr_ge_0.8": 178,
+    "first_rolling10_pr_ge_0.9": 439,
+    "max_rolling10_pr": 0.9375,
+    "max_rolling10_isr": 0.3282,
+    "windowed": {
+      "1-50": {
+        "pr": 0.1775,
+        "isr": 0.0906
+      },
+      "51-100": {
+        "pr": 0.1775,
+        "isr": 0.0835
+      },
+      "101-200": {
+        "pr": 0.5062,
+        "isr": 0.1463
+      },
+      "201-300": {
+        "pr": 0.6713,
+        "isr": 0.1791
+      },
+      "301-400": {
+        "pr": 0.7013,
+        "isr": 0.1984
+      },
+      "401-500": {
+        "pr": 0.7725,
+        "isr": 0.2299
+      }
+    }
+  },
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "669a19a4-e2f4-448a-92dc-0b7c3624297e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5qj6NvzjAagn14Mp53u3r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 38722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 792
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-13T23:59:34.638Z_
+
+<details><summary>↩ Tool result · `toolu_01HJ62pJCw4Tm3gmSp7FtwhQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:34.587Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\", \"wall_clock_seconds\": 4603.8, \"gpu_hours\": 1.28}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\", \"completed_at\": \"2026-05-13T23:59:25.396Z\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": {\"pr\": 0.6713, \"isr\": 0.1791}, \"301-400\": {\"pr\": 0.7013, \"isr\": 0.1984}, \"401-500\": {\"pr\": 0.7725, \"isr\": 0.2299}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.102}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "ca3e8571-501e-4fb3-8522-2076307d2209",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan005-sta-low-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:20:47.812Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:59:34.587Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"85790\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:42:41.563Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\\\", \\\"wall_clock_seconds\\\": 4603.8, \\\"gpu_hours\\\": 1.28}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:55:02.341Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:55:06.559440+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\\\", \\\"completed_at\\\": \\\"2026-05-13T23:59:25.396Z\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 71, \\\"parse_rate\\\": 1, \\\"overall_prove_rate\\\": 0.5657, \\\"overall_isr\\\": 0.1682, \\\"last50_prove_rate\\\": 0.77, \\\"last50_isr\\\": 0.2559, \\\"last100_prove_rate\\\": 0.7725, \\\"last100_isr\\\": 0.2299, \\\"last100_loss\\\": 0.022752, \\\"overall_loss\\\": 0.017296, \\\"last100_isr_pr_ratio\\\": 0.298, \\\"last100_isr_lt_pr_count\\\": \\\"99/100\\\", \\\"first_rolling10_pr_ge_0.8\\\": 178, \\\"first_rolling10_pr_ge_0.9\\\": 439, \\\"max_rolling10_pr\\\": 0.9375, \\\"max_rolling10_isr\\\": 0.3282, \\\"windowed\\\": {\\\"1-50\\\": {\\\"pr\\\": 0.1775, \\\"isr\\\": 0.0906}, \\\"51-100\\\": {\\\"pr\\\": 0.1775, \\\"isr\\\": 0.0835}, \\\"101-200\\\": {\\\"pr\\\": 0.5062, \\\"isr\\\": 0.1463}, \\\"201-300\\\": {\\\"pr\\\": 0.6713, \\\"isr\\\": 0.1791}, \\\"301-400\\\": {\\\"pr\\\": 0.7013, \\\"isr\\\": 0.1984}, \\\"401-500\\\": {\\\"pr\\\": 0.7725, \\\"isr\\\": 0.2299}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.102}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan005-sta-low-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-13T23:59:34.587Z\", \"spec\": {\"command\": \"GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"85790\", \"log_path\": \"~/runs/solver-trace-ablation/plan005-sta-low-s42.log\", \"submitted_at\": \"2026-05-13T22:42:41.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"hypothesis\": \"STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制\", \"wall_clock_seconds\": 4603.8, \"gpu_hours\": 1.28}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\", \"completed_at\": \"2026-05-13T23:59:25.396Z\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": {\"pr\": 0.6713, \"isr\": 0.1791}, \"301-400\": {\"pr\": 0.7013, \"isr\": 0.1984}, \"401-500\": {\"pr\": 0.7725, \"isr\": 0.2299}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.102}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+Registry 已更新。以下是完整分析报告。
+
+---
+
+## plan005-sta-low-s42 分析报告
+
+### 1. 完整 Metrics 表
+
+| 指标 | 值 |
+|------|-----|
+| 总步数 | 500 |
+| 训练时长 | ~71 min |
+| parse_rate | 1.0000 |
+| **overall prove_rate** | **0.5657** |
+| **overall ISR** | **0.1682** |
+| **last-50 prove_rate** | **0.7700** |
+| **last-50 ISR** | **0.2559** |
+| **last-100 prove_rate** | **0.7725** |
+| **last-100 ISR** | **0.2299** |
+| last-100 loss | 0.022752 |
+| last-100 ISR/PR ratio | 0.298 |
+| last-100 ISR < PR 步数 | 99/100 |
+| rolling-10 PR ≥ 0.8 首达 | step 178 |
+| rolling-10 PR ≥ 0.9 首达 | step 439 |
+| max rolling-10 PR | 0.9375 |
+| max rolling-10 ISR | 0.3282 |
+
+**分窗口变化：**
+
+| 窗口 | prove_rate | ISR |
+|------|-----------|-----|
+| 1-50 | 0.178 | 0.091 |
+| 51-100 | 0.178 | 0.084 |
+| 101-200 | 0.506 | 0.146 |
+| 201-300 | 0.671 | 0.179 |
+| 301-400 | 0.701 | 0.198 |
+| 401-500 | 0.773 | 0.230 |
+
+### 2. 与 plan001-r2 (exec-only 500步) 对比
+
+| 指标 | plan005 (α=0.9 β=0.1) | plan001-r2 (exec-only) | Δ |
+|------|----------------------|---------------------|---|
+| last-100 prove_rate | 0.7725 | **0.8650** | **-10.7%** |
+| last-100 ISR | 0.2299 | **0.8612** | **-73.3%** |
+| last-100 ISR/PR ratio | 0.298 | 0.996 | -0.698 |
+| last-100 ISR<PR count | 99/100 | 2/100 | — |
+| rolling-10 PR≥0.8 | step 178 | step 142 | +36 步更慢 |
+| rolling-10 PR≥0.9 | step 439 | step 269 | +170 步更慢 |
+| last-100 loss | 0.0228 | 0.0055 | 4.2× 更高 |
+
+### 3. 结论: **NEGATIVE**
+
+即使 STA 权重降到 0.1（exec 占 0.9），依然有严重负面影响：
+
+1. **prove_rate 下降 10.7%** (0.7725 vs 0.865) — STA 信号拖慢了 exec 任务的学习
+2. **ISR 灾难性崩塌 73.3%** (0.2299 vs 0.861) — 这是核心发现。模型学会了 prove，但 solver trace 质量极差。exec-only 的 ISR/PR ≈ 1.0（trace 自然好），加 STA 后 ISR/PR = 0.30（trace 被严重破坏）
+3. **收敛更慢** — PR≥0.9 需要 439 步 vs exec-only 的 269 步，慢 63%
+4. **loss 4× 更高** — STA 产生了 noisy gradients
+
+与 50/50 STA 对比：
+
+| 配置 | prove_rate | ISR | 结论 |
+|------|-----------|-----|------|
+| exec-only (plan001-r2) | 0.865 | 0.861 | baseline |
+| STA 50/50 (r5, 100步) | 0.10 | 0.043 | 灾难退化 |
+| **STA 0.1 (plan005, 500步)** | **0.773** | **0.230** | **严重退化** |
+
+退化程度随 STA 权重降低而减轻，但 0.1 仍远不够低。STA reward 的 penalty effect 在当前实现下是 **系统性的**，不是权重调参能解决的问题。
+
+### 4. 建议下一步
+
+STA 作为 additive reward 的方向已被两组实验否定（0.5 和 0.1 权重）。继续降权重（如 0.01）意义不大——要么效果为零，要么仍然是 penalty。
+
+应转向替代方案：
+- **Curriculum 方案 (plan002)**：先 exec-only 训练到收敛（~300步），再切换到 exec+STA fine-tune。这避免了早期 STA 干扰 exec 学习
+- **STA 作为 filter 而非 reward**：不用 STA 计算 reward，而是用 STA 筛选好的 traces 做 rejection sampling
+- **Post-hoc STA**：先用 exec-only 训练，然后用 STA 评分对 checkpoint 做 best-of-N 选择
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "uuid": "8ad22b32-1eca-4cca-991a-a2ee627c58bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VtqfqNubwpwxqh9o5yDrsM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1546,
+      "cache_read_input_tokens": 39514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1546
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 54_
+
+Registry 已更新。以下是完整分析报告。
+
+---
+
+## plan005-sta-low-s42 分析报告
+
+### 1. 完整 Metrics 表
+
+| 指标 | 值 |
+|------|-----|
+| 总步数 | 500 |
+| 训练时长 | ~71 min |
+| parse_rate | 1.0000 |
+| **overall prove_rate** | **0.5657** |
+| **overall ISR** | **0.1682** |
+| **last-50 prove_rate** | **0.7700** |
+| **last-50 ISR** | **0.2559** |
+| **last-100 prove_rate** | **0.7725** |
+| **last-100 ISR** | **0.2299** |
+| last-100 loss | 0.022752 |
+| last-100 ISR/PR ratio | 0.298 |
+| last-100 ISR < PR 步数 | 99/100 |
+| rolling-10 PR ≥ 0.8 首达 | step 178 |
+| rolling-10 PR ≥ 0.9 首达 | step 439 |
+| max rolling-10 PR | 0.9375 |
+| max rolling-10 ISR | 0.3282 |
+
+**分窗口变化：**
+
+| 窗口 | prove_rate | ISR |
+|------|-----------|-----|
+| 1-50 | 0.178 | 0.091 |
+| 51-100 | 0.178 | 0.084 |
+| 101-200 | 0.506 | 0.146 |
+| 201-300 | 0.671 | 0.179 |
+| 301-400 | 0.701 | 0.198 |
+| 401-500 | 0.773 | 0.230 |
+
+### 2. 与 plan001-r2 (exec-only 500步) 对比
+
+| 指标 | plan005 (α=0.9 β=0.1) | plan001-r2 (exec-only) | Δ |
+|------|----------------------|---------------------|---|
+| last-100 prove_rate | 0.7725 | **0.8650** | **-10.7%** |
+| last-100 ISR | 0.2299 | **0.8612** | **-73.3%** |
+| last-100 ISR/PR ratio | 0.298 | 0.996 | -0.698 |
+| last-100 ISR<PR count | 99/100 | 2/100 | — |
+| rolling-10 PR≥0.8 | step 178 | step 142 | +36 步更慢 |
+| rolling-10 PR≥0.9 | step 439 | step 269 | +170 步更慢 |
+| last-100 loss | 0.0228 | 0.0055 | 4.2× 更高 |
+
+### 3. 结论: **NEGATIVE**
+
+即使 STA 权重降到 0.1（exec 占 0.9），依然有严重负面影响：
+
+1. **prove_rate 下降 10.7%** (0.7725 vs 0.865) — STA 信号拖慢了 exec 任务的学习
+2. **ISR 灾难性崩塌 73.3%** (0.2299 vs 0.861) — 这是核心发现。模型学会了 prove，但 solver trace 质量极差。exec-only 的 ISR/PR ≈ 1.0（trace 自然好），加 STA 后 ISR/PR = 0.30（trace 被严重破坏）
+3. **收敛更慢** — PR≥0.9 需要 439 步 vs exec-only 的 269 步，慢 63%
+4. **loss 4× 更高** — STA 产生了 noisy gradients
+
+与 50/50 STA 对比：
+
+| 配置 | prove_rate | ISR | 结论 |
+|------|-----------|-----|------|
+| exec-only (plan001-r2) | 0.865 | 0.861 | baseline |
+| STA 50/50 (r5, 100步) | 0.10 | 0.043 | 灾难退化 |
+| **STA 0.1 (plan005, 500步)** | **0.773** | **0.230** | **严重退化** |
+
+退化程度随 STA 权重降低而减轻，但 0.1 仍远不够低。STA reward 的 penalty effect 在当前实现下是 **系统性的**，不是权重调参能解决的问题。
+
+### 4. 建议下一步
+
+STA 作为 additive reward 的方向已被两组实验否定（0.5 和 0.1 权重）。继续降权重（如 0.01）意义不大——要么效果为零，要么仍然是 penalty。
+
+应转向替代方案：
+- **Curriculum 方案 (plan002)**：先 exec-only 训练到收敛（~300步），再切换到 exec+STA fine-tune。这避免了早期 STA 干扰 exec 学习
+- **STA 作为 filter 而非 reward**：不用 STA 计算 reward，而是用 STA 筛选好的 traces 做 rejection sampling
+- **Post-hoc STA**：先用 exec-only 训练，然后用 STA 评分对 checkpoint 做 best-of-N 选择
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 188888,
+  "duration_api_ms": 185475,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "81a25063-c762-400d-b919-73397f71cde5",
+  "total_cost_usd": 0.6408132499999999,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 29219,
+    "cache_read_input_tokens": 421345,
+    "output_tokens": 9817,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 29219,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1522,
+        "cache_read_input_tokens": 39514,
+        "cache_creation_input_tokens": 1546,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1546
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1902,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002012,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 9817,
+      "cacheReadInputTokens": 421345,
+      "cacheCreationInputTokens": 29219,
+      "webSearchRequests": 0,
+      "costUSD": 0.6388012499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "39be3278-d72f-40c6-95a5-16dd7cce59f9"
+}
+```
+
+</details>
+
+---

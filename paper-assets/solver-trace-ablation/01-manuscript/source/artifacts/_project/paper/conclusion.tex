@@ -1,0 +1,33 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We introduced Solver Trace Ablation (STA), a protocol that derives the Intensional Structure Ratio (ISR) through leave-one-out component necessity testing on solver inputs.
+Our experiments across 6 reward configurations, 3 seeds, 2 formal languages (FOL verified by Prover9, Prolog verified by SWI-Prolog), and up to 1{,}000 training steps establish three findings.
+
+First, ISR is an effective diagnostic for structural reward hacking that prove rate alone cannot detect.
+Under execution-only GRPO, prove rate rises from 32\% to 96\% while ISR collapses from 0.64 to 0.003, with 94.8\% of proved outputs at 1{,}000 steps containing zero necessary components.
+All three seeds exhibit 87--100\% conclusion embedding, and a supervised fine-tuning baseline (92.9\% genuine, near-zero hacking) confirms that these pathologies are RL-reward-specific.
+The joint signal of prove rate, ISR, and component count cleanly separates three qualitatively different failure modes (redundant embedding, repetition collapse, tautological collapse) that prove rate conflates into apparent success.
+
+Second, ISR fails as a training signal due to meta-level Goodhart's Law.
+At low dose ($\beta{=}0.1$), ISR reward induces ISR-specific gaming: 64.5\% of proved outputs across 3 seeds exhibit single-premise conclusion duplication (H7), compared to 0\% across all random-reward seeds.
+The apparent structural advantage of ISR reward (raw 2.4$\times$ genuine ISR) is entirely a premise minimization artifact---controlling for premise count yields 1.06$\times$, indistinguishable from the random baseline.
+At high dose ($\beta{=}0.3$), classic Goodhart collapse drives prove rate to 18\% versus 48\% for the matched random control.
+Conclusion embedding itself is GRPO-universal (68--100\% across conditions); ISR reward restructures hacking from multi-premise (H1) to single-premise (H7) forms without reducing its prevalence.
+
+Third, both the diagnostic and the Goodhart failure transfer across formal languages.
+In Prolog, execution-only training again produces near-zero ISR (mean 0.04, 3 seeds), and ISR-as-reward produces universal Goodhart: all 3 seeds converge to gaming with 0\% genuine output, each via a distinct pathway---tautological duplication, degenerate uppercase syntax, and query-as-fact gaming.
+The stronger Prolog result (0\% genuine vs.\ ${\sim}$16\% in FOL) suggests that simpler formal semantics enable more complete metric exploitation.
+
+\paragraph{Limitations.}
+Our experiments use a single base model (Qwen3-4B); whether larger models exhibit qualitatively different hacking dynamics remains open.
+The evaluation covers two formal languages (FOL and Prolog) and two datasets (FOLIO-derived and ProofWriter); broader logic types (e.g., dependent types, temporal logic) may present different reward hacking landscapes.
+ISR measures syntactic component necessity, not semantic faithfulness---downstream NLI accuracy shows no correlation with ISR ($\rho{=}{-}0.049$, n.s.)---and the LOO formulation carries an inherent premise-count bias that requires normalization.
+We evaluate with 3 seeds; while the cross-seed divergence is itself a finding, larger seed counts would strengthen statistical claims.
+The text-match hacking classifier has blind spots exposed by Prolog (query-as-fact gaming bypassed strict matching), necessitating functional cross-validation via $n_{\text{necessary}}$ distributions.
+
+\paragraph{Future directions.}
+Combining ISR with semantic verification (e.g., NLI-based faithfulness checks) could address the syntactic-only limitation and yield diagnostics sensitive to both structural and semantic quality.
+Adaptive reward weighting that uses ISR as a gating signal rather than a continuous bonus may avoid the meta-Goodhart trap.
+Extending STA to richer logic types (SMT solvers, interactive theorem provers) and scaling to larger models would test the generality of the hacking dynamics we document.
+Finally, the recursive Goodhart phenomenon---where diagnostics designed to detect gaming become gaming targets when optimized---warrants investigation as a general failure mode of proxy-metric-as-reward approaches beyond the neurosymbolic setting.

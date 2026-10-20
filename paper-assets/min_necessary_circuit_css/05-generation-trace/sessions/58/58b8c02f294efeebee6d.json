@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58b8c02f294efeebee6d",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code gpt2 factual recall fix",
+  "task_key": "worker_code_gpt2-factual-recall-fix_20260513T084751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt2-factual-recall-fix_20260513T084751_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "93d329b122ba80ca05f7f0bd5a1ba6ecfa792aec4666a6c803bd3043e7893b14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。\n\n**修复总结：**\n\n- **Bug**：`run_factual_recall.py` L400/L407 直接传 `(model2, dl2, factual_recall_metric, config)` 给 `run_edge_pruning` / `run_acdc`，但这两个函数签名是 `(ac_task, config)` —— 需要 auto_circuit 的 `PatchableModel` + `PromptDataLoader`\n- **Fix**：新增 `_build_ac_task()` 辅助函数（L304），将 TransformerLens 模型包装为 `PatchableModel`，将 `FactualRecallDataset` 转为 auto_circuit 的 `PromptDataset` + `PromptDataLoader`\n- **验证**：Edge Pruning dry-run 通过（32491 edges scored），ACDC 运行正常（进度条推进中）\n- **EAP-IG 缓存**：`cache_eap_ig_fr.json` 存在，可复用\n- **实验**：`gpt2_factual_recall_k3_v2` 已注册并提交到 westd-pro6000 cuda:1，日志在 `~/runs/min_necessary_circuit_css/gpt2_factual_recall_k3_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpt2-factual-recall-fix.md"
+}

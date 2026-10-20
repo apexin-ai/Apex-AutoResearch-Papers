@@ -1,0 +1,52 @@
+{
+  "exp_id": "plan018-additive-random-b01-s45",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:29:08.182Z",
+    "updated_at": "2026-05-17T08:40:15.590Z",
+    "hypothesis": "Random β=0.1 seed=45, 5-seed matched control for ISR β=0.1 comparison",
+    "notes": "PID 628171 被 b02 提交时 GPU 冲突挤掉，进程已死。回退 PREPARING 等 GPU 空出后重排。需加 --no_wandb。",
+    "completed_at": "2026-05-16T04:29:35.108Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "PID 628171 被 b02 提交时 GPU 冲突挤掉，进程已死。回退 PREPARING 等 GPU 空出后重排。需加 --no_wandb。"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 45 --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/plan018_random_b01_s45 --no_wandb\"",
+      "server": "westd-39279",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 45,
+      "reward_mode": "additive_random",
+      "beta": 0.1,
+      "num_steps": 500
+    },
+    "metrics": {
+      "eval_prove_rate": 0.58,
+      "eval_n_proved": 58,
+      "eval_n_problems": 100,
+      "eval_mean_isr": 0.0096,
+      "eval_proved_only_isr": 0.0166,
+      "h7_count": 0,
+      "h7_rate": 0,
+      "h1_count": 53,
+      "h1_rate": 0.914,
+      "h8_count": 0,
+      "h8_rate": 0,
+      "genuine_count": 5,
+      "genuine_rate": 0.086,
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_method": "eval_sta.py + classify_h7.py"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T08:40:16.084104+00:00",
+  "trigger": "update_registry"
+}

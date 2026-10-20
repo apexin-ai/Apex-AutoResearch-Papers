@@ -1,0 +1,31 @@
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "project": "min_necessary_circuit_css",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T01:27:35.094Z",
+    "updated_at": "2026-05-13T03:55:44.687Z",
+    "hypothesis": "Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）",
+    "parent": "mvp_pilot_gpt2_ioi_v3",
+    "spec": {
+      "command": "python /root/min_necessary_circuit_css/run_arithmetic.py",
+      "server": "cqa1-21977",
+      "data_path": "Greaterthan 1000 prompts JSON",
+      "data_count": 100,
+      "model_name": "GPT-2 Small (ModelScope)",
+      "seed": "default",
+      "log_path": "/tmp/arithmetic.log",
+      "pid": 900223
+    },
+    "notes": "D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。",
+    "conclusion": "negative",
+    "checkpoint_path": "/root/min_necessary_circuit_css/arithmetic_results.json",
+    "log_path": "/tmp/arithmetic.log",
+    "completed_at": "2026-05-13T03:55:44.687Z"
+  },
+  "timestamp": "2026-05-13T03:55:44.708090+00:00",
+  "trigger": "update_registry"
+}

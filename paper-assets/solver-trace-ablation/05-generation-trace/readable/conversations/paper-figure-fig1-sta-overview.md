@@ -1,0 +1,1153 @@
+# paper figure fig1 sta overview
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_paper_figure_fig1_sta_overview_20260514T173028.jsonl`
+- **Structured JSON:** [`00d0a1d4b024c0f3cea9.json`](../../sessions/00/00d0a1d4b024c0f3cea9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T17:34:24.317676+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T17:34:24.318245+00:00_
+
+1	---
+2	description: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG
+3	name: draw-paper-figure
+4	scope: global
+5	tags:
+6	  - research
+7	  - visualization
+8	  - paper
+9	  - matplotlib
+10	version: 1
+11	tools:
+12	  - ssh_execute
+13	---
+14	
+15	# Draw Paper Figure — 学术图表生成
+16	
+17	为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。
+18	
+19	## 触发条件
+20	
+21	- 用户说"画个图"、"生成 reliability diagram"、"做个 heatmap"
+22	- 论文写作阶段需要插图
+23	- 实验结果需要可视化汇总
+24	
+25	## 通用样式标准（所有图表必须遵守）
+26	
+27	```python
+28	import matplotlib
+29	matplotlib.use('Agg')
+30	import matplotlib.pyplot as plt
+31	import matplotlib.patches as mpatches
+32	import numpy as np
+33	
+34	# 字体和全局样式
+35	plt.rcParams.update({
+36	    'font.family': 'DejaVu Sans',
+37	    'font.size': 11,
+38	    'axes.titlesize': 13,
+39	    'axes.labelsize': 12,
+40	    'xtick.labelsize': 10,
+41	    'ytick.labelsize': 10,
+42	    'legend.fontsize': 10,
+43	    'figure.dpi': 300,
+44	    'savefig.dpi': 300,
+45	    'savefig.bbox': 'tight',
+46	    'savefig.pad_inches': 0.05,
+47	    'axes.spines.top': False,
+48	    'axes.spines.right': False,
+49	    'lines.linewidth': 1.8,
+50	})
+51	
+52	# 色盲友好配色（Okabe-Ito）
+53	COLORS = {
+54	    'fp16':   '#E69F00',  # 橙黄
+55	    'nf4':    '#56B4E9',  # 天蓝
+56	    'int8':   '#009E73',  # 绿
+57	    'gptq':   '#F0E442',  # 黄
+58	    'awq':    '#CC79A7',  # 粉紫
+59	    'llama':  '#0072B2',  # 深蓝
+60	    'qwen3':  '#D55E00',  # 橙红
+61	    'gemma':  '#009E73',  # 绿
+62	    'mistral':'#CC79A7',  # 粉紫
+63	    'phi3':   '#F0E442',  # 黄
+64	}
+65	
+66	# 方法标签
+67	METHOD_LABELS = {
+68	    'fp16': 'FP16', 'nf4': 'BNB-NF4',
+69	    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'
+70	}
+71	```
+72	
+73	---
+74	
+75	## 1. Reliability Diagram（校准图）
+76	
+77	**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。
+78	
+79	```python
+80	def plot_reliability_diagram(confidences, accuracies, n_bins=10,
+81	                              label='', color='#0072B2',
+82	                              title='Reliability
+…[truncated 8160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T17:34:24.318427+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+  "description": "Check if output directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+    "description": "Check if output directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T17:34:24.318563+00:00_
+
+total 8
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 17:30 .
+drwxr-xr-x 3 ubuntu ubuntu 4096 May 14 17:30 ..
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T17:34:24.318775+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py",
+  "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito palette\nC_BLUE    = '#0072B2'\nC_ORANGE  = '#E69F00'\nC_GREEN   = '#009E73'\nC_RED     = '#D55E00'\nC_PURPLE  = '#CC79A7'\nC_SKYBLUE = '#56B4E9'\nC_YELLOW  = '#F0E442'\nC_GREY    = '#999999'\nC_DARKGREY = '#555555'\nC_LIGHTGREY = '#E0E0E0'\n\ndef draw_rounded_box(ax, x, y, w, h, text, facecolor='#EBF5FB',\n                     edgecolor=C_BLUE, fontsize=10, textcolor='black',\n                     linewidth=1.2, fontstyle='normal', fontweight='normal',\n                     alpha=1.0, zorder=3):\n    box = FancyBboxPatch((x - w/2, y - h/2), w, h,\n                          boxstyle=\"round,pad=0.05\",\n                          facecolor=facecolor, edgecolor=edgecolor,\n                          linewidth=linewidth, alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    ax.text(x, y, text, ha='center', va='center', fontsize=fontsize,\n            color=textcolor, fontstyle=fontstyle, fontweight=fontweight,\n            zorder=zorder+1)\n    return box\n\ndef draw_arrow(ax, x1, y1, x2, y2, color='#333333', linewidth=1.2,\n               arrowstyle='->', mutation_scale=12, zorder=2):\n    arrow = FancyArrowPatch((x1, y1), (x2, y2),\n                             arrowstyle=arrowstyle,\n                             mutation_scale=mutation_scale,\n                             color=color, linewidth=linewidth, zorder=zorder)\n    ax.add_patch(arrow)\n    return arrow\n\n# ── Figure ──\nfig, (ax_a, ax_b, ax_c) = plt.subplots(1, 3, figsize=(14, 4),\n                                         gridspec_kw={'width_ratios': [1.0, 1.3, 0.9]})\n\nfor ax in (ax_a, ax_b, ax_c):\n    ax.set_xlim(0, 1)\n    ax.set_ylim(0, 1)\n    ax.set_aspect('equal')\n    ax.axis('off')\n\n# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=10)\n\nsteps = [\n    ('NL\\nProblem',           '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer\\n(Qwen3-4B)', '#E3F2FD', C_BLUE),\n    ('Formal Logic\\n(FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver\\n(Prover9 / SWI)', '#F3E5F5', C_PURPLE),\n]\n\nbox_w = 0.20\nbox_h = 0.18\ny_mid = 0.50\nx_positions = [0.13, 0.37, 0.63, 0.87]\n\nfor i, (label, fc, ec) in enumerate(steps):\n    draw_rounded_box(ax_a, x_positions[i], y_mid, box_w, box_h, label,\n                     facecolor=fc, edgecolor=ec, fontsize=8.5)\n\n# Arrows between boxes\nfor i in range(len(x_positions) - 1):\n    draw_arrow(ax_a, x_positions[i] + box_w/2 + 0.01, y_mid,\n               x_positions[i+1] - box_w/2 - 0.01, y_mid,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)\n\n# Result indicators below solver\nax_a.text(0.87, y_mid - box_h/2 - 0.10, 'Pass ✓ / Fail ✗',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY,\n          fontweight='bold')\n\n# ═══════════════════════════════════════════════════════\n# Panel (b): Solver Trace Ablation\n# ═══════════════════════════════════════════════════════\nax_b.set_xlim(0, 1.15)\nax_b.set_ylim(0, 1)\nax_b.set_title('(b) Solver Trace Ablation', fontsize=12, fontweight='bold', pad=10)\n\n# Left side: Original formalization\norig_x = 0.12\norig_top = 0.90\nrow_h = 0.10\ncomp_labels = ['c₁', 'c₂', 'c₃', 'c₄']\ncomp_w = 0.14\ncomp_h = 0.07\n\n# \"Formalization\" header\nax_b.text(orig_x, 0.95, 'Formalization', ha='center', va='center',\n          fontsize=9, fontweight='bold', color=C_DARKGREY)\n\nfor i, label in enumerate(comp_labels):\n    yy = orig_top - i * row_h\n    draw_rounded_box(ax_b, orig_x, yy, comp_w, comp_h, label,\n                     facecolor='#E3F2FD', edgecolor=C_BLUE, fontsize=9)\n\n# Conclusion box\nconc_y = orig_top - len(comp_labels) * row_h\ndraw_rounded_box(ax_b, orig_x, conc_y, comp_w, comp_h, 'conclusion',\n                 facecolor='#FFF8E1', edgecolor=C_ORANGE, fontsize=8)\n\n# Right side: Ablation rows\nablation_results = [\n    ('c₁', True),   # necessary (Fail when removed)\n    ('c₂', False),  # redundant (Pass when removed)\n    ('c₃', True),   # necessary\n    ('c₄', False),  # redundant\n]\n\nabl_x_start = 0.32\nabl_x_solver = 0.78\nabl_x_result = 1.00\ncomp_mini_w = 0.06\ncomp_mini_h = 0.06\ngap = 0.07\n\nax_b.text(0.68, 0.95, 'Leave-One-Out Ablation', ha='center', va='center',\n          fontsize=9, fontweight='bold', color=C_DARKGREY)\n\nfor row_idx, (removed, is_necessary) in enumerate(ablation_results):\n    yy = orig_top - row_idx * row_h\n\n    # Draw mini components\n    for ci in range(4):\n        cx = abl_x_start + ci * gap\n        label = comp_labels[ci]\n        if comp_labels[ci] == removed:\n            # Removed component: grey with strikethrough\n            draw_rounded_box(ax_b, cx, yy, comp_mini_w, comp_mini_h, label,\n                             facecolor=C_LIGHTGREY, edgecolor=C_GREY,\n                             fontsize=7.5, textcolor=C_GREY, linewidth=0.8)\n            # Strikethrough line\n            ax_b.plot([cx - comp_mini_w/2 + 0.005, cx + comp_mini_w/2 - 0.005],\n                      [yy, yy], color=C_RED, linewidth=1.5, zorder=5)\n        else:\n            draw_rounded_box(ax_b, cx, yy, comp_mini_w, comp_mini_h, label,\n                             facecolor='#E3F2FD', edgecolor=C_BLUE,\n                             fontsize=7.5, linewidth=0.8)\n\n    # Arrow to solver\n    draw_arrow(ax_b, abl_x_start + 3 * gap + comp_mini_w/2 + 0.02, yy,\n               abl_x_solver - 0.06, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Solver mini box\n    draw_rounded_box(ax_b, abl_x_solver, yy, 0.10, comp_mini_h, 'Solver',\n                     facecolor='#F3E5F5', edgecolor=C_PURPLE, fontsize=7,\n                     linewidth=0.8)\n\n    # Arrow to result\n    draw_arrow(ax_b, abl_x_solver + 0.06, yy,\n               abl_x_result - 0.05, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Result\n    if is_necessary:\n        ax_b.text(abl_x_result, yy + 0.015, '✗ Fail', ha='center', va='center',\n                  fontsize=8, color=C_RED, fontweight='bold')\n        ax_b.text(abl_x_result, yy - 0.025, 'necessary', ha='center', va='center',\n                  fontsize=7, color=C_RED, fontstyle='italic')\n    else:\n        ax_b.text(abl_x_result, yy + 0.015, '✓ Pass', ha='center', va='center',\n                  fontsize=8, color=C_GREEN, fontweight='bold')\n        ax_b.text(abl_x_result, yy - 0.025, 'redundant', ha='center', va='center',\n                  fontsize=7, color=C_GREEN, fontstyle='italic')\n\n# ISR formula at bottom\nax_b.text(0.58, 0.13, 'ISR = $\\\\frac{n_{\\\\mathrm{necessary}}}{n_{\\\\mathrm{total}}}$'\n          ' = $\\\\frac{2}{4}$ = 0.50',\n          ha='center', va='center', fontsize=10,\n          bbox=dict(boxstyle='round,pad=0.4', facecolor='#FFF8E1',\n                    edgecolor=C_ORANGE, linewidth=1.2),\n          zorder=5)\n\n# ═══════════════════════════════════════════════════════\n# Panel (c): Diagnostic vs Reward (Goodhart)\n# ═══════════════════════════════════════════════════════\nax_c.set_title('(c) Diagnostic → Reward: Goodhart', fontsize=12, fontweight='bold', pad=10)\n\n# Upper section: Diagnostic (green)\ndiag_y = 0.78\ndraw_rounded_box(ax_c, 0.50, diag_y, 0.80, 0.13, '',\n                 facecolor='#E8F5E9', edgecolor=C_GREEN, fontsize=10,\n                 linewidth=1.5)\nax_c.text(0.50, diag_y + 0.02, '✓  ISR as Diagnostic', ha='center', va='center',\n          fontsize=10, fontweight='bold', color=C_GREEN)\nax_c.text(0.50, diag_y - 0.03, 'Post-hoc structural quality audit', ha='center',\n          va='center', fontsize=8, color=C_DARKGREY)\n\n# Sub-text for diagnostic\nax_c.text(0.50, 0.64, 'Detects hacking invisible to pass rate',\n          ha='center', va='center', fontsize=8, color=C_DARKGREY, fontstyle='italic')\n\n# Goodhart arrow\narrow_x = 0.50\ndraw_arrow(ax_c, arrow_x, 0.58, arrow_x, 0.42,\n           color=C_RED, linewidth=2.0, mutation_scale=18,\n           arrowstyle='->')\n\n# \"Goodhart's Law\" label on arrow\nax_c.text(arrow_x + 0.24, 0.50, \"Goodhart's\\nLaw\",\n          ha='center', va='center', fontsize=9, fontweight='bold',\n          color=C_RED, fontstyle='italic',\n          bbox=dict(boxstyle='round,pad=0.2', facecolor='#FFF0F0',\n                    edgecolor=C_RED, linewidth=0.8, alpha=0.9))\n\n# Lower section: Reward (red)\nrew_y = 0.28\ndraw_rounded_box(ax_c, 0.50, rew_y, 0.80, 0.13, '',\n                 facecolor='#FBE9E7', edgecolor=C_RED, fontsize=10,\n                 linewidth=1.5)\nax_c.text(0.50, rew_y + 0.02, '✗  ISR as Reward Signal', ha='center', va='center',\n          fontsize=10, fontweight='bold', color=C_RED)\nax_c.text(0.50, rew_y - 0.03, '$r = r_{\\\\mathrm{exec}} \\\\cdot (1 + \\\\beta \\\\cdot \\\\mathrm{ISR})$',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY)\n\n# Sub-text for reward\nax_c.text(0.50, 0.14, 'Model games ISR itself (meta-Goodhart)',\n          ha='center', va='center', fontsize=8, color=C_RED, fontstyle='italic')\n\n# ── Save ──\nplt.tight_layout(w_pad=1.5)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper'\nplt.savefig(f'{outdir}/fig1_sta_overview.pdf')\nplt.savefig(f'{outdir}/fig1_sta_overview.png')\nplt.close()\n\nprint('Done.')\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py",
+    "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito palette\nC_BLUE    = '#0072B2'\nC_ORANGE  = '#E69F00'\nC_GREEN   = '#009E73'\nC_RED     = '#D55E00'\nC_PURPLE  = '#CC79A7'\nC_SKYBLUE = '#56B4E9'\nC_YELLOW  = '#F0E442'\nC_GREY    = '#999999'\nC_DARKGREY = '#555555'\nC_LIGHTGREY = '#E0E0E0'\n\ndef draw_rounded_box(ax, x, y, w, h, text, facecolor='#EBF5FB',\n                     edgecolor=C_BLUE, fontsize=10, textcolor='black',\n                     linewidth=1.2, fontstyle='normal', fontweight='normal',\n                     alpha=1.0, zorder=3):\n    box = FancyBboxPatch((x - w/2, y - h/2), w, h,\n                          boxstyle=\"round,pad=0.05\",\n                          facecolor=facecolor, edgecolor=edgecolor,\n                          linewidth=linewidth, alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    ax.text(x, y, text, ha='center', va='center', fontsize=fontsize,\n            color=textcolor, fontstyle=fontstyle, fontweight=fontweight,\n            zorder=zorder+1)\n    return box\n\ndef draw_arrow(ax, x1, y1, x2, y2, color='#333333', linewidth=1.2,\n               arrowstyle='->', mutation_scale=12, zorder=2):\n    arrow = FancyArrowPatch((x1, y1), (x2, y2),\n                             arrowstyle=arrowstyle,\n                             mutation_scale=mutation_scale,\n                             color=color, linewidth=linewidth, zorder=zorder)\n    ax.add_patch(arrow)\n    return arrow\n\n# ── Figure ──\nfig, (ax_a, ax_b, ax_c) = plt.subplots(1, 3, figsize=(14, 4),\n                                         gridspec_kw={'width_ratios': [1.0, 1.3, 0.9]})\n\nfor ax in (ax_a, ax_b, ax_c):\n    ax.set_xlim(0, 1)\n    ax.set_ylim(0, 1)\n    ax.set_aspect('equal')\n    ax.axis('off')\n\n# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=10)\n\nsteps = [\n    ('NL\\nProblem',           '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer\\n(Qwen3-4B)', '#E3F2FD', C_BLUE),\n    ('Formal Logic\\n(FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver\\n(Prover9 / SWI)', '#F3E5F5', C_PURPLE),\n]\n\nbox_w = 0.20\nbox_h = 0.18\ny_mid = 0.50\nx_positions = [0.13, 0.37, 0.63, 0.87]\n\nfor i, (label, fc, ec) in enumerate(steps):\n    draw_rounded_box(ax_a, x_positions[i], y_mid, box_w, box_h, label,\n                     facecolor=fc, edgecolor=ec, fontsize=8.5)\n\n# Arrows between boxes\nfor i in range(len(x_positions) - 1):\n    draw_arrow(ax_a, x_positions[i] + box_w/2 + 0.01, y_mid,\n               x_positions[i+1] - box_w/2 - 0.01, y_mid,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)\n\n# Result indicators below solver\nax_a.text(0.87, y_mid - box_h/2 - 0.10, 'Pass ✓ / Fail ✗',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY,\n          fontweight='bold')\n\n# ═══════════════════════════════════════════════════════\n# Panel (b): Solver Trace Ablation\n# ═══════════════════════════════════════════════════════\nax_b.set_xlim(0, 1.15)\nax_b.set_ylim(0, 1)\nax_b.set_title('(b) Solver Trace Ablation', fontsize=12, fontweight='bold', pad=10)\n\n# Left side: Original formalization\norig_x = 0.12\norig_top = 0.90\nrow_h = 0.10\ncomp_labels = ['c₁', 'c₂', 'c₃', 'c₄']\ncomp_w = 0.14\ncomp_h = 0.07\n\n# \"Formalization\" header\nax_b.text(orig_x, 0.95, 'Formalization', ha='center', va='center',\n          fontsize=9, fontweight='bold', color=C_DARKGREY)\n\nfor i, label in enumerate(comp_labels):\n    yy = orig_top - i * row_h\n    draw_rounded_box(ax_b, orig_x, yy, comp_w, comp_h, label,\n                     facecolor='#E3F2FD', edgecolor=C_BLUE, fontsize=9)\n\n# Conclusion box\nconc_y = orig_top - len(comp_labels) * row_h\ndraw_rounded_box(ax_b, orig_x, conc_y, comp_w, comp_h, 'conclusion',\n                 facecolor='#FFF8E1', edgecolor=C_ORANGE, fontsize=8)\n\n# Right side: Ablation rows\nablation_results = [\n    ('c₁', True),   # necessary (Fail when removed)\n    ('c₂', False),  # redundant (Pass when removed)\n    ('c₃', True),   # necessary\n    ('c₄', False),  # redundant\n]\n\nabl_x_start = 0.32\nabl_x_solver = 0.78\nabl_x_result = 1.00\ncomp_mini_w = 0.06\ncomp_mini_h = 0.06\ngap = 0.07\n\nax_b.text(0.68, 0.95, 'Leave-One-Out Ablation', ha='center', va='center',\n          fontsize=9, fontweight='bold', color=C_DARKGREY)\n\nfor row_idx, (removed, is_necessary) in enumerate(ablation_results):\n    yy = orig_top - row_idx * row_h\n\n    # Draw mini components\n    for ci in range(4):\n        cx = abl_x_start + ci * gap\n        label = comp_labels[ci]\n        if comp_labels[ci] == removed:\n            # Removed component: grey with strikethrough\n            draw_rounded_box(ax_b, cx, yy, comp_mini_w, comp_mini_h, label,\n                             facecolor=C_LIGHTGREY, edgecolor=C_GREY,\n                             fontsize=7.5, textcolor=C_GREY, linewidth=0.8)\n            # Strikethrough line\n            ax_b.plot([cx - comp_mini_w/2 + 0.005, cx + comp_mini_w/2 - 0.005],\n                      [yy, yy], color=C_RED, linewidth=1.5, zorder=5)\n        else:\n            draw_rounded_box(ax_b, cx, yy, comp_mini_w, comp_mini_h, label,\n                             facecolor='#E3F2FD', edgecolor=C_BLUE,\n                             fontsize=7.5, linewidth=0.8)\n\n    # Arrow to solver\n    draw_arrow(ax_b, abl_x_start + 3 * gap + comp_mini_w/2 + 0.02, yy,\n               abl_x_solver - 0.06, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Solver mini box\n    draw_rounded_box(ax_b, abl_x_solver, yy, 0.10, comp_mini_h, 'Solver',\n                     facecolor='#F3E5F5', edgecolor=C_PURPLE, fontsize=7,\n                     linewidth=0.8)\n\n    # Arrow to result\n    draw_arrow(ax_b, abl_x_solver + 0.06, yy,\n               abl_x_result - 0.05, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Result\n    if is_necessary:\n        ax_b.text(abl_x_result, yy + 0.015, '✗ Fail', ha='center', va='center',\n                  fontsize=8, color=C_RED, fontweight='bold')\n        ax_b.text(abl_x_result, yy - 0.025, 'necessary', ha='center', va='center',\n                  fontsize=7, color=C_RED, fontstyle='italic')\n    else:\n        ax_b.text(abl_x_result, yy + 0.015, '✓ Pass', ha='center', va='center',\n                  fontsize=8, color=C_GREEN, fontweight='bold')\n        ax_b.text(abl_x_result, yy - 0.025, 'redundant', ha='center', va='center',\n                  fontsize=7, color=C_GREEN, fontstyle='italic')\n\n# ISR formula at bottom\nax_b.text(0.58, 0.13, 'ISR = $\\\\frac{n_{\\\\mathrm{necessary}}}{n_{\\\\mathrm{total}}}$'\n          ' = $\\\\frac{2}{4}$ = 0.50',\n          ha='center', va='center', fontsize=10,\n          bbox=dict(boxstyle='round,pad=0.4', facecolor='#FFF8E1',\n                    edgecolor=C_ORANGE, linewidth=1.2),\n          zorder=5)\n\n# ═══════════════════════════════════════════════════════\n# Panel (c): Diagnostic vs Reward (Goodhart)\n# ═══════════════════════════════════════════════════════\nax_c.set_title('(c) Diagnostic → Reward: Goodhart', fontsize=12, fontweight='bold', pad=10)\n\n# Upper section: Diagnostic (green)\ndiag_y = 0.78\ndraw_rounded_box(ax_c, 0.50, diag_y, 0.80, 0.13, '',\n                 facecolor='#E8F5E9', edgecolor=C_GREEN, fontsize=10,\n                 linewidth=1.5)\nax_c.text(0.50, diag_y + 0.02, '✓  ISR as Diagnostic', ha='center', va='center',\n          fontsize=10, fontweight='bold', color=C_GREEN)\nax_c.text(0.50, diag_y - 0.03, 'Post-hoc structural quality audit', ha='center',\n          va='center', fontsize=8, color=C_DARKGREY)\n\n# Sub-text for diagnostic\nax_c.text(0.50, 0.64, 'Detects hacking invisible to pass rate',\n          ha='center', va='center', fontsize=8, color=C_DARKGREY, fontstyle='italic')\n\n# Goodhart arrow\narrow_x = 0.50\ndraw_arrow(ax_c, arrow_x, 0.58, arrow_x, 0.42,\n           color=C_RED, linewidth=2.0, mutation_scale=18,\n           arrowstyle='->')\n\n# \"Goodhart's Law\" label on arrow\nax_c.text(arrow_x + 0.24, 0.50, \"Goodhart's\\nLaw\",\n          ha='center', va='center', fontsize=9, fontweight='bold',\n          color=C_RED, fontstyle='italic',\n          bbox=dict(boxstyle='round,pad=0.2', facecolor='#FFF0F0',\n                    edgecolor=C_RED, linewidth=0.8, alpha=0.9))\n\n# Lower section: Reward (red)\nrew_y = 0.28\ndraw_rounded_box(ax_c, 0.50, rew_y, 0.80, 0.13, '',\n                 facecolor='#FBE9E7', edgecolor=C_RED, fontsize=10,\n                 linewidth=1.5)\nax_c.text(0.50, rew_y + 0.02, '✗  ISR as Reward Signal', ha='center', va='center',\n          fontsize=10, fontweight='bold', color=C_RED)\nax_c.text(0.50, rew_y - 0.03, '$r = r_{\\\\mathrm{exec}} \\\\cdot (1 + \\\\beta \\\\cdot \\\\mathrm{ISR})$',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY)\n\n# Sub-text for reward\nax_c.text(0.50, 0.14, 'Model games ISR itself (meta-Goodhart)',\n          ha='center', va='center', fontsize=8, color=C_RED, fontstyle='italic')\n\n# ── Save ──\nplt.tight_layout(w_pad=1.5)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper'\nplt.savefig(f'{outdir}/fig1_sta_overview.pdf')\nplt.savefig(f'{outdir}/fig1_sta_overview.png')\nplt.close()\n\nprint('Done.')\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T17:34:24.319058+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T17:34:24.319193+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper && python3 gen_fig1.py 2>&1",
+  "description": "Generate fig1 STA overview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper && python3 gen_fig1.py 2>&1",
+    "description": "Generate fig1 STA overview"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T17:34:24.319313+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py", line 1, in &lt;module>
+    import matplotlib
+ModuleNotFoundError: No module named 'matplotlib'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T17:34:24.319429+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "pip3 install matplotlib -q 2>&1 | tail -3",
+  "description": "Install matplotlib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "pip3 install matplotlib -q 2>&1 | tail -3",
+    "description": "Install matplotlib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T17:34:24.319542+00:00_
+
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+hint: See PEP 668 for the detailed specification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T17:34:24.319655+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -m venv /tmp/fig_venv && /tmp/fig_venv/bin/pip install matplotlib -q 2>&1 | tail -3",
+  "description": "Create venv and install matplotlib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -m venv /tmp/fig_venv && /tmp/fig_venv/bin/pip install matplotlib -q 2>&1 | tail -3",
+    "description": "Create venv and install matplotlib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T17:34:24.319808+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T17:34:24.319924+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper && /tmp/fig_venv/bin/python gen_fig1.py 2>&1",
+  "description": "Generate fig1 with venv python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper && /tmp/fig_venv/bin/python gen_fig1.py 2>&1",
+    "description": "Generate fig1 with venv python"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T17:34:24.320034+00:00_
+
+Done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T17:34:24.320142+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.{pdf,png}",
+  "description": "Verify output files exist"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.{pdf,png}",
+    "description": "Verify output files exist"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T17:34:24.320251+00:00_
+
+-rw-r--r-- 1 ubuntu ubuntu  54384 May 14 17:32 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.pdf
+-rw-r--r-- 1 ubuntu ubuntu 314363 May 14 17:32 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T17:34:24.320376+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T17:34:24.320965+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T17:34:24.321191+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py",
+  "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito palette\nC_BLUE    = '#0072B2'\nC_ORANGE  = '#E69F00'\nC_GREEN   = '#009E73'\nC_RED     = '#D55E00'\nC_PURPLE  = '#CC79A7'\nC_SKYBLUE = '#56B4E9'\nC_GREY    = '#999999'\nC_DARKGREY = '#555555'\nC_LIGHTGREY = '#E0E0E0'\n\ndef draw_rounded_box(ax, x, y, w, h, text, facecolor='#EBF5FB',\n                     edgecolor=C_BLUE, fontsize=10, textcolor='black',\n                     linewidth=1.2, fontstyle='normal', fontweight='normal',\n                     alpha=1.0, zorder=3):\n    box = FancyBboxPatch((x - w/2, y - h/2), w, h,\n                          boxstyle=\"round,pad=0.03\",\n                          facecolor=facecolor, edgecolor=edgecolor,\n                          linewidth=linewidth, alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    ax.text(x, y, text, ha='center', va='center', fontsize=fontsize,\n            color=textcolor, fontstyle=fontstyle, fontweight=fontweight,\n            zorder=zorder+1)\n    return box\n\ndef draw_arrow(ax, x1, y1, x2, y2, color='#333333', linewidth=1.2,\n               arrowstyle='->', mutation_scale=12, zorder=2):\n    arrow = FancyArrowPatch((x1, y1), (x2, y2),\n                             arrowstyle=arrowstyle,\n                             mutation_scale=mutation_scale,\n                             color=color, linewidth=linewidth, zorder=zorder)\n    ax.add_patch(arrow)\n    return arrow\n\n# ── Figure ──\nfig = plt.figure(figsize=(14, 4.5))\n\n# Manual gridspec for more control\ngs = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.4, 0.85], wspace=0.25)\nax_a = fig.add_subplot(gs[0])\nax_b = fig.add_subplot(gs[1])\nax_c = fig.add_subplot(gs[2])\n\nfor ax in (ax_a, ax_b, ax_c):\n    ax.set_xlim(0, 10)\n    ax.set_ylim(0, 10)\n    ax.axis('off')\n\n# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=8)\n\nsteps_a = [\n    ('NL Problem',                '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer\\n(Qwen3-4B)',  '#E3F2FD', C_BLUE),\n    ('Formal Logic\\n(FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver\\n(Prover9 / SWI)',      '#F3E5F5', C_PURPLE),\n]\n\nbox_w_a = 2.0\nbox_h_a = 1.5\ny_mid_a = 5.5\nx_positions_a = [1.3, 3.7, 6.3, 8.7]\n\nfor i, (label, fc, ec) in enumerate(steps_a):\n    draw_rounded_box(ax_a, x_positions_a[i], y_mid_a, box_w_a, box_h_a, label,\n                     facecolor=fc, edgecolor=ec, fontsize=9)\n\nfor i in range(len(x_positions_a) - 1):\n    draw_arrow(ax_a, x_positions_a[i] + box_w_a/2 + 0.08, y_mid_a,\n               x_positions_a[i+1] - box_w_a/2 - 0.08, y_mid_a,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)\n\n# Result below solver\nax_a.text(8.7, y_mid_a - box_h_a/2 - 0.7, 'Pass ✓ / Fail ✗',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY, fontweight='bold')\n\n# ═══════════════════════════════════════════════════════\n# Panel (b): Solver Trace Ablation\n# ═══════════════════════════════════════════════════════\nax_b.set_xlim(0, 12)\nax_b.set_ylim(0, 10)\nax_b.set_title('(b) Solver Trace Ablation', fontsize=12, fontweight='bold', pad=8)\n\ncomp_labels = ['c₁', 'c₂', 'c₃', 'c₄']\nablation_results = [\n    ('c₁', True),   # necessary (Fail when removed)\n    ('c₂', False),  # redundant (Pass when removed)\n    ('c₃', True),   # necessary\n    ('c₄', False),  # redundant\n]\n\n# -- Left column: Original formalization --\norig_x = 1.2\norig_top = 8.7\nrow_gap = 1.35\ncomp_w = 1.4\ncomp_h = 0.75\n\nax_b.text(orig_x, 9.6, 'Formalization', ha='center', va='center',\n          fontsize=9.5, fontweight='bold', color=C_DARKGREY)\n\nfor i, label in enumerate(comp_labels):\n    yy = orig_top - i * row_gap\n    draw_rounded_box(ax_b, orig_x, yy, comp_w, comp_h, label,\n                     facecolor='#E3F2FD', edgecolor=C_BLUE, fontsize=10)\n\nconc_y = orig_top - len(comp_labels) * row_gap\ndraw_rounded_box(ax_b, orig_x, conc_y, comp_w, comp_h, 'conclusion',\n                 facecolor='#FFF8E1', edgecolor=C_ORANGE, fontsize=8.5)\n\n# Brace or bracket from left column to right\nax_b.annotate('', xy=(2.2, orig_top + 0.5), xytext=(2.2, conc_y - 0.5),\n              arrowprops=dict(arrowstyle='-', color=C_GREY, lw=0.8))\n\n# -- Right column: LOO ablation rows --\nabl_start_x = 3.5\nmini_w = 0.8\nmini_h = 0.65\nmini_gap = 0.95\nsolver_x = 8.2\nresult_x = 10.5\n\nax_b.text(7.0, 9.6, 'Leave-One-Out Ablation', ha='center', va='center',\n          fontsize=9.5, fontweight='bold', color=C_DARKGREY)\n\nfor row_idx, (removed, is_necessary) in enumerate(ablation_results):\n    yy = orig_top - row_idx * row_gap\n\n    # Draw mini components\n    for ci in range(4):\n        cx = abl_start_x + ci * mini_gap\n        label = comp_labels[ci]\n        if label == removed:\n            draw_rounded_box(ax_b, cx, yy, mini_w, mini_h, label,\n                             facecolor=C_LIGHTGREY, edgecolor=C_GREY,\n                             fontsize=8, textcolor=C_GREY, linewidth=0.8)\n            ax_b.plot([cx - mini_w/2 + 0.05, cx + mini_w/2 - 0.05],\n                      [yy, yy], color=C_RED, linewidth=2.0, zorder=5)\n        else:\n            draw_rounded_box(ax_b, cx, yy, mini_w, mini_h, label,\n                             facecolor='#E3F2FD', edgecolor=C_BLUE,\n                             fontsize=8, linewidth=0.8)\n\n    # Arrow to solver\n    last_comp_x = abl_start_x + 3 * mini_gap + mini_w/2\n    draw_arrow(ax_b, last_comp_x + 0.15, yy,\n               solver_x - 0.65, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Solver box\n    draw_rounded_box(ax_b, solver_x, yy, 1.1, mini_h, 'Solver',\n                     facecolor='#F3E5F5', edgecolor=C_PURPLE, fontsize=8,\n                     linewidth=0.8)\n\n    # Arrow to result\n    draw_arrow(ax_b, solver_x + 0.6, yy,\n               result_x - 0.55, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Result text\n    if is_necessary:\n        ax_b.text(result_x, yy + 0.18, '✗ Fail', ha='center', va='center',\n                  fontsize=8.5, color=C_RED, fontweight='bold')\n        ax_b.text(result_x, yy - 0.22, 'necessary', ha='center', va='center',\n                  fontsize=7.5, color=C_RED, fontstyle='italic')\n    else:\n        ax_b.text(result_x, yy + 0.18, '✓ Pass', ha='center', va='center',\n                  fontsize=8.5, color=C_GREEN, fontweight='bold')\n        ax_b.text(result_x, yy - 0.22, 'redundant', ha='center', va='center',\n                  fontsize=7.5, color=C_GREEN, fontstyle='italic')\n\n# ISR formula at bottom\nax_b.text(6.0, 1.0,\n          'ISR = $\\\\frac{n_{\\\\mathrm{necessary}}}{n_{\\\\mathrm{total}}}$'\n          ' = $\\\\frac{2}{4}$ = 0.50',\n          ha='center', va='center', fontsize=11,\n          bbox=dict(boxstyle='round,pad=0.4', facecolor='#FFF8E1',\n                    edgecolor=C_ORANGE, linewidth=1.2),\n          zorder=5)\n\n# ═══════════════════════════════════════════════════════\n# Panel (c): Diagnostic vs Reward (Goodhart)\n# ═══════════════════════════════════════════════════════\nax_c.set_title('(c) Diagnostic → Reward: Goodhart', fontsize=12, fontweight='bold', pad=8)\n\n# Upper section: Diagnostic (green)\ndiag_y = 7.8\ndraw_rounded_box(ax_c, 5.0, diag_y, 8.0, 1.4, '',\n                 facecolor='#E8F5E9', edgecolor=C_GREEN, fontsize=10,\n                 linewidth=1.5)\nax_c.text(5.0, diag_y + 0.22, '✓  ISR as Diagnostic', ha='center', va='center',\n          fontsize=10.5, fontweight='bold', color=C_GREEN)\nax_c.text(5.0, diag_y - 0.3, 'Post-hoc structural quality audit', ha='center',\n          va='center', fontsize=8.5, color=C_DARKGREY)\n\n# Sub-text\nax_c.text(5.0, 6.4, 'Detects hacking invisible to pass rate',\n          ha='center', va='center', fontsize=8.5, color=C_DARKGREY, fontstyle='italic')\n\n# Goodhart arrow\ndraw_arrow(ax_c, 5.0, 5.8, 5.0, 4.2,\n           color=C_RED, linewidth=2.5, mutation_scale=20, arrowstyle='->')\n\n# \"Goodhart's Law\" label\nax_c.text(5.0, 5.0, \"Goodhart's Law\",\n          ha='center', va='center', fontsize=9, fontweight='bold',\n          color=C_RED,\n          bbox=dict(boxstyle='round,pad=0.25', facecolor='#FFF0F0',\n                    edgecolor=C_RED, linewidth=0.8, alpha=0.95))\n\n# Lower section: Reward (red)\nrew_y = 2.8\ndraw_rounded_box(ax_c, 5.0, rew_y, 8.0, 1.4, '',\n                 facecolor='#FBE9E7', edgecolor=C_RED, fontsize=10,\n                 linewidth=1.5)\nax_c.text(5.0, rew_y + 0.22, '✗  ISR as Reward Signal', ha='center', va='center',\n          fontsize=10.5, fontweight='bold', color=C_RED)\nax_c.text(5.0, rew_y - 0.3,\n          '$r = r_{\\\\mathrm{exec}} \\\\cdot (1 + \\\\beta \\\\cdot \\\\mathrm{ISR})$',\n          ha='center', va='center', fontsize=9.5, color=C_DARKGREY)\n\n# Sub-text\nax_c.text(5.0, 1.4, 'Model games ISR itself (meta-Goodhart)',\n          ha='center', va='center', fontsize=8.5, color=C_RED, fontstyle='italic')\n\n# ── Save ──\nplt.tight_layout()\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper'\nplt.savefig(f'{outdir}/fig1_sta_overview.pdf')\nplt.savefig(f'{outdir}/fig1_sta_overview.png')\nplt.close()\n\nprint('Done.')\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py",
+    "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito palette\nC_BLUE    = '#0072B2'\nC_ORANGE  = '#E69F00'\nC_GREEN   = '#009E73'\nC_RED     = '#D55E00'\nC_PURPLE  = '#CC79A7'\nC_SKYBLUE = '#56B4E9'\nC_GREY    = '#999999'\nC_DARKGREY = '#555555'\nC_LIGHTGREY = '#E0E0E0'\n\ndef draw_rounded_box(ax, x, y, w, h, text, facecolor='#EBF5FB',\n                     edgecolor=C_BLUE, fontsize=10, textcolor='black',\n                     linewidth=1.2, fontstyle='normal', fontweight='normal',\n                     alpha=1.0, zorder=3):\n    box = FancyBboxPatch((x - w/2, y - h/2), w, h,\n                          boxstyle=\"round,pad=0.03\",\n                          facecolor=facecolor, edgecolor=edgecolor,\n                          linewidth=linewidth, alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    ax.text(x, y, text, ha='center', va='center', fontsize=fontsize,\n            color=textcolor, fontstyle=fontstyle, fontweight=fontweight,\n            zorder=zorder+1)\n    return box\n\ndef draw_arrow(ax, x1, y1, x2, y2, color='#333333', linewidth=1.2,\n               arrowstyle='->', mutation_scale=12, zorder=2):\n    arrow = FancyArrowPatch((x1, y1), (x2, y2),\n                             arrowstyle=arrowstyle,\n                             mutation_scale=mutation_scale,\n                             color=color, linewidth=linewidth, zorder=zorder)\n    ax.add_patch(arrow)\n    return arrow\n\n# ── Figure ──\nfig = plt.figure(figsize=(14, 4.5))\n\n# Manual gridspec for more control\ngs = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.4, 0.85], wspace=0.25)\nax_a = fig.add_subplot(gs[0])\nax_b = fig.add_subplot(gs[1])\nax_c = fig.add_subplot(gs[2])\n\nfor ax in (ax_a, ax_b, ax_c):\n    ax.set_xlim(0, 10)\n    ax.set_ylim(0, 10)\n    ax.axis('off')\n\n# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=8)\n\nsteps_a = [\n    ('NL Problem',                '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer\\n(Qwen3-4B)',  '#E3F2FD', C_BLUE),\n    ('Formal Logic\\n(FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver\\n(Prover9 / SWI)',      '#F3E5F5', C_PURPLE),\n]\n\nbox_w_a = 2.0\nbox_h_a = 1.5\ny_mid_a = 5.5\nx_positions_a = [1.3, 3.7, 6.3, 8.7]\n\nfor i, (label, fc, ec) in enumerate(steps_a):\n    draw_rounded_box(ax_a, x_positions_a[i], y_mid_a, box_w_a, box_h_a, label,\n                     facecolor=fc, edgecolor=ec, fontsize=9)\n\nfor i in range(len(x_positions_a) - 1):\n    draw_arrow(ax_a, x_positions_a[i] + box_w_a/2 + 0.08, y_mid_a,\n               x_positions_a[i+1] - box_w_a/2 - 0.08, y_mid_a,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)\n\n# Result below solver\nax_a.text(8.7, y_mid_a - box_h_a/2 - 0.7, 'Pass ✓ / Fail ✗',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY, fontweight='bold')\n\n# ═══════════════════════════════════════════════════════\n# Panel (b): Solver Trace Ablation\n# ═══════════════════════════════════════════════════════\nax_b.set_xlim(0, 12)\nax_b.set_ylim(0, 10)\nax_b.set_title('(b) Solver Trace Ablation', fontsize=12, fontweight='bold', pad=8)\n\ncomp_labels = ['c₁', 'c₂', 'c₃', 'c₄']\nablation_results = [\n    ('c₁', True),   # necessary (Fail when removed)\n    ('c₂', False),  # redundant (Pass when removed)\n    ('c₃', True),   # necessary\n    ('c₄', False),  # redundant\n]\n\n# -- Left column: Original formalization --\norig_x = 1.2\norig_top = 8.7\nrow_gap = 1.35\ncomp_w = 1.4\ncomp_h = 0.75\n\nax_b.text(orig_x, 9.6, 'Formalization', ha='center', va='center',\n          fontsize=9.5, fontweight='bold', color=C_DARKGREY)\n\nfor i, label in enumerate(comp_labels):\n    yy = orig_top - i * row_gap\n    draw_rounded_box(ax_b, orig_x, yy, comp_w, comp_h, label,\n                     facecolor='#E3F2FD', edgecolor=C_BLUE, fontsize=10)\n\nconc_y = orig_top - len(comp_labels) * row_gap\ndraw_rounded_box(ax_b, orig_x, conc_y, comp_w, comp_h, 'conclusion',\n                 facecolor='#FFF8E1', edgecolor=C_ORANGE, fontsize=8.5)\n\n# Brace or bracket from left column to right\nax_b.annotate('', xy=(2.2, orig_top + 0.5), xytext=(2.2, conc_y - 0.5),\n              arrowprops=dict(arrowstyle='-', color=C_GREY, lw=0.8))\n\n# -- Right column: LOO ablation rows --\nabl_start_x = 3.5\nmini_w = 0.8\nmini_h = 0.65\nmini_gap = 0.95\nsolver_x = 8.2\nresult_x = 10.5\n\nax_b.text(7.0, 9.6, 'Leave-One-Out Ablation', ha='center', va='center',\n          fontsize=9.5, fontweight='bold', color=C_DARKGREY)\n\nfor row_idx, (removed, is_necessary) in enumerate(ablation_results):\n    yy = orig_top - row_idx * row_gap\n\n    # Draw mini components\n    for ci in range(4):\n        cx = abl_start_x + ci * mini_gap\n        label = comp_labels[ci]\n        if label == removed:\n            draw_rounded_box(ax_b, cx, yy, mini_w, mini_h, label,\n                             facecolor=C_LIGHTGREY, edgecolor=C_GREY,\n                             fontsize=8, textcolor=C_GREY, linewidth=0.8)\n            ax_b.plot([cx - mini_w/2 + 0.05, cx + mini_w/2 - 0.05],\n                      [yy, yy], color=C_RED, linewidth=2.0, zorder=5)\n        else:\n            draw_rounded_box(ax_b, cx, yy, mini_w, mini_h, label,\n                             facecolor='#E3F2FD', edgecolor=C_BLUE,\n                             fontsize=8, linewidth=0.8)\n\n    # Arrow to solver\n    last_comp_x = abl_start_x + 3 * mini_gap + mini_w/2\n    draw_arrow(ax_b, last_comp_x + 0.15, yy,\n               solver_x - 0.65, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Solver box\n    draw_rounded_box(ax_b, solver_x, yy, 1.1, mini_h, 'Solver',\n                     facecolor='#F3E5F5', edgecolor=C_PURPLE, fontsize=8,\n                     linewidth=0.8)\n\n    # Arrow to result\n    draw_arrow(ax_b, solver_x + 0.6, yy,\n               result_x - 0.55, yy, color=C_DARKGREY, linewidth=1.0,\n               mutation_scale=10)\n\n    # Result text\n    if is_necessary:\n        ax_b.text(result_x, yy + 0.18, '✗ Fail', ha='center', va='center',\n                  fontsize=8.5, color=C_RED, fontweight='bold')\n        ax_b.text(result_x, yy - 0.22, 'necessary', ha='center', va='center',\n                  fontsize=7.5, color=C_RED, fontstyle='italic')\n    else:\n        ax_b.text(result_x, yy + 0.18, '✓ Pass', ha='center', va='center',\n                  fontsize=8.5, color=C_GREEN, fontweight='bold')\n        ax_b.text(result_x, yy - 0.22, 'redundant', ha='center', va='center',\n                  fontsize=7.5, color=C_GREEN, fontstyle='italic')\n\n# ISR formula at bottom\nax_b.text(6.0, 1.0,\n          'ISR = $\\\\frac{n_{\\\\mathrm{necessary}}}{n_{\\\\mathrm{total}}}$'\n          ' = $\\\\frac{2}{4}$ = 0.50',\n          ha='center', va='center', fontsize=11,\n          bbox=dict(boxstyle='round,pad=0.4', facecolor='#FFF8E1',\n                    edgecolor=C_ORANGE, linewidth=1.2),\n          zorder=5)\n\n# ═══════════════════════════════════════════════════════\n# Panel (c): Diagnostic vs Reward (Goodhart)\n# ═══════════════════════════════════════════════════════\nax_c.set_title('(c) Diagnostic → Reward: Goodhart', fontsize=12, fontweight='bold', pad=8)\n\n# Upper section: Diagnostic (green)\ndiag_y = 7.8\ndraw_rounded_box(ax_c, 5.0, diag_y, 8.0, 1.4, '',\n                 facecolor='#E8F5E9', edgecolor=C_GREEN, fontsize=10,\n                 linewidth=1.5)\nax_c.text(5.0, diag_y + 0.22, '✓  ISR as Diagnostic', ha='center', va='center',\n          fontsize=10.5, fontweight='bold', color=C_GREEN)\nax_c.text(5.0, diag_y - 0.3, 'Post-hoc structural quality audit', ha='center',\n          va='center', fontsize=8.5, color=C_DARKGREY)\n\n# Sub-text\nax_c.text(5.0, 6.4, 'Detects hacking invisible to pass rate',\n          ha='center', va='center', fontsize=8.5, color=C_DARKGREY, fontstyle='italic')\n\n# Goodhart arrow\ndraw_arrow(ax_c, 5.0, 5.8, 5.0, 4.2,\n           color=C_RED, linewidth=2.5, mutation_scale=20, arrowstyle='->')\n\n# \"Goodhart's Law\" label\nax_c.text(5.0, 5.0, \"Goodhart's Law\",\n          ha='center', va='center', fontsize=9, fontweight='bold',\n          color=C_RED,\n          bbox=dict(boxstyle='round,pad=0.25', facecolor='#FFF0F0',\n                    edgecolor=C_RED, linewidth=0.8, alpha=0.95))\n\n# Lower section: Reward (red)\nrew_y = 2.8\ndraw_rounded_box(ax_c, 5.0, rew_y, 8.0, 1.4, '',\n                 facecolor='#FBE9E7', edgecolor=C_RED, fontsize=10,\n                 linewidth=1.5)\nax_c.text(5.0, rew_y + 0.22, '✗  ISR as Reward Signal', ha='center', va='center',\n          fontsize=10.5, fontweight='bold', color=C_RED)\nax_c.text(5.0, rew_y - 0.3,\n          '$r = r_{\\\\mathrm{exec}} \\\\cdot (1 + \\\\beta \\\\cdot \\\\mathrm{ISR})$',\n          ha='center', va='center', fontsize=9.5, color=C_DARKGREY)\n\n# Sub-text\nax_c.text(5.0, 1.4, 'Model games ISR itself (meta-Goodhart)',\n          ha='center', va='center', fontsize=8.5, color=C_RED, fontstyle='italic')\n\n# ── Save ──\nplt.tight_layout()\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper'\nplt.savefig(f'{outdir}/fig1_sta_overview.pdf')\nplt.savefig(f'{outdir}/fig1_sta_overview.png')\nplt.close()\n\nprint('Done.')\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T17:34:24.321597+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T17:34:24.321820+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "/tmp/fig_venv/bin/python gen_fig1.py 2>&1",
+  "description": "Regenerate fig1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "/tmp/fig_venv/bin/python gen_fig1.py 2>&1",
+    "description": "Regenerate fig1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T17:34:24.321970+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py:247: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+Done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T17:34:24.322096+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T17:34:24.322626+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T17:34:24.322854+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py",
+  "old_string": "# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=8)\n\nsteps_a = [\n    ('NL Problem',                '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer\\n(Qwen3-4B)',  '#E3F2FD', C_BLUE),\n    ('Formal Logic\\n(FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver\\n(Prover9 / SWI)',      '#F3E5F5', C_PURPLE),\n]\n\nbox_w_a = 2.0\nbox_h_a = 1.5\ny_mid_a = 5.5\nx_positions_a = [1.3, 3.7, 6.3, 8.7]\n\nfor i, (label, fc, ec) in enumerate(steps_a):\n    draw_rounded_box(ax_a, x_positions_a[i], y_mid_a, box_w_a, box_h_a, label,\n                     facecolor=fc, edgecolor=ec, fontsize=9)\n\nfor i in range(len(x_positions_a) - 1):\n    draw_arrow(ax_a, x_positions_a[i] + box_w_a/2 + 0.08, y_mid_a,\n               x_positions_a[i+1] - box_w_a/2 - 0.08, y_mid_a,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)\n\n# Result below solver\nax_a.text(8.7, y_mid_a - box_h_a/2 - 0.7, 'Pass ✓ / Fail ✗',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY, fontweight='bold')",
+  "new_string": "# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline (vertical layout)\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=8)\n\nsteps_a = [\n    ('NL Problem',                '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer (Qwen3-4B)', '#E3F2FD', C_BLUE),\n    ('Formal Logic (FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver (Prover9 / SWI)',     '#F3E5F5', C_PURPLE),\n    ('Pass ✓ / Fail ✗',           '#F5F5F5', C_DARKGREY),\n]\n\nbox_w_a = 6.5\nbox_h_a = 1.1\nx_mid_a = 5.0\ny_positions_a = [9.0, 7.2, 5.4, 3.6, 1.8]\n\nfor i, (label, fc, ec) in enumerate(steps_a):\n    fw = 'bold' if i == len(steps_a) - 1 else 'normal'\n    draw_rounded_box(ax_a, x_mid_a, y_positions_a[i], box_w_a, box_h_a, label,\n                     facecolor=fc, edgecolor=ec, fontsize=9.5, fontweight=fw)\n\nfor i in range(len(y_positions_a) - 1):\n    draw_arrow(ax_a, x_mid_a, y_positions_a[i] - box_h_a/2 - 0.08,\n               x_mid_a, y_positions_a[i+1] + box_h_a/2 + 0.08,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py",
+    "old_string": "# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=8)\n\nsteps_a = [\n    ('NL Problem',                '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer\\n(Qwen3-4B)',  '#E3F2FD', C_BLUE),\n    ('Formal Logic\\n(FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver\\n(Prover9 / SWI)',      '#F3E5F5', C_PURPLE),\n]\n\nbox_w_a = 2.0\nbox_h_a = 1.5\ny_mid_a = 5.5\nx_positions_a = [1.3, 3.7, 6.3, 8.7]\n\nfor i, (label, fc, ec) in enumerate(steps_a):\n    draw_rounded_box(ax_a, x_positions_a[i], y_mid_a, box_w_a, box_h_a, label,\n                     facecolor=fc, edgecolor=ec, fontsize=9)\n\nfor i in range(len(x_positions_a) - 1):\n    draw_arrow(ax_a, x_positions_a[i] + box_w_a/2 + 0.08, y_mid_a,\n               x_positions_a[i+1] - box_w_a/2 - 0.08, y_mid_a,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)\n\n# Result below solver\nax_a.text(8.7, y_mid_a - box_h_a/2 - 0.7, 'Pass ✓ / Fail ✗',\n          ha='center', va='center', fontsize=9, color=C_DARKGREY, fontweight='bold')",
+    "new_string": "# ═══════════════════════════════════════════════════════\n# Panel (a): Formalization Pipeline (vertical layout)\n# ═══════════════════════════════════════════════════════\nax_a.set_title('(a) Formalization Pipeline', fontsize=12, fontweight='bold', pad=8)\n\nsteps_a = [\n    ('NL Problem',                '#FFF3E0', C_ORANGE),\n    ('LLM Formalizer (Qwen3-4B)', '#E3F2FD', C_BLUE),\n    ('Formal Logic (FOL / Prolog)', '#E8F5E9', C_GREEN),\n    ('Solver (Prover9 / SWI)',     '#F3E5F5', C_PURPLE),\n    ('Pass ✓ / Fail ✗',           '#F5F5F5', C_DARKGREY),\n]\n\nbox_w_a = 6.5\nbox_h_a = 1.1\nx_mid_a = 5.0\ny_positions_a = [9.0, 7.2, 5.4, 3.6, 1.8]\n\nfor i, (label, fc, ec) in enumerate(steps_a):\n    fw = 'bold' if i == len(steps_a) - 1 else 'normal'\n    draw_rounded_box(ax_a, x_mid_a, y_positions_a[i], box_w_a, box_h_a, label,\n                     facecolor=fc, edgecolor=ec, fontsize=9.5, fontweight=fw)\n\nfor i in range(len(y_positions_a) - 1):\n    draw_arrow(ax_a, x_mid_a, y_positions_a[i] - box_h_a/2 - 0.08,\n               x_mid_a, y_positions_a[i+1] + box_h_a/2 + 0.08,\n               color=C_DARKGREY, linewidth=1.5, mutation_scale=14)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T17:34:24.323081+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T17:34:24.323213+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "/tmp/fig_venv/bin/python gen_fig1.py 2>&1",
+  "description": "Regenerate fig1 v3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "/tmp/fig_venv/bin/python gen_fig1.py 2>&1",
+    "description": "Regenerate fig1 v3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T17:34:24.323330+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/gen_fig1.py:245: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+Done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T17:34:24.323441+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T17:34:24.324018+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T17:34:24.324201+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.{pdf,png}",
+  "description": "Check final output file sizes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.{pdf,png}",
+    "description": "Check final output file sizes"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T17:34:24.324325+00:00_
+
+-rw-r--r-- 1 ubuntu ubuntu  49K May 14 17:33 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.pdf
+-rw-r--r-- 1 ubuntu ubuntu 275K May 14 17:33 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T17:34:24.324442+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T17:34:24.324559+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T17:34:24.324678+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "fig1_sta_overview",
+  "type": "chart",
+  "description": "Fig 1: STA Protocol Overview — 3-panel concept diagram showing (a) Formalization Pipeline, (b) Solver Trace Ablation LOO process with ISR calculation, (c) Diagnostic vs Reward Goodhart effect",
+  "project": "solver-trace-ablation",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.pdf",
+  "tags": "['paper', 'fig1', 'concept-diagram', 'STA']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "fig1_sta_overview",
+    "type": "chart",
+    "description": "Fig 1: STA Protocol Overview — 3-panel concept diagram showing (a) Formalization Pipeline, (b) Solver Trace Ablation LOO process with ISR calculation, (c) Diagnostic vs Reward Goodhart effect",
+    "project": "solver-trace-ablation",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/figures/paper/fig1_sta_overview.pdf",
+    "tags": "['paper', 'fig1', 'concept-diagram', 'STA']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T17:34:24.324849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_59704d\", \"name\": \"fig1_sta_overview\", \"type\": \"chart\", \"description\": \"Fig 1: STA Protocol Overview — 3-panel concept diagram showing (a) Formalization Pipeline, (b) Solver Trace Ablation LOO process with ISR calculation, (c) Diagnostic vs Reward Goodhart effect\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/chart/fig1_sta_overview_59704d.pdf\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T17:34:18.305183+00:00\", \"tags\": [\"paper\", \"fig1\", \"concept-diagram\", \"STA\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-14T17:34:24.325010+00:00_
+
+Fig 1 生成完毕。
+
+- **PDF**: `figures/paper/fig1_sta_overview.pdf` (49K, 矢量)
+- **PNG**: `figures/paper/fig1_sta_overview.png` (275K, 300 DPI)
+- 已注册 artifact: `art_20260514_59704d`
+
+三个 panel 均清晰可读：(a) 垂直流程图展示形式化管线，(b) LOO 消融过程含 ISR=2/4=0.50 计算，(c) Diagnostic→Reward 的 Goodhart 效应对比。生成脚本保留在 `figures/paper/gen_fig1.py` 便于后续微调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_figure_fig1_sta_overview_20260514T173028"
+}
+```
+
+</details>
+
+---

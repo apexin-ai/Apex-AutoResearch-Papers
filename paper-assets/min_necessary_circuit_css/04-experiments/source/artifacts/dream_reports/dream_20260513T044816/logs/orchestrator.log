@@ -1,0 +1,8 @@
+2026-05-13 05:27:19,522 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 0): while parsing a block mapping
+  in "<unicode string>", line 1, column 1:
+    analysis: >
+    ^
+expected <block end>, but found '<block sequence start>'
+  in "<unicode string>", line 7, column 3:
+      - name: "Binarization sensitivit ... 
+      ^

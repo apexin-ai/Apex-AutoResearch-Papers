@@ -1,0 +1,390 @@
+tier: worst
+narrative_guidance: '核心叙事需从 ''consensus fails more often than succeeds (1/N)'' 完全转向
+  ''binary consensus provides no advantage in any tested configuration — the consensus-as-validation
+  paradigm is fundamentally flawed for circuit discovery''。 IOI 不再是对比锚点，所有 claims
+  围绕 universal failure 展开。Claim 2 升级为 ''universally fails''，Claim 4 (Jaccard diagnostic)
+  因缺少 PASS calibration 点被删除或降为 future work 一句话。Claims 1 和 3 加重篇幅， 作为 universal failure
+  的 mechanistic explanations。标题改为纯否定形式如 ''Binary Consensus Does Not Improve Circuit
+  Discovery''。投稿仍为 Findings 不降级，但 acceptance 概率显著下降，需要 failure mode mechanistic analysis
+  的深度来撑住 contribution，并在 Related Work 中充分论证 ''the community assumes consensus works''
+  来建立贡献的必要性。
+
+  '
+imagined_experiments:
+- name: GPT-2 Factual Recall K=3 CSS
+  plan_id: plan_004
+  description: 'GPT-2 Small 上的 Country-Capital factual recall 任务，K=3 methods (EAP-IG
+    + EP + ACDC)。 MLP-based knowledge retrieval circuit，测试 CSS 在知识提取类电路上的表现。
+
+    '
+  expected_results:
+    status: FAIL_or_CRASH
+    css_3of3_edges: 0
+    css_2of3_edges: '[5, 25]'
+    css_1of3_edges: '[70, 120]'
+    pairwise_jaccard_max: '[0.05, 0.20]'
+    pairwise_jaccard_eapig_ep: '[0.35, 0.55]'
+    pairwise_jaccard_eapig_acdc: '[0.02, 0.10]'
+    pairwise_jaccard_ep_acdc: '[0.02, 0.10]'
+    acdc_edges_isinf: '[3, 12]'
+    mean_cpr_css_1.00: N/A or negative
+    mean_cpr_best_single: '[0.85, 1.05]'
+    d025_cond4_css_gt_single: FAIL
+    d025_verdict: FAIL
+    crash_probability: 30%
+    factual_recall_css_vs_best_single_delta: '[-0.20, -0.05]'
+  result_rationale: 'Factual recall 电路高度依赖 MLP 层中的 knowledge neurons，电路结构与 IOI 的 attention-head-dominated
+    拓扑完全不同。在 worst 档下有两种 FAIL 路径： (路径 A) ACDC 在 factual recall 上的 isinf binarization
+    产生极少 edges（3-12 条）， 这些 edges 集中在特定 MLP-to-residual 连接上，与 EAP-IG/EP 的 gradient-based
+    top-k 选择几乎无交集（Jaccard ≈ 0.05），导致 CSS=1.0 edges 为 0 或极少且非关键； (路径 B) v2 修复了 v1 的
+    crash 但引入了新的数据加载或 evaluation 问题导致 实验直接失败（30% 概率），鉴于 v1 已经 crashed。即使 v2 成功运行，factual
+    recall 的 MLP-centric 电路拓扑意味着 gradient-adjacent methods (EAP-IG, EP) 之间的 Jaccard
+    仍然偏高（0.35-0.55），形成类似 Arithmetic 的 method-correlation 问题， CSS=1.0 退化为 ACDC 单方法输出但
+    ACDC 本身 CPR 不佳，CSS advantage delta 为负。
+
+    '
+  tables:
+  - name: 'Table: Factual Recall D025 Gate Conditions'
+    content: '| Condition | Criterion | Result | Value |
+
+      |-----------|-----------|--------|-------|
+
+      | C1: Jaccard < 0.70 | max pairwise < 0.70 | PASS | 0.48 |
+
+      | C2: CSS≥2/3 ≥ 10 | count ≥ 10 | FAIL | 8 |
+
+      | C3: CSS=1.0 ≥ 3 | count ≥ 3 | FAIL | 0 |
+
+      | C4: CSS > single | CPR dominance | FAIL | N/A |
+
+      | **Overall** | | **FAIL** | |
+
+      '
+  figures_description:
+  - 'Bar chart: CPR comparison across methods for factual recall. All single methods
+    have comparable CPR (~0.9-1.0 for mean ablation); CSS=1.0 bar either missing (0
+    edges) or below all singles. Error bars from bootstrap would be wide due to small
+    edge count.'
+  analysis: 'Factual recall FAIL 将实验配置计数从 1/5 PASS 推向 1/6 PASS（若 size-controlled 也
+    FAIL 则为 0/6）。更重要的是，这是第一个 MLP-centric task，FAIL 表明 CSS 不仅在 attention-heavy circuits
+    (IOI) 上偶尔成功、在其他 attention circuits (Arithmetic, SVA) 上失败，而是在 circuit 拓扑类型上也 universally
+    失败。这消除了 "CSS works for attention circuits but not MLP circuits" 这种 nuanced 叙事的可能性，强化了
+    universal failure 结论。
+
+    '
+- name: IOI size-controlled baseline
+  plan_id: plan_008
+  description: 'IOI 上 CSS=1.0 (7 edges) 与 size-controlled baselines 对比：top-7 of EAP-IG,
+    top-7 of EP, top-7 of ACDC, random-7。排除 IOI PASS 结果是否仅因 CSS 选出了更少 edges 的 size
+    confound。
+
+    '
+  expected_results:
+    css_1.00_cpr: 0.1095
+    top7_eapig_cpr: '[0.10, 0.15]'
+    top7_ep_cpr: '[0.08, 0.13]'
+    top7_acdc_cpr: '[0.09, 0.14]'
+    random7_cpr_mean: '[0.02, 0.06]'
+    random7_cpr_std: '[0.03, 0.08]'
+    css_advantage_over_best_single_top7: '[-0.04, 0.01]'
+    size_controlled_ioi_css_advantage_retained_pct: '[0, 20]'
+    verdict: CSS advantage dissolved — size confound confirmed
+  result_rationale: 'IOI 上 CSS=1.0 的 7 edges 恰好是 ACDC isinf 选出的 14 edges 中同时被 EAP-IG
+    或 EP top-100 覆盖的子集。在 worst 档下，当我们将 EAP-IG 和 EP 也限制为 top-7 edges 时， 这些 top-7 edges
+    大概率落在 IOI 电路的核心 attention heads (name movers, S-inhibition heads) 上——这些 heads
+    在所有方法中都获得最高分数。因此 top-7 EAP-IG 的 CPR 会达到 0.10-0.15（甚至超过 CSS=1.0 的 0.1095），因为 gradient
+    方法对这些 heads 的排序 本身就是准确的，CSS 并没有提供额外的过滤信号。ACDC top-7 同理（0.09-0.14）。 Random-7 作为
+    null baseline 仍然显著更差（CPR 0.02-0.06），说明电路信号存在， 但这是方法本身的功劳而非 consensus 的功劳。CSS=1.0
+    的 CPR 优势从原始的 +0.08 (vs ACDC full-14) 缩小到 Δ ≈ [-0.04, +0.01]，即统计上为零。 这意味着 IOI 的
+    "PASS" 本质上是 size artifact——CSS 恰好选出了更少的 edges， 而在 circuit evaluation 中 fewer-but-correct
+    edges 天然有 CPR 优势（less noise）。
+
+    '
+  tables:
+  - name: 'Table: IOI Size-Controlled CPR Comparison (7 edges each)'
+    content: '| Circuit | Edges | CPR (mean abl.) | Δ vs CSS=1.0 |
+
+      |---------|-------|-----------------|--------------|
+
+      | CSS=1.0 | 7 | 0.1095 | — |
+
+      | top-7 EAP-IG | 7 | ~0.125 | +0.016 |
+
+      | top-7 EP | 7 | ~0.105 | −0.005 |
+
+      | top-7 ACDC | 7 | ~0.115 | +0.006 |
+
+      | random-7 (mean±std) | 7 | ~0.04±0.05 | −0.070 |
+
+      '
+  figures_description:
+  - 'Grouped bar chart with 5 bars (CSS=1.0, top-7 EAP-IG, top-7 EP, top-7 ACDC, random-7).
+    Y-axis = CPR. All method-based bars at similar height (~0.10-0.13), random bar
+    significantly lower. Horizontal dashed line at CSS=1.0 level. Visual takeaway:
+    CSS provides no edge over size-matched single-method baselines.'
+  analysis: 'Size-controlled baseline 是 worst 档的关键 pivot。一旦确认 IOI 的 CSS 优势可被 size
+    confound 完全解释，IOI 从 "lone PASS" 变为 "apparent PASS that is actually artifact"，
+    总计 0/6 PASS。这从根本上改变了 paper 的叙事：不再是 "consensus mostly fails (1/6)" 而是 "consensus
+    never helps (0/6)"。好处是结论更强更clean；坏处是失去了 IOI 作为 positive calibration point 的解释力，Claim
+    4 (Jaccard diagnostic) 因为没有任何 PASS 数据点而 完全无法校准，必须删除或降为 "future work with more
+    tasks" 一句话。
+
+    '
+- name: Bootstrap confidence intervals on CPR
+  plan_id: plan_009
+  description: '对所有已完成实验的 CPR differences 计算 bootstrap 95% CIs（B=10000）。 重点：IOI CSS=1.0
+    vs best single method Δ, SVA D032 marginal PASS Δ=0.0127。
+
+    '
+  expected_results:
+    ioi_css_vs_best_single_delta_point: 0.0127
+    ioi_css_vs_best_single_delta_ci_lower: '[-0.05, -0.01]'
+    ioi_css_vs_best_single_delta_ci_upper: '[0.05, 0.08]'
+    ioi_css_vs_best_single_p_value: '[0.15, 0.45]'
+    ioi_cpr_delta_ci_lower: '[-0.05, -0.01]'
+    ioi_cpr_delta_point: '[-0.02, 0.03]'
+    sva_d032_delta_point: 0.0127
+    sva_d032_delta_ci_lower: '[-0.03, -0.005]'
+    sva_d032_delta_ci_upper: '[0.03, 0.06]'
+    sva_d032_p_value: '[0.20, 0.55]'
+    arithmetic_css_vs_eapig_delta_ci: fully negative, confirming FAIL
+    qwen_ioi_ifr_delta_ci: fully negative or undefined (0 CSS edges)
+    qwen_ioi_acdc_delta_ci: fully negative or undefined (0 CSS edges)
+    significant_advantages_count: 0
+    total_tests: '[5, 6]'
+  result_rationale: 'Bootstrap CIs 在 worst 档下证实所有表面上的 CSS 优势都不显著。IOI 的原始 CSS=1.0 CPR=0.1095
+    vs ACDC CPR=0.0286 看似有 Δ=0.08 优势，但这个 Δ 是 在 7 edges vs 14 edges 的不公平对比下得到的。在 size-controlled
+    框架下 （plan_008 已证实 size confound），Δ 缩小到 ≈0.01-0.03，此时 bootstrap 重采样的 variance 来自
+    IOI prompt 样本间的 CPR 变异——由于 IOI 数据集 只有 ~100 个样本对，且 circuit 极小（7 edges），每次重采样的 CPR
+    波动较大 （std ≈ 0.03-0.05），导致 95% CI 跨零且宽（[-0.05, 0.08]），p > 0.15。 SVA 的 Δ=0.0127
+    本身就在 noise floor 级别，bootstrap CI 必然跨零。 Arithmetic 和 Qwen 实验的 CSS Δ 本身为负，CIs 确认这些是
+    genuine FAILs。 最终结果：0/5-6 个配置有 statistically significant CSS advantage。
+
+    '
+  tables:
+  - name: 'Table: Bootstrap 95% CIs for CPR Δ (CSS=1.0 vs Best Single Method)'
+    content: '| Task × Model | Δ point | 95% CI | p-value | Significant? |
+
+      |-------------|---------|--------|---------|-------------|
+
+      | IOI GPT-2 (size-ctrl) | +0.012 | [−0.03, +0.06] | 0.31 | No |
+
+      | Arithmetic GPT-2 | −0.066 | [−0.12, −0.02] | 0.005 | Yes (negative) |
+
+      | SVA GPT-2 | +0.013 | [−0.02, +0.05] | 0.28 | No |
+
+      | Factual Recall GPT-2 | −0.11 | [−0.19, −0.04] | 0.002 | Yes (negative) |
+
+      | IOI Qwen (IFR) | N/A | N/A | N/A | 0 CSS edges |
+
+      | IOI Qwen (ACDC) | −0.05 | [−0.09, −0.01] | 0.01 | Yes (negative) |
+
+      '
+  figures_description:
+  - 'Forest plot: each row = one task×model config, horizontal bars = 95% CI, dot
+    = point estimate. Vertical dashed line at Δ=0. IOI and SVA CIs cross zero; Arithmetic,
+    Factual Recall, Qwen CIs are fully negative. No row shows significant positive
+    Δ.'
+  analysis: 'Bootstrap CIs 是 worst 档叙事的统计 backbone。它将 "IOI PASS" 和 "SVA marginal PASS"
+    同时去 significant 化，使得 reviewer 无法反驳 "0/N significant positive advantages" 的 结论。同时
+    Arithmetic 和 Qwen 的 significantly negative Δ 强化了 "CSS can actively hurt" 的 sub-claim。风险在于
+    reviewer 可能认为 "method A is not significantly better than method B" 是 trivially
+    expected（多数 ensemble 方法在小样本下都不显著），需要在 Discussion 中论证 community 对 consensus 的 implicit
+    assumption 来建立 contribution。
+
+    '
+- name: Ablation method comparison (zero vs mean)
+  plan_id: plan_011
+  description: '在 IOI 上对比 zero ablation 和 mean ablation 的 CPR 评估。Dream worst-tier
+    识别出 zero ablation 可能偏向 smaller circuits (IOI CSS=1.0 的 7 edges)， 需要排除 evaluation
+    metric 本身的 bias。
+
+    '
+  expected_results:
+    zero_abl_css_1.00_cpr: 0.1095
+    zero_abl_top7_eapig_cpr: '[0.10, 0.14]'
+    zero_abl_css_advantage: '[-0.03, 0.01]'
+    mean_abl_css_1.00_cpr: '[0.06, 0.10]'
+    mean_abl_top7_eapig_cpr: '[0.08, 0.12]'
+    mean_abl_css_advantage: '[-0.06, -0.01]'
+    zero_vs_mean_gap_for_small_circuits: '[0.02, 0.05]'
+    conclusion: zero ablation inflates small-circuit CPR; mean ablation shows CSS
+      disadvantage
+  result_rationale: 'Zero ablation 将移除的 edges 设为零向量，这对小 circuit（如 CSS=1.0 的 7 edges）
+    天然有利——移除少量 edges 对模型的破坏小，保留的信息多，CPR 高。但这不是 CSS 的 功劳，而是 evaluation metric 对 circuit
+    size 的系统性 bias。在 worst 档下， mean ablation（移除的 edges 设为 dataset-level mean activation）提供更公平的对比，
+    因为 mean ablation 下保留 7 edges 的 CPR 降幅更大（模型需要真正依赖这 7 条 edges 才能维持性能，而非依赖剩余 32484
+    条 edges 的 residual 信号）。具体来说，mean ablation 下 CSS=1.0 的 CPR 从 0.1095 降到 ≈0.08，而
+    top-7 EAP-IG 在 mean ablation 下 CPR ≈0.10（gradient 选出的 top edges 更 faithfully 捕捉了
+    IOI 电路核心）。 这进一步证实 IOI PASS 是 evaluation artifact 而非 genuine CSS advantage。
+
+    '
+  tables:
+  - name: 'Table: Zero vs Mean Ablation CPR on IOI (7 edges)'
+    content: '| Circuit (7 edges) | Zero Abl CPR | Mean Abl CPR | Δ(zero−mean) |
+
+      |-------------------|-------------|-------------|--------------|
+
+      | CSS=1.0 | 0.1095 | ~0.08 | ~+0.03 |
+
+      | top-7 EAP-IG | ~0.125 | ~0.10 | ~+0.025 |
+
+      | top-7 EP | ~0.105 | ~0.09 | ~+0.015 |
+
+      | top-7 ACDC | ~0.115 | ~0.095 | ~+0.020 |
+
+      | random-7 | ~0.04 | ~0.02 | ~+0.02 |
+
+      '
+  figures_description:
+  - 'Paired bar chart: each circuit has two bars (zero abl, mean abl). Shows systematic
+    zero > mean gap for all circuits, but gap is larger for CSS=1.0 than for top-7
+    singles. Under mean ablation, CSS=1.0 bar drops below top-7 EAP-IG bar, visually
+    demonstrating evaluation artifact.'
+  analysis: 'Ablation method comparison 在 worst 档下提供了 IOI artifact 的第二条独立证据 （第一条来自
+    size-controlled baseline）。Zero ablation bias + size confound 双重 artifact 完全解释了
+    IOI 的表面 PASS。这对论文有利有弊：有利在于 mechanistic 解释 更充分（两条独立 artifact 路径），但代价是 IOI 作为 positive
+    anchor 彻底消失， paper 变为 "pure negative result + failure mode taxonomy"。建议将此结果作为
+    Appendix 中的 supplementary analysis，主文只在 size-controlled baseline 处 以一句话提及 "ablation
+    method comparison further confirms the size confound"。
+
+    '
+- name: IFR vs ACDC vs gradient method divergence analysis
+  plan_id: plan_012
+  description: '分析 Qwen-0.5B 上 IFR 和 ACDC 各自的 failure mode，作为 component-level scoring
+    scaling failure (Claim 3) 的 case study。纯分析任务，无新实验。
+
+    '
+  expected_results:
+    ifr_failure_mode: block-voting — scores at layer granularity, not edge granularity
+    acdc_failure_mode: node-level scoring — 179K edges collapsed to ~200 node-level
+      decisions
+    ifr_top100_layer_concentration: 95%+ in layers 0-5 (early MLP→attn connections)
+    acdc_top100_layer_concentration: 85%+ in layers 18-23 (late attention heads)
+    ifr_acdc_overlap: 0 shared edges in top-100
+    gradient_methods_overlap: EAP-IG × EP Jaccard still ~0.54 on Qwen
+    root_cause_shared: both IFR and ACDC perform component-level (node/block) scoring
+      on large models; edge-level discrimination impossible with 179K candidates
+    fixability_assessment: not fixable by method substitution — requires architectural
+      change to scoring
+    experiments_completed_by_deadline: '[2, 3]'
+  result_rationale: '在 worst 档下，divergence analysis 揭示 IFR 和 ACDC 虽然失败模式不同（IFR 是 block-voting，
+    ACDC 是 node-level scoring），但 root cause 相同：这两种方法在设计上都是对 components （nodes/layers）进行评分然后
+    broadcast 到 edges，而非直接对 edges 评分。在 GPT-2 Small 的 32K edges 上这个 approximation 尚可（ACDC
+    的 14 isinf edges 仍能捕捉到 IOI 核心）， 但在 Qwen-0.5B 的 179K edges 上，每个 node 下辖 ~1000 edges，node-level
+    评分导致 要么全选要么全不选，无法做 edge-level 区分。这意味着 scaling failure 不是某个方法的 implementation bug，而是
+    component-level scoring paradigm 的根本限制。 EAP-IG 和 EP 作为 gradient-based 方法虽然在数学上是
+    edge-level 的，但它们之间的 高 Jaccard (0.54) 说明 gradient 方法本身也趋于一致，无法提供 consensus 所需的
+    independent evidence。最终结论是：在大模型上，没有任何现有方法组合能使 binary consensus 有效工作——要么方法不够 edge-level
+    (IFR, ACDC)，要么方法太相似 (EAP-IG, EP)。这是 universal failure 在 scaling 维度上的 mechanistic
+    解释。
+
+    '
+  tables:
+  - name: 'Table: Method Failure Mode Taxonomy on Qwen-0.5B'
+    content: '| Method | Scoring Granularity | Top-100 Layer Concentration | Jaccard
+      with Others | Failure Mode |
+
+      |--------|--------------------|-----------------------------|--------------------:|--------------|
+
+      | IFR | Block (layer-pair) | 95% in L0-L5 | 0.000 | Block-voting |
+
+      | ACDC | Node | 85% in L18-L23 | 0.043 | Node-broadcasting |
+
+      | EAP-IG | Edge (gradient) | ~60% in L10-L20 | 0.540 (w/ EP) | Method correlation
+      |
+
+      | EP | Edge (gradient) | ~55% in L10-L20 | 0.540 (w/ EAP-IG) | Method correlation
+      |
+
+      '
+  figures_description:
+  - 'Heatmap: 4 methods × 24 layers, cell intensity = fraction of top-100 edges in
+    that layer. IFR has hot band at layers 0-5; ACDC has hot band at layers 18-23;
+    EAP-IG and EP share similar diffuse pattern across layers 10-20. Visual takeaway:
+    methods don''t even look at the same parts of the model.'
+  - 'Schematic diagram: shows component-level scoring funneling 179K edges through
+    ~200 node-level bottleneck, illustrating why edge-level discrimination is lost.'
+  analysis: 'Divergence analysis 在 worst 档下是 Claim 3 的核心 evidence，也是整篇论文避免被 reviewer
+    视为 "trivial negative result" 的关键。通过展示 scaling failure 的 mechanistic root cause（component-level
+    scoring bottleneck），我们将 "CSS doesn''t work on Qwen" 从一个 data point 提升为一个 generalizable
+    insight：任何依赖 component-level scoring 的 circuit discovery method 在 >100K edges
+    的模型上 都无法为 consensus 提供有意义的 independent signals。这个 insight 对 community 有 actionable
+    implications——未来的 circuit discovery 方法需要 true edge-level scoring 才能在大模型上支持 multi-method
+    validation。
+
+    '
+- name: Jaccard-CSS scatter plot + correlation
+  plan_id: plan_013
+  description: '汇总所有实验的 max pairwise Jaccard vs CSS CPR advantage，绘制 scatter plot
+    并报告 correlation。原计划用于支持 Claim 4 (Jaccard diagnostic)。
+
+    '
+  expected_results:
+    n_datapoints: '[5, 6]'
+    datapoints:
+    - label: IOI GPT-2
+      max_jaccard: 0.31
+      css_advantage: '[-0.01, 0.02] (size-controlled, no longer PASS)'
+    - label: Arithmetic GPT-2
+      max_jaccard: 0.695
+      css_advantage: -0.066
+    - label: SVA GPT-2
+      max_jaccard: 0.653
+      css_advantage: '[0.00, 0.013] (not significant)'
+    - label: Factual Recall GPT-2
+      max_jaccard: '[0.10, 0.50]'
+      css_advantage: '[-0.20, -0.05]'
+    - label: IOI Qwen (IFR)
+      max_jaccard: 0.54
+      css_advantage: N/A (0 CSS edges)
+    - label: IOI Qwen (ACDC)
+      max_jaccard: 0.043
+      css_advantage: -0.05
+    pearson_r: undefined or near 0
+    spearman_rho: undefined or near 0
+    claim4_verdict: DELETED — no PASS calibration point, scatter shows no interpretable
+      pattern
+    jaccard_diagnostic_accuracy: null
+  result_rationale: '在 worst 档下，IOI 从 PASS 变为 artifact（size-controlled Δ ≈ 0），意味着
+    scatter plot 上没有任何 positive CSS advantage 的数据点。原来的 Claim 4 假设是 "low Jaccard →
+    CSS helps, high Jaccard → CSS doesn''t help"，但现在所有点都在 Y ≤ 0 区域（CSS advantage ≤
+    0），无论 Jaccard 高低。IOI (Jaccard=0.31) 和 Qwen-ACDC (Jaccard=0.043) 都是 low Jaccard
+    但 CSS advantage ≈ 0 或负，打破了 "low Jaccard → CSS helps" 的 假设。scatter plot 变成了一个没有
+    pattern 的点云：所有点都在零线以下或附近， Jaccard 值从 0.04 到 0.70 均无 positive advantage。Pearson/Spearman
+    相关系数 接近 0 或 undefined（variance 太小）。Claim 4 必须从 paper 中删除，因为没有 PASS calibration
+    point 就不可能建立 "diagnostic threshold" 的概念。scatter plot 可以保留在 Appendix 作为 "confirming
+    universal failure across Jaccard spectrum" 的补充证据，但不能再作为独立 claim。
+
+    '
+  tables:
+  - name: 'Table: Jaccard vs CSS Advantage Summary (all configs)'
+    content: '| Config | max Jaccard | CSS Δ (size-ctrl) | Significant? |
+
+      |--------|-----------|-------------------|-------------|
+
+      | IOI GPT-2 | 0.31 | +0.01 | No |
+
+      | Arithmetic GPT-2 | 0.70 | −0.07 | Yes (neg) |
+
+      | SVA GPT-2 | 0.65 | +0.01 | No |
+
+      | Factual Recall GPT-2 | ~0.35 | −0.11 | Yes (neg) |
+
+      | IOI Qwen (IFR) | 0.54 | N/A | — |
+
+      | IOI Qwen (ACDC) | 0.04 | −0.05 | Yes (neg) |
+
+      '
+  figures_description:
+  - 'Scatter plot: X = max pairwise Jaccard, Y = CSS CPR advantage (size-controlled).
+    Dashed horizontal line at Y=0. All points at or below zero. No discernible trend.
+    Annotation: ''Claim 4 withdrawn — no positive calibration point.'' Qwen-IFR point
+    omitted (undefined Y).'
+  analysis: Scatter plot 在 worst 档下从 Claim 4 的支撑证据变为 universal failure 的补充 可视化。原来的
+    "low Jaccard → CSS helps" 假设完全不成立：Qwen-ACDC 有最低的 Jaccard (0.04) 但 CSS advantage
+    为负，因为 scaling failure (Claim 3) 与 Jaccard level 无关——即使方法之间完全 independent (Jaccard≈0)，如果各方法
+    都在做 component-level scoring 而非 edge-level scoring，consensus 仍然无意义。 这实际上是一个重要的
+    negative finding：Jaccard 不是 sufficient diagnostic—— 即使 Jaccard 很低（方法确实独立），consensus
+    仍可能无用，因为 "independent but all wrong" 不比 "correlated and all wrong" 更好。但这个 insight
+    太 subtle 且 n 太小，不足以支撑一个独立 claim，只适合作为 Discussion 中的一段话。

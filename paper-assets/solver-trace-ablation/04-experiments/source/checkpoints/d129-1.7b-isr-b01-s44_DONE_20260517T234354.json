@@ -1,0 +1,49 @@
+{
+  "exp_id": "d129-1.7b-isr-b01-s44",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:08:05.523Z",
+    "updated_at": "2026-05-17T23:43:53.996Z",
+    "hypothesis": "D129: 1.7B ISR β=0.1 s44 cross-scale replication — tests determinism of H1 fixed-template collapse mode observed in s42 at 1.7B scale",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 44,
+      "reward_mode": "additive_bonus",
+      "beta": 0.1,
+      "num_steps": 500,
+      "checkpoint_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s44",
+      "log_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s44.log",
+      "command": "python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-1.7B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --beta 0.1 --num_steps 500 --per_device_batch_size 2 --gradient_accumulation_steps 4 --num_generations 4 --max_completion_length 512 --learning_rate 1e-6 --seed 44 --solver prover9 --no_wandb --output_dir /root/autodl-tmp/outputs/d129_1.7b_isr_b01_s44",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "pid": "36896",
+      "submitted_at": "2026-05-18T06:15:24Z",
+      "submitted_via": "manual_tmux",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "prove_rate": 0.82,
+      "non_hacking_rate": 0.427,
+      "isr_star": 0.4398,
+      "H1_pct": 39,
+      "H7_pct": 0,
+      "H8_pct": 18.3,
+      "H9_pct": 0,
+      "genuine_pct": 42.7,
+      "dominant_mode": "H1(mixed)",
+      "eval_decoding": "greedy",
+      "eval_data": "proofwriter_fol_100.jsonl"
+    },
+    "completed_at": "2026-05-17T23:43:53.997Z"
+  },
+  "timestamp": "2026-05-17T23:43:54.368734+00:00",
+  "trigger": "update_registry"
+}

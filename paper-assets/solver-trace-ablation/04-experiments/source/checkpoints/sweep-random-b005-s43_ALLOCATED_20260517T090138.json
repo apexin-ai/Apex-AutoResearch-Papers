@@ -1,0 +1,32 @@
+{
+  "exp_id": "sweep-random-b005-s43",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-17T04:48:12.850Z",
+    "updated_at": "2026-05-17T09:01:38.243Z",
+    "hypothesis": "Random β=0.05 seed=43: 2nd seed matched control for ISR β=0.05, replication for variance estimation",
+    "reproduce": {
+      "finished_at": "2026-05-17T08:44:43.578Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-17T08:44:46.745Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T08:44:50.543197+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-17T09:01:38.543044+00:00",
+  "trigger": "update_registry"
+}

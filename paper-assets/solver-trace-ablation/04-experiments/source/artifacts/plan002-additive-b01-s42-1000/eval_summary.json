@@ -1,0 +1,51 @@
+{
+  "exp_id": "plan002-additive-b01-s42-1000",
+  "description": "ISR beta=0.1 additive reward, 1000 steps (extended training)",
+  "model": "Qwen3-4B",
+  "reward_mode": "execution_sta",
+  "beta": 0.1,
+  "seed": 42,
+  "num_steps": 1000,
+  "conclusion": "negative",
+  "eval_data": "data/proofwriter_fol_100.jsonl",
+  "eval_metrics": {
+    "prove_rate": 0.90,
+    "mean_isr": 0.7892,
+    "isr_std": 0.3424,
+    "median_isr": 1.0,
+    "proved_only_isr": 0.8769,
+    "component_count_mean": 2.889,
+    "by_answer_type": {
+      "false": {"count": 25, "proved": 24, "prove_rate": 0.96, "mean_isr": 0.7067},
+      "unknown": {"count": 41, "proved": 37, "prove_rate": 0.9024, "mean_isr": 0.8537},
+      "true": {"count": 34, "proved": 29, "prove_rate": 0.8529, "mean_isr": 0.7721}
+    }
+  },
+  "heuristic_classification": {
+    "h7_strict_count": 83,
+    "h7_strict_rate": 0.922,
+    "h1_strict_count": 4,
+    "h1_strict_rate": 0.044,
+    "conclusion_in_premise_count": 87,
+    "conclusion_in_premise_rate": 0.967,
+    "genuine_count": 3,
+    "genuine_rate": 0.03,
+    "tautological_collapse": true
+  },
+  "training_final_stats": {
+    "prove_rate": 0.855,
+    "mean_isr": 0.532,
+    "train_runtime_seconds": 4360,
+    "train_loss": 0.000938,
+    "epochs": 4.0
+  },
+  "comparison_with_500step": {
+    "note": "500-step ISR beta=0.1 (plan002-additive-b01-s42)",
+    "500step": {"PR": 0.81, "ISR": 0.42, "genuine_pct": 30.9, "H7_pct": 16.0, "H1_pct": 51.9},
+    "1000step": {"PR": 0.90, "ISR": 0.79, "genuine_pct": 3.0, "H7_pct": 92.2, "H1_pct": 4.4},
+    "interpretation": "Extended training caused catastrophic tautological collapse. PR improved (+9pp) but genuine proofs dropped from 30.9% to 3.0%. H7 gaming exploded from 16% to 92.2%. The model learned to game ISR by generating single-premise tautologies (premise == conclusion). Classic Goodhart effect: optimizing ISR reward beyond a threshold leads to reward hacking rather than genuine reasoning improvement."
+  },
+  "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000",
+  "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s42-1000.log",
+  "server": "westd-39279"
+}

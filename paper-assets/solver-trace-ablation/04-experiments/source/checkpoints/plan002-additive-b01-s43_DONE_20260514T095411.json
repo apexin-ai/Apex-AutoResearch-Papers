@@ -1,0 +1,87 @@
+{
+  "exp_id": "plan002-additive-b01-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:36:16.367Z",
+    "updated_at": "2026-05-14T09:54:11.468Z",
+    "hypothesis": "ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。",
+    "parent": "plan002-additive-b01-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T08:45:10.999Z",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\"",
+      "finished_at": "2026-05-14T09:41:23.932Z",
+      "training_hours": 0.94
+    },
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "466128",
+      "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s43.log",
+      "submitted_at": "2026-05-14T08:45:54.837Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4096.6,
+      "gpu_hours": 1.14
+    },
+    "pid": "466128",
+    "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s43.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T09:41:25.536028+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "prove_rate": 0.61,
+      "mean_isr": 0.5063,
+      "isr_std": 0.4518,
+      "median_isr": 0.5,
+      "proved_only_isr": 0.8301,
+      "isr_1_ratio": 0.4,
+      "isr_1_among_proved": 0.656,
+      "isr_0_ratio": 0.39,
+      "component_count_mean": 4.03,
+      "single_premise_rate_proved": 1,
+      "conclusion_duplication_rate": 1,
+      "by_answer_type": {
+        "false": {
+          "n": 25,
+          "proved": 18,
+          "isr": 0.6
+        },
+        "unknown": {
+          "n": 41,
+          "proved": 22,
+          "isr": 0.442
+        },
+        "true": {
+          "n": 34,
+          "proved": 21,
+          "isr": 0.515
+        }
+      }
+    },
+    "conclusion": "negative",
+    "notes": "eval_sta.py diagnostic (2026-05-14): Conclusion duplication hacking confirmed, same pathology as s44. Key findings: (1) 100% single-premise among proved (61/61); (2) 100% premise≈conclusion (59/61 exact match, 2 whitespace-only diff); (3) ISR=1.0 in 40% overall, 65.6% among proved; (4) proved-only ISR=0.830 inflated by trivial proofs. Example: folio_765 generates premise='∃x ((x=mary)→(advocate(x)))' identical to conclusion. β=0.1 ISR reward fails to prevent hacking on s43; model discovers the shortcut of making premise=conclusion, trivially proving goals. Cross-seed: s42=genuine success, s43/s44=both hacked → 2/3 seeds negative for plan002-b01. Eval output: /root/autodl-tmp/outputs/plan002_additive_b01_s43/eval_results.json",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s43/checkpoint-500",
+    "completed_at": "2026-05-14T09:54:11.468Z"
+  },
+  "timestamp": "2026-05-14T09:54:11.562105+00:00",
+  "trigger": "update_registry"
+}

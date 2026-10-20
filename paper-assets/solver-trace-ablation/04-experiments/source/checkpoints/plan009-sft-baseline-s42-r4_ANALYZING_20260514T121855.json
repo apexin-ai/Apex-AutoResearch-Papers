@@ -1,0 +1,40 @@
+{
+  "exp_id": "plan009-sft-baseline-s42-r4",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:40:28.142Z",
+    "updated_at": "2026-05-14T12:18:55.874Z",
+    "hypothesis": "SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.",
+    "parent": "plan009-sft-baseline-s42-r2",
+    "spec": {
+      "command": "bash -c 'export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 --num_steps 500 --seed 42 --no_wandb'",
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "pid": "572604",
+      "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s42-r4.log",
+      "submitted_at": "2026-05-14T11:47:00.334Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "n/a (training run, not eval)",
+      "eval_data": "n/a (training run, not eval)"
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "notes": "r2 OOM: GPU冲突(plan018-s43同时占cuda:1). r3 失败: 缺 --no_wandb + 缺 CUDA_VISIBLE_DEVICES. r4 修复: bash -c 开头 export CUDA_VISIBLE_DEVICES=1 + --gpu 1 + --no_wandb 三项全加。",
+    "reproduce": {
+      "finished_at": "2026-05-14T12:18:55.639Z"
+    }
+  },
+  "timestamp": "2026-05-14T12:18:55.975845+00:00",
+  "trigger": "update_registry"
+}

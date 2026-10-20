@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan018-additive-random-b01-s42-1000-r3",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:26:49.094Z",
+    "updated_at": "2026-05-15T10:26:49.094Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Random β=0.1 1000步 r3: fresh from base model, 严格 1000 步匹配 ISR β=0.1 1000步。r2 因 resume 导致实际 1350 步无法定量对比。",
+      "reward_formula": "r = r_exec * (1 + 0.1 * random[0,1])",
+      "num_steps": 1000,
+      "beta": 0.1,
+      "plan_id": "plan018",
+      "parent": "plan018-additive-random-b01-s42-1000-r2"
+    }
+  },
+  "timestamp": "2026-05-15T10:26:49.314046+00:00",
+  "trigger": "update_registry"
+}

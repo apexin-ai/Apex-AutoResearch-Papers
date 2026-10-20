@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "00da9bcf6eb2b8d10ab8",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code gpt2 factual recall fix",
+  "task_key": "worker_code_gpt2-factual-recall-fix_20260513T084751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt2-factual-recall-fix_20260513T084751.log",
+    "occurrence": 1,
+    "bytes": 633829,
+    "sha256": "a8263153443994be194e39b5a851298a08186ac3814d82f07777eec7bf05cb27"
+  },
+  "statistics": {
+    "messages": 141,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 141,
+      "chunks": [
+        {
+          "path": "00da9bcf6eb2b8d10ab8-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "00da9bcf6eb2b8d10ab8-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-gpt2-factual-recall-fix.md"
+}

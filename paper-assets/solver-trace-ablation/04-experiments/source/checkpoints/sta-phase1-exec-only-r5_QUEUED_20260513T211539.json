@@ -1,0 +1,27 @@
+{
+  "exp_id": "sta-phase1-exec-only-r5",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:54:27.505Z",
+    "updated_at": "2026-05-13T21:15:39.457Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "75890",
+      "log_path": "~/runs/solver-trace-ablation/sta-phase1-exec-only-r5.log",
+      "submitted_at": "2026-05-13T20:54:37.293Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T21:15:39.506556+00:00",
+  "trigger": "update_registry"
+}

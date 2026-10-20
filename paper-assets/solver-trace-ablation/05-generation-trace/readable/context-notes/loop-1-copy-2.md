@@ -1,0 +1,69 @@
+# agent / loop_1.md
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_1.md`
+- **Structured JSON:** [`c41e0888dbfdfa403372.json`](../../sessions/c4/c41e0888dbfdfa403372.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: idle_timeout
+updated: '2026-05-13T22:35:12+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-39279 的 cuda:0 和 cuda:1，不可用其他设备
+- 数据源是 FOLIO（不是 ProofWriter），文件名 `proofwriter_fol_100.jsonl` 是历史遗留命名，不要被误导
+- Phase 1 实验必须在 Phase 0 baseline 锚定后才能解读（Phase 0 已完成，mean_isr=0.0641）
+- EMNLP 2026 ARR DDL 2026-05-25，距今 12 天
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`
+- Python：`/root/miniconda3/bin/python`，环境激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型：`/root/solver-trace-ablation/models/Qwen3-4B`
+- 数据：`/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl`（100条 baseline），500条训练集路径待确认
+- Solver：Prover9 + SWI-Prolog + Z3 已安装
+- 活跃进程：无（两个 Phase 1 实验均已失败退出）
+- Worker 在跑：`worker_diagnose_phase1-failures_20260513T193357`（诊断日志中）
+
+### 3. 📊 当前状态
+Phase 1 的两个 GRPO pilot 实验（`sta-phase1-exec-only` 和 `sta-phase1-exec-sta`）均以 EXIT_CODE=2 失败，运行时间极短（16s/31s），说明是启动阶段崩溃（Python 参数错误或脚本 import 失败）。已派 Worker 去 SSH 读日志诊断根因，尚未回调。
+
+Registry 状态：
+- `sta-phase0-baseline` — DONE/success — base model ISR baseline 已锚定（mean_isr=0.0641, prove_rate=12%）
+- `sta-gt-isr-baseline` — DONE/success — ground truth ISR 上界（gt_mean_isr=0.5588, gt_prove_rate=18%）
+- `sta-phase1-exec-only` — DONE/failed — EXIT_CODE=2
+- `sta-phase1-exec-sta` — DONE/failed — EXIT_CODE=2
+
+等待中：Worker `diagnose_phase1-failures` 回调 → 拿到根因后修复并重新提交
+
+### 4. 📋 待办
+- Worker 诊断回调到达 → 根据根因修复代码/配置 → 重新提交两个 Phase 1 实验（cuda:0 exec-only, cuda:1 exec-sta）
+- Phase 1 重跑成功后 → 按 on-experiment-done 流程分析 ISR 趋势分离度，判断 MVP pass/fail
+- MVP pass → 向 Director 汇报并推进 500 条全量训练 + 论文写作
+- MVP fail（kill criteria 触发）→ 产出 Framing 调整提案，等 Director 决策
+
+### 5. 🎯 战略上下文
+- 核心假设：STA-derived reward（组件 ablation → ISR）能在 GRPO 中减少 reward hacking，同时维持 formalization accuracy
+- Phase 0 结论：base Qwen3-4B 的 ISR 很低（mean=0.064），说明 base model 几乎无法生成可证明的 FOL，这是好事——如果 GRPO 训练后 ISR 显著提升，说明 STA reward 有效
+- GT ISR 上界 0.56，说明即使用 ground truth FOL，solver 也只能证明约 18% 的样本——ISR 天花板不高，评估时注意绝对值不会很大
+- ROADMAP 中有未完成前置任务："修复 STA 代码 bug（$T/$F 语法 + Unicode 转换 + ISR 过滤条件）"和"实现 O(1) fast_isr_fol()"——Phase 1 失败可能与这些 bug 有关
+- 易错点：EXIT_CODE=2 是 Python 的 usage error（如 argparse 不认识的参数），不是 OOM 或 CUDA 错误，大概率是脚本或配置文件的问题，不要往硬件方向排查
+
+
+---

@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan017-additive-random-s42",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:11:14.694Z",
+    "updated_at": "2026-05-14T03:13:31.288Z",
+    "hypothesis": "Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。",
+    "parent": "plan013-random-reward-s42-r4"
+  },
+  "timestamp": "2026-05-14T03:13:31.340877+00:00",
+  "trigger": "update_registry"
+}

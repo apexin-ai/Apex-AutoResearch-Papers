@@ -1,0 +1,23 @@
+{
+  "exp_id": "plan002-additive-b01-s45-1000",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-17T11:48:04.009Z",
+    "updated_at": "2026-05-17T13:07:52.288Z",
+    "hypothesis": "ISR β=0.1 seed=45 genuine window (~55% at 500 steps) will collapse by 1000 steps, consistent with the inevitable collapse pattern observed in s42 (17%→2%). Extended training drives ISR-trained models toward metric gaming regardless of initial genuine rate.",
+    "parent": "plan002-additive-b01-s45",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-17T12:09:43.365Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-17T13:07:52.579565+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,83 @@
+{
+  "exp_id": "mvp_sva_gpt2_k3",
+  "project": "min_necessary_circuit_css",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T05:56:29.357Z",
+    "updated_at": "2026-05-13T08:10:07.128Z",
+    "hypothesis": "SVA (localized-circuit task) 上 CSS=1.0 faithfulness > single-method，验证 IOI 发现在第三任务泛化（D025 条件④）",
+    "parent": "mvp_arithmetic_gpt2_k3",
+    "notes": "关键改进：ACDC 用 top-100 替代 isinf（D026 教训）。Zero + mean ablation 双评估。Dream 等待期间充分利用 GPU。",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=5 python3 /root/min_necessary_circuit_css/run_sva.py",
+      "server": "cqa1-21977",
+      "data_path": "/root/miniconda3/lib/python3.12/site-packages/datasets/sva_gpt2-small_prompts.json",
+      "data_count": 500,
+      "model_name": "gpt2-small",
+      "seed": 42,
+      "checkpoint_source": "gpt2-small-pretrained",
+      "eval_data": "sva_gpt2-small_prompts (500 generated SVA prompts)"
+    },
+    "conclusion": "negative",
+    "log_path": "/root/min_necessary_circuit_css/sva_run.log",
+    "checkpoint_path": "/root/min_necessary_circuit_css/sva_results.json",
+    "completed_at": "2026-05-13T08:01:34.007Z",
+    "metrics": {
+      "binarization": "top-100",
+      "edge_counts": {
+        "eap_ig": 100,
+        "edge_pruning": 100,
+        "acdc": 100
+      },
+      "pairwise_jaccard": {
+        "acdc_x_eap_ig": 0.3699,
+        "acdc_x_edge_pruning": 0.4286,
+        "eap_ig_x_edge_pruning": 0.6529
+      },
+      "three_way_jaccard": 0.3007,
+      "css_distribution": {
+        "0.33": 52,
+        "0.67": 55,
+        "1.00": 46
+      },
+      "cross_table": {
+        "stable_core": 80,
+        "method_specific": 895,
+        "cross_unstable": 21,
+        "noise": 31495,
+        "off_diagonal_pct": 0.918
+      },
+      "mean_cpr": {
+        "eap_ig": 1.1676,
+        "edge_pruning": 1.1681,
+        "acdc": 1.1619,
+        "css_0.67": 1.1738,
+        "css_1.00": 1.1738,
+        "stable_core": 1.1765,
+        "circus_core": 0.9944
+      },
+      "zero_cpr": {
+        "eap_ig": -0.3477,
+        "edge_pruning": -0.6535,
+        "acdc": -1.1959,
+        "css_0.67": -0.7401,
+        "css_1.00": -0.7401,
+        "stable_core": -1.0772,
+        "circus_core": 0.7438
+      },
+      "gate_verdict": "PASS_MAIN",
+      "d025_conditions": {
+        "cond1_jaccard_lt070": true,
+        "cond2_css_ge23_ge10": true,
+        "cond3_css_10_ge3": true,
+        "cond4_css10_cpr_gt_single": true
+      },
+      "note": "实际运行 top-100 binarization（非预期的 isinf）"
+    }
+  },
+  "timestamp": "2026-05-13T08:10:07.176139+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,56 @@
+{
+  "exp_id": "plan006-prolog-sta-s42",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-14T09:19:38.117Z",
+    "updated_at": "2026-05-14T10:38:14.253Z",
+    "hypothesis": "Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T09:49:40.272Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s42\"",
+      "finished_at": "2026-05-14T10:38:13.891Z",
+      "training_hours": 0.81
+    },
+    "failure_reason": "Traceback → (args.data_path) ^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"/root/solver-trace-ablation/scripts/train_grpo.py\", line 91, in load_jsonl with open(path) as f: ^^^^^^^^^^ FileNotFoundError: [Errno 2] No such file or directory: 'data/prolog/train_500_seed42.jsonl'",
+    "completed_at": "2026-05-14T09:46:00.917Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T09:46:02.621139+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第二次启动失败。根因：config reward_mode=execution_sta (0.5*exec+0.5*ISR) 可能与 FOL 实验不匹配，待 Director 确认后修复重启。cuda:1 释放给 plan018。"
+      }
+    },
+    "account": "root",
+    "notes": "第二次重启成功（去掉 --data_path CLI 覆盖后）。PID 506117 运行中 cuda:1。config 使用 reward_mode=execution_sta (0.5*exec+0.5*ISR)，Director 已确认继续运行。ETA ~2.7h。",
+    "spec": {
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s42\"",
+      "pid": "506117",
+      "log_path": "~/runs/solver-trace-ablation/plan006-prolog-sta-s42.log",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T10:38:14.395285+00:00",
+  "trigger": "update_registry"
+}

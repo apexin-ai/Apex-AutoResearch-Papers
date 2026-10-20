@@ -1,0 +1,888 @@
+# check plan006 data readiness
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_check_plan006-data-readiness_20260514T105840.jsonl`
+- **Structured JSON:** [`ff7368c69dbdaeb2cb8f.json`](../../sessions/ff/ff7368c69dbdaeb2cb8f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T10:59:36.462308+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T10:59:36.462665+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T10:59:36.462897+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/solver-trace-ablation/data/prolog/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/solver-trace-ablation/data/prolog/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T10:59:36.463071+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T10:59:36.463221+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/solver-trace-ablation/data/train_500_seed42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/solver-trace-ablation/data/train_500_seed42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T10:59:36.463363+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/solver-trace-ablation/data/prolog/*.jsonl 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "wc -l /root/solver-trace-ablation/data/prolog/*.jsonl 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T10:59:36.463503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 484867 May 14 06:05 /root/solver-trace-ablation/data/train_500_seed42.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T10:59:36.463641+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T10:59:36.463801+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/configs/grpo_prolog_exec_only.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/configs/grpo_prolog_exec_only.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T10:59:36.463951+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_path: /root/autodl-tmp/models/Qwen3-4B\\ndata_path: data/train_500_seed42.jsonl\\nlogic_type: prolog\\nreward_mode: execution_only\\noutput_dir: /root/autodl-tmp/outputs/grpo_prolog_exec_only\\nnum_steps: 500\\nper_device_batch_size: 4\\ngradient_accumulation_steps: 2\\nnum_generations: 8\\nmax_completion_length: 512\\nlearning_rate: 1.0e-6\\nexec_weight: 1.0\\nsta_weight: 0.0\\nseed: 42\\nsolver: prolog\\nwandb_project: solver-trace-ablation\\nwandb_run: prolog_exec_only\\nno_wandb: true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T10:59:36.464100+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/configs/grpo_prolog_exec_sta.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/configs/grpo_prolog_exec_sta.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T10:59:36.464247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_path: /root/autodl-tmp/models/Qwen3-4B\\ndata_path: data/train_500_seed42.jsonl\\nlogic_type: prolog\\nreward_mode: execution_sta\\noutput_dir: /root/autodl-tmp/outputs/grpo_prolog_exec_sta\\nnum_steps: 500\\nper_device_batch_size: 4\\ngradient_accumulation_steps: 2\\nnum_generations: 8\\nmax_completion_length: 512\\nlearning_rate: 1.0e-6\\nexec_weight: 0.5\\nsta_weight: 0.5\\nseed: 42\\nsolver: prolog\\nwandb_project: solver-trace-ablation\\nwandb_run: prolog_exec_sta\\nno_wandb: true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T10:59:36.464383+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -50 /root/runs/solver-trace-ablation/plan006-prolog-exec-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "tail -50 /root/runs/solver-trace-ablation/plan006-prolog-exec-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T10:59:36.464594+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[REWARD_LOG] step=299 reward=1.0000 prove_rate=1.000 isr=0.062 parse_rate=1.000\\n\\r                                                   \\r\\r 60%|█████▉    | 299/500 [1:04:49<34:03, 10.17s/it]\\r 60%|██████    | 300/500 [1:05:07<41:49, 12.55s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 4.04e-07, 'num_tokens': 795088.0, 'completions/mean_length': 91.875, 'completions/min_length': 47.0, 'completions/max_length': 185.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 91.875, 'completions/min_terminated_length': 47.0, 'completions/max_terminated_length': 185.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.07016988471150398, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 8.922546938061714, 'epoch': 1.2}\\n[REWARD_LOG] step=300 reward=1.0000 prove_rate=1.000 isr=0.010 parse_rate=1.000\\n\\r                                                   \\r\\r 60%|██████    | 300/500 [1:05:07<41:49, 12.55s/it]\\r 60%|██████    | 301/500 [1:05:39<1:00:52, 18.36s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 4.02e-07, 'num_tokens': 798233.0, 'completions/mean_length': 187.125, 'completions/min_length': 111.0, 'completions/max_length': 383.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 187.125, 'completions/min_terminated_length': 111.0, 'completions/max_terminated_length': 383.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.07687941566109657, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 17.853967560920864, 'epoch': 1.2}\\n[REWARD_LOG] step=301 reward=1.0000 prove_rate=1.
+…[truncated 6318 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T10:59:36.464790+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan006_prolog_exec_s42/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/autodl-tmp/outputs/plan006_prolog_exec_s42/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T10:59:36.464936+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T10:59:36.465103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/solver-trace-ablation/data/prolog/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/solver-trace-ablation/data/prolog/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T10:59:36.465263+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/solver-trace-ablation/data/prolog/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T10:59:36.465404+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/solver-trace-ablation/data/prolog/*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "wc -l /root/solver-trace-ablation/data/prolog/*.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T10:59:36.465541+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: '/root/solver-trace-ablation/data/prolog/*.jsonl': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T10:59:36.465671+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan006_prolog_exec_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/autodl-tmp/outputs/plan006_prolog_exec_s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T10:59:36.465835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 140\\ndrwxr-xr-x  3 root root    85 May 14 18:55 .\\ndrwxr-xr-x 12 root root  4096 May 14 18:58 ..\\n-rw-r--r--  1 root root  1880 May 14 18:54 README.md\\ndrwxr-xr-x  2 root root  4096 May 14 18:55 checkpoint-300\\n-rw-r--r--  1 root root 77481 May 14 18:58 reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T10:59:36.465970+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/autodl-tmp/outputs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/autodl-tmp/outputs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T10:59:36.466120+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_sta_plan001_exec_only_s44.json\\neval_sta_plan001_r2.json\\neval_sta_plan002.log\\neval_sta_plan013_r4.json\\neval_sta_plan017_additive_random_s42.json\\neval_sta_plan018_additive_random_b01_s42.json\\neval_sta_run.log\\nh7_classification\\nplan001_exec_only_s42\\nplan001_s44_eval_sta.json\\nplan002_additive_b01_s42\\nplan002_additive_b01_s43\\nplan002_additive_b01_s44\\nplan003_eval_exec_only_r5.json\\nplan006_prolog_exec_s42\\nplan006_prolog_sta_s42\\nplan013_random_reward_s42.log\\nplan014_downstream_nli.json\\nplan016_extended_1000_s42\\nplan018_additive_random_b01_s42\\nplan018_additive_random_b01_s43\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T10:59:36.466278+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan006_prolog_sta_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/autodl-tmp/outputs/plan006_prolog_sta_s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T10:59:36.466410+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -c \"\" /root/solver-trace-ablation/data/train_500_seed42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -c \"\" /root/solver-trace-ablation/data/train_500_seed42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T10:59:36.466558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15728648\\ndrwxr-xr-x  3 root root       4096 May 14 18:47 .\\ndrwxr-xr-x 12 root root       4096 May 14 18:58 ..\\n-rw-r--r--  1 root root       1878 May 14 18:36 README.md\\n-rw-r--r--  1 root root        707 May 14 18:36 added_tokens.json\\n-rw-r--r--  1 root root       4168 May 14 18:36 chat_template.jinja\\ndrwxr-xr-x  2 root root       4096 May 14 18:36 checkpoint-500\\n-rw-r--r--  1 root root       1535 May 14 18:36 config.json\\n-rw-r--r--  1 root root       2442 May 14 18:47 eval_analysis.txt\\n-rw-r--r--  1 root root     119998 May 14 18:45 eval_results.json\\n-rw-r--r--  1 root root        188 May 14 18:36 generation_config.json\\n-rw-r--r--  1 root root    1671853 May 14 18:36 merges.txt\\n-rw-r--r--  1 root root 4990095032 May 14 18:36 model-00001-of-00004.safetensors\\n-rw-r--r--  1 root root 4944309096 May 14 18:36 model-00002-of-00004.safetensors\\n-rw-r--r--  1 root root 4996758848 May 14 18:36 model-00003-of-00004.safetensors\\n-rw-r--r--  1 root root 1158754848 May 14 18:36 model-00004-of-00004.safetensors\\n-rw-r--r--  1 root root      32856 May 14 18:36 model.safetensors.index.json\\n-rw-r--r--  1 root root     110946 May 14 18:36 reward_log.jsonl\\n-rw-r--r--  1 root root        613 May 14 18:36 special_tokens_map.json\\n-rw-r--r--  1 root root   11422654 May 14 18:36 tokenizer.json\\n-rw-r--r--  1 root root       5459 May 14 18:36 tokenizer_config.json\\n-rw-r--r--  1 root root       7953 May 14 18:36 training_args.bin\\n-rw-r--r--  1 root root    2776833 May 14 18:36 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T10:59:36.466725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"500\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan006-data-readiness_20260514T105840",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-14T10:59:36.466921+00:00_
+
+## 汇总报告
+
+### 1. Prolog 数据文件
+
+- **`data/prolog/` 目录不存在** — registry 旧 note 准确
+- **`data/train_500_seed42.jsonl` 存在**，500 条，484KB
+- 两个 Prolog 配置文件的 `data_path` 均指向 `data/train_500_seed42.jsonl`（通用训练数据），**不依赖** prolog 专用数据目录。数据路径有效。
+
+### 2. 配置文件
+
+| 配置 | reward_mode | exec_weight | sta_weight | output_dir |
+|------|-------------|-------------|------------|------------|
+| `grpo_prolog_exec_only.yaml` | execution_only | 1.0 | 0.0 | `grpo_prolog_exec_only` |
+| `grpo_prolog_exec_sta.yaml` | execution_sta | 0.5 | 0.5 | `grpo_prolog_exec_sta` |
+
+两者均: solver=prolog, seed=42, num_steps=500, model=Qwen3-4B, no_wandb=true
+
+### 3. plan006-prolog-exec-s42 训练进度
+
+- **Step 323/500 (65%)**，已跑 ~1h09m
+- prove_rate 持续很高 (0.875–1.0)，parse_rate=1.0
+- **ISR 很低** (0.01–0.2)，大部分 step reward=1.0, loss=0.0（模型已饱和，梯度为零）
+- 预计还需 ~35 分钟完成
+
+### 4. plan006-prolog-sta-s42 状态
+
+- **已完成** (checkpoint-500)，模型权重已保存（~16GB），eval_results.json 和 eval_analysis.txt 已生成
+
+### 5. 后续实验就绪度
+
+| 条件 | 状态 |
+|------|------|
+| 训练数据 (train_500_seed42.jsonl) | ✅ 存在，500 条 |
+| exec_only 配置 | ✅ 就绪 |
+| exec_sta 配置 | ✅ 就绪 |
+| 多 seed 支持 | ⚠️ 配置中 seed 硬编码为 42，启动 s43/s44 需要覆盖 seed 参数 |
+
+**结论**: 数据和配置就绪，`data/prolog/` 不存在不影响实验（配置不引用它）。后续 s43/s44 实验启动时只需在命令行覆盖 `seed` 和 `output_dir` 参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_check_plan006-data-readiness_20260514T105840"
+}
+```
+
+</details>
+
+---

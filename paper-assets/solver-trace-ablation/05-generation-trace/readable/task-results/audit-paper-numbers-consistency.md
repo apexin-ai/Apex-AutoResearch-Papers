@@ -1,0 +1,64 @@
+# audit paper numbers consistency
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_audit_paper-numbers-consistency_20260515T133210_result.json`
+- **Structured JSON:** [`034bbe05f17e414c07e8.json`](../../sessions/03/034bbe05f17e414c07e8.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+审计完成。**14 个不一致**（6 HIGH / 3 MEDIUM / 5 LOW）。核心问题及摘要：
+
+---
+
+### HIGH severity (6)
+
+**INC-01: Taxonomy 7→8 未同步**
+论文全文（abstract/intro/method/taxonomy）说 7 种 hacking modes，但 1000-step 表使用 H8（conjunction collapse）。Appendix 也未定义 H8。必须统一。
+
+**INC-02~04, 08: H8 导致 N-H% 级联偏高**
+D078 已在 registry 生效（plan002-b01-s42 genuine=14），但论文未更新：
+- Appendix table: ISR β=0.1 s42 N-H = **30.9%**（应为 **17.3%**）
+- experiments.tex 正文: "genuine rate at 500 steps (30.9%)"（同上）
+- Table tab:goodhart-landscape: ISR β=0.1 pooled N-H = **17%**（应为 **12.1%**）
+- "closest non-hacking: 31%"（应为 ~17%）
+
+**INC-05: Wilson CI 可能翻转**
+tab:bootstrap-ci 报告 ISR genuine=17.3% vs Random=17.4%, p=1.0。H8 修正后 ISR genuine 降至 12.1%，不再与 Random 相等，Fisher p 需重算。**这影响 "identical genuine rates" 的核心 claim。**
+
+### MEDIUM severity (3)
+
+- **INC-06**: 正文写 1000-step genuine=3.0%，表写 2.2%，registry=2/90=2.2%
+- **INC-07**: 1000-step 表 Random β=0.1 标为 H7=100%，但 registry 显示 H1=97（需确认分类器标签）
+- **INC-09**: Exec-only N-H=13% → H8 修正后 ~7.5%
+
+### LOW severity (5)
+
+- 1000-step 表用 "Mean ISR" 而非 "ISR\*"（与 method 的 "throughout" 声明矛盾）
+- table4 脚注 "3.2× genuine advantage" 与正文 1.06× 矛盾（artifact 表可能未用于终稿）
+- table3 写 -99.6%，正文写 99.5%
+- tab:bootstrap-ci label 名误导（内容是 Wilson CI）
+- Random β=0.3 H1=96% 聚合方式不一致
+
+### 验证通过的关键数字
+
+ISR 崩塌轨迹、SFT 3-seed 统计、H7=64.5% vs 0%、β=0.3 instability、Prolog universal Goodhart、所有 per-seed PR/ISR\*、O(1) ablation、NLI 相关性、D076 修正——**全部与 registry 一致**。
+
+---
+
+**建议优先修复 INC-01（taxonomy 7→8 决策）**，因为其余 HIGH issues 全部是其下游后果。
+
+---

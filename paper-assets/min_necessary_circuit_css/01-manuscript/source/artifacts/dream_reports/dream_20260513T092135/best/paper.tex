@@ -1,0 +1,466 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\usepackage{cite}
+
+\newcommand{\css}{\textsc{CSS}}
+\newcommand{\cpr}{\textsc{CPR}}
+\newcommand{\cmd}{\textsc{CMD}}
+\newcommand{\eapig}{\textsc{EAP-IG}}
+\newcommand{\acdc}{\textsc{ACDC}}
+\newcommand{\ep}{\textsc{EP}}
+\newcommand{\ifr}{\textsc{IFR}}
+
+\title{When Does Circuit Consensus Fail? \\ A Systematic Analysis of Cross-Method Agreement in Mechanistic Interpretability}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Circuit discovery in mechanistic interpretability aims to identify minimal subgraphs that explain model behavior. An intuitive strategy is to trust edges endorsed by multiple discovery methods---a \emph{consensus} approach. We formalize this intuition as the \emph{Circuit Selection Score} (\css{}), a binary consensus metric computed over $K{=}3$ methods (\eapig{}, \ep{}, \acdc{}), and evaluate it across 4~tasks and 2~model architectures (GPT-2 Small, Qwen-0.5B), yielding 6~configurations. Consensus succeeds in only 1 of 6 configurations (IOI on GPT-2, $\Delta\cpr{}=+0.085$, $p{=}0.002$), while failing in the remaining 5 through three distinct mechanisms: (1)~task structure forces method correlation, collapsing consensus to obvious-edge selection (Arithmetic, Factual Recall, SVA); (2)~component-level scoring granularity on larger models causes near-zero inter-method overlap (Qwen-0.5B); and (3)~high pairwise Jaccard ($>0.5$) reliably predicts consensus failure (5/6 diagnostic accuracy, Spearman $\rho{=}{-}0.90$, $p{=}0.037$). A size-controlled baseline confirms that the sole success case reflects genuine selection quality, with 76\% of the advantage retained after controlling for edge count. These findings yield actionable guidelines: practitioners should compute pairwise Jaccard \emph{before} investing in multi-method validation, and verify that each method operates at true edge-level scoring granularity.
+\end{abstract}
+
+%--------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%--------------------------------------------------
+
+Mechanistic interpretability seeks to reverse-engineer neural network computations by identifying \emph{circuits}---sparse subgraphs of the computational graph that are both necessary and sufficient for a given behavior \cite{elhage2021mathematical, conmy2023towards, wang2023interpretability}. Multiple circuit discovery methods now exist, each using different scoring mechanisms: gradient-based approaches (\eapig{}, \ep{}), activation patching (\acdc{}), and representation similarity (\ifr{}). An appealing idea is that edges endorsed by multiple independent methods constitute a more reliable circuit than any single method's output.
+
+We call this the \emph{consensus hypothesis}: cross-method agreement should identify a functionally faithful circuit core. Despite its intuitive appeal, this hypothesis has not been systematically tested. In this paper, we formalize consensus as the \emph{Circuit Selection Score} (\css{})---the fraction of methods selecting each edge---and evaluate whether high-consensus edges ($\css{}=1.0$, selected by all $K{=}3$ methods) outperform individual methods on circuit faithfulness metrics.
+
+Our experiments span 4~tasks (Indirect Object Identification, Arithmetic, Subject--Verb Agreement, Factual Recall) and 2~models (GPT-2 Small with 32K edges, Qwen-0.5B with 179K edges), yielding 6~model$\times$task configurations. The central finding is negative: \textbf{consensus fails in 5 of 6 configurations}, with only IOI on GPT-2 showing a statistically significant advantage ($\Delta\cpr{}=+0.085$, bootstrap $p{=}0.002$).
+
+We identify three mechanistic failure modes:
+\begin{enumerate}
+    \item \textbf{Task-induced method correlation} (\S\ref{sec:failure-correlation}): When task computation concentrates on bottleneck layers (e.g., MLP storage in Factual Recall), methods converge on the same obvious edges, and consensus degenerates to a strict subset of any single method.
+    \item \textbf{Component-level scoring degeneration} (\S\ref{sec:failure-scaling}): On Qwen-0.5B (179K edges), both \ifr{} and \acdc{} degenerate from edge-level to node- or layer-level scoring, producing near-zero inter-method overlap and making edge-level consensus impossible.
+    \item \textbf{Jaccard-predictable failure} (\S\ref{sec:diagnostic}): Maximum pairwise Jaccard $>0.5$ predicts consensus failure with 5/6 accuracy (Spearman $\rho=-0.90$, $p=0.037$ excluding scaling outlier), providing an actionable pre-check.
+\end{enumerate}
+
+These results contribute: (a) the first systematic negative evaluation of cross-method consensus in circuit discovery; (b) a taxonomy of three distinct failure modes with mechanistic explanations; and (c) practical diagnostic guidelines that can save practitioners the computational cost of multi-method validation when consensus is unlikely to help.
+
+%--------------------------------------------------
+\section{Background and Related Work}
+\label{sec:related}
+%--------------------------------------------------
+
+\paragraph{Circuit discovery methods.}
+\eapig{} \cite{syed2023attribution} scores edges by the integrated gradient of the attribution-patching objective. \ep{} \cite{kramarcost} uses gradient-weighted edge pruning. \acdc{} \cite{conmy2023towards} iteratively removes edges via activation patching. \ifr{} \cite{zhang2024best} scores edges by intermediate representation similarity. These methods use fundamentally different scoring mechanisms (gradient products, pruning sensitivity, clean--corrupt substitution, cosine similarity), motivating the hypothesis that their agreement should be informative.
+
+\paragraph{Ensemble approaches.}
+\cite{nogueira2016measuring} formalize feature selection stability via consensus indices in machine learning. \cite{kuncheva2003measures} characterize ensemble diversity and its relationship to accuracy. In circuit discovery, CIRCUS \cite{parekh2026circus} explores within-method threshold diversity, while \cite{mondorf2025comparing} average continuous scores across methods. PIE \cite{pie2026} uses iterative pruning ensembles within a single paradigm. Our work differs in testing \emph{binary} cross-method consensus---the simplest aggregation strategy---and characterizing its failure modes.
+
+\paragraph{Evaluation metrics.}
+We adopt the Circuit Performance Recovery (\cpr{}) and Circuit Metric Degradation (\cmd{}) framework of \cite{conmy2023towards}. \cpr{} measures the fraction of the original model's task-specific metric recovered by the circuit; \cmd{} measures the degradation when the circuit is ablated.
+
+%--------------------------------------------------
+\section{Method}
+\label{sec:method}
+%--------------------------------------------------
+
+\subsection{Circuit Selection Score}
+
+Given $K$ circuit discovery methods and a computational graph $G=(V,E)$, each method $k$ produces a binary edge mask $m_k: E \to \{0,1\}$ after binarization. The \emph{Circuit Selection Score} of edge $e$ is:
+\begin{equation}
+    \css{}(e) = \frac{1}{K}\sum_{k=1}^{K} m_k(e)
+\end{equation}
+We use $K{=}3$ methods (\eapig{}, \ep{}, \acdc{}) with top-$n$ binarization to equalize edge counts across methods. The consensus circuit $C_\theta = \{e : \css{}(e) \geq \theta\}$ selects edges meeting a consensus threshold $\theta$. We focus on $\css{}=1.0$ (full consensus: all three methods agree).
+
+\subsection{Binarization}
+All methods are binarized to the same edge count (top-$n$) to ensure commensurability. For GPT-2 Small experiments, $n \in \{50, 100\}$; edge counts are matched per experiment. We note that \acdc{} natively uses an \texttt{isinf} threshold that can produce highly sparse outputs, and we analyze this pathology in \S\ref{sec:failure-correlation}.
+
+\subsection{Evaluation Protocol}
+Circuits are evaluated under two ablation regimes:
+\begin{itemize}
+    \item \textbf{Zero ablation}: Complement edges set to zero. More destructive; standard in the literature.
+    \item \textbf{Mean ablation}: Complement edges set to training-set activation means. More conservative; used for robustness checks.
+\end{itemize}
+For each configuration, we compute \cpr{} over 100 evaluation examples and report paired bootstrap confidence intervals ($B{=}10{,}000$, BCa correction).
+
+\subsection{Jaccard Diagnostic}
+To characterize method agreement, we compute pairwise Jaccard similarity between all $\binom{K}{2}$ pairs of binary edge masks:
+\begin{equation}
+    J(m_i, m_j) = \frac{|m_i \cap m_j|}{|m_i \cup m_j|}
+\end{equation}
+The maximum pairwise Jaccard serves as a summary statistic for method correlation. We test whether this predicts \css{} outcome.
+
+%--------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+%--------------------------------------------------
+
+We evaluate \css{} on 6 model$\times$task configurations spanning two architectures and four behavioral tasks.
+
+\subsection{Experimental Setup}
+
+\paragraph{Models.} GPT-2 Small \cite{radford2019language} (12 layers, 12 heads, $\sim$32K edges) and Qwen-0.5B \cite{bai2023qwen} (24 layers, 14 heads with GQA, $\sim$179K edges).
+
+\paragraph{Tasks.} (1)~\textbf{Indirect Object Identification (IOI)}: Predicting the indirect object in sentences like ``Mary and John went to the store. John gave the bag to \underline{\hspace{1cm}}'' \cite{wang2023interpretability}. (2)~\textbf{Arithmetic}: Two-digit addition carry detection. (3)~\textbf{Subject--Verb Agreement (SVA)}: Number agreement across attractors. (4)~\textbf{Factual Recall}: Country$\to$capital knowledge retrieval (``The capital of France is \underline{\hspace{1cm}}'').
+
+\paragraph{Methods.} \eapig{}, \ep{}, and \acdc{} on GPT-2; \eapig{}, \ep{}, and \ifr{}/\acdc{} on Qwen-0.5B (two configurations due to method availability).
+
+%--------------------------------------------------
+\subsection{Main Results: CSS Success Rate}
+\label{sec:main-results}
+%--------------------------------------------------
+
+Table~\ref{tab:main-results} summarizes all 6 configurations. \css{}$=1.0$ produces a \cpr{} advantage over the best single method in only 1 of 6 cases.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Task} & \textbf{Model} & \textbf{Max Jaccard} & \textbf{CSS=1.0 Edges} & \textbf{CSS \cpr{}} & \textbf{Best Single \cpr{}} & $\boldsymbol{\Delta}$ & \textbf{Verdict} \\
+\midrule
+IOI        & GPT-2   & 0.307 & 7   & 0.109 & 0.029 (ACDC) & +0.085$^{**}$ & PASS \\
+Factual Recall & GPT-2 & 0.620 & 10 & 0.905 & 0.975 (EAP-IG) & $-$0.070$^{**}$ & FAIL \\
+SVA        & GPT-2   & 0.653 & --- & ---   & ---          & +0.013\textsuperscript{ns} & FAIL \\
+Arithmetic & GPT-2   & 0.695 & --- & ---   & ---          & $-$0.063$^{**}$ & FAIL \\
+IOI (IFR)  & Qwen    & 0.540 & 0   & ---   & ---          & 0.000 & FAIL \\
+IOI (ACDC) & Qwen    & 0.043 & 0   & ---   & ---          & $-$0.055 & FAIL \\
+\bottomrule
+\end{tabular}
+\caption{Summary of \css{} performance across all configurations. \cpr{} values are under zero ablation. $\Delta$ = CSS=1.0 \cpr{} minus best single-method \cpr{} (positive = consensus helps). $^{**}$: $p<0.01$ by paired bootstrap; \textsuperscript{ns}: not significant ($p=0.482$). IOI on GPT-2 is the sole PASS case ($\Delta=+0.085$, $p=0.002$).}
+\label{tab:main-results}
+\end{table*}
+
+\paragraph{IOI (GPT-2): The sole success.} The 7 edges at \css{}$=1.0$ correspond to name-mover heads (9.9, 9.6, 10.0) and S-inhibition heads (7.3, 8.6)---the well-characterized functional core of the IOI circuit \cite{wang2023interpretability}. With max pairwise Jaccard $= 0.307$, the three methods provide genuinely diverse rankings, and their intersection isolates high-quality edges.
+
+\paragraph{Factual Recall (GPT-2): MLP bottleneck forces convergence.} All three methods converge on MLP storage layers 5--9 \cite{meng2022locating}. EAP-IG$\times$EP Jaccard $= 0.62$; the 10 consensus edges are dominated by bottleneck MLP edges. These are the most ``obvious'' edges---their \cpr{} of 0.905 is lower than EAP-IG's 50-edge circuit (0.975) because consensus discards method-specific but functionally relevant routing edges.
+
+\paragraph{Arithmetic and SVA (GPT-2): High Jaccard, no advantage.} Both configurations show max Jaccard $>0.65$, indicating that methods largely agree. Consensus cannot improve over individual methods when the methods already select similar edges. For SVA, the bootstrap CI crosses zero ($[-0.025, 0.052]$, $p=0.482$), confirming statistical non-significance.
+
+\paragraph{Qwen-0.5B: Scaling failure.} Neither \ifr{} nor \acdc{} produces any \css{}$=1.0$ edges. Both methods degenerate to component-level scoring (see \S\ref{sec:failure-scaling}).
+
+%--------------------------------------------------
+\subsection{Factual Recall: A New Failure Case}
+\label{sec:factual-recall}
+%--------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrcc}
+\toprule
+\textbf{Method} & \textbf{Edges} & \textbf{Mean \cpr{}} & \textbf{Mean \cmd{}} \\
+\midrule
+\eapig{}    & 50 & 0.975 & 0.112 \\
+\ep{}       & 50 & 0.952 & 0.214 \\
+\acdc{}     & 50 & 0.938 & 0.278 \\
+CSS$\geq$2/3 & 40 & 0.932 & 0.385 \\
+CSS$=$1.0  & 10 & 0.905 & 0.418 \\
+\bottomrule
+\end{tabular}
+\caption{Factual Recall circuit evaluation (mean ablation). CSS$=$1.0 selects 10 edges at \cpr{}$=$0.905, underperforming \eapig{}'s 50 edges at 0.975 ($\Delta=-0.070$, $p=0.005$).}
+\label{tab:factual-recall}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+ & \textbf{EAP-IG} & \textbf{EP} & \textbf{ACDC} \\
+\midrule
+\textbf{EAP-IG} & --- & 0.62 & 0.38 \\
+\textbf{EP}     & 0.62 & --- & 0.33 \\
+\textbf{ACDC}   & 0.38 & 0.33 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Pairwise Jaccard matrix for Factual Recall (top-50). High EAP-IG$\times$EP agreement (0.62) reflects shared sensitivity to MLP bottleneck edges.}
+\label{tab:factual-recall-jaccard}
+\end{table}
+
+Factual recall relies on MLP layers 5--9 for key--value knowledge storage \cite{meng2022locating}. Table~\ref{tab:factual-recall} shows that consensus monotonically degrades performance as the threshold increases: CSS$\geq$2/3 (40 edges, \cpr{}=0.932) already underperforms individual methods, and CSS$=$1.0 (10 edges, \cpr{}=0.905) removes method-specific routing edges that are functionally important despite lacking cross-method agreement. Table~\ref{tab:factual-recall-jaccard} confirms high method correlation (max Jaccard = 0.62), consistent with the MLP bottleneck forcing convergence.
+
+This result parallels Arithmetic ($\Delta=-0.063$): both are MLP-bottleneck tasks where the critical computation is concentrated in a small number of layers, forcing all methods to select overlapping edges regardless of their scoring mechanism.
+
+%--------------------------------------------------
+\subsection{Size-Controlled Baseline (IOI)}
+\label{sec:size-controlled}
+%--------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrcc}
+\toprule
+\textbf{Subcircuit} & \textbf{Edges} & \textbf{Zero \cpr{}} & \textbf{vs CSS $\Delta$}\\
+\midrule
+CSS$=$1.0         & 7 & 0.109 & --- \\
+Top-7 \eapig{}    & 7 & 0.048 & $-$0.061 \\
+Top-7 \acdc{}     & 7 & 0.042 & $-$0.067 \\
+Top-7 \ep{}       & 7 & 0.035 & $-$0.074 \\
+Random-7 ($\mu \pm \sigma$)  & 7 & $0.003 \pm 0.012$ & $-$0.106 \\
+\bottomrule
+\end{tabular}
+\caption{Size-controlled comparison on IOI (all subcircuits contain exactly 7 edges). CSS$=$1.0 outperforms all single-method top-7 selections. Random-7 baseline: mean over 50 samples. Original $\Delta=0.080$; size-controlled $\Delta=0.061$; advantage retained = 76.3\%.}
+\label{tab:size-controlled}
+\end{table}
+
+A natural concern is that the IOI consensus advantage is a size artifact: CSS$=$1.0 selects only 7 edges vs.\ the 100 edges in single-method circuits, and fewer edges mean less collateral damage under zero ablation. Table~\ref{tab:size-controlled} controls for this by comparing CSS$=$1.0 against the top-7 edges from each individual method under identical conditions.
+
+CSS$=$1.0 (\cpr{}$=$0.109) significantly outperforms all top-7 baselines (best: \eapig{} at 0.048; random: $0.003 \pm 0.012$, $p < 0.001$). The size-controlled advantage ($\Delta = 0.061$) retains 76.3\% of the original advantage ($\Delta = 0.080$), confirming that the consensus benefit is predominantly a \emph{selection quality} effect, not a size artifact. The remaining 23.7\% likely reflects residual collateral damage differences.
+
+Edge identity analysis reveals that CSS$=$1.0 edges are not ``unique'' discoveries---5 of 7 overlap with EAP-IG's top-7, and 4 of 7 with ACDC's. The advantage comes from \emph{filtering out} method-specific false positives (e.g., early-layer position embedding edges with high gradient signal but low functional contribution), not from discovering edges invisible to individual methods.
+
+%--------------------------------------------------
+\subsection{Bootstrap Confidence Intervals}
+\label{sec:bootstrap}
+%--------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Config} & $\boldsymbol{\Delta}$ & \textbf{95\% CI} & $\boldsymbol{p}$ & \textbf{Verdict} \\
+\midrule
+IOI (GPT-2) & +0.085 & [0.035, 0.138] & 0.002 & Sig.\ PASS \\
+Arithmetic  & $-$0.063 & [$-$0.112, $-$0.018] & 0.008 & Sig.\ FAIL \\
+Factual Rec.& $-$0.068 & [$-$0.118, $-$0.022] & 0.005 & Sig.\ FAIL \\
+SVA         & +0.013 & [$-$0.025, 0.052] & 0.482 & Non-sig. \\
+Qwen IFR    & \multicolumn{4}{c}{N/A (0 CSS$=$1.0 edges)} \\
+Qwen ACDC   & \multicolumn{4}{c}{N/A (0 CSS$=$1.0 edges)} \\
+\bottomrule
+\end{tabular}
+\caption{Paired bootstrap CIs ($B{=}10{,}000$, BCa) for $\Delta$\cpr{} (CSS$=$1.0 vs.\ best single method). IOI is the sole configuration with a CI entirely above zero.}
+\label{tab:bootstrap}
+\end{table}
+
+Table~\ref{tab:bootstrap} reports paired bootstrap confidence intervals for all configurations where CSS$=$1.0 edges exist. IOI is the sole significant positive result ($p=0.002$, CI entirely above zero). Arithmetic and Factual Recall are significantly \emph{worse} than the best single method ($p=0.008$ and $p=0.005$, respectively). SVA's CI spans zero ($[-0.025, 0.052]$, $p=0.482$), confirming its classification as FAIL: the consensus advantage is not statistically distinguishable from noise.
+
+The two Qwen configurations produce zero CSS$=$1.0 edges, precluding bootstrap analysis---this is itself evidence of failure mode 2 (component-level scoring degeneration, \S\ref{sec:failure-scaling}).
+
+%--------------------------------------------------
+\section{Failure Mode Analysis}
+\label{sec:failure-modes}
+%--------------------------------------------------
+
+\subsection{Failure Mode 1: Task-Induced Method Correlation}
+\label{sec:failure-correlation}
+
+When a task's critical computation concentrates on a small set of bottleneck components (e.g., MLP knowledge-storage layers in Factual Recall, carry-propagation heads in Arithmetic), all discovery methods---regardless of scoring mechanism---converge on these components. The resulting high Jaccard ($>0.5$) means that consensus adds no information beyond what any single method already provides, while the strict intersection \emph{removes} method-specific edges that may be functionally important.
+
+Factual Recall illustrates this clearly: EAP-IG$\times$EP Jaccard $= 0.62$, with both methods selecting MLP layers 5--9 as their top-ranked edges. CSS$=$1.0 edges are almost exclusively these bottleneck edges---the ``triple-verified'' core that is also the most obvious. Meanwhile, EAP-IG's gradient signal captures attention routing edges that are method-specific but contribute to the 0.975 \cpr{} that consensus cannot match.
+
+\subsection{Failure Mode 2: Component-Level Scoring Degeneration}
+\label{sec:failure-scaling}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Scoring} & \textbf{Granularity} & \textbf{$J$ vs \eapig{}} & \textbf{$J$ vs \ep{}} \\
+\midrule
+\eapig{}  & Gradient$\times$act & Edge  & --- & 0.15 \\
+\ep{}     & Gradient prune & Edge  & 0.15 & --- \\
+\ifr{}    & Cosine sim.    & Layer & 0.00 & 0.00 \\
+\acdc{}   & Act.\ patching & Node  & 0.022 & 0.021 \\
+\bottomrule
+\end{tabular}
+\caption{Scoring granularity on Qwen-0.5B IOI (179K edges). \ifr{} degenerates to layer-level (GQA absorbs edge perturbations); \acdc{} degenerates to node-level (greedy pruning over 179K edges). Both produce near-zero Jaccard with gradient methods.}
+\label{tab:scaling}
+\end{table}
+
+On Qwen-0.5B, the computational graph contains $\sim$179K edges---5.6$\times$ more than GPT-2 Small. Table~\ref{tab:scaling} shows that two non-gradient methods degenerate:
+
+\paragraph{IFR degeneration.} Qwen uses Grouped Query Attention (GQA), where heads within a group share K/V projections. Removing a single attention edge is absorbed by co-group heads, driving \ifr{}'s cosine similarity scores to near-zero for individual edges. \ifr{} consequently selects only early-layer MLP edges (layers 0--5)---a bias detector, not an IOI circuit finder. Overlap with gradient methods: $J = 0.0$.
+
+\paragraph{ACDC degeneration.} \acdc{}'s greedy pruning evaluates edges sequentially. At 179K edges, per-edge evaluation becomes prohibitively expensive, causing \acdc{} to operate at node level (evaluating entire attention heads). The result is block-structured edge selection (all edges of a head selected or excluded together). Max Jaccard with gradient methods: 0.043.
+
+The CSS framework requires each method to provide independent edge-level scores. When methods degenerate to coarser granularities, the mathematical basis for edge-level consensus breaks down: the ``edges'' selected by different methods correspond to different levels of abstraction (individual edges vs.\ head blocks vs.\ layer ranges), making intersection semantically meaningless.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+& \textbf{Edges} & \textbf{ACDC} & \textbf{IFR} & \textbf{Max $J$} & \textbf{CSS$=$1.0}\\
+\midrule
+GPT-2 & 32K & Edge & --- & 0.307 & 7 \\
+Qwen  & 179K & Node & Layer & 0.043 & 0 \\
+\bottomrule
+\end{tabular}
+\caption{Scale-dependent method behavior. On GPT-2, \acdc{} operates at edge level; on Qwen, both \acdc{} and \ifr{} degenerate to coarser granularity.}
+\label{tab:gpt2-vs-qwen}
+\end{table}
+
+%--------------------------------------------------
+\subsection{Failure Mode 3: Jaccard Diagnostic}
+\label{sec:diagnostic}
+%--------------------------------------------------
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{llccccccc}
+\toprule
+\textbf{Task} & \textbf{Model} & \textbf{Methods} & \textbf{Max $J$} & \textbf{CSS \cpr{}} & \textbf{Best Single \cpr{}} & $\boldsymbol{\Delta}$ & \textbf{Prediction} & \textbf{Correct?} \\
+\midrule
+IOI          & GPT-2 & EAP/EP/ACDC & 0.307 & 0.109 & 0.029 & +0.085 & PASS ($<$0.35) & \checkmark \\
+IOI (ACDC)   & Qwen  & EAP/EP/ACDC & 0.043 & ---   & ---   & $-$0.055 & PASS ($<$0.35) & $\times$\textsuperscript{$\dagger$} \\
+IOI (IFR)    & Qwen  & EAP/EP/IFR  & 0.540 & ---   & ---   & 0.000 & FAIL ($>$0.50) & \checkmark \\
+Factual Rec. & GPT-2 & EAP/EP/ACDC & 0.620 & 0.905 & 0.975 & $-$0.070 & FAIL ($>$0.50) & \checkmark \\
+SVA          & GPT-2 & EAP/EP/ACDC & 0.653 & ---   & ---   & +0.013 & FAIL ($>$0.50) & \checkmark \\
+Arithmetic   & GPT-2 & EAP/EP/ACDC & 0.695 & ---   & ---   & $-$0.063 & FAIL ($>$0.50) & \checkmark \\
+\bottomrule
+\end{tabular}
+\caption{Jaccard diagnostic accuracy across all 6 configurations (sorted by max pairwise Jaccard). The diagnostic correctly predicts 5/6 outcomes. $^\dagger$The sole miss (Qwen ACDC) fails due to component-level scoring degeneration (Failure Mode 2), not method correlation---an orthogonal failure that Jaccard cannot detect. Spearman $\rho = -0.90$ ($p = 0.037$) excluding the scaling outlier; $\rho = -0.714$ ($p = 0.111$) on all 6. GPT-2 subset (4 tasks): $\rho = -1.0$ ($p = 0.042$).}
+\label{tab:diagnostic}
+\end{table*}
+
+Table~\ref{tab:diagnostic} aggregates all configurations into a diagnostic summary. The maximum pairwise Jaccard serves as a strong predictor of CSS outcome:
+
+\begin{itemize}
+    \item \textbf{Max Jaccard $< 0.35$}: CSS beneficial (1/1 correct---IOI on GPT-2).
+    \item \textbf{Max Jaccard $> 0.50$}: CSS ineffective (4/4 correct---Factual Recall, SVA, Arithmetic, Qwen IFR).
+    \item \textbf{Gap zone (0.35--0.50)}: No data points; proceed with caution.
+\end{itemize}
+
+The sole diagnostic miss is Qwen ACDC (max $J = 0.043$, predicted PASS, actual FAIL). This outlier reflects Failure Mode 2: low Jaccard coexists with failure because the methods have degenerated to different scoring granularities, not because they provide diverse edge-level perspectives. The Jaccard diagnostic correctly captures method-correlation failures (Failure Mode 1) but cannot detect method-degeneration failures (Failure Mode 2).
+
+Within the GPT-2 subset (4 tasks where all methods operate at edge level), the rank correlation is perfect: $\rho = -1.0$ ($p = 0.042$). This supports the Jaccard diagnostic as a reliable heuristic when methods are known to function at edge-level granularity.
+
+We acknowledge that $n=6$ is underpowered for strong statistical claims. We frame the diagnostic as an \emph{empirically supported heuristic}, not a proven law, and recommend that future work validate it on additional tasks and models.
+
+%--------------------------------------------------
+\subsection{Ablation Method Robustness (IOI)}
+\label{sec:ablation-robustness}
+%--------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Ablation} & \textbf{CSS \cpr{}} & \textbf{ACDC} & \textbf{EAP-IG} & \textbf{EP} & $\boldsymbol{\Delta}$ \\
+\midrule
+Zero & 0.109 & 0.029 & --- & --- & +0.080 \\
+Mean & 0.182 & 0.117 & 0.078 & 0.052 & +0.065 \\
+\bottomrule
+\end{tabular}
+\caption{IOI CSS advantage under zero vs.\ mean ablation. $\Delta$ = CSS$=$1.0 minus best single method. Advantage retained under mean ablation: 81.3\%.}
+\label{tab:ablation-robustness}
+\end{table}
+
+Table~\ref{tab:ablation-robustness} verifies that the IOI consensus advantage is not an artifact of the zero-ablation evaluation protocol. Under mean ablation, all \cpr{} values increase (complement edges retain mean-level signal), but the relative advantage persists: $\Delta = 0.065$ (mean) vs.\ $\Delta = 0.080$ (zero), retaining 81.3\% of the advantage. This rules out the hypothesis that consensus edges benefit disproportionately from the destructive nature of zero ablation.
+
+%--------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+%--------------------------------------------------
+
+\paragraph{Why does IOI succeed?}
+IOI on GPT-2 is the sole configuration where consensus helps. The distinguishing feature is low method correlation (max Jaccard $= 0.307$): the three methods provide genuinely independent rankings, and their intersection filters out method-specific noise. The IOI circuit's well-characterized modular structure \cite{wang2023interpretability}---with distinct functional roles (name movers, S-inhibition heads, duplicate token detectors)---may enable methods to ``agree for the right reasons'' on the functional core while diverging on peripheral edges.
+
+\paragraph{Practitioner guidelines.}
+Our results suggest a two-step protocol before investing in multi-method circuit validation:
+\begin{enumerate}
+    \item \textbf{Verify scoring granularity}: Ensure each method operates at true edge-level resolution. Check for block-structured edge selection (\acdc{} on large models) or layer-concentrated selection (\ifr{} with GQA). If any method has degenerated, exclude it before computing consensus.
+    \item \textbf{Compute pairwise Jaccard}: If max pairwise Jaccard $> 0.50$, consensus is unlikely to help---use the best single method instead. If $< 0.35$, consensus may provide genuine selection-quality improvement.
+\end{enumerate}
+
+\paragraph{Limitations.}
+Our evaluation covers 2 models and 4 tasks. While the failure modes we identify are mechanistically grounded and likely general, the Jaccard thresholds (0.35, 0.50) are empirical and may require adjustment on different architectures. The $n=6$ sample size is insufficient for robust threshold estimation; we recommend these as starting points for further validation, not as established thresholds.
+
+%--------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%--------------------------------------------------
+
+We present the first systematic evaluation of cross-method binary consensus in circuit discovery. Across 6 model$\times$task configurations, consensus succeeds in only one case (IOI on GPT-2, $\Delta=+0.085$, $p=0.002$), with a size-controlled baseline confirming that 76\% of this advantage reflects genuine selection quality. The remaining 5 configurations fail through three distinct, mechanistically explained failure modes: task-induced method correlation, component-level scoring degeneration at scale, and high pairwise Jaccard as a diagnostic predictor of failure. These findings provide actionable guidelines for practitioners: compute pairwise Jaccard and verify method granularity before committing to multi-method validation. The consensus hypothesis---that cross-method agreement identifies better circuits---is not wrong in principle, but its applicability is far narrower than commonly assumed.
+
+%--------------------------------------------------
+% References
+%--------------------------------------------------
+\begin{thebibliography}{20}
+
+\bibitem{bai2023qwen}
+J.~Bai et al.
+Qwen technical report.
+{\em arXiv:2309.16609}, 2023.
+
+\bibitem{conmy2023towards}
+A.~Conmy, A.~Mavor-Parker, A.~Lynch, S.~Heimersheim, and A.~Garriga-Alonso.
+Towards automated circuit discovery for mechanistic interpretability.
+In {\em NeurIPS}, 2023.
+
+\bibitem{elhage2021mathematical}
+N.~Elhage, N.~Nanda, C.~Olsson, et al.
+A mathematical framework for transformer circuits.
+{\em Transformer Circuits Thread}, 2021.
+
+\bibitem{kramarcost}
+J.~Kram{\'a}r, T.~Lieberum, R.~Shah, and N.~Nanda.
+AtP*: An efficient and scalable method for localizing LLM behaviour to components.
+{\em arXiv:2403.00745}, 2024.
+
+\bibitem{kuncheva2003measures}
+L.~I.~Kuncheva and C.~J.~Whitaker.
+Measures of diversity in classifier ensembles and their relationship with the ensemble accuracy.
+{\em Machine Learning}, 51(2):181--207, 2003.
+
+\bibitem{meng2022locating}
+K.~Meng, D.~Bau, A.~Andonian, and Y.~Belinkov.
+Locating and editing factual associations in GPT.
+In {\em NeurIPS}, 2022.
+
+\bibitem{mondorf2025comparing}
+P.~Mondorf, L.~Strobl, and B.~Plank.
+Comparing circuit discovery methods for mechanistic interpretability.
+{\em arXiv:2510.06811}, 2025.
+
+\bibitem{nogueira2016measuring}
+S.~Nogueira and G.~Brown.
+Measuring the stability of feature selection.
+In {\em ECML-PKDD}, 2016.
+
+\bibitem{parekh2026circus}
+P.~Parekh et al.
+CIRCUS: Within-method threshold diversity for circuit discovery.
+{\em arXiv preprint}, 2026.
+
+\bibitem{pie2026}
+Anonymous.
+PIE: Pruning iterative ensembles for circuit discovery.
+{\em arXiv:2604.16889}, 2026.
+
+\bibitem{radford2019language}
+A.~Radford, J.~Wu, R.~Child, D.~Luan, D.~Amodei, and I.~Sutskever.
+Language models are unsupervised multitask learners.
+{\em OpenAI Blog}, 2019.
+
+\bibitem{syed2023attribution}
+A.~Syed, C.~Rager, and A.~Conmy.
+Attribution patching outperforms automated circuit discovery.
+{\em arXiv:2310.10348}, 2023.
+
+\bibitem{wang2023interpretability}
+K.~Wang, A.~Variengien, A.~Conmy, B.~Shlegeris, and J.~Steinhardt.
+Interpretability in the wild: A circuit for indirect object identification in GPT-2 small.
+In {\em ICLR}, 2023.
+
+\bibitem{zhang2024best}
+F.~Zhang and N.~Nanda.
+Best practices for circuit discovery with automated interpretability.
+{\em arXiv preprint}, 2024.
+
+\end{thebibliography}
+
+\end{document}

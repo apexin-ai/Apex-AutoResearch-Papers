@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a77d9b2082506991cb4",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code v3 acdc binarize fix",
+  "task_key": "worker_code_v3-acdc-binarize-fix_20260513T012144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v3-acdc-binarize-fix_20260513T012144_result.json",
+    "occurrence": 1,
+    "bytes": 2609,
+    "sha256": "0f6c12645cd13c7b9f3170cf8a413877ab584eb04a0925986125278feb2c0db5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the full report:\n\n---\n\n## 报告\n\n### 1. cache_acdc.json 诊断结果\n- 32491 条边，覆盖 GPT-2 Small 全部边\n- **14 条边**值为 `Infinity`（ACDC 保留的最终 circuit 边）\n- 32477 条边值为有限浮点数（0.01/0.03/0.05 — ACDC 逐步剪枝的 threshold step）\n- ACDC 的 cache 格式：保留的边标记为 Infinity，被剪掉的边保留其剪枝 threshold\n\n### 2. 二值化 bug 根因\n之前的版本用 `score > 0` 做 ACDC 二值化 → 全部 32491 条边都是正值 → 全选。当前代码已修复为 `math.isinf(v)` → 只选 14 条 Infinity 边。仅残留一个过时的 mode label（\"score>0\"），已改为 \"isinf\"。\n\n### 3. 修复方案\n- `binarize_acdc`（`math.isinf`）已正确，无需改动\n- 修复 mode label：`analysis_fix_v3.py` 中 `\"score>0\"` → `\"isinf\"`（显示标签）\n- Phase D 需要 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`，已用此方式成功运行\n\n### 4. K=3 Cross-tabulation 2×2 矩阵\n\n|                | CSS ≥ 0.67 | CSS < 0.67 |\n|----------------|-----------|-----------|\n| CIRCUS-core    | 13 edges  | 2 edges   |\n| CIRCUS-other   | 39 edges  | 101 edges |\n\nTotal: 155 | Core: 15\n\n### 5. Off-diagonal 百分比\n**13.3%** [95% CI: 1.7%, 40.5%]\n\n### 6. CIRCUS-core 绝对边数\n**15 条** — < 30 → **触发 D002 标志**\n\n### 7. 3 组 pairwise Jaccard\n\n| Pair | Jaccard | Overlap |\n|------|---------|---------|\n| eap_ig × edge_pruning | 0.3072 | 47 |\n| eap_ig × acdc | 0.0962 | 10 |\n| edge_pruning × acdc | 0.0857 | 9 |\n\n### 8. 3-way ratio\n**0.0452**（3-way intersection = 7 edges）\n3-way edges: `a10.h0->logits, a11.h2->logits, a9.h6->logits, a9.h9->logits, input->m0, m0->a5.h5.q, m0->a9.h9.v`\n\n### 9. 各方法 circuit size（修复后）\n\n| Method | Edges | Mode |\n|--------|-------|------|\n| eap_ig | 100 | top-100 |\n| edge_pruning | 100 | top-100 |\n| **acdc** | **14** | **isinf** |\n| Union | 155 | — |\n\n### 10. Faithfulness（Phase D）\n\n| Circuit | Edges | CPR | CMD |\n|---------|-------|-----|-----|\n| css_1.00 | 7 | 0.1095 | 0.9110 |\n| css_0.67 | 52 | 0.0634 | 0.9582 |\n| method_acdc | 14 | 0.0286 | 0.9937 |\n| circus_core | 15 | -0.1081 | 1.1337 |\n| method_eap_ig | 100 | -0.1092 | 1.1348 |\n| stable_core | 13 | -0.1870 | 1.2143 |\n| method_edge_pruning | 100 | -0.2413 | 1.2699 |\n| css_0.33 | 155 | -0.4862 | 1.5205 |\n\nCPR 全面偏低（最高 0.11），node-level zero ablation 破坏性较大。CSS-1.0（7 边 3-way 交集）表现最好。\n\n**Gate: PASS_MAIN**（off-diagonal 13.3% ≥ 10%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v3-acdc-binarize-fix.md"
+}

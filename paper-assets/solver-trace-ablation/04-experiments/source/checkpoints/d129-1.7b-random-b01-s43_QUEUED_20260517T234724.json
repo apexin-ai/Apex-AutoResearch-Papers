@@ -1,0 +1,15 @@
+{
+  "exp_id": "d129-1.7b-random-b01-s43",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:08:07.874Z",
+    "updated_at": "2026-05-17T23:47:23.966Z",
+    "hypothesis": "D129: 1.7B Random β=0.1 s43 cross-scale control — s42 showed H9 contradiction injection (100% ex falso, PR=93%); additional seed tests whether H9 is deterministic at 1.7B under random reward"
+  },
+  "timestamp": "2026-05-17T23:47:24.296283+00:00",
+  "trigger": "update_registry"
+}

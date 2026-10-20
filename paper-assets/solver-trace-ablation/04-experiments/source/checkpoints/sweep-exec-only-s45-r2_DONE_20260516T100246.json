@@ -1,0 +1,99 @@
+{
+  "exp_id": "sweep-exec-only-s45-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:22:36.240Z",
+    "updated_at": "2026-05-16T10:02:46.670Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "768865",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 45,
+      "reward_mode": "execution_only",
+      "num_steps": 500,
+      "num_generations": 4,
+      "account": "root",
+      "log_path": "~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T09:19:04.304Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T09:19:08.026390+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "prove_rate": 0.74025,
+      "mean_isr": 0.3596,
+      "train_loss": 0.0273,
+      "parse_rate": 1,
+      "steps_completed": 500,
+      "steps_total": 500,
+      "train_runtime_sec": 3282,
+      "entropy_final": 0.045,
+      "eval_prove_rate": 0.99,
+      "eval_n_proved": 99,
+      "eval_n_problems": 100,
+      "eval_mean_isr": 0.5012,
+      "eval_isr_std": 0.2055,
+      "eval_median_isr": 0.5,
+      "eval_proved_only_isr": 0.5062,
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_by_answer_type": {
+        "false": {
+          "count": 25,
+          "proved": 25,
+          "prove_rate": 1,
+          "mean_isr": 0.59
+        },
+        "unknown": {
+          "count": 41,
+          "proved": 41,
+          "prove_rate": 1,
+          "mean_isr": 0.476
+        },
+        "true": {
+          "count": 34,
+          "proved": 33,
+          "prove_rate": 0.971,
+          "mean_isr": 0.467
+        }
+      },
+      "h7a_count": 93,
+      "h7a_rate": 0.939,
+      "h7b_count": 0,
+      "h7_count": 93,
+      "h7_rate": 0.939,
+      "h1_count": 5,
+      "h1_rate": 0.051,
+      "h8_count": 1,
+      "h8_rate": 0.01,
+      "genuine_count": 1,
+      "genuine_rate": 0.01,
+      "content_independent_count": 47,
+      "single_premise_count": 92,
+      "taxonomy_tool": "classify_h7.py standard (2026-05-16)"
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/sweep_exec_only_s45",
+    "log_path": "~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log",
+    "completed_at": "2026-05-16T10:02:46.670Z"
+  },
+  "timestamp": "2026-05-16T10:02:46.928330+00:00",
+  "trigger": "update_registry"
+}

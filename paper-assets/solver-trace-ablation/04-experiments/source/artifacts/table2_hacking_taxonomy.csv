@@ -1,0 +1,8 @@
+mode,name,isr_b01_s42_n,isr_b01_s42_pct,isr_b01_s43_pct,isr_b01_s44_pct,isr_b01_3seed_mean_pct,random_b01_s42_n,random_b01_s42_pct,delta_s42_pp,isr_specific
+H1,Conclusion Embedding,42,51.9,,,,,56,70.9,-19.0,No
+H3,Tautological Collapse,1,1.2,,,,0,0.0,+1.2,No
+H4,Complexity w/o Utility,0,0.0,,,,3,3.8,-3.8,No
+H7,Conclusion Duplication,13,16.0,96.7,86.5,66.4,0,0.0,+16.0,Yes
+,Genuine,25,30.9,,,,20,25.3,+5.6,
+,Total Hacking,56,69.1,,,,59,74.7,-5.6,
+,Total Proved,81,100.0,,,,79,100.0,,

@@ -1,0 +1,33 @@
+{
+  "exp_id": "sweep-isr-b02-s44",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:42:05.473Z",
+    "updated_at": "2026-05-16T05:02:24.734Z",
+    "hypothesis": "W3: β=0.2 ISR bonus seed=44, intermediate dose replication",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "reward_mode": "additive_bonus",
+      "beta": 0.2,
+      "num_steps": 500,
+      "num_generations": 4,
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b02.yaml --seed 44 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_isr_b02_s44 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "659716",
+      "account": "root",
+      "wandb_enabled": false
+    }
+  },
+  "timestamp": "2026-05-16T05:02:24.972476+00:00",
+  "trigger": "update_registry"
+}

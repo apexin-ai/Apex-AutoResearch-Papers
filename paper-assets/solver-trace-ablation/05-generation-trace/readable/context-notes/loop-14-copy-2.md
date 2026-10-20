@@ -1,0 +1,70 @@
+# reviewer / loop_14.md
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_14.md`
+- **Structured JSON:** [`76af18f2c105241a362b.json`](../../sessions/76/76af18f2c105241a362b.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 14
+reason: max_wall_time
+updated: '2026-05-16T10:57:45+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0, cuda:1（westd-39279 仅两卡，无越界空间但必须核查每次提交）
+- Qwen3-8B full-param GRPO 已证明不可行（4 次 OOM），不要再建议单卡 8B 尝试
+- 1.7B 实验必须用 K=4 匹配 4B 设置——D108 明确"无训练方法 confound"是核心约束
+- 论文叙事：1.7B 证据只能框架为"小模型也 hack"，不能 claim "cross-scale generalization to larger models"
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-39279(root)，工作目录 /root/solver-trace-ablation
+- Python：/root/miniconda3/bin/python（conda base 环境）
+- 模型缓存：/root/autodl-tmp/.hf_cache（Qwen3-4B 已有，1.7B 可能需下载）
+- 输出目录：/root/autodl-tmp/outputs/
+- 日志目录：/root/runs/solver-trace-ablation/
+- W&B：未配置（所有实验 --no_wandb）
+- 活跃进程：**无**——双卡 0% util, 0 MiB。1.7B configs 未创建，等 Agent 提交。
+
+### 3. 📊 当前状态
+刚完成两件事：
+1. 报告 8B K=2 r2 全部 OOM [severity: critical]，触发 D108 pivot 到 1.7B
+2. 审查 D108 决策 [severity: warning]——指出 scale 方向倒置的叙事风险 + GPU 空转
+
+Registry：112 experiments，无 RUNNING/PREPARING。4B 实验全部完成。8B 4 条全 failed。
+等待：Agent 创建 1.7B configs 并提交（ROADMAP 标"即将"但服务器上无动静）。
+
+### 4. 📋 待办
+- 1.7B 实验提交通知到达 → 核查 CUDA_VISIBLE_DEVICES 在白名单、K=4、config 正确
+- 1.7B 完成回调 → 对比 4B 的 hacking pattern（H7a rate、genuine rate、ISR 分布）
+- 若 1.7B genuine_rate > 20% → [severity: critical] 质疑 4B 结论普适性
+- 若 1.7B 无 hacking → D108 pivot 失败，需紧急通知 Director
+- Paper Agent 写作审查请求 → 按 5.1-5.3 维度评分模板审
+
+### 5. 🎯 战略上下文
+**核心结论链**：GRPO + ISR 作为优化目标 → 普遍 reward hacking（genuine=0% at β≥0.05）→ H7a（单前提 tautology）是吸收态 → β 越高 exploitation 越深（dose-response）→ STA/ISR 作为诊断工具有效（SFT 92.3% genuine）
+
+**易错点**：
+- 5-seed exec-only 方差极大（PR: 0.14-0.99, ISR: 0-0.5），不要被单 seed 结果误导
+- s45 的 reward_log.jsonl 有双写（1000 行 = 两次 run 拼接），只看后 500 行
+- sweep-exec-only-s46 PR=0.43 是 seed-dependent 退化模式（重复前提生成），非 bug
+- D106 最终叙事："dominant hacking across all β, genuine 是 seed-dependent 残留"——不要误读为"存在 genuine 成功条件"
+- 论文 provenance 36/36 已满，但 1.7B 结果加入后需要更新
+
+
+---

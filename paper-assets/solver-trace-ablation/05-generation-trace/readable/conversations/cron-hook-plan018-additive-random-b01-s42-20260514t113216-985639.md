@@ -1,0 +1,1677 @@
+# cron hook plan018 additive random b01 s42 20260514T113216 985639
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 2
+- **Tool calls:** 25
+- **Original source:** `logs/chats/archive/cron_hook_plan018-additive-random-b01-s42_20260514T113216_985639.jsonl`
+- **Structured JSON:** [`cde96991012c48d5ab32.json`](../../sessions/cd/cde96991012c48d5ab32.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+23 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T08:09:09.471828+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: plan018-additive-random-b01-s42
+- project: solver-trace-ablation
+- server: westd-39279
+- log_path: ~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T08:09:23.074885+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T08:09:23.125639+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T08:09:28.609087+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T08:09:28.609619+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T08:09:29.263896+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T08:09:29.365987+00:00_
+
+Error: result (60,268 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/8574f425-2666-45c3-9b77-4c3091362566/tool-results/mcp-agent-ml-research-read_registry-1778746169261.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/8574f425-2666-45c3-9b77-4c3091362566/tool-results/mcp-agent-ml-research-read_registry-1778746169261.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/8574f425-2666-45c3-9b77-4c3091362566/tool-results/mcp-agent-ml-research-read_registry-1778746169261.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 756
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T08:09:29.366522+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 756
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T08:09:29.367184+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T08:09:08Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 35 个实验 — ANALYZING 2, DONE 30, PREPARING 3\\n**DONE 分布**: failed 14, negative 9, success 7\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-39279:cuda:0, westd-39279:cuda:1\\n- **空闲（分配了没跑）**: westd-39279:cuda:0, westd-39279:cuda:1\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `plan002-additive-b01-s42` [success] — 2026-05-14T06:53:56\\n- `plan005-sta-low-s42` [negative] — 2026-05-14T06:31:05\\n- `plan001-exec-only-s43-r4` [negative] — 2026-05-14T06:30:57\\n- `plan017-additive-random-s42` [negative] — 2026-05-14T05:33:25\\n- `plan001-exec-only-s44` [negative] — 2026-05-14T05:14:31\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan018-additive-random-b01-s42 | β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。 | — | — | — |\\n| plan016-extended-1000-s42 | Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？ | — | — | — |\\n\\n## 待处理\\n- plan006-prolog-exec-s44: Prolog exec-only GRPO seed=44: third seed for Prolog. Together with s42/s43, provides 3-seed evidence for cross-logic generalization claim.（准备中）\\n- plan006-prolog-exec-s43: Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degenerate vs s44 ta
+…[truncated 1477 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T08:09:29.417843+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T08:09:29.869851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-14 05:37 UTC | 更新原因: 修正 Reviewer 发现的过时数据：plan017 eval 完成(negative)、plan002-b01 RUNNING、plan016 RUNNING；加入 D026/D027 结论和写作约束\\n\\n## 核心方向\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具**——检测 reward hacking、量化结构退化、分类退化模式。ISR-as-reward 路线全面失败（D020/D026），论文定位为诊断/分析贡献。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\n- **实验**: 31 个 (RUNNING 2, PENDING 0, DONE 29) | success 6, negative 8+, failed 14\\n- **GPU**: 2 × RTX PRO 6000 96GB — ✅ 两卡满载\\n\\n### 核心证据链\\n- ✅ ISR 崩塌轨迹：100步 ISR=0.6423 → 500步 ISR=0.1324 (plan003 vs plan001-s42)\\n- ✅ 3-seed exec-only 全景：s42 genuine (PR=93%, ISR=0.123, comp=6.58) | s43 degraded (PR=13%) | s44 tautological (PR=98%, ISR=0.57 fake, comp=2.04)\\n- ✅ GRPO 饱和 confound：random reward PR > exec-only PR (D014)\\n- ✅ Hacking taxonomy 4 种模式已标注 (plan012 done)\\n- ✅ ISR 能力边界：ρ(ISR, NLI)=-0.049 n.s. (D021)\\n- ✅ plan017 additive random: PR=48%, ISR=0.045, comp=9.56 — complexity-without-utility mode (D026/D027)\\n- ✅ ISR 比 random 更差：plan002 PR=18% vs plan017 PR=48%，ISR 对训练有害 (D026)\\n- ⏳ plan002-b01 (β=0.1): RUNNING cuda:0 — 彻底关闭 additive 路线的最后数据点\\n- ⏳ plan016 (1000步): RUNNING cuda:1 — exec-only 长训练 horizon 行为\\n- ❓ plan006 Prolog: 已批准 (D024)，代码/数据 readiness check 并行进行中\\n\\n## RUNNING\\n| 实验 | GPU | 说明 | 预计完成 |\\n|------|-----|------|----------|\\n| plan002-additive-b01-s42 | cuda:0 | additive ISR β=0.1，最后的 additive 数据点 | ~1-2h |\\n| plan016-extended-1000-s42 | cuda:1 | exec-only 1000步，观察 genuine proof 长期行为 | ~2-3h |\\n\\n## 近期任务\\n- [ ] plan002-b01 + plan016 完成 → eval_sta.py + 分析\\n- [ ] plan006 Prolog readiness check（与当前训练并行，非 GPU）\\n- [ ] plan002-b01/plan016 完成后 → plan006 Prolog exec-only seed=42 启动\\n- [ ] plan006 3-seed → 验证 hacking 跨 logic type 泛化（Main vs Findings 的关键）\\n- 
+…[truncated 2014 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T08:09:42.394902+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'exp_id': 'plan018-additive-random-b01-s42'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'exp_id': 'plan018-additive-random-b01-s42'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T08:09:42.847455+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1499}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T08:09:43.149855+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'exp_id': 'plan002-additive-b01-s42'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'exp_id': 'plan002-additive-b01-s42'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T08:09:43.250648+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1006}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T08:09:52.618159+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/8574f425-2666-45c3-9b77-4c3091362566/tool-results/mcp-agent-ml-research-read_registry-1778746169261.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find our target experiments\ntargets = ['plan018-additive-random-b01-s42', 'plan002-additive-b01-s42', 'plan017-additive-random-s42', 'plan001-exec-only-s42-r2', 'plan016-extended-1000-s42']\nfor eid in targets:\n    if eid in exps:\n        e = exps[eid]\n        print(f'=== {eid} ===')\n        print(json.dumps(e, indent=2, default=str))\n        print()\n    else:\n        print(f'=== {eid} === NOT FOUND')\n        print()\n\"\n",
+  "description": "Extract target experiments from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/8574f425-2666-45c3-9b77-4c3091362566/tool-results/mcp-agent-ml-research-read_registry-1778746169261.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find our target experiments\ntargets = ['plan018-additive-random-b01-s42', 'plan002-additive-b01-s42', 'plan017-additive-random-s42', 'plan001-exec-only-s42-r2', 'plan016-extended-1000-s42']\nfor eid in targets:\n    if eid in exps:\n        e = exps[eid]\n        print(f'=== {eid} ===')\n        print(json.dumps(e, indent=2, default=str))\n        print()\n    else:\n        print(f'=== {eid} === NOT FOUND')\n        print()\n\"\n",
+    "description": "Extract target experiments from registry JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T08:09:52.870465+00:00_
+
+=== plan018-additive-random-b01-s42 ===
+{
+  "status": "ANALYZING",
+  "retry_count": 0,
+  "created_at": "2026-05-14T06:55:48.888Z",
+  "updated_at": "2026-05-14T08:09:07.821Z",
+  "hypothesis": "\u03b2=0.1 random control: r = r_exec\u00b7(1+0.1\u00b7random[0,1]). \u4e0e plan002-b01 (additive ISR \u03b2=0.1, PR=0.81, ISR=0.337) \u540c \u03b2 \u5bf9\u7167\u3002\u5982\u679c ISR \u03b2=0.1 >> random \u03b2=0.1 \u2192 ISR \u4fe1\u53f7\u5728\u4f4e\u5242\u91cf\u4e0b\u6709\u7ed3\u6784\u4ef7\u503c; \u5982\u679c ISR \u2248 random \u2192 ISR \u4fe1\u53f7\u5728\u4f4e\u5242\u91cf\u4e0b\u4e5f\u4ec5\u662f variance regularization\u3002D031 \u7d27\u6025\u5b9e\u9a8c\u3002",
+  "parent": "plan002-additive-b01-s42",
+  "spec": {
+    "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42\"",
+    "server": "westd-39279",
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "377678",
+    "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log",
+    "submitted_at": "2026-05-14T06:55:59.287Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+    "data_count": 500,
+    "model_name": "Qwen3-4B",
+    "seed": 42,
+    "plan_id": "plan018",
+    "reward_formula": "r = r_exec * (1 + 0.1 * random[0,1])",
+    "num_steps": 500,
+    "checkpoint_source": "N/A (training, not eval)",
+    "eval_data": "N/A (training, not eval)"
+  },
+  "reproduce": {
+    "finished_at": "2026-05-14T08:09:07.662Z"
+  },
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-14T08:09:0
+…[truncated 11984 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T08:10:11.070912+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T08:10:11.121778+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T08:11:00.264371+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "eval:plan018-additive-random-b01-s42",
+  "project": "solver-trace-ablation",
+  "tool_groups": "['ssh', 'wandb', 'registry']",
+  "task_prompt": "## 任务：分析 plan018-additive-random-b01-s42 实验结果\n\n### 背景\n实验 plan018-additive-random-b01-s42 训练已完成，需要用 eval_sta.py 评估并记录结果。\n\n**实验假设**: β=0.1 random control: r = r_exec·(1+0.1·random[0,1])。与 plan002-b01 (additive ISR β=0.1) 同 β 对照。\n- 如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值\n- 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization\n\n**关键对比数据**:\n- plan002-additive-b01-s42 (ISR β=0.1): PR=0.81, mean_ISR=0.3365, proved_only_ISR=0.4154, comp=5.58\n- plan017-additive-random-s42 (random β=0.3): PR=0.48, mean_ISR=0.0453, comp=9.56\n- plan001-exec-only-s42-r2 (exec-only baseline): PR=0.93, mean_ISR=0.1232\n\n### 服务器信息\n- 服务器: westd-39279\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/solver-trace-ablation\n- checkpoint 路径: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42\n- 日志路径: ~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log\n\n### 执行步骤\n\n1. **SSH 连接并检查训练完成状态**:\n   ```\n   ssh_read_only westd-39279: tail -30 ~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log\n   ```\n   确认训练正常完成（看到 \"Training complete\" 或类似信息）。\n\n2. **查看训练日志摘要** — 提取最后 100 步的 reward/PR/ISR 趋势:\n   ```\n   ssh_read_only westd-39279: tail -100 ~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log | grep -E \"step|reward|prove_rate|isr\"\n   ```\n\n3. **运行 eval_sta.py 评估**:\n   ```\n   ssh_execute westd-39279: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py --checkpoint_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42 --eval_data data/proofwriter_fol_100.jsonl --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results\n   ```\n   如果 eval_sta.py 需要 GPU，加 `CUDA_VISIBLE_DEVICES=0`。如果命令参数不对，先查 `python3 scripts/eval_sta.py --help`。\n\n4. **读取 eval 结果**:\n   读取 eval 输出的 JSON 或日志，提取以下指标:\n   - eval_prove_rate\n   - eval_mean_isr, eval_isr_std, eval_proved_only_isr, eval_median_isr\n   - eval_n_proved, eval_n_problems\n   - eval_component_count_mean, eval_component_count_2_ratio\n   - eval_isr_1_ratio, eval_isr_0_ratio\n   - eval_by_type_{true,false,unknown}_{pr,isr}\n   - tautological_collapse (component_count_2_ratio > 0.5)\n\n5. **更新 registry**:\n   用 `update_registry` 把实验更新到 DONE:\n   - field=\"conclusion\", value= 根据结果判断:\n     - 如果 random β=0.1 PR 和 ISR 都接近 ISR β=0.1 (plan002-b01) → conclusion=\"negative\" (ISR 无结构价值)\n     - 如果 random β=0.1 明显低于 ISR β=0.1 → conclusion=\"success\" (ISR 有结构价值)\n     - 判断标准: PR 差距 >15pp 或 ISR 差距 >2x 视为显著差异\n   - field=\"metrics\", value= 所有 eval 指标\n   - field=\"checkpoint_path\", value= checkpoint 路径\n   - field=\"log_path\", value= 日志路径\n   - field=\"notes\", value= 包含与 plan002-b01 的对比分析\n\n6. **W&B 指标** (可选):\n   如果训练有 W&B run，用 fetch_wandb_metrics 获取训练曲线关键指标。\n\n### 产出\n在 notes 中必须包含:\n1. plan018 的核心 eval 指标\n2. 与 plan002-b01 (ISR β=0.1) 的直接对比\n3. 与 plan017 (random β=0.3) 的对比\n4. 结论: ISR 在 β=0.1 下是否有结构价值（vs 纯 variance regularization）\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:plan018-additive-random-b01-s42",
+    "project": "solver-trace-ablation",
+    "tool_groups": "['ssh', 'wandb', 'registry']",
+    "task_prompt": "## 任务：分析 plan018-additive-random-b01-s42 实验结果\n\n### 背景\n实验 plan018-additive-random-b01-s42 训练已完成，需要用 eval_sta.py 评估并记录结果。\n\n**实验假设**: β=0.1 random control: r = r_exec·(1+0.1·random[0,1])。与 plan002-b01 (additive ISR β=0.1) 同 β 对照。\n- 如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值\n- 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization\n\n**关键对比数据**:\n- plan002-additive-b01-s42 (ISR β=0.1): PR=0.81, mean_ISR=0.3365, proved_only_ISR=0.4154, comp=5.58\n- plan017-additive-random-s42 (random β=0.3): PR=0.48, mean_ISR=0.0453, comp=9.56\n- plan001-exec-only-s42-r2 (exec-only baseline): PR=0.93, mean_ISR=0.1232\n\n### 服务器信息\n- 服务器: westd-39279\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/solver-trace-ablation\n- checkpoint 路径: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42\n- 日志路径: ~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log\n\n### 执行步骤\n\n1. **SSH 连接并检查训练完成状态**:\n   ```\n   ssh_read_only westd-39279: tail -30 ~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log\n   ```\n   确认训练正常完成（看到 \"Training complete\" 或类似信息）。\n\n2. **查看训练日志摘要** — 提取最后 100 步的 reward/PR/ISR 趋势:\n   ```\n   ssh_read_only westd-39279: tail -100 ~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log | grep -E \"step|reward|prove_rate|isr\"\n   ```\n\n3. **运行 eval_sta.py 评估**:\n   ```\n   ssh_execute westd-39279: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py --checkpoint_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42 --eval_data data/proofwriter_fol_100.jsonl --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results\n   ```\n   如果 eval_sta.py 需要 GPU，加 `CUDA_VISIBLE_DEVICES=0`。如果命令参数不对，先查 `python3 scripts/eval_sta.py --help`。\n\n4. **读取 eval 结果**:\n   读取 eval 输出的 JSON 或日志，提取以下指标:\n   - eval_prove_rate\n   - eval_mean_isr, eval_isr_std, eval_proved_only_isr, eval_median_isr\n   - eval_n_proved, eval_n_problems\n   - eval_component_count_mean, eval_component_count_2_ratio\n   - eval_isr_1_ratio, eval_isr_0_ratio\n   - eval_by_type_{true,false,unknown}_{pr,isr}\n   - tautological_collapse (component_count_2_ratio > 0.5)\n\n5. **更新 registry**:\n   用 `update_registry` 把实验更新到 DONE:\n   - field=\"conclusion\", value= 根据结果判断:\n     - 如果 random β=0.1 PR 和 ISR 都接近 ISR β=0.1 (plan002-b01) → conclusion=\"negative\" (ISR 无结构价值)\n     - 如果 random β=0.1 明显低于 ISR β=0.1 → conclusion=\"success\" (ISR 有结构价值)\n     - 判断标准: PR 差距 >15pp 或 ISR 差距 >2x 视为显著差异\n   - field=\"metrics\", value= 所有 eval 指标\n   - field=\"checkpoint_path\", value= checkpoint 路径\n   - field=\"log_path\", value= 日志路径\n   - field=\"notes\", value= 包含与 plan002-b01 的对比分析\n\n6. **W&B 指标** (可选):\n   如果训练有 W&B run，用 fetch_wandb_metrics 获取训练曲线关键指标。\n\n### 产出\n在 notes 中必须包含:\n1. plan018 的核心 eval 指标\n2. 与 plan002-b01 (ISR β=0.1) 的直接对比\n3. 与 plan017 (random β=0.3) 的对比\n4. 结论: ISR 在 β=0.1 下是否有结构价值（vs 纯 variance regularization）\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T08:11:20.021957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_plan018-additive-random-b01-s42_20260514T081100\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_eval_plan018-additive-random-b01-s42_20260514T081100.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_plan018-additive-random-b01-s42_20260514T081100 started. Use get_worker_status('worker_eval_plan018-additive-random-b01-s42_20260514T081100') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 19757
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T08:11:20.173853+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "eval:plan016-extended-1000-s42",
+  "project": "solver-trace-ablation",
+  "tool_groups": "['ssh', 'wandb', 'registry']",
+  "task_prompt": "## 任务：分析 plan016-extended-1000-s42 实验结果\n\n### 背景\n实验 plan016-extended-1000-s42 训练已完成（1000步 exec-only），需要用 eval_sta.py 评估并记录结果。\n\n**实验假设**: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。\n\n**关键对比数据**:\n- plan001-exec-only-s42-r2 (500步 exec-only): PR=0.93, mean_ISR=0.1232, isr_std=0.1887, proved_only_ISR=0.1324, median_ISR=0\n- plan001-exec-only-s43 (500步 seed=43): PR=0.14 (degraded)\n- plan001-exec-only-s44 (500步 seed=44): PR=0.98 (tautological, comp=2.04)\n\n### 服务器信息\n- 服务器: westd-39279\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/solver-trace-ablation\n- checkpoint 路径: /root/autodl-tmp/outputs/plan016_extended_1000_s42\n- 日志路径: ~/runs/solver-trace-ablation/plan016-extended-1000-s42.log\n\n### 执行步骤\n\n1. **SSH 连接并检查训练完成状态**:\n   ```\n   ssh_read_only westd-39279: tail -30 ~/runs/solver-trace-ablation/plan016-extended-1000-s42.log\n   ```\n   确认训练正常完成。\n\n2. **查看训练日志** — 提取关键步数的 reward/PR/ISR 变化趋势（特别关注 500 步 vs 1000 步的对比）:\n   ```\n   ssh_read_only westd-39279: grep -E \"step.*(500|600|700|800|900|1000)\" ~/runs/solver-trace-ablation/plan016-extended-1000-s42.log | tail -20\n   ```\n   也看看 reward_log.jsonl 如果存在:\n   ```\n   ssh_read_only westd-39279: ls /root/autodl-tmp/outputs/plan016_extended_1000_s42/ && wc -l /root/autodl-tmp/outputs/plan016_extended_1000_s42/reward_log.jsonl 2>/dev/null\n   ```\n\n3. **运行 eval_sta.py 评估（用最终 checkpoint）**:\n   ```\n   ssh_execute westd-39279: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py --checkpoint_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42 --eval_data data/proofwriter_fol_100.jsonl --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42/eval_results\n   ```\n   如果需要指定 checkpoint 子目录（如 checkpoint-1000），先 ls 看目录结构。如果命令参数不对，先查 `python3 scripts/eval_sta.py --help`。\n\n4. **读取 eval 结果**:\n   提取以下指标:\n   - eval_prove_rate\n   - eval_mean_isr, eval_isr_std, eval_proved_only_isr, eval_median_isr\n   - eval_n_proved, eval_n_problems\n   - eval_component_count_mean, eval_component_count_2_ratio\n   - eval_isr_1_ratio, eval_isr_0_ratio\n   - eval_by_type_{true,false,unknown}_{pr,isr}\n   - tautological_collapse\n\n5. **训练曲线分析**:\n   特别关注:\n   - 500步→1000步 PR 是否维持/下降/提升？\n   - ISR 在长训练中的趋势（崩塌 vs 稳定 vs 提升）\n   - 是否出现 reward hacking（PR 高但 ISR 低+comp 低）\n\n6. **更新 registry**:\n   用 `update_registry` 把实验更新到 DONE:\n   - field=\"conclusion\", value= 根据结果判断:\n     - 1000步 PR ≥ 500步 PR (0.93) 且 ISR 稳定/提升 → \"success\" (真收敛)\n     - PR 显著下降或 ISR 崩塌 → \"negative\" (overtraining / reward hacking)\n   - field=\"metrics\", value= 所有 eval 指标\n   - field=\"checkpoint_path\", value= 最终 checkpoint 路径\n   - field=\"log_path\", value= 日志路径\n   - field=\"notes\", value= 包含 500步 vs 1000步对比分析\n\n### 产出\n在 notes 中必须包含:\n1. plan016 的核心 eval 指标\n2. 与 plan001-s42 (500步) 的直接对比: PR, ISR, complexity 三个维度\n3. 训练曲线趋势分析（500步后是否继续改善）\n4. 结论: 500步 PR=93% 是真收敛还是 lucky early convergence\n5. 是否观察到 reward hacking / tautological collapse / ISR 崩塌\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:plan016-extended-1000-s42",
+    "project": "solver-trace-ablation",
+    "tool_groups": "['ssh', 'wandb', 'registry']",
+    "task_prompt": "## 任务：分析 plan016-extended-1000-s42 实验结果\n\n### 背景\n实验 plan016-extended-1000-s42 训练已完成（1000步 exec-only），需要用 eval_sta.py 评估并记录结果。\n\n**实验假设**: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。\n\n**关键对比数据**:\n- plan001-exec-only-s42-r2 (500步 exec-only): PR=0.93, mean_ISR=0.1232, isr_std=0.1887, proved_only_ISR=0.1324, median_ISR=0\n- plan001-exec-only-s43 (500步 seed=43): PR=0.14 (degraded)\n- plan001-exec-only-s44 (500步 seed=44): PR=0.98 (tautological, comp=2.04)\n\n### 服务器信息\n- 服务器: westd-39279\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/solver-trace-ablation\n- checkpoint 路径: /root/autodl-tmp/outputs/plan016_extended_1000_s42\n- 日志路径: ~/runs/solver-trace-ablation/plan016-extended-1000-s42.log\n\n### 执行步骤\n\n1. **SSH 连接并检查训练完成状态**:\n   ```\n   ssh_read_only westd-39279: tail -30 ~/runs/solver-trace-ablation/plan016-extended-1000-s42.log\n   ```\n   确认训练正常完成。\n\n2. **查看训练日志** — 提取关键步数的 reward/PR/ISR 变化趋势（特别关注 500 步 vs 1000 步的对比）:\n   ```\n   ssh_read_only westd-39279: grep -E \"step.*(500|600|700|800|900|1000)\" ~/runs/solver-trace-ablation/plan016-extended-1000-s42.log | tail -20\n   ```\n   也看看 reward_log.jsonl 如果存在:\n   ```\n   ssh_read_only westd-39279: ls /root/autodl-tmp/outputs/plan016_extended_1000_s42/ && wc -l /root/autodl-tmp/outputs/plan016_extended_1000_s42/reward_log.jsonl 2>/dev/null\n   ```\n\n3. **运行 eval_sta.py 评估（用最终 checkpoint）**:\n   ```\n   ssh_execute westd-39279: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py --checkpoint_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42 --eval_data data/proofwriter_fol_100.jsonl --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42/eval_results\n   ```\n   如果需要指定 checkpoint 子目录（如 checkpoint-1000），先 ls 看目录结构。如果命令参数不对，先查 `python3 scripts/eval_sta.py --help`。\n\n4. **读取 eval 结果**:\n   提取以下指标:\n   - eval_prove_rate\n   - eval_mean_isr, eval_isr_std, eval_proved_only_isr, eval_median_isr\n   - eval_n_proved, eval_n_problems\n   - eval_component_count_mean, eval_component_count_2_ratio\n   - eval_isr_1_ratio, eval_isr_0_ratio\n   - eval_by_type_{true,false,unknown}_{pr,isr}\n   - tautological_collapse\n\n5. **训练曲线分析**:\n   特别关注:\n   - 500步→1000步 PR 是否维持/下降/提升？\n   - ISR 在长训练中的趋势（崩塌 vs 稳定 vs 提升）\n   - 是否出现 reward hacking（PR 高但 ISR 低+comp 低）\n\n6. **更新 registry**:\n   用 `update_registry` 把实验更新到 DONE:\n   - field=\"conclusion\", value= 根据结果判断:\n     - 1000步 PR ≥ 500步 PR (0.93) 且 ISR 稳定/提升 → \"success\" (真收敛)\n     - PR 显著下降或 ISR 崩塌 → \"negative\" (overtraining / reward hacking)\n   - field=\"metrics\", value= 所有 eval 指标\n   - field=\"checkpoint_path\", value= 最终 checkpoint 路径\n   - field=\"log_path\", value= 日志路径\n   - field=\"notes\", value= 包含 500步 vs 1000步对比分析\n\n### 产出\n在 notes 中必须包含:\n1. plan016 的核心 eval 指标\n2. 与 plan001-s42 (500步) 的直接对比: PR, ISR, complexity 三个维度\n3. 训练曲线趋势分析（500步后是否继续改善）\n4. 结论: 500步 PR=93% 是真收敛还是 lucky early convergence\n5. 是否观察到 reward hacking / tautological collapse / ISR 崩塌\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-14T08:29:09.999782+00:00_
+
+两个实验同时处于 ANALYZING，派两个 Worker 并行分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan018-additive-random-b01-s42"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+30 recorded events
+
+### User
+
+_source line 24 · 2026-05-14T11:30:14.622646+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T11:30:25.888389+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T11:30:25.989207+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T11:30:32.179615+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T11:30:32.230398+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T11:30:33.136985+00:00_
+
+Error: result (83,161 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 957
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T11:30:33.187656+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T11:30:33.639430+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T11:30:34.191808+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T11:30:34.192143+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T11:30:41.321768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"plan018-additive-random-b01-s43\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=1 → Registry → DONE(failed)\", \"Cron deleted\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 9091
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T11:30:41.322475+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T11:30:37Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 45 个实验 — ANALYZING 1, DONE 38, PENDING 1, PREPARING 4, QUEUED 1\\n**DONE 分布**: failed 16, negative 13, success 9\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-39279:cuda:0, westd-39279:cuda:1\\n- **空闲（分配了没跑）**: westd-39279:cuda:0, westd-39279:cuda:1\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `plan018-additive-random-b01-s43` [failed] — 2026-05-14T11:30:36 — EXIT_CODE=1 (generic error — check log tail)\\n- `plan006-prolog-sta-s42` [negative] — 2026-05-14T11:13:50\\n- `plan009-sft-baseline-s42-r2` [failed] — 2026-05-14T11:12:23 — OOM: 缺少 CUDA_VISIBLE_DEVICES 显式设置，device_map='auto' 跨 GPU 侵入 cuda:0 (plan006)，导致\\n- `plan002-additive-b01-s44` [negative] — 2026-05-14T10:12:40\\n- `plan002-additive-b01-s43` [negative] — 2026-05-14T10:12:36\\n\\n### 🔴 最近失败原因 (top 3)\\n- `plan018-additive-random-b01-s43`: EXIT_CODE=1 (generic error — check log tail)\\n- `plan009-sft-baseline-s42-r2`: OOM: 缺少 CUDA_VISIBLE_DEVICES 显式设置，device_map='auto' 跨 GPU 侵入 cuda:0 (plan006)，导致双卡 OOM。修复：(1) 启动命令加 --gpu 1，(2) device_map 改为 {\\\"\\\": 0} 或 .to(\\\"cuda\\\")，(3) num_steps 改为 500\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan006-prolog-exec-s42 | Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic. | — | — | — |\\n\\n## 待处理\\n- plan009-sft-baseline-s42: SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patte
+…[truncated 2535 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 8134
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T11:30:41.377218+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-14 11:05 UTC | 更新原因: plan006-exec 失败(数据缺失) + plan009 SFT 审批提交 + coverage 33.3%\\n\\n## 核心方向\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\n- **实验**: 44 个 (RUNNING 2, PENDING 1, PREPARING 5, DONE 36) | success 9\\n- **GPU**: 2 × RTX PRO 6000 96GB — cuda:0 plan006, cuda:1 plan009 ✅\\n\\n### 核心证据链\\n- ✅ ISR 崩塌轨迹：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- ✅ 3-seed exec-only：s42 conclusion embedding | s43 degraded | s44 tautological collapse\\n- ✅ Goodhart β 剂量效应：β=0.1 sweet spot (ISR 3.2x > random) vs β=0.3 collapse (ISR < random)\\n- ✅ Hacking taxonomy 定量对比 (D038)：ISR β=0.1 genuine 25.9% vs random 17.7% (+8.2pp)，conclusion embedding 73-79%\\n- ✅ plan016 1000步：PR=0.96, ISR=0.003，崩塌持续恶化\\n- ✅ plan014 downstream NLI: ISR-NLI ρ=-0.049 n.s.，ISR 能力边界已刻画\\n- ✅ Table 1 修复 + 文献修正完成\\n- ✅ plan002-b01-s43/s44: DONE (negative) — β=0.1 多 seed 验证，2/3 seeds hacking (H7 conclusion duplication)\\n- ✅ plan006-prolog-sta-s42: DONE (negative) — 100% H7, Prolog Goodhart 更极端\\n- ⏳ plan006-prolog-exec-s42: RUNNING — PID 506020, step ~361/500, 数据路径已修正\\n- ⏳ plan009-sft-baseline-s42-r2: RUNNING — Qwen3-4B SFT baseline, PID 548527, cuda:1\\n- 🔜 plan018-random-s43/s44: QUEUED — matched random 多 seed 控制（等 GPU）\\n- 🔜 plan006-prolog s43/s44: PREPARING — Claim 3 跨 logic type 后续 seeds（阻塞于数据）\\n\\n## RUNNING\\n| 实验 | GPU | 说明 |\\n|------|-----|------|\\n| plan006-prolog-exec-s42 | cuda:0 | Prolog exec-only seed=42 (PID 506020, step ~361/500) |\\n| plan009-sft-baseline-s42-r2 | cuda:1 | SFT baseline Qwen3-4B (PID 548527) |\\n\\n## 近期任务\\n- [x] s43/s44 完成 → eval done, H7 conclusion d
+…[truncated 2321 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 7737
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T11:30:41.480555+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_code_plan009-sft-oom-fix_20260514T111244\", \"task_type\": \"code:plan009-sft-oom-fix\", \"project\": \"solver-trace-ablation\", \"status\": \"running\", \"started_at\": \"2026-05-14T11:12:44.231316+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 7288
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T11:30:41.534369+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"solver-trace-ablation\", \"config\": {\"execution\": {\"gpu_constraint\": [\"westd-39279:cuda:0\", \"westd-39279:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/solver-trace-ablation\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-39279\"}]}, \"feishu\": {\"chat_id\": \"oc_a771c2a33d631dd40256ecd5c3a6648e\", \"operational_chat_id\": \"oc_8f0788a2307711c1b7fbf59b4cbe0473\", \"submission_chat_id\": \"oc_5abafbb382eb7c81e8a38090e46323e7\"}, \"project\": {\"created_at\": \"2026-05-13T17:31:18.377Z\", \"description\": \"Solver Trace Ablation for Cross-Logic GRPO Training of Neurosymbolic Formalizers\", \"name\": \"solver-trace-ablation\", \"phase\": \"research\", \"source_idea_id\": \"idea_010\"}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 7342
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T11:30:57.669023+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Show non-DONE experiments + recent DONE\nfor e in exps:\n    status = e.get('status','?')\n    if status != 'DONE':\n        print(f\\\"{e['exp_id']} | {status} | {e.get('conclusion','-')} | gpu={e.get('gpu_id','-')} | {e.get('hypothesis','')[:80]}\\\")\nprint('---RECENT DONE---')\ndone = [e for e in exps if e.get('status')=='DONE']\ndone.sort(key=lambda x: x.get('updated_at',''), reverse=True)\nfor e in done[:8]:\n    print(f\\\"{e['exp_id']} | {e.get('conclusion','-')} | {e.get('metrics',{})}\\\")\n\"\n",
+  "description": "Extract non-DONE and recent DONE experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Show non-DONE experiments + recent DONE\nfor e in exps:\n    status = e.get('status','?')\n    if status != 'DONE':\n        print(f\\\"{e['exp_id']} | {status} | {e.get('conclusion','-')} | gpu={e.get('gpu_id','-')} | {e.get('hypothesis','')[:80]}\\\")\nprint('---RECENT DONE---')\ndone = [e for e in exps if e.get('status')=='DONE']\ndone.sort(key=lambda x: x.get('updated_at',''), reverse=True)\nfor e in done[:8]:\n    print(f\\\"{e['exp_id']} | {e.get('conclusion','-')} | {e.get('metrics',{})}\\\")\n\"\n",
+    "description": "Extract non-DONE and recent DONE experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T11:30:57.769916+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T11:30:57.770386+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "paper_framing.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T11:30:58.127010+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    status = e.get('status','?')
+             ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "elapsed_ms": 457
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T11:30:58.127341+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-1/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 357
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T11:30:58.127497+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-1/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 357
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T11:31:04.357783+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps), len(exps) if isinstance(exps, list) else 'N/A')\nif isinstance(exps, dict):\n    for k in list(exps.keys())[:3]:\n        print(k, type(exps[k]))\nelif isinstance(exps, list):\n    print(type(exps[0]))\n    print(exps[0][:200] if isinstance(exps[0], str) else list(exps[0].keys())[:10])\n\"\n",
+  "description": "Probe registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps), len(exps) if isinstance(exps, list) else 'N/A')\nif isinstance(exps, dict):\n    for k in list(exps.keys())[:3]:\n        print(k, type(exps[k]))\nelif isinstance(exps, list):\n    print(type(exps[0]))\n    print(exps[0][:200] if isinstance(exps[0], str) else list(exps[0].keys())[:10])\n\"\n",
+    "description": "Probe registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T11:31:04.458650+00:00_
+
+&lt;class 'dict'> N/A
+plan006-prolog-exec-s42 &lt;class 'dict'>
+plan018-additive-random-b01-s43 &lt;class 'dict'>
+plan006-prolog-sta-s42 &lt;class 'dict'>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T11:31:11.584530+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    if status != 'DONE':\n        print(f'{eid} | {status} | conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")} | gpu={e.get(\\\"gpu_id\\\",\\\"-\\\")} | hyp={str(e.get(\\\"hypothesis\\\",\\\"\\\"))[:80]}')\nprint('---RECENT DONE (top 8)---')\ndone = [(eid, e) for eid, e in exps.items() if e.get('status')=='DONE']\ndone.sort(key=lambda x: x[1].get('updated_at',''), reverse=True)\nfor eid, e in done[:8]:\n    print(f'{eid} | {e.get(\\\"conclusion\\\",\\\"-\\\")} | metrics={e.get(\\\"metrics\\\",{})} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n\"\n",
+  "description": "Extract non-DONE and recent DONE experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9b88ff60/50047567-ac9f-46d4-aa94-160c5f021d65/tool-results/mcp-agent-ml-research-read_registry-1778758232794.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    if status != 'DONE':\n        print(f'{eid} | {status} | conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")} | gpu={e.get(\\\"gpu_id\\\",\\\"-\\\")} | hyp={str(e.get(\\\"hypothesis\\\",\\\"\\\"))[:80]}')\nprint('---RECENT DONE (top 8)---')\ndone = [(eid, e) for eid, e in exps.items() if e.get('status')=='DONE']\ndone.sort(key=lambda x: x[1].get('updated_at',''), reverse=True)\nfor eid, e in done[:8]:\n    print(f'{eid} | {e.get(\\\"conclusion\\\",\\\"-\\\")} | metrics={e.get(\\\"metrics\\\",{})} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n\"\n",
+    "description": "Extract non-DONE and recent DONE experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T11:31:11.685595+00:00_
+
+plan006-prolog-exec-s42 | ANALYZING | conclusion=- | gpu=- | hyp=Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic 
+plan018-additive-random-b01-s43 | RUNNING | conclusion=- | gpu=- | hyp=Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > r
+plan009-sft-baseline-s42 | PENDING | conclusion=killed | gpu=- | hyp=SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to estab
+plan018-additive-random-b01-s44 | QUEUED | conclusion=- | gpu=- | hyp=Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > r
+plan006-prolog-sta-s44 | PREPARING | conclusion=- | gpu=- | hyp=Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 
+plan006-prolog-sta-s43 | PREPARING | conclusion=- | gpu=- | hyp=Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。
+plan006-prolog-exec-s44 | PREPARING | conclusion=- | gpu=- | hyp=Prolog exec-only GRPO seed=44: third seed for Prolog. Together with s42/s43, pro
+plan006-prolog-exec-s43 | PREPARING | conclusion=- | gpu=- | hyp=Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type.
+---RECENT DONE (top 8)---
+plan006-prolog-sta-s42 | negative | metrics={'cumulative_prove_rate': 0.848, 'cumulative_mean_isr': 0.787, 'final_prove_rate': 1, 'final_isr': 1, 'final_reward': 1, 'saturation_onset_step': 100, 'train_loss': 0.00716, 'training_hours': 0.78, 'final_entropy': 0.01, 'final_completion_length': 27, 'initial_completion_length': 120, 'steps_at_perfect_reward': 400, 'train_runtime_sec': 2791, 'eval_prove_rate': 0.5, 'eval_mean_isr': 0.5, 'eval_proved_only_isr': 1, 'eval_h7_rate': 1, 'eval_h7_count': 50, 'eval_proved_count': 50, 'eval_total_count': 100, 'eval_n_clauses_mean': 1, 'eval_isr_distribution': 'binary: 50x0 + 50x1'} | updated=2026-05-14T11:13:50.916Z
+plan009-sft-baseline-s42-r2 | failed | metrics={} | updated=2026-05-14T11:12:23.151Z
+plan002-additive-b01-s44 | negative | metrics={'eval_prove_rate':
+…[truncated 5061 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T11:31:15.550572+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T11:31:16.053376+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\", \"content\": \"# solver-trace-ablation — Memory\\n\\n## 环境信息 (2026-05-13)\\n\\n### westd-39279 服务器\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\n- **代码路径**: `/root/solver-trace-ablation/`\\n- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (142G free)\\n\\n### 决策记录\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\n- Prover9 从 LADR 源码编译（apt 无包）\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\n\\n## 数据 (2026-05-13)\\n\\n### 数据源变更：ProofWriter → FOLIO\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\n- Phase 0 子集 100 条，训练子集 500 条\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\n\\n### 数据约束 (2026-05-14, D009)\\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\\n\\n## Phase 0 关键发现 (2026-05-13)\\n\\n### Base Model ISR Baseline (sta-phase0-baseline)\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\n\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\n\\n### Prover9 局限性\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\n\\n## Phase 1 关键经验 (2026-05-13)\\n\\n### fast_isr_fol 失败教训 (
+…[truncated 9123 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T11:31:16.304561+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "paper_framing.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T11:31:16.355405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 conclusion embedding (ISR=0.123), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (PR=98%, ISR=0.57 fake-high, n_comp=2.04)\\n- Hacking taxonomy: 6 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation)\\n\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart (D033→D043 重写)\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型不仅在高剂量 Goodhart PR（β=0.3 PR 崩塌），还在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR）。ISR bonus 特异性地诱导 premise=conclusion hacking——
+…[truncated 6505 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan018-additive-random-b01-s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-14T11:32:16.983484+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，不得用其他设备
+- submit_training_job 命令必须 `bash -c "export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."`（tmux 在 sh 下执行，source 需 bash -c 包装）
+- 所有实验统一用 `train_500_seed42.jsonl` 训练数据（C001 约束），output_dir 放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`（C003 磁盘约束）
+- plan013 vs plan017 公式结构不同，论文不可简化为"additive vs convex"对照（D027）
+- β=0.1 三 seed ISR 被 H7 conclusion duplication 膨胀，禁止报 raw 3-seed mean ISR，必须按 hacking mode 分层（D043）
+- ISR β=0.1 总 hacking rate 69.1%，论文不可标"no hacking"，只可标"lowest hacking rate"（D044）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-39279，代码路径 `/root/solver-trace-ablation/`
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）
+- **GPU**: 2× RTX PRO 6000 Blackwell 94GB VRAM，CUDA 12.8，PyTorch 2.10.0+cu128
+- **模型**: Qwen3-4B via ModelScope（已下载）
+- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0
+- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (142G free)
+- **活跃进程**: 无（reconcile_crons 刚清理完 plan018-s43 的 cron）
+- **活跃 Worker**: `worker_code_plan009-sft-oom-fix_20260514T111244`（running，修 plan009 OOM）
+
+### 3. 📊 当前状态
+**刚发生的事**：reconcile_crons 发现 `plan018-additive-random-b01-s43` 失败（EXIT_CODE=1），cron 已清理。两张 GPU 当前均空闲——这是紧急状态，需要立即填满。
+
+**Registry 非 DONE 实验**：
+| exp_id | status | 说明 |
+|--------|--------|------|
+| plan006-prolog-exec-s42 | ANALYZING | Prolog exec-only s42，需 eval 分析 |
+| plan018-additive-random-b01-s43 | ~~RUNNING~~ DONE(failed) | 刚失败，EXIT_CODE=1，需诊断 |
+| plan009-sft-baseline-s42 | PENDING | SFT baseline，Worker 正在修 OOM |
+| plan018-additive-random-b01-s44 | QUEUED | Random β=0.1 s44 控制组 |
+| plan006-prolog-{sta,exec}-s43 | PREPARING | 需 Prolog 训练数据 |
+| plan006-prolog-{sta,exec}-s44 | PREPARING | 需 Prolog 训练数据 |
+
+**总计**: 45 实验 — success 9, negative 13, failed 16
+
+### 4. 📋 待办（条件触发式）
+- **立即**: 两张 GPU 空闲 → 派 Worker 诊断 plan018-s43 失败原因（查 log tail）+ 派 Worker 对 plan006-prolog-exec-s42 跑 eval_sta.py 分析
+- Worker `plan009-sft-oom-fix` 完成 → 审批 plan009-sft-baseline-s42，用 cuda:1 提交
+- plan006-prolog-exec-s42 eval 完成 → 与 plan006-prolog-sta-s42 (100% H7 negative) 对照，确认 Prolog exec-only baseline hacking 模式
+- plan018-s43 诊断后 → 修复重提交（cuda:0），或 skip 转 plan018-s44
+- Prolog s43/s44 数据准备完成 → 排入 GPU 队列（plan006 系列 6 个实验）
+- 所有 plan006 + plan018 完成 → Table 1/Table 2 定稿 → 论文写作启动评估
+- 向 Director 汇报：plan018-s43 失败 + 两卡空闲 + plan006-exec-s42 进入 ANALYZING
+
+### 5. 🎯 战略上下文
+- **DDL**: EMNLP ARR May 25（剩 11 天），GPU 时间充裕（528 GPU·h 可用，仅需 ~12h）
+- **核心叙事**: Goodhart 主线（D035）——ISR 从诊断指标到优化目标的 meta-level Goodhart 效应
+- **3 Claims**: (1) ISR 作为 hacking 诊断工具 ✅已有充分证据, (2) Meta-level Goodhart ✅β=0.1 三 seed + β=0.3 对照完成, (3) Cross-logic 泛化 ⏳ Prolog exec-only s42 待 eval，sta-s42 已 negative (100% H7)
+- **最容易判断错的事**: plan006-prolog-sta-s42 的 negative 不是"Prolog 实验失败"——它**强化**了 Goodhart 叙事（Prolog 语义更简单 → hacking 更快更彻底）。下一个"你"不要把这当坏消息，它是 Claim 3 的正面证据
+- **易踩的坑**: (1) plan009 SFT baseline Worker 还在修 OOM，不要重复 spawn 修复 Worker; (2) plan006 PREPARING 的 4 个实验阻塞于 Prolog 训练数据生成，不是阻塞于 GPU; (3) plan018-additive-random-b01-s43 是 reconcile 刚标记的 failed，registry 可能还显示 RUNNING，以 reconcile 结果为准
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan018-additive-random-b01-s42"
+}
+```
+
+</details>
+
+---

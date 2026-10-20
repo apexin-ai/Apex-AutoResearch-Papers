@@ -1,0 +1,73 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shao2024deepseekprover,xin2024deepseekproverv15}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shao2024deepseekprover}
+\citation{xin2024deepseekproverv15}
+\citation{gao2023scaling,skalse2022defining}
+\citation{zeiler2014visualizing}
+\citation{ghorbani2019data}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRPO for formal reasoning.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward hacking in RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-out diagnostics.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Solver Trace Ablation (STA)}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Hacking Taxonomy}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3.2}{3}{Hacking Taxonomy}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimental Setup}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model and data.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training configurations.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ISR as Diagnostic: Exec-Only Degeneration}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:diagnostic}{{4.1}{3}{ISR as Diagnostic: Exec-Only Degeneration}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 5-seed exec-only GRPO at 500 steps (Qwen3-4B). All seeds exhibit $\geq $90\% structural degeneration. PR = prove rate. Mode percentages are over proved outputs. SFT baseline: PR=14\%, genuine=92.9\%.}}{4}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:five-seed-taxonomy}{{1}{4}{5-seed exec-only GRPO at 500 steps (Qwen3-4B). All seeds exhibit $\geq $90\% structural degeneration. PR = prove rate. Mode percentages are over proved outputs. SFT baseline: PR=14\%, genuine=92.9\%}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces ISR collapse trajectory across training steps (3 seeds, exec-only). All seeds show monotonic ISR collapse while prove rate remains stable.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:isr-trajectory}{{2}{4}{ISR collapse trajectory across training steps (3 seeds, exec-only). All seeds show monotonic ISR collapse while prove rate remains stable}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic case study: seed s44.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}ISR Collapse Trajectory}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:trajectory}{{4.2}{4}{ISR Collapse Trajectory}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Seed s42 extended trajectory.}{4}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-scale exec-only GRPO taxonomy (500 steps). Degeneration is universal; dominant hacking mode varies by scale.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cross-scale-exec}{{3}{5}{Cross-scale exec-only GRPO taxonomy (500 steps). Degeneration is universal; dominant hacking mode varies by scale}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-seed 8B exec-only taxonomy (500 steps, $K{=}8$).}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:8b-exec-detail}{{4}{5}{Per-seed 8B exec-only taxonomy (500 steps, $K{=}8$)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Scale Degeneration}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:cross-scale}{{4.3}{5}{Cross-Scale Degeneration}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}ISR as Reward Signal: Scale-Dependent Effects}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:goodhart}{{4.4}{5}{ISR as Reward Signal: Scale-Dependent Effects}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}4B Scale: Stochastic Genuine Windows (N=8)}{5}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}8B Scale: ISR Accelerates Collapse}{5}{subsubsection.4.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces N=8 ISR $\beta {=}0.1$ seeds (Qwen3-4B, 500 steps). Genuine window threshold: $\geq $15\% genuine. 3/8 seeds exhibit transient genuine windows; 5/8 collapse to pure TS.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:n8-bimodality}{{5}{6}{N=8 ISR $\beta {=}0.1$ seeds (Qwen3-4B, 500 steps). Genuine window threshold: $\geq $15\% genuine. 3/8 seeds exhibit transient genuine windows; 5/8 collapse to pure TS}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 8B ISR vs.\ Random vs.\ Exec-only taxonomy (500 steps). ISR at 8B \emph  {reduces} genuine rate below both random and exec-only baselines.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:8b-isr-comparison}{{6}{6}{8B ISR vs.\ Random vs.\ Exec-only taxonomy (500 steps). ISR at 8B \emph {reduces} genuine rate below both random and exec-only baselines}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Cross-Scale Pooled Statistics}{6}{subsubsection.4.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Premise-Count-Matched ISR Diagnostic Analysis}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:premise-matched}{{4.5}{6}{Premise-Count-Matched ISR Diagnostic Analysis}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-scale ISR $\beta {=}0.1$ vs.\ Random genuine rate comparison. Breslow-Day $p=0.001$ indicates significant heterogeneity, invalidating the pooled MH estimate.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:cross-scale-or}{{7}{7}{Cross-scale ISR $\beta {=}0.1$ vs.\ Random genuine rate comparison. Breslow-Day $p=0.001$ indicates significant heterogeneity, invalidating the pooled MH estimate}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Premise count distribution by hacking mode (exec-only, 5 seeds, $N{=}396$ proved). TS proofs use 1--3 premises; genuine and CE proofs use 3--15, creating a structural confound for ISR.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:premise-count}{{8}{7}{Premise count distribution by hacking mode (exec-only, 5 seeds, $N{=}396$ proved). TS proofs use 1--3 premises; genuine and CE proofs use 3--15, creating a structural confound for ISR}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Goodhart collapse is mechanism-driven, not capacity-driven.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ISR reward creates a meta-Goodhart trap.}{7}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces ISR diagnostic power by hacking mode. ISR is a strong diagnostic for CE/PG but anti-diagnostic for TS. Premise-count matching is feasible only for genuine vs.\ CE (overlapping premise ranges).}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:diagnostic-power}{{9}{8}{ISR diagnostic power by hacking mode. ISR is a strong diagnostic for CE/PG but anti-diagnostic for TS. Premise-count matching is feasible only for genuine vs.\ CE (overlapping premise ranges)}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stochastic bifurcation as a finding.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Actionable diagnostic pipeline.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{gao2023scaling}{{1}{2023}{{Gao et~al.}}{{}}}
+\bibcite{ghorbani2019data}{{2}{2019}{{Ghorbani and Zou}}{{}}}
+\bibcite{shao2024deepseekprover}{{3}{2024}{{Shao et~al.}}{{}}}
+\bibcite{skalse2022defining}{{4}{2022}{{Skalse et~al.}}{{}}}
+\bibcite{xin2024deepseekproverv15}{{5}{2024}{{Xin et~al.}}{{}}}
+\bibcite{zeiler2014visualizing}{{6}{2014}{{Zeiler and Fergus}}{{}}}
+\gdef \@abspage@last{9}

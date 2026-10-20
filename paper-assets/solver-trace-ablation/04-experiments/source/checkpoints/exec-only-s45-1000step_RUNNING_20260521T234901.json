@@ -1,0 +1,30 @@
+{
+  "exp_id": "exec-only-s45-1000step",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:48:37.537Z",
+    "updated_at": "2026-05-21T23:49:01.476Z",
+    "hypothesis": "Exec-only GRPO 1000-step K=4 seed 45: testing whether extended training amplifies structural degeneration beyond 500 steps. Config identical to plan001 series (K=4).",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/exec_only_s45_1000_k4.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "923456",
+      "seed": 45,
+      "model_name": "Qwen3-4B",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "num_steps": 1000,
+      "num_generations": 4,
+      "log_path": "/tmp/exec_only_s45_1000_k4.log"
+    }
+  },
+  "timestamp": "2026-05-21T23:49:01.870086+00:00",
+  "trigger": "update_registry"
+}

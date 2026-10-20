@@ -1,0 +1,32 @@
+{
+  "exp_id": "sweep-isr-b005-s43",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:42:01.363Z",
+    "updated_at": "2026-05-17T09:01:10.846Z",
+    "hypothesis": "W3: β=0.05 ISR bonus seed=43, Goodhart dose-response replication",
+    "reproduce": {
+      "finished_at": "2026-05-17T08:48:55.360Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-17T08:48:58.435Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T08:49:02.061057+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-17T09:01:11.908681+00:00",
+  "trigger": "update_registry"
+}

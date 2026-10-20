@@ -1,0 +1,94 @@
+{
+  "exp_id": "plan006-prolog-exec-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-14T07:13:34.169Z",
+    "updated_at": "2026-05-14T12:11:32.387Z",
+    "hypothesis": "Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T09:49:36.534Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42\"",
+      "finished_at": "2026-05-14T11:29:25.346Z",
+      "training_hours": 1.66
+    },
+    "failure_reason": "",
+    "completed_at": "2026-05-14T09:47:36.390Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T09:47:38.546001+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T11:29:27.709792+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: FileNotFoundError — data/prolog/train_500_seed42.jsonl 不存在 | error_type: data | 同一原因影响所有 plan006 实验 (exec/sta × s42/s43/s44) | 建议: 需先生成 Prolog 训练数据再重试"
+      }
+    },
+    "account": "root",
+    "notes": "Eval (eval_sta.py) 完成。PR=86%, mean_ISR=0.043, proved_only_ISR=0.05, H7=0%, H1=0%, ISR=1.0比率=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比。exec-only 产生完全不同的 hacking 模式：ground fact enumeration（倾泻大量无关 ground facts，query 作为其中一个 fact 平凡成功），而非 sta-s42 的 tautological collapse。两种 reward signal 驱动两种不同的 hacking 策略：STA→最小 tautology 坍缩(ISR=1.0)；exec-only→fact dump 膨胀(ISR≈0.05)。对论文是 positive finding：强化 Claim 1（reward hacking 普遍存在）且揭示 reward-specific hacking 机制。",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "506020",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42
+    },
+    "metrics": {
+      "eval_prove_rate": 0.86,
+      "eval_mean_isr": 0.0431,
+      "eval_proved_only_isr": 0.0501,
+      "eval_median_isr": 0,
+      "eval_max_isr": 0.3333,
+      "eval_isr_std": 0.0689,
+      "h7_rate": 0,
+      "h1_rate": 0,
+      "isr_1_rate": 0,
+      "single_premise_rate": 0,
+      "by_answer_type": {
+        "false": {
+          "proved": 23,
+          "count": 25,
+          "pr": 0.92,
+          "isr": 0.041
+        },
+        "unknown": {
+          "proved": 34,
+          "count": 41,
+          "pr": 0.83,
+          "isr": 0.053
+        },
+        "true": {
+          "proved": 29,
+          "count": 34,
+          "pr": 0.85,
+          "isr": 0.033
+        }
+      }
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan006_prolog_exec_s42/checkpoint-500",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s42.log"
+  },
+  "timestamp": "2026-05-14T12:11:32.488065+00:00",
+  "trigger": "update_registry"
+}

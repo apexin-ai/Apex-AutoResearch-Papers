@@ -1,0 +1,113 @@
+dreams:
+  dream_20260513T215750:
+    dream_id: dream_20260513T215750
+    project: solver-trace-ablation
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key MVP finding: full STA (O(N)) works as training signal but O(1) approximation
+      is ineffective (negative result). ISR/PR ratio declining during exec+STA training
+      suggests STA detects but may not fully prevent reward hacking at 100 steps.
+      Paper should position STA as methodology transfer (RIP → RL reward design),
+      not novel algorithm. Two core claims: STA methodology + multi-logic empirical
+      findings.'
+    what_if: []
+    pid: 382262
+    chat_id: oc_a771c2a33d631dd40256ecd5c3a6648e
+    card_message_id: om_x100b6f7b732074a0b3ddc65c9266ae5
+    started_at: '2026-05-13T21:57:50+00:00'
+    updated_at: '2026-05-13T22:47:57+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: a115e248c9fa4f382b1b9646c632ee8beb3bf4803f6f07d6a872b75dc7f486f8
+  dream_20260514T092544:
+    dream_id: dream_20260514T092544
+    project: solver-trace-ablation
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 510511
+    chat_id: oc_a771c2a33d631dd40256ecd5c3a6648e
+    card_message_id: om_x100b6f6d1f5820b4b2269b2ba00f0b0
+    started_at: '2026-05-14T09:25:44+00:00'
+    updated_at: '2026-05-14T10:33:37+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: b297b3b91a609caf8202dde603110fe7a79156a58e6204d898b135ae80daaa5a
+  dream_20260514T173834:
+    dream_id: dream_20260514T173834
+    project: solver-trace-ablation
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: Claim 1+2 数据完备，Claim 3 Prolog STA s43/s44 在跑。重点验证：(1) D058 1000步 100% H1
+      的论文叙事价值；(2) premise-count artifact (D051) 是否充分讨论；(3) 当前 3-claim 结构的 EMNLP 审稿预测
+    what_if: []
+    pid: 628940
+    chat_id: oc_a771c2a33d631dd40256ecd5c3a6648e
+    card_message_id: om_x100b6f54c707c8a8b2f8552f0cd3a10
+    started_at: '2026-05-14T17:38:34+00:00'
+    updated_at: '2026-05-14T18:26:44+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 3122c895e8e2e6e586673b0ea78219428537825083100e3ef34358ff6834c43d
+  dream_20260521T213154:
+    dream_id: dream_20260521T213154
+    project: solver-trace-ablation
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 评估跨尺度扩展（Qwen3-8B）和 seed 扩展对论文评分的影响。重点关注：(1) 8B exec-only 如果 positive，framing
+      从 case study 升级到 across scales 是否足够支撑 3.25-3.5 分数？(2) N=5→8 seeds 对统计效力的实际影响；(3)
+      8B 如果 negative（不退化），论文如何处理？(4) 当前 analysis paper 定位的 score ceiling 在哪里？
+    what_if: []
+    pid: 1967336
+    chat_id: oc_a771c2a33d631dd40256ecd5c3a6648e
+    card_message_id: om_x100b6fc3d2074930b2e762ad5927a52
+    started_at: '2026-05-21T21:31:54+00:00'
+    updated_at: '2026-05-21T21:32:03+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    context_hash: 055771608107e0e5ad53652e9a92106b945928a5935d356b4e49147dc0f1c41e
+  dream_20260521T214001:
+    dream_id: dream_20260521T214001
+    project: solver-trace-ablation
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 评估跨尺度扩展（Qwen3-8B）和 seed 扩展对论文评分的影响。重点关注：(1) 8B exec-only 如果 positive，framing
+      从 case study 升级到 across scales 是否足够支撑 3.25-3.5？(2) N=5→8 seeds 对统计效力的影响；(3)
+      8B 如果 negative（不退化），论文如何处理？(4) analysis paper 定位的 score ceiling？
+    what_if: []
+    pid: 1968073
+    chat_id: oc_a771c2a33d631dd40256ecd5c3a6648e
+    card_message_id: om_x100b6fc3f5f384a0b2ee8be30bbfb29
+    started_at: '2026-05-21T21:40:01+00:00'
+    updated_at: '2026-05-21T23:03:57+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: cf1a32759944a078015502e92baa4aa3f07950956d0904af85f9f34d5b1e8141

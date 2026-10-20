@@ -1,0 +1,71 @@
+{
+  "experiment_id": "plan018-additive-random-b01-s42-1000-r3",
+  "config": {
+    "reward_type": "random",
+    "beta": 0.1,
+    "seed": 42,
+    "max_steps": 1000,
+    "retry": 3
+  },
+  "training": {
+    "status": "completed",
+    "exit_code": 0,
+    "total_steps": 1000,
+    "train_runtime_seconds": 5782.5,
+    "train_loss": 0.00671,
+    "final_reward_stats": {
+      "parse_rate": 1.0,
+      "prove_rate": 0.827,
+      "mean_isr": 0.5213
+    },
+    "step_1000": {
+      "reward": 1.062,
+      "prove_rate": 1.0,
+      "isr": 0.75,
+      "random_component": 0.616,
+      "entropy": 0.003
+    }
+  },
+  "eval": {
+    "data_path": "data/proofwriter_fol_100.jsonl",
+    "n_problems": 100,
+    "n_proved": 97,
+    "prove_rate": 0.97,
+    "mean_isr": 0.6892,
+    "isr_std": 0.2037,
+    "median_isr": 0.75,
+    "isr_pr_ratio": 0.7105,
+    "proved_only_mean_isr": 0.7105,
+    "by_answer_type": {
+      "false": {"count": 25, "proved": 25, "prove_rate": 1.0, "mean_isr": 0.7533},
+      "unknown": {"count": 41, "proved": 39, "prove_rate": 0.951, "mean_isr": 0.6565},
+      "true": {"count": 34, "proved": 33, "prove_rate": 0.971, "mean_isr": 0.6814}
+    },
+    "eval_time_seconds": 184.0
+  },
+  "sta_classification": {
+    "genuine_count": 0,
+    "genuine_rate": 0.0,
+    "h1_tautological_count": 97,
+    "h1_tautological_rate": 0.97,
+    "h7_conclusion_embedding_count": 0,
+    "h7_conclusion_embedding_rate": 0.0,
+    "failed_count": 3,
+    "failed_rate": 0.03,
+    "tautological_collapse": true,
+    "n_premise_distribution": {"1": 97},
+    "isr_distribution": {"0.333": 13, "0.667": 5, "0.750": 71, "1.000": 8},
+    "pattern_description": "All 97 proved samples have exactly 1 premise identical to the conclusion (P therefore P). ISR varies by structural decomposition (quantifier/antecedent/consequent components), not by reasoning quality."
+  },
+  "comparison_with_r2": {
+    "r2_prove_rate": 1.0,
+    "r2_mean_isr": 0.3333,
+    "r2_genuine_rate": 0.0,
+    "r3_prove_rate": 0.97,
+    "r3_mean_isr": 0.6892,
+    "r3_genuine_rate": 0.0,
+    "note": "Both r2 and r3 show 0% genuine and tautological collapse. Higher ISR in r3 (0.689 vs 0.333) reflects different tautological structures (4-component vs 3-component decomposition), not better reasoning."
+  },
+  "verdict": "negative",
+  "verdict_reason": "genuine_rate=0%, tautological_collapse=true. Consistent with r2. Random reward at 1000 steps produces complete tautological collapse regardless of run variance."
+}

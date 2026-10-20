@@ -1,0 +1,43 @@
+{
+  "exp_id": "plan006-prolog-exec-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:32:37.140Z",
+    "updated_at": "2026-05-14T12:35:22.121Z",
+    "hypothesis": "Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.",
+    "parent": "plan006-prolog-exec-s43",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r2\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "712243",
+      "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s43-r2.log",
+      "submitted_at": "2026-05-14T12:33:05.887Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 136.2,
+      "gpu_hours": 0.04
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "712243",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s43-r2.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r2\"",
+      "finished_at": "2026-05-14T12:35:20.730Z"
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 40.25 MiB is free. Process 587160 has 78.09 GiB memory in use. Including non-PyTorch memory, this process has 16.83 GiB memory in use. Of the allocated ",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T12:35:22.121Z"
+  },
+  "timestamp": "2026-05-14T12:35:22.234746+00:00",
+  "trigger": "update_registry"
+}

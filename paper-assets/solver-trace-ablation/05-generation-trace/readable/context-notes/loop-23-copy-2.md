@@ -1,0 +1,62 @@
+# reviewer / loop_23.md
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_23.md`
+- **Structured JSON:** [`1f19945df957f78ff19c.json`](../../sessions/1f/1f19945df957f78ff19c.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 23
+reason: max_wall_time
+updated: '2026-05-22T18:47:04+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-39279 上只能用 cuda:0（但实验阶段已结束，GPU 待释放）
+- 论文有两份副本：`docs/paper/` 和 `paper/`，修改后必须双向同步，否则编译用的可能不是最新版
+- n=100 "problem-level matched pairs"（McNemar 检验）的来源未经独立验证——如果有 worker 修改这个数字，必须追溯分析 artifact 确认
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-39279 (root)，工作目录 `/root/solver-trace-ablation`
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/`
+- 论文源码：`docs/paper/` (主) + `paper/` (同步副本)
+- GPU：cuda:0 空闲，无活跃进程，无 tmux/cron
+- 实验阶段结束，73 个成功实验，216 总计，无 RUNNING 实验
+
+### 3. 📊 当前状态
+- R30 全部 worker 审查完毕（r30-p0-confound-text、r30-p0c-confound-final、r30-p1-text-edits），均 PASS
+- ROADMAP 审查完毕（info，无异常），项目处于 DDL 前最终打磨期（2026-05-25，~60h）
+- R31 质量最大化审稿已提交，等待审批/处理
+- HEAD 仍在 98740b9（R30 修改全部在 working tree 未 commit）
+- 无 RUNNING/PREPARING 实验，无等待中的 cron
+
+### 4. 📋 待办
+- R31 审稿报告出来 → 按模式 B（章节写作对抗审查）维度评审，注意加载 paper-quality-lessons skill
+- 有 worker 修改论文 → 检查 docs/paper/ ↔ paper/ 同步状态
+- 提交前 → 确认 PDF 已从最新 .tex 重新编译（当前 PDF 是 98740b9 版本，不含 R30 修改）
+- appendix 1.06× 冗余句（L125 vs L128）如有 worker 修改该区域 → 确认是否合并
+
+### 5. 🎯 战略上下文
+- 项目核心结论：STA/ISR 作为诊断有效但作为 reward 被 Goodhart（observe-vs-optimize asymmetry）。证据链：exec-only 结构退化（C1）→ ISR reward 导致 TS 模式转移 OR_CMH=2.46（C2）→ 两级分离（scalar artifact 3.2×→1.06× vs compositional robust）→ case study framing（C3）
+- 易错点 1：scalar ISR 差异（1.06×）不是主证据，compositional mode shift 才是——不要把 1.06× 当 negative result 解读
+- 易错点 2：5-seed 扩展是 bimodal（3/5 gaming, 2/5 genuine），不要用均值掩盖这个结构
+- 易错点 3：TS recall 下界统一为 ≥91% (149/163)，之前有 ≥92.5% (149/161) 的不一致版本已清除，如果再出现说明回归
+- Wu & Tang (arXiv:2604.01476) 是幻觉引用已删除，如果有 worker 重新添加立即 CRITICAL
+
+
+---

@@ -1,0 +1,18 @@
+{
+  "per_experiment": {
+    "exec_only_s42": {"PR": ".93 [.88,.98]", "H7": "0%", "H1": "86.0% [78.5,92.5]", "Genuine": "14.0% [7.5,21.5]", "ISR*": ".132 [.095,.173]"},
+    "isr_b01_s42": {"PR": ".81 [.73,.88]", "H7": "14.8% [7.4,23.5]", "H1": "44.4% [33.3,55.6]", "Genuine": "40.7% [29.6,51.9]", "ISR*": ".415 [.349,.482]"},
+    "random_b01_s42": {"PR": ".79 [.71,.87]", "H7": "0%", "H1": "63.3% [51.9,73.4]", "Genuine": "36.7% [26.6,48.1]", "ISR*": ".131 [.101,.163]"},
+    "isr_b03_s43": {"PR": ".86 [.79,.92]", "H7": "2.3% [0,5.8]", "H1": "67.4% [57.0,76.7]", "Genuine": "30.2% [20.9,40.7]", "ISR*": ".295 [.246,.345]"},
+    "random_b03_s43": {"PR": ".92 [.86,.97]", "H7": "0%", "H1": "58.7% [48.9,68.5]", "Genuine": "41.3% [31.5,51.1]", "ISR*": ".180 [.159,.203]"},
+    "exec_only_s44": {"PR": ".97 [.93,1.0]", "H7": "100%", "H1": "0%", "Genuine": "0%", "ISR*": ".567 [.536,.603]"}
+  },
+  "key_comparisons": {
+    "isr_b01_vs_random_b01_genuine": {"diff": "+0.04", "p": 0.637, "significant": false},
+    "isr_b01_vs_random_b01_h7": {"diff": "+0.148", "p": 0.0004, "significant": true},
+    "exec_only_vs_isr_b01_h1": {"diff": "+0.416", "p": "<0.001", "significant": true},
+    "isr_b01_vs_random_b01_isr_star": {"diff": "+0.284", "p": "<0.001", "significant": true},
+    "isr_b03_vs_random_b03_genuine": {"diff": "-0.111", "p": 0.156, "significant": false}
+  },
+  "notes": "SFT baseline has no eval file on server. Bootstrap on n=100 proved samples. B=10000 resamples."
+}

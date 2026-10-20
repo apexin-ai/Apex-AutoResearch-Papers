@@ -1,0 +1,96 @@
+{
+  "exp_id": "exp1-isr-b03-s42-1000-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:31:37.813Z",
+    "updated_at": "2026-05-15T11:37:26.456Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "224651",
+      "log_path": "~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log",
+      "submitted_at": "2026-05-15T09:32:05.796Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 7320.6,
+      "gpu_hours": 2.03
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "224651",
+    "log_path": "~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\"",
+      "finished_at": "2026-05-15T11:27:09.017Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T11:27:13.616148+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.95,
+      "eval_mean_isr": 0.734,
+      "eval_isr_std": 0.2575,
+      "eval_median_isr": 0.6,
+      "eval_proved_only_isr": 0.7726,
+      "eval_n_proved": 95,
+      "eval_n_problems": 100,
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_by_answer_type": {
+        "false": {
+          "count": 25,
+          "proved": 25,
+          "prove_rate": 1,
+          "mean_isr": 0.824
+        },
+        "unknown": {
+          "count": 41,
+          "proved": 38,
+          "prove_rate": 0.927,
+          "mean_isr": 0.673
+        },
+        "true": {
+          "count": 34,
+          "proved": 32,
+          "prove_rate": 0.941,
+          "mean_isr": 0.741
+        }
+      },
+      "h7_count": 0,
+      "h7_rate": 0,
+      "h1_count": 54,
+      "h1_rate": 0.568,
+      "genuine_count": 41,
+      "genuine_rate": 0.432,
+      "tautological_collapse": false,
+      "isr_1_count": 41,
+      "isr_1_rate": 0.432,
+      "single_premise_count": 0,
+      "train_final_prove_rate": 0.829,
+      "train_final_mean_isr": 0.727,
+      "train_loss": 0.0041,
+      "train_runtime_seconds": 6280,
+      "train_final_entropy": 9e-06,
+      "completions_mean_length": 47
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/exp1_isr_b03_s42_1000",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T11:34:06.399Z"
+  },
+  "timestamp": "2026-05-15T11:37:26.654063+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "plan002-additive-b01-s42",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:29:08.138Z",
+    "updated_at": "2026-05-14T05:31:46.391Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Additive ISR bonus β=0.1 (低于 plan002 的 β=0.3): 测试更低 β 是否能维持 prove_rate 同时轻度奖励结构质量。plan002 β=0.3 PR=18%(negative), 假设 β 过高干扰了 GRPO 信号。",
+      "plan_id": "plan_002",
+      "reward_formula": "r = r_exec * (1 + 0.1 * ISR)",
+      "beta": 0.1,
+      "account": "root"
+    },
+    "parent": "plan002-additive-b03-s42"
+  },
+  "timestamp": "2026-05-14T05:31:46.512352+00:00",
+  "trigger": "update_registry"
+}

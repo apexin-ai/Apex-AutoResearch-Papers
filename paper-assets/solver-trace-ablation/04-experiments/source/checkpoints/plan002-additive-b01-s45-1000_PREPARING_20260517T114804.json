@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan002-additive-b01-s45-1000",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:48:04.009Z",
+    "updated_at": "2026-05-17T11:48:04.009Z"
+  },
+  "timestamp": "2026-05-17T11:48:04.384895+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9bea68982b0c12b0d431",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code westd validate and qwen ioi",
+  "task_key": "worker_code_westd-validate-and-qwen-ioi_20260513T070211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-validate-and-qwen-ioi_20260513T070211.log",
+    "occurrence": 1,
+    "bytes": 862995,
+    "sha256": "75c3fdc8a835fd2fb8ab813cd65429b40ebf972c7d4486c3e055bbfb9946cf9f"
+  },
+  "statistics": {
+    "messages": 296,
+    "user_turns": 0,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 103,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 296,
+      "chunks": [
+        {
+          "path": "9bea68982b0c12b0d431-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "9bea68982b0c12b0d431-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-westd-validate-and-qwen-ioi.md"
+}

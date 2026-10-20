@@ -1,0 +1,16 @@
+{
+  "exp_id": "w2-qwen3-1.7b-isr-b03",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:47:49.664Z",
+    "updated_at": "2026-05-16T18:48:01.498Z",
+    "hypothesis": "1.7B ISR β=0.3: verify dose-response (higher β → more severe hacking) holds at smaller scale. Expect H9 ex falso to persist or intensify with stronger ISR signal.",
+    "parent": "w2-qwen3-1.7b-isr-pilot"
+  },
+  "timestamp": "2026-05-16T18:48:01.809236+00:00",
+  "trigger": "update_registry"
+}

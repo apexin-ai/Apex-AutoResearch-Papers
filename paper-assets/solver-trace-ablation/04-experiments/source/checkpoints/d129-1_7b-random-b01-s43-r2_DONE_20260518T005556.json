@@ -1,0 +1,43 @@
+{
+  "exp_id": "d129-1_7b-random-b01-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:55:53.860Z",
+    "updated_at": "2026-05-18T00:55:56.038Z",
+    "spec": {
+      "command": "python scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-1.7B --data_path data/train_500_seed42.jsonl --reward_mode additive_random --beta 0.1 --num_steps 500 --per_device_batch_size 2 --gradient_accumulation_steps 4 --num_generations 4 --max_completion_length 512 --learning_rate 1e-6 --seed 43 --solver prover9 --no_wandb --output_dir /root/autodl-tmp/outputs/d129_1.7b_random_b01_s43",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 43,
+      "pid": 66669,
+      "tmux_session": "d129-random-b01-s43-r2",
+      "gpu": "cuda:0"
+    },
+    "hypothesis": "D129: 1.7B Random β=0.1 s43 cross-scale control (retry) — s42 showed H9 contradiction injection (100% ex falso, PR=93%); additional seed tests whether H9 is deterministic at 1.7B under random reward",
+    "conclusion": "success",
+    "metrics": {
+      "prove_rate": 1,
+      "mean_isr": 0.0511,
+      "isr_std": 0.094,
+      "H1_pct": 76,
+      "H7_pct": 0,
+      "H8_pct": 0,
+      "genuine_pct": 24,
+      "content_independent_pct": 100,
+      "training_steps": 500,
+      "final_reward": 1.0526,
+      "train_loss": 0.0372
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/d129_1.7b_random_b01_s43",
+    "log_path": "/root/autodl-tmp/outputs/d129_1.7b_random_b01_s43.log",
+    "completed_at": "2026-05-18T00:55:56.038Z"
+  },
+  "timestamp": "2026-05-18T00:55:56.437521+00:00",
+  "trigger": "update_registry"
+}

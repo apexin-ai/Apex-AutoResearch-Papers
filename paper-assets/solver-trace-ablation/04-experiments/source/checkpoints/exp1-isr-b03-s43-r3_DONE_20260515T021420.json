@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp1-isr-b03-s43-r3",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:02:10.292Z",
+    "updated_at": "2026-05-15T02:14:19.967Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s43_r3\"",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "pid": 58051,
+      "log_path": "/root/autodl-tmp/outputs/exp1_isr_b03_s43_r3/reward_log.jsonl",
+      "submitted_at": "2026-05-15T01:02:18.804Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "output_dir": "/root/autodl-tmp/outputs/exp1_isr_b03_s43_r3",
+      "checkpoint_path": "/root/autodl-tmp/outputs/exp1_isr_b03_s43_r3",
+      "wall_clock_seconds": 4321.2,
+      "gpu_hours": 1.2
+    },
+    "conclusion": "killed",
+    "notes": "D065 reversed D064: approved s43-r3 re-training. Process confirmed running on cuda:0 (PID 58051, 85GB VRAM). Pushing status to RUNNING.",
+    "completed_at": "2026-05-15T02:14:19.967Z"
+  },
+  "timestamp": "2026-05-15T02:14:20.260415+00:00",
+  "trigger": "update_registry"
+}

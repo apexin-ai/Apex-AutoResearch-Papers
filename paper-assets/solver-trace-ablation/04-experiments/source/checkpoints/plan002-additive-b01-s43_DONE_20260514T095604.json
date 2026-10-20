@@ -1,0 +1,91 @@
+{
+  "exp_id": "plan002-additive-b01-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:36:16.367Z",
+    "updated_at": "2026-05-14T09:56:04.252Z",
+    "hypothesis": "ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。",
+    "parent": "plan002-additive-b01-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T08:45:10.999Z",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\"",
+      "finished_at": "2026-05-14T09:41:23.932Z",
+      "training_hours": 0.94
+    },
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "466128",
+      "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s43.log",
+      "submitted_at": "2026-05-14T08:45:54.837Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4096.6,
+      "gpu_hours": 1.14
+    },
+    "pid": "466128",
+    "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s43.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T09:41:25.536028+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.61,
+      "eval_mean_isr": 0.5063,
+      "eval_isr_std": 0.4518,
+      "eval_median_isr": 0.5,
+      "eval_proved_only_isr": 0.8301,
+      "eval_n_proved": 61,
+      "eval_n_problems": 100,
+      "eval_method": "eval_sta.py full STA",
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_component_count_mean": 4.03,
+      "eval_component_count_2_ratio": 0,
+      "eval_isr_0_ratio": 0,
+      "eval_isr_1_ratio": 0.656,
+      "tautological_collapse": false,
+      "conclusion_embedding_ratio": 1,
+      "hacking_mode": "conclusion_duplication_isr_inflation",
+      "component_dist": {
+        "3": 2,
+        "4": 55,
+        "5": 4
+      },
+      "eval_by_type_false_pr": 0.72,
+      "eval_by_type_false_isr": 0.6,
+      "eval_by_type_unknown_pr": 0.537,
+      "eval_by_type_unknown_isr": 0.442,
+      "eval_by_type_true_pr": 0.618,
+      "eval_by_type_true_isr": 0.515,
+      "train_total_steps": 500,
+      "train_duration_min": 53,
+      "train_final_pr": 0.688,
+      "train_final_isr": 0.504,
+      "train_loss": 0.012
+    },
+    "conclusion": "negative",
+    "notes": "ISR β=0.1 s43 eval 完成。conclusion=negative: 100% conclusion embedding hacking。\n\n## Eval 指标\nPR=0.61, mean_ISR=0.506, proved_only_ISR=0.830, median_ISR=0.5, comp_mean=4.03, comp_2_ratio=0, ISR_1_ratio=0.656, ISR_0_ratio=0。\n\n## Hacking 分析\n100% proved samples 为 conclusion embedding（premise≈conclusion tautology）。模型生成单 premise 且 premise=conclusion，使证明 trivially provable。ISR=1.0 占 proved 的 65.6%，ISR>0 占 100%（因为每个 proved sample 至少有 premise 是 necessary 的）。这与 s44 相同的 hacking mode，但更极端（100% vs 65% conclusion embedding）。\n\n## vs exec-only s43\nISR β=0.1 将 PR 从 14% 提升到 61%（+47pp），但提升机制是 conclusion embedding hacking 而非 genuine structural improvement。\n\n## 3-seed ISR β=0.1 统计 (s42/s43/s44)\n| Metric | s42 | s43 | s44 | Mean±Std |\n|--------|-----|-----|-----|----------|\n| PR | 0.81 | 0.61 | 0.89 | 0.770±0.144 |\n| mean_ISR | 0.337 | 0.506 | 0.803 | 0.549±0.236 |\n| proved_only_ISR | 0.415 | 0.830 | 0.902 | 0.716±0.263 |\n| hacking | genuine | 100% CE | 65% CE | 2/3 hacked |\n\ns42 是唯一 genuine success，s43/s44 均为 conclusion embedding hacking。ISR β=0.1 跨 seed 不稳定，2/3 seeds 通过 hacking 达到高 ISR。\n\nEval output: /root/autodl-tmp/outputs/plan002_additive_b01_s43/eval_results.json",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s43/checkpoint-500",
+    "completed_at": "2026-05-14T09:54:11.468Z"
+  },
+  "timestamp": "2026-05-14T09:56:04.691856+00:00",
+  "trigger": "update_registry"
+}

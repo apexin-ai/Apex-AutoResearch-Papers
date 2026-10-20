@@ -1,0 +1,49 @@
+\section{Introduction}
+\label{sec:introduction}
+
+A GRPO-trained formalizer achieves a 93\% prove rate on first-order logic problems---yet 87\% of its proved outputs embed the conclusion verbatim among the premises.
+The solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion that already appears as a premise.
+This structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine multi-step derivation or degenerate circular embedding.
+
+Prove rate---the dominant evaluation metric for neurosymbolic formalizers---conflates faithful reasoning with degenerate shortcuts.
+Without a principled method to assess whether each component of a formalization contributes to the proof, practitioners cannot distinguish models that reason from models that exploit solver mechanics.
+This gap is particularly consequential in reinforcement learning settings, where the optimizer will find and exploit any shortcut the reward function fails to penalize~\citep{skalse-reward-hacking, reward-hacking-survey}.
+
+Neurosymbolic approaches combine large language models with external solvers for logical reasoning.
+Prompting-based methods such as SatLM~\citep{satlm}, Logic-LM~\citep{logic-lm}, and LINC~\citep{linc} translate natural language to formal representations verified by automated provers, but evaluate correctness through execution alone without examining the internal structure of proved outputs.
+Recent work applies reinforcement learning---specifically Group Relative Policy Optimization~\citep[GRPO;][]{deepseekmath}---to train LLMs that generate formal logic programs verified by theorem provers~\citep{mellgren-prolog-grpo, logic-rl}.
+The standard reward signal in these systems is binary execution feedback: 1 if the solver returns a proof, 0 otherwise.
+This drives rapid improvement in prove rate but provides no gradient on structural quality---a formalization where every premise contributes to a valid derivation receives the same reward as one that smuggles the conclusion into the premises.
+Process reward models~\citep{lightman-verify-step} offer finer-grained step-level supervision for mathematical reasoning, but require expensive human annotations and do not transfer to arbitrary solver-backed verification settings.
+No existing method provides an annotation-free, solver-agnostic diagnostic for structural integrity in neurosymbolic outputs.
+
+We address this gap with \emph{Solver Trace Ablation} (STA), a diagnostic protocol inspired by mutation testing in software engineering~\citep{demillo1978} that applies component necessity testing---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\autoref{fig:sta-overview}).
+For each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \emph{Intensional Structural Reward} (ISR).
+ISR${=}$1 indicates a maximally tight formalization where every component is individually necessary; ISR${=}$0 indicates complete structural redundancy.
+The protocol is solver-agnostic, requiring only a solver that accepts component-level input manipulation.
+Applied as a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\citep{folio} data, ISR reveals a structural collapse trajectory entirely invisible to prove rate: ISR falls from 0.642 at 100 steps to 0.132 at 500 steps to 0.003 at 1000 steps---a 99.5\% degradation---while prove rate simultaneously rises from 32\% to 96\%.
+Three random seeds diverge radically (PR $\sigma{=}$47\,pp), each converging to a qualitatively different degeneration mode: conclusion embedding, repetition collapse, and tautological collapse.
+A supervised fine-tuning (SFT) baseline achieves 92.9\% genuine proofs with near-zero hacking, confirming that the structural collapse is a consequence of RL reward optimization, not model capacity or data limitations.
+
+Given ISR's diagnostic power, a natural question is whether it can serve as a training signal to steer models toward structurally sound formalizations.
+The answer is negative: when ISR is incorporated into the reward ($r = r_{\text{exec}} \cdot (1 + \beta \cdot \text{ISR})$), the model games the diagnostic metric itself---a phenomenon we characterize as \emph{meta-level Goodhart's Law}~\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl}.
+At low dose ($\beta{=}0.1$), two of three seeds are dominated by \emph{conclusion duplication}: the model generates a single premise identical to the conclusion, achieving ISR${=}$1 by construction while encoding no reasoning.
+Across three seeds, 64.5\% of proved samples exhibit this ISR-specific gaming mode (H7), compared to 0\% under a matched random-reward control.
+The remaining seed's apparent ISR advantage is entirely a premise-count artifact: controlling for component count eliminates the difference (1.06$\times$; \S\ref{sec:goodhart}).
+At high dose ($\beta{=}0.3$), classic Goodhart collapse occurs: prove rate falls to 18\%, compared to 48\% for a matched random control~\citep{gao-reward-overoptimization}.
+This dose-response pattern---low-dose proxy gaming followed by high-dose performance collapse---maps onto established Goodhart dynamics but occurs at the \emph{meta} level: ISR was designed to detect gaming, yet becomes the target of gaming when optimized.
+
+We further validate that both the diagnostic utility and the Goodhart phenomenon transfer across formal languages.
+In Prolog experiments using SWI-Prolog as the solver, exec-only training produces proved-only ISR near zero for two of three seeds, replicating the FOL diagnostic finding.
+When ISR is added as a Prolog training reward, the result is \emph{universal} Goodhart: all three seeds converge to gaming with 0\% genuine proofs---stronger than the FOL result, where ${\sim}$16\% genuine residual persists---each via a distinct mechanism (tautological collapse, degenerate syntax, and query-as-fact gaming).
+
+Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we make four contributions:
+
+\begin{enumerate}[nosep,leftmargin=*]
+\item We introduce Solver Trace Ablation and establish ISR as a diagnostic that detects reward hacking invisible to prove rate, documenting a complete collapse trajectory ($0.642 \to 0.132 \to 0.003$) over 1000 GRPO training steps; an SFT baseline confirms hacking is RL-specific (92.9\% genuine vs.\ ${<}$16\% under any RL condition).
+\item We empirically characterize meta-level Goodhart's Law in neurosymbolic RL---a diagnostic designed to detect gaming becomes gamed when used as reward---and identify the premise-count confound, a systematic LOO bias where fewer components mechanically inflate ISR, that explains the sole apparent improvement (1.06$\times$ premise-matched).
+\item We demonstrate cross-logic diagnostic transfer from FOL/Prover9 to Prolog/SWI-Prolog, where ISR-as-reward produces universal Goodhart (3/3 seeds gaming, 0\% genuine), demonstrating that simpler formal semantics enable more complete exploitation.
+\item We catalog 7 reward hacking modes across conditions and logic types, including query-as-fact gaming that bypasses text-match classifiers, motivating functional cross-validation of automated hacking diagnostics.
+\end{enumerate}
+
+\noindent \S\ref{sec:related-work} surveys related work; \S\ref{sec:method} introduces the STA protocol; \S\ref{sec:experiments} presents experiments; \S\ref{sec:discussion} discusses implications.

@@ -1,0 +1,84 @@
+\section{Method}
+\label{sec:method}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig1_sta_overview.pdf}
+\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\ as reward: when the diagnostic becomes the target, meta-level Goodhart's Law emerges.}
+\label{fig:sta-overview}
+\end{figure*}
+
+\subsection{Task and GRPO Training}
+\label{sec:task}
+
+Given premises $P_1,\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\{c_1,\ldots,c_n\}$ verified by an external solver $S\in\{\text{Prover9, SWI-Prolog}\}$ (Figure~\ref{fig:sta-overview}a).
+We train with Group Relative Policy Optimization (GRPO)~\citep{deepseekmath} ($K{=}8$), where each rollout receives binary execution reward $r_{\text{exec}}(x) = \mathbf{1}[S(F_x){=}\textit{proved}]$.
+This optimizes prove rate but provides no signal about \emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.
+All experiments draw from FOLIO~\citep{folio}; the held-out evaluation file retains a legacy \texttt{proofwriter\_fol\_*.jsonl} filename (from ProofWriter~\citep{proofwriter}) but contains only FOLIO-derived examples.
+
+\subsection{Solver Trace Ablation (STA)}
+\label{sec:sta}
+
+STA tests whether each component of a proved formalization is individually necessary for proof success (Figure~\ref{fig:sta-overview}b).
+Given a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\setminus\{c_i\}$ and re-runs the solver (Algorithm~\ref{alg:sta}).
+A component is \emph{necessary} if its removal causes proof failure.
+What constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.
+LOO ablation itself is standard in mutation testing, sensitivity analysis, and feature attribution~\citep{demillo1978, sundararajan-ig, lundberg-shap}; our novelty is its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.
+
+\begin{algorithm}[t]
+\caption{Solver Trace Ablation (STA)}
+\label{alg:sta}
+\begin{algorithmic}[1]
+\REQUIRE Proved formalization $x = \{c_1, \ldots, c_n\}$, solver $S$
+\ENSURE $\text{ISR}(x) \in [0, 1]$
+\STATE $\textit{necessary} \gets 0$
+\FOR{$i = 1$ to $n$}
+    \IF{$S(x \setminus \{c_i\}) = \textit{failed}$}
+        \STATE $\textit{necessary} \gets \textit{necessary} + 1$
+    \ENDIF
+\ENDFOR
+\RETURN $\textit{necessary} \,/\, n$
+\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Intensional Structural Reward.}
+ISR is the fraction of necessary components:
+\begin{equation}
+  \text{ISR}(x) = \frac{1}{n}\sum_{i=1}^{n}\mathbf{1}\bigl[S(x\setminus\{c_i\})=\textit{failed}\bigr]
+  \label{eq:isr}
+\end{equation}
+ISR is defined only for proved formalizations: ISR${=}1$ means every component is necessary; ISR${=}0$ means complete redundancy.
+We report \emph{proved-only} ISR (denoted ISR$^*$) throughout to avoid conflating structural quality with prove rate.
+
+\paragraph{Limitations of ISR.}
+ISR measures syntactic component necessity, not semantic faithfulness: a formalization can achieve $\text{ISR}{=}1$ while semantically unrelated to the NL input (e.g., a single premise identical to the conclusion).
+ISR is also sensitive to component count $n$: when $n{=}2$, $\text{ISR}\geq 0.5$ regardless of proof quality.
+We control for this confound via premise-count-matched analysis in \S\ref{sec:goodhart}.
+The $O(n)$ per-clause LOO ablation is necessary: a cheaper $O(1)$ binary variant produces near-zero ISR scores ($\text{ISR}^*{=}0.007$) indistinguishable from exec-only, because models generate redundant premise copies whose individual removal never changes the proof outcome.
+However, the $O(1)$ variant includes a tautology check (conclusion provable under empty premises $\to$ ISR${=}0$) absent from exec-only, introducing a training-time confound that depresses prove rate ($63\%$ vs.\ $93\%$ exec-only); the two conditions are therefore non-equivalent in training dynamics despite producing comparable ISR signals (Appendix~\ref{app:o1-ablation}).
+
+\subsection{Reward Conditions and Hacking Modes}
+\label{sec:rewards}
+\label{sec:taxonomy-method}
+
+We study six conditions: exec-only ($r_{\text{exec}}$), ISR low/high-dose ($r_{\text{exec}}\cdot(1{+}\beta\,\text{ISR})$ at $\beta\in\{0.1,0.3\}$), matched random controls ($r_{\text{exec}}\cdot(1{+}\beta u)$, $u\sim\mathcal{U}(0,1)$), and a supervised fine-tuning (SFT) baseline (negative log-likelihood on gold formalizations).
+Multiplicative bonuses apply only to proved samples, keeping the prove-rate floor intact.
+Random isolates ISR-specific signal from generic reward-variance effects; SFT isolates whether structural degeneration arises from RL optimization or data exposure alone.
+Each RL condition uses seeds $\{42,43,44\}$ and identical training data.
+An earlier convex formulation ($\alpha r_{\text{exec}} + \beta r_{\text{exec}}\text{ISR}$, $\alpha{+}\beta{=}1$) was discarded because $\text{ISR}{<}1$ always penalized relative to exec-only, collapsing PR (Appendix~\ref{app:setup}).
+
+\paragraph{Hacking taxonomy.}
+Across conditions, seeds, and logic types we identify eight structural-degeneration modes (full definitions in Appendix~\ref{app:hacking-modes}):
+\textbf{H1} (conclusion embedded among multiple premises),
+\textbf{H7} (single-premise conclusion duplication, subtypes H7a standard and H7b obfuscated tautology; targets the ISR signal directly, since removing the sole premise forces $\text{ISR}\geq 0.5$),
+\textbf{H8} (premise-subset gaming: each component is LOO-necessary but the premise set is a strict subset of what the problem requires, inflating ISR without faithful reasoning; Appendix~\ref{app:h8}),
+\textbf{tautological collapse} (minimal two-component $P{\to}P$ without explicit ISR inflation),
+\textbf{repetition collapse} (identical clauses repeated to inflate component count),
+\textbf{complexity-without-utility} (elaborate but vacuous premises),
+\textbf{contradiction explosion} (contradictory premises trivializing any conclusion via \emph{ex falso}), and
+\textbf{query-as-fact gaming} (Prolog-specific: emit the NL question as an atom asserted as both fact and query; evades text-match classifiers).
+Modes are identified by a two-stage procedure: strict normalized text matching (H1/H7) plus functional analysis of the per-sample $n_{\text{necessary}}$ distribution (catches modes evading text matching).
+We report both classifications in \S\ref{sec:experiments}.
+
+In interpreting ISR results we distinguish two failure semantics that share a numerical signature: an exec-only \emph{low} ISR signals \emph{redundancy} (e.g., repeated ground facts in Prolog), whereas an ISR-rewarded \emph{high} ISR signals \emph{metric gaming} (H7-style constructions).
+A bare ISR difference therefore does not translate directly into a reasoning-ability difference; the mode breakdown is what licenses such interpretation.

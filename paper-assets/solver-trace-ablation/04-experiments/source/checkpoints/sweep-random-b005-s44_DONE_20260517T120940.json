@@ -1,0 +1,35 @@
+{
+  "exp_id": "sweep-random-b005-s44",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:15:12.942Z",
+    "updated_at": "2026-05-17T12:09:40.484Z",
+    "hypothesis": "Random β=0.05 seed=44: 3rd seed for balanced 3v3 comparison with ISR β=0.05, variance estimation",
+    "parent": "",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_additive_random_b005.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/sweep_random_b005_s44 --no_wandb",
+      "server": "westd-39279",
+      "gpu_ids": [
+        0
+      ],
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 44,
+      "reward_mode": "additive_random",
+      "beta": 0.05,
+      "num_steps": 500,
+      "checkpoint_path": "/root/autodl-tmp/outputs/sweep_random_b005_s44",
+      "log_path": "/root/runs/solver-trace-ablation/sweep-random-b005-s44.log"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T12:09:40.484Z"
+  },
+  "timestamp": "2026-05-17T12:09:40.785183+00:00",
+  "trigger": "update_registry"
+}

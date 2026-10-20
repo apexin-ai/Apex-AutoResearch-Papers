@@ -1,0 +1,105 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{elhage2021mathematical,conmy2023towards,wang2023interpretability}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{syed2023attribution}
+\citation{kramarcost}
+\citation{conmy2023towards}
+\citation{zhang2024best}
+\citation{nogueira2016measuring}
+\citation{kuncheva2003measures}
+\citation{parekh2026circus}
+\citation{mondorf2025comparing}
+\citation{pie2026}
+\citation{conmy2023towards}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Circuit discovery methods.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble approaches.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation metrics.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Circuit Selection Score}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Binarization}{2}{subsection.3.2}\protected@file@percent }
+\citation{radford2019language}
+\citation{bai2023qwen}
+\citation{wang2023interpretability}
+\citation{wang2023interpretability}
+\citation{meng2022locating}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Jaccard Diagnostic}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tasks.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Methods.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: CSS Success Rate}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main-results}{{4.2}{3}{Main Results: CSS Success Rate}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{IOI (GPT-2): The sole success.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Factual Recall (GPT-2): MLP bottleneck forces convergence.}{3}{section*.8}\protected@file@percent }
+\citation{meng2022locating}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Summary of \textsc  {CSS}{} performance across all configurations. \textsc  {CPR}{} values are under zero ablation. $\Delta $ = CSS=1.0 \textsc  {CPR}{} minus best single-method \textsc  {CPR}{} (positive = consensus helps). $^{**}$: $p<0.01$ by paired bootstrap; \textsuperscript  {ns}: not significant ($p=0.482$). IOI on GPT-2 is the sole PASS case ($\Delta =+0.085$, $p=0.002$).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main-results}{{1}{4}{Summary of \css {} performance across all configurations. \cpr {} values are under zero ablation. $\Delta $ = CSS=1.0 \cpr {} minus best single-method \cpr {} (positive = consensus helps). $^{**}$: $p<0.01$ by paired bootstrap; \textsuperscript {ns}: not significant ($p=0.482$). IOI on GPT-2 is the sole PASS case ($\Delta =+0.085$, $p=0.002$)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Factual Recall circuit evaluation (mean ablation). CSS$=$1.0 selects 10 edges at \textsc  {CPR}{}$=$0.905, underperforming \textsc  {EAP-IG}{}'s 50 edges at 0.975 ($\Delta =-0.070$, $p=0.005$).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:factual-recall}{{2}{4}{Factual Recall circuit evaluation (mean ablation). CSS$=$1.0 selects 10 edges at \cpr {}$=$0.905, underperforming \eapig {}'s 50 edges at 0.975 ($\Delta =-0.070$, $p=0.005$)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Arithmetic and SVA (GPT-2): High Jaccard, no advantage.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Qwen-0.5B: Scaling failure.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Factual Recall: A New Failure Case}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:factual-recall}{{4.3}{4}{Factual Recall: A New Failure Case}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Size-Controlled Baseline (IOI)}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:size-controlled}{{4.4}{4}{Size-Controlled Baseline (IOI)}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pairwise Jaccard matrix for Factual Recall (top-50). High EAP-IG$\times $EP agreement (0.62) reflects shared sensitivity to MLP bottleneck edges.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:factual-recall-jaccard}{{3}{5}{Pairwise Jaccard matrix for Factual Recall (top-50). High EAP-IG$\times $EP agreement (0.62) reflects shared sensitivity to MLP bottleneck edges}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Size-controlled comparison on IOI (all subcircuits contain exactly 7 edges). CSS$=$1.0 outperforms all single-method top-7 selections. Random-7 baseline: mean over 50 samples. Original $\Delta =0.080$; size-controlled $\Delta =0.061$; advantage retained = 76.3\%.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:size-controlled}{{4}{5}{Size-controlled comparison on IOI (all subcircuits contain exactly 7 edges). CSS$=$1.0 outperforms all single-method top-7 selections. Random-7 baseline: mean over 50 samples. Original $\Delta =0.080$; size-controlled $\Delta =0.061$; advantage retained = 76.3\%}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Bootstrap Confidence Intervals}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:bootstrap}{{4.5}{5}{Bootstrap Confidence Intervals}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Failure Mode Analysis}{5}{section.5}\protected@file@percent }
+\newlabel{sec:failure-modes}{{5}{5}{Failure Mode Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Failure Mode 1: Task-Induced Method Correlation}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:failure-correlation}{{5.1}{5}{Failure Mode 1: Task-Induced Method Correlation}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Failure Mode 2: Component-Level Scoring Degeneration}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:failure-scaling}{{5.2}{5}{Failure Mode 2: Component-Level Scoring Degeneration}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Paired bootstrap CIs ($B{=}10{,}000$, BCa) for $\Delta $\textsc  {CPR}{} (CSS$=$1.0 vs.\ best single method). IOI is the sole configuration with a CI entirely above zero.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:bootstrap}{{5}{6}{Paired bootstrap CIs ($B{=}10{,}000$, BCa) for $\Delta $\cpr {} (CSS$=$1.0 vs.\ best single method). IOI is the sole configuration with a CI entirely above zero}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scoring granularity on Qwen-0.5B IOI (179K edges). \textsc  {IFR}{} degenerates to layer-level (GQA absorbs edge perturbations); \textsc  {ACDC}{} degenerates to node-level (greedy pruning over 179K edges). Both produce near-zero Jaccard with gradient methods.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:scaling}{{6}{6}{Scoring granularity on Qwen-0.5B IOI (179K edges). \ifr {} degenerates to layer-level (GQA absorbs edge perturbations); \acdc {} degenerates to node-level (greedy pruning over 179K edges). Both produce near-zero Jaccard with gradient methods}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{IFR degeneration.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ACDC degeneration.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Failure Mode 3: Jaccard Diagnostic}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:diagnostic}{{5.3}{6}{Failure Mode 3: Jaccard Diagnostic}{subsection.5.3}{}}
+\citation{wang2023interpretability}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Scale-dependent method behavior. On GPT-2, \textsc  {ACDC}{} operates at edge level; on Qwen, both \textsc  {ACDC}{} and \textsc  {IFR}{} degenerate to coarser granularity.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:gpt2-vs-qwen}{{7}{7}{Scale-dependent method behavior. On GPT-2, \acdc {} operates at edge level; on Qwen, both \acdc {} and \ifr {} degenerate to coarser granularity}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Jaccard diagnostic accuracy across all 6 configurations (sorted by max pairwise Jaccard). The diagnostic correctly predicts 5/6 outcomes. $^\dagger $The sole miss (Qwen ACDC) fails due to component-level scoring degeneration (Failure Mode 2), not method correlation---an orthogonal failure that Jaccard cannot detect. Spearman $\rho = -0.90$ ($p = 0.037$) excluding the scaling outlier; $\rho = -0.714$ ($p = 0.111$) on all 6. GPT-2 subset (4 tasks): $\rho = -1.0$ ($p = 0.042$).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:diagnostic}{{8}{7}{Jaccard diagnostic accuracy across all 6 configurations (sorted by max pairwise Jaccard). The diagnostic correctly predicts 5/6 outcomes. $^\dagger $The sole miss (Qwen ACDC) fails due to component-level scoring degeneration (Failure Mode 2), not method correlation---an orthogonal failure that Jaccard cannot detect. Spearman $\rho = -0.90$ ($p = 0.037$) excluding the scaling outlier; $\rho = -0.714$ ($p = 0.111$) on all 6. GPT-2 subset (4 tasks): $\rho = -1.0$ ($p = 0.042$)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Ablation Method Robustness (IOI)}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:ablation-robustness}{{5.4}{7}{Ablation Method Robustness (IOI)}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does IOI succeed?}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practitioner guidelines.}{7}{section*.14}\protected@file@percent }
+\bibcite{bai2023qwen}{1}
+\bibcite{conmy2023towards}{2}
+\bibcite{elhage2021mathematical}{3}
+\bibcite{kramarcost}{4}
+\bibcite{kuncheva2003measures}{5}
+\bibcite{meng2022locating}{6}
+\bibcite{mondorf2025comparing}{7}
+\bibcite{nogueira2016measuring}{8}
+\bibcite{parekh2026circus}{9}
+\bibcite{pie2026}{10}
+\bibcite{radford2019language}{11}
+\bibcite{syed2023attribution}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces IOI CSS advantage under zero vs.\ mean ablation. $\Delta $ = CSS$=$1.0 minus best single method. Advantage retained under mean ablation: 81.3\%.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:ablation-robustness}{{9}{8}{IOI CSS advantage under zero vs.\ mean ablation. $\Delta $ = CSS$=$1.0 minus best single method. Advantage retained under mean ablation: 81.3\%}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{wang2023interpretability}{13}
+\bibcite{zhang2024best}{14}
+\gdef \@abspage@last{9}

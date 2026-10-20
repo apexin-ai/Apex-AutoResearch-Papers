@@ -1,0 +1,89 @@
+{
+  "exp_id": "plan018-additive-random-b01-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:36:18.722Z",
+    "updated_at": "2026-05-14T14:29:05.803Z",
+    "hypothesis": "Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。",
+    "parent": "plan018-additive-random-b01-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T11:34:13.338Z",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s44\"",
+      "finished_at": "2026-05-14T13:37:42.200Z",
+      "training_hours": 2.06
+    },
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s44\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "564900",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "reward_formula": "r = r_exec * (1 + 0.1 * random[0,1])",
+      "num_steps": 500
+    },
+    "pid": "564900",
+    "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s44.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T13:37:43.236026+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "prove_rate": 0.89,
+      "mean_isr": 0.0619,
+      "isr_std": 0.1756,
+      "median_isr": 0,
+      "proved_only_mean_isr": 0.0695,
+      "n_proved": 89,
+      "n_problems": 100,
+      "max_isr": 1,
+      "min_isr": 0,
+      "isr_pr_ratio": 0.0695,
+      "isr_zero_count": 72,
+      "isr_one_count": 2,
+      "by_answer_type": {
+        "false": {
+          "count": 25,
+          "proved": 21,
+          "prove_rate": 0.84,
+          "mean_isr": 0.0533
+        },
+        "unknown": {
+          "count": 41,
+          "proved": 40,
+          "prove_rate": 0.976,
+          "mean_isr": 0.0892
+        },
+        "true": {
+          "count": 34,
+          "proved": 28,
+          "prove_rate": 0.824,
+          "mean_isr": 0.0353
+        }
+      },
+      "elapsed_seconds": 1012.7,
+      "eval_method": "eval_sta.py with Prover9Solver, FOL"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T14:29:05.914344+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "d144-llama-isr-s44",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:35:23.845Z",
+    "updated_at": "2026-05-19T14:51:25.056Z",
+    "hypothesis": "D144 cross-model: ISR β=0.1 GRPO on LLaMA-3.2-3B/FOLIO seed=44. Replication of ISR s42 for statistical power.",
+    "parent": "d144-llama-exec-s42",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T14:51:25.399316+00:00",
+  "trigger": "update_registry"
+}

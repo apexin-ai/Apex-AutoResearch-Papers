@@ -1,0 +1,71 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shao2024deepseekmath}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C1: \textsc  {STA}{} as Diagnostic.}{1}{section*.1}\protected@file@percent }
+\citation{shao2024deepseekmath,luo2024improve,wang2024math}
+\citation{amodei2016concrete,pan2022effects,skalse2022defining}
+\citation{gao2023scaling}
+\citation{covert2021explaining}
+\@writefile{toc}{\contentsline {paragraph}{C2: Inevitable Goodhart Below Capacity Threshold.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C3: Cross-Logic Transfer.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for Formal Reasoning.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward Hacking and Goodhart's Law.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Proof Quality Metrics.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Solver Trace Analysis}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Inference Step Ratio}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Bias.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Hacking Mode Taxonomy}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3.3}{3}{Hacking Mode Taxonomy}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tasks.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Exec-only \textsc  {GRPO}{} at 500 steps (Qwen3-4B, 5 seeds). All seeds exhibit $\geq $90\% structural degeneration. \textsc  {PR}{} = prove rate, Gen.\% = fraction of proved samples classified as genuine, Deg.\% = 100 $-$ Gen.\%. \textsc  {ISR}{}$^*$ varies widely across seeds because different hacking modes have different inherent \textsc  {ISR}{} values: TS $\approx $ 0.5 (tautology structure), CE $\approx $ 0.1 (redundant premises).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:exec-only}{{1}{4}{Exec-only \grpo {} at 500 steps (Qwen3-4B, 5 seeds). All seeds exhibit $\geq $90\% structural degeneration. \pr {} = prove rate, Gen.\% = fraction of proved samples classified as genuine, Deg.\% = 100 $-$ Gen.\%. \isr {}$^*$ varies widely across seeds because different hacking modes have different inherent \isr {} values: TS $\approx $ 0.5 (tautology structure), CE $\approx $ 0.1 (redundant premises)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textsc  {ISR}{}$^*$ trajectories from 500 to 1000 training steps. Collapse rate depends on hacking mode: TS-locked seeds maintain \textsc  {ISR}{}$^*$$\approx $0.5, while seeds transitioning to CE collapse $>$99\%.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:trajectory}{{2}{4}{\isr {}$^*$ trajectories from 500 to 1000 training steps. Collapse rate depends on hacking mode: TS-locked seeds maintain \isr {}$^*$$\approx $0.5, while seeds transitioning to CE collapse $>$99\%}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SFT Baseline.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Universal Degeneration Under Exec-Only Rewards}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:exec-only}{{5.1}{4}{Universal Degeneration Under Exec-Only Rewards}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Mode-Dependent ISR Collapse Trajectories}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:trajectory}{{5.2}{4}{Mode-Dependent ISR Collapse Trajectories}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Statistical summary for \textsc  {ISR}{} $\beta $=0.1 vs.\ random $\beta $=0.1 across $N$=8 seeds. The apparent pooled advantage (OR=2.14) is driven by two outlier seeds (s45, s46) and disappears after seed stratification (CMH OR=1.28, $p$=0.14).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:n8-stats}{{3}{5}{Statistical summary for \isr {} $\beta $=0.1 vs.\ random $\beta $=0.1 across $N$=8 seeds. The apparent pooled advantage (OR=2.14) is driven by two outlier seeds (s45, s46) and disappears after seed stratification (CMH OR=1.28, $p$=0.14)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}ISR as Reward: No Robust Genuine Advantage}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:isr-reward}{{5.3}{5}{ISR as Reward: No Robust Genuine Advantage}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{No Safe Dose.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Meta-Goodhart.}{5}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-seed genuine rates for \textsc  {ISR}{} $\beta $=0.1 vs.\ random $\beta $=0.1 ($N$=8). $N_{\text  {pv}}$ = number of proved samples. Only 2/8 seeds (s45, s46) show \textsc  {ISR}{} advantage; the remaining 6 show the opposite direction. s49-random collapsed to $N_{\text  {pv}}$=5 (repetition failure).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:n8-perseed}{{4}{6}{Per-seed genuine rates for \isr {} $\beta $=0.1 vs.\ random $\beta $=0.1 ($N$=8). $N_{\text {pv}}$ = number of proved samples. Only 2/8 seeds (s45, s46) show \isr {} advantage; the remaining 6 show the opposite direction. s49-random collapsed to $N_{\text {pv}}$=5 (repetition failure)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Effect of premise-count matching on \textsc  {ISR}{}$^*$ (exec-only). Raw \textsc  {ISR}{}$^*$ is corrected by $-$8.5\% on average when controlling for the number of premises. $|P|_{\text  {hack}}$ = mean premise count for hacking samples.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:premise-match}{{5}{6}{Effect of premise-count matching on \isr {}$^*$ (exec-only). Raw \isr {}$^*$ is corrected by $-$8.5\% on average when controlling for the number of premises. $|P|_{\text {hack}}$ = mean premise count for hacking samples}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Premise-Count Confound}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:premise-count}{{5.4}{6}{Premise-Count Confound}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Scale and Cross-Logic Validation}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:cross}{{5.5}{6}{Cross-Scale and Cross-Logic Validation}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Scale.}{6}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-scale exec-only results. 1.7B and 4B both show near-total degeneration but with scale-dependent hacking strategies. 8B training failed due to VRAM constraints at $K$=8 and cold-start stagnation at $K$=4.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:cross-scale}{{6}{7}{Cross-scale exec-only results. 1.7B and 4B both show near-total degeneration but with scale-dependent hacking strategies. 8B training failed due to VRAM constraints at $K$=8 and cold-start stagnation at $K$=4}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Logic (Prolog).}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic vs.\ Optimization.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stochastic Bifurcation.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mode-Dependent Diagnostics.}{7}{section*.19}\protected@file@percent }
+\bibcite{amodei2016concrete}{{1}{2016}{{Amodei et~al.}}{{}}}
+\bibcite{covert2021explaining}{{2}{2021}{{Covert et~al.}}{{}}}
+\bibcite{gao2023scaling}{{3}{2023}{{Gao et~al.}}{{}}}
+\bibcite{luo2024improve}{{4}{2024}{{Luo et~al.}}{{}}}
+\bibcite{pan2022effects}{{5}{2022}{{Pan et~al.}}{{}}}
+\bibcite{shao2024deepseekmath}{{6}{2024}{{Shao et~al.}}{{}}}
+\bibcite{skalse2022defining}{{7}{2022}{{Skalse et~al.}}{{}}}
+\bibcite{wang2024math}{{8}{2024}{{Wang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Capacity Threshold Hypothesis.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\gdef \@abspage@last{9}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan018-additive-random-b01-s42-1000-r2",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:31:40.077Z",
+    "updated_at": "2026-05-15T09:31:48.037Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Random β=0.1 1000步 r2: resume from checkpoint-350（r1 step 400 磁盘满崩溃）。",
+      "reward_formula": "r = r_exec * (1 + 0.1 * random[0,1])",
+      "num_steps": 1000,
+      "beta": 0.1,
+      "plan_id": "plan018",
+      "parent": "plan018-additive-random-b01-s42-1000"
+    }
+  },
+  "timestamp": "2026-05-15T09:31:48.233620+00:00",
+  "trigger": "update_registry"
+}

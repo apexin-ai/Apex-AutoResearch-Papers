@@ -1,0 +1,72 @@
+{
+  "exp_id": "plan018-additive-random-b01-s42-1000-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:31:40.077Z",
+    "updated_at": "2026-05-15T11:31:44.382Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000/checkpoint-350 --data_path data/train_500_seed42.jsonl --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000 --num_steps 1000 --beta 0.1 --seed 42 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "224797",
+      "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s42-1000-r2.log",
+      "submitted_at": "2026-05-15T09:32:10.554Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 7173.8,
+      "gpu_hours": 1.99
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "224797",
+    "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s42-1000-r2.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000/checkpoint-350 --data_path data/train_500_seed42.jsonl --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000 --num_steps 1000 --beta 0.1 --seed 42 --no_wandb\"",
+      "finished_at": "2026-05-15T10:23:56.400Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T10:23:59.009335+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_final_prove_rate": 0.989,
+      "train_final_mean_isr": 0.353,
+      "train_final_reward": 1.062,
+      "train_steps": 1000,
+      "train_runtime_seconds": 2957,
+      "eval_prove_rate": 1,
+      "eval_mean_isr": 0.3333,
+      "eval_isr_std": 0,
+      "eval_median_isr": 0.3333,
+      "eval_proved_only_isr": 0.3333,
+      "eval_n_proved": 100,
+      "eval_n_problems": 100,
+      "eval_component_count_mean": 3,
+      "genuine_rate": 0,
+      "genuine_count": 0,
+      "tautological_collapse": true,
+      "h7_rate": null,
+      "h7_count": null,
+      "h1_rate": null,
+      "h1_count": null
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000",
+    "completed_at": "2026-05-15T11:31:44.382Z"
+  },
+  "timestamp": "2026-05-15T11:31:44.570662+00:00",
+  "trigger": "update_registry"
+}

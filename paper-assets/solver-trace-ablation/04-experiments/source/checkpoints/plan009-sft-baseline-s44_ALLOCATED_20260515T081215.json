@@ -1,0 +1,23 @@
+{
+  "exp_id": "plan009-sft-baseline-s44",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:32:29.554Z",
+    "updated_at": "2026-05-15T08:12:15.584Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "hypothesis": "SFT baseline s44: 补充 n=3 multi-seed 第三个种子。与 s42 (PR=14%, N-H=92.9%) 和 s43 (训练中) 配套，完成 SFT 3-seed 统计支撑。",
+      "plan_id": "plan009",
+      "parent": "plan009-sft-baseline-s42-r4"
+    }
+  },
+  "timestamp": "2026-05-15T08:12:15.813360+00:00",
+  "trigger": "update_registry"
+}

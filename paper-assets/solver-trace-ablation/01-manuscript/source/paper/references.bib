@@ -1,0 +1,562 @@
+% ============================================================
+% LLaMA
+% ============================================================
+
+@article{grattafiori2024llama,
+  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and others},
+  title = {{The Llama 3 Herd of Models}},
+  journal = {arXiv preprint arXiv:2407.21783},
+  year = {2024},
+  eprint = {2407.21783},
+  archiveprefix = {arXiv},
+}
+
+% ============================================================
+% Category 1: Neurosymbolic reasoning + RL/GRPO
+% ============================================================
+
+@article{deepseekmath,
+  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},
+  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},
+  journal      = {arXiv preprint arXiv:2402.03300},
+  year         = {2024},
+  eprint       = {2402.03300},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@article{logic-rl,
+  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},
+  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},
+  journal      = {arXiv preprint arXiv:2502.14768},
+  year         = {2025},
+  eprint       = {2502.14768},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@article{mellgren-prolog-grpo,
+  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},
+  title        = {{Training Language Models to Use Prolog as a Tool}},
+  journal      = {arXiv preprint arXiv:2512.07407},
+  year         = {2025},
+  eprint       = {2512.07407},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@inproceedings{satlm,
+  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},
+  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},
+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year         = {2023},
+}
+
+% ============================================================
+% Category 2: Reward shaping for code/formal verification
+% ============================================================
+
+@inproceedings{lightman-verify-step,
+  author       = {Hunter Lightman and Vineet Kosaraju and Yura Burda and others},
+  title        = {{Let's Verify Step by Step}},
+  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year         = {2024},
+  note         = {arXiv:2305.20050},
+}
+
+@inproceedings{skalse-reward-hacking,
+  author       = {Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},
+  title        = {{Defining and Characterizing Reward Hacking}},
+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year         = {2022},
+  note         = {arXiv:2209.13085},
+}
+
+% ============================================================
+% Category 3: Mutation testing in software engineering
+% ============================================================
+
+@article{demillo1978,
+  author       = {Richard A. DeMillo and Richard J. Lipton and Frederick G. Sayward},
+  title        = {{Hints on Test Data Selection: Help for the Practicing Programmer}},
+  journal      = {Computer},
+  volume       = {11},
+  number       = {4},
+  pages        = {34--41},
+  year         = {1978},
+}
+
+@article{jia-harman-survey,
+  author       = {Yue Jia and Mark Harman},
+  title        = {{An Analysis and Survey of the Development of Mutation Testing}},
+  journal      = {IEEE Transactions on Software Engineering},
+  volume       = {37},
+  number       = {5},
+  pages        = {649--678},
+  year         = {2011},
+}
+
+@article{spurious-rewards,
+  author       = {Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},
+  title        = {{Spurious Rewards: Rethinking Training Signals in RLVR}},
+  journal      = {arXiv preprint arXiv:2506.10947},
+  year         = {2025},
+  eprint       = {2506.10947},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@article{bondarenko-spec-gaming,
+  author       = {Alexander Bondarenko and Denis Volk and Dmitrii Volkov and Jeffrey Ladish},
+  title        = {{Demonstrating Specification Gaming in Reasoning Models}},
+  journal      = {arXiv preprint arXiv:2502.13295},
+  year         = {2025},
+  eprint       = {2502.13295},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@inproceedings{kim-game-formalization,
+  author       = {Kyuhee Kim and Auguste Poiroux and Antoine Bosselut},
+  title        = {{Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning}},
+  booktitle    = {VerifAI-2 Workshop at the International Conference on Learning Representations (ICLR)},
+  year         = {2026},
+  note         = {arXiv:2604.19459},
+}
+
+@inproceedings{gao-reward-overoptimization,
+  author       = {Leo Gao and John Schulman and Jacob Hilton},
+  title        = {{Scaling Laws for Reward Model Overoptimization}},
+  booktitle    = {Proceedings of the International Conference on Machine Learning (ICML)},
+  year         = {2023},
+  note         = {arXiv:2210.10760},
+}
+
+@inproceedings{karwowski-goodhart-rl,
+  author       = {Jacek Karwowski and Oliver Hayman and Xingjian Bai and Klaus Kiendlhofer and Charlie Griffin and Joar Skalse},
+  title        = {{Goodhart's Law in Reinforcement Learning}},
+  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year         = {2024},
+  note         = {arXiv:2310.09144},
+}
+
+% ============================================================
+% Category 6: FOL/Prolog formalization with LLMs
+% ============================================================
+
+@inproceedings{folio,
+  author       = {Simeng Han and Hailey Schoelkopf and Yilun Zhao and Zhenting Qi and Martin Riddell and Luke Benson and Lucy Sun and Ekaterina Zubova and Yujie Qiao and Matthew Burtell and David Peng and Jonathan Fan and Yixin Liu and Brian Wong and Malcolm Sailor and Ansong Ni and Linyong Nan and Jungo Kasai and Tao Yu and Rui Zhang and Shafiq Joty and Alexander R. Fabbri and Wojciech Kryscinski and Xi Victoria Lin and Caiming Xiong and Dragomir Radev},
+  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},
+  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year         = {2024},
+  note         = {arXiv:2209.00840},
+}
+
+@inproceedings{logic-lm,
+  author       = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang},
+  title        = {{Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}},
+  booktitle    = {Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year         = {2023},
+}
+
+@inproceedings{linc,
+  author       = {Theo X. Olausson and Alex Gu and Ben Lipkin and Cedegao E. Zhang and Armando Solar-Lezama and Joshua B. Tenenbaum and Roger Levy},
+  title        = {{LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers}},
+  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year         = {2023},
+}
+
+@article{fover-pei2025,
+  author       = {Yu Pei and Yongping Du and Xingnan Jin},
+  title        = {{FoVer: First-Order Logic Verification for Natural Language Reasoning}},
+  journal      = {Transactions of the Association for Computational Linguistics},
+  volume       = {13},
+  pages        = {1340--1359},
+  year         = {2025},
+}
+
+@article{lorp,
+  author       = {Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu},
+  title        = {{LoRP: LLM-based Logical Reasoning via Prolog}},
+  journal      = {Knowledge-Based Systems},
+  year         = {2025},
+}
+
+@article{manheim-goodhart-taxonomy,
+  author       = {David Manheim and Scott Garrabrant},
+  title        = {{Categorizing Variants of Goodhart's Law}},
+  journal      = {arXiv preprint arXiv:1803.04585},
+  year         = {2019},
+  eprint       = {1803.04585},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@inproceedings{math-shepherd,
+  author       = {Peiyi Wang and Lei Li and Zhihong Shao and Runxin Xu and others},
+  title        = {{Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations}},
+  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},
+  year         = {2024},
+  note         = {arXiv:2312.08935},
+}
+
+% ============================================================
+% Reward shaping and process supervision
+% ============================================================
+
+@article{rlsf,
+  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},
+  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},
+  journal      = {arXiv preprint arXiv:2405.16661},
+  year         = {2024},
+  eprint       = {2405.16661},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@article{gao-effective-rl-reward,
+  author       = {Jiaxuan Gao and Shusheng Xu and Wenjie Ye and Weilin Liu and Chuyi He and Wei Fu and Zhiyu Mei and Guangju Wang and Yi Wu},
+  title        = {{On Designing Effective RL Reward at Training Time for LLM Reasoning}},
+  journal      = {arXiv preprint arXiv:2410.15115},
+  year         = {2024},
+  eprint       = {2410.15115},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+}
+
+@inproceedings{kwa-catastrophic-goodhart,
+  author       = {Thomas Kwa and Drake Thomas and Adri\`{a} Garriga-Alonso},
+  title        = {{Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification}},
+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year         = {2024},
+  note         = {arXiv:2407.14503},
+}
+
+@article{deepseek-prover-v15,
+  author       = {{DeepSeek AI}},
+  title        = {{DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}},
+  journal      = {arXiv preprint arXiv:2408.08152},
+  year         = {2024},
+  eprint       = {2408.08152},
+  archivePrefix = {arXiv},
+}
+
+@article{deepseek-r1,
+  author       = {{DeepSeek-AI}},
+  title        = {{DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning}},
+  journal      = {arXiv preprint arXiv:2501.12948},
+  year         = {2025},
+  eprint       = {2501.12948},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{nlproofs,
+  author       = {Kaiyu Yang and Jia Deng and Danqi Chen},
+  title        = {{Generating Natural Language Proofs with Verifier-Guided Search}},
+  booktitle    = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year         = {2022},
+  eprint       = {2205.12443},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{vstar,
+  author       = {Arian Hosseini and Xingdi Yuan and Nikolay Malkin and Aaron Courville and Alessandro Sordoni and Rishabh Agarwal},
+  title        = {{V-STaR: Training Verifiers for Self-Taught Reasoners}},
+  booktitle    = {Conference on Language Modeling (COLM)},
+  year         = {2024},
+  eprint       = {2402.06457},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{easy-to-hard,
+  author       = {Zhiqing Sun and Longhui Yu and Yikang Shen and Weiyang Liu and Yiming Yang and Sean Welleck and Chuang Gan},
+  title        = {{Easy-to-Hard Generalization: Scalable Alignment Beyond Human Supervision}},
+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year         = {2024},
+  eprint       = {2403.09472},
+  archivePrefix = {arXiv},
+}
+
+% ============================================================
+% Additional reward-shaping papers
+% ============================================================
+
+@article{reward-hacking-survey,
+  author       = {Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others},
+  title        = {{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}},
+  journal      = {arXiv preprint arXiv:2604.13602},
+  year         = {2026},
+  eprint       = {2604.13602},
+  archivePrefix = {arXiv},
+}
+
+@misc{krakovna2020specification,
+  author       = {Victoria Krakovna and Jonathan Uesato and Vladimir Mikulik and Matthew Rahtz and Tom Everitt and Ramana Kumar and Zac Kenton and Jan Leike and Shane Legg},
+  title        = {Specification Gaming: The Flip Side of {AI} Ingenuity},
+  year         = {2020},
+  howpublished = {DeepMind Blog},
+}
+
+@misc{metr-reward-hacking,
+  author       = {Sydney {Von Arx} and Lawrence Chan and Beth Barnes},
+  title        = {{Recent Frontier Models Are Reward Hacking}},
+  year         = {2025},
+  howpublished = {METR Technical Blog},
+  note         = {\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},
+}
+
+@inproceedings{proofwriter,
+  author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},
+  title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},
+  booktitle    = {Findings of the Association for Computational Linguistics (ACL)},
+  year         = {2021},
+  note         = {arXiv:2012.13048},
+}
+
+@article{prooffol-thatikonda2024,
+  author       = {Ramya Keerthy Thatikonda and Jiuzhou Han and Wray Buntine and Ehsan Shareghi},
+  title        = {{Strategies for Improving NL-to-FOL Translation with LLMs: Data Generation, Incremental Fine-Tuning, and Verification}},
+  journal      = {arXiv preprint arXiv:2409.16461},
+  year         = {2024},
+  eprint       = {2409.16461},
+  archivePrefix = {arXiv},
+}
+
+@article{qwen3,
+  author       = {{Qwen Team}},
+  title        = {{Qwen3 Technical Report}},
+  journal      = {arXiv preprint arXiv:2505.09388},
+  year         = {2025},
+  eprint       = {2505.09388},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CL},
+}
+
+@article{helff2026gaming,
+  author       = {Lukas Helff and Quentin Delfosse and David Steinmann and Ruben H{\"a}rle and Hikaru Shindo and Patrick Schramowski and Wolfgang Stammer and Kristian Kersting and Felix Friedrich},
+  title        = {{LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking}},
+  journal      = {arXiv preprint arXiv:2604.15149},
+  year         = {2026},
+  eprint       = {2604.15149},
+  archivePrefix = {arXiv},
+}
+
+@article{khalifa2026countdown,
+  author       = {Muhammad Khalifa and Zohaib Khan and Omer Tafveez and Hao Peng and Lu Wang},
+  title        = {{Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR}},
+  journal      = {arXiv preprint arXiv:2603.07084},
+  year         = {2026},
+  eprint       = {2603.07084},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{uesato2022solving,
+  title={{Solving Math Word Problems with Process- and Outcome-Based Feedback}},
+  author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramana and Song, Francis and Siegel, Noah and Wang, Lisa and Creswell, Antonia and Irving, Geoffrey and Higgins, Irina},
+  booktitle={NeurIPS 2022 Workshop on MATH-AI},
+  year={2022}
+}
+
+@article{cobbe2021training,
+  author       = {Karl Cobbe and Vineet Kosaraju and Mohammad Bavarian and Mark Chen and Heewoo Jun and Lukasz Kaiser and Matthias Plappert and Jerry Tworek and Jacob Hilton and Reiichiro Nakano and Christopher Hesse and John Schulman},
+  title        = {{Training Verifiers to Solve Math Word Problems}},
+  journal      = {arXiv preprint arXiv:2110.14168},
+  year         = {2021},
+}
+
+@inproceedings{processbench,
+  author       = {Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin},
+  title        = {{ProcessBench: Identifying Process Errors in Mathematical Reasoning}},
+  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},
+  year         = {2025},
+  note         = {arXiv:2412.06559},
+}
+
+@article{pronesti2026beyond,
+  author       = {Massimiliano Pronesti and Anya Belz and Yufang Hou},
+  title        = {{Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning}},
+  journal      = {arXiv preprint arXiv:2601.17223},
+  year         = {2026},
+  eprint       = {2601.17223},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{ng1999policy,
+  author    = {Andrew Y. Ng and Daishi Harada and Stuart Russell},
+  title     = {Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping},
+  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
+  year      = {1999},
+  pages     = {278--287},
+}
+
+@article{geirhos2020shortcut,
+  author  = {Robert Geirhos and J{\"o}rn-Henrik Jacobsen and Claudio Michaelis and Richard Zemel and Wieland Brendel and Matthias Bethge and Felix A. Wichmann},
+  title   = {Shortcut Learning in Deep Neural Networks},
+  journal = {Nature Machine Intelligence},
+  volume  = {2},
+  pages   = {665--673},
+  year    = {2020},
+}
+
+@article{dong2026probing,
+  author       = {Yiming Dong and Kun Fu and Haoyu Li and Xinyuan Zhu and Yurou Liu and Lijing Shao and Jieping Ye and Zheng Wang},
+  title        = {{Probing RLVR Training Instability Through the Lens of Objective-Level Hacking}},
+  journal      = {arXiv preprint arXiv:2602.01103},
+  year         = {2026},
+  eprint       = {2602.01103},
+  archivePrefix = {arXiv},
+}
+
+@article{yan2026spurious,
+  author       = {Lecheng Yan and Ruizhe Li and Guanhua Chen and Qing Li and Jiahui Geng and Wenxi Li and Vincent Wang and Chris Lee},
+  title        = {{Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs}},
+  journal      = {arXiv preprint arXiv:2601.11061},
+  year         = {2026},
+  eprint       = {2601.11061},
+  archivePrefix = {arXiv},
+}
+
+@article{tarek2025reward,
+  author       = {Mirza Farhan Bin Tarek and Rahmatollah Beheshti},
+  title        = {{Reward Hacking Mitigation using Verifiable Composite Rewards}},
+  journal      = {arXiv preprint arXiv:2509.15557},
+  year         = {2025},
+  eprint       = {2509.15557},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{yue2025rl-reasoning,
+  author       = {Yang Yue and Zhiqi Chen and Rui Lu and Andrew Zhao and Zhaokai Wang and Shiji Song and Gao Huang},
+  title        = {Does Reinforcement Learning Really Incentivize Reasoning Capacity in {LLMs} Beyond the Base Model?},
+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year         = {2025},
+  eprint       = {2504.13837},
+  archivePrefix = {arXiv},
+}
+
+@article{sullivan2025grpo-prm,
+  author       = {Michael Sullivan and Alexander Koller},
+  title        = {{GRPO} is Secretly a Process Reward Model},
+  journal      = {arXiv preprint arXiv:2509.21154},
+  year         = {2025},
+  eprint       = {2509.21154},
+  archivePrefix = {arXiv},
+}
+
+% ============================================================
+% R19 reviewer-requested references
+% ============================================================
+
+@inproceedings{setlur2025rewarding,
+  author       = {Amrith Setlur and Chirag Nagpal and Adam Fisch and Xinyang Geng and Jacob Eisenstein and Rishabh Agarwal and Alekh Agarwal and Jonathan Berant and Aviral Kumar},
+  title        = {{Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning}},
+  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year         = {2025},
+  note         = {arXiv:2410.08146},
+}
+
+@article{alphaproof2025,
+  author       = {Thomas Hubert and Rishi Mehta and Laurent Sartran and others},
+  title        = {{Olympiad-Level Formal Mathematical Reasoning with Reinforcement Learning}},
+  journal      = {Nature},
+  year         = {2025},
+  doi          = {10.1038/s41586-025-09833-y},
+}
+
+% ============================================================
+% Solvers (Prover9, SWI-Prolog)
+% ============================================================
+
+@article{deepseek-prover-v2,
+  author       = {{DeepSeek-AI}},
+  title        = {{DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition}},
+  journal      = {arXiv preprint arXiv:2504.21801},
+  year         = {2025},
+  eprint       = {2504.21801},
+  archivePrefix = {arXiv},
+}
+
+@article{cui2025prime,
+  author       = {Ganqu Cui and Lifan Yuan and Zefan Wang and Hanbin Wang and Yuchen Zhang and Jiacheng Chen and Wendi Li and Bingxiang He and Yuchen Fan and Tianyu Yu and Qixin Xu and Weize Chen and Jiarui Yuan and Huayu Chen and Kaiyan Zhang and Xingtai Lv and Shuo Wang and Yuan Yao and Xu Han and Hao Peng and Yu Cheng and Zhiyuan Liu and Maosong Sun and Bowen Zhou and Ning Ding},
+  title        = {{Process Reinforcement through Implicit Rewards}},
+  journal      = {arXiv preprint arXiv:2502.01456},
+  year         = {2025},
+  eprint       = {2502.01456},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CL},
+}
+
+@misc{mccune-prover9,
+  author       = {William McCune},
+  title        = {{Prover9 and Mace4}},
+  year         = {2005--2010},
+  howpublished = {\url{https://www.cs.unm.edu/~mccune/prover9/}},
+  note         = {Version 2009-11A},
+}
+
+@inproceedings{lundberg2017unified,
+  author       = {Scott M. Lundberg and Su-In Lee},
+  title        = {A Unified Approach to Interpreting Model Predictions},
+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year         = {2017},
+}
+
+@inproceedings{coste2023reward,
+  author       = {Thomas Coste and Usman Anwar and Robert Kirk and David Krueger},
+  title        = {Reward Model Ensembles Help Mitigate Overoptimization},
+  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year         = {2024},
+  note         = {arXiv:2310.02743},
+}
+
+@inproceedings{moskovitz2023confronting,
+  author       = {Ted Moskovitz and Aldo Pacchiano and Parker Lund and Jakob Foerster},
+  title        = {Confronting Reward Model Overoptimization with Constrained {RLHF}},
+  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year         = {2024},
+  note         = {arXiv:2310.04373},
+}
+
+@article{wielemaker2012swi,
+  author       = {Jan Wielemaker and Tom Schrijvers and Markus Triska and Torbj{\"o}rn Lager},
+  title        = {{SWI-Prolog}},
+  journal      = {Theory and Practice of Logic Programming},
+  volume       = {12},
+  number       = {1--2},
+  pages        = {67--96},
+  year         = {2012},
+  doi          = {10.1017/S1471068411000494},
+}
+
+@article{wilhelm2026monitoring,
+  title={Monitoring Emergent Reward Hacking During Generation via Internal Activations},
+  author={Wilhelm, Patrick and Wittkopp, Thorsten and Kao, Odej},
+  journal={arXiv preprint arXiv:2603.04069},
+  year={2026}
+}
+
+@article{lanham2023faithfulness,
+  author       = {Tamera Lanham and Anna Chen and Ansh Radhakrishnan and Benoit Steiner and Carson Denison and Danny Hernandez and Dustin Li and Esin Durmus and Evan Hubinger and Jackson Kernion and Kamil{\.e} Lukosiute and Karina Nguyen and Newton Cheng and Nicholas Joseph and Nicholas Schiefer and Oliver Rausch and Robin Larson and Sam McCandlish and Sandipan Kundu and Saurav Kadavath and Shannon Yang and Thomas Henighan and Timothy Maxwell and Timothy Telleen-Lawton and Tristan Hume and Zac Hatfield-Dodds and Jared Kaplan and Jan Brauner and Samuel R. Bowman and Ethan Perez},
+  title        = {{Measuring Faithfulness in Chain-of-Thought Reasoning}},
+  journal      = {arXiv preprint arXiv:2307.13702},
+  year         = {2023},
+  eprint       = {2307.13702},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{turpin2023unfaithful,
+  author       = {Miles Turpin and Julian Michael and Ethan Perez and Samuel R. Bowman},
+  title        = {{Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting}},
+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year         = {2023},
+  note         = {arXiv:2305.04388},
+}
+
+@article{nishimura2026specgaming,
+  author       = {Kei Nishimura-Gasparian and Robert McCarthy and David Lindner},
+  title        = {{Towards Understanding Specification Gaming in Reasoning Models}},
+  journal      = {arXiv preprint arXiv:2605.02269},
+  year         = {2026},
+  eprint       = {2605.02269},
+  archivePrefix = {arXiv},
+}

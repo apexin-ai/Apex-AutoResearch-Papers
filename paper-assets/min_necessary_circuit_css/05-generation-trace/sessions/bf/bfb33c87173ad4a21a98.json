@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfb33c87173ad4a21a98",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260512T230501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260512T230501_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "42e176a2589bb4c96befe4a8d083035d312d9043c865ee94bac382d7b3704c70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献扫描完成。结果写入 `artifacts/literature_map.yaml`（13篇论文）。\n\n**截至 2026-05-12，未发现新的 cross-method circuit consensus 工作。** 核心发现：\n\n| 论文 | 做了什么 | 为什么不是我们的 novelty |\n|------|---------|------------------------|\n| CIRCUS (2603.00523v2) | intra-method threshold variation ensemble | 单一算法内变阈值，不跨算法族 |\n| Mondorf et al. (2510.06811) | EAP-IG + EP 平行/串行 ensemble | 仅 gradient-family 内组合 |\n| Certified Circuits (2602.22968) | 数据扰动稳定性认证 | 单方法 + data axis，非 method axis |\n| Nikankin et al. (2510.25786) | 单方法 bootstrapping | 同上 |\n\n**CSS 的 cross-algorithm-family consensus（gradient vs mask vs causal）在当前文献中无人做过，novelty 成立。**\n\nCIRCUS 无 v2/follow-up（v2 只是同篇 minor update，2026-03-20）。\n\n值得关注的新工作：\n- Formal MI (ICLR 2026) — 可用于验证 consensus circuit 的 minimality\n- PIE (2604.16889) — CLT-native 新方法，可纳入 CSS ensemble\n- GIM — MIB benchmark 第一，作为强 baseline 纳入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan.md"
+}

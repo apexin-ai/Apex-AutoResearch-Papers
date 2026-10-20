@@ -1,0 +1,26 @@
+{
+  "exp_id": "gated-isr-warmstart-t015-s43",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:50:36.508Z",
+    "updated_at": "2026-05-16T16:50:46.717Z",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/grpo_isr_warmstart_t015.yaml --seed 43 --output_dir /root/autodl-tmp/outputs/gated_warmstart_v3_t015_s43",
+      "server": "westd-39279",
+      "data_path": "data/proofwriter_fol_100.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-4B (exec_retrain_v3_s43 checkpoint-200)",
+      "seed": 43,
+      "gpu": "cuda:1",
+      "reward_mode": "isr_gated",
+      "isr_threshold": 0.15,
+      "num_steps": 300
+    }
+  },
+  "timestamp": "2026-05-16T16:50:46.979893+00:00",
+  "trigger": "update_registry"
+}

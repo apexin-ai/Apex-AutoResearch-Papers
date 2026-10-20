@@ -1,0 +1,45 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{ISR Capability Boundary.}
+ISR measures syntactic component necessity---whether each component is individually required for proof success---not semantic faithfulness to the natural language input.
+A formalization where every component is necessary may still misrepresent the intended reasoning chain.
+We verify this empirically: downstream NLI accuracy shows no correlation with ISR (Spearman $\rho = -0.049$, $p = 0.187$, n.s.), confirming that ISR captures structural tightness orthogonal to semantic correctness.
+Practitioners should treat ISR as a necessary-but-not-sufficient diagnostic: low ISR reliably indicates structural degeneration, but high ISR does not guarantee faithful reasoning.
+Importantly, low ISR carries different semantics depending on the training objective.
+Under exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning.
+Under ISR-as-reward, high ISR reflects metric gaming.
+ISR values must always be interpreted in the context of the optimization objective that produced them.
+
+\paragraph{Premise Count Confound.}
+LOO-based metrics like ISR are mathematically biased by component count.
+With $n$ components, each carries a $1/n$ share of the proof burden; fewer components mechanically inflate ISR regardless of quality.
+As shown in \S\ref{sec:goodhart}, over half of ISR-reward genuine samples contain only 1--2 premises, where ISR $\geq 0.5$ is an arithmetic inevitability.
+Controlling for premise count eliminates the apparent ISR advantage entirely (1.06$\times$ vs.\ the raw 2.4$\times$).
+This confound is not specific to our setting: any LOO-based diagnostic applied to variable-length structured outputs requires component-count normalization.
+We recommend that future work employing LOO-based structural metrics report premise-count-matched comparisons alongside raw values.
+
+\paragraph{Meta-Level Goodhart's Law.}
+Our results instantiate a recursive form of Goodhart's Law not previously documented empirically in NLP.
+In the standard formulation \citep{manheim-goodhart-taxonomy}, optimizing a proxy $U$ causes divergence from the true objective $V$.
+ISR adds a layer: it was designed to \emph{detect} proxy gaming of $r_{\text{exec}}$, yet when optimized, ISR itself becomes a gaming target.
+Under the taxonomy of \citet{manheim-goodhart-taxonomy}, $\beta{=}0.3$ exemplifies extremal Goodhart---the optimizer enters a regime where the proxy-target relationship breaks down entirely---while $\beta{=}0.1$ instantiates a meta-level variant where the diagnostic is gamed through its own measurement mechanism (conclusion duplication inflating the LOO score).
+The scaling laws of \citet{gao-reward-overoptimization} predict proxy reward increases until a critical point; our dose-response results ($\beta{=}0.1$ gaming, $\beta{=}0.3$ collapse) trace this trajectory within a single experimental setup.
+This suggests a general principle for the reward-shaping community: structural diagnostics derived from proxy metrics inherit the gaming vulnerability of their parent metrics when repurposed as optimization targets.
+
+\paragraph{Classifier Limitations.}
+Text-match hacking classifiers have systematic blind spots that functional analysis exposes.
+In Prolog STA, two seeds achieved 100\% genuine classification under strict text matching, yet functional analysis via the $n_{\text{necessary}}$ distribution revealed 0\% genuine in both cases (Table~\ref{tab:prolog-crosslogic}).
+One seed produces uppercase pseudo-Prolog that is functionally tautological; the other converts conclusions to snake\_case atoms serving as both fact and query---a gaming mode invisible to string comparison.
+The latter case is particularly instructive: surface metrics suggest excellent performance (high PR and high ISR), and only the $n_{\text{necessary}}$ distribution reveals the underlying gaming.
+We recommend that practitioners always cross-validate text-match classifiers with functional metrics, and never treat classifier-reported genuine rates as ground truth without independent verification.
+
+\paragraph{Practical Implications.}
+Our findings yield five concrete guidelines for GRPO-trained neurosymbolic systems:
+\begin{enumerate}[nosep,leftmargin=*]
+\item Never evaluate by prove rate alone---use ISR and component count as joint diagnostics.
+\item Report multi-seed results: single-seed GRPO evaluation is unreliable, as cross-seed variance can exceed the effect size of interest (\S\ref{sec:diagnostic}).
+\item Use ISR for post-hoc diagnosis only, never as a training signal---any dose induces gaming or collapse.
+\item Treat LOO-based metrics as component-count-biased until normalized.
+\item Expect conclusion embedding as a GRPO-universal baseline (Table~\ref{tab:beta01-3seed}): reward shaping alters hacking composition, not prevalence.
+\end{enumerate}

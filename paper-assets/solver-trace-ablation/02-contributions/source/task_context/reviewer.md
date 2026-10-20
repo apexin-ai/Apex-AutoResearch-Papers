@@ -1,44 +1,42 @@
 ---
-loop: 1
+loop: 24
 reason: max_wall_time
-updated: '2026-05-13T08:53:33+00:00'
+updated: '2026-05-25T03:39:24+00:00'
 ---
 
 ### 1. 🔴 硬约束 / 红线
-- 本项目 GPU 白名单：autodl-pgpf 服务器的 cuda:0 和 cuda:1（已通过 get_project_resource_usage 确认）
-- Phase 0 脚本硬编码 DEVICE_FT="cuda:0"、DEVICE_BASE="cuda:1"，不要改设备映射
-- AutoDL 实例重启后 SSH 端口会变，连接失败先查控制台
-- filters.py 中 lexical conformity 过滤方向有 **已报告未修复的 critical bug**：当前代码 `lc_vals[i] <= lc_thresh` 保留低 conformity 样本，与 IDEA_BRIEF 相反（应保留高 LC）。Phase 1 前必须确认已修复，否则结果全部反转
+- 论文已进入 ARR 提交倒计时（DDL 2026-05-25），**不得再添加新实验数据到论文**（D164 决策：skip R34 前的版本已是终态，后续 R34 仅做写作修复）
+- 1.7B cross-scale 数据（registry 有 8+ 个实验）**不纳入本轮提交**，保留为 rebuttal 弹药（我的审查建议，Director 已采纳）
+- Figure 3 (seed divergence) 数据曾有 critical 不一致（s42=6% 无出处，caption 说 1000 steps 但仅 s42 有 1000 步数据），**必须确认此图已被修复后再提交**
+- Table 1 Random β=0.1 CE% 从 71 改为 69——需确认是有意数据修正还是 typo
 
 ### 2. 🖥️ 基础设施快照
-- 服务器：autodl-pgpf，GPU：2× NVIDIA RTX PRO 6000 Blackwell（98GB each）
-- 工作目录：/root/autodl-tmp/pgpf
-- Python：/root/miniconda3/bin/python（conda base 环境，不用 venv）
-- 模型路径：/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B
-- 数据：/root/autodl-tmp/pgpf/data/（train 8000 / val 1000 / test 1000，OpenHermes-2.5 子集）
-- Embedding 模型：dunzhang/stella_en_1.5B_v5（HF cache）
-- 输出目录：/root/autodl-tmp/pgpf/outputs/phase0/
-- W&B：未配置（report_to="none"）
-- 网络加速：`source /etc/network_turbo` + SSL 证书环境变量
-- 活跃进程：phase0_ortho_v2（PID 10520，tmux，仍在 Step 1 训练中，约 115/750 步）
+- 服务器：westd-39279 (root)，代码根目录 /root/solver-trace-ablation
+- 论文本地路径：/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/
+- Registry：184 个实验，0 RUNNING，73 success / 50 negative / 49 failed
+- GPU 已释放，无活跃训练进程
+- 无活跃 cron / Worker 回调
 
 ### 3. 📊 当前状态
-- phase0_ortho（v1）：DONE/crashed — 训练完成后生成步骤静默崩溃，无输出。已报告 Director
-- phase0_ortho_v2：ANALYZING（registry）但实际仍在服务器上运行（训练 115/750 步，~15%）。Agent 的 analysis worker 已完成但拿不到结果（因为实验还没跑完）
-- paper_framing.md：已创建，质量良好，已审查通过（info）
-- Pipeline 代码（artifacts/pgpf/）：已审查，报告了 2 critical + 4 warning，核心是 LC 过滤方向反转和默认模型错误
-- 等待：phase0_ortho_v2 跑完 → 读取 correlation_matrix.json + summary.json → 独立核实 Phase 0 pass/fail
+刚完成 R34 修复的 14 项逐条验证，**14/14 PASS**。修复覆盖：
+- C3 overclaim："establishing" → "confirming" (Prolog) + "exploratory" (ProofFOL)，三处同步（intro/abstract/conclusion）
+- ISR framing：method.tex L54 加 screening trigger 定位句
+- s43 sensitivity：从 footnote 升级到正文句（experiments.tex L65），复发×3 应终止
+- Classifier recall：limitations.tex L9 加自约束论证（precision=100% + N-H=6% → recall≥94%）
+- Table 1 caption：从 ~150 词精简到 ~48 词
+- 因果 claim：experiments.tex L39 + conclusion.tex L7 两处同步弱化
+- 附录：Table 5 Fisher caveat、Shapley 推导、§4.4 signposting 等
 
 ### 4. 📋 待办
-- phase0_ortho_v2 输出文件出现（summary.json） → 立即读取 correlation_matrix.json，独立核算所有 |r| 值，比对 pass criteria（无属性对 |r|>0.7，LC-Confidence |r|<0.5）
-- Phase 0 PASS → 确认 Agent 进入 Phase 1 前：(a) 验证 filters.py LC 方向 bug 已修复；(b) 验证 metrics.py PPL padding bug 已修复；(c) 验证 config 默认值已对齐（real_data_mix_ratio=0.5, num_generations=3）
-- Phase 0 FAIL（高相关性） → 审查 Agent 的 pivot/abandon 决策是否有数据支撑
-- Director 转发 framing 调整提案 → Read negative-framing-review skill 后按四维度审
+- **提交前**：确认 Figure 3 数据修复状态（我标了 critical 但未在 R34 修复清单中看到确认）
+- **提交前**：确认 Table 1 CE% 71→69 改动来源
+- §4.4 signposting "exploratory in nature" 与 C3 Prolog "confirming" 有微弱张力——如果审稿人提到，改为 "these extensions provide varying levels of evidence"
+- **如果收到审稿意见**：1.7B 数据（d129 系列）可立即展开为 rebuttal 段落，展示三 scale 点 (1.7B/4B/8B) + capacity-dependent gaming mode 转移
+- **如果审稿人质疑 single model**：LLaMA-3.2-3B exec-only 实验（d165 系列，3 seeds，全部 non-convergence PR~15%）也可作为 rebuttal 素材
 
 ### 5. 🎯 战略上下文
-- D001：放弃 EMNLP 2026 ARR（5/25），重定向 AAAI 2027（abstract 7/25, paper 8/1）— ~11 周
-- 立项评审 Z=28% FAILED_below_30，核心短板是 novelty 天花板（"straightforward application of prior findings"）
-- 突破路径：阈值轨迹分析（PGPF-L）需产出 surprising findings（如相变结构、反直觉跨域差异），否则审稿人会判 "expected next step"
-- **易错点**：Agent 的 registry conclusion="failed" 对 v1 是运行时崩溃不是科学性失败，不要误判为"Phase 0 假设被否定"
-- **易错点**：phase0_ortho_v2 的 registry status=ANALYZING 但实验实际还在跑，不要假设有结果可读
-- Phase 1 gate check 已修正为三条件（vs Confidence ≥5% relative + vs Random + 最低信号门槛 5%），是我之前审查推动的
+- 核心结论：STA 作为诊断有效（ISR scalar 做 screening，mode taxonomy 做定论），但 ISR 作为 reward 触发 seed-dependent Goodhart effect（3/5 gaming, 2/5 genuine）。Observe-vs-optimize asymmetry 是论文 thesis。
+- R31-R33 均评 3.0 (Findings level)，R34 评 3.5 (Borderline Conference)。修复后应稳定在 3.5。
+- **易错判断**：不要认为 ProofFOL 证据与 Prolog 证据同等强——Prolog 是 3/3 seeds 共识（强），ProofFOL 是 p=0.10 underpowered（弱）。论文的 C3 claim 重心必须在 Prolog。
+- **易错判断**：ISR* 1.06× (p=0.317) 不构成 ISR-as-reward 的"成功"——compositional mode shift (χ²=174.8) 才是 Goodhart 证据。不要在任何地方暗示 ISR scalar 有诊断价值。
+- paper_framing.md 中的 H1/H7/H8/H9 命名是旧体系，论文用 CE/TS/PG 命名，翻译时极易出错。

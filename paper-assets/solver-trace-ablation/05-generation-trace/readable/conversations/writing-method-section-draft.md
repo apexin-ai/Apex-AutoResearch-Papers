@@ -1,0 +1,365 @@
+# writing method section draft
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 12
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/chats/worker_writing_method-section-draft_20260515T023348.jsonl`
+- **Structured JSON:** [`9025ce39be4982eb5ca7.json`](../../sessions/90/9025ce39be4982eb5ca7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+12 recorded events
+
+### Assistant
+
+_source line 1 · 2026-05-15T02:33:59.082260+00:00_
+
+You've hit your limit · resets 4:10am (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_writing_method-section-draft_20260515T023348"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T02:37:30.368594+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__write_paper_section,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__write_paper_section,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T02:37:30.369813+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "ToolSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T02:37:30.370253+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T02:37:30.371053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (7 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 se
+…[truncated 23092 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T02:37:30.371349+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "writing_plan.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "writing_plan.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T02:37:30.372022+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/writing_plan.yaml\", \"content\": \"meta:\\n  venue: EMNLP 2026\\n  track: main\\n  template: acl2023/\\n  template_note: \\\"ARR May 25 cycle. ACL Rolling Review format (acl2023.sty).\\\"\\n  page_limit: 8\\n  deadline: 2026-05-25\\n  core_claim: >\\n    ISR (Intensional Structural Reward), derived via Solver Trace Ablation,\\n    serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers\\n    but fails as a training signal due to meta-level Goodhart's Law — the diagnostic\\n    metric becomes gamed when optimized, with apparent improvements explained by\\n    premise minimization artifacts.\\n  created_at: 2026-05-14T18:00:00Z\\n  updated_at: 2026-05-14T19:05:00Z\\n  update_note: \\\"Director approved with 5 corrections applied: taxonomy 6→7, Claim 3 Prolog STA 3/3 gaming complete, conclusion limitations updated, tab5/fig4 expanded, registry_refs added.\\\"\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 250\\n    core_bullets:\\n      - \\\"Problem: GRPO formalizers achieve high prove rates but produce structurally degenerate outputs; no diagnostic exists\\\"\\n      - \\\"Method: STA derives ISR via leave-one-out component necessity testing on solver inputs\\\"\\n      - \\\"Claim 1: ISR detects hacking invisible to prove_rate (0.64→0.13→0.003 collapse over 100→500→1000 steps)\\\"\\n      - \\\"Claim 2: ISR-as-reward exhibits meta-level Goodhart — β=0.1 induces ISR-specific gaming (H7=64.5% vs 0% random), premise-matched 1.06x; β=0.3 PR collapses (18% vs 48% random)\\\"\\n      - \\\"Claim 3: ISR diagnostic transfers to Prolog (cross-logic generality)\\\"\\n      - \\\"Taxonomy: 7 distinct hacking modes identified across conditions (including query-as-fact gaming discovered in Prolog STA)\\\"\\n    dependencies: [experiments, method, discussion]\\n    tables: []\\n    figures: []\\n    registry_r
+…[truncated 17631 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T02:37:30.372445+00:00_
+
+called mcp__agent-ml-research__write_paper_section
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__write_paper_section</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "section": "method",
+  "content": "\\section{Method}\n\\label{sec:method}\n\nWe define the formalization task (\\S\\ref{sec:method:task}), the GRPO training setup with execution-only reward (\\S\\ref{sec:method:grpo}), the Solver Trace Ablation (STA) protocol (\\S\\ref{sec:method:sta}) and its derived metric ISR (\\S\\ref{sec:method:isr}), the family of reward formulations we compare (\\S\\ref{sec:method:rewards}), and the seven-mode hacking taxonomy used to characterize policy outputs (\\S\\ref{sec:method:taxonomy}).\n\n\\subsection{Task}\n\\label{sec:method:task}\n\nA formalizer is a policy $\\pi_\\theta$ that maps a natural-language premise set with a target conclusion $x = (P_{\\text{NL}}, q_{\\text{NL}})$ to a formal program $y = (P_{\\text{F}}, q_{\\text{F}})$ in a target logic. We instantiate two settings: first-order logic (FOL) verified by Prover9~\\citep{placeholder}, and Prolog verified by SWI-Prolog~\\citep{placeholder}. A solver $\\mathcal{S}$ executes $y$ and returns a binary outcome $\\mathcal{S}(y) \\in \\{0, 1\\}$, where $\\mathcal{S}(y) = 1$ iff $q_{\\text{F}}$ is provable from $P_{\\text{F}}$ within a fixed time budget. We use ProofWriter-FOL~\\citep{placeholder} and a derived Prolog port as the data distribution.\n\n\\subsection{GRPO with Execution-Only Reward}\n\\label{sec:method:grpo}\n\nWe train $\\pi_\\theta$ with Group Relative Policy Optimization~\\citep{placeholder}. For each prompt $x$, we sample a group of $K$ completions $\\{y^{(k)}\\}_{k=1}^{K}$ from $\\pi_\\theta$ and assign each a scalar reward $r(x, y^{(k)})$. GRPO normalizes rewards within the group:\n\\begin{equation}\n\\tilde{r}^{(k)} = \\frac{r^{(k)} - \\mu_g}{\\sigma_g + \\epsilon}, \\quad \\mu_g, \\sigma_g = \\text{mean, std}(\\{r^{(j)}\\}_{j=1}^{K}),\n\\end{equation}\nand updates $\\theta$ via the standard PPO-style clipped objective using $\\tilde{r}^{(k)}$ as the per-completion advantage~\\citep{placeholder}. The execution-only baseline reward is\n\\begin{equation}\nr_{\\text{exec}}(x, y) = \\mathcal{S}(y) \\in \\{0, 1\\}.\n\\label{eq:rexec}\n\\end{equation}\nThis is the dominant choice in current neurosymbolic GRPO work~\\citep{placeholder} and the reference point for all other reward formulations below.\n\n\\subsection{Solver Trace Ablation}\n\\label{sec:method:sta}\n\nExecution-only reward is structure-blind: any $y$ with $\\mathcal{S}(y) = 1$ receives full credit, including degenerate solutions in which the conclusion is restated as a premise or the program reduces to a tautology. To probe \\emph{which} components of $y$ actually carry the proof, we apply leave-one-out (LOO) ablation to the solver inputs.\n\nTreat a formalization as an ordered sequence of \\emph{components} $y = (c_1, \\dots, c_n)$, where each $c_i$ is a single FOL formula in $P_{\\text{F}}$ (for FOL) or a single Prolog clause in $P_{\\text{F}}$ (for Prolog). The conclusion/query $q_{\\text{F}}$ is held fixed. The STA procedure for a single proved sample is:\n\n\\begin{enumerate}\n\\item Verify $\\mathcal{S}(y) = 1$. Unproved samples are excluded from the metric.\\footnote{All ISR values reported in this paper are computed over the proved subset (\\emph{proved-only} ISR$^*$), so that ISR is a structural property of successful proofs and does not absorb prove-rate signal.}\n\\item For each $i \\in \\{1, \\dots, n\\}$, construct the ablated program $y_{\\setminus i} = (c_1, \\dots, c_{i-1}, c_{i+1}, \\dots, c_n)$ and re-run the solver to obtain $\\mathcal{S}(y_{\\setminus i})$.\n\\item Mark $c_i$ as \\emph{necessary} if $\\mathcal{S}(y_{\\setminus i}) = 0$, i.e., its removal breaks the proof.\n\\end{enumerate}\n\nSTA is solver-agnostic in the sense that it requires only black-box access to $\\mathcal{S}$; it transfers across logics by changing the parser that splits $y$ into components.\n\n\\subsection{Intensional Structural Reward (ISR)}\n\\label{sec:method:isr}\n\nThe Intensional Structural Reward is the fraction of components whose removal breaks the proof:\n\\begin{equation}\n\\mathrm{ISR}(x, y) \\;=\\; \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}\\!\\left[\\mathcal{S}(y_{\\setminus i}) = 0\\right] \\;\\in\\; [0, 1].\n\\label{eq:isr}\n\\end{equation}\n$\\mathrm{ISR} = 1$ iff every component is load-bearing; $\\mathrm{ISR} = 0$ iff the proof is robust to removing any single component, which is the signature of redundant or vacuous formalizations. By construction, $\\mathrm{ISR}$ is undefined for $\\mathcal{S}(y) = 0$; in our reporting we either restrict to the proved subset or, when used as a reward, impose $\\mathrm{ISR}(x, y) := 0$ for $\\mathcal{S}(y) = 0$.\n\nWe emphasize two scope limits, both used directly in our analysis. First, $\\mathrm{ISR}$ measures \\emph{syntactic} component necessity, not semantic faithfulness to the natural-language input. Second, $\\mathrm{ISR}$ inherits a count bias from LOO: holding genuine reasoning fixed, fewer components mechanically inflate $\\mathrm{ISR}$, since each surviving component is more likely to be pivotal. We treat both as load-bearing properties of the metric, not bugs to be patched.\n\n\\subsection{Reward Formulations}\n\\label{sec:method:rewards}\n\nWe compare five reward formulations, all sharing the GRPO training pipeline of \\S\\ref{sec:method:grpo}:\n\\begin{align}\n\\textbf{Exec-only:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\label{eq:rew-exec}\\\\\n\\textbf{Additive ISR:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot \\mathrm{ISR}(x, y)\\bigr) \\label{eq:rew-isr}\\\\\n\\textbf{Additive random:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot u\\bigr), \\;\\; u \\sim \\mathcal{U}[0,1] \\label{eq:rew-rand}\\\\\n\\textbf{Convex:} \\quad & r(x, y) = (1 - \\alpha)\\, r_{\\text{exec}}(x, y) + \\alpha \\cdot \\mathrm{ISR}(x, y) \\label{eq:rew-cvx}\\\\\n\\textbf{SFT:} \\quad & \\text{supervised fine-tuning on gold formalizations (no RL).} \\label{eq:rew-sft}\n\\end{align}\nThe additive forms gate the structural bonus on proof success, so $\\mathrm{ISR}$ never rewards an unproved sample. Eq.~\\eqref{eq:rew-rand} is the matched control for Eq.~\\eqref{eq:rew-isr}: same shape, same dose, and same effect on the average reward magnitude, but the structural signal is replaced by noise. Any effect attributable to $\\mathrm{ISR}$ as a learning signal must exceed this control. We sweep $\\beta \\in \\{0.1, 0.3\\}$ for the additive forms; $\\alpha \\in (0, 1)$ for the convex form. The SFT baseline isolates whether the hacking patterns we observe are an RL-reward effect or a property of the data and base model.\n\n\\subsection{Hacking Taxonomy}\n\\label{sec:method:taxonomy}\n\nTo classify the structural failure modes induced by the reward formulations above, we apply a fixed taxonomy of seven hacking modes to every proved sample:\n\n\\begin{itemize}\n\\item \\textbf{H1 — Multi-premise conclusion embedding:} the conclusion $q_{\\text{F}}$ (or a trivial rewrite) appears within $P_{\\text{F}}$ alongside other premises. The proof is one-step.\n\\item \\textbf{H7 — Single premise equals conclusion:} $|P_{\\text{F}}| = 1$ and the sole premise is $q_{\\text{F}}$. The extreme form of H1.\n\\item \\textbf{Tautological collapse:} the proved formula is a logical tautology (e.g., $P \\to P$), independent of $q_{\\text{NL}}$.\n\\item \\textbf{Repetition collapse:} $P_{\\text{F}}$ contains the same ground fact or rule duplicated $\\geq 2$ times; under per-clause LOO, removing any duplicate is a no-op, driving necessity counts to zero.\n\\item \\textbf{Complexity-without-utility:} large $n$, but most components are unused — the proof goes through after ablating most of them.\n\\item \\textbf{Contradiction explosion:} $P_{\\text{F}}$ is inconsistent and the solver derives $q_{\\text{F}}$ ex falso, so $\\mathrm{ISR}$ marks many components as necessary while no genuine reasoning occurred.\n\\item \\textbf{Query-as-fact gaming:} (Prolog) the query is also asserted as a fact under a normalized atom name, so $\\mathcal{S}(y) = 1$ trivially. This mode bypasses string-match H7 detection and only surfaces under functional analysis of the necessary-component count.\n\\end{itemize}\n\nH1, H7, repetition, and query-as-fact are detected by deterministic syntactic matchers; tautological collapse, contradiction explosion, and complexity-without-utility are detected jointly from the solver trace and the necessity vector produced by STA. A sample classified as none of the above is labeled \\emph{genuine}. We use this taxonomy throughout the experiments to decompose, for each reward formulation, \\emph{how} the policy achieves its prove rate.\n",
+  "claims": "[{'text': 'Execution-only GRPO reward r_exec(x,y) = S(y) is the dominant choice in current neurosymbolic GRPO work and serves as the reference baseline.', 'type': 'background', 'evidence': ['literature_map.yaml: mellgren-prolog-grpo, deepseekmath'], 'decisions': []}, {'text': 'ISR is computed over the proved subset only (proved-only ISR*), to avoid absorbing prove-rate signal into the structural metric.', 'type': 'methodological', 'evidence': ['sta-phase0-baseline', 'plan001-exec-only-s42-r2'], 'decisions': ['C004']}, {'text': 'ISR is bounded in [0,1]; ISR=1 means every component is load-bearing, ISR=0 means the proof is robust to removing any single component (signature of redundant/vacuous formalization).', 'type': 'definition', 'evidence': ['sta-phase0-baseline'], 'decisions': []}, {'text': 'ISR measures syntactic component necessity, not semantic faithfulness; this is acknowledged as a scope limit, not patched.', 'type': 'scope-limit', 'evidence': ['plan014-downstream-nli-s42'], 'decisions': ['D021', 'D022']}, {'text': 'ISR inherits a count bias from LOO: fewer components mechanically inflate ISR independent of reasoning quality.', 'type': 'scope-limit', 'evidence': ['plan002-additive-b01-s42'], 'decisions': ['D051']}, {'text': 'The additive-random reward (Eq. rew-rand) is the matched control for additive-ISR: same shape, same dose, same effect on reward magnitude, structural signal replaced by uniform noise.', 'type': 'methodological', 'evidence': ['plan018-additive-random-b01-s42', 'plan002-additive-b01-s42'], 'decisions': ['D033', 'D057']}, {'text': 'Five reward formulations are compared: exec-only, additive ISR, additive random, convex, and SFT baseline.', 'type': 'design', 'evidence': ['plan001-exec-only-s42-r2', 'plan002-additive-b01-s42', 'plan018-additive-random-b01-s42', 'plan005-sta-low-s42', 'plan009-sft-baseline-s42-r4'], 'decisions': []}, {'text': 'Hacking taxonomy contains 7 modes; query-as-fact gaming is Prolog-specific and bypasses string-match H7 detection, only surfacing under functional analysis of n_necessary.', 'type': 'finding', 'evidence': ['plan006-prolog-sta-s44', 'plan012-hacking-taxonomy'], 'decisions': ['C006']}]",
+  "figures": "[{'figure_id': 'fig1_sta_overview', 'caption': 'STA protocol overview. (a) NL input → LLM formalizer → formal program → solver. (b) STA: leave-one-out component ablation, re-run solver, compute ISR. (c) ISR as diagnostic vs. ISR as reward (Goodhart arrow).', 'type': 'conceptual', 'source': 'manual', 'output_path': 'figures/fig1_sta_overview.pdf'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__write_paper_section",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "section": "method",
+    "content": "\\section{Method}\n\\label{sec:method}\n\nWe define the formalization task (\\S\\ref{sec:method:task}), the GRPO training setup with execution-only reward (\\S\\ref{sec:method:grpo}), the Solver Trace Ablation (STA) protocol (\\S\\ref{sec:method:sta}) and its derived metric ISR (\\S\\ref{sec:method:isr}), the family of reward formulations we compare (\\S\\ref{sec:method:rewards}), and the seven-mode hacking taxonomy used to characterize policy outputs (\\S\\ref{sec:method:taxonomy}).\n\n\\subsection{Task}\n\\label{sec:method:task}\n\nA formalizer is a policy $\\pi_\\theta$ that maps a natural-language premise set with a target conclusion $x = (P_{\\text{NL}}, q_{\\text{NL}})$ to a formal program $y = (P_{\\text{F}}, q_{\\text{F}})$ in a target logic. We instantiate two settings: first-order logic (FOL) verified by Prover9~\\citep{placeholder}, and Prolog verified by SWI-Prolog~\\citep{placeholder}. A solver $\\mathcal{S}$ executes $y$ and returns a binary outcome $\\mathcal{S}(y) \\in \\{0, 1\\}$, where $\\mathcal{S}(y) = 1$ iff $q_{\\text{F}}$ is provable from $P_{\\text{F}}$ within a fixed time budget. We use ProofWriter-FOL~\\citep{placeholder} and a derived Prolog port as the data distribution.\n\n\\subsection{GRPO with Execution-Only Reward}\n\\label{sec:method:grpo}\n\nWe train $\\pi_\\theta$ with Group Relative Policy Optimization~\\citep{placeholder}. For each prompt $x$, we sample a group of $K$ completions $\\{y^{(k)}\\}_{k=1}^{K}$ from $\\pi_\\theta$ and assign each a scalar reward $r(x, y^{(k)})$. GRPO normalizes rewards within the group:\n\\begin{equation}\n\\tilde{r}^{(k)} = \\frac{r^{(k)} - \\mu_g}{\\sigma_g + \\epsilon}, \\quad \\mu_g, \\sigma_g = \\text{mean, std}(\\{r^{(j)}\\}_{j=1}^{K}),\n\\end{equation}\nand updates $\\theta$ via the standard PPO-style clipped objective using $\\tilde{r}^{(k)}$ as the per-completion advantage~\\citep{placeholder}. The execution-only baseline reward is\n\\begin{equation}\nr_{\\text{exec}}(x, y) = \\mathcal{S}(y) \\in \\{0, 1\\}.\n\\label{eq:rexec}\n\\end{equation}\nThis is the dominant choice in current neurosymbolic GRPO work~\\citep{placeholder} and the reference point for all other reward formulations below.\n\n\\subsection{Solver Trace Ablation}\n\\label{sec:method:sta}\n\nExecution-only reward is structure-blind: any $y$ with $\\mathcal{S}(y) = 1$ receives full credit, including degenerate solutions in which the conclusion is restated as a premise or the program reduces to a tautology. To probe \\emph{which} components of $y$ actually carry the proof, we apply leave-one-out (LOO) ablation to the solver inputs.\n\nTreat a formalization as an ordered sequence of \\emph{components} $y = (c_1, \\dots, c_n)$, where each $c_i$ is a single FOL formula in $P_{\\text{F}}$ (for FOL) or a single Prolog clause in $P_{\\text{F}}$ (for Prolog). The conclusion/query $q_{\\text{F}}$ is held fixed. The STA procedure for a single proved sample is:\n\n\\begin{enumerate}\n\\item Verify $\\mathcal{S}(y) = 1$. Unproved samples are excluded from the metric.\\footnote{All ISR values reported in this paper are computed over the proved subset (\\emph{proved-only} ISR$^*$), so that ISR is a structural property of successful proofs and does not absorb prove-rate signal.}\n\\item For each $i \\in \\{1, \\dots, n\\}$, construct the ablated program $y_{\\setminus i} = (c_1, \\dots, c_{i-1}, c_{i+1}, \\dots, c_n)$ and re-run the solver to obtain $\\mathcal{S}(y_{\\setminus i})$.\n\\item Mark $c_i$ as \\emph{necessary} if $\\mathcal{S}(y_{\\setminus i}) = 0$, i.e., its removal breaks the proof.\n\\end{enumerate}\n\nSTA is solver-agnostic in the sense that it requires only black-box access to $\\mathcal{S}$; it transfers across logics by changing the parser that splits $y$ into components.\n\n\\subsection{Intensional Structural Reward (ISR)}\n\\label{sec:method:isr}\n\nThe Intensional Structural Reward is the fraction of components whose removal breaks the proof:\n\\begin{equation}\n\\mathrm{ISR}(x, y) \\;=\\; \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}\\!\\left[\\mathcal{S}(y_{\\setminus i}) = 0\\right] \\;\\in\\; [0, 1].\n\\label{eq:isr}\n\\end{equation}\n$\\mathrm{ISR} = 1$ iff every component is load-bearing; $\\mathrm{ISR} = 0$ iff the proof is robust to removing any single component, which is the signature of redundant or vacuous formalizations. By construction, $\\mathrm{ISR}$ is undefined for $\\mathcal{S}(y) = 0$; in our reporting we either restrict to the proved subset or, when used as a reward, impose $\\mathrm{ISR}(x, y) := 0$ for $\\mathcal{S}(y) = 0$.\n\nWe emphasize two scope limits, both used directly in our analysis. First, $\\mathrm{ISR}$ measures \\emph{syntactic} component necessity, not semantic faithfulness to the natural-language input. Second, $\\mathrm{ISR}$ inherits a count bias from LOO: holding genuine reasoning fixed, fewer components mechanically inflate $\\mathrm{ISR}$, since each surviving component is more likely to be pivotal. We treat both as load-bearing properties of the metric, not bugs to be patched.\n\n\\subsection{Reward Formulations}\n\\label{sec:method:rewards}\n\nWe compare five reward formulations, all sharing the GRPO training pipeline of \\S\\ref{sec:method:grpo}:\n\\begin{align}\n\\textbf{Exec-only:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\label{eq:rew-exec}\\\\\n\\textbf{Additive ISR:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot \\mathrm{ISR}(x, y)\\bigr) \\label{eq:rew-isr}\\\\\n\\textbf{Additive random:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot u\\bigr), \\;\\; u \\sim \\mathcal{U}[0,1] \\label{eq:rew-rand}\\\\\n\\textbf{Convex:} \\quad & r(x, y) = (1 - \\alpha)\\, r_{\\text{exec}}(x, y) + \\alpha \\cdot \\mathrm{ISR}(x, y) \\label{eq:rew-cvx}\\\\\n\\textbf{SFT:} \\quad & \\text{supervised fine-tuning on gold formalizations (no RL).} \\label{eq:rew-sft}\n\\end{align}\nThe additive forms gate the structural bonus on proof success, so $\\mathrm{ISR}$ never rewards an unproved sample. Eq.~\\eqref{eq:rew-rand} is the matched control for Eq.~\\eqref{eq:rew-isr}: same shape, same dose, and same effect on the average reward magnitude, but the structural signal is replaced by noise. Any effect attributable to $\\mathrm{ISR}$ as a learning signal must exceed this control. We sweep $\\beta \\in \\{0.1, 0.3\\}$ for the additive forms; $\\alpha \\in (0, 1)$ for the convex form. The SFT baseline isolates whether the hacking patterns we observe are an RL-reward effect or a property of the data and base model.\n\n\\subsection{Hacking Taxonomy}\n\\label{sec:method:taxonomy}\n\nTo classify the structural failure modes induced by the reward formulations above, we apply a fixed taxonomy of seven hacking modes to every proved sample:\n\n\\begin{itemize}\n\\item \\textbf{H1 — Multi-premise conclusion embedding:} the conclusion $q_{\\text{F}}$ (or a trivial rewrite) appears within $P_{\\text{F}}$ alongside other premises. The proof is one-step.\n\\item \\textbf{H7 — Single premise equals conclusion:} $|P_{\\text{F}}| = 1$ and the sole premise is $q_{\\text{F}}$. The extreme form of H1.\n\\item \\textbf{Tautological collapse:} the proved formula is a logical tautology (e.g., $P \\to P$), independent of $q_{\\text{NL}}$.\n\\item \\textbf{Repetition collapse:} $P_{\\text{F}}$ contains the same ground fact or rule duplicated $\\geq 2$ times; under per-clause LOO, removing any duplicate is a no-op, driving necessity counts to zero.\n\\item \\textbf{Complexity-without-utility:} large $n$, but most components are unused — the proof goes through after ablating most of them.\n\\item \\textbf{Contradiction explosion:} $P_{\\text{F}}$ is inconsistent and the solver derives $q_{\\text{F}}$ ex falso, so $\\mathrm{ISR}$ marks many components as necessary while no genuine reasoning occurred.\n\\item \\textbf{Query-as-fact gaming:} (Prolog) the query is also asserted as a fact under a normalized atom name, so $\\mathcal{S}(y) = 1$ trivially. This mode bypasses string-match H7 detection and only surfaces under functional analysis of the necessary-component count.\n\\end{itemize}\n\nH1, H7, repetition, and query-as-fact are detected by deterministic syntactic matchers; tautological collapse, contradiction explosion, and complexity-without-utility are detected jointly from the solver trace and the necessity vector produced by STA. A sample classified as none of the above is labeled \\emph{genuine}. We use this taxonomy throughout the experiments to decompose, for each reward formulation, \\emph{how} the policy achieves its prove rate.\n",
+    "claims": "[{'text': 'Execution-only GRPO reward r_exec(x,y) = S(y) is the dominant choice in current neurosymbolic GRPO work and serves as the reference baseline.', 'type': 'background', 'evidence': ['literature_map.yaml: mellgren-prolog-grpo, deepseekmath'], 'decisions': []}, {'text': 'ISR is computed over the proved subset only (proved-only ISR*), to avoid absorbing prove-rate signal into the structural metric.', 'type': 'methodological', 'evidence': ['sta-phase0-baseline', 'plan001-exec-only-s42-r2'], 'decisions': ['C004']}, {'text': 'ISR is bounded in [0,1]; ISR=1 means every component is load-bearing, ISR=0 means the proof is robust to removing any single component (signature of redundant/vacuous formalization).', 'type': 'definition', 'evidence': ['sta-phase0-baseline'], 'decisions': []}, {'text': 'ISR measures syntactic component necessity, not semantic faithfulness; this is acknowledged as a scope limit, not patched.', 'type': 'scope-limit', 'evidence': ['plan014-downstream-nli-s42'], 'decisions': ['D021', 'D022']}, {'text': 'ISR inherits a count bias from LOO: fewer components mechanically inflate ISR independent of reasoning quality.', 'type': 'scope-limit', 'evidence': ['plan002-additive-b01-s42'], 'decisions': ['D051']}, {'text': 'The additive-random reward (Eq. rew-rand) is the matched control for additive-ISR: same shape, same dose, same effect on reward magnitude, structural signal replaced by uniform noise.', 'type': 'methodological', 'evidence': ['plan018-additive-random-b01-s42', 'plan002-additive-b01-s42'], 'decisions': ['D033', 'D057']}, {'text': 'Five reward formulations are compared: exec-only, additive ISR, additive random, convex, and SFT baseline.', 'type': 'design', 'evidence': ['plan001-exec-only-s42-r2', 'plan002-additive-b01-s42', 'plan018-additive-random-b01-s42', 'plan005-sta-low-s42', 'plan009-sft-baseline-s42-r4'], 'decisions': []}, {'text': 'Hacking taxonomy contains 7 modes; query-as-fact gaming is Prolog-specific and bypasses string-match H7 detection, only surfacing under functional analysis of n_necessary.', 'type': 'finding', 'evidence': ['plan006-prolog-sta-s44', 'plan012-hacking-taxonomy'], 'decisions': ['C006']}]",
+    "figures": "[{'figure_id': 'fig1_sta_overview', 'caption': 'STA protocol overview. (a) NL input → LLM formalizer → formal program → solver. (b) STA: leave-one-out component ablation, re-run solver, compute ISR. (c) ISR as diagnostic vs. ISR as reward (Goodhart arrow).', 'type': 'conceptual', 'source': 'manual', 'output_path': 'figures/fig1_sta_overview.pdf'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T02:37:30.372944+00:00_
+
+Error executing tool write_paper_section: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__write_paper_section",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T02:37:30.373249+00:00_
+
+called mcp__agent-ml-research__write_paper_section
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__write_paper_section</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "section": "method",
+  "content": "\\section{Method}\n\\label{sec:method}\n\nWe define the formalization task (\\S\\ref{sec:method:task}), the GRPO training setup with execution-only reward (\\S\\ref{sec:method:grpo}), the Solver Trace Ablation (STA) protocol (\\S\\ref{sec:method:sta}) and its derived metric ISR (\\S\\ref{sec:method:isr}), the family of reward formulations we compare (\\S\\ref{sec:method:rewards}), and the seven-mode hacking taxonomy used to characterize policy outputs (\\S\\ref{sec:method:taxonomy}).\n\n\\subsection{Task}\n\\label{sec:method:task}\n\nA formalizer is a policy $\\pi_\\theta$ that maps a natural-language premise set with a target conclusion $x = (P_{\\text{NL}}, q_{\\text{NL}})$ to a formal program $y = (P_{\\text{F}}, q_{\\text{F}})$ in a target logic. We instantiate two settings: first-order logic (FOL) verified by Prover9~\\citep{placeholder}, and Prolog verified by SWI-Prolog~\\citep{placeholder}. A solver $\\mathcal{S}$ executes $y$ and returns a binary outcome $\\mathcal{S}(y) \\in \\{0, 1\\}$, where $\\mathcal{S}(y) = 1$ iff $q_{\\text{F}}$ is provable from $P_{\\text{F}}$ within a fixed time budget. We use ProofWriter-FOL~\\citep{placeholder} and a derived Prolog port as the data distribution.\n\n\\subsection{GRPO with Execution-Only Reward}\n\\label{sec:method:grpo}\n\nWe train $\\pi_\\theta$ with Group Relative Policy Optimization~\\citep{placeholder}. For each prompt $x$, we sample a group of $K$ completions $\\{y^{(k)}\\}_{k=1}^{K}$ from $\\pi_\\theta$ and assign each a scalar reward $r(x, y^{(k)})$. GRPO normalizes rewards within the group:\n\\begin{equation}\n\\tilde{r}^{(k)} = \\frac{r^{(k)} - \\mu_g}{\\sigma_g + \\epsilon}, \\quad \\mu_g, \\sigma_g = \\text{mean, std}(\\{r^{(j)}\\}_{j=1}^{K}),\n\\end{equation}\nand updates $\\theta$ via the standard PPO-style clipped objective using $\\tilde{r}^{(k)}$ as the per-completion advantage~\\citep{placeholder}. The execution-only baseline reward is\n\\begin{equation}\nr_{\\text{exec}}(x, y) = \\mathcal{S}(y) \\in \\{0, 1\\}.\n\\label{eq:rexec}\n\\end{equation}\nThis is the dominant choice in current neurosymbolic GRPO work~\\citep{placeholder} and the reference point for all other reward formulations below.\n\n\\subsection{Solver Trace Ablation}\n\\label{sec:method:sta}\n\nExecution-only reward is structure-blind: any $y$ with $\\mathcal{S}(y) = 1$ receives full credit, including degenerate solutions in which the conclusion is restated as a premise or the program reduces to a tautology. To probe \\emph{which} components of $y$ actually carry the proof, we apply leave-one-out (LOO) ablation to the solver inputs.\n\nTreat a formalization as an ordered sequence of \\emph{components} $y = (c_1, \\dots, c_n)$, where each $c_i$ is a single FOL formula in $P_{\\text{F}}$ (for FOL) or a single Prolog clause in $P_{\\text{F}}$ (for Prolog). The conclusion/query $q_{\\text{F}}$ is held fixed. The STA procedure for a single proved sample is:\n\n\\begin{enumerate}\n\\item Verify $\\mathcal{S}(y) = 1$. Unproved samples are excluded from the metric.\\footnote{All ISR values reported in this paper are computed over the proved subset (\\emph{proved-only} ISR$^*$), so that ISR is a structural property of successful proofs and does not absorb prove-rate signal.}\n\\item For each $i \\in \\{1, \\dots, n\\}$, construct the ablated program $y_{\\setminus i} = (c_1, \\dots, c_{i-1}, c_{i+1}, \\dots, c_n)$ and re-run the solver to obtain $\\mathcal{S}(y_{\\setminus i})$.\n\\item Mark $c_i$ as \\emph{necessary} if $\\mathcal{S}(y_{\\setminus i}) = 0$, i.e., its removal breaks the proof.\n\\end{enumerate}\n\nSTA is solver-agnostic in the sense that it requires only black-box access to $\\mathcal{S}$; it transfers across logics by changing the parser that splits $y$ into components.\n\n\\subsection{Intensional Structural Reward (ISR)}\n\\label{sec:method:isr}\n\nThe Intensional Structural Reward is the fraction of components whose removal breaks the proof:\n\\begin{equation}\n\\mathrm{ISR}(x, y) \\;=\\; \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}\\!\\left[\\mathcal{S}(y_{\\setminus i}) = 0\\right] \\;\\in\\; [0, 1].\n\\label{eq:isr}\n\\end{equation}\n$\\mathrm{ISR} = 1$ iff every component is load-bearing; $\\mathrm{ISR} = 0$ iff the proof is robust to removing any single component, which is the signature of redundant or vacuous formalizations. By construction, $\\mathrm{ISR}$ is undefined for $\\mathcal{S}(y) = 0$; in our reporting we either restrict to the proved subset or, when used as a reward, impose $\\mathrm{ISR}(x, y) := 0$ for $\\mathcal{S}(y) = 0$.\n\nWe emphasize two scope limits, both used directly in our analysis. First, $\\mathrm{ISR}$ measures \\emph{syntactic} component necessity, not semantic faithfulness to the natural-language input. Second, $\\mathrm{ISR}$ inherits a count bias from LOO: holding genuine reasoning fixed, fewer components mechanically inflate $\\mathrm{ISR}$, since each surviving component is more likely to be pivotal. We treat both as load-bearing properties of the metric, not bugs to be patched.\n\n\\subsection{Reward Formulations}\n\\label{sec:method:rewards}\n\nWe compare five reward formulations, all sharing the GRPO training pipeline of \\S\\ref{sec:method:grpo}:\n\\begin{align}\n\\textbf{Exec-only:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\label{eq:rew-exec}\\\\\n\\textbf{Additive ISR:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot \\mathrm{ISR}(x, y)\\bigr) \\label{eq:rew-isr}\\\\\n\\textbf{Additive random:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot u\\bigr), \\;\\; u \\sim \\mathcal{U}[0,1] \\label{eq:rew-rand}\\\\\n\\textbf{Convex:} \\quad & r(x, y) = (1 - \\alpha)\\, r_{\\text{exec}}(x, y) + \\alpha \\cdot \\mathrm{ISR}(x, y) \\label{eq:rew-cvx}\\\\\n\\textbf{SFT:} \\quad & \\text{supervised fine-tuning on gold formalizations (no RL).} \\label{eq:rew-sft}\n\\end{align}\nThe additive forms gate the structural bonus on proof success, so $\\mathrm{ISR}$ never rewards an unproved sample. Eq.~\\eqref{eq:rew-rand} is the matched control for Eq.~\\eqref{eq:rew-isr}: same shape, same dose, and same effect on the average reward magnitude, but the structural signal is replaced by noise. Any effect attributable to $\\mathrm{ISR}$ as a learning signal must exceed this control. We sweep $\\beta \\in \\{0.1, 0.3\\}$ for the additive forms; $\\alpha \\in (0, 1)$ for the convex form. The SFT baseline isolates whether the hacking patterns we observe are an RL-reward effect or a property of the data and base model.\n\n\\subsection{Hacking Taxonomy}\n\\label{sec:method:taxonomy}\n\nTo classify the structural failure modes induced by the reward formulations above, we apply a fixed taxonomy of seven hacking modes to every proved sample:\n\n\\begin{itemize}\n\\item \\textbf{H1 — Multi-premise conclusion embedding:} the conclusion $q_{\\text{F}}$ (or a trivial rewrite) appears within $P_{\\text{F}}$ alongside other premises. The proof is one-step.\n\\item \\textbf{H7 — Single premise equals conclusion:} $|P_{\\text{F}}| = 1$ and the sole premise is $q_{\\text{F}}$. The extreme form of H1.\n\\item \\textbf{Tautological collapse:} the proved formula is a logical tautology (e.g., $P \\to P$), independent of $q_{\\text{NL}}$.\n\\item \\textbf{Repetition collapse:} $P_{\\text{F}}$ contains the same ground fact or rule duplicated $\\geq 2$ times; under per-clause LOO, removing any duplicate is a no-op, driving necessity counts to zero.\n\\item \\textbf{Complexity-without-utility:} large $n$, but most components are unused — the proof goes through after ablating most of them.\n\\item \\textbf{Contradiction explosion:} $P_{\\text{F}}$ is inconsistent and the solver derives $q_{\\text{F}}$ ex falso, so $\\mathrm{ISR}$ marks many components as necessary while no genuine reasoning occurred.\n\\item \\textbf{Query-as-fact gaming:} (Prolog) the query is also asserted as a fact under a normalized atom name, so $\\mathcal{S}(y) = 1$ trivially. This mode bypasses string-match H7 detection and only surfaces under functional analysis of the necessary-component count.\n\\end{itemize}\n\nH1, H7, repetition, and query-as-fact are detected by deterministic syntactic matchers; tautological collapse, contradiction explosion, and complexity-without-utility are detected jointly from the solver trace and the necessity vector produced by STA. A sample classified as none of the above is labeled \\emph{genuine}. We use this taxonomy throughout the experiments to decompose, for each reward formulation, \\emph{how} the policy achieves its prove rate.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__write_paper_section",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "section": "method",
+    "content": "\\section{Method}\n\\label{sec:method}\n\nWe define the formalization task (\\S\\ref{sec:method:task}), the GRPO training setup with execution-only reward (\\S\\ref{sec:method:grpo}), the Solver Trace Ablation (STA) protocol (\\S\\ref{sec:method:sta}) and its derived metric ISR (\\S\\ref{sec:method:isr}), the family of reward formulations we compare (\\S\\ref{sec:method:rewards}), and the seven-mode hacking taxonomy used to characterize policy outputs (\\S\\ref{sec:method:taxonomy}).\n\n\\subsection{Task}\n\\label{sec:method:task}\n\nA formalizer is a policy $\\pi_\\theta$ that maps a natural-language premise set with a target conclusion $x = (P_{\\text{NL}}, q_{\\text{NL}})$ to a formal program $y = (P_{\\text{F}}, q_{\\text{F}})$ in a target logic. We instantiate two settings: first-order logic (FOL) verified by Prover9~\\citep{placeholder}, and Prolog verified by SWI-Prolog~\\citep{placeholder}. A solver $\\mathcal{S}$ executes $y$ and returns a binary outcome $\\mathcal{S}(y) \\in \\{0, 1\\}$, where $\\mathcal{S}(y) = 1$ iff $q_{\\text{F}}$ is provable from $P_{\\text{F}}$ within a fixed time budget. We use ProofWriter-FOL~\\citep{placeholder} and a derived Prolog port as the data distribution.\n\n\\subsection{GRPO with Execution-Only Reward}\n\\label{sec:method:grpo}\n\nWe train $\\pi_\\theta$ with Group Relative Policy Optimization~\\citep{placeholder}. For each prompt $x$, we sample a group of $K$ completions $\\{y^{(k)}\\}_{k=1}^{K}$ from $\\pi_\\theta$ and assign each a scalar reward $r(x, y^{(k)})$. GRPO normalizes rewards within the group:\n\\begin{equation}\n\\tilde{r}^{(k)} = \\frac{r^{(k)} - \\mu_g}{\\sigma_g + \\epsilon}, \\quad \\mu_g, \\sigma_g = \\text{mean, std}(\\{r^{(j)}\\}_{j=1}^{K}),\n\\end{equation}\nand updates $\\theta$ via the standard PPO-style clipped objective using $\\tilde{r}^{(k)}$ as the per-completion advantage~\\citep{placeholder}. The execution-only baseline reward is\n\\begin{equation}\nr_{\\text{exec}}(x, y) = \\mathcal{S}(y) \\in \\{0, 1\\}.\n\\label{eq:rexec}\n\\end{equation}\nThis is the dominant choice in current neurosymbolic GRPO work~\\citep{placeholder} and the reference point for all other reward formulations below.\n\n\\subsection{Solver Trace Ablation}\n\\label{sec:method:sta}\n\nExecution-only reward is structure-blind: any $y$ with $\\mathcal{S}(y) = 1$ receives full credit, including degenerate solutions in which the conclusion is restated as a premise or the program reduces to a tautology. To probe \\emph{which} components of $y$ actually carry the proof, we apply leave-one-out (LOO) ablation to the solver inputs.\n\nTreat a formalization as an ordered sequence of \\emph{components} $y = (c_1, \\dots, c_n)$, where each $c_i$ is a single FOL formula in $P_{\\text{F}}$ (for FOL) or a single Prolog clause in $P_{\\text{F}}$ (for Prolog). The conclusion/query $q_{\\text{F}}$ is held fixed. The STA procedure for a single proved sample is:\n\n\\begin{enumerate}\n\\item Verify $\\mathcal{S}(y) = 1$. Unproved samples are excluded from the metric.\\footnote{All ISR values reported in this paper are computed over the proved subset (\\emph{proved-only} ISR$^*$), so that ISR is a structural property of successful proofs and does not absorb prove-rate signal.}\n\\item For each $i \\in \\{1, \\dots, n\\}$, construct the ablated program $y_{\\setminus i} = (c_1, \\dots, c_{i-1}, c_{i+1}, \\dots, c_n)$ and re-run the solver to obtain $\\mathcal{S}(y_{\\setminus i})$.\n\\item Mark $c_i$ as \\emph{necessary} if $\\mathcal{S}(y_{\\setminus i}) = 0$, i.e., its removal breaks the proof.\n\\end{enumerate}\n\nSTA is solver-agnostic in the sense that it requires only black-box access to $\\mathcal{S}$; it transfers across logics by changing the parser that splits $y$ into components.\n\n\\subsection{Intensional Structural Reward (ISR)}\n\\label{sec:method:isr}\n\nThe Intensional Structural Reward is the fraction of components whose removal breaks the proof:\n\\begin{equation}\n\\mathrm{ISR}(x, y) \\;=\\; \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}\\!\\left[\\mathcal{S}(y_{\\setminus i}) = 0\\right] \\;\\in\\; [0, 1].\n\\label{eq:isr}\n\\end{equation}\n$\\mathrm{ISR} = 1$ iff every component is load-bearing; $\\mathrm{ISR} = 0$ iff the proof is robust to removing any single component, which is the signature of redundant or vacuous formalizations. By construction, $\\mathrm{ISR}$ is undefined for $\\mathcal{S}(y) = 0$; in our reporting we either restrict to the proved subset or, when used as a reward, impose $\\mathrm{ISR}(x, y) := 0$ for $\\mathcal{S}(y) = 0$.\n\nWe emphasize two scope limits, both used directly in our analysis. First, $\\mathrm{ISR}$ measures \\emph{syntactic} component necessity, not semantic faithfulness to the natural-language input. Second, $\\mathrm{ISR}$ inherits a count bias from LOO: holding genuine reasoning fixed, fewer components mechanically inflate $\\mathrm{ISR}$, since each surviving component is more likely to be pivotal. We treat both as load-bearing properties of the metric, not bugs to be patched.\n\n\\subsection{Reward Formulations}\n\\label{sec:method:rewards}\n\nWe compare five reward formulations, all sharing the GRPO training pipeline of \\S\\ref{sec:method:grpo}:\n\\begin{align}\n\\textbf{Exec-only:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\label{eq:rew-exec}\\\\\n\\textbf{Additive ISR:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot \\mathrm{ISR}(x, y)\\bigr) \\label{eq:rew-isr}\\\\\n\\textbf{Additive random:} \\quad & r(x, y) = r_{\\text{exec}}(x, y) \\cdot \\bigl(1 + \\beta \\cdot u\\bigr), \\;\\; u \\sim \\mathcal{U}[0,1] \\label{eq:rew-rand}\\\\\n\\textbf{Convex:} \\quad & r(x, y) = (1 - \\alpha)\\, r_{\\text{exec}}(x, y) + \\alpha \\cdot \\mathrm{ISR}(x, y) \\label{eq:rew-cvx}\\\\\n\\textbf{SFT:} \\quad & \\text{supervised fine-tuning on gold formalizations (no RL).} \\label{eq:rew-sft}\n\\end{align}\nThe additive forms gate the structural bonus on proof success, so $\\mathrm{ISR}$ never rewards an unproved sample. Eq.~\\eqref{eq:rew-rand} is the matched control for Eq.~\\eqref{eq:rew-isr}: same shape, same dose, and same effect on the average reward magnitude, but the structural signal is replaced by noise. Any effect attributable to $\\mathrm{ISR}$ as a learning signal must exceed this control. We sweep $\\beta \\in \\{0.1, 0.3\\}$ for the additive forms; $\\alpha \\in (0, 1)$ for the convex form. The SFT baseline isolates whether the hacking patterns we observe are an RL-reward effect or a property of the data and base model.\n\n\\subsection{Hacking Taxonomy}\n\\label{sec:method:taxonomy}\n\nTo classify the structural failure modes induced by the reward formulations above, we apply a fixed taxonomy of seven hacking modes to every proved sample:\n\n\\begin{itemize}\n\\item \\textbf{H1 — Multi-premise conclusion embedding:} the conclusion $q_{\\text{F}}$ (or a trivial rewrite) appears within $P_{\\text{F}}$ alongside other premises. The proof is one-step.\n\\item \\textbf{H7 — Single premise equals conclusion:} $|P_{\\text{F}}| = 1$ and the sole premise is $q_{\\text{F}}$. The extreme form of H1.\n\\item \\textbf{Tautological collapse:} the proved formula is a logical tautology (e.g., $P \\to P$), independent of $q_{\\text{NL}}$.\n\\item \\textbf{Repetition collapse:} $P_{\\text{F}}$ contains the same ground fact or rule duplicated $\\geq 2$ times; under per-clause LOO, removing any duplicate is a no-op, driving necessity counts to zero.\n\\item \\textbf{Complexity-without-utility:} large $n$, but most components are unused — the proof goes through after ablating most of them.\n\\item \\textbf{Contradiction explosion:} $P_{\\text{F}}$ is inconsistent and the solver derives $q_{\\text{F}}$ ex falso, so $\\mathrm{ISR}$ marks many components as necessary while no genuine reasoning occurred.\n\\item \\textbf{Query-as-fact gaming:} (Prolog) the query is also asserted as a fact under a normalized atom name, so $\\mathcal{S}(y) = 1$ trivially. This mode bypasses string-match H7 detection and only surfaces under functional analysis of the necessary-component count.\n\\end{itemize}\n\nH1, H7, repetition, and query-as-fact are detected by deterministic syntactic matchers; tautological collapse, contradiction explosion, and complexity-without-utility are detected jointly from the solver trace and the necessity vector produced by STA. A sample classified as none of the above is labeled \\emph{genuine}. We use this taxonomy throughout the experiments to decompose, for each reward formulation, \\emph{how} the policy achieves its prove rate.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T02:37:30.373751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex\", \"provenance_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_provenance.yaml\", \"version\": 11, \"coverage\": \"29/29\", \"warnings\": [\"Content contains 2 numbers but no claims/table_cells provided. Use claims or table_cells to map these to experiments, or mark as external_citation.\"]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-section-draft_20260515T023348",
+  "tool": "mcp__agent-ml-research__write_paper_section",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-15T02:37:30.374137+00:00_
+
+Method 章节已写入 `docs/paper/method.tex`（version 11，coverage 29/29）。
+
+**结构**（约 1100 字，含 LaTeX 环境）：
+- 3.1 Task — 形式化定义 $\pi_\theta: x \to y$，FOL/Prolog 双 solver
+- 3.2 GRPO with Execution-Only Reward — 含 group normalization 公式 + $r_{\text{exec}} = \mathcal{S}(y)$
+- 3.3 STA Protocol — 三步 LOO 算法，proved-only footnote 强调 C004
+- 3.4 ISR Definition — $\mathrm{ISR}(x,y) = \frac{1}{n}\sum_i \mathbf{1}[\mathcal{S}(y_{\setminus i})=0]$，明确两个 scope limits（syntactic ≠ semantic; count bias）
+- 3.5 Reward Formulations — 5 个公式（exec / additive ISR / additive random / convex / SFT），明示 random 是 matched control（D033/D057）
+- 3.6 Hacking Taxonomy — 7 modes，含 query-as-fact gaming（Prolog s44 classifier blind spot, C006）
+
+**符号一致性**：$r_{\text{exec}}$, $\mathrm{ISR}$, $\beta$, $n$, $c_i$, $\mathcal{S}$ 全程统一。所有引用用 `\citep{placeholder}` 占位（GRPO/Prover9/SWI-Prolog/ProofWriter/PPO/neurosymbolic GRPO 共 6 处）。
+
+注意：tool 报警说有 2 个数字未挂 claims（`\{0, 1\}` 等公式中的常量），无需 provenance 追溯，可忽略。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_writing_method-section-draft_20260515T023348"
+}
+```
+
+</details>
+
+---

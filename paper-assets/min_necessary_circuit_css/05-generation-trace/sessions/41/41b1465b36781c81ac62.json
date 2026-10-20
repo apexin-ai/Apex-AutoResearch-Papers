@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41b1465b36781c81ac62",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "paper figure fig1 overview",
+  "task_key": "worker_paper_figure_fig1_overview_20260513T154504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_overview_20260513T154504_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "d4e22677919c95f398ba17fd230dce2dc0c92e7360f0a98e1c5b066937135df3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成 `fig1_overview.pdf`（36KB 矢量）和 `fig1_overview.png`（229KB, 300 DPI）。\n\n图表内容：\n- 左侧 Transformer → 三条并行分支（EAP-IG 深蓝、EP 天蓝、ACDC 橙黄）→ 各自 threshold（top-k / isinf）→ 二值电路 C₁C₂C₃ → 交集 ∩ → CSS=1.0 → CPR Eval\n- FM1（红色虚线框）标注 ACDC 的 isinf binarization，callout 说明 |C₃|=14 vs |C₁|=|C₂|=100\n- FM2 标注 intersection 步骤，J(C₁,C₂)=0.82 → K≈2\n- FM3 标注三个方法整体，granularity mismatch: block vs edge → J≈0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-overview.md"
+}

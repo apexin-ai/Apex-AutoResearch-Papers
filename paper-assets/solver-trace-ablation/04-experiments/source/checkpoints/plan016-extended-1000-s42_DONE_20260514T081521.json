@@ -1,0 +1,143 @@
+{
+  "exp_id": "plan016-extended-1000-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:29:47.634Z",
+    "updated_at": "2026-05-14T08:15:21.546Z",
+    "hypothesis": "Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？",
+    "parent": "plan001-exec-only-s42-r2",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 42 --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence?",
+      "plan_id": "plan016",
+      "reward_formula": "r = r_exec (exec-only)",
+      "num_steps": 1000
+    },
+    "pid": "263268",
+    "log_path": "~/runs/solver-trace-ablation/plan016-extended-1000-s42.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 42 --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42\"",
+      "finished_at": "2026-05-14T08:02:31.805Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:02:33.434519+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train": {
+        "total_steps": 1000,
+        "duration_min": 146,
+        "final_prove_rate": 0.8396,
+        "final_mean_isr": 0.0503,
+        "train_loss": 0.0125,
+        "epoch": 4,
+        "windowed": {
+          "steps_001_100": {
+            "pr": 0.19,
+            "isr": 0.0859
+          },
+          "steps_101_200": {
+            "pr": 0.66,
+            "isr": 0.1115
+          },
+          "steps_201_300": {
+            "pr": 0.838,
+            "isr": 0.0985
+          },
+          "steps_301_400": {
+            "pr": 0.907,
+            "isr": 0.054
+          },
+          "steps_401_500": {
+            "pr": 0.927,
+            "isr": 0.0433
+          },
+          "steps_501_600": {
+            "pr": 0.963,
+            "isr": 0.0408
+          },
+          "steps_601_700": {
+            "pr": 0.965,
+            "isr": 0.02
+          },
+          "steps_701_800": {
+            "pr": 0.988,
+            "isr": 0.0178
+          },
+          "steps_801_900": {
+            "pr": 0.978,
+            "isr": 0.017
+          },
+          "steps_901_1000": {
+            "pr": 0.981,
+            "isr": 0.0144
+          }
+        }
+      },
+      "eval": {
+        "prove_rate": 0.96,
+        "n_proved": 96,
+        "n_problems": 100,
+        "mean_isr": 0.0027,
+        "isr_std": 0.0118,
+        "median_isr": 0,
+        "proved_only_mean_isr": 0.0028,
+        "min_isr": 0,
+        "max_isr": 0.0588,
+        "isr_0_ratio": 0.9479,
+        "isr_1_ratio": 0,
+        "component_count_mean": 18.55,
+        "component_count_2_ratio": 0,
+        "mean_n_necessary": 0.052,
+        "n_necessary_0_ratio": 0.9479,
+        "tautological_collapse": false,
+        "by_answer_type": {
+          "false": {
+            "count": 29,
+            "proved": 26,
+            "prove_rate": 0.8966,
+            "mean_isr": 0
+          },
+          "unknown": {
+            "count": 31,
+            "proved": 30,
+            "prove_rate": 0.9677,
+            "mean_isr": 0.0053
+          },
+          "true": {
+            "count": 40,
+            "proved": 40,
+            "prove_rate": 1,
+            "mean_isr": 0.0026
+          }
+        },
+        "eval_time_seconds": 396.3
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan016_extended_1000_s42",
+    "completed_at": "2026-05-14T08:13:51.754Z"
+  },
+  "timestamp": "2026-05-14T08:15:21.634266+00:00",
+  "trigger": "update_registry"
+}

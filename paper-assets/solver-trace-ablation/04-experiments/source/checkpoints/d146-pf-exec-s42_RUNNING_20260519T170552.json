@@ -1,0 +1,35 @@
+{
+  "exp_id": "d146-pf-exec-s42",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:36:57.566Z",
+    "updated_at": "2026-05-19T17:05:52.157Z",
+    "hypothesis": "D146 ProofFOL cross-dataset: exec-only GRPO Qwen3-4B on ProofFOL. Tests if Goodhart collapse generalizes beyond FOLIO to ProofWriter-derived FOL reasoning.",
+    "spec": {
+      "command": "PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True bash scripts/d146_pipeline.sh (6 exps serial)",
+      "server": "westd-39279",
+      "data_path": "/root/solver-trace-ablation/data/prooffol_train_500.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "steps": 500,
+      "reward_mode": "exec_only",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "441009",
+      "tmux_session": "d146-pipeline",
+      "log_path": "~/runs/solver-trace-ablation/d146-pipeline.log",
+      "batch_size": 2,
+      "gradient_accumulation": 4,
+      "notes": "OOM fix: batch 4→2, accum 2→4. GPU mem 82GiB/97GiB (84%). ~15.4s/step."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T17:05:52.569314+00:00",
+  "trigger": "update_registry"
+}

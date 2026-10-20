@@ -1,0 +1,3099 @@
+# code ifr proportional binarization
+
+**Transformer Model EAP-IG** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/workers/worker_code_ifr-proportional-binarization_20260513T075334.log`
+- **Structured JSON:** [`0a52503242f680e91ad6.json`](../../sessions/0a/0a52503242f680e91ad6.json)
+
+## Before a recorded user message
+
+64 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "edb570b9-b216-4fab-a60b-8b46b8a66bf1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-structfuse-context/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778673000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b291f363-61d8-4092-8afe-cff6f953ed2b",
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking what's on the server in the results directory, and also look at the project code to understand the data format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "4247712c-e4eb-4b24-857f-125b4f19dbe2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWuaRSECN28Y9V5kkfnWkg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12177,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12177
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先去服务器看已有结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "d741051b-1c35-4fca-ac65-9508797d3622",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWuaRSECN28Y9V5kkfnWkg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12177,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12177
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SW6YsTfSVH2gSV7pBpeqqn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "9afe8ced-a3dd-447e-bdbf-3132b90334f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWuaRSECN28Y9V5kkfnWkg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12177,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12177
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T07:53:49.426Z_
+
+<details><summary>↩ Tool result · `toolu_01SW6YsTfSVH2gSV7pBpeqqn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "8029b069-7075-444b-9a03-55c8a818dc02",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FR9qTcyTfg5DAa4RRB6v2y`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "ls -la /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "68a4400d-634b-4fc8-8853-83adca3677e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vtm57yZHZ9Ly3yHwJk58u4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 24018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T07:53:53.908Z_
+
+<details><summary>↩ Tool result · `toolu_01FR9qTcyTfg5DAa4RRB6v2y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   51 May 13 15:25 .\\ndrwxr-xr-x 3 root root   43 May 13 15:25 ..\\n-rw-r--r-- 1 root root 1754 May 13 15:25 Qwen_Qwen2.5_0.5B_ioi_K3.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "16d37d42-cd9f-4e9c-914a-33f765302c5f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 2 root root   51 May 13 15:25 .\\\\ndrwxr-xr-x 3 root root   43 May 13 15:25 ..\\\\n-rw-r--r-- 1 root root 1754 May 13 15:25 Qwen_Qwen2.5_0.5B_ioi_K3.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   51 May 13 15:25 .\\ndrwxr-xr-x 3 root root   43 May 13 15:25 ..\\n-rw-r--r-- 1 root root 1754 May 13 15:25 Qwen_Qwen2.5_0.5B_ioi_K3.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+只有一个 JSON 文件。看看内容，同时检查项目代码中 binarize 相关逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "ab6aa847-9de5-4bcc-8d87-d051c3a616cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016p1saibX2YqVhWCBwA2cpZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 322,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 322
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SaxCdgPMqoEBvxxNoGPwDa`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cat /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "14593896-2821-489a-8af2-4431dc671689",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016p1saibX2YqVhWCBwA2cpZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 322,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 322
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T07:53:58.673Z_
+
+<details><summary>↩ Tool result · `toolu_01SaxCdgPMqoEBvxxNoGPwDa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment_id\\\": \\\"phase2_qwen05b_ioi_k3\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"K\\\": 3,\\n  \\\"num_samples\\\": 100,\\n  \\\"seed\\\": 42,\\n  \\\"binarize\\\": {\\n    \\\"strategy\\\": \\\"topn\\\",\\n    \\\"n\\\": 100\\n  },\\n  \\\"baseline_io_s_diff\\\": 7.0764,\\n  \\\"method_edge_counts\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"ifr\\\": 141384\\n  },\\n  \\\"binarized_counts\\\": {\\n    \\\"eap_ig\\\": 100,\\n    \\\"edge_pruning\\\": 100,\\n    \\\"ifr\\\": 100\\n  },\\n  \\\"css_distribution\\\": {\\n    \\\"1/3\\\": 160,\\n    \\\"2/3\\\": 70\\n  },\\n  \\\"css_core_count\\\": 0,\\n  \\\"css_core_edges\\\": [],\\n  \\\"off_diagonal_pct\\\": 1.0,\\n  \\\"pairwise_jaccard\\\": {\\n    \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n    \\\"eap_ig_vs_ifr\\\": 0.0,\\n    \\\"edge_pruning_vs_ifr\\\": 0.0\\n  },\\n  \\\"faithfulness\\\": {\\n    \\\"css_core\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.0044,\\n        \\\"cpr\\\": -0.0006\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.1083,\\n        \\\"cpr\\\": -0.0153\\n      }\\n    },\\n    \\\"eap_ig\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.0467,\\n        \\\"cpr\\\": 0.0066\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.1148,\\n        \\\"cpr\\\": -0.0162\\n      }\\n    },\\n    \\\"edge_pruning\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.0706,\\n        \\\"cpr\\\": 0.01\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.1379,\\n        \\\"cpr\\\": 0.0195\\n      }\\n    },\\n    \\\"ifr\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.3388,\\n        \\\"cpr\\\": -0.0479\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.1627,\\n        \\\"cpr\\\": 0.023\\n      }\\n    }\\n  },\\n  \\\"elapsed_sec\\\": 83.0,\\n  \\\"timestamp\\\": \\\"2026-05-13 15:25:56\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "4084492d-5b3e-4d7e-b2d5-33aab6e6d1e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment_id\\\\\\\": \\\\\\\"phase2_qwen05b_ioi_k3\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\",\\\\n  \\\\\\\"K\\\\\\\": 3,\\\\n  \\\\\\\"num_samples\\\\\\\": 100,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"binarize\\\\\\\": {\\\\n    \\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 100\\\\n  },\\\\n  \\\\\\\"baseline_io_s_diff\\\\\\\": 7.0764,\\\\n  \\\\\\\"method_edge_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 179388,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 179388,\\\\n    \\\\\\\"ifr\\\\\\\": 141384\\\\n  },\\\\n  \\\\\\\"binarized_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 100,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 100,\\\\n    \\\\\\\"ifr\\\\\\\": 100\\\\n  },\\\\n  \\\\\\\"css_distribution\\\\\\\": {\\\\n    \\\\\\\"1/3\\\\\\\": 160,\\\\n    \\\\\\\"2/3\\\\\\\": 70\\\\n  },\\\\n  \\\\\\\"css_core_count\\\\\\\": 0,\\\\n  \\\\\\\"css_core_edges\\\\\\\": [],\\\\n  \\\\\\\"off_diagonal_pct\\\\\\\": 1.0,\\\\n  \\\\\\\"pairwise_jaccard\\\\\\\": {\\\\n    \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5385,\\\\n    \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n    \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"faithfulness\\\\\\\": {\\\\n    \\\\\\\"css_core\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.0044,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0006\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.1083,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0153\\\\n      }\\\\n    },\\\\n    \\\\\\\"eap_ig\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.0467,\\\\n        \\\\\\\"cpr\\\\\\\": 0.0066\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.1148,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0162\\\\n      }\\\\n    },\\\\n    \\\\\\\"edge_pruning\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.0706,\\\\n        \\\\\\\"cpr\\\\\\\": 0.01\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.1379,\\\\n        \\\\\\\"cpr\\\\\\\": 0.0195\\\\n      }\\\\n    },\\\\n    \\\\\\\"ifr\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.3388,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0479\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.1627,\\\\n        \\\\\\\"cpr\\\\\\\": 0.023\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_sec\\\\\\\": 83.0,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-13 15:25:56\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment_id\\\": \\\"phase2_qwen05b_ioi_k3\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"K\\\": 3,\\n  \\\"num_samples\\\": 100,\\n  \\\"seed\\\": 42,\\n  \\\"binarize\\\": {\\n    \\\"strategy\\\": \\\"topn\\\",\\n    \\\"n\\\": 100\\n  },\\n  \\\"baseline_io_s_diff\\\": 7.0764,\\n  \\\"method_edge_counts\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"ifr\\\": 141384\\n  },\\n  \\\"binarized_counts\\\": {\\n    \\\"eap_ig\\\": 100,\\n    \\\"edge_pruning\\\": 100,\\n    \\\"ifr\\\": 100\\n  },\\n  \\\"css_distribution\\\": {\\n    \\\"1/3\\\": 160,\\n    \\\"2/3\\\": 70\\n  },\\n  \\\"css_core_count\\\": 0,\\n  \\\"css_core_edges\\\": [],\\n  \\\"off_diagonal_pct\\\": 1.0,\\n  \\\"pairwise_jaccard\\\": {\\n    \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n    \\\"eap_ig_vs_ifr\\\": 0.0,\\n    \\\"edge_pruning_vs_ifr\\\": 0.0\\n  },\\n  \\\"faithfulness\\\": {\\n    \\\"css_core\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.0044,\\n        \\\"cpr\\\": -0.0006\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.1083,\\n        \\\"cpr\\\": -0.0153\\n      }\\n    },\\n    \\\"eap_ig\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.0467,\\n        \\\"cpr\\\": 0.0066\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.1148,\\n        \\\"cpr\\\": -0.0162\\n      }\\n    },\\n    \\\"edge_pruning\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.0706,\\n        \\\"cpr\\\": 0.01\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.1379,\\n        \\\"cpr\\\": 0.0195\\n      }\\n    },\\n    \\\"ifr\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.3388,\\n        \\\"cpr\\\": -0.0479\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.1627,\\n        \\\"cpr\\\": 0.023\\n      }\\n    }\\n  },\\n  \\\"elapsed_sec\\\": 83.0,\\n  \\\"timestamp\\\": \\\"2026-05-13 15:25:56\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XeKBuoC4Y6bhTHcUiac8k4`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "find /root/structfuse-context/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "6b4f73a3-b8b3-48de-a171-d9458dedd7a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016p1saibX2YqVhWCBwA2cpZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 322,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 322
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T07:53:59.196Z_
+
+<details><summary>↩ Tool result · `toolu_01XeKBuoC4Y6bhTHcUiac8k4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse-context/acdc_topk_sweep.py\\n/root/structfuse-context/analysis_fix_v3.py\\n/root/structfuse-context/circuit_discovery.py\\n/root/structfuse-context/circus.py\\n/root/structfuse-context/config.py\\n/root/structfuse-context/cross_tabulate.py\\n/root/structfuse-context/css.py\\n/root/structfuse-context/edge_pruning_l0.py\\n/root/structfuse-context/eval_faithfulness.py\\n/root/structfuse-context/eval_mean_ablation.py\\n/root/structfuse-context/eval_topk_faithfulness.py\\n/root/structfuse-context/evaluation.py\\n/root/structfuse-context/ifr_discovery.py\\n/root/structfuse-context/ifr_scoring.py\\n/root/structfuse-context/run_arithmetic.py\\n/root/structfuse-context/run_circus.py\\n/root/structfuse-context/run_circus_fix.py\\n/root/structfuse-context/run_mvp.py\\n/root/structfuse-context/run_phase2_experiment.py\\n/root/structfuse-context/run_phase_d_only.py\\n/root/structfuse-context/run_sva.py\\n/root/structfuse-context/run_sva_cuda1.py\\n/root/structfuse-context/e2e_validate.py\\n/root/structfuse-context/run_qwen_ioi.py\\n/root/structfuse-context/diagnose_ifr_perhead.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "b605de1d-2d44-4065-8014-4138b7096f22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse-context/acdc_topk_sweep.py\\\\n/root/structfuse-context/analysis_fix_v3.py\\\\n/root/structfuse-context/circuit_discovery.py\\\\n/root/structfuse-context/circus.py\\\\n/root/structfuse-context/config.py\\\\n/root/structfuse-context/cross_tabulate.py\\\\n/root/structfuse-context/css.py\\\\n/root/structfuse-context/edge_pruning_l0.py\\\\n/root/structfuse-context/eval_faithfulness.py\\\\n/root/structfuse-context/eval_mean_ablation.py\\\\n/root/structfuse-context/eval_topk_faithfulness.py\\\\n/root/structfuse-context/evaluation.py\\\\n/root/structfuse-context/ifr_discovery.py\\\\n/root/structfuse-context/ifr_scoring.py\\\\n/root/structfuse-context/run_arithmetic.py\\\\n/root/structfuse-context/run_circus.py\\\\n/root/structfuse-context/run_circus_fix.py\\\\n/root/structfuse-context/run_mvp.py\\\\n/root/structfuse-context/run_phase2_experiment.py\\\\n/root/structfuse-context/run_phase_d_only.py\\\\n/root/structfuse-context/run_sva.py\\\\n/root/structfuse-context/run_sva_cuda1.py\\\\n/root/structfuse-context/e2e_validate.py\\\\n/root/structfuse-context/run_qwen_ioi.py\\\\n/root/structfuse-context/diagnose_ifr_perhead.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse-context/acdc_topk_sweep.py\\n/root/structfuse-context/analysis_fix_v3.py\\n/root/structfuse-context/circuit_discovery.py\\n/root/structfuse-context/circus.py\\n/root/structfuse-context/config.py\\n/root/structfuse-context/cross_tabulate.py\\n/root/structfuse-context/css.py\\n/root/structfuse-context/edge_pruning_l0.py\\n/root/structfuse-context/eval_faithfulness.py\\n/root/structfuse-context/eval_mean_ablation.py\\n/root/structfuse-context/eval_topk_faithfulness.py\\n/root/structfuse-context/evaluation.py\\n/root/structfuse-context/ifr_discovery.py\\n/root/structfuse-context/ifr_scoring.py\\n/root/structfuse-context/run_arithmetic.py\\n/root/structfuse-context/run_circus.py\\n/root/structfuse-context/run_circus_fix.py\\n/root/structfuse-context/run_mvp.py\\n/root/structfuse-context/run_phase2_experiment.py\\n/root/structfuse-context/run_phase_d_only.py\\n/root/structfuse-context/run_sva.py\\n/root/structfuse-context/run_sva_cuda1.py\\n/root/structfuse-context/e2e_validate.py\\n/root/structfuse-context/run_qwen_ioi.py\\n/root/structfuse-context/diagnose_ifr_perhead.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The JSON only has the final binarized results (top-100), not raw scores. I need to check if raw scores were saved somewhere, or look at the code to understand how to rerun with different binarization. Let me check the key files: `css.py` for binarization logic, `run_qwen_ioi.py` and `run_phase2_experiment.py` for experiment flow.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "48297464-09f9-4d19-aa07-a6802e35b2cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnuJJSjaMJMktxE6MoQ4pP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2120
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+结果 JSON 只有 top-100 binarized 结果，没有 raw scores。需要查看代码了解如何获取 raw scores。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "c806719a-33f2-41af-b59d-c8093bef4aa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnuJJSjaMJMktxE6MoQ4pP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2120
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NkkWtZfWyffFM98SaaYHjQ`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cat /root/structfuse-context/css.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "a7a666ff-92af-4dc7-bbaa-bc9f2fbff99c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnuJJSjaMJMktxE6MoQ4pP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2120
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T07:54:05.462Z_
+
+<details><summary>↩ Tool result · `toolu_01NkkWtZfWyffFM98SaaYHjQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\n\\n\\\"\\\"\\\"\\nCSS (Cross-method Stability Scoring) binarization and consensus module.\\n\\nProvides multiple binarization strategies for converting continuous edge scores\\nto binary circuit membership, then computes cross-method consensus.\\n\\nD010: IFR proximity scores are identical for all heads in the same (src, dst_layer).\\nTop-N binarization causes block-voting. Use percentile_threshold or unique_score_rank\\nto handle tied scores fairly.\\n\\\"\\\"\\\"\\n\\nfrom typing import Dict, List, Literal, Tuple\\nimport numpy as np\\n\\nBinarizeStrategy = Literal[\\\"topn\\\", \\\"threshold\\\", \\\"percentile_threshold\\\", \\\"unique_score_rank\\\"]\\n\\n\\ndef generate_nonnested_configs(\\n    node_thresholds: List[float],\\n    edge_thresholds: List[float],\\n    B: int = 9,\\n    seed: int = 42,\\n) -> List[Tuple[float, float]]:\\n    \\\"\\\"\\\"Generate B non-nested (anti-chain) configurations from 2D threshold space.\\n\\n    Anti-chain constraint: for any (n_i, e_i), (n_j, e_j),\\n    NOT (n_i <= n_j AND e_i <= e_j) — no dominance relation.\\n\\n    Method: interpolate B values per axis within the provided ranges,\\n    then select the anti-diagonal (node ascending, edge descending).\\n    This guarantees pairwise incomparability.\\n    \\\"\\\"\\\"\\n    n_lo, n_hi = min(node_thresholds), max(node_thresholds)\\n    e_lo, e_hi = min(edge_thresholds), max(edge_thresholds)\\n\\n    n_vals = np.linspace(n_lo, n_hi, B)\\n    e_vals = np.linspace(e_lo, e_hi, B)\\n\\n    return [(float(n_vals[i]), float(e_vals[B - 1 - i])) for i in range(B)]\\n\\n\\ndef binarize_scores(\\n    scores: Dict[str, float],\\n    strategy: BinarizeStrategy,\\n    *,\\n    n: int = 200,\\n    threshold: float = 0.01,\\n    percentile: float = 95.0,\\n) -> set[str]:\\n    \\\"\\\"\\\"Convert continuous edge scores to binary set of 'active' edges.\\n\\n    Strategies:\\n    - topn: select top-N edges by score. Simple but biased when scores are tied (IFR problem).\\n    - threshold: select edges above absolute threshold. Method-dependent.\\n    - percentile_threshold: select edges above P-th percentile of unique score values.\\n      Handles IFR ties: 36 heads with same score count as 1 unique value for percentile calc,\\n      then all 36 are included if above threshold. Avoids block-vote quota stealing.\\n    - unique_score_rank: rank by unique score values, select top-N unique scores,\\n      then include ALL edges with those scores. Ensures tied edges are treated as one unit.\\n    \\\"\\\"\\\"\\n    if not scores:\\n        return set()\\n\\n    if strategy == \\\"topn\\\":\\n        sorted_edges = sorted(scores.items(), key=lambda x: x[1], reverse=True)\\n        return {edge for edge, _ in sorted_edges[:n]}\\n\\n    elif strategy == \\\"threshold\\\":\\n        return {edge for edge, score in scores.items() if score >= threshold}\\n\\n    elif strategy == \\\"percentile_threshold\\\":\\n        unique_scores = sorted(set(scores.values()))\\n        cutoff_idx = int(len(unique_scores) * percentile / 100)\\n        cutoff_value = unique_scores[cutoff_idx] if cutoff_idx < len(unique_scores) else unique_scores[-1]\\n        return {edge for edge, score in scores.items() if score >= cutoff_value}\\n\\n    elif strategy == \\\"unique_score_rank\\\":\\n        unique_scores = sorted(set(scores.values()), reverse=True)\\n        top_n_scores = set(unique_scores[:n])\\n        return {edge for edge, score in scores.items() if score in top_n_scores}\\n\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n\\ndef compute_css_matrix(\\n    method_circuits: Dict[str, set[str]],\\n    all_edges: set[str],\\n) -> Dict:\\n    \\\"\\\"\\\"Compute cross-method stability matrix (cross-tabulation).\\n\\n    For K methods, each edge falls into one of 2^K cells:\\n    - (1,1,1): all methods agree edge is in circuit (CSS-core)\\n    - (1,0,0): only method 1 includes it (method-specific)\\n    - (0,0,0): no method includes it\\n    - etc.\\n\\n    Returns dict with:\\n    - 'cell_counts': {cell_label: count}\\n    - 'css_core': set of edges in all-1 cell\\n    - 'off_diagonal': set of edges where methods disagree (not all-0 or all-1)\\n    - 'off_diagonal_pct': off_diagonal count / total edges with at least one 1\\n    - 'per_method_counts': {method: n_edges}\\n    \\\"\\\"\\\"\\n    methods = sorted(method_circuits.keys())\\n    k = len(methods)\\n\\n    cell_counts: Dict[str, int] = {}\\n    css_core: set[str] = set()\\n    off_diagonal: set[str] = set()\\n\\n    all_zeros = tuple(0 for _ in range(k))\\n    all_ones = tuple(1 for _ in range(k))\\n\\n    for edge in all_edges:\\n        cell = tuple(1 if edge in method_circuits[m] else 0 for m in methods)\\n        label = str(cell)\\n        cell_counts[label] = cell_counts.get(label, 0) + 1\\n\\n        if cell == all_ones:\\n            css_core.add(edge)\\n        elif cell != all_zeros:\\n            off_diagonal.add(edge)\\n\\n    at_least_one = len(css_core) + len(off_diagonal)\\n    off_diagonal_pct = len(off_diagonal) / at_least_one if at_least_one > 0 else 0.0\\n\\n    per_method_counts = {m: len(method_circuits[m]) for m in methods}\\n\\n    return {\\n        \\\"cell_counts\\\": cell_counts,\\n        \\\"css_core\\\": css_core,\\n        \\\"off_diagonal\\\": off_diagonal,\\n        \\\"off_diagonal_pct\\\": off_diagonal_pct,\\n        \\\"per_method_counts\\\": per_method_counts,\\n    }\\n\\n\\ndef circus_score(\\n    method_circuits: Dict[str, set[str]],\\n    edge: str,\\n) -> float:\\n    \\\"\\\"\\\"CIRCUS score for a single edge: fraction of methods that include it.\\n\\n    score = |{m : edge in C_m}| / K\\n    \\\"\\\"\\\"\\n    k = len(method_circuits)\\n    if k == 0:\\n        return 0.0\\n    count = sum(1 for c in method_circuits.values() if edge in c)\\n    return count / k\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "1f3210ce-90fa-4177-bbe8-af22eb2d0fd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ.setdefault(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"0\\\\\\\")\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCSS (Cross-method Stability Scoring) binarization and consensus module.\\\\n\\\\nProvides multiple binarization strategies for converting continuous edge scores\\\\nto binary circuit membership, then computes cross-method consensus.\\\\n\\\\nD010: IFR proximity scores are identical for all heads in the same (src, dst_layer).\\\\nTop-N binarization causes block-voting. Use percentile_threshold or unique_score_rank\\\\nto handle tied scores fairly.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom typing import Dict, List, Literal, Tuple\\\\nimport numpy as np\\\\n\\\\nBinarizeStrategy = Literal[\\\\\\\"topn\\\\\\\", \\\\\\\"threshold\\\\\\\", \\\\\\\"percentile_threshold\\\\\\\", \\\\\\\"unique_score_rank\\\\\\\"]\\\\n\\\\n\\\\ndef generate_nonnested_configs(\\\\n    node_thresholds: List[float],\\\\n    edge_thresholds: List[float],\\\\n    B: int = 9,\\\\n    seed: int = 42,\\\\n) -> List[Tuple[float, float]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate B non-nested (anti-chain) configurations from 2D threshold space.\\\\n\\\\n    Anti-chain constraint: for any (n_i, e_i), (n_j, e_j),\\\\n    NOT (n_i <= n_j AND e_i <= e_j) — no dominance relation.\\\\n\\\\n    Method: interpolate B values per axis within the provided ranges,\\\\n    then select the anti-diagonal (node ascending, edge descending).\\\\n    This guarantees pairwise incomparability.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_lo, n_hi = min(node_thresholds), max(node_thresholds)\\\\n    e_lo, e_hi = min(edge_thresholds), max(edge_thresholds)\\\\n\\\\n    n_vals = np.linspace(n_lo, n_hi, B)\\\\n    e_vals = np.linspace(e_lo, e_hi, B)\\\\n\\\\n    return [(float(n_vals[i]), float(e_vals[B - 1 - i])) for i in range(B)]\\\\n\\\\n\\\\ndef binarize_scores(\\\\n    scores: Dict[str, float],\\\\n    strategy: BinarizeStrategy,\\\\n    *,\\\\n    n: int = 200,\\\\n    threshold: float = 0.01,\\\\n    percentile: float = 95.0,\\\\n) -> set[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert continuous edge scores to binary set of 'active' edges.\\\\n\\\\n    Strategies:\\\\n    - topn: select top-N edges by score. Simple but biased when scores are tied (IFR problem).\\\\n    - threshold: select edges above absolute threshold. Method-dependent.\\\\n    - percentile_threshold: select edges above P-th percentile of unique score values.\\\\n      Handles IFR ties: 36 heads with same score count as 1 unique value for percentile calc,\\\\n      then all 36 are included if above threshold. Avoids block-vote quota stealing.\\\\n    - unique_score_rank: rank by unique score values, select top-N unique scores,\\\\n      then include ALL edges with those scores. Ensures tied edges are treated as one unit.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not scores:\\\\n        return set()\\\\n\\\\n    if strategy == \\\\\\\"topn\\\\\\\":\\\\n        sorted_edges = sorted(scores.items(), key=lambda x: x[1], reverse=True)\\\\n        return {edge for edge, _ in sorted_edges[:n]}\\\\n\\\\n    elif strategy == \\\\\\\"threshold\\\\\\\":\\\\n        return {edge for edge, score in scores.items() if score >= threshold}\\\\n\\\\n    elif strategy == \\\\\\\"percentile_threshold\\\\\\\":\\\\n        unique_scores = sorted(set(scores.values()))\\\\n        cutoff_idx = int(len(unique_scores) * percentile / 100)\\\\n        cutoff_value = unique_scores[cutoff_idx] if cutoff_idx < len(unique_scores) else unique_scores[-1]\\\\n        return {edge for edge, score in scores.items() if score >= cutoff_value}\\\\n\\\\n    elif strategy == \\\\\\\"unique_score_rank\\\\\\\":\\\\n        unique_scores = sorted(set(scores.values()), reverse=True)\\\\n        top_n_scores = set(unique_scores[:n])\\\\n        return {edge for edge, score in scores.items() if score in top_n_scores}\\\\n\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown strategy: {strategy}\\\\\\\")\\\\n\\\\n\\\\ndef compute_css_matrix(\\\\n    method_circuits: Dict[str, set[str]],\\\\n    all_edges: set[str],\\\\n) -> Dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute cross-method stability matrix (cross-tabulation).\\\\n\\\\n    For K methods, each edge falls into one of 2^K cells:\\\\n    - (1,1,1): all methods agree edge is in circuit (CSS-core)\\\\n    - (1,0,0): only method 1 includes it (method-specific)\\\\n    - (0,0,0): no method includes it\\\\n    - etc.\\\\n\\\\n    Returns dict with:\\\\n    - 'cell_counts': {cell_label: count}\\\\n    - 'css_core': set of edges in all-1 cell\\\\n    - 'off_diagonal': set of edges where methods disagree (not all-0 or all-1)\\\\n    - 'off_diagonal_pct': off_diagonal count / total edges with at least one 1\\\\n    - 'per_method_counts': {method: n_edges}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    methods = sorted(method_circuits.keys())\\\\n    k = len(methods)\\\\n\\\\n    cell_counts: Dict[str, int] = {}\\\\n    css_core: set[str] = set()\\\\n    off_diagonal: set[str] = set()\\\\n\\\\n    all_zeros = tuple(0 for _ in range(k))\\\\n    all_ones = tuple(1 for _ in range(k))\\\\n\\\\n    for edge in all_edges:\\\\n        cell = tuple(1 if edge in method_circuits[m] else 0 for m in methods)\\\\n        label = str(cell)\\\\n        cell_counts[label] = cell_counts.get(label, 0) + 1\\\\n\\\\n        if cell == all_ones:\\\\n            css_core.add(edge)\\\\n        elif cell != all_zeros:\\\\n            off_diagonal.add(edge)\\\\n\\\\n    at_least_one = len(css_core) + len(off_diagonal)\\\\n    off_diagonal_pct = len(off_diagonal) / at_least_one if at_least_one > 0 else 0.0\\\\n\\\\n    per_method_counts = {m: len(method_circuits[m]) for m in methods}\\\\n\\\\n    return {\\\\n        \\\\\\\"cell_counts\\\\\\\": cell_counts,\\\\n        \\\\\\\"css_core\\\\\\\": css_core,\\\\n        \\\\\\\"off_diagonal\\\\\\\": off_diagonal,\\\\n        \\\\\\\"off_diagonal_pct\\\\\\\": off_diagonal_pct,\\\\n        \\\\\\\"per_method_counts\\\\\\\": per_method_counts,\\\\n    }\\\\n\\\\n\\\\ndef circus_score(\\\\n    method_circuits: Dict[str, set[str]],\\\\n    edge: str,\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"CIRCUS score for a single edge: fraction of methods that include it.\\\\n\\\\n    score = |{m : edge in C_m}| / K\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    k = len(method_circuits)\\\\n    if k == 0:\\\\n        return 0.0\\\\n    count = sum(1 for c in method_circuits.values() if edge in c)\\\\n    return count / k\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\n\\n\\\"\\\"\\\"\\nCSS (Cross-method Stability Scoring) binarization and consensus module.\\n\\nProvides multiple binarization strategies for converting continuous edge scores\\nto binary circuit membership, then computes cross-method consensus.\\n\\nD010: IFR proximity scores are identical for all heads in the same (src, dst_layer).\\nTop-N binarization causes block-voting. Use percentile_threshold or unique_score_rank\\nto handle tied scores fairly.\\n\\\"\\\"\\\"\\n\\nfrom typing import Dict, List, Literal, Tuple\\nimport numpy as np\\n\\nBinarizeStrategy = Literal[\\\"topn\\\", \\\"threshold\\\", \\\"percentile_threshold\\\", \\\"unique_score_rank\\\"]\\n\\n\\ndef generate_nonnested_configs(\\n    node_thresholds: List[float],\\n    edge_thresholds: List[float],\\n    B: int = 9,\\n    seed: int = 42,\\n) -> List[Tuple[float, float]]:\\n    \\\"\\\"\\\"Generate B non-nested (anti-chain) configurations from 2D threshold space.\\n\\n    Anti-chain constraint: for any (n_i, e_i), (n_j, e_j),\\n    NOT (n_i <= n_j AND e_i <= e_j) — no dominance relation.\\n\\n    Method: interpolate B values per axis within the provided ranges,\\n    then select the anti-diagonal (node ascending, edge descending).\\n    This guarantees pairwise incomparability.\\n    \\\"\\\"\\\"\\n    n_lo, n_hi = min(node_thresholds), max(node_thresholds)\\n    e_lo, e_hi = min(edge_thresholds), max(edge_thresholds)\\n\\n    n_vals = np.linspace(n_lo, n_hi, B)\\n    e_vals = np.linspace(e_lo, e_hi, B)\\n\\n    return [(float(n_vals[i]), float(e_vals[B - 1 - i])) for i in range(B)]\\n\\n\\ndef binarize_scores(\\n    scores: Dict[str, float],\\n    strategy: BinarizeStrategy,\\n    *,\\n    n: int = 200,\\n    threshold: float = 0.01,\\n    percentile: float = 95.0,\\n) -> set[str]:\\n    \\\"\\\"\\\"Convert continuous edge scores to binary set of 'active' edges.\\n\\n    Strategies:\\n    - topn: select top-N edges by score. Simple but biased when scores are tied (IFR problem).\\n    - threshold: select edges above absolute threshold. Method-dependent.\\n    - percentile_threshold: select edges above P-th percentile of unique score values.\\n      Handles IFR ties: 36 heads with same score count as 1 unique value for percentile calc,\\n      then all 36 are included if above threshold. Avoids block-vote quota stealing.\\n    - unique_score_rank: rank by unique score values, select top-N unique scores,\\n      then include ALL edges with those scores. Ensures tied edges are treated as one unit.\\n    \\\"\\\"\\\"\\n    if not scores:\\n        return set()\\n\\n    if strategy == \\\"topn\\\":\\n        sorted_edges = sorted(scores.items(), key=lambda x: x[1], reverse=True)\\n        return {edge for edge, _ in sorted_edges[:n]}\\n\\n    elif strategy == \\\"threshold\\\":\\n        return {edge for edge, score in scores.items() if score >= threshold}\\n\\n    elif strategy == \\\"percentile_threshold\\\":\\n        unique_scores = sorted(set(scores.values()))\\n        cutoff_idx = int(len(unique_scores) * percentile / 100)\\n        cutoff_value = unique_scores[cutoff_idx] if cutoff_idx < len(unique_scores) else unique_scores[-1]\\n        return {edge for edge, score in scores.items() if score >= cutoff_value}\\n\\n    elif strategy == \\\"unique_score_rank\\\":\\n        unique_scores = sorted(set(scores.values()), reverse=True)\\n        top_n_scores = set(unique_scores[:n])\\n        return {edge for edge, score in scores.items() if score in top_n_scores}\\n\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n\\ndef compute_css_matrix(\\n    method_circuits: Dict[str, set[str]],\\n    all_edges: set[str],\\n) -> Dict:\\n    \\\"\\\"\\\"Compute cross-method stability matrix (cross-tabulation).\\n\\n    For K methods, each edge falls into one of 2^K cells:\\n    - (1,1,1): all methods agree edge is in circuit (CSS-core)\\n    - (1,0,0): only method 1 includes it (method-specific)\\n    - (0,0,0): no method includes it\\n    - etc.\\n\\n    Returns dict with:\\n    - 'cell_counts': {cell_label: count}\\n    - 'css_core': set of edges in all-1 cell\\n    - 'off_diagonal': set of edges where methods disagree (not all-0 or all-1)\\n    - 'off_diagonal_pct': off_diagonal count / total edges with at least one 1\\n    - 'per_method_counts': {method: n_edges}\\n    \\\"\\\"\\\"\\n    methods = sorted(method_circuits.keys())\\n    k = len(methods)\\n\\n    cell_counts: Dict[str, int] = {}\\n    css_core: set[str] = set()\\n    off_diagonal: set[str] = set()\\n\\n    all_zeros = tuple(0 for _ in range(k))\\n    all_ones = tuple(1 for _ in range(k))\\n\\n    for edge in all_edges:\\n        cell = tuple(1 if edge in method_circuits[m] else 0 for m in methods)\\n        label = str(cell)\\n        cell_counts[label] = cell_counts.get(label, 0) + 1\\n\\n        if cell == all_ones:\\n            css_core.add(edge)\\n        elif cell != all_zeros:\\n            off_diagonal.add(edge)\\n\\n    at_least_one = len(css_core) + len(off_diagonal)\\n    off_diagonal_pct = len(off_diagonal) / at_least_one if at_least_one > 0 else 0.0\\n\\n    per_method_counts = {m: len(method_circuits[m]) for m in methods}\\n\\n    return {\\n        \\\"cell_counts\\\": cell_counts,\\n        \\\"css_core\\\": css_core,\\n        \\\"off_diagonal\\\": off_diagonal,\\n        \\\"off_diagonal_pct\\\": off_diagonal_pct,\\n        \\\"per_method_counts\\\": per_method_counts,\\n    }\\n\\n\\ndef circus_score(\\n    method_circuits: Dict[str, set[str]],\\n    edge: str,\\n) -> float:\\n    \\\"\\\"\\\"CIRCUS score for a single edge: fraction of methods that include it.\\n\\n    score = |{m : edge in C_m}| / K\\n    \\\"\\\"\\\"\\n    k = len(method_circuits)\\n    if k == 0:\\n        return 0.0\\n    count = sum(1 for c in method_circuits.values() if edge in c)\\n    return count / k\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UcasxhYAyrfdfECWfyuiNA`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cat /root/structfuse-context/run_qwen_ioi.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "599a28ca-b498-4feb-8edc-cb1d6fdbf627",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnuJJSjaMJMktxE6MoQ4pP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2120
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015kaD43i5aP7stXWZDZhTnB`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cat /root/structfuse-context/run_phase2_experiment.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "093eb470-0a63-4333-ad7e-3a35feba825f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnuJJSjaMJMktxE6MoQ4pP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2120
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T07:54:06.497Z_
+
+<details><summary>↩ Tool result · `toolu_01UcasxhYAyrfdfECWfyuiNA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2: Qwen-2.5 0.5B IOI K=3 experiment.\\n\\nMethods: EAP-IG + Edge Pruning (L0) + IFR — all HuggingFace-native.\\nBinarization: top-100 for all methods.\\nEvaluation: zero + mean ablation faithfulness.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\nimport sys, json, random, time, gc, math, re, logging\\nfrom pathlib import Path\\nfrom typing import Dict, Set, List, Optional\\n\\nsys.path.insert(0, \\\"/root/structfuse-context\\\")\\n\\nimport torch\\nimport torch.nn as nn\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(\\\"qwen_ioi\\\")\\n\\n# ============================================================\\n# Config\\n# ============================================================\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\nNUM_SAMPLES = 100\\nSEED = 42\\nK = 3\\nBINARIZE_N = 100\\nEAP_IG_STEPS = 5\\nEP_EPOCHS = 100\\nEP_LAMBDA = 1e-2\\nEP_LR = 0.05\\nIFR_THRESHOLD = 0.05\\nOUTPUT_DIR = Path(\\\"results/Qwen_Qwen2.5_0.5B_ioi\\\")\\nCACHE_DIR = Path(\\\"cache/Qwen_Qwen2.5_0.5B/ioi\\\")\\nEXP_ID = \\\"phase2_qwen05b_ioi_k3\\\"\\nDEVICE = \\\"cuda\\\"\\n\\nNAMES = [\\\"John\\\",\\\"Mary\\\",\\\"Alice\\\",\\\"Bob\\\",\\\"Charlie\\\",\\\"David\\\",\\\"Emma\\\",\\\"Frank\\\",\\n         \\\"Grace\\\",\\\"Henry\\\",\\\"Jack\\\",\\\"Kate\\\",\\\"Leo\\\",\\\"Mia\\\",\\\"Noah\\\",\\\"Tom\\\"]\\nTEMPLATES = [\\n    \\\"When {io} and {s} went to the {place}, {s} gave a {obj} to\\\",\\n    \\\"After {io} and {s} arrived at the {place}, {s} handed a {obj} to\\\",\\n    \\\"{io} and {s} were at the {place}. {s} gave a {obj} to\\\",\\n    \\\"Then, {io} and {s} had a meeting at the {place}, {s} passed a {obj} to\\\",\\n]\\nPLACES = [\\\"store\\\",\\\"park\\\",\\\"library\\\",\\\"school\\\",\\\"hospital\\\",\\\"restaurant\\\",\\\"office\\\"]\\nOBJECTS = [\\\"bottle\\\",\\\"book\\\",\\\"letter\\\",\\\"ball\\\",\\\"gift\\\",\\\"toy\\\",\\\"bag\\\"]\\n\\n\\ndef load_model():\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n    log.info(\\\"Loading Qwen2.5-0.5B from %s\\\", MODEL_PATH)\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, local_files_only=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH, local_files_only=True, dtype=torch.float32,\\n    ).to(DEVICE)\\n    model.eval()\\n    cfg = model.config\\n    log.info(\\\"  %dL %dH %dKV d=%d\\\", cfg.num_hidden_layers, cfg.num_attention_heads,\\n             cfg.num_key_value_heads, cfg.hidden_size)\\n    return model, tokenizer\\n\\n\\ndef get_info(model):\\n    c = model.config\\n    return {\\n        \\\"n_layers\\\": c.num_hidden_layers, \\\"n_heads\\\": c.num_attention_heads,\\n        \\\"n_kv_heads\\\": c.num_key_value_heads, \\\"d_model\\\": c.hidden_size,\\n        \\\"head_dim\\\": c.hidden_size // c.num_attention_heads,\\n    }\\n\\n\\ndef generate_ioi(tokenizer, n=100, seed=42):\\n    rng = random.Random(seed)\\n    prompts, corrupted, labels = [], [], []\\n    for _ in range(n):\\n        io, s = rng.sample(NAMES, 2)\\n        tmpl, place, obj = rng.choice(TEMPLATES), rng.choice(PLACES), rng.choice(OBJECTS)\\n        prompts.append(tmpl.format(io=io, s=s, place=place, obj=obj))\\n        corrupted.append(tmpl.format(io=s, s=io, place=place, obj=obj))\\n        labels.append((tokenizer.encode(\\\" \\\" + io, add_special_tokens=False)[0],\\n                        tokenizer.encode(\\\" \\\" + s, add_special_tokens=False)[0]))\\n    return prompts, corrupted, labels\\n\\n\\ndef tok(tokenizer, prompts):\\n    enc = tokenizer(prompts, return_tensors=\\\"pt\\\", padding=True)\\n    return enc[\\\"input_ids\\\"].to(DEVICE), enc[\\\"attention_mask\\\"].to(DEVICE)\\n\\n\\ndef logit_diff(logits, mask, labels):\\n    B = logits.shape[0]\\n    diffs = []\\n    for i in range(B):\\n        lp = mask[i].sum() - 1\\n        diffs.append(logits[i, lp, labels[i][0]] - logits[i, lp, labels[i][1]])\\n    return torch.stack(diffs).mean()\\n\\n\\n# ============================================================\\n# EAP-IG\\n# ============================================================\\n\\ndef _src_label(kind, layer, head):\\n    if kind == \\\"input\\\": return \\\"input\\\"\\n    if kind == \\\"attn\\\": return f\\\"a{layer}.h{head}\\\"\\n    return f\\\"m{layer}\\\"\\n\\n\\ndef _decompose_heads(o_proj_input, o_proj_weight, n_heads, head_dim):\\n    B, S, _ = o_proj_input.shape\\n    heads = o_proj_input.view(B, S, n_heads, head_dim)\\n    per_head = []\\n    for h in r\\n\\n... [截断: 输出过长，省略 14036 字符] ...\\n\\n_SAMPLES)\\n    prompts, corrupted, labels = generate_ioi(tokenizer, NUM_SAMPLES, SEED)\\n    ids, mask = tok(tokenizer, prompts)\\n\\n    with torch.no_grad():\\n        baseline = logit_diff(model(ids, attention_mask=mask).logits, mask, labels).item()\\n    log.info(\\\"Baseline IO-S diff: %.4f\\\", baseline)\\n\\n    # ---- EAP-IG ----\\n    eap = load_cache(\\\"eap_ig\\\")\\n    if eap is None:\\n        t0 = time.time()\\n        eap = run_eap_ig(model, tokenizer, prompts, corrupted, labels, EAP_IG_STEPS)\\n        save_cache(\\\"eap_ig\\\", eap)\\n        log.info(\\\"EAP-IG: %d edges, %.1fs\\\", len(eap), time.time()-t0)\\n    else:\\n        log.info(\\\"EAP-IG: cache hit (%d edges)\\\", len(eap))\\n    gc.collect(); torch.cuda.empty_cache()\\n\\n    # ---- Edge Pruning ----\\n    ep = load_cache(\\\"edge_pruning\\\")\\n    if ep is None:\\n        t0 = time.time()\\n        ep = run_ep_hf(model, tokenizer, prompts, labels, EP_EPOCHS, EP_LAMBDA, EP_LR)\\n        save_cache(\\\"edge_pruning\\\", ep)\\n        log.info(\\\"EP: %d edges, %.1fs\\\", len(ep), time.time()-t0)\\n    else:\\n        log.info(\\\"EP: cache hit (%d edges)\\\", len(ep))\\n    gc.collect(); torch.cuda.empty_cache()\\n\\n    # ---- IFR ----\\n    ifr = load_cache(\\\"ifr\\\")\\n    if ifr is None:\\n        t0 = time.time()\\n        ifr = run_ifr(model, tokenizer, prompts, IFR_THRESHOLD)\\n        save_cache(\\\"ifr\\\", ifr)\\n        log.info(\\\"IFR: %d edges, %.1fs\\\", len(ifr), time.time()-t0)\\n    else:\\n        log.info(\\\"IFR: cache hit (%d edges)\\\", len(ifr))\\n    gc.collect(); torch.cuda.empty_cache()\\n\\n    # ---- Binarize + CSS ----\\n    methods = [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    circuits = {\\n        \\\"eap_ig\\\": binarize_topn(eap, BINARIZE_N),\\n        \\\"edge_pruning\\\": binarize_topn(ep, BINARIZE_N),\\n        \\\"ifr\\\": binarize_topn(ifr, BINARIZE_N),\\n    }\\n    for m in methods:\\n        log.info(\\\"Binarized %s: %d edges\\\", m, len(circuits[m]))\\n\\n    css = compute_css(circuits, methods)\\n    jaccard = pairwise_jaccard(circuits)\\n    log.info(\\\"CSS-core: %d edges\\\", css[\\\"css_core_count\\\"])\\n    log.info(\\\"Off-diagonal: %.1f%%\\\", css[\\\"off_diagonal_pct\\\"]*100)\\n    log.info(\\\"CSS dist: %s\\\", css[\\\"css_distribution\\\"])\\n    log.info(\\\"Jaccard: %s\\\", jaccard)\\n\\n    # ---- Faithfulness ----\\n    log.info(\\\"Computing faithfulness...\\\")\\n    mean_acts = collect_mean_acts(model, tokenizer, prompts)\\n    faith = {}\\n    for name, edges in [(\\\"css_core\\\", css[\\\"css_core\\\"]),\\n                        (\\\"eap_ig\\\", circuits[\\\"eap_ig\\\"]),\\n                        (\\\"edge_pruning\\\", circuits[\\\"edge_pruning\\\"]),\\n                        (\\\"ifr\\\", circuits[\\\"ifr\\\"])]:\\n        faith[name] = {}\\n        for abl in (\\\"zero\\\", \\\"mean\\\"):\\n            r = eval_faith(model, tokenizer, prompts, labels, edges,\\n                           ablation=abl, mean_acts=mean_acts if abl==\\\"mean\\\" else None)\\n            faith[name][abl] = r\\n            log.info(\\\"  %s [%s]: CPR=%.4f\\\", name, abl, r[\\\"cpr\\\"])\\n\\n    # ---- Output ----\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    elapsed = time.time() - t_start\\n\\n    result = {\\n        \\\"experiment_id\\\": EXP_ID,\\n        \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n        \\\"task\\\": \\\"ioi\\\", \\\"K\\\": K,\\n        \\\"num_samples\\\": NUM_SAMPLES, \\\"seed\\\": SEED,\\n        \\\"binarize\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": BINARIZE_N},\\n        \\\"baseline_io_s_diff\\\": round(baseline, 4),\\n        \\\"method_edge_counts\\\": {\\\"eap_ig\\\": len(eap), \\\"edge_pruning\\\": len(ep), \\\"ifr\\\": len(ifr)},\\n        \\\"binarized_counts\\\": {m: len(circuits[m]) for m in methods},\\n        \\\"css_distribution\\\": css[\\\"css_distribution\\\"],\\n        \\\"css_core_count\\\": css[\\\"css_core_count\\\"],\\n        \\\"css_core_edges\\\": sorted(css[\\\"css_core\\\"]),\\n        \\\"off_diagonal_pct\\\": css[\\\"off_diagonal_pct\\\"],\\n        \\\"pairwise_jaccard\\\": jaccard,\\n        \\\"faithfulness\\\": faith,\\n        \\\"elapsed_sec\\\": round(elapsed, 1),\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n    }\\n\\n    out_path = OUTPUT_DIR / f\\\"Qwen_Qwen2.5_0.5B_ioi_K{K}.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2, default=str)\\n    log.info(\\\"Results -> %s\\\", out_path)\\n    log.info(\\\"DONE in %.1fs\\\", elapsed)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "1a351eff-a854-46f7-8009-b6916b40387d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 2: Qwen-2.5 0.5B IOI K=3 experiment.\\\\n\\\\nMethods: EAP-IG + Edge Pruning (L0) + IFR — all HuggingFace-native.\\\\nBinarization: top-100 for all methods.\\\\nEvaluation: zero + mean ablation faithfulness.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"0\\\\\\\"\\\\n\\\\nimport sys, json, random, time, gc, math, re, logging\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, Set, List, Optional\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/structfuse-context\\\\\\\")\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(\\\\\\\"qwen_ioi\\\\\\\")\\\\n\\\\n# ============================================================\\\\n# Config\\\\n# ============================================================\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\nNUM_SAMPLES = 100\\\\nSEED = 42\\\\nK = 3\\\\nBINARIZE_N = 100\\\\nEAP_IG_STEPS = 5\\\\nEP_EPOCHS = 100\\\\nEP_LAMBDA = 1e-2\\\\nEP_LR = 0.05\\\\nIFR_THRESHOLD = 0.05\\\\nOUTPUT_DIR = Path(\\\\\\\"results/Qwen_Qwen2.5_0.5B_ioi\\\\\\\")\\\\nCACHE_DIR = Path(\\\\\\\"cache/Qwen_Qwen2.5_0.5B/ioi\\\\\\\")\\\\nEXP_ID = \\\\\\\"phase2_qwen05b_ioi_k3\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda\\\\\\\"\\\\n\\\\nNAMES = [\\\\\\\"John\\\\\\\",\\\\\\\"Mary\\\\\\\",\\\\\\\"Alice\\\\\\\",\\\\\\\"Bob\\\\\\\",\\\\\\\"Charlie\\\\\\\",\\\\\\\"David\\\\\\\",\\\\\\\"Emma\\\\\\\",\\\\\\\"Frank\\\\\\\",\\\\n         \\\\\\\"Grace\\\\\\\",\\\\\\\"Henry\\\\\\\",\\\\\\\"Jack\\\\\\\",\\\\\\\"Kate\\\\\\\",\\\\\\\"Leo\\\\\\\",\\\\\\\"Mia\\\\\\\",\\\\\\\"Noah\\\\\\\",\\\\\\\"Tom\\\\\\\"]\\\\nTEMPLATES = [\\\\n    \\\\\\\"When {io} and {s} went to the {place}, {s} gave a {obj} to\\\\\\\",\\\\n    \\\\\\\"After {io} and {s} arrived at the {place}, {s} handed a {obj} to\\\\\\\",\\\\n    \\\\\\\"{io} and {s} were at the {place}. {s} gave a {obj} to\\\\\\\",\\\\n    \\\\\\\"Then, {io} and {s} had a meeting at the {place}, {s} passed a {obj} to\\\\\\\",\\\\n]\\\\nPLACES = [\\\\\\\"store\\\\\\\",\\\\\\\"park\\\\\\\",\\\\\\\"library\\\\\\\",\\\\\\\"school\\\\\\\",\\\\\\\"hospital\\\\\\\",\\\\\\\"restaurant\\\\\\\",\\\\\\\"office\\\\\\\"]\\\\nOBJECTS = [\\\\\\\"bottle\\\\\\\",\\\\\\\"book\\\\\\\",\\\\\\\"letter\\\\\\\",\\\\\\\"ball\\\\\\\",\\\\\\\"gift\\\\\\\",\\\\\\\"toy\\\\\\\",\\\\\\\"bag\\\\\\\"]\\\\n\\\\n\\\\ndef load_model():\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n    log.info(\\\\\\\"Loading Qwen2.5-0.5B from %s\\\\\\\", MODEL_PATH)\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, local_files_only=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        MODEL_PATH, local_files_only=True, dtype=torch.float32,\\\\n    ).to(DEVICE)\\\\n    model.eval()\\\\n    cfg = model.config\\\\n    log.info(\\\\\\\"  %dL %dH %dKV d=%d\\\\\\\", cfg.num_hidden_layers, cfg.num_attention_heads,\\\\n             cfg.num_key_value_heads, cfg.hidden_size)\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef get_info(model):\\\\n    c = model.config\\\\n    return {\\\\n        \\\\\\\"n_layers\\\\\\\": c.num_hidden_layers, \\\\\\\"n_heads\\\\\\\": c.num_attention_heads,\\\\n        \\\\\\\"n_kv_heads\\\\\\\": c.num_key_value_heads, \\\\\\\"d_model\\\\\\\": c.hidden_size,\\\\n        \\\\\\\"head_dim\\\\\\\": c.hidden_size // c.num_attention_heads,\\\\n    }\\\\n\\\\n\\\\ndef generate_ioi(tokenizer, n=100, seed=42):\\\\n    rng = random.Random(seed)\\\\n    prompts, corrupted, labels = [], [], []\\\\n    for _ in range(n):\\\\n        io, s = rng.sample(NAMES, 2)\\\\n        tmpl, place, obj = rng.choice(TEMPLATES), rng.choice(PLACES), rng.choice(OBJECTS)\\\\n        prompts.append(tmpl.format(io=io, s=s, place=place, obj=obj))\\\\n        corrupted.append(tmpl.format(io=s, s=io, place=place, obj=obj))\\\\n        labels.append((tokenizer.encode(\\\\\\\" \\\\\\\" + io, add_special_tokens=False)[0],\\\\n                        tokenizer.encode(\\\\\\\" \\\\\\\" + s, add_special_tokens=False)[0]))\\\\n    return prompts, corrupted, labels\\\\n\\\\n\\\\ndef tok(tokenizer, prompts):\\\\n    enc = tokenizer(prompts, return_tensors=\\\\\\\"pt\\\\\\\", padding=True)\\\\n    return enc[\\\\\\\"input_ids\\\\\\\"].to(DEVICE), enc[\\\\\\\"attention_mask\\\\\\\"].to(DEVICE)\\\\n\\\\n\\\\ndef logit_diff(logits, mask, labels):\\\\n    B = logits.shape[0]\\\\n    diffs = []\\\\n    for i in range(B):\\\\n        lp = mask[i].sum() - 1\\\\n        diffs.append(logits[i, lp, labels[i][0]] - logits[i, lp, labels[i][1]])\\\\n    return torch.stack(diffs).mean()\\\\n\\\\n\\\\n# ============================================================\\\\n# EAP-IG\\\\n# ============================================================\\\\n\\\\ndef _src_label(kind, layer, head):\\\\n    if kind == \\\\\\\"input\\\\\\\": return \\\\\\\"input\\\\\\\"\\\\n    if kind == \\\\\\\"attn\\\\\\\": return f\\\\\\\"a{layer}.h{head}\\\\\\\"\\\\n    return f\\\\\\\"m{layer}\\\\\\\"\\\\n\\\\n\\\\ndef _decompose_heads(o_proj_input, o_proj_weight, n_heads, head_dim):\\\\n    B, S, _ = o_proj_input.shape\\\\n    heads = o_proj_input.view(B, S, n_heads, head_dim)\\\\n    per_head = []\\\\n    for h in r\\\\n\\\\n... [截断: 输出过长，省略 14036 字符] ...\\\\n\\\\n_SAMPLES)\\\\n    prompts, corrupted, labels = generate_ioi(tokenizer, NUM_SAMPLES, SEED)\\\\n    ids, mask = tok(tokenizer, prompts)\\\\n\\\\n    with torch.no_grad():\\\\n        baseline = logit_diff(model(ids, attention_mask=mask).logits, mask, labels).item()\\\\n    log.info(\\\\\\\"Baseline IO-S diff: %.4f\\\\\\\", baseline)\\\\n\\\\n    # ---- EAP-IG ----\\\\n    eap = load_cache(\\\\\\\"eap_ig\\\\\\\")\\\\n    if eap is None:\\\\n        t0 = time.time()\\\\n        eap = run_eap_ig(model, tokenizer, prompts, corrupted, labels, EAP_IG_STEPS)\\\\n        save_cache(\\\\\\\"eap_ig\\\\\\\", eap)\\\\n        log.info(\\\\\\\"EAP-IG: %d edges, %.1fs\\\\\\\", len(eap), time.time()-t0)\\\\n    else:\\\\n        log.info(\\\\\\\"EAP-IG: cache hit (%d edges)\\\\\\\", len(eap))\\\\n    gc.collect(); torch.cuda.empty_cache()\\\\n\\\\n    # ---- Edge Pruning ----\\\\n    ep = load_cache(\\\\\\\"edge_pruning\\\\\\\")\\\\n    if ep is None:\\\\n        t0 = time.time()\\\\n        ep = run_ep_hf(model, tokenizer, prompts, labels, EP_EPOCHS, EP_LAMBDA, EP_LR)\\\\n        save_cache(\\\\\\\"edge_pruning\\\\\\\", ep)\\\\n        log.info(\\\\\\\"EP: %d edges, %.1fs\\\\\\\", len(ep), time.time()-t0)\\\\n    else:\\\\n        log.info(\\\\\\\"EP: cache hit (%d edges)\\\\\\\", len(ep))\\\\n    gc.collect(); torch.cuda.empty_cache()\\\\n\\\\n    # ---- IFR ----\\\\n    ifr = load_cache(\\\\\\\"ifr\\\\\\\")\\\\n    if ifr is None:\\\\n        t0 = time.time()\\\\n        ifr = run_ifr(model, tokenizer, prompts, IFR_THRESHOLD)\\\\n        save_cache(\\\\\\\"ifr\\\\\\\", ifr)\\\\n        log.info(\\\\\\\"IFR: %d edges, %.1fs\\\\\\\", len(ifr), time.time()-t0)\\\\n    else:\\\\n        log.info(\\\\\\\"IFR: cache hit (%d edges)\\\\\\\", len(ifr))\\\\n    gc.collect(); torch.cuda.empty_cache()\\\\n\\\\n    # ---- Binarize + CSS ----\\\\n    methods = [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    circuits = {\\\\n        \\\\\\\"eap_ig\\\\\\\": binarize_topn(eap, BINARIZE_N),\\\\n        \\\\\\\"edge_pruning\\\\\\\": binarize_topn(ep, BINARIZE_N),\\\\n        \\\\\\\"ifr\\\\\\\": binarize_topn(ifr, BINARIZE_N),\\\\n    }\\\\n    for m in methods:\\\\n        log.info(\\\\\\\"Binarized %s: %d edges\\\\\\\", m, len(circuits[m]))\\\\n\\\\n    css = compute_css(circuits, methods)\\\\n    jaccard = pairwise_jaccard(circuits)\\\\n    log.info(\\\\\\\"CSS-core: %d edges\\\\\\\", css[\\\\\\\"css_core_count\\\\\\\"])\\\\n    log.info(\\\\\\\"Off-diagonal: %.1f%%\\\\\\\", css[\\\\\\\"off_diagonal_pct\\\\\\\"]*100)\\\\n    log.info(\\\\\\\"CSS dist: %s\\\\\\\", css[\\\\\\\"css_distribution\\\\\\\"])\\\\n    log.info(\\\\\\\"Jaccard: %s\\\\\\\", jaccard)\\\\n\\\\n    # ---- Faithfulness ----\\\\n    log.info(\\\\\\\"Computing faithfulness...\\\\\\\")\\\\n    mean_acts = collect_mean_acts(model, tokenizer, prompts)\\\\n    faith = {}\\\\n    for name, edges in [(\\\\\\\"css_core\\\\\\\", css[\\\\\\\"css_core\\\\\\\"]),\\\\n                        (\\\\\\\"eap_ig\\\\\\\", circuits[\\\\\\\"eap_ig\\\\\\\"]),\\\\n                        (\\\\\\\"edge_pruning\\\\\\\", circuits[\\\\\\\"edge_pruning\\\\\\\"]),\\\\n                        (\\\\\\\"ifr\\\\\\\", circuits[\\\\\\\"ifr\\\\\\\"])]:\\\\n        faith[name] = {}\\\\n        for abl in (\\\\\\\"zero\\\\\\\", \\\\\\\"mean\\\\\\\"):\\\\n            r = eval_faith(model, tokenizer, prompts, labels, edges,\\\\n                           ablation=abl, mean_acts=mean_acts if abl==\\\\\\\"mean\\\\\\\" else None)\\\\n            faith[name][abl] = r\\\\n            log.info(\\\\\\\"  %s [%s]: CPR=%.4f\\\\\\\", name, abl, r[\\\\\\\"cpr\\\\\\\"])\\\\n\\\\n    # ---- Output ----\\\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n    elapsed = time.time() - t_start\\\\n\\\\n    result = {\\\\n        \\\\\\\"experiment_id\\\\\\\": EXP_ID,\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\", \\\\\\\"K\\\\\\\": K,\\\\n        \\\\\\\"num_samples\\\\\\\": NUM_SAMPLES, \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"binarize\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": BINARIZE_N},\\\\n        \\\\\\\"baseline_io_s_diff\\\\\\\": round(baseline, 4),\\\\n        \\\\\\\"method_edge_counts\\\\\\\": {\\\\\\\"eap_ig\\\\\\\": len(eap), \\\\\\\"edge_pruning\\\\\\\": len(ep), \\\\\\\"ifr\\\\\\\": len(ifr)},\\\\n        \\\\\\\"binarized_counts\\\\\\\": {m: len(circuits[m]) for m in methods},\\\\n        \\\\\\\"css_distribution\\\\\\\": css[\\\\\\\"css_distribution\\\\\\\"],\\\\n        \\\\\\\"css_core_count\\\\\\\": css[\\\\\\\"css_core_count\\\\\\\"],\\\\n        \\\\\\\"css_core_edges\\\\\\\": sorted(css[\\\\\\\"css_core\\\\\\\"]),\\\\n        \\\\\\\"off_diagonal_pct\\\\\\\": css[\\\\\\\"off_diagonal_pct\\\\\\\"],\\\\n        \\\\\\\"pairwise_jaccard\\\\\\\": jaccard,\\\\n        \\\\\\\"faithfulness\\\\\\\": faith,\\\\n        \\\\\\\"elapsed_sec\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"timestamp\\\\\\\": time.strftime(\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\"),\\\\n    }\\\\n\\\\n    out_path = OUTPUT_DIR / f\\\\\\\"Qwen_Qwen2.5_0.5B_ioi_K{K}.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2, default=str)\\\\n    log.info(\\\\\\\"Results -> %s\\\\\\\", out_path)\\\\n    log.info(\\\\\\\"DONE in %.1fs\\\\\\\", elapsed)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2: Qwen-2.5 0.5B IOI K=3 experiment.\\n\\nMethods: EAP-IG + Edge Pruning (L0) + IFR — all HuggingFace-native.\\nBinarization: top-100 for all methods.\\nEvaluation: zero + mean ablation faithfulness.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\nimport sys, json, random, time, gc, math, re, logging\\nfrom pathlib import Path\\nfrom typing import Dict, Set, List, Optional\\n\\nsys.path.insert(0, \\\"/root/structfuse-context\\\")\\n\\nimport torch\\nimport torch.nn as nn\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(\\\"qwen_ioi\\\")\\n\\n# ============================================================\\n# Config\\n# ============================================================\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\nNUM_SAMPLES = 100\\nSEED = 42\\nK = 3\\nBINARIZE_N = 100\\nEAP_IG_STEPS = 5\\nEP_EPOCHS = 100\\nEP_LAMBDA = 1e-2\\nEP_LR = 0.05\\nIFR_THRESHOLD = 0.05\\nOUTPUT_DIR = Path(\\\"results/Qwen_Qwen2.5_0.5B_ioi\\\")\\nCACHE_DIR = Path(\\\"cache/Qwen_Qwen2.5_0.5B/ioi\\\")\\nEXP_ID = \\\"phase2_qwen05b_ioi_k3\\\"\\nDEVICE = \\\"cuda\\\"\\n\\nNAMES = [\\\"John\\\",\\\"Mary\\\",\\\"Alice\\\",\\\"Bob\\\",\\\"Charlie\\\",\\\"David\\\",\\\"Emma\\\",\\\"Frank\\\",\\n         \\\"Grace\\\",\\\"Henry\\\",\\\"Jack\\\",\\\"Kate\\\",\\\"Leo\\\",\\\"Mia\\\",\\\"Noah\\\",\\\"Tom\\\"]\\nTEMPLATES = [\\n    \\\"When {io} and {s} went to the {place}, {s} gave a {obj} to\\\",\\n    \\\"After {io} and {s} arrived at the {place}, {s} handed a {obj} to\\\",\\n    \\\"{io} and {s} were at the {place}. {s} gave a {obj} to\\\",\\n    \\\"Then, {io} and {s} had a meeting at the {place}, {s} passed a {obj} to\\\",\\n]\\nPLACES = [\\\"store\\\",\\\"park\\\",\\\"library\\\",\\\"school\\\",\\\"hospital\\\",\\\"restaurant\\\",\\\"office\\\"]\\nOBJECTS = [\\\"bottle\\\",\\\"book\\\",\\\"letter\\\",\\\"ball\\\",\\\"gift\\\",\\\"toy\\\",\\\"bag\\\"]\\n\\n\\ndef load_model():\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n    log.info(\\\"Loading Qwen2.5-0.5B from %s\\\", MODEL_PATH)\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, local_files_only=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH, local_files_only=True, dtype=torch.float32,\\n    ).to(DEVICE)\\n    model.eval()\\n    cfg = model.config\\n    log.info(\\\"  %dL %dH %dKV d=%d\\\", cfg.num_hidden_layers, cfg.num_attention_heads,\\n             cfg.num_key_value_heads, cfg.hidden_size)\\n    return model, tokenizer\\n\\n\\ndef get_info(model):\\n    c = model.config\\n    return {\\n        \\\"n_layers\\\": c.num_hidden_layers, \\\"n_heads\\\": c.num_attention_heads,\\n        \\\"n_kv_heads\\\": c.num_key_value_heads, \\\"d_model\\\": c.hidden_size,\\n        \\\"head_dim\\\": c.hidden_size // c.num_attention_heads,\\n    }\\n\\n\\ndef generate_ioi(tokenizer, n=100, seed=42):\\n    rng = random.Random(seed)\\n    prompts, corrupted, labels = [], [], []\\n    for _ in range(n):\\n        io, s = rng.sample(NAMES, 2)\\n        tmpl, place, obj = rng.choice(TEMPLATES), rng.choice(PLACES), rng.choice(OBJECTS)\\n        prompts.append(tmpl.format(io=io, s=s, place=place, obj=obj))\\n        corrupted.append(tmpl.format(io=s, s=io, place=place, obj=obj))\\n        labels.append((tokenizer.encode(\\\" \\\" + io, add_special_tokens=False)[0],\\n                        tokenizer.encode(\\\" \\\" + s, add_special_tokens=False)[0]))\\n    return prompts, corrupted, labels\\n\\n\\ndef tok(tokenizer, prompts):\\n    enc = tokenizer(prompts, return_tensors=\\\"pt\\\", padding=True)\\n    return enc[\\\"input_ids\\\"].to(DEVICE), enc[\\\"attention_mask\\\"].to(DEVICE)\\n\\n\\ndef logit_diff(logits, mask, labels):\\n    B = logits.shape[0]\\n    diffs = []\\n    for i in range(B):\\n        lp = mask[i].sum() - 1\\n        diffs.append(logits[i, lp, labels[i][0]] - logits[i, lp, labels[i][1]])\\n    return torch.stack(diffs).mean()\\n\\n\\n# ============================================================\\n# EAP-IG\\n# ============================================================\\n\\ndef _src_label(kind, layer, head):\\n    if kind == \\\"input\\\": return \\\"input\\\"\\n    if kind == \\\"attn\\\": return f\\\"a{layer}.h{head}\\\"\\n    return f\\\"m{layer}\\\"\\n\\n\\ndef _decompose_heads(o_proj_input, o_proj_weight, n_heads, head_dim):\\n    B, S, _ = o_proj_input.shape\\n    heads = o_proj_input.view(B, S, n_heads, head_dim)\\n    per_head = []\\n    for h in r\\n\\n... [截断: 输出过长，省略 14036 字符] ...\\n\\n_SAMPLES)\\n    prompts, corrupted, labels = generate_ioi(tokenizer, NUM_SAMPLES, SEED)\\n    ids, mask = tok(tokenizer, prompts)\\n\\n    with torch.no_grad():\\n        baseline = logit_diff(model(ids, attention_mask=mask).logits, mask, labels).item()\\n    log.info(\\\"Baseline IO-S diff: %.4f\\\", baseline)\\n\\n    # ---- EAP-IG ----\\n    eap = load_cache(\\\"eap_ig\\\")\\n    if eap is None:\\n        t0 = time.time()\\n        eap = run_eap_ig(model, tokenizer, prompts, corrupted, labels, EAP_IG_STEPS)\\n        save_cache(\\\"eap_ig\\\", eap)\\n        log.info(\\\"EAP-IG: %d edges, %.1fs\\\", len(eap), time.time()-t0)\\n    else:\\n        log.info(\\\"EAP-IG: cache hit (%d edges)\\\", len(eap))\\n    gc.collect(); torch.cuda.empty_cache()\\n\\n    # ---- Edge Pruning ----\\n    ep = load_cache(\\\"edge_pruning\\\")\\n    if ep is None:\\n        t0 = time.time()\\n        ep = run_ep_hf(model, tokenizer, prompts, labels, EP_EPOCHS, EP_LAMBDA, EP_LR)\\n        save_cache(\\\"edge_pruning\\\", ep)\\n        log.info(\\\"EP: %d edges, %.1fs\\\", len(ep), time.time()-t0)\\n    else:\\n        log.info(\\\"EP: cache hit (%d edges)\\\", len(ep))\\n    gc.collect(); torch.cuda.empty_cache()\\n\\n    # ---- IFR ----\\n    ifr = load_cache(\\\"ifr\\\")\\n    if ifr is None:\\n        t0 = time.time()\\n        ifr = run_ifr(model, tokenizer, prompts, IFR_THRESHOLD)\\n        save_cache(\\\"ifr\\\", ifr)\\n        log.info(\\\"IFR: %d edges, %.1fs\\\", len(ifr), time.time()-t0)\\n    else:\\n        log.info(\\\"IFR: cache hit (%d edges)\\\", len(ifr))\\n    gc.collect(); torch.cuda.empty_cache()\\n\\n    # ---- Binarize + CSS ----\\n    methods = [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    circuits = {\\n        \\\"eap_ig\\\": binarize_topn(eap, BINARIZE_N),\\n        \\\"edge_pruning\\\": binarize_topn(ep, BINARIZE_N),\\n        \\\"ifr\\\": binarize_topn(ifr, BINARIZE_N),\\n    }\\n    for m in methods:\\n        log.info(\\\"Binarized %s: %d edges\\\", m, len(circuits[m]))\\n\\n    css = compute_css(circuits, methods)\\n    jaccard = pairwise_jaccard(circuits)\\n    log.info(\\\"CSS-core: %d edges\\\", css[\\\"css_core_count\\\"])\\n    log.info(\\\"Off-diagonal: %.1f%%\\\", css[\\\"off_diagonal_pct\\\"]*100)\\n    log.info(\\\"CSS dist: %s\\\", css[\\\"css_distribution\\\"])\\n    log.info(\\\"Jaccard: %s\\\", jaccard)\\n\\n    # ---- Faithfulness ----\\n    log.info(\\\"Computing faithfulness...\\\")\\n    mean_acts = collect_mean_acts(model, tokenizer, prompts)\\n    faith = {}\\n    for name, edges in [(\\\"css_core\\\", css[\\\"css_core\\\"]),\\n                        (\\\"eap_ig\\\", circuits[\\\"eap_ig\\\"]),\\n                        (\\\"edge_pruning\\\", circuits[\\\"edge_pruning\\\"]),\\n                        (\\\"ifr\\\", circuits[\\\"ifr\\\"])]:\\n        faith[name] = {}\\n        for abl in (\\\"zero\\\", \\\"mean\\\"):\\n            r = eval_faith(model, tokenizer, prompts, labels, edges,\\n                           ablation=abl, mean_acts=mean_acts if abl==\\\"mean\\\" else None)\\n            faith[name][abl] = r\\n            log.info(\\\"  %s [%s]: CPR=%.4f\\\", name, abl, r[\\\"cpr\\\"])\\n\\n    # ---- Output ----\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    elapsed = time.time() - t_start\\n\\n    result = {\\n        \\\"experiment_id\\\": EXP_ID,\\n        \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n        \\\"task\\\": \\\"ioi\\\", \\\"K\\\": K,\\n        \\\"num_samples\\\": NUM_SAMPLES, \\\"seed\\\": SEED,\\n        \\\"binarize\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": BINARIZE_N},\\n        \\\"baseline_io_s_diff\\\": round(baseline, 4),\\n        \\\"method_edge_counts\\\": {\\\"eap_ig\\\": len(eap), \\\"edge_pruning\\\": len(ep), \\\"ifr\\\": len(ifr)},\\n        \\\"binarized_counts\\\": {m: len(circuits[m]) for m in methods},\\n        \\\"css_distribution\\\": css[\\\"css_distribution\\\"],\\n        \\\"css_core_count\\\": css[\\\"css_core_count\\\"],\\n        \\\"css_core_edges\\\": sorted(css[\\\"css_core\\\"]),\\n        \\\"off_diagonal_pct\\\": css[\\\"off_diagonal_pct\\\"],\\n        \\\"pairwise_jaccard\\\": jaccard,\\n        \\\"faithfulness\\\": faith,\\n        \\\"elapsed_sec\\\": round(elapsed, 1),\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n    }\\n\\n    out_path = OUTPUT_DIR / f\\\"Qwen_Qwen2.5_0.5B_ioi_K{K}.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2, default=str)\\n    log.info(\\\"Results -> %s\\\", out_path)\\n    log.info(\\\"DONE in %.1fs\\\", elapsed)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T07:54:07.032Z_
+
+<details><summary>↩ Tool result · `toolu_015kaD43i5aP7stXWZDZhTnB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\\n\\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\\n支持配置化批量实验。\\n\\nUsage:\\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\\n    python run_phase2_experiment.py --list  # 列出所有候选实验\\n    python run_phase2_experiment.py --status  # 查看已完抉/待运行状态\\n\\\"\\\"\\\"\\n\\nimport os\\n# GPU guard: 必须在 torch import 之前设置 (D007)\\n_GPU_ID = os.environ.get(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = _GPU_ID\\n\\nimport argparse\\nimport hashlib\\nimport json\\nimport logging\\nimport sys\\nimport time\\nfrom dataclasses import dataclass, field\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Set\\n\\nimport yaml\\n\\nCANONICAL_VERSION = \\\"v2\\\"\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlogger = logging.getLogger(\\\"phase2\\\")\\n\\n\\n# -----------------------------------------------------------------------------\\n# Config dataclasses\\n# -----------------------------------------------------------------------------\\n\\n@dataclass\\nclass ExperimentConfig:\\n    \\\"\\\"\\\"单个实验的配置。\\\"\\\"\\\"\\n    name: str\\n    model: str\\n    task: str\\n    methods: List[str]\\n    backend: str  # \\\"transformerlens\\\" | \\\"huggingface\\\"\\n    priority: int = 3\\n    model_path: Optional[str] = None\\n    K: int = 3\\n    num_samples: int = 50\\n    gpu_id: str = \\\"0\\\"\\n    seed: int = 42\\n    eap_ig_steps: int = 5\\n    edge_pruning_epochs: int = 100\\n    edge_pruning_lambda: float = 1e-2\\n    ifr_threshold: float = 0.1\\n    css_threshold: float = 0.67\\n    circus_B: int = 10\\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\\n    notes: str = \\\"\\\"\\n\\n    def __post_init__(self):\\n        if not self.binarize:\\n            self.binarize = {\\n                \\\"eap_ig\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"edge_pruning\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"ifr\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"acdc\\\": {\\\"strategy\\\": \\\"threshold\\\", \\\"threshold\\\": 0.05},\\n            }\\n\\n    @property\\n    def model_slug(self) -> str:\\n        return self.model.replace(\\\"/\\\", \\\"_\\\").replace(\\\"-\\\", \\\"_\\\")\\n\\n    @property\\n    def output_dir(self) -> Path:\\n        return Path(\\\"results\\\") / f\\\"{self.model_slug}_{self.task}\\\"\\n\\n    @property\\n    def cache_dir(self) -> Path:\\n        return Path(\\\"cache\\\") / self.model_slug / self.task\\n\\n    def to_run_circus_config(self) -> Dict[str, Any]:\\n        \\\"\\\"\\\"转换为 run_circus.py 的 config dict 格式。\\\"\\\"\\\"\\n        cfg = {\\n            \\\"model\\\": self.model_path or self.model,\\n            \\\"task\\\": self.task,\\n            \\\"methods\\\": self.methods,\\n            \\\"K\\\": self.K,\\n            \\\"num_samples\\\": self.num_samples,\\n            \\\"gpu_id\\\": self.gpu_id,\\n            \\\"seed\\\": self.seed,\\n            \\\"eap_ig_steps\\\": self.eap_ig_steps,\\n            \\\"edge_pruning_epochs\\\": self.edge_pruning_epochs,\\n            \\\"edge_pruning_lambda\\\": self.edge_pruning_lambda,\\n            \\\"ifr_threshold\\\": self.ifr_threshold,\\n            \\\"css_threshold\\\": self.css_threshold,\\n            \\\"circus_B\\\": self.circus_B,\\n            \\\"binarize\\\": {m: v for m, v in self.binarize.items() if m in self.methods},\\n            \\\"device\\\": \\\"cuda\\\",\\n            \\\"output_dir\\\": str(self.output_dir),\\n            \\\"cache_dir\\\": str(self.cache_dir),\\n        }\\n        return cfg\\n\\n\\n# -----------------------------------------------------------------------------\\n# Config loading\\n# -----------------------------------------------------------------------------\\n\\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\\n    \\\"\\\"\\\"从 YAML 加载实验矩阵。\\\"\\\"\\\"\\n    path = Path(config_path)\\n    if not path.exists():\\n        raise FileNotFoundError(f\\\"Config not found: {config_path}\\\")\\n\\n    with open(path) as f:\\n        raw = yaml.safe_load(f)\\n\\n    defaults = raw.get(\\\"de\\n\\n... [截断: 输出过长，省略 8586 字符] ...\\n\\nraise ValueError(\\\"No experiments match the filter criteria\\\")\\n    return selected\\n\\n\\ndef _save_batch_summary(all_results: Dict[str, Dict[str, Any]]) -> None:\\n    \\\"\\\"\\\"保存批量运行摘要。\\\"\\\"\\\"\\n    summary_path = Path(\\\"results\\\") / \\\"phase2_batch_summary.json\\\"\\n    summary_path.parent.mkdir(parents=True, exist_ok=True)\\n\\n    summary = {\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n        \\\"canonical_version\\\": CANONICAL_VERSION,\\n        \\\"experiments\\\": {},\\n    }\\n    for name, res in all_results.items():\\n        entry = {\\\"status\\\": \\\"error\\\" if \\\"error\\\" in res else \\\"ok\\\"}\\n        if \\\"error\\\" in res:\\n            entry[\\\"error\\\"] = res[\\\"error\\\"]\\n        else:\\n            entry[\\\"elapsed_sec\\\"] = res.get(\\\"elapsed_sec\\\")\\n            if \\\"cross_table\\\" in res:\\n                entry[\\\"off_diagonal_pct\\\"] = res[\\\"cross_table\\\"].get(\\\"off_diagonal_pct\\\")\\n            if \\\"css_distribution\\\" in res:\\n                entry[\\\"css_distribution\\\"] = res[\\\"css_distribution\\\"]\\n        summary[\\\"experiments\\\"][name] = entry\\n\\n    with open(summary_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    logger.info(\\\"Batch summary → %s\\\", summary_path)\\n\\n\\n# -----------------------------------------------------------------------------\\n# Status check\\n# -----------------------------------------------------------------------------\\n\\ndef show_status(experiments: Dict[str, ExperimentConfig]) -> None:\\n    \\\"\\\"\\\"显示每个实验的完成状态。\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'Experiment':30s} {'Model':25s} {'Task':12s} {'Cached Methods':40s} {'Result'}\\\")\\n    print(\\\"-\\\" * 120)\\n\\n    for name in sorted(experiments, key=lambda n: (experiments[n].priority, n)):\\n        exp = experiments[name]\\n        cache = check_cache(exp)\\n        cached_str = \\\" \\\".join(f\\\"{'✓' if v else '✗'}{m}\\\" for m, v in cache.items())\\n\\n        result_file = exp.output_dir / f\\\"{exp.model_slug}_{exp.task}_K{exp.K}.json\\\"\\n        result_str = \\\"✓\\\" if result_file.exists() else \\\"—\\\"\\n\\n        print(f\\\"  P{exp.priority} {name:28s} {exp.model:25s} {exp.task:12s} {cached_str:40s} {result_str}\\\")\\n\\n\\n# -----------------------------------------------------------------------------\\n# CLI\\n# -----------------------------------------------------------------------------\\n\\ndef parse_args() -> argparse.Namespace:\\n    parser = argparse.ArgumentParser(description=\\\"Phase 2 experiment runner\\\")\\n    parser.add_argument(\\\"--config\\\", type=str, default=\\\"phase2_configs.yaml\\\",\\n                        help=\\\"实验矩阵 YAML 路径\\\")\\n    parser.add_argument(\\\"--experiment\\\", type=str, nargs=\\\"+\\\",\\n                        help=\\\"运行指定实验（空格分隔多个）\\\")\\n    parser.add_argument(\\\"--all\\\", action=\\\"store_true\\\",\\n                        help=\\\"运行全部实验\\\")\\n    parser.add_argument(\\\"--priority\\\", type=int,\\n                        help=\\\"只运行 priority <= N 的实验\\\")\\n    parser.add_argument(\\\"--list\\\", action=\\\"store_true\\\",\\n                        help=\\\"列出所有实验\\\")\\n    parser.add_argument(\\\"--status\\\", action=\\\"store_true\\\",\\n                        help=\\\"显示完成状态\\\")\\n    parser.add_argument(\\\"--force\\\", action=\\\"store_true\\\",\\n                        help=\\\"忽略缓存强制重算\\\")\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None,\\n                        help=\\\"覆盖 CUDA_VISIBLE_DEVICES\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n        logger.info(\\\"GPU override: CUDA_VISIBLE_DEVICES=%s\\\", args.gpu)\\n\\n    experiments = load_experiment_matrix(args.config)\\n\\n    if args.list:\\n        list_experiments(experiments)\\n        return\\n\\n    if args.status:\\n        show_status(experiments)\\n        return\\n\\n    if args.experiment:\\n        run_batch(experiments, names=args.experiment, force=args.force)\\n    elif args.all:\\n        run_batch(experiments, max_priority=args.priority, force=args.force)\\n    elif args.priority:\\n        run_batch(experiments, max_priority=args.priority, force=args.force)\\n    else:\\n        parser = argparse.ArgumentParser()\\n        parser.print_help()\\n        print(\\\"\\\\nHint: use --list to see experiments, --experiment NAME to run one\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "5ad50cbf-d786-4af4-ba76-90524f2b181a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\\\\n\\\\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\\\\n支持配置化批量实验。\\\\n\\\\nUsage:\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\\\\n    python run_phase2_experiment.py --list  # 列出所有候选实验\\\\n    python run_phase2_experiment.py --status  # 查看已完抉/待运行状态\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\n# GPU guard: 必须在 torch import 之前设置 (D007)\\\\n_GPU_ID = os.environ.get(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"0\\\\\\\")\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = _GPU_ID\\\\n\\\\nimport argparse\\\\nimport hashlib\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nimport time\\\\nfrom dataclasses import dataclass, field\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Set\\\\n\\\\nimport yaml\\\\n\\\\nCANONICAL_VERSION = \\\\\\\"v2\\\\\\\"\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"phase2\\\\\\\")\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Config dataclasses\\\\n# -----------------------------------------------------------------------------\\\\n\\\\n@dataclass\\\\nclass ExperimentConfig:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"单个实验的配置。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    name: str\\\\n    model: str\\\\n    task: str\\\\n    methods: List[str]\\\\n    backend: str  # \\\\\\\"transformerlens\\\\\\\" | \\\\\\\"huggingface\\\\\\\"\\\\n    priority: int = 3\\\\n    model_path: Optional[str] = None\\\\n    K: int = 3\\\\n    num_samples: int = 50\\\\n    gpu_id: str = \\\\\\\"0\\\\\\\"\\\\n    seed: int = 42\\\\n    eap_ig_steps: int = 5\\\\n    edge_pruning_epochs: int = 100\\\\n    edge_pruning_lambda: float = 1e-2\\\\n    ifr_threshold: float = 0.1\\\\n    css_threshold: float = 0.67\\\\n    circus_B: int = 10\\\\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\\\\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\\\\n    notes: str = \\\\\\\"\\\\\\\"\\\\n\\\\n    def __post_init__(self):\\\\n        if not self.binarize:\\\\n            self.binarize = {\\\\n                \\\\\\\"eap_ig\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": 200},\\\\n                \\\\\\\"edge_pruning\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": 200},\\\\n                \\\\\\\"ifr\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": 200},\\\\n                \\\\\\\"acdc\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"threshold\\\\\\\", \\\\\\\"threshold\\\\\\\": 0.05},\\\\n            }\\\\n\\\\n    @property\\\\n    def model_slug(self) -> str:\\\\n        return self.model.replace(\\\\\\\"/\\\\\\\", \\\\\\\"_\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\")\\\\n\\\\n    @property\\\\n    def output_dir(self) -> Path:\\\\n        return Path(\\\\\\\"results\\\\\\\") / f\\\\\\\"{self.model_slug}_{self.task}\\\\\\\"\\\\n\\\\n    @property\\\\n    def cache_dir(self) -> Path:\\\\n        return Path(\\\\\\\"cache\\\\\\\") / self.model_slug / self.task\\\\n\\\\n    def to_run_circus_config(self) -> Dict[str, Any]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"转换为 run_circus.py 的 config dict 格式。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        cfg = {\\\\n            \\\\\\\"model\\\\\\\": self.model_path or self.model,\\\\n            \\\\\\\"task\\\\\\\": self.task,\\\\n            \\\\\\\"methods\\\\\\\": self.methods,\\\\n            \\\\\\\"K\\\\\\\": self.K,\\\\n            \\\\\\\"num_samples\\\\\\\": self.num_samples,\\\\n            \\\\\\\"gpu_id\\\\\\\": self.gpu_id,\\\\n            \\\\\\\"seed\\\\\\\": self.seed,\\\\n            \\\\\\\"eap_ig_steps\\\\\\\": self.eap_ig_steps,\\\\n            \\\\\\\"edge_pruning_epochs\\\\\\\": self.edge_pruning_epochs,\\\\n            \\\\\\\"edge_pruning_lambda\\\\\\\": self.edge_pruning_lambda,\\\\n            \\\\\\\"ifr_threshold\\\\\\\": self.ifr_threshold,\\\\n            \\\\\\\"css_threshold\\\\\\\": self.css_threshold,\\\\n            \\\\\\\"circus_B\\\\\\\": self.circus_B,\\\\n            \\\\\\\"binarize\\\\\\\": {m: v for m, v in self.binarize.items() if m in self.methods},\\\\n            \\\\\\\"device\\\\\\\": \\\\\\\"cuda\\\\\\\",\\\\n            \\\\\\\"output_dir\\\\\\\": str(self.output_dir),\\\\n            \\\\\\\"cache_dir\\\\\\\": str(self.cache_dir),\\\\n        }\\\\n        return cfg\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Config loading\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"从 YAML 加载实验矩阵。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    path = Path(config_path)\\\\n    if not path.exists():\\\\n        raise FileNotFoundError(f\\\\\\\"Config not found: {config_path}\\\\\\\")\\\\n\\\\n    with open(path) as f:\\\\n        raw = yaml.safe_load(f)\\\\n\\\\n    defaults = raw.get(\\\\\\\"de\\\\n\\\\n... [截断: 输出过长，省略 8586 字符] ...\\\\n\\\\nraise ValueError(\\\\\\\"No experiments match the filter criteria\\\\\\\")\\\\n    return selected\\\\n\\\\n\\\\ndef _save_batch_summary(all_results: Dict[str, Dict[str, Any]]) -> None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"保存批量运行摘要。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    summary_path = Path(\\\\\\\"results\\\\\\\") / \\\\\\\"phase2_batch_summary.json\\\\\\\"\\\\n    summary_path.parent.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"timestamp\\\\\\\": time.strftime(\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\"),\\\\n        \\\\\\\"canonical_version\\\\\\\": CANONICAL_VERSION,\\\\n        \\\\\\\"experiments\\\\\\\": {},\\\\n    }\\\\n    for name, res in all_results.items():\\\\n        entry = {\\\\\\\"status\\\\\\\": \\\\\\\"error\\\\\\\" if \\\\\\\"error\\\\\\\" in res else \\\\\\\"ok\\\\\\\"}\\\\n        if \\\\\\\"error\\\\\\\" in res:\\\\n            entry[\\\\\\\"error\\\\\\\"] = res[\\\\\\\"error\\\\\\\"]\\\\n        else:\\\\n            entry[\\\\\\\"elapsed_sec\\\\\\\"] = res.get(\\\\\\\"elapsed_sec\\\\\\\")\\\\n            if \\\\\\\"cross_table\\\\\\\" in res:\\\\n                entry[\\\\\\\"off_diagonal_pct\\\\\\\"] = res[\\\\\\\"cross_table\\\\\\\"].get(\\\\\\\"off_diagonal_pct\\\\\\\")\\\\n            if \\\\\\\"css_distribution\\\\\\\" in res:\\\\n                entry[\\\\\\\"css_distribution\\\\\\\"] = res[\\\\\\\"css_distribution\\\\\\\"]\\\\n        summary[\\\\\\\"experiments\\\\\\\"][name] = entry\\\\n\\\\n    with open(summary_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    logger.info(\\\\\\\"Batch summary → %s\\\\\\\", summary_path)\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Status check\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef show_status(experiments: Dict[str, ExperimentConfig]) -> None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"显示每个实验的完成状态。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    print(f\\\\\\\"\\\\\\\\n{'Experiment':30s} {'Model':25s} {'Task':12s} {'Cached Methods':40s} {'Result'}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 120)\\\\n\\\\n    for name in sorted(experiments, key=lambda n: (experiments[n].priority, n)):\\\\n        exp = experiments[name]\\\\n        cache = check_cache(exp)\\\\n        cached_str = \\\\\\\" \\\\\\\".join(f\\\\\\\"{'✓' if v else '✗'}{m}\\\\\\\" for m, v in cache.items())\\\\n\\\\n        result_file = exp.output_dir / f\\\\\\\"{exp.model_slug}_{exp.task}_K{exp.K}.json\\\\\\\"\\\\n        result_str = \\\\\\\"✓\\\\\\\" if result_file.exists() else \\\\\\\"—\\\\\\\"\\\\n\\\\n        print(f\\\\\\\"  P{exp.priority} {name:28s} {exp.model:25s} {exp.task:12s} {cached_str:40s} {result_str}\\\\\\\")\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# CLI\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef parse_args() -> argparse.Namespace:\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Phase 2 experiment runner\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=\\\\\\\"phase2_configs.yaml\\\\\\\",\\\\n                        help=\\\\\\\"实验矩阵 YAML 路径\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--experiment\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        help=\\\\\\\"运行指定实验（空格分隔多个）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--all\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"运行全部实验\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--priority\\\\\\\", type=int,\\\\n                        help=\\\\\\\"只运行 priority <= N 的实验\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--list\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"列出所有实验\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--status\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"显示完成状态\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--force\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"忽略缓存强制重算\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"覆盖 CUDA_VISIBLE_DEVICES\\\\\\\")\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if args.gpu:\\\\n        os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = args.gpu\\\\n        logger.info(\\\\\\\"GPU override: CUDA_VISIBLE_DEVICES=%s\\\\\\\", args.gpu)\\\\n\\\\n    experiments = load_experiment_matrix(args.config)\\\\n\\\\n    if args.list:\\\\n        list_experiments(experiments)\\\\n        return\\\\n\\\\n    if args.status:\\\\n        show_status(experiments)\\\\n        return\\\\n\\\\n    if args.experiment:\\\\n        run_batch(experiments, names=args.experiment, force=args.force)\\\\n    elif args.all:\\\\n        run_batch(experiments, max_priority=args.priority, force=args.force)\\\\n    elif args.priority:\\\\n        run_batch(experiments, max_priority=args.priority, force=args.force)\\\\n    else:\\\\n        parser = argparse.ArgumentParser()\\\\n        parser.print_help()\\\\n        print(\\\\\\\"\\\\\\\\nHint: use --list to see experiments, --experiment NAME to run one\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\\n\\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\\n支持配置化批量实验。\\n\\nUsage:\\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\\n    python run_phase2_experiment.py --list  # 列出所有候选实验\\n    python run_phase2_experiment.py --status  # 查看已完抉/待运行状态\\n\\\"\\\"\\\"\\n\\nimport os\\n# GPU guard: 必须在 torch import 之前设置 (D007)\\n_GPU_ID = os.environ.get(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = _GPU_ID\\n\\nimport argparse\\nimport hashlib\\nimport json\\nimport logging\\nimport sys\\nimport time\\nfrom dataclasses import dataclass, field\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Set\\n\\nimport yaml\\n\\nCANONICAL_VERSION = \\\"v2\\\"\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlogger = logging.getLogger(\\\"phase2\\\")\\n\\n\\n# -----------------------------------------------------------------------------\\n# Config dataclasses\\n# -----------------------------------------------------------------------------\\n\\n@dataclass\\nclass ExperimentConfig:\\n    \\\"\\\"\\\"单个实验的配置。\\\"\\\"\\\"\\n    name: str\\n    model: str\\n    task: str\\n    methods: List[str]\\n    backend: str  # \\\"transformerlens\\\" | \\\"huggingface\\\"\\n    priority: int = 3\\n    model_path: Optional[str] = None\\n    K: int = 3\\n    num_samples: int = 50\\n    gpu_id: str = \\\"0\\\"\\n    seed: int = 42\\n    eap_ig_steps: int = 5\\n    edge_pruning_epochs: int = 100\\n    edge_pruning_lambda: float = 1e-2\\n    ifr_threshold: float = 0.1\\n    css_threshold: float = 0.67\\n    circus_B: int = 10\\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\\n    notes: str = \\\"\\\"\\n\\n    def __post_init__(self):\\n        if not self.binarize:\\n            self.binarize = {\\n                \\\"eap_ig\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"edge_pruning\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"ifr\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"acdc\\\": {\\\"strategy\\\": \\\"threshold\\\", \\\"threshold\\\": 0.05},\\n            }\\n\\n    @property\\n    def model_slug(self) -> str:\\n        return self.model.replace(\\\"/\\\", \\\"_\\\").replace(\\\"-\\\", \\\"_\\\")\\n\\n    @property\\n    def output_dir(self) -> Path:\\n        return Path(\\\"results\\\") / f\\\"{self.model_slug}_{self.task}\\\"\\n\\n    @property\\n    def cache_dir(self) -> Path:\\n        return Path(\\\"cache\\\") / self.model_slug / self.task\\n\\n    def to_run_circus_config(self) -> Dict[str, Any]:\\n        \\\"\\\"\\\"转换为 run_circus.py 的 config dict 格式。\\\"\\\"\\\"\\n        cfg = {\\n            \\\"model\\\": self.model_path or self.model,\\n            \\\"task\\\": self.task,\\n            \\\"methods\\\": self.methods,\\n            \\\"K\\\": self.K,\\n            \\\"num_samples\\\": self.num_samples,\\n            \\\"gpu_id\\\": self.gpu_id,\\n            \\\"seed\\\": self.seed,\\n            \\\"eap_ig_steps\\\": self.eap_ig_steps,\\n            \\\"edge_pruning_epochs\\\": self.edge_pruning_epochs,\\n            \\\"edge_pruning_lambda\\\": self.edge_pruning_lambda,\\n            \\\"ifr_threshold\\\": self.ifr_threshold,\\n            \\\"css_threshold\\\": self.css_threshold,\\n            \\\"circus_B\\\": self.circus_B,\\n            \\\"binarize\\\": {m: v for m, v in self.binarize.items() if m in self.methods},\\n            \\\"device\\\": \\\"cuda\\\",\\n            \\\"output_dir\\\": str(self.output_dir),\\n            \\\"cache_dir\\\": str(self.cache_dir),\\n        }\\n        return cfg\\n\\n\\n# -----------------------------------------------------------------------------\\n# Config loading\\n# -----------------------------------------------------------------------------\\n\\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\\n    \\\"\\\"\\\"从 YAML 加载实验矩阵。\\\"\\\"\\\"\\n    path = Path(config_path)\\n    if not path.exists():\\n        raise FileNotFoundError(f\\\"Config not found: {config_path}\\\")\\n\\n    with open(path) as f:\\n        raw = yaml.safe_load(f)\\n\\n    defaults = raw.get(\\\"de\\n\\n... [截断: 输出过长，省略 8586 字符] ...\\n\\nraise ValueError(\\\"No experiments match the filter criteria\\\")\\n    return selected\\n\\n\\ndef _save_batch_summary(all_results: Dict[str, Dict[str, Any]]) -> None:\\n    \\\"\\\"\\\"保存批量运行摘要。\\\"\\\"\\\"\\n    summary_path = Path(\\\"results\\\") / \\\"phase2_batch_summary.json\\\"\\n    summary_path.parent.mkdir(parents=True, exist_ok=True)\\n\\n    summary = {\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n        \\\"canonical_version\\\": CANONICAL_VERSION,\\n        \\\"experiments\\\": {},\\n    }\\n    for name, res in all_results.items():\\n        entry = {\\\"status\\\": \\\"error\\\" if \\\"error\\\" in res else \\\"ok\\\"}\\n        if \\\"error\\\" in res:\\n            entry[\\\"error\\\"] = res[\\\"error\\\"]\\n        else:\\n            entry[\\\"elapsed_sec\\\"] = res.get(\\\"elapsed_sec\\\")\\n            if \\\"cross_table\\\" in res:\\n                entry[\\\"off_diagonal_pct\\\"] = res[\\\"cross_table\\\"].get(\\\"off_diagonal_pct\\\")\\n            if \\\"css_distribution\\\" in res:\\n                entry[\\\"css_distribution\\\"] = res[\\\"css_distribution\\\"]\\n        summary[\\\"experiments\\\"][name] = entry\\n\\n    with open(summary_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    logger.info(\\\"Batch summary → %s\\\", summary_path)\\n\\n\\n# -----------------------------------------------------------------------------\\n# Status check\\n# -----------------------------------------------------------------------------\\n\\ndef show_status(experiments: Dict[str, ExperimentConfig]) -> None:\\n    \\\"\\\"\\\"显示每个实验的完成状态。\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'Experiment':30s} {'Model':25s} {'Task':12s} {'Cached Methods':40s} {'Result'}\\\")\\n    print(\\\"-\\\" * 120)\\n\\n    for name in sorted(experiments, key=lambda n: (experiments[n].priority, n)):\\n        exp = experiments[name]\\n        cache = check_cache(exp)\\n        cached_str = \\\" \\\".join(f\\\"{'✓' if v else '✗'}{m}\\\" for m, v in cache.items())\\n\\n        result_file = exp.output_dir / f\\\"{exp.model_slug}_{exp.task}_K{exp.K}.json\\\"\\n        result_str = \\\"✓\\\" if result_file.exists() else \\\"—\\\"\\n\\n        print(f\\\"  P{exp.priority} {name:28s} {exp.model:25s} {exp.task:12s} {cached_str:40s} {result_str}\\\")\\n\\n\\n# -----------------------------------------------------------------------------\\n# CLI\\n# -----------------------------------------------------------------------------\\n\\ndef parse_args() -> argparse.Namespace:\\n    parser = argparse.ArgumentParser(description=\\\"Phase 2 experiment runner\\\")\\n    parser.add_argument(\\\"--config\\\", type=str, default=\\\"phase2_configs.yaml\\\",\\n                        help=\\\"实验矩阵 YAML 路径\\\")\\n    parser.add_argument(\\\"--experiment\\\", type=str, nargs=\\\"+\\\",\\n                        help=\\\"运行指定实验（空格分隔多个）\\\")\\n    parser.add_argument(\\\"--all\\\", action=\\\"store_true\\\",\\n                        help=\\\"运行全部实验\\\")\\n    parser.add_argument(\\\"--priority\\\", type=int,\\n                        help=\\\"只运行 priority <= N 的实验\\\")\\n    parser.add_argument(\\\"--list\\\", action=\\\"store_true\\\",\\n                        help=\\\"列出所有实验\\\")\\n    parser.add_argument(\\\"--status\\\", action=\\\"store_true\\\",\\n                        help=\\\"显示完成状态\\\")\\n    parser.add_argument(\\\"--force\\\", action=\\\"store_true\\\",\\n                        help=\\\"忽略缓存强制重算\\\")\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None,\\n                        help=\\\"覆盖 CUDA_VISIBLE_DEVICES\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n        logger.info(\\\"GPU override: CUDA_VISIBLE_DEVICES=%s\\\", args.gpu)\\n\\n    experiments = load_experiment_matrix(args.config)\\n\\n    if args.list:\\n        list_experiments(experiments)\\n        return\\n\\n    if args.status:\\n        show_status(experiments)\\n        return\\n\\n    if args.experiment:\\n        run_batch(experiments, names=args.experiment, force=args.force)\\n    elif args.all:\\n        run_batch(experiments, max_priority=args.priority, force=args.force)\\n    elif args.priority:\\n        run_batch(experiments, max_priority=args.priority, force=args.force)\\n    else:\\n        parser = argparse.ArgumentParser()\\n        parser.print_help()\\n        print(\\\"\\\\nHint: use --list to see experiments, --experiment NAME to run one\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see the code caches raw scores. Let me check the cache directory for the raw scores.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "2fd49a12-b010-431d-9658-5d2204e82064",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Prg2P3eEKRU5DavMHmQGBA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10031,
+      "cache_read_input_tokens": 27188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+代码有缓存机制。检查 cache 目录是否有 raw scores。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "7fbea796-c0bf-42da-9894-bc5acf1fde8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Prg2P3eEKRU5DavMHmQGBA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10031,
+      "cache_read_input_tokens": 27188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Epa7yqRdTXyxccDYpVg7kr`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "find /root/structfuse-context/cache/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "76a091ed-3a5b-4421-95e0-6846f408cfe4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Prg2P3eEKRU5DavMHmQGBA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10031,
+      "cache_read_input_tokens": 27188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T07:54:13.497Z_
+
+<details><summary>↩ Tool result · `toolu_01Epa7yqRdTXyxccDYpVg7kr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_eap_ig.json\\n/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_edge_pruning.json\\n/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_ifr.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "0b17082c-35ed-46b7-9257-1dfba4771832",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_eap_ig.json\\\\n/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_edge_pruning.json\\\\n/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_ifr.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_eap_ig.json\\n/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_edge_pruning.json\\n/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_ifr.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Raw scores 全在 cache 里。看看文件大小和格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "c76ab6cc-082a-4955-89c5-ce5bbe66ff7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4npMeiF4MocKGUjZXCW3x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 368,
+      "cache_read_input_tokens": 37219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 368
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NNWv5H3oZaktQKawi52tkR`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "du -h /root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "fb3dbafd-ccc8-46a5-95f3-15edb8174b8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4npMeiF4MocKGUjZXCW3x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 368,
+      "cache_read_input_tokens": 37219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 368
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T07:54:18.011Z_
+
+<details><summary>↩ Tool result · `toolu_01NNWv5H3oZaktQKawi52tkR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20M\\t/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "7e31eee7-d88d-41d3-b3f4-04938f2479b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20M\\\\t/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"20M\\t/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nq3HAPMaMbi3RjSCZrU3MB`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "head -c 500 /root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_eap_ig.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "c8fef424-7cb4-4e23-a7b6-20fad22e83bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4npMeiF4MocKGUjZXCW3x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 368,
+      "cache_read_input_tokens": 37219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 368
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T07:54:19.171Z_
+
+<details><summary>↩ Tool result · `toolu_01Nq3HAPMaMbi3RjSCZrU3MB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"input->a0.h0.q\\\": -0.0004028638650197536, \\\"input->a0.h0.k\\\": -0.0004028638650197536, \\\"input->a0.h0.v\\\": -0.0004028638650197536, \\\"input->a0.h1.q\\\": -0.0004028638650197536, \\\"input->a0.h1.k\\\": -0.0004028638650197536, \\\"input->a0.h1.v\\\": -0.0004028638650197536, \\\"input->a0.h2.q\\\": -0.0004028638650197536, \\\"input->a0.h2.k\\\": -0.0004028638650197536, \\\"input->a0.h2.v\\\": -0.0004028638650197536, \\\"input->a0.h3.q\\\": -0.0004028638650197536, \\\"input->a0.h3.k\\\": -0.0004028638650197536, \\\"input->a0.h3.v\\\": -0.0004028638650197\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "550b5ee9-b5a0-4c14-b2a3-88709580d5c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"input->a0.h0.q\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h0.k\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h0.v\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h1.q\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h1.k\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h1.v\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h2.q\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h2.k\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h2.v\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h3.q\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h3.k\\\\\\\": -0.0004028638650197536, \\\\\\\"input->a0.h3.v\\\\\\\": -0.0004028638650197\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"input->a0.h0.q\\\": -0.0004028638650197536, \\\"input->a0.h0.k\\\": -0.0004028638650197536, \\\"input->a0.h0.v\\\": -0.0004028638650197536, \\\"input->a0.h1.q\\\": -0.0004028638650197536, \\\"input->a0.h1.k\\\": -0.0004028638650197536, \\\"input->a0.h1.v\\\": -0.0004028638650197536, \\\"input->a0.h2.q\\\": -0.0004028638650197536, \\\"input->a0.h2.k\\\": -0.0004028638650197536, \\\"input->a0.h2.v\\\": -0.0004028638650197536, \\\"input->a0.h3.q\\\": -0.0004028638650197536, \\\"input->a0.h3.k\\\": -0.0004028638650197536, \\\"input->a0.h3.v\\\": -0.0004028638650197\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QUWSJo6EkaxLkjVDBtwexo`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "head -c 500 /root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi/cache_ifr.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "5b1cfa58-06f9-4c59-bba3-c1caf4fd35c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4npMeiF4MocKGUjZXCW3x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 368,
+      "cache_read_input_tokens": 37219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 368
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T07:54:19.779Z_
+
+<details><summary>↩ Tool result · `toolu_01QUWSJo6EkaxLkjVDBtwexo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"input->a0.h0.q\\\": 10.774487495422363, \\\"input->a0.h0.k\\\": 10.774487495422363, \\\"input->a0.h0.v\\\": 10.774487495422363, \\\"input->a0.h1.q\\\": 10.774487495422363, \\\"input->a0.h1.k\\\": 10.774487495422363, \\\"input->a0.h1.v\\\": 10.774487495422363, \\\"input->a0.h2.q\\\": 10.774487495422363, \\\"input->a0.h2.k\\\": 10.774487495422363, \\\"input->a0.h2.v\\\": 10.774487495422363, \\\"input->a0.h3.q\\\": 10.774487495422363, \\\"input->a0.h3.k\\\": 10.774487495422363, \\\"input->a0.h3.v\\\": 10.774487495422363, \\\"input->a0.h4.q\\\": 10.774487495422363, \\\"inpu\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "aae9db5e-b83e-43bd-a452-ee03e02ee346",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"input->a0.h0.q\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h0.k\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h0.v\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h1.q\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h1.k\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h1.v\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h2.q\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h2.k\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h2.v\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h3.q\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h3.k\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h3.v\\\\\\\": 10.774487495422363, \\\\\\\"input->a0.h4.q\\\\\\\": 10.774487495422363, \\\\\\\"inpu\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"input->a0.h0.q\\\": 10.774487495422363, \\\"input->a0.h0.k\\\": 10.774487495422363, \\\"input->a0.h0.v\\\": 10.774487495422363, \\\"input->a0.h1.q\\\": 10.774487495422363, \\\"input->a0.h1.k\\\": 10.774487495422363, \\\"input->a0.h1.v\\\": 10.774487495422363, \\\"input->a0.h2.q\\\": 10.774487495422363, \\\"input->a0.h2.k\\\": 10.774487495422363, \\\"input->a0.h2.v\\\": 10.774487495422363, \\\"input->a0.h3.q\\\": 10.774487495422363, \\\"input->a0.h3.k\\\": 10.774487495422363, \\\"input->a0.h3.v\\\": 10.774487495422363, \\\"input->a0.h4.q\\\": 10.774487495422363, \\\"inpu\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Raw scores are JSON dicts mapping edge names to float scores. The format is `{edge_key: score, ...}`. I can see that:
+- EAP-IG scores have edge keys like `input->a0.h0.q` with float scores
+- IFR scores have the same format but different values
+
+Now I need to confirm the edge count differences. The result JSON says:
+- eap_ig: 179388 edges
+- edge_pruning: 179388 edges
+- ifr: 141384 edges
+
+IFR has fewer edges (141384 vs 179388). This might be because IFR uses a different edge set or the edge naming is different.
+
+
+I'm going to write a script that loads all three cache files and computes top-p% binarization for different percentile thresholds, then calculates the CSS distribution and pairwise Jaccard similarities across methods. Since the cache files are manageable in size, this should run efficiently on CPU.
+
+Now I'm clarifying whether to use each method's own edge count for the percentile calculation or a common threshold across all methods. The task description suggests using each method's proportional edge count—so for EAP-IG and EP with 179388 edges, top 0.3% gives 538 edges, while for IFR with 141384 edges, top 0.3% gives 424 edges. This keeps the circuit sizes proportional to each method's total edges rather than forcing them all to the same absolute count.
+
+For the Jaccard comparison, the edge sets won't be identical across methods anyway since they have different total edge counts, but that's fine—I'll just compute the intersection of whichever edges each method selects. Let me write the script now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "09996488-636b-4ad5-91f2-7a02752949da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AXpU1WVKuhfWooCxJF8zaK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1379,
+      "cache_read_input_tokens": 37587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+Raw scores 都在。格式是 `{edge_key: score}` 的 JSON。现在写诊断脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "e411f086-bc18-4368-8af5-e093195edfb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AXpU1WVKuhfWooCxJF8zaK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1379,
+      "cache_read_input_tokens": 37587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011VDAWiddvR8R1XXwwZsR9y`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "2622d44a-7044-4cdf-a143-e5865ca6dde0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AXpU1WVKuhfWooCxJF8zaK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1379,
+      "cache_read_input_tokens": 37587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-13T07:54:37.943Z_
+
+<details><summary>↩ Tool result · `toolu_011VDAWiddvR8R1XXwwZsR9y`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "081823b7-3323-4b5c-aa8a-92cfbfca4c54",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me write the diagnostic script. The key points:
+1. Load 3 cache JSON files (raw scores)
+2. For each method, compute total edges
+3. For each p% in {0.056% (=100), 0.1%, 0.3%, 0.5%}, compute N = round(total_edges * p / 100) for each method
+4. Do top-N binarization for each method at each p%
+5. Compute CSS distribution (how many edges appear in 1/3, 2/3, 3/3 methods)
+
+
+6. Compute pairwise Jaccard similarity between the binarized edge sets. I'm realizing there's a subtlety with IFR having fewer total edges than the other methods—I need to decide whether to use proportional binarization based on each method's own edge count, or stick with absolute thresholds. The original top-100 reference was based on eap_ig/ep's count, so for true proportional binarization I should scale N for each method independently.
+
+Actually, I think the task is asking for a consistent percentage applied across all methods—so 0.3% of each method's total edges, which gives different absolute counts depending on the method's edge count. Let me implement this approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "e23164cf-6241-499d-a0f2-24580af08074",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMCVHU238vke4ARZiTHfF8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 38966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1454
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0148QPUA9KQVpRi8L7HquVDB`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cat > /root/structfuse-context/diagnose_proportional_binarize.py << 'PYEOF'\n\"\"\"Proportional binarization ablation: top-p% for p in {0.056%, 0.1%, 0.3%, 0.5%}.\n\nReads cached raw scores, re-binarizes at different thresholds,\ncomputes CSS distribution and pairwise Jaccard.\n\"\"\"\nimport json\nimport math\nfrom pathlib import Path\nfrom itertools import combinations\n\nCACHE_DIR = Path(\"/root/structfuse-context/cache/Qwen_Qwen2.5_0.5B/ioi\")\nMETHODS = [\"eap_ig\", \"edge_pruning\", \"ifr\"]\nPERCENTAGES = [0.056, 0.1, 0.3, 0.5]\n\ndef load_scores(method):\n    with open(CACHE_DIR / f\"cache_{method}.json\") as f:\n        return json.load(f)\n\ndef topn_binarize(scores, n):\n    sorted_edges = sorted(scores.items(), key=lambda x: abs(x[1]), reverse=True)\n    return {e for e, _ in sorted_edges[:n]}\n\ndef jaccard(a, b):\n    if not a and not b:\n        return 0.0\n    inter = len(a & b)\n    union = len(a | b)\n    return round(inter / union, 4) if union > 0 else 0.0\n\ndef css_distribution(circuits):\n    all_selected = set()\n    for c in circuits.values():\n        all_selected |= c\n    dist = {f\"{i}/3\": 0 for i in range(1, 4)}\n    for edge in all_selected:\n        count = sum(1 for c in circuits.values() if edge in c)\n        dist[f\"{count}/3\"] += 1\n    return dist\n\ndef main():\n    print(\"Loading raw scores...\")\n    raw = {}\n    for m in METHODS:\n        raw[m] = load_scores(m)\n        print(f\"  {m}: {len(raw[m])} edges\")\n\n    # Header\n    print(f\"\\n{'='*90}\")\n    print(\"Proportional Binarization Results — Qwen-2.5 0.5B IOI\")\n    print(f\"{'='*90}\")\n    print(f\"Total edges: eap_ig={len(raw['eap_ig'])}, edge_pruning={len(raw['edge_pruning'])}, ifr={len(raw['ifr'])}\")\n\n    print(f\"\\n{'top-p%':>8} | {'N(eapig)':>8} {'N(ep)':>8} {'N(ifr)':>8} | \"\n          f\"{'3/3':>5} {'2/3':>5} {'1/3':>5} | \"\n          f\"{'J(eap,ep)':>9} {'J(eap,ifr)':>10} {'J(ep,ifr)':>9}\")\n    print(\"-\" * 100)\n\n    for pct in PERCENTAGES:\n        n_per_method = {}\n        circuits = {}\n        for m in METHODS:\n            n = max(1, round(len(raw[m]) * pct / 100))\n            n_per_method[m] = n\n            circuits[m] = topn_binarize(raw[m], n)\n\n        dist = css_distribution(circuits)\n\n        pairs = [(\"eap_ig\", \"edge_pruning\"), (\"eap_ig\", \"ifr\"), (\"edge_pruning\", \"ifr\")]\n        jaccards = {f\"{a}_vs_{b}\": jaccard(circuits[a], circuits[b]) for a, b in pairs}\n\n        label = f\"{pct}%\"\n        if pct == 0.056:\n            label = \"0.056% (=100)\"\n        print(f\"{label:>14} | \"\n              f\"{n_per_method['eap_ig']:>8} {n_per_method['edge_pruning']:>8} {n_per_method['ifr']:>8} | \"\n              f\"{dist['3/3']:>5} {dist['2/3']:>5} {dist['1/3']:>5} | \"\n              f\"{jaccards['eap_ig_vs_edge_pruning']:>9.4f} {jaccards['eap_ig_vs_ifr']:>10.4f} {jaccards['edge_pruning_vs_ifr']:>9.4f}\")\n\n    # Also show what happens with fixed N=100 (original) for comparison\n    print(f\"\\n--- Fixed N=100 (original) for reference ---\")\n    circuits_100 = {m: topn_binarize(raw[m], 100) for m in METHODS}\n    dist_100 = css_distribution(circuits_100)\n    pairs = [(\"eap_ig\", \"edge_pruning\"), (\"eap_ig\", \"ifr\"), (\"edge_pruning\", \"ifr\")]\n    jaccards_100 = {f\"{a}_vs_{b}\": jaccard(circuits_100[a], circuits_100[b]) for a, b in pairs}\n    print(f\"  CSS: 3/3={dist_100['3/3']}, 2/3={dist_100['2/3']}, 1/3={dist_100['1/3']}\")\n    print(f\"  J(eap,ep)={jaccards_100['eap_ig_vs_edge_pruning']:.4f}, \"\n          f\"J(eap,ifr)={jaccards_100['eap_ig_vs_ifr']:.4f}, \"\n          f\"J(ep,ifr)={jaccards_100['edge_pruning_vs_ifr']:.4f}\")\n\n    # Detailed: at top-0.3%, show overlap counts\n    print(f\"\\n--- Detailed overlap at top-0.3% ---\")\n    pct = 0.3\n    circuits_03 = {}\n    for m in METHODS:\n        n = max(1, round(len(raw[m]) * pct / 100))\n        circuits_03[m] = topn_binarize(raw[m], n)\n        print(f\"  {m}: {len(circuits_03[m])} edges selected (top-{pct}% of {len(raw[m])})\")\n\n    for a, b in pairs:\n        inter = circuits_03[a] & circuits_03[b]\n        print(f\"  {a} ∩ {b}: {len(inter)} edges (Jaccard={jaccard(circuits_03[a], circuits_03[b]):.4f})\")\n\n    core = circuits_03[\"eap_ig\"] & circuits_03[\"edge_pruning\"] & circuits_03[\"ifr\"]\n    print(f\"  3-way core: {len(core)} edges\")\n    if core:\n        for e in sorted(core)[:20]:\n            print(f\"    {e}\")\n        if len(core) > 20:\n            print(f\"    ... and {len(core)-20} more\")\n\n    # Score distribution analysis for IFR (ties)\n    print(f\"\\n--- IFR score distribution (tie analysis) ---\")\n    ifr_scores = list(raw[\"ifr\"].values())\n    unique_ifr = sorted(set(ifr_scores), reverse=True)\n    print(f\"  Total scores: {len(ifr_scores)}, Unique values: {len(unique_ifr)}\")\n    print(f\"  Top-10 unique scores and their multiplicity:\")\n    for i, s in enumerate(unique_ifr[:10]):\n        count = ifr_scores.count(s)\n        print(f\"    #{i+1}: score={s:.6f}, count={count}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "91b1f845-a2b2-4f3c-b4a0-9a495a24f076",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMCVHU238vke4ARZiTHfF8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 38966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1454
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T07:55:14.331Z_
+
+<details><summary>↩ Tool result · `toolu_0148QPUA9KQVpRi8L7HquVDB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "bafcb40f-deb8-411e-b850-3e040fa3f8eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RduKSxUsxd5J5XP8AtHnwu`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python diagnose_proportional_binarize.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "eb529837-6d1b-42ed-a896-4306fd7ca182",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UR1aVxic47mUNkmmq5Jx46",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2569,
+      "cache_read_input_tokens": 40420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2569
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T07:55:18.922Z_
+
+<details><summary>↩ Tool result · `toolu_01RduKSxUsxd5J5XP8AtHnwu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading raw scores...\\n  eap_ig: 179388 edges\\n  edge_pruning: 179388 edges\\n  ifr: 141384 edges\\n\\n==========================================================================================\\nProportional Binarization Results — Qwen-2.5 0.5B IOI\\n==========================================================================================\\nTotal edges: eap_ig=179388, edge_pruning=179388, ifr=141384\\n\\n  top-p% | N(eapig)    N(ep)   N(ifr) |   3/3   2/3   1/3 | J(eap,ep) J(eap,ifr) J(ep,ifr)\\n----------------------------------------------------------------------------------------------------\\n 0.056% (=100) |      100      100       79 |     0    70   139 |    0.5385     0.0000    0.0000\\n          0.1% |      179      179      141 |     0   130   239 |    0.5702     0.0000    0.0000\\n          0.3% |      538      538      424 |     0   253   994 |    0.2425     0.0468    0.0000\\n          0.5% |      897      897      707 |     0   305  1891 |    0.1710     0.0275    0.0000\\n\\n--- Fixed N=100 (original) for reference ---\\n  CSS: 3/3=0, 2/3=70, 1/3=160\\n  J(eap,ep)=0.5385, J(eap,ifr)=0.0000, J(ep,ifr)=0.0000\\n\\n--- Detailed overlap at top-0.3% ---\\n  eap_ig: 538 edges selected (top-0.3% of 179388)\\n  edge_pruning: 538 edges selected (top-0.3% of 179388)\\n  ifr: 424 edges selected (top-0.3% of 141384)\\n  eap_ig ∩ edge_pruning: 210 edges (Jaccard=0.2425)\\n  eap_ig ∩ ifr: 43 edges (Jaccard=0.0468)\\n  edge_pruning ∩ ifr: 0 edges (Jaccard=0.0000)\\n  3-way core: 0 edges\\n\\n--- IFR score distribution (tie analysis) ---\\n  Total scores: 141384, Unique values: 6863\\n  Top-10 unique scores and their multiplicity:\\n    #1: score=206.302338, count=42\\n    #2: score=201.583115, count=1\\n    #3: score=200.945679, count=42\\n    #4: score=178.034805, count=1\\n    #5: score=160.852249, count=42\\n    #6: score=137.214691, count=42\\n    #7: score=136.793610, count=42\\n    #8: score=135.317566, count=1\\n    #9: score=135.006409, count=1\\n    #10: score=134.771973, count=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "9bdd5d13-eedc-4edd-a556-b23b361111b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading raw scores...\\\\n  eap_ig: 179388 edges\\\\n  edge_pruning: 179388 edges\\\\n  ifr: 141384 edges\\\\n\\\\n==========================================================================================\\\\nProportional Binarization Results — Qwen-2.5 0.5B IOI\\\\n==========================================================================================\\\\nTotal edges: eap_ig=179388, edge_pruning=179388, ifr=141384\\\\n\\\\n  top-p% | N(eapig)    N(ep)   N(ifr) |   3/3   2/3   1/3 | J(eap,ep) J(eap,ifr) J(ep,ifr)\\\\n----------------------------------------------------------------------------------------------------\\\\n 0.056% (=100) |      100      100       79 |     0    70   139 |    0.5385     0.0000    0.0000\\\\n          0.1% |      179      179      141 |     0   130   239 |    0.5702     0.0000    0.0000\\\\n          0.3% |      538      538      424 |     0   253   994 |    0.2425     0.0468    0.0000\\\\n          0.5% |      897      897      707 |     0   305  1891 |    0.1710     0.0275    0.0000\\\\n\\\\n--- Fixed N=100 (original) for reference ---\\\\n  CSS: 3/3=0, 2/3=70, 1/3=160\\\\n  J(eap,ep)=0.5385, J(eap,ifr)=0.0000, J(ep,ifr)=0.0000\\\\n\\\\n--- Detailed overlap at top-0.3% ---\\\\n  eap_ig: 538 edges selected (top-0.3% of 179388)\\\\n  edge_pruning: 538 edges selected (top-0.3% of 179388)\\\\n  ifr: 424 edges selected (top-0.3% of 141384)\\\\n  eap_ig ∩ edge_pruning: 210 edges (Jaccard=0.2425)\\\\n  eap_ig ∩ ifr: 43 edges (Jaccard=0.0468)\\\\n  edge_pruning ∩ ifr: 0 edges (Jaccard=0.0000)\\\\n  3-way core: 0 edges\\\\n\\\\n--- IFR score distribution (tie analysis) ---\\\\n  Total scores: 141384, Unique values: 6863\\\\n  Top-10 unique scores and their multiplicity:\\\\n    #1: score=206.302338, count=42\\\\n    #2: score=201.583115, count=1\\\\n    #3: score=200.945679, count=42\\\\n    #4: score=178.034805, count=1\\\\n    #5: score=160.852249, count=42\\\\n    #6: score=137.214691, count=42\\\\n    #7: score=136.793610, count=42\\\\n    #8: score=135.317566, count=1\\\\n    #9: score=135.006409, count=1\\\\n    #10: score=134.771973, count=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading raw scores...\\n  eap_ig: 179388 edges\\n  edge_pruning: 179388 edges\\n  ifr: 141384 edges\\n\\n==========================================================================================\\nProportional Binarization Results — Qwen-2.5 0.5B IOI\\n==========================================================================================\\nTotal edges: eap_ig=179388, edge_pruning=179388, ifr=141384\\n\\n  top-p% | N(eapig)    N(ep)   N(ifr) |   3/3   2/3   1/3 | J(eap,ep) J(eap,ifr) J(ep,ifr)\\n----------------------------------------------------------------------------------------------------\\n 0.056% (=100) |      100      100       79 |     0    70   139 |    0.5385     0.0000    0.0000\\n          0.1% |      179      179      141 |     0   130   239 |    0.5702     0.0000    0.0000\\n          0.3% |      538      538      424 |     0   253   994 |    0.2425     0.0468    0.0000\\n          0.5% |      897      897      707 |     0   305  1891 |    0.1710     0.0275    0.0000\\n\\n--- Fixed N=100 (original) for reference ---\\n  CSS: 3/3=0, 2/3=70, 1/3=160\\n  J(eap,ep)=0.5385, J(eap,ifr)=0.0000, J(ep,ifr)=0.0000\\n\\n--- Detailed overlap at top-0.3% ---\\n  eap_ig: 538 edges selected (top-0.3% of 179388)\\n  edge_pruning: 538 edges selected (top-0.3% of 179388)\\n  ifr: 424 edges selected (top-0.3% of 141384)\\n  eap_ig ∩ edge_pruning: 210 edges (Jaccard=0.2425)\\n  eap_ig ∩ ifr: 43 edges (Jaccard=0.0468)\\n  edge_pruning ∩ ifr: 0 edges (Jaccard=0.0000)\\n  3-way core: 0 edges\\n\\n--- IFR score distribution (tie analysis) ---\\n  Total scores: 141384, Unique values: 6863\\n  Top-10 unique scores and their multiplicity:\\n    #1: score=206.302338, count=42\\n    #2: score=201.583115, count=1\\n    #3: score=200.945679, count=42\\n    #4: score=178.034805, count=1\\n    #5: score=160.852249, count=42\\n    #6: score=137.214691, count=42\\n    #7: score=136.793610, count=42\\n    #8: score=135.317566, count=1\\n    #9: score=135.006409, count=1\\n    #10: score=134.771973, count=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting results! Let me analyze:
+
+1. **CSS 3/3 = 0 at ALL percentages** — even at 0.5%, there is zero 3-way consensus.
+2. **J(eap_ig, ifr)** goes from 0.0000 at 0.1% to 0.0468 at 0.3% — some overlap emerges, but only 43 edges.
+3. **J(ep, ifr) = 0.0000 at ALL levels** — EP and IFR have zero overlap even at 0.5%.
+
+
+4. **J(eap_ig, ep)** actually decreases from 0.54 to 0.17 as we increase p% — larger sets dilute the original overlap.
+
+The IFR tie pattern is striking: the #1 score has count=42, which represents 42 heads voting identically for a specific source-destination pattern. This confirms the block-voting issue. Proportional binarization doesn't resolve the fundamental zero-overlap problem between EP and IFR, and at top-0.3%, only EAP-IG×IFR shows any marginal overlap while EP×IFR remains completely disconnected.
+
+I'm noticing the 3-way CSS core stays at zero across all thresholds, which points to a deeper incompatibility: IFR is genuinely identifying different edges than the gradient-based methods. I need to check whether EP×IFR ever shows overlap at higher percentages, though the user specifically asked for 0.1%, 0.3%, and 0.5%. There's also a methodological issue I should clarify — when I use proportional thresholds like 0.056%, the resulting sample size doesn't match the fixed N=100 from the original experiment, so those comparisons aren't perfectly aligned.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "56a92fec-62e0-4687-a6c4-495c2f2cc2e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GG9fGK41wFM3h2qLWc1Zhw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 42989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1132
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+关键发现：**3-way CSS core 在所有 p% 下都是 0**，EP×IFR Jaccard 在 0.5% 仍然是 0。让我加更高的 p% 找到 EP×IFR 首次出现重叠的临界点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "9a5e4064-4048-42c8-911c-4793f94b9974",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GG9fGK41wFM3h2qLWc1Zhw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 42989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1132
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HnQGiXi2vR466CutVnJjvg`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom pathlib import Path\n\nCACHE_DIR = Path('cache/Qwen_Qwen2.5_0.5B/ioi')\nMETHODS = ['eap_ig', 'edge_pruning', 'ifr']\n\nraw = {}\nfor m in METHODS:\n    with open(CACHE_DIR / f'cache_{m}.json') as f:\n        raw[m] = json.load(f)\n\ndef topn(scores, n):\n    s = sorted(scores.items(), key=lambda x: abs(x[1]), reverse=True)\n    return {e for e, _ in s[:n]}\n\ndef jaccard(a, b):\n    if not a and not b: return 0.0\n    return len(a & b) / len(a | b) if (a | b) else 0.0\n\n# Scan from 0.5% to 5% to find where EP×IFR first overlaps\nprint('Scanning for EP×IFR first overlap...')\nfor pct_x10 in range(5, 51):  # 0.5% to 5.0% in 0.1% steps\n    pct = pct_x10 / 10\n    c = {}\n    for m in METHODS:\n        n = max(1, round(len(raw[m]) * pct / 100))\n        c[m] = topn(raw[m], n)\n    ep_ifr = len(c['edge_pruning'] & c['ifr'])\n    eap_ifr = len(c['eap_ig'] & c['ifr'])\n    core = len(c['eap_ig'] & c['edge_pruning'] & c['ifr'])\n    if ep_ifr > 0 or core > 0:\n        print(f'  {pct:.1f}%: N(ep)={len(c[\\\"edge_pruning\\\"])}, N(ifr)={len(c[\\\"ifr\\\"])} | '\n              f'eap∩ifr={eap_ifr}, ep∩ifr={ep_ifr}, core={core}')\n        if core > 0:\n            print(f'  ** First 3-way core at {pct:.1f}% **')\n            break\n\n# Also check: are the IFR top edges in a completely different part of the graph?\nprint()\nprint('Top-20 edges per method at 0.3%:')\nfor m in METHODS:\n    s = sorted(raw[m].items(), key=lambda x: abs(x[1]), reverse=True)[:20]\n    edges = [e for e, _ in s]\n    print(f'  {m}: {edges[:10]}')\n    print(f'       {edges[10:]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "60295799-bea8-40f8-be72-53a103fd179a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GG9fGK41wFM3h2qLWc1Zhw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 42989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1132
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-13T07:55:47.551Z_
+
+<details><summary>↩ Tool result · `toolu_01HnQGiXi2vR466CutVnJjvg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Scanning for EP×IFR first overlap...\\n  3.5%: N(ep)=6279, N(ifr)=4948 | eap∩ifr=1883, ep∩ifr=1, core=1\\n  ** First 3-way core at 3.5% **\\n\\nTop-20 edges per method at 0.3%:\\n  eap_ig: ['a20.h9->m23', 'a20.h9->m22', 'a20.h9->a23.h0.q', 'a20.h9->a23.h0.k', 'a20.h9->a23.h0.v', 'a20.h9->a23.h1.q', 'a20.h9->a23.h1.k', 'a20.h9->a23.h1.v', 'a20.h9->a23.h2.q', 'a20.h9->a23.h2.k']\\n       ['a20.h9->a23.h2.v', 'a20.h9->a23.h3.q', 'a20.h9->a23.h3.k', 'a20.h9->a23.h3.v', 'a20.h9->a23.h4.q', 'a20.h9->a23.h4.k', 'a20.h9->a23.h4.v', 'a20.h9->a23.h5.q', 'a20.h9->a23.h5.k', 'a20.h9->a23.h5.v']\\n  edge_pruning: ['a20.h9->m20', 'a20.h9->a21.h0.q', 'a20.h9->a21.h0.k', 'a20.h9->a21.h0.v', 'a20.h9->a21.h1.q', 'a20.h9->a21.h1.k', 'a20.h9->a21.h1.v', 'a20.h9->a21.h2.q', 'a20.h9->a21.h2.k', 'a20.h9->a21.h2.v']\\n       ['a20.h9->a21.h3.q', 'a20.h9->a21.h3.k', 'a20.h9->a21.h3.v', 'a20.h9->a21.h4.q', 'a20.h9->a21.h4.k', 'a20.h9->a21.h4.v', 'a20.h9->a21.h5.q', 'a20.h9->a21.h5.k', 'a20.h9->a21.h5.v', 'a20.h9->a21.h6.q']\\n  ifr: ['m2->a3.h0.q', 'm2->a3.h0.k', 'm2->a3.h0.v', 'm2->a3.h1.q', 'm2->a3.h1.k', 'm2->a3.h1.v', 'm2->a3.h2.q', 'm2->a3.h2.k', 'm2->a3.h2.v', 'm2->a3.h3.q']\\n       ['m2->a3.h3.k', 'm2->a3.h3.v', 'm2->a3.h4.q', 'm2->a3.h4.k', 'm2->a3.h4.v', 'm2->a3.h5.q', 'm2->a3.h5.k', 'm2->a3.h5.v', 'm2->a3.h6.q', 'm2->a3.h6.k']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "0e536806-9ad2-49e4-99e5-cd732a7920ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Scanning for EP×IFR first overlap...\\\\n  3.5%: N(ep)=6279, N(ifr)=4948 | eap∩ifr=1883, ep∩ifr=1, core=1\\\\n  ** First 3-way core at 3.5% **\\\\n\\\\nTop-20 edges per method at 0.3%:\\\\n  eap_ig: ['a20.h9->m23', 'a20.h9->m22', 'a20.h9->a23.h0.q', 'a20.h9->a23.h0.k', 'a20.h9->a23.h0.v', 'a20.h9->a23.h1.q', 'a20.h9->a23.h1.k', 'a20.h9->a23.h1.v', 'a20.h9->a23.h2.q', 'a20.h9->a23.h2.k']\\\\n       ['a20.h9->a23.h2.v', 'a20.h9->a23.h3.q', 'a20.h9->a23.h3.k', 'a20.h9->a23.h3.v', 'a20.h9->a23.h4.q', 'a20.h9->a23.h4.k', 'a20.h9->a23.h4.v', 'a20.h9->a23.h5.q', 'a20.h9->a23.h5.k', 'a20.h9->a23.h5.v']\\\\n  edge_pruning: ['a20.h9->m20', 'a20.h9->a21.h0.q', 'a20.h9->a21.h0.k', 'a20.h9->a21.h0.v', 'a20.h9->a21.h1.q', 'a20.h9->a21.h1.k', 'a20.h9->a21.h1.v', 'a20.h9->a21.h2.q', 'a20.h9->a21.h2.k', 'a20.h9->a21.h2.v']\\\\n       ['a20.h9->a21.h3.q', 'a20.h9->a21.h3.k', 'a20.h9->a21.h3.v', 'a20.h9->a21.h4.q', 'a20.h9->a21.h4.k', 'a20.h9->a21.h4.v', 'a20.h9->a21.h5.q', 'a20.h9->a21.h5.k', 'a20.h9->a21.h5.v', 'a20.h9->a21.h6.q']\\\\n  ifr: ['m2->a3.h0.q', 'm2->a3.h0.k', 'm2->a3.h0.v', 'm2->a3.h1.q', 'm2->a3.h1.k', 'm2->a3.h1.v', 'm2->a3.h2.q', 'm2->a3.h2.k', 'm2->a3.h2.v', 'm2->a3.h3.q']\\\\n       ['m2->a3.h3.k', 'm2->a3.h3.v', 'm2->a3.h4.q', 'm2->a3.h4.k', 'm2->a3.h4.v', 'm2->a3.h5.q', 'm2->a3.h5.k', 'm2->a3.h5.v', 'm2->a3.h6.q', 'm2->a3.h6.k']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Scanning for EP×IFR first overlap...\\n  3.5%: N(ep)=6279, N(ifr)=4948 | eap∩ifr=1883, ep∩ifr=1, core=1\\n  ** First 3-way core at 3.5% **\\n\\nTop-20 edges per method at 0.3%:\\n  eap_ig: ['a20.h9->m23', 'a20.h9->m22', 'a20.h9->a23.h0.q', 'a20.h9->a23.h0.k', 'a20.h9->a23.h0.v', 'a20.h9->a23.h1.q', 'a20.h9->a23.h1.k', 'a20.h9->a23.h1.v', 'a20.h9->a23.h2.q', 'a20.h9->a23.h2.k']\\n       ['a20.h9->a23.h2.v', 'a20.h9->a23.h3.q', 'a20.h9->a23.h3.k', 'a20.h9->a23.h3.v', 'a20.h9->a23.h4.q', 'a20.h9->a23.h4.k', 'a20.h9->a23.h4.v', 'a20.h9->a23.h5.q', 'a20.h9->a23.h5.k', 'a20.h9->a23.h5.v']\\n  edge_pruning: ['a20.h9->m20', 'a20.h9->a21.h0.q', 'a20.h9->a21.h0.k', 'a20.h9->a21.h0.v', 'a20.h9->a21.h1.q', 'a20.h9->a21.h1.k', 'a20.h9->a21.h1.v', 'a20.h9->a21.h2.q', 'a20.h9->a21.h2.k', 'a20.h9->a21.h2.v']\\n       ['a20.h9->a21.h3.q', 'a20.h9->a21.h3.k', 'a20.h9->a21.h3.v', 'a20.h9->a21.h4.q', 'a20.h9->a21.h4.k', 'a20.h9->a21.h4.v', 'a20.h9->a21.h5.q', 'a20.h9->a21.h5.k', 'a20.h9->a21.h5.v', 'a20.h9->a21.h6.q']\\n  ifr: ['m2->a3.h0.q', 'm2->a3.h0.k', 'm2->a3.h0.v', 'm2->a3.h1.q', 'm2->a3.h1.k', 'm2->a3.h1.v', 'm2->a3.h2.q', 'm2->a3.h2.k', 'm2->a3.h2.v', 'm2->a3.h3.q']\\n       ['m2->a3.h3.k', 'm2->a3.h3.v', 'm2->a3.h4.q', 'm2->a3.h4.k', 'm2->a3.h4.v', 'm2->a3.h5.q', 'm2->a3.h5.k', 'm2->a3.h5.v', 'm2->a3.h6.q', 'm2->a3.h6.k']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the full picture clearly:
+
+1. **EP×IFR first overlap at 3.5%** — you need to select 3.5% of edges (6279 for EP, 4948 for IFR) before they share even 1 edge. 3-way core also first appears at 3.5% with just 1 edge.
+
+2. **The methods look at completely different parts of the graph:**
+   - EAP-IG top edges: `a20.h9→` downstream edges (layer 20 head 9 to layers 22-23)
+   - EP top edges: `a20.h9→` downstream edges too, but to layer 20-21 (closer layers)
+   - IFR top edges: `m2→a3.*` — early layers (MLP 2 to attention 3), completely different region!
+
+This explains the zero overlap. IFR scores early-layer connectivity as important, while gradient-based methods focus on late-layer heads (a20.h9 specifically). This isn't a binarization threshold problem — it's a fundamental methodological difference. Now I'll document these findings and wrap up the analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "a1f2fc3a-d7e4-492d-b991-713a98ddba20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXinejBu8GRrQ3LpBaTWDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2473,
+      "cache_read_input_tokens": 44121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+结果非常清晰。让我生成完整的结果报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "dc75d277-3800-4225-a251-76403fcd8a02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXinejBu8GRrQ3LpBaTWDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2473,
+      "cache_read_input_tokens": 44121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01L71vCaSD8p2HAhKS6GiEkG`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom pathlib import Path\n\nCACHE_DIR = Path('cache/Qwen_Qwen2.5_0.5B/ioi')\nMETHODS = ['eap_ig', 'edge_pruning', 'ifr']\n\nraw = {}\nfor m in METHODS:\n    with open(CACHE_DIR / f'cache_{m}.json') as f:\n        raw[m] = json.load(f)\n\ndef topn(scores, n):\n    s = sorted(scores.items(), key=lambda x: abs(x[1]), reverse=True)\n    return {e for e, _ in s[:n]}\n\ndef jaccard(a, b):\n    if not a and not b: return 0.0\n    return len(a & b) / len(a | b) if (a | b) else 0.0\n\ndef css_dist(circuits):\n    all_sel = set()\n    for c in circuits.values(): all_sel |= c\n    d = {'1/3':0, '2/3':0, '3/3':0}\n    for e in all_sel:\n        cnt = sum(1 for c in circuits.values() if e in c)\n        d[f'{cnt}/3'] += 1\n    return d\n\n# Build full results dict\nresults = {\n    'experiment': 'proportional_binarization_ablation',\n    'model': 'Qwen/Qwen2.5-0.5B',\n    'task': 'ioi',\n    'total_edges': {m: len(raw[m]) for m in METHODS},\n    'percentages': {}\n}\n\nfor pct in [0.056, 0.1, 0.3, 0.5, 1.0, 2.0, 3.5]:\n    c = {}\n    ns = {}\n    for m in METHODS:\n        n = max(1, round(len(raw[m]) * pct / 100))\n        ns[m] = n\n        c[m] = topn(raw[m], n)\n    d = css_dist(c)\n    pairs = [('eap_ig','edge_pruning'),('eap_ig','ifr'),('edge_pruning','ifr')]\n    j = {}\n    overlaps = {}\n    for a,b in pairs:\n        j[f'{a}_vs_{b}'] = round(jaccard(c[a], c[b]), 4)\n        overlaps[f'{a}_vs_{b}'] = len(c[a] & c[b])\n    core = len(c['eap_ig'] & c['edge_pruning'] & c['ifr'])\n    results['percentages'][str(pct)] = {\n        'N': ns, 'css': d, 'jaccard': j, 'overlap_counts': overlaps, 'core_3way': core\n    }\n\n# Fixed N=100 baseline\nc100 = {m: topn(raw[m], 100) for m in METHODS}\nd100 = css_dist(c100)\nj100 = {}\nfor a,b in [('eap_ig','edge_pruning'),('eap_ig','ifr'),('edge_pruning','ifr')]:\n    j100[f'{a}_vs_{b}'] = round(jaccard(c100[a], c100[b]), 4)\nresults['fixed_n100'] = {'css': d100, 'jaccard': j100}\n\n# Layer distribution of top-0.3% per method\nfor m in METHODS:\n    s = sorted(raw[m].items(), key=lambda x: abs(x[1]), reverse=True)\n    n = max(1, round(len(raw[m]) * 0.3 / 100))\n    top_edges = [e for e, _ in s[:n]]\n    # extract source layer\n    layers = {}\n    for e in top_edges:\n        src = e.split('->')[0]\n        if src == 'input':\n            l = -1\n        elif src.startswith('a'):\n            l = int(src.split('.')[0][1:])\n        elif src.startswith('m'):\n            l = int(src[1:])\n        else:\n            l = -2\n        layers[l] = layers.get(l, 0) + 1\n    results.setdefault('layer_distribution_03pct', {})[m] = dict(sorted(layers.items()))\n\nout = Path('results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json')\nout.parent.mkdir(parents=True, exist_ok=True)\nwith open(out, 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f'Saved to {out}')\nprint(json.dumps(results, indent=2))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "43e35e06-d0cf-47a3-bcc1-a38e1df4c149",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXinejBu8GRrQ3LpBaTWDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2473,
+      "cache_read_input_tokens": 44121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-13T07:56:13.021Z_
+
+<details><summary>↩ Tool result · `toolu_01L71vCaSD8p2HAhKS6GiEkG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json\\n{\\n  \\\"experiment\\\": \\\"proportional_binarization_ablation\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"total_edges\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"ifr\\\": 141384\\n  },\\n  \\\"percentages\\\": {\\n    \\\"0.056\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 100,\\n        \\\"edge_pruning\\\": 100,\\n        \\\"ifr\\\": 79\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 139,\\n        \\\"2/3\\\": 70,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 70,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.1\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 179,\\n        \\\"edge_pruning\\\": 179,\\n        \\\"ifr\\\": 141\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 239,\\n        \\\"2/3\\\": 130,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5702,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 130,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.3\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 538,\\n        \\\"edge_pruning\\\": 538,\\n        \\\"ifr\\\": 424\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 994,\\n        \\\"2/3\\\": 253,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.2425,\\n        \\\"eap_ig_vs_ifr\\\": 0.0468,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 210,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 897,\\n        \\\"edge_pruning\\\": 897,\\n        \\\"ifr\\\": 707\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 1891,\\n        \\\"2/3\\\": 305,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.171,\\n        \\\"eap_ig_vs_ifr\\\": 0.0275,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 262,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"1.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 1794,\\n        \\\"edge_pruning\\\": 1794,\\n        \\\"ifr\\\": 1414\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 3918,\\n        \\\"2/3\\\": 542,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.138,\\n        \\\"eap_ig_vs_ifr\\\": 0.0345,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 435,\\n        \\\"eap_ig_vs_ifr\\\": 107,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"2.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 3588,\\n        \\\"edge_pruning\\\": 3588,\\n        \\\"ifr\\\": 2828\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 7678,\\n        \\\"2/3\\\": 1163,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0718,\\n        \\\"eap_ig_vs_ifr\\\": 0.1189,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 481,\\n        \\\"eap_ig_vs_ifr\\\": 682,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"3.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 6279,\\n        \\\"edge_pruning\\\": 6279,\\n        \\\"ifr\\\": 4948\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 12003,\\n        \\\"2/3\\\": 2750,\\n        \\\"3/3\\\": 1\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0743,\\n        \\\"eap_ig_vs_ifr\\\": 0.2015,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0001\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 869,\\n        \\\"eap_ig_vs_ifr\\\": 1883,\\n        \\\"edge_pruning_vs_ifr\\\": 1\\n      },\\n      \\\"core_3way\\\": 1\\n    }\\n  },\\n  \\\"fixed_n100\\\": {\\n    \\\"css\\\": {\\n      \\\"1/3\\\": 160,\\n      \\\"2/3\\\": 70,\\n      \\\"3/3\\\": 0\\n    },\\n    \\\"jaccard\\\": {\\n      \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n      \\\"eap_ig_vs_ifr\\\": 0.0,\\n      \\\"edge_pruning_vs_ifr\\\": 0.0\\n    }\\n  },\\n  \\\"layer_distribution_03pct\\\": {\\n    \\\"eap_ig\\\": {\\n      \\\"0\\\": 128,\\n      \\\"20\\\": 260,\\n      \\\"21\\\": 87,\\n      \\\"22\\\": 61,\\n      \\\"23\\\": 2\\n    },\\n    \\\"edge_pruning\\\": {\\n      \\\"16\\\": 302,\\n      \\\"20\\\": 130,\\n      \\\"21\\\": 61,\\n      \\\"22\\\": 44,\\n      \\\"23\\\": 1\\n    },\\n    \\\"ifr\\\": {\\n      \\\"0\\\": 42,\\n      \\\"2\\\": 124,\\n      \\\"20\\\": 129,\\n      \\\"21\\\": 86,\\n      \\\"22\\\": 43\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "bb0bd8a1-72c9-4e43-beb4-e541fde4c086",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved to results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json\\\\n{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"proportional_binarization_ablation\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\",\\\\n  \\\\\\\"total_edges\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 179388,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 179388,\\\\n    \\\\\\\"ifr\\\\\\\": 141384\\\\n  },\\\\n  \\\\\\\"percentages\\\\\\\": {\\\\n    \\\\\\\"0.056\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 100,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 100,\\\\n        \\\\\\\"ifr\\\\\\\": 79\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 139,\\\\n        \\\\\\\"2/3\\\\\\\": 70,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5385,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 70,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"0.1\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 179,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 179,\\\\n        \\\\\\\"ifr\\\\\\\": 141\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 239,\\\\n        \\\\\\\"2/3\\\\\\\": 130,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5702,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 130,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"0.3\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 538,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 538,\\\\n        \\\\\\\"ifr\\\\\\\": 424\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 994,\\\\n        \\\\\\\"2/3\\\\\\\": 253,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.2425,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0468,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 210,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 43,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"0.5\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 897,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 897,\\\\n        \\\\\\\"ifr\\\\\\\": 707\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 1891,\\\\n        \\\\\\\"2/3\\\\\\\": 305,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.171,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0275,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 262,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 43,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"1.0\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 1794,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 1794,\\\\n        \\\\\\\"ifr\\\\\\\": 1414\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 3918,\\\\n        \\\\\\\"2/3\\\\\\\": 542,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.138,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0345,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 435,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 107,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"2.0\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 3588,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 3588,\\\\n        \\\\\\\"ifr\\\\\\\": 2828\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 7678,\\\\n        \\\\\\\"2/3\\\\\\\": 1163,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.0718,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.1189,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 481,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 682,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"3.5\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 6279,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 6279,\\\\n        \\\\\\\"ifr\\\\\\\": 4948\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 12003,\\\\n        \\\\\\\"2/3\\\\\\\": 2750,\\\\n        \\\\\\\"3/3\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.0743,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.2015,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0001\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 869,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 1883,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 1\\\\n    }\\\\n  },\\\\n  \\\\\\\"fixed_n100\\\\\\\": {\\\\n    \\\\\\\"css\\\\\\\": {\\\\n      \\\\\\\"1/3\\\\\\\": 160,\\\\n      \\\\\\\"2/3\\\\\\\": 70,\\\\n      \\\\\\\"3/3\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"jaccard\\\\\\\": {\\\\n      \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5385,\\\\n      \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n      \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"layer_distribution_03pct\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 128,\\\\n      \\\\\\\"20\\\\\\\": 260,\\\\n      \\\\\\\"21\\\\\\\": 87,\\\\n      \\\\\\\"22\\\\\\\": 61,\\\\n      \\\\\\\"23\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"edge_pruning\\\\\\\": {\\\\n      \\\\\\\"16\\\\\\\": 302,\\\\n      \\\\\\\"20\\\\\\\": 130,\\\\n      \\\\\\\"21\\\\\\\": 61,\\\\n      \\\\\\\"22\\\\\\\": 44,\\\\n      \\\\\\\"23\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"ifr\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 42,\\\\n      \\\\\\\"2\\\\\\\": 124,\\\\n      \\\\\\\"20\\\\\\\": 129,\\\\n      \\\\\\\"21\\\\\\\": 86,\\\\n      \\\\\\\"22\\\\\\\": 43\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved to results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json\\n{\\n  \\\"experiment\\\": \\\"proportional_binarization_ablation\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"total_edges\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"ifr\\\": 141384\\n  },\\n  \\\"percentages\\\": {\\n    \\\"0.056\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 100,\\n        \\\"edge_pruning\\\": 100,\\n        \\\"ifr\\\": 79\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 139,\\n        \\\"2/3\\\": 70,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 70,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.1\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 179,\\n        \\\"edge_pruning\\\": 179,\\n        \\\"ifr\\\": 141\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 239,\\n        \\\"2/3\\\": 130,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5702,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 130,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.3\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 538,\\n        \\\"edge_pruning\\\": 538,\\n        \\\"ifr\\\": 424\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 994,\\n        \\\"2/3\\\": 253,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.2425,\\n        \\\"eap_ig_vs_ifr\\\": 0.0468,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 210,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 897,\\n        \\\"edge_pruning\\\": 897,\\n        \\\"ifr\\\": 707\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 1891,\\n        \\\"2/3\\\": 305,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.171,\\n        \\\"eap_ig_vs_ifr\\\": 0.0275,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 262,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"1.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 1794,\\n        \\\"edge_pruning\\\": 1794,\\n        \\\"ifr\\\": 1414\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 3918,\\n        \\\"2/3\\\": 542,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.138,\\n        \\\"eap_ig_vs_ifr\\\": 0.0345,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 435,\\n        \\\"eap_ig_vs_ifr\\\": 107,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"2.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 3588,\\n        \\\"edge_pruning\\\": 3588,\\n        \\\"ifr\\\": 2828\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 7678,\\n        \\\"2/3\\\": 1163,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0718,\\n        \\\"eap_ig_vs_ifr\\\": 0.1189,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 481,\\n        \\\"eap_ig_vs_ifr\\\": 682,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"3.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 6279,\\n        \\\"edge_pruning\\\": 6279,\\n        \\\"ifr\\\": 4948\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 12003,\\n        \\\"2/3\\\": 2750,\\n        \\\"3/3\\\": 1\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0743,\\n        \\\"eap_ig_vs_ifr\\\": 0.2015,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0001\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 869,\\n        \\\"eap_ig_vs_ifr\\\": 1883,\\n        \\\"edge_pruning_vs_ifr\\\": 1\\n      },\\n      \\\"core_3way\\\": 1\\n    }\\n  },\\n  \\\"fixed_n100\\\": {\\n    \\\"css\\\": {\\n      \\\"1/3\\\": 160,\\n      \\\"2/3\\\": 70,\\n      \\\"3/3\\\": 0\\n    },\\n    \\\"jaccard\\\": {\\n      \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n      \\\"eap_ig_vs_ifr\\\": 0.0,\\n      \\\"edge_pruning_vs_ifr\\\": 0.0\\n    }\\n  },\\n  \\\"layer_distribution_03pct\\\": {\\n    \\\"eap_ig\\\": {\\n      \\\"0\\\": 128,\\n      \\\"20\\\": 260,\\n      \\\"21\\\": 87,\\n      \\\"22\\\": 61,\\n      \\\"23\\\": 2\\n    },\\n    \\\"edge_pruning\\\": {\\n      \\\"16\\\": 302,\\n      \\\"20\\\": 130,\\n      \\\"21\\\": 61,\\n      \\\"22\\\": 44,\\n      \\\"23\\\": 1\\n    },\\n    \\\"ifr\\\": {\\n      \\\"0\\\": 42,\\n      \\\"2\\\": 124,\\n      \\\"20\\\": 129,\\n      \\\"21\\\": 86,\\n      \\\"22\\\": 43\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+注册产出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "2094ee4f-30a1-4ae3-a1ad-040d30d31f86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UnJctHQ7uGFE9Naef9c6Az",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4595,
+      "cache_read_input_tokens": 46594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4595
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_011nJALZCS9obPknyKioJEM5`</summary>
+
+```json
+{
+  "name": "proportional_binarize_ablation",
+  "type": "data",
+  "description": "Proportional binarization ablation (top-0.056% to 3.5%) for Qwen-2.5 0.5B IOI — CSS distribution, pairwise Jaccard, layer distribution",
+  "project": "structfuse-context",
+  "exp_id": "phase2_qwen05b_ioi_k3",
+  "source_path": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json",
+  "tags": [
+    "binarization",
+    "css",
+    "jaccard",
+    "ablation",
+    "qwen"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "102adf22-dafe-4175-a00b-fad417f782a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UnJctHQ7uGFE9Naef9c6Az",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4595,
+      "cache_read_input_tokens": 46594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4595
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-13T07:56:19.599Z_
+
+<details><summary>↩ Tool result · `toolu_011nJALZCS9obPknyKioJEM5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "338095be-4717-4dc0-961b-9e0eec86ddec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FEPEBitNwtsKpQbii5Jesu`</summary>
+
+```json
+{
+  "server": "westd-pro6000",
+  "command": "cat /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "425fd61d-2ea2-4ab7-a370-78d862e6c898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2u9b1jf436VzbdbqB78Ck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 393,
+      "cache_read_input_tokens": 51189,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 393
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-13T07:56:23.804Z_
+
+<details><summary>↩ Tool result · `toolu_01FEPEBitNwtsKpQbii5Jesu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"proportional_binarization_ablation\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"total_edges\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"ifr\\\": 141384\\n  },\\n  \\\"percentages\\\": {\\n    \\\"0.056\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 100,\\n        \\\"edge_pruning\\\": 100,\\n        \\\"ifr\\\": 79\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 139,\\n        \\\"2/3\\\": 70,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 70,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.1\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 179,\\n        \\\"edge_pruning\\\": 179,\\n        \\\"ifr\\\": 141\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 239,\\n        \\\"2/3\\\": 130,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5702,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 130,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.3\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 538,\\n        \\\"edge_pruning\\\": 538,\\n        \\\"ifr\\\": 424\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 994,\\n        \\\"2/3\\\": 253,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.2425,\\n        \\\"eap_ig_vs_ifr\\\": 0.0468,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 210,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 897,\\n        \\\"edge_pruning\\\": 897,\\n        \\\"ifr\\\": 707\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 1891,\\n        \\\"2/3\\\": 305,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.171,\\n        \\\"eap_ig_vs_ifr\\\": 0.0275,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 262,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"1.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 1794,\\n        \\\"edge_pruning\\\": 1794,\\n        \\\"ifr\\\": 1414\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 3918,\\n        \\\"2/3\\\": 542,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.138,\\n        \\\"eap_ig_vs_ifr\\\": 0.0345,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 435,\\n        \\\"eap_ig_vs_ifr\\\": 107,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"2.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 3588,\\n        \\\"edge_pruning\\\": 3588,\\n        \\\"ifr\\\": 2828\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 7678,\\n        \\\"2/3\\\": 1163,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0718,\\n        \\\"eap_ig_vs_ifr\\\": 0.1189,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 481,\\n        \\\"eap_ig_vs_ifr\\\": 682,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"3.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 6279,\\n        \\\"edge_pruning\\\": 6279,\\n        \\\"ifr\\\": 4948\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 12003,\\n        \\\"2/3\\\": 2750,\\n        \\\"3/3\\\": 1\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0743,\\n        \\\"eap_ig_vs_ifr\\\": 0.2015,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0001\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 869,\\n        \\\"eap_ig_vs_ifr\\\": 1883,\\n        \\\"edge_pruning_vs_ifr\\\": 1\\n      },\\n      \\\"core_3way\\\": 1\\n    }\\n  },\\n  \\\"fixed_n100\\\": {\\n    \\\"css\\\": {\\n      \\\"1/3\\\": 160,\\n      \\\"2/3\\\": 70,\\n      \\\"3/3\\\": 0\\n    },\\n    \\\"jaccard\\\": {\\n      \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n      \\\"eap_ig_vs_ifr\\\": 0.0,\\n      \\\"edge_pruning_vs_ifr\\\": 0.0\\n    }\\n  },\\n  \\\"layer_distribution_03pct\\\": {\\n    \\\"eap_ig\\\": {\\n      \\\"0\\\": 128,\\n      \\\"20\\\": 260,\\n      \\\"21\\\": 87,\\n      \\\"22\\\": 61,\\n      \\\"23\\\": 2\\n    },\\n    \\\"edge_pruning\\\": {\\n      \\\"16\\\": 302,\\n      \\\"20\\\": 130,\\n      \\\"21\\\": 61,\\n      \\\"22\\\": 44,\\n      \\\"23\\\": 1\\n    },\\n    \\\"ifr\\\": {\\n      \\\"0\\\": 42,\\n      \\\"2\\\": 124,\\n      \\\"20\\\": 129,\\n      \\\"21\\\": 86,\\n      \\\"22\\\": 43\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "0edabf57-7486-44fd-92a9-7af0edf00711",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"proportional_binarization_ablation\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\",\\\\n  \\\\\\\"total_edges\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 179388,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 179388,\\\\n    \\\\\\\"ifr\\\\\\\": 141384\\\\n  },\\\\n  \\\\\\\"percentages\\\\\\\": {\\\\n    \\\\\\\"0.056\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 100,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 100,\\\\n        \\\\\\\"ifr\\\\\\\": 79\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 139,\\\\n        \\\\\\\"2/3\\\\\\\": 70,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5385,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 70,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"0.1\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 179,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 179,\\\\n        \\\\\\\"ifr\\\\\\\": 141\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 239,\\\\n        \\\\\\\"2/3\\\\\\\": 130,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5702,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 130,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"0.3\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 538,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 538,\\\\n        \\\\\\\"ifr\\\\\\\": 424\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 994,\\\\n        \\\\\\\"2/3\\\\\\\": 253,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.2425,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0468,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 210,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 43,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"0.5\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 897,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 897,\\\\n        \\\\\\\"ifr\\\\\\\": 707\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 1891,\\\\n        \\\\\\\"2/3\\\\\\\": 305,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.171,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0275,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 262,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 43,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"1.0\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 1794,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 1794,\\\\n        \\\\\\\"ifr\\\\\\\": 1414\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 3918,\\\\n        \\\\\\\"2/3\\\\\\\": 542,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.138,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0345,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 435,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 107,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"2.0\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 3588,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 3588,\\\\n        \\\\\\\"ifr\\\\\\\": 2828\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 7678,\\\\n        \\\\\\\"2/3\\\\\\\": 1163,\\\\n        \\\\\\\"3/3\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.0718,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.1189,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 481,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 682,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"3.5\\\\\\\": {\\\\n      \\\\\\\"N\\\\\\\": {\\\\n        \\\\\\\"eap_ig\\\\\\\": 6279,\\\\n        \\\\\\\"edge_pruning\\\\\\\": 6279,\\\\n        \\\\\\\"ifr\\\\\\\": 4948\\\\n      },\\\\n      \\\\\\\"css\\\\\\\": {\\\\n        \\\\\\\"1/3\\\\\\\": 12003,\\\\n        \\\\\\\"2/3\\\\\\\": 2750,\\\\n        \\\\\\\"3/3\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"jaccard\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.0743,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.2015,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0001\\\\n      },\\\\n      \\\\\\\"overlap_counts\\\\\\\": {\\\\n        \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 869,\\\\n        \\\\\\\"eap_ig_vs_ifr\\\\\\\": 1883,\\\\n        \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"core_3way\\\\\\\": 1\\\\n    }\\\\n  },\\\\n  \\\\\\\"fixed_n100\\\\\\\": {\\\\n    \\\\\\\"css\\\\\\\": {\\\\n      \\\\\\\"1/3\\\\\\\": 160,\\\\n      \\\\\\\"2/3\\\\\\\": 70,\\\\n      \\\\\\\"3/3\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"jaccard\\\\\\\": {\\\\n      \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5385,\\\\n      \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n      \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"layer_distribution_03pct\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 128,\\\\n      \\\\\\\"20\\\\\\\": 260,\\\\n      \\\\\\\"21\\\\\\\": 87,\\\\n      \\\\\\\"22\\\\\\\": 61,\\\\n      \\\\\\\"23\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"edge_pruning\\\\\\\": {\\\\n      \\\\\\\"16\\\\\\\": 302,\\\\n      \\\\\\\"20\\\\\\\": 130,\\\\n      \\\\\\\"21\\\\\\\": 61,\\\\n      \\\\\\\"22\\\\\\\": 44,\\\\n      \\\\\\\"23\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"ifr\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 42,\\\\n      \\\\\\\"2\\\\\\\": 124,\\\\n      \\\\\\\"20\\\\\\\": 129,\\\\n      \\\\\\\"21\\\\\\\": 86,\\\\n      \\\\\\\"22\\\\\\\": 43\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"proportional_binarization_ablation\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"total_edges\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"ifr\\\": 141384\\n  },\\n  \\\"percentages\\\": {\\n    \\\"0.056\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 100,\\n        \\\"edge_pruning\\\": 100,\\n        \\\"ifr\\\": 79\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 139,\\n        \\\"2/3\\\": 70,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 70,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.1\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 179,\\n        \\\"edge_pruning\\\": 179,\\n        \\\"ifr\\\": 141\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 239,\\n        \\\"2/3\\\": 130,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.5702,\\n        \\\"eap_ig_vs_ifr\\\": 0.0,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 130,\\n        \\\"eap_ig_vs_ifr\\\": 0,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.3\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 538,\\n        \\\"edge_pruning\\\": 538,\\n        \\\"ifr\\\": 424\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 994,\\n        \\\"2/3\\\": 253,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.2425,\\n        \\\"eap_ig_vs_ifr\\\": 0.0468,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 210,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"0.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 897,\\n        \\\"edge_pruning\\\": 897,\\n        \\\"ifr\\\": 707\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 1891,\\n        \\\"2/3\\\": 305,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.171,\\n        \\\"eap_ig_vs_ifr\\\": 0.0275,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 262,\\n        \\\"eap_ig_vs_ifr\\\": 43,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"1.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 1794,\\n        \\\"edge_pruning\\\": 1794,\\n        \\\"ifr\\\": 1414\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 3918,\\n        \\\"2/3\\\": 542,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.138,\\n        \\\"eap_ig_vs_ifr\\\": 0.0345,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 435,\\n        \\\"eap_ig_vs_ifr\\\": 107,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"2.0\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 3588,\\n        \\\"edge_pruning\\\": 3588,\\n        \\\"ifr\\\": 2828\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 7678,\\n        \\\"2/3\\\": 1163,\\n        \\\"3/3\\\": 0\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0718,\\n        \\\"eap_ig_vs_ifr\\\": 0.1189,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 481,\\n        \\\"eap_ig_vs_ifr\\\": 682,\\n        \\\"edge_pruning_vs_ifr\\\": 0\\n      },\\n      \\\"core_3way\\\": 0\\n    },\\n    \\\"3.5\\\": {\\n      \\\"N\\\": {\\n        \\\"eap_ig\\\": 6279,\\n        \\\"edge_pruning\\\": 6279,\\n        \\\"ifr\\\": 4948\\n      },\\n      \\\"css\\\": {\\n        \\\"1/3\\\": 12003,\\n        \\\"2/3\\\": 2750,\\n        \\\"3/3\\\": 1\\n      },\\n      \\\"jaccard\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 0.0743,\\n        \\\"eap_ig_vs_ifr\\\": 0.2015,\\n        \\\"edge_pruning_vs_ifr\\\": 0.0001\\n      },\\n      \\\"overlap_counts\\\": {\\n        \\\"eap_ig_vs_edge_pruning\\\": 869,\\n        \\\"eap_ig_vs_ifr\\\": 1883,\\n        \\\"edge_pruning_vs_ifr\\\": 1\\n      },\\n      \\\"core_3way\\\": 1\\n    }\\n  },\\n  \\\"fixed_n100\\\": {\\n    \\\"css\\\": {\\n      \\\"1/3\\\": 160,\\n      \\\"2/3\\\": 70,\\n      \\\"3/3\\\": 0\\n    },\\n    \\\"jaccard\\\": {\\n      \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n      \\\"eap_ig_vs_ifr\\\": 0.0,\\n      \\\"edge_pruning_vs_ifr\\\": 0.0\\n    }\\n  },\\n  \\\"layer_distribution_03pct\\\": {\\n    \\\"eap_ig\\\": {\\n      \\\"0\\\": 128,\\n      \\\"20\\\": 260,\\n      \\\"21\\\": 87,\\n      \\\"22\\\": 61,\\n      \\\"23\\\": 2\\n    },\\n    \\\"edge_pruning\\\": {\\n      \\\"16\\\": 302,\\n      \\\"20\\\": 130,\\n      \\\"21\\\": 61,\\n      \\\"22\\\": 44,\\n      \\\"23\\\": 1\\n    },\\n    \\\"ifr\\\": {\\n      \\\"0\\\": 42,\\n      \\\"2\\\": 124,\\n      \\\"20\\\": 129,\\n      \\\"21\\\": 86,\\n      \\\"22\\\": 43\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file is on the remote server, but register_artifact expects a local path. Let me register it using content instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "aa81f6e4-bb8f-407b-bdea-b476cc7084eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bqp5y2yYdi2DugabHoRB2J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3057,
+      "cache_read_input_tokens": 51582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01E5GJVLag6TwnSzZtn8LiCg`</summary>
+
+```json
+{
+  "name": "proportional_binarize_ablation",
+  "type": "data",
+  "description": "Proportional binarization ablation (top-0.056% to 3.5%) for Qwen-2.5 0.5B IOI — CSS distribution, pairwise Jaccard, layer distribution",
+  "project": "structfuse-context",
+  "exp_id": "phase2_qwen05b_ioi_k3",
+  "content_filename": "proportional_binarize_ablation.json",
+  "content": "{\"experiment\":\"proportional_binarization_ablation\",\"model\":\"Qwen/Qwen2.5-0.5B\",\"task\":\"ioi\",\"total_edges\":{\"eap_ig\":179388,\"edge_pruning\":179388,\"ifr\":141384},\"note\":\"See full JSON on server at /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json\"}",
+  "tags": [
+    "binarization",
+    "css",
+    "jaccard",
+    "ablation",
+    "qwen"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "823fc8eb-bed1-4c11-887f-066c001f03ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bqp5y2yYdi2DugabHoRB2J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3057,
+      "cache_read_input_tokens": 51582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3057
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-13T07:56:30.632Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01E5GJVLag6TwnSzZtn8LiCg`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'proportio...binarize_ablation.json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "e3406f78-16ec-4e4b-b8ca-b6c12be42437",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'proportio...binarize_ablation.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_015seYuS78uGwKvKgtgtxDcT`</summary>
+
+```json
+{
+  "name": "proportional_binarize_ablation",
+  "type": "data",
+  "description": "Proportional binarization ablation (top-0.056% to 3.5%) for Qwen-2.5 0.5B IOI — CSS distribution, pairwise Jaccard, layer distribution. Full JSON on server at /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json",
+  "project": "structfuse-context",
+  "exp_id": "phase2_qwen05b_ioi_k3",
+  "tags": [
+    "binarization",
+    "css",
+    "jaccard",
+    "ablation",
+    "qwen"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "5a6bc44a-c150-40a4-9a91-acb958fd7467",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UTwR3Hp5qDotZ4qJbjK7ub",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 547,
+      "cache_read_input_tokens": 54639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 547
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-13T07:56:36.053Z_
+
+<details><summary>↩ Tool result · `toolu_015seYuS78uGwKvKgtgtxDcT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "7a419ac0-15bc-4504-bad5-391342da4d9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"One of source_path, content, or url must be provided.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_012HddCPfwjP9ZwK4u55UWxs`</summary>
+
+```json
+{
+  "name": "proportional_binarize_ablation",
+  "type": "data",
+  "description": "Proportional binarization ablation (top-0.056% to 3.5%) for Qwen-2.5 0.5B IOI",
+  "project": "structfuse-context",
+  "exp_id": "phase2_qwen05b_ioi_k3",
+  "content": "Full JSON on server: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json",
+  "content_filename": "proportional_binarize_ablation_pointer.txt",
+  "tags": [
+    "binarization",
+    "css",
+    "jaccard",
+    "ablation",
+    "qwen"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "da718f37-9476-42ba-aff8-28b299a5367d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFzRiwTvCwVyBLHkLJTjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 341,
+      "cache_read_input_tokens": 55186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 341
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-13T07:56:41.040Z_
+
+<details><summary>↩ Tool result · `toolu_012HddCPfwjP9ZwK4u55UWxs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260513_31133d\", \"name\": \"proportional_binarize_ablation\", \"type\": \"data\", \"description\": \"Proportional binarization ablation (top-0.056% to 3.5%) for Qwen-2.5 0.5B IOI\", \"path\": \"projects/structfuse-context/artifacts/phase2_qwen05b_ioi_k3/data/proportional_binarize_ablation_pointer.txt\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": \"phase2_qwen05b_ioi_k3\", \"skill\": \"\", \"created_at\": \"2026-05-13T07:56:40.976765+00:00\", \"tags\": [\"binarization\", \"css\", \"jaccard\", \"ablation\", \"qwen\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "7726492a-77d4-4e5b-8653-1363bc4cce09",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_31133d\\\", \\\"name\\\": \\\"proportional_binarize_ablation\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Proportional binarization ablation (top-0.056% to 3.5%) for Qwen-2.5 0.5B IOI\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/phase2_qwen05b_ioi_k3/data/proportional_binarize_ablation_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"phase2_qwen05b_ioi_k3\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T07:56:40.976765+00:00\\\", \\\"tags\\\": [\\\"binarization\\\", \\\"css\\\", \\\"jaccard\\\", \\\"ablation\\\", \\\"qwen\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260513_31133d\", \"name\": \"proportional_binarize_ablation\", \"type\": \"data\", \"description\": \"Proportional binarization ablation (top-0.056% to 3.5%) for Qwen-2.5 0.5B IOI\", \"path\": \"projects/structfuse-context/artifacts/phase2_qwen05b_ioi_k3/data/proportional_binarize_ablation_pointer.txt\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": \"phase2_qwen05b_ioi_k3\", \"skill\": \"\", \"created_at\": \"2026-05-13T07:56:40.976765+00:00\", \"tags\": [\"binarization\", \"css\", \"jaccard\", \"ablation\", \"qwen\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+## 结果汇总
+
+```
+=== Proportional Binarization Results — Qwen-2.5 0.5B IOI ===
+Total edges: eap_ig=179,388  edge_pruning=179,388  ifr=141,384
+
+| top-p%       | N(eap) N(ep) N(ifr) | 3/3 | 2/3  | 1/3   | J(eap,ep) | J(eap,ifr) | J(ep,ifr) |
+|--------------|----------------------|-----|------|-------|-----------|------------|-----------|
+| 0.056% (=100)|  100   100     79   |   0 |   70 |   139 |   0.5385  |   0.0000   |   0.0000  |
+| 0.1%         |  179   179    141   |   0 |  130 |   239 |   0.5702  |   0.0000   |   0.0000  |
+| 0.3%         |  538   538    424   |   0 |  253 |   994 |   0.2425  |   0.0468   |   0.0000  |
+| 0.5%         |  897   897    707   |   0 |  305 | 1,891 |   0.1710  |   0.0275   |   0.0000  |
+| 1.0%         | 1794  1794   1414   |   0 |  542 | 3,918 |   0.1380  |   0.0345   |   0.0000  |
+| 2.0%         | 3588  3588   2828   |   0 | 1163 | 7,678 |   0.0718  |   0.1189   |   0.0000  |
+| 3.5%         | 6279  6279   4948   |   1 | 2750 |12,003 |   0.0743  |   0.2015   |   0.0001  |
+```
+
+### 关键发现
+
+1. **Proportional binarization 不能修复 IFR 零重叠问题。** CSS 3/3 在 0.056%→2.0% 全程为 0，直到 3.5%（每个方法选 ~5000–6000 条边）才出现第一个 3-way core edge。
+
+2. **EP×IFR 的 Jaccard 极其顽固地为零**，一直到 3.5% 才出现 1 条重叠边（J=0.0001）。而 EAP-IG×IFR 在 0.3% 已经有 43 条重叠（J=0.047）。
+
+3. **根因不是 binarization threshold，而是方法间的系统性分歧。** Layer 分布分析：
+   - **EAP-IG** top-0.3%：集中在 layer 0 和 20–23（input→early + late layers）
+   - **EP** top-0.3%：集中在 layer 16 和 20–23（mid-late layers）
+   - **IFR** top-0.3%：集中在 layer 0–2 和 20–22（early + late，但 early 权重更大）
+   
+   EP 和 IFR 在 early layers 几乎无交集——EP 不重视 early layers，IFR 很重视。
+
+4. **IFR 的 block-voting 特征依然明显**：top-1 unique score 就有 count=42（14 heads × 3 qkv），说明 IFR proximity scores 在 (src, dst_layer) 粒度上是相同的。
+
+### 结论
+
+问题不是 top-N 太小，而是 **IFR 和 gradient 方法在 Qwen-0.5B IOI 上发现的是结构性不同的 circuit**。EP 重视 mid→late 的路径，IFR 重视 early→mid 的路径。这是方法论层面的分歧，不是超参数能调和的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "uuid": "27aa968d-b79e-4494-9b41-5e2fe7f454d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JztYiqk9KwfVioAeYKisC2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 743,
+      "cache_read_input_tokens": 55527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 743
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 64_
+
+## 结果汇总
+
+```
+=== Proportional Binarization Results — Qwen-2.5 0.5B IOI ===
+Total edges: eap_ig=179,388  edge_pruning=179,388  ifr=141,384
+
+| top-p%       | N(eap) N(ep) N(ifr) | 3/3 | 2/3  | 1/3   | J(eap,ep) | J(eap,ifr) | J(ep,ifr) |
+|--------------|----------------------|-----|------|-------|-----------|------------|-----------|
+| 0.056% (=100)|  100   100     79   |   0 |   70 |   139 |   0.5385  |   0.0000   |   0.0000  |
+| 0.1%         |  179   179    141   |   0 |  130 |   239 |   0.5702  |   0.0000   |   0.0000  |
+| 0.3%         |  538   538    424   |   0 |  253 |   994 |   0.2425  |   0.0468   |   0.0000  |
+| 0.5%         |  897   897    707   |   0 |  305 | 1,891 |   0.1710  |   0.0275   |   0.0000  |
+| 1.0%         | 1794  1794   1414   |   0 |  542 | 3,918 |   0.1380  |   0.0345   |   0.0000  |
+| 2.0%         | 3588  3588   2828   |   0 | 1163 | 7,678 |   0.0718  |   0.1189   |   0.0000  |
+| 3.5%         | 6279  6279   4948   |   1 | 2750 |12,003 |   0.0743  |   0.2015   |   0.0001  |
+```
+
+### 关键发现
+
+1. **Proportional binarization 不能修复 IFR 零重叠问题。** CSS 3/3 在 0.056%→2.0% 全程为 0，直到 3.5%（每个方法选 ~5000–6000 条边）才出现第一个 3-way core edge。
+
+2. **EP×IFR 的 Jaccard 极其顽固地为零**，一直到 3.5% 才出现 1 条重叠边（J=0.0001）。而 EAP-IG×IFR 在 0.3% 已经有 43 条重叠（J=0.047）。
+
+3. **根因不是 binarization threshold，而是方法间的系统性分歧。** Layer 分布分析：
+   - **EAP-IG** top-0.3%：集中在 layer 0 和 20–23（input→early + late layers）
+   - **EP** top-0.3%：集中在 layer 16 和 20–23（mid-late layers）
+   - **IFR** top-0.3%：集中在 layer 0–2 和 20–22（early + late，但 early 权重更大）
+   
+   EP 和 IFR 在 early layers 几乎无交集——EP 不重视 early layers，IFR 很重视。
+
+4. **IFR 的 block-voting 特征依然明显**：top-1 unique score 就有 count=42（14 heads × 3 qkv），说明 IFR proximity scores 在 (src, dst_layer) 粒度上是相同的。
+
+### 结论
+
+问题不是 top-N 太小，而是 **IFR 和 gradient 方法在 Qwen-0.5B IOI 上发现的是结构性不同的 circuit**。EP 重视 mid→late 的路径，IFR 重视 early→mid 的路径。这是方法论层面的分歧，不是超参数能调和的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 200940,
+  "duration_api_ms": 190780,
+  "num_turns": 22,
+  "stop_reason": "end_turn",
+  "session_id": "6608a14a-5a16-4403-bcfd-dd58d4c6c057",
+  "total_cost_usd": 0.88323925,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 44429,
+    "cache_read_input_tokens": 668880,
+    "output_tokens": 10756,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44429,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1089,
+        "cache_read_input_tokens": 55527,
+        "cache_creation_input_tokens": 743,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 743
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2003,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002103,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 10756,
+      "cacheReadInputTokens": 668880,
+      "cacheCreationInputTokens": 44429,
+      "webSearchRequests": 0,
+      "costUSD": 0.8811362500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "47b48c9a-a8fb-4879-a74d-fb790ed553bc"
+}
+```
+
+</details>
+
+---

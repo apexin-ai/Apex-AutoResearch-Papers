@@ -1,0 +1,1620 @@
+# code tex d091 corrections
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/chats/worker_code_tex-d091-corrections_20260515T170707.jsonl`
+- **Structured JSON:** [`e047205df3c9c7b501bc.json`](../../sessions/e0/e047205df3c9c7b501bc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+55 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T17:11:03.335812+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T17:11:03.336141+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T17:11:03.336329+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/paper -name \"*.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/solver-trace-ablation/paper -name \"*.tex\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T17:11:03.336480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/solver-trace-ablation/paper/abstract.tex\\n/root/solver-trace-ablation/paper/limitations.tex\\n/root/solver-trace-ablation/paper/introduction.tex\\n/root/solver-trace-ablation/paper/method.tex\\n/root/solver-trace-ablation/paper/appendix.tex\\n/root/solver-trace-ablation/paper/experiments.tex\\n/root/solver-trace-ablation/paper/conclusion.tex\\n/root/solver-trace-ablation/paper/related_work.tex\\n/root/solver-trace-ablation/paper/main.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T17:11:03.336611+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"genuine\\|non-hacking\\|3%\" /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"genuine\\|non-hacking\\|3%\" /root/solver-trace-ablation/paper/experiments.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T17:11:03.336759+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T17:11:03.336886+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"69.7\\|versus 0%\\|matched random\" /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"69.7\\|versus 0%\\|matched random\" /root/solver-trace-ablation/paper/introduction.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T17:11:03.337005+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T17:11:03.337120+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"s44\\|seed.44\\|genuine\\|1000\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"s44\\|seed.44\\|genuine\\|1000\" /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:11:03.337237+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T17:11:03.337398+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n -E \"genuine|non-hacking|3%\" /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n -E \"genuine|non-hacking|3%\" /root/solver-trace-ablation/paper/experiments.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T17:11:03.337521+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T17:11:03.337636+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n -E \"69.7|versus 0|matched random\" /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n -E \"69.7|versus 0|matched random\" /root/solver-trace-ablation/paper/introduction.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T17:11:03.337774+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T17:11:03.337889+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n -E \"s44|seed.44|genuine|1000\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n -E \"s44|seed.44|genuine|1000\" /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T17:11:03.338003+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T17:11:03.338144+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/paper/experiments.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T17:11:03.338390+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\\\label{sec:experiments}\\n\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\S\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\S\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\S\\\\ref{sec:crosslogic}).\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\S\\\\ref{sec:taxonomy}).\\n\\n\\\\subsection{Setup}\\\\label{sec:setup}\\n\\nWe train Qwen3-4B~\\\\citep{qwen3} with GRPO~\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\{42,43,44\\\\}$ on a fixed 500-example FOLIO~\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\footnote{All experiments use \\\\texttt{data/train\\\\_500\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\nHeld-out evaluation uses 100 FOLIO examples (\\\\texttt{proofwriter\\\\_fol\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\texttt{eval\\\\_sta.py}) so training-log ISR is never compared across runs.\\nWe report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n\\n\\\\subsection{ISR as Diagnostic}\\n\\\\label{sec:diagnostic}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.95\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\n\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR ri
+…[truncated 6906 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T17:11:03.338553+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/paper/introduction.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T17:11:03.338680+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T17:11:03.338892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Introduction}\\n\\\\label{sec:introduction}\\n\\nA GRPO-trained formalizer achieves a 93\\\\% prove rate on first-order logic problems---yet 87\\\\% of its proved outputs embed the conclusion verbatim among the premises.\\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\\n\\n\\\\paragraph{The execution-only blind spot.}\\nProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\\\citep{skalse-reward-hacking, reward-hacking-survey}.\\nRecent work applies GRPO~\\\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\\nProcess reward models~\\\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\\nA separate line documents that LLMs already game logical formalization at inference time~\\\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\\\emph{diagnostic} for structural integrity in neurosymbolic outputs.\\n\\n\\\\paragraph{Component necessity testing.}\\nWe address this gap with \\\\emph{Solver Trace Ablation} (STA), a diagnostic applying \\\\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\\\autoref{fig:sta-overview}).\\
+…[truncated 3707 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T17:11:03.339165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Appendix — solver-trace-ablation\\n\\n\\\\section{Experimental Setup}\\n\\\\label{app:setup}\\n\\nTable~\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Training hyperparameters for all GRPO experiments.}\\n\\\\label{tab:hyperparams}\\n\\\\footnotesize\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}ll@{}}\\n\\\\toprule\\n\\\\textbf{Parameter} & \\\\textbf{Value} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Model}} \\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\nPrecision & BF16 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{GRPO Training}} \\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\nLearning rate & $1 \\\\times 10^{-6}$ \\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Data}} \\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\nData file & \\\\texttt{train\\\\_500\\\\_seed42} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Solvers}} \\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Evaluation}} \\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\nISR computation & \\\\texttt{eval\\\\_sta.py} \\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\
+…[truncated 7142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T17:11:03.339365+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"s44\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"s44\" /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T17:11:03.339511+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"153:\\\\caption{Hacking taxonomy across FOL conditions (\\\\% of proved samples). ISR/Rand columns: $\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\% in s42; $\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\ref{tab:prolog-detailed}).}\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n239:H7a (text-match detectable): 64.5\\\\% pooled (149/231) under ISR~$\\\\beta{=}0.1$ (s42: 16.0\\\\%, s43: 96.7\\\\%, s44: 86.5\\\\%).\\n240:Combined H7 (H7a + H7b): 69.7\\\\% (161/231; includes s44 FN correction).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T17:11:03.339648+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"genuine\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"genuine\" /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T17:11:03.339793+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"fol-detailed\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"fol-detailed\" /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T17:11:03.339932+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"89:\\\\caption{Fisher exact tests for genuine rate across conditions (3-seed pooled). ISR $\\\\beta{=}0.1$ genuine rate is corrected for H8 reclassification and H7 false negatives (Appendix~\\\\ref{app:h8}).}\\n107:\\\\multicolumn{5}{@{}l}{\\\\textit{SFT vs.\\\\ Exec-only genuine rate}} \\\\\\\\\\n118:The dose-response pattern ($\\\\beta{=}0.1$: proxy gaming inflates ISR without genuine improvement; $\\\\beta{=}0.3$: PR collapse to 18\\\\% vs.\\\\ 48\\\\% random) maps onto the trajectory predicted by~\\\\cite{gao-reward-overoptimization}, but at a meta level: the proxy being gamed is itself a gaming detector.\\n179:ISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their genuine rates may be overestimated.\\n183:ISR $\\\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\\\text{prem}}{=}1$ classified as genuine by the text matcher.\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n189:\\\\paragraph{Impact on genuine-rate comparison.}\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\n192:Both scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.\\n265:Found exclusively in ISR $\\\\beta{=}0.1$ seed~44 ($12/89$ proved samples, all originally classified as genuine).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T17:11:03.340065+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"395:\\\\label{tab:fol-detailed}\\n485:Table~\\\\ref{tab:fol-detailed} traces the ISR collapse over training:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T17:11:03.340208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -220 /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -220 /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T17:11:03.340434+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Appendix — solver-trace-ablation\\n\\n\\\\section{Experimental Setup}\\n\\\\label{app:setup}\\n\\nTable~\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Training hyperparameters for all GRPO experiments.}\\n\\\\label{tab:hyperparams}\\n\\\\footnotesize\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}ll@{}}\\n\\\\toprule\\n\\\\textbf{Parameter} & \\\\textbf{Value} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Model}} \\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\nPrecision & BF16 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{GRPO Training}} \\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\nLearning rate & $1 \\\\times 10^{-6}$ \\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Data}} \\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\nData file & \\\\texttt{train\\\\_500\\\\_seed42} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Solvers}} \\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Evaluation}} \\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\nISR computation & \\\\texttt{eval\\\\_sta.py} \\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\
+…[truncated 6941 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T17:11:03.340585+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "sed -n '380,500p' /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "sed -n '380,500p' /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T17:11:03.340726+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T17:11:03.340872+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "wc -l /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T17:11:03.341000+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"549 /root/solver-trace-ablation/paper/appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T17:11:03.341116+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -170 /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "tail -170 /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T17:11:03.341406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\paragraph{Prevalence.}\\nObserved in Prolog exec+STA seed~44 (PR~$=0.97$, ISR~$=0.912$).\\n95/97 proved samples have $n_{\\\\text{necessary}}=1$, confirming functional tautology despite the strict classifier reporting 100\\\\% non-hacking.\\n\\n\\n\\\\section{Per-Seed Detailed Results}\\n\\\\label{app:detailed-results}\\n\\nTables~\\\\ref{tab:fol-beta01-detailed} and \\\\ref{tab:prolog-detailed} report full per-seed results.\\nAll metrics are computed by \\\\texttt{eval\\\\_sta.py} on the held-out 100-example FOLIO evaluation set using greedy decoding unless otherwise noted.\\nISR values are proved-only ISR$^*$.\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$).}\\n\\\\label{tab:fol-detailed}\\n\\\\label{tab:fol-beta01-detailed}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{@{}llccccccl@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Seed} & \\\\textbf{Steps} & \\\\textbf{PR} & \\\\textbf{ISR$^*$} & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} & \\\\textbf{Notes} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Baselines}} \\\\\\\\\\nBase model (no training)\\n  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\\\\\\nGround-truth FOL\\n  & --- & --- & 0.18 & 0.559 & --- & --- & --- & Human formalizations \\\\\\\\\\nSFT\\n  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \\\\textbf{92.3} & Supervised, no RL \\\\\\\\\\n  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \\\\textbf{90.9} & \\\\\\\\\\n  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \\\\textbf{93.3} & \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed
+…[truncated 7321 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T17:11:03.341731+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat << 'PYEOF' > /tmp/fix_paper.py\nimport sys\n\n# === Edit 1: experiments.tex ===\nwith open('/root/solver-trace-ablation/paper/experiments.tex', 'r') as f:\n    content = f.read()\n\nold = r'${\\leq}3\\%$ non-hacking (Appendix Table~\\ref{tab:fol-detailed})'\nnew = r'$0\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\ref{app:h8} and Table~\\ref{tab:fol-detailed})'\nif old not in content:\n    print(\"ERROR: experiments.tex target string not found\"); sys.exit(1)\ncontent = content.replace(old, new)\n\nwith open('/root/solver-trace-ablation/paper/experiments.tex', 'w') as f:\n    f.write(content)\nprint(\"experiments.tex: OK\")\n\n# === Edit 2: introduction.tex ===\nwith open('/root/solver-trace-ablation/paper/introduction.tex', 'r') as f:\n    content = f.read()\n\nold1 = r'69.7\\% of proved samples exhibit'\nnew1 = r'69.7\\% of proved samples at 500 steps exhibit'\nif old1 not in content:\n    print(\"ERROR: introduction.tex target 1 not found\"); sys.exit(1)\ncontent = content.replace(old1, new1)\n\nold2 = r'versus 0\\% under matched random;'\nnew2 = r'versus 0\\% under matched random at 500 steps;'\nif old2 not in content:\n    print(\"ERROR: introduction.tex target 2 not found\"); sys.exit(1)\ncontent = content.replace(old2, new2)\n\nwith open('/root/solver-trace-ablation/paper/introduction.tex', 'w') as f:\n    f.write(content)\nprint(\"introduction.tex: OK\")\n\n# === Edit 3: appendix.tex ===\nwith open('/root/solver-trace-ablation/paper/appendix.tex', 'r') as f:\n    content = f.read()\n\n# 3a: s44 1000-step N-H: 3 -> 0 with footnote\nold3a = '& 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 3 & H8${=}15\\\\%$'\nnew3a = '& 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$'\nif old3a not in content:\n    print(\"ERROR: appendix.tex s44-1000 row not found\"); sys.exit(1)\ncontent = content.replace(old3a, new3a)\n\n# 3b: 3-seed mean N-H: 1.0±1.7 -> 0.0±0.0\nold3b = '\\\\makebox[0pt][l]{$1.0{\\\\pm}1.7$} & 1000-step'\nnew3b = '\\\\makebox[0pt][l]{$0.0{\\\\pm}0.0$} & 1000-step'\nif old3b not in content:\n    print(\"ERROR: appendix.tex 3-seed mean row not found\"); sys.exit(1)\ncontent = content.replace(old3b, new3b)\n\n# 3c: Add footnote to table caption\nold3c = \"$^\\\\dagger$s43 uses sampling eval ($T{=}0.7$).}\"\nnew3c = \"$^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\"\nif old3c not in content:\n    print(\"ERROR: appendix.tex caption footnote target not found\"); sys.exit(1)\ncontent = content.replace(old3c, new3c)\n\nwith open('/root/solver-trace-ablation/paper/appendix.tex', 'w') as f:\n    f.write(content)\nprint(\"appendix.tex: OK\")\n\nprint(\"\\nAll edits applied successfully.\")\nPYEOF\npython3 /tmp/fix_paper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat << 'PYEOF' > /tmp/fix_paper.py\nimport sys\n\n# === Edit 1: experiments.tex ===\nwith open('/root/solver-trace-ablation/paper/experiments.tex', 'r') as f:\n    content = f.read()\n\nold = r'${\\leq}3\\%$ non-hacking (Appendix Table~\\ref{tab:fol-detailed})'\nnew = r'$0\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\ref{app:h8} and Table~\\ref{tab:fol-detailed})'\nif old not in content:\n    print(\"ERROR: experiments.tex target string not found\"); sys.exit(1)\ncontent = content.replace(old, new)\n\nwith open('/root/solver-trace-ablation/paper/experiments.tex', 'w') as f:\n    f.write(content)\nprint(\"experiments.tex: OK\")\n\n# === Edit 2: introduction.tex ===\nwith open('/root/solver-trace-ablation/paper/introduction.tex', 'r') as f:\n    content = f.read()\n\nold1 = r'69.7\\% of proved samples exhibit'\nnew1 = r'69.7\\% of proved samples at 500 steps exhibit'\nif old1 not in content:\n    print(\"ERROR: introduction.tex target 1 not found\"); sys.exit(1)\ncontent = content.replace(old1, new1)\n\nold2 = r'versus 0\\% under matched random;'\nnew2 = r'versus 0\\% under matched random at 500 steps;'\nif old2 not in content:\n    print(\"ERROR: introduction.tex target 2 not found\"); sys.exit(1)\ncontent = content.replace(old2, new2)\n\nwith open('/root/solver-trace-ablation/paper/introduction.tex', 'w') as f:\n    f.write(content)\nprint(\"introduction.tex: OK\")\n\n# === Edit 3: appendix.tex ===\nwith open('/root/solver-trace-ablation/paper/appendix.tex', 'r') as f:\n    content = f.read()\n\n# 3a: s44 1000-step N-H: 3 -> 0 with footnote\nold3a = '& 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 3 & H8${=}15\\\\%$'\nnew3a = '& 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$'\nif old3a not in content:\n    print(\"ERROR: appendix.tex s44-1000 row not found\"); sys.exit(1)\ncontent = content.replace(old3a, new3a)\n\n# 3b: 3-seed mean N-H: 1.0±1.7 -> 0.0±0.0\nold3b = '\\\\makebox[0pt][l]{$1.0{\\\\pm}1.7$} & 1000-step'\nnew3b = '\\\\makebox[0pt][l]{$0.0{\\\\pm}0.0$} & 1000-step'\nif old3b not in content:\n    print(\"ERROR: appendix.tex 3-seed mean row not found\"); sys.exit(1)\ncontent = content.replace(old3b, new3b)\n\n# 3c: Add footnote to table caption\nold3c = \"$^\\\\dagger$s43 uses sampling eval ($T{=}0.7$).}\"\nnew3c = \"$^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\"\nif old3c not in content:\n    print(\"ERROR: appendix.tex caption footnote target not found\"); sys.exit(1)\ncontent = content.replace(old3c, new3c)\n\nwith open('/root/solver-trace-ablation/paper/appendix.tex', 'w') as f:\n    f.write(content)\nprint(\"appendix.tex: OK\")\n\nprint(\"\\nAll edits applied successfully.\")\nPYEOF\npython3 /tmp/fix_paper.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T17:11:03.341923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"experiments.tex: OK\\nintroduction.tex: OK\\nappendix.tex: OK\\n\\nAll edits applied successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T17:11:03.342071+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cd /root/solver-trace-ablation/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T17:11:03.342213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist\\n/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\\ntype1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/p\\nublic/amsfonts/cmextra/cmmib9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\nsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\nm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr\\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share\\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texliv\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf\\n-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/f\\nonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\\npe1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\nsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\nb>\\nOutput written on main.pdf (17 pages, 536106 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T17:11:03.342368+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cd /root/solver-trace-ablation/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T17:11:03.342495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\nb>\\nOutput written on main.pdf (17 pages, 536020 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T17:11:03.342615+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -c \"Warning\" /root/solver-trace-ablation/paper/main.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -c \"Warning\" /root/solver-trace-ablation/paper/main.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T17:11:03.342755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T17:11:03.342909+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep \"Warning\" /root/solver-trace-ablation/paper/main.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep \"Warning\" /root/solver-trace-ablation/paper/main.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T17:11:03.343041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: Reference `app:h4' on page 6 undefined on input line 79.\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nLaTeX Warning: There were undefined references.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T17:11:03.343188+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"non-hacking\" /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"non-hacking\" /root/solver-trace-ablation/paper/experiments.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T17:11:03.343343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11:We report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n32:By 1000 steps, all three converge to high PR ($0.95{\\\\pm}0.05$) but $0\\\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\\\ref{app:h8} and Table~\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\n35:SFT on gold formalizations reaches $\\\\text{PR}{=}13.0\\\\%$ (3-seed pooled, 1000 steps) with $\\\\text{H7}{=}0$, $\\\\text{H1}{=}7.7\\\\%$, $92.2\\\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\\n78:Restricting to non-hacking samples with $\\\\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\\\\text{ISR}^{*}{=}0.258$ for ISR vs.\\\\ $0.243$ for random: a $1.06\\\\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis\\n92:Seed~43: \\\\emph{H1 shortcutting} ($\\\\text{PR}{=}86\\\\%$, $\\\\text{H1}{=}69\\\\%$, only $27\\\\%$ non-hacking).\\n93:Seed~44: \\\\emph{pure H7 meta-Goodhart} ($\\\\text{PR}{=}95\\\\%$, $\\\\text{H7}{=}100\\\\%$, $\\\\text{ISR}^{*}{=}0.742$, $0\\\\%$ non-hacking)---simultaneously gaming \\\\emph{both} execution and structural metrics through the same construction.\\n94:The random control at $\\\\beta{=}0.3$ is equally unstable ($\\\\text{PR}{=}54{\\\\pm}35\\\\%$, spanning 23--92\\\\%) with near-universal H1 hac
+…[truncated 1419 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T17:11:03.343481+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"at 500 steps\" /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"at 500 steps\" /root/solver-trace-ablation/paper/introduction.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T17:11:03.343618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27:At $\\\\beta{=}0.1$, 69.7\\\\% of proved samples at 500 steps exhibit single-premise-equals-conclusion duplication---ISR high \\\\emph{by definition}---versus 0\\\\% under matched random at 500 steps; the one seed with non-trivial residual reduces to $1.06\\\\times$ random after controlling for a premise-count confound.\\n33:Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\\\S\\\\ref{sec:diagnostic}); (\\\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming at 500 steps (69.7\\\\% vs.\\\\ 0\\\\%; random converges to near-100\\\\% H7 by 1000 steps, seed~42) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\\\S\\\\ref{sec:goodhart}); (\\\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\\\S\\\\ref{sec:crosslogic}); (\\\\textbf{C4}) an eight-mode hacking taxonomy including query-as-fact gaming and obfuscated tautology, motivating functional cross-validation of diagnostics (\\\\S\\\\ref{sec:taxonomy}).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T17:11:03.343773+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"ddagger\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"ddagger\" /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T17:11:03.343974+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"394:\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\\n422:  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$ \\\\\\\\\\n469:  & 43 & 0.38 & 0.185 & 0$^\\\\ddagger$ & 97.4 & 0 & $^\\\\ddagger$Functional H7$^a$ \\\\\\\\\\n470:  & 44 & 0.97 & 0.912 & 0$^\\\\ddagger$ & 0 & 0$^\\\\ddagger$ & Query-as-fact gaming$^b$ \\\\\\\\\\n480:$^\\\\ddagger$ Strict classifier value is misleading; see footnotes $^a$/$^b$.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T17:11:03.344125+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"0.0\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"0.0\" /root/solver-trace-ablation/paper/appendix.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T17:11:03.344307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27:Training steps (extended) & 1000 \\\\\\\\\\n70:We verify this empirically: Spearman $\\\\rho(\\\\text{ISR}, \\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\n97:ISR vs.\\\\ Random & 6.9\\\\% {\\\\scriptsize[4.3,11.0]} & 18.4\\\\% {\\\\scriptsize[14.0,23.7]} & 0.33 & 0.0002 \\\\\\\\\\n99:Random vs.\\\\ Exec-only & 18.4\\\\% & 7.5\\\\% & 2.76 & 0.012 \\\\\\\\\\n102:ISR vs.\\\\ Random & 12.1\\\\% & 18.4\\\\% & 0.61 & 0.060 \\\\\\\\\\n105:ISR vs.\\\\ Random & 69.7\\\\% & 0\\\\% & $\\\\infty$ & ${<}0.001$ \\\\\\\\\\n108:SFT vs.\\\\ Exec-only & 92.3\\\\% {\\\\scriptsize[79.7,97.3]} & 7.5\\\\% & 147 & ${<}0.001$ \\\\\\\\\\n112:{\\\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}256$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\\\% Wilson CIs in brackets where shown.}\\n153:\\\\caption{Hacking taxonomy across FOL conditions (\\\\% of proved samples). ISR/Rand columns: $\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\% in s42; $\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\ref{tab:prolog-detailed}).}\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\n344:\\\\paragraph{Example (FOL, 1000-step exec-only).}\\n353:ISR~$\\\\approx 0$ (at 1000 steps: ISR~$=0.003$, with 94.8\\\\% of proved samples having ISR~$=0$).\\n356:Observed in extended exec-only training (
+…[truncated 2952 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tex-d091-corrections_20260515T170707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-15T17:11:03.344496+00:00_
+
+3 项修改全部正确应用，编译无错误。
+
+**结果：**
+- **experiments.tex L32**: `≤3% non-hacking` → `0% non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix)`
+- **introduction.tex L27**: 添加 "at 500 steps" 限定（`69.7% of proved samples at 500 steps ... versus 0% under matched random at 500 steps`）
+- **appendix.tex 表格**:
+  - s44-1000 行 N-H: `3` → `0‡`
+  - 3-seed mean N-H: `1.0±1.7` → `0.0±0.0`
+  - 表格标题新增 `‡` 脚注，说明 3 个样本的退化性质（disjunctive conclusions bypass H8, commuted premises bypass H1, ISR=0）
+- PDF 编译成功：17 页，536KB，无新增 warning
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_tex-d091-corrections_20260515T170707"
+}
+```
+
+</details>
+
+---

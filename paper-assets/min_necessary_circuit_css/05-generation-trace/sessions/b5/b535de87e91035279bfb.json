@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b535de87e91035279bfb",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code mvp final check",
+  "task_key": "worker_code_mvp-final-check_20260512T150630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-final-check_20260512T150630_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "556b9a95602f0f1f9750632a8a24e0d01e6f5a48e1aa7936eec07c2e16296acf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ACDC MVP 状态报告\n\n**进程状态：RUNNING**\n\n| 指标 | 值 |\n|------|-----|\n| 进程 | PID 98300 + 98594，均运行 `python3 run_mvp.py` |\n| GPU-5 | 100% 利用率，18736MiB / 24564MiB |\n| 已运行 | 2h 08m 42s |\n| 总进度 | **29487 / 32491**（**90.8%**） |\n| 当前速度 | ~1.51 it/s |\n| 剩余 edges | 3004 |\n| 预计剩余 | **~33 分钟**（ETA ≈ 23:42 服务器时间） |\n| 当前阶段 | ACDC τ=0.01，第 1/5 个 threshold |\n| 已剪除/保留 | Removed 29302, Left 185 |\n\n**已完成的阶段：**\n- Phase A: EAP-IG — 32491 edges scored，已缓存\n- Phase B: Edge Pruning — 32491 edges scored，已缓存\n- Phase B: ACDC — 正在进行（首个 τ 的边遍历接近完成，还有 4 个 τ 要跑）\n\n**注意：** ACDC 有 5 个 threshold 要依次跑。当前是第 1 个（τ=0.01），剩余 ~33 min 完成本轮。之后还有 4 轮，但后续轮复用已有结构，通常更快。**总预估完成时间：再 1-2 小时。**\n\n无错误、无崩溃。日志中有 HuggingFace 连接超时但已用本地模型绕过，未影响运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-final-check.md"
+}

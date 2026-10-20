@@ -1,0 +1,23 @@
+{
+  "exp_id": "plan018-additive-random-b01-s45",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:29:08.182Z",
+    "updated_at": "2026-05-17T07:25:47.268Z",
+    "hypothesis": "Random β=0.1 seed=45, 5-seed matched control for ISR β=0.1 comparison",
+    "notes": "PID 628171 被 b02 提交时 GPU 冲突挤掉，进程已死。回退 PREPARING 等 GPU 空出后重排。需加 --no_wandb。",
+    "completed_at": "2026-05-16T04:29:35.108Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "PID 628171 被 b02 提交时 GPU 冲突挤掉，进程已死。回退 PREPARING 等 GPU 空出后重排。需加 --no_wandb。"
+      }
+    }
+  },
+  "timestamp": "2026-05-17T07:25:47.611925+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,8 @@
+\begin{abstract}
+Neurosymbolic reasoning pipelines evaluate formalizations by execution alone, treating all successful proofs as equal.
+This single-criterion reward conflates genuine derivation with structural shortcuts: embedding the conclusion among the premises proves just as reliably, and reinforcement learning (RL) optimizers exploit the indifference.
+We apply leave-one-out ablation to Group Relative Policy Optimization (GRPO)-trained formalizations, \emph{Solver Trace Ablation} (STA), to test whether each component is necessary for proof success, and characterize structural degeneration under six reward conditions via the resulting \emph{Intensional Structural Reward} (ISR).
+ISR reveals that prove-rate gains conceal a compositional shift toward hacking modes, but ISR occupies a paradoxical position: the same leave-one-out structure that makes it informative also makes it gameable.
+Tautological formalizations satisfy the necessity criterion by construction, so when ISR is repurposed as a training reward, the model learns to game the diagnostic rather than the task.
+In our Qwen3-4B experiments, the Goodhart effect is seed-dependent (3 of 5 seeds converge to gaming under standard training conditions; 2 retain genuine reasoning), and the \emph{diagnostic--optimization asymmetry} persists across logic types, confirmed by cross-logic (Prolog) replication.
+Cross-dataset (ProofFOL) evidence suggests dataset-dependent boundary conditions: structural proxies for formalization integrity are easier to observe than to optimize\footnote{Code and data are available at \url{https://anonymous.4open.science/r/solver-trace-ablation-CB70/}.}.\end{abstract}

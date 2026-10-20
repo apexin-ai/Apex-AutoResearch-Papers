@@ -1,0 +1,67 @@
+{
+  "exp_id": "sweep-isr-b005-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:42:02.323Z",
+    "updated_at": "2026-05-17T10:54:05.889Z",
+    "hypothesis": "W3: β=0.05 ISR bonus seed=44, Goodhart dose-response replication",
+    "spec": {
+      "command": "bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b005.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/sweep_isr_b005_s44 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "281848",
+      "log_path": "~/runs/solver-trace-ablation/sweep-isr-b005-s44.log",
+      "submitted_at": "2026-05-17T09:57:28.931Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 44,
+      "reward_mode": "additive_bonus",
+      "beta": 0.05,
+      "num_steps": 500
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T10:48:20.454Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T10:48:24.784453+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "prove_rate": 0.99,
+      "mean_isr": 0.5539,
+      "isr_std": 0.175,
+      "median_isr": 0.5,
+      "H7_rate": 0.869,
+      "H7_count": 86,
+      "H1_exact_count": 1,
+      "H8_count": 2,
+      "genuine_count": 10,
+      "genuine_rate": 0.101,
+      "n_proved": 99,
+      "n_total": 100,
+      "train_final_reward": 1.029,
+      "train_final_prove_rate": 0.7085,
+      "train_mean_isr": 0.381,
+      "entropy_final": 0.075,
+      "eval_data": "proofwriter_fol_100.jsonl"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T10:54:06.200660+00:00",
+  "trigger": "update_registry"
+}

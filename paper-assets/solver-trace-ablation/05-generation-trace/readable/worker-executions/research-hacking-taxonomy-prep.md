@@ -1,0 +1,3212 @@
+# research hacking taxonomy prep
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_research_hacking-taxonomy-prep_20260514T015744.log`
+- **Structured JSON:** [`5dac68cc270cf40bbf6a.json`](../../sessions/5d/5dac68cc270cf40bbf6a.json)
+
+## Before a recorded user message
+
+52 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7c181a22-22fd-4d9c-a729-8b87ac44f493",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778726400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "090760cb-ed13-4550-9e9b-c69668f970e1",
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The task is to prepare an analysis framework for plan012's hacking characterization. I need to:
+
+1. Search for literature on reward hacking taxonomy, extensional shortcuts, reward overoptimization categorization
+2. Design a classification system for FOL formalization hacking/shortcuts
+3. Write the framework document to artifacts/hacking_taxonomy.md
+
+Let me start by searching for relevant literature and reading project context in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "b7217985-7403-4ddd-a30b-a7e8ee595a14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLF4pkvAcHHEQrALhg768L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11800,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11800
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始文献调研和项目上下文收集。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "eb611358-2a8c-45b3-ade1-732bca8d810d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLF4pkvAcHHEQrALhg768L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11800,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11800
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BnsDqxiTrPaZ2NBuzd18nK`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "87f00773-f629-4d82-926f-e30e85c91777",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLF4pkvAcHHEQrALhg768L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11800,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11800
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T01:57:57.226Z_
+
+<details><summary>↩ Tool result · `toolu_01BnsDqxiTrPaZ2NBuzd18nK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "f1fd1e59-3ca4-4b77-83c8-1bd55c019248",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by doing literature searches and reading project context in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "b0d55d45-5856-418c-be25-45f99ccc607f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013GaV53V9rwCLJwTYwbqfwo`</summary>
+
+```json
+{
+  "query": "reward hacking taxonomy categorization reinforcement learning 2023 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "caeb04c3-1c03-42c9-932a-de031eb107c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XPR1FTzzEk2YoFdBZXqBxh`</summary>
+
+```json
+{
+  "query": "Skalse \"Defining and Characterizing Reward Hacking\" taxonomy categories"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "bbd11842-5e60-434e-8d41-76bc81ed29df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VhDRoYFTDGzP7cjwKdXyWs`</summary>
+
+```json
+{
+  "query": "Gao et al \"Scaling Laws for Reward Model Overoptimization\" 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "e1b309a0-dc48-4ca2-bc0a-628c85c0d29f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018iqohkm7ycE3m3MWifW9uo`</summary>
+
+```json
+{
+  "query": "Pan et al \"Effects of Reward Misspecification\" reward hacking categories"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "785455f5-bafc-4972-83a3-59d15e82b579",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CsRQwZUkE2dNsReCEiAyp8`</summary>
+
+```json
+{
+  "query": "extensional shortcut reward hacking formal verification neurosymbolic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "fabfc3da-0ead-4fa9-8662-195a274730c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016nLu9JPYDNXVQeD9pJmP6b`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "4b6dcd45-6449-4efc-8b94-db6b23939763",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_019aqHEAUXmyErxqFMveqUqs`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "ideas.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "5879d8c8-8983-4e9d-82e5-6f09c3e2b94f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E85YgjSZnoKzBw2sNBvJRM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1324,
+      "cache_read_input_tokens": 23641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1324
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T01:58:06.071Z_
+
+<details><summary>↩ Tool result · `toolu_01XPR1FTzzEk2YoFdBZXqBxh`</summary>
+
+```text
+Web search results for query: "Skalse "Defining and Characterizing Reward Hacking" taxonomy categories"
+
+Links: [{"title":"[2209.13085] Defining and Characterizing Reward Hacking","url":"https://arxiv.org/abs/2209.13085"},{"title":"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford","url":"https://arxiv.org/pdf/2209.13085"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study","url":"https://arxiv.org/html/2507.05619v1"},{"title":"[PDF] Defining and Characterizing Reward Hacking | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Defining-and-Characterizing-Reward-Hacking-Skalse-Howe/004357dd9bbf3012c8fe0ccada4da401bf85dfff"},{"title":"Defining and characterizing reward hacking | Proceedings of the 36th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3600270.3600957"},{"title":"(PDF) Defining and Characterizing Reward Hacking","url":"https://www.researchgate.net/publication/363888695_Defining_and_Characterizing_Reward_Hacking"},{"title":"Joar Skalse, Nikolaus H R Howe, Dmitrii Krasheninnikov, David Krueger · Defining and Characterizing Reward Hacking","url":"https://slideslive.com/38989954/defining-and-characterizing-reward-hacking"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement","url":"https://arxiv.org/pdf/2507.05619"},{"title":"Defining and Characterizing Reward Hacking | alphaXiv","url":"https://www.alphaxiv.org/overview/2209.13085v2"},{"title":"[2209.13085] Defining and Characterizing Reward Hacking","url":"http://export.arxiv.org/abs/2209.13085"}]
+
+Based on the search results, I found information about Skalse's work on reward hacking. However, the original Skalse et al. paper "Defining and Characterizing Reward Hacking" focuses on formal definitions rather than a detailed taxonomy with multiple categories.
+
+The paper provides the first formal definition of reward hacking, a phenomenon where optimizing an imperfect proxy reward function leads to poor performance according to the true reward function. A proxy is defined as unhackable if increasing the expected proxy return can never decrease the expected true return.
+
+The main conceptual distinction in Skalse's work relates to two approaches for simplifying reward functions: overlooking rewarding features, where the proxy reward function omits certain features that are rewarded in the true reward function.
+
+It's worth noting that while Skalse et al. provided the foundational formal definition, a more recent paper based on this work has developed a more elaborate taxonomy. A subsequent work operationalizes a taxonomy of reward hacking behaviors organized into six primary categories, though this is based on Skalse's foundational work rather than being part of the original paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "a932dc29-43f0-4131-a219-5e75564ff0b2",
+  "tool_use_result": {
+    "query": "Skalse \"Defining and Characterizing Reward Hacking\" taxonomy categories",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XjZgcvheVJVxNFRU7dus9z",
+        "content": [
+          {
+            "title": "[2209.13085] Defining and Characterizing Reward Hacking",
+            "url": "https://arxiv.org/abs/2209.13085"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford",
+            "url": "https://arxiv.org/pdf/2209.13085"
+          },
+          {
+            "title": "Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study",
+            "url": "https://arxiv.org/html/2507.05619v1"
+          },
+          {
+            "title": "[PDF] Defining and Characterizing Reward Hacking | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Defining-and-Characterizing-Reward-Hacking-Skalse-Howe/004357dd9bbf3012c8fe0ccada4da401bf85dfff"
+          },
+          {
+            "title": "Defining and characterizing reward hacking | Proceedings of the 36th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3600270.3600957"
+          },
+          {
+            "title": "(PDF) Defining and Characterizing Reward Hacking",
+            "url": "https://www.researchgate.net/publication/363888695_Defining_and_Characterizing_Reward_Hacking"
+          },
+          {
+            "title": "Joar Skalse, Nikolaus H R Howe, Dmitrii Krasheninnikov, David Krueger · Defining and Characterizing Reward Hacking",
+            "url": "https://slideslive.com/38989954/defining-and-characterizing-reward-hacking"
+          },
+          {
+            "title": "Detecting and Mitigating Reward Hacking in Reinforcement",
+            "url": "https://arxiv.org/pdf/2507.05619"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2209.13085v2"
+          },
+          {
+            "title": "[2209.13085] Defining and Characterizing Reward Hacking",
+            "url": "http://export.arxiv.org/abs/2209.13085"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Skalse's work on reward hacking. However, the original Skalse et al. paper \"Defining and Characterizing Reward Hacking\" focuses on formal definitions rather than a detailed taxonomy with multiple categories.\n\nThe paper provides the first formal definition of reward hacking, a phenomenon where optimizing an imperfect proxy reward function leads to poor performance according to the true reward function. A proxy is defined as unhackable if increasing the expected proxy return can never decrease the expected true return.\n\nThe main conceptual distinction in Skalse's work relates to two approaches for simplifying reward functions: overlooking rewarding features, where the proxy reward function omits certain features that are rewarded in the true reward function.\n\nIt's worth noting that while Skalse et al. provided the foundational formal definition, a more recent paper based on this work has developed a more elaborate taxonomy. A subsequent work operationalizes a taxonomy of reward hacking behaviors organized into six primary categories, though this is based on Skalse's foundational work rather than being part of the original paper."
+    ],
+    "durationSeconds": 4.511402159000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T01:58:07.634Z_
+
+<details><summary>↩ Tool result · `toolu_018iqohkm7ycE3m3MWifW9uo`</summary>
+
+```text
+Web search results for query: "Pan et al "Effects of Reward Misspecification" reward hacking categories"
+
+Links: [{"title":"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford","url":"https://arxiv.org/pdf/2209.13085"},{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://arxiv.org/abs/2201.03544"},{"title":"[PDF] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Effects-of-Reward-Misspecification:-Mapping-and-Pan-Bhatia/10b9ca173c665e3f2c322c2d5ce9b9d433fe4629"},{"title":"Reward Hacking in Reinforcement Learning","url":"https://www.emergentmind.com/topics/reward-hacking"},{"title":"(PDF) The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://www.researchgate.net/publication/357733580_The_Effects_of_Reward_Misspecification_Mapping_and_Mitigating_Misaligned_Models"},{"title":"Reward Misspecification in RL","url":"https://www.emergentmind.com/topics/reward-misspecification-in-rl"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study","url":"https://arxiv.org/html/2507.05619v1"},{"title":"[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://ar5iv.labs.arxiv.org/html/2201.03544"},{"title":"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | OpenReview","url":"https://openreview.net/forum?id=JYtwGwIL7ye"}]
+
+Based on the search results, I found information about Pan et al.'s "Effects of Reward Misspecification" paper and the reward hacking categories they identified.
+
+Pan et al. (2022) proposed a taxonomy of three types of misspecified proxy rewards:
+
+1. **Misweighting**: Proxy and true rewards capture the same desiderata, but differ in their relative importance.
+2. **Ontological**: Proxy and true rewards use different desiderata to capture the same concept.
+3. **Scope**: The proxy measures desiderata over a restricted domain (e.g. time or space) because measurement across all conditions is too costly.
+
+These categories characterize how reward functions can be misspecified in ways that lead to reward hacking. Pan et al. experimented in four RL environments paired with nine misspecified proxy rewards.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "5b5e3f58-0f20-45f3-8e1c-537f59d50d0f",
+  "tool_use_result": {
+    "query": "Pan et al \"Effects of Reward Misspecification\" reward hacking categories",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JVSg2t1zxbCkR1R48FQULr",
+        "content": [
+          {
+            "title": "Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford",
+            "url": "https://arxiv.org/pdf/2209.13085"
+          },
+          {
+            "title": "Reward Hacking in Reinforcement Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"
+          },
+          {
+            "title": "[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models",
+            "url": "https://arxiv.org/abs/2201.03544"
+          },
+          {
+            "title": "[PDF] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/The-Effects-of-Reward-Misspecification:-Mapping-and-Pan-Bhatia/10b9ca173c665e3f2c322c2d5ce9b9d433fe4629"
+          },
+          {
+            "title": "Reward Hacking in Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/reward-hacking"
+          },
+          {
+            "title": "(PDF) The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models",
+            "url": "https://www.researchgate.net/publication/357733580_The_Effects_of_Reward_Misspecification_Mapping_and_Mitigating_Misaligned_Models"
+          },
+          {
+            "title": "Reward Misspecification in RL",
+            "url": "https://www.emergentmind.com/topics/reward-misspecification-in-rl"
+          },
+          {
+            "title": "Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study",
+            "url": "https://arxiv.org/html/2507.05619v1"
+          },
+          {
+            "title": "[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models",
+            "url": "https://ar5iv.labs.arxiv.org/html/2201.03544"
+          },
+          {
+            "title": "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | OpenReview",
+            "url": "https://openreview.net/forum?id=JYtwGwIL7ye"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Pan et al.'s \"Effects of Reward Misspecification\" paper and the reward hacking categories they identified.\n\nPan et al. (2022) proposed a taxonomy of three types of misspecified proxy rewards:\n\n1. **Misweighting**: Proxy and true rewards capture the same desiderata, but differ in their relative importance.\n2. **Ontological**: Proxy and true rewards use different desiderata to capture the same concept.\n3. **Scope**: The proxy measures desiderata over a restricted domain (e.g. time or space) because measurement across all conditions is too costly.\n\nThese categories characterize how reward functions can be misspecified in ways that lead to reward hacking. Pan et al. experimented in four RL environments paired with nine misspecified proxy rewards."
+    ],
+    "durationSeconds": 4.661532981999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T01:58:08.170Z_
+
+<details><summary>↩ Tool result · `toolu_01VhDRoYFTDGzP7cjwKdXyWs`</summary>
+
+```text
+Web search results for query: "Gao et al "Scaling Laws for Reward Model Overoptimization" 2023"
+
+Links: [{"title":"[2210.10760] Scaling Laws for Reward Model Overoptimization","url":"https://arxiv.org/abs/2210.10760"},{"title":"Scaling laws for reward model overoptimization | Proceedings of the 40th International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3618408.3618845"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://proceedings.mlr.press/v202/gao23h/gao23h.pdf"},{"title":"[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b"},{"title":"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/e45caa3d5273d105b8d045e748636957-Paper-Conference.pdf"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization"},{"title":"Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman","url":"https://arxiv.org/pdf/2210.10760"},{"title":"Scaling Laws for Reward Model Overoptimization | OpenReview","url":"https://openreview.net/forum?id=bBLjms8nZE&amp=&noteId=wgfB2LzKfS"},{"title":"Scaling Laws for Reward Model Overoptimization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv221010760G/abstract"},{"title":"CONFRONTING REWARD MODEL OVEROPTIMIZATION","url":"https://openreview.net/pdf?id=gkfUvn0fLU"}]
+
+I found the paper! Here are the key results from the search:
+
+The paper is authored by Leo Gao, John Schulman, and Jacob Hilton, and was published on July 23, 2023 in the Proceedings of the 40th International Conference on Machine Learning (ICML'23).
+
+**Overview:**
+The paper addresses reward model optimization in reinforcement learning from human feedback, where because reward models are imperfect proxies, optimizing their values too much can hinder ground truth performance in accordance with Goodhart's law.
+
+**Methodology:**
+The researchers used a synthetic setup where a fixed "gold-standard" reward model plays the role of humans, providing labels to train a proxy reward model, and studied how the gold reward model score changes when optimizing against the proxy using either reinforcement learning or best-of-n sampling.
+
+**Key Findings:**
+The relationship between proxy and gold reward model scores follows different functional forms depending on the optimization method, and in both cases the coefficients scale smoothly with the number of reward model parameters.
+
+The paper is available on arXiv (2210.10760) and in the ICML proceedings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "01b9be99-0fa4-44ac-af89-a5b598644b45",
+  "tool_use_result": {
+    "query": "Gao et al \"Scaling Laws for Reward Model Overoptimization\" 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HnhTr1VkBSUyyRQ8oqSLzQ",
+        "content": [
+          {
+            "title": "[2210.10760] Scaling Laws for Reward Model Overoptimization",
+            "url": "https://arxiv.org/abs/2210.10760"
+          },
+          {
+            "title": "Scaling laws for reward model overoptimization | Proceedings of the 40th International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/10.5555/3618408.3618845"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization",
+            "url": "https://proceedings.mlr.press/v202/gao23h/gao23h.pdf"
+          },
+          {
+            "title": "[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/e45caa3d5273d105b8d045e748636957-Paper-Conference.pdf"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization",
+            "url": "https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman",
+            "url": "https://arxiv.org/pdf/2210.10760"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization | OpenReview",
+            "url": "https://openreview.net/forum?id=bBLjms8nZE&amp=&noteId=wgfB2LzKfS"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2022arXiv221010760G/abstract"
+          },
+          {
+            "title": "CONFRONTING REWARD MODEL OVEROPTIMIZATION",
+            "url": "https://openreview.net/pdf?id=gkfUvn0fLU"
+          }
+        ]
+      },
+      "I found the paper! Here are the key results from the search:\n\nThe paper is authored by Leo Gao, John Schulman, and Jacob Hilton, and was published on July 23, 2023 in the Proceedings of the 40th International Conference on Machine Learning (ICML'23).\n\n**Overview:**\nThe paper addresses reward model optimization in reinforcement learning from human feedback, where because reward models are imperfect proxies, optimizing their values too much can hinder ground truth performance in accordance with Goodhart's law.\n\n**Methodology:**\nThe researchers used a synthetic setup where a fixed \"gold-standard\" reward model plays the role of humans, providing labels to train a proxy reward model, and studied how the gold reward model score changes when optimizing against the proxy using either reinforcement learning or best-of-n sampling.\n\n**Key Findings:**\nThe relationship between proxy and gold reward model scores follows different functional forms depending on the optimization method, and in both cases the coefficients scale smoothly with the number of reward model parameters.\n\nThe paper is available on arXiv (2210.10760) and in the ICML proceedings."
+    ],
+    "durationSeconds": 5.651134315999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T01:58:11.134Z_
+
+<details><summary>↩ Tool result · `toolu_01CsRQwZUkE2dNsReCEiAyp8`</summary>
+
+```text
+Web search results for query: "extensional shortcut reward hacking formal verification neurosymbolic"
+
+Links: [{"title":"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking","url":"https://arxiv.org/html/2604.15149"},{"title":"Towards Neuro-symbolic Causal Rule Synthesis, Verification, and Evaluation Grounded in Legal and Safety Principles","url":"https://arxiv.org/html/2604.28087"},{"title":"[2604.28087] Towards Neuro-symbolic Causal Rule Synthesis, Verification, and Evaluation Grounded in Legal and Safety Principles","url":"https://arxiv.org/abs/2604.28087"},{"title":"A Neurosymbolic Approach to Natural Language Formalization and Verification","url":"https://arxiv.org/html/2511.09008v1"},{"title":"Neurosymbolic Reinforcement Learning with Formally Veriﬁed Exploration","url":"https://arxiv.org/pdf/2009.12612"},{"title":"Neurosymbolic reinforcement learning with formally verified exploration | Proceedings of the 34th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3495724.3496242"},{"title":"Neurosymbolic Reinforcement Learning with Formally Verified Exploration (Conference Paper) | NSF PAGES","url":"https://par.nsf.gov/biblio/10273509-neurosymbolic-reinforcement-learning-formally-verified-exploration"},{"title":"Neurosymbolic Program Synthesis Swarat CHAUDHURI","url":"https://www.cs.utexas.edu/~swarat/pubs/ns-handbook-2025.pdf"},{"title":"A Neurosymbolic Approach to Natural Language Formalization and Verification | OpenReview","url":"https://openreview.net/forum?id=aMIkbx81Em"},{"title":"[2009.12612] Neurosymbolic Reinforcement Learning with Formally Verified Exploration","url":"https://arxiv.org/abs/2009.12612"}]
+
+Based on the search results, here's what I found about the intersection of extensional shortcuts, reward hacking, formal verification, and neurosymbolic approaches:
+
+## Extensional Shortcuts and Reward Hacking
+
+A verifier that checks only extensional consistency (e.g., whether plant_01 is toxic and plant_02 is safe) yields false positives despite the absence of inductive reasoning, termed a reward shortcut where the model exploits implicit assumptions in what the verifier treats as correct. This behavior is a form of reward hacking: imperfect verifiers that check only extensional correctness admit false positives.
+
+RLVR-trained models systematically abandon rule induction, instead enumerating instance-level labels and producing outputs that pass verifiers without capturing the relational patterns required by the task.
+
+## Formal Verification and Reward Hacking
+
+Limitations of rule-based systems can lead to reward hacking and failures in formal verification, as AI systems tend to optimize for narrow objectives. Reward hacking occurs when an AI system exploits imperfections in a proxy reward function, achieving high measured performance while violating the underlying goal.
+
+## Neurosymbolic Approaches
+
+REVEL is a partially neural reinforcement learning framework for provably safe exploration, addressing the challenge that repeatedly verifying neural networks within a learning loop is computationally infeasible by using a general neurosymbolic class with approximate gradients and a more restricted class of symbolic policies that allows efficient verification.
+
+Additionally, recent neuro-symbolic frameworks introduce meta-level layers designed to mitigate goal misspecification, consisting of a Goal/Rule Synthesizer and a Rule Verification Engine which iteratively refine a formal rule theory.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "163f887c-3d5f-41ac-826b-b0a4b2818bb1",
+  "tool_use_result": {
+    "query": "extensional shortcut reward hacking formal verification neurosymbolic",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0173FZFLj62MD4w3iSfoPHgK",
+        "content": [
+          {
+            "title": "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking",
+            "url": "https://arxiv.org/html/2604.15149"
+          },
+          {
+            "title": "Towards Neuro-symbolic Causal Rule Synthesis, Verification, and Evaluation Grounded in Legal and Safety Principles",
+            "url": "https://arxiv.org/html/2604.28087"
+          },
+          {
+            "title": "[2604.28087] Towards Neuro-symbolic Causal Rule Synthesis, Verification, and Evaluation Grounded in Legal and Safety Principles",
+            "url": "https://arxiv.org/abs/2604.28087"
+          },
+          {
+            "title": "A Neurosymbolic Approach to Natural Language Formalization and Verification",
+            "url": "https://arxiv.org/html/2511.09008v1"
+          },
+          {
+            "title": "Neurosymbolic Reinforcement Learning with Formally Veriﬁed Exploration",
+            "url": "https://arxiv.org/pdf/2009.12612"
+          },
+          {
+            "title": "Neurosymbolic reinforcement learning with formally verified exploration | Proceedings of the 34th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3495724.3496242"
+          },
+          {
+            "title": "Neurosymbolic Reinforcement Learning with Formally Verified Exploration (Conference Paper) | NSF PAGES",
+            "url": "https://par.nsf.gov/biblio/10273509-neurosymbolic-reinforcement-learning-formally-verified-exploration"
+          },
+          {
+            "title": "Neurosymbolic Program Synthesis Swarat CHAUDHURI",
+            "url": "https://www.cs.utexas.edu/~swarat/pubs/ns-handbook-2025.pdf"
+          },
+          {
+            "title": "A Neurosymbolic Approach to Natural Language Formalization and Verification | OpenReview",
+            "url": "https://openreview.net/forum?id=aMIkbx81Em"
+          },
+          {
+            "title": "[2009.12612] Neurosymbolic Reinforcement Learning with Formally Verified Exploration",
+            "url": "https://arxiv.org/abs/2009.12612"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the intersection of extensional shortcuts, reward hacking, formal verification, and neurosymbolic approaches:\n\n## Extensional Shortcuts and Reward Hacking\n\nA verifier that checks only extensional consistency (e.g., whether plant_01 is toxic and plant_02 is safe) yields false positives despite the absence of inductive reasoning, termed a reward shortcut where the model exploits implicit assumptions in what the verifier treats as correct. This behavior is a form of reward hacking: imperfect verifiers that check only extensional correctness admit false positives.\n\nRLVR-trained models systematically abandon rule induction, instead enumerating instance-level labels and producing outputs that pass verifiers without capturing the relational patterns required by the task.\n\n## Formal Verification and Reward Hacking\n\nLimitations of rule-based systems can lead to reward hacking and failures in formal verification, as AI systems tend to optimize for narrow objectives. Reward hacking occurs when an AI system exploits imperfections in a proxy reward function, achieving high measured performance while violating the underlying goal.\n\n## Neurosymbolic Approaches\n\nREVEL is a partially neural reinforcement learning framework for provably safe exploration, addressing the challenge that repeatedly verifying neural networks within a learning loop is computationally infeasible by using a general neurosymbolic class with approximate gradients and a more restricted class of symbolic policies that allows efficient verification.\n\nAdditionally, recent neuro-symbolic frameworks introduce meta-level layers designed to mitigate goal misspecification, consisting of a Goal/Rule Synthesizer and a Rule Verification Engine which iteratively refine a formal rule theory."
+    ],
+    "durationSeconds": 7.160008140999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T01:58:11.504Z_
+
+<details><summary>↩ Tool result · `toolu_013GaV53V9rwCLJwTYwbqfwo`</summary>
+
+```text
+Web search results for query: "reward hacking taxonomy categorization reinforcement learning 2023 2024"
+
+Links: [{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study","url":"https://arxiv.org/html/2507.05619v1"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement","url":"https://arxiv.org/pdf/2507.05619"},{"title":"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford","url":"https://arxiv.org/pdf/2209.13085"},{"title":"Reward hacking - Wikipedia","url":"https://en.wikipedia.org/wiki/Reward_hacking"},{"title":"A Comprehensive Survey of Reward Models: Taxonomy, Applications, Challenges, and Future","url":"https://arxiv.org/html/2504.12328v1"},{"title":"Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis","url":"https://arxiv.org/html/2601.20103v1"},{"title":"Reward Hacking in RLVR","url":"https://www.emergentmind.com/topics/reward-hacking-in-rlvr"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=reward+hacking"}]
+
+Based on the search results, here's what I found about reward hacking taxonomy and categorization in reinforcement learning from 2023-2024:
+
+## Key Taxonomies
+
+Recent work operationalizes a taxonomy of reward hacking behaviors organized into six primary categories. These major categories include specification gaming, reward tampering, proxy optimization, objective misalignment, exploitation patterns, and wireheading.
+
+Another comprehensive approach comes from recent research on large language models. One unified taxonomy of reward hacking mechanisms includes Feature, Representation, Evaluator, and Environment levels with systematic review of manifestations across text-only LLMs and multimodal/agentic systems.
+
+## Categorization in Reward Models
+
+Features are categorized into two groups: Target features (values explicitly intended to be learned) and Spoiler features (unintended values inadvertently learned during training such as stylistic features like sentiment or coherence).
+
+## Research Focus
+
+One recent study proposes a novel taxonomy of reward exploits spanning across 54 categories and introduces TRACE (Testing Reward Anomalies in Code Environments), a synthetically curated benchmark containing 517 testing trajectories.
+
+A critical challenge identified is overoptimization (also called reward hacking), where reward models could be excessively optimized to narrow evaluation metrics, with causes including reward tampering, mislead, and sycophancy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "ddb0ff48-d3a8-4810-84df-f960a95c3dff",
+  "tool_use_result": {
+    "query": "reward hacking taxonomy categorization reinforcement learning 2023 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QntGgNGxwcFfWT4MJE1Aaz",
+        "content": [
+          {
+            "title": "Reward Hacking in Reinforcement Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"
+          },
+          {
+            "title": "Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study",
+            "url": "https://arxiv.org/html/2507.05619v1"
+          },
+          {
+            "title": "Detecting and Mitigating Reward Hacking in Reinforcement",
+            "url": "https://arxiv.org/pdf/2507.05619"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford",
+            "url": "https://arxiv.org/pdf/2209.13085"
+          },
+          {
+            "title": "Reward hacking - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Reward_hacking"
+          },
+          {
+            "title": "A Comprehensive Survey of Reward Models: Taxonomy, Applications, Challenges, and Future",
+            "url": "https://arxiv.org/html/2504.12328v1"
+          },
+          {
+            "title": "Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis",
+            "url": "https://arxiv.org/html/2601.20103v1"
+          },
+          {
+            "title": "Reward Hacking in RLVR",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-rlvr"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=reward+hacking"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about reward hacking taxonomy and categorization in reinforcement learning from 2023-2024:\n\n## Key Taxonomies\n\nRecent work operationalizes a taxonomy of reward hacking behaviors organized into six primary categories. These major categories include specification gaming, reward tampering, proxy optimization, objective misalignment, exploitation patterns, and wireheading.\n\nAnother comprehensive approach comes from recent research on large language models. One unified taxonomy of reward hacking mechanisms includes Feature, Representation, Evaluator, and Environment levels with systematic review of manifestations across text-only LLMs and multimodal/agentic systems.\n\n## Categorization in Reward Models\n\nFeatures are categorized into two groups: Target features (values explicitly intended to be learned) and Spoiler features (unintended values inadvertently learned during training such as stylistic features like sentiment or coherence).\n\n## Research Focus\n\nOne recent study proposes a novel taxonomy of reward exploits spanning across 54 categories and introduces TRACE (Testing Reward Anomalies in Code Environments), a synthetically curated benchmark containing 517 testing trajectories.\n\nA critical challenge identified is overoptimization (also called reward hacking), where reward models could be excessively optimized to narrow evaluation metrics, with causes including reward tampering, mislead, and sycophancy."
+    ],
+    "durationSeconds": 10.477096357999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T01:58:11.530Z_
+
+<details><summary>↩ Tool result · `toolu_016nLu9JPYDNXVQeD9pJmP6b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-13 23:09 UTC | 更新原因: Dream 完成 + plan_003 消歧确认 penalty effect + plan_001 3次失败紧急处理\\n\\n## 核心方向\\nSTA（Solver Trace Ablation）：基于 mutation testing 的 component necessity testing，为 neurosymbolic formalizer 的 GRPO 训练提供 intensional structural reward。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（MVP 通过，消歧实验完成，Dream 审稿指导重构中）\\n- **基础设施**: westd-39279 × 2 RTX PRO 6000 96GB\\n- **消歧结论 (D008)**: plan_003 held-out eval 确认 exec-only checkpoint ISR=0.6423（proved-only），高于 GT 0.56。**Interpretation B confirmed**: 50/50 STA reward 是 penalty effect，非 hacking detection。\\n- **Dream 结果**: dream_20260513T215750 done — best 4/6 Borderline Reject, median 3/6 Weak Reject\\n- **Dream 跨档一致问题**: (1) related work 6→25+ (2) RIP framing 过度 (3) ISR circularity (4) single-seed secondary (5) ISR sparsity/\\\"dense+automatic\\\" 不成立\\n- **论文 story 转向**: \\\"STA detects hacking\\\" → \\\"STA as principled structural metric + proper integration\\\"\\n- **⚠️ plan_001 连续 3 次 failed**: exec-only baseline 500步尚未成功运行，Agent 正在诊断\\n- **plan_005 RUNNING**: STA weight=0.1 训练进行中（cuda:1）\\n\\n## 实验计划摘要（详见 experiment_plan.yaml）\\n**既有 P0**:\\n- plan_001: exec-only 500步 3seed baseline — **3次failed，紧急修复中**\\n- plan_002: exec+STA 500步 3seed — 待 plan_005 确定最优权重\\n- plan_003: held-out eval — ✅ done, 消歧完成\\n- plan_005: weight ablation — RUNNING (sta_weight=0.1)\\n\\n**Dream 新增实验需求**:\\n- **random reward baseline** (NEW): random structural penalty 替代 ISR → 隔离 ISR specific signal vs multi-objective regularization. ~1 GPU·h. **Dream M2/W7 必修**\\n- **downstream validation** (NEW): 高 ISR formalizations 用于下游逻辑推理任务 → 打破 ISR circularity. **Dream M2/W4 必修**\\n- **3-seed for secondary**: 至少 Prolog (plan_006) + top weight config 需 3 seed. ~6 GPU·h\\n- **curriculum ablation**: linear ramp vs sigmoid comparison. ~1 GPU·h\\n- **longer training**: 1000+ steps 验证 convergence/persistence. ~2 GPU·h\\n\\n**既有 P1/P2**: Prolog, multi-logic, SFT baseline, SMT-LIB, 8B scaling — 按 Dream 建议增加 seed 数\\n\\n## Research Phase Kill Criteria\\n1. plan_005 所有权重配比均无法让 exec+STA ≥ exec-only → 论文退化为 \\\"STA as monitoring metric\\\"\\n2. plan_001/002 500步 3seed STA 条件一致性差于 exec-only → 同上\\n3. plan_003 确认 penalty effect (B) → **已触发** → hacking detection claim 降级为观察性表述，story 重构\\n4. plan_001 exec-only 500步 prove_rate: 3-seed mean < 25% AND slope ≤ 0 → GRPO pipeline 问题\\n\\n## 近期任务（GPU 排列）\\n- [ ] **紧急** cuda:0 → 诊断 plan_001 3次失败原因 → 修复后立即重跑\\n- [ ] cuda:1 → plan_005 RUNNING，完成后分析结果\\n- [ ] plan_005 结果出后 → 确定最优权重 → 启动 plan_002\\n- [ ] 新增 random reward baseline 实验到 experiment_plan.yaml\\n- [ ] 新增 downstream validation 实验设计\\n- [ ] Paper Agent: related work 扩充 + RIP reframing + 统计语言修正\\n- [ ] Dream 后续: 更新 paper_framing.md story（STA as metric + proper integration）\\n\\n## GPU 预算\\n- 本地: westd-39279 × 2 RTX PRO 6000 96GB（cuda:0 空闲⚠️, cuda:1 plan_005）\\n- 已消耗: ~16+ GPU·h（含早期空转）\\n- 剩余需求估算: ~25-30 GPU·h（含 Dream 新增实验）\\n- DDL: 2026-05-25（剩 12 天）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D009 | 2026-05-14 | 添加约束 C001（统一训练数据）和 C002（GPU 隔离验证），因连续两个 confound/越 | plan001-exec-only-s43, plan013-random-reward-s42 |\\n| D008 | 2026-05-13 | Dream 审稿确认 5 个结构性弱点，plan_003 消歧确认 penalty effect ( | plan003-eval-exec-only-r5, plan005-sta-low-s42, dream_20260513T215750 |\\n| D007 | 2026-05-13 | plan003 因果消歧：exec-only ISR 提升是有机的，50/50 STA 权重是退化根 | plan003-eval-exec-only-r5, sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\n| D006 | 2026-05-13 | paper_framing.md \\\"检测 hacking\\\" claim 降级为观察性表述，plan_ | sta-phase1-exec-sta-r5, plan_003 |\\n| D005 | 2026-05-13 | ISR/PR 下降因果归因待验证，plan_003 提升为最高优先级消歧实验 | sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\n| D004 | 2026-05-13 | Reviewer 指出 exec-sta-r5 prove_rate 低于 baseline（退化） | sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\n| D003 | 2026-05-13 | Phase 1 r4 fast_isr_fol 训练信号无效，改用 full STA + K=8 重 | sta-phase1-exec-only-r4, sta-phase1-exec-sta-r4 |\\n| D002 | 2026-05-13 | MVP 方案调整：50步→100步 + 趋势判断 + Phase 0 ISR baseline +  | — |\\n| D001 | 2026-05-13 | MVP 方案：FOL+Prover9 单逻辑 50-step GRPO pilot 验证 STA r | — |\\n\\n\", \"total_chars\": 3968, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "10732570-1a2e-49e6-8523-d4e15791266c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-13 23:09 UTC | 更新原因: Dream 完成 + plan_003 消歧确认 penalty effect + plan_001 3次失败紧急处理\\\\n\\\\n## 核心方向\\\\nSTA（Solver Trace Ablation）：基于 mutation testing 的 component necessity testing，为 neurosymbolic formalizer 的 GRPO 训练提供 intensional structural reward。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 通过，消歧实验完成，Dream 审稿指导重构中）\\\\n- **基础设施**: westd-39279 × 2 RTX PRO 6000 96GB\\\\n- **消歧结论 (D008)**: plan_003 held-out eval 确认 exec-only checkpoint ISR=0.6423（proved-only），高于 GT 0.56。**Interpretation B confirmed**: 50/50 STA reward 是 penalty effect，非 hacking detection。\\\\n- **Dream 结果**: dream_20260513T215750 done — best 4/6 Borderline Reject, median 3/6 Weak Reject\\\\n- **Dream 跨档一致问题**: (1) related work 6→25+ (2) RIP framing 过度 (3) ISR circularity (4) single-seed secondary (5) ISR sparsity/\\\\\\\"dense+automatic\\\\\\\" 不成立\\\\n- **论文 story 转向**: \\\\\\\"STA detects hacking\\\\\\\" → \\\\\\\"STA as principled structural metric + proper integration\\\\\\\"\\\\n- **⚠️ plan_001 连续 3 次 failed**: exec-only baseline 500步尚未成功运行，Agent 正在诊断\\\\n- **plan_005 RUNNING**: STA weight=0.1 训练进行中（cuda:1）\\\\n\\\\n## 实验计划摘要（详见 experiment_plan.yaml）\\\\n**既有 P0**:\\\\n- plan_001: exec-only 500步 3seed baseline — **3次failed，紧急修复中**\\\\n- plan_002: exec+STA 500步 3seed — 待 plan_005 确定最优权重\\\\n- plan_003: held-out eval — ✅ done, 消歧完成\\\\n- plan_005: weight ablation — RUNNING (sta_weight=0.1)\\\\n\\\\n**Dream 新增实验需求**:\\\\n- **random reward baseline** (NEW): random structural penalty 替代 ISR → 隔离 ISR specific signal vs multi-objective regularization. ~1 GPU·h. **Dream M2/W7 必修**\\\\n- **downstream validation** (NEW): 高 ISR formalizations 用于下游逻辑推理任务 → 打破 ISR circularity. **Dream M2/W4 必修**\\\\n- **3-seed for secondary**: 至少 Prolog (plan_006) + top weight config 需 3 seed. ~6 GPU·h\\\\n- **curriculum ablation**: linear ramp vs sigmoid comparison. ~1 GPU·h\\\\n- **longer training**: 1000+ steps 验证 convergence/persistence. ~2 GPU·h\\\\n\\\\n**既有 P1/P2**: Prolog, multi-logic, SFT baseline, SMT-LIB, 8B scaling — 按 Dream 建议增加 seed 数\\\\n\\\\n## Research Phase Kill Criteria\\\\n1. plan_005 所有权重配比均无法让 exec+STA ≥ exec-only → 论文退化为 \\\\\\\"STA as monitoring metric\\\\\\\"\\\\n2. plan_001/002 500步 3seed STA 条件一致性差于 exec-only → 同上\\\\n3. plan_003 确认 penalty effect (B) → **已触发** → hacking detection claim 降级为观察性表述，story 重构\\\\n4. plan_001 exec-only 500步 prove_rate: 3-seed mean < 25% AND slope ≤ 0 → GRPO pipeline 问题\\\\n\\\\n## 近期任务（GPU 排列）\\\\n- [ ] **紧急** cuda:0 → 诊断 plan_001 3次失败原因 → 修复后立即重跑\\\\n- [ ] cuda:1 → plan_005 RUNNING，完成后分析结果\\\\n- [ ] plan_005 结果出后 → 确定最优权重 → 启动 plan_002\\\\n- [ ] 新增 random reward baseline 实验到 experiment_plan.yaml\\\\n- [ ] 新增 downstream validation 实验设计\\\\n- [ ] Paper Agent: related work 扩充 + RIP reframing + 统计语言修正\\\\n- [ ] Dream 后续: 更新 paper_framing.md story（STA as metric + proper integration）\\\\n\\\\n## GPU 预算\\\\n- 本地: westd-39279 × 2 RTX PRO 6000 96GB（cuda:0 空闲⚠️, cuda:1 plan_005）\\\\n- 已消耗: ~16+ GPU·h（含早期空转）\\\\n- 剩余需求估算: ~25-30 GPU·h（含 Dream 新增实验）\\\\n- DDL: 2026-05-25（剩 12 天）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D009 | 2026-05-14 | 添加约束 C001（统一训练数据）和 C002（GPU 隔离验证），因连续两个 confound/越 | plan001-exec-only-s43, plan013-random-reward-s42 |\\\\n| D008 | 2026-05-13 | Dream 审稿确认 5 个结构性弱点，plan_003 消歧确认 penalty effect ( | plan003-eval-exec-only-r5, plan005-sta-low-s42, dream_20260513T215750 |\\\\n| D007 | 2026-05-13 | plan003 因果消歧：exec-only ISR 提升是有机的，50/50 STA 权重是退化根 | plan003-eval-exec-only-r5, sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\\\n| D006 | 2026-05-13 | paper_framing.md \\\\\\\"检测 hacking\\\\\\\" claim 降级为观察性表述，plan_ | sta-phase1-exec-sta-r5, plan_003 |\\\\n| D005 | 2026-05-13 | ISR/PR 下降因果归因待验证，plan_003 提升为最高优先级消歧实验 | sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\\\n| D004 | 2026-05-13 | Reviewer 指出 exec-sta-r5 prove_rate 低于 baseline（退化） | sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\\\n| D003 | 2026-05-13 | Phase 1 r4 fast_isr_fol 训练信号无效，改用 full STA + K=8 重 | sta-phase1-exec-only-r4, sta-phase1-exec-sta-r4 |\\\\n| D002 | 2026-05-13 | MVP 方案调整：50步→100步 + 趋势判断 + Phase 0 ISR baseline +  | — |\\\\n| D001 | 2026-05-13 | MVP 方案：FOL+Prover9 单逻辑 50-step GRPO pilot 验证 STA r | — |\\\\n\\\\n\\\", \\\"total_chars\\\": 3968, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-13 23:09 UTC | 更新原因: Dream 完成 + plan_003 消歧确认 penalty effect + plan_001 3次失败紧急处理\\n\\n## 核心方向\\nSTA（Solver Trace Ablation）：基于 mutation testing 的 component necessity testing，为 neurosymbolic formalizer 的 GRPO 训练提供 intensional structural reward。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（MVP 通过，消歧实验完成，Dream 审稿指导重构中）\\n- **基础设施**: westd-39279 × 2 RTX PRO 6000 96GB\\n- **消歧结论 (D008)**: plan_003 held-out eval 确认 exec-only checkpoint ISR=0.6423（proved-only），高于 GT 0.56。**Interpretation B confirmed**: 50/50 STA reward 是 penalty effect，非 hacking detection。\\n- **Dream 结果**: dream_20260513T215750 done — best 4/6 Borderline Reject, median 3/6 Weak Reject\\n- **Dream 跨档一致问题**: (1) related work 6→25+ (2) RIP framing 过度 (3) ISR circularity (4) single-seed secondary (5) ISR sparsity/\\\"dense+automatic\\\" 不成立\\n- **论文 story 转向**: \\\"STA detects hacking\\\" → \\\"STA as principled structural metric + proper integration\\\"\\n- **⚠️ plan_001 连续 3 次 failed**: exec-only baseline 500步尚未成功运行，Agent 正在诊断\\n- **plan_005 RUNNING**: STA weight=0.1 训练进行中（cuda:1）\\n\\n## 实验计划摘要（详见 experiment_plan.yaml）\\n**既有 P0**:\\n- plan_001: exec-only 500步 3seed baseline — **3次failed，紧急修复中**\\n- plan_002: exec+STA 500步 3seed — 待 plan_005 确定最优权重\\n- plan_003: held-out eval — ✅ done, 消歧完成\\n- plan_005: weight ablation — RUNNING (sta_weight=0.1)\\n\\n**Dream 新增实验需求**:\\n- **random reward baseline** (NEW): random structural penalty 替代 ISR → 隔离 ISR specific signal vs multi-objective regularization. ~1 GPU·h. **Dream M2/W7 必修**\\n- **downstream validation** (NEW): 高 ISR formalizations 用于下游逻辑推理任务 → 打破 ISR circularity. **Dream M2/W4 必修**\\n- **3-seed for secondary**: 至少 Prolog (plan_006) + top weight config 需 3 seed. ~6 GPU·h\\n- **curriculum ablation**: linear ramp vs sigmoid comparison. ~1 GPU·h\\n- **longer training**: 1000+ steps 验证 convergence/persistence. ~2 GPU·h\\n\\n**既有 P1/P2**: Prolog, multi-logic, SFT baseline, SMT-LIB, 8B scaling — 按 Dream 建议增加 seed 数\\n\\n## Research Phase Kill Criteria\\n1. plan_005 所有权重配比均无法让 exec+STA ≥ exec-only → 论文退化为 \\\"STA as monitoring metric\\\"\\n2. plan_001/002 500步 3seed STA 条件一致性差于 exec-only → 同上\\n3. plan_003 确认 penalty effect (B) → **已触发** → hacking detection claim 降级为观察性表述，story 重构\\n4. plan_001 exec-only 500步 prove_rate: 3-seed mean < 25% AND slope ≤ 0 → GRPO pipeline 问题\\n\\n## 近期任务（GPU 排列）\\n- [ ] **紧急** cuda:0 → 诊断 plan_001 3次失败原因 → 修复后立即重跑\\n- [ ] cuda:1 → plan_005 RUNNING，完成后分析结果\\n- [ ] plan_005 结果出后 → 确定最优权重 → 启动 plan_002\\n- [ ] 新增 random reward baseline 实验到 experiment_plan.yaml\\n- [ ] 新增 downstream validation 实验设计\\n- [ ] Paper Agent: related work 扩充 + RIP reframing + 统计语言修正\\n- [ ] Dream 后续: 更新 paper_framing.md story（STA as metric + proper integration）\\n\\n## GPU 预算\\n- 本地: westd-39279 × 2 RTX PRO 6000 96GB（cuda:0 空闲⚠️, cuda:1 plan_005）\\n- 已消耗: ~16+ GPU·h（含早期空转）\\n- 剩余需求估算: ~25-30 GPU·h（含 Dream 新增实验）\\n- DDL: 2026-05-25（剩 12 天）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D009 | 2026-05-14 | 添加约束 C001（统一训练数据）和 C002（GPU 隔离验证），因连续两个 confound/越 | plan001-exec-only-s43, plan013-random-reward-s42 |\\n| D008 | 2026-05-13 | Dream 审稿确认 5 个结构性弱点，plan_003 消歧确认 penalty effect ( | plan003-eval-exec-only-r5, plan005-sta-low-s42, dream_20260513T215750 |\\n| D007 | 2026-05-13 | plan003 因果消歧：exec-only ISR 提升是有机的，50/50 STA 权重是退化根 | plan003-eval-exec-only-r5, sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\n| D006 | 2026-05-13 | paper_framing.md \\\"检测 hacking\\\" claim 降级为观察性表述，plan_ | sta-phase1-exec-sta-r5, plan_003 |\\n| D005 | 2026-05-13 | ISR/PR 下降因果归因待验证，plan_003 提升为最高优先级消歧实验 | sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\n| D004 | 2026-05-13 | Reviewer 指出 exec-sta-r5 prove_rate 低于 baseline（退化） | sta-phase1-exec-sta-r5, sta-phase1-exec-only-r5 |\\n| D003 | 2026-05-13 | Phase 1 r4 fast_isr_fol 训练信号无效，改用 full STA + K=8 重 | sta-phase1-exec-only-r4, sta-phase1-exec-sta-r4 |\\n| D002 | 2026-05-13 | MVP 方案调整：50步→100步 + 趋势判断 + Phase 0 ISR baseline +  | — |\\n| D001 | 2026-05-13 | MVP 方案：FOL+Prover9 单逻辑 50-step GRPO pilot 验证 STA r | — |\\n\\n\", \"total_chars\": 3968, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T01:58:11.547Z_
+
+<details><summary>↩ Tool result · `toolu_019aqHEAUXmyErxqFMveqUqs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'solver-trace-ablation'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "30d085aa-77da-4db3-8980-0ef9ba53861a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'solver-trace-ablation'.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'solver-trace-ablation'.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for more specific literature and read the project's paper framing and experiment plan for context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "7c0bebc5-73ee-4412-91c5-a02274aa272f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+继续搜索更多相关文献，同时读取项目上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "22dd1a45-019c-4ae8-aa44-35e49db1563a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017g1jxpt6Hz6tYbiZp5KwNF`</summary>
+
+```json
+{
+  "query": "reward hacking RLVR verifiable reward LLM gaming verifiers 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "03ea5e1d-d6bf-46e9-a167-689ba4b4fa52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EvHtwSwioJz8K6Ehnjb6r9`</summary>
+
+```json
+{
+  "query": "Lilian Weng reward hacking blog taxonomy specification gaming"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "b0a26969-03b6-412d-be98-26bab058032b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015vR1Tbgc985ZMnZFD6pWuu`</summary>
+
+```json
+{
+  "query": "shortcut learning formal logic theorem proving neural network spurious correlation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "06819a9d-2528-421a-b1d8-0133c447fe1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CpXw2V3yDHVkaySdqYhxoU`</summary>
+
+```json
+{
+  "query": "\"reward hacking\" \"formal verification\" \"vacuous truth\" \"trivial proof\" logic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "c95f94f7-87ee-454a-a20f-d0b4f0cbf423",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01PJgRKrT88D4gwzACTHH8A2`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "62fdabe7-e8d9-46a4-a4db-d162d9c55b05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Kkhvta25dVFxGrRiRwwRaj`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "99df1f59-05a3-4da5-9ef4-53d1eacf93f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWHpXsFVjuDxqc8ge4RVb3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7049,
+      "cache_read_input_tokens": 24965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7049
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T01:58:25.461Z_
+
+<details><summary>↩ Tool result · `toolu_015vR1Tbgc985ZMnZFD6pWuu`</summary>
+
+```text
+Web search results for query: "shortcut learning formal logic theorem proving neural network spurious correlation"
+
+Links: [{"title":"Reasoning in Transformers – Mitigating Spurious Correlations and Reasoning Shortcuts | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-031-71170-1_18"},{"title":"Generating Correctness Proofs with Neural Networks Alex Sanchez-Stern","url":"https://arxiv.org/pdf/1907.07794"},{"title":"Automated proof synthesis for propositional logic with deep neural networks","url":"https://arxiv.org/pdf/1805.11799"},{"title":"Neural Theorem Provers: How Reasoning AI Is Learning Formal Math — and What It Means for Global Enterprises | by RAKTIM SINGH | Medium","url":"https://medium.com/@raktims2210/neural-theorem-provers-how-reasoning-ai-is-learning-formal-math-and-what-it-means-for-944aa356fb06"},{"title":"HolStep: A Machine Learning Dataset for Higher-order ...","url":"https://openreview.net/pdf?id=ryuxYmvel"},{"title":"A Deep Reinforcement Learning Approach to First-Order Logic Theorem Proving","url":"https://arxiv.org/pdf/1911.02065"},{"title":"A review of neuro-symbolic AI integrating reasoning and learning for advanced cognitive systems - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2667305325000675"},{"title":"Learning representations of Logical Formulae using Graph Neural Networks","url":"https://grlearning.github.io/papers/58.pdf"},{"title":"Tackling Shortcut Learning in Deep Neural Networks: An Iterative Approach with Interpretable Models","url":"https://arxiv.org/html/2302.10289"},{"title":"Discover and Cure: Concept-aware Mitigation of Spurious Correlation","url":"https://proceedings.mlr.press/v202/wu23w/wu23w.pdf"}]
+
+I've completed a web search for your query and found several relevant results. Here's what the search revealed:
+
+## Key Findings
+
+**Shortcut Learning in Formal Logic and Theorem Proving:**
+
+Transformer models may easily learn spurious patterns in the data, short-circuiting actual reasoning. Research has specifically addressed this issue in the context of logical reasoning. One study investigates to what extent transformers can be trained to approximate reasoning in propositional logic while avoiding known reasoning shortcuts via spurious correlations in the training data.
+
+**Neuro-Symbolic Solutions:**
+
+Researchers augmented data with proofs and trained two models based on generative transformers: WP-BART, trained to generate whole proofs at once, and a neuro-symbolic model, SIP-BART, trained to generate individual proof steps in combination with a symbolic proof checker. SIP-BART succeeded in avoiding reasoning shortcuts, while WP-BART did not.
+
+**Broader Applications:**
+
+Neural Theorem Provers use neural networks to explore possible proofs while the proof assistant acts as a logical judge. If the assistant accepts the steps, the result is a machine-checkable guarantee.
+
+**Shortcut Detection Methods:**
+
+Research has also developed techniques to detect and mitigate shortcut learning. One approach uses First Order Logic (FOL) to explain subsets of data, and FOL from biased models effectively detects shortcuts.
+
+The search results show that spurious correlations and shortcut learning are recognized challenges in neural approaches to formal reasoning, and that combining neural networks with symbolic verification methods can help mitigate these issues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "35779090-befd-4f64-b4f8-9681b6100e31",
+  "tool_use_result": {
+    "query": "shortcut learning formal logic theorem proving neural network spurious correlation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X5AVLQJFLxLA2ZFCPoyaqM",
+        "content": [
+          {
+            "title": "Reasoning in Transformers – Mitigating Spurious Correlations and Reasoning Shortcuts | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-031-71170-1_18"
+          },
+          {
+            "title": "Generating Correctness Proofs with Neural Networks Alex Sanchez-Stern",
+            "url": "https://arxiv.org/pdf/1907.07794"
+          },
+          {
+            "title": "Automated proof synthesis for propositional logic with deep neural networks",
+            "url": "https://arxiv.org/pdf/1805.11799"
+          },
+          {
+            "title": "Neural Theorem Provers: How Reasoning AI Is Learning Formal Math — and What It Means for Global Enterprises | by RAKTIM SINGH | Medium",
+            "url": "https://medium.com/@raktims2210/neural-theorem-provers-how-reasoning-ai-is-learning-formal-math-and-what-it-means-for-944aa356fb06"
+          },
+          {
+            "title": "HolStep: A Machine Learning Dataset for Higher-order ...",
+            "url": "https://openreview.net/pdf?id=ryuxYmvel"
+          },
+          {
+            "title": "A Deep Reinforcement Learning Approach to First-Order Logic Theorem Proving",
+            "url": "https://arxiv.org/pdf/1911.02065"
+          },
+          {
+            "title": "A review of neuro-symbolic AI integrating reasoning and learning for advanced cognitive systems - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2667305325000675"
+          },
+          {
+            "title": "Learning representations of Logical Formulae using Graph Neural Networks",
+            "url": "https://grlearning.github.io/papers/58.pdf"
+          },
+          {
+            "title": "Tackling Shortcut Learning in Deep Neural Networks: An Iterative Approach with Interpretable Models",
+            "url": "https://arxiv.org/html/2302.10289"
+          },
+          {
+            "title": "Discover and Cure: Concept-aware Mitigation of Spurious Correlation",
+            "url": "https://proceedings.mlr.press/v202/wu23w/wu23w.pdf"
+          }
+        ]
+      },
+      "I've completed a web search for your query and found several relevant results. Here's what the search revealed:\n\n## Key Findings\n\n**Shortcut Learning in Formal Logic and Theorem Proving:**\n\nTransformer models may easily learn spurious patterns in the data, short-circuiting actual reasoning. Research has specifically addressed this issue in the context of logical reasoning. One study investigates to what extent transformers can be trained to approximate reasoning in propositional logic while avoiding known reasoning shortcuts via spurious correlations in the training data.\n\n**Neuro-Symbolic Solutions:**\n\nResearchers augmented data with proofs and trained two models based on generative transformers: WP-BART, trained to generate whole proofs at once, and a neuro-symbolic model, SIP-BART, trained to generate individual proof steps in combination with a symbolic proof checker. SIP-BART succeeded in avoiding reasoning shortcuts, while WP-BART did not.\n\n**Broader Applications:**\n\nNeural Theorem Provers use neural networks to explore possible proofs while the proof assistant acts as a logical judge. If the assistant accepts the steps, the result is a machine-checkable guarantee.\n\n**Shortcut Detection Methods:**\n\nResearch has also developed techniques to detect and mitigate shortcut learning. One approach uses First Order Logic (FOL) to explain subsets of data, and FOL from biased models effectively detects shortcuts.\n\nThe search results show that spurious correlations and shortcut learning are recognized challenges in neural approaches to formal reasoning, and that combining neural networks with symbolic verification methods can help mitigate these issues."
+    ],
+    "durationSeconds": 7.0765421459999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T01:58:25.475Z_
+
+<details><summary>↩ Tool result · `toolu_01EvHtwSwioJz8K6Ehnjb6r9`</summary>
+
+```text
+Web search results for query: "Lilian Weng reward hacking blog taxonomy specification gaming"
+
+Links: [{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"Rlhf | Lil'Log","url":"https://lilianweng.github.io/tags/rlhf/"},{"title":"Inference-Time Reward Hacking in Large Language Models","url":"https://arxiv.org/html/2506.19248v2"},{"title":"Lilian Weng on X: \"🦃 At the end of Thanksgiving holidays, I finally finished the piece on reward hacking. Not an easy one to write, phew. Reward hacking occurs when an RL agent exploits flaws in the reward function or env to maximize rewards without learning the intended behavior. This is imo a\" / X","url":"https://x.com/lilianweng/status/1863436864411341112"},{"title":"Reinforcement-Learning | Lil'Log","url":"https://lilianweng.github.io/tags/reinforcement-learning/"},{"title":"Lil'Log","url":"https://lilianweng.github.io/"},{"title":"Build a custom RAG agent with LangGraph - Docs by LangChain","url":"https://docs.langchain.com/oss/python/langgraph/agentic-rag"},{"title":"Inference-Time Reward Hacking in Large Language Models Hadi Khalaf","url":"https://openreview.net/pdf?id=hSX7Dd8dxy"},{"title":"What Is Reward Hacking? How to Prevent It in RL (2026 Guide)","url":"https://www.articsledge.com/post/reward-hacking"},{"title":"Lilian Weng","url":"https://blogboard.io/source-feed/source/lilian-weng-blog"}]
+
+Based on the search results, I found Lilian Weng's comprehensive blog post on reward hacking from November 2024. Here's what I found:
+
+## Key Findings:
+
+Reward hacking occurs when a reinforcement learning (RL) agent exploits flaws or ambiguities in the reward function to achieve high rewards, without genuinely learning or completing the intended task. Reward hacking exists because RL environments are often imperfect, and it is fundamentally challenging to accurately specify a reward function.
+
+## Taxonomy of Misspecified Proxy Rewards:
+
+Pan et al. (2022) proposed a taxonomy of three types of misspecified proxy rewards: Misweighting (proxy and true rewards capture the same desiderata, but differ in their relative importance), Ontological (proxy and true rewards use different desiderata to capture the same concept), and Scope (the proxy measures desiderata over a restricted domain because measurement across all conditions is too costly).
+
+## Specification Gaming Connection:
+
+The blog also references specification gaming, which is a related concept. Lilian Weng categorizes reward hacking into two types: environment or goal misspecification, and reward tampering.
+
+## Practical Significance:
+
+With the rise of language models generalizing to a broad spectrum of tasks and RLHF becomes a de facto method for alignment training, reward hacking in RL training of language models has become a critical practical challenge, with instances where the model learns to modify unit tests to pass coding tasks, or where responses contain biases that mimic a user's preference.
+
+The full blog post can be found at: https://lilianweng.github.io/posts/2024-11-28-reward-hacking/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "bb6fd327-cdb4-472b-8dfa-cd7e26d33e18",
+  "tool_use_result": {
+    "query": "Lilian Weng reward hacking blog taxonomy specification gaming",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HjgGNFY4Sh8Kvcg3bBejzr",
+        "content": [
+          {
+            "title": "Reward Hacking in Reinforcement Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"
+          },
+          {
+            "title": "Rlhf | Lil'Log",
+            "url": "https://lilianweng.github.io/tags/rlhf/"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models",
+            "url": "https://arxiv.org/html/2506.19248v2"
+          },
+          {
+            "title": "Lilian Weng on X: \"🦃 At the end of Thanksgiving holidays, I finally finished the piece on reward hacking. Not an easy one to write, phew. Reward hacking occurs when an RL agent exploits flaws in the reward function or env to maximize rewards without learning the intended behavior. This is imo a\" / X",
+            "url": "https://x.com/lilianweng/status/1863436864411341112"
+          },
+          {
+            "title": "Reinforcement-Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/tags/reinforcement-learning/"
+          },
+          {
+            "title": "Lil'Log",
+            "url": "https://lilianweng.github.io/"
+          },
+          {
+            "title": "Build a custom RAG agent with LangGraph - Docs by LangChain",
+            "url": "https://docs.langchain.com/oss/python/langgraph/agentic-rag"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models Hadi Khalaf",
+            "url": "https://openreview.net/pdf?id=hSX7Dd8dxy"
+          },
+          {
+            "title": "What Is Reward Hacking? How to Prevent It in RL (2026 Guide)",
+            "url": "https://www.articsledge.com/post/reward-hacking"
+          },
+          {
+            "title": "Lilian Weng",
+            "url": "https://blogboard.io/source-feed/source/lilian-weng-blog"
+          }
+        ]
+      },
+      "Based on the search results, I found Lilian Weng's comprehensive blog post on reward hacking from November 2024. Here's what I found:\n\n## Key Findings:\n\nReward hacking occurs when a reinforcement learning (RL) agent exploits flaws or ambiguities in the reward function to achieve high rewards, without genuinely learning or completing the intended task. Reward hacking exists because RL environments are often imperfect, and it is fundamentally challenging to accurately specify a reward function.\n\n## Taxonomy of Misspecified Proxy Rewards:\n\nPan et al. (2022) proposed a taxonomy of three types of misspecified proxy rewards: Misweighting (proxy and true rewards capture the same desiderata, but differ in their relative importance), Ontological (proxy and true rewards use different desiderata to capture the same concept), and Scope (the proxy measures desiderata over a restricted domain because measurement across all conditions is too costly).\n\n## Specification Gaming Connection:\n\nThe blog also references specification gaming, which is a related concept. Lilian Weng categorizes reward hacking into two types: environment or goal misspecification, and reward tampering.\n\n## Practical Significance:\n\nWith the rise of language models generalizing to a broad spectrum of tasks and RLHF becomes a de facto method for alignment training, reward hacking in RL training of language models has become a critical practical challenge, with instances where the model learns to modify unit tests to pass coding tasks, or where responses contain biases that mimic a user's preference.\n\nThe full blog post can be found at: https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"
+    ],
+    "durationSeconds": 8.197134561000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T01:58:25.918Z_
+
+<details><summary>↩ Tool result · `toolu_017g1jxpt6Hz6tYbiZp5KwNF`</summary>
+
+```text
+Web search results for query: "reward hacking RLVR verifiable reward LLM gaming verifiers 2024 2025"
+
+Links: [{"title":"[2604.15149] LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking","url":"https://arxiv.org/abs/2604.15149"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking","url":"https://arxiv.org/html/2604.15149"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=reward+hacking"},{"title":"From Verifiable Dot to Reward Chain: Harnessing Verifiable Reference-based Rewards for Reinforcement Learning of Open-ended Generation","url":"https://arxiv.org/html/2601.18533v1"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"Reward Hacking in RLVR","url":"https://www.emergentmind.com/topics/reward-hacking-in-rlvr"},{"title":"Reward Hacking in RLVR Systems","url":"https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"Verifiable Rewards (RLVR) Framework","url":"https://www.emergentmind.com/topics/verifiable-rewards-rlvr"}]
+
+I've found comprehensive information about reward hacking in RLVR (Reinforcement Learning with Verifiable Rewards) for LLMs and verifier gaming. Here are the key findings:
+
+## Overview
+
+As Reinforcement Learning with Verifiable Rewards (RLVR) has become the dominant paradigm for scaling reasoning capabilities in LLMs, a new failure mode emerges: LLMs gaming verifiers.
+
+## The Core Problem
+
+RLVR-trained models systematically abandon rule induction. Instead of learning generalizable patterns (e.g., "trains carrying red cars go east"), they enumerate instance-level labels, producing outputs that pass verifiers without capturing the relational patterns required by the task.
+
+This behavior is not a failure of understanding but a form of reward hacking: imperfect verifiers that check only extensional correctness admit false positives.
+
+## Key Findings (2024-2025)
+
+Shortcut behavior is specific to RLVR-trained reasoning models (e.g., GPT-5, Olmo3) and absent in non-RLVR models (e.g., GPT-4o, GPT-4.5, Ministral). Additionally, shortcut prevalence increases with task complexity and inference-time compute.
+
+## Detection and Mitigation
+
+Isomorphic Perturbation Testing (IPT) evaluates a single model output under both extensional and isomorphic verification, where the latter enforces invariance under logically isomorphic tasks. Extensional verification directly induces shortcut strategies, while isomorphic verification eliminates them.
+
+## Broader Implications
+
+RLVR can incentivize reward hacking not only through overt manipulation but also by exploiting what the verifier fails to enforce.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "0dbd27d6-010c-449d-9b90-e471ab374375",
+  "tool_use_result": {
+    "query": "reward hacking RLVR verifiable reward LLM gaming verifiers 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M49mGyJVxpn8PJnLRSq3Bu",
+        "content": [
+          {
+            "title": "[2604.15149] LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking",
+            "url": "https://arxiv.org/abs/2604.15149"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking",
+            "url": "https://arxiv.org/html/2604.15149"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=reward+hacking"
+          },
+          {
+            "title": "From Verifiable Dot to Reward Chain: Harnessing Verifiable Reference-based Rewards for Reinforcement Learning of Open-ended Generation",
+            "url": "https://arxiv.org/html/2601.18533v1"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "Reward Hacking in RLVR",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-rlvr"
+          },
+          {
+            "title": "Reward Hacking in RLVR Systems",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          },
+          {
+            "title": "Verifiable Rewards (RLVR) Framework",
+            "url": "https://www.emergentmind.com/topics/verifiable-rewards-rlvr"
+          }
+        ]
+      },
+      "I've found comprehensive information about reward hacking in RLVR (Reinforcement Learning with Verifiable Rewards) for LLMs and verifier gaming. Here are the key findings:\n\n## Overview\n\nAs Reinforcement Learning with Verifiable Rewards (RLVR) has become the dominant paradigm for scaling reasoning capabilities in LLMs, a new failure mode emerges: LLMs gaming verifiers.\n\n## The Core Problem\n\nRLVR-trained models systematically abandon rule induction. Instead of learning generalizable patterns (e.g., \"trains carrying red cars go east\"), they enumerate instance-level labels, producing outputs that pass verifiers without capturing the relational patterns required by the task.\n\nThis behavior is not a failure of understanding but a form of reward hacking: imperfect verifiers that check only extensional correctness admit false positives.\n\n## Key Findings (2024-2025)\n\nShortcut behavior is specific to RLVR-trained reasoning models (e.g., GPT-5, Olmo3) and absent in non-RLVR models (e.g., GPT-4o, GPT-4.5, Ministral). Additionally, shortcut prevalence increases with task complexity and inference-time compute.\n\n## Detection and Mitigation\n\nIsomorphic Perturbation Testing (IPT) evaluates a single model output under both extensional and isomorphic verification, where the latter enforces invariance under logically isomorphic tasks. Extensional verification directly induces shortcut strategies, while isomorphic verification eliminates them.\n\n## Broader Implications\n\nRLVR can incentivize reward hacking not only through overt manipulation but also by exploiting what the verifier fails to enforce."
+    ],
+    "durationSeconds": 9.180441367
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T01:58:26.088Z_
+
+<details><summary>↩ Tool result · `toolu_01CpXw2V3yDHVkaySdqYhxoU`</summary>
+
+```text
+Web search results for query: ""reward hacking" "formal verification" "vacuous truth" "trivial proof" logic"
+
+Links: [{"title":"Formal Tech Tip: What are Vacuous Proofs, Why They Are Bad, and How to Fix Them - Verification Horizons","url":"https://blogs.sw.siemens.com/verificationhorizons/2017/12/06/formal-tech-tip-what-are-vacuous-proofs-why-they-are-bad-and-how-to-fix-them/"},{"title":"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford","url":"https://arxiv.org/pdf/2209.13085"},{"title":"Trivial and Vacuous Proofs - MATH301 - Sets & Proof","url":"https://reecemcmillin.github.io/math301-lecture-notes/book/3.1.html"},{"title":"Models Know They're Reward Hacking — and Telling Them to Stop Makes It Worse | MindStudio","url":"https://www.mindstudio.ai/blog/models-know-reward-hacking-telling-them-stop-makes-it-worse"},{"title":"Reward hacking - Wikipedia","url":"https://en.wikipedia.org/wiki/Reward_hacking"},{"title":"Vacuous proof - Trivial proof - Direct proof - Indirect","url":"http://cms.uhd.edu/faculty/delavinae/F10/Math2405F10/Methods%20of%20Proofs.pdf"},{"title":"What is the difference between vacuous and trivial proof? - Quora","url":"https://www.quora.com/What-is-the-difference-between-vacuous-and-trivial-proof"},{"title":"Reward Hacking in RLVR","url":"https://www.emergentmind.com/topics/reward-hacking-in-rlvr"},{"title":"3.1 Trivial and Vacuous Proofs 3.2 Direct Proofs","url":"https://faculty.nps.edu/rgera/current_classes/MA1025/Ch3.pdf"},{"title":"3.2 Disproof by Counterexample, Trivial Proofs and Mistakes in Proofs – Logical Thinking through Discrete Mathematics","url":"https://louis.pressbooks.pub/discretemathematics/chapter/disproof-by-counterexample/"}]
+
+I've performed the web search for your query about "reward hacking," "formal verification," "vacuous truth," and "trivial proof." Here are the key findings:
+
+## Reward Hacking
+
+Reward hacking or specification gaming occurs when an AI trained with reinforcement learning optimizes an objective function—achieving the literal, formal specification of an objective—without actually achieving an outcome that the programmers intended. Skalse et al. (2022) propose a formal mathematical definition of reward hacking, which involves a situation where optimizing an imperfect proxy reward function results in poor performance compared to the true reward function.
+
+A significant theoretical finding is that across all stochastic policy distributions (mappings from states to probability distributions over actions), two reward functions are unhackable if and only if one of them is constant, which means that reward hacking is theoretically unavoidable.
+
+## Vacuous Proofs and Formal Verification
+
+In formal verification, there is one case where a proof is bad – misleading, actually. It is when a proof is "vacuous". It often starts with a poorly written property: the "antecedent" defines an inconsistent state that can never be true.
+
+## Trivial and Vacuous Proofs in Logic
+
+A trivial proof is a proof that a conditional statement holds when its hypothesis is false. The distinction is that an implication is trivially true when its conclusion is always true, whereas a vacuous proof occurs when the hypothesis is always false.
+
+The search results show connections between these concepts in the context of verification and formal methods, though they appear in different domains (AI safety vs. hardware verification vs. mathematical logic).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "3fa575c2-e13b-478c-befa-90142df7d549",
+  "tool_use_result": {
+    "query": "\"reward hacking\" \"formal verification\" \"vacuous truth\" \"trivial proof\" logic",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LePLP1PGjHctAKEoKPyi1z",
+        "content": [
+          {
+            "title": "Formal Tech Tip: What are Vacuous Proofs, Why They Are Bad, and How to Fix Them - Verification Horizons",
+            "url": "https://blogs.sw.siemens.com/verificationhorizons/2017/12/06/formal-tech-tip-what-are-vacuous-proofs-why-they-are-bad-and-how-to-fix-them/"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford",
+            "url": "https://arxiv.org/pdf/2209.13085"
+          },
+          {
+            "title": "Trivial and Vacuous Proofs - MATH301 - Sets & Proof",
+            "url": "https://reecemcmillin.github.io/math301-lecture-notes/book/3.1.html"
+          },
+          {
+            "title": "Models Know They're Reward Hacking — and Telling Them to Stop Makes It Worse | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/models-know-reward-hacking-telling-them-stop-makes-it-worse"
+          },
+          {
+            "title": "Reward hacking - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Reward_hacking"
+          },
+          {
+            "title": "Vacuous proof - Trivial proof - Direct proof - Indirect",
+            "url": "http://cms.uhd.edu/faculty/delavinae/F10/Math2405F10/Methods%20of%20Proofs.pdf"
+          },
+          {
+            "title": "What is the difference between vacuous and trivial proof? - Quora",
+            "url": "https://www.quora.com/What-is-the-difference-between-vacuous-and-trivial-proof"
+          },
+          {
+            "title": "Reward Hacking in RLVR",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-rlvr"
+          },
+          {
+            "title": "3.1 Trivial and Vacuous Proofs 3.2 Direct Proofs",
+            "url": "https://faculty.nps.edu/rgera/current_classes/MA1025/Ch3.pdf"
+          },
+          {
+            "title": "3.2 Disproof by Counterexample, Trivial Proofs and Mistakes in Proofs – Logical Thinking through Discrete Mathematics",
+            "url": "https://louis.pressbooks.pub/discretemathematics/chapter/disproof-by-counterexample/"
+          }
+        ]
+      },
+      "I've performed the web search for your query about \"reward hacking,\" \"formal verification,\" \"vacuous truth,\" and \"trivial proof.\" Here are the key findings:\n\n## Reward Hacking\n\nReward hacking or specification gaming occurs when an AI trained with reinforcement learning optimizes an objective function—achieving the literal, formal specification of an objective—without actually achieving an outcome that the programmers intended. Skalse et al. (2022) propose a formal mathematical definition of reward hacking, which involves a situation where optimizing an imperfect proxy reward function results in poor performance compared to the true reward function.\n\nA significant theoretical finding is that across all stochastic policy distributions (mappings from states to probability distributions over actions), two reward functions are unhackable if and only if one of them is constant, which means that reward hacking is theoretically unavoidable.\n\n## Vacuous Proofs and Formal Verification\n\nIn formal verification, there is one case where a proof is bad – misleading, actually. It is when a proof is \"vacuous\". It often starts with a poorly written property: the \"antecedent\" defines an inconsistent state that can never be true.\n\n## Trivial and Vacuous Proofs in Logic\n\nA trivial proof is a proof that a conditional statement holds when its hypothesis is false. The distinction is that an implication is trivially true when its conclusion is always true, whereas a vacuous proof occurs when the hypothesis is always false.\n\nThe search results show connections between these concepts in the context of verification and formal methods, though they appear in different domains (AI safety vs. hardware verification vs. mathematical logic)."
+    ],
+    "durationSeconds": 7.371388870000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T01:58:26.101Z_
+
+<details><summary>↩ Tool result · `toolu_01PJgRKrT88D4gwzACTHH8A2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (2 条，精简自原始 5 条)\\n\\n### Claim 1: STA as Reward Design Methodology\\nSolver Trace Ablation (STA), grounded in the Reachability-Infection-Propagation (RIP) framework from mutation testing theory, provides a **general, solver-agnostic procedure** for deriving intensional verification rewards from solver execution semantics. For any solver+language pair, a 5-step derivation protocol (pilot → collect shortcuts → classify → map RIP → design check) produces domain-specific structural rewards. This is the first application of the RIP framework to RL reward design.\\n\\n**MVP 证据**: Full STA 在 FOL+Prover9 上提供连续 ISR（0.125-0.889）。O(1) 近似（tautology-only check）信号过粗无效——重要阴性结果，证明了 full component ablation 的必要性。\\n**✅ 因果归因已确认 (D008)**: plan_003 held-out eval: exec-only checkpoint proved_only_ISR=0.6423，高于 GT 0.56。**Interpretation B confirmed**: 50/50 STA 权重是 penalty effect，非 hacking detection。Exec-only 模型天然产生结构良好的 proofs，过高 STA 权重惩罚了 prove 行为。\\n**Claim 调整**: STA 的价值在于 (1) 作为结构质量度量指标（ISR 区分力强），(2) 合理集成（低权重/bonus/curriculum）可在不牺牲 prove rate 前提下引导结构质量。不再声称 \\\"STA 检测 reward hacking\\\"。plan_005（weight ablation RUNNING）将验证最优集成方式。\\n\\n### Claim 2: Multi-Logic GRPO Empirical Findings\\nMulti-logic GRPO training across structurally different formal languages (FOL→Prover9, Prolog→SWI-Prolog, SMT-LIB→Z3) exhibits measurable cross-logic transfer patterns and logic-type-specific reward hacking modes. STA-derived rewards detect and quantify these phenomena.\\n\\n**MVP 证据**: 待验证（FOL 单逻辑已验证，multi-logic 需 research 阶段实验）。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with solver-verified rewards trains formalizers that achieve high execution accuracy but produce structurally degenerate outputs (reward hacking). Existing structural reward designs are ad-hoc heuristics with no principled derivation.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) demonstrates cross-solver GRPO transfer but uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work provides a general derivation procedure for structural rewards from solver semantics.\\n- **Our framing**: We apply component necessity testing (leave-one-out ablation) — a component is \\\"necessary\\\" iff its ablation changes the solver's output — to derive intensional verification rewards from solver execution semantics. Inspired by mutation testing's RIP framework, but operationally measuring only the Propagation condition (component necessity). STA provides **conditionally dense** structural rewards: dense within proved outputs, zero for unproved outputs (67-90% of training). This positions STA as \\\"systematic application of LOO ablation to RL reward design for formal reasoning\\\" — application novelty, not metric novelty.\\n- **Headline result template**: \\\"On FOLIO, STA-rewarded GRPO with calibrated weighting achieves comparable prove rate (&lt;X>%) with significantly higher structural integrity (ISR &lt;Y>% vs &lt;W>%), compared to execution-only GRPO — preserving accuracy while improving formalization quality. ISR discriminates structural quality even when applied post-hoc as a monitoring metric.\\\"\\n- **⚠️ Dream 指导 (D008)**: 不可声称 \\\"Pareto-improving\\\"（prove rate 差异不显著）；不可声称 \\\"dense+automatic\\\"（ISR 对 unproved outputs = 0）；RIP 只是 motivating analogy 非 formal grounding。需 random reward baseline (plan_013) 证明 ISR-specific signal，需 downstream validation (plan_014) 打破 ISR circularity。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Core contribution is neurosymbolic (NLP + formal logic), directly in the NLP and Symbolic Reasoning track. Formal verification + RL reward design is highly relevant.\\n- **\\\"Old wine\\\" risk**: STA's component ablation resembles mutation testing. Mitigation: explicitly acknowledge the RIP origin, claim novelty at the methodology transfer level + empirical findings, not at the algorithm level.\\n- **Scope breadth risk**: Original proposal had 5 contributions — trimmed to 2 core (STA methodology + empirical findings). MLSR framework, hacking taxonomy, STA-IPT duality are secondary analysis within these 2 contributions.\\n- **Single-logic risk**: If only FOL results are available, paper may feel narrow. Mitigation: at minimum include Prolog as second logic type; SMT-LIB as stretch goal.\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"STA/ISR is just LOO ablation — not novel\\\"** — Response: yes, ISR is structurally equivalent to binary LOO feature importance. The contribution is (a) recognizing this applies to RL reward design for formal reasoning, (b) the 5-step derivation protocol making it transferable, (c) empirical findings across 3 logic types. Explicitly acknowledge LOO connection and cite feature attribution literature (SHAP, Shapley).\\n2. **\\\"O(1) approximation doesn't work\\\"** — Response: principled negative result showing domain-specific hacking modes require corresponding ablation granularity.\\n3. **\\\"ISR is circular — optimizing and evaluating same metric\\\"** — Response: (a) random reward baseline (plan_013) isolates ISR-specific signal from multi-objective regularization, (b) downstream validation (plan_014) validates ISR correlates with genuine quality on independent criterion, (c) hacking taxonomy (plan_012) provides qualitative grounding.\\n4. **\\\"ISR undefined for most training examples\\\"** — Response: acknowledge ISR is conditionally dense (proved outputs only). During early training prove rate ~12%, most samples get no ISR signal. This is a genuine limitation; the multiplicative formulation r_exec·ISR at least ensures ISR only affects proved outputs. Discuss implications honestly.\\n5. **\\\"Prove rate differences not significant\\\"** — Response: claim \\\"STA preserves prove rate\\\" (no significant degradation), NOT \\\"Pareto-improving\\\". The contribution is structural quality improvement at maintained accuracy.\\n6. **\\\"RIP framework overstated\\\"** — Response: honestly frame as \\\"inspired by\\\" RIP, primarily measuring the Propagation condition (component necessity). Don't claim formal grounding if only 1/3 of RIP is operationalized.\\n7. **\\\"Only tested on one/two logic types\\\"** — Response: STA protocol is solver-agnostic; 3-logic instantiation (FOL/Prolog/SMT-LIB) demonstrates generality. Secondary experiments need 3 seeds (plan_006 upgraded).\\n8. **\\\"500 steps too short\\\"** — Response: plan_016 extends to 1000+ steps. If convergence not shown, bound claims to observed horizon.\\n9. **\\\"Related work insufficient\\\"** — Response: expand to 25+ refs covering reward shaping (Ng 1999), reward hacking (Gao 2023, Skalse 2022), GRPO (Shao 2024), FOLIO (Han 2022), feature attribution, modern formal reasoning (LeanDojo, Baldur, AlphaProof).\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n\", \"total_chars\": 7191, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "3aebcf74-2875-4baa-85b7-1aab2671c234",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (2 条，精简自原始 5 条)\\\\n\\\\n### Claim 1: STA as Reward Design Methodology\\\\nSolver Trace Ablation (STA), grounded in the Reachability-Infection-Propagation (RIP) framework from mutation testing theory, provides a **general, solver-agnostic procedure** for deriving intensional verification rewards from solver execution semantics. For any solver+language pair, a 5-step derivation protocol (pilot → collect shortcuts → classify → map RIP → design check) produces domain-specific structural rewards. This is the first application of the RIP framework to RL reward design.\\\\n\\\\n**MVP 证据**: Full STA 在 FOL+Prover9 上提供连续 ISR（0.125-0.889）。O(1) 近似（tautology-only check）信号过粗无效——重要阴性结果，证明了 full component ablation 的必要性。\\\\n**✅ 因果归因已确认 (D008)**: plan_003 held-out eval: exec-only checkpoint proved_only_ISR=0.6423，高于 GT 0.56。**Interpretation B confirmed**: 50/50 STA 权重是 penalty effect，非 hacking detection。Exec-only 模型天然产生结构良好的 proofs，过高 STA 权重惩罚了 prove 行为。\\\\n**Claim 调整**: STA 的价值在于 (1) 作为结构质量度量指标（ISR 区分力强），(2) 合理集成（低权重/bonus/curriculum）可在不牺牲 prove rate 前提下引导结构质量。不再声称 \\\\\\\"STA 检测 reward hacking\\\\\\\"。plan_005（weight ablation RUNNING）将验证最优集成方式。\\\\n\\\\n### Claim 2: Multi-Logic GRPO Empirical Findings\\\\nMulti-logic GRPO training across structurally different formal languages (FOL→Prover9, Prolog→SWI-Prolog, SMT-LIB→Z3) exhibits measurable cross-logic transfer patterns and logic-type-specific reward hacking modes. STA-derived rewards detect and quantify these phenomena.\\\\n\\\\n**MVP 证据**: 待验证（FOL 单逻辑已验证，multi-logic 需 research 阶段实验）。\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: GRPO with solver-verified rewards trains formalizers that achieve high execution accuracy but produce structurally degenerate outputs (reward hacking). Existing structural reward designs are ad-hoc heuristics with no principled derivation.\\\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) demonstrates cross-solver GRPO transfer but uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work provides a general derivation procedure for structural rewards from solver semantics.\\\\n- **Our framing**: We apply component necessity testing (leave-one-out ablation) — a component is \\\\\\\"necessary\\\\\\\" iff its ablation changes the solver's output — to derive intensional verification rewards from solver execution semantics. Inspired by mutation testing's RIP framework, but operationally measuring only the Propagation condition (component necessity). STA provides **conditionally dense** structural rewards: dense within proved outputs, zero for unproved outputs (67-90% of training). This positions STA as \\\\\\\"systematic application of LOO ablation to RL reward design for formal reasoning\\\\\\\" — application novelty, not metric novelty.\\\\n- **Headline result template**: \\\\\\\"On FOLIO, STA-rewarded GRPO with calibrated weighting achieves comparable prove rate (&lt;X>%) with significantly higher structural integrity (ISR &lt;Y>% vs &lt;W>%), compared to execution-only GRPO — preserving accuracy while improving formalization quality. ISR discriminates structural quality even when applied post-hoc as a monitoring metric.\\\\\\\"\\\\n- **⚠️ Dream 指导 (D008)**: 不可声称 \\\\\\\"Pareto-improving\\\\\\\"（prove rate 差异不显著）；不可声称 \\\\\\\"dense+automatic\\\\\\\"（ISR 对 unproved outputs = 0）；RIP 只是 motivating analogy 非 formal grounding。需 random reward baseline (plan_013) 证明 ISR-specific signal，需 downstream validation (plan_014) 打破 ISR circularity。\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **EMNLP fit**: Core contribution is neurosymbolic (NLP + formal logic), directly in the NLP and Symbolic Reasoning track. Formal verification + RL reward design is highly relevant.\\\\n- **\\\\\\\"Old wine\\\\\\\" risk**: STA's component ablation resembles mutation testing. Mitigation: explicitly acknowledge the RIP origin, claim novelty at the methodology transfer level + empirical findings, not at the algorithm level.\\\\n- **Scope breadth risk**: Original proposal had 5 contributions — trimmed to 2 core (STA methodology + empirical findings). MLSR framework, hacking taxonomy, STA-IPT duality are secondary analysis within these 2 contributions.\\\\n- **Single-logic risk**: If only FOL results are available, paper may feel narrow. Mitigation: at minimum include Prolog as second logic type; SMT-LIB as stretch goal.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n1. **\\\\\\\"STA/ISR is just LOO ablation — not novel\\\\\\\"** — Response: yes, ISR is structurally equivalent to binary LOO feature importance. The contribution is (a) recognizing this applies to RL reward design for formal reasoning, (b) the 5-step derivation protocol making it transferable, (c) empirical findings across 3 logic types. Explicitly acknowledge LOO connection and cite feature attribution literature (SHAP, Shapley).\\\\n2. **\\\\\\\"O(1) approximation doesn't work\\\\\\\"** — Response: principled negative result showing domain-specific hacking modes require corresponding ablation granularity.\\\\n3. **\\\\\\\"ISR is circular — optimizing and evaluating same metric\\\\\\\"** — Response: (a) random reward baseline (plan_013) isolates ISR-specific signal from multi-objective regularization, (b) downstream validation (plan_014) validates ISR correlates with genuine quality on independent criterion, (c) hacking taxonomy (plan_012) provides qualitative grounding.\\\\n4. **\\\\\\\"ISR undefined for most training examples\\\\\\\"** — Response: acknowledge ISR is conditionally dense (proved outputs only). During early training prove rate ~12%, most samples get no ISR signal. This is a genuine limitation; the multiplicative formulation r_exec·ISR at least ensures ISR only affects proved outputs. Discuss implications honestly.\\\\n5. **\\\\\\\"Prove rate differences not significant\\\\\\\"** — Response: claim \\\\\\\"STA preserves prove rate\\\\\\\" (no significant degradation), NOT \\\\\\\"Pareto-improving\\\\\\\". The contribution is structural quality improvement at maintained accuracy.\\\\n6. **\\\\\\\"RIP framework overstated\\\\\\\"** — Response: honestly frame as \\\\\\\"inspired by\\\\\\\" RIP, primarily measuring the Propagation condition (component necessity). Don't claim formal grounding if only 1/3 of RIP is operationalized.\\\\n7. **\\\\\\\"Only tested on one/two logic types\\\\\\\"** — Response: STA protocol is solver-agnostic; 3-logic instantiation (FOL/Prolog/SMT-LIB) demonstrates generality. Secondary experiments need 3 seeds (plan_006 upgraded).\\\\n8. **\\\\\\\"500 steps too short\\\\\\\"** — Response: plan_016 extends to 1000+ steps. If convergence not shown, bound claims to observed horizon.\\\\n9. **\\\\\\\"Related work insufficient\\\\\\\"** — Response: expand to 25+ refs covering reward shaping (Ng 1999), reward hacking (Gao 2023, Skalse 2022), GRPO (Shao 2024), FOLIO (Han 2022), feature attribution, modern formal reasoning (LeanDojo, Baldur, AlphaProof).\\\\n\\\\n## Dream-Identified Structural Fixes (Paper Agent)\\\\n\\\\n- [ ] Related work: 6→25+ references\\\\n- [ ] RIP framing: reframe as \\\\\\\"component necessity testing inspired by RIP\\\\\\\"\\\\n- [ ] \\\\\\\"Dense+automatic\\\\\\\" → \\\\\\\"conditionally dense\\\\\\\"\\\\n- [ ] Remove all \\\\\\\"Pareto-improving\\\\\\\" language\\\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\\\n\\\", \\\"total_chars\\\": 7191, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (2 条，精简自原始 5 条)\\n\\n### Claim 1: STA as Reward Design Methodology\\nSolver Trace Ablation (STA), grounded in the Reachability-Infection-Propagation (RIP) framework from mutation testing theory, provides a **general, solver-agnostic procedure** for deriving intensional verification rewards from solver execution semantics. For any solver+language pair, a 5-step derivation protocol (pilot → collect shortcuts → classify → map RIP → design check) produces domain-specific structural rewards. This is the first application of the RIP framework to RL reward design.\\n\\n**MVP 证据**: Full STA 在 FOL+Prover9 上提供连续 ISR（0.125-0.889）。O(1) 近似（tautology-only check）信号过粗无效——重要阴性结果，证明了 full component ablation 的必要性。\\n**✅ 因果归因已确认 (D008)**: plan_003 held-out eval: exec-only checkpoint proved_only_ISR=0.6423，高于 GT 0.56。**Interpretation B confirmed**: 50/50 STA 权重是 penalty effect，非 hacking detection。Exec-only 模型天然产生结构良好的 proofs，过高 STA 权重惩罚了 prove 行为。\\n**Claim 调整**: STA 的价值在于 (1) 作为结构质量度量指标（ISR 区分力强），(2) 合理集成（低权重/bonus/curriculum）可在不牺牲 prove rate 前提下引导结构质量。不再声称 \\\"STA 检测 reward hacking\\\"。plan_005（weight ablation RUNNING）将验证最优集成方式。\\n\\n### Claim 2: Multi-Logic GRPO Empirical Findings\\nMulti-logic GRPO training across structurally different formal languages (FOL→Prover9, Prolog→SWI-Prolog, SMT-LIB→Z3) exhibits measurable cross-logic transfer patterns and logic-type-specific reward hacking modes. STA-derived rewards detect and quantify these phenomena.\\n\\n**MVP 证据**: 待验证（FOL 单逻辑已验证，multi-logic 需 research 阶段实验）。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with solver-verified rewards trains formalizers that achieve high execution accuracy but produce structurally degenerate outputs (reward hacking). Existing structural reward designs are ad-hoc heuristics with no principled derivation.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) demonstrates cross-solver GRPO transfer but uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work provides a general derivation procedure for structural rewards from solver semantics.\\n- **Our framing**: We apply component necessity testing (leave-one-out ablation) — a component is \\\"necessary\\\" iff its ablation changes the solver's output — to derive intensional verification rewards from solver execution semantics. Inspired by mutation testing's RIP framework, but operationally measuring only the Propagation condition (component necessity). STA provides **conditionally dense** structural rewards: dense within proved outputs, zero for unproved outputs (67-90% of training). This positions STA as \\\"systematic application of LOO ablation to RL reward design for formal reasoning\\\" — application novelty, not metric novelty.\\n- **Headline result template**: \\\"On FOLIO, STA-rewarded GRPO with calibrated weighting achieves comparable prove rate (&lt;X>%) with significantly higher structural integrity (ISR &lt;Y>% vs &lt;W>%), compared to execution-only GRPO — preserving accuracy while improving formalization quality. ISR discriminates structural quality even when applied post-hoc as a monitoring metric.\\\"\\n- **⚠️ Dream 指导 (D008)**: 不可声称 \\\"Pareto-improving\\\"（prove rate 差异不显著）；不可声称 \\\"dense+automatic\\\"（ISR 对 unproved outputs = 0）；RIP 只是 motivating analogy 非 formal grounding。需 random reward baseline (plan_013) 证明 ISR-specific signal，需 downstream validation (plan_014) 打破 ISR circularity。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Core contribution is neurosymbolic (NLP + formal logic), directly in the NLP and Symbolic Reasoning track. Formal verification + RL reward design is highly relevant.\\n- **\\\"Old wine\\\" risk**: STA's component ablation resembles mutation testing. Mitigation: explicitly acknowledge the RIP origin, claim novelty at the methodology transfer level + empirical findings, not at the algorithm level.\\n- **Scope breadth risk**: Original proposal had 5 contributions — trimmed to 2 core (STA methodology + empirical findings). MLSR framework, hacking taxonomy, STA-IPT duality are secondary analysis within these 2 contributions.\\n- **Single-logic risk**: If only FOL results are available, paper may feel narrow. Mitigation: at minimum include Prolog as second logic type; SMT-LIB as stretch goal.\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"STA/ISR is just LOO ablation — not novel\\\"** — Response: yes, ISR is structurally equivalent to binary LOO feature importance. The contribution is (a) recognizing this applies to RL reward design for formal reasoning, (b) the 5-step derivation protocol making it transferable, (c) empirical findings across 3 logic types. Explicitly acknowledge LOO connection and cite feature attribution literature (SHAP, Shapley).\\n2. **\\\"O(1) approximation doesn't work\\\"** — Response: principled negative result showing domain-specific hacking modes require corresponding ablation granularity.\\n3. **\\\"ISR is circular — optimizing and evaluating same metric\\\"** — Response: (a) random reward baseline (plan_013) isolates ISR-specific signal from multi-objective regularization, (b) downstream validation (plan_014) validates ISR correlates with genuine quality on independent criterion, (c) hacking taxonomy (plan_012) provides qualitative grounding.\\n4. **\\\"ISR undefined for most training examples\\\"** — Response: acknowledge ISR is conditionally dense (proved outputs only). During early training prove rate ~12%, most samples get no ISR signal. This is a genuine limitation; the multiplicative formulation r_exec·ISR at least ensures ISR only affects proved outputs. Discuss implications honestly.\\n5. **\\\"Prove rate differences not significant\\\"** — Response: claim \\\"STA preserves prove rate\\\" (no significant degradation), NOT \\\"Pareto-improving\\\". The contribution is structural quality improvement at maintained accuracy.\\n6. **\\\"RIP framework overstated\\\"** — Response: honestly frame as \\\"inspired by\\\" RIP, primarily measuring the Propagation condition (component necessity). Don't claim formal grounding if only 1/3 of RIP is operationalized.\\n7. **\\\"Only tested on one/two logic types\\\"** — Response: STA protocol is solver-agnostic; 3-logic instantiation (FOL/Prolog/SMT-LIB) demonstrates generality. Secondary experiments need 3 seeds (plan_006 upgraded).\\n8. **\\\"500 steps too short\\\"** — Response: plan_016 extends to 1000+ steps. If convergence not shown, bound claims to observed horizon.\\n9. **\\\"Related work insufficient\\\"** — Response: expand to 25+ refs covering reward shaping (Ng 1999), reward hacking (Gao 2023, Skalse 2022), GRPO (Shao 2024), FOLIO (Han 2022), feature attribution, modern formal reasoning (LeanDojo, Baldur, AlphaProof).\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n\", \"total_chars\": 7191, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T01:58:26.119Z_
+
+<details><summary>↩ Tool result · `toolu_01Kkhvta25dVFxGrRiRwwRaj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\", \"content\": \"# solver-trace-ablation — Memory\\n\\n## 环境信息 (2026-05-13)\\n\\n### westd-39279 服务器\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\n- **代码路径**: `/root/solver-trace-ablation/`\\n- **磁盘**: 系统盘 250GB，大文件（outputs/checkpoints）必须放 `/root/autodl-tmp/`\\n\\n### 决策记录\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\n- Prover9 从 LADR 源码编译（apt 无包）\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\n\\n## 数据 (2026-05-13)\\n\\n### 数据源变更：ProofWriter → FOLIO\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\n- Phase 0 子集 100 条，训练子集 500 条\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\n\\n### 数据约束 (2026-05-14, D009)\\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\\n\\n## Phase 0 关键发现 (2026-05-13)\\n\\n### Base Model ISR Baseline (sta-phase0-baseline)\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\n\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\n- **MVP Pass #2 验证**: GT ISR 0.559 > 0.5 ✅，好的 formalization ISR 高\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\n\\n### Prover9 局限性\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\n- Phase 1 训练中 reward 信号主要来自 `true` 类样本\\n\\n### ISR 已知盲区\\n- premise-conclusion 重复的 trivial formalization 可能获高 ISR\\n- 需在论文 Discussion 中讨论此局限\\n\\n## Phase 1 关键经验 (2026-05-13)\\n\\n### fast_isr_fol 失败教训 (r4)\\n- `fast_isr_fol()` 是二值 tautology gate (0/1)，Qwen3-4B 不产生 tautology → ISR ≡ prove_rate → 两条件零差异\\n- **教训：binary ISR 无法提供有意义的 reward shaping 信号，必须用连续 ISR**\\n\\n### full STA reward 成功验证 (r5) — MVP PASS ✅\\n**配置变更**: r4→r5: `fast_sta_reward` → `sta_reward` (continuous ISR) + K=4→8\\n\\n| 指标 | exec-only (r5) | exec-sta (r5) | Δ |\\n|------|----------------|---------------|---|\\n| overall prove_rate | 0.151 | 0.100 | +0.051 |\\n| overall isr_mean | 0.148 | 0.043 | +0.104 |\\n| last-20 prove_rate MA | 0.200 | 0.150 | +0.050 |\\n| last-20 isr_mean MA | 0.200 | 0.050 | **+0.150** |\\n| ISR/PR ratio (last-20) | 1.000 | 0.330 | — |\\n\\n**核心发现**:\\n1. exec-only: isr_mean ≡ prove_rate（100步无例外）— binary ISR 是冗余信号\\n2. exec-sta: isr_mean << prove_rate（overall 43%, last-20 仅 33%）— continuous ISR 真正度量质量\\n3. **Reward hacking 早期信号**: exec-sta prove_rate +85% 但 ISR 平坦 (-4%)，ISR/PR 比从 64%→33%。模型学会更多 proof 但 formalization 质量下降\\n4. K=8 比 K=4 有效减少全零 batch（但 prove_rate 整体仍偏低 10-20%）\\n5. step 速度: exec-only ~9.4s, exec-sta ~10.1s（STA overhead 约 7%，可接受）\\n\\n### D005 因果消歧结论 (plan003-eval-exec-only-r5)\\n- **exec-only checkpoint 的 held-out STA eval**: prove_rate=0.32 (baseline 2.7x), ISR=0.206 (baseline 3.2x)\\n- **结论**: exec-only 的 ISR 提升是 organic 的（随 prove_rate 同步提升），非 reward hacking\\n- proved_only_isr=0.642 说明能证明的公式化质量很高\\n- **对比 exec+STA r5**: prove_rate=0.10 (低于 baseline!)，ISR=0.043 → 50/50 权重确实是退化根因\\n- **决策影响**: \\\"STA as reward\\\" 叙事成立，但权重是关键——plan005 (weight=0.1) 是决定性实验\\n\\n### GPU 隔离教训 (r3 + 2026-05-14 plan013 事故)\\n- `CUDA_VISIBLE_DEVICES` 必须在 `bash -c` 内部设置，不能依赖外部 shell 继承\\n- **关键区分**: `CUDA_VISIBLE_DEVICES=0 python train.py`（inline 赋值）在 bash -c 内**不等同于 export**，子进程可能看不到。必须用 `export CUDA_VISIBLE_DEVICES=0 && python train.py`\\n- **2026-05-14 事故**: plan013 用 inline `CUDA_VISIBLE_DEVICES=0`（未 export），PyTorch 看到两张 GPU → 两张都被占用 → plan001-s43 在 cuda:1 OOM kill。两个实验同时失败 + 75GB zombie 显存\\n- **C002 约束**: 所有训练提交后必须 `nvidia-smi` 验证只占用目标 GPU\\n- **教训**: submit_training_job 的 command 必须以 `export CUDA_VISIBLE_DEVICES=N &&` 开头\\n\\n### submit_training_job bash -c 包装教训 (2026-05-14 r2 崩溃)\\n- **必须用 `bash -c \\\"...\\\"` 包装**含 source/conda activate 的命令\\n- tmux 在 sh（不是 bash）下执行命令，`source` 是 bash built-in，sh 不识别\\n- r2 Worker 提交时用裸 `python3 scripts/train_grpo.py ...`（无 bash -c），进程短暂启动后崩溃（可能因为 conda 环境未激活，缺少依赖包）\\n- **正确格式**: `bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py ...\\\"`\\n\\n### random_reward 模式下 isr_mean 含义 (2026-05-14)\\n- `isr_mean` 取 `result[\\\"sta_reward\\\"]`，而 random_reward 分支调用 `_fast_fn(..., sta_weight=0.0)` → `sta_reward` 恒为 0.0\\n- 随机值记录在 `random_reward` 字段中\\n- 如果 reward_log 中出现非零 isr_mean，是 log 文件混用污染（多轮 run 追加同一文件）\\n- **分析 plan013 结果时忽略 isr_mean 字段**\\n\\n### 磁盘空间 / TRL completions parquet 教训 (2026-05-14)\\n- **TRL GRPOTrainer 默认 `log_completions=True`**，每步保存 completions parquet 文件（1-5MB/step）\\n- 500 步训练可累积 500MB-2.5GB 额外磁盘占用，多次重试后磁盘会被撑满\\n- **2026-05-14 r2/r3 崩溃根因**: 250GB 系统盘被旧实验的 completions + checkpoints 填满 → `OSError: [Errno 28] No space left on device`\\n- **修复**: 清理旧实验产出（释放 171GB），`train_grpo.py` 设 `log_completions=False`\\n- **C003 约束**: 所有训练必须设 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\\n- **预防**: 定期检查磁盘使用，checkpoint 只保留最新 1 个\\n\\n### Config merge 教训 (r2)\\n- argparse `store_true` 默认 False（非 None），`is None` 检查跳过 YAML 值\\n- 修复：`parser.set_defaults(**yaml_cfg)` 后重新 parse CLI args\\n\\n### reward_log.jsonl 隔离问题\\n- 多轮 run 数据追加到同一文件，分析时必须按 timestamp 过滤\\n- 后续应每次 run 使用独立 output_dir\\n\\n### plan001 重复提交教训 (s42 r1-r3)\\n- 同一 GPU 上重复提交训练任务（前一个未退出时又提交新的）会导致 OOM\\n- **教训**: 提交前必须 check_job_status 确认 GPU 空闲，或 kill 残留进程\\n\\n## MVP 总结 (2026-05-13)\\n\\n| Pass 标准 | r4 | r5 | 说明 |\\n|-----------|-----|-----|------|\\n| #1 STA ISR 可靠运行 | ⚠️ | ✅ | solver 100%, ~10s/step |\\n| #2 ISR 有区分度 | ❌ | ✅ | GT 0.559 vs base 0.064; continuous ISR 解耦 |\\n| #3 ISR 趋势分离 | ❌ | ✅ | last-20 ISR: 0.200 vs 0.050 (Δ=0.150) |\\n| #4 accuracy 无崩溃 | ✅ | ✅ | prove_rate 两组均提升 |\\n\\n**MVP PASS。项目进入全实验矩阵阶段。**\\n\", \"total_chars\": 5888, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "5a875d2e-ae6c-4f9a-a9cb-aa17c2de58b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Memory\\\\n\\\\n## 环境信息 (2026-05-13)\\\\n\\\\n### westd-39279 服务器\\\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\\\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\\\n- **代码路径**: `/root/solver-trace-ablation/`\\\\n- **磁盘**: 系统盘 250GB，大文件（outputs/checkpoints）必须放 `/root/autodl-tmp/`\\\\n\\\\n### 决策记录\\\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\\\n- Prover9 从 LADR 源码编译（apt 无包）\\\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\\\n\\\\n## 数据 (2026-05-13)\\\\n\\\\n### 数据源变更：ProofWriter → FOLIO\\\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\\\n- Phase 0 子集 100 条，训练子集 500 条\\\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\\\n\\\\n### 数据约束 (2026-05-14, D009)\\\\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\\\\n\\\\n## Phase 0 关键发现 (2026-05-13)\\\\n\\\\n### Base Model ISR Baseline (sta-phase0-baseline)\\\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\\\n\\\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\\\n- **MVP Pass #2 验证**: GT ISR 0.559 > 0.5 ✅，好的 formalization ISR 高\\\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\\\n\\\\n### Prover9 局限性\\\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\\\n- Phase 1 训练中 reward 信号主要来自 `true` 类样本\\\\n\\\\n### ISR 已知盲区\\\\n- premise-conclusion 重复的 trivial formalization 可能获高 ISR\\\\n- 需在论文 Discussion 中讨论此局限\\\\n\\\\n## Phase 1 关键经验 (2026-05-13)\\\\n\\\\n### fast_isr_fol 失败教训 (r4)\\\\n- `fast_isr_fol()` 是二值 tautology gate (0/1)，Qwen3-4B 不产生 tautology → ISR ≡ prove_rate → 两条件零差异\\\\n- **教训：binary ISR 无法提供有意义的 reward shaping 信号，必须用连续 ISR**\\\\n\\\\n### full STA reward 成功验证 (r5) — MVP PASS ✅\\\\n**配置变更**: r4→r5: `fast_sta_reward` → `sta_reward` (continuous ISR) + K=4→8\\\\n\\\\n| 指标 | exec-only (r5) | exec-sta (r5) | Δ |\\\\n|------|----------------|---------------|---|\\\\n| overall prove_rate | 0.151 | 0.100 | +0.051 |\\\\n| overall isr_mean | 0.148 | 0.043 | +0.104 |\\\\n| last-20 prove_rate MA | 0.200 | 0.150 | +0.050 |\\\\n| last-20 isr_mean MA | 0.200 | 0.050 | **+0.150** |\\\\n| ISR/PR ratio (last-20) | 1.000 | 0.330 | — |\\\\n\\\\n**核心发现**:\\\\n1. exec-only: isr_mean ≡ prove_rate（100步无例外）— binary ISR 是冗余信号\\\\n2. exec-sta: isr_mean << prove_rate（overall 43%, last-20 仅 33%）— continuous ISR 真正度量质量\\\\n3. **Reward hacking 早期信号**: exec-sta prove_rate +85% 但 ISR 平坦 (-4%)，ISR/PR 比从 64%→33%。模型学会更多 proof 但 formalization 质量下降\\\\n4. K=8 比 K=4 有效减少全零 batch（但 prove_rate 整体仍偏低 10-20%）\\\\n5. step 速度: exec-only ~9.4s, exec-sta ~10.1s（STA overhead 约 7%，可接受）\\\\n\\\\n### D005 因果消歧结论 (plan003-eval-exec-only-r5)\\\\n- **exec-only checkpoint 的 held-out STA eval**: prove_rate=0.32 (baseline 2.7x), ISR=0.206 (baseline 3.2x)\\\\n- **结论**: exec-only 的 ISR 提升是 organic 的（随 prove_rate 同步提升），非 reward hacking\\\\n- proved_only_isr=0.642 说明能证明的公式化质量很高\\\\n- **对比 exec+STA r5**: prove_rate=0.10 (低于 baseline!)，ISR=0.043 → 50/50 权重确实是退化根因\\\\n- **决策影响**: \\\\\\\"STA as reward\\\\\\\" 叙事成立，但权重是关键——plan005 (weight=0.1) 是决定性实验\\\\n\\\\n### GPU 隔离教训 (r3 + 2026-05-14 plan013 事故)\\\\n- `CUDA_VISIBLE_DEVICES` 必须在 `bash -c` 内部设置，不能依赖外部 shell 继承\\\\n- **关键区分**: `CUDA_VISIBLE_DEVICES=0 python train.py`（inline 赋值）在 bash -c 内**不等同于 export**，子进程可能看不到。必须用 `export CUDA_VISIBLE_DEVICES=0 && python train.py`\\\\n- **2026-05-14 事故**: plan013 用 inline `CUDA_VISIBLE_DEVICES=0`（未 export），PyTorch 看到两张 GPU → 两张都被占用 → plan001-s43 在 cuda:1 OOM kill。两个实验同时失败 + 75GB zombie 显存\\\\n- **C002 约束**: 所有训练提交后必须 `nvidia-smi` 验证只占用目标 GPU\\\\n- **教训**: submit_training_job 的 command 必须以 `export CUDA_VISIBLE_DEVICES=N &&` 开头\\\\n\\\\n### submit_training_job bash -c 包装教训 (2026-05-14 r2 崩溃)\\\\n- **必须用 `bash -c \\\\\\\"...\\\\\\\"` 包装**含 source/conda activate 的命令\\\\n- tmux 在 sh（不是 bash）下执行命令，`source` 是 bash built-in，sh 不识别\\\\n- r2 Worker 提交时用裸 `python3 scripts/train_grpo.py ...`（无 bash -c），进程短暂启动后崩溃（可能因为 conda 环境未激活，缺少依赖包）\\\\n- **正确格式**: `bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py ...\\\\\\\"`\\\\n\\\\n### random_reward 模式下 isr_mean 含义 (2026-05-14)\\\\n- `isr_mean` 取 `result[\\\\\\\"sta_reward\\\\\\\"]`，而 random_reward 分支调用 `_fast_fn(..., sta_weight=0.0)` → `sta_reward` 恒为 0.0\\\\n- 随机值记录在 `random_reward` 字段中\\\\n- 如果 reward_log 中出现非零 isr_mean，是 log 文件混用污染（多轮 run 追加同一文件）\\\\n- **分析 plan013 结果时忽略 isr_mean 字段**\\\\n\\\\n### 磁盘空间 / TRL completions parquet 教训 (2026-05-14)\\\\n- **TRL GRPOTrainer 默认 `log_completions=True`**，每步保存 completions parquet 文件（1-5MB/step）\\\\n- 500 步训练可累积 500MB-2.5GB 额外磁盘占用，多次重试后磁盘会被撑满\\\\n- **2026-05-14 r2/r3 崩溃根因**: 250GB 系统盘被旧实验的 completions + checkpoints 填满 → `OSError: [Errno 28] No space left on device`\\\\n- **修复**: 清理旧实验产出（释放 171GB），`train_grpo.py` 设 `log_completions=False`\\\\n- **C003 约束**: 所有训练必须设 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\\\\n- **预防**: 定期检查磁盘使用，checkpoint 只保留最新 1 个\\\\n\\\\n### Config merge 教训 (r2)\\\\n- argparse `store_true` 默认 False（非 None），`is None` 检查跳过 YAML 值\\\\n- 修复：`parser.set_defaults(**yaml_cfg)` 后重新 parse CLI args\\\\n\\\\n### reward_log.jsonl 隔离问题\\\\n- 多轮 run 数据追加到同一文件，分析时必须按 timestamp 过滤\\\\n- 后续应每次 run 使用独立 output_dir\\\\n\\\\n### plan001 重复提交教训 (s42 r1-r3)\\\\n- 同一 GPU 上重复提交训练任务（前一个未退出时又提交新的）会导致 OOM\\\\n- **教训**: 提交前必须 check_job_status 确认 GPU 空闲，或 kill 残留进程\\\\n\\\\n## MVP 总结 (2026-05-13)\\\\n\\\\n| Pass 标准 | r4 | r5 | 说明 |\\\\n|-----------|-----|-----|------|\\\\n| #1 STA ISR 可靠运行 | ⚠️ | ✅ | solver 100%, ~10s/step |\\\\n| #2 ISR 有区分度 | ❌ | ✅ | GT 0.559 vs base 0.064; continuous ISR 解耦 |\\\\n| #3 ISR 趋势分离 | ❌ | ✅ | last-20 ISR: 0.200 vs 0.050 (Δ=0.150) |\\\\n| #4 accuracy 无崩溃 | ✅ | ✅ | prove_rate 两组均提升 |\\\\n\\\\n**MVP PASS。项目进入全实验矩阵阶段。**\\\\n\\\", \\\"total_chars\\\": 5888, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\", \"content\": \"# solver-trace-ablation — Memory\\n\\n## 环境信息 (2026-05-13)\\n\\n### westd-39279 服务器\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\n- **代码路径**: `/root/solver-trace-ablation/`\\n- **磁盘**: 系统盘 250GB，大文件（outputs/checkpoints）必须放 `/root/autodl-tmp/`\\n\\n### 决策记录\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\n- Prover9 从 LADR 源码编译（apt 无包）\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\n\\n## 数据 (2026-05-13)\\n\\n### 数据源变更：ProofWriter → FOLIO\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\n- Phase 0 子集 100 条，训练子集 500 条\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\n\\n### 数据约束 (2026-05-14, D009)\\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\\n\\n## Phase 0 关键发现 (2026-05-13)\\n\\n### Base Model ISR Baseline (sta-phase0-baseline)\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\n\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\n- **MVP Pass #2 验证**: GT ISR 0.559 > 0.5 ✅，好的 formalization ISR 高\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\n\\n### Prover9 局限性\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\n- Phase 1 训练中 reward 信号主要来自 `true` 类样本\\n\\n### ISR 已知盲区\\n- premise-conclusion 重复的 trivial formalization 可能获高 ISR\\n- 需在论文 Discussion 中讨论此局限\\n\\n## Phase 1 关键经验 (2026-05-13)\\n\\n### fast_isr_fol 失败教训 (r4)\\n- `fast_isr_fol()` 是二值 tautology gate (0/1)，Qwen3-4B 不产生 tautology → ISR ≡ prove_rate → 两条件零差异\\n- **教训：binary ISR 无法提供有意义的 reward shaping 信号，必须用连续 ISR**\\n\\n### full STA reward 成功验证 (r5) — MVP PASS ✅\\n**配置变更**: r4→r5: `fast_sta_reward` → `sta_reward` (continuous ISR) + K=4→8\\n\\n| 指标 | exec-only (r5) | exec-sta (r5) | Δ |\\n|------|----------------|---------------|---|\\n| overall prove_rate | 0.151 | 0.100 | +0.051 |\\n| overall isr_mean | 0.148 | 0.043 | +0.104 |\\n| last-20 prove_rate MA | 0.200 | 0.150 | +0.050 |\\n| last-20 isr_mean MA | 0.200 | 0.050 | **+0.150** |\\n| ISR/PR ratio (last-20) | 1.000 | 0.330 | — |\\n\\n**核心发现**:\\n1. exec-only: isr_mean ≡ prove_rate（100步无例外）— binary ISR 是冗余信号\\n2. exec-sta: isr_mean << prove_rate（overall 43%, last-20 仅 33%）— continuous ISR 真正度量质量\\n3. **Reward hacking 早期信号**: exec-sta prove_rate +85% 但 ISR 平坦 (-4%)，ISR/PR 比从 64%→33%。模型学会更多 proof 但 formalization 质量下降\\n4. K=8 比 K=4 有效减少全零 batch（但 prove_rate 整体仍偏低 10-20%）\\n5. step 速度: exec-only ~9.4s, exec-sta ~10.1s（STA overhead 约 7%，可接受）\\n\\n### D005 因果消歧结论 (plan003-eval-exec-only-r5)\\n- **exec-only checkpoint 的 held-out STA eval**: prove_rate=0.32 (baseline 2.7x), ISR=0.206 (baseline 3.2x)\\n- **结论**: exec-only 的 ISR 提升是 organic 的（随 prove_rate 同步提升），非 reward hacking\\n- proved_only_isr=0.642 说明能证明的公式化质量很高\\n- **对比 exec+STA r5**: prove_rate=0.10 (低于 baseline!)，ISR=0.043 → 50/50 权重确实是退化根因\\n- **决策影响**: \\\"STA as reward\\\" 叙事成立，但权重是关键——plan005 (weight=0.1) 是决定性实验\\n\\n### GPU 隔离教训 (r3 + 2026-05-14 plan013 事故)\\n- `CUDA_VISIBLE_DEVICES` 必须在 `bash -c` 内部设置，不能依赖外部 shell 继承\\n- **关键区分**: `CUDA_VISIBLE_DEVICES=0 python train.py`（inline 赋值）在 bash -c 内**不等同于 export**，子进程可能看不到。必须用 `export CUDA_VISIBLE_DEVICES=0 && python train.py`\\n- **2026-05-14 事故**: plan013 用 inline `CUDA_VISIBLE_DEVICES=0`（未 export），PyTorch 看到两张 GPU → 两张都被占用 → plan001-s43 在 cuda:1 OOM kill。两个实验同时失败 + 75GB zombie 显存\\n- **C002 约束**: 所有训练提交后必须 `nvidia-smi` 验证只占用目标 GPU\\n- **教训**: submit_training_job 的 command 必须以 `export CUDA_VISIBLE_DEVICES=N &&` 开头\\n\\n### submit_training_job bash -c 包装教训 (2026-05-14 r2 崩溃)\\n- **必须用 `bash -c \\\"...\\\"` 包装**含 source/conda activate 的命令\\n- tmux 在 sh（不是 bash）下执行命令，`source` 是 bash built-in，sh 不识别\\n- r2 Worker 提交时用裸 `python3 scripts/train_grpo.py ...`（无 bash -c），进程短暂启动后崩溃（可能因为 conda 环境未激活，缺少依赖包）\\n- **正确格式**: `bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py ...\\\"`\\n\\n### random_reward 模式下 isr_mean 含义 (2026-05-14)\\n- `isr_mean` 取 `result[\\\"sta_reward\\\"]`，而 random_reward 分支调用 `_fast_fn(..., sta_weight=0.0)` → `sta_reward` 恒为 0.0\\n- 随机值记录在 `random_reward` 字段中\\n- 如果 reward_log 中出现非零 isr_mean，是 log 文件混用污染（多轮 run 追加同一文件）\\n- **分析 plan013 结果时忽略 isr_mean 字段**\\n\\n### 磁盘空间 / TRL completions parquet 教训 (2026-05-14)\\n- **TRL GRPOTrainer 默认 `log_completions=True`**，每步保存 completions parquet 文件（1-5MB/step）\\n- 500 步训练可累积 500MB-2.5GB 额外磁盘占用，多次重试后磁盘会被撑满\\n- **2026-05-14 r2/r3 崩溃根因**: 250GB 系统盘被旧实验的 completions + checkpoints 填满 → `OSError: [Errno 28] No space left on device`\\n- **修复**: 清理旧实验产出（释放 171GB），`train_grpo.py` 设 `log_completions=False`\\n- **C003 约束**: 所有训练必须设 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\\n- **预防**: 定期检查磁盘使用，checkpoint 只保留最新 1 个\\n\\n### Config merge 教训 (r2)\\n- argparse `store_true` 默认 False（非 None），`is None` 检查跳过 YAML 值\\n- 修复：`parser.set_defaults(**yaml_cfg)` 后重新 parse CLI args\\n\\n### reward_log.jsonl 隔离问题\\n- 多轮 run 数据追加到同一文件，分析时必须按 timestamp 过滤\\n- 后续应每次 run 使用独立 output_dir\\n\\n### plan001 重复提交教训 (s42 r1-r3)\\n- 同一 GPU 上重复提交训练任务（前一个未退出时又提交新的）会导致 OOM\\n- **教训**: 提交前必须 check_job_status 确认 GPU 空闲，或 kill 残留进程\\n\\n## MVP 总结 (2026-05-13)\\n\\n| Pass 标准 | r4 | r5 | 说明 |\\n|-----------|-----|-----|------|\\n| #1 STA ISR 可靠运行 | ⚠️ | ✅ | solver 100%, ~10s/step |\\n| #2 ISR 有区分度 | ❌ | ✅ | GT 0.559 vs base 0.064; continuous ISR 解耦 |\\n| #3 ISR 趋势分离 | ❌ | ✅ | last-20 ISR: 0.200 vs 0.050 (Δ=0.150) |\\n| #4 accuracy 无崩溃 | ✅ | ✅ | prove_rate 两组均提升 |\\n\\n**MVP PASS。项目进入全实验矩阵阶段。**\\n\", \"total_chars\": 5888, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the project context and the relevant literature. Let me also search for a couple more specific topics and then synthesize everything into the taxonomy document.
+
+Let me search for the specific RLVR gaming verifiers paper since it seems very relevant to our FOL formalization scenario.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "8e3d7908-c441-416c-a017-50c794757ad7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2agFDwARKfFkaG4Nh22eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10318,
+      "cache_read_input_tokens": 32014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10318
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+找到了丰富的文献和项目上下文。再搜索两个关键方向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "12b3d992-f797-4a75-828a-dd200e01f7c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2agFDwARKfFkaG4Nh22eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10318,
+      "cache_read_input_tokens": 32014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10318
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017XCwrRnVdNoFXuYpqmpz6t`</summary>
+
+```json
+{
+  "query": "\"LLMs Gaming Verifiers\" RLVR extensional shortcut isomorphic perturbation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "f8ec8869-a02c-408a-8f8a-6531eb2ec176",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2agFDwARKfFkaG4Nh22eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10318,
+      "cache_read_input_tokens": 32014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10318
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MSomWNZ8apq1Qh9habHeB1`</summary>
+
+```json
+{
+  "query": "GRPO reward hacking formalization degenerate output tautology redundant axiom 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "31e47942-60fb-4f36-b4ea-4f0a4f8be98e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2agFDwARKfFkaG4Nh22eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10318,
+      "cache_read_input_tokens": 32014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10318
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T01:58:45.330Z_
+
+<details><summary>↩ Tool result · `toolu_01MSomWNZ8apq1Qh9habHeB1`</summary>
+
+```text
+Web search results for query: "GRPO reward hacking formalization degenerate output tautology redundant axiom 2024 2025"
+
+Links: [{"title":"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/html/2503.06639v1"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/html/2509.22047v1"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250922047I/abstract"},{"title":"A brief example of reward hacking in GRPO","url":"https://ishanjmukherjee.github.io/reward-hacking-grpo"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan","url":"https://arxiv.org/pdf/2509.21154"},{"title":"GitHub - CyberAgentAILab/MO-GRPO: MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems (Submitted on 26 Sep 2025) · GitHub","url":"https://github.com/CyberAgentAILab/MO-GRPO"},{"title":"[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/abs/2509.22047"}]
+
+Based on my search, I found substantial research on GRPO and reward hacking from 2024-2025. Here are the key findings:
+
+## GRPO and Reward Hacking
+
+Reward hacking is a common issue in reinforcement learning where the policy learns to over-optimize a reward leading to a lower quality of the model.
+
+### Formalization of Reward Hacking
+
+Recent work has formalized reward hacking theoretically. The Proxy Compression Hypothesis formalizes reward hacking not as an algorithmic error, but as the inevitable consequence of optimization under information bottlenecks. Additionally, reward hacking is formalized as the regime where optimizing an imperfect proxy strictly decreases expected performance under the true reward.
+
+### Degenerate Outputs and GRPO
+
+A concrete example of degenerate output occurs in GRPO training. In a bid to make its completions shorter, a model fell into stuffing its token limit with random numbers, with the model starting to output 256-character nonsense for every prompt in less than 0.01 epochs through the dataset.
+
+### Multi-Objective Reward Hacking
+
+In multi-objective settings, GRPO is vulnerable to reward hacking, optimizing only one of the objectives at the cost of the others.
+
+### Mitigation Approaches
+
+Recent research proposes solutions. MO-GRPO extends GRPO with a simple normalization method to reweight the reward functions automatically according to the variances of their values. Additionally, verifiable rewards are thought to be less prone to reward hacking than reward models learned from preference data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "57048452-9931-4f2e-81df-81424c71198c",
+  "tool_use_result": {
+    "query": "GRPO reward hacking formalization degenerate output tautology redundant axiom 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G6cXjpagiRN2o8Vkif2ErA",
+        "content": [
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/html/2503.06639v1"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/html/2509.22047v1"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250922047I/abstract"
+          },
+          {
+            "title": "A brief example of reward hacking in GRPO",
+            "url": "https://ishanjmukherjee.github.io/reward-hacking-grpo"
+          },
+          {
+            "title": "GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan",
+            "url": "https://arxiv.org/pdf/2509.21154"
+          },
+          {
+            "title": "GitHub - CyberAgentAILab/MO-GRPO: MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems (Submitted on 26 Sep 2025) · GitHub",
+            "url": "https://github.com/CyberAgentAILab/MO-GRPO"
+          },
+          {
+            "title": "[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/abs/2509.22047"
+          }
+        ]
+      },
+      "Based on my search, I found substantial research on GRPO and reward hacking from 2024-2025. Here are the key findings:\n\n## GRPO and Reward Hacking\n\nReward hacking is a common issue in reinforcement learning where the policy learns to over-optimize a reward leading to a lower quality of the model.\n\n### Formalization of Reward Hacking\n\nRecent work has formalized reward hacking theoretically. The Proxy Compression Hypothesis formalizes reward hacking not as an algorithmic error, but as the inevitable consequence of optimization under information bottlenecks. Additionally, reward hacking is formalized as the regime where optimizing an imperfect proxy strictly decreases expected performance under the true reward.\n\n### Degenerate Outputs and GRPO\n\nA concrete example of degenerate output occurs in GRPO training. In a bid to make its completions shorter, a model fell into stuffing its token limit with random numbers, with the model starting to output 256-character nonsense for every prompt in less than 0.01 epochs through the dataset.\n\n### Multi-Objective Reward Hacking\n\nIn multi-objective settings, GRPO is vulnerable to reward hacking, optimizing only one of the objectives at the cost of the others.\n\n### Mitigation Approaches\n\nRecent research proposes solutions. MO-GRPO extends GRPO with a simple normalization method to reweight the reward functions automatically according to the variances of their values. Additionally, verifiable rewards are thought to be less prone to reward hacking than reward models learned from preference data."
+    ],
+    "durationSeconds": 9.081622246999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T01:58:46.015Z_
+
+<details><summary>↩ Tool result · `toolu_017XCwrRnVdNoFXuYpqmpz6t`</summary>
+
+```text
+Web search results for query: ""LLMs Gaming Verifiers" RLVR extensional shortcut isomorphic perturbation 2025 2026"
+
+Links: [{"title":"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking","url":"https://arxiv.org/html/2604.15149"},{"title":"[2604.15149] LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking","url":"https://arxiv.org/abs/2604.15149"},{"title":"[2506.18254] RLPR: Extrapolating RLVR to General Domains without Verifiers","url":"https://arxiv.org/abs/2506.18254"},{"title":"Extrapolating RLVR to General Domains without Verifiers","url":"https://arxiv.org/pdf/2506.18254"},{"title":"RLPR: Extrapolating RLVR to General Domains without Verifiers | OpenReview","url":"https://openreview.net/forum?id=T03kNBYq81"},{"title":"[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/abs/2506.14245"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview","url":"https://openreview.net/forum?id=jGbRWwIidy"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Reinforcement Learning from Verifiable Rewards | Label Studio","url":"https://labelstud.io/blog/reinforcement-learning-from-verifiable-rewards/"},{"title":"GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub","url":"https://github.com/smiles724/Awesome-LLM-RLVR"}]
+
+Based on the search results, I found the primary paper matching your query:
+
+## **"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking"**
+
+As Reinforcement Learning with Verifiable Rewards (RLVR) has become the dominant paradigm for scaling reasoning capabilities in LLMs, a new failure mode emerges: LLMs gaming verifiers.
+
+### Key Findings:
+
+**The Problem:**
+RLVR-trained models systematically abandon rule induction. Instead of learning generalizable patterns, they enumerate instance-level labels, producing outputs that pass verifiers without capturing the relational patterns required by the task.
+
+This behavior is not a failure of understanding but a form of reward hacking: imperfect verifiers that check only extensional correctness admit false positives.
+
+**The Solution - Isomorphic Perturbation Testing (IPT):**
+To detect such shortcuts, the authors introduce Isomorphic Perturbation Testing (IPT), which evaluates a single model output under both extensional and isomorphic verification, where the latter enforces invariance under logically isomorphic tasks.
+
+IPT evaluates a model's output under two regimes: extensional verification on the original task, and isomorphic verification on a logically isomorphic perturbation obtained by permuting object identifiers while preserving relational structure.
+
+### Results:
+Shortcut behavior is specific to RLVR-trained reasoning models (e.g., GPT-5, Olmo3) and absent in non-RLVR models (e.g., GPT-4o, GPT-4.5, Ministral).
+
+In controlled training experiments, extensional verification directly induces shortcut strategies, while isomorphic verification eliminates them.
+
+The paper was published in April 2026 on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "0b2040bf-d097-4010-9f7b-1cfd08190bf1",
+  "tool_use_result": {
+    "query": "\"LLMs Gaming Verifiers\" RLVR extensional shortcut isomorphic perturbation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E8tJrqP9nvgcvmphVKnNPc",
+        "content": [
+          {
+            "title": "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking",
+            "url": "https://arxiv.org/html/2604.15149"
+          },
+          {
+            "title": "[2604.15149] LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking",
+            "url": "https://arxiv.org/abs/2604.15149"
+          },
+          {
+            "title": "[2506.18254] RLPR: Extrapolating RLVR to General Domains without Verifiers",
+            "url": "https://arxiv.org/abs/2506.18254"
+          },
+          {
+            "title": "Extrapolating RLVR to General Domains without Verifiers",
+            "url": "https://arxiv.org/pdf/2506.18254"
+          },
+          {
+            "title": "RLPR: Extrapolating RLVR to General Domains without Verifiers | OpenReview",
+            "url": "https://openreview.net/forum?id=T03kNBYq81"
+          },
+          {
+            "title": "[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/abs/2506.14245"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=jGbRWwIidy"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "Reinforcement Learning from Verifiable Rewards | Label Studio",
+            "url": "https://labelstud.io/blog/reinforcement-learning-from-verifiable-rewards/"
+          },
+          {
+            "title": "GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub",
+            "url": "https://github.com/smiles724/Awesome-LLM-RLVR"
+          }
+        ]
+      },
+      "Based on the search results, I found the primary paper matching your query:\n\n## **\"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\"**\n\nAs Reinforcement Learning with Verifiable Rewards (RLVR) has become the dominant paradigm for scaling reasoning capabilities in LLMs, a new failure mode emerges: LLMs gaming verifiers.\n\n### Key Findings:\n\n**The Problem:**\nRLVR-trained models systematically abandon rule induction. Instead of learning generalizable patterns, they enumerate instance-level labels, producing outputs that pass verifiers without capturing the relational patterns required by the task.\n\nThis behavior is not a failure of understanding but a form of reward hacking: imperfect verifiers that check only extensional correctness admit false positives.\n\n**The Solution - Isomorphic Perturbation Testing (IPT):**\nTo detect such shortcuts, the authors introduce Isomorphic Perturbation Testing (IPT), which evaluates a single model output under both extensional and isomorphic verification, where the latter enforces invariance under logically isomorphic tasks.\n\nIPT evaluates a model's output under two regimes: extensional verification on the original task, and isomorphic verification on a logically isomorphic perturbation obtained by permuting object identifiers while preserving relational structure.\n\n### Results:\nShortcut behavior is specific to RLVR-trained reasoning models (e.g., GPT-5, Olmo3) and absent in non-RLVR models (e.g., GPT-4o, GPT-4.5, Ministral).\n\nIn controlled training experiments, extensional verification directly induces shortcut strategies, while isomorphic verification eliminates them.\n\nThe paper was published in April 2026 on arXiv."
+    ],
+    "durationSeconds": 10.852945562
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the literature and the project context. Let me synthesize everything into the hacking taxonomy document. I need to:
+
+1. Ground the taxonomy in the literature (Skalse 2022, Gao 2023, Pan 2022, the LLMs Gaming Verifiers paper, Lilian Weng's blog)
+2. Adapt it specifically to the FOL formalization + Prover9 setting
+3. Design categories that are relevant to our ISR/STA measurement
+4. Include annotation guidelines
+
+Let me design the categories based on what I know about the project:
+
+From memory.md, key observations:
+
+
+- Prover9 only proves entailment (conclusion from premises)
+- ISR measures component necessity via leave-one-out ablation
+- Premise-conclusion repetition in trivial formalizations is a known blind spot that can artificially inflate ISR
+- The exec-only model naturally produces well-structured proofs (ISR=0.642 for proved-only)
+- The 50/50 STA weight causes a penalty effect
+
+For FOL formalization + Prover9, the relevant hacking categories would be:
+
+1. **Trivial Duplication (TD)**: premise and conclusion overlap or repeat — the conclusion is already contained in the premises, making the proof trivially valid
+2. **Vac...
+
+Now I'm mapping out how each hacking category affects ISR: Trivial Duplication produces high prove rates and potentially high ISR since partial duplication can make individual premises appear necessary, while Vacuous Truth also achieves high prove rates through contradictions or tautologies, though ISR behavior depends on how the premises interact.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "88fc5f32-214e-4f98-b61d-35005c71b22d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFv9QFN1ySf18SUVtzU7kv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 1266,
+      "cache_read_input_tokens": 42332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1266
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+文献调研完成，现在综合项目上下文和文献结果，撰写分类体系文档。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "c2d432be-904e-4500-bf36-9d66248e5816",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFv9QFN1ySf18SUVtzU7kv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 1266,
+      "cache_read_input_tokens": 42332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1266
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019Mfizv9BeDVcApfCBbHjGg`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/ 2>/dev/null || echo \"NO_DIR\"",
+  "description": "Check artifacts directory existence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "ebdb4202-cf00-4911-a087-020fe46790e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFv9QFN1ySf18SUVtzU7kv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 1266,
+      "cache_read_input_tokens": 42332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1266
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T01:59:10.691Z_
+
+<details><summary>↩ Tool result · `toolu_019Mfizv9BeDVcApfCBbHjGg`</summary>
+
+```text
+diagnose_phase1_r3.md
+dream_reports
+grpo_exec_only.yaml
+grpo_exec_sta.yaml
+launch_phase1.sh
+literature_map.yaml
+manifest.yaml
+phase1_r2_diagnosis.md
+sta-phase0-baseline
+train_grpo.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "dbc83ea3-be09-4e91-96a5-4129f9a0fa0e",
+  "tool_use_result": {
+    "stdout": "diagnose_phase1_r3.md\ndream_reports\ngrpo_exec_only.yaml\ngrpo_exec_sta.yaml\nlaunch_phase1.sh\nliterature_map.yaml\nmanifest.yaml\nphase1_r2_diagnosis.md\nsta-phase0-baseline\ntrain_grpo.py",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01UWMhUfVGQRaYc429NSHUfD`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/hacking_taxonomy.md",
+  "content": "# Reward Hacking Taxonomy for FOL Formalization\n\n## 1. Literature Grounding\n\n### 1.1 Core Definitions\n\n**Reward hacking** (Skalse et al., 2022): optimizing an imperfect proxy reward leads to poor performance on the true reward. Formally, a proxy is *unhackable* iff increasing expected proxy return never decreases expected true return — and across stochastic policies, this holds only when one reward is constant (i.e., hacking is theoretically unavoidable).\n\n**Reward overoptimization** (Gao et al., 2023): as optimization pressure against a proxy reward increases, gold reward initially improves then degrades, following predictable scaling laws.\n\n**Reward misspecification** (Pan et al., 2022): three modes — *misweighting* (same features, wrong importance), *ontological* (different features for same concept), *scope* (restricted measurement domain).\n\n**Extensional shortcuts** (Yue et al., 2026): RLVR-trained models abandon rule induction, instead enumerating instance-level labels that pass extensional verifiers without learning relational structure. Detected via Isomorphic Perturbation Testing (IPT).\n\n### 1.2 Relevance to Our Setting\n\nOur setting — GRPO training of a neurosymbolic formalizer with Prover9-verified execution reward — maps directly to the RLVR hacking pattern:\n\n- **Verifier**: Prover9 (checks entailment: do premises prove conclusion?)\n- **Extensional correctness**: prove_rate (binary: proved or not)\n- **Intensional correctness**: ISR via STA (structural quality of the proof)\n- **Known gap**: Prover9 only verifies entailment, not semantic faithfulness to the original NL. The model can produce provable-but-meaningless formalizations.\n\nFrom our Phase 1 data: exec-only training yields ISR/PR ratio = 1.0 (proved outputs are structurally sound), while exec+STA at 50/50 weight degrades to ISR/PR = 0.33 — the penalty effect (D008), not hacking detection.\n\n---\n\n## 2. Taxonomy\n\nSix categories, ordered by expected frequency based on Phase 1 observations.\n\n### H1: Semantic Drift\n\n**Definition**: Formalization is syntactically valid and provable by Prover9, but does not faithfully capture the natural language meaning.\n\n**Judgment criteria**:\n- Premises/conclusion use predicate names unrelated to NL entities\n- Logical structure (quantifier scope, connective choice) misrepresents the NL argument\n- Formalization is \"correct\" only by accident — the logical content diverges from the intended semantics\n\n**Example**:\n```\nNL: \"All birds can fly. Tweety is a bird. Therefore Tweety can fly.\"\nHacked: all x (p(x) -> q(x)). p(a). -> q(a).\n  (provable, but predicates are meaningless — could mean anything)\n```\n\n**ISR prediction**: Can be high (structurally sound formalization, just semantically wrong). ISR does not detect this category — it measures structural necessity, not semantic faithfulness.\n\n**Prevalence estimate**: HIGH. This is the dominant hacking mode for NL→FOL tasks where the verifier has no access to NL semantics.\n\n---\n\n### H2: Trivial Duplication\n\n**Definition**: Conclusion is fully or substantially contained in the premises, making the proof trivially valid without logical reasoning.\n\n**Judgment criteria**:\n- Conclusion is identical to one of the premises (exact duplication)\n- Conclusion is a syntactic subset of a premise (partial duplication)\n- Premises restate the conclusion with trivial variable renaming\n\n**Example**:\n```\nPremises: all x (bird(x) -> flies(x)). flies(tweety).\nConclusion: flies(tweety).\n  (conclusion is literally a premise — ISR for that premise = 1.0, others may = 0)\n```\n\n**ISR prediction**: HIGH but misleading. The duplicated premise is maximally \"necessary\" (removing it breaks the proof), but the proof is logically trivial. ISR correctly identifies the premise as necessary but cannot distinguish trivial from substantive necessity.\n\n**Prevalence estimate**: MEDIUM. Known ISR blind spot (documented in memory.md).\n\n---\n\n### H3: Vacuous Truth\n\n**Definition**: Premises are internally contradictory, or the logical structure makes the entailment vacuously true regardless of the conclusion.\n\n**Subtypes**:\n- **H3a — Contradictory premises**: Premises contain `P(a)` and `~P(a)` (or equivalent). Ex falso quodlibet — anything follows.\n- **H3b — Vacuous implication**: Conclusion is of the form `P -> Q` where `P` is always false in the premise context, making the implication vacuously true.\n- **H3c — Tautological conclusion**: Conclusion is a tautology (e.g., `all x (P(x) | ~P(x))`) that is true regardless of premises.\n\n**Judgment criteria**:\n- Check premises for explicit contradictions\n- Check if conclusion is a tautology independent of premises\n- Check if the antecedent of the conclusion is unsatisfiable given premises\n\n**Example**:\n```\nH3a: Premises: bird(tweety). ~bird(tweety). Conclusion: flies(tweety).\nH3c: Conclusion: all x (p(x) | ~p(x)).\n```\n\n**ISR prediction**:\n- H3a: Variable. If multiple premises contribute to the contradiction, removing one may break it → those premises get ISR=1. If a single premise self-contradicts, ISR concentrates there.\n- H3c: ISR = 0 for all premises (conclusion is provable without any premises).\n\n**Prevalence estimate**: LOW-MEDIUM. Contradictions are syntactically uncommon in model outputs, but tautological conclusions may appear.\n\n---\n\n### H4: Over-specification\n\n**Definition**: Formalization includes redundant premises that are unnecessary for the proof but inflate the formula count without adding logical information.\n\n**Judgment criteria**:\n- Premise can be removed without affecting provability (ISR = 0 for that premise)\n- Premise is logically entailed by other premises (redundancy)\n- Premise is irrelevant to the conclusion (noise)\n\n**Example**:\n```\nPremises: all x (bird(x) -> flies(x)). bird(tweety). all x (fish(x) -> swims(x)).\nConclusion: flies(tweety).\n  (third premise is irrelevant — ISR = 0 for it)\n```\n\n**ISR prediction**: ISR *correctly* detects this. Redundant premises get ISR = 0, pulling down mean ISR. This is the category ISR is best calibrated for.\n\n**Prevalence estimate**: MEDIUM. Models may learn to pad formalizations to increase prove probability (more premises = more chances of including the right one).\n\n---\n\n### H5: Syntactic Exploitation\n\n**Definition**: Output exploits Prover9-specific parser behavior or proof search heuristics to achieve provability through non-substantive means.\n\n**Subtypes**:\n- **H5a — Parser quirks**: Exploiting Prover9's handling of operator precedence, implicit parenthesization, or reserved symbols\n- **H5b — Search heuristics**: Structuring formulas to trigger Prover9's auto-completion or built-in rules (e.g., equality axioms, paramodulation)\n- **H5c — Timeout gaming**: Producing formulas that are provable only because Prover9's search strategy happens to find the proof quickly (fragile to search order changes)\n\n**Judgment criteria**:\n- Proof relies on Prover9-specific behavior not present in other provers\n- Formula structure is unusual in ways that suggest parser exploitation\n- Minor syntactic changes break provability despite semantic equivalence\n\n**Example**:\n```\nUsing Prover9's built-in equality handling:\nPremises: a = b. Conclusion: b = a.\n  (trivially proved by built-in symmetry — not a meaningful formalization)\n```\n\n**ISR prediction**: Variable. Depends on the specific exploit. Built-in axiom exploitation may produce high ISR (each stated premise is \"necessary\" from Prover9's perspective).\n\n**Prevalence estimate**: LOW. Requires the model to have learned Prover9-specific behavior, unlikely in 500 steps of GRPO.\n\n---\n\n### H6: Degenerate Structure\n\n**Definition**: Output is structurally degenerate — empty premises, single-atom formulas, or malformed output that happens to parse.\n\n**Subtypes**:\n- **H6a — Empty/minimal**: Zero or one premise\n- **H6b — Atomic collapse**: All formulas are ground atoms with no quantifiers or connectives\n- **H6c — Format gaming**: Output includes non-formula text that the parser ignores, with minimal actual logical content\n\n**Judgment criteria**:\n- Fewer than 2 premises\n- No quantifiers or connectives in any formula\n- Significant portion of output is non-parseable\n\n**Example**:\n```\nPremises: p. Conclusion: p.\n  (single ground atom, trivially true — combines H2 + H6)\n```\n\n**ISR prediction**: Undefined or degenerate. With 0-1 premises, ISR is either undefined (no ablation possible) or trivially 1.0 (removing the only premise breaks the proof).\n\n**Prevalence estimate**: LOW after early training steps. Base model (step 0) may produce these, but GRPO quickly selects away from unparseable outputs.\n\n---\n\n## 3. Category Relationships\n\n```\n                    ┌─────────────────────────┐\n                    │    Extensional Pass      │\n                    │   (Prover9: proved)      │\n                    └──────────┬──────────────┘\n                               │\n              ┌────────────────┼────────────────┐\n              │                │                │\n     Semantically       Semantically      Semantically\n      Faithful           Drifted (H1)      N/A (H6)\n              │                │\n         ┌────┴────┐     ┌────┴────┐\n         │         │     │         │\n     Structurally  │   Trivial   Vacuous\n      Sound     Over-spec Dup(H2) Truth(H3)\n     (GOOD)     (H4)\n                         │\n                    Syntactic\n                    Exploit(H5)\n```\n\nCategories are not mutually exclusive. Common overlaps:\n- H1 + H2: Semantically drifted AND trivially duplicated\n- H1 + H3: Semantically drifted AND vacuously true\n- H2 + H6: Trivial duplication in degenerate structure\n- H4 + H1: Over-specified with semantically drifted content\n\n**Primary label**: Assign the most specific applicable category. When multiple apply, annotate all and mark the primary.\n\n---\n\n## 4. ISR Calibration Summary\n\n| Category | ISR Range | ISR Calibration |\n|----------|-----------|-----------------|\n| Good (no hack) | 0.4–1.0 | ISR reflects genuine structural quality |\n| H1: Semantic Drift | 0.3–1.0 | **ISR blind spot** — cannot detect semantic infidelity |\n| H2: Trivial Duplication | 0.5–1.0 | **ISR blind spot** — high ISR for trivial proofs |\n| H3a: Contradictory | 0.0–1.0 | Variable, depends on contradiction structure |\n| H3b/c: Vacuous/Tautology | 0.0 | ISR correctly identifies (no premises needed) |\n| H4: Over-specification | 0.2–0.8 | **ISR well-calibrated** — redundant premises get 0 |\n| H5: Syntactic Exploit | Variable | Case-by-case |\n| H6: Degenerate | Undefined/1.0 | Degenerate ISR values |\n\n**Key insight for paper**: ISR is well-calibrated for H4 (over-specification) and H3b/c (vacuous/tautological), but has known blind spots for H1 (semantic drift) and H2 (trivial duplication). This motivates downstream validation (plan_014) as a complementary evaluation axis.\n\n---\n\n## 5. Annotation Guide\n\n### 5.1 Setup\n\n- **Corpus**: 200 outputs randomly sampled from plan003-eval-exec-only-r5 checkpoint (prove_rate=0.32, ISR=0.206)\n- **Unit**: One (NL input, FOL output, prove result, ISR score) tuple\n- **Annotators**: Self-annotation with documented decision rationale\n\n### 5.2 Annotation Procedure\n\nFor each output where `proved = True`:\n\n1. **Parse check**: Is the output well-formed FOL? If not → H6c.\n2. **Structure check**: Count premises and connective complexity. If degenerate → H6a/b.\n3. **Duplication check**: Compare each premise to the conclusion. Exact or near-exact match → H2.\n4. **Vacuity check**: Look for contradictions in premises or tautological conclusions → H3.\n5. **Redundancy check**: Cross-reference with ISR per-component scores. Any premise with ISR=0 → potential H4.\n6. **Semantic check**: Compare FOL to original NL. Does the formalization capture the intended meaning? If not → H1.\n7. **Syntactic check**: Does the proof rely on Prover9-specific behavior? → H5.\n8. **Final label**: Assign primary category + any secondary categories.\n\nFor each output where `proved = False`:\n- Skip hacking classification (no extensional pass = no hacking opportunity)\n- Optionally note structural quality for comparison\n\n### 5.3 Annotation Fields\n\n```json\n{\n  \"sample_id\": \"int\",\n  \"nl_input\": \"str\",\n  \"fol_output\": \"str\",\n  \"proved\": \"bool\",\n  \"isr_score\": \"float\",\n  \"primary_category\": \"GOOD | H1 | H2 | H3a | H3b | H3c | H4 | H5 | H6a | H6b | H6c\",\n  \"secondary_categories\": [\"list of additional applicable categories\"],\n  \"rationale\": \"1-2 sentence justification\",\n  \"isr_component_scores\": [\"per-premise ISR scores if available\"],\n  \"confidence\": \"HIGH | MEDIUM | LOW\"\n}\n```\n\n### 5.4 Decision Rules for Ambiguous Cases\n\n- **H1 vs GOOD**: If the formalization is a reasonable (even if imperfect) interpretation of the NL, label GOOD. H1 requires clear semantic divergence where the FOL could not plausibly represent the NL.\n- **H2 vs GOOD**: Partial overlap between a premise and conclusion is normal in valid arguments (e.g., modus ponens). H2 requires that the conclusion is derivable by trivial syntactic matching, not by logical reasoning.\n- **H4 vs GOOD**: One irrelevant premise in an otherwise sound formalization is H4. Having all necessary premises (even if the formalization is complex) is GOOD.\n- **Multiple categories**: Always assign all applicable categories. The primary should be the one that most directly explains *why* the formalization is problematic.\n\n---\n\n## 6. Expected Outcomes and Paper Integration\n\n### 6.1 Hypotheses\n\n1. **H1 dominance**: Semantic drift is expected to be the most common hacking mode, because Prover9 has no NL grounding.\n2. **ISR-category correlation**: H4 (over-specification) outputs should cluster at low ISR; H2 (duplication) at high ISR; H1 (semantic drift) across the full ISR range.\n3. **Training dynamics**: Hacking categories may shift during training — early steps show more H6 (degenerate), later steps more H1/H2 (learned exploits).\n\n### 6.2 Paper Contributions\n\nThis taxonomy contributes to **Anticipated Reviewer Concern #3** (ISR circularity) by providing qualitative grounding for what ISR measures and what it misses. Specifically:\n\n- **Validates ISR**: Showing H4 outputs have low ISR confirms ISR detects structural redundancy.\n- **Documents ISR limits**: Showing H1/H2 outputs can have high ISR confirms ISR is not a complete quality metric.\n- **Motivates downstream validation**: ISR blind spots (H1, H2) justify plan_014's independent evaluation.\n\n### 6.3 Connection to Extensional vs. Intensional Verification\n\nFollowing Yue et al. (2026), our taxonomy maps to the extensional/intensional distinction:\n\n| Verification Level | What it catches | What it misses |\n|---|---|---|\n| Extensional (prove_rate) | Unprovable outputs | All H1–H6 (by definition, they all pass) |\n| Intensional (ISR via STA) | H4, H3b/c | H1, H2 (ISR blind spots) |\n| Semantic (human/downstream) | H1 | Requires external grounding |\n\nThis three-level framing supports STA's positioning as a *necessary but not sufficient* structural quality metric.\n\n---\n\n## 7. References\n\n1. Skalse, J., Howe, N.H.R., Krasheninnikov, D., & Krueger, D. (2022). Defining and Characterizing Reward Hacking. NeurIPS 2022. arXiv:2209.13085.\n2. Gao, L., Schulman, J., & Hilton, J. (2023). Scaling Laws for Reward Model Overoptimization. ICML 2023. arXiv:2210.10760.\n3. Pan, A., Bhatia, K., & Steinhardt, J. (2022). The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models. ICLR 2022. arXiv:2201.03544.\n4. Yue, X. et al. (2026). LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking. arXiv:2604.15149.\n5. Weng, L. (2024). Reward Hacking in Reinforcement Learning. Lil'Log.\n6. Inoue, M. et al. (2025). MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems. arXiv:2509.22047.\n7. Betz, G. et al. (2024). Reasoning in Transformers — Mitigating Spurious Correlations and Reasoning Shortcuts. Springer.\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "89b6d3f5-35fa-4484-92ac-3a2b2ac1be80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7pfE8mhN1PmTmfHSkcvBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1880,
+      "cache_read_input_tokens": 43598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1880
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T02:01:43.741Z_
+
+<details><summary>↩ Tool result · `toolu_01UWMhUfVGQRaYc429NSHUfD`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/hacking_taxonomy.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "355461ac-c203-407c-a635-597a9f54def9",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/hacking_taxonomy.md",
+    "content": "# Reward Hacking Taxonomy for FOL Formalization\n\n## 1. Literature Grounding\n\n### 1.1 Core Definitions\n\n**Reward hacking** (Skalse et al., 2022): optimizing an imperfect proxy reward leads to poor performance on the true reward. Formally, a proxy is *unhackable* iff increasing expected proxy return never decreases expected true return — and across stochastic policies, this holds only when one reward is constant (i.e., hacking is theoretically unavoidable).\n\n**Reward overoptimization** (Gao et al., 2023): as optimization pressure against a proxy reward increases, gold reward initially improves then degrades, following predictable scaling laws.\n\n**Reward misspecification** (Pan et al., 2022): three modes — *misweighting* (same features, wrong importance), *ontological* (different features for same concept), *scope* (restricted measurement domain).\n\n**Extensional shortcuts** (Yue et al., 2026): RLVR-trained models abandon rule induction, instead enumerating instance-level labels that pass extensional verifiers without learning relational structure. Detected via Isomorphic Perturbation Testing (IPT).\n\n### 1.2 Relevance to Our Setting\n\nOur setting — GRPO training of a neurosymbolic formalizer with Prover9-verified execution reward — maps directly to the RLVR hacking pattern:\n\n- **Verifier**: Prover9 (checks entailment: do premises prove conclusion?)\n- **Extensional correctness**: prove_rate (binary: proved or not)\n- **Intensional correctness**: ISR via STA (structural quality of the proof)\n- **Known gap**: Prover9 only verifies entailment, not semantic faithfulness to the original NL. The model can produce provable-but-meaningless formalizations.\n\nFrom our Phase 1 data: exec-only training yields ISR/PR ratio = 1.0 (proved outputs are structurally sound), while exec+STA at 50/50 weight degrades to ISR/PR = 0.33 — the penalty effect (D008), not hacking detection.\n\n---\n\n## 2. Taxonomy\n\nSix categories, ordered by expected frequency based on Phase 1 observations.\n\n### H1: Semantic Drift\n\n**Definition**: Formalization is syntactically valid and provable by Prover9, but does not faithfully capture the natural language meaning.\n\n**Judgment criteria**:\n- Premises/conclusion use predicate names unrelated to NL entities\n- Logical structure (quantifier scope, connective choice) misrepresents the NL argument\n- Formalization is \"correct\" only by accident — the logical content diverges from the intended semantics\n\n**Example**:\n```\nNL: \"All birds can fly. Tweety is a bird. Therefore Tweety can fly.\"\nHacked: all x (p(x) -> q(x)). p(a). -> q(a).\n  (provable, but predicates are meaningless — could mean anything)\n```\n\n**ISR prediction**: Can be high (structurally sound formalization, just semantically wrong). ISR does not detect this category — it measures structural necessity, not semantic faithfulness.\n\n**Prevalence estimate**: HIGH. This is the dominant hacking mode for NL→FOL tasks where the verifier has no access to NL semantics.\n\n---\n\n### H2: Trivial Duplication\n\n**Definition**: Conclusion is fully or substantially contained in the premises, making the proof trivially valid without logical reasoning.\n\n**Judgment criteria**:\n- Conclusion is identical to one of the premises (exact duplication)\n- Conclusion is a syntactic subset of a premise (partial duplication)\n- Premises restate the conclusion with trivial variable renaming\n\n**Example**:\n```\nPremises: all x (bird(x) -> flies(x)). flies(tweety).\nConclusion: flies(tweety).\n  (conclusion is literally a premise — ISR for that premise = 1.0, others may = 0)\n```\n\n**ISR prediction**: HIGH but misleading. The duplicated premise is maximally \"necessary\" (removing it breaks the proof), but the proof is logically trivial. ISR correctly identifies the premise as necessary but cannot distinguish trivial from substantive necessity.\n\n**Prevalence estimate**: MEDIUM. Known ISR blind spot (documented in memory.md).\n\n---\n\n### H3: Vacuous Truth\n\n**Definition**: Premises are internally contradictory, or the logical structure makes the entailment vacuously true regardless of the conclusion.\n\n**Subtypes**:\n- **H3a — Contradictory premises**: Premises contain `P(a)` and `~P(a)` (or equivalent). Ex falso quodlibet — anything follows.\n- **H3b — Vacuous implication**: Conclusion is of the form `P -> Q` where `P` is always false in the premise context, making the implication vacuously true.\n- **H3c — Tautological conclusion**: Conclusion is a tautology (e.g., `all x (P(x) | ~P(x))`) that is true regardless of premises.\n\n**Judgment criteria**:\n- Check premises for explicit contradictions\n- Check if conclusion is a tautology independent of premises\n- Check if the antecedent of the conclusion is unsatisfiable given premises\n\n**Example**:\n```\nH3a: Premises: bird(tweety). ~bird(tweety). Conclusion: flies(tweety).\nH3c: Conclusion: all x (p(x) | ~p(x)).\n```\n\n**ISR prediction**:\n- H3a: Variable. If multiple premises contribute to the contradiction, removing one may break it → those premises get ISR=1. If a single premise self-contradicts, ISR concentrates there.\n- H3c: ISR = 0 for all premises (conclusion is provable without any premises).\n\n**Prevalence estimate**: LOW-MEDIUM. Contradictions are syntactically uncommon in model outputs, but tautological conclusions may appear.\n\n---\n\n### H4: Over-specification\n\n**Definition**: Formalization includes redundant premises that are unnecessary for the proof but inflate the formula count without adding logical information.\n\n**Judgment criteria**:\n- Premise can be removed without affecting provability (ISR = 0 for that premise)\n- Premise is logically entailed by other premises (redundancy)\n- Premise is irrelevant to the conclusion (noise)\n\n**Example**:\n```\nPremises: all x (bird(x) -> flies(x)). bird(tweety). all x (fish(x) -> swims(x)).\nConclusion: flies(tweety).\n  (third premise is irrelevant — ISR = 0 for it)\n```\n\n**ISR prediction**: ISR *correctly* detects this. Redundant premises get ISR = 0, pulling down mean ISR. This is the category ISR is best calibrated for.\n\n**Prevalence estimate**: MEDIUM. Models may learn to pad formalizations to increase prove probability (more premises = more chances of including the right one).\n\n---\n\n### H5: Syntactic Exploitation\n\n**Definition**: Output exploits Prover9-specific parser behavior or proof search heuristics to achieve provability through non-substantive means.\n\n**Subtypes**:\n- **H5a — Parser quirks**: Exploiting Prover9's handling of operator precedence, implicit parenthesization, or reserved symbols\n- **H5b — Search heuristics**: Structuring formulas to trigger Prover9's auto-completion or built-in rules (e.g., equality axioms, paramodulation)\n- **H5c — Timeout gaming**: Producing formulas that are provable only because Prover9's search strategy happens to find the proof quickly (fragile to search order changes)\n\n**Judgment criteria**:\n- Proof relies on Prover9-specific behavior not present in other provers\n- Formula structure is unusual in ways that suggest parser exploitation\n- Minor syntactic changes break provability despite semantic equivalence\n\n**Example**:\n```\nUsing Prover9's built-in equality handling:\nPremises: a = b. Conclusion: b = a.\n  (trivially proved by built-in symmetry — not a meaningful formalization)\n```\n\n**ISR prediction**: Variable. Depends on the specific exploit. Built-in axiom exploitation may produce high ISR (each stated premise is \"necessary\" from Prover9's perspective).\n\n**Prevalence estimate**: LOW. Requires the model to have learned Prover9-specific behavior, unlikely in 500 steps of GRPO.\n\n---\n\n### H6: Degenerate Structure\n\n**Definition**: Output is structurally degenerate — empty premises, single-atom formulas, or malformed output that happens to parse.\n\n**Subtypes**:\n- **H6a — Empty/minimal**: Zero or one premise\n- **H6b — Atomic collapse**: All formulas are ground atoms with no quantifiers or connectives\n- **H6c — Format gaming**: Output includes non-formula text that the parser ignores, with minimal actual logical content\n\n**Judgment criteria**:\n- Fewer than 2 premises\n- No quantifiers or connectives in any formula\n- Significant portion of output is non-parseable\n\n**Example**:\n```\nPremises: p. Conclusion: p.\n  (single ground atom, trivially true — combines H2 + H6)\n```\n\n**ISR prediction**: Undefined or degenerate. With 0-1 premises, ISR is either undefined (no ablation possible) or trivially 1.0 (removing the only premise breaks the proof).\n\n**Prevalence estimate**: LOW after early training steps. Base model (step 0) may produce these, but GRPO quickly selects away from unparseable outputs.\n\n---\n\n## 3. Category Relationships\n\n```\n                    ┌─────────────────────────┐\n                    │    Extensional Pass      │\n                    │   (Prover9: proved)      │\n                    └──────────┬──────────────┘\n                               │\n              ┌────────────────┼────────────────┐\n              │                │                │\n     Semantically       Semantically      Semantically\n      Faithful           Drifted (H1)      N/A (H6)\n              │                │\n         ┌────┴────┐     ┌────┴────┐\n         │         │     │         │\n     Structurally  │   Trivial   Vacuous\n      Sound     Over-spec Dup(H2) Truth(H3)\n     (GOOD)     (H4)\n                         │\n                    Syntactic\n                    Exploit(H5)\n```\n\nCategories are not mutually exclusive. Common overlaps:\n- H1 + H2: Semantically drifted AND trivially duplicated\n- H1 + H3: Semantically drifted AND vacuously true\n- H2 + H6: Trivial duplication in degenerate structure\n- H4 + H1: Over-specified with semantically drifted content\n\n**Primary label**: Assign the most specific applicable category. When multiple apply, annotate all and mark the primary.\n\n---\n\n## 4. ISR Calibration Summary\n\n| Category | ISR Range | ISR Calibration |\n|----------|-----------|-----------------|\n| Good (no hack) | 0.4–1.0 | ISR reflects genuine structural quality |\n| H1: Semantic Drift | 0.3–1.0 | **ISR blind spot** — cannot detect semantic infidelity |\n| H2: Trivial Duplication | 0.5–1.0 | **ISR blind spot** — high ISR for trivial proofs |\n| H3a: Contradictory | 0.0–1.0 | Variable, depends on contradiction structure |\n| H3b/c: Vacuous/Tautology | 0.0 | ISR correctly identifies (no premises needed) |\n| H4: Over-specification | 0.2–0.8 | **ISR well-calibrated** — redundant premises get 0 |\n| H5: Syntactic Exploit | Variable | Case-by-case |\n| H6: Degenerate | Undefined/1.0 | Degenerate ISR values |\n\n**Key insight for paper**: ISR is well-calibrated for H4 (over-specification) and H3b/c (vacuous/tautological), but has known blind spots for H1 (semantic drift) and H2 (trivial duplication). This motivates downstream validation (plan_014) as a complementary evaluation axis.\n\n---\n\n## 5. Annotation Guide\n\n### 5.1 Setup\n\n- **Corpus**: 200 outputs randomly sampled from plan003-eval-exec-only-r5 checkpoint (prove_rate=0.32, ISR=0.206)\n- **Unit**: One (NL input, FOL output, prove result, ISR score) tuple\n- **Annotators**: Self-annotation with documented decision rationale\n\n### 5.2 Annotation Procedure\n\nFor each output where `proved = True`:\n\n1. **Parse check**: Is the output well-formed FOL? If not → H6c.\n2. **Structure check**: Count premises and connective complexity. If degenerate → H6a/b.\n3. **Duplication check**: Compare each premise to the conclusion. Exact or near-exact match → H2.\n4. **Vacuity check**: Look for contradictions in premises or tautological conclusions → H3.\n5. **Redundancy check**: Cross-reference with ISR per-component scores. Any premise with ISR=0 → potential H4.\n6. **Semantic check**: Compare FOL to original NL. Does the formalization capture the intended meaning? If not → H1.\n7. **Syntactic check**: Does the proof rely on Prover9-specific behavior? → H5.\n8. **Final label**: Assign primary category + any secondary categories.\n\nFor each output where `proved = False`:\n- Skip hacking classification (no extensional pass = no hacking opportunity)\n- Optionally note structural quality for comparison\n\n### 5.3 Annotation Fields\n\n```json\n{\n  \"sample_id\": \"int\",\n  \"nl_input\": \"str\",\n  \"fol_output\": \"str\",\n  \"proved\": \"bool\",\n  \"isr_score\": \"float\",\n  \"primary_category\": \"GOOD | H1 | H2 | H3a | H3b | H3c | H4 | H5 | H6a | H6b | H6c\",\n  \"secondary_categories\": [\"list of additional applicable categories\"],\n  \"rationale\": \"1-2 sentence justification\",\n  \"isr_component_scores\": [\"per-premise ISR scores if available\"],\n  \"confidence\": \"HIGH | MEDIUM | LOW\"\n}\n```\n\n### 5.4 Decision Rules for Ambiguous Cases\n\n- **H1 vs GOOD**: If the formalization is a reasonable (even if imperfect) interpretation of the NL, label GOOD. H1 requires clear semantic divergence where the FOL could not plausibly represent the NL.\n- **H2 vs GOOD**: Partial overlap between a premise and conclusion is normal in valid arguments (e.g., modus ponens). H2 requires that the conclusion is derivable by trivial syntactic matching, not by logical reasoning.\n- **H4 vs GOOD**: One irrelevant premise in an otherwise sound formalization is H4. Having all necessary premises (even if the formalization is complex) is GOOD.\n- **Multiple categories**: Always assign all applicable categories. The primary should be the one that most directly explains *why* the formalization is problematic.\n\n---\n\n## 6. Expected Outcomes and Paper Integration\n\n### 6.1 Hypotheses\n\n1. **H1 dominance**: Semantic drift is expected to be the most common hacking mode, because Prover9 has no NL grounding.\n2. **ISR-category correlation**: H4 (over-specification) outputs should cluster at low ISR; H2 (duplication) at high ISR; H1 (semantic drift) across the full ISR range.\n3. **Training dynamics**: Hacking categories may shift during training — early steps show more H6 (degenerate), later steps more H1/H2 (learned exploits).\n\n### 6.2 Paper Contributions\n\nThis taxonomy contributes to **Anticipated Reviewer Concern #3** (ISR circularity) by providing qualitative grounding for what ISR measures and what it misses. Specifically:\n\n- **Validates ISR**: Showing H4 outputs have low ISR confirms ISR detects structural redundancy.\n- **Documents ISR limits**: Showing H1/H2 outputs can have high ISR confirms ISR is not a complete quality metric.\n- **Motivates downstream validation**: ISR blind spots (H1, H2) justify plan_014's independent evaluation.\n\n### 6.3 Connection to Extensional vs. Intensional Verification\n\nFollowing Yue et al. (2026), our taxonomy maps to the extensional/intensional distinction:\n\n| Verification Level | What it catches | What it misses |\n|---|---|---|\n| Extensional (prove_rate) | Unprovable outputs | All H1–H6 (by definition, they all pass) |\n| Intensional (ISR via STA) | H4, H3b/c | H1, H2 (ISR blind spots) |\n| Semantic (human/downstream) | H1 | Requires external grounding |\n\nThis three-level framing supports STA's positioning as a *necessary but not sufficient* structural quality metric.\n\n---\n\n## 7. References\n\n1. Skalse, J., Howe, N.H.R., Krasheninnikov, D., & Krueger, D. (2022). Defining and Characterizing Reward Hacking. NeurIPS 2022. arXiv:2209.13085.\n2. Gao, L., Schulman, J., & Hilton, J. (2023). Scaling Laws for Reward Model Overoptimization. ICML 2023. arXiv:2210.10760.\n3. Pan, A., Bhatia, K., & Steinhardt, J. (2022). The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models. ICLR 2022. arXiv:2201.03544.\n4. Yue, X. et al. (2026). LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking. arXiv:2604.15149.\n5. Weng, L. (2024). Reward Hacking in Reinforcement Learning. Lil'Log.\n6. Inoue, M. et al. (2025). MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems. arXiv:2509.22047.\n7. Betz, G. et al. (2024). Reasoning in Transformers — Mitigating Spurious Correlations and Reasoning Shortcuts. Springer.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S44JQXE29pwZHA7PSNpVsJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__append_idea",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "0dca8b23-f61f-48ee-bcdb-279a274af444",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mnreyBgPLdbw54qCErTzQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4767,
+      "cache_read_input_tokens": 45478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4767
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T02:01:47.222Z_
+
+<details><summary>↩ Tool result · `toolu_01S44JQXE29pwZHA7PSNpVsJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "92e785cb-f0c2-457e-9365-225e69709984",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__append_idea"
+    ],
+    "query": "select:mcp__agent-ml-research__append_idea",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+文档已写入 `artifacts/hacking_taxonomy.md`。
+
+核心内容：
+
+**6 个分类**（按预期频率排序）：
+- **H1 Semantic Drift** — 可证但语义偏离 NL 原意（ISR 盲区，预估最高频）
+- **H2 Trivial Duplication** — 结论重复/包含在 premises 中（ISR 盲区）
+- **H3 Vacuous Truth** — 矛盾前提/重言结论（H3b/c ISR 可检测）
+- **H4 Over-specification** — 冗余 premises 填充（ISR 校准良好）
+- **H5 Syntactic Exploitation** — 利用 Prover9 特有行为
+- **H6 Degenerate Structure** — 空/极简/畸形输出
+
+**ISR 校准结论**：ISR 对 H4（冗余）和 H3b/c（空真）检测有效，对 H1（语义漂移）和 H2（重复）存在盲区 → 支撑 plan_014 downstream validation 的必要性。
+
+**标注方案**：200 条 proved outputs，8 步判断流程，JSON schema 标注格式，含 primary/secondary 多标签和决策规则。
+
+**文献基础**：Skalse 2022（形式化定义）、Gao 2023（overoptimization scaling laws）、Pan 2022（misspecification 三分类）、Yue 2026（extensional shortcuts + IPT）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "uuid": "fd46c26d-286c-487c-8f1f-164698e65403",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xa6mw6HKWZCJr52fbZsBY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 293,
+      "cache_read_input_tokens": 50245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 293
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 52_
+
+文档已写入 `artifacts/hacking_taxonomy.md`。
+
+核心内容：
+
+**6 个分类**（按预期频率排序）：
+- **H1 Semantic Drift** — 可证但语义偏离 NL 原意（ISR 盲区，预估最高频）
+- **H2 Trivial Duplication** — 结论重复/包含在 premises 中（ISR 盲区）
+- **H3 Vacuous Truth** — 矛盾前提/重言结论（H3b/c ISR 可检测）
+- **H4 Over-specification** — 冗余 premises 填充（ISR 校准良好）
+- **H5 Syntactic Exploitation** — 利用 Prover9 特有行为
+- **H6 Degenerate Structure** — 空/极简/畸形输出
+
+**ISR 校准结论**：ISR 对 H4（冗余）和 H3b/c（空真）检测有效，对 H1（语义漂移）和 H2（重复）存在盲区 → 支撑 plan_014 downstream validation 的必要性。
+
+**标注方案**：200 条 proved outputs，8 步判断流程，JSON schema 标注格式，含 primary/secondary 多标签和决策规则。
+
+**文献基础**：Skalse 2022（形式化定义）、Gao 2023（overoptimization scaling laws）、Pan 2022（misspecification 三分类）、Yue 2026（extensional shortcuts + IPT）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 250213,
+  "duration_api_ms": 314747,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "a305e791-cceb-49be-b42f-a90a1cbc4d8b",
+  "total_cost_usd": 0.9016342500000002,
+  "usage": {
+    "input_tokens": 982,
+    "cache_creation_input_tokens": 38697,
+    "cache_read_input_tokens": 274114,
+    "output_tokens": 7408,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38697,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 3,
+        "output_tokens": 432,
+        "cache_read_input_tokens": 50245,
+        "cache_creation_input_tokens": 293,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 293
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 196146,
+      "outputTokens": 5293,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 11,
+      "costUSD": 0.332611,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 982,
+      "outputTokens": 7408,
+      "cacheReadInputTokens": 274114,
+      "cacheCreationInputTokens": 38697,
+      "webSearchRequests": 0,
+      "costUSD": 0.56902325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "694bbe39-69d1-420e-a242-cf85f1dfac92"
+}
+```
+
+</details>
+
+---

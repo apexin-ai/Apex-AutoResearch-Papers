@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan006-prolog-sta-s44",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:19:39.743Z",
+    "updated_at": "2026-05-14T16:37:32.305Z",
+    "hypothesis": "Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。",
+    "notes": "PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=44. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s44. 等 GPU 释放。"
+  },
+  "timestamp": "2026-05-14T16:37:32.463884+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,732 @@
+{
+  "generated": "2026-05-15",
+  "method": "Wilson score interval (alpha=0.05)",
+  "conditions": {
+    "ISR_b01": {
+      "label": "ISR \u03b2=0.1",
+      "per_seed": [
+        {
+          "condition": "ISR \u03b2=0.1",
+          "seed": "s42",
+          "n_proved": 81,
+          "h7_count": 13,
+          "h1_count": 42,
+          "genuine_count": 26,
+          "source": "classify_h7.py",
+          "h7_rate": 0.1605,
+          "h7_ci_lo": 0.0963,
+          "h7_ci_hi": 0.2555,
+          "h1_rate": 0.5185,
+          "h1_ci_lo": 0.4114,
+          "h1_ci_hi": 0.624,
+          "genuine_rate": 0.321,
+          "genuine_ci_lo": 0.2294,
+          "genuine_ci_hi": 0.4288,
+          "sum_check": true
+        },
+        {
+          "condition": "ISR \u03b2=0.1",
+          "seed": "s43",
+          "n_proved": 61,
+          "h7_count": 59,
+          "h1_count": 0,
+          "genuine_count": 2,
+          "source": "derived (100% single_premise, h7_rate=0.967)",
+          "h7_rate": 0.9672,
+          "h7_ci_lo": 0.8881,
+          "h7_ci_hi": 0.991,
+          "h1_rate": 0.0,
+          "h1_ci_lo": 0,
+          "h1_ci_hi": 0.0592,
+          "genuine_rate": 0.0328,
+          "genuine_ci_lo": 0.009,
+          "genuine_ci_hi": 0.1119,
+          "sum_check": true
+        },
+        {
+          "condition": "ISR \u03b2=0.1",
+          "seed": "s44",
+          "n_proved": 89,
+          "h7_count": 77,
+          "h1_count": 0,
+          "genuine_count": 12,
+          "source": "classify_h7.py",
+          "h7_rate": 0.8652,
+          "h7_ci_lo": 0.779,
+          "h7_ci_hi": 0.9212,
+          "h1_rate": 0.0,
+          "h1_ci_lo": 0.0,
+          "h1_ci_hi": 0.0414,
+          "genuine_rate": 0.1348,
+          "genuine_ci_lo": 0.0788,
+          "genuine_ci_hi": 0.221,
+          "sum_check": true
+        }
+      ],
+      "pooled": {
+        "condition": "ISR \u03b2=0.1",
+        "seed": "POOLED",
+        "n_proved": 231,
+        "h7_count": 149,
+        "h1_count": 42,
+        "genuine_count": 40,
+        "source": "pooled (3 seeds)",
+        "h7_rate": 0.645,
+        "h7_ci_lo": 0.5814,
+        "h7_ci_hi": 0.7039,
+        "h1_rate": 0.1818,
+        "h1_ci_lo": 0.1374,
+        "h1_ci_hi": 0.2366,
+        "genuine_rate": 0.1732,
+        "genuine_ci_lo": 0.1298,
+        "genuine_ci_hi": 0.2272,
+        "sum_check": true
+      },
+      "missing": []
+    },
+    "Random_b01": {
+      "label": "Random \u03b2=0.1",
+      "per_seed": [
+        {
+          "condition": "Random \u03b2=0.1",
+          "seed": "s42",
+          "n_proved": 79,
+          "h7_count": 0,
+          "h1_count": 56,
+          "genuine_count": 23,
+          "source": "classify_h7.py",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.0464,
+          "h1_rate": 0.7089,
+          "h1_ci_lo": 0.6009,
+          "h1_ci_hi": 0.7975,
+          "genuine_rate": 0.2911,
+          "genuine_ci_lo": 0.2025,
+          "genuine_ci_hi": 0.3991,
+          "sum_check": true
+        },
+        {
+          "condition": "Random \u03b2=0.1",
+          "seed": "s43-r2",
+          "n_proved": 88,
+          "h7_count": 0,
+          "h1_count": 82,
+          "genuine_count": 6,
+          "source": "registry",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.0418,
+          "h1_rate": 0.9318,
+          "h1_ci_lo": 0.8591,
+          "h1_ci_hi": 0.9684,
+          "genuine_rate": 0.0682,
+          "genuine_ci_lo": 0.0316,
+          "genuine_ci_hi": 0.1409,
+          "sum_check": true
+        }
+      ],
+      "pooled": {
+        "condition": "Random \u03b2=0.1",
+        "seed": "POOLED",
+        "n_proved": 167,
+        "h7_count": 0,
+        "h1_count": 138,
+        "genuine_count": 29,
+        "source": "pooled (2 seeds)",
+        "h7_rate": 0.0,
+        "h7_ci_lo": 0,
+        "h7_ci_hi": 0.0225,
+        "h1_rate": 0.8263,
+        "h1_ci_lo": 0.7617,
+        "h1_ci_hi": 0.8763,
+        "genuine_rate": 0.1737,
+        "genuine_ci_lo": 0.1237,
+        "genuine_ci_hi": 0.2383,
+        "sum_check": true
+      },
+      "missing": [
+        "s44 (eval JSON + checkpoint both cleaned)"
+      ]
+    },
+    "Exec_only": {
+      "label": "Exec-only",
+      "per_seed": [
+        {
+          "condition": "Exec-only",
+          "seed": "s42-r2",
+          "n_proved": 93,
+          "h7_count": 0,
+          "h1_count": 81,
+          "genuine_count": 12,
+          "source": "classify_h7.py",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.0397,
+          "h1_rate": 0.871,
+          "h1_ci_lo": 0.7879,
+          "h1_ci_hi": 0.9246,
+          "genuine_rate": 0.129,
+          "genuine_ci_lo": 0.0754,
+          "genuine_ci_hi": 0.2121,
+          "sum_check": true
+        },
+        {
+          "condition": "Exec-only",
+          "seed": "s43-r4",
+          "n_proved": 13,
+          "h7_count": 0,
+          "h1_count": 13,
+          "genuine_count": 0,
+          "source": "classify_h7.py",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.2281,
+          "h1_rate": 1.0,
+          "h1_ci_lo": 0.7719,
+          "h1_ci_hi": 1.0,
+          "genuine_rate": 0.0,
+          "genuine_ci_lo": 0,
+          "genuine_ci_hi": 0.2281,
+          "sum_check": true
+        },
+        {
+          "condition": "Exec-only",
+          "seed": "s44",
+          "n_proved": 98,
+          "h7_count": 98,
+          "h1_count": 0,
+          "genuine_count": 0,
+          "source": "classify_h7.py (plan001_s44_eval_sta.json)",
+          "h7_rate": 1.0,
+          "h7_ci_lo": 0.9623,
+          "h7_ci_hi": 1.0,
+          "h1_rate": 0.0,
+          "h1_ci_lo": 0.0,
+          "h1_ci_hi": 0.0377,
+          "genuine_rate": 0.0,
+          "genuine_ci_lo": 0.0,
+          "genuine_ci_hi": 0.0377,
+          "sum_check": true
+        }
+      ],
+      "pooled": {
+        "condition": "Exec-only",
+        "seed": "POOLED",
+        "n_proved": 204,
+        "h7_count": 98,
+        "h1_count": 94,
+        "genuine_count": 12,
+        "source": "pooled (3 seeds)",
+        "h7_rate": 0.4804,
+        "h7_ci_lo": 0.4128,
+        "h7_ci_hi": 0.5487,
+        "h1_rate": 0.4608,
+        "h1_ci_lo": 0.3937,
+        "h1_ci_hi": 0.5293,
+        "genuine_rate": 0.0588,
+        "genuine_ci_lo": 0.034,
+        "genuine_ci_hi": 0.1,
+        "sum_check": true
+      },
+      "missing": []
+    },
+    "ISR_b03": {
+      "label": "ISR \u03b2=0.3",
+      "per_seed": [
+        {
+          "condition": "ISR \u03b2=0.3",
+          "seed": "s42",
+          "n_proved": 18,
+          "h7_count": 0,
+          "h1_count": 14,
+          "genuine_count": 4,
+          "source": "registry (plan002-additive-b03-s42)",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.1759,
+          "h1_rate": 0.7778,
+          "h1_ci_lo": 0.5479,
+          "h1_ci_hi": 0.91,
+          "genuine_rate": 0.2222,
+          "genuine_ci_lo": 0.09,
+          "genuine_ci_hi": 0.4521,
+          "sum_check": true
+        },
+        {
+          "condition": "ISR \u03b2=0.3",
+          "seed": "s43-r3",
+          "n_proved": 86,
+          "h7_count": 4,
+          "h1_count": 59,
+          "genuine_count": 23,
+          "source": "classify_h7.py",
+          "h7_rate": 0.0465,
+          "h7_ci_lo": 0.0182,
+          "h7_ci_hi": 0.1136,
+          "h1_rate": 0.686,
+          "h1_ci_lo": 0.5818,
+          "h1_ci_hi": 0.7744,
+          "genuine_rate": 0.2674,
+          "genuine_ci_lo": 0.1853,
+          "genuine_ci_hi": 0.3695,
+          "sum_check": true
+        },
+        {
+          "condition": "ISR \u03b2=0.3",
+          "seed": "s44-r2",
+          "n_proved": 95,
+          "h7_count": 95,
+          "h1_count": 0,
+          "genuine_count": 0,
+          "source": "classify_h7.py (eval_sta_correct.json)",
+          "h7_rate": 1.0,
+          "h7_ci_lo": 0.9611,
+          "h7_ci_hi": 1,
+          "h1_rate": 0.0,
+          "h1_ci_lo": 0,
+          "h1_ci_hi": 0.0389,
+          "genuine_rate": 0.0,
+          "genuine_ci_lo": 0,
+          "genuine_ci_hi": 0.0389,
+          "sum_check": true
+        }
+      ],
+      "pooled": {
+        "condition": "ISR \u03b2=0.3",
+        "seed": "POOLED",
+        "n_proved": 199,
+        "h7_count": 99,
+        "h1_count": 73,
+        "genuine_count": 27,
+        "source": "pooled (3 seeds)",
+        "h7_rate": 0.4975,
+        "h7_ci_lo": 0.4287,
+        "h7_ci_hi": 0.5663,
+        "h1_rate": 0.3668,
+        "h1_ci_lo": 0.303,
+        "h1_ci_hi": 0.4357,
+        "genuine_rate": 0.1357,
+        "genuine_ci_lo": 0.0949,
+        "genuine_ci_hi": 0.1902,
+        "sum_check": true
+      },
+      "missing": []
+    },
+    "Random_b03": {
+      "label": "Random \u03b2=0.3",
+      "per_seed": [
+        {
+          "condition": "Random \u03b2=0.3",
+          "seed": "s43-r4",
+          "n_proved": 92,
+          "h7_count": 0,
+          "h1_count": 89,
+          "genuine_count": 3,
+          "source": "classify_h7.py",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.0401,
+          "h1_rate": 0.9674,
+          "h1_ci_lo": 0.9085,
+          "h1_ci_hi": 0.9888,
+          "genuine_rate": 0.0326,
+          "genuine_ci_lo": 0.0112,
+          "genuine_ci_hi": 0.0915,
+          "sum_check": true
+        },
+        {
+          "condition": "Random \u03b2=0.3",
+          "seed": "s44-r2",
+          "n_proved": 23,
+          "h7_count": 0,
+          "h1_count": 23,
+          "genuine_count": 0,
+          "source": "classify_h7.py",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.1431,
+          "h1_rate": 1.0,
+          "h1_ci_lo": 0.8569,
+          "h1_ci_hi": 1,
+          "genuine_rate": 0.0,
+          "genuine_ci_lo": 0,
+          "genuine_ci_hi": 0.1431,
+          "sum_check": true
+        }
+      ],
+      "pooled": {
+        "condition": "Random \u03b2=0.3",
+        "seed": "POOLED",
+        "n_proved": 115,
+        "h7_count": 0,
+        "h1_count": 112,
+        "genuine_count": 3,
+        "source": "pooled (2 seeds)",
+        "h7_rate": 0.0,
+        "h7_ci_lo": 0,
+        "h7_ci_hi": 0.0323,
+        "h1_rate": 0.9739,
+        "h1_ci_lo": 0.9261,
+        "h1_ci_hi": 0.9911,
+        "genuine_rate": 0.0261,
+        "genuine_ci_lo": 0.0089,
+        "genuine_ci_hi": 0.0739,
+        "sum_check": true
+      },
+      "missing": [
+        "s42 (experiment does not exist)"
+      ]
+    },
+    "SFT": {
+      "label": "SFT",
+      "per_seed": [
+        {
+          "condition": "SFT",
+          "seed": "s42-r4",
+          "n_proved": 14,
+          "h7_count": 0,
+          "h1_count": 1,
+          "genuine_count": 13,
+          "source": "registry",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0.0,
+          "h7_ci_hi": 0.2153,
+          "h1_rate": 0.0714,
+          "h1_ci_lo": 0.0127,
+          "h1_ci_hi": 0.3147,
+          "genuine_rate": 0.9286,
+          "genuine_ci_lo": 0.6853,
+          "genuine_ci_hi": 0.9873,
+          "sum_check": true
+        },
+        {
+          "condition": "SFT",
+          "seed": "s43",
+          "n_proved": 15,
+          "h7_count": 0,
+          "h1_count": 1,
+          "genuine_count": 14,
+          "source": "registry",
+          "h7_rate": 0.0,
+          "h7_ci_lo": 0,
+          "h7_ci_hi": 0.2039,
+          "h1_rate": 0.0667,
+          "h1_ci_lo": 0.0119,
+          "h1_ci_hi": 0.2982,
+          "genuine_rate": 0.9333,
+          "genuine_ci_lo": 0.7018,
+          "genuine_ci_hi": 0.9881,
+          "sum_check": true
+        }
+      ],
+      "pooled": {
+        "condition": "SFT",
+        "seed": "POOLED",
+        "n_proved": 29,
+        "h7_count": 0,
+        "h1_count": 2,
+        "genuine_count": 27,
+        "source": "pooled (2 seeds)",
+        "h7_rate": 0.0,
+        "h7_ci_lo": 0,
+        "h7_ci_hi": 0.117,
+        "h1_rate": 0.069,
+        "h1_ci_lo": 0.0191,
+        "h1_ci_hi": 0.2196,
+        "genuine_rate": 0.931,
+        "genuine_ci_lo": 0.7804,
+        "genuine_ci_hi": 0.9809,
+        "sum_check": true
+      },
+      "missing": [
+        "s44 (still RUNNING)"
+      ]
+    }
+  },
+  "fisher_exact_tests": [
+    {
+      "comparison": "ISR_b01 vs Random_b01",
+      "metric": "genuine",
+      "table": "[40,191],[29,138]",
+      "odds_ratio": 0.9966,
+      "p_value": 1.0,
+      "significant_005": false
+    },
+    {
+      "comparison": "ISR_b01 vs Exec_only",
+      "metric": "genuine",
+      "table": "[40,191],[12,192]",
+      "odds_ratio": 3.3508,
+      "p_value": 0.000306,
+      "significant_005": "True"
+    },
+    {
+      "comparison": "ISR_b01 vs SFT",
+      "metric": "genuine",
+      "table": "[40,191],[27,2]",
+      "odds_ratio": 0.0155,
+      "p_value": 0.0,
+      "significant_005": "True"
+    },
+    {
+      "comparison": "Random_b01 vs Exec_only",
+      "metric": "genuine",
+      "table": "[29,138],[12,192]",
+      "odds_ratio": 3.3623,
+      "p_value": 0.000705,
+      "significant_005": "True"
+    },
+    {
+      "comparison": "ISR_b03 vs Random_b03",
+      "metric": "genuine",
+      "table": "[27,172],[3,112]",
+      "odds_ratio": 5.8605,
+      "p_value": 0.001119,
+      "significant_005": "True"
+    },
+    {
+      "comparison": "ISR_b01 vs Random_b01",
+      "metric": "h7",
+      "table": "[149,82],[0,167]",
+      "odds_ratio": "inf",
+      "p_value": 0.0,
+      "significant_005": "True"
+    },
+    {
+      "comparison": "ISR_b01 vs Exec_only",
+      "metric": "h7",
+      "table": "[149,82],[98,106]",
+      "odds_ratio": 1.9654,
+      "p_value": 0.000675,
+      "significant_005": "True"
+    }
+  ],
+  "heterogeneity": {
+    "ISR_b01": {
+      "h7": {
+        "rates": [
+          0.1605,
+          0.9672,
+          0.8652
+        ],
+        "range": 0.8067,
+        "variance": 0.128641,
+        "mean": 0.6643
+      },
+      "h1": {
+        "rates": [
+          0.5185,
+          0.0,
+          0.0
+        ],
+        "range": 0.5185,
+        "variance": 0.059743,
+        "mean": 0.1728
+      },
+      "genuine": {
+        "rates": [
+          0.321,
+          0.0328,
+          0.1348
+        ],
+        "range": 0.2882,
+        "variance": 0.014237,
+        "mean": 0.1629
+      }
+    },
+    "Random_b01": {
+      "h7": {
+        "rates": [
+          0.0,
+          0.0
+        ],
+        "range": 0.0,
+        "variance": 0.0,
+        "mean": 0.0
+      },
+      "h1": {
+        "rates": [
+          0.7089,
+          0.9318
+        ],
+        "range": 0.2229,
+        "variance": 0.012421,
+        "mean": 0.8203
+      },
+      "genuine": {
+        "rates": [
+          0.2911,
+          0.0682
+        ],
+        "range": 0.2229,
+        "variance": 0.012421,
+        "mean": 0.1797
+      }
+    },
+    "Exec_only": {
+      "h7": {
+        "rates": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "range": 1.0,
+        "variance": 0.222222,
+        "mean": 0.3333
+      },
+      "h1": {
+        "rates": [
+          0.871,
+          1.0,
+          0.0
+        ],
+        "range": 1.0,
+        "variance": 0.197254,
+        "mean": 0.6237
+      },
+      "genuine": {
+        "rates": [
+          0.129,
+          0.0,
+          0.0
+        ],
+        "range": 0.129,
+        "variance": 0.003698,
+        "mean": 0.043
+      }
+    },
+    "ISR_b03": {
+      "h7": {
+        "rates": [
+          0.0,
+          0.0465,
+          1.0
+        ],
+        "range": 1.0,
+        "variance": 0.212369,
+        "mean": 0.3488
+      },
+      "h1": {
+        "rates": [
+          0.7778,
+          0.686,
+          0.0
+        ],
+        "range": 0.7778,
+        "variance": 0.120444,
+        "mean": 0.4879
+      },
+      "genuine": {
+        "rates": [
+          0.2222,
+          0.2674,
+          0.0
+        ],
+        "range": 0.2674,
+        "variance": 0.013658,
+        "mean": 0.1632
+      }
+    },
+    "Random_b03": {
+      "h7": {
+        "rates": [
+          0.0,
+          0.0
+        ],
+        "range": 0.0,
+        "variance": 0.0,
+        "mean": 0.0
+      },
+      "h1": {
+        "rates": [
+          0.9674,
+          1.0
+        ],
+        "range": 0.0326,
+        "variance": 0.000266,
+        "mean": 0.9837
+      },
+      "genuine": {
+        "rates": [
+          0.0326,
+          0.0
+        ],
+        "range": 0.0326,
+        "variance": 0.000266,
+        "mean": 0.0163
+      }
+    },
+    "SFT": {
+      "h7": {
+        "rates": [
+          0.0,
+          0.0
+        ],
+        "range": 0.0,
+        "variance": 0.0,
+        "mean": 0.0
+      },
+      "h1": {
+        "rates": [
+          0.0714,
+          0.0667
+        ],
+        "range": 0.0047,
+        "variance": 6e-06,
+        "mean": 0.0691
+      },
+      "genuine": {
+        "rates": [
+          0.9286,
+          0.9333
+        ],
+        "range": 0.0047,
+        "variance": 6e-06,
+        "mean": 0.9309
+      }
+    }
+  },
+  "data_notes": {
+    "ISR_b01_s43": "Derived from registry: proved_single_premise_ratio=1.0, h7_rate_calibrated=0.967. No eval JSON or checkpoint available.",
+    "Random_b01_s44": "DATA UNAVAILABLE. Eval JSON and checkpoint both cleaned up in disk cleanup incident.",
+    "Random_b03_s42": "Experiment does not exist in registry.",
+    "SFT_s44": "Still RUNNING at time of analysis.",
+    "Exec_only_s44": "Registry says n=98; used plan001_s44_eval_sta.json (98 proved, 98 H7).",
+    "ISR_b03_s44_r2": "Used eval_sta_correct.json (n=95); original eval dir has n=98 from wrong test set.",
+    "Random_b03_s43_r4_fix": "Registry had h7=7,h1=90,genuine=2 (sum=99\u226092). classify_h7.py confirms h7=0,h1=89,genuine=3 (sum=92).",
+    "ISR_b01_s42_fix": "Registry had genuine_count=25 (sum=80\u226081). classify_h7.py confirms genuine=26 (sum=81)."
+  },
+  "registry_corrections": [
+    {
+      "exp_id": "plan002-additive-b01-s42",
+      "field": "genuine_count",
+      "old": 25,
+      "new": 26
+    },
+    {
+      "exp_id": "plan001-exec-only-s44",
+      "field": "h7_count",
+      "old": 97,
+      "new": 98
+    },
+    {
+      "exp_id": "exp1-random-b03-s43-r4",
+      "field": "h7_count",
+      "old": 7,
+      "new": 0
+    },
+    {
+      "exp_id": "exp1-random-b03-s43-r4",
+      "field": "h1_count",
+      "old": 90,
+      "new": 89
+    },
+    {
+      "exp_id": "exp1-random-b03-s43-r4",
+      "field": "genuine_count",
+      "old": 2,
+      "new": 3
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "plan006-prolog-sta-s42",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-14T09:19:38.117Z",
+    "updated_at": "2026-05-14T09:49:11.631Z",
+    "hypothesis": "Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/prolog/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s42\"",
+      "finished_at": "2026-05-14T09:45:59.777Z"
+    },
+    "failure_reason": "Traceback → (args.data_path) ^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"/root/solver-trace-ablation/scripts/train_grpo.py\", line 91, in load_jsonl with open(path) as f: ^^^^^^^^^^ FileNotFoundError: [Errno 2] No such file or directory: 'data/prolog/train_500_seed42.jsonl'",
+    "completed_at": "2026-05-14T09:46:00.917Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T09:46:02.621139+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-14T09:49:11.727904+00:00",
+  "trigger": "update_registry"
+}

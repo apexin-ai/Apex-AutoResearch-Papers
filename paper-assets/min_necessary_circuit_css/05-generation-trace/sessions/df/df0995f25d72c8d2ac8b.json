@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df0995f25d72c8d2ac8b",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code mvp final results",
+  "task_key": "worker_code_mvp-final-results_20260512T113252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-final-results_20260512T113252_result.json",
+    "occurrence": 1,
+    "bytes": 217,
+    "sha256": "fa9f39dbb142dc585e77dd34c52b66d7dd517bae0c15ff9713ab29d2b0f6128e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "STATUS: still_running\n\nACDC 进度：16031/32491（49.3%），速度 ~6.87 it/s，预计剩余 ~40 分钟（约 12:55 UTC 完成）。`mvp_results.json` 尚未生成。\n\n4.5 分钟后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-final-results.md"
+}

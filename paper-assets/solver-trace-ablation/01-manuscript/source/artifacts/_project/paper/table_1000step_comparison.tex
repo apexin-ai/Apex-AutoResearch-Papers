@@ -1,0 +1,25 @@
+% 1000-step full comparison table for §4.2
+% All metrics from proofwriter_fol_100 evaluation via eval_sta.py
+\begin{table}[t]
+\centering
+\caption{Performance at 1000 training steps across reward conditions. All metrics evaluated on \textsc{ProofWriter-FOL-100} using \texttt{eval\_sta.py}. H7 = tautological repetition, H1 = conclusion embedding, H8 = conjunction collapse. Genuine\% = proved samples free of all three hacking patterns.}
+\label{tab:1000step-comparison}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Condition} & \textbf{PR} & \textbf{Mean ISR} & \textbf{H7\%} & \textbf{H1\%} & \textbf{H8\%} & \textbf{Genuine\%} \\
+\midrule
+Exec-only (s42)     & 0.96 & 0.003 & 0\%    & 100\%  & ---    & 0\%   \\
+Exec-only (s43)     & 0.90 & 0.531 & 100\%  & 0\%    & ---    & 0\%   \\
+Exec-only (s44)     & 1.00 & 0.002 & 0\%    & 85\%   & 15\%   & 3\%   \\
+Exec-only (mean)    & 0.95{\scriptsize$\pm$0.05} & 0.18{\scriptsize$\pm$0.31} & ---  & ---  & ---  & 1.0\%{\scriptsize$\pm$1.7} \\
+ISR $\beta{=}0.1$   & 0.90 & 0.789 & 92.2\% & 4.4\%  & 1.1\%  & 2.2\% \\
+ISR $\beta{=}0.3$   & 0.95 & 0.734 & 0\%    & 56.8\% & 43.2\% & 0\%   \\
+Random $\beta{=}0.1$ & 0.97 & 0.689 & 100\%  & 0\%    & 0\%    & 0\%   \\
+\midrule
+\rowcolor{gray!15}
+\textbf{SFT}        & \textbf{0.13} & \textbf{0.074} & \textbf{0\%} & \textbf{7.7\%} & \textbf{---} & \textbf{92.3\%} \\
+\bottomrule
+\end{tabular}
+\end{table}

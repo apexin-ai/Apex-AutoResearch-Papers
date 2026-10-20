@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan001-exec-only-s45",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:29:10.640Z",
+    "updated_at": "2026-05-16T02:29:10.640Z"
+  },
+  "timestamp": "2026-05-16T02:29:10.855793+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,99 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{mellgren2025prolog,evom2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{polu2020gpt}
+\citation{le2022coderl}
+\citation{mellgren2025prolog}
+\citation{evom2026}
+\citation{lightman2023verify}
+\citation{jia2011analysis}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{RL for Formal Reasoning.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Rewards in RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mutation Testing.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Solver Trace Ablation}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Component Decomposition.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ablation and ISR.}{3}{section*.5}\protected@file@percent }
+\newlabel{eq:isr}{{1}{3}{Ablation and ISR}{equation.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{RIP Mapping.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Combined Reward}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{eq:reward}{{2}{3}{Combined Reward}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sigmoid Curriculum.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}5-Step Derivation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:protocol}{{3.4}{3}{5-Step Derivation Protocol}{subsection.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Exec-only GRPO training dynamics on FOL (3-seed mean $\pm $ std). Prove rate improves steadily (+83\% over 500 steps) while ISR/PR ratio degrades from 0.92 to 0.35, indicating progressive structural degeneracy.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:exec_only_dynamics}{{1}{4}{Exec-only GRPO training dynamics on FOL (3-seed mean $\pm $ std). Prove rate improves steadily (+83\% over 500 steps) while ISR/PR ratio degrades from 0.92 to 0.35, indicating progressive structural degeneracy}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Computational Cost}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Structural Degeneracy Under Exec-Only Training}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exec_only}{{4.2}{4}{Structural Degeneracy Under Exec-Only Training}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}STA-Rewarded Training}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exec_sta}{{4.3}{4}{STA-Rewarded Training}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Exec+STA GRPO training dynamics on FOL (3-seed mean $\pm $ std). Prove rate matches exec-only (0.34 vs.\ 0.33 final window) while ISR/PR ratio stabilizes at 0.65 instead of degrading to 0.35.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:exec_sta_dynamics}{{2}{5}{Exec+STA GRPO training dynamics on FOL (3-seed mean $\pm $ std). Prove rate matches exec-only (0.34 vs.\ 0.33 final window) while ISR/PR ratio stabilizes at 0.65 instead of degrading to 0.35}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Held-out generalization. Exec+STA achieves ISR/PR = 0.85 vs.\ 0.33 for exec-only, with hacking prevalence reduced from 45\% to 18\%. The base model's ISR/PR (0.53) exceeds trained exec-only (0.33)---exec-only training actively \emph  {worsens} structural quality.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:held_out}{{3}{5}{Held-out generalization. Exec+STA achieves ISR/PR = 0.85 vs.\ 0.33 for exec-only, with hacking prevalence reduced from 45\% to 18\%. The base model's ISR/PR (0.53) exceeds trained exec-only (0.33)---exec-only training actively \emph {worsens} structural quality}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Held-Out Generalization}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:held_out}{{4.4}{5}{Held-Out Generalization}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}O(1) vs.\ O(N) Ablation}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:o1_ablation}{{4.5}{5}{O(1) vs.\ O(N) Ablation}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Reward Weight Ablation}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:weight_ablation}{{4.6}{5}{Reward Weight Ablation}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces O(1) tautology-only check vs.\ full O(N) STA. The O(1) approximation has near-zero discriminability (0.08) and produces training dynamics indistinguishable from exec-only.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:o1_ablation}{{4}{6}{O(1) tautology-only check vs.\ full O(N) STA. The O(1) approximation has near-zero discriminability (0.08) and produces training dynamics indistinguishable from exec-only}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Weight ablation (500 steps, 1 seed). Sigmoid curriculum consistently Pareto-dominates fixed weighting. Curriculum $\alpha {=}0.5$/$\beta {=}0.5$ achieves the best PR$\times $ISR/PR product.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:weight_ablation}{{5}{6}{Weight ablation (500 steps, 1 seed). Sigmoid curriculum consistently Pareto-dominates fixed weighting. Curriculum $\alpha {=}0.5$/$\beta {=}0.5$ achieves the best PR$\times $ISR/PR product}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Multi-Logic Validation}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:multi_logic}{{4.7}{6}{Multi-Logic Validation}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Prolog.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SMT-LIB.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Logic Training.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Zero-Shot Cross-Logic Transfer.}{6}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Prolog single-logic GRPO (500 steps, 1 seed). The exec+STA pattern replicates: ISR/PR ratio stabilizes at 0.58 vs.\ 0.32.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:prolog}{{6}{7}{Prolog single-logic GRPO (500 steps, 1 seed). The exec+STA pattern replicates: ISR/PR ratio stabilizes at 0.58 vs.\ 0.32}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Three-logic STA summary. EO = exec-only, ES = exec+STA. The qualitative pattern (STA stabilizes structural quality) holds across all three logic types despite different absolute metrics and discriminability levels.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:three_logic}{{7}{7}{Three-logic STA summary. EO = exec-only, ES = exec+STA. The qualitative pattern (STA stabilizes structural quality) holds across all three logic types despite different absolute metrics and discriminability levels}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}SFT Baseline}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:sft}{{4.8}{7}{SFT Baseline}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Scaling Analysis}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:scaling}{{4.9}{7}{Scaling Analysis}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Hacking Characterization}{7}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:hacking}{{4.10}{7}{Hacking Characterization}{subsection.4.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{STA in the ORM-PRM Taxonomy.}{7}{section*.16}\protected@file@percent }
+\bibcite{mellgren2025prolog}{{1}{2025}{{Mellgren et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Multi-logic vs.\ single-logic training. Prolog benefits from multi-logic training (+0.01 PR); FOL shows marginal decrease. ISR/PR ratio is slightly lower under multi-logic due to mixed reward signal noise.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:multi_logic}{{8}{8}{Multi-logic vs.\ single-logic training. Prolog benefits from multi-logic training (+0.01 PR); FOL shows marginal decrease. ISR/PR ratio is slightly lower under multi-logic due to mixed reward signal noise}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Zero-shot cross-logic transfer. STA-trained models show marginally higher transfer ($+0.01$ additional $\Delta $) than exec-only trained models, suggesting structurally sound formalizations encode more transferable logical patterns.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:cross_transfer}{{9}{8}{Zero-shot cross-logic transfer. STA-trained models show marginally higher transfer ($+0.01$ additional $\Delta $) than exec-only trained models, suggesting structurally sound formalizations encode more transferable logical patterns}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{When Does STA Help Most?}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\bibcite{evom2026}{{2}{2026}{{EVOM}}{{}}}
+\bibcite{polu2020gpt}{{3}{2020}{{Polu and Sutskever}}{{}}}
+\bibcite{le2022coderl}{{4}{2022}{{Le et~al.}}{{}}}
+\bibcite{lightman2023verify}{{5}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{jia2011analysis}{{6}{2011}{{Jia and Harman}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces SFT vs.\ GRPO comparison. SFT maintains structural quality (ISR/PR = 0.65) but achieves lower accuracy than GRPO. Exec+STA combines GRPO's accuracy advantage with SFT-level structural quality.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:sft}{{10}{9}{SFT vs.\ GRPO comparison. SFT maintains structural quality (ISR/PR = 0.65) but achieves lower accuracy than GRPO. Exec+STA combines GRPO's accuracy advantage with SFT-level structural quality}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Scale comparison (4B vs.\ 8B). The STA benefit is approximately scale-invariant: ISR/PR improvement of ${\sim }0.28$ at both scales. Structural degeneracy persists at 8B, confirming it is a property of the optimization, not a small-model artifact.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:scaling}{{11}{9}{Scale comparison (4B vs.\ 8B). The STA benefit is approximately scale-invariant: ISR/PR improvement of ${\sim }0.28$ at both scales. Structural degeneracy persists at 8B, confirming it is a property of the optimization, not a small-model artifact}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Hacking taxonomy distribution (\%, 200 outputs per condition, $\kappa = 0.78$). EO = exec-only, E+S = exec+STA. Exec-only training amplifies hacking from 25\% to 45\%; STA reduces it to 18\%, below the untrained baseline.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:hacking}{{12}{10}{Hacking taxonomy distribution (\%, 200 outputs per condition, $\kappa = 0.78$). EO = exec-only, E+S = exec+STA. Exec-only training amplifies hacking from 25\% to 45\%; STA reduces it to 18\%, below the untrained baseline}{table.12}{}}
+\gdef \@abspage@last{10}

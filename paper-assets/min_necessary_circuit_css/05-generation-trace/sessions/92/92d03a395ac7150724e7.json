@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "id": "92d03a395ac7150724e7",
+  "project": "min_necessary_circuit_css",
+  "kind": "conversation",
+  "title": "knowledge mvp gate checklist d025",
+  "task_key": "worker_knowledge_mvp-gate-checklist-d025_20260513T033216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_knowledge_mvp-gate-checklist-d025_20260513T033216.jsonl",
+    "occurrence": 1,
+    "bytes": 4101,
+    "sha256": "6286a4ee1e639c6af5b9708534511ef8f377859bbf0a904b529343fa70907e97"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T03:32:42.435301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_mvp-gate-checklist-d025_20260513T033216",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T03:32:42.435628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D020_acdc_edge_selection.md\n__pycache__\n_project\nanalysis\nanalyze_mvp_results.py\ncss.py\ndeploy_phase2.sh\neap_ig_scoring.py\nedge_pruning_precheck_report.md\nedge_pruning_scoring.py\nifr_code_survey.md\nifr_scoring.py\nliterature_jaccard_overlap.md\nliterature_map.yaml\nliterature_survey_related_work.md\nmanifest.yaml\nmodel_adapter.py\nmvp_pilot_gpt2_ioi_v3\nmvp_status_report_20260512.md\nphase2_configs.yaml\nrelated_work_notes.md\nrun_circus.py\nrun_phase2_experiment.py\nstructfuse-mvp\ntest_css.py\ntest_eap_ig_scoring.py\ntest_edge_pruning_scoring.py\ntest_ifr_scoring.py\ntest_run_circus_fixes.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_mvp-gate-checklist-d025_20260513T033216",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T03:32:42.435841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_mvp-gate-checklist-d025_20260513T033216",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/mvp_gate_checklist_d025.md",
+              "content": "# MVP Gate Checklist — D025 CSS-Only 标准\n\n> 适用于 mvp_arithmetic_gpt2_k3 结果判定\n> 替代 D002/D024 标准（CIRCUS 已废弃 per D021）\n> 代码输出的 gate_verdict 不可信，必须人工按以下标准判定\n\n## 四条件（全部满足 = PASS）\n\n| # | 条件 | 阈值 | IOI 参考值 | Arithmetic 结果 | 判定 |\n|---|------|------|-----------|----------------|------|\n| 1 | Pairwise Jaccard 任意方法对 < 0.70 | < 0.70 | [0.31, 0.10, 0.09] ✅ | _待填_ | _待判_ |\n| 2 | CSS ≥2/3 edge count ≥ 10 | ≥ 10 | 52 ✅ | _待填_ | _待判_ |\n| 3 | CSS = 1.0 edge count ≥ 3 | ≥ 3 | 7 ✅ | _待填_ | _待判_ |\n| 4 | CSS faithfulness > single-method | CSS CPR > any single | CSS-1.0 CPR=0.11 > EP=-0.24 ✅ | _待填_ | _待判_ |\n\n## 必查清单\n\n| 项目 | 预期 | Arithmetic 结果 |\n|------|------|----------------|\n| ACDC binarization 方式 | `isinf` 或其他 | _待填_ |\n| ACDC 边数 | IOI: 14 | _待填_ |\n| CSS distribution (1/3, 2/3, 3/3) | 三级分布 | _待填_ |\n| Pairwise Jaccard 三对 | 在 [0.05, 0.30]? | _待填_ |\n| Phase D faithfulness 排序 | CSS > single-method | _待填_ |\n| Mean ablation 对照 | CPR 非 ablation artifact | _待填_ |\n\n## 判定结果\n\n- 四条件全满足 → **PASS** → complete_mvp → post-mvp-kickoff\n- 任一条件不满足 → 分析失败原因：\n  - CSS 在 arithmetic 不泛化 → task-specific，评估 pivot\n  - ACDC 极端稀疏导致 Jaccard 异常 → 考虑 ACDC binarization 调整\n  - faithfulness 不满足 → 检查 ablation 方式（node-level zero ablation 破坏性大）\n\n## IOI 完整参考数据（mvp_pilot_gpt2_ioi_v3）\n\n- off_diagonal_pct: 13.3% [CI: 1.7%-40.5%]\n- circus_core_edges: 15, css_2of3: 52, css_3of3: 7\n- gate: PASS_MAIN (D002 标准)\n- pairwise Jaccard: eapig×ep=0.31, eapig×acdc=0.10, ep×acdc=0.09\n- three_way_ratio: 0.045\n- circuit_sizes: eapig=100, ep=100, acdc=14\n- Phase D faithfulness: CSS-1.0 CPR=0.11 > CSS-0.67=0.06 > ACDC=0.03 > CIRCUS=-0.11 > EAP-IG=-0.11 > EP=-0.24\n"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T03:32:42.436013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/mvp_gate_checklist_d025.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_mvp-gate-checklist-d025_20260513T033216",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T03:32:42.436167+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/mvp_gate_checklist_d025.md`。四条件表格、必查清单、判定逻辑、IOI 参考数据均已包含，Arithmetic 结果列留空待填。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_mvp-gate-checklist-d025_20260513T033216"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/knowledge-mvp-gate-checklist-d025.md"
+}

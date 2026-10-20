@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan004-o1-ablation-s42",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:37:39.643Z",
+    "updated_at": "2026-05-15T04:37:52.767Z",
+    "hypothesis": "O(1) binary ISR (fast_isr_fol) vs O(N) full STA ablation: 100-step pilot showed binary ISR ≈ exec-only (all proved samples ISR=1). 500-step full run confirms O(1) is ineffective at scale — the LOO ablation (O(N)) is necessary for ISR to carry structural signal. Negative result strengthens paper's methodological contribution."
+  },
+  "timestamp": "2026-05-15T04:37:53.027727+00:00",
+  "trigger": "update_registry"
+}

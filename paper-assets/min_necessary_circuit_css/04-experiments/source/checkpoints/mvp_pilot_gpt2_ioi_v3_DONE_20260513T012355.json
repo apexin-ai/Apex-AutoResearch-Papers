@@ -1,0 +1,52 @@
+{
+  "exp_id": "mvp_pilot_gpt2_ioi_v3",
+  "project": "min_necessary_circuit_css",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:35:55.509Z",
+    "updated_at": "2026-05-13T01:23:55.169Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=5 python3 run_mvp.py",
+      "server": "cqa1-21977",
+      "gpu": "cuda:5 (RTX 4090D)",
+      "pid": "279210",
+      "log_path": "~/runs/min_necessary_circuit_css/mvp_pilot_gpt2_ioi_v3.log",
+      "submitted_at": "2026-05-12T17:36:44.722Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "auto-circuit IOI dataset (built-in)",
+      "data_count": 100,
+      "model_name": "GPT-2 Small",
+      "seed": 42,
+      "methods": "EAP-IG + Edge Pruning (mask_gradient) + ACDC",
+      "task": "IOI",
+      "K": 3,
+      "note": "v3: cache cleared + edge norm fix v2. HF_HUB_OFFLINE=1 for offline mode. tmux session: mvp_pilot_gpt2_ioi_v3. Phase A (EAP-IG) completed 32491 edges. Phase B (EP) in progress ~24 it/s.",
+      "wall_clock_seconds": 27582.6,
+      "gpu_hours": 7.66
+    },
+    "hypothesis": "CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)",
+    "notes": "D017 fix script ready at /root/min_necessary_circuit_css/analysis_fix_v3.py. K=2 preview: off-diagonal 7.1%. | FAILURE: Phase D crashed on HF offline config loading. fix_worker_id: worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903. Worker 正在修复并运行 analysis_fix_v3.py 获取 K=3 corrected results。",
+    "reproduce": {
+      "finished_at": "2026-05-13T01:16:26.730Z"
+    },
+    "failure_reason": "Phase D (Evaluation) crash: HF_HUB_OFFLINE=1 prevents TransformerLens AutoConfig.from_pretrained(\"gpt2-small\") from loading config. LocalEntryNotFoundError at run_mvp.py:84. Phase A-C completed successfully (EAP-IG 100 edges, EP 100 edges, ACDC 32491 edges, CSS circuit 165 edges, off-diagonal 99.9% but likely scope mismatch per D017).",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T01:16:27.300Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T01:16:28.079543+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-13T01:23:55.179954+00:00",
+  "trigger": "update_registry"
+}

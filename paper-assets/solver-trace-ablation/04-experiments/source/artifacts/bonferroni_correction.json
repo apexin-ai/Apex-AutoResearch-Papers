@@ -1,0 +1,150 @@
+{
+  "n_tests": 14,
+  "method": "Bonferroni",
+  "alpha_levels": [
+    0.05,
+    0.1
+  ],
+  "tests": [
+    {
+      "name": "Fisher exact: TS domination (matched 5+5)",
+      "original_p": 0.004,
+      "context": "ISR 5/5 TS-dominated vs Random 0/5; OR=inf, BF10=77",
+      "test_type": "Fisher exact",
+      "location": "experiments.tex:104,114; appendix.tex:774",
+      "bonferroni_p": 0.056,
+      "still_significant_005": false,
+      "still_significant_010": true
+    },
+    {
+      "name": "Mann-Whitney U: ISR* (matched 5+5)",
+      "original_p": 0.004,
+      "context": "U=25, r=1.0; ISR* comparison between matched ISR and Random cohorts",
+      "test_type": "Mann-Whitney U",
+      "location": "experiments.tex:114; appendix.tex:775",
+      "bonferroni_p": 0.056,
+      "still_significant_005": false,
+      "still_significant_010": true
+    },
+    {
+      "name": "Mann-Whitney U: TS rate (matched 5+5)",
+      "original_p": 0.004,
+      "context": "U=25; TS rate comparison between matched ISR and Random cohorts",
+      "test_type": "Mann-Whitney U",
+      "location": "appendix.tex:776",
+      "bonferroni_p": 0.056,
+      "still_significant_005": false,
+      "still_significant_010": true
+    },
+    {
+      "name": "Permutation: N-H rate (matched 5+5)",
+      "original_p": 0.917,
+      "context": "Δ=-3.6pp; genuine/non-hacking rate ISR 2.3% vs Random 5.9%",
+      "test_type": "Permutation",
+      "location": "experiments.tex:114; appendix.tex:777",
+      "bonferroni_p": 1.0,
+      "still_significant_005": false,
+      "still_significant_010": false
+    },
+    {
+      "name": "Fisher exact: N-H rate (5-seed pooled)",
+      "original_p": 1e-08,
+      "context": "ISR 22.6% vs Random 7.7%, OR=3.48 (uncorrected for PG/FN)",
+      "test_type": "Fisher exact",
+      "location": "appendix.tex:105",
+      "bonferroni_p": 1.4e-07,
+      "still_significant_005": true,
+      "still_significant_010": true
+    },
+    {
+      "name": "Fisher exact: N-H rate (3-seed, PG+FN corrected)",
+      "original_p": 0.182,
+      "context": "ISR 6.06% vs Random 9.5%, OR=0.61 (n.s.)",
+      "test_type": "Fisher exact",
+      "location": "appendix.tex:107,269",
+      "bonferroni_p": 1.0,
+      "still_significant_005": false,
+      "still_significant_010": false
+    },
+    {
+      "name": "Fisher exact: TS rate (5-seed pooled)",
+      "original_p": 4.82e-12,
+      "context": "ISR 54.3% vs Random 29.5%, OR=2.84",
+      "test_type": "Fisher exact",
+      "location": "appendix.tex:110",
+      "bonferroni_p": 6.748e-11,
+      "still_significant_005": true,
+      "still_significant_010": true
+    },
+    {
+      "name": "Fisher exact: TS rate (3-seed sensitivity)",
+      "original_p": 1.3e-39,
+      "context": "ISR 70.6% vs Random 13.7%, OR=15.05",
+      "test_type": "Fisher exact",
+      "location": "appendix.tex:112",
+      "bonferroni_p": 1.82e-38,
+      "still_significant_005": true,
+      "still_significant_010": true
+    },
+    {
+      "name": "Fisher exact: SFT vs Exec-only N-H rate",
+      "original_p": 0.001,
+      "context": "SFT 92.3% vs Exec-only 7.5%, OR=147 (p<0.001, using 0.001 as upper bound)",
+      "test_type": "Fisher exact",
+      "location": "experiments.tex:51; appendix.tex:115",
+      "bonferroni_p": 0.014,
+      "still_significant_005": true,
+      "still_significant_010": true
+    },
+    {
+      "name": "CMH: TS (seed-stratified)",
+      "original_p": 5.6e-16,
+      "context": "OR_CMH=2.46, 95% CI [1.85,3.27]; authors note CMH p-values are inflated due to within-seed dependence",
+      "test_type": "Cochran-Mantel-Haenszel",
+      "location": "appendix.tex:125",
+      "bonferroni_p": 7.840000000000001e-15,
+      "still_significant_005": true,
+      "still_significant_010": true
+    },
+    {
+      "name": "CMH: non-hacking (seed-stratified)",
+      "original_p": 4.5e-10,
+      "context": "OR_CMH=3.37, 95% CI [2.21,5.13]; authors note CMH p-values are inflated",
+      "test_type": "Cochran-Mantel-Haenszel",
+      "location": "appendix.tex:125",
+      "bonferroni_p": 6.3e-09,
+      "still_significant_005": true,
+      "still_significant_010": true
+    },
+    {
+      "name": "Seed-level permutation: TS (n=5 per group)",
+      "original_p": 0.28,
+      "context": "Seed as unit of observation; limited power (min achievable p=0.008)",
+      "test_type": "Permutation",
+      "location": "appendix.tex:127",
+      "bonferroni_p": 1.0,
+      "still_significant_005": false,
+      "still_significant_010": false
+    },
+    {
+      "name": "Seed-level permutation: N-H (n=5 per group)",
+      "original_p": 0.26,
+      "context": "Seed as unit of observation; limited power (min achievable p=0.008)",
+      "test_type": "Permutation",
+      "location": "appendix.tex:127",
+      "bonferroni_p": 1.0,
+      "still_significant_005": false,
+      "still_significant_010": false
+    },
+    {
+      "name": "Spearman: ISR vs NLI accuracy",
+      "original_p": 0.187,
+      "context": "ρ=-0.049, n.s.; confirms ISR uncorrelated with downstream task performance",
+      "test_type": "Spearman correlation",
+      "location": "appendix.tex:77",
+      "bonferroni_p": 1.0,
+      "still_significant_005": false,
+      "still_significant_010": false
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "exp_id": "sta-phase1-exec-sta",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T18:26:53.258Z",
+    "updated_at": "2026-05-13T19:30:52.087Z",
+    "spec": {
+      "hypothesis": "Execution+STA reward 在提升 prove rate 的同时维持/提升 ISR，抑制 reward hacking",
+      "parent": "sta-phase0-baseline",
+      "model_name": "Qwen3-4B",
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_500.jsonl",
+      "data_count": 500,
+      "data_source": "tasksource/folio",
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "seed": 42,
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml",
+      "hyperparams": {
+        "learning_rate": 1e-06,
+        "per_device_train_batch_size": 4,
+        "gradient_accumulation_steps": 2,
+        "effective_batch_size": 8,
+        "num_generations_K": 4,
+        "max_new_tokens": 512,
+        "max_steps": 100,
+        "warmup_steps": 10,
+        "bf16": true,
+        "optimizer": "AdamW",
+        "save_steps": 50,
+        "logging_steps": 5
+      },
+      "reward_formula": "r = α * prove_result + β * fast_isr. α=0.5, β=0.5. prove_result ∈ {0,1}. fast_isr ∈ {0.0, 1.0} via fast_isr_fol() (tautology check: 0 if conclusion provable without premises, 1 otherwise). No curriculum — fixed weights throughout.",
+      "solver_timeout_s": 5,
+      "eval_metrics": [
+        "prove_rate",
+        "mean_isr",
+        "per_step_reward",
+        "parse_rate",
+        "solver_execution_rate",
+        "fast_isr_distribution"
+      ],
+      "estimated_runtime_min": 25,
+      "output_dir": "/root/autodl-tmp/outputs/grpo_exec_sta",
+      "notes": "dry-run 验证通过: 14.6s/step, 无 OOM. fast_sta_reward() 用 O(1) 近似 ISR（2次solver调用）"
+    }
+  },
+  "timestamp": "2026-05-13T19:30:52.100564+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1e9b5b4ab2d4a769fa4",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code mvp acdc check",
+  "task_key": "worker_code_mvp-acdc-check_20260512T123510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-acdc-check_20260512T123510_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "f5f7c7b4f1bffde4a3e5aed4ee218d49cae54a1b00ab79f4fdf85a8c478c5d54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**进程状态：FAILED（已崩溃）**\n\n| 项目 | 详情 |\n|------|------|\n| GPU 5 | 完全空闲（0MiB, 0% util），无进程 |\n| `mvp_output.log` | 672 bytes，最后修改 20:16（服务器时间），只有 EAP-IG 阶段的输出 |\n| 结果文件 | 无 `mvp_results*.json` |\n\n**日志分析：**\n- EAP-IG 完成（4/4 batches, ~10s） ✅\n- 输出最后一行是 `` `torch_dtype` is deprecated! Use `dtype` instead! ``\n- 之后日志截断，无 Edge Pruning / ACDC 的任何输出\n- 进程在 EAP-IG 完成后、Edge Pruning 启动前静默崩溃（无 traceback 被捕获到日志）\n\n**前次运行（killed log）参考：** ACDC 曾跑到 23227/32491（~71.5%），在被 kill 前以 4.74 it/s 运行。\n\n**可能原因：** stderr 没有重定向到日志文件，实际错误（可能是 Edge Pruning 初始化时的 import error 或 CUDA 错误）丢失了。需要重新启动时将 stderr 也重定向（`2>&1`），或者先检查 `run_mvp.py` 中 Edge Pruning 阶段的代码逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-acdc-check.md"
+}

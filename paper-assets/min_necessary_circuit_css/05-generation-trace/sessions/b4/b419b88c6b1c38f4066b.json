@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "b419b88c6b1c38f4066b",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "diagnose mvp pilot gpt2 ioi v3",
+  "task_key": "worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903_result.json",
+    "occurrence": 1,
+    "bytes": 4176,
+    "sha256": "0667451c7d0185d400e5922a8343f878fc08d9514dc17afe3067a07ca342a740"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three tasks complete. Here's the final output:\n\n```json\n{\n  \"k3_off_diagonal_pct\": \"13.3%  95% CI: [1.7%, 40.5%]\",\n  \"k3_css_distribution\": {\"1/3\": 103, \"2/3\": 45, \"3/3\": 7},\n  \"phase_d_fix\": \"Monkeypatch AutoConfig.from_pretrained and AutoTokenizer.from_pretrained to redirect 'gpt2' -> '/root/autodl-tmp/gpt2-small', bypassing network dependency entirely\",\n  \"phase_d_result\": {\n    \"css_1.00 (7 edges)\":   {\"cpr\": 0.1095, \"cmd\": 0.911},\n    \"css_0.67 (52 edges)\":  {\"cpr\": 0.0634, \"cmd\": 0.9582},\n    \"method_acdc (14 edges)\": {\"cpr\": 0.0286, \"cmd\": 0.9937},\n    \"circus_core (15 edges)\": {\"cpr\": -0.1081, \"cmd\": 1.1337},\n    \"method_eap_ig (100 edges)\": {\"cpr\": -0.1092, \"cmd\": 1.1348},\n    \"stable_core (13 edges)\": {\"cpr\": -0.187, \"cmd\": 1.2143},\n    \"method_edge_pruning (100 edges)\": {\"cpr\": -0.2413, \"cmd\": 1.2699},\n    \"css_0.33 (155 edges)\": {\"cpr\": -0.4862, \"cmd\": 1.5205}\n  },\n  \"root_cause\": \"AutoDL blocks outgoing network by default. TransformerLens from_pretrained('gpt2-small') internally calls AutoConfig.from_pretrained('gpt2') and AutoTokenizer.from_pretrained('gpt2'), both requiring HuggingFace Hub access. With no network and no HF cache, both fail with LocalEntryNotFoundError/ConnectTimeoutError.\",\n  \"error_type\": \"infrastructure\",\n  \"fix_steps\": [\n    \"1. Monkeypatched AutoConfig.from_pretrained and AutoTokenizer.from_pretrained to redirect gpt2 aliases to /root/autodl-tmp/gpt2-small\",\n    \"2. Wrote standalone run_phase_d_only.py that loads cached Phase A-C results and runs only evaluation\",\n    \"3. Patched run_mvp.py with same monkeypatch for future full-pipeline runs\"\n  ],\n  \"can_auto_fix\": true\n}\n```\n\n**Key observations on Phase D evaluation**: All CPR values are near zero or negative, with css_1.00 (the 7 three-way consensus edges) performing best at CPR=0.1095. This is expected — the evaluation uses **node-level** zero ablation on **edge-level** circuits, creating a granularity mismatch. The edge-level circuits identify important connections, but zeroing out entire nodes (heads/MLPs) is far more destructive than necessary. This doesn't invalidate the 13.3% off-diagonal finding; it means the evaluation metric needs edge-level ablation to be meaningful."
+            }
+          ],
+          "metadata": {
+            "data": {
+              "k3_off_diagonal_pct": "13.3%  95% CI: [1.7%, 40.5%]",
+              "k3_css_distribution": {
+                "1/3": 103,
+                "2/3": 45,
+                "3/3": 7
+              },
+              "phase_d_fix": "Monkeypatch AutoConfig.from_pretrained and AutoTokenizer.from_pretrained to redirect 'gpt2' -> '/root/autodl-tmp/gpt2-small', bypassing network dependency entirely",
+              "phase_d_result": {
+                "css_1.00 (7 edges)": {
+                  "cpr": 0.1095,
+                  "cmd": 0.911
+                },
+                "css_0.67 (52 edges)": {
+                  "cpr": 0.0634,
+                  "cmd": 0.9582
+                },
+                "method_acdc (14 edges)": {
+                  "cpr": 0.0286,
+                  "cmd": 0.9937
+                },
+                "circus_core (15 edges)": {
+                  "cpr": -0.1081,
+                  "cmd": 1.1337
+                },
+                "method_eap_ig (100 edges)": {
+                  "cpr": -0.1092,
+                  "cmd": 1.1348
+                },
+                "stable_core (13 edges)": {
+                  "cpr": -0.187,
+                  "cmd": 1.2143
+                },
+                "method_edge_pruning (100 edges)": {
+                  "cpr": -0.2413,
+                  "cmd": 1.2699
+                },
+                "css_0.33 (155 edges)": {
+                  "cpr": -0.4862,
+                  "cmd": 1.5205
+                }
+              },
+              "root_cause": "AutoDL blocks outgoing network by default. TransformerLens from_pretrained('gpt2-small') internally calls AutoConfig.from_pretrained('gpt2') and AutoTokenizer.from_pretrained('gpt2'), both requiring HuggingFace Hub access. With no network and no HF cache, both fail with LocalEntryNotFoundError/ConnectTimeoutError.",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "1. Monkeypatched AutoConfig.from_pretrained and AutoTokenizer.from_pretrained to redirect gpt2 aliases to /root/autodl-tmp/gpt2-small",
+                "2. Wrote standalone run_phase_d_only.py that loads cached Phase A-C results and runs only evaluation",
+                "3. Patched run_mvp.py with same monkeypatch for future full-pipeline runs"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-pilot-gpt2-ioi-v3.md"
+}

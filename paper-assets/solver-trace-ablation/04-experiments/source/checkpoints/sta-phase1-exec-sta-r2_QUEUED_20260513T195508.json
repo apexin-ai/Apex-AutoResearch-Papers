@@ -1,0 +1,37 @@
+{
+  "exp_id": "sta-phase1-exec-sta-r2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:55:08.640Z",
+    "updated_at": "2026-05-13T19:55:08.640Z",
+    "spec": {
+      "hypothesis": "Execution+STA reward 在提升 prove rate 的同时维持/提升 ISR，抑制 reward hacking",
+      "parent": "sta-phase0-baseline",
+      "model_name": "Qwen3-4B",
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_500.jsonl",
+      "data_count": 500,
+      "data_source": "tasksource/folio",
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "seed": 42,
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\"",
+      "hyperparams": {
+        "learning_rate": 1e-06,
+        "per_device_train_batch_size": 4,
+        "gradient_accumulation_steps": 2,
+        "num_generations_K": 4,
+        "max_steps": 100,
+        "bf16": true
+      },
+      "reward_formula": "r = 0.5 * prove_result + 0.5 * fast_isr",
+      "retry_of": "sta-phase1-exec-sta",
+      "retry_reason": "argparse required=True bug fixed"
+    }
+  },
+  "timestamp": "2026-05-13T19:55:08.656863+00:00",
+  "trigger": "update_registry"
+}

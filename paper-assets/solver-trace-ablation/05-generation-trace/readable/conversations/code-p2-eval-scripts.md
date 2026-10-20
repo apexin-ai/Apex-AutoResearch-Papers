@@ -1,0 +1,1212 @@
+# code p2 eval scripts
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/chats/worker_code_p2-eval-scripts_20260513T222126.jsonl`
+- **Structured JSON:** [`85b4efb8c1714f5b825e.json`](../../sessions/85/85b4efb8c1714f5b825e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+41 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-13T22:24:21.785592+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-13T22:24:21.786014+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-13T22:24:21.786265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/scripts/phase0_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/scripts/phase0_baseline.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T22:24:21.786486+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -80 /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -80 /root/solver-trace-ablation/scripts/train_grpo.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T22:24:21.786883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 0: Base Model ISR Baseline.\\n\\nGenerate FOL formalizations from base Qwen3-4B on FOLIO problems,\\nthen compute ISR baselines using STA.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport re\\nimport statistics\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import sta_reward\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\ndef load_data(path: str) -> list[dict]:\\n    data = []\\n    with open(path, \\\"r\\\") as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef load_model(model_path: str):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        torch_dtype=\\\"auto\\\",\\n        device_map=\\\"auto\\\",\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\nde
+…[truncated 7137 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T22:24:21.787126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument s
+…[truncated 938 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T22:24:21.787297+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/src/sta/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/src/sta/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T22:24:21.787430+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T22:24:21.787558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nablation.py\\ncomponents.py\\nisr.py\\nreward.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T22:24:21.787685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"phase0_100.jsonl\\nproofwriter_fol_100.jsonl\\nproofwriter_fol_500.jsonl\\ntest_100.jsonl\\ntrain_500.jsonl\\ntrain_500_seed123.jsonl\\ntrain_500_seed42.jsonl\\ntrain_500_seed456.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T22:24:21.787936+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/sta/isr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/src/sta/isr.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T22:24:21.788139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ISR (Intensional Score Rate) computation.\\n\\nISR = (# necessary components) / (# total components).\\nHigh ISR means every part of the formalization contributes to the proof\\n(good formalization). Low ISR indicates redundant or vacuous components\\n(potential reward hacking).\\n\\nInput:  list of AblationResult from run_sta().\\nOutput: ISR score (float in [0, 1]).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nimport time\\nfrom dataclasses import dataclass\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver\\nfrom .ablation import AblationResult, run_sta\\n\\n\\ndef compute_isr(ablation_results: list[AblationResult]) -> float:\\n    \\\"\\\"\\\"Compute ISR for a single problem.\\n\\n    Returns 0.0 if no components (degenerate case).\\n    \\\"\\\"\\\"\\n    if not ablation_results:\\n        return 0.0\\n    necessary = sum(1 for r in ablation_results if r.is_necessary)\\n    return necessary / len(ablation_results)\\n\\n\\n@dataclass\\nclass ISRBatchStats:\\n    \\\"\\\"\\\"Aggregate ISR statistics over a batch of problems.\\\"\\\"\\\"\\n    mean_isr: float\\n    std_isr: float\\n    median_isr: float\\n    solver_success_rate: float  # fraction of problems where solver ran successfully\\n    avg_time_seconds: float\\n    n_problems: int\\n    n_solver_failures: int\\n\\n\\ndef compute_isr_batch(\\n    problems: list[dict],\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n) -> ISRBatchStats:\\n    \\\"\\\"\\\"Compute ISR over a batch of problems.\\n\\n    Each problem dict must have keys:\\n        - \\\"premises\\\": list[str]\\n        - \\\"conclusion\\\": str\\n\\n    Returns aggregate statistics.\\n    \\\"\\\"\\\"\\n    isr_scores: list[float] = []\\n    total_time = 0.0\\n    n_failures = 0\\n\\n    for prob in problems:\\n        premises = prob[\\\"premises\\\"]\\n        conclusion = prob[\\\"conclusion\\\"]\\n\\n        results
+…[truncated 2487 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T22:24:21.788295+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/sta/reward.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/src/sta/reward.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T22:24:21.788539+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"STA-based reward function for GRPO training.\\n\\nCombines two signals:\\n  1. Execution reward: did the solver prove the formalization? (0 or 1)\\n  2. STA reward: ISR — what fraction of components is necessary? (0 to 1)\\n\\nA good formalization scores high on both; a hacked one may score 1 on\\nexecution but low on STA (redundant/vacuous components).\\n\\nInput:  problem dict, formalization string, solver.\\nOutput: reward dict with execution_reward, sta_reward, combined_reward, details.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver\\nfrom .ablation import run_sta\\nfrom .isr import compute_isr, fast_isr_fol\\n\\n\\ndef _parse_formalization(formalization: str) -> tuple[list[str], str]:\\n    \\\"\\\"\\\"Extract premises and conclusion from a model-generated formalization.\\n\\n    Expected format (flexible):\\n        Premises:\\n        1. P(a)\\n        2. ∀x(P(x) → Q(x))\\n        Conclusion: Q(a)\\n\\n    Or a simpler format:\\n        P(a); ∀x(P(x) → Q(x)) |- Q(a)\\n\\n    Returns (premises, conclusion).\\n    \\\"\\\"\\\"\\n    # Try \\\"Premises: ... Conclusion: ...\\\" format\\n    m = re.search(r\\\"(?:Conclusion|Goal)\\\\s*:\\\\s*(.+)\\\", formalization, re.IGNORECASE)\\n    if m:\\n        conclusion = m.group(1).strip().rstrip(\\\".\\\")\\n        # Everything before \\\"Conclusion:\\\" is premises\\n        prem_text = formalization[:m.start()]\\n        # Remove \\\"Premises:\\\" header\\n        prem_text = re.sub(r\\\"(?:Premises|Assumptions)\\\\s*:\\\", \\\"\\\", prem_text, flags=re.IGNORECASE)\\n        # Split by numbered lines or semicolons\\n        raw_premises = re.split(r\\\"\\\\n\\\\s*\\\\d+[.)]\\\\s*|\\\\n\\\\s*[-•]\\\\s*|;\\\\s*\\\", prem_text)\\n        premises = [p.strip().rstrip(\\\".\\\") for p in raw_premises if p.strip()]\\n        return premises, conclusion\\n\\n    
+…[truncated 6041 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T22:24:21.788731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/sta/ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/src/sta/ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T22:24:21.788895+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -5 /root/solver-trace-ablation/data/train_500.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -5 /root/solver-trace-ablation/data/train_500.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T22:24:21.789091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"STA core ablation logic.\\n\\nFor each FOLComponent in a proof problem, ablation removes or neutralizes\\nthat component and re-runs the solver. A component is *necessary* iff the\\nproof breaks (proved → not proved) after its removal.\\n\\nInput:  premises, conclusion, solver.\\nOutput: list of AblationResult (one per component).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom dataclasses import dataclass\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver, SolverResult\\nfrom .components import FOLComponent, decompose_fol\\n\\n\\n@dataclass\\nclass AblationResult:\\n    \\\"\\\"\\\"Outcome of ablating a single component.\\\"\\\"\\\"\\n    component: FOLComponent\\n    original_proved: bool\\n    ablated_proved: bool\\n    is_necessary: bool          # original_proved and not ablated_proved\\n    solver_result: SolverResult  # solver result for the ablated problem\\n\\n\\ndef _ablate_premise(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int,\\n) -> SolverResult:\\n    \\\"\\\"\\\"Remove one premise and re-prove.\\\"\\\"\\\"\\n    ablated_premises = [p for i, p in enumerate(premises) if i != component.index]\\n    return solver.prove(ablated_premises, conclusion, timeout=timeout)\\n\\n\\ndef _ablate_conclusion_part(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int,\\n) -> SolverResult:\\n    \\\"\\\"\\\"Neutralize a conclusion sub-part.\\n\\n    Strategy per component type:\\n    - conclusion_quantifier: drop the quantifier (weaken the claim)\\n    - conclusion_antecedent: replace with T (True) — makes implication trivially\\n      equivalent to consequent, so if proof still works, antecedent was unnecessary\\n    - conclusion_consequent: replace with ⊤ — implication becomes trivially true,\\n      so proof should
+…[truncated 3485 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T22:24:21.789360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"folio_386\\\", \\\"context\\\": \\\"John will go to the cinema if and only if Jack goes to the cinema today.\\\\nJack will go to the cinema if and only if Iron Man is on and the weather is not bad today.\\\\nSome days in March have bad weather.\\\\nIron Man is on.\\\\nIt's March now.\\\", \\\"question\\\": \\\"John will go to the cinema.\\\", \\\"answer\\\": \\\"unknown\\\", \\\"fol_premises\\\": [\\\"(GoTo(john, theCinema) ∧ GoTo(john, today)) ↔ GoTo(jack, theCinema) ∧ GoTo(jack, today)\\\", \\\"(GoTo(john, theCinema) ∧ GoTo(john, today)) ↔ (On(ironman) ∧ ¬Bad(weather, today))\\\", \\\"∃x (Day(x) ∧ March(x) → ¬Bad(weather, x))\\\", \\\"On(ironman)\\\", \\\"Day(presentMoment) ∧ March(presentMoment)\\\"], \\\"fol_conclusion\\\": \\\"GoTo(john, theCinema) ∧ GoTo(john, today)\\\", \\\"depth\\\": 2}\\n{\\\"id\\\": \\\"folio_864\\\", \\\"context\\\": \\\"If people have a lot of music decorations in their rooms, they cannot pack and move out of their rooms very easily.\\\\nIf people have high ambitions and future career goals, then they can pack and move out of their rooms very easily.\\\\nIf people are big fans of pop bands and singers, then they have a lot of music decorations in their room.\\\\nAll young teenage girls who attend music festival frequently are big fans of pop bands and singers.\\\\nIf Sam has high ambitions and future career goals, then Sam is a big fan of pop bands and singers.\\\", \\\"question\\\": \\\"Sam is not a young teenage girl who attends music festival frequently\\\", \\\"answer\\\": \\\"true\\\", \\\"fol_premises\\\": [\\\"∀x (HaveIn(x, aLotOfMusicDecoration, room) → ¬MoveOutEasily(x))\\\", \\\"∀x (Ambitious(x) → MoveOutEasily(x))\\\", \\\"∀x (BigFanOfMusic(x) → MusicDecorations(x, room))\\\", \\\"∀x (AttendFrequently(x, musicFestival) ∧ YoungTeenageGirl(x) → BigFanOfPopBand(x) ∧ BigFanOfPopSinger(x))\\\", \\\"Ambitious(sam) → BBigFanOfPopBand(sam) ∧ BigFanOfPopSinger(sa
+…[truncated 3965 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-13T22:24:21.789555+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/sta/components.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/src/sta/components.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T22:24:21.789802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"FOL component decomposition for STA.\\n\\nBreaks a FOL proof problem (premises + conclusion) into individually\\nablatable semantic components: each premise, and sub-parts of the\\nconclusion (quantifier bindings, antecedent/consequent of implications).\\n\\nInput:  list of premise strings + conclusion string (ProofWriter-style FOL).\\nOutput: list of FOLComponent, each representing one ablatable unit.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nfrom dataclasses import dataclass\\n\\n\\n@dataclass\\nclass FOLComponent:\\n    \\\"\\\"\\\"A single ablatable unit in a FOL proof problem.\\\"\\\"\\\"\\n    type: str       # \\\"premise\\\" | \\\"conclusion_quantifier\\\" | \\\"conclusion_antecedent\\\" | \\\"conclusion_consequent\\\" | \\\"conclusion_whole\\\"\\n    content: str    # the original text of this component\\n    index: int      # position index (premises: 0..n-1; conclusion parts: n..)\\n\\n\\ndef _split_implication(formula: str) -> tuple[str, str] | None:\\n    \\\"\\\"\\\"Try to split 'A → B' at the top-level implication.\\n\\n    Returns (antecedent, consequent) or None if no top-level implication.\\n    Handles nested parentheses so we don't split inside sub-expressions.\\n    \\\"\\\"\\\"\\n    # Normalize arrow variants\\n    arrow_patterns = [\\\"→\\\", \\\"->\\\", \\\"=>\\\"]\\n    depth = 0\\n    for i, ch in enumerate(formula):\\n        if ch == \\\"(\\\":\\n            depth += 1\\n        elif ch == \\\")\\\":\\n            depth -= 1\\n        elif depth == 0:\\n            for arrow in arrow_patterns:\\n                if formula[i:i+len(arrow)] == arrow:\\n                    ante = formula[:i].strip()\\n                    cons = formula[i+len(arrow):].strip()\\n                    if ante and cons:\\n                        return ante, cons\\n    return None\\n\\n\\ndef _strip_outer_quantifier(formula: str) -> tuple[str, str] | None:\\n    \\\"\
+…[truncated 2421 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T22:24:21.789978+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/solvers/factory.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/src/solvers/factory.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T22:24:21.790142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Solver factory — returns the first available backend by priority.\\n\\nUsage:\\n    solver = get_solver()            # auto-detect\\n    solver = get_solver(\\\"z3\\\")        # prefer Z3\\n\\\"\\\"\\\"\\n\\nfrom .base import FOLSolver\\nfrom .prover9 import Prover9Solver\\nfrom .z3_solver import Z3Solver\\n\\n_REGISTRY: dict[str, type[FOLSolver]] = {\\n    \\\"prover9\\\": Prover9Solver,\\n    \\\"z3\\\": Z3Solver,\\n}\\n\\n# Default fallback order\\n_FALLBACK_ORDER = [\\\"prover9\\\", \\\"z3\\\"]\\n\\n\\ndef get_solver(preferred: str = \\\"prover9\\\") -> FOLSolver:\\n    \\\"\\\"\\\"Return an available solver, falling back through alternatives.\\n\\n    Args:\\n        preferred: Name of the preferred backend (\\\"prover9\\\" or \\\"z3\\\").\\n\\n    Returns:\\n        An instantiated FOLSolver.\\n\\n    Raises:\\n        RuntimeError: No solver backend is available.\\n    \\\"\\\"\\\"\\n    # Try preferred first\\n    order = [preferred] + [s for s in _FALLBACK_ORDER if s != preferred]\\n\\n    for name in order:\\n        cls = _REGISTRY.get(name)\\n        if cls is None:\\n            continue\\n        instance = cls()\\n        if instance.is_available():\\n            return instance\\n\\n    available = list(_REGISTRY.keys())\\n    raise RuntimeError(\\n        f\\\"No solver available. Tried: {order}. \\\"\\n        f\\\"Install prover9 (CLI) or z3-solver (pip).\\\"\\n    )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T22:24:21.790290+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T22:24:21.790422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\neval_sta.py\\ngt_isr_baseline.py\\nlaunch_phase1.sh\\nphase0_baseline.py\\nprepare_data.py\\ntrain_grpo.py\\nverify_xor.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T22:24:21.790542+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -1 /root/solver-trace-ablation/data/test_100.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -1 /root/solver-trace-ablation/data/test_100.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T22:24:21.790685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"folio_340\\\", \\\"context\\\": \\\"Frederick Monhoff was an architect, artist, and illustrator.\\\\nFrederick Monhoff was an American.\\\\nAn artist is good at physical or conceptual art.\\\\nAll Americans are American citizens.\\\", \\\"question\\\": \\\"No illustrator was an American citizen.\\\", \\\"answer\\\": \\\"false\\\", \\\"fol_premises\\\": [\\\"Architect(monhoff) ∧ Artist(monhoff) ∧ Illustrator(monhoff)\\\", \\\"American(monhoff)\\\", \\\"∀x (Artist(x) → GoodAt(x, physicalArt) ∨ GoodAt(x, conceptualArt))\\\", \\\"∀x (American(x) → AmericanCitizen(x))\\\"], \\\"fol_conclusion\\\": \\\"¬(∃x (Illustrator(x) ∧ AmericanCitizen(x)))\\\", \\\"depth\\\": 2}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T22:24:21.790917+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/scripts/eval_sta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T22:24:21.791044+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/train_grpo.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T22:24:21.791316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate a checkpoint with full STA (Solver Trace Ablation) metrics.\\n\\nLoads a fine-tuned model, generates FOL formalizations on a test set,\\nruns Prover9 + STA ablation to compute ISR, and outputs a JSON report.\\n\\nInputs:\\n  --model_path   Path to HF checkpoint directory\\n  --data_path    JSONL file (fields: id, context, question, answer, fol_premises, fol_conclusion)\\n  --output_path  Where to write the JSON report\\n\\nOutput JSON keys:\\n  summary.prove_rate, summary.mean_isr, summary.isr_std, summary.median_isr,\\n  summary.isr_pr_ratio (mean_isr / prove_rate), per-sample details in results[].\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport re\\nimport statistics\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import sta_reward\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\ndef load_data(path: str) -> list[dict]:\\n    data = []\\n    with open(path, \\\"r\\\") as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.l
+…[truncated 7370 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T22:24:21.791504+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"226:    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n227:    parser.add_argument(\\\"--data_path\\\", type=str, default=None)\\n228:    parser.add_argument(\\\"--reward_mode\\\", type=str, default=None,\\n230:    parser.add_argument(\\\"--output_dir\\\", type=str, default=None)\\n231:    parser.add_argument(\\\"--num_steps\\\", type=int, default=100)\\n232:    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=4)\\n233:    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=2)\\n234:    parser.add_argument(\\\"--num_generations\\\", type=int, default=4)\\n235:    parser.add_argument(\\\"--max_completion_length\\\", type=int, default=512)\\n236:    parser.add_argument(\\\"--learning_rate\\\", type=float, default=1e-6)\\n237:    parser.add_argument(\\\"--exec_weight\\\", type=float, default=0.5)\\n238:    parser.add_argument(\\\"--sta_weight\\\", type=float, default=0.5)\\n239:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n240:    parser.add_argument(\\\"--solver\\\", type=str, default=\\\"prover9\\\")\\n241:    parser.add_argument(\\\"--wandb_project\\\", type=str, default=None)\\n242:    parser.add_argument(\\\"--wandb_run\\\", type=str, default=None)\\n243:    parser.add_argument(\\\"--no_wandb\\\", action=\\\"store_true\\\")\\n244:    parser.add_argument(\\\"--config\\\", type=str, default=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-13T22:24:21.791757+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat > /root/solver-trace-ablation/scripts/eval_o1_vs_on.py << 'PYEOF'\n\"\"\"O(1) vs O(N) ISR comparison (plan_004).\n\nCompares fast_isr_fol (O(1), binary) vs compute_isr (O(N), continuous)\non the same model outputs to quantify information loss from the binary\napproximation. Documents why r4 (fast ISR as GRPO reward) underperforms.\n\nInputs:\n  --model_path   HF checkpoint directory\n  --data_path    JSONL test file\n  --output_path  JSON report output\n\nOutput JSON:\n  summary: correlation, agreement_rate, mean_abs_diff, n_disagreements, ...\n  results[]: per-sample fast_isr, full_isr, diff, component details\n\nDependencies: transformers, torch, scipy\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport re\nimport statistics\nimport sys\nimport time\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nfrom src.solvers.factory import get_solver\nfrom src.sta.ablation import run_sta\nfrom src.sta.isr import compute_isr, fast_isr_fol\nfrom src.sta.reward import _parse_formalization\n\n\nSYSTEM_PROMPT = (\n    \"You are a first-order logic (FOL) expert. \"\n    \"Given natural language premises and a conclusion, formalize them into FOL.\\n\\n\"\n    \"Output format:\\n\"\n    \"Premises:\\n\"\n    \"1. &lt;FOL formula>\\n\"\n    \"2. &lt;FOL formula>\\n\"\n    \"...\\n\"\n    \"Conclusion: &lt;FOL formula>\\n\\n\"\n    \"Use standard FOL notation with predicate-argument syntax: \"\n    \"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\"\n)\n\nUSER_TEMPLATE = (\n    \"Formalize the following in first-order logic.\\n\\n\"\n    \"Context:\\n{context}\\n\\n\"\n    \"Statement to formalize:\\n{question}\"\n)\n\n\ndef load_data(path: str) -> list[dict]:\n    data = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                data.append(json.loads(line))\n    return data\n\n\ndef load_model(model_path: str):\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path, torch_dtype=\"auto\", device_map=\"auto\", trust_remote_code=True\n    )\n    model.eval()\n    return model, tokenizer\n\n\ndef generate_formalization(\n    model, tokenizer, context: str, question: str, max_new_tokens: int = 512\n) -> str:\n    import torch\n\n    user_msg = USER_TEMPLATE.format(context=context, question=question)\n    messages = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    text = tokenizer.apply_chat_template(\n        messages, tokenize=False, add_generation_prompt=True, enable_thinking=False\n    )\n    inputs = tokenizer([text], return_tensors=\"pt\").to(model.device)\n\n    with torch.no_grad():\n        outputs = model.generate(\n            **inputs,\n            max_new_tokens=max_new_tokens,\n            do_sample=False,\n            temperature=1.0,\n            pad_token_id=tokenizer.pad_token_id,\n        )\n    generated = outputs[0][inputs[\"input_ids\"].shape[1]:]\n    result = tokenizer.decode(generated, skip_special_tokens=True).strip()\n    result = re.sub(r\"&lt;think>.*?&lt;/think>\\s*\", \"\", result, flags=re.DOTALL).strip()\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"O(1) vs O(N) ISR comparison (plan_004)\"\n    )\n    parser.add_argument(\"--model_path\", type=str, required=True)\n    parser.add_argument(\"--data_path\", type=str, required=True)\n    parser.add_argument(\"--output_path\", type=str, required=True)\n    parser.add_argument(\"--solver\", type=str, default=\"prover9\")\n    parser.add_argument(\"--max_new_tokens\", type=int, default=512)\n    parser.add_argument(\"--timeout\", type=int, default=5)\n    args = parser.parse_args()\n\n    data = load_data(args.data_path)\n    print(f\"Loaded {len(data)} problems from {args.data_path}\")\n\n    print(f\"Loading model from {args.model_path}...\")\n    model, tokenizer = load_model(args.model_path)\n    print(\"Model loaded.\")\n\n    solver = get_solver(args.solver)\n    print(f\"Solver: {type(solver).__name__}\")\n\n    results = []\n    fast_isrs = []\n    full_isrs = []\n    t_start = time.time()\n\n    for i, problem in enumerate(data):\n        context = problem.get(\"context\", \"\")\n        question = problem.get(\"question\", \"\")\n\n        print(f\"[{i+1}/{len(data)}] id={problem.get('id', i)} ...\", end=\" \", flush=True)\n\n        formalization = generate_formalization(\n            model, tokenizer, context, question, args.max_new_tokens\n        )\n\n        try:\n            premises, conclusion = _parse_formalization(formalization)\n        except Exception as e:\n            print(f\"PARSE_ERR: {e}\")\n            results.append({\n                \"index\": i, \"id\": problem.get(\"id\", \"\"),\n                \"error\": f\"parse: {e}\", \"fast_isr\": None, \"full_isr\": None,\n            })\n            continue\n\n        if not conclusion:\n            print(\"EMPTY_CONCL\")\n            results.append({\n                \"index\": i, \"id\": problem.get(\"id\", \"\"),\n                \"error\": \"empty conclusion\", \"fast_isr\": None, \"full_isr\": None,\n            })\n            continue\n\n        # O(1) fast ISR\n        fast_result = fast_isr_fol(premises, conclusion, solver, timeout=args.timeout)\n\n        # O(N) full ISR — only if original proved\n        if fast_result[\"original_proved\"]:\n            original_proof = solver.prove(premises, conclusion, timeout=args.timeout)\n            ablation_results = run_sta(\n                premises, conclusion, solver, timeout=args.timeout,\n                original_result=original_proof,\n            )\n            full_isr = compute_isr(ablation_results)\n            n_components = len(ablation_results)\n            n_necessary = sum(1 for r in ablation_results if r.is_necessary)\n            component_details = [\n                {\n                    \"type\": r.component.type,\n                    \"content\": r.component.content,\n                    \"is_necessary\": r.is_necessary,\n                }\n                for r in ablation_results\n            ]\n        else:\n            full_isr = 0.0\n            n_components = 0\n            n_necessary = 0\n            component_details = []\n\n        fast_v = fast_result[\"fast_isr\"]\n        diff = fast_v - full_isr\n        fast_isrs.append(fast_v)\n        full_isrs.append(full_isr)\n\n        record = {\n            \"index\": i,\n            \"id\": problem.get(\"id\", \"\"),\n            \"formalization\": formalization,\n            \"premises\": premises,\n            \"conclusion\": conclusion,\n            \"original_proved\": fast_result[\"original_proved\"],\n            \"conclusion_tautology\": fast_result[\"conclusion_tautology\"],\n            \"fast_isr\": fast_v,\n            \"full_isr\": round(full_isr, 4),\n            \"diff\": round(diff, 4),\n            \"agree\": (fast_v > 0.5) == (full_isr > 0.5),\n            \"n_components\": n_components,\n            \"n_necessary\": n_necessary,\n            \"components\": component_details,\n        }\n        results.append(record)\n\n        tag = \"AGREE\" if record[\"agree\"] else \"DISAGREE\"\n        print(f\"fast={fast_v:.1f} full={full_isr:.3f} diff={diff:+.3f} {tag}\")\n\n    elapsed = time.time() - t_start\n\n    # Aggregate statistics\n    valid = [(f, u) for f, u in zip(fast_isrs, full_isrs)]\n    n_valid = len(valid)\n\n    if n_valid > 1:\n        try:\n            from scipy.stats import pearsonr, spearmanr\n            pr, p_pval = pearsonr(fast_isrs, full_isrs)\n            sr, s_pval = spearmanr(fast_isrs, full_isrs)\n        except ImportError:\n            pr = s_pval = sr = p_pval = None\n    else:\n        pr = sr = p_pval = s_pval = None\n\n    n_agree = sum(1 for r in results if r.get(\"agree\"))\n    n_disagree = sum(1 for r in results if r.get(\"agree\") is False)\n    mean_abs_diff = statistics.mean(abs(d) for d in (r[\"diff\"] for r in results if r.get(\"diff\") is not None)) if n_valid else 0.0\n\n    # Breakdown: where does fast_isr lose information?\n    # Case 1: fast=1, full<1 → binary hides partial redundancy\n    # Case 2: fast=0, full>0 → false negative (shouldn't happen logically)\n    # Case 3: fast=1, full=1 → perfect agreement\n    # Case 4: fast=0, full=0 → perfect agreement\n    case_counts = {\"fast1_full1\": 0, \"fast1_full_lt1\": 0, \"fast0_full0\": 0, \"fast0_full_gt0\": 0}\n    for r in results:\n        if r.get(\"fast_isr\") is None:\n            continue\n        fi, ui = r[\"fast_isr\"], r[\"full_isr\"]\n        if fi == 1.0 and ui == 1.0:\n            case_counts[\"fast1_full1\"] += 1\n        elif fi == 1.0 and ui < 1.0:\n            case_counts[\"fast1_full_lt1\"] += 1\n        elif fi == 0.0 and ui == 0.0:\n            case_counts[\"fast0_full0\"] += 1\n        elif fi == 0.0 and ui > 0.0:\n            case_counts[\"fast0_full_gt0\"] += 1\n\n    summary = {\n        \"n_problems\": len(data),\n        \"n_valid\": n_valid,\n        \"n_parse_errors\": len(data) - n_valid,\n        \"pearson_r\": round(pr, 4) if pr is not None else None,\n        \"pearson_pval\": round(p_pval, 6) if p_pval is not None else None,\n        \"spearman_r\": round(sr, 4) if sr is not None else None,\n        \"spearman_pval\": round(s_pval, 6) if s_pval is not None else None,\n        \"agreement_rate\": round(n_agree / n_valid, 4) if n_valid else 0.0,\n        \"n_agree\": n_agree,\n        \"n_disagree\": n_disagree,\n        \"mean_abs_diff\": round(mean_abs_diff, 4),\n        \"mean_fast_isr\": round(statistics.mean(fast_isrs), 4) if fast_isrs else 0.0,\n        \"mean_full_isr\": round(statistics.mean(full_isrs), 4) if full_isrs else 0.0,\n        \"case_breakdown\": case_counts,\n        \"elapsed_seconds\": round(elapsed, 1),\n        \"model_path\": args.model_path,\n    }\n\n    output = {\"summary\": summary, \"results\": results}\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(args.output_path, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {args.output_path}\")\n    print(f\"  Valid samples:    {n_valid}/{len(data)}\")\n    print(f\"  Pearson r:        {pr}\")\n    print(f\"  Spearman rho:     {sr}\")\n    print(f\"  Agreement rate:   {n_agree}/{n_valid} ({summary['agreement_rate']:.1%})\")\n    print(f\"  Mean |diff|:      {mean_abs_diff:.4f}\")\n    print(f\"  Mean fast ISR:    {summary['mean_fast_isr']:.4f}\")\n    print(f\"  Mean full ISR:    {summary['mean_full_isr']:.4f}\")\n    print(f\"  Case breakdown:   {case_counts}\")\n    print(f\"  Time: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat > /root/solver-trace-ablation/scripts/eval_o1_vs_on.py << 'PYEOF'\n\"\"\"O(1) vs O(N) ISR comparison (plan_004).\n\nCompares fast_isr_fol (O(1), binary) vs compute_isr (O(N), continuous)\non the same model outputs to quantify information loss from the binary\napproximation. Documents why r4 (fast ISR as GRPO reward) underperforms.\n\nInputs:\n  --model_path   HF checkpoint directory\n  --data_path    JSONL test file\n  --output_path  JSON report output\n\nOutput JSON:\n  summary: correlation, agreement_rate, mean_abs_diff, n_disagreements, ...\n  results[]: per-sample fast_isr, full_isr, diff, component details\n\nDependencies: transformers, torch, scipy\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport re\nimport statistics\nimport sys\nimport time\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nfrom src.solvers.factory import get_solver\nfrom src.sta.ablation import run_sta\nfrom src.sta.isr import compute_isr, fast_isr_fol\nfrom src.sta.reward import _parse_formalization\n\n\nSYSTEM_PROMPT = (\n    \"You are a first-order logic (FOL) expert. \"\n    \"Given natural language premises and a conclusion, formalize them into FOL.\\n\\n\"\n    \"Output format:\\n\"\n    \"Premises:\\n\"\n    \"1. &lt;FOL formula>\\n\"\n    \"2. &lt;FOL formula>\\n\"\n    \"...\\n\"\n    \"Conclusion: &lt;FOL formula>\\n\\n\"\n    \"Use standard FOL notation with predicate-argument syntax: \"\n    \"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\"\n)\n\nUSER_TEMPLATE = (\n    \"Formalize the following in first-order logic.\\n\\n\"\n    \"Context:\\n{context}\\n\\n\"\n    \"Statement to formalize:\\n{question}\"\n)\n\n\ndef load_data(path: str) -> list[dict]:\n    data = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                data.append(json.loads(line))\n    return data\n\n\ndef load_model(model_path: str):\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path, torch_dtype=\"auto\", device_map=\"auto\", trust_remote_code=True\n    )\n    model.eval()\n    return model, tokenizer\n\n\ndef generate_formalization(\n    model, tokenizer, context: str, question: str, max_new_tokens: int = 512\n) -> str:\n    import torch\n\n    user_msg = USER_TEMPLATE.format(context=context, question=question)\n    messages = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    text = tokenizer.apply_chat_template(\n        messages, tokenize=False, add_generation_prompt=True, enable_thinking=False\n    )\n    inputs = tokenizer([text], return_tensors=\"pt\").to(model.device)\n\n    with torch.no_grad():\n        outputs = model.generate(\n            **inputs,\n            max_new_tokens=max_new_tokens,\n            do_sample=False,\n            temperature=1.0,\n            pad_token_id=tokenizer.pad_token_id,\n        )\n    generated = outputs[0][inputs[\"input_ids\"].shape[1]:]\n    result = tokenizer.decode(generated, skip_special_tokens=True).strip()\n    result = re.sub(r\"&lt;think>.*?&lt;/think>\\s*\", \"\", result, flags=re.DOTALL).strip()\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"O(1) vs O(N) ISR comparison (plan_004)\"\n    )\n    parser.add_argument(\"--model_path\", type=str, required=True)\n    parser.add_argument(\"--data_path\", type=str, required=True)\n    parser.add_argument(\"--output_path\", type=str, required=True)\n    parser.add_argument(\"--solver\", type=str, default=\"prover9\")\n    parser.add_argument(\"--max_new_tokens\", type=int, default=512)\n    parser.add_argument(\"--timeout\", type=int, default=5)\n    args = parser.parse_args()\n\n    data = load_data(args.data_path)\n    print(f\"Loaded {len(data)} problems from {args.data_path}\")\n\n    print(f\"Loading model from {args.model_path}...\")\n    model, tokenizer = load_model(args.model_path)\n    print(\"Model loaded.\")\n\n    solver = get_solver(args.solver)\n    print(f\"Solver: {type(solver).__name__}\")\n\n    results = []\n    fast_isrs = []\n    full_isrs = []\n    t_start = time.time()\n\n    for i, problem in enumerate(data):\n        context = problem.get(\"context\", \"\")\n        question = problem.get(\"question\", \"\")\n\n        print(f\"[{i+1}/{len(data)}] id={problem.get('id', i)} ...\", end=\" \", flush=True)\n\n        formalization = generate_formalization(\n            model, tokenizer, context, question, args.max_new_tokens\n        )\n\n        try:\n            premises, conclusion = _parse_formalization(formalization)\n        except Exception as e:\n            print(f\"PARSE_ERR: {e}\")\n            results.append({\n                \"index\": i, \"id\": problem.get(\"id\", \"\"),\n                \"error\": f\"parse: {e}\", \"fast_isr\": None, \"full_isr\": None,\n            })\n            continue\n\n        if not conclusion:\n            print(\"EMPTY_CONCL\")\n            results.append({\n                \"index\": i, \"id\": problem.get(\"id\", \"\"),\n                \"error\": \"empty conclusion\", \"fast_isr\": None, \"full_isr\": None,\n            })\n            continue\n\n        # O(1) fast ISR\n        fast_result = fast_isr_fol(premises, conclusion, solver, timeout=args.timeout)\n\n        # O(N) full ISR — only if original proved\n        if fast_result[\"original_proved\"]:\n            original_proof = solver.prove(premises, conclusion, timeout=args.timeout)\n            ablation_results = run_sta(\n                premises, conclusion, solver, timeout=args.timeout,\n                original_result=original_proof,\n            )\n            full_isr = compute_isr(ablation_results)\n            n_components = len(ablation_results)\n            n_necessary = sum(1 for r in ablation_results if r.is_necessary)\n            component_details = [\n                {\n                    \"type\": r.component.type,\n                    \"content\": r.component.content,\n                    \"is_necessary\": r.is_necessary,\n                }\n                for r in ablation_results\n            ]\n        else:\n            full_isr = 0.0\n            n_components = 0\n            n_necessary = 0\n            component_details = []\n\n        fast_v = fast_result[\"fast_isr\"]\n        diff = fast_v - full_isr\n        fast_isrs.append(fast_v)\n        full_isrs.append(full_isr)\n\n        record = {\n            \"index\": i,\n            \"id\": problem.get(\"id\", \"\"),\n            \"formalization\": formalization,\n            \"premises\": premises,\n            \"conclusion\": conclusion,\n            \"original_proved\": fast_result[\"original_proved\"],\n            \"conclusion_tautology\": fast_result[\"conclusion_tautology\"],\n            \"fast_isr\": fast_v,\n            \"full_isr\": round(full_isr, 4),\n            \"diff\": round(diff, 4),\n            \"agree\": (fast_v > 0.5) == (full_isr > 0.5),\n            \"n_components\": n_components,\n            \"n_necessary\": n_necessary,\n            \"components\": component_details,\n        }\n        results.append(record)\n\n        tag = \"AGREE\" if record[\"agree\"] else \"DISAGREE\"\n        print(f\"fast={fast_v:.1f} full={full_isr:.3f} diff={diff:+.3f} {tag}\")\n\n    elapsed = time.time() - t_start\n\n    # Aggregate statistics\n    valid = [(f, u) for f, u in zip(fast_isrs, full_isrs)]\n    n_valid = len(valid)\n\n    if n_valid > 1:\n        try:\n            from scipy.stats import pearsonr, spearmanr\n            pr, p_pval = pearsonr(fast_isrs, full_isrs)\n            sr, s_pval = spearmanr(fast_isrs, full_isrs)\n        except ImportError:\n            pr = s_pval = sr = p_pval = None\n    else:\n        pr = sr = p_pval = s_pval = None\n\n    n_agree = sum(1 for r in results if r.get(\"agree\"))\n    n_disagree = sum(1 for r in results if r.get(\"agree\") is False)\n    mean_abs_diff = statistics.mean(abs(d) for d in (r[\"diff\"] for r in results if r.get(\"diff\") is not None)) if n_valid else 0.0\n\n    # Breakdown: where does fast_isr lose information?\n    # Case 1: fast=1, full<1 → binary hides partial redundancy\n    # Case 2: fast=0, full>0 → false negative (shouldn't happen logically)\n    # Case 3: fast=1, full=1 → perfect agreement\n    # Case 4: fast=0, full=0 → perfect agreement\n    case_counts = {\"fast1_full1\": 0, \"fast1_full_lt1\": 0, \"fast0_full0\": 0, \"fast0_full_gt0\": 0}\n    for r in results:\n        if r.get(\"fast_isr\") is None:\n            continue\n        fi, ui = r[\"fast_isr\"], r[\"full_isr\"]\n        if fi == 1.0 and ui == 1.0:\n            case_counts[\"fast1_full1\"] += 1\n        elif fi == 1.0 and ui < 1.0:\n            case_counts[\"fast1_full_lt1\"] += 1\n        elif fi == 0.0 and ui == 0.0:\n            case_counts[\"fast0_full0\"] += 1\n        elif fi == 0.0 and ui > 0.0:\n            case_counts[\"fast0_full_gt0\"] += 1\n\n    summary = {\n        \"n_problems\": len(data),\n        \"n_valid\": n_valid,\n        \"n_parse_errors\": len(data) - n_valid,\n        \"pearson_r\": round(pr, 4) if pr is not None else None,\n        \"pearson_pval\": round(p_pval, 6) if p_pval is not None else None,\n        \"spearman_r\": round(sr, 4) if sr is not None else None,\n        \"spearman_pval\": round(s_pval, 6) if s_pval is not None else None,\n        \"agreement_rate\": round(n_agree / n_valid, 4) if n_valid else 0.0,\n        \"n_agree\": n_agree,\n        \"n_disagree\": n_disagree,\n        \"mean_abs_diff\": round(mean_abs_diff, 4),\n        \"mean_fast_isr\": round(statistics.mean(fast_isrs), 4) if fast_isrs else 0.0,\n        \"mean_full_isr\": round(statistics.mean(full_isrs), 4) if full_isrs else 0.0,\n        \"case_breakdown\": case_counts,\n        \"elapsed_seconds\": round(elapsed, 1),\n        \"model_path\": args.model_path,\n    }\n\n    output = {\"summary\": summary, \"results\": results}\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(args.output_path, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {args.output_path}\")\n    print(f\"  Valid samples:    {n_valid}/{len(data)}\")\n    print(f\"  Pearson r:        {pr}\")\n    print(f\"  Spearman rho:     {sr}\")\n    print(f\"  Agreement rate:   {n_agree}/{n_valid} ({summary['agreement_rate']:.1%})\")\n    print(f\"  Mean |diff|:      {mean_abs_diff:.4f}\")\n    print(f\"  Mean fast ISR:    {summary['mean_fast_isr']:.4f}\")\n    print(f\"  Mean full ISR:    {summary['mean_full_isr']:.4f}\")\n    print(f\"  Case breakdown:   {case_counts}\")\n    print(f\"  Time: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T22:24:21.792027+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T22:24:21.792190+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat > /root/solver-trace-ablation/scripts/train_sft.py << 'PYEOF'\n\"\"\"SFT baseline training on FOLIO NL→FOL (plan_009).\n\nSupervised fine-tuning: input = NL premises + conclusion,\noutput = FOL formalization. Uses trl.SFTTrainer.\n\nInputs:\n  --model_path   Base model (e.g. Qwen3-4B)\n  --data_path    FOLIO JSONL with fol_premises/fol_conclusion fields\n  --output_dir   Checkpoint output directory\n  --max_steps    Training steps (default 200)\n  --seed         Random seed\n\nData format: each JSONL line must have:\n  context, question, fol_premises (list[str]), fol_conclusion (str)\n\nDependencies: transformers, trl, datasets, torch\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\nSYSTEM_PROMPT = (\n    \"You are a first-order logic (FOL) expert. \"\n    \"Given natural language premises and a conclusion, formalize them into FOL.\\n\\n\"\n    \"Output format:\\n\"\n    \"Premises:\\n\"\n    \"1. &lt;FOL formula>\\n\"\n    \"2. &lt;FOL formula>\\n\"\n    \"...\\n\"\n    \"Conclusion: &lt;FOL formula>\\n\\n\"\n    \"Use standard FOL notation with predicate-argument syntax: \"\n    \"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\"\n)\n\nUSER_TEMPLATE = (\n    \"Formalize the following in first-order logic.\\n\\n\"\n    \"Context:\\n{context}\\n\\n\"\n    \"Statement to formalize:\\n{question}\"\n)\n\n\ndef format_fol_output(fol_premises: list[str], fol_conclusion: str) -> str:\n    \"\"\"Format FOL premises + conclusion as the target output string.\"\"\"\n    lines = [\"Premises:\"]\n    for i, p in enumerate(fol_premises, 1):\n        lines.append(f\"{i}. {p}\")\n    lines.append(f\"Conclusion: {fol_conclusion}\")\n    return \"\\n\".join(lines)\n\n\ndef load_and_format_data(data_path: str) -> list[dict]:\n    \"\"\"Load JSONL and convert to chat-format training examples.\"\"\"\n    examples = []\n    skipped = 0\n    with open(data_path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            item = json.loads(line)\n\n            fol_premises = item.get(\"fol_premises\")\n            fol_conclusion = item.get(\"fol_conclusion\")\n            if not fol_premises or not fol_conclusion:\n                skipped += 1\n                continue\n\n            context = item.get(\"context\", \"\")\n            question = item.get(\"question\", \"\")\n            user_msg = USER_TEMPLATE.format(context=context, question=question)\n            assistant_msg = format_fol_output(fol_premises, fol_conclusion)\n\n            examples.append({\n                \"messages\": [\n                    {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n                    {\"role\": \"user\", \"content\": user_msg},\n                    {\"role\": \"assistant\", \"content\": assistant_msg},\n                ]\n            })\n\n    logger.info(f\"Loaded {len(examples)} training examples, skipped {skipped}\")\n    return examples\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"SFT baseline on FOLIO NL→FOL (plan_009)\")\n    parser.add_argument(\"--model_path\", type=str, required=True,\n                        help=\"Base model path (e.g. /root/autodl-tmp/models/Qwen3-4B)\")\n    parser.add_argument(\"--data_path\", type=str, required=True,\n                        help=\"FOLIO JSONL training data\")\n    parser.add_argument(\"--output_dir\", type=str, required=True,\n                        help=\"Checkpoint output directory\")\n    parser.add_argument(\"--max_steps\", type=int, default=200)\n    parser.add_argument(\"--num_train_epochs\", type=int, default=None,\n                        help=\"If set, overrides max_steps\")\n    parser.add_argument(\"--per_device_batch_size\", type=int, default=4)\n    parser.add_argument(\"--gradient_accumulation_steps\", type=int, default=2)\n    parser.add_argument(\"--learning_rate\", type=float, default=2e-5)\n    parser.add_argument(\"--max_seq_length\", type=int, default=1024)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--warmup_ratio\", type=float, default=0.1)\n    parser.add_argument(\"--logging_steps\", type=int, default=10)\n    parser.add_argument(\"--save_steps\", type=int, default=50)\n    parser.add_argument(\"--wandb_project\", type=str, default=None)\n    parser.add_argument(\"--wandb_run\", type=str, default=None)\n    parser.add_argument(\"--no_wandb\", action=\"store_true\")\n    parser.add_argument(\"--bf16\", action=\"store_true\", default=True)\n    args = parser.parse_args()\n\n    # W&B setup\n    if args.no_wandb:\n        os.environ[\"WANDB_DISABLED\"] = \"true\"\n    else:\n        if args.wandb_project:\n            os.environ[\"WANDB_PROJECT\"] = args.wandb_project\n        if args.wandb_run:\n            os.environ[\"WANDB_NAME\"] = args.wandb_run\n\n    import torch\n    from datasets import Dataset\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n    from trl import SFTConfig, SFTTrainer\n\n    logger.info(f\"Loading data from {args.data_path}...\")\n    examples = load_and_format_data(args.data_path)\n    dataset = Dataset.from_list(examples)\n    logger.info(f\"Dataset: {len(dataset)} examples\")\n\n    logger.info(f\"Loading model from {args.model_path}...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16 if args.bf16 else \"auto\",\n        device_map=\"auto\",\n        trust_remote_code=True,\n    )\n\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    training_args = SFTConfig(\n        output_dir=args.output_dir,\n        max_steps=args.max_steps if args.num_train_epochs is None else -1,\n        num_train_epochs=args.num_train_epochs if args.num_train_epochs else 1,\n        per_device_train_batch_size=args.per_device_batch_size,\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\n        learning_rate=args.learning_rate,\n        warmup_ratio=args.warmup_ratio,\n        max_seq_length=args.max_seq_length,\n        bf16=args.bf16,\n        logging_steps=args.logging_steps,\n        save_steps=args.save_steps,\n        save_total_limit=3,\n        seed=args.seed,\n        report_to=\"wandb\" if not args.no_wandb else \"none\",\n        gradient_checkpointing=True,\n        gradient_checkpointing_kwargs={\"use_reentrant\": False},\n        remove_unused_columns=False,\n    )\n\n    trainer = SFTTrainer(\n        model=model,\n        args=training_args,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n    )\n\n    logger.info(\"Starting SFT training...\")\n    trainer.train()\n\n    logger.info(f\"Saving final model to {args.output_dir}...\")\n    trainer.save_model(args.output_dir)\n    tokenizer.save_pretrained(args.output_dir)\n    logger.info(\"Done.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat > /root/solver-trace-ablation/scripts/train_sft.py << 'PYEOF'\n\"\"\"SFT baseline training on FOLIO NL→FOL (plan_009).\n\nSupervised fine-tuning: input = NL premises + conclusion,\noutput = FOL formalization. Uses trl.SFTTrainer.\n\nInputs:\n  --model_path   Base model (e.g. Qwen3-4B)\n  --data_path    FOLIO JSONL with fol_premises/fol_conclusion fields\n  --output_dir   Checkpoint output directory\n  --max_steps    Training steps (default 200)\n  --seed         Random seed\n\nData format: each JSONL line must have:\n  context, question, fol_premises (list[str]), fol_conclusion (str)\n\nDependencies: transformers, trl, datasets, torch\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\nSYSTEM_PROMPT = (\n    \"You are a first-order logic (FOL) expert. \"\n    \"Given natural language premises and a conclusion, formalize them into FOL.\\n\\n\"\n    \"Output format:\\n\"\n    \"Premises:\\n\"\n    \"1. &lt;FOL formula>\\n\"\n    \"2. &lt;FOL formula>\\n\"\n    \"...\\n\"\n    \"Conclusion: &lt;FOL formula>\\n\\n\"\n    \"Use standard FOL notation with predicate-argument syntax: \"\n    \"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\"\n)\n\nUSER_TEMPLATE = (\n    \"Formalize the following in first-order logic.\\n\\n\"\n    \"Context:\\n{context}\\n\\n\"\n    \"Statement to formalize:\\n{question}\"\n)\n\n\ndef format_fol_output(fol_premises: list[str], fol_conclusion: str) -> str:\n    \"\"\"Format FOL premises + conclusion as the target output string.\"\"\"\n    lines = [\"Premises:\"]\n    for i, p in enumerate(fol_premises, 1):\n        lines.append(f\"{i}. {p}\")\n    lines.append(f\"Conclusion: {fol_conclusion}\")\n    return \"\\n\".join(lines)\n\n\ndef load_and_format_data(data_path: str) -> list[dict]:\n    \"\"\"Load JSONL and convert to chat-format training examples.\"\"\"\n    examples = []\n    skipped = 0\n    with open(data_path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            item = json.loads(line)\n\n            fol_premises = item.get(\"fol_premises\")\n            fol_conclusion = item.get(\"fol_conclusion\")\n            if not fol_premises or not fol_conclusion:\n                skipped += 1\n                continue\n\n            context = item.get(\"context\", \"\")\n            question = item.get(\"question\", \"\")\n            user_msg = USER_TEMPLATE.format(context=context, question=question)\n            assistant_msg = format_fol_output(fol_premises, fol_conclusion)\n\n            examples.append({\n                \"messages\": [\n                    {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n                    {\"role\": \"user\", \"content\": user_msg},\n                    {\"role\": \"assistant\", \"content\": assistant_msg},\n                ]\n            })\n\n    logger.info(f\"Loaded {len(examples)} training examples, skipped {skipped}\")\n    return examples\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"SFT baseline on FOLIO NL→FOL (plan_009)\")\n    parser.add_argument(\"--model_path\", type=str, required=True,\n                        help=\"Base model path (e.g. /root/autodl-tmp/models/Qwen3-4B)\")\n    parser.add_argument(\"--data_path\", type=str, required=True,\n                        help=\"FOLIO JSONL training data\")\n    parser.add_argument(\"--output_dir\", type=str, required=True,\n                        help=\"Checkpoint output directory\")\n    parser.add_argument(\"--max_steps\", type=int, default=200)\n    parser.add_argument(\"--num_train_epochs\", type=int, default=None,\n                        help=\"If set, overrides max_steps\")\n    parser.add_argument(\"--per_device_batch_size\", type=int, default=4)\n    parser.add_argument(\"--gradient_accumulation_steps\", type=int, default=2)\n    parser.add_argument(\"--learning_rate\", type=float, default=2e-5)\n    parser.add_argument(\"--max_seq_length\", type=int, default=1024)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--warmup_ratio\", type=float, default=0.1)\n    parser.add_argument(\"--logging_steps\", type=int, default=10)\n    parser.add_argument(\"--save_steps\", type=int, default=50)\n    parser.add_argument(\"--wandb_project\", type=str, default=None)\n    parser.add_argument(\"--wandb_run\", type=str, default=None)\n    parser.add_argument(\"--no_wandb\", action=\"store_true\")\n    parser.add_argument(\"--bf16\", action=\"store_true\", default=True)\n    args = parser.parse_args()\n\n    # W&B setup\n    if args.no_wandb:\n        os.environ[\"WANDB_DISABLED\"] = \"true\"\n    else:\n        if args.wandb_project:\n            os.environ[\"WANDB_PROJECT\"] = args.wandb_project\n        if args.wandb_run:\n            os.environ[\"WANDB_NAME\"] = args.wandb_run\n\n    import torch\n    from datasets import Dataset\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n    from trl import SFTConfig, SFTTrainer\n\n    logger.info(f\"Loading data from {args.data_path}...\")\n    examples = load_and_format_data(args.data_path)\n    dataset = Dataset.from_list(examples)\n    logger.info(f\"Dataset: {len(dataset)} examples\")\n\n    logger.info(f\"Loading model from {args.model_path}...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16 if args.bf16 else \"auto\",\n        device_map=\"auto\",\n        trust_remote_code=True,\n    )\n\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    training_args = SFTConfig(\n        output_dir=args.output_dir,\n        max_steps=args.max_steps if args.num_train_epochs is None else -1,\n        num_train_epochs=args.num_train_epochs if args.num_train_epochs else 1,\n        per_device_train_batch_size=args.per_device_batch_size,\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\n        learning_rate=args.learning_rate,\n        warmup_ratio=args.warmup_ratio,\n        max_seq_length=args.max_seq_length,\n        bf16=args.bf16,\n        logging_steps=args.logging_steps,\n        save_steps=args.save_steps,\n        save_total_limit=3,\n        seed=args.seed,\n        report_to=\"wandb\" if not args.no_wandb else \"none\",\n        gradient_checkpointing=True,\n        gradient_checkpointing_kwargs={\"use_reentrant\": False},\n        remove_unused_columns=False,\n    )\n\n    trainer = SFTTrainer(\n        model=model,\n        args=training_args,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n    )\n\n    logger.info(\"Starting SFT training...\")\n    trainer.train()\n\n    logger.info(f\"Saving final model to {args.output_dir}...\")\n    trainer.save_model(args.output_dir)\n    tokenizer.save_pretrained(args.output_dir)\n    logger.info(\"Done.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T22:24:21.792396+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T22:24:21.792536+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_sta.py --help 2>&1 | head -15",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_sta.py --help 2>&1 | head -15",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T22:24:21.792670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: eval_sta.py [-h] --model_path MODEL_PATH --data_path DATA_PATH\\n                   --output_path OUTPUT_PATH [--solver SOLVER]\\n                   [--max_new_tokens MAX_NEW_TOKENS] [--timeout TIMEOUT]\\n\\nFull STA evaluation of a checkpoint\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n  --data_path DATA_PATH\\n  --output_path OUTPUT_PATH\\n  --solver SOLVER\\n  --max_new_tokens MAX_NEW_TOKENS\\n  --timeout TIMEOUT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T22:24:21.792826+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_o1_vs_on.py --help 2>&1 | head -15",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_o1_vs_on.py --help 2>&1 | head -15",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T22:24:21.792959+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: eval_o1_vs_on.py [-h] --model_path MODEL_PATH --data_path DATA_PATH\\n                        --output_path OUTPUT_PATH [--solver SOLVER]\\n                        [--max_new_tokens MAX_NEW_TOKENS] [--timeout TIMEOUT]\\n\\nO(1) vs O(N) ISR comparison (plan_004)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n  --data_path DATA_PATH\\n  --output_path OUTPUT_PATH\\n  --solver SOLVER\\n  --max_new_tokens MAX_NEW_TOKENS\\n  --timeout TIMEOUT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T22:24:21.793081+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/train_sft.py --help 2>&1 | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/train_sft.py --help 2>&1 | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T22:24:21.793220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: train_sft.py [-h] --model_path MODEL_PATH --data_path DATA_PATH\\n                    --output_dir OUTPUT_DIR [--max_steps MAX_STEPS]\\n                    [--num_train_epochs NUM_TRAIN_EPOCHS]\\n                    [--per_device_batch_size PER_DEVICE_BATCH_SIZE]\\n                    [--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS]\\n                    [--learning_rate LEARNING_RATE]\\n                    [--max_seq_length MAX_SEQ_LENGTH] [--seed SEED]\\n                    [--warmup_ratio WARMUP_RATIO]\\n                    [--logging_steps LOGGING_STEPS] [--save_steps SAVE_STEPS]\\n                    [--wandb_project WANDB_PROJECT] [--wandb_run WANDB_RUN]\\n                    [--no_wandb] [--bf16]\\n\\nSFT baseline on FOLIO NL→FOL (plan_009)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n                        Base model path (e.g. /root/autodl-\\n                        tmp/models/Qwen3-4B)\\n  --data_path DATA_PATH\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_p2-eval-scripts_20260513T222126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-13T22:24:21.793422+00:00_
+
+3 个脚本全部通过语法检查：
+
+| 脚本 | 状态 | 说明 |
+|------|------|------|
+| `scripts/eval_sta.py` | 已存在 | plan_003 全 STA 评估，含 prove_rate / mean_isr / isr_std / median_isr / isr_pr_ratio |
+| `scripts/eval_o1_vs_on.py` | **新建** | plan_004 O(1)二值 vs O(N)连续 ISR 对比，输出 correlation / agreement / case breakdown |
+| `scripts/train_sft.py` | **新建** | plan_009 SFT baseline，trl.SFTTrainer + chat-format NL→FOL 训练对，支持 wandb / bf16 / gradient_checkpointing |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_p2-eval-scripts_20260513T222126"
+}
+```
+
+</details>
+
+---

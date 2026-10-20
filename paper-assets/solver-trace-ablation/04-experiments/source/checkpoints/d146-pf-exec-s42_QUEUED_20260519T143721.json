@@ -1,0 +1,15 @@
+{
+  "exp_id": "d146-pf-exec-s42",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:36:57.566Z",
+    "updated_at": "2026-05-19T14:37:21.121Z",
+    "hypothesis": "D146 ProofFOL cross-dataset: exec-only GRPO Qwen3-4B on ProofFOL. Tests if Goodhart collapse generalizes beyond FOLIO."
+  },
+  "timestamp": "2026-05-19T14:37:21.502584+00:00",
+  "trigger": "update_registry"
+}

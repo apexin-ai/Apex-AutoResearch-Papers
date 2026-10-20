@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "b019c4810388d27b057a",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code arithmetic k3 setup",
+  "task_key": "worker_code_arithmetic-k3-setup_20260513T012815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_arithmetic-k3-setup_20260513T012815.log",
+    "occurrence": 1,
+    "bytes": 1327142,
+    "sha256": "30ba06b456896d3c30911927b04feb5cb74b3fa8a2cb13f0f108b5fc23ef72ce"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 1,
+    "tool_calls": 174,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 126,
+      "record": 1,
+      "tool_call": 174,
+      "tool_result": 174,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 289,
+      "chunks": [
+        {
+          "path": "b019c4810388d27b057a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b019c4810388d27b057a-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 193,
+      "chunks": [
+        {
+          "path": "b019c4810388d27b057a-part-0002.json",
+          "message_count": 71
+        },
+        {
+          "path": "b019c4810388d27b057a-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-arithmetic-k3-setup.md"
+}

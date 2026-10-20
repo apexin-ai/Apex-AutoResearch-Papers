@@ -1,0 +1,15 @@
+{
+  "exp_id": "d134-4b-random-b01-s51",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:47:12.547Z",
+    "updated_at": "2026-05-19T02:14:57.637Z",
+    "hypothesis": "D134: 4B Random β=0.1 s51 — matched control for 10-seed ISR comparison (Round 11 statistical power)"
+  },
+  "timestamp": "2026-05-19T02:14:58.159007+00:00",
+  "trigger": "update_registry"
+}

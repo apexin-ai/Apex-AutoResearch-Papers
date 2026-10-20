@@ -1,0 +1,63 @@
+{
+  "exp_id": "plan009-sft-baseline-s42-r4",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:40:28.142Z",
+    "updated_at": "2026-05-14T14:20:25.035Z",
+    "hypothesis": "SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.",
+    "parent": "plan009-sft-baseline-s42-r2",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s42 --num_steps 500 --seed 42 --no_wandb --gpu 1\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s42/checkpoint-500/"
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "notes": "r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。",
+    "reproduce": {
+      "finished_at": "2026-05-14T12:18:55.639Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T12:18:57.313588+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s42/checkpoint-500/",
+    "log_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s42/checkpoint-500/trainer_state.json",
+    "metrics": {
+      "prove_rate": 0.14,
+      "mean_isr": 0.08,
+      "isr_std": 0.214,
+      "median_isr": 0,
+      "proved_only_isr": 0.571,
+      "max_isr": 0.833,
+      "final_loss": 0.0287,
+      "token_accuracy": 0.9935,
+      "training_time_sec": 789.6,
+      "pr_true": 0.382,
+      "pr_unknown": 0.024,
+      "pr_false": 0
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T14:20:25.035Z"
+  },
+  "timestamp": "2026-05-14T14:20:25.149414+00:00",
+  "trigger": "update_registry"
+}

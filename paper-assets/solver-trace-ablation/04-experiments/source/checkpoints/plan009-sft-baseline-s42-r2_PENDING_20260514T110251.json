@@ -1,0 +1,17 @@
+{
+  "exp_id": "plan009-sft-baseline-s42-r2",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:02:25.369Z",
+    "updated_at": "2026-05-14T11:02:51.666Z",
+    "hypothesis": "SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.",
+    "plan_id": "plan_009",
+    "notes": "SFT baseline with Qwen3-4B (same model as GRPO experiments). Replaces killed plan009-sft-baseline-s42 which incorrectly used Qwen2.5-1.5B. cuda:1, seed=42, 500 steps, FOLIO data (data/train_500_seed42.jsonl). Dream 审稿三档均指出缺 SFT baseline 是 gap。"
+  },
+  "timestamp": "2026-05-14T11:02:51.768842+00:00",
+  "trigger": "update_registry"
+}

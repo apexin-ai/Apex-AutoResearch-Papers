@@ -1,0 +1,87 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{conmy2023towards,wang2023interpretability}
+\citation{syed2023attribution}
+\citation{li2024circuit}
+\citation{conmy2023towards}
+\citation{nogueira2016measuring,kuncheva2003measures}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{conmy2023towards}
+\citation{syed2023attribution}
+\citation{li2024circuit}
+\citation{zhang2026pie}
+\citation{nogueira2016measuring}
+\citation{kuncheva2003measures}
+\citation{mondorf2025beyond}
+\citation{parekh2026circus}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Circuit discovery methods.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-method consensus.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The consensus assumption in practice.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Circuit Selection by Consensus}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Circuit Selection by Consensus}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Notation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation metric: Circuit Performance Recovery (CPR).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decision gate (D025 protocol).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Methods.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tasks.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical analysis.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{3}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}CSS Universally Fails Across Configurations}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:universal}{{5.1}{3}{CSS Universally Fails Across Configurations}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces D025 gate evaluation across all task$\times $model configurations. C1--C4 defined in \S  \ref {sec:method}. No configuration achieves an overall PASS.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{D025 gate evaluation across all task$\times $model configurations. C1--C4 defined in \S \ref {sec:method}. No configuration achieves an overall PASS}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces D025 gate conditions for factual recall on GPT-2 Small. CSS fails conditions C2, C3, and C4.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:factual_gate}{{2}{4}{D025 gate conditions for factual recall on GPT-2 Small. CSS fails conditions C2, C3, and C4}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Factual Recall: Failure Extends to MLP-Centric Circuits}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:factual}{{5.2}{4}{Factual Recall: Failure Extends to MLP-Centric Circuits}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}ACDC Binarization Pathology}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:binarization}{{5.3}{4}{ACDC Binarization Pathology}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Size-controlled CPR comparison on IOI (GPT-2 Small). All circuits contain exactly 7 edges. CSS$(1.0)$ shows no advantage over top-7 edges from individual methods.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:size_ctrl}{{3}{5}{Size-controlled CPR comparison on IOI (GPT-2 Small). All circuits contain exactly 7 edges. CSS$(1.0)$ shows no advantage over top-7 edges from individual methods}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Zero vs.\ mean ablation CPR on IOI (7 edges each). Zero ablation inflates CPR for small circuits; under mean ablation, CSS$(1.0)$ falls below the best single method.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:ablation}{{4}{5}{Zero vs.\ mean ablation CPR on IOI (7 edges each). Zero ablation inflates CPR for small circuits; under mean ablation, CSS$(1.0)$ falls below the best single method}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Size-Controlled Analysis Dissolves IOI's Apparent Success}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:size}{{5.4}{5}{Size-Controlled Analysis Dissolves IOI's Apparent Success}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Ablation Method Sensitivity}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:ablation_method}{{5.5}{5}{Ablation Method Sensitivity}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Bootstrap Confidence Intervals Confirm No Significant Advantage}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:bootstrap}{{5.6}{5}{Bootstrap Confidence Intervals Confirm No Significant Advantage}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Bootstrap 95\% CIs for $\Delta $CPR (CSS$=$1.0 vs.\ best single method). $B{=}10{,}000$ resamples. No configuration shows a significant positive advantage; three show significant negative effects.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:bootstrap}{{5}{6}{Bootstrap 95\% CIs for $\Delta $CPR (CSS$=$1.0 vs.\ best single method). $B{=}10{,}000$ resamples. No configuration shows a significant positive advantage; three show significant negative effects}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Method failure mode taxonomy on Qwen-0.5B (179K edges). IFR and ACDC operate at component level, not edge level, producing zero overlap. EAP-IG and EP share gradient-based similarity (Jaccard $= 0.54$).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:divergence}{{6}{6}{Method failure mode taxonomy on Qwen-0.5B (179K edges). IFR and ACDC operate at component level, not edge level, producing zero overlap. EAP-IG and EP share gradient-based similarity (Jaccard $= 0.54$)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Component-Level Scoring Causes Scaling Failure}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:scaling}{{5.7}{6}{Component-Level Scoring Causes Scaling Failure}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Jaccard Does Not Predict CSS Success}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:jaccard}{{5.8}{6}{Jaccard Does Not Predict CSS Success}{subsection.5.8}{}}
+\citation{kuncheva2003measures}
+\citation{mondorf2025beyond}
+\citation{parekh2026circus}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Maximum pairwise Jaccard vs.\ CSS advantage across all configurations. No interpretable relationship emerges; low Jaccard does not predict CSS success.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:jaccard_summary}{{7}{7}{Maximum pairwise Jaccard vs.\ CSS advantage across all configurations. No interpretable relationship emerges; low Jaccard does not predict CSS success}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why negative results matter here.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The independence illusion.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Comparison with continuous averaging.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CIRCUS within-method baseline.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{conmy2023towards}{{1}{2023}{{Conmy et~al.}}{{}}}
+\bibcite{kuncheva2003measures}{{2}{2003}{{Kuncheva and Whitaker}}{{}}}
+\bibcite{li2024circuit}{{3}{2024}{{Li et~al.}}{{}}}
+\bibcite{mondorf2025beyond}{{4}{2025}{{Mondorf et~al.}}{{}}}
+\bibcite{nogueira2016measuring}{{5}{2016}{{Nogueira and Brown}}{{}}}
+\bibcite{parekh2026circus}{{6}{2026}{{Parekh et~al.}}{{}}}
+\bibcite{syed2023attribution}{{7}{2023}{{Syed et~al.}}{{}}}
+\bibcite{wang2023interpretability}{{8}{2023}{{Wang et~al.}}{{}}}
+\bibcite{zhang2026pie}{{9}{2026}{{Zhang et~al.}}{{}}}
+\gdef \@abspage@last{8}

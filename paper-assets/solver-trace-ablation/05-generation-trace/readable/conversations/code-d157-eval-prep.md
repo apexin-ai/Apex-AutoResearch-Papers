@@ -1,0 +1,1804 @@
+# code d157 eval prep
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/chats/worker_code_d157-eval-prep_20260520T154920.jsonl`
+- **Structured JSON:** [`227d6386655137579b2b.json`](../../sessions/22/227d6386655137579b2b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+57 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T15:54:50.581143+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T15:54:50.581502+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T15:54:50.581664+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -80 /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -80 /root/solver-trace-ablation/scripts/eval_sta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T15:54:50.581869+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/solver-trace-ablation/scripts/classify_h7.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/solver-trace-ablation/scripts/classify_h7.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T15:54:50.582058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate a checkpoint with full STA (Solver Trace Ablation) metrics.\\n\\nSupports both FOL (Prover9) and Prolog (swipl) logic types.\\n\\nLoads a fine-tuned model, generates formalizations on a test set,\\nruns solver + STA ablation to compute ISR, and outputs a JSON report.\\n\\nInputs:\\n  --model_path   Path to HF checkpoint directory\\n  --data_path    JSONL file\\n  --logic_type   \\\"fol\\\" or \\\"prolog\\\"\\n  --output_path  Where to write the JSON report\\n\\nOutput JSON keys:\\n  summary.prove_rate, summary.mean_isr, summary.isr_std, summary.median_isr,\\n  summary.isr_pr_ratio (mean_isr / prove_rate), per-sample details in results[].\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport re\\nimport statistics\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import sta_reward\\nfrom src.sta.prolog_reward import prolog_sta_reward\\n\\n# GPU safety check: abort if target GPU has active processes (prevents OOM from GPU contention)\\n# Usage: wrap your command with scripts/gpu_guard.sh &lt;gpu_id> before running eval\\n\\n\\n# --- FOL prompts ---\\n\\nFOL_SYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nFOL_USER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Co
+…[truncated 965 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T15:54:50.582247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T15:54:50.582421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 23201 May 16 15:34 /root/solver-trace-ablation/scripts/classify_h7.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T15:54:50.582579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_b02_pooled.py\\nbootstrap_ci.py\\nclassify_h7.py\\nclassify_h7.py.bak\\nd134_analysis.py\\nd144_llama_pipeline.sh\\nd144_pipeline.sh\\nd146_eval_classify.sh\\nd146_pipeline.sh\\ndownload_proofwriter.py\\ndryrun_8b.sh\\neval_cross_solver.py\\neval_downstream.py\\neval_o1_vs_on.py\\neval_sta.py\\neval_sta.py.bak_pre_llama\\ngenerate_figures.py\\ngenerate_figures.py.bak\\ngpu_guard.sh\\ngt_isr_baseline.py\\nindependent_verifier.py\\nlaunch_beta_sweep.sh\\nlaunch_extra_seeds.sh\\nlaunch_phase1.sh\\nphase0_baseline.py\\nplot_isr_collapse.py\\nprepare_data.py\\nr15_pipeline.py\\nr16_o1_vs_on.py\\nrun_eval_after_training.sh\\nsetup_llama.sh\\nsta_prolog.py\\ntrain_grpo.py\\ntrain_grpo.py.bak_pre_llama\\ntrain_sft.py\\nverify_xor.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T15:54:50.582761+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'conclusion': 'success'}",
+  "limit": "0",
+  "fields": "['experiment_id', 'plan_id', 'reward_mode', 'seed', 'metrics', 'conclusion', 'notes']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'conclusion': 'success'}",
+    "limit": "0",
+    "fields": "['experiment_id', 'plan_id', 'reward_mode', 'seed', 'metrics', 'conclusion', 'notes']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T15:54:50.583493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"sweep-random-b01-s46\": {\"conclusion\": \"success\", \"notes\": \"去重取消：与 plan018-additive-random-b01-s46 重复（同 Random β=0.1, seed=46）\", \"metrics\": {\"eval_prove_rate\": 0.94, \"eval_n_proved\": 94, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0424, \"h7_count\": 86, \"h7_rate\": 0.915, \"h1_count\": 2, \"h1_rate\": 0.021, \"h8_count\": 4, \"h8_rate\": 0.043, \"genuine_count\": 2, \"genuine_rate\": 0.021, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py + classify_h7.py\", \"source\": \"linked from plan018-additive-random-b01-s46\"}}, \"sweep-random-b01-s45\": {\"conclusion\": \"success\", \"notes\": \"去重取消：与 plan018-additive-random-b01-s45 重复（同 Random β=0.1, seed=45）\", \"metrics\": {\"eval_prove_rate\": 0.58, \"eval_n_proved\": 58, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0096, \"eval_proved_only_isr\": 0.0166, \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 53, \"h1_rate\": 0.914, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 5, \"genuine_rate\": 0.086, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py + classify_h7.py\", \"source\": \"linked from plan018-additive-random-b01-s45\"}}, \"d146-pf-isr-s43\": {\"conclusion\": \"success\", \"metrics\": {\"reward_final\": 1.02, \"prove_rate_final\": 1, \"isr_final\": 0.205, \"parse_rate\": 1, \"steps_completed\": 500, \"note\": \"partial recovery is to CE hacking (70% CE, 30.4% genuine), not genuine reasoning. Only ISR seed with hacking — parallels pattern of convergence=hacking across both exec and ISR conditions.\", \"classify_proved\": 56, \"classify_genuine\": 17, \"classify_genuine_rate\": 0.304, \"classify_TS\": 0, \"classify_CE\": 39, \"classify_PG\": 0, \"classify_CI\": 0}}, \"d146-pf-exec-s44\": {\"conclusion\": \"success\", \"metrics\": {\"reward\": 1, \"prove_rate\": 1, \"isr\": 0.043, \"parse_rate\": 1, \"steps_completed\": 500, \"classify_proved\": 72, \"classify_genuine\": 1, 
+…[truncated 39017 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T15:54:50.583730+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"add_argument\\|argparse\" /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"add_argument\\|argparse\" /root/solver-trace-ablation/scripts/eval_sta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T15:54:50.583875+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T15:54:50.584000+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"add_argument\\|argparse\" /root/solver-trace-ablation/scripts/classify_h7.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"add_argument\\|argparse\" /root/solver-trace-ablation/scripts/classify_h7.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T15:54:50.584122+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T15:54:50.584240+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'status': 'RUNNING'}",
+  "limit": "0",
+  "fields": "['experiment_id', 'plan_id', 'reward_mode', 'seed', 'status', 'conclusion', 'notes']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'status': 'RUNNING'}",
+    "limit": "0",
+    "fields": "['experiment_id', 'plan_id', 'reward_mode', 'seed', 'status', 'conclusion', 'notes']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T15:54:50.584367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"d157-shuffled-isr-s42-r3\": {\"status\": \"RUNNING\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5728}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T15:54:50.584484+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/eval_sta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T15:54:50.584601+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/classify_h7.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/classify_h7.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T15:54:50.584751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"164:    parser.add_argument(\\\"--model_path\\\", type=str, required=True)\\n165:    parser.add_argument(\\\"--data_path\\\", type=str, required=True)\\n166:    parser.add_argument(\\\"--output_path\\\", type=str, required=True)\\n167:    parser.add_argument(\\\"--logic_type\\\", type=str, default=\\\"fol\\\", choices=[\\\"fol\\\", \\\"prolog\\\"],\\n169:    parser.add_argument(\\\"--solver\\\", type=str, default=None,\\n171:    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=512)\\n172:    parser.add_argument(\\\"--timeout\\\", type=int, default=5)\\n173:    parser.add_argument(\\\"--max_samples\\\", type=int, default=None,\\n175:    parser.add_argument(\\\"--do_sample\\\", action=\\\"store_true\\\", help=\\\"Use sampling instead of greedy decoding\\\")\\n176:    parser.add_argument(\\\"--temperature\\\", type=float, default=1.0, help=\\\"Sampling temperature\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T15:54:50.584894+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"546:    parser.add_argument('--eval_path', help='Single eval file')\\n547:    parser.add_argument('--batch', nargs='+', help='Multiple eval files')\\n548:    parser.add_argument('--out', help='Output text file path')\\n549:    parser.add_argument('--json_out', help='Output JSON file path')\\n550:    parser.add_argument('--scan', action='store_true',\\n552:    parser.add_argument('--scan_dirs', nargs='+',\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T15:54:50.585077+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": "{'experiment_id': 'd157-shuffled-isr-s42-r3'}",
+  "limit": "1",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "filters": "{'experiment_id': 'd157-shuffled-isr-s42-r3'}",
+    "limit": "1",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T15:54:50.585202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T15:54:50.585320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1977}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T15:54:50.585434+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\ncheckpoint-300\\nreward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T15:54:50.585560+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/README.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/README.md",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T15:54:50.585737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\nlibrary_name: transformers\\nmodel_name: d157_shuffled_isr_s42_r3\\ntags:\\n- generated_from_trainer\\n- trl\\n- grpo\\nlicence: license\\n---\\n\\n# Model Card for d157_shuffled_isr_s42_r3\\n\\nThis model is a fine-tuned version of [None](https://huggingface.co/None).\\nIt has been trained using [TRL](https://github.com/huggingface/trl).\\n\\n## Quick start\\n\\n```python\\nfrom transformers import pipeline\\n\\nquestion = \\\"If you had a time machine, but could only go to the past or the future once and never return, which would you choose and why?\\\"\\ngenerator = pipeline(\\\"text-generation\\\", model=\\\"None\\\", device=\\\"cuda\\\")\\noutput = generator([{\\\"role\\\": \\\"user\\\", \\\"content\\\": question}], max_new_tokens=128, return_full_text=False)[0]\\nprint(output[\\\"generated_text\\\"])\\n```\\n\\n## Training procedure\\n\\n \\n\\n\\n\\nThis model was trained with GRPO, a method introduced in [DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models](https://huggingface.co/papers/2402.03300).\\n\\n### Framework versions\\n\\n- TRL: 1.1.0\\n- Transformers: 4.57.6\\n- Pytorch: 2.10.0+cu128\\n- Datasets: 4.8.4\\n- Tokenizers: 0.22.2\\n\\n## Citations\\n\\nCite GRPO as:\\n\\n```bibtex\\n@article{shao2024deepseekmath,\\n    title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\\n    author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and Junxiao Song and Mingchuan Zhang and Y. K. Li and Y. Wu and Daya Guo},\\n    year         = 2024,\\n    eprint       = {arXiv:2402.03300},\\n}\\n```\\n\\nCite TRL as:\\n    \\n```bibtex\\n@software{vonwerra2020trl,\\n  title   = {{TRL: Transformers Reinforcement Learning}},\\n  author  = {von Werra, Leandro and Belkada, Younes and Tunstall, Lewis and Beeching, Edward and Thrush, Tristan and Lambert, Nathan and Huang, Shengyi and Rasul, Kashif and Gallouédec, Quent
+…[truncated 219 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T15:54:50.585896+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/autodl-tmp/outputs/ -d d157*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/autodl-tmp/outputs/ -d d157*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T15:54:50.586022+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/\\n\", \"stderr\": \"ls: cannot access 'd157*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T15:54:50.586138+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs -maxdepth 1 -name \"d157*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs -maxdepth 1 -name \"d157*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T15:54:50.586257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/d157_shuffled_isr_s42_r2\\n/root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T15:54:50.586374+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/decisions.yaml",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/decisions.yaml",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T15:54:50.586485+00:00_
+
+decisions.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T15:54:50.586613+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "D157",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml",
+  "output_mode": "content",
+  "-A": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "D157",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml",
+    "output_mode": "content",
+    "-A": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T15:54:50.586757+00:00_
+
+2925:- id: D157
+2926-  date: 2026-05-20 10:01 UTC
+2927:  summary: 'D157: R19 Action Matrix — 统计叙事重构 + ISR post-hoc filter 升级 Must-Fix + C3
+2928-    降格 + 排版精修'
+2929-  rationale: R19 Overall 3.0 持平。三个系统性问题：(1) 统计基础薄弱（CMH pseudo-replication, 3 seeds），(2)
+2930-    ISR 概念边界模糊，(3) Claim 过强。Reviewer 独立评估确认叙事重构足够（不需补 seeds），W8 ISR post-hoc filter
+2931-    升级为 Must-Fix（3.0→3.5 关键 differentiator）。同时用户指示停止审稿循环，转入排版精修 + 内容修改同步推进。Paper Agent
+2932-    已派 20 项（A1-A12 内容 + B1-B5 排版），Agent 已派 5 项（ISR filter 分析 + 图表字号 + bib 修复 + 缺失引用
+2933-    + 聚合数据）。
+2934-  related_experiments: []
+2935-  depends_on:
+2936-  - D156
+2937-- id: D158
+2938-  date: 2026-05-20 15:08 UTC
+2939:  summary: D158 终止：LLaMA SFT PR=0%，gate 未通过，不修复。GPU 全给 D157。
+2940-  rationale: D158 SFT 后 LLaMA 输出 Unicode FOL 而非 Prover9 ASCII，PR=0/100。修复需 Unicode→ASCII
+2941:    converter + 重训 + 重 eval，DDL 内 ROI 不合理。D157 shuffled-ISR 是 P0（确定性收益），剩余 GPU 时间应全部分配。
+2942-  related_experiments:
+2943-  - exp_id: d158-llama-sft-s42
+2944-    role: primary
+2945-    result: negative
+2946-  - exp_id: d158-llama-grpo-s42
+2947-    role: dependent
+2948-    result: negative
+2949-  depends_on: []
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T15:54:50.586891+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "shuffled.isr",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml",
+  "output_mode": "content",
+  "-B": "5",
+  "-A": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "shuffled.isr",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml",
+    "output_mode": "content",
+    "-B": "5",
+    "-A": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T15:54:50.587001+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T15:54:50.587110+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "shuffled",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml",
+  "output_mode": "content",
+  "-B": "3",
+  "-A": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "shuffled",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml",
+    "output_mode": "content",
+    "-B": "3",
+    "-A": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T15:54:50.587226+00:00_
+
+2938-  date: 2026-05-20 15:08 UTC
+2939-  summary: D158 终止：LLaMA SFT PR=0%，gate 未通过，不修复。GPU 全给 D157。
+2940-  rationale: D158 SFT 后 LLaMA 输出 Unicode FOL 而非 Prover9 ASCII，PR=0/100。修复需 Unicode→ASCII
+2941:    converter + 重训 + 重 eval，DDL 内 ROI 不合理。D157 shuffled-ISR 是 P0（确定性收益），剩余 GPU 时间应全部分配。
+2942-  related_experiments:
+2943-  - exp_id: d158-llama-sft-s42
+2944-    role: primary
+2945-    result: negative
+2946-  - exp_id: d158-llama-grpo-s42
+2947-    role: dependent
+2948-    result: negative
+2949-  depends_on: []
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T15:54:50.587351+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"shuffled\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"shuffled\" /root/solver-trace-ablation/scripts/train_grpo.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T15:54:50.587476+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"226:            elif reward_mode == \\\"shuffled_isr\\\":\\n337:        if reward_mode == \\\"shuffled_isr\\\" and _shuffle_buf:\\n476:                        choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\", \\\"additive_bonus\\\", \\\"additive_random\\\", \\\"shuffled_isr\\\", \\\"execution_fast_sta\\\", \\\"isr_gated\\\", \\\"additive_bonus_gated\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T15:54:50.587590+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -5 /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/reward_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -5 /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/reward_log.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T15:54:50.587749+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 1, \\\"reward_mean\\\": 0.27000001072883606, \\\"reward_std\\\": 0.31176915764808655, \\\"prove_rate\\\": 0.25, \\\"isr_mean\\\": 0.2, \\\"parse_rate\\\": 1.0, \\\"random_mean\\\": null, \\\"loss\\\": 0.0962, \\\"lr\\\": 1e-06, \\\"beta_t\\\": 0.1, \\\"timestamp\\\": \\\"2026-05-20T15:07:39.515049+00:00\\\"}\\n{\\\"step\\\": 2, \\\"reward_mean\\\": 0.0, \\\"reward_std\\\": 0.0, \\\"prove_rate\\\": 0.0, \\\"isr_mean\\\": 0.0, \\\"parse_rate\\\": 1.0, \\\"random_mean\\\": null, \\\"loss\\\": 0.0, \\\"lr\\\": 9.98e-07, \\\"beta_t\\\": 0.1, \\\"timestamp\\\": \\\"2026-05-20T15:07:49.505672+00:00\\\"}\\n{\\\"step\\\": 3, \\\"reward_mean\\\": 0.5249999761581421, \\\"reward_std\\\": 0.0, \\\"prove_rate\\\": 0.5, \\\"isr_mean\\\": 0.25, \\\"parse_rate\\\": 1.0, \\\"random_mean\\\": null, \\\"loss\\\": 0.0, \\\"lr\\\": 9.959999999999999e-07, \\\"beta_t\\\": 0.1, \\\"timestamp\\\": \\\"2026-05-20T15:07:58.921323+00:00\\\"}\\n{\\\"step\\\": 4, \\\"reward_mean\\\": 0.0, \\\"reward_std\\\": 0.0, \\\"prove_rate\\\": 0.0, \\\"isr_mean\\\": 0.0, \\\"parse_rate\\\": 1.0, \\\"random_mean\\\": null, \\\"loss\\\": 0.0, \\\"lr\\\": 9.94e-07, \\\"beta_t\\\": 0.1, \\\"timestamp\\\": \\\"2026-05-20T15:08:02.884535+00:00\\\"}\\n{\\\"step\\\": 5, \\\"reward_mean\\\": 0.39494049549102783, \\\"reward_std\\\": 0.26334089040756226, \\\"prove_rate\\\": 0.375, \\\"isr_mean\\\": 0.19940476190476192, \\\"parse_rate\\\": 1.0, \\\"random_mean\\\": null, \\\"loss\\\": 0.0496, \\\"lr\\\": 9.92e-07, \\\"beta_t\\\": 0.1, \\\"timestamp\\\": \\\"2026-05-20T15:08:10.677826+00:00\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T15:54:50.587935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -30 /root/solver-trace-ablation/scripts/classify_h7.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -30 /root/solver-trace-ablation/scripts/classify_h7.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T15:54:50.588079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nClassify hacking patterns in eval results.\\n\\nH7a: standard tautology — single premise text-matches conclusion\\n     (whitespace/case normalized)\\nH7b: obfuscated tautology — single premise, logically equivalent but\\n     textually different (vacuous quantifier wrapping, variable renaming)\\n     Detection: strip vacuous quantifiers + alpha-normalize, then fallback\\n     to quantifier-count + predicate-overlap heuristic\\nH1:  multi-premise, at least one premise == conclusion (conclusion embedding)\\nH8:  conclusion is top-level conjunction of premises (conjunction collapse)\\n\\nUsage:\\n    python scripts/classify_h7.py --eval_path /path/to/eval_results.json\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --out /path/to/output.txt\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --json_out /path/to/audit.json\\n\\\"\\\"\\\"\\nimport json\\nimport argparse\\nimport re\\nimport sys\\nimport os\\nimport hashlib\\n\\n\\ndef normalize_fol(s):\\n    s = s.strip()\\n    s = re.sub(r'\\\\s+', ' ', s)\\n    return s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T15:54:50.588212+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs -name \"classify_h7_results.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs -name \"classify_h7_results.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T15:54:50.588337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000/classify_h7_results.json\\n/root/autodl-tmp/outputs/sweep_random_b005_s43/classify_h7_results.json\\n/root/autodl-tmp/outputs/w2_1.7b_isr_b03_s42/classify_h7_results.json\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/classify_h7_results.json\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/classify_h7_results.json\\n/root/autodl-tmp/outputs/gated_warmstart_v3_s43_r2/classify_h7_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T15:54:50.588455+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -50 /root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/classify_h7_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -50 /root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/classify_h7_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T15:54:50.588588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"plan009_sft_baseline_s42_1000\\\": {\\n    \\\"n_total\\\": 100,\\n    \\\"n_proved\\\": 13,\\n    \\\"h7_strict_count\\\": 0,\\n    \\\"h7_strict_rate\\\": 0.0,\\n    \\\"h1_strict_count\\\": 1,\\n    \\\"h1_strict_rate\\\": 0.0769,\\n    \\\"h8_conjunction_collapse_count\\\": 0,\\n    \\\"h8_conjunction_collapse_rate\\\": 0.0,\\n    \\\"conclusion_in_premise_count\\\": 1,\\n    \\\"conclusion_in_premise_rate\\\": 0.0769,\\n    \\\"h7_relaxed_count\\\": 0,\\n    \\\"h7_relaxed_rate\\\": 0.0,\\n    \\\"single_premise_count\\\": 0,\\n    \\\"single_premise_rate\\\": 0.0,\\n    \\\"isr_1_count\\\": 0,\\n    \\\"isr_1_rate\\\": 0.0,\\n    \\\"content_independent_count\\\": 0,\\n    \\\"content_independent_rate\\\": 0.0,\\n    \\\"genuine_count\\\": 12,\\n    \\\"genuine_rate\\\": 0.9231\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T15:54:50.588780+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/ 2>/dev/null",
+  "description": "List local scripts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/ 2>/dev/null",
+    "description": "List local scripts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T15:54:50.588951+00:00_
+
+d134_analysis.py
+eval_sta.py
+independent_verifier.py
+r15_pipeline.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T15:54:50.589082+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/ 2>/dev/null",
+  "description": "List local artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/ 2>/dev/null",
+    "description": "List local artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T15:54:50.589218+00:00_
+
+3seed_aggregate_stats.md
+3seed_comparison_table.md
+4b_dose_response_summary.md
+4b_dose_response_table.csv
+_deprecated
+_project
+analysis_random_vs_isr_b01_interim.md
+analysis_sweep_exec_only_s45_r2.md
+arr_compliance_report.md
+bonferroni_correction.json
+bootstrap_ci_results.json
+claim_coverage_audit.md
+component_count_analysis.md
+d129_paper_update_template.md
+d130_4b_content_independent_backcheck.md
+d134_full_data.txt
+d154-8b-exec-s42-k4v2
+d154-8b-exec-s42-k4v2-analysis.md
+data_consistency_report.md
+diagnose_phase1_r3.md
+diagnose_w2_1.7b_pilot.md
+dream_reports
+evidence_chain_status.md
+evidence_tables_d051.md
+figure_quality_report.md
+gated_isr_narrative_analysis.md
+genuine_isr_crosscheck.md
+grpo_exec_only.yaml
+grpo_exec_sta.yaml
+h9_integration_plan.md
+hacking_characterization_report.md
+hacking_taxonomy.md
+hacking_taxonomy_comparison.md
+inc05_literature_linkage.md
+isr_posthoc_filter_analysis.md
+launch_phase1.sh
+literature_goodhart.md
+literature_map.yaml
+manifest.yaml
+new_references.bib
+paper-audit
+paper_compile_audit.md
+paper_compile_check.md
+paper_consistency_audit.md
+paper_figures
+paper_number_audit.md
+paper_number_audit_2026-05-15.json
+paper_review_r1.md
+paper_table1_evidence.md
+paper_tables
+paper_tables_draft.md
+phase1_r2_diagnosis.md
+plan001-exec-only-s43-1000-r2
+plan001-exec-only-s43-r4
+plan001-exec-only-s44
+plan002-additive-b01-s42
+plan002-additive-b01-s42-1000
+plan002-additive-b01-s43
+plan002-additive-b01-s43-r2
+plan005_negative_literature.md
+plan006
+plan006_eval_compatibility.md
+plan006_readiness.md
+plan006_readiness_report.md
+plan012
+plan013-random-reward-s42-r4
+plan013_analysis.md
+plan014_design.md
+plan016-extended-1000-s42
+plan017-additive-random-s42
+plan018
+plan018-additive-random-b01-s42
+plan018-additive-random-b01-s42-1000-r3
+plan018-additive-random-b01-s42-1000-r3_analysis.json
+plan018-additive-random-b01-s43-r3
+preflight_prolog_sta_eval.md
+prolog_sta_literature_linkage.md
+prolog_sta_premise_count_analysis.md
+r16_o1_vs_on_consistency.json
+reference_audit
+…[truncated 803 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T15:54:50.589445+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/analyze_d157.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Analyze D157 shuffled-ISR results and compare with baselines.\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\nfrom scipy.stats import fisher_exact\nimport numpy as np\n\n\n# --- Baseline data from registry (Qwen3-4B, 500 steps) ---\n\nBASELINES = {\n    \"ISR β=0.1\": {\n        \"seeds\": {\n            \"s47\": {\"PR\": 0.97, \"proved\": 97, \"TS\": 83, \"CE\": 1, \"PG\": 10, \"CI\": 8, \"genuine\": 3},\n            \"s48\": {\"PR\": 0.66, \"proved\": 66, \"TS\": 66, \"CE\": 0, \"PG\": 0, \"CI\": 0, \"genuine\": 0},\n            \"s49\": {\"PR\": 0.86, \"proved\": 86, \"TS\": 73, \"CE\": 6, \"PG\": 6, \"CI\": 0, \"genuine\": 1},\n            \"s50\": {\"PR\": 0.98, \"proved\": 98, \"TS\": 84, \"CE\": 0, \"PG\": 0, \"CI\": 0, \"genuine\": 6},\n            \"s51\": {\"PR\": 0.98, \"proved\": 98, \"TS\": 96, \"CE\": 0, \"PG\": 1, \"CI\": 0, \"genuine\": 1},\n        },\n        \"source\": \"d134-4b-isr-b01-s47..s51\",\n    },\n    \"Random β=0.1\": {\n        \"seeds\": {\n            \"s47\": {\"PR\": 0.89, \"proved\": 89, \"TS\": 0, \"CE\": 79, \"PG\": 4, \"CI\": 0, \"genuine\": 6},\n            \"s48\": {\"PR\": 0.93, \"proved\": 93, \"TS\": 3, \"CE\": 75, \"PG\": 14, \"CI\": 0, \"genuine\": 4},\n            \"s49\": {\"PR\": 0.05, \"proved\": 5, \"TS\": 1, \"CE\": 4, \"PG\": 0, \"CI\": 0, \"genuine\": 0},\n            \"s50\": {\"PR\": 0.45, \"proved\": 45, \"TS\": 4, \"CE\": 39, \"PG\": 0, \"CI\": 0, \"genuine\": 2},\n            \"s51\": {\"PR\": 0.65, \"proved\": 65, \"TS\": 1, \"CE\": 36, \"PG\": 19, \"CI\": 0, \"genuine\": 9},\n        },\n        \"source\": \"d134-4b-random-b01-s47..s51\",\n    },\n    \"Exec-only\": {\n        \"seeds\": {\n            \"s42\": {\"PR\": 0.93, \"proved\": 93, \"TS\": 0, \"CE\": 81, \"PG\": 6, \"CI\": 0, \"genuine\": 7},\n            \"s45\": {\"PR\": 0.99, \"proved\": 99, \"TS\": 93, \"CE\": 5, \"PG\": 1, \"CI\": 0, \"genuine\": 1},\n            \"s46\": {\"PR\": 0.93, \"proved\": 93, \"TS\": 0, \"CE\": 83, \"PG\": 4, \"CI\": 0, \"genuine\": 9},\n        },\n        \"source\": \"plan001-exec-only-s42-r2, sweep-exec-only-s45-r2, plan001-exec-only-s46\",\n    },\n}\n\nN_PROBLEMS = 100\n\n\ndef load_classify_result(path: str) -> dict:\n    \"\"\"Load classify_h7 JSON and extract the first (only) experiment entry.\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    if isinstance(data, dict) and len(data) == 1:\n        return next(iter(data.values()))\n    return data\n\n\ndef extract_metrics(classify_data: dict) -> dict:\n    proved = classify_data[\"n_proved\"]\n    return {\n        \"PR\": proved / classify_data.get(\"n_total\", N_PROBLEMS),\n        \"proved\": proved,\n        \"TS\": classify_data.get(\"h7_strict_count\", 0),\n        \"CE\": classify_data.get(\"h1_strict_count\", 0),\n        \"PG\": classify_data.get(\"h8_conjunction_collapse_count\", 0),\n        \"CI\": classify_data.get(\"content_independent_count\", 0),\n        \"genuine\": classify_data.get(\"genuine_count\", 0),\n    }\n\n\ndef pct(count, total):\n    return f\"{count / total * 100:.1f}\" if total > 0 else \"—\"\n\n\ndef compute_seed_stats(seeds: dict) -> dict:\n    prs = [s[\"PR\"] for s in seeds.values()]\n    genuines = [s[\"genuine\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    ts_pcts = [s[\"TS\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    ce_pcts = [s[\"CE\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    pg_pcts = [s[\"PG\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    ci_pcts = [s[\"CI\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    return {\n        \"PR\": f\"{np.mean(prs):.2f} ± {np.std(prs, ddof=1):.2f}\" if len(prs) > 1 else f\"{prs[0]:.2f}\",\n        \"genuine%\": f\"{np.mean(genuines):.1f} ± {np.std(genuines, ddof=1):.1f}\" if len(genuines) > 1 else f\"{genuines[0]:.1f}\",\n        \"TS%\": f\"{np.mean(ts_pcts):.1f} ± {np.std(ts_pcts, ddof=1):.1f}\" if len(ts_pcts) > 1 else f\"{ts_pcts[0]:.1f}\",\n        \"CE%\": f\"{np.mean(ce_pcts):.1f} ± {np.std(ce_pcts, ddof=1):.1f}\" if len(ce_pcts) > 1 else f\"{ce_pcts[0]:.1f}\",\n        \"PG%\": f\"{np.mean(pg_pcts):.1f} ± {np.std(pg_pcts, ddof=1):.1f}\" if len(pg_pcts) > 1 else f\"{pg_pcts[0]:.1f}\",\n        \"CI%\": f\"{np.mean(ci_pcts):.1f} ± {np.std(ci_pcts, ddof=1):.1f}\" if len(ci_pcts) > 1 else f\"{ci_pcts[0]:.1f}\",\n        \"genuine_counts\": [s[\"genuine\"] for s in seeds.values()],\n        \"proved_counts\": [s[\"proved\"] for s in seeds.values()],\n    }\n\n\ndef fisher_test(g1_genuine, g1_proved, g2_genuine, g2_proved):\n    \"\"\"Fisher exact test on pooled genuine vs non-genuine counts.\"\"\"\n    g1_non = g1_proved - g1_genuine\n    g2_non = g2_proved - g2_genuine\n    table = [[g1_genuine, g1_non], [g2_genuine, g2_non]]\n    odds, p = fisher_exact(table, alternative=\"two-sided\")\n    return odds, p\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--inputs\", nargs=\"+\", required=True,\n                        help=\"classify_h7 JSON files for D157 seeds (in seed order: s42, s43, s44)\")\n    parser.add_argument(\"--seed_labels\", nargs=\"+\", default=[\"s42\", \"s43\", \"s44\"])\n    parser.add_argument(\"--output\", default=\"artifacts/d157_shuffled_isr_analysis.md\")\n    args = parser.parse_args()\n\n    if len(args.inputs) != len(args.seed_labels):\n        print(f\"ERROR: {len(args.inputs)} inputs but {len(args.seed_labels)} seed labels\", file=sys.stderr)\n        sys.exit(1)\n\n    # Load D157 results\n    d157_seeds = {}\n    for path, label in zip(args.inputs, args.seed_labels):\n        raw = load_classify_result(path)\n        d157_seeds[label] = extract_metrics(raw)\n\n    d157_stats = compute_seed_stats(d157_seeds)\n\n    # Build report\n    lines = []\n    lines.append(\"# D157 Shuffled-ISR Analysis Report\\n\")\n    lines.append(f\"Generated from {len(args.inputs)} seeds: {', '.join(args.seed_labels)}\\n\")\n\n    # Per-seed breakdown\n    lines.append(\"## 1. Per-Seed Breakdown\\n\")\n    lines.append(\"| Seed | PR | Proved | TS | CE | PG | CI | Genuine | Genuine% |\")\n    lines.append(\"|------|------|--------|-----|-----|-----|-----|---------|----------|\")\n    for label, m in d157_seeds.items():\n        lines.append(f\"| {label} | {m['PR']:.2f} | {m['proved']} | \"\n                     f\"{m['TS']} ({pct(m['TS'], m['proved'])}%) | \"\n                     f\"{m['CE']} ({pct(m['CE'], m['proved'])}%) | \"\n                     f\"{m['PG']} ({pct(m['PG'], m['proved'])}%) | \"\n                     f\"{m['CI']} ({pct(m['CI'], m['proved'])}%) | \"\n                     f\"{m['genuine']} | {pct(m['genuine'], m['proved'])}% |\")\n\n    # Mean ± std\n    lines.append(\"\\n## 2. Aggregated (Mean ± Std)\\n\")\n    lines.append(\"| Metric | Shuffled-ISR |\")\n    lines.append(\"|--------|-------------|\")\n    for key in [\"PR\", \"genuine%\", \"TS%\", \"CE%\", \"PG%\", \"CI%\"]:\n        lines.append(f\"| {key} | {d157_stats[key]} |\")\n\n    # Comparison table\n    lines.append(\"\\n## 3. Cross-Condition Comparison\\n\")\n    lines.append(\"| Condition | Seeds | PR | Genuine% | TS% | CE% | PG% | CI% |\")\n    lines.append(\"|-----------|-------|------|----------|------|------|------|------|\")\n\n    all_conditions = {\"Shuffled-ISR (D157)\": d157_stats}\n    for name, bl in BASELINES.items():\n        bl_stats = compute_seed_stats(bl[\"seeds\"])\n        all_conditions[name] = bl_stats\n\n    for name, stats in all_conditions.items():\n        n = 3 if name.startswith(\"Shuffled\") else len(BASELINES.get(name.replace(\" (D157)\", \"\"), {}).get(\"seeds\", {\"a\":1,\"b\":2,\"c\":3}))\n        lines.append(f\"| {name} | {n} | {stats['PR']} | {stats['genuine%']} | \"\n                     f\"{stats['TS%']} | {stats['CE%']} | {stats['PG%']} | {stats['CI%']} |\")\n\n    # Statistical tests\n    lines.append(\"\\n## 4. Statistical Tests\\n\")\n    lines.append(\"### Fisher Exact Test (Shuffled-ISR vs ISR β=0.1): genuine proportion\\n\")\n\n    d157_total_genuine = sum(d157_stats[\"genuine_counts\"])\n    d157_total_proved = sum(d157_stats[\"proved_counts\"])\n\n    for bl_name, bl_data in BASELINES.items():\n        bl_stats = compute_seed_stats(bl_data[\"seeds\"])\n        bl_total_genuine = sum(bl_stats[\"genuine_counts\"])\n        bl_total_proved = sum(bl_stats[\"proved_counts\"])\n\n        odds, p = fisher_test(d157_total_genuine, d157_total_proved,\n                              bl_total_genuine, bl_total_proved)\n        sig = \"***\" if p < 0.001 else \"**\" if p < 0.01 else \"*\" if p < 0.05 else \"ns\"\n        lines.append(f\"**Shuffled-ISR vs {bl_name}**: \"\n                     f\"pooled genuine {d157_total_genuine}/{d157_total_proved} vs \"\n                     f\"{bl_total_genuine}/{bl_total_proved}, \"\n                     f\"OR={odds:.3f}, p={p:.4f} {sig}\\n\")\n\n    # Write report\n    output_path = Path(args.output)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    output_path.write_text(\"\\n\".join(lines) + \"\\n\")\n    print(f\"Report written to {output_path}\")\n\n    # Also print to stdout\n    print(\"\\n\" + \"\\n\".join(lines))\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/analyze_d157.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Analyze D157 shuffled-ISR results and compare with baselines.\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\nfrom scipy.stats import fisher_exact\nimport numpy as np\n\n\n# --- Baseline data from registry (Qwen3-4B, 500 steps) ---\n\nBASELINES = {\n    \"ISR β=0.1\": {\n        \"seeds\": {\n            \"s47\": {\"PR\": 0.97, \"proved\": 97, \"TS\": 83, \"CE\": 1, \"PG\": 10, \"CI\": 8, \"genuine\": 3},\n            \"s48\": {\"PR\": 0.66, \"proved\": 66, \"TS\": 66, \"CE\": 0, \"PG\": 0, \"CI\": 0, \"genuine\": 0},\n            \"s49\": {\"PR\": 0.86, \"proved\": 86, \"TS\": 73, \"CE\": 6, \"PG\": 6, \"CI\": 0, \"genuine\": 1},\n            \"s50\": {\"PR\": 0.98, \"proved\": 98, \"TS\": 84, \"CE\": 0, \"PG\": 0, \"CI\": 0, \"genuine\": 6},\n            \"s51\": {\"PR\": 0.98, \"proved\": 98, \"TS\": 96, \"CE\": 0, \"PG\": 1, \"CI\": 0, \"genuine\": 1},\n        },\n        \"source\": \"d134-4b-isr-b01-s47..s51\",\n    },\n    \"Random β=0.1\": {\n        \"seeds\": {\n            \"s47\": {\"PR\": 0.89, \"proved\": 89, \"TS\": 0, \"CE\": 79, \"PG\": 4, \"CI\": 0, \"genuine\": 6},\n            \"s48\": {\"PR\": 0.93, \"proved\": 93, \"TS\": 3, \"CE\": 75, \"PG\": 14, \"CI\": 0, \"genuine\": 4},\n            \"s49\": {\"PR\": 0.05, \"proved\": 5, \"TS\": 1, \"CE\": 4, \"PG\": 0, \"CI\": 0, \"genuine\": 0},\n            \"s50\": {\"PR\": 0.45, \"proved\": 45, \"TS\": 4, \"CE\": 39, \"PG\": 0, \"CI\": 0, \"genuine\": 2},\n            \"s51\": {\"PR\": 0.65, \"proved\": 65, \"TS\": 1, \"CE\": 36, \"PG\": 19, \"CI\": 0, \"genuine\": 9},\n        },\n        \"source\": \"d134-4b-random-b01-s47..s51\",\n    },\n    \"Exec-only\": {\n        \"seeds\": {\n            \"s42\": {\"PR\": 0.93, \"proved\": 93, \"TS\": 0, \"CE\": 81, \"PG\": 6, \"CI\": 0, \"genuine\": 7},\n            \"s45\": {\"PR\": 0.99, \"proved\": 99, \"TS\": 93, \"CE\": 5, \"PG\": 1, \"CI\": 0, \"genuine\": 1},\n            \"s46\": {\"PR\": 0.93, \"proved\": 93, \"TS\": 0, \"CE\": 83, \"PG\": 4, \"CI\": 0, \"genuine\": 9},\n        },\n        \"source\": \"plan001-exec-only-s42-r2, sweep-exec-only-s45-r2, plan001-exec-only-s46\",\n    },\n}\n\nN_PROBLEMS = 100\n\n\ndef load_classify_result(path: str) -> dict:\n    \"\"\"Load classify_h7 JSON and extract the first (only) experiment entry.\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    if isinstance(data, dict) and len(data) == 1:\n        return next(iter(data.values()))\n    return data\n\n\ndef extract_metrics(classify_data: dict) -> dict:\n    proved = classify_data[\"n_proved\"]\n    return {\n        \"PR\": proved / classify_data.get(\"n_total\", N_PROBLEMS),\n        \"proved\": proved,\n        \"TS\": classify_data.get(\"h7_strict_count\", 0),\n        \"CE\": classify_data.get(\"h1_strict_count\", 0),\n        \"PG\": classify_data.get(\"h8_conjunction_collapse_count\", 0),\n        \"CI\": classify_data.get(\"content_independent_count\", 0),\n        \"genuine\": classify_data.get(\"genuine_count\", 0),\n    }\n\n\ndef pct(count, total):\n    return f\"{count / total * 100:.1f}\" if total > 0 else \"—\"\n\n\ndef compute_seed_stats(seeds: dict) -> dict:\n    prs = [s[\"PR\"] for s in seeds.values()]\n    genuines = [s[\"genuine\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    ts_pcts = [s[\"TS\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    ce_pcts = [s[\"CE\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    pg_pcts = [s[\"PG\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    ci_pcts = [s[\"CI\"] / s[\"proved\"] * 100 if s[\"proved\"] > 0 else 0 for s in seeds.values()]\n    return {\n        \"PR\": f\"{np.mean(prs):.2f} ± {np.std(prs, ddof=1):.2f}\" if len(prs) > 1 else f\"{prs[0]:.2f}\",\n        \"genuine%\": f\"{np.mean(genuines):.1f} ± {np.std(genuines, ddof=1):.1f}\" if len(genuines) > 1 else f\"{genuines[0]:.1f}\",\n        \"TS%\": f\"{np.mean(ts_pcts):.1f} ± {np.std(ts_pcts, ddof=1):.1f}\" if len(ts_pcts) > 1 else f\"{ts_pcts[0]:.1f}\",\n        \"CE%\": f\"{np.mean(ce_pcts):.1f} ± {np.std(ce_pcts, ddof=1):.1f}\" if len(ce_pcts) > 1 else f\"{ce_pcts[0]:.1f}\",\n        \"PG%\": f\"{np.mean(pg_pcts):.1f} ± {np.std(pg_pcts, ddof=1):.1f}\" if len(pg_pcts) > 1 else f\"{pg_pcts[0]:.1f}\",\n        \"CI%\": f\"{np.mean(ci_pcts):.1f} ± {np.std(ci_pcts, ddof=1):.1f}\" if len(ci_pcts) > 1 else f\"{ci_pcts[0]:.1f}\",\n        \"genuine_counts\": [s[\"genuine\"] for s in seeds.values()],\n        \"proved_counts\": [s[\"proved\"] for s in seeds.values()],\n    }\n\n\ndef fisher_test(g1_genuine, g1_proved, g2_genuine, g2_proved):\n    \"\"\"Fisher exact test on pooled genuine vs non-genuine counts.\"\"\"\n    g1_non = g1_proved - g1_genuine\n    g2_non = g2_proved - g2_genuine\n    table = [[g1_genuine, g1_non], [g2_genuine, g2_non]]\n    odds, p = fisher_exact(table, alternative=\"two-sided\")\n    return odds, p\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--inputs\", nargs=\"+\", required=True,\n                        help=\"classify_h7 JSON files for D157 seeds (in seed order: s42, s43, s44)\")\n    parser.add_argument(\"--seed_labels\", nargs=\"+\", default=[\"s42\", \"s43\", \"s44\"])\n    parser.add_argument(\"--output\", default=\"artifacts/d157_shuffled_isr_analysis.md\")\n    args = parser.parse_args()\n\n    if len(args.inputs) != len(args.seed_labels):\n        print(f\"ERROR: {len(args.inputs)} inputs but {len(args.seed_labels)} seed labels\", file=sys.stderr)\n        sys.exit(1)\n\n    # Load D157 results\n    d157_seeds = {}\n    for path, label in zip(args.inputs, args.seed_labels):\n        raw = load_classify_result(path)\n        d157_seeds[label] = extract_metrics(raw)\n\n    d157_stats = compute_seed_stats(d157_seeds)\n\n    # Build report\n    lines = []\n    lines.append(\"# D157 Shuffled-ISR Analysis Report\\n\")\n    lines.append(f\"Generated from {len(args.inputs)} seeds: {', '.join(args.seed_labels)}\\n\")\n\n    # Per-seed breakdown\n    lines.append(\"## 1. Per-Seed Breakdown\\n\")\n    lines.append(\"| Seed | PR | Proved | TS | CE | PG | CI | Genuine | Genuine% |\")\n    lines.append(\"|------|------|--------|-----|-----|-----|-----|---------|----------|\")\n    for label, m in d157_seeds.items():\n        lines.append(f\"| {label} | {m['PR']:.2f} | {m['proved']} | \"\n                     f\"{m['TS']} ({pct(m['TS'], m['proved'])}%) | \"\n                     f\"{m['CE']} ({pct(m['CE'], m['proved'])}%) | \"\n                     f\"{m['PG']} ({pct(m['PG'], m['proved'])}%) | \"\n                     f\"{m['CI']} ({pct(m['CI'], m['proved'])}%) | \"\n                     f\"{m['genuine']} | {pct(m['genuine'], m['proved'])}% |\")\n\n    # Mean ± std\n    lines.append(\"\\n## 2. Aggregated (Mean ± Std)\\n\")\n    lines.append(\"| Metric | Shuffled-ISR |\")\n    lines.append(\"|--------|-------------|\")\n    for key in [\"PR\", \"genuine%\", \"TS%\", \"CE%\", \"PG%\", \"CI%\"]:\n        lines.append(f\"| {key} | {d157_stats[key]} |\")\n\n    # Comparison table\n    lines.append(\"\\n## 3. Cross-Condition Comparison\\n\")\n    lines.append(\"| Condition | Seeds | PR | Genuine% | TS% | CE% | PG% | CI% |\")\n    lines.append(\"|-----------|-------|------|----------|------|------|------|------|\")\n\n    all_conditions = {\"Shuffled-ISR (D157)\": d157_stats}\n    for name, bl in BASELINES.items():\n        bl_stats = compute_seed_stats(bl[\"seeds\"])\n        all_conditions[name] = bl_stats\n\n    for name, stats in all_conditions.items():\n        n = 3 if name.startswith(\"Shuffled\") else len(BASELINES.get(name.replace(\" (D157)\", \"\"), {}).get(\"seeds\", {\"a\":1,\"b\":2,\"c\":3}))\n        lines.append(f\"| {name} | {n} | {stats['PR']} | {stats['genuine%']} | \"\n                     f\"{stats['TS%']} | {stats['CE%']} | {stats['PG%']} | {stats['CI%']} |\")\n\n    # Statistical tests\n    lines.append(\"\\n## 4. Statistical Tests\\n\")\n    lines.append(\"### Fisher Exact Test (Shuffled-ISR vs ISR β=0.1): genuine proportion\\n\")\n\n    d157_total_genuine = sum(d157_stats[\"genuine_counts\"])\n    d157_total_proved = sum(d157_stats[\"proved_counts\"])\n\n    for bl_name, bl_data in BASELINES.items():\n        bl_stats = compute_seed_stats(bl_data[\"seeds\"])\n        bl_total_genuine = sum(bl_stats[\"genuine_counts\"])\n        bl_total_proved = sum(bl_stats[\"proved_counts\"])\n\n        odds, p = fisher_test(d157_total_genuine, d157_total_proved,\n                              bl_total_genuine, bl_total_proved)\n        sig = \"***\" if p < 0.001 else \"**\" if p < 0.01 else \"*\" if p < 0.05 else \"ns\"\n        lines.append(f\"**Shuffled-ISR vs {bl_name}**: \"\n                     f\"pooled genuine {d157_total_genuine}/{d157_total_proved} vs \"\n                     f\"{bl_total_genuine}/{bl_total_proved}, \"\n                     f\"OR={odds:.3f}, p={p:.4f} {sig}\\n\")\n\n    # Write report\n    output_path = Path(args.output)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    output_path.write_text(\"\\n\".join(lines) + \"\\n\")\n    print(f\"Report written to {output_path}\")\n\n    # Also print to stdout\n    print(\"\\n\" + \"\\n\".join(lines))\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T15:54:50.589734+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/analyze_d157.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T15:54:50.589904+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/d157_eval_commands.md",
+  "content": "# D157 Shuffled-ISR: Eval & Analysis Commands\n\n## Config\n\n- Model: Qwen3-4B, 500 steps, reward_mode=shuffled_isr, β=0.1\n- Seeds: s42, s43, s44\n- Test data: `data/proofwriter_fol_100.jsonl` (C008)\n\n## 1. Eval Commands (eval_sta.py)\n\n```bash\n# s42\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/eval_sta_results.json\n\n# s43\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/eval_sta_results.json\n\n# s44\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/eval_sta_results.json\n```\n\n## 2. Classify Commands (classify_h7.py)\n\n```bash\n# s42\npython scripts/classify_h7.py \\\n  --eval_path /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/eval_sta_results.json \\\n  --json_out /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/classify_h7_results.json\n\n# s43\npython scripts/classify_h7.py \\\n  --eval_path /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/eval_sta_results.json \\\n  --json_out /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/classify_h7_results.json\n\n# s44\npython scripts/classify_h7.py \\\n  --eval_path /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/eval_sta_results.json \\\n  --json_out /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/classify_h7_results.json\n```\n\n## 3. Analysis Script\n\n```bash\npython scripts/analyze_d157.py \\\n  --inputs \\\n    /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/classify_h7_results.json \\\n    /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/classify_h7_results.json \\\n    /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/classify_h7_results.json \\\n  --seed_labels s42 s43 s44 \\\n  --output artifacts/d157_shuffled_isr_analysis.md\n```\n\nPath: `scripts/analyze_d157.py`\n\n## 4. Baseline Data (from registry)\n\n### ISR β=0.1 (d134-4b-isr-b01, 5 seeds)\n\n| Seed | PR | Proved | TS(H7) | CE(H1) | PG(H8) | CI | Genuine | Genuine% |\n|------|------|--------|--------|--------|--------|-----|---------|----------|\n| s47  | 0.97 | 97     | 83     | 1      | 10     | 8   | 3       | 3.1%     |\n| s48  | 0.66 | 66     | 66     | 0      | 0      | 0   | 0       | 0.0%     |\n| s49  | 0.86 | 86     | 73     | 6      | 6      | 0   | 1       | 1.2%     |\n| s50  | 0.98 | 98     | 84     | 0      | 0      | 0   | 6       | 6.1%     |\n| s51  | 0.98 | 98     | 96     | 0      | 1      | 0   | 1       | 1.0%     |\n| **Mean** | **0.89** | — | — | — | — | — | — | **2.3%** |\n\n### Random β=0.1 (d134-4b-random-b01, 5 seeds)\n\n| Seed | PR | Proved | TS(H7) | CE(H1) | PG(H8) | CI | Genuine | Genuine% |\n|------|------|--------|--------|--------|--------|-----|---------|----------|\n| s47  | 0.89 | 89     | 0      | 79     | 4      | 0   | 6       | 6.7%     |\n| s48  | 0.93 | 93     | 3      | 75     | 14     | 0   | 4       | 4.3%     |\n| s49  | 0.05 | 5      | 1      | 4      | 0      | 0   | 0       | 0.0%     |\n| s50  | 0.45 | 45     | 4      | 39     | 0      | 0   | 2       | 4.4%     |\n| s51  | 0.65 | 65     | 1      | 36     | 19     | 0   | 9       | 13.9%   |\n| **Mean** | **0.59** | — | — | — | — | — | — | **5.9%** |\n\n### Exec-only (plan001/sweep, 3 seeds)\n\n| Seed | PR | Proved | TS(H7) | CE(H1) | PG(H8) | CI | Genuine | Genuine% |\n|------|------|--------|--------|--------|--------|-----|---------|----------|\n| s42  | 0.93 | 93     | 0      | 81     | 6      | 0   | 7       | 7.5%     |\n| s45  | 0.99 | 99     | 93     | 5      | 1      | 0   | 1       | 1.0%     |\n| s46  | 0.93 | 93     | 0      | 83     | 4      | 0   | 9       | 9.7%     |\n| **Mean** | **0.95** | — | — | — | — | — | — | **6.1%** |\n\n## 5. Notes\n\n- s42 training in progress (checkpoint-300 as of 2026-05-20). s43/s44 not yet started.\n- D157 output dirs for s43/s44 will be created when training launches.\n- All eval must use `--data_path data/proofwriter_fol_100.jsonl` per C008.\n- Set `CUDA_VISIBLE_DEVICES` before eval per C005.\n- ISR β=0.1 baselines use seeds s47-s51 (no s42/s43/s44 available for this condition).\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/d157_eval_commands.md",
+    "content": "# D157 Shuffled-ISR: Eval & Analysis Commands\n\n## Config\n\n- Model: Qwen3-4B, 500 steps, reward_mode=shuffled_isr, β=0.1\n- Seeds: s42, s43, s44\n- Test data: `data/proofwriter_fol_100.jsonl` (C008)\n\n## 1. Eval Commands (eval_sta.py)\n\n```bash\n# s42\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/eval_sta_results.json\n\n# s43\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/eval_sta_results.json\n\n# s44\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/eval_sta_results.json\n```\n\n## 2. Classify Commands (classify_h7.py)\n\n```bash\n# s42\npython scripts/classify_h7.py \\\n  --eval_path /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/eval_sta_results.json \\\n  --json_out /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/classify_h7_results.json\n\n# s43\npython scripts/classify_h7.py \\\n  --eval_path /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/eval_sta_results.json \\\n  --json_out /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/classify_h7_results.json\n\n# s44\npython scripts/classify_h7.py \\\n  --eval_path /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/eval_sta_results.json \\\n  --json_out /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/classify_h7_results.json\n```\n\n## 3. Analysis Script\n\n```bash\npython scripts/analyze_d157.py \\\n  --inputs \\\n    /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3/classify_h7_results.json \\\n    /root/autodl-tmp/outputs/d157_shuffled_isr_s43_r3/classify_h7_results.json \\\n    /root/autodl-tmp/outputs/d157_shuffled_isr_s44_r3/classify_h7_results.json \\\n  --seed_labels s42 s43 s44 \\\n  --output artifacts/d157_shuffled_isr_analysis.md\n```\n\nPath: `scripts/analyze_d157.py`\n\n## 4. Baseline Data (from registry)\n\n### ISR β=0.1 (d134-4b-isr-b01, 5 seeds)\n\n| Seed | PR | Proved | TS(H7) | CE(H1) | PG(H8) | CI | Genuine | Genuine% |\n|------|------|--------|--------|--------|--------|-----|---------|----------|\n| s47  | 0.97 | 97     | 83     | 1      | 10     | 8   | 3       | 3.1%     |\n| s48  | 0.66 | 66     | 66     | 0      | 0      | 0   | 0       | 0.0%     |\n| s49  | 0.86 | 86     | 73     | 6      | 6      | 0   | 1       | 1.2%     |\n| s50  | 0.98 | 98     | 84     | 0      | 0      | 0   | 6       | 6.1%     |\n| s51  | 0.98 | 98     | 96     | 0      | 1      | 0   | 1       | 1.0%     |\n| **Mean** | **0.89** | — | — | — | — | — | — | **2.3%** |\n\n### Random β=0.1 (d134-4b-random-b01, 5 seeds)\n\n| Seed | PR | Proved | TS(H7) | CE(H1) | PG(H8) | CI | Genuine | Genuine% |\n|------|------|--------|--------|--------|--------|-----|---------|----------|\n| s47  | 0.89 | 89     | 0      | 79     | 4      | 0   | 6       | 6.7%     |\n| s48  | 0.93 | 93     | 3      | 75     | 14     | 0   | 4       | 4.3%     |\n| s49  | 0.05 | 5      | 1      | 4      | 0      | 0   | 0       | 0.0%     |\n| s50  | 0.45 | 45     | 4      | 39     | 0      | 0   | 2       | 4.4%     |\n| s51  | 0.65 | 65     | 1      | 36     | 19     | 0   | 9       | 13.9%   |\n| **Mean** | **0.59** | — | — | — | — | — | — | **5.9%** |\n\n### Exec-only (plan001/sweep, 3 seeds)\n\n| Seed | PR | Proved | TS(H7) | CE(H1) | PG(H8) | CI | Genuine | Genuine% |\n|------|------|--------|--------|--------|--------|-----|---------|----------|\n| s42  | 0.93 | 93     | 0      | 81     | 6      | 0   | 7       | 7.5%     |\n| s45  | 0.99 | 99     | 93     | 5      | 1      | 0   | 1       | 1.0%     |\n| s46  | 0.93 | 93     | 0      | 83     | 4      | 0   | 9       | 9.7%     |\n| **Mean** | **0.95** | — | — | — | — | — | — | **6.1%** |\n\n## 5. Notes\n\n- s42 training in progress (checkpoint-300 as of 2026-05-20). s43/s44 not yet started.\n- D157 output dirs for s43/s44 will be created when training launches.\n- All eval must use `--data_path data/proofwriter_fol_100.jsonl` per C008.\n- Set `CUDA_VISIBLE_DEVICES` before eval per C005.\n- ISR β=0.1 baselines use seeds s47-s51 (no s42/s43/s44 available for this condition).\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T15:54:50.590094+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/d157_eval_commands.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_d157-eval-prep_20260520T154920",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-20T15:54:50.590257+00:00_
+
+产出：
+
+1. **`scripts/analyze_d157.py`** — 分析脚本，接受 3 个 classify_h7 JSON 文件，输出：
+   - Per-seed breakdown table
+   - Mean ± std 聚合
+   - 与 ISR/Random/Exec-only 的对比表（baselines 硬编码自 registry）
+   - Fisher exact test（pooled genuine 比例）
+   - Markdown 报告保存到 `artifacts/d157_shuffled_isr_analysis.md`
+
+2. **`artifacts/d157_eval_commands.md`** — 完整的 eval/classify/analyze 命令 + baseline 数据表
+
+关键发现：
+- D157 使用 β=0.1（从 reward_log.jsonl 确认 `beta_t: 0.1`）
+- 目前只有 s42 在训练（checkpoint-300），s43/s44 尚未启动
+- ISR β=0.1 baselines 无 s42/s43/s44 数据，使用 d134 系列 s47-s51（同为 Qwen3-4B, 500 steps）
+- classify_h7.py 参数是 `--eval_path` + `--json_out`（不是 `--input`/`--output`）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_d157-eval-prep_20260520T154920"
+}
+```
+
+</details>
+
+---

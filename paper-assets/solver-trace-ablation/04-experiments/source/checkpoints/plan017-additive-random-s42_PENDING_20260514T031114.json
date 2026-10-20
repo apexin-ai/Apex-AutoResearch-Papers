@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan017-additive-random-s42",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:11:14.694Z",
+    "updated_at": "2026-05-14T03:11:14.694Z"
+  },
+  "timestamp": "2026-05-14T03:11:14.808021+00:00",
+  "trigger": "update_registry"
+}

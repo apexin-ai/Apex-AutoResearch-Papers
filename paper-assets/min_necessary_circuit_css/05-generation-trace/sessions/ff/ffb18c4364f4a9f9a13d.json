@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffb18c4364f4a9f9a13d",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "ops check arithmetic progress",
+  "task_key": "worker_ops_check-arithmetic-progress_20260513T031253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-arithmetic-progress_20260513T031253_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "ec7e812d0010905569311f46f63a6446d721157aeeebe28ea5126818a666db5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：`mvp_arithmetic_gpt2_k3`\n\n### 进程状态\n**存活** — PID 900223，已运行 1h08m，RSS 2.3 GB\n\n### 当前 Phase 及进度\n\n| Phase | 状态 | 耗时 |\n|-------|------|------|\n| Phase A: EAP-IG | 已完成 | ~9s |\n| Phase B: Edge Pruning | 已完成 | ~4s |\n| Phase B: ACDC | **进行中** | ~54m+ |\n\nACDC 共 5 个阈值，当前在第 4 个（τ=0.07）：\n\n| 阈值 τ | 状态 | 耗时 |\n|--------|------|------|\n| 0.01 | 完成 | 18:00 |\n| 0.03 | 完成 | 17:48 |\n| 0.05 | 完成 | 17:48 |\n| **0.07** | **28746/32491 (88.5%)** | ~14:01 |\n| 0.09 | 待运行 | — |\n\n### GPU 利用率（cuda:5）\n- GPU 计算利用率：**97%**\n- 显存带宽利用率：**99%**\n- 显存占用：2609 MiB / 24564 MiB (10.6%)\n- 温度：59°C\n\nGPU 利用率很高，没有问题。显存占用低但计算利用率高，符合 ACDC 特征：大量小 batch forward pass，计算密集但模型本身小（GPT-2 small ~124M 参数）。\n\n内层迭代速度在 5~20 it/s 之间波动，是正常现象 — ACDC 反向遍历边时，越靠近输入端的边测试代价越高（需要更长的前向路径）。\n\n### 预计剩余时间\n- τ=0.07 剩余：**~3-4 分钟**\n- τ=0.09（最后一个）：**~18 分钟**\n- ACDC 后续 CSS 分析：**~1-2 分钟**（纯计算比较，不涉及 GPU 密集操作）\n- **总计剩余：~22-24 分钟**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-arithmetic-progress.md"
+}

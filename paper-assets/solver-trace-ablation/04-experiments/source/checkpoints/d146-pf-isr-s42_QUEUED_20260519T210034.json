@@ -1,0 +1,16 @@
+{
+  "exp_id": "d146-pf-isr-s42",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:01.436Z",
+    "updated_at": "2026-05-19T21:00:33.927Z",
+    "hypothesis": "D146 ProofFOL ISR beta=0.1 seed=42. Tests if ISR triggers same Goodhart collapse pattern on ProofFOL as observed on FOLIO.",
+    "parent": "d146-pf-exec-s42"
+  },
+  "timestamp": "2026-05-19T21:00:34.277014+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp_sva_gpt2_k3_topk",
+  "project": "min_necessary_circuit_css",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:01:43.125Z",
+    "updated_at": "2026-05-13T07:26:45.464Z",
+    "hypothesis": "SVA 上 CSS=1.0 faithfulness > single-method（ACDC top-100 修正版，westd-pro6000 cuda:1）",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 /root/min_necessary_circuit_css/run_sva_cuda1.py",
+      "server": "westd-pro6000",
+      "model_name": "gpt2-small",
+      "data_path": "/root/miniconda3/lib/python3.12/site-packages/datasets/sva_gpt2-small_prompts.json",
+      "data_count": 500,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T07:26:45.483057+00:00",
+  "trigger": "update_registry"
+}

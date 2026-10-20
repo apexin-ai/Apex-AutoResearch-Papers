@@ -1,0 +1,1895 @@
+{
+  "schema_version": "1.0",
+  "id": "4c793356558298011b0e",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code update phase2 configs",
+  "task_key": "worker_code_update-phase2-configs_20260513T080035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-phase2-configs_20260513T080035.log",
+    "occurrence": 1,
+    "bytes": 137375,
+    "sha256": "1e62d1c8ed5b1db1becacb4489df1248a16cfe8749e97270bc748b268dba2616"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+                "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "95cca3fa-9690-4153-875d-8baae4a207cd",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778673000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9c34b79e-45c4-4dfe-9507-8ac1b7632261",
+                "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the remote and local files in parallel.",
+              "signature": "EvoBClkIDRgCKkCZfcEFcf0+XkDqi0dZFQyVfVDP0RILcVZmrVonqUlzx87pZ34aFWxTs8whD74jaNeQg9gG1FJFOV5Zx/V1/RfSMg9jbGF1ZGUtb3B1cy00LTY4ABIMomNaYJkgAsWju2dsGgysSp7HPd0H2CtOM/giMNPBEViL6aAklUeUQV3GFS9rNmAP8r/sIP7IGj/dlHpR6hudBQZivAAJU+weLMBErSpPEjIOZ4OAXxNq1e6saUq5PrWVR3itAYslNPrhFZemlu3dEpZJwU5Y876wIpt4AWPu414rYQKwRPLEYpgccLU/8qjup1Um6RM1mwICRlms5hgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "bb43f3f3-3a68-40b8-becc-2a6b1a9313f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CZX2PaxamhizefCt3z1vmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11422,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11422
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取远程和本地配置文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "b7a18334-f396-47cb-a15d-27387827bd2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CZX2PaxamhizefCt3z1vmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11422,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11422
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tguf9GUBkJnh8EgiXF7cBA",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "514bf9d9-a672-426e-85ef-335a59d75e49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CZX2PaxamhizefCt3z1vmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11422,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11422
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T08:00:47.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Tguf9GUBkJnh8EgiXF7cBA",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "830ca73e-9db7-4c6a-a642-bb6042fc6a86",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019PSR7VvYVB4Ew5z3HHwxNX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "cat /root/structfuse-context/phase2_configs.yaml",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "2ef5c3b5-f659-4e09-9ecd-2210ece680ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XbJXQWMrZexko2EHYroxDg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1310,
+                "cache_read_input_tokens": 23263,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1310
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LcCsuhpR3bsGuUkmyoYU8G",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "experiment_plan.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "ee690c85-9ead-4bec-a757-97d02f7a9506",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XbJXQWMrZexko2EHYroxDg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1310,
+                "cache_read_input_tokens": 23263,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1310
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T08:00:52.820Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019PSR7VvYVB4Ew5z3HHwxNX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Phase 2 实验矩阵\\\\n# 每个实验 = 一个 model × task × methods 组合\\\\n#\\\\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\\\\n# Backend: transformerlens (GPT-2) | huggingface (其他)\\\\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\\\\n#\\\\n# 预估单实验耗时（基于 MVP 经验）:\\\\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task\\\\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\\\\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\\\\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\\\\n\\\\ndefaults:\\\\n  K: 3\\\\n  num_samples: 50\\\\n  seed: 42\\\\n  gpu_id: \\\\\\\"0\\\\\\\"\\\\n  eap_ig_steps: 5\\\\n  edge_pruning_epochs: 100\\\\n  edge_pruning_lambda: 1e-2\\\\n  ifr_threshold: 0.1\\\\n  css_threshold: 0.67\\\\n  circus_B: 10\\\\n\\\\nexperiments:\\\\n\\\\n  # ===================================================================\\\\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\\\\n  # 预估总耗时: ~60min (3 tasks × ~20min)\\\\n  # ===================================================================\\\\n\\\\n  gpt2_ioi:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 1\\\\n    notes: \\\\\\\"MVP baseline, 已有部分结果\\\\\\\"\\\\n\\\\n  gpt2_greater_than:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"数值推理任务, 预期电路更紧凑\\\\\\\"\\\\n\\\\n  gpt2_docstring:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"代码理解任务, 验证跨领域泛化\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~100min (4 tasks × ~25min)\\\\n  # ===================================================================\\\\n\\\\n  qwen05_ioi:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Phase 2 首个大模型实验, MVP 后立即跑\\\\\\\"\\\\n\\\\n  qwen05_greater_than:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 数值推理\\\\\\\"\\\\n\\\\n  qwen05_docstring:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 代码理解\\\\\\\"\\\\n\\\\n  qwen05_ioi_variant:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {\\\\n\\\\n... [截断: 输出过长，省略 592 字符] ...\\\\n\\\\nmples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"2B 模型, 减 samples 和 EP epochs 控制显存\\\\\\\"\\\\n\\\\n  gemma2_greater_than:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Gemma-2 数值推理\\\\\\\"\\\\n\\\\n  gemma2_docstring:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Gemma-2 代码理解\\\\\\\"\\\\n\\\\n  gemma2_ioi_variant:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Gemma-2 IOI 变体\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Llama-3.1 8B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~600min (4 tasks × ~150min)\\\\n  # 需要 >=24GB VRAM (A6000), EP 可能需 gradient checkpointing\\\\n  # ===================================================================\\\\n\\\\n  llama31_ioi:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"8B 最大模型, 减 samples/epochs, 可能需 gradient checkpointing\\\\\\\"\\\\n\\\\n  llama31_greater_than:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Llama-3.1 数值推理\\\\\\\"\\\\n\\\\n  llama31_docstring:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Llama-3.1 代码理解\\\\\\\"\\\\n\\\\n  llama31_ioi_variant:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Llama-3.1 IOI 变体\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "0e2d0515-ee97-484d-a32f-194b9e76211c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Phase 2 实验矩阵\\\\n# 每个实验 = 一个 model × task × methods 组合\\\\n#\\\\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\\\\n# Backend: transformerlens (GPT-2) | huggingface (其他)\\\\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\\\\n#\\\\n# 预估单实验耗时（基于 MVP 经验）:\\\\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task\\\\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\\\\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\\\\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\\\\n\\\\ndefaults:\\\\n  K: 3\\\\n  num_samples: 50\\\\n  seed: 42\\\\n  gpu_id: \\\\\\\"0\\\\\\\"\\\\n  eap_ig_steps: 5\\\\n  edge_pruning_epochs: 100\\\\n  edge_pruning_lambda: 1e-2\\\\n  ifr_threshold: 0.1\\\\n  css_threshold: 0.67\\\\n  circus_B: 10\\\\n\\\\nexperiments:\\\\n\\\\n  # ===================================================================\\\\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\\\\n  # 预估总耗时: ~60min (3 tasks × ~20min)\\\\n  # ===================================================================\\\\n\\\\n  gpt2_ioi:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 1\\\\n    notes: \\\\\\\"MVP baseline, 已有部分结果\\\\\\\"\\\\n\\\\n  gpt2_greater_than:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"数值推理任务, 预期电路更紧凑\\\\\\\"\\\\n\\\\n  gpt2_docstring:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"代码理解任务, 验证跨领域泛化\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~100min (4 tasks × ~25min)\\\\n  # ===================================================================\\\\n\\\\n  qwen05_ioi:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Phase 2 首个大模型实验, MVP 后立即跑\\\\\\\"\\\\n\\\\n  qwen05_greater_than:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 数值推理\\\\\\\"\\\\n\\\\n  qwen05_docstring:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 代码理解\\\\\\\"\\\\n\\\\n  qwen05_ioi_variant:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {\\\\n\\\\n... [截断: 输出过长，省略 592 字符] ...\\\\n\\\\nmples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"2B 模型, 减 samples 和 EP epochs 控制显存\\\\\\\"\\\\n\\\\n  gemma2_greater_than:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Gemma-2 数值推理\\\\\\\"\\\\n\\\\n  gemma2_docstring:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Gemma-2 代码理解\\\\\\\"\\\\n\\\\n  gemma2_ioi_variant:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 30\\\\n    edge_pruning_epochs: 80\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Gemma-2 IOI 变体\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Llama-3.1 8B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~600min (4 tasks × ~150min)\\\\n  # 需要 >=24GB VRAM (A6000), EP 可能需 gradient checkpointing\\\\n  # ===================================================================\\\\n\\\\n  llama31_ioi:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"8B 最大模型, 减 samples/epochs, 可能需 gradient checkpointing\\\\\\\"\\\\n\\\\n  llama31_greater_than:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Llama-3.1 数值推理\\\\\\\"\\\\n\\\\n  llama31_docstring:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Llama-3.1 代码理解\\\\\\\"\\\\n\\\\n  llama31_ioi_variant:\\\\n    model: \\\\\\\"meta-llama/Llama-3.1-8B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    num_samples: 20\\\\n    edge_pruning_epochs: 60\\\\n    edge_pruning_lambda: 5e-3\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"Llama-3.1 IOI 变体\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Phase 2 实验矩阵\\n# 每个实验 = 一个 model × task × methods 组合\\n#\\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\\n# Backend: transformerlens (GPT-2) | huggingface (其他)\\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\\n#\\n# 预估单实验耗时（基于 MVP 经验）:\\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task\\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\\n\\ndefaults:\\n  K: 3\\n  num_samples: 50\\n  seed: 42\\n  gpu_id: \\\"0\\\"\\n  eap_ig_steps: 5\\n  edge_pruning_epochs: 100\\n  edge_pruning_lambda: 1e-2\\n  ifr_threshold: 0.1\\n  css_threshold: 0.67\\n  circus_B: 10\\n\\nexperiments:\\n\\n  # ===================================================================\\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\\n  # 预估总耗时: ~60min (3 tasks × ~20min)\\n  # ===================================================================\\n\\n  gpt2_ioi:\\n    model: \\\"gpt2\\\"\\n    model_path: null\\n    task: \\\"ioi\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"acdc\\\"]\\n    backend: \\\"transformerlens\\\"\\n    thresholds:\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      acdc: {strategy: \\\"threshold\\\", threshold: 0.05}\\n    priority: 1\\n    notes: \\\"MVP baseline, 已有部分结果\\\"\\n\\n  gpt2_greater_than:\\n    model: \\\"gpt2\\\"\\n    model_path: null\\n    task: \\\"greater_than\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"acdc\\\"]\\n    backend: \\\"transformerlens\\\"\\n    thresholds:\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      acdc: {strategy: \\\"threshold\\\", threshold: 0.05}\\n    priority: 2\\n    notes: \\\"数值推理任务, 预期电路更紧凑\\\"\\n\\n  gpt2_docstring:\\n    model: \\\"gpt2\\\"\\n    model_path: null\\n    task: \\\"docstring\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"acdc\\\"]\\n    backend: \\\"transformerlens\\\"\\n    thresholds:\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      acdc: {strategy: \\\"threshold\\\", threshold: 0.05}\\n    priority: 2\\n    notes: \\\"代码理解任务, 验证跨领域泛化\\\"\\n\\n  # ===================================================================\\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\n  # 预估总耗时: ~100min (4 tasks × ~25min)\\n  # ===================================================================\\n\\n  qwen05_ioi:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"ioi\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 2\\n    notes: \\\"Phase 2 首个大模型实验, MVP 后立即跑\\\"\\n\\n  qwen05_greater_than:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"greater_than\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 2\\n    notes: \\\"Qwen 数值推理\\\"\\n\\n  qwen05_docstring:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"docstring\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 2\\n    notes: \\\"Qwen 代码理解\\\"\\n\\n  qwen05_ioi_variant:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"ioi_variant\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {\\n\\n... [截断: 输出过长，省略 592 字符] ...\\n\\nmples: 30\\n    edge_pruning_epochs: 80\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"2B 模型, 减 samples 和 EP epochs 控制显存\\\"\\n\\n  gemma2_greater_than:\\n    model: \\\"google/gemma-2-2b\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\"\\n    task: \\\"greater_than\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    num_samples: 30\\n    edge_pruning_epochs: 80\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"Gemma-2 数值推理\\\"\\n\\n  gemma2_docstring:\\n    model: \\\"google/gemma-2-2b\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\"\\n    task: \\\"docstring\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    num_samples: 30\\n    edge_pruning_epochs: 80\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"Gemma-2 代码理解\\\"\\n\\n  gemma2_ioi_variant:\\n    model: \\\"google/gemma-2-2b\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\"\\n    task: \\\"ioi_variant\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    num_samples: 30\\n    edge_pruning_epochs: 80\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"Gemma-2 IOI 变体\\\"\\n\\n  # ===================================================================\\n  # Llama-3.1 8B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\n  # 预估总耗时: ~600min (4 tasks × ~150min)\\n  # 需要 >=24GB VRAM (A6000), EP 可能需 gradient checkpointing\\n  # ===================================================================\\n\\n  llama31_ioi:\\n    model: \\\"meta-llama/Llama-3.1-8B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\"\\n    task: \\\"ioi\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    num_samples: 20\\n    edge_pruning_epochs: 60\\n    edge_pruning_lambda: 5e-3\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"8B 最大模型, 减 samples/epochs, 可能需 gradient checkpointing\\\"\\n\\n  llama31_greater_than:\\n    model: \\\"meta-llama/Llama-3.1-8B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\"\\n    task: \\\"greater_than\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    num_samples: 20\\n    edge_pruning_epochs: 60\\n    edge_pruning_lambda: 5e-3\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"Llama-3.1 数值推理\\\"\\n\\n  llama31_docstring:\\n    model: \\\"meta-llama/Llama-3.1-8B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\"\\n    task: \\\"docstring\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    num_samples: 20\\n    edge_pruning_epochs: 60\\n    edge_pruning_lambda: 5e-3\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"Llama-3.1 代码理解\\\"\\n\\n  llama31_ioi_variant:\\n    model: \\\"meta-llama/Llama-3.1-8B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\\\"\\n    task: \\\"ioi_variant\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    num_samples: 20\\n    edge_pruning_epochs: 60\\n    edge_pruning_lambda: 5e-3\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"Llama-3.1 IOI 变体\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T08:00:52.834Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LcCsuhpR3bsGuUkmyoYU8G",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "44ee91cf-a68e-4220-a0fc-07341173de5c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The remote file was read successfully. The local `experiment_plan.yaml` is not a supported file for `read_project_file`. Let me check if it exists locally in the project directory.\n\nLet me also check the truncated part of the remote file - the Qwen ioi_variant section was truncated. Let me get the full file. Actually, I have enough context. Let me check what's in the local project directory for experiment_plan.yaml.\n\nLet me look for experiment_plan.yaml locally and also get the truncated part of the remote file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "3a6905aa-0812-49e9-9199-7da1aab73068",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XJXQZGkNxdRe6JJWFcxqSR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4912,
+                "cache_read_input_tokens": 24573,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4912
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "远程文件读取成功，`experiment_plan.yaml` 不在 `read_project_file` 白名单中。查找本地文件位置，同时获取远程文件被截断的部分。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "72a32fb3-8504-447d-9c65-2e4aece6e89d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XJXQZGkNxdRe6JJWFcxqSR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4912,
+                "cache_read_input_tokens": 24573,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4912
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HjyjxBWWQeRVRu2Vfx6Pir",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/experiment_plan.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "458b77fa-fe5d-4a66-9392-a9b03103f0f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XJXQZGkNxdRe6JJWFcxqSR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4912,
+                "cache_read_input_tokens": 24573,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4912
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T08:01:01.281Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HjyjxBWWQeRVRu2Vfx6Pir",
+              "type": "tool_result",
+              "content": "experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "da496c47-fd6d-4544-8dc3-3ee80ec2d5a3",
+            "tool_use_result": {
+              "filenames": [
+                "experiment_plan.yaml"
+              ],
+              "durationMs": 27,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019eNE2BZwjMZijmyt1iShov",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "grep -n \"ioi_variant\" /root/structfuse-context/phase2_configs.yaml",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "fc9434e9-1e23-4a98-9d1d-69ef9c4223f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XJXQZGkNxdRe6JJWFcxqSR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4912,
+                "cache_read_input_tokens": 24573,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4912
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T08:01:03.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019eNE2BZwjMZijmyt1iShov",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"122:  qwen05_ioi_variant:\\\\n125:    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n185:  gemma2_ioi_variant:\\\\n188:    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n254:  llama31_ioi_variant:\\\\n257:    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "8a971999-79ee-4e1f-bc2c-bf0f4ff6fdcd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"122:  qwen05_ioi_variant:\\\\n125:    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n185:  gemma2_ioi_variant:\\\\n188:    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n254:  llama31_ioi_variant:\\\\n257:    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"122:  qwen05_ioi_variant:\\n125:    task: \\\"ioi_variant\\\"\\n185:  gemma2_ioi_variant:\\n188:    task: \\\"ioi_variant\\\"\\n254:  llama31_ioi_variant:\\n257:    task: \\\"ioi_variant\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BdMppnEsx9XdJkKv8Tpzgt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "b1cff7c7-095d-4177-8dca-96ea6fac340a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rc1u83K5j1ceT8NreveK4s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 631,
+                "cache_read_input_tokens": 29485,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 631
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T08:01:06.640Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BdMppnEsx9XdJkKv8Tpzgt",
+              "type": "tool_result",
+              "content": "1\t# Experiment Plan — structfuse-context\n2\t# 最后更新: 2026-05-13 | 更新原因: MVP 结果出齐，基于 D027 reframe\n3\t\n4\texperiments:\n5\t  # === MVP Phase (completed) ===\n6\t  - plan_id: plan_001\n7\t    name: \"GPT-2 IOI K=3 CSS\"\n8\t    claim: [\"Claim 1\", \"Claim 3\"]\n9\t    description: \"GPT-2 Small / IOI task, K=3 (EAP-IG + EP + ACDC), CSS faithfulness evaluation\"\n10\t    registry_id: mvp_pilot_gpt2_ioi_v3\n11\t    priority: P0\n12\t    status: done\n13\t    result: \"PASS — CSS=1.0 (14 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n14\t\n15\t  - plan_id: plan_002\n16\t    name: \"GPT-2 Arithmetic K=3 CSS\"\n17\t    claim: [\"Claim 2\"]\n18\t    description: \"GPT-2 Small / Greaterthan task, K=3, CSS cross-task generalization test\"\n19\t    registry_id: mvp_arithmetic_gpt2_k3\n20\t    priority: P0\n21\t    status: done\n22\t    result: \"FAIL condition④ — CSS=1.0 CPR=0.919 < EAP-IG 0.985; Jaccard=0.695 (methods too correlated)\"\n23\t\n24\t  - plan_id: plan_003\n25\t    name: \"ACDC top-k binarization sweep\"\n26\t    claim: [\"Claim 3\"]\n27\t    description: \"Diagnose isinf degeneration: k=50/75/100/150 on both IOI and Arithmetic\"\n28\t    registry_id: null\n29\t    priority: P0\n30\t    status: done\n31\t    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; CSS 3/3 saturates at 54 edges (Arith) / 24 edges (IOI)\"\n32\t\n33\t  # === Research Phase — Task Coverage (Claim 1 + 2) ===\n34\t  - plan_id: plan_004\n35\t    name: \"GPT-2 SVA K=3 CSS\"\n36\t    claim: [\"Claim 1\", \"Claim 2\"]\n37\t    description: \"Subject-Verb Agreement on GPT-2 Small. Expected: localized circuit → low Jaccard → CSS should work\"\n38\t    priority: P1\n39\t    status: planned\n40\t    depends_on: []\n41\t    gpu_hours_est: 4\n42\t\n43\t  - plan_id: plan_005\n44\t    name: \"GPT-2 DocQA/Factual K=3 CSS\"\n45\t    claim: [\"Claim 2\"]\n46\t    description: \"Distributed computation task on GPT-2. Expected: high Jaccard → CSS should fail (confirms pattern)\"\n47\t    priority: P2\n48\t    status: planned\n49\t    depends_on: []\n50\t    gpu_hours_est: 4\n51\t\n52\t  # === Research Phase — Model Scaling (Claim 1 + 2) ===\n53\t  - plan_id: plan_006\n54\t    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + IFR)\"\n55\t    claim: [\"Claim 1\", \"Claim 2\"]\n56\t    description: \"First large model. IFR replaces ACDC → different family → lower Jaccard expected\"\n57\t    priority: P1\n58\t    status: planned\n59\t    depends_on: [plan_004]\n60\t    gpu_hours_est: 8\n61\t\n62\t  - plan_id: plan_007\n63\t    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n64\t    claim: [\"Claim 2\"]\n65\t    description: \"Cross-task check on Qwen. With IFR, Jaccard should be lower → CSS may recover\"\n66\t    priority: P1\n67\t    status: planned\n68\t    depends_on: [plan_006]\n69\t    gpu_hours_est: 8\n70\t\n71\t  - plan_id: plan_008\n72\t    name: \"Gemma-2 2B IOI K=3\"\n73\t    claim: [\"Claim 1\"]\n74\t    description: \"Scale to 2B model\"\n75\t    priority: P2\n76\t    status: planned\n77\t    depends_on: [plan_006]\n78\t    gpu_hours_est: 16\n79\t\n80\t  - plan_id: plan_009\n81\t    name: \"Llama-3.1 8B IOI K=3\"\n82\t    claim: [\"Claim 1\"]\n83\t    description: \"Scale to 8B model. Needs A100 80GB for EP\"\n84\t    priority: P3\n85\t    status: planned\n86\t    depends_on: [plan_008]\n87\t    gpu_hours_est: 24\n88\t\n89\t  # === Research Phase — Ablations ===\n90\t  - plan_id: plan_010\n91\t    name: \"Binarization sensitivity ablation\"\n92\t    claim: [\"Claim 3\"]\n93\t    description: \"Systematic k sweep on all models/tasks, show CSS stable across k=50-150\"\n94\t    priority: P1\n95\t    status: planned\n96\t    depends_on: [plan_006]\n97\t    gpu_hours_est: 4\n98\t\n99\t  - plan_id: plan_011\n100\t    name: \"Ablation method comparison (zero vs mean vs resample)\"\n101\t    claim: [\"Claim 1\"]\n102\t    description: \"Compare ablation methods on all tasks, show CSS advantage is robust to evaluation choice\"\n103\t    priority: P2\n104\t    status: planned\n105\t    depends_on: [plan_004]\n106\t    gpu_hours_est: 8\n107\t\n108\t  - plan_id: plan_012\n109\t    name: \"CIRCUS as negative ablation\"\n110\t    claim: [\"Claim 4\"]\n111\t    description: \"D021: CIRCUS failed 3x. Use as negative ablation showing structural consensus > faithfulness scoring\"\n112\t    registry_id: null\n113\t    priority: P2\n114\t    status: planned\n115\t    depends_on: []\n116\t    gpu_hours_est: 0\n117\t\n118\t  # === Research Phase — Jaccard Prediction (Claim 2) ===\n119\t  - plan_id: plan_013\n120\t    name: \"Jaccard-CSS correlation analysis\"\n121\t    claim: [\"Claim 2\"]\n122\t    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n123\t    priority: P1\n124\t    status: planned\n125\t    depends_on: [plan_004, plan_006, plan_007]\n126\t    gpu_hours_est: 0\n127\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "ab91b4f0-bde0-4ee5-a315-30e6b5cd6323",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+                "content": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: MVP 结果出齐，基于 D027 reframe\n\nexperiments:\n  # === MVP Phase (completed) ===\n  - plan_id: plan_001\n    name: \"GPT-2 IOI K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 3\"]\n    description: \"GPT-2 Small / IOI task, K=3 (EAP-IG + EP + ACDC), CSS faithfulness evaluation\"\n    registry_id: mvp_pilot_gpt2_ioi_v3\n    priority: P0\n    status: done\n    result: \"PASS — CSS=1.0 (14 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n\n  - plan_id: plan_002\n    name: \"GPT-2 Arithmetic K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"GPT-2 Small / Greaterthan task, K=3, CSS cross-task generalization test\"\n    registry_id: mvp_arithmetic_gpt2_k3\n    priority: P0\n    status: done\n    result: \"FAIL condition④ — CSS=1.0 CPR=0.919 < EAP-IG 0.985; Jaccard=0.695 (methods too correlated)\"\n\n  - plan_id: plan_003\n    name: \"ACDC top-k binarization sweep\"\n    claim: [\"Claim 3\"]\n    description: \"Diagnose isinf degeneration: k=50/75/100/150 on both IOI and Arithmetic\"\n    registry_id: null\n    priority: P0\n    status: done\n    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; CSS 3/3 saturates at 54 edges (Arith) / 24 edges (IOI)\"\n\n  # === Research Phase — Task Coverage (Claim 1 + 2) ===\n  - plan_id: plan_004\n    name: \"GPT-2 SVA K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"Subject-Verb Agreement on GPT-2 Small. Expected: localized circuit → low Jaccard → CSS should work\"\n    priority: P1\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  - plan_id: plan_005\n    name: \"GPT-2 DocQA/Factual K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"Distributed computation task on GPT-2. Expected: high Jaccard → CSS should fail (confirms pattern)\"\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  # === Research Phase — Model Scaling (Claim 1 + 2) ===\n  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + IFR)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. IFR replaces ACDC → different family → lower Jaccard expected\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. With IFR, Jaccard should be lower → CSS may recover\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8\n\n  - plan_id: plan_008\n    name: \"Gemma-2 2B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 2B model\"\n    priority: P2\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 16\n\n  - plan_id: plan_009\n    name: \"Llama-3.1 8B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 8B model. Needs A100 80GB for EP\"\n    priority: P3\n    status: planned\n    depends_on: [plan_008]\n    gpu_hours_est: 24\n\n  # === Research Phase — Ablations ===\n  - plan_id: plan_010\n    name: \"Binarization sensitivity ablation\"\n    claim: [\"Claim 3\"]\n    description: \"Systematic k sweep on all models/tasks, show CSS stable across k=50-150\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 4\n\n  - plan_id: plan_011\n    name: \"Ablation method comparison (zero vs mean vs resample)\"\n    claim: [\"Claim 1\"]\n    description: \"Compare ablation methods on all tasks, show CSS advantage is robust to evaluation choice\"\n    priority: P2\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_012\n    name: \"CIRCUS as negative ablation\"\n    claim: [\"Claim 4\"]\n    description: \"D021: CIRCUS failed 3x. Use as negative ablation showing structural consensus > faithfulness scoring\"\n    registry_id: null\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 0\n\n  # === Research Phase — Jaccard Prediction (Claim 2) ===\n  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0\n",
+                "numLines": 127,
+                "startLine": 1,
+                "totalLines": 127
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012b8VN39ztdcfEnfnRxAfzm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "head -145 /root/structfuse-context/phase2_configs.yaml",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "5012bb24-cd17-4ad5-89e2-dc1fd39052a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rc1u83K5j1ceT8NreveK4s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 631,
+                "cache_read_input_tokens": 29485,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 631
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T08:01:07.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012b8VN39ztdcfEnfnRxAfzm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Phase 2 实验矩阵\\\\n# 每个实验 = 一个 model × task × methods 组合\\\\n#\\\\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\\\\n# Backend: transformerlens (GPT-2) | huggingface (其他)\\\\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\\\\n#\\\\n# 预估单实验耗时（基于 MVP 经验）:\\\\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task\\\\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\\\\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\\\\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\\\\n\\\\ndefaults:\\\\n  K: 3\\\\n  num_samples: 50\\\\n  seed: 42\\\\n  gpu_id: \\\\\\\"0\\\\\\\"\\\\n  eap_ig_steps: 5\\\\n  edge_pruning_epochs: 100\\\\n  edge_pruning_lambda: 1e-2\\\\n  ifr_threshold: 0.1\\\\n  css_threshold: 0.67\\\\n  circus_B: 10\\\\n\\\\nexperiments:\\\\n\\\\n  # ===================================================================\\\\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\\\\n  # 预估总耗时: ~60min (3 tasks × ~20min)\\\\n  # ===================================================================\\\\n\\\\n  gpt2_ioi:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 1\\\\n    notes: \\\\\\\"MVP baseline, 已有部分结果\\\\\\\"\\\\n\\\\n  gpt2_greater_than:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"数值推理任务, 预期电路更紧凑\\\\\\\"\\\\n\\\\n  gpt2_docstring:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"代码理解任务, 验证跨领域泛化\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~100min (4 tasks × ~25min)\\\\n  # ===================================================================\\\\n\\\\n  qwen05_ioi:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Phase 2 首个大模型实验, MVP 后立即跑\\\\\\\"\\\\n\\\\n  qwen05_greater_than:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 数值推理\\\\\\\"\\\\n\\\\n  qwen05_docstring:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 代码理解\\\\\\\"\\\\n\\\\n  qwen05_ioi_variant:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"IOI 变体 (name permutation), 验证电路稳定性\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Gemma-2 2B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~260min (4 tasks × ~65min)\\\\n  # ===================================================================\\\\n\\\\n  gemma2_ioi:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "4f497fbb-7ef4-4633-908a-a2c6365411d5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Phase 2 实验矩阵\\\\n# 每个实验 = 一个 model × task × methods 组合\\\\n#\\\\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\\\\n# Backend: transformerlens (GPT-2) | huggingface (其他)\\\\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\\\\n#\\\\n# 预估单实验耗时（基于 MVP 经验）:\\\\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task\\\\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\\\\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\\\\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\\\\n\\\\ndefaults:\\\\n  K: 3\\\\n  num_samples: 50\\\\n  seed: 42\\\\n  gpu_id: \\\\\\\"0\\\\\\\"\\\\n  eap_ig_steps: 5\\\\n  edge_pruning_epochs: 100\\\\n  edge_pruning_lambda: 1e-2\\\\n  ifr_threshold: 0.1\\\\n  css_threshold: 0.67\\\\n  circus_B: 10\\\\n\\\\nexperiments:\\\\n\\\\n  # ===================================================================\\\\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\\\\n  # 预估总耗时: ~60min (3 tasks × ~20min)\\\\n  # ===================================================================\\\\n\\\\n  gpt2_ioi:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 1\\\\n    notes: \\\\\\\"MVP baseline, 已有部分结果\\\\\\\"\\\\n\\\\n  gpt2_greater_than:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"数值推理任务, 预期电路更紧凑\\\\\\\"\\\\n\\\\n  gpt2_docstring:\\\\n    model: \\\\\\\"gpt2\\\\\\\"\\\\n    model_path: null\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"acdc\\\\\\\"]\\\\n    backend: \\\\\\\"transformerlens\\\\\\\"\\\\n    thresholds:\\\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      acdc: {strategy: \\\\\\\"threshold\\\\\\\", threshold: 0.05}\\\\n    priority: 2\\\\n    notes: \\\\\\\"代码理解任务, 验证跨领域泛化\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~100min (4 tasks × ~25min)\\\\n  # ===================================================================\\\\n\\\\n  qwen05_ioi:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Phase 2 首个大模型实验, MVP 后立即跑\\\\\\\"\\\\n\\\\n  qwen05_greater_than:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"greater_than\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 数值推理\\\\\\\"\\\\n\\\\n  qwen05_docstring:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"docstring\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 2\\\\n    notes: \\\\\\\"Qwen 代码理解\\\\\\\"\\\\n\\\\n  qwen05_ioi_variant:\\\\n    model: \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\\\\\"\\\\n    task: \\\\\\\"ioi_variant\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n    binarize:\\\\n      eap_ig: {strategy: \\\\\\\"topn\\\\\\\", n: 200}\\\\n      edge_pruning: {strategy: \\\\\\\"threshold\\\\\\\", t: 0.5}\\\\n      ifr: {strategy: \\\\\\\"unique_score_rank\\\\\\\", n: 50}\\\\n    priority: 3\\\\n    notes: \\\\\\\"IOI 变体 (name permutation), 验证电路稳定性\\\\\\\"\\\\n\\\\n  # ===================================================================\\\\n  # Gemma-2 2B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\\\n  # 预估总耗时: ~260min (4 tasks × ~65min)\\\\n  # ===================================================================\\\\n\\\\n  gemma2_ioi:\\\\n    model: \\\\\\\"google/gemma-2-2b\\\\\\\"\\\\n    model_path: \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\\\\\"\\\\n    task: \\\\\\\"ioi\\\\\\\"\\\\n    methods: [\\\\\\\"eap_ig\\\\\\\", \\\\\\\"edge_pruning\\\\\\\", \\\\\\\"ifr\\\\\\\"]\\\\n    backend: \\\\\\\"huggingface\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Phase 2 实验矩阵\\n# 每个实验 = 一个 model × task × methods 组合\\n#\\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\\n# Backend: transformerlens (GPT-2) | huggingface (其他)\\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\\n#\\n# 预估单实验耗时（基于 MVP 经验）:\\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task\\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\\n\\ndefaults:\\n  K: 3\\n  num_samples: 50\\n  seed: 42\\n  gpu_id: \\\"0\\\"\\n  eap_ig_steps: 5\\n  edge_pruning_epochs: 100\\n  edge_pruning_lambda: 1e-2\\n  ifr_threshold: 0.1\\n  css_threshold: 0.67\\n  circus_B: 10\\n\\nexperiments:\\n\\n  # ===================================================================\\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\\n  # 预估总耗时: ~60min (3 tasks × ~20min)\\n  # ===================================================================\\n\\n  gpt2_ioi:\\n    model: \\\"gpt2\\\"\\n    model_path: null\\n    task: \\\"ioi\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"acdc\\\"]\\n    backend: \\\"transformerlens\\\"\\n    thresholds:\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      acdc: {strategy: \\\"threshold\\\", threshold: 0.05}\\n    priority: 1\\n    notes: \\\"MVP baseline, 已有部分结果\\\"\\n\\n  gpt2_greater_than:\\n    model: \\\"gpt2\\\"\\n    model_path: null\\n    task: \\\"greater_than\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"acdc\\\"]\\n    backend: \\\"transformerlens\\\"\\n    thresholds:\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      acdc: {strategy: \\\"threshold\\\", threshold: 0.05}\\n    priority: 2\\n    notes: \\\"数值推理任务, 预期电路更紧凑\\\"\\n\\n  gpt2_docstring:\\n    model: \\\"gpt2\\\"\\n    model_path: null\\n    task: \\\"docstring\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"acdc\\\"]\\n    backend: \\\"transformerlens\\\"\\n    thresholds:\\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      acdc: {strategy: \\\"threshold\\\", threshold: 0.05}\\n    priority: 2\\n    notes: \\\"代码理解任务, 验证跨领域泛化\\\"\\n\\n  # ===================================================================\\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\n  # 预估总耗时: ~100min (4 tasks × ~25min)\\n  # ===================================================================\\n\\n  qwen05_ioi:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"ioi\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 2\\n    notes: \\\"Phase 2 首个大模型实验, MVP 后立即跑\\\"\\n\\n  qwen05_greater_than:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"greater_than\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 2\\n    notes: \\\"Qwen 数值推理\\\"\\n\\n  qwen05_docstring:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"docstring\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 2\\n    notes: \\\"Qwen 代码理解\\\"\\n\\n  qwen05_ioi_variant:\\n    model: \\\"Qwen/Qwen2.5-0.5B\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\\\"\\n    task: \\\"ioi_variant\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n    binarize:\\n      eap_ig: {strategy: \\\"topn\\\", n: 200}\\n      edge_pruning: {strategy: \\\"threshold\\\", t: 0.5}\\n      ifr: {strategy: \\\"unique_score_rank\\\", n: 50}\\n    priority: 3\\n    notes: \\\"IOI 变体 (name permutation), 验证电路稳定性\\\"\\n\\n  # ===================================================================\\n  # Gemma-2 2B — HuggingFace, K=3 (EAP-IG + EP + IFR)\\n  # 预估总耗时: ~260min (4 tasks × ~65min)\\n  # ===================================================================\\n\\n  gemma2_ioi:\\n    model: \\\"google/gemma-2-2b\\\"\\n    model_path: \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\\\"\\n    task: \\\"ioi\\\"\\n    methods: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"]\\n    backend: \\\"huggingface\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both files. Let me prepare the updates.\n\n**Remote phase2_configs.yaml changes needed:**\n1. Header comments: change \"大模型用 IFR (D006)\" to \"统一用 ACDC (D029)\"\n2. Update time estimates for large models (ACDC vs IFR times)\n3. Remove `ifr_threshold` from defaults (or keep for reference), add `acdc_threshold` if needed\n4. All Qwen configs: methods `[\"eap_ig\", \"edge_pruning\", \"ifr\"]` → `[\"eap_ig\", \"edge_pruning\", \"acdc\"]`\n\n\n5. Across all model families (Qwen, Gemma, Llama), I need to swap out the IFR binarization strategy for ACDC with the top-0.3% approach, and update all section headers to reflect the new method combination.\n\n**Local experiment_plan.yaml changes needed:**\n1. Update plan_006 and plan_007 descriptions from \"EAP-IG + EP + IFR\" to \"EAP-IG + EP + ACDC\"\n2. Add any new plans as needed\n\nNow I'm working on constructing the updated phase2_configs.yaml file. Since there are quite a few changes across multiple model configs, I'll need to rewrite the entire file to ensure consistency. The key thing I'm figuring out is how to properly configure the ACDC binarization with the top-0.3% strategy for the large models, while keeping GPT-2's existing threshold-based approach unchanged. I need to understand what the top-0.3% specification translates to in the actual config format. I need to keep the GPT-2 configs unchanged since they already use ACDC, but for the large models I'll switch to a top-percent strategy with p: 0.003 to represent the top-0.3% of edges. Let me finalize this configuration format.\n\nNow I'm deciding whether to add ACDC thresholds to the large model configs to match GPT-2's structure, and I should update the defaults section by removing the IFR threshold and replacing it with an ACDC-specific default.\n\nFor the time estimates, I'll keep them roughly similar to the IFR values since I don't have exact ACDC benchmarks yet, but I'll note they need verification.\n\nI need to update both phase2_configs.yaml and experiment_plan.yaml—renaming plan_006 from IFR to ACDC, updating plan_007's description, and adding a new IFR divergence experiment.\n\nWriting the updated config files... Looking at the performance estimates for different model sizes and setting up the default hyperparameters for the experiments—I'm establishing baseline configurations for K, sampling strategy, and method-specific thresholds like the ACDC binarization cutoff and CSS threshold that will apply across all Phase 2 runs.\n\nNow I'm defining the first experiment configuration for GPT-2 Small on the IOI task, running all three causal methods through TransformerLens with specific threshold ranges for ACDC and binarization strategies tailored to each method.\n\nThe second experiment applies the same methodology to a greater-than numerical reasoning task where I expect the circuits to be more compact, and the third extends this to a docstring task.\n\nNow I'm setting up experiments for Qwen-2.5 0.5B using HuggingFace with K=3, combining EAP-IG, edge pruning, and ACDC methods, with a note about moving from IFR to ACDC for the top 0.3% threshold to unify the method family. I'm setting up the second experiment with the same Qwen model but on the greater_than task, using identical methods and binarization strategies, also marked as priority 2 for immediate execution after the MVP phase. Configuring another experiment variant for the Qwen model, this time focused on the IOI task with permuted names to test circuit stability across different interpretability methods and threshold settings, then moving on to set up Gemma-2 configurations. Configuring the greater_than task with the same experimental setup... Configuring additional experiment variants...\n\nI'm setting up the Gemma-2 IOI variant with the same method suite, then moving on to Llama-3.1 8B which will use EAP-IG, edge pruning, and ACDC across the IOI task. The Llama model requires substantial VRAM and will take around 600 minutes total across four tasks, with gradient checkpointing potentially needed for the edge pruning method. I'm setting up the configuration for the greater_than task with the same 8B model, using identical methods and hyperparameters as the IOI task, though I'll need to enable gradient checkpointing to manage memory constraints with this larger model. Continuing with the configuration for Llama-3.1 on code understanding tasks, using the same experimental setup with the three analysis methods and their respective binarization strategies.\n\nNow I need to update the experiment plan file—renaming plan_006 from \"IFR\" to \"ACDC\" with a description refresh, updating plan_007, and adding a new experiment for IFR divergence. I'll edit the local file directly and then handle the remote configuration using SSH with a heredoc approach to write the full content. I'll use a bash heredoc with a single-quoted delimiter to write the remote file safely, avoiding any escaping issues with the double quotes in the YAML content. For the local file, I need to make targeted edits to two existing plans and add a new experiment at the end, which I can handle in parallel with the remote write.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "aa1e700e-051f-4add-ad7b-8291aa6ee2bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013C2vSwadWakHN5Uq9SpdfR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4677,
+                "cache_read_input_tokens": 30116,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件都读到了。现在并行更新远程和本地文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "27eb91fd-9b05-4b8d-bc6b-88ab78bc8cf7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013C2vSwadWakHN5Uq9SpdfR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4677,
+                "cache_read_input_tokens": 30116,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MGLmdU8SUzvPr454qQ6RvC",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "cat > /root/structfuse-context/phase2_configs.yaml << 'ENDOFFILE'\n# Phase 2 实验矩阵\n# 每个实验 = 一个 model × task × methods 组合\n#\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\n# Backend: transformerlens (GPT-2) | huggingface (其他)\n# Methods: 统一用 EAP-IG + EP + ACDC (D029: 放弃 IFR，ACDC 用 top-0.3% binarization)\n#\n# 预估单实验耗时（基于 MVP 经验）:\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, ACDC ~5min → ~25min/task\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, ACDC ~10min  → ~65min/task\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, ACDC ~20min → ~150min/task\n\ndefaults:\n  K: 3\n  num_samples: 50\n  seed: 42\n  gpu_id: \"0\"\n  eap_ig_steps: 5\n  edge_pruning_epochs: 100\n  edge_pruning_lambda: 1e-2\n  acdc_top_percent: 0.003  # top-0.3% (D029, replaces ifr_threshold)\n  css_threshold: 0.67\n  circus_B: 10\n\nexperiments:\n\n  # ===================================================================\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\n  # 预估总耗时: ~60min (3 tasks × ~20min)\n  # ===================================================================\n\n  gpt2_ioi:\n    model: \"gpt2\"\n    model_path: null\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 1\n    notes: \"MVP baseline, 已有部分结果\"\n\n  gpt2_greater_than:\n    model: \"gpt2\"\n    model_path: null\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 2\n    notes: \"数值推理任务, 预期电路更紧凑\"\n\n  gpt2_docstring:\n    model: \"gpt2\"\n    model_path: null\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 2\n    notes: \"代码理解任务, 验证跨领域泛化\"\n\n  # ===================================================================\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + ACDC)\n  # D029: IFR → ACDC (top-0.3%), 统一方法族\n  # 预估总耗时: ~100min (4 tasks × ~25min)\n  # ===================================================================\n\n  qwen05_ioi:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 2\n    notes: \"Phase 2 首个大模型实验, MVP 后立即跑\"\n\n  qwen05_greater_than:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 2\n    notes: \"Qwen 数值推理\"\n\n  qwen05_docstring:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 2\n    notes: \"Qwen 代码理解\"\n\n  qwen05_ioi_variant:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"IOI 变体 (name permutation), 验证电路稳定性\"\n\n  # ===================================================================\n  # Gemma-2 2B — HuggingFace, K=3 (EAP-IG + EP + ACDC)\n  # D029: IFR → ACDC (top-0.3%), 统一方法族\n  # 预估总耗时: ~260min (4 tasks × ~65min)\n  # ===================================================================\n\n  gemma2_ioi:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"2B 模型, 减 samples 和 EP epochs 控制显存\"\n\n  gemma2_greater_than:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"Gemma-2 数值推理\"\n\n  gemma2_docstring:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"Gemma-2 代码理解\"\n\n  gemma2_ioi_variant:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"Gemma-2 IOI 变体\"\n\n  # ===================================================================\n  # Llama-3.1 8B — HuggingFace, K=3 (EAP-IG + EP + ACDC)\n  # D029: IFR → ACDC (top-0.3%), 统一方法族\n  # 预估总耗时: ~600min (4 tasks × ~150min)\n  # 需要 >=24GB VRAM (A6000), EP 可能需 gradient checkpointing\n  # ===================================================================\n\n  llama31_ioi:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"8B 最大模型, 减 samples/epochs, 可能需 gradient checkpointing\"\n\n  llama31_greater_than:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"Llama-3.1 数值推理\"\n\n  llama31_docstring:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"Llama-3.1 代码理解\"\n\n  llama31_ioi_variant:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"threshold\", t: 0.5}\n      acdc: {strategy: \"top_percent\", p: 0.003}\n    priority: 3\n    notes: \"Llama-3.1 IOI 变体\"\nENDOFFILE",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "ab9ea19c-c817-41bf-adfe-311e78e6851c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013C2vSwadWakHN5Uq9SpdfR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4677,
+                "cache_read_input_tokens": 30116,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T08:02:56.531Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MGLmdU8SUzvPr454qQ6RvC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "186d56df-6d79-4c08-9d88-b1b2bf58abfc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013yuC35DJdY42WYpZRr6xek",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+                "old_string": "  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + IFR)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. IFR replaces ACDC → different family → lower Jaccard expected\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. With IFR, Jaccard should be lower → CSS may recover\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8",
+                "new_string": "  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. D029: 统一用 ACDC top-0.3% 替代 IFR，保持方法族一致性\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. ACDC top-0.3% binarization, 验证 CSS 跨任务泛化\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "1dbf2bda-330d-4dca-8e00-433cb89afad3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013C2vSwadWakHN5Uq9SpdfR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4677,
+                "cache_read_input_tokens": 30116,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T08:03:03.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013yuC35DJdY42WYpZRr6xek",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "ca016831-61d9-4d20-bd79-73cfd984ee33",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+              "oldString": "  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + IFR)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. IFR replaces ACDC → different family → lower Jaccard expected\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. With IFR, Jaccard should be lower → CSS may recover\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8",
+              "newString": "  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. D029: 统一用 ACDC top-0.3% 替代 IFR，保持方法族一致性\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. ACDC top-0.3% binarization, 验证 CSS 跨任务泛化\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8",
+              "originalFile": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: MVP 结果出齐，基于 D027 reframe\n\nexperiments:\n  # === MVP Phase (completed) ===\n  - plan_id: plan_001\n    name: \"GPT-2 IOI K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 3\"]\n    description: \"GPT-2 Small / IOI task, K=3 (EAP-IG + EP + ACDC), CSS faithfulness evaluation\"\n    registry_id: mvp_pilot_gpt2_ioi_v3\n    priority: P0\n    status: done\n    result: \"PASS — CSS=1.0 (14 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n\n  - plan_id: plan_002\n    name: \"GPT-2 Arithmetic K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"GPT-2 Small / Greaterthan task, K=3, CSS cross-task generalization test\"\n    registry_id: mvp_arithmetic_gpt2_k3\n    priority: P0\n    status: done\n    result: \"FAIL condition④ — CSS=1.0 CPR=0.919 < EAP-IG 0.985; Jaccard=0.695 (methods too correlated)\"\n\n  - plan_id: plan_003\n    name: \"ACDC top-k binarization sweep\"\n    claim: [\"Claim 3\"]\n    description: \"Diagnose isinf degeneration: k=50/75/100/150 on both IOI and Arithmetic\"\n    registry_id: null\n    priority: P0\n    status: done\n    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; CSS 3/3 saturates at 54 edges (Arith) / 24 edges (IOI)\"\n\n  # === Research Phase — Task Coverage (Claim 1 + 2) ===\n  - plan_id: plan_004\n    name: \"GPT-2 SVA K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"Subject-Verb Agreement on GPT-2 Small. Expected: localized circuit → low Jaccard → CSS should work\"\n    priority: P1\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  - plan_id: plan_005\n    name: \"GPT-2 DocQA/Factual K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"Distributed computation task on GPT-2. Expected: high Jaccard → CSS should fail (confirms pattern)\"\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  # === Research Phase — Model Scaling (Claim 1 + 2) ===\n  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + IFR)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. IFR replaces ACDC → different family → lower Jaccard expected\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. With IFR, Jaccard should be lower → CSS may recover\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8\n\n  - plan_id: plan_008\n    name: \"Gemma-2 2B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 2B model\"\n    priority: P2\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 16\n\n  - plan_id: plan_009\n    name: \"Llama-3.1 8B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 8B model. Needs A100 80GB for EP\"\n    priority: P3\n    status: planned\n    depends_on: [plan_008]\n    gpu_hours_est: 24\n\n  # === Research Phase — Ablations ===\n  - plan_id: plan_010\n    name: \"Binarization sensitivity ablation\"\n    claim: [\"Claim 3\"]\n    description: \"Systematic k sweep on all models/tasks, show CSS stable across k=50-150\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 4\n\n  - plan_id: plan_011\n    name: \"Ablation method comparison (zero vs mean vs resample)\"\n    claim: [\"Claim 1\"]\n    description: \"Compare ablation methods on all tasks, show CSS advantage is robust to evaluation choice\"\n    priority: P2\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_012\n    name: \"CIRCUS as negative ablation\"\n    claim: [\"Claim 4\"]\n    description: \"D021: CIRCUS failed 3x. Use as negative ablation showing structural consensus > faithfulness scoring\"\n    registry_id: null\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 0\n\n  # === Research Phase — Jaccard Prediction (Claim 2) ===\n  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 51,
+                  "oldLines": 9,
+                  "newStart": 51,
+                  "newLines": 9,
+                  "lines": [
+                    " ",
+                    "   # === Research Phase — Model Scaling (Claim 1 + 2) ===",
+                    "   - plan_id: plan_006",
+                    "-    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + IFR)\"",
+                    "+    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC)\"",
+                    "     claim: [\"Claim 1\", \"Claim 2\"]",
+                    "-    description: \"First large model. IFR replaces ACDC → different family → lower Jaccard expected\"",
+                    "+    description: \"First large model. D029: 统一用 ACDC top-0.3% 替代 IFR，保持方法族一致性\"",
+                    "     priority: P1",
+                    "     status: planned",
+                    "     depends_on: [plan_004]"
+                  ]
+                },
+                {
+                  "oldStart": 62,
+                  "oldLines": 7,
+                  "newStart": 62,
+                  "newLines": 7,
+                  "lines": [
+                    "   - plan_id: plan_007",
+                    "     name: \"Qwen-2.5 0.5B Arithmetic K=3\"",
+                    "     claim: [\"Claim 2\"]",
+                    "-    description: \"Cross-task check on Qwen. With IFR, Jaccard should be lower → CSS may recover\"",
+                    "+    description: \"Cross-task check on Qwen. ACDC top-0.3% binarization, 验证 CSS 跨任务泛化\"",
+                    "     priority: P1",
+                    "     status: planned",
+                    "     depends_on: [plan_006]"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, both updates succeeded. Now I need to:\n1. Add the IFR divergence analysis experiment to the local experiment_plan.yaml\n2. Verify the remote file was written correctly\n\nLet me do both in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "47a09ee8-13b6-4d85-b8a6-d5f19afeed0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011V37q1PqLS79vnbTAErNg3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11657,
+                "cache_read_input_tokens": 34793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11657
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "远程文件写入成功，本地 plan_006/007 已更新。现在添加 IFR 分歧实验并验证远程文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "6df4120c-c632-4500-a479-441a2ac8d338",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011V37q1PqLS79vnbTAErNg3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11657,
+                "cache_read_input_tokens": 34793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11657
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jmc8pMLTF3BdhLHyuyF3hQ",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+                "old_string": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: MVP 结果出齐，基于 D027 reframe",
+                "new_string": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: D029 IFR→ACDC 统一方法族"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "fb04bace-ea27-4452-ab8c-b85fb7672b22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011V37q1PqLS79vnbTAErNg3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11657,
+                "cache_read_input_tokens": 34793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11657
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T08:03:11.554Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jmc8pMLTF3BdhLHyuyF3hQ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "7ce28479-6d33-4e9a-adee-1a32ebe25797",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+              "oldString": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: MVP 结果出齐，基于 D027 reframe",
+              "newString": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: D029 IFR→ACDC 统一方法族",
+              "originalFile": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: MVP 结果出齐，基于 D027 reframe\n\nexperiments:\n  # === MVP Phase (completed) ===\n  - plan_id: plan_001\n    name: \"GPT-2 IOI K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 3\"]\n    description: \"GPT-2 Small / IOI task, K=3 (EAP-IG + EP + ACDC), CSS faithfulness evaluation\"\n    registry_id: mvp_pilot_gpt2_ioi_v3\n    priority: P0\n    status: done\n    result: \"PASS — CSS=1.0 (14 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n\n  - plan_id: plan_002\n    name: \"GPT-2 Arithmetic K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"GPT-2 Small / Greaterthan task, K=3, CSS cross-task generalization test\"\n    registry_id: mvp_arithmetic_gpt2_k3\n    priority: P0\n    status: done\n    result: \"FAIL condition④ — CSS=1.0 CPR=0.919 < EAP-IG 0.985; Jaccard=0.695 (methods too correlated)\"\n\n  - plan_id: plan_003\n    name: \"ACDC top-k binarization sweep\"\n    claim: [\"Claim 3\"]\n    description: \"Diagnose isinf degeneration: k=50/75/100/150 on both IOI and Arithmetic\"\n    registry_id: null\n    priority: P0\n    status: done\n    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; CSS 3/3 saturates at 54 edges (Arith) / 24 edges (IOI)\"\n\n  # === Research Phase — Task Coverage (Claim 1 + 2) ===\n  - plan_id: plan_004\n    name: \"GPT-2 SVA K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"Subject-Verb Agreement on GPT-2 Small. Expected: localized circuit → low Jaccard → CSS should work\"\n    priority: P1\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  - plan_id: plan_005\n    name: \"GPT-2 DocQA/Factual K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"Distributed computation task on GPT-2. Expected: high Jaccard → CSS should fail (confirms pattern)\"\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  # === Research Phase — Model Scaling (Claim 1 + 2) ===\n  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. D029: 统一用 ACDC top-0.3% 替代 IFR，保持方法族一致性\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. ACDC top-0.3% binarization, 验证 CSS 跨任务泛化\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8\n\n  - plan_id: plan_008\n    name: \"Gemma-2 2B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 2B model\"\n    priority: P2\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 16\n\n  - plan_id: plan_009\n    name: \"Llama-3.1 8B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 8B model. Needs A100 80GB for EP\"\n    priority: P3\n    status: planned\n    depends_on: [plan_008]\n    gpu_hours_est: 24\n\n  # === Research Phase — Ablations ===\n  - plan_id: plan_010\n    name: \"Binarization sensitivity ablation\"\n    claim: [\"Claim 3\"]\n    description: \"Systematic k sweep on all models/tasks, show CSS stable across k=50-150\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 4\n\n  - plan_id: plan_011\n    name: \"Ablation method comparison (zero vs mean vs resample)\"\n    claim: [\"Claim 1\"]\n    description: \"Compare ablation methods on all tasks, show CSS advantage is robust to evaluation choice\"\n    priority: P2\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_012\n    name: \"CIRCUS as negative ablation\"\n    claim: [\"Claim 4\"]\n    description: \"D021: CIRCUS failed 3x. Use as negative ablation showing structural consensus > faithfulness scoring\"\n    registry_id: null\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 0\n\n  # === Research Phase — Jaccard Prediction (Claim 2) ===\n  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 5,
+                  "newStart": 1,
+                  "newLines": 5,
+                  "lines": [
+                    " # Experiment Plan — structfuse-context",
+                    "-# 最后更新: 2026-05-13 | 更新原因: MVP 结果出齐，基于 D027 reframe",
+                    "+# 最后更新: 2026-05-13 | 更新原因: D029 IFR→ACDC 统一方法族",
+                    " ",
+                    " experiments:",
+                    "   # === MVP Phase (completed) ==="
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2bhiXXdzG1msibXouwmue",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+                "old_string": "  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0",
+                "new_string": "  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0\n\n  # === Discussion Experiments ===\n  - plan_id: plan_014\n    name: \"IFR method divergence analysis\"\n    claim: [\"Discussion\"]\n    description: \"D029 发现: IFR 与 gradient-based 方法 (EAP-IG/EP) 存在系统性分歧——IFR 选出的边与 gradient 方法 Jaccard 极低，且 IFR 电路 faithfulness 差。记录 IFR vs ACDC vs gradient 的 Jaccard/faithfulness 对比，作为 Discussion 中 method family 选择的实证依据。\"\n    priority: P2\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "19e9a16f-a76c-4a9e-bc51-3620f2f18925",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011V37q1PqLS79vnbTAErNg3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11657,
+                "cache_read_input_tokens": 34793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11657
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T08:03:19.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2bhiXXdzG1msibXouwmue",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "1399d163-c577-4630-8c18-db672db0113c",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+              "oldString": "  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0",
+              "newString": "  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0\n\n  # === Discussion Experiments ===\n  - plan_id: plan_014\n    name: \"IFR method divergence analysis\"\n    claim: [\"Discussion\"]\n    description: \"D029 发现: IFR 与 gradient-based 方法 (EAP-IG/EP) 存在系统性分歧——IFR 选出的边与 gradient 方法 Jaccard 极低，且 IFR 电路 faithfulness 差。记录 IFR vs ACDC vs gradient 的 Jaccard/faithfulness 对比，作为 Discussion 中 method family 选择的实证依据。\"\n    priority: P2\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 2",
+              "originalFile": "# Experiment Plan — structfuse-context\n# 最后更新: 2026-05-13 | 更新原因: D029 IFR→ACDC 统一方法族\n\nexperiments:\n  # === MVP Phase (completed) ===\n  - plan_id: plan_001\n    name: \"GPT-2 IOI K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 3\"]\n    description: \"GPT-2 Small / IOI task, K=3 (EAP-IG + EP + ACDC), CSS faithfulness evaluation\"\n    registry_id: mvp_pilot_gpt2_ioi_v3\n    priority: P0\n    status: done\n    result: \"PASS — CSS=1.0 (14 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n\n  - plan_id: plan_002\n    name: \"GPT-2 Arithmetic K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"GPT-2 Small / Greaterthan task, K=3, CSS cross-task generalization test\"\n    registry_id: mvp_arithmetic_gpt2_k3\n    priority: P0\n    status: done\n    result: \"FAIL condition④ — CSS=1.0 CPR=0.919 < EAP-IG 0.985; Jaccard=0.695 (methods too correlated)\"\n\n  - plan_id: plan_003\n    name: \"ACDC top-k binarization sweep\"\n    claim: [\"Claim 3\"]\n    description: \"Diagnose isinf degeneration: k=50/75/100/150 on both IOI and Arithmetic\"\n    registry_id: null\n    priority: P0\n    status: done\n    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; CSS 3/3 saturates at 54 edges (Arith) / 24 edges (IOI)\"\n\n  # === Research Phase — Task Coverage (Claim 1 + 2) ===\n  - plan_id: plan_004\n    name: \"GPT-2 SVA K=3 CSS\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"Subject-Verb Agreement on GPT-2 Small. Expected: localized circuit → low Jaccard → CSS should work\"\n    priority: P1\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  - plan_id: plan_005\n    name: \"GPT-2 DocQA/Factual K=3 CSS\"\n    claim: [\"Claim 2\"]\n    description: \"Distributed computation task on GPT-2. Expected: high Jaccard → CSS should fail (confirms pattern)\"\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 4\n\n  # === Research Phase — Model Scaling (Claim 1 + 2) ===\n  - plan_id: plan_006\n    name: \"Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC)\"\n    claim: [\"Claim 1\", \"Claim 2\"]\n    description: \"First large model. D029: 统一用 ACDC top-0.3% 替代 IFR，保持方法族一致性\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_007\n    name: \"Qwen-2.5 0.5B Arithmetic K=3\"\n    claim: [\"Claim 2\"]\n    description: \"Cross-task check on Qwen. ACDC top-0.3% binarization, 验证 CSS 跨任务泛化\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 8\n\n  - plan_id: plan_008\n    name: \"Gemma-2 2B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 2B model\"\n    priority: P2\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 16\n\n  - plan_id: plan_009\n    name: \"Llama-3.1 8B IOI K=3\"\n    claim: [\"Claim 1\"]\n    description: \"Scale to 8B model. Needs A100 80GB for EP\"\n    priority: P3\n    status: planned\n    depends_on: [plan_008]\n    gpu_hours_est: 24\n\n  # === Research Phase — Ablations ===\n  - plan_id: plan_010\n    name: \"Binarization sensitivity ablation\"\n    claim: [\"Claim 3\"]\n    description: \"Systematic k sweep on all models/tasks, show CSS stable across k=50-150\"\n    priority: P1\n    status: planned\n    depends_on: [plan_006]\n    gpu_hours_est: 4\n\n  - plan_id: plan_011\n    name: \"Ablation method comparison (zero vs mean vs resample)\"\n    claim: [\"Claim 1\"]\n    description: \"Compare ablation methods on all tasks, show CSS advantage is robust to evaluation choice\"\n    priority: P2\n    status: planned\n    depends_on: [plan_004]\n    gpu_hours_est: 8\n\n  - plan_id: plan_012\n    name: \"CIRCUS as negative ablation\"\n    claim: [\"Claim 4\"]\n    description: \"D021: CIRCUS failed 3x. Use as negative ablation showing structural consensus > faithfulness scoring\"\n    registry_id: null\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours_est: 0\n\n  # === Research Phase — Jaccard Prediction (Claim 2) ===\n  - plan_id: plan_013\n    name: \"Jaccard-CSS correlation analysis\"\n    claim: [\"Claim 2\"]\n    description: \"Across all model×task pairs, plot max pairwise Jaccard vs CSS faithfulness advantage. Fit threshold.\"\n    priority: P1\n    status: planned\n    depends_on: [plan_004, plan_006, plan_007]\n    gpu_hours_est: 0\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 124,
+                  "oldLines": 3,
+                  "newStart": 124,
+                  "newLines": 13,
+                  "lines": [
+                    "     status: planned",
+                    "     depends_on: [plan_004, plan_006, plan_007]",
+                    "     gpu_hours_est: 0",
+                    "+",
+                    "+  # === Discussion Experiments ===",
+                    "+  - plan_id: plan_014",
+                    "+    name: \"IFR method divergence analysis\"",
+                    "+    claim: [\"Discussion\"]",
+                    "+    description: \"D029 发现: IFR 与 gradient-based 方法 (EAP-IG/EP) 存在系统性分歧——IFR 选出的边与 gradient 方法 Jaccard 极低，且 IFR 电路 faithfulness 差。记录 IFR vs ACDC vs gradient 的 Jaccard/faithfulness 对比，作为 Discussion 中 method family 选择的实证依据。\"",
+                    "+    priority: P2",
+                    "+    status: planned",
+                    "+    depends_on: [plan_006]",
+                    "+    gpu_hours_est: 2"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015DMhnqifSQm2pAnYdMhdeS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "grep -c \"acdc\" /root/structfuse-context/phase2_configs.yaml",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "ceb9c152-f258-4fd2-a9e8-ed6c6f65c021",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011V37q1PqLS79vnbTAErNg3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11657,
+                "cache_read_input_tokens": 34793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11657
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T08:03:20.982Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015DMhnqifSQm2pAnYdMhdeS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"46\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "cf2cbf14-c6d5-4dce-884a-11daa701acef",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"46\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"46\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证远程文件中没有残留 IFR。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "15d94445-79d3-4cc2-a4e1-550833d5b5f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TNCcd61AfqZ5mWAn4qfnqW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1216,
+                "cache_read_input_tokens": 46450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014cqdyQLjudH4yWRsFjsCts",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "grep -n \"ifr\" /root/structfuse-context/phase2_configs.yaml",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "ca958540-3639-400a-983e-f95040556463",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TNCcd61AfqZ5mWAn4qfnqW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1216,
+                "cache_read_input_tokens": 46450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T08:03:25.003Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014cqdyQLjudH4yWRsFjsCts",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:  acdc_top_percent: 0.003  # top-0.3% (D029, replaces ifr_threshold)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "41754630-95bd-4a3c-8715-bedbe91b828f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:  acdc_top_percent: 0.003  # top-0.3% (D029, replaces ifr_threshold)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"22:  acdc_top_percent: 0.003  # top-0.3% (D029, replaces ifr_threshold)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "远程文件中仅剩注释里的 `ifr_threshold` 引用（说明替换来源），无实际 IFR 方法配置。验证本地文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "eb5d4d04-bdd6-4cc8-9999-f1654ed216ae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXT8vwTdwitdnNGcxqtpe9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 249,
+                "cache_read_input_tokens": 47666,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 249
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XMKWXiUpeCx22UJF6F19js",
+              "name": "Grep",
+              "input": {
+                "pattern": "ifr|IFR",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "7c588f23-1981-4666-8da9-3e3581436df3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXT8vwTdwitdnNGcxqtpe9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 249,
+                "cache_read_input_tokens": 47666,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 249
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T08:03:29.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XMKWXiUpeCx22UJF6F19js",
+              "type": "tool_result",
+              "content": "2:# 最后更新: 2026-05-13 | 更新原因: D029 IFR→ACDC 统一方法族\n56:    description: \"First large model. D029: 统一用 ACDC top-0.3% 替代 IFR，保持方法族一致性\"\n130:    name: \"IFR method divergence analysis\"\n132:    description: \"D029 发现: IFR 与 gradient-based 方法 (EAP-IG/EP) 存在系统性分歧——IFR 选出的边与 gradient 方法 Jaccard 极低，且 IFR 电路 faithfulness 差。记录 IFR vs ACDC vs gradient 的 Jaccard/faithfulness 对比，作为 Discussion 中 method family 选择的实证依据。\""
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "b81e675a-b210-4a04-a6fc-bb9e69a86c71",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "2:# 最后更新: 2026-05-13 | 更新原因: D029 IFR→ACDC 统一方法族\n56:    description: \"First large model. D029: 统一用 ACDC top-0.3% 替代 IFR，保持方法族一致性\"\n130:    name: \"IFR method divergence analysis\"\n132:    description: \"D029 发现: IFR 与 gradient-based 方法 (EAP-IG/EP) 存在系统性分歧——IFR 选出的边与 gradient 方法 Jaccard 极低，且 IFR 电路 faithfulness 差。记录 IFR vs ACDC vs gradient 的 Jaccard/faithfulness 对比，作为 Discussion 中 method family 选择的实证依据。\"",
+              "numLines": 4
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改汇总：\n\n**phase2_configs.yaml（远程）：**\n- 所有 Qwen/Gemma/Llama 配置：`methods` 从 `[eap_ig, edge_pruning, ifr]` → `[eap_ig, edge_pruning, acdc]`\n- ACDC binarization 统一为 `{strategy: \"top_percent\", p: 0.003}`（top-0.3%）\n- 为大模型配置添加 `thresholds.acdc` sweep 参数\n- defaults 中 `ifr_threshold` → `acdc_top_percent: 0.003`\n- 头注释和各 section 注释更新为 D029 决策说明\n- GPT-2 配置不变\n\n**experiment_plan.yaml（本地）：**\n- plan_006: 名称 `(EAP-IG + EP + IFR)` → `(EAP-IG + EP + ACDC)`，描述更新\n- plan_007: 描述从 IFR 改为 ACDC top-0.3%\n- 新增 plan_014: `IFR method divergence analysis`（Discussion experiment）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "uuid": "d6687f51-d8c5-4077-a388-e6c75e163e9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014PBiRrkNesL1r5t2fDLyQE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 415,
+                "cache_read_input_tokens": 47915,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 415
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改汇总：\n\n**phase2_configs.yaml（远程）：**\n- 所有 Qwen/Gemma/Llama 配置：`methods` 从 `[eap_ig, edge_pruning, ifr]` → `[eap_ig, edge_pruning, acdc]`\n- ACDC binarization 统一为 `{strategy: \"top_percent\", p: 0.003}`（top-0.3%）\n- 为大模型配置添加 `thresholds.acdc` sweep 参数\n- defaults 中 `ifr_threshold` → `acdc_top_percent: 0.003`\n- 头注释和各 section 注释更新为 D029 决策说明\n- GPT-2 配置不变\n\n**experiment_plan.yaml（本地）：**\n- plan_006: 名称 `(EAP-IG + EP + IFR)` → `(EAP-IG + EP + ACDC)`，描述更新\n- plan_007: 描述从 IFR 改为 ACDC top-0.3%\n- 新增 plan_014: `IFR method divergence analysis`（Discussion experiment）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 174357,
+            "duration_api_ms": 172792,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "9b749caa-7062-43d2-afb2-704ec28ba2a4",
+            "total_cost_usd": 0.7256812499999999,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 36489,
+              "cache_read_input_tokens": 296102,
+              "output_tokens": 13927,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 36489,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 318,
+                  "cache_read_input_tokens": 47915,
+                  "cache_creation_input_tokens": 415,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 415
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1244,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0013340000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 13927,
+                "cacheReadInputTokens": 296102,
+                "cacheCreationInputTokens": 36489,
+                "webSearchRequests": 0,
+                "costUSD": 0.72434725,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "abead44b-e08e-4822-b6a9-1f09eb7fec1a"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-update-phase2-configs.md"
+}

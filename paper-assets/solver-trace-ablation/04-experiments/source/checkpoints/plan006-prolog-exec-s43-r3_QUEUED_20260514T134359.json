@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan006-prolog-exec-s43-r3",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:38:23.818Z",
+    "updated_at": "2026-05-14T13:43:59.505Z",
+    "hypothesis": "Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。"
+  },
+  "timestamp": "2026-05-14T13:43:59.638231+00:00",
+  "trigger": "update_registry"
+}

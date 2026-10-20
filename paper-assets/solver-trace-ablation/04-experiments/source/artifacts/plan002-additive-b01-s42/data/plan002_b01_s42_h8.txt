@@ -1,0 +1,1 @@
+n_total=100, n_proved=81, h7=13 (16.1%), h1=42 (51.9%), h8=12 (14.8%), genuine=14 (17.3%), content_independent=19 (23.5%)

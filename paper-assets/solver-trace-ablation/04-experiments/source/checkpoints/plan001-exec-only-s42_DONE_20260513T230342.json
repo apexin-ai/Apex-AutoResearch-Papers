@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan001-exec-only-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:19:41.568Z",
+    "updated_at": "2026-05-13T23:03:42.892Z",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "83029",
+      "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s42.log",
+      "submitted_at": "2026-05-13T22:20:46.569Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "exec-only 500步训练 baseline",
+      "wall_clock_seconds": 2576.3,
+      "gpu_hours": 0.72
+    },
+    "conclusion": "failed",
+    "checkpoint_path": "N/A (failed before checkpoint)",
+    "completed_at": "2026-05-13T23:03:42.892Z"
+  },
+  "timestamp": "2026-05-13T23:03:42.926885+00:00",
+  "trigger": "update_registry"
+}

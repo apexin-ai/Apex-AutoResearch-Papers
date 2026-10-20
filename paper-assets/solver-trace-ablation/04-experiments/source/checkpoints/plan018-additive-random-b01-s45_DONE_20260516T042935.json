@@ -1,0 +1,33 @@
+{
+  "exp_id": "plan018-additive-random-b01-s45",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:29:08.182Z",
+    "updated_at": "2026-05-16T04:29:35.108Z",
+    "hypothesis": "Random β=0.1 seed=45, 5-seed matched control for ISR β=0.1 comparison",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/plan018_random_b01_s45 --wandb_run plan018-additive-random-b01-s45 --wandb_project solver-trace-ablation\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 45,
+      "reward_mode": "additive_random",
+      "beta": 0.1,
+      "num_steps": 500,
+      "num_generations": 4
+    },
+    "conclusion": "killed",
+    "notes": "PID 628171 被 b02 提交时 GPU 冲突挤掉，进程已死。回退 PREPARING 等 GPU 空出后重排。需加 --no_wandb。",
+    "completed_at": "2026-05-16T04:29:35.108Z"
+  },
+  "timestamp": "2026-05-16T04:29:35.344494+00:00",
+  "trigger": "update_registry"
+}

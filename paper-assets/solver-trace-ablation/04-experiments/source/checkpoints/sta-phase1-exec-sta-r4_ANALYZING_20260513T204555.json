@@ -1,0 +1,40 @@
+{
+  "exp_id": "sta-phase1-exec-sta-r4",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:28:22.778Z",
+    "updated_at": "2026-05-13T20:45:55.608Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=1 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "70797",
+      "log_path": "~/runs/solver-trace-ablation/sta-phase1-exec-sta-r4.log",
+      "submitted_at": "2026-05-13T20:28:32.091Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-13T20:28:31.240Z",
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=1 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\"",
+      "finished_at": "2026-05-13T20:45:55.480Z",
+      "training_hours": 0.29
+    },
+    "pid": "70797",
+    "log_path": "~/runs/solver-trace-ablation/sta-phase1-exec-sta-r4.log"
+  },
+  "timestamp": "2026-05-13T20:45:55.731222+00:00",
+  "trigger": "update_registry"
+}

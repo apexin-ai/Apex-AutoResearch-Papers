@@ -1,0 +1,2336 @@
+- id: art_20260513_c10626
+  name: phase0-baseline-results
+  type: data
+  description: 'Phase 0 ISR baseline: Qwen3-4B base model on 100 FOLIO FOL problems.
+    Mean ISR=0.0641, prove rate=12%. Full results at server:/root/solver-trace-ablation/outputs/phase0_baseline.json'
+  path: projects/solver-trace-ablation/artifacts/sta-phase0-baseline/data/phase0_baseline_summary.txt
+  url: null
+  project: solver-trace-ablation
+  exp_id: sta-phase0-baseline
+  skill: ''
+  created_at: '2026-05-13T18:05:35.222614+00:00'
+  tags:
+  - phase0
+  - baseline
+  - isr
+  - qwen3-4b
+- id: art_20260513_4ecf62
+  name: gt_isr_baseline
+  type: data
+  description: 'Ground-truth FOL ISR baseline: 100 FOLIO problems, GT mean ISR=0.5588
+    (>0.5 confirmed), prove rate=18%, solver execution rate=100%'
+  path: null
+  url: file:///root/solver-trace-ablation/outputs/gt_isr_baseline.json
+  project: solver-trace-ablation
+  exp_id: sta-gt-isr-baseline
+  skill: ''
+  created_at: '2026-05-13T18:13:21.547878+00:00'
+  tags:
+  - isr
+  - baseline
+  - ground-truth
+  - folio
+- id: art_20260514_e2f5b6
+  name: plan013_random_reward_analysis
+  type: report
+  description: 'Three-way comparison: exec-only vs random reward vs convex STA. Key
+    finding: random reward outperforms both exec-only and STA; ISR as reward is harmful.'
+  path: projects/solver-trace-ablation/artifacts/plan013-random-reward-s42-r4/report/plan013_analysis.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan013-random-reward-s42-r4
+  skill: ''
+  created_at: '2026-05-14T02:31:25.643989+00:00'
+  tags:
+  - analysis
+  - random-reward
+  - baseline
+  - three-way-comparison
+- id: art_20260514_4e9c19
+  name: eval_sta_plan002_additive_b03
+  type: data
+  description: 'eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500.
+    prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427. Remote: westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json'
+  path: null
+  url: westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json
+  project: solver-trace-ablation
+  exp_id: plan002-additive-b03-s42
+  skill: ''
+  created_at: '2026-05-14T03:37:57.750574+00:00'
+  tags:
+  - eval
+  - sta
+  - plan002
+  - additive_bonus
+- id: art_20260514_8446d5
+  name: eval_sta_comparison_3checkpoints
+  type: report
+  description: 'Full STA evaluation comparison of 3 checkpoints: plan001-s42 (exec-only),
+    plan013-s42 (random reward), plan001-s43 (exec-only seed 43)'
+  path: projects/solver-trace-ablation/artifacts/_project/report/eval_sta_comparison.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T03:46:28.300881+00:00'
+  tags:
+  - eval
+  - ISR
+  - comparison
+  - full-STA
+- id: art_20260514_6656eb
+  name: eval_sta_plan001_exec_only_s44
+  type: data
+  description: 'eval_sta.py results for plan001-exec-only-s44: PR=97%, mean_ISR=0.55,
+    proved_only_ISR=0.567'
+  path: projects/solver-trace-ablation/artifacts/plan001-exec-only-s44/data/eval_sta_plan001_exec_only_s44.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan001-exec-only-s44
+  skill: ''
+  created_at: '2026-05-14T05:11:12.665171+00:00'
+  tags: []
+- id: art_20260514_faed3a
+  name: Hacking Characterization Report
+  type: report
+  description: 'Proof structure analysis across 4 reward conditions (exec-only, random,
+    additive, GT baseline). Classifies hacking patterns: premise-padding (exec-only
+    87%), tautological P⊢P (random 100%), format collapse (additive 96% malformed).
+    Key evidence for STA-as-diagnostic narrative.'
+  path: projects/solver-trace-ablation/artifacts/plan012/report/hacking_characterization_report.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan012
+  skill: ''
+  created_at: '2026-05-14T05:11:30.142380+00:00'
+  tags:
+  - hacking
+  - proof-structure
+  - ISR
+  - STA
+  - diagnostic
+  - plan012
+- id: art_20260514_ceb33c
+  name: plan002-additive-b01-s42 训练命令
+  type: report
+  description: plan002-additive-b01-s42 (β=0.1) 完整训练命令，待 Director 审批后提交
+  path: projects/solver-trace-ablation/artifacts/plan002-additive-b01-s42/report/plan002-additive-b01-s42_prep.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan002-additive-b01-s42
+  skill: ''
+  created_at: '2026-05-14T05:29:31.958686+00:00'
+  tags: []
+- id: art_20260514_75aa65
+  name: plan016-extended-1000-s42-submission-spec
+  type: report
+  description: plan016-extended-1000-s42 训练命令和提交规格
+  path: projects/solver-trace-ablation/artifacts/plan016-extended-1000-s42/report/plan016_submission_spec.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan016-extended-1000-s42
+  skill: ''
+  created_at: '2026-05-14T05:30:21.095950+00:00'
+  tags:
+  - plan016
+  - exec-only
+  - 1000-steps
+  - submission-spec
+- id: art_20260514_113327
+  name: eval_sta_plan017_additive_random_s42
+  type: data
+  description: 'plan017 additive random control eval: PR=0.48, ISR=0.0453, components=9.56,
+    no tautological collapse but very low ISR'
+  path: projects/solver-trace-ablation/artifacts/plan017-additive-random-s42/data/eval_sta_plan017_additive_random_s42.txt
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan017-additive-random-s42
+  skill: ''
+  created_at: '2026-05-14T05:31:35.825333+00:00'
+  tags:
+  - eval
+  - plan017
+  - additive-random
+  - negative
+- id: art_20260514_6b5acb
+  name: evidence_audit
+  type: report
+  description: 论文 Table 1 数据审计 + 3 claims 证据覆盖度分析
+  path: projects/solver-trace-ablation/artifacts/_project/report/evidence_audit.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:01:24.805724+00:00'
+  tags: []
+- id: art_20260514_9195c1
+  name: claim_coverage_audit
+  type: report
+  description: Claim-Evidence coverage audit for paper submission. Maps 3 claims to
+    31 experiments, identifies 2 critical eval gaps (s43 and plan005 need eval_sta.py),
+    recommends dropping Claim 3 to Future Work.
+  path: projects/solver-trace-ablation/artifacts/_project/report/claim_coverage_audit.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:21:28.170330+00:00'
+  tags:
+  - paper
+  - audit
+  - claims
+  - evidence
+- id: art_20260514_21fd32
+  name: Paper Table 1 Evidence
+  type: report
+  description: 'Comprehensive experimental evidence table for paper Table 1: 8 experiments
+    across 4 reward modes (exec-only, additive ISR, convex random, additive random)
+    with eval metrics, claim mappings, and compact paper-ready format.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/paper_table1_evidence.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T07:11:11.498135+00:00'
+  tags:
+  - paper
+  - table1
+  - evidence
+  - results
+- id: art_20260514_102e6c
+  name: table1_data
+  type: data
+  description: Structured JSON with all 10 experiments' eval metrics for paper Table
+    1
+  path: projects/solver-trace-ablation/artifacts/_project/data/table1_data.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T07:38:12.756880+00:00'
+  tags:
+  - paper
+  - table1
+  - eval
+  - comparison
+- id: art_20260514_6ca60a
+  name: table1_comparison
+  type: report
+  description: Markdown论文对比表 — 10个实验的reward shaping ablation results with annotations
+  path: projects/solver-trace-ablation/artifacts/_project/report/table1_comparison.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T07:38:14.218018+00:00'
+  tags:
+  - paper
+  - table1
+  - comparison
+  - markdown
+- id: art_20260514_d071b7
+  name: 'Table 1: Goodhart Landscape (CSV)'
+  type: data
+  description: CSV version of Table 1 — ISR-as-reward Goodhart Landscape across β
+    doses and reward formulations (9 conditions, 7 metrics)
+  path: projects/solver-trace-ablation/artifacts/_project/data/table1_goodhart.csv
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:00.287798+00:00'
+  tags:
+  - paper
+  - table
+  - goodhart
+- id: art_20260514_dbe455
+  name: 'Table 1: Goodhart Landscape (LaTeX)'
+  type: paper
+  description: LaTeX booktabs version of Table 1 — ISR-as-reward Goodhart Landscape
+    with footnotes for data provenance caveats
+  path: projects/solver-trace-ablation/artifacts/_project/paper/table1_goodhart.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:02.691881+00:00'
+  tags:
+  - paper
+  - table
+  - goodhart
+  - latex
+- id: art_20260514_3d6d31
+  name: 'Table 2: Hacking Taxonomy (CSV)'
+  type: data
+  description: CSV version of Table 2 — 5 reward hacking modes with PR, ISR, component
+    count, diagnostic features
+  path: projects/solver-trace-ablation/artifacts/_project/data/table2_hacking_taxonomy.csv
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:04.527847+00:00'
+  tags:
+  - paper
+  - table
+  - hacking
+- id: art_20260514_238f83
+  name: 'Table 2: Hacking Taxonomy (LaTeX)'
+  type: paper
+  description: LaTeX booktabs version of Table 2 — 5 hacking modes taxonomy with diagnostic
+    features
+  path: projects/solver-trace-ablation/artifacts/_project/paper/table2_hacking_taxonomy.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:05.947099+00:00'
+  tags:
+  - paper
+  - table
+  - hacking
+  - latex
+- id: art_20260514_66c92f
+  name: 'Table 3: ISR Collapse Trajectory (CSV)'
+  type: data
+  description: CSV version of Table 3 — ISR collapse over 100/500/1000 training steps
+    (0.64→0.13→0.003)
+  path: projects/solver-trace-ablation/artifacts/_project/data/table3_isr_collapse.csv
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:08.291526+00:00'
+  tags:
+  - paper
+  - table
+  - collapse
+- id: art_20260514_e45862
+  name: 'Table 3: ISR Collapse Trajectory (LaTeX)'
+  type: paper
+  description: LaTeX booktabs version of Table 3 — ISR collapse trajectory with derived
+    statistics
+  path: projects/solver-trace-ablation/artifacts/_project/paper/table3_isr_collapse.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:09.712729+00:00'
+  tags:
+  - paper
+  - table
+  - collapse
+  - latex
+- id: art_20260514_af7e83
+  name: 'Table 4: Beta 0.1 Controlled Comparison (CSV)'
+  type: data
+  description: CSV version of Table 4 — ISR β=0.1 vs random β=0.1 controlled comparison
+    (ISR 3.2x > random)
+  path: projects/solver-trace-ablation/artifacts/_project/data/table4_beta01_comparison.csv
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:12.057110+00:00'
+  tags:
+  - paper
+  - table
+  - beta01
+- id: art_20260514_18e934
+  name: 'Table 4: Beta 0.1 Controlled Comparison (LaTeX)'
+  type: paper
+  description: LaTeX booktabs version of Table 4 — β=0.1 ISR vs random controlled
+    comparison with ratio column
+  path: projects/solver-trace-ablation/artifacts/_project/paper/table4_beta01_comparison.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:13.840488+00:00'
+  tags:
+  - paper
+  - table
+  - beta01
+  - latex
+- id: art_20260514_bf31aa
+  name: hacking_taxonomy_comparison
+  type: report
+  description: 'Hacking taxonomy comparison: ISR β=0.1 vs Random β=0.1 — 5-category
+    classification of proved samples with distribution table, examples, and key findings'
+  path: projects/solver-trace-ablation/artifacts/_project/report/hacking_taxonomy_comparison.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:00:32.391990+00:00'
+  tags:
+  - hacking
+  - taxonomy
+  - plan002
+  - plan018
+  - ISR
+  - ablation
+- id: art_20260514_c6d177
+  name: paper_tables_draft
+  type: report
+  description: 论文 Table 1 (Main Results) + Table 2 (Hacking Taxonomy) 定稿草案，含所有实验 eval
+    metrics、footnotes、数据溯源
+  path: projects/solver-trace-ablation/artifacts/_project/report/paper_tables_draft.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:14:28.754196+00:00'
+  tags:
+  - paper
+  - tables
+  - draft
+- id: art_20260514_324622
+  name: plan006-final-readiness
+  type: report
+  description: Plan006 Prolog execution-only 3-seed launch readiness checklist — 15/15
+    PASS
+  path: projects/solver-trace-ablation/artifacts/plan006/report/final_readiness.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan006
+  skill: ''
+  created_at: '2026-05-14T09:16:01.438124+00:00'
+  tags:
+  - readiness
+  - prolog
+  - plan006
+- id: art_20260514_4af5ce
+  name: plan002-b01-s43-eval-results
+  type: data
+  description: 'eval_sta.py results for plan002-additive-b01-s43: PR=61%, ISR=0.506,
+    conclusion duplication rate=100%. Verdict: negative (hacking).'
+  path: projects/solver-trace-ablation/artifacts/plan002-additive-b01-s43/data/plan002-b01-s43-eval-pointer.txt
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan002-additive-b01-s43
+  skill: ''
+  created_at: '2026-05-14T09:54:21.753784+00:00'
+  tags:
+  - eval
+  - semantic-drift
+  - negative
+  - conclusion-duplication
+- id: art_20260514_644c19
+  name: h7_classification
+  type: data
+  description: 'H7 hacking classification results for 4 eval files: plan002 ISR β=0.1
+    (s42/s43/s44) and plan018 random β=0.1 (s42)'
+  path: projects/solver-trace-ablation/artifacts/_project/data/h7_classification_summary.txt
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:21:59.469249+00:00'
+  tags:
+  - h7
+  - classification
+  - eval
+- id: art_20260514_f21549
+  name: Table 1 Draft — PR and ISR Results
+  type: report
+  description: 'Paper Table 1 draft: Prove Rate and ISR across all experimental conditions
+    (FOL exec-only, ISR β=0.1/0.3, Random β=0.1/0.3, Prolog, 1000-step extension).
+    Includes 3-seed aggregation, per-seed breakdowns, ISR collapse trajectory, and
+    β dose-response. Pending cells clearly marked.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/table1_draft.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:21:58.764523+00:00'
+  tags:
+  - paper
+  - table
+  - metrics
+  - draft
+- id: art_20260514_e8d24a
+  name: Table 2 Draft — Hacking Taxonomy
+  type: report
+  description: 'Paper Table 2 draft: Hacking taxonomy distribution comparing ISR β=0.1
+    vs Random β=0.1 (strict per-seed D044 + aggregate plan012). H7 cross-seed/cross-logic
+    comparison. 6-mode taxonomy summary. Pending cells marked.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/table2_draft.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:22:01.171608+00:00'
+  tags:
+  - paper
+  - table
+  - hacking-taxonomy
+  - draft
+- id: art_20260514_2be6f7
+  name: tables_draft_v1
+  type: report
+  description: 'Paper result tables draft v1: Table 1 (main results PR/ISR/components
+    across 9 conditions), Table 2 (hacking taxonomy with strict D044 definitions),
+    Table 3 (Prolog cross-logic). Includes per-seed disaggregation, hacking-artifact
+    caveats per D042/D043, eval-method footnotes per D029, and explicit TODOs for
+    missing strict classifier output and pending 3-seed Prolog runs.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/tables_draft_v1.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:59:57.486449+00:00'
+  tags:
+  - paper-tables
+  - draft
+  - results-summary
+  - hacking-taxonomy
+  - prolog
+- id: art_20260514_76792b
+  name: Random β=0.1 vs ISR β=0.1 跨 seed 中期对比分析
+  type: report
+  description: 'Random control (n=2) vs ISR-reward (n=3) 在 β=0.1 下的跨 seed 中期对比。聚合
+    mean±std + 同 seed 配对。关键结论: 聚合 ISR 比率 6.62× 但由 2/3 hacked seeds (s43/s44 H7>85%
+    conclusion duplication) 撑起；仅 s42 可能 genuine (3.24×)。D043 降级: β=0.1 不是 sweet spot
+    而是 "lowest hacking rate"。Random ISR 低是冗余编码非推理差 (C006)。待 Random s43-r2 完成补齐 3-seed。'
+  path: projects/solver-trace-ablation/artifacts/_project/report/analysis_random_vs_isr_b01_interim.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:03:51.775620+00:00'
+  tags:
+  - cross-seed
+  - random-control
+  - isr-reward
+  - beta-0.1
+  - interim
+  - D043
+  - conclusion-duplication
+- id: art_20260514_8cc22c
+  name: Evidence Chain Status (2026-05-14)
+  type: report
+  description: 'Evidence chain completeness check across Claims 1-3. Tabulates per-seed
+    status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended
+    1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED,
+    prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/evidence_chain_status.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:04:02.335072+00:00'
+  tags:
+  - evidence-chain
+  - paper-prep
+  - registry-audit
+- id: art_20260514_552b2e
+  name: Paper Table Drafts v2 (FOL + Prolog)
+  type: report
+  description: 'Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random
+    β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval
+    numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary
+    approximation. Includes aggregate 3-seed mean±std and key contrast narrative for
+    Claims 1-3.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/table_drafts_v2.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:04:05.524752+00:00'
+  tags:
+  - paper-table
+  - draft
+  - fol
+  - prolog
+- id: art_20260514_bbe2f5
+  name: genuine_isr_crosscheck
+  type: report
+  description: 'Stratified ISR analysis by hacking mode (H7/H1/genuine) across β=0.1
+    3-seed and Random control. Core finding: genuine ISR (s42)=0.601 vs random=0.104
+    (5.8×), but only 1/3 seeds has reliable genuine data.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/genuine_isr_crosscheck.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:35:33.186404+00:00'
+  tags:
+  - isr
+  - hacking
+  - genuine
+  - crosscheck
+  - beta0.1
+  - random-control
+- id: art_20260514_ea58d5
+  name: genuine_isr_crosscheck_r3
+  type: report
+  description: 'r3 correction: Random control DOES have H1 conclusion duplication
+    (s42=70.9%, s44=83.1%); genuine-vs-genuine ratio is 2.4× (not 5.8×). Adds Random
+    s42/s44 genuine-only ISR (0.252, 0.199) computed from per-sample eval JSONs.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/genuine_isr_crosscheck_ea58d5.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:40:51.671285+00:00'
+  tags:
+  - rebuttal
+  - isr
+  - random-control
+  - h1
+  - genuine-isr
+  - correction
+- id: art_20260514_3aa98e
+  name: genuine_isr_crosscheck
+  type: report
+  description: 'Genuine ISR crosscheck r4: strict normalization, verified Random s42/s44
+    genuine-only ISR, corrected ratio 2.5x'
+  path: projects/solver-trace-ablation/artifacts/_project/report/genuine_isr_crosscheck_3aa98e.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:47:14.851294+00:00'
+  tags:
+  - isr
+  - genuine
+  - crosscheck
+  - h7
+  - h1
+  - random
+  - r4
+- id: art_20260514_a55fef
+  name: genuine_isr_crosscheck_r5
+  type: report
+  description: 'r5 update: premise-count-matched ISR analysis reveals the 2.5× ISR-vs-Random
+    genuine-ISR gap is principally a premise-length confound. Matched at n_premises
+    ≥ 3, ratio collapses to 1.06×. Also confirms Random s42 H1=56/79 (70.9%) under
+    all four common normalizations — Worker''s 58/79 not reproducible. Section 3-4
+    wording updated to consistent H1=70.9% statement (the "Random has no conclusion
+    embedding, H1=0%" framing already corrected in r4 is preserved and reinforced).'
+  path: projects/solver-trace-ablation/artifacts/_project/report/genuine_isr_crosscheck_a55fef.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:53:00.287388+00:00'
+  tags:
+  - genuine_isr
+  - premise_matched
+  - H7_H1
+  - reviewer_response
+  - r5
+- id: art_20260514_341e49
+  name: evidence_tables_d051
+  type: report
+  description: 'D051 pure negative framing evidence tables: Table 1 (Main FOL results),
+    Table 2 (Hacking taxonomy with premise-count-matched analysis), Table 3 (Prolog
+    cross-logic interim). All metrics from eval_sta.py.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/evidence_tables_d051.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:18:04.131969+00:00'
+  tags:
+  - paper
+  - evidence
+  - d051
+  - tables
+- id: art_20260514_94a4d3
+  name: Table Data Compilation (Table 1 + Table 2)
+  type: data
+  description: Complete compilation of all experiment metrics for paper Table 1 (main
+    results by reward type × logic × seed) and Table 2 (hacking taxonomy). 6 panels
+    covering FOL, Prolog, ISR collapse trajectory, premise-count-matched analysis,
+    and cross-logic comparison. All numbers sourced from registry with exp_id traceability.
+    Data gaps and caveats documented.
+  path: projects/solver-trace-ablation/artifacts/_project/data/table_data_compilation.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:29:47.495260+00:00'
+  tags:
+  - paper
+  - table
+  - metrics
+  - compilation
+- id: art_20260514_0d350a
+  name: table_data
+  type: data
+  description: 'Structured JSON with all paper table data: Table 1 (Goodhart landscape,
+    9 conditions), Table 2 (hacking taxonomy H7/H1/Genuine), Claim 2 (ISR vs Random
+    premise-count-matched), Prolog cross-logic (exec-only 3-seed + STA), ISR collapse
+    trajectory. Sources: registry + eval_sta.py evidence tables.'
+  path: projects/solver-trace-ablation/artifacts/_project/data/table_data.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:31:37.142530+00:00'
+  tags:
+  - paper
+  - tables
+  - data
+  - json
+- id: art_20260514_24b401
+  name: fig1_sta_overview
+  type: chart
+  description: 'STA protocol overview: (a) formalization pipeline, (b) LOO ablation,
+    (c) diagnostic vs reward Goodhart. Data source: manual conceptual diagram.'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig1_sta_overview.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-14T17:32:32.664245+00:00'
+  tags:
+  - paper
+  - method
+  - conceptual
+- id: art_20260514_59704d
+  name: fig1_sta_overview
+  type: chart
+  description: 'Fig 1: STA Protocol Overview — 3-panel concept diagram showing (a)
+    Formalization Pipeline, (b) Solver Trace Ablation LOO process with ISR calculation,
+    (c) Diagnostic vs Reward Goodhart effect'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig1_sta_overview_59704d.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:34:18.305183+00:00'
+  tags:
+  - paper
+  - fig1
+  - concept-diagram
+  - STA
+- id: art_20260514_ca5403
+  name: fig2_isr_collapse
+  type: chart
+  description: 'Fig2: ISR Collapse Trajectory — dual Y-axis plot showing Prove Rate
+    vs Proved-only ISR across training steps (100/500/1000), with embedded data panel
+    (Tab3 equivalent). Shows PR↑ while ISR↓ divergence under exec-only training.'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig2_isr_collapse.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:34:55.288217+00:00'
+  tags:
+  - paper
+  - fig2
+  - isr
+  - collapse
+  - exec-only
+  - seed42
+- id: art_20260514_a681b8
+  name: preflight_prolog_sta_eval
+  type: report
+  description: Prolog STA s43/s44 eval preflight check - eval readiness, exact commands,
+    disk/constraint notes
+  path: projects/solver-trace-ablation/artifacts/_project/report/preflight_prolog_sta_eval.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:36:17.601039+00:00'
+  tags:
+  - plan006
+  - prolog
+  - eval
+  - preflight
+- id: art_20260514_1a725a
+  name: fig3_hacking_composition
+  type: chart
+  description: 'Stacked bar chart showing hacking mode composition (H7/H1/H3/Genuine)
+    across 7 reward conditions. Key finding: H7 (single prem=concl) is ISR-specific
+    gaming, H1 (conclusion embedding) is GRPO-universal.'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig3_hacking_composition.png
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:49:45.128937+00:00'
+  tags:
+  - paper
+  - fig3
+  - hacking
+  - taxonomy
+  - stacked-bar
+- id: art_20260514_48cbb0
+  name: fig4_prolog_comparison
+  type: chart
+  description: 'Fig4: FOL vs Prolog exec-only ISR grouped bar chart (3 seeds each),
+    with PR annotations and mean ISR lines. Shows cross-logic diagnostic transfer.'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig4_prolog_comparison.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:10:52.506088+00:00'
+  tags:
+  - fig4
+  - prolog
+  - fol
+  - isr
+  - cross-logic
+  - paper-figure
+- id: art_20260514_bc113d
+  name: evidence_tables_d051_final
+  type: data
+  description: Evidence tables D051 — final version with Prolog STA 3-seed complete
+    data (s42/s43/s44). Table 3 updated from Interim to Final.
+  path: projects/solver-trace-ablation/artifacts/_project/data/evidence_tables_d051.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:34:13.411660+00:00'
+  tags:
+  - evidence
+  - prolog
+  - claim3
+  - final
+- id: art_20260514_beea6a
+  name: table_data_json_final
+  type: data
+  description: Structured JSON table data — final version with Prolog STA 3-seed complete
+    data. For Paper Agent consumption.
+  path: projects/solver-trace-ablation/artifacts/_project/data/table_data_beea6a.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:34:15.215363+00:00'
+  tags:
+  - table-data
+  - prolog
+  - final
+- id: art_20260514_dd1269
+  name: Prolog STA Premise-Count Analysis
+  type: report
+  description: Premise-count artifact analysis for plan006-prolog-sta-s44. Conclusively
+    shows s44 ISR=0.885 is 100% artifact (all 78 single-clause samples are H7 pattern,
+    zero n_cl≥3 samples). All 3 Prolog STA seeds are negative — Goodhart collapse
+    more thorough in Prolog than FOL.
+  path: projects/solver-trace-ablation/artifacts/plan006/report/prolog_sta_premise_count_analysis.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan006
+  skill: ''
+  created_at: '2026-05-14T18:46:26.297014+00:00'
+  tags:
+  - premise-count
+  - artifact-analysis
+  - prolog
+  - sta
+  - goodhart
+  - s44
+- id: art_20260514_1594b5
+  name: method-section-draft
+  type: paper
+  description: Method section (Section 3) LaTeX draft for EMNLP 2026 submission. ~1010
+    words, covers task definition, GRPO training, STA protocol, ISR definition, 5
+    reward formulations, 7-mode hacking taxonomy.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/method_1594b5.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:52:05.832140+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260514_9dcd9a
+  name: method-section-draft
+  type: paper
+  description: 'Method section draft (§3) for EMNLP 2026 paper: Task Formulation,
+    GRPO Training, Solver Trace Ablation (STA) with Algorithm, Reward Formulations
+    (6 conditions), Reward Hacking Taxonomy (7 modes)'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/method_9dcd9a.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:53:33.173818+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260514_27bfee
+  name: experiments-section-draft
+  type: paper
+  description: EMNLP 2026 Experiments section (§4) draft — covers Setup, ISR as Diagnostic
+    (Claim 1), Meta-Level Goodhart (Claim 2), Cross-Logic Transfer (Claim 3), and
+    7-mode Hacking Taxonomy. ~2160 words with LaTeX markup.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/experiments.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:53:48.301784+00:00'
+  tags:
+  - paper
+  - experiments
+  - draft-v1
+- id: art_20260514_fc0803
+  name: method-section-draft
+  type: paper
+  description: Method section LaTeX draft (~1050 words, 5 subsections, Algorithm 1,
+    7 hacking modes taxonomy)
+  path: projects/solver-trace-ablation/artifacts/_project/paper/method_fc0803.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:56:26.783870+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260514_29c3b6
+  name: experiments-section-draft
+  type: paper
+  description: Experiments section LaTeX draft (~1734 words, 4 subsections, 3 inline
+    tables, 2 figure placeholders, all D051/D057/D059 corrections applied)
+  path: projects/solver-trace-ablation/artifacts/_project/paper/experiments_29c3b6.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:56:28.857268+00:00'
+  tags:
+  - paper
+  - experiments
+  - draft
+- id: art_20260514_6cb82f
+  name: discussion-section-draft
+  type: paper
+  description: Discussion section draft for EMNLP 2026 paper (~613 words). Covers
+    ISR capability boundary, premise count confound, meta-level Goodhart, classifier
+    limitations, and practical implications.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/discussion.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:58:14.157908+00:00'
+  tags:
+  - paper
+  - discussion
+  - emnlp2026
+- id: art_20260514_ab3fed
+  name: introduction.tex
+  type: paper
+  description: 'Introduction section for solver-trace-ablation paper. ~1017 words.
+    Covers: hook (93% PR / 87% H1), gap (no structural diagnostic), STA/ISR intro,
+    collapse trajectory, meta-level Goodhart, cross-logic transfer, 4 contributions
+    (C1-C4).'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/introduction.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:59:51.150038+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260514_b77022
+  name: experiments-section-v2
+  type: paper
+  description: Experiments section (Section 4) LaTeX draft for EMNLP 2026, ~2800 words,
+    5 tables + 3 figure placeholders
+  path: projects/solver-trace-ablation/artifacts/_project/paper/experiments_b77022.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:11:19.174844+00:00'
+  tags:
+  - paper
+  - experiments
+  - section4
+  - v2
+- id: art_20260514_908e7b
+  name: fig3_hacking_composition
+  type: chart
+  description: 'Fig 3: Hacking Mode Composition Stacked Bar Chart — shows H1/H7/H3/Genuine
+    distribution across Exec-only, ISR (3 seeds), Random, and SFT conditions'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig3_hacking_composition.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:25:15.798843+00:00'
+  tags:
+  - paper
+  - figure
+  - hacking-mode
+  - stacked-bar
+- id: art_20260514_6344ba
+  name: fig1_sta_overview
+  type: chart
+  description: 'Fig 1: STA概念图 (3-panel) — (a) Formalization Pipeline, (b) STA Protocol
+    with LOO ablation and ISR formula, (c) ISR Dual Role (post-hoc diagnostic vs training
+    reward Goodhart)'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig1_sta_overview_6344ba.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:25:42.205537+00:00'
+  tags:
+  - paper
+  - figure
+  - sta
+  - isr
+  - overview
+- id: art_20260514_c1cb35
+  name: fig2_isr_collapse
+  type: chart
+  description: 'Fig 2: ISR collapse trajectory (dual Y-axis). PR vs ISR* over training
+    steps 0-1000, exec-only s42. Shows 99.5% ISR decline while PR rises to 0.96.'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig2_isr_collapse_c1cb35.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:26:06.655799+00:00'
+  tags:
+  - paper
+  - fig2
+  - isr
+  - prove-rate
+  - exec-only
+- id: art_20260514_f53ebe
+  name: fig4_prolog_comparison
+  type: chart
+  description: 'Fig 4: Prolog Cross-Logic Comparison — (a) FOL vs Prolog exec-only
+    ISR* across 3 seeds, (b) Prolog STA gaming mode distribution showing universal
+    Goodhart effect'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig4_prolog_comparison_f53ebe.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:26:51.939781+00:00'
+  tags:
+  - paper
+  - fig4
+  - prolog
+  - ISR
+  - gaming
+  - cross-logic
+- id: art_20260514_9992ff
+  name: paper_main_tex
+  type: paper
+  description: Assembled EMNLP 2026 paper main.tex (ACL format, review mode). Compiles
+    cleanly with 0 warnings. 12 body pages + 2 reference pages = 14 total. Body exceeds
+    8-page limit by 4 pages.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/paper.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:27:17.473858+00:00'
+  tags:
+  - paper
+  - latex
+  - emnlp2026
+- id: art_20260514_b8a377
+  name: related_work.tex
+  type: paper
+  description: '§2 Related Work for EMNLP 2026 paper (~915 words). 4 clusters: Neurosymbolic
+    Reasoning, Reward Shaping & Process Supervision, Reward Hacking & Goodhart''s
+    Law, Mutation Testing & Component Analysis, plus positioning paragraph.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/related_work.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:32:01.920300+00:00'
+  tags:
+  - paper
+  - related-work
+  - latex
+- id: art_20260514_41056c
+  name: introduction.tex
+  type: paper
+  description: 'EMNLP 2026 Introduction section (~1200 words): Hook with 93%/87% numbers,
+    STA/ISR diagnostic, meta-level Goodhart characterization, cross-logic transfer,
+    4 numbered contributions, road map.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/introduction_41056c.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:33:55.710407+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260514_bdffbc
+  name: paper_number_audit
+  type: report
+  description: 论文数字审计报告：逐文件核对所有定量声明与 registry metrics，标记不匹配和无法追溯项
+  path: projects/solver-trace-ablation/artifacts/_project/report/paper_number_audit.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:35:47.610533+00:00'
+  tags:
+  - audit
+  - paper
+  - numbers
+  - registry
+- id: art_20260514_4154ea
+  name: reference_audit_report
+  type: report
+  description: 'Citation consistency audit: cross-check .tex citations vs .bib entries,
+    placeholder authors, orphan entries, format issues'
+  path: projects/solver-trace-ablation/artifacts/_project/report/reference_audit_report.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:46:07.230141+00:00'
+  tags:
+  - paper
+  - references
+  - audit
+- id: art_20260514_b05493
+  name: related_work_tex
+  type: paper
+  description: Related Work section (Section 2) for EMNLP 2026 submission, 4 clusters,
+    ~900 words, 32 citations
+  path: projects/solver-trace-ablation/artifacts/_project/paper/related_work_b05493.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:49:15.867395+00:00'
+  tags:
+  - paper
+  - related-work
+  - section2
+- id: art_20260514_4d5248
+  name: method.tex
+  type: paper
+  description: Method section (Section 3) for EMNLP 2026 submission. Covers task formulation,
+    GRPO training, STA protocol with Algorithm 1, ISR definition with premise-count
+    bias, 6 reward conditions (Table 1), and 7-mode hacking taxonomy.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/method_4d5248.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:50:03.620663+00:00'
+  tags:
+  - paper
+  - method
+  - emnlp2026
+- id: art_20260514_b19e34
+  name: introduction.tex
+  type: paper
+  description: Introduction section (Section 1) for EMNLP 2026 submission. ~1170 words,
+    4 contributions woven into narrative, 13 unique citation keys.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/introduction_b19e34.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:51:34.217433+00:00'
+  tags:
+  - paper
+  - introduction
+  - emnlp2026
+- id: art_20260514_5770e6
+  name: reference_fix_report
+  type: report
+  description: references.bib P0/P1 fix summary + orphan audit + clean compile verification
+    (14 pages, 0 errors)
+  path: projects/solver-trace-ablation/artifacts/_project/report/reference_fix_report_5770e6.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T20:52:21.114625+00:00'
+  tags:
+  - bib
+  - references
+  - compile-verified
+- id: art_20260514_b48cf1
+  name: reference_fix_report
+  type: report
+  description: 'Reference audit fix report: verification that all bib entries are
+    correct and no orphans exist'
+  path: projects/solver-trace-ablation/artifacts/_project/report/reference_fix_report_b48cf1.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T20:54:03.768299+00:00'
+  tags: []
+- id: art_20260514_c1ddec
+  name: exp4-100step-hacking-classification
+  type: report
+  description: '100-step checkpoint hacking classification: H7=28.1% at PR=32%, confirming
+    early RL hacking onset vs SFT ~0%'
+  path: projects/solver-trace-ablation/artifacts/_project/report/exp4_100step_classification_report.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T21:57:47.907466+00:00'
+  tags:
+  - hacking
+  - temporal
+  - 100-step
+  - claim1
+- id: art_20260514_f2e6dd
+  name: EXP-2 plan001 exec-only s43-r4 greedy vs sampling re-eval
+  type: report
+  description: 'Greedy (T=0) re-evaluation of plan001-exec-only-s43-r4 vs original
+    sampling (T=0.7) eval on 100 held-out FOL problems. Both decoders agree: PR~0.13-0.14,
+    ISR*=0, H1=100%, H7=0%, components~18.5-18.9. s43 cross-seed failure is decoding-invariant.'
+  path: projects/solver-trace-ablation/artifacts/plan001-exec-only-s43-r4/report/exp2_s43_greedy_vs_sample.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan001-exec-only-s43-r4
+  skill: worker
+  created_at: '2026-05-14T22:08:58.951363+00:00'
+  tags:
+  - eval
+  - greedy
+  - s43
+  - exec-only
+  - plan001
+  - cross-seed
+  - exp2
+- id: art_20260514_1b897b
+  name: paper_review_r1
+  type: report
+  description: 论文草稿完整性审查 R1：编译测试通过（14页，主体6页+参考2页+附录6页）；P0=6条缺失bib条目导致 undefined citation；P1=fig:prolog-comparison
+    未被引用、两表重复 \label、math-shepherd 未引用、legacy paper.tex 待清理；所有硬约束（D051/s44/7-mode/ISR*/H7=0/SFT
+    92.9%/1.06×/C006）均通过。
+  path: projects/solver-trace-ablation/artifacts/_project/report/paper_review_r1.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:17:30.752032+00:00'
+  tags:
+  - paper-review
+  - emnlp2026
+  - pre-submission
+- id: art_20260514_c1671f
+  name: abstract.tex
+  type: paper
+  description: 'EMNLP 2026 abstract (~250 words): STA diagnostic + meta-Goodhart +
+    cross-logic transfer + 7-mode taxonomy'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/abstract_c1671f.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:30:56.011928+00:00'
+  tags:
+  - paper
+  - abstract
+  - emnlp2026
+- id: art_20260514_0cce3f
+  name: conclusion.tex
+  type: paper
+  description: 'EMNLP 2026 Section 6 Conclusion (~300 words): summary of 3 claims,
+    limitations (single model/2 logics/syntactic ISR/3 seeds/classifier blind spots),
+    future directions'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/conclusion_0cce3f.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:30:58.527852+00:00'
+  tags:
+  - paper
+  - conclusion
+  - emnlp2026
+- id: art_20260515_76d073
+  name: method-section-tex
+  type: paper
+  description: Method section (§3) LaTeX draft for EMNLP 2026 submission. ~1200 words.
+    Covers task definition, GRPO training, STA protocol, ISR definition, reward formulations,
+    and hacking taxonomy.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/method_76d073.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T00:45:33.191657+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+  - latex
+- id: art_20260515_3bf026
+  name: method-section-draft-md
+  type: paper
+  description: Method section (§3) Markdown draft for review. ~1200 words. Mirror
+    of method.tex for easier Director/Reviewer inspection.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/method_draft.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T00:45:54.374556+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+  - markdown
+  - review
+- id: art_20260515_12a465
+  name: introduction_tex_v2
+  type: paper
+  description: 'Updated Introduction (§1) for EMNLP 2026 paper. ~800 words. 4 contributions
+    C1-C4. Hook: 93% PR / 87% conclusion embedding. Explicitly acknowledges ISR=LOO
+    ablation with novelty at application. Covers diagnostic vs reward asymmetry, meta-Goodhart,
+    premise-count confound, cross-logic universal Goodhart, 7-mode taxonomy. All citations
+    validated against references.bib.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/introduction_12a465.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:13:54.846286+00:00'
+  tags:
+  - paper
+  - introduction
+  - v2
+  - emnlp2026
+- id: art_20260515_49ea86
+  name: experiments_tex_v2
+  type: paper
+  description: 'EMNLP 2026 Experiments section v2 (~2700 words): 4.1 Setup, 4.2 ISR
+    as Diagnostic, 4.3 Meta-Level Goodhart (3-seed beta=0.3 added with three Goodhart
+    pathways), 4.4 Cross-Logic Transfer (Prolog universal Goodhart 3/3), 4.5 Hacking
+    Taxonomy. Includes Tab1 Goodhart landscape, Tab2 hacking taxonomy, Tab4 beta01
+    3-seed with premise-matched column, Tab5 Prolog cross-logic. Fig2 ISR collapse,
+    Fig3 hacking composition, Fig4 Prolog comparison.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/experiments_49ea86.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:15:17.268643+00:00'
+  tags:
+  - paper
+  - experiments
+  - v2
+  - emnlp2026
+- id: art_20260515_176853
+  name: introduction_tex_v2
+  type: paper
+  description: Introduction section (§1) - complete draft with all core bullets, verified
+    citations, D051/D060 narrative fixes applied. ~930 words.
+  path: projects/solver-trace-ablation/artifacts/_project/paper/introduction_176853.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:16:17.781671+00:00'
+  tags:
+  - paper
+  - introduction
+  - v2
+- id: art_20260515_76b47a
+  name: experiments_tex_v2
+  type: paper
+  description: 'Experiments section (§4) of the STA paper: 5 subsections (Setup, ISR
+    as Diagnostic, Meta-Level Goodhart, Cross-Logic Transfer, Hacking Taxonomy), 4
+    tables, 3 figures. All metrics verified against registry. ~2800 words.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/experiments_76b47a.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:21:27.767685+00:00'
+  tags:
+  - paper
+  - experiments
+  - verified
+- id: art_20260515_9f88d8
+  name: fig2_isr_collapse
+  type: chart
+  description: 'Fig 2: Dual Y-axis PR/ISR* collapse trajectory over 1000 steps'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig2_isr_collapse_info.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:35:35.284393+00:00'
+  tags:
+  - paper
+  - claim1
+  - figure
+- id: art_20260515_1b6d85
+  name: fig3_hacking_composition
+  type: chart
+  description: 'Fig 3: 5-condition stacked bar of hacking mode composition'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig3_hacking_composition_info.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:35:38.900607+00:00'
+  tags:
+  - paper
+  - claim2
+  - figure
+- id: art_20260515_788868
+  name: fig4_prolog_cross_logic
+  type: chart
+  description: 'Fig 4: 2-panel Prolog cross-logic validation'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig4_prolog_cross_logic_info.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:35:41.889377+00:00'
+  tags:
+  - paper
+  - claim3
+  - figure
+- id: art_20260515_710bf5
+  name: paper_consistency_audit
+  type: report
+  description: 'Cross-verification of all quantitative claims in paper .tex files
+    against registry data. 124 claims checked: 116 consistent, 1 minor inconsistency
+    (200× should be 214×), 7 unable to verify from registry alone. No critical errors.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/paper_consistency_audit.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:31:56.377747+00:00'
+  tags:
+  - audit
+  - paper
+  - data-consistency
+- id: art_20260515_37cf56
+  name: bootstrap-ci-results
+  type: data
+  description: 'Bootstrap 95% CIs and permutation tests: ISR vs Random genuine p=0.637
+    NS, H7 p=0.0004, ISR* p less than 0.001'
+  path: projects/solver-trace-ablation/artifacts/_project/data/bootstrap_ci_results.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:31:01.936984+00:00'
+  tags:
+  - statistics
+  - bootstrap
+  - confidence-intervals
+- id: art_20260515_f66df1
+  name: wilson_ci_results_csv
+  type: data
+  description: Wilson score 95% CI for all experiment classifications (H7, H1, genuine)
+    — per-experiment CSV
+  path: projects/solver-trace-ablation/artifacts/_project/data/wilson_ci_results.csv
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:58:37.622128+00:00'
+  tags:
+  - statistics
+  - wilson-ci
+  - classification
+- id: art_20260515_0f412d
+  name: wilson_ci_results_json
+  type: data
+  description: Wilson score 95% CI + pooled CI + Fisher exact tests — full JSON with
+    per-experiment, pooled, and comparison results
+  path: projects/solver-trace-ablation/artifacts/_project/data/wilson_ci_results.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:58:40.498039+00:00'
+  tags:
+  - statistics
+  - wilson-ci
+  - fisher-test
+  - classification
+- id: art_20260515_9dd3c4
+  name: wilson_ci_script
+  type: intermediate
+  description: Python script computing Wilson score CI and Fisher exact tests from
+    registry classification data
+  path: projects/solver-trace-ablation/artifacts/_project/intermediate/wilson_ci.py
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:58:41.987194+00:00'
+  tags:
+  - statistics
+  - script
+- id: art_20260515_61b3a3
+  name: wilson-ci-results
+  type: data
+  description: Wilson score 95% CIs + Fisher exact tests with correct classification
+    data. ISR genuine p=0.0001 (significant, corrects broken bootstrap p=0.637)
+  path: projects/solver-trace-ablation/artifacts/_project/data/wilson_ci_results_61b3a3.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:14:51.248952+00:00'
+  tags:
+  - statistics
+  - wilson-ci
+  - fisher-test
+  - corrected
+- id: art_20260515_4b379b
+  name: wilson_ci_complete
+  type: data
+  description: Complete Wilson CI analysis with all taxonomy data (H7/H1/genuine),
+    Fisher exact tests, and seed heterogeneity for all 6 conditions. Includes registry
+    corrections.
+  path: projects/solver-trace-ablation/artifacts/_project/data/wilson_ci_complete.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:29:49.862556+00:00'
+  tags:
+  - wilson-ci
+  - taxonomy
+  - statistics
+  - h7
+  - h1
+  - genuine
+- id: art_20260515_e87a6e
+  name: wilson_ci_complete_csv
+  type: data
+  description: Wilson CI complete results in CSV format - per-seed and pooled H7/H1/genuine
+    rates with 95% CI for all conditions.
+  path: projects/solver-trace-ablation/artifacts/_project/data/wilson_ci_complete.csv
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:29:51.978543+00:00'
+  tags:
+  - wilson-ci
+  - taxonomy
+  - csv
+- id: art_20260515_d31d3f
+  name: wilson-ci-complete
+  type: data
+  description: 'Complete Wilson CI with all available seeds. ISR b01 vs Random b01
+    genuine: p=1.0 (NS). Corrects single-seed bias. Random b01 s44 data lost.'
+  path: projects/solver-trace-ablation/artifacts/_project/data/wilson_ci_complete_d31d3f.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:30:46.708398+00:00'
+  tags:
+  - statistics
+  - wilson-ci
+  - fisher-test
+  - complete
+  - corrected
+- id: art_20260515_803950
+  name: sft-3seed-pooled-ci
+  type: data
+  description: 'SFT 3-seed pooled Wilson CI: genuine/proved=91.3% [79.7,96.6], PR=15.3%,
+    zero H7. Corrected s44 eval.'
+  path: projects/solver-trace-ablation/artifacts/_project/data/sft_3seed_pooled_ci.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:44:30.591916+00:00'
+  tags:
+  - statistics
+  - sft
+  - wilson-ci
+  - corrected
+- id: art_20260515_ddaa72
+  name: plan002-additive-b01-s42-1000 eval summary
+  type: data
+  description: 'Eval results for 1000-step ISR beta=0.1 additive training. NEGATIVE:
+    tautological collapse (H7=92.2%, genuine=3.0%)'
+  path: projects/solver-trace-ablation/artifacts/plan002-additive-b01-s42-1000/data/eval_summary.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan002-additive-b01-s42-1000
+  skill: ''
+  created_at: '2026-05-15T08:52:40.083921+00:00'
+  tags:
+  - eval
+  - negative
+  - tautological-collapse
+  - 1000-steps
+- id: art_20260515_e963c2
+  name: h8_retroactive_audit
+  type: data
+  description: 'H8 conjunction-collapse retroactive audit: 24 eval files analyzed,
+    3 experiments genuine counts reduced (plan001-exec-only-s42-r2: 12→7, plan002-b01-1000:
+    3→2, plan002-b03: 4→1). ISR β=0.3 1000-step has 41 H8 samples. plan002-b01-s42
+    (genuine=25) could not be verified (checkpoint deleted).'
+  path: projects/solver-trace-ablation/artifacts/_project/data/h8_retroactive_audit.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:08:11.788275+00:00'
+  tags:
+  - h8
+  - conjunction-collapse
+  - audit
+  - genuine
+  - classifier
+- id: art_20260515_593eb1
+  name: plan018-additive-random-b01-s42-1000-r3_analysis
+  type: data
+  description: 'Analysis of Random reward β=0.1 s42 1000-step experiment r3: genuine=0%,
+    tautological_collapse=true, consistent with r2'
+  path: projects/solver-trace-ablation/artifacts/plan018-additive-random-b01-s42-1000-r3/data/plan018-additive-random-b01-s42-1000-r3_analysis.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan018-additive-random-b01-s42-1000-r3
+  skill: ''
+  created_at: '2026-05-15T12:14:49.410444+00:00'
+  tags:
+  - eval
+  - sta
+  - 1000-step
+  - random-reward
+  - tautological-collapse
+- id: art_20260515_35553a
+  name: table_1000step_comparison
+  type: paper
+  description: 'LaTeX table: 1000-step full comparison across 5 reward conditions
+    (PR, Mean ISR, H7%, H1%, H8%, Genuine%). For §4.2.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/table_1000step_comparison.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:45:48.612838+00:00'
+  tags:
+  - paper
+  - table
+  - 1000step
+  - section4.2
+- id: art_20260515_ebc419
+  name: genuine_rate_collapse_figure
+  type: chart
+  description: 'Temporal Genuine Rate Collapse figure: 500→1000 step genuine% trajectories
+    for 5 conditions. SFT stable ~93%, all RL conditions collapse to 0-2.2%. PDF+PNG.
+    For §4.2.'
+  path: projects/solver-trace-ablation/artifacts/_project/chart/genuine_rate_collapse.png
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:45:51.302924+00:00'
+  tags:
+  - paper
+  - figure
+  - genuine-rate
+  - temporal-collapse
+  - section4.2
+- id: art_20260515_87d839
+  name: plan002-b01-s42-h8-classification
+  type: data
+  description: 'H8 conjunction collapse re-audit for plan002-additive-b01-s42 (500
+    steps). H8=12/81, genuine dropped 26 to 14 (32.1% to 17.3%). Server path: /root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json'
+  path: projects/solver-trace-ablation/artifacts/plan002-additive-b01-s42/data/plan002_b01_s42_h8.txt
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan002-additive-b01-s42
+  skill: ''
+  created_at: '2026-05-15T12:51:21.147604+00:00'
+  tags:
+  - h8
+  - classify_h7
+  - re-eval
+- id: art_20260515_13ef26
+  name: SFT 3-seed 1000step analysis
+  type: report
+  description: SFT baseline 3-seed (s42/s43/s44) 1000步完整 eval + STA 分类汇总
+  path: projects/solver-trace-ablation/artifacts/_project/report/sft_3seed_1000step_analysis.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:37:35.571193+00:00'
+  tags:
+  - sft
+  - baseline
+  - 3-seed
+  - eval
+  - sta
+- id: art_20260515_4ef9cb
+  name: paper-number-audit-2026-05-15
+  type: report
+  description: 'Comprehensive audit of all TeX file numbers against registry data.
+    14 inconsistencies found (6 high, 3 medium, 5 low). Dominant issue: H8 taxonomy
+    expansion not reflected in paper body, causing cascading N-H% inflation.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/audit_2026-05-15.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:47:55.377197+00:00'
+  tags:
+  - paper
+  - audit
+  - consistency
+  - H8
+  - taxonomy
+- id: art_20260515_880127
+  name: inc05_literature_linkage
+  type: report
+  description: INC-05 统计发现的文献联动：ISR genuine 6.9% vs Random 18.4% (p=0.0002) 与 Goodhart's
+    Law / reward hacking 文献的映射关系，含 4 篇核心论文和论文写作建议 claim
+  path: projects/solver-trace-ablation/artifacts/_project/report/inc05_literature_linkage.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:12:00.986498+00:00'
+  tags:
+  - inc-05
+  - literature
+  - goodhart
+  - reward-hacking
+  - fisher-test
+- id: art_20260515_f3c732
+  name: provenance-gap-report
+  type: report
+  description: Provenance completeness audit report - all 24 success experiments now
+    have complete provenance
+  path: projects/solver-trace-ablation/artifacts/_project/report/provenance_gap_report.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:15:24.497736+00:00'
+  tags: []
+- id: art_20260515_c97d24
+  name: plan018_random_s42_taxonomy_verification
+  type: data
+  description: H7/H1/H8/genuine taxonomy verification for plan018-additive-random-b01-s42.
+    Registry genuine=23 confirmed (3 H8 + 8 H1-near + 12 strict genuine).
+  path: projects/solver-trace-ablation/artifacts/plan018-additive-random-b01-s42/data/plan018_random_s42_taxonomy_verification.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan018-additive-random-b01-s42
+  skill: ''
+  created_at: '2026-05-15T14:20:14.591836+00:00'
+  tags:
+  - taxonomy
+  - verification
+  - h7h8
+  - random-baseline
+- id: art_20260515_515c5d
+  name: paper-number-audit-2026-05-15
+  type: report
+  description: Paper TeX quantitative claim consistency audit against registry data.
+    3 red-line violations, 6 issues, 27 verified-OK claims.
+  path: projects/solver-trace-ablation/artifacts/_project/report/paper_number_audit_2026-05-15.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:09:42.336944+00:00'
+  tags:
+  - audit
+  - paper
+  - consistency
+  - numbers
+- id: art_20260515_beda84
+  name: paper-tex-fix-changelog-20260515
+  type: report
+  description: Changelog of all paper TeX fixes for RED LINE violations RL-01/02/03
+    and MEDIUM issues ISS-04/05/06
+  path: projects/solver-trace-ablation/artifacts/_project/report/changelog.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:51:34.596402+00:00'
+  tags:
+  - paper
+  - data-fix
+  - audit
+- id: art_20260515_2ac5fa
+  name: pre-submit-readiness-check
+  type: report
+  description: 预验证 3 个 PREPARING 实验的提交就绪状态
+  path: projects/solver-trace-ablation/artifacts/_project/report/pre-submit-readiness-check.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:51:38.630754+00:00'
+  tags:
+  - readiness-check
+  - pre-submit
+- id: art_20260515_914089
+  name: tex_number_audit_20260515
+  type: report
+  description: TeX 论文数字一致性审计：4 errors, 2 warnings, 3 minor issues; ~80+ claims verified
+    consistent
+  path: projects/solver-trace-ablation/artifacts/_project/report/tex_number_audit_20260515.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:12:11.469058+00:00'
+  tags:
+  - audit
+  - paper
+  - numbers
+  - consistency
+- id: art_20260515_606a1d
+  name: plan001-exec-only-s43-1000-r2 analysis
+  type: data
+  description: 'Eval analysis for exec-only GRPO seed=43 1000-step r2: prove_rate=0.90,
+    ISR=0.531, genuine=0%, 100% H7a tautology hacking'
+  path: projects/solver-trace-ablation/artifacts/plan001-exec-only-s43-1000-r2/data/plan001-exec-only-s43-1000-r2_analysis_606a1d.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan001-exec-only-s43-1000-r2
+  skill: ''
+  created_at: '2026-05-15T16:17:31.280847+00:00'
+  tags:
+  - eval
+  - exec-only
+  - seed43
+  - 1000steps
+  - h7a
+- id: art_20260515_5f1777
+  name: exec-only-1000-3seed-summary
+  type: data
+  description: 3-seed exec-only GRPO 1000步汇总：s42/s43/s44 全部 genuine≈0%，但各 seed 发现不同
+    hacking 策略 (H1/H7a/H1+H8)
+  path: projects/solver-trace-ablation/artifacts/_project/data/plan001-exec-only-s43-1000-r2_analysis.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:50:23.724683+00:00'
+  tags:
+  - 3-seed
+  - exec-only
+  - 1000-step
+  - goodhart
+  - claim1
+- id: art_20260515_ddc22e
+  name: exec-only-1000-taxonomy-audit
+  type: report
+  description: Exec-only 1000-step 3-seed taxonomy classification audit (s42/s43/s44)
+    with classify_h7.py. Includes genuine sample investigation for s44.
+  path: projects/solver-trace-ablation/artifacts/_project/report/exec_only_1000_taxonomy_audit.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:51:59.399990+00:00'
+  tags:
+  - taxonomy
+  - exec-only
+  - classify_h7
+  - audit
+- id: art_20260515_79720b
+  name: exec-only-3seed-taxonomy-audit
+  type: report
+  description: Taxonomy audit for exec-only 1000-step experiments (s43, s44). Verifies
+    s44's 3 genuine proofs are all H1-near (disjunction embedding via ∀x instantiation),
+    genuine_strict=0.
+  path: projects/solver-trace-ablation/artifacts/_project/report/exec_only_3seed_taxonomy_audit.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:55:03.251101+00:00'
+  tags:
+  - taxonomy
+  - exec-only
+  - D090
+  - genuine-audit
+- id: art_20260515_nc3inv
+  name: s43_1000_n_components_investigation
+  type: report
+  description: 'Investigation of n_components=3 in s43-1000-r2: NOT a parsing artifact.
+    Explanation text correctly ignored by parser (0/90 leakage). n_components=3 from
+    quantifier decomposition of single-premise H7 hacks. High ISR (0.531) driven by
+    single-premise strategy, not parsing bug.'
+  path: projects/solver-trace-ablation/artifacts/s43_1000_n_components_investigation.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan001-exec-only-s43-1000-r2
+  skill: ''
+  created_at: '2026-05-15T17:30:00.000000+00:00'
+  tags:
+  - investigation
+  - n_components
+  - parsing
+  - s43-1000
+  - H7
+  - ISR
+- id: art_20260515_2e14c3
+  name: stats_recalc_checklist
+  type: intermediate
+  description: Random β=0.1 pooled statistics recalculation checklist — formulas,
+    input sources, and execution steps for when s43-r3/s44-r2 retraining completes
+  path: projects/solver-trace-ablation/artifacts/_project/intermediate/stats_recalc_checklist.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:40:35.266069+00:00'
+  tags:
+  - statistics
+  - random-control
+  - recalculation
+  - D084
+- id: art_20260515_ac0460
+  name: plan002-additive-b01-s43-r2 analysis
+  type: report
+  description: 'Taxonomy analysis for ISR beta=0.1 seed=43 retrain (r2). Conclusion:
+    negative. 0/61 genuine, 100% H7 hacking.'
+  path: projects/solver-trace-ablation/artifacts/plan002-additive-b01-s43-r2/report/analysis.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan002-additive-b01-s43-r2
+  skill: ''
+  created_at: '2026-05-15T17:41:49.190475+00:00'
+  tags:
+  - claim2
+  - isr
+  - 3-seed
+  - taxonomy
+  - negative
+- id: art_20260515_c00dd1
+  name: 3seed_comparison_table
+  type: report
+  description: Random β=0.1 vs ISR β=0.1 cross-seed comparison table with pooled statistics.
+    ISR 3-seed complete, Random 2-seed provisional (s44-r2 running).
+  path: projects/solver-trace-ablation/artifacts/_project/report/3seed_comparison_table.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:11:04.822618+00:00'
+  tags:
+  - cross-seed
+  - comparison
+  - random-vs-isr
+  - beta-0.1
+  - taxonomy
+- id: art_20260515_f67ba5
+  name: D093 H7 Subtype Analysis
+  type: data
+  description: 'H7 subtype (H7a/H7b) analysis for Random s43-r3 and exec-only s43
+    verification. Key finding: both have 100% H7a, 0% H7b. H7b is ISR-specific.'
+  path: projects/solver-trace-ablation/artifacts/_project/data/d093_h7_subtype_analysis.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:54:26.759894+00:00'
+  tags:
+  - D093
+  - H7
+  - taxonomy
+  - random
+  - exec-only
+- id: art_20260515_04b6b2
+  name: d093_h7_subtype_analysis
+  type: data
+  description: H7 subtype analysis for Random s43-r3 + exec-only s43 verification.
+    H7a universal, H7b ISR-specific. D088 correction.
+  path: projects/solver-trace-ablation/artifacts/plan018-additive-random-b01-s43-r3/data/d093_h7_subtype_analysis.txt
+  url: null
+  project: solver-trace-ablation
+  exp_id: plan018-additive-random-b01-s43-r3
+  skill: ''
+  created_at: '2026-05-15T19:00:13.836877+00:00'
+  tags:
+  - h7-subtype
+  - d093
+  - taxonomy
+  - d088-correction
+- id: art_20260515_369cc2
+  name: h7_convergence_timing
+  type: report
+  description: 'H7 convergence timing analysis: ISR s43 onset→saturation ~250 steps
+    vs exec-only s43 ~350 steps. ISR reward creates H7 self-amplifying feedback loop.
+    Supports Narrative A (ISR amplifies H7).'
+  path: projects/solver-trace-ablation/artifacts/_project/report/h7_convergence_timing.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:02:17.001322+00:00'
+  tags:
+  - h7
+  - convergence
+  - timing
+  - narrative-a
+- id: art_20260515_8eaaad
+  name: pooled_statistics_2026-05-15
+  type: data
+  description: 'Final pooled statistics for ISR b0.1 vs Random b0.1: Fisher exact
+    tests, Wilson CIs, bootstrap CIs, per-seed summary, H7b specificity. All 86 experiments
+    complete.'
+  path: projects/solver-trace-ablation/artifacts/_project/data/pooled_statistics_2026-05-15.json
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:33:52.482385+00:00'
+  tags:
+  - statistics
+  - pooled
+  - final
+  - claim2
+- id: art_20260515_895d74
+  name: method.tex
+  type: paper
+  description: 'Method section (§3) for EMNLP 2026 paper. Updated: 8-mode hacking
+    taxonomy (H7a/H7b split, H8 added), D095 statistics, genuine set-exclusion formula
+    (C013), Fig 1 placeholder, ProofWriter data source fix.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/method_895d74.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:05:11.369499+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+  - v2
+- id: art_20260515_da3450
+  name: experiments-tex-d095
+  type: paper
+  description: 'Experiments section (§4) for EMNLP 2026 paper, rewritten with D095-final
+    data: corrected H7 two-layer narrative, per-seed+pooled reporting, Fisher tests,
+    8-mode taxonomy, premise-count-matched 1.06x.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/experiments_da3450.tex
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:20:23.130449+00:00'
+  tags:
+  - paper
+  - experiments
+  - d095
+  - emnlp2026
+- id: art_20260515_69afe6
+  name: paper_compile_check
+  type: report
+  description: Paper compilation check report — no errors, 8-page body within ACL
+    limit, no undefined refs
+  path: projects/solver-trace-ablation/artifacts/_project/report/paper_compile_check.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T21:25:34.834469+00:00'
+  tags:
+  - paper
+  - compilation
+  - quality-check
+- id: art_20260515_77155f
+  name: fig3_hacking_composition_v2
+  type: chart
+  description: Fig3 hacking composition stacked bar chart — 6 conditions × 5 categories,
+    exact D095 data, PDF/PNG generated
+  path: projects/solver-trace-ablation/artifacts/_project/chart/fig3_hacking_composition_77155f.pdf
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T21:28:05.294003+00:00'
+  tags:
+  - paper
+  - fig3
+  - D095
+- id: art_20260515_251cb0
+  name: ARR Compliance Report
+  type: report
+  description: EMNLP ARR submission compliance check — anonymization, format, citations,
+    limitations, appendix
+  path: projects/solver-trace-ablation/artifacts/_project/report/arr_compliance_report.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:59:30.599408+00:00'
+  tags:
+  - paper
+  - arr
+  - compliance
+- id: art_20260516_1a0118
+  name: submission_package_final
+  type: paper
+  description: 'Final ACL submission package tarball: 9 .tex + .bib + .bbl + .sty
+    + .bst + 5 figure PDFs + main.pdf (19 files, 912K uncompressed). Independently
+    compilable, 0 error, 8-page main body, 19 pages total.'
+  path: projects/solver-trace-ablation/artifacts/_project/paper/submission_package.tar.gz
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:47:21.121491+00:00'
+  tags:
+  - submission
+  - final
+  - acl
+- id: art_20260516_e5017e
+  name: sweep-isr-b01-s45 analysis report
+  type: report
+  description: 'Analysis of failed sweep-isr-b01-s45: only 100/500 steps due to config
+    merge bug in train_grpo.py'
+  path: projects/solver-trace-ablation/artifacts/sweep-isr-b01-s45/report/analysis_report.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: sweep-isr-b01-s45
+  skill: ''
+  created_at: '2026-05-16T03:02:23.061732+00:00'
+  tags:
+  - failed
+  - config-bug
+  - sweep
+- id: art_20260516_730730
+  name: sweep-isr-b005-s42 interim analysis
+  type: report
+  description: 'Interim analysis of sweep-isr-b005-s42: original 100-step training
+    was too short, checkpoint deleted, re-training at 500 steps in progress'
+  path: projects/solver-trace-ablation/artifacts/sweep-isr-b005-s42/report/analysis_report.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: sweep-isr-b005-s42
+  skill: ''
+  created_at: '2026-05-16T03:13:10.251659+00:00'
+  tags:
+  - analysis
+  - interim
+  - sweep
+  - dose-response
+- id: art_20260516_c54acb
+  name: sweep-isr-b005-s42-analysis
+  type: report
+  description: 'Full analysis of ISR β=0.05 s42 500-step training: ISR preserved (0.759
+    proved-only), 55.1% eval prove_rate, no H7 collapse. Goodhart threshold identified
+    between β=0.05 and β=0.1.'
+  path: projects/solver-trace-ablation/artifacts/sweep-isr-b005-s42/report/analysis_report_c54acb.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: sweep-isr-b005-s42
+  skill: ''
+  created_at: '2026-05-16T04:16:12.734894+00:00'
+  tags:
+  - dose-response
+  - goodhart
+  - beta-sweep
+  - isr
+- id: art_20260516_f2a7e1
+  name: analysis_sweep_exec_only_s45_r2
+  type: report
+  description: 'Training + eval + hacking taxonomy analysis for sweep-exec-only-s45-r2.
+    500-step exec-only GRPO, seed=45. Result: 99% prove rate, 93.9% H7a tautological
+    collapse, 1.0% genuine.'
+  path: projects/solver-trace-ablation/artifacts/sweep-exec-only-s45-r2/report/analysis_sweep_exec_only_s45_r2.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: sweep-exec-only-s45-r2
+  skill: ''
+  created_at: '2026-05-16T09:26:37.439680+00:00'
+  tags:
+  - exec-only
+  - sweep
+  - s45
+  - hacking-taxonomy
+- id: art_20260518_a62001
+  name: d130_4b_content_independent_backcheck
+  type: report
+  description: 'Audit of 4B ISR b01 5-seed genuine data for content_independent inflation
+    (same issue found in 1.7B d129). Result: 4B genuine is clean, no inflation, no
+    revision needed.'
+  path: projects/solver-trace-ablation/artifacts/_project/report/d130_4b_content_independent_backcheck.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T00:24:11.662846+00:00'
+  tags:
+  - audit
+  - genuine
+  - content_independent
+  - 4B
+  - ISR
+- id: art_20260518_079322
+  name: d129-complete-1.7b-3x3-data
+  type: data
+  description: Complete 1.7B 3-condition × 3-seed per-seed and pooled data tables
+    for D129 paper update
+  path: projects/solver-trace-ablation/artifacts/_project/data/d129_complete_1.7b_3x3_data.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T10:08:53.122481+00:00'
+  tags:
+  - d129
+  - 1.7b
+  - data-table
+  - paper-update
+- id: art_20260520_cc7d82
+  name: d154-8b-exec-s42-k4v2-analysis
+  type: report
+  description: 'Analysis of D154 Qwen3-8B exec-only GRPO experiment. Negative result:
+    8B fails to converge (avg prove_rate=0.155) unlike 4B which shows Goodhart collapse
+    (prove_rate=1.0 via hacking). Root cause: K=4 insufficient for 8B, producing no
+    contrastive GRPO signal.'
+  path: projects/solver-trace-ablation/artifacts/d154-8b-exec-s42-k4v2/report/d154-8b-exec-s42-k4v2-analysis.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: d154-8b-exec-s42-k4v2
+  skill: ''
+  created_at: '2026-05-20T09:29:50.471208+00:00'
+  tags:
+  - 8B
+  - exec-only
+  - GRPO
+  - negative-result
+  - Qwen3-8B
+- id: art_20260520_e3e40c
+  name: d157_s42_eval_results
+  type: report
+  description: D157 shuffled-ISR s42 r3 evaluation and hacking classification results
+  path: projects/solver-trace-ablation/artifacts/d157-shuffled-isr-s42-r3/report/d157_s42_eval_results.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: d157-shuffled-isr-s42-r3
+  skill: ''
+  created_at: '2026-05-20T16:28:25.815045+00:00'
+  tags: []
+- id: art_20260520_6bcb99
+  name: d157_s43_eval_results
+  type: report
+  description: D157 shuffled-ISR s43 eval + hacking classification results with s42
+    cross-seed comparison
+  path: projects/solver-trace-ablation/artifacts/d157-shuffled-isr-s43/report/d157_s43_eval_results.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: d157-shuffled-isr-s43
+  skill: ''
+  created_at: '2026-05-20T17:44:29.683216+00:00'
+  tags:
+  - eval
+  - classify
+  - d157
+  - shuffled-isr
+- id: art_20260520_4643cf
+  name: d157-shuffled-isr-s43 eval report
+  type: report
+  description: Eval + hacking classification results for d157-shuffled-isr-s43 (seed
+    43). prove_rate=0.16, genuine=14/16=87.5%.
+  path: projects/solver-trace-ablation/artifacts/d157-shuffled-isr-s43/report/d157_s43_eval_results_4643cf.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: d157-shuffled-isr-s43
+  skill: ''
+  created_at: '2026-05-20T17:45:11.985808+00:00'
+  tags:
+  - eval
+  - hacking-classification
+  - shuffled-isr
+  - seed43
+- id: art_20260520_907227
+  name: d157_s44_eval_results
+  type: report
+  description: 'D157 shuffled-ISR s44 eval + classify results: prove_rate=0.15, genuine_rate=86.7%,
+    cross-seed consistent'
+  path: projects/solver-trace-ablation/artifacts/d157-shuffled-isr-s44/report/d157_s44_eval_results_907227.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: d157-shuffled-isr-s44
+  skill: ''
+  created_at: '2026-05-20T18:59:58.015172+00:00'
+  tags:
+  - eval
+  - classify
+  - shuffled-isr
+  - s44
+  - cross-seed
+- id: art_20260520_6cf45a
+  name: D157 Shuffled-ISR 3-Seed Pooled Statistics
+  type: report
+  description: '3-seed pooled statistics for D157 shuffled-ISR experiments (s42/s43/s44):
+    per-seed table, pooled genuine rate 86.96% with Wilson CI [74.3%, 93.9%], cross-condition
+    comparison'
+  path: projects/solver-trace-ablation/artifacts/d157-shuffled-isr-s44/report/d157_3seed_pooled_stats.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: d157-shuffled-isr-s44
+  skill: ''
+  created_at: '2026-05-20T19:00:19.100330+00:00'
+  tags:
+  - d157
+  - shuffled-isr
+  - 3-seed
+  - pooled
+  - statistics
+- id: art_20260521_2631bc
+  name: d165-llama-exec-s42-eval
+  type: data
+  description: STA eval and hacking classification for d165-llama-exec-s42 (LLaMA-3.2-3B
+    GRPO exec-only, seed=42, 500 steps). PR=14%, ISR*=0.547, Genuine=85.7%
+  path: projects/solver-trace-ablation/artifacts/d165-llama-exec-s42/data/d165_llama_exec_s42_eval_summary.txt
+  url: null
+  project: solver-trace-ablation
+  exp_id: d165-llama-exec-s42
+  skill: ''
+  created_at: '2026-05-21T10:47:02.150515+00:00'
+  tags:
+  - eval
+  - sta
+  - hacking
+  - llama
+  - exec-only
+  - seed42
+- id: art_20260521_c6ee4b
+  name: D165 LLaMA-3.2-3B 3-Seed Summary
+  type: report
+  description: '3-seed pooled summary for D165 LLaMA-3.2-3B GRPO exec-only: PR=15.0±1.0%,
+    ISR*=0.554±0.010, genuine=86.6±0.9%'
+  path: projects/solver-trace-ablation/artifacts/d165-llama-exec-s44/report/d165_3seed_summary.md
+  url: null
+  project: solver-trace-ablation
+  exp_id: d165-llama-exec-s44
+  skill: ''
+  created_at: '2026-05-21T15:42:31.533945+00:00'
+  tags:
+  - d165
+  - llama
+  - cross-model
+  - 3-seed

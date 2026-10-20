@@ -1,0 +1,78 @@
+{
+  "exp_id": "sweep-isr-b005-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:42:01.363Z",
+    "updated_at": "2026-05-17T09:56:47.758Z",
+    "hypothesis": "W3: β=0.05 ISR bonus seed=43, Goodhart dose-response replication",
+    "reproduce": {
+      "finished_at": "2026-05-17T09:45:33.481Z"
+    },
+    "failure_reason": "Disk full: /root/autodl-tmp 250G/250G (28K free). SafetensorError at step 50 checkpoint save. Auto-retried, verifying retry result.",
+    "completed_at": "2026-05-17T08:48:58.435Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T08:49:02.061057+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T09:45:38.468645+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b005.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/sweep_isr_b005_s43 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "246667",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 43,
+      "reward_mode": "additive_bonus",
+      "beta": 0.05,
+      "num_steps": 500,
+      "checkpoint_path": "/root/autodl-tmp/outputs/sweep_isr_b005_s43/checkpoint-500",
+      "log_path": "~/runs/solver-trace-ablation/sweep-isr-b005-s43.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "eval_prove_rate": 0.99,
+      "eval_n_proved": 99,
+      "eval_n_problems": 100,
+      "eval_mean_isr": 0.5517,
+      "eval_isr_std": 0.1597,
+      "eval_median_isr": 0.5,
+      "eval_proved_only_isr": 0.5572,
+      "train_prove_rate": 0.752,
+      "train_mean_isr": 0.364,
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_method": "eval_sta.py + classify_h7.py",
+      "h7_count": 96,
+      "h7_rate": 0.97,
+      "h7a_count": 96,
+      "h7b_count": 0,
+      "h1_count": 0,
+      "h1_rate": 0,
+      "h8_count": 0,
+      "h8_rate": 0,
+      "genuine_count": 3,
+      "genuine_rate": 0.03
+    }
+  },
+  "timestamp": "2026-05-17T09:56:48.073088+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp1-random-b03-s43",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:52:08.290Z",
+    "updated_at": "2026-05-14T22:47:27.331Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "β=0.3 random seed 43: supplement for 3-seed statistics in Table 1. Reference: plan017-additive-random-s42",
+      "plan_id": "EXP-1",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "num_steps": 500,
+      "beta": 0.3,
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s43\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "963653"
+    }
+  },
+  "timestamp": "2026-05-14T22:47:27.456449+00:00",
+  "trigger": "update_registry"
+}

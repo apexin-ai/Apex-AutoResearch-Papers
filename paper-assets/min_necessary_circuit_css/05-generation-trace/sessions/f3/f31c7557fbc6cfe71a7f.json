@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "f31c7557fbc6cfe71a7f",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code mvp sva gpt2 k3",
+  "task_key": "worker_code_mvp-sva-gpt2-k3_20260513T055713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-sva-gpt2-k3_20260513T055713.log",
+    "occurrence": 1,
+    "bytes": 1594064,
+    "sha256": "2663e8c4ecdc829c1f590a1c2faa5f6ab4bab366bed842f967e686c94376b3a3"
+  },
+  "statistics": {
+    "messages": 933,
+    "user_turns": 1,
+    "tool_calls": 297,
+    "roles": {
+      "log": 1,
+      "system": 102,
+      "record": 2,
+      "assistant": 209,
+      "tool_call": 297,
+      "tool_result": 297,
+      "user": 1,
+      "result": 24
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 525,
+      "chunks": [
+        {
+          "path": "f31c7557fbc6cfe71a7f-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "f31c7557fbc6cfe71a7f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f31c7557fbc6cfe71a7f-part-0003.json",
+          "message_count": 177
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 408,
+      "chunks": [
+        {
+          "path": "f31c7557fbc6cfe71a7f-part-0003.json",
+          "message_count": 3
+        },
+        {
+          "path": "f31c7557fbc6cfe71a7f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f31c7557fbc6cfe71a7f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f31c7557fbc6cfe71a7f-part-0006.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-sva-gpt2-k3.md"
+}

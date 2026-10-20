@@ -1,0 +1,1947 @@
+# viz fig isr collapse
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 0
+- **Tool calls:** 32
+- **Original source:** `logs/chats/worker_viz_fig-isr-collapse_20260515T202603.jsonl`
+- **Structured JSON:** [`7a42e00f88452e5d6ce1.json`](../../sessions/7a/7a42e00f88452e5d6ce1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+64 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T20:37:33.523187+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T20:37:33.523681+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T20:37:33.523955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs /root/solver-trace-ablation/artifacts -type f -name \"*.json\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs /root/solver-trace-ablation/artifacts -type f -name \"*.json\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T20:37:33.524172+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T20:37:33.524379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs /root/solver-trace-ablation/artifacts -type f -name \"*.json\" -path \"*eval*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs /root/solver-trace-ablation/artifacts -type f -name \"*.json\" -path \"*eval*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T20:37:33.524639+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan003_eval_exec_only_r5.json\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000/eval_sta_results.json\\n/root/autodl-tmp/outputs/eval_sta_plan001_r2.json\\n/root/autodl-tmp/outputs/eval_sta_plan013_r4.json\\n/root/autodl-tmp/outputs/eval_sta_plan001_exec_only_s44.json\\n/root/autodl-tmp/outputs/plan001_s44_eval_sta.json\\n/root/autodl-tmp/outputs/eval_sta_plan017_additive_random_s42.json\\n/root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json\\n/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/eval_sta_results.json\\n/root/autodl-tmp/outputs/eval_sta_plan006_prolog_exec_s42.json\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/eval_sta_results.json\\n/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/eval/eval_results.json\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\\n/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\\n/root/autodl-tmp/outputs/exp1_isr_b03_s43_eval/eval_results.json\\n/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2_eval/eval_results.json\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s44_r2_correct.json\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json\\n/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s44_r2.json\\n/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43_r4.json\\n/root/autodl-tmp/outputs/eval_sta_plan004_fast_isr_s42.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/eval/eval_sta_results.json\\n/root/autodl-tmp/outputs/eval_sta_plan009_sft_s43.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000/eval/sta_results.json\\n/root/autodl-tmp/outputs/eval_sta_plan009_sft_s44.json\\n/root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval_results.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_
+…[truncated 927 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T20:37:33.524987+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T20:37:33.525448+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 79,\\n    \\\"prove_rate\\\": 0.79,\\n    \\\"mean_isr\\\": 0.1038,\\n    \\\"isr_std\\\": 0.1369,\\n    \\\"median_isr\\\": 0.0357,\\n    \\\"isr_pr_ratio\\\": 0.1314,\\n    \\\"proved_only_mean_isr\\\": 0.1314,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 0.5,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 20,\\n        \\\"prove_rate\\\": 0.8,\\n        \\\"mean_isr\\\": 0.1318138528138528\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 30,\\n        \\\"prove_rate\\\": 0.7317073170731707,\\n        \\\"mean_isr\\\": 0.09442684686587126\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 29,\\n        \\\"prove_rate\\\": 0.8529411764705882,\\n        \\\"mean_isr\\\": 0.09449112978524743\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 388.2,\\n    \\\"avg_time_per_sample\\\": 3.9,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan018_additive_random_b01_s42\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:  \\\\n1. (advocate(mary) ∧ (¬lawyer(mary) ∨ ¬tipped_employee(mary)))  \\\\n2. ∀x (advocate(x) → lawyer(x))  \\\\n3. ∀x (lawyer(x) → 
+…[truncated 7451 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T20:37:33.525714+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/eval/eval_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/eval/eval_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T20:37:33.526198+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 61,\\n    \\\"prove_rate\\\": 0.61,\\n    \\\"mean_isr\\\": 0.5063,\\n    \\\"isr_std\\\": 0.4518,\\n    \\\"median_isr\\\": 0.5,\\n    \\\"isr_pr_ratio\\\": 0.8301,\\n    \\\"proved_only_mean_isr\\\": 0.8301,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 1.0,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 18,\\n        \\\"prove_rate\\\": 0.72,\\n        \\\"mean_isr\\\": 0.6\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 22,\\n        \\\"prove_rate\\\": 0.5365853658536586,\\n        \\\"mean_isr\\\": 0.441869918699187\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 21,\\n        \\\"prove_rate\\\": 0.6176470588235294,\\n        \\\"mean_isr\\\": 0.5151960784313725\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 353.2,\\n    \\\"avg_time_per_sample\\\": 3.5,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:  \\\\n∃x ((x = mary) → (advocate(x)))\\\\n\\\\nConclusion:  \\\\n∃x ((x = mary) → (advocate(x)))\\\",\\n      \\\"gen_time\\\": 1.26,\\n     
+…[truncated 7628 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T20:37:33.526490+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/eval/eval_sta_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/eval/eval_sta_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T20:37:33.527022+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 90,\\n    \\\"prove_rate\\\": 0.9,\\n    \\\"mean_isr\\\": 0.7892,\\n    \\\"isr_std\\\": 0.3424,\\n    \\\"median_isr\\\": 1.0,\\n    \\\"isr_pr_ratio\\\": 0.8769,\\n    \\\"proved_only_mean_isr\\\": 0.8769,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 1.0,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 24,\\n        \\\"prove_rate\\\": 0.96,\\n        \\\"mean_isr\\\": 0.7066666666666667\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 37,\\n        \\\"prove_rate\\\": 0.9024390243902439,\\n        \\\"mean_isr\\\": 0.8536585365853658\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 29,\\n        \\\"prove_rate\\\": 0.8529411764705882,\\n        \\\"mean_isr\\\": 0.7720588235294118\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 117.5,\\n    \\\"avg_time_per_sample\\\": 1.2,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:\\\\n1. person(mary) -> advocate(mary)\\\\nConclusion: person(mary) -> advocate(mary)\\\",\\n      \\\"gen_time\\\": 1.1,\\n      \\\"eval_t
+…[truncated 7734 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T20:37:33.527300+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000/eval/sta_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000/eval/sta_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T20:37:33.527869+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 100,\\n    \\\"prove_rate\\\": 1.0,\\n    \\\"mean_isr\\\": 0.3333,\\n    \\\"isr_std\\\": 0.0,\\n    \\\"median_isr\\\": 0.3333,\\n    \\\"isr_pr_ratio\\\": 0.3333,\\n    \\\"proved_only_mean_isr\\\": 0.3333,\\n    \\\"min_isr\\\": 0.3333,\\n    \\\"max_isr\\\": 0.3333,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 25,\\n        \\\"prove_rate\\\": 1.0,\\n        \\\"mean_isr\\\": 0.3333333333333333\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 41,\\n        \\\"prove_rate\\\": 1.0,\\n        \\\"mean_isr\\\": 0.3333333333333333\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 34,\\n        \\\"prove_rate\\\": 1.0,\\n        \\\"mean_isr\\\": 0.3333333333333333\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 119.5,\\n    \\\"avg_time_per_sample\\\": 1.2,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:\\\\n1. ∀x (Person(x, \\\\\\\"Google\\\\\\\", x)) \\\\n\\\\nConclusion: ∀x (Person(x, \\\\\\\"Google\\\\\\\", x))\\\",\\n      \\\"gen_time\\\": 1.7,\\n     
+…[truncated 8417 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T20:37:33.528148+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/eval_sta_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/eval_sta_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T20:37:33.528653+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 94,\\n    \\\"prove_rate\\\": 0.94,\\n    \\\"mean_isr\\\": 0.1406,\\n    \\\"isr_std\\\": 0.1358,\\n    \\\"median_isr\\\": 0.1111,\\n    \\\"isr_pr_ratio\\\": 0.1495,\\n    \\\"proved_only_mean_isr\\\": 0.1495,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 0.4286,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 21,\\n        \\\"prove_rate\\\": 0.84,\\n        \\\"mean_isr\\\": 0.08911462450592886\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 40,\\n        \\\"prove_rate\\\": 0.975609756097561,\\n        \\\"mean_isr\\\": 0.1505376060254109\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 33,\\n        \\\"prove_rate\\\": 0.9705882352941176,\\n        \\\"mean_isr\\\": 0.1663303200067906\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 262.3,\\n    \\\"avg_time_per_sample\\\": 2.6,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:\\\\n1. ∀x (white_collar_worker(x) → minimum_wage(x))\\\\n2. ∀x (lawyer(x) → white_collar_worker(x))\\\\n3. ∀x (a
+…[truncated 7962 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T20:37:33.528930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/plan018_additive_random_b01_s44_r2/eval_sta_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/plan018_additive_random_b01_s44_r2/eval_sta_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T20:37:33.529452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 89,\\n    \\\"prove_rate\\\": 0.89,\\n    \\\"mean_isr\\\": 0.0619,\\n    \\\"isr_std\\\": 0.1756,\\n    \\\"median_isr\\\": 0.0,\\n    \\\"isr_pr_ratio\\\": 0.0695,\\n    \\\"proved_only_mean_isr\\\": 0.0695,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 1.0,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 21,\\n        \\\"prove_rate\\\": 0.84,\\n        \\\"mean_isr\\\": 0.05333333333333333\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 40,\\n        \\\"prove_rate\\\": 0.975609756097561,\\n        \\\"mean_isr\\\": 0.08920432548481329\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 28,\\n        \\\"prove_rate\\\": 0.8235294117647058,\\n        \\\"mean_isr\\\": 0.03527077497665733\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 273.7,\\n    \\\"avg_time_per_sample\\\": 2.7,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"logic_type\\\": \\\"fol\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan018_additive_random_b01_s44_r2/\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:  \\\\n1. ∀x (WhiteCollar(x) → MinWage(x))  \\\\n2. MinWage(m)  \\\\n3. WhiteCollar(m)  \\\\n4. MinWage(m) → MinWage(m)  \\\\n5. Mi
+…[truncated 8437 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T20:37:33.529825+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*.json\" -path \"*plan002*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*.json\" -path \"*plan002*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T20:37:33.530075+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*.json\" -path \"*plan018*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*.json\" -path \"*plan018*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T20:37:33.530343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000_taxonomy_unified.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_taxonomy_unified.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/generation_config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/model.safetensors.index.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/tokenizer_config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/special_tokens_map.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/added_tokens.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/vocab.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/tokenizer.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/checkpoint-500/trainer_state.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/generation_config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/model.safetensors.index.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/tokenizer_config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/special_tokens_map.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/added_tokens.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/vocab.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/tokenizer.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/eval/eval_results.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s43_r2/taxonomy/classify_h7.json\\n/root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/generation_config.json\\n/root/au
+…[truncated 714 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T20:37:33.530670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan018_random_s42_taxonomy_verification.json\\n/root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/config.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/generation_config.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/model.safetensors.index.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/tokenizer_config.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/special_tokens_map.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/added_tokens.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/vocab.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/tokenizer.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/checkpoint-500/trainer_state.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/config.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/generation_config.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/model.safetensors.index.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/tokenizer_config.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/special_tokens_map.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/added_tokens.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/vocab.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/tokenizer.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/eval_sta_results.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/taxonomy_results.json\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/analysis.json\\n/root/autodl-tmp/outputs/h7_classifica
+…[truncated 3611 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T20:37:33.531020+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*plan002*b01*s42*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*plan002*b01*s42*\" -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T20:37:33.531262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000_taxonomy_unified.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_taxonomy_unified.json\\n/root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T20:37:33.531481+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*plan002*b01*s44*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation/outputs -type f -name \"*plan002*b01*s44*\" -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T20:37:33.531691+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T20:37:33.531955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -50 /root/autodl-tmp/outputs/plan002_additive_b01_s42_taxonomy_unified.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -50 /root/autodl-tmp/outputs/plan002_additive_b01_s42_taxonomy_unified.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T20:37:33.532252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan002-additive-b01-s42-1000\\\",\\n  \\\"eval_source\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/eval/eval_sta_results.json\\\",\\n  \\\"taxonomy_standard\\\": \\\"D084: genuine = proved - H7 - H1_exact - H8\\\",\\n  \\\"taxonomy\\\": {\\n    \\\"proved\\\": 90,\\n    \\\"H7\\\": 87,\\n    \\\"H1_exact\\\": 0,\\n    \\\"H1_near\\\": 1,\\n    \\\"H8\\\": 2,\\n    \\\"genuine\\\": 1,\\n    \\\"genuine_incl_h1near\\\": 1\\n  },\\n  \\\"genuine_formula\\\": \\\"90 - 87 - 0 - 2 = 1\\\",\\n  \\\"h8_samples\\\": [\\n    {\\n      \\\"index\\\": 1,\\n      \\\"id\\\": \\\"folio_1179\\\",\\n      \\\"conclusion\\\": \\\"(a2017(X) -> aoc(X)) ∧ (a2017(X) -> library_equipped(X))\\\",\\n      \\\"premises\\\": [\\n        \\\"(a2017(X) -> aoc(X))\\\",\\n        \\\"(a2017(X) -> library_equipped(X))\\\"\\n      ],\\n      \\\"reason\\\": \\\"direct conjunction of 2 premises\\\"\\n    },\\n    {\\n      \\\"index\\\": 62,\\n      \\\"id\\\": \\\"folio_1255\\\",\\n      \\\"conclusion\\\": \\\"person(james) -> invited_to_take_photo(james) ∧ happy_to_communicate(james)\\\",\\n      \\\"premises\\\": [\\n        \\\"person(james) -> invited_to_take_photo(james)\\\",\\n        \\\"person(james) -> happy_to_communicate(james)\\\"\\n      ],\\n      \\\"reason\\\": \\\"shared-antecedent conjunction (2 conjuncts)\\\"\\n    }\\n  ],\\n  \\\"h1_exact_samples\\\": [],\\n  \\\"h1_near_samples\\\": [\\n    {\\n      \\\"index\\\": 89,\\n      \\\"id\\\": \\\"folio_990\\\",\\n      \\\"conclusion\\\": \\\"person(taylor) -> friend(taylor) ∧ tenured(taylor)\\\",\\n      \\\"premises\\\": [\\n        \\\"person(taylor) -> friend(taylor)\\\",\\n        \\\"friend(taylor) -> tenured(taylor)\\\"\\n      ],\\n      \\\"h1_type\\\": \\\"near_match_caseinsensitive\\\"\\n    }\\n  ],\\n  \\\"genuine_samples\\\": [],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"ela
+…[truncated 24 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T20:37:33.532520+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation -type d -name \"*plan002*b01*s42*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs /root/solver-trace-ablation -type d -name \"*plan002*b01*s42*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T20:37:33.532768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T20:37:33.533048+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/artifacts -type f -name \"*.json\" -name \"*isr*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/solver-trace-ablation/artifacts -type f -name \"*.json\" -name \"*isr*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T20:37:33.533265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T20:37:33.533485+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/solver-trace-ablation/artifacts': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T20:37:33.533712+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/solver-trace-ablation/artifacts/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T20:37:33.533982+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "proved_only.*isr|ISR.*0\\.\\d",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md",
+  "output_mode": "content",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "proved_only.*isr|ISR.*0\\.\\d",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md",
+    "output_mode": "content",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T20:37:33.534195+00:00_
+
+16:- **plan002-additive-b01-s43-r2** (完成): ISR β=0.1 s43 重训完成，溯源补全
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T20:37:33.534399+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "plan002.*s42|additive.*b01.*s42",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/registry.yaml",
+  "output_mode": "content",
+  "-i": "True",
+  "context": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "plan002.*s42|additive.*b01.*s42",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/registry.yaml",
+    "output_mode": "content",
+    "-i": "True",
+    "context": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T20:37:33.534744+00:00_
+
+1118-      decoders, ISR=0。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。Checkpoint 已删除（C003）。Report:
+1119-      outputs/h7_classification/exp2_s43_greedy_vs_sample.txt.'
+1120-    completed_at: '2026-05-14T04:27:38.542Z'
+1121-    taxonomy_note: 'D086 补扫: proved=13, H7=0, H1=13, H8=1, genuine=0 (0%). exec-only
+1122-      s43 PR=13%, 100% H1 collapse. eval: /root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s43_r4.json'
+1123:  plan002-additive-b03-s42:
+1124-    status: DONE
+1125-    retry_count: 0
+1126-    created_at: '2026-05-14T02:24:47.843Z'
+1127-    updated_at: '2026-05-15T12:45:27.465Z'
+1128-    spec:
+--
+1138-      beta: 0.3
+1139-      command: bash -c "export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh
+1140-        && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py
+1141-        --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl
+1142-        --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir
+1143:        /root/autodl-tmp/outputs/plan002_additive_beta03_s42"
+1144-      server: westd-39279
+1145-      gpu:
+1146-      - cuda:0
+1147-      pid: '161819'
+1148-    reproduce:
+--
+1180-      eval_by_type_unknown_pr: 0.195
+1181-      eval_by_type_unknown_isr: 0.0422
+1182-      eval_by_type_true_pr: 0.206
+1183-      eval_by_type_true_isr: 0.0172
+1184-      h8_audit_note: '2026-05-15: H8 conjunction collapse added. genuine 4→1.'
+1185:    checkpoint_path: /root/autodl-tmp/outputs/plan002_additive_beta03_s42
+1186:    log_path: ~/runs/solver-trace-ablation/plan002-additive-b03-s42.log
+1187-    notes: ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate
+1188-      轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013
+1189-      的强饱和模式不同。
+1190-    conclusion: negative
+1191-    eval_prove_rate: 0.18
+--
+1433-      artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine,
+…[truncated 10048 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T20:37:33.535096+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp -name \"*.json\" -path \"*plan002*b01*s42*\" -not -path \"*/checkpoint*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp -name \"*.json\" -path \"*plan002*b01*s42*\" -not -path \"*/checkpoint*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T20:37:33.535351+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000_taxonomy_unified.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_taxonomy_unified.json\\n/root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/generation_config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/model.safetensors.index.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/tokenizer_config.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/special_tokens_map.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/added_tokens.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/vocab.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/tokenizer.json\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/eval/eval_sta_results.json\\n/root/autodl-tmp/eval_results_backup/plan002_additive_b01_s42_eval_sta_results.json\\n/root/autodl-tmp/eval_backups/plan002_additive_b01_s42_eval_sta_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T20:37:33.535588+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp -name \"*.json\" -path \"*plan002*b01*s44*\" -not -path \"*/checkpoint*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp -name \"*.json\" -path \"*plan002*b01*s44*\" -not -path \"*/checkpoint*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T20:37:33.535838+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results_backup/plan002_additive_b01_s44_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T20:37:33.536056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/autodl-tmp/eval_results_backup/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/autodl-tmp/eval_results_backup/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T20:37:33.536272+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"isr_s44_fn_evidence.json\\nplan002_additive_b01_s42_eval_sta_results.json\\nplan002_additive_b01_s44_eval.json\\nplan016_extended_1000_s42_eval_results.json\\nplan018_additive_random_b01_s42_eval_results.json\\nplan018_random_s42_taxonomy_verification.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T20:37:33.536519+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -30 /root/autodl-tmp/eval_results_backup/plan002_additive_b01_s42_eval_sta_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -30 /root/autodl-tmp/eval_results_backup/plan002_additive_b01_s42_eval_sta_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T20:37:33.536779+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 81,\\n    \\\"prove_rate\\\": 0.81,\\n    \\\"mean_isr\\\": 0.3365,\\n    \\\"isr_std\\\": 0.3227,\\n    \\\"median_isr\\\": 0.2,\\n    \\\"isr_pr_ratio\\\": 0.4154,\\n    \\\"proved_only_mean_isr\\\": 0.4154,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 1.0,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 22,\\n        \\\"prove_rate\\\": 0.88,\\n        \\\"mean_isr\\\": 0.3514761904761905\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 34,\\n        \\\"prove_rate\\\": 0.8292682926829268,\\n        \\\"mean_isr\\\": 0.3684378629500581\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 25,\\n        \\\"prove_rate\\\": 0.7352941176470589,\\n        \\\"mean_isr\\\": 0.28686974789915964\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T20:37:33.537012+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -30 /root/autodl-tmp/eval_results_backup/plan002_additive_b01_s44_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -30 /root/autodl-tmp/eval_results_backup/plan002_additive_b01_s44_eval.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T20:37:33.537253+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 89,\\n    \\\"prove_rate\\\": 0.89,\\n    \\\"mean_isr\\\": 0.803,\\n    \\\"isr_std\\\": 0.3418,\\n    \\\"median_isr\\\": 1.0,\\n    \\\"isr_pr_ratio\\\": 0.9022,\\n    \\\"proved_only_mean_isr\\\": 0.9022,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 1.0,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 22,\\n        \\\"prove_rate\\\": 0.88,\\n        \\\"mean_isr\\\": 0.824\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 38,\\n        \\\"prove_rate\\\": 0.926829268292683,\\n        \\\"mean_isr\\\": 0.8365853658536585\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 29,\\n        \\\"prove_rate\\\": 0.8529411764705882,\\n        \\\"mean_isr\\\": 0.7470588235294118\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T20:37:33.537602+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat > /root/solver-trace-ablation/scripts/plot_isr_collapse.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\nCOLORS = {\n    'exec_only': '#0072B2',\n    'isr_beta01': '#D55E00',\n    'random_beta01': '#009E73',\n}\n\nexec_steps = [100, 500, 1000]\nexec_isr = [0.6423, 0.1324, 0.0027]\n\nisr_500_seeds = [0.4154, 0.8301, 0.9022]\nisr_500_mean = np.mean(isr_500_seeds)\nisr_500_std = np.std(isr_500_seeds, ddof=1)\n\nrandom_500_seeds = [0.1314, 0.1495, 0.0695]\nrandom_500_mean = np.mean(random_500_seeds)\nrandom_500_std = np.std(random_500_seeds, ddof=1)\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nax.plot(exec_steps, exec_isr, '-o', color=COLORS['exec_only'],\n        markersize=7, zorder=5, label='Exec-only GRPO')\n\nfor i, (x, y) in enumerate(zip(exec_steps, exec_isr)):\n    offset_y = 0.04\n    if i == 2:\n        offset_y = 0.035\n    ax.annotate(f'{y:.3f}', (x, y), textcoords='offset points',\n                xytext=(0, 10), ha='center', fontsize=9,\n                color=COLORS['exec_only'], fontweight='bold')\n\nax.errorbar(500, isr_500_mean, yerr=isr_500_std, fmt='s',\n            color=COLORS['isr_beta01'], markersize=8, capsize=4,\n            capthick=1.5, zorder=5, label=r'ISR $\\beta$=0.1')\nax.annotate(f'{isr_500_mean:.3f}', (500, isr_500_mean), textcoords='offset points',\n            xytext=(45, -5), ha='center', fontsize=9,\n            color=COLORS['isr_beta01'], fontweight='bold')\n\nax.errorbar(500, random_500_mean, yerr=random_500_std, fmt='^',\n            color=COLORS['random_beta01'], markersize=8, capsize=4,\n            capthick=1.5, zorder=5, label=r'Random $\\beta$=0.1')\nax.annotate(f'{random_500_mean:.3f}', (500, random_500_mean), textcoords='offset points',\n            xytext=(45, -5), ha='center', fontsize=9,\n            color=COLORS['random_beta01'], fontweight='bold')\n\nax.set_xlabel('GRPO Training Steps')\nax.set_ylabel('ISR (proved-only)')\nax.set_xticks(exec_steps)\nax.set_xlim(0, 1100)\nax.set_ylim(-0.05, 0.85)\n\nax.legend(loc='upper right', framealpha=0.9, edgecolor='none')\n\noutdir = '/root/solver-trace-ablation/paper/figures'\nos.makedirs(outdir, exist_ok=True)\nfig.savefig(f'{outdir}/isr_collapse.pdf')\nfig.savefig(f'{outdir}/isr_collapse.png')\nprint(f'Saved to {outdir}/isr_collapse.pdf and .png')\nplt.close()\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=\"\" && cd /root/solver-trace-ablation && python3 scripts/plot_isr_collapse.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat > /root/solver-trace-ablation/scripts/plot_isr_collapse.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\nCOLORS = {\n    'exec_only': '#0072B2',\n    'isr_beta01': '#D55E00',\n    'random_beta01': '#009E73',\n}\n\nexec_steps = [100, 500, 1000]\nexec_isr = [0.6423, 0.1324, 0.0027]\n\nisr_500_seeds = [0.4154, 0.8301, 0.9022]\nisr_500_mean = np.mean(isr_500_seeds)\nisr_500_std = np.std(isr_500_seeds, ddof=1)\n\nrandom_500_seeds = [0.1314, 0.1495, 0.0695]\nrandom_500_mean = np.mean(random_500_seeds)\nrandom_500_std = np.std(random_500_seeds, ddof=1)\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nax.plot(exec_steps, exec_isr, '-o', color=COLORS['exec_only'],\n        markersize=7, zorder=5, label='Exec-only GRPO')\n\nfor i, (x, y) in enumerate(zip(exec_steps, exec_isr)):\n    offset_y = 0.04\n    if i == 2:\n        offset_y = 0.035\n    ax.annotate(f'{y:.3f}', (x, y), textcoords='offset points',\n                xytext=(0, 10), ha='center', fontsize=9,\n                color=COLORS['exec_only'], fontweight='bold')\n\nax.errorbar(500, isr_500_mean, yerr=isr_500_std, fmt='s',\n            color=COLORS['isr_beta01'], markersize=8, capsize=4,\n            capthick=1.5, zorder=5, label=r'ISR $\\beta$=0.1')\nax.annotate(f'{isr_500_mean:.3f}', (500, isr_500_mean), textcoords='offset points',\n            xytext=(45, -5), ha='center', fontsize=9,\n            color=COLORS['isr_beta01'], fontweight='bold')\n\nax.errorbar(500, random_500_mean, yerr=random_500_std, fmt='^',\n            color=COLORS['random_beta01'], markersize=8, capsize=4,\n            capthick=1.5, zorder=5, label=r'Random $\\beta$=0.1')\nax.annotate(f'{random_500_mean:.3f}', (500, random_500_mean), textcoords='offset points',\n            xytext=(45, -5), ha='center', fontsize=9,\n            color=COLORS['random_beta01'], fontweight='bold')\n\nax.set_xlabel('GRPO Training Steps')\nax.set_ylabel('ISR (proved-only)')\nax.set_xticks(exec_steps)\nax.set_xlim(0, 1100)\nax.set_ylim(-0.05, 0.85)\n\nax.legend(loc='upper right', framealpha=0.9, edgecolor='none')\n\noutdir = '/root/solver-trace-ablation/paper/figures'\nos.makedirs(outdir, exist_ok=True)\nfig.savefig(f'{outdir}/isr_collapse.pdf')\nfig.savefig(f'{outdir}/isr_collapse.png')\nprint(f'Saved to {outdir}/isr_collapse.pdf and .png')\nplt.close()\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=\"\" && cd /root/solver-trace-ablation && python3 scripts/plot_isr_collapse.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T20:37:33.537887+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/solver-trace-ablation/paper/figures/isr_collapse.pdf and .png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T20:37:33.538108+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "stat /root/solver-trace-ablation/paper/figures/isr_collapse.pdf /root/solver-trace-ablation/paper/figures/isr_collapse.png",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "stat /root/solver-trace-ablation/paper/figures/isr_collapse.pdf /root/solver-trace-ablation/paper/figures/isr_collapse.png",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T20:37:33.538343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/solver-trace-ablation/paper/figures/isr_collapse.pdf\\n  Size: 22646     \\tBlocks: 48         IO Block: 4096   regular file\\nDevice: 62h/98d\\tInode: 7526916629  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-16 04:29:38.410554967 +0800\\nModify: 2026-05-16 04:29:38.478556298 +0800\\nChange: 2026-05-16 04:29:38.478556298 +0800\\n Birth: 2026-05-16 04:29:38.410554967 +0800\\n  File: /root/solver-trace-ablation/paper/figures/isr_collapse.png\\n  Size: 104376    \\tBlocks: 208        IO Block: 4096   regular file\\nDevice: 62h/98d\\tInode: 7526916631  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-16 04:29:38.534557394 +0800\\nModify: 2026-05-16 04:29:38.578558255 +0800\\nChange: 2026-05-16 04:29:38.578558255 +0800\\n Birth: 2026-05-16 04:29:38.534557394 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T20:37:33.538611+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp connect.westd.seetacloud.com:/root/solver-trace-ablation/paper/figures/isr_collapse.png /tmp/isr_collapse.png 2>&1",
+  "description": "Download generated figure for visual verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp connect.westd.seetacloud.com:/root/solver-trace-ablation/paper/figures/isr_collapse.png /tmp/isr_collapse.png 2>&1",
+    "description": "Download generated figure for visual verification"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T20:37:33.538865+00:00_
+
+Exit code 255
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+ubuntu@connect.westd.seetacloud.com: Permission denied ().
+scp: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T20:37:33.539134+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/paper/figures/isr_collapse.png",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/paper/figures/isr_collapse.png",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T20:37:33.539610+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "base64 /root/solver-trace-ablation/paper/figures/isr_collapse.png > /tmp/isr_collapse_b64.txt && wc -c /tmp/isr_collapse_b64.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "base64 /root/solver-trace-ablation/paper/figures/isr_collapse.png > /tmp/isr_collapse_b64.txt && wc -c /tmp/isr_collapse_b64.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T20:37:33.539875+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"141000 /tmp/isr_collapse_b64.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T20:37:33.540092+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /tmp/isr_collapse_b64.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /tmp/isr_collapse_b64.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T20:37:33.540436+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"iVBORw0KGgoAAAANSUhEUgAABUgAAAPOCAYAAADdu/JdAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\\nbGliIHZlcnNpb24zLjEwLjUsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvWftoOwAAAAlwSFlzAAAu\\nIwAALiMBeKU/dgABAABJREFUeJzs3XdUVMfbB/Dv7tI7gqioiGLBXtBEsfdojBobtqhRY4/GqD+N\\nMbF3E1NsicYajS2KRmNi7AVjwYrYaCKgIkhH2u6+f/Cy4W5jF3YXkO/nHM5x5s7c+4DUZ5+ZEcnl\\ncjmIiIiIiIiIiIiIyiBxcQdAREREREREREREVFyYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOY\\nICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUi\\nIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIi\\nIiIiIqIyy6y4AyDSV0ZGBkJDQxVtLy8vWFlZFWNERERERERERERUWjFBSqVOaGgoGjRooGgHBQWh\\nfv36xRgRERERERERERGVVkyQEhEREdFbLWJ5B6Q/PK/2mo13e3h+cc60ARERERFRicI9SImIiIiI\\niIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiI\\niKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjM\\nYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKU\\niIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiI\\niIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiI\\niIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiI\\nyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiyz4g6grAgNDcW1a9cQFRWFrKwsODs7w9vbG76+\\nvrCysiq2uBITE3H9+nWEh4cjMTERMpkMjo6OqFKlClq0aIGKFSsWW2xERERERERERETGxgSpkfn7\\n+2Px4sW4efOm2ut2dnYYNWoU5s+fD1dXV5PFdejQIaxbtw7nzp2DXC7XOK5p06aYMGECRo8eDTMz\\nfroQEREREREREdHbhUvsjSQzMxPDhw/Hhx9+qDE5CgCpqalYt24d6tWrhwsXLhg9rvj4eLz//vvo\\n378/zp49qzU5CgC3bt3C+PHj0bJlS4SEhBg9PiIiIiIiIiIiIlNigtQIZDIZ/Pz8sHv3bkG/RCJB\\n9erV0aRJEzg6OgquvXr1Cj169MCVK1eMFldycjK6deuGP//8U+Va+fLl0axZM/j4+KhdVh8YGIiO\\nHTsiIiLCaPERERERERERERGZGhOkRrB69WocOXJE0DdhwgRERkYiLCwMt27dwuvXr3Ho0CF4eHgo\\nxqSnp2PQoEFISkoySlxz585VqWbt3bs3bt68idjYWAQGBuLGjRt4/vw5goODMWzYMMHYqKgojBs3\\nziixERERERERERERFQcmSA0sPj4eS5cuFfQtX74cGzduhLu7u6JPLBbjww8/REBAADw9PRX9UVFR\\n+Pbbbw0eV2xsLDZt2iTomzhxIo4cOYKmTZuqjK9bty5+/fVX
+…[truncated 6411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T20:37:33.540751+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "echo \"iVBORw0KGgoAAAANSUhEUgAABUgAAAPOCAYAAADdu/JdAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjUsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvWftoOwAAAAlwSFlzAAAuIwAALiMBeKU/dgABAABJREFUeJzs3XdUVMfbB/Dv7tI7gqioiGLBXtBEsfdojBobtqhRY4/GqD+NMbF3E1NsicYajS2KRmNi7AVjwYrYaCKgIkhH2u6+f/Cy4W5jF3YXkO/nHM5x5s7c+4DUZ5+ZEcnlcjmIiIiIiIiIiIiIyiBxcQdAREREREREREREVFyYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyy6y4AyDSV0ZGBkJDQxVtLy8vWFlZFWNERERERERERERUWjFBSqVOaGgoGjRooGgHBQWhfv36xRgRERERERERERGVVkyQEhEREdFbLWJ5B6Q/PK/2mo13e3h+cc60ARERERFRicI9SImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiyz4g6grAgNDcW1a9cQFRWFrKwsODs7w9vbG76+vrCysiq2uBITE3H9+nWEh4cjMTERMpkMjo6OqFKlClq0aIGKFSsWW2xERERERERERETGxgSpkfn7+2Px4sW4efOm2ut2dnYYNWoU5s+fD1dXV5PFdejQIaxbtw7nzp2DXC7XOK5p06aYMGECRo8eDTMzfroQEREREREREdHbhUvsjSQzMxPDhw/Hhx9+qDE5CgCpqalYt24d6tWrhwsXLhg9rvj4eLz//vvo378/zp49qzU5CgC3bt3C+PHj0bJlS4SEhBg9PiIiIiIiIiIiIlNigtQIZDIZ/Pz8sHv3bkG/RCJB9erV0aRJEzg6OgquvXr1Cj169MCVK1eMFldycjK6deuGP//8U+Va+fLl0axZM/j4+KhdVh8YGIiOHTsiIiLCaPERERERERERERGZGhOkRrB69WocOXJE0DdhwgRERkYiLCwMt27dwuvXr3Ho0CF4eHgoxqSnp2PQoEFISkoySlxz585VqWbt3bs3bt68idjYWAQGBuLGjRt4/vw5goODMWzYMMHYqKgojBs3ziixERERERERERERFQcmSA0sPj4eS5cuFfQtX74cGzduhLu7u6JPLBbjww8/REBAADw9PRX9UVFR+Pbbbw0eV2xsLDZt2iTomzhxIo4cOYKmTZuqjK9bty5+/fVXLFq0SND/zz//GLXKlYiIiIiIiIiIyJSYIDWwVatWISUlRdFu164dZs+erXF85cqVsWXLFkHf2rVrER8fb9C4jh07BqlUqmiXL18ea9asKXDel19+ibp16wr6/vjjD4PGRkREREREREREVFyYIDUgmUyGbdu2CfoWLFgAkUikdV7nzp3Rtm1bRTslJQX79+83aGyPHj0StLt37w4bG5sC5+VVuubHw5qIiIiIiIiIiOhtwQSpAQUEBODVq1eKdo0aNdChQwed5o4ZM0bQ9vf3N2BkwOvXrwXtqlWr6jw3/z6pAJCYmGiIkIiIiIiIiIhIB9u3b4dIJFK8bd++vbhDInqrmBV3AG+T48ePC9pdu3YtsHo0/9j8zp07h7S0NNja2hokNkdHR0H7zZs3Os9VHuvq6mqQmIiIiIiIiIiI8ktISMDt27cRERGB+Ph4ZGRkwMbGBk5OTnBxcUHDhg1RvXp1nfMtlOvp06e4c+cOnj59ipSUFIhEIjg6OsLT0xNNmzZFpUqVijvEYsUEqQHdvn1b0Pb19dV5rru7Ozw9PREREQEAML/fXwAAIABJREFUyMrKQnBwMFq0aGGQ2Jo0aSJoX79+Xee5165dE7TfeecdQ4RERERERERGkJKRg9jUTGRJZbCQiOFmZwl7K/7ppw9PT088ffrUIPc6fPgw+vbta5B7Eb2tYmJisHnzZvz+++8ICgqCXC7XOt7R0RGtW7fGoEGD0LdvX5WiME0WLFiAhQsXFjjOxsYGjo6OcHd3R9OmTdGuXTv0799fp60KC/tMW1tbODk5oUqVKmjRogU6d+6MXr16wcys8N+/nz9/jvXr1+O3335DWFiY1rH16tXD8OHDMWHCBDg7Oxf6maUVf0oa0IMHDwTtevXq6TW/Xr16igRp3v0MlSDt1asXbG1tkZaWBgC4fPkyrly5glatWmmdFxISgt9//13RtrKywtChQw0SExERERERFV3Sm2zsvR2NcyHxuBGVhJC4NJUxNV1t0byKIzrUdMGQppXhYGVeDJESEQklJibi66+/xqZNm5Cdna3zvKSkJPz555/4888/YWlpibFjx+LLL780WBVkeno60tPT8fz5cwQGBmLLli2YMmUKZs+ejdmzZ0MikRjkOfmlpaUhLS0N0dHRuHr1KtatW4fKlStj+fLl+Oijj/S6V1ZWFpYuXYpVq1YhIyNDpznBwcGYO3cuVqxYgcWLF2PKlCkQi8vOzpxl5z01sjdv3iAyMlLQp88+n+rGKx+sVBROTk6YO3euoK9///5aK0kfPHiAnj17IisrS9G3ZMkSuLm5GSwuIiIiIiIqnEexqZhw8C4qL/oHEw7ew97bMWqTowAQEpeGvbdjMOHgPbgv/AcTDt7Fo9hUE0dMRPSfq1evonHjxvjxxx/VJketrKxQtWpVNG3aFI0bN0bFihXVJiYzMzOxfv16eHl5GTSPoiw5ORlffvklunTponPSsaiio6MxYsQIjBkzpsCq2jwvXrxAu3btsGjRIpU4RSIRypcvjyZNmqBBgwYoV66cyvzk5GRMmzYNvXv3RkpKikHej9KAFaQGEhcXJ/hkNTc31zuRWLlyZUE7NjbWILHlmTNnDu7fv489e/YAyC21btWqFd5//31069YN1apVg0gkQnR0NM6cOYNDhw4JvknNmTMHM2bMMGhMRERERESknxypDCvPhmDhycfIlur2B3N+aVlS/HTlKbZei8T8brUxu2NNmElYO6PNmjVr0Lhx40LNLew8orfZqVOn0KdPH6Snpwv6q1WrhvHjx6NLly7w8fFRqWCUSqX4999/ceLECRw6dEiwkvfNmzd6J/S6deuGWbNmqfSnpKTg6dOnOHXqFE6cOAGZTKa4du7cOYwZMwa7d+/W61kFPTM5ORmhoaE4duwYLly4ILi2detWuLu7Y/HixVrv/fLlS7Rv3x6PHz8W9Ht6emLatGkYNGgQ3N3dBdfCw8Oxb98+fPfdd3j58qWi//jx4+jRowf+/vtvg52PU5IxQWogqanCV19tbGz03jBY+RNO+Z5FJRaL8euvv8LX1xcLFy7Eq1evIJVKcfToURw9elTjvNatW2Phw4fDx8fHoHEREREREdnnUWwqhm4P1FgpWlh7b8cg+FUK/jesuabZ1a/QkN5kA+5YvnSp4ee8BfF4UlNTrZbI3rBhg6t2+qcy6ujRo+jbt6/KB/l+fn5Yu3at1g+5JRIJOnTogA4dOuDrr7/G5s2bMWvWrIZE4MkTJzV/vn6JmxEjRuC+B1T3gUxJScHTp09x6tQpHD9+XJBPOHv2LMaMGSPII+jq5DOTk5MRGhqKY8eO4cKFC4Jrv/nmG7i7u+Prr7/Weu+hQ4daJEfNzMzw008/4corr1Tbp06dOqhTpw4mTZqEUaNGYdeuXYprJ0+e1EcffaR9+/YV+v0obUiQGkhGRoagbWVlpfc9lG/JUL5nUYnFYixcuBCjR4/GokWLsH37dpVbGvLUrl0b8+fPR9++fSESiRw+FQYAAACoL/D7M1AVpOqYBgdpwrCWxTkFt5Cd9CY7hWnX+/d3GxMB2LBhA5Kmb5HA4GCr1aItZ99G8sOnDB8TkYFkZWVh4MCBKh/k+/n5Ye3atfDx8dH5Xn5+fhgzZgw6duyoaJPJ5PjVf5W++3W7XuMmj8CK7WsEfY6Ojqhfvz769u2LOXPmYN++fZg0aZJFda6/vz/mzJlj8Dz2yWcmJycjNDRUx48fx4ULF4TXtmyBu7s7vv76a633Dg4OxujRoxXt8PBw/Pbbb+jTp0+BMQQHB2PkyJEWuYalS5diwoQJ6NWrl83+L168QL9+/SzWHt+3b59uvfVWnHHGGQXG0ZmQIDWQzMxMQdvS0lLveygnUpXvWVRisRi//vor/Pz88Pvvv2sfV7s25s+fDz8/P5UvtqCgIMyePRvp6elKJfEAAABAkoB2I1S0/bWvXE1Cky8WOC8u+6xYXWJxTo2jY0zIr0p8I7lQhW/6Wze7dAJOk2HDhikOV8uzffv2hqKhgIAADB48WGl58pM/kw0bNqq9T/0+mW1JiFIhLV68WKtWrRK0JSQkYMeOHejZs6fe97v00kudFVq79PDBA3TpcolVe0pKSlHuuXnzZkGCdPny5RoL+2xZ+uuvKh/k+/n5ae3atYqIiHBofEJCgl555RXBMt8TJkyAl5eXQ/cqyIoVK9CiRQvk5OQAAHbu3MkEKRVOenq6oG1tba33PZQPE+V7FpVUKsWwYcOwfPlyRV9CQgLatWuFSy+9DN27d0e1atUgEokQHR2N06dP49AhYTJ1zpw5mj59OmbNmmXQ+IiIiIhIs7SUFGSlJDk8R1xQooWkqMbLly+3OPetW7fq/DMc8NhRXePU45KJrm9kYmSqjrMi/t/WLmhz4sQJDB06VGWJbD8/P61evRo+Pj4eO+esNEhLS8Mff/xh0X7hhRe2Kjmqq+PHj+s1ft68eVaJ4p9++qlFlccJCQlYunSpRfuiRYt0LoyxJTAwEIGBgYp2UFAQ0tPTbeZhImNi4e/vb9FeUFVtSk4OAgMDBW1+fr52JUdrOzta9B0/UoikKClSIiIiItIuLk71D3R79enTR5MmTVJp37jxi4b/h3BDnpZ0LuHh4Q5V7NojPT3d4UM4T69+/RrmGz58OAYMGCAo6BsyZIjW6uOOJDY2VuUgqKFDhxrsubbIZDK8/fbbFu3KBVfax6i2b8j65ZdfJNU/NLmGQ1PL0iGqBBOkBuLg4CBoq6sQLYjyB3XyPQ1h165dOHjwoMBq3bp1aNasmUqfRCLBwIEDcezYMZUvrtdffx2jR4/WaV+ZhIQEFBYWobi4WHK5XH5+fgoKClKXLl3QsGHDJu+Rfz/V/MaPH49ffvlF0Q4PD8emTZs0bdo0jXPy15Y4cuSI8vPzFRoaqrCwsIYPmmbNmqU33nhDUv0y7hUrVmj69OkKCwuD2WxWamqqYmNjFRQUpNatW2udn5eXpz179mDfvn2Kjo5WQUEBgoOD5e/vL19fX/n5+al3794ICQmBXC5XYGCg3njjDR06dEh5eXnKz8+Xi4uL6tSpoxYtWqhdO7b3JCIiIiI6lcxms0aNGmXzfRIRkSM++eQTiwTpli1bCkyQJicnC4r+br31VpXDiA8cOKC///5b0fa8zzrrHBKkVDjJycmC3BNUvxep8uqbU8eY1H+QBwYGqkePHoqE5dq1a/VK6GmSnJyskiA97bTT7OqrXESlqqCgoKEQyxLnIBmWdF3PpHSMKU2YIDUQHx8fwUHhsbGxcHd31/s++Q0bNkylJaU+8vPz8eqrr0qSMjIybCZITwoKCtIDDzxgVaF66NAhvfDCC3rfKzExEdHR0Tp06JDOnz+v0mK1S5cuClm4UG7/+Z3c09NTjz766BNVUVtQUKC9e/dq5syZkuqXg++6c6fGjx8PKypKkpScnIx169ZpxYoVFpvPnPTss8+qb9++WrNmjeL/h3TvyJEjDZ+OJ8nwJNRiHx0dra5du+rWW2+VVJ+gXr9+verWretQbCcpJ4yzs7P19NNP68svv5Qq/x1bU2w7aROkJ//2nn///fjkk09UGxurM888s8UYPv/8c8E6opLqP5DYtGmTRowYIUn69ttvFR4eLilfp6urqxYuXKjJkydLkr7//ntFRERIktatW6fw8HBJUkVFhfbu3Yv7779fUv0+Qf/5z3/Us2dPjRo1Sq+88ookKS8vT3/88YfuuusuSfWJlh9++EE33nijpPoNjk6cOKHrrrtOUv1Ju6tWrdI111wjqf4D5k8//VQTJkyQVF9V+8MPP+j666+XVL+E4c8//6xbb71VUn2S8bffftONN94oqX4JwaNHj+qWW26RVP/e5J9//tF1110nqf6HwZ133qmpU6dKql/b8/jx47rmmmsaYuJ3nYiIiIi8walvk7OysjBq1CjFxhRR8Tu1wDovL88hJ37SqVOnLBKkM2fOtJuoq27yzqSkpIbfmYKWyPb09BS0c3Jy9JqfX9T3bteuXQ3P4dKliN7Cw8OVl5cnKSqzuN5bWpEgNZC6desKDuooKPmnji4nLRXVTTfd1JC0lOr3bGhpb9FTJ7Vtq1++evZQPozTtm3bNHz4MOXm/ueQ5CpVqmDRokWaP3++pPqS61atWun9999Xt27dVK1aNYhEIkVHR+vMmTM6dOiQxaeVdebMmT9TWYr56dOnLdoefPBBjRw5UikpKQXG1qxZMw0ePLjJNV7z/9//Kycnx6m/m7dv3xa+r21vYWk5y9a5c+f0ww8/SMr/pOG7776r2Ngkq7agoCBB7I6Ojli5cqUkybIk/OQYh+5Tk1GjRllUF546darmzJkjSSpMU9zOJBMmTIBV0rBhQ4WEhCgkJERhYWEIDQ1VcHCwxaFIbm5u+vvvv63WRAwICFBUVFTDJ7u1tTWGDRumMWPGqGfPnupYghaAYjKZ9MADD2jgwIGqb6/+sOrXr5+2bNmifv36NTyuRYsWacuWLQ1/H1auXKnJkyc3vLa2aNFCq1ev1vXXX99wnqlTp+r5558XrHXaqVMn/f7777r44osbxl+4cKG6d+8uOHOk49lnn63Zs2dLkv766y/NnDlTvXv3VlxcnKDK8tChQ3rzzTcl1f8MDBkyRHfeead++uknSdLmzZt11VVXaciQIZKk48ePa9SoUQ0/w6dPn9bnn3+uO++8U1L93sVLlizR3XffLak+kfb+++/r1ltvlVSfpN28ebMmTpwoqb4afPfu3Q2JnbS0NG3dulW33HKLpPoy+Z07d+qaa66R1HCy52effaabbrpJUv0Bz3/99VfDP4fU1FQdO3as4d9DcnKyYmNjG/4/lpaWKjg4WJMnT5ZUn2zeuXOnpkyZIqm+mn/37t0N/z7y8vJ04sSJhv+P6upqHTlypOH/R01NjQLOn5fk6JHNJSUl+r//+z+dcsKJbEBaWprgeUhS8+bNtWDBAodq0eKWVJ+03LVrF8m/MurrOy3+HTk0jvbJLIhIKpTqN/9QjsHRMYbMQ5AglWSo/sPm4g5BkrBy5Uqr9vbt27fqXsofKueff76ys7MdSlQX5sOfzZs3K/Xk64hUX8RVl+2yJCkxMVFRUVGCqpj169fb3LzJU8nkkuTUwlZ9k7GnXj+pyJhY+Pv769577pEkbd++XTfccINd3y/Dyi93CnGi9tNPP23VXlaW5nvzzTfrtNNOk0wmU1hYmMLC8h3WrQULFug///mP1ZqFxcXF2rt3r/bu3eueQE8xadIkjRs3TpIUGxurpUuXqkMHy43QT36PUlJStGHDBm3YsMHuZ5T6+0lasmRJw7IhGfPGaI3mZAPc1TjkdBJ9p42qK2ZTjnGgFtmMa9T8+WjsuMEF3Ofle0I9ckpfh36N4nMpqJ6jUuaJVNkIUn3GlkTgxnGUq5pO5yJIjqy+pzHjxrkp5sbq+j3aWiZIq6srddFFF7X6HqVlby/yjJSUFEGF+H333efwfW5lMpk+/PBDifv7++v3339vSJDaQyqVypAkW3v4uouubxbm/Fn4WJ6xJRdJZGtr2zB+/Pjx+uWXXwSP7a677rJYr/akM844Q9u3b9ewYcOUl5fn0P3z8/O1c+dOu5K4CxcuRHBwsDaYzZLkJTExUeHh4aqoqJCfn59CQkLk7+9vs8rz5ZdfFnxgExkZqddff10FBQUKDAzEsmXLFB0d3bBnqaenp6ZPn65BgwZp+PDhCgoKUnR0tLZu3YobbrjB4fnqYtyxY4egfcUVV6hz5862uuisW29t+NeUlJQk2CrAloKCAkGfxRVXXKE5c+Zo9OjRhp+jJH/66aeGfb4V0NN3ypIehYWFSpS0c+dO3XLLLQXfR3lJvLbGc6P5TGqQqN9bW0NP4qeffvrx1PmLi4vl7++vyZMnq7q6WpIUGBgo2B/oZHxS5xmJU+Iq6F5OPWfuuOPsGMcRgQUFBfrss880d+5c9e3bV+efq1tV0Kkqjyff6C90Khxaz/cz4bIiMzNT48ePF+z3fuqyzK2R/5CqHj16IC8vT4899pjd35eShglSA0lNTRW802kTddBGrVq1BEu0OYr0lJmZKVj6Iy4uTjCm8cGNp5KNJvTNN99o27Ztim5IflVrKDj1lPvkP1gMJq89IZWxuuqJRFIR7s3f85EjR0T/v5r6v6a/bwoODta4cePcsvZnaGiounfvrpiYGEn1FeP29vZqaM93X2PcS9VLREYmh8O5tQXP0cKFCxUcHKxp06Zpw4YNkqQPP/xQCQkJej3H4+TkaN++faqqqjLKY5PJZJo2bZrVdgDuOuBKHwU90kn+/v468P8V3Cb99ttv1aZNG51XqNdl09DY2Filp6crOjpa5eXlcnd3V1BQkJKSkpq9T3lZmTZtUlR8QkJD+6xZs/TGG2+oYBkZGYL35K5du1a/Z6oSlZKSolM3dXSoP7wjJzdX+QUFioyMbPiZCg8PV0VFhd73O1VhUZH2HzzYzgv9XJQkfRMRobi4OB06dEh5eXnKy8tTaGhovvdZJ6s9U1NTdezYMZsftOfPQ5y6a1cLFwp6nMViI3XUNwkaJ2mtpM8s2lQdPwLsMmTIEE2aNMlsGIZ27NihkydOaJ+k78xmJSQktHQXv+zsbC1dutTmPhbuaruqfAW8Kg3J5u3bt7f5eyGXyzVw4MBmC/uciYfqvM+oW7eu4uPjVa1aNfXt29fp9/f19dWBAwd01113qaCgQEFBQbj99ts1dOhQ9e/fX1FRUTrzzDPlcWqBuCYhISGoqqqyaLvu559x4YUXqkuXLqhSpYrCw8NVVlamzMxMFRYWKjMzEyUlJRqTCv6BgUhJSVHBKWP+/vtvm3sWNjv2v+uKz8sTHlhbWqp7773X6h7NvyerZDLBPqGnxl5UVNTsfZyUuPj0008F7w/r1KnTqnuFhFj+nHh5eenbb791KFHtKO7Z0gH5+fmCk87J/4aE7OVTz5GJk8dRXy6Xa9WqVSosLBQsrQ0K0uQmuiiX4p+c/OMWU1oeTcEhqGkpkVS/r3lhYaHFe8nyCk0nI2b06NEKCAjAFVdcofvvvx+PPPKIVq5cqf/973/q1KmTEhISsHTpUv36668qLS2Vv7+/Ro0a1eLS7srCw8MFfw9zc3NbnBMdHa3nn39eXbt2lSR9/vnn6t69OwYMGGDVV1eyZ/duTZ06VVJ9ovbrr7/WNddcI6l+b9xPPvlEV1xxhaTmC+gdeeyIiAjBz3txcbFe95LqE7TZ2dmC5/vX86m3Yrh6lJiYqBUrVhh+vrJy794c3S63c07V7Kbuk7/fEezYsQNDhgwR3OPkyZN6++23FRUVZXFt27ZtOvPMM5ucI2+0d+9e7d27t+A4laSnpws/K1evXm2wZ6r5lAe5oqJCcO/777/fag3k5rz11ltyaBzl5+jQBv+P6h81+f4iFRQUqDTZM6Gc+/xfpMaR8e+//26IbLdp0ybb9+rfv7+g6t/f398uO20s/f0xJzIyUnExMYJ1RENDQ6XPz5Oz9ppNJtNVV11l5RoAHO+Jk0eFGYYhePwbNmxw6FmVlZUWP7fPP/+8GjZsqOrqavXq1UuXX365evfurUmTJiksLEzy/1d/nyooKEi5ublW81NSUvRKN8bUlWOl9mvRooWxY8cOo2vXrnJ3d1eTJk2sEmWnCgoK0j333CPpvz+HJw/LfPTRRyXVH0Z3zz332Fzb0dS7dxfkpMi0bds2/fTTT5Kk3bt3Y/PmzVp18qJcLjdOHUPeWKm+slrq3OJaeLhJcPh9ypI+T548WevWrbO4X3Jysj7//HM9/fTTWrBggcrLy5WSkqKePXv+90N31d/fX+eee66k+orqY8eOOTVfovdSAKqfN3To0IYdBZos7MsfxFVXXWXxfhJjMlRaWuJq5X0nLl++XIv/v7AO9mVcK1R/Xl0wT5KxYoXk5OSG16KTZ8csPLlBNp5z+vNafRq/TT2R3t+nqVOnWizV31J/a8dIp22m5Yrcp6ysTE8//bS+/PJLNdV9uj1z5sy2OseJ4Zy8ztmzZwt2jEeO5M/COrthOWt/EYZ19NFHH5GMcxR+w3pZWZmmT5+utWvXCvpXrFilmTNn2hzfmscO6dFHH3VobMGaNWsKXl/84Ycf6re//KXVJ7crFAUAAJ3Q2WdbbD7tKgMHDhS86hURERl7+PDhVt9x0qRJgpWEUU/84ZQxT6R0txCv3r1711b3gJJ0jR4g0b59e3Xt2rXJtXiNyrLi0Dh+PoYNG6YKs9mONX5v8PLywi233NIw3t/fX/fff79yc3N1au72bds0fvx4FRQUqLS0VH379nUoQXrZZZdZbIT+8ssva9y4cTr3nHM07oIL5O3trdjYWJWXl6usrEwPPPCA4D3S9u3bW/U4C/rZa6pKNjU1Vfv27VOjk0uoG5aUl5c3Oa+50MxmKxlZ2aqsrFRlZaVycnJ04sSJhm0n/P39LX+ejhw50mqxOLt+BulCb+/BXb9+fcO/Wf38fBJXmzfvsNitICcnRxs2bGjYw6y4i8ecfj8Ld1VXWZS2p6drvfJeyuq/4yUlJYIVAPh5eujU8R2j3/1JZ70ZV9+0VhwL/E6V1h4XQQAAfJNUn/z+c+Ps+Q0rBzm61lT03GNi9OCD/7VjY2O1Zs0a7dmzR3DGqJN27dqldUePemz/+QsuuEDbtm1zbEyecXFxevTRRwXrsJy63EhJ2jWuWbNG9MYbb+jJJ5/UbBQVFcnX11dTp07VAw88oAceeKDh5/ZkIfFBSZ9IelbSnZKCJPWTVF/ioUmTJk3SMdLS0jR//nzdfffd6ty5s7p3765hw4apS5cuysrKkkwmU0xMjO6//35FOjg2MjJSkyZN0ksvvdTke3Z3MeTy5cs1d+5clZeXKyAgQJMnTxZsKnVyG4CSxFVPcQ86B3PnzlVl5X8fxh85csQhJ15gNssUEBCg5ORkwdqyZWZfU3f98ssvq3///nJ1ddU555yj8847T0OHDkVQUBDkcrnCw8P10ksvlXAcZdcff/yh+fPnY968eaL9+/frjjvuUFRUlN01uU8xbdCggeCf0sKFC+Xi4oJhw4bJ19dXTk5O6NatG9atW+dBqfH06dO1cOFCtWrVqs3fv1MnKDpf8c6EsfMCCgrK5efn56qfqzbjjjtOwf9fLezqMXr16qV169apTp06Jh1Du0TpyZceeughj89aI6qh8ejUqRN69eolyUNL3kVGRur3339XWlqaRf+KFSuwdu3axqHUx/3pp5+aZCxFHRcWFmaz4ldqvJy8vLxR00mxcCjemH/y8vI0ffp0zZw5U+PGjZOPj49OFj8XN0ePHtWYMWMU+B9duuBQO5Q5Y8mSJQ3/X5cRERFRYWGhRo0apeTkZPH7+/urR48eJnme0sHR0VGDBg2Sv78/CgsLm+x36i4Iee83cuTIhv7c3Fz973//s5hjGIb69eunyMhIK7m5ufIPDERUVJTc3d1Rp04dNG3aFO3atStUZWloaKgWLVqERYsWSaqv7Ny4cSM++uijgp/j0aOCjcXkcrk2bdqkO+64Q1L9IRFZWVl6+umnJdW/V3rxxRd1ww03SKr/3dm3b5+uv/56SXKZ6qfqP3P+XPv27fvMSU//P3u0dFsNuPxaAAAAAElFTkSuQmCC\" | base64 -d > /tmp/isr_collapse.png && ls -la /tmp/isr_collapse.png",
+  "description": "Decode base64 PNG to local file for viewing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "echo \"iVBORw0KGgoAAAANSUhEUgAABUgAAAPOCAYAAADdu/JdAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjUsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvWftoOwAAAAlwSFlzAAAuIwAALiMBeKU/dgABAABJREFUeJzs3XdUVMfbB/Dv7tI7gqioiGLBXtBEsfdojBobtqhRY4/GqD+NMbF3E1NsicYajS2KRmNi7AVjwYrYaCKgIkhH2u6+f/Cy4W5jF3YXkO/nHM5x5s7c+4DUZ5+ZEcnlcjmIiIiIiIiIiIiIyiBxcQdAREREREREREREVFyYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyiwlSIiIiIiIiIiIiKrOYICUiIiIiIiIiIqIyy6y4AyDSV0ZGBkJDQxVtLy8vWFlZFWNERERERERERERUWjFBSqVOaGgoGjRooGgHBQWhfv36xRgRERERERERERGVVkyQEhEREdFbLWJ5B6Q/PK/2mo13e3h+cc60ARERERFRicI9SImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiwmSImIiIiIiIiIiKjMYoKUiIiIiIiIiIiIyiyz4g6grAgNDcW1a9cQFRWFrKwsODs7w9vbG76+vrCysiq2uBITE3H9+nWEh4cjMTERMpkMjo6OqFKlClq0aIGKFSsWW2xERERERERERETGxgSpkfn7+2Px4sW4efOm2ut2dnYYNWoU5s+fD1dXV5PFdejQIaxbtw7nzp2DXC7XOK5p06aYMGECRo8eDTMzfroQEREREREREdHbhUvsjSQzMxPDhw/Hhx9+qDE5CgCpqalYt24d6tWrhwsXLhg9rvj4eLz//vvo378/zp49qzU5CgC3bt3C+PHj0bJlS4SEhBg9PiIiIiIiIiIiIlNigtQIZDIZ/Pz8sHv3bkG/RCJB9erV0aRJEzg6OgquvXr1Cj169MCVK1eMFldycjK6deuGP//8U+Va+fLl0axZM/j4+KhdVh8YGIiOHTsiIiLCaPERERERERERERGZGhOkRrB69WocOXJE0DdhwgRERkYiLCwMt27dwuvXr3Ho0CF4eHgoxqSnp2PQoEFISkoySlxz585VqWbt3bs3bt68idjYWAQGBuLGjRt4/vw5goODMWzYMMHYqKgojBs3ziixERERERERERERFQcmSA0sPj4eS5cuFfQtX74cGzduhLu7u6JPLBbjww8/REBAADw9PRX9UVFR+Pbbbw0eV2xsLDZt2iTomzhxIo4cOYKmTZuqjK9bty5+/fVXLFq0SND/zz//GLXKlYiIiIiIiIiIyJSYIDWwVatWISUlRdFu164dZs+erXF85cqVsWXLFkHf2rVrER8fb9C4jh07BqlUqmiXL18ea9asKXDel19+ibp16wr6/vjjD4PGRkREREREREREVFyYIDUgmUyGbdu2CfoWLFgAkUikdV7nzp3Rtm1bRTslJQX79+83aGyPHj0StLt37w4bG5sC5+VVuubHw5qIiIiIiIiIiOhtwQSpAQUEBODVq1eKdo0aNdChQwed5o4ZM0bQ9vf3N2BkwOvXrwXtqlWr6jw3/z6pAJCYmGiIkIiIiIiIiIhIB9u3b4dIJFK8bd++vbhDInqrmBV3AG+T48ePC9pdu3YtsHo0/9j8zp07h7S0NNja2hokNkdHR0H7zZs3Os9VHuvq6mqQmIiIiIiIiIiI8ktISMDt27cRERGB+Ph4ZGRkwMbGBk5OTnBxcUHDhg1RvXp1nfMtlOvp06e4c+cOnj59ipSUFIhEIjg6OsLT0xNNmzZFpUqVijvEYsUEqQHdvn1b0Pb19dV5rru7Ozw9PREREQEAML/fXwAAIABJREFUyMrKQnBwMFq0aGGQ2Jo0aSJoX79+Xee5165dE7TfeecdQ4RERERERERGkJKRg9jUTGRJZbCQiOFmZwl7K/7ppw9PT088ffrUIPc6fPgw+vbta5B7Eb2tYmJisHnzZvz+++8ICgqCXC7XOt7R0RGtW7fGoEGD0LdvX5WiME0WLFiAhQsXFjjOxsYGjo6OcHd3R9OmTdGuXTv0799fp60KC/tMW1tbODk5oUqVKmjRogU6d+6MXr16wcys8N+/nz9/jvXr1+O3335DWFiY1rH16tXD8OHDMWHCBDg7Oxf6maUVf0oa0IMHDwTtevXq6TW/Xr16igRp3v0MlSDt1asXbG1tkZaWBgC4fPkyrly5glatWmmdFxISgt9//13RtrKywtChQw0SExERERERFV3Sm2zsvR2NcyHxuBGVhJC4NJUxNV1t0byKIzrUdMGQppXhYGVeDJESEQklJibi66+/xqZNm5Cdna3zvKSkJPz555/4888/YWlpibFjx+LLL780WBVkeno60tPT8fz5cwQGBmLLli2YMmUKZs+ejdmzZ0MikRjkOfmlpaUhLS0N0dHRuHr1KtatW4fKlStj+fLl+Oijj/S6V1ZWFpYuXYpVq1YhIyNDpznBwcGYO3cuVqxYgcWLF2PKlCkQi8vOzpxl5z01sjdv3iAyMlLQp88+n+rGKx+sVBROTk6YO3euoK9///5aK0kfPHiAnj17IisrS9G3ZMkSuLm5GSwuIiIiIiIqnEexqZhw8C4qL/oHEw7ew97bMWqTowAQEpeGvbdjMOHgPbgv/AcTDt7Fo9hUE0dMRPSfq1evonHjxvjxxx/VJketrKxQtWpVNG3aFI0bN0bFihXVJiYzMzOxfv16eHl5GTSPoiw5ORlffvklunTponPSsaiio6MxYsQIjBkzpsCq2jwvXrxAu3btsGjRIpU4RSIRypcvjyZNmqBBgwYoV66cyvzk5GRMmzYNvXv3RkpKikHej9KAFaQGEhcXJ/hkNTc31zuRWLlyZUE7NjbWILHlmTNnDu7fv489e/YAyC21btWqFd5//31069YN1apVg0gkQnR0NM6cOYNDhw4JvknNmTMHM2bMMGhMRERERESknxypDCvPhmDhycfIlur2B3N+aVlS/HTlKbZei8T8brUxu2NNmElYO6PNmjVr0Lhx40LNLew8orfZqVOn0KdPH6Snpwv6q1WrhvHjx6NLly7w8fFRqWCUSqX4999/ceLECRw6dEiwkvfNmzd6J/S6deuGWbNmqfSnpKTg6dOnOHXqFE6cOAGZTKa4du7cOYwZMwa7d+/W61kFPTM5ORmhoaE4duwYLly4ILi2detWuLu7Y/HixVrv/fLlS7Rv3x6PHz8W9Ht6emLatGkYNGgQ3N3dBdfCw8Oxb98+fPfdd3j58qWi//jx4+jRowf+/vtvg52PU5IxQWogqanCV19tbGz03jBY+RNO+Z5FJRaL8euvv8LX1xcLFy7Eq1evIJVKcfToURw9elTjvNatW2Phw4fDx8fHoHEREREREdnnUWwqhm4P1FgpWlh7b8cg+FUK/jesuabZ1a/QkN5kA+5YvnSp4ee8BfF4UlNTrZbI3rBhg6t2+qcy6ujRo+jbt6/KB/l+fn5Yu3at1g+5JRIJOnTogA4dOuDrr7/G5s2bMWvWrIZE4MkTJzV/vn6JmxEjRuC+B1T3gUxJScHTp09x6tQpHD9+XJBPOHv2LMaMGSPII+jq5DOTk5MRGhqKY8eO4cKFC4Jrv/nmG7i7u+Prr7/Weu+hQ4daJEfNzMzw008/4corr1Tbp06dOqhTpw4mTZqEUaNGYdeuXYprJ0+e1EcffaR9+/YV+v0obUiQGkhGRoagbWVlpfc9lG/JUL5nUYnFYixcuBCjR4/GokWLsH37dpVbGvLUrl0b8+fPR9++fSESiRw+FQYAAACoL/D7M1AVpOqYBgdpwrCWxTkFt5Cd9CY7hWnX+/d3GxMB2LBhA5Kmb5HA4GCr1aItZ99G8sOnDB8TkYFkZWVh4MCBKh/k+/n5Ye3atfDx8dH5Xn5+fhgzZgw6duyoaJPJ5PjVf5W++3W7XuMmj8CK7WsEfY6Ojqhfvz769u2LOXPmYN++fZg0aZJFda6/vz/mzJlj8Dz2yWcmJycjNDRUx48fx4ULF4TXtmyBu7s7vv76a633Dg4OxujRoxXt8PBw/Pbbb+jTp0+BMQQHB2PkyJEWuYalS5diwoQJ6NWrl83+L168QL9+/SzWHt+3b59uvfVWnHHGGQXG0ZmQIDWQzMxMQdvS0lLveygnUpXvWVRisRi//vor/Pz88Pvvv2sfV7s25s+fDz8/P5UvtqCgIMyePRvp6elKJfEAAABAkoB2I1S0/bWvXE1Cky8WOC8u+6xYXWJxTo2jY0zIr0p8I7lQhW/6Wze7dAJOk2HDhikOV8uzffv2hqKhgIAADB48WGl58pM/kw0bNqq9T/0+mW1JiFIhLV68WKtWrRK0JSQkYMeOHejZs6fe97v00kudFVq79PDBA3TpcolVe0pKSlHuuXnzZkGCdPny5RoL+2xZ+uuvKh/k+/n5ae3atYqIiHBofEJCgl555RXBMt8TJkyAl5eXQ/cqyIoVK9CiRQvk5OQAAHbu3MkEKRVOenq6oG1tba33PZQPE+V7FpVUKsWwYcOwfPlyRV9CQgLatWuFSy+9DN27d0e1atUgEokQHR2N06dP49AhYTJ1zpw5mj59OmbNmmXQ+IiIiIhIs7SUFGSlJDk8R1xQooWkqMbLly+3OPetW7fq/DMc8NhRXePU45KJrm9kYmSqjrMi/t/WLmhz4sQJDB06VGWJbD8/P61evRo+Pj4eO+esNEhLS8Mff/xh0X7hhRe2Kjmqq+PHj+s1ft68eVaJ4p9++qlFlccJCQlYunSpRfuiRYt0LoyxJTAwEIGBgYp2UFAQ0tPTbeZhImNi4e/vb9FeUFVtSk4OAgMDBW1+fr52JUdrOzta9B0/UoikKClSIiIiItIuLk71D3R79enTR5MmTVJp37jxi4b/h3BDnpZ0LuHh4Q5V7NojPT3d4UM4T69+/RrmGz58OAYMGCAo6BsyZIjW6uOOJDY2VuUgqKFDhxrsubbIZDK8/fbbFu3KBVfax6i2b8j65ZdfJNU/NLmGQ1PL0iGqBBOkBuLg4CBoq6sQLYjyB3XyPQ1h165dOHjwoMBq3bp1aNasmUqfRCLBwIEDcezYMZUvrtdffx2jR4/WaV+ZhIQEFBYWobi4WHK5XH5+fgoKClKXLl3QsGHDJu+Rfz/V/MaPH49ffvlF0Q4PD8emTZs0bdo0jXPy15Y4cuSI8vPzFRoaqrCwsIYPmmbNmqU33nhDUv0y7hUrVmj69OkKCwuD2WxWamqqYmNjFRQUpNatW2udn5eXpz179mDfvn2Kjo5WQUEBgoOD5e/vL19fX/n5+al3794ICQmBXC5XYGCg3njjDR06dEh5eXnKz8+Xi4uL6tSpoxYtWqhdO7b3JCIiIiI6lcxms0aNGmXzfRIRkSM++eQTiwTpli1bCkyQJicnC4r+br31VpXDiA8cOKC///5b0fa8zzrrHBKkVDjJycmC3BNUvxep8uqbU8eY1H+QBwYGqkePHoqE5dq1a/VK6GmSnJyskiA97bTT7OqrXESlqqCgoKEQyxLnIBmWdF3PpHSMKU2YIDUQHx8fwUHhsbGxcHd31/s++Q0bNkylJaU+8vPz8eqrr0qSMjIybCZITwoKCtIDDzxgVaF66NAhvfDCC3rfKzExEdHR0Tp06JDOnz+v0mK1S5cuClm4UG7/+Z3c09NTjz766BNVUVtQUKC9e/dq5syZkuqXg++6c6fGjx8PKypKkpScnIx169ZpxYoVFpvPnPTss8+qb9++WrNmjeL/h3TvyJEjDZ+OJ8nwJNRiHx0dra5du+rWW2+VVJ+gXr9+verWretQbCcpJ4yzs7P19NNP68svv5Qq/x1bU2w7aROkJ//2nn///fjkk09UGxurM888s8UYPv/8c8E6opLqP5DYtGmTRowYIUn69ttvFR4eLilfp6urqxYuXKjJkydLkr7//ntFRERIktatW6fw8HBJUkVFhfbu3Yv7779fUv0+Qf/5z3/Us2dPjRo1Sq+88ookKS8vT3/88YfuuusuSfWJlh9++EE33nijpPoNjk6cOKHrrrtOUv1Ju6tWrdI111wjqf4D5k8//VQTJkyQVF9V+8MPP+j666+XVL+E4c8//6xbb71VUn2S8bffftONN94oqX4JwaNHj+qWW26RVP/e5J9//tF1110nqf6HwZ133qmpU6dKql/b8/jx47rmmmsaYuJ3nYiIiIi8walvk7OysjBq1CjFxhRR8Tu1wDovL88hJ37SqVOnLBKkM2fOtJuoq27yzqSkpIbfmYKWyPb09BS0c3Jy9JqfX9T3bteuXQ3P4dKliN7Cw8OVl5cnKSqzuN5bWpEgNZC6desKDuooKPmnji4nLRXVTTfd1JC0lOr3bGhpb9FTJ7Vtq1++evZQPozTtm3bNHz4MOXm/ueQ5CpVqmDRokWaP3++pPqS61atWun9999Xt27dVK1aNYhEIkVHR+vMmTM6dOiQxaeVdebMmT9TWYr56dOnLdoefPBBjRw5UikpKQXG1qxZMw0ePLjJNV7z/9//Kycnx6m/m7dv3xa+r21vYWk5y9a5c+f0ww8/SMr/pOG7776r2Ngkq7agoCBB7I6Ojli5cqUkybIk/OQYh+5Tk1GjRllUF546darmzJkjSSpMU9zOJBMmTIBV0rBhQ4WEhCgkJERhYWEIDQ1VcHCwxaFIbm5u+vvvv63WRAwICFBUVFTDJ7u1tTWGDRumMWPGqGfPnupYghaAYjKZ9MADD2jgwIGqb6/+sOrXr5+2bNmifv36NTyuRYsWacuWLQ1/H1auXKnJkyc3vLa2aNFCq1ev1vXXX99wnqlTp+r5558XrHXaqVMn/f7777r44osbxl+4cKG6d+8uOHOk49lnn63Zs2dLkv766y/NnDlTvXv3VlxcnKDK8tChQ3rzzTcl1f8MDBkyRHfeead++uknSdLmzZt11VVXaciQIZKk48ePa9SoUQ0/w6dPn9bnn3+uO++8U1L93sVLlizR3XffLak+kfb+++/r1ltvlVSfpN28ebMmTpwoqb4afPfu3Q2JnbS0NG3dulW33HKLpPoy+Z07d+qaa66R1HCy52effaabbrpJUv0Bz3/99VfDP4fU1FQdO3as4d9DcnKyYmNjG/4/lpaWKjg4WJMnT5ZUn2zeuXOnpkyZIqm+mn/37t0N/z7y8vJ04sSJhv+P6upqHTlypOH/R01NjQLOn5fk6JHNJSUl+r//+z+dcsKJbEBaWprgeUhS8+bNtWDBAodq0eKWVJ+03LVrF8m/MurrOy3+HTk0jvbJLIhIKpTqN/9QjsHRMYbMQ5AglWSo/sPm4g5BkrBy5Uqr9vbt27fqXsofKueff76ys7MdSlQX5sOfzZs3K/Xk64hUX8RVl+2yJCkxMVFRUVGCqpj169fb3LzJU8nkkuTUwlZ9k7GnXj+pyJhY+Pv769577pEkbd++XTfccINd3y/Dyi93CnGi9tNPP23VXlaW5nvzzTfrtNNOk0wmU1hYmMLC8h3WrQULFug///mP1ZqFxcXF2rt3r/bu3eueQE8xadIkjRs3TpIUGxurpUuXqkMHy43QT36PUlJStGHDBm3YsMHuZ5T6+0lasmRJw7IhGfPGaI3mZAPc1TjkdBJ9p42qK2ZTjnGgFtmMa9T8+WjsuMEF3Ofle0I9ckpfh36N4nMpqJ6jUuaJVNkIUn3GlkTgxnGUq5pO5yJIjqy+pzHjxrkp5sbq+j3aWiZIq6srddFFF7X6HqVlby/yjJSUFEGF+H333efwfW5lMpk+/PBDifv7++v3339vSJDaQyqVypAkW3v4uouubxbm/Fn4WJ6xJRdJZGtr2zB+/Pjx+uWXXwSP7a677rJYr/akM844Q9u3b9ewYcOUl5fn0P3z8/O1c+dOu5K4CxcuRHBwsDaYzZLkJTExUeHh4aqoqJCfn59CQkLk7+9vs8rz5ZdfFnxgExkZqddff10FBQUKDAzEsmXLFB0d3bBnqaenp6ZPn65BgwZp+PDhCgoKUnR0tLZu3YobbrjB4fnqYtyxY4egfcUVV6hz5862uuisW29t+NeUlJQk2CrAloKCAkGfxRVXXKE5c+Zo9OjRhp+jJH/66aeGfb4V0NN3ypIehYWFSpS0c+dO3XLLLQXfR3lJvLbGc6P5TGqQqN9bW0NP4qeffvrx1PmLi4vl7++vyZMnq7q6WpIUGBgo2B/oZHxS5xmJU+Iq6F5OPWfuuOPsGMcRgQUFBfrss880d+5c9e3bV+efq1tV0Kkqjyff6C90Khxaz/cz4bIiMzNT48ePF+z3fuqyzK2R/5CqHj16IC8vT4899pjd35eShglSA0lNTRW802kTddBGrVq1BEu0OYr0lJmZKVj6Iy4uTjCm8cGNp5KNJvTNN99o27Ztim5IflVrKDj1lPvkP1gMJq89IZWxuuqJRFIR7s3f85EjR0T/v5r6v6a/bwoODta4cePcsvZnaGiounfvrpiYGEn1FeP29vZqaM93X2PcS9VLREYmh8O5tQXP0cKFCxUcHKxp06Zpw4YNkqQPP/xQCQkJej3H4+TkaN++faqqqjLKY5PJZJo2bZrVdgDuOuBKHwU90kn+/v468P8V3Cb99ttv1aZNG51XqNdl09DY2Filp6crOjpa5eXlcnd3V1BQkJKSkpq9T3lZmTZtUlR8QkJD+6xZs/TGG2+oYBkZGYL35K5du1a/Z6oSlZKSolM3dXSoP7wjJzdX+QUFioyMbPiZCg8PV0VFhd73O1VhUZH2HzzYzgv9XJQkfRMRobi4OB06dEh5eXnKy8tTaGhovvdZJ6s9U1NTdezYMZsftOfPQ5y6a1cLFwp6nMViI3XUNwkaJ2mtpM8s2lQdPwLsMmTIEE2aNMlsGIZ27NihkydOaJ+k78xmJSQktHQXv+zsbC1dutTmPhbuaruqfAW8Kg3J5u3bt7f5eyGXyzVw4MBmC/uciYfqvM+oW7eu4uPjVa1aNfXt29fp9/f19dWBAwd01113qaCgQEFBQbj99ts1dOhQ9e/fX1FRUTrzzDPlcWqBuCYhISGoqqqyaLvu559x4YUXqkuXLqhSpYrCw8NVVlamzMxMFRYWKjMzEyUlJRqTCv6BgUhJSVHBKWP+/vtvm3sWNjv2v+uKz8sTHlhbWqp7773X6h7NvyerZDLBPqGnxl5UVNTsfZyUuPj0008F7w/r1KnTqnuFhFj+nHh5eenbb791KFHtKO7Z0gH5+fmCk87J/4aE7OVTz5GJk8dRXy6Xa9WqVSosLBQsrQ0K0uQmuiiX4p+c/OMWU1oeTcEhqGkpkVS/r3lhYaHFe8nyCk0nI2b06NEKCAjAFVdcofvvvx+PPPKIVq5cqf/973/q1KmTEhISsHTpUv36668qLS2Vv7+/Ro0a1eLS7srCw8MFfw9zc3NbnBMdHa3nn39eXbt2lSR9/vnn6t69OwYMGGDVV1eyZ/duTZ06VVJ9ovbrr7/WNddcI6l+b9xPPvlEV1xxhaTmC+gdeeyIiAjBz3txcbFe95LqE7TZ2dmC5/vX86m3Yrh6lJiYqBUrVhh+vrJy794c3S63c07V7Kbuk7/fEezYsQNDhgwR3OPkyZN6++23FRUVZXFt27ZtOvPMM5ucI2+0d+9e7d27t+A4laSnpws/K1evXm2wZ6r5lAe5oqJCcO/777/fag3k5rz11ltyaBzl5+jQBv+P6h81+f4iFRQUqDTZM6Gc+/xfpMaR8e+//26IbLdp0ybb9+rfv7+g6t/f398uO20s/f0xJzIyUnExMYJ1RENDQ6XPz5Oz9ppNJtNVV11l5RoAHO+Jk0eFGYYhePwbNmxw6FmVlZUWP7fPP/+8GjZsqOrqavXq1UuXX365evfurUmTJiksLEzy/1d/nyooKEi5ublW81NSUvRKN8bUlWOl9mvRooWxY8cOo2vXrnJ3d1eTJk2sEmWnCgoK0j333CPpvz+HJw/LfPTRRyXVH0Z3zz332Fzb0dS7dxfkpMi0bds2/fTTT5Kk3bt3Y/PmzVp18qJcLjdOHUPeWKm+slrq3OJaeLhJcPh9ypI+T548WevWrbO4X3Jysj7//HM9/fTTWrBggcrLy5WSkqKePXv+90N31d/fX+eee66k+orqY8eOOTVfovdSAKqfN3To0IYdBZos7MsfxFVXXWXxfhJjMlRaWuJq5X0nLl++XIv/v7AO9mVcK1R/Xl0wT5KxYoXk5OSG16KTZ8csPLlBNp5z+vNafRq/TT2R3t+nqVOnWizV31J/a8dIp22m5Yrcp6ysTE8//bS+/PJLNdV9uj1z5sy2OseJ4Zy8ztmzZwt2jEeO5M/COrthOWt/EYZ19NFHH5GMcxR+w3pZWZmmT5+utWvXCvpXrFilmTNn2hzfmscO6dFHH3VobMGaNWsKXl/84Ycf6re//KXVJ7crFAUAAJ3Q2WdbbD7tKgMHDhS86hURERl7+PDhVt9x0qRJgpWEUU/84ZQxT6R0txCv3r1711b3gJJ0jR4g0b59e3Xt2rXJtXiNyrLi0Dh+PoYNG6YKs9mONX5v8PLywi233NIw3t/fX/fff79yc3N1au72bds0fvx4FRQUqLS0VH379nUoQXrZZZdZbIT+8ssva9y4cTr3nHM07oIL5O3trdjYWJWXl6usrEwPPPCA4D3S9u3bW/U4C/rZa6pKNjU1Vfv27VOjk0uoG5aUl5c3Oa+50MxmKxlZ2aqsrFRlZaVycnJ04sSJhm0n/P39LX+ejhw50mqxOLt+BulCb+/BXb9+fcO/Wf38fBJXmzfvsNitICcnRxs2bGjYw6y4i8ecfj8Ld1VXWZS2p6drvfJeyuq/4yUlJYIVAPh5eujU8R2j3/1JZ70ZV9+0VhwL/E6V1h4XQQAAfJNUn/z+c+Ps+Q0rBzm61lT03GNi9OCD/7VjY2O1Zs0a7dmzR3DGqJN27dqldUePemz/+QsuuEDbtm1zbEyecXFxevTRRwXrsJy63EhJ2jWuWbNG9MYbb+jJJ5/UbBQVFcnX11dTp07VAw88oAceeKDh5/ZkIfFBSZ9IelbSnZKCJPWTVF/ioUmTJk3SMdLS0jR//nzdfffd6ty5s7p3765hw4apS5cuysrKkkwmU0xMjO6//35FOjg2MjJSkyZN0ksvvdTke3Z3MeTy5cs1d+5clZeXKyAgQJMnTxZsKnVyG4CSxFVPcQ86B3PnzlVl5X8fxh85csQhJ15gNssUEBCg5ORkwdqyZWZfU3f98ssvq3///nJ1ddU555yj8847T0OHDkVQUBDkcrnCw8P10ksvlXAcZdcff/yh+fPnY968eaL9+/frjjvuUFRUlN01uU8xbdCggeCf0sKFC+Xi4oJhw4bJ19dXTk5O6NatG9atW+dBqfH06dO1cOFCtWrVqs3fv1MnKDpf8c6EsfMCCgrK5efn56qfqzbjjjtOwf9fLezqMXr16qV169apTp06Jh1Du0TpyZceeughj89aI6qh8ejUqRN69eolyUNL3kVGRur3339XWlqaRf+KFSuwdu3axqHUx/3pp5+aZCxFHRcWFmaz4ldqvJy8vLxR00mxcCjemH/y8vI0ffp0zZw5U+PGjZOPj49OFj8XN0ePHtWYMWMU+B9duuBQO5Q5Y8mSJQ3/X5cRERFRYWGhRo0apeTkZPH7+/urR48eJnme0sHR0VGDBg2Sv78/CgsLm+x36i4Iee83cuTIhv7c3Fz973//s5hjGIb69eunyMhIK7m5ufIPDERUVJTc3d1Rp04dNG3aFO3atStUZWloaKgWLVqERYsWSaqv7Ny4cSM++uijgp/j0aOCjcXkcrk2bdqkO+64Q1L9IRFZWVl6+umnJdW/V3rxxRd1ww03SKr/3dm3b5+uv/56SXKZ6qfqP3P+XPv27fvMSU//P3u0dFsNuPxaAAAAAElFTkSuQmCC\" | base64 -d > /tmp/isr_collapse.png && ls -la /tmp/isr_collapse.png",
+    "description": "Decode base64 PNG to local file for viewing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T20:37:33.541115+00:00_
+
+-rw-r--r-- 1 ubuntu ubuntu 9393 May 15 20:37 /tmp/isr_collapse.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T20:37:33.541372+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=\"\" && python3 -c \"\nfrom PIL import Image\nimg = Image.open('/root/solver-trace-ablation/paper/figures/isr_collapse.png')\nprint(f'Size: {img.size}')\nprint(f'Format: {img.format}')\nprint(f'Mode: {img.mode}')\nprint('OK - image is valid')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=\"\" && python3 -c \"\nfrom PIL import Image\nimg = Image.open('/root/solver-trace-ablation/paper/figures/isr_collapse.png')\nprint(f'Size: {img.size}')\nprint(f'Format: {img.format}')\nprint(f'Mode: {img.mode}')\nprint('OK - image is valid')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T20:37:33.541586+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Size: (1352, 974)\\nFormat: PNG\\nMode: RGBA\\nOK - image is valid\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-15T20:37:33.541874+00:00_
+
+图表已生成，验证通过。
+
+**输出文件：**
+- PDF: `/root/solver-trace-ablation/paper/figures/isr_collapse.pdf` (22KB)
+- PNG: `/root/solver-trace-ablation/paper/figures/isr_collapse.png` (104KB, 1352×974px)
+
+**数据汇总：**
+
+| 条件 | Steps | ISR (proved-only) |
+|------|-------|-------------------|
+| Exec-only (s42) | 100 | 0.642 |
+| Exec-only (s42) | 500 | 0.132 |
+| Exec-only (s42) | 1000 | 0.003 |
+| ISR β=0.1 (3-seed mean±std) | 500 | 0.716 ± 0.263 |
+| Random β=0.1 (3-seed mean±std) | 500 | 0.117 ± 0.042 |
+
+ISR/Random 缺少 100-step 数据，因此 exec-only 画完整 trajectory 折线，ISR 和 Random 作为 500-step 对比点（带 error bar）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_viz_fig-isr-collapse_20260515T202603"
+}
+```
+
+</details>
+
+---

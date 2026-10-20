@@ -1,0 +1,24 @@
+{
+  "exp_id": "w2-qwen3-7b-pilot",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:29:13.539Z",
+    "updated_at": "2026-05-16T18:46:53.816Z",
+    "hypothesis": "Qwen3-8B exec-only 50-step pilot: 测试 8B 模型能否在 96GB GPU 上跑通，确定 per_device_batch_size (4 vs 2)",
+    "spec": {
+      "model_name": "Qwen3-8B",
+      "model_path": "/root/autodl-tmp/models/Qwen3-8B/",
+      "seed": 42,
+      "steps": 50,
+      "reward_mode": "exec_only",
+      "note": "batch_size pilot: try 4 first, fallback to 2 if OOM"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T18:46:54.098284+00:00",
+  "trigger": "update_registry"
+}

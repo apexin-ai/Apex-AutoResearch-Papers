@@ -1,0 +1,103 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Claim 1: ISR as diagnostic.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim 2: ISR as reward exhibits meta-level Goodhart's Law.}{1}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim 3: Cross-logic generalization.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{GRPO for formal reasoning.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward hacking in RL.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural rewards for code and logic.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Proxy metric failure.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Solver Trace Ablation}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Solver Trace Ablation}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}ISR via Leave-One-Out Ablation}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:isr}{{1}{3}{ISR via Leave-One-Out Ablation}{equation.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Computational cost.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}ISR as Reward Signal}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{eq:isr_reward}{{2}{3}{ISR as Reward Signal}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Premise-Count Correction}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:premise_correction}{{3.4}{3}{Premise-Count Correction}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Logic types.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward conditions.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces ISR collapse under exec-only GRPO on FOL/Prover9 (seed 42). PR rises while ISR collapses. The SFT baseline achieves low PR but high proved-only ISR, confirming hacking is RL-specific.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:isr_collapse}{{1}{4}{ISR collapse under exec-only GRPO on FOL/Prover9 (seed 42). PR rises while ISR collapses. The SFT baseline achieves low PR but high proved-only ISR, confirming hacking is RL-specific}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces ISR vs.\ random reward at $\beta $\,=\,0.1 (FOL, 3 seeds). ISR reward induces H7 gaming (64.5\% vs.\ 0\%) and \emph  {lower} PR (0.77 vs.\ 0.85). Random reward has higher H1 rates (81.3\%) but zero H7---conclusion embedding is GRPO-universal, but ISR converts H1 into the more extreme H7 mode.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:goodhart_3seed}{{2}{4}{ISR vs.\ random reward at $\beta $\,=\,0.1 (FOL, 3 seeds). ISR reward induces H7 gaming (64.5\% vs.\ 0\%) and \emph {lower} PR (0.77 vs.\ 0.85). Random reward has higher H1 rates (81.3\%) but zero H7---conclusion embedding is GRPO-universal, but ISR converts H1 into the more extreme H7 mode}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}ISR as Diagnostic (Claim 1)}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:claim1}{{5.1}{4}{ISR as Diagnostic (Claim 1)}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{ISR collapse trajectory.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hacking taxonomy.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SFT control.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}ISR as Reward: Meta-Level Goodhart (Claim 2)}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:claim2}{{5.2}{4}{ISR as Reward: Meta-Level Goodhart (Claim 2)}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Low-dose ISR ($\beta $\,=\,0.1): ISR-specific gaming.}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Premise-count-matched analysis.}{4}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Premise-count-matched comparison eliminates ISR's apparent advantage. The 2.4$\times $ raw difference reduces to 1.06$\times $---no meaningful structural improvement.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:premise_matched}{{3}{5}{Premise-count-matched comparison eliminates ISR's apparent advantage. The 2.4$\times $ raw difference reduces to 1.06$\times $---no meaningful structural improvement}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{High-dose ISR ($\beta $\,=\,0.3): classic Goodhart.}{5}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hacking composition, not prevalence.}{5}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Logic Generalization (Claim 3)}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:claim3}{{5.3}{5}{Cross-Logic Generalization (Claim 3)}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Prolog/SWI-Prolog: Diagnostic Transfer}{5}{subsubsection.5.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exec-only.}{5}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Goodhart replication under STA reward.}{5}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-logic comparison.}{5}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}SMT-LIB/Z3: Third Logic Validation}{5}{subsubsection.5.3.2}\protected@file@percent }
+\newlabel{sec:smt}{{5.3.2}{5}{SMT-LIB/Z3: Third Logic Validation}{subsubsection.5.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Prolog exec+STA across 3 seeds. H7 dominance (97.7\%) is even more extreme than FOL (64.5\%), with near-zero cross-seed variance (std\,=\,2.5\%).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:prolog_sta}{{4}{6}{Prolog exec+STA across 3 seeds. H7 dominance (97.7\%) is even more extreme than FOL (64.5\%), with near-zero cross-seed variance (std\,=\,2.5\%)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Prolog vs.\ FOL under ISR reward. Goodhart gaming replicates across logic types; simpler Prolog semantics produce more extreme and consistent H7 exploitation.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:cross_logic}{{5}{6}{Prolog vs.\ FOL under ISR reward. Goodhart gaming replicates across logic types; simpler Prolog semantics produce more extreme and consistent H7 exploitation}{table.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Multi-Logic Joint Training}{6}{subsubsection.5.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Model Scale Effects}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:scale}{{5.4}{6}{Model Scale Effects}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Ablation Studies}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:ablations}{{5.5}{6}{Ablation Studies}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Curriculum Schedule}{6}{subsubsection.5.5.1}\protected@file@percent }
+\newlabel{sec:curriculum}{{5.5.1}{6}{Curriculum Schedule}{subsubsection.5.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}$O(1)$ vs.\ $O(N)$ ISR Approximation}{6}{subsubsection.5.5.2}\protected@file@percent }
+\newlabel{sec:o1_ablation}{{5.5.2}{6}{$O(1)$ vs.\ $O(N)$ ISR Approximation}{subsubsection.5.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Three-logic ISR diagnostic comparison (seed 42). ISR detects hacking across all logics; Goodhart gaming manifests in logic-specific modes.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:three_logic}{{6}{7}{Three-logic ISR diagnostic comparison (seed 42). ISR detects hacking across all logics; Goodhart gaming manifests in logic-specific modes}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Single-logic vs.\ joint FOL+Prolog training. Hacking patterns are preserved: FOL exhibits H1, Prolog exhibits H7, regardless of training mixture. PR decreases under joint training (data dilution) but hacking modes are invariant.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:joint}{{7}{7}{Single-logic vs.\ joint FOL+Prolog training. Hacking patterns are preserved: FOL exhibits H1, Prolog exhibits H7, regardless of training mixture. PR decreases under joint training (data dilution) but hacking modes are invariant}{table.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}Cross-Logic Transfer}{7}{subsubsection.5.5.3}\protected@file@percent }
+\newlabel{sec:transfer}{{5.5.3}{7}{Cross-Logic Transfer}{subsubsection.5.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{ISR: powerful diagnostic, unreliable optimizer.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Premise-count confound.}{7}{section*.25}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 1.7B vs.\ 8B model comparison on FOL. Scaling reduces extreme H7 gaming but increases subtler H1 hacking. Goodhart's Law persists at both scales.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:scale}{{8}{8}{1.7B vs.\ 8B model comparison on FOL. Scaling reduces extreme H7 gaming but increases subtler H1 hacking. Goodhart's Law persists at both scales}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Curriculum ablation. All schedules exhibit Goodhart gaming (55--88\% total hacking). Later ISR introduction reduces H7 but does not eliminate hacking---it merely delays onset. Linear ramp achieves the highest genuine rate (25\%) but this reflects insufficient training to fully exploit the ISR signal, not genuine robustness.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:curriculum}{{9}{8}{Curriculum ablation. All schedules exhibit Goodhart gaming (55--88\% total hacking). Later ISR introduction reduces H7 but does not eliminate hacking---it merely delays onset. Linear ramp achieves the highest genuine rate (25\%) but this reflects insufficient training to fully exploit the ISR signal, not genuine robustness}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Universality of conclusion embedding.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale does not solve Goodhart.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces $O(1)$ heuristic vs.\ $O(N)$ LOO ISR. The approximation systematically overestimates ISR for hacked proofs and underestimates for genuine proofs, rendering it diagnostically useless.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:o1_vs_on}{{10}{9}{$O(1)$ heuristic vs.\ $O(N)$ LOO ISR. The approximation systematically overestimates ISR for hacked proofs and underestimates for genuine proofs, rendering it diagnostically useless}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Cross-Logic Transfer Details}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:transfer}{{A}{9}{Cross-Logic Transfer Details}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-logic transfer results. ISR correctly diagnoses catastrophic transfer failure (near-zero ISR), confirming it remains informative even at near-zero PR.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:transfer}{{11}{9}{Cross-logic transfer results. ISR correctly diagnoses catastrophic transfer failure (near-zero ISR), confirming it remains informative even at near-zero PR}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Prolog STA Per-Seed Hacking Breakdown}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:prolog_detail}{{B}{9}{Prolog STA Per-Seed Hacking Breakdown}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Prolog STA per-seed breakdown. H7 dominates all 3 seeds (95--100\%), with proved-only ISR universally at 1.0.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:prolog_breakdown}{{12}{9}{Prolog STA per-seed breakdown. H7 dominates all 3 seeds (95--100\%), with proved-only ISR universally at 1.0}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}References}{9}{appendix.C}\protected@file@percent }
+\gdef \@abspage@last{10}

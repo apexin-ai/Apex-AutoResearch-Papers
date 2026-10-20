@@ -1,0 +1,42 @@
+dream_id: dream_20260521T213154
+project: solver-trace-ablation
+venue: emnlp-2026
+focus: 评估跨尺度扩展（Qwen3-8B）和 seed 扩展对论文评分的影响。重点关注：(1) 8B exec-only 如果 positive，framing
+  从 case study 升级到 across scales 是否足够支撑 3.25-3.5 分数？(2) N=5→8 seeds 对统计效力的实际影响；(3)
+  8B 如果 negative（不退化），论文如何处理？(4) 当前 analysis paper 定位的 score ceiling 在哪里？
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions: {}
+scenarios:
+- tier: best
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+- tier: median
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+- tier: worst
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+errors:
+  best:
+    phase2: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    write: null
+    review: null
+  median:
+    phase2: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    write: null
+    review: null
+  worst:
+    phase2: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    write: null
+    review: null
+score_anomaly: ''
+created_at: '2026-05-21T21:32:04+00:00'

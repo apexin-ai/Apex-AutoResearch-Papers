@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp1-isr-b03-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:09:49.339Z",
+    "updated_at": "2026-05-14T23:09:49.339Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "β=0.3 ISR seed 43 retry (r2): original failed EXIT_CODE=129. Supplement for 3-seed Table 1.",
+      "plan_id": "EXP-1",
+      "reward_formula": "r = r_exec * (1 + 0.3 * ISR)",
+      "num_steps": 500,
+      "beta": 0.3,
+      "parent": "exp1-isr-b03-s43"
+    }
+  },
+  "timestamp": "2026-05-14T23:09:49.476930+00:00",
+  "trigger": "update_registry"
+}

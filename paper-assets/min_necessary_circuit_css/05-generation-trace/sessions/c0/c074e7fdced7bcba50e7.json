@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c074e7fdced7bcba50e7",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code deploy phase2 scripts v2",
+  "task_key": "worker_code_deploy-phase2-scripts-v2_20260513T054518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deploy-phase2-scripts-v2_20260513T054518_result.json",
+    "occurrence": 1,
+    "bytes": 1346,
+    "sha256": "2d6b769f58a87efd412f99805a22ad42b0d18446493ce0d519b73f92106ea4e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### 修改清单\n\n**1. 新建 `run_circus.py`** — pipeline 编排模块\n- `run_pipeline(config)` 函数：scoring → binarization → CSS cross-tabulation\n- 支持 TransformerLens (EAP-IG, IFR) 和 auto_circuit (EP, ACDC) 两种 backend\n- 自动加载缓存、缺失时计算并缓存\n- HF local path redirect（避免网络依赖）\n\n**2. 修改 `run_phase2_experiment.py`**\n- IFR 默认二值化从 `unique_score_rank, n=50` 改为 `topn, n=200`（与 EAP-IG/EP 一致）\n- 修复第 246 行损坏的字节 (`\\x06a\\x60\\xcd...` → `aggregation`)\n\n**3. 未改动（已就位）**\n- `circuit_discovery.py` — IFR normalizer (`_normalize_ifr_edge`) 和 `run_ifr()`/`run_ifr_hf()` 已注册在 `_NORMALIZERS` 中\n- `css.py` — 通用 `binarize_scores()` 支持 `topn`/`unique_score_rank` 等策略，无需方法特化\n\n### 验证结果\n\nPipeline 端到端通过（14.4s）：\n- **EAP-IG**: 32491 edges → top-200 binarized\n- **Edge Pruning**: 32491 edges → top-200 binarized  \n- **IFR**: 32334 edges → top-200 binarized（新计算 + 已缓存）\n- **CSS 分布**: 1/3=393, 2/3=90, 3/3=9\n- **CSS core**: 9 edges（三方法共识），off-diagonal 98.2%\n- CSS core 全部是 `m0->` 开头的边（MLP 0 作为 source），IFR 的 proximity metric 对 MLP 路径敏感"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deploy-phase2-scripts-v2.md"
+}

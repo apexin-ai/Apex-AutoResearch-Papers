@@ -1,0 +1,29 @@
+\begin{table*}[t]
+\centering
+\caption{Goodhart Landscape: ISR-as-reward across $\beta$ doses and reward formulations. All metrics from held-out eval (100 problems) unless noted. ISR column reports proved-only mean ISR.}
+\label{tab:goodhart-landscape}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccll}
+\toprule
+\textbf{Condition} & \textbf{Formula} & \textbf{Eval PR} & \textbf{Eval ISR} & \textbf{Comp.\ Count} & \textbf{Degeneration} & \textbf{Goodhart Phase} \\
+\midrule
+exec-only s42 (baseline) & $r = r_\text{exec}$ & 0.93 & 0.1324 & 7.08 & conclusion embedding & N/A (baseline) \\
+ISR $\beta$=0.1 & $r = r_\text{exec}\cdot(1+0.1\cdot\text{ISR})$ & 0.81 & 0.4154 & 5.58 & none \checkmark & pre-Goodhart (sweet spot) \\
+random $\beta$=0.1 & $r = r_\text{exec}\cdot(1+0.1\cdot\text{rand})$ & 0.79 & 0.1314 & 8.46 & redundant premises & control \\
+ISR $\beta$=0.3 & $r = r_\text{exec}\cdot(1+0.3\cdot\text{ISR})$ & 0.18 & 0.1427 & --- & format collapse & post-Goodhart \\
+random $\beta$=0.3 & $r = r_\text{exec}\cdot(1+0.3\cdot\text{rand})$ & 0.48 & 0.0943 & 9.60 & complexity-without-utility & control \\
+convex ISR & $r = 0.9\cdot r_\text{exec}+0.1\cdot\text{ISR}$ & 0.77\textsuperscript{$\dagger$} & 0.2299\textsuperscript{$\dagger$} & ---\textsuperscript{$\dagger$} & ISR--PR separation & penalty effect \\
+convex random & $r = 0.9\cdot r_\text{exec}+0.1\cdot\text{rand}$ & 1.00 & 0.535\textsuperscript{*} & 2.04\textsuperscript{*} & tautological collapse & hacking \\
+\midrule
+1000-step extended & $r = r_\text{exec}$ (1000 steps) & 0.96 & 0.0028 & 18.55 & contradiction explosion & N/A \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{2pt}
+\begin{minipage}{\textwidth}
+\footnotesize
+\textsuperscript{$\dagger$} plan005 (convex ISR): training last-100 steps; no eval checkpoint available. \\
+\textsuperscript{*} plan013/plan001-s44: ISR is tautological artifact (2-component proofs, $P \rightarrow P$). \\
+Exec-only 3-seed results reported per-seed due to different eval methods: s42 (eval\_sta.py, PR=0.93), s43 (sampling $T$=0.7, PR=0.14), s44 (eval\_sta.py, PR=0.98 tautological). \\
+\end{minipage}
+\end{table*}

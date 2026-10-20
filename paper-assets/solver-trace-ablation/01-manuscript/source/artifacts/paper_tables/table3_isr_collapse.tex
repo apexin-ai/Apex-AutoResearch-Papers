@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{ISR collapse trajectory over extended exec-only GRPO training. PR rises monotonically while ISR collapses, quantifying structural degeneration invisible to execution reward.}
+\label{tab:isr-collapse}
+\begin{tabular}{rcccc}
+\toprule
+\textbf{Steps} & \textbf{Eval PR} & \textbf{Eval ISR} & \textbf{Comp.\ Count} & \textbf{ISR{=}0 Ratio} \\
+\midrule
+100 & 0.32 & 0.6423 & --- & --- \\
+500 & 0.93 & 0.1324 & --- & --- \\
+1000 & 0.96 & 0.0028 & 18.55 & 94.8\% \\
+\midrule
+\multicolumn{5}{l}{\footnotesize ISR collapse: 0.64 $\rightarrow$ 0.13 $\rightarrow$ 0.003 ($-$79\% at 500 steps, $-$99.6\% at 1000 steps)} \\
+\bottomrule
+\end{tabular}
+\end{table}

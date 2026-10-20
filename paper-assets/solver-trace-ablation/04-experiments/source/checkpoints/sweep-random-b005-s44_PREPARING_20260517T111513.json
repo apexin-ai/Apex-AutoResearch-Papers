@@ -1,0 +1,14 @@
+{
+  "exp_id": "sweep-random-b005-s44",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:15:12.942Z",
+    "updated_at": "2026-05-17T11:15:12.942Z"
+  },
+  "timestamp": "2026-05-17T11:15:13.258531+00:00",
+  "trigger": "update_registry"
+}

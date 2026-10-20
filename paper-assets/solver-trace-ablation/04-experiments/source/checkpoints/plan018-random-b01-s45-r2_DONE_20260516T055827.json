@@ -1,0 +1,34 @@
+{
+  "exp_id": "plan018-random-b01-s45-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:36:20.734Z",
+    "updated_at": "2026-05-16T05:58:26.795Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/plan018_random_b01_s45 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "679720",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 45,
+      "reward_mode": "additive_random",
+      "beta": 0.1,
+      "num_steps": 500,
+      "num_generations": 4,
+      "account": "root",
+      "wandb_enabled": false
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T05:58:26.795Z"
+  },
+  "timestamp": "2026-05-16T05:58:27.098467+00:00",
+  "trigger": "update_registry"
+}

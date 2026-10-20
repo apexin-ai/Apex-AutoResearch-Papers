@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan002-additive-b01-s44",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:36:17.298Z",
+    "updated_at": "2026-05-14T08:38:14.965Z",
+    "hypothesis": "ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。",
+    "parent": "plan002-additive-b01-s42"
+  },
+  "timestamp": "2026-05-14T08:38:15.064772+00:00",
+  "trigger": "update_registry"
+}

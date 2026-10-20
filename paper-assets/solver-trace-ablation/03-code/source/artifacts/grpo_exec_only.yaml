@@ -1,0 +1,17 @@
+model_path: /root/autodl-tmp/models/Qwen3-4B
+data_path: data/proofwriter_fol_500.jsonl
+reward_mode: execution_only
+output_dir: /root/autodl-tmp/outputs/grpo_exec_only
+num_steps: 100
+per_device_batch_size: 4
+gradient_accumulation_steps: 2
+num_generations: 4
+max_completion_length: 512
+learning_rate: 1.0e-6
+exec_weight: 1.0
+sta_weight: 0.0
+seed: 42
+solver: prover9
+wandb_project: solver-trace-ablation
+wandb_run: exec_only
+no_wandb: true

@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan001-exec-only-s44-1000-r2",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:51:03.762Z",
+    "updated_at": "2026-05-15T13:51:15.651Z",
+    "hypothesis": "Exec-only GRPO 1000步 seed=44（r2 重跑）：r1 因磁盘满被 kill。磁盘已清理（92GB 可用），从 step 0 重跑。",
+    "parent": "plan001-exec-only-s44-1000"
+  },
+  "timestamp": "2026-05-15T13:51:16.275210+00:00",
+  "trigger": "update_registry"
+}

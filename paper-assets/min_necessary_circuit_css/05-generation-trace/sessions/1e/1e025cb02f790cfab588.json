@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e025cb02f790cfab588",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "exp bootstrap ci size controlled",
+  "task_key": "worker_exp_bootstrap_ci_size_controlled_20260513T160804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bootstrap_ci_size_controlled_20260513T160804_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "601e0c939d76ee8f16eaff13bfb91ee1fc2c9fb76fe3ba19fe7e99a81d5c0545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报结果：\n\n## Bootstrap CI 结果（Size-Controlled, N=16 edges, 1000 bootstrap）\n\n**结论：negative — CSS=1.0 在控制电路大小后无统计显著优势。**\n\n### Zero Ablation\n\n| 比较 | Delta | 95% CI | p-value | 显著 |\n|------|-------|--------|---------|------|\n| CSS vs EAP-IG | +0.088 | [-0.066, +0.267] | 0.112 | No |\n| CSS vs EP | +0.039 | [-0.079, +0.147] | 0.249 | No |\n| CSS vs ACDC | 0.000 | [0, 0] | 1.000 | No |\n\n### Mean Ablation\n\n| 比较 | Delta | 95% CI | p-value | 显著 |\n|------|-------|--------|---------|------|\n| CSS vs EAP-IG | -0.005 | [-0.039, +0.023] | 0.359 | No |\n| CSS vs EP | -0.006 | [-0.032, +0.014] | 0.279 | No |\n| CSS vs ACDC | 0.000 | [0, 0] | 1.000 | No |\n\n关键发现：\n- CSS=1.0 的 16 条边与 ACDC top-16 完全相同（delta=0），说明 CSS=1.0 intersection 恰好是 ACDC 贡献的边集\n- Zero ablation 下 CSS 方向正确（正 delta），但 CI 跨零，不显著\n- Mean ablation 下 CSS 反而略逊于 EAP-IG/EP，也不显著"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bootstrap-ci-size-controlled.md"
+}

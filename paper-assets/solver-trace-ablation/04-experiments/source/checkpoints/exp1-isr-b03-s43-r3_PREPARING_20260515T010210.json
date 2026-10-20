@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp1-isr-b03-s43-r3",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:02:10.292Z",
+    "updated_at": "2026-05-15T01:02:10.293Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "β=0.3 ISR s43 retrain: checkpoint lost after D062 data integrity incident. Must eval with proofwriter_fol_100.jsonl.",
+      "plan_id": "EXP-1",
+      "reward_formula": "r = r_exec * (1 + 0.3 * ISR)",
+      "num_steps": 500,
+      "beta": 0.3,
+      "parent": "exp1-isr-b03-s43"
+    }
+  },
+  "timestamp": "2026-05-15T01:02:10.647919+00:00",
+  "trigger": "update_registry"
+}

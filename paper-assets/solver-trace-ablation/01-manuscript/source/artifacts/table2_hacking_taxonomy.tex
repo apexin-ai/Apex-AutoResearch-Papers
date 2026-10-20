@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Reward hacking taxonomy. Prevalence (\%) among proved samples for ISR $\beta{=}0.1$ vs.\ Random $\beta{=}0.1$ (seed~42). Categories are mutually exclusive. H7 is observed only under ISR reward.}
+\label{tab:hacking-taxonomy}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Mode & Name & ISR $\beta{=}0.1$ & Random $\beta{=}0.1$ & $\Delta$ (pp) \\
+\midrule
+H1 & Conclusion Embedding   & 51.9 & 70.9 & $-19.0$ \\
+H3 & Tautological Collapse  &  1.2 &  0.0 &  $+1.2$ \\
+H4 & Complexity w/o Utility  &  0.0 &  3.8 &  $-3.8$ \\
+H7 & Conclusion Duplication$^\dagger$ & 16.0 &  0.0 & $+16.0$ \\
+\midrule
+   & Genuine proofs         & 30.9 & 25.3 & $\mathbf{+5.6}$  \\
+   & \textbf{Total hacking} & \textbf{69.1} & \textbf{74.7} & $\mathbf{-5.6}$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+{\footnotesize
+$^\dagger$ H7: single premise $=$ conclusion (normalized). ISR-specific mode --- prevalence by seed: s42\,=\,16.0\% (13/81), s43\,=\,96.7\% (59/61), s44\,=\,86.5\% (77/89); 3-seed mean\,=\,66.4\%. Random $\beta{=}0.1$: 0/79 (0\%). P$\to$P is trivially provable; ISR inflated via sub-component ablation of the single necessary premise.
+}
+\end{table}

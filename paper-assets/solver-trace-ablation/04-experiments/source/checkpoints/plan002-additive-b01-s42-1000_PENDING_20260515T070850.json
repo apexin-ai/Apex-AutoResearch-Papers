@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan002-additive-b01-s42-1000",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:08:50.639Z",
+    "updated_at": "2026-05-15T07:08:50.639Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "ISR β=0.1 extended to 1000 steps: C2 时间维度。500步 ISR*=0.42/genuine=30.9%，1000步是否继续恶化（如 exec-only 的 ISR 0.132→0.003）？验证 Goodhart 效应是否随训练加深。",
+      "reward_formula": "r = r_exec * (1 + 0.1 * ISR)",
+      "num_steps": 1000,
+      "beta": 0.1,
+      "plan_id": "plan002",
+      "parent": "plan002-additive-b01-s42"
+    }
+  },
+  "timestamp": "2026-05-15T07:08:50.829898+00:00",
+  "trigger": "update_registry"
+}

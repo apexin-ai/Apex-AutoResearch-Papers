@@ -1,0 +1,74 @@
+{
+  "exp_id": "plan002-additive-b01-s43-r2",
+  "conclusion": "negative",
+  "timestamp": "2026-05-16T01:41:00Z",
+  "training": {
+    "steps": 500,
+    "seed": 43,
+    "beta": 0.1,
+    "reward_mode": "additive_bonus",
+    "training_hours": 0.92,
+    "final_prove_rate": 0.68775,
+    "final_mean_isr": 0.5039,
+    "exit_code": 0
+  },
+  "eval": {
+    "data_path": "data/proofwriter_fol_100.jsonl",
+    "n_problems": 100,
+    "n_proved": 61,
+    "prove_rate": 0.61,
+    "mean_isr": 0.5063,
+    "isr_std": 0.4518,
+    "median_isr": 0.5,
+    "proved_only_isr": 0.8301
+  },
+  "taxonomy": {
+    "standard": "D084 (genuine = proved - H7 - H1_exact - H8)",
+    "classifier": "classify_h7.py D086",
+    "h7a_count": 59,
+    "h7b_count": 2,
+    "h7_count": 61,
+    "h7_rate": 1.0,
+    "h1_count": 0,
+    "h1_rate": 0.0,
+    "h8_conjunction_collapse_count": 0,
+    "h8_conjunction_collapse_rate": 0.0,
+    "genuine_count": 0,
+    "genuine_rate": 0.0,
+    "single_premise_ratio": 1.0,
+    "isr_eq_1_count": 40,
+    "isr_eq_1_rate_of_proved": 0.656,
+    "content_independent_predicates": 5
+  },
+  "comparison_with_previous_runs": {
+    "plan002-additive-b01-s42": {
+      "genuine": 14,
+      "genuine_rate": 0.23,
+      "h7": 29,
+      "proved": 61,
+      "conclusion": "success"
+    },
+    "plan002-additive-b01-s43_original": {
+      "genuine": 2,
+      "genuine_rate": 0.0328,
+      "h7": 59,
+      "proved": 61,
+      "conclusion": "negative"
+    },
+    "plan002-additive-b01-s43-r2": {
+      "genuine": 0,
+      "genuine_rate": 0.0,
+      "h7": 61,
+      "proved": 61,
+      "conclusion": "negative"
+    },
+    "plan002-additive-b01-s44": {
+      "genuine": 2,
+      "genuine_rate": 0.0377,
+      "h7": 51,
+      "proved": 53,
+      "conclusion": "negative"
+    }
+  },
+  "analysis": "Seed 43 r2 retrain confirms the original negative result and is even worse: 0 genuine proofs (vs 2 in original). 100% of 61 proved samples are H7 tautologies (59 text-match + 2 obfuscated). 100% single-premise collapse. The ISR reward signal completely failed to prevent hacking for this seed. Cross-seed pattern: s42 is the sole success (23% genuine), s43 and s44 consistently collapse to near-total hacking regardless of retrain. The high variance across seeds (0% vs 23% genuine) is itself a key finding for the paper."
+}

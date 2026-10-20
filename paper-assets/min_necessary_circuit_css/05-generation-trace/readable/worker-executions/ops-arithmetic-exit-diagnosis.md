@@ -1,0 +1,2212 @@
+# ops arithmetic exit diagnosis
+
+**Transformer Model EAP-IG** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_ops_arithmetic-exit-diagnosis_20260513T035439.log`
+- **Structured JSON:** [`87c42f05749338e15a7a.json`](../../sessions/87/87c42f05749338e15a7a.json)
+
+## Before a recorded user message
+
+44 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "98f5924c-b26a-4042-aa2f-f90da98d1a6f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-structfuse-context/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778655000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2b853008-f4b6-4e34-9600-53ba93402ed1",
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the task, I need to check the experiment status on the server using ssh_read_only, then update the registry and delete the cron.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "a7509d53-a19d-4567-b0f4-c4dfa08ff7c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KgiEBj8k3Y8zaNnxasLW1g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11604,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11604
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UXmqQdUKDfDzXLvSEj1NUN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "d1c2c195-4469-4231-937e-9209b2608d2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KgiEBj8k3Y8zaNnxasLW1g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11604,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11604
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T03:54:53.233Z_
+
+<details><summary>↩ Tool result · `toolu_01UXmqQdUKDfDzXLvSEj1NUN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "bbb54524-53ed-4378-b5f1-be0e8291c71b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__kill_job"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the log tail and result files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "a1126250-38e7-41a2-8c59-c951592cb4c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amvf9vDSQ6cEkisoPKGDMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 23445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1104
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016eLZ8Qx95H1xxd4jczUgYq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -200 /tmp/arithmetic.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "69447b50-e07a-48e8-827a-234271bbcecd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amvf9vDSQ6cEkisoPKGDMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 23445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1104
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T03:54:58.942Z_
+
+<details><summary>↩ Tool result · `toolu_016eLZ8Qx95H1xxd4jczUgYq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRemoved: 32228, Left: 17, Current:'MLP 0->A1.7.Q'█████████▉| 32245/32491 [17:39<00:15, 15.59it/s]\\u001b[A\\n\\rRemoved: 32230, Left: 17, Current:'A0.2->A1.3.K'█████████▉| 32247/32491 [17:39<00:15, 15.60it/s] \\u001b[A\\n\\rRemoved: 32232, Left: 17, Current:'A0.3->A1.6.K'█████████▉| 32249/32491 [17:39<00:15, 15.58it/s]\\u001b[A\\n\\rRemoved: 32234, Left: 17, Current:'A0.4->A1.2.Q'█████████▉| 32251/32491 [17:39<00:15, 15.57it/s]\\u001b[A\\n\\rRemoved: 32236, Left: 17, Current:'A0.11->A1.5.V'█████████▉| 32253/32491 [17:40<00:15, 15.58it/s]\\u001b[A\\n\\rRemoved: 32238, Left: 17, Current:'A0.9->A1.7.Q'█████████▉| 32255/32491 [17:40<00:15, 15.58it/s] \\u001b[A\\n\\rRemoved: 32240, Left: 17, Current:'Resid Start->A1.2.K'█████████▉| 32257/32491 [17:40<00:15, 15.59it/s]\\u001b[A\\n\\rRemoved: 32242, Left: 17, Current:'A0.3->A1.7.V'█████████▉| 32259/32491 [17:40<00:14, 15.58it/s]       \\u001b[A\\n\\rRemoved: 32244, Left: 17, Current:'A0.4->A1.1.K'█████████▉| 32261/32491 [17:40<00:14, 15.58it/s]\\u001b[A\\n\\rRemoved: 32246, Left: 17, Current:'A0.6->A1.0.V'█████████▉| 32263/32491 [17:40<00:14, 15.59it/s]\\u001b[A\\n\\rRemoved: 32248, Left: 17, Current:'MLP 0->A1.10.K'█████████▉| 32265/32491 [17:40<00:14, 15.59it/s]\\u001b[A\\n\\rRemoved: 32250, Left: 17, Current:'A0.5->A1.4.Q'█████████▉| 32267/32491 [17:40<00:14, 15.59it/s]  \\u001b[A\\n\\rRemoved: 32252, Left: 17, Current:'MLP 0->A1.5.Q'█████████▉| 32269/32491 [17:41<00:14, 15.38it/s]\\u001b[A\\n\\rRemoved: 32254, Left: 17, Current:'A0.10->A1.0.K'█████████▉| 32271/32491 [17:41<00:17, 12.29it/s]\\u001b[A\\n\\rRemoved: 32256, Left: 17, Current:'Resid Start->A1.4.V'█████████▉| 32273/32491 [17:41<00:16, 13.09it/s]\\u001b[A\\n\\rRemoved: 32258, Left: 17, Current:'A0.10->A1.2.K'█████████▉| 32275/32491 [17:41<00:15, 13.74it/s]      \\u001b[A\\n\\rRemoved: 32260, Left: 17, Current:'A0.3->A1.0.K'█████████▉| 32277/32491 [17:41<00:15, 14.23it/s] \\u001b[A\\n\\rRemoved: 32262, Left: 17, Current:'A0.0->A1.0.V'█████████▉| 32279/32491 [17:41<00:14, 14.62it/s]\\u001b[A\\n\\rRemoved: 32264, Left: 17, Current:'A0.11->A1.3.Q'█████████▉| 32281/32491 [17:41<00:14, 14.19it/s]\\u001b[A\\n\\rRemoved: 32266, Left: 17, Current:'A0.4->A1.5.V'█████████▉| 32283/32491 [17:42<00:14, 14.55it/s] \\u001b[A\\n\\rRemoved: 32268, Left: 17, Current:'A0.0->A1.4.K'█████████▉| 32285/32491 [17:42<00:13, 14.83it/s]\\u001b[A\\n\\rRemoved: 32270, Left: 17, Current:'Resid Start->A1.9.Q'█████████▉| 32287/32491 [17:42<00:13, 15.04it/s]\\u001b[A\\n\\rRemoved: 32272, Left: 17, Current:'A0.9->A1.4.Q'█████████▉| 32289/32491 [17:42<00:13, 14.94it/s]       \\u001b[A\\n\\rRemoved: 32274, Left: 17, Current:'A0.5->A1.3.Q'█████████▉| 32291/32491 [17:42<00:15, 12.81it/s]\\u001b[A\\n\\rRemoved: 32276, Left: 17, Current:'A0.1->A1.6.Q'█████████▉| 32293/32491 [17:42<00:18, 10.97it/s]\\u001b[A\\n\\rRemoved: 32278, Left: 17, Current:'A0.8->A1.11.K'█████████▉| 32295/32491 [17:43<00:16, 12.03it/s]\\u001b[A\\n\\rRemoved: 32280, Left: 17, Current:'A0.4->A1.1.V'█████████▉| 32297/32491 [17:43<00:15, 12.80it/s] \\u001b[A\\n\\rRemoved: 32282, Left: 17, Current:'Resid Start->A1.9.K'█████████▉| 32299/32491 [17:43<00:14, 13.50it/s]\\u001b[A\\n\\rRemoved: 32284, Left: 17, Current:'A0.3->A1.4.K'█████████▉| 32301/32491 [17:43<00:14, 12.85it/s]       \\u001b[A\\n\\rRemoved: 32286, Left: 17, Current:'A0.1->A1.5.K'█████████▉| 32303/32491 [17:43<00:13, 13.52it/s]\\u001b[A\\n\\rRemoved: 32288, Left: 17, Current:'A0.9->A1.11.K'█████████▉| 32305/32491 [17:43<00:13, 14.06it/s]\\u001b[A\\n\\rRemoved: 32290, Left: 17, Current:'A0.6->A1.10.K'█████████▉| 32307/32491 [17:43<00:12, 14.45it/s]\\u001b[A\\n\\rRemoved: 32292, Left: 17, Current:'A0.9->A1.6.V'█████████▉| 32309/32491 [17:44<00:12, 14.46it/s] \\u001b[A\\n\\rRemoved: 32294, Left: 17, Current:'A0.8->A1.5.K'█████████▉| 32311/32491 [17:44<00:12, 14.55it/s]\\u001b[A\\n\\rRemoved: 32296, Left: 17, Current:'MLP 0->A1.4.V'█████████▉| 32313/32491 [17:44<00:12, 14.40it/s]\\u001b[A\\n\\rRemoved: 32298, Left: 17, Current:'A0.9->A1.7.K'█████████▉| 32315/32491 [17:44<00:11, 14.69it/s] \\u001b[A\\n\\rRemoved: 32300, Left: 17, Current:'A0.0->A1.9.K'█████████▉| 32317/32491 [17:44<00:11, 14.91it/s]\\u001b[A\\n\\rRemoved: 32302, Left: 17, Current:'A0.1->A1.1.Q'█████████▉| 32319/32491 [17:44<00:11, 15.11it/s]\\u001b[A\\n\\rRemoved: 32304, Left: 17, Current:'A0.5->A1.0.Q'█████████▉| 32321/32491 [17:44<00:11,\\n\\n... [截断: 输出过长，省略 7796 字符] ...\\n\\n█▉| 32472/32491 [17:56<00:01, 12.39it/s]\\u001b[A\\n\\rRemoved: 32456, Left: 18, Current:'Resid Start->A0.10.Q'█████████▉| 32474/32491 [17:56<00:01, 12.94it/s]\\u001b[A\\n\\rRemoved: 32458, Left: 18, Current:'Resid Start->A0.7.V'█████████▉| 32476/32491 [17:56<00:01, 13.38it/s] \\u001b[A\\n\\rRemoved: 32460, Left: 18, Current:'Resid Start->A0.4.Q'█████████▉| 32478/32491 [17:56<00:00, 13.70it/s]\\u001b[A\\n\\rRemoved: 32462, Left: 18, Current:'Resid Start->A0.3.V'█████████▉| 32480/32491 [17:56<00:00, 13.95it/s]\\u001b[A\\n\\rRemoved: 32464, Left: 18, Current:'Resid Start->A0.10.K'█████████▉| 32482/32491 [17:56<00:00, 14.11it/s]\\u001b[A\\n\\rRemoved: 32466, Left: 18, Current:'Resid Start->A0.5.K'█████████▉| 32484/32491 [17:56<00:00, 14.19it/s] \\u001b[A\\n\\rRemoved: 32468, Left: 18, Current:'Resid Start->A0.11.K'█████████▉| 32486/32491 [17:57<00:00, 14.26it/s]\\u001b[A\\n\\rRemoved: 32470, Left: 18, Current:'Resid Start->A0.1.V'█████████▉| 32488/32491 [17:57<00:00, 14.30it/s] \\u001b[A\\n\\rRemoved: 32472, Left: 18, Current:'Resid Start->A0.6.Q'█████████▉| 32490/32491 [17:57<00:00, 14.32it/s]\\u001b[A\\n\\r                                                                                                       \\u001b[A\\rACDC τ=0.0900000██████████| 5/5 [1:29:48<00:00, 1079.20s/it]\\rACDC τ=0.0900000██████████| 5/5 [1:29:48<00:00, 1077.65s/it]\\n  acdc: 32491 edges scored\\n  Cached to /root/structfuse-context/cache_acdc_arith.json\\nauto_circuit model freed from GPU\\n\\n=== Phase C: Analysis ===\\neap_ig: 100 edges selected (binarized)\\nedge_pruning: 100 edges selected (binarized)\\nacdc: 17 edges selected (binarized)\\n\\n--- CIRCUS (EAP-IG) ---\\nCIRCUS tiers: {'core': 915, 'contingent': 6284, 'noise': 25292}\\n\\n--- CSS (K=3) ---\\nCSS distribution: {'1/3': 36, '2/3': 65, '3/3': 17}\\nCSS circuit (>= 0.67): 82 edges\\n\\n--- Cross-Tabulation ---\\n\\n==================================================\\nCIRCUS-core x CSS Cross-Tabulation\\n==================================================\\n                  | CSS >= thr  | CSS < thr   |\\n  CIRCUS-core     |    65 edges |   850 edges |\\n  CIRCUS-other    |    17 edges | 31559 edges |\\n==================================================\\n  Total edges: 32491  |  CIRCUS-core: 915\\n  Core off-diagonal %: 92.9% (method_specific / core_total)\\n==================================================\\n\\nOff-diagonal %: 92.9%  95% CI: [91.0%, 94.5%]\\n\\n--- Pairwise Jaccard Decomposition ---\\n\\n==================================================\\nPairwise Jaccard Decomposition\\n==================================================\\n  acdc x eap_ig: J=0.1700  |A∩B|=17  |A∪B|=100\\n  acdc x edge_pruning: J=0.1700  |A∩B|=17  |A∪B|=100\\n  eap_ig x edge_pruning: J=0.6949  |A∩B|=82  |A∪B|=118\\n  3-way:          J=0.1441  |A∩B∩C|=17  |A∪B∪C|=118\\n==================================================\\n\\n\\n=== Phase D: Evaluation ===\\nLoading GPT-2 from local: /root/autodl-tmp/gpt2-small\\nLoaded pretrained model gpt2-small into HookedTransformer\\nEvaluating: method_eap_ig (100 edges)\\nEvaluating: method_edge_pruning (100 edges)\\nEvaluating: method_acdc (17 edges)\\nEvaluating: css_0.33 (118 edges)\\nEvaluating: css_0.67 (82 edges)\\nEvaluating: css_1.00 (17 edges)\\nEvaluating: circus_core (915 edges)\\nEvaluating: stable_core (65 edges)\\n\\nCircuit                         Edges      CPR      CMD\\n------------------------------------------------------\\ncircus_core                       915   0.9273   0.3024\\nstable_core                        65  -0.0971   4.5663\\nmethod_eap_ig                     100  -0.1420   4.7533\\nmethod_edge_pruning               100  -0.1772   4.8997\\nmethod_acdc                        17  -0.1973   4.9832\\ncss_1.00                           17  -0.1973   4.9832\\ncss_0.67                           82  -0.2010   4.9989\\ncss_0.33                          118  -0.2077   5.0267\\n\\n\\n==================================================\\nARITHMETIC GATE ASSESSMENT\\n==================================================\\nOff-diagonal %: 92.9%  95% CI: [91.0%, 94.5%]\\nVerdict: PASS_MAIN\\nAction: Off-diagonal 92.9% >= 10% -> Main track\\n\\nResults saved to /root/structfuse-context/arithmetic_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "a24cac9f-afbb-4df1-9039-09f9ff7c356a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rRemoved: 32228, Left: 17, Current:'MLP 0->A1.7.Q'█████████▉| 32245/32491 [17:39<00:15, 15.59it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32230, Left: 17, Current:'A0.2->A1.3.K'█████████▉| 32247/32491 [17:39<00:15, 15.60it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32232, Left: 17, Current:'A0.3->A1.6.K'█████████▉| 32249/32491 [17:39<00:15, 15.58it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32234, Left: 17, Current:'A0.4->A1.2.Q'█████████▉| 32251/32491 [17:39<00:15, 15.57it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32236, Left: 17, Current:'A0.11->A1.5.V'█████████▉| 32253/32491 [17:40<00:15, 15.58it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32238, Left: 17, Current:'A0.9->A1.7.Q'█████████▉| 32255/32491 [17:40<00:15, 15.58it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32240, Left: 17, Current:'Resid Start->A1.2.K'█████████▉| 32257/32491 [17:40<00:15, 15.59it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32242, Left: 17, Current:'A0.3->A1.7.V'█████████▉| 32259/32491 [17:40<00:14, 15.58it/s]       \\\\u001b[A\\\\n\\\\rRemoved: 32244, Left: 17, Current:'A0.4->A1.1.K'█████████▉| 32261/32491 [17:40<00:14, 15.58it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32246, Left: 17, Current:'A0.6->A1.0.V'█████████▉| 32263/32491 [17:40<00:14, 15.59it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32248, Left: 17, Current:'MLP 0->A1.10.K'█████████▉| 32265/32491 [17:40<00:14, 15.59it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32250, Left: 17, Current:'A0.5->A1.4.Q'█████████▉| 32267/32491 [17:40<00:14, 15.59it/s]  \\\\u001b[A\\\\n\\\\rRemoved: 32252, Left: 17, Current:'MLP 0->A1.5.Q'█████████▉| 32269/32491 [17:41<00:14, 15.38it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32254, Left: 17, Current:'A0.10->A1.0.K'█████████▉| 32271/32491 [17:41<00:17, 12.29it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32256, Left: 17, Current:'Resid Start->A1.4.V'█████████▉| 32273/32491 [17:41<00:16, 13.09it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32258, Left: 17, Current:'A0.10->A1.2.K'█████████▉| 32275/32491 [17:41<00:15, 13.74it/s]      \\\\u001b[A\\\\n\\\\rRemoved: 32260, Left: 17, Current:'A0.3->A1.0.K'█████████▉| 32277/32491 [17:41<00:15, 14.23it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32262, Left: 17, Current:'A0.0->A1.0.V'█████████▉| 32279/32491 [17:41<00:14, 14.62it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32264, Left: 17, Current:'A0.11->A1.3.Q'█████████▉| 32281/32491 [17:41<00:14, 14.19it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32266, Left: 17, Current:'A0.4->A1.5.V'█████████▉| 32283/32491 [17:42<00:14, 14.55it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32268, Left: 17, Current:'A0.0->A1.4.K'█████████▉| 32285/32491 [17:42<00:13, 14.83it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32270, Left: 17, Current:'Resid Start->A1.9.Q'█████████▉| 32287/32491 [17:42<00:13, 15.04it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32272, Left: 17, Current:'A0.9->A1.4.Q'█████████▉| 32289/32491 [17:42<00:13, 14.94it/s]       \\\\u001b[A\\\\n\\\\rRemoved: 32274, Left: 17, Current:'A0.5->A1.3.Q'█████████▉| 32291/32491 [17:42<00:15, 12.81it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32276, Left: 17, Current:'A0.1->A1.6.Q'█████████▉| 32293/32491 [17:42<00:18, 10.97it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32278, Left: 17, Current:'A0.8->A1.11.K'█████████▉| 32295/32491 [17:43<00:16, 12.03it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32280, Left: 17, Current:'A0.4->A1.1.V'█████████▉| 32297/32491 [17:43<00:15, 12.80it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32282, Left: 17, Current:'Resid Start->A1.9.K'█████████▉| 32299/32491 [17:43<00:14, 13.50it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32284, Left: 17, Current:'A0.3->A1.4.K'█████████▉| 32301/32491 [17:43<00:14, 12.85it/s]       \\\\u001b[A\\\\n\\\\rRemoved: 32286, Left: 17, Current:'A0.1->A1.5.K'█████████▉| 32303/32491 [17:43<00:13, 13.52it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32288, Left: 17, Current:'A0.9->A1.11.K'█████████▉| 32305/32491 [17:43<00:13, 14.06it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32290, Left: 17, Current:'A0.6->A1.10.K'█████████▉| 32307/32491 [17:43<00:12, 14.45it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32292, Left: 17, Current:'A0.9->A1.6.V'█████████▉| 32309/32491 [17:44<00:12, 14.46it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32294, Left: 17, Current:'A0.8->A1.5.K'█████████▉| 32311/32491 [17:44<00:12, 14.55it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32296, Left: 17, Current:'MLP 0->A1.4.V'█████████▉| 32313/32491 [17:44<00:12, 14.40it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32298, Left: 17, Current:'A0.9->A1.7.K'█████████▉| 32315/32491 [17:44<00:11, 14.69it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32300, Left: 17, Current:'A0.0->A1.9.K'█████████▉| 32317/32491 [17:44<00:11, 14.91it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32302, Left: 17, Current:'A0.1->A1.1.Q'█████████▉| 32319/32491 [17:44<00:11, 15.11it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32304, Left: 17, Current:'A0.5->A1.0.Q'█████████▉| 32321/32491 [17:44<00:11,\\\\n\\\\n... [截断: 输出过长，省略 7796 字符] ...\\\\n\\\\n█▉| 32472/32491 [17:56<00:01, 12.39it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32456, Left: 18, Current:'Resid Start->A0.10.Q'█████████▉| 32474/32491 [17:56<00:01, 12.94it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32458, Left: 18, Current:'Resid Start->A0.7.V'█████████▉| 32476/32491 [17:56<00:01, 13.38it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32460, Left: 18, Current:'Resid Start->A0.4.Q'█████████▉| 32478/32491 [17:56<00:00, 13.70it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32462, Left: 18, Current:'Resid Start->A0.3.V'█████████▉| 32480/32491 [17:56<00:00, 13.95it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32464, Left: 18, Current:'Resid Start->A0.10.K'█████████▉| 32482/32491 [17:56<00:00, 14.11it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32466, Left: 18, Current:'Resid Start->A0.5.K'█████████▉| 32484/32491 [17:56<00:00, 14.19it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32468, Left: 18, Current:'Resid Start->A0.11.K'█████████▉| 32486/32491 [17:57<00:00, 14.26it/s]\\\\u001b[A\\\\n\\\\rRemoved: 32470, Left: 18, Current:'Resid Start->A0.1.V'█████████▉| 32488/32491 [17:57<00:00, 14.30it/s] \\\\u001b[A\\\\n\\\\rRemoved: 32472, Left: 18, Current:'Resid Start->A0.6.Q'█████████▉| 32490/32491 [17:57<00:00, 14.32it/s]\\\\u001b[A\\\\n\\\\r                                                                                                       \\\\u001b[A\\\\rACDC τ=0.0900000██████████| 5/5 [1:29:48<00:00, 1079.20s/it]\\\\rACDC τ=0.0900000██████████| 5/5 [1:29:48<00:00, 1077.65s/it]\\\\n  acdc: 32491 edges scored\\\\n  Cached to /root/structfuse-context/cache_acdc_arith.json\\\\nauto_circuit model freed from GPU\\\\n\\\\n=== Phase C: Analysis ===\\\\neap_ig: 100 edges selected (binarized)\\\\nedge_pruning: 100 edges selected (binarized)\\\\nacdc: 17 edges selected (binarized)\\\\n\\\\n--- CIRCUS (EAP-IG) ---\\\\nCIRCUS tiers: {'core': 915, 'contingent': 6284, 'noise': 25292}\\\\n\\\\n--- CSS (K=3) ---\\\\nCSS distribution: {'1/3': 36, '2/3': 65, '3/3': 17}\\\\nCSS circuit (>= 0.67): 82 edges\\\\n\\\\n--- Cross-Tabulation ---\\\\n\\\\n==================================================\\\\nCIRCUS-core x CSS Cross-Tabulation\\\\n==================================================\\\\n                  | CSS >= thr  | CSS < thr   |\\\\n  CIRCUS-core     |    65 edges |   850 edges |\\\\n  CIRCUS-other    |    17 edges | 31559 edges |\\\\n==================================================\\\\n  Total edges: 32491  |  CIRCUS-core: 915\\\\n  Core off-diagonal %: 92.9% (method_specific / core_total)\\\\n==================================================\\\\n\\\\nOff-diagonal %: 92.9%  95% CI: [91.0%, 94.5%]\\\\n\\\\n--- Pairwise Jaccard Decomposition ---\\\\n\\\\n==================================================\\\\nPairwise Jaccard Decomposition\\\\n==================================================\\\\n  acdc x eap_ig: J=0.1700  |A∩B|=17  |A∪B|=100\\\\n  acdc x edge_pruning: J=0.1700  |A∩B|=17  |A∪B|=100\\\\n  eap_ig x edge_pruning: J=0.6949  |A∩B|=82  |A∪B|=118\\\\n  3-way:          J=0.1441  |A∩B∩C|=17  |A∪B∪C|=118\\\\n==================================================\\\\n\\\\n\\\\n=== Phase D: Evaluation ===\\\\nLoading GPT-2 from local: /root/autodl-tmp/gpt2-small\\\\nLoaded pretrained model gpt2-small into HookedTransformer\\\\nEvaluating: method_eap_ig (100 edges)\\\\nEvaluating: method_edge_pruning (100 edges)\\\\nEvaluating: method_acdc (17 edges)\\\\nEvaluating: css_0.33 (118 edges)\\\\nEvaluating: css_0.67 (82 edges)\\\\nEvaluating: css_1.00 (17 edges)\\\\nEvaluating: circus_core (915 edges)\\\\nEvaluating: stable_core (65 edges)\\\\n\\\\nCircuit                         Edges      CPR      CMD\\\\n------------------------------------------------------\\\\ncircus_core                       915   0.9273   0.3024\\\\nstable_core                        65  -0.0971   4.5663\\\\nmethod_eap_ig                     100  -0.1420   4.7533\\\\nmethod_edge_pruning               100  -0.1772   4.8997\\\\nmethod_acdc                        17  -0.1973   4.9832\\\\ncss_1.00                           17  -0.1973   4.9832\\\\ncss_0.67                           82  -0.2010   4.9989\\\\ncss_0.33                          118  -0.2077   5.0267\\\\n\\\\n\\\\n==================================================\\\\nARITHMETIC GATE ASSESSMENT\\\\n==================================================\\\\nOff-diagonal %: 92.9%  95% CI: [91.0%, 94.5%]\\\\nVerdict: PASS_MAIN\\\\nAction: Off-diagonal 92.9% >= 10% -> Main track\\\\n\\\\nResults saved to /root/structfuse-context/arithmetic_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\rRemoved: 32228, Left: 17, Current:'MLP 0->A1.7.Q'█████████▉| 32245/32491 [17:39<00:15, 15.59it/s]\\u001b[A\\n\\rRemoved: 32230, Left: 17, Current:'A0.2->A1.3.K'█████████▉| 32247/32491 [17:39<00:15, 15.60it/s] \\u001b[A\\n\\rRemoved: 32232, Left: 17, Current:'A0.3->A1.6.K'█████████▉| 32249/32491 [17:39<00:15, 15.58it/s]\\u001b[A\\n\\rRemoved: 32234, Left: 17, Current:'A0.4->A1.2.Q'█████████▉| 32251/32491 [17:39<00:15, 15.57it/s]\\u001b[A\\n\\rRemoved: 32236, Left: 17, Current:'A0.11->A1.5.V'█████████▉| 32253/32491 [17:40<00:15, 15.58it/s]\\u001b[A\\n\\rRemoved: 32238, Left: 17, Current:'A0.9->A1.7.Q'█████████▉| 32255/32491 [17:40<00:15, 15.58it/s] \\u001b[A\\n\\rRemoved: 32240, Left: 17, Current:'Resid Start->A1.2.K'█████████▉| 32257/32491 [17:40<00:15, 15.59it/s]\\u001b[A\\n\\rRemoved: 32242, Left: 17, Current:'A0.3->A1.7.V'█████████▉| 32259/32491 [17:40<00:14, 15.58it/s]       \\u001b[A\\n\\rRemoved: 32244, Left: 17, Current:'A0.4->A1.1.K'█████████▉| 32261/32491 [17:40<00:14, 15.58it/s]\\u001b[A\\n\\rRemoved: 32246, Left: 17, Current:'A0.6->A1.0.V'█████████▉| 32263/32491 [17:40<00:14, 15.59it/s]\\u001b[A\\n\\rRemoved: 32248, Left: 17, Current:'MLP 0->A1.10.K'█████████▉| 32265/32491 [17:40<00:14, 15.59it/s]\\u001b[A\\n\\rRemoved: 32250, Left: 17, Current:'A0.5->A1.4.Q'█████████▉| 32267/32491 [17:40<00:14, 15.59it/s]  \\u001b[A\\n\\rRemoved: 32252, Left: 17, Current:'MLP 0->A1.5.Q'█████████▉| 32269/32491 [17:41<00:14, 15.38it/s]\\u001b[A\\n\\rRemoved: 32254, Left: 17, Current:'A0.10->A1.0.K'█████████▉| 32271/32491 [17:41<00:17, 12.29it/s]\\u001b[A\\n\\rRemoved: 32256, Left: 17, Current:'Resid Start->A1.4.V'█████████▉| 32273/32491 [17:41<00:16, 13.09it/s]\\u001b[A\\n\\rRemoved: 32258, Left: 17, Current:'A0.10->A1.2.K'█████████▉| 32275/32491 [17:41<00:15, 13.74it/s]      \\u001b[A\\n\\rRemoved: 32260, Left: 17, Current:'A0.3->A1.0.K'█████████▉| 32277/32491 [17:41<00:15, 14.23it/s] \\u001b[A\\n\\rRemoved: 32262, Left: 17, Current:'A0.0->A1.0.V'█████████▉| 32279/32491 [17:41<00:14, 14.62it/s]\\u001b[A\\n\\rRemoved: 32264, Left: 17, Current:'A0.11->A1.3.Q'█████████▉| 32281/32491 [17:41<00:14, 14.19it/s]\\u001b[A\\n\\rRemoved: 32266, Left: 17, Current:'A0.4->A1.5.V'█████████▉| 32283/32491 [17:42<00:14, 14.55it/s] \\u001b[A\\n\\rRemoved: 32268, Left: 17, Current:'A0.0->A1.4.K'█████████▉| 32285/32491 [17:42<00:13, 14.83it/s]\\u001b[A\\n\\rRemoved: 32270, Left: 17, Current:'Resid Start->A1.9.Q'█████████▉| 32287/32491 [17:42<00:13, 15.04it/s]\\u001b[A\\n\\rRemoved: 32272, Left: 17, Current:'A0.9->A1.4.Q'█████████▉| 32289/32491 [17:42<00:13, 14.94it/s]       \\u001b[A\\n\\rRemoved: 32274, Left: 17, Current:'A0.5->A1.3.Q'█████████▉| 32291/32491 [17:42<00:15, 12.81it/s]\\u001b[A\\n\\rRemoved: 32276, Left: 17, Current:'A0.1->A1.6.Q'█████████▉| 32293/32491 [17:42<00:18, 10.97it/s]\\u001b[A\\n\\rRemoved: 32278, Left: 17, Current:'A0.8->A1.11.K'█████████▉| 32295/32491 [17:43<00:16, 12.03it/s]\\u001b[A\\n\\rRemoved: 32280, Left: 17, Current:'A0.4->A1.1.V'█████████▉| 32297/32491 [17:43<00:15, 12.80it/s] \\u001b[A\\n\\rRemoved: 32282, Left: 17, Current:'Resid Start->A1.9.K'█████████▉| 32299/32491 [17:43<00:14, 13.50it/s]\\u001b[A\\n\\rRemoved: 32284, Left: 17, Current:'A0.3->A1.4.K'█████████▉| 32301/32491 [17:43<00:14, 12.85it/s]       \\u001b[A\\n\\rRemoved: 32286, Left: 17, Current:'A0.1->A1.5.K'█████████▉| 32303/32491 [17:43<00:13, 13.52it/s]\\u001b[A\\n\\rRemoved: 32288, Left: 17, Current:'A0.9->A1.11.K'█████████▉| 32305/32491 [17:43<00:13, 14.06it/s]\\u001b[A\\n\\rRemoved: 32290, Left: 17, Current:'A0.6->A1.10.K'█████████▉| 32307/32491 [17:43<00:12, 14.45it/s]\\u001b[A\\n\\rRemoved: 32292, Left: 17, Current:'A0.9->A1.6.V'█████████▉| 32309/32491 [17:44<00:12, 14.46it/s] \\u001b[A\\n\\rRemoved: 32294, Left: 17, Current:'A0.8->A1.5.K'█████████▉| 32311/32491 [17:44<00:12, 14.55it/s]\\u001b[A\\n\\rRemoved: 32296, Left: 17, Current:'MLP 0->A1.4.V'█████████▉| 32313/32491 [17:44<00:12, 14.40it/s]\\u001b[A\\n\\rRemoved: 32298, Left: 17, Current:'A0.9->A1.7.K'█████████▉| 32315/32491 [17:44<00:11, 14.69it/s] \\u001b[A\\n\\rRemoved: 32300, Left: 17, Current:'A0.0->A1.9.K'█████████▉| 32317/32491 [17:44<00:11, 14.91it/s]\\u001b[A\\n\\rRemoved: 32302, Left: 17, Current:'A0.1->A1.1.Q'█████████▉| 32319/32491 [17:44<00:11, 15.11it/s]\\u001b[A\\n\\rRemoved: 32304, Left: 17, Current:'A0.5->A1.0.Q'█████████▉| 32321/32491 [17:44<00:11,\\n\\n... [截断: 输出过长，省略 7796 字符] ...\\n\\n█▉| 32472/32491 [17:56<00:01, 12.39it/s]\\u001b[A\\n\\rRemoved: 32456, Left: 18, Current:'Resid Start->A0.10.Q'█████████▉| 32474/32491 [17:56<00:01, 12.94it/s]\\u001b[A\\n\\rRemoved: 32458, Left: 18, Current:'Resid Start->A0.7.V'█████████▉| 32476/32491 [17:56<00:01, 13.38it/s] \\u001b[A\\n\\rRemoved: 32460, Left: 18, Current:'Resid Start->A0.4.Q'█████████▉| 32478/32491 [17:56<00:00, 13.70it/s]\\u001b[A\\n\\rRemoved: 32462, Left: 18, Current:'Resid Start->A0.3.V'█████████▉| 32480/32491 [17:56<00:00, 13.95it/s]\\u001b[A\\n\\rRemoved: 32464, Left: 18, Current:'Resid Start->A0.10.K'█████████▉| 32482/32491 [17:56<00:00, 14.11it/s]\\u001b[A\\n\\rRemoved: 32466, Left: 18, Current:'Resid Start->A0.5.K'█████████▉| 32484/32491 [17:56<00:00, 14.19it/s] \\u001b[A\\n\\rRemoved: 32468, Left: 18, Current:'Resid Start->A0.11.K'█████████▉| 32486/32491 [17:57<00:00, 14.26it/s]\\u001b[A\\n\\rRemoved: 32470, Left: 18, Current:'Resid Start->A0.1.V'█████████▉| 32488/32491 [17:57<00:00, 14.30it/s] \\u001b[A\\n\\rRemoved: 32472, Left: 18, Current:'Resid Start->A0.6.Q'█████████▉| 32490/32491 [17:57<00:00, 14.32it/s]\\u001b[A\\n\\r                                                                                                       \\u001b[A\\rACDC τ=0.0900000██████████| 5/5 [1:29:48<00:00, 1079.20s/it]\\rACDC τ=0.0900000██████████| 5/5 [1:29:48<00:00, 1077.65s/it]\\n  acdc: 32491 edges scored\\n  Cached to /root/structfuse-context/cache_acdc_arith.json\\nauto_circuit model freed from GPU\\n\\n=== Phase C: Analysis ===\\neap_ig: 100 edges selected (binarized)\\nedge_pruning: 100 edges selected (binarized)\\nacdc: 17 edges selected (binarized)\\n\\n--- CIRCUS (EAP-IG) ---\\nCIRCUS tiers: {'core': 915, 'contingent': 6284, 'noise': 25292}\\n\\n--- CSS (K=3) ---\\nCSS distribution: {'1/3': 36, '2/3': 65, '3/3': 17}\\nCSS circuit (>= 0.67): 82 edges\\n\\n--- Cross-Tabulation ---\\n\\n==================================================\\nCIRCUS-core x CSS Cross-Tabulation\\n==================================================\\n                  | CSS >= thr  | CSS < thr   |\\n  CIRCUS-core     |    65 edges |   850 edges |\\n  CIRCUS-other    |    17 edges | 31559 edges |\\n==================================================\\n  Total edges: 32491  |  CIRCUS-core: 915\\n  Core off-diagonal %: 92.9% (method_specific / core_total)\\n==================================================\\n\\nOff-diagonal %: 92.9%  95% CI: [91.0%, 94.5%]\\n\\n--- Pairwise Jaccard Decomposition ---\\n\\n==================================================\\nPairwise Jaccard Decomposition\\n==================================================\\n  acdc x eap_ig: J=0.1700  |A∩B|=17  |A∪B|=100\\n  acdc x edge_pruning: J=0.1700  |A∩B|=17  |A∪B|=100\\n  eap_ig x edge_pruning: J=0.6949  |A∩B|=82  |A∪B|=118\\n  3-way:          J=0.1441  |A∩B∩C|=17  |A∪B∪C|=118\\n==================================================\\n\\n\\n=== Phase D: Evaluation ===\\nLoading GPT-2 from local: /root/autodl-tmp/gpt2-small\\nLoaded pretrained model gpt2-small into HookedTransformer\\nEvaluating: method_eap_ig (100 edges)\\nEvaluating: method_edge_pruning (100 edges)\\nEvaluating: method_acdc (17 edges)\\nEvaluating: css_0.33 (118 edges)\\nEvaluating: css_0.67 (82 edges)\\nEvaluating: css_1.00 (17 edges)\\nEvaluating: circus_core (915 edges)\\nEvaluating: stable_core (65 edges)\\n\\nCircuit                         Edges      CPR      CMD\\n------------------------------------------------------\\ncircus_core                       915   0.9273   0.3024\\nstable_core                        65  -0.0971   4.5663\\nmethod_eap_ig                     100  -0.1420   4.7533\\nmethod_edge_pruning               100  -0.1772   4.8997\\nmethod_acdc                        17  -0.1973   4.9832\\ncss_1.00                           17  -0.1973   4.9832\\ncss_0.67                           82  -0.2010   4.9989\\ncss_0.33                          118  -0.2077   5.0267\\n\\n\\n==================================================\\nARITHMETIC GATE ASSESSMENT\\n==================================================\\nOff-diagonal %: 92.9%  95% CI: [91.0%, 94.5%]\\nVerdict: PASS_MAIN\\nAction: Off-diagonal 92.9% >= 10% -> Main track\\n\\nResults saved to /root/structfuse-context/arithmetic_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0169qjWSsUJTVzoWYJeGWaLr`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse-context/results_arithmetic* /root/structfuse-context/cache_*arithmetic* /root/structfuse-context/*arithmetic*.json /root/structfuse-context/*arithmetic*.pkl 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "d992984c-121a-4391-8a7d-d5c714e6e262",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amvf9vDSQ6cEkisoPKGDMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 23445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1104
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T03:54:59.979Z_
+
+<details><summary>↩ Tool result · `toolu_0169qjWSsUJTVzoWYJeGWaLr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "882d788d-61d1-444d-bcd4-63df0e1689f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QCicgodByT28DMrzcUxGqu`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux list-sessions 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "451f2646-643b-4c8e-bbc4-f01a0465b62e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amvf9vDSQ6cEkisoPKGDMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 23445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1104
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T03:55:00.394Z_
+
+<details><summary>↩ Tool result · `toolu_01QCicgodByT28DMrzcUxGqu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "b50dbbac-81b6-4afd-8399-96529990987e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log shows the experiment completed all phases (A through D) successfully. Let me check for result files and tmux sessions without shell metacharacters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "0e358bdf-0fe8-4bad-881b-7a6e1ddd974a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VgN1ED6zncB7R6f9FkdUU5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5116,
+      "cache_read_input_tokens": 24549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+日志显示实验已完成所有 phase。让我检查结果文件和读取完整结果 JSON。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "1548a1ec-5abb-41f9-bfa0-4f0822c6d332",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VgN1ED6zncB7R6f9FkdUU5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5116,
+      "cache_read_input_tokens": 24549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Abfeigvc7ck9eYLmafokCB`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse-context/arithmetic_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "8475cf0b-18c2-4174-be1f-21b3041a7403",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VgN1ED6zncB7R6f9FkdUU5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5116,
+      "cache_read_input_tokens": 24549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T03:55:06.344Z_
+
+<details><summary>↩ Tool result · `toolu_01Abfeigvc7ck9eYLmafokCB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2170 May 13 11:35 /root/structfuse-context/arithmetic_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "bc921f13-4c96-4c0b-b151-40ac23d7e960",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2170 May 13 11:35 /root/structfuse-context/arithmetic_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2170 May 13 11:35 /root/structfuse-context/arithmetic_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A8EShjQGGYZx7nRU6sLXrg`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse-context/cache_acdc_arith.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "91b091d0-1824-46ba-91e3-3e79e7e8f4b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VgN1ED6zncB7R6f9FkdUU5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5116,
+      "cache_read_input_tokens": 24549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PqAi2Ee4SowPtHExWt6UvA`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse-context/arithmetic_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "274f4979-3b59-4e16-8808-08c186318ad1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VgN1ED6zncB7R6f9FkdUU5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5116,
+      "cache_read_input_tokens": 24549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T03:55:07.574Z_
+
+<details><summary>↩ Tool result · `toolu_01A8EShjQGGYZx7nRU6sLXrg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1307702 May 13 11:35 /root/structfuse-context/cache_acdc_arith.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "e9507d5a-8059-4119-9369-9f42fc112ca2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1307702 May 13 11:35 /root/structfuse-context/cache_acdc_arith.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1307702 May 13 11:35 /root/structfuse-context/cache_acdc_arith.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T03:55:08.052Z_
+
+<details><summary>↩ Tool result · `toolu_01PqAi2Ee4SowPtHExWt6UvA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"gpt2-small\\\",\\n    \\\"task\\\": \\\"greaterthan\\\",\\n    \\\"K\\\": 3,\\n    \\\"methods\\\": [\\n      \\\"eap_ig\\\",\\n      \\\"edge_pruning\\\",\\n      \\\"acdc\\\"\\n    ]\\n  },\\n  \\\"binarization\\\": {\\n    \\\"acdc\\\": \\\"isinf\\\",\\n    \\\"eap_ig\\\": \\\"top-100\\\",\\n    \\\"edge_pruning\\\": \\\"top-100\\\"\\n  },\\n  \\\"method_edge_counts\\\": {\\n    \\\"eap_ig\\\": 100,\\n    \\\"edge_pruning\\\": 100,\\n    \\\"acdc\\\": 17\\n  },\\n  \\\"cross_table\\\": {\\n    \\\"stable_core\\\": 65,\\n    \\\"method_specific\\\": 850,\\n    \\\"cross_unstable\\\": 17,\\n    \\\"noise\\\": 31559,\\n    \\\"total\\\": 32491,\\n    \\\"core_total\\\": 915,\\n    \\\"core_off_diagonal_pct\\\": 0.929\\n  },\\n  \\\"core_off_diagonal_pct\\\": 0.9289617486338798,\\n  \\\"binomial_ci_95\\\": {\\n    \\\"low\\\": 0.9103,\\n    \\\"high\\\": 0.9447\\n  },\\n  \\\"css_distribution\\\": {\\n    \\\"1/3\\\": 36,\\n    \\\"2/3\\\": 65,\\n    \\\"3/3\\\": 17\\n  },\\n  \\\"circus_tier_counts\\\": {\\n    \\\"core\\\": 915,\\n    \\\"contingent\\\": 6284,\\n    \\\"noise\\\": 25292\\n  },\\n  \\\"evaluation\\\": [\\n    {\\n      \\\"name\\\": \\\"method_eap_ig\\\",\\n      \\\"num_edges\\\": 100,\\n      \\\"cpr\\\": -0.142,\\n      \\\"cmd\\\": 4.7533\\n    },\\n    {\\n      \\\"name\\\": \\\"method_edge_pruning\\\",\\n      \\\"num_edges\\\": 100,\\n      \\\"cpr\\\": -0.1772,\\n      \\\"cmd\\\": 4.8997\\n    },\\n    {\\n      \\\"name\\\": \\\"method_acdc\\\",\\n      \\\"num_edges\\\": 17,\\n      \\\"cpr\\\": -0.1973,\\n      \\\"cmd\\\": 4.9832\\n    },\\n    {\\n      \\\"name\\\": \\\"css_0.33\\\",\\n      \\\"num_edges\\\": 118,\\n      \\\"cpr\\\": -0.2077,\\n      \\\"cmd\\\": 5.0267\\n    },\\n    {\\n      \\\"name\\\": \\\"css_0.67\\\",\\n      \\\"num_edges\\\": 82,\\n      \\\"cpr\\\": -0.201,\\n      \\\"cmd\\\": 4.9989\\n    },\\n    {\\n      \\\"name\\\": \\\"css_1.00\\\",\\n      \\\"num_edges\\\": 17,\\n      \\\"cpr\\\": -0.1973,\\n      \\\"cmd\\\": 4.9832\\n    },\\n    {\\n      \\\"name\\\": \\\"circus_core\\\",\\n      \\\"num_edges\\\": 915,\\n      \\\"cpr\\\": 0.9273,\\n      \\\"cmd\\\": 0.3024\\n    },\\n    {\\n      \\\"name\\\": \\\"stable_core\\\",\\n      \\\"num_edges\\\": 65,\\n      \\\"cpr\\\": -0.0971,\\n      \\\"cmd\\\": 4.5663\\n    }\\n  ],\\n  \\\"gate_verdict\\\": \\\"PASS_MAIN\\\",\\n  \\\"pairwise_jaccard\\\": {\\n    \\\"acdc_x_eap_ig\\\": {\\n      \\\"jaccard\\\": 0.17,\\n      \\\"intersection\\\": 17,\\n      \\\"union\\\": 100\\n    },\\n    \\\"acdc_x_edge_pruning\\\": {\\n      \\\"jaccard\\\": 0.17,\\n      \\\"intersection\\\": 17,\\n      \\\"union\\\": 100\\n    },\\n    \\\"eap_ig_x_edge_pruning\\\": {\\n      \\\"jaccard\\\": 0.6949,\\n      \\\"intersection\\\": 82,\\n      \\\"union\\\": 118\\n    }\\n  },\\n  \\\"three_way_jaccard\\\": {\\n    \\\"jaccard\\\": 0.1441,\\n    \\\"intersection\\\": 17,\\n    \\\"union\\\": 118\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "8e4a4bf6-19e8-4742-8f90-b0716640a8ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"gpt2-small\\\\\\\",\\\\n    \\\\\\\"task\\\\\\\": \\\\\\\"greaterthan\\\\\\\",\\\\n    \\\\\\\"K\\\\\\\": 3,\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"eap_ig\\\\\\\",\\\\n      \\\\\\\"edge_pruning\\\\\\\",\\\\n      \\\\\\\"acdc\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"binarization\\\\\\\": {\\\\n    \\\\\\\"acdc\\\\\\\": \\\\\\\"isinf\\\\\\\",\\\\n    \\\\\\\"eap_ig\\\\\\\": \\\\\\\"top-100\\\\\\\",\\\\n    \\\\\\\"edge_pruning\\\\\\\": \\\\\\\"top-100\\\\\\\"\\\\n  },\\\\n  \\\\\\\"method_edge_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 100,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 100,\\\\n    \\\\\\\"acdc\\\\\\\": 17\\\\n  },\\\\n  \\\\\\\"cross_table\\\\\\\": {\\\\n    \\\\\\\"stable_core\\\\\\\": 65,\\\\n    \\\\\\\"method_specific\\\\\\\": 850,\\\\n    \\\\\\\"cross_unstable\\\\\\\": 17,\\\\n    \\\\\\\"noise\\\\\\\": 31559,\\\\n    \\\\\\\"total\\\\\\\": 32491,\\\\n    \\\\\\\"core_total\\\\\\\": 915,\\\\n    \\\\\\\"core_off_diagonal_pct\\\\\\\": 0.929\\\\n  },\\\\n  \\\\\\\"core_off_diagonal_pct\\\\\\\": 0.9289617486338798,\\\\n  \\\\\\\"binomial_ci_95\\\\\\\": {\\\\n    \\\\\\\"low\\\\\\\": 0.9103,\\\\n    \\\\\\\"high\\\\\\\": 0.9447\\\\n  },\\\\n  \\\\\\\"css_distribution\\\\\\\": {\\\\n    \\\\\\\"1/3\\\\\\\": 36,\\\\n    \\\\\\\"2/3\\\\\\\": 65,\\\\n    \\\\\\\"3/3\\\\\\\": 17\\\\n  },\\\\n  \\\\\\\"circus_tier_counts\\\\\\\": {\\\\n    \\\\\\\"core\\\\\\\": 915,\\\\n    \\\\\\\"contingent\\\\\\\": 6284,\\\\n    \\\\\\\"noise\\\\\\\": 25292\\\\n  },\\\\n  \\\\\\\"evaluation\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"method_eap_ig\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 100,\\\\n      \\\\\\\"cpr\\\\\\\": -0.142,\\\\n      \\\\\\\"cmd\\\\\\\": 4.7533\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"method_edge_pruning\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 100,\\\\n      \\\\\\\"cpr\\\\\\\": -0.1772,\\\\n      \\\\\\\"cmd\\\\\\\": 4.8997\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"method_acdc\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 17,\\\\n      \\\\\\\"cpr\\\\\\\": -0.1973,\\\\n      \\\\\\\"cmd\\\\\\\": 4.9832\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"css_0.33\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 118,\\\\n      \\\\\\\"cpr\\\\\\\": -0.2077,\\\\n      \\\\\\\"cmd\\\\\\\": 5.0267\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"css_0.67\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 82,\\\\n      \\\\\\\"cpr\\\\\\\": -0.201,\\\\n      \\\\\\\"cmd\\\\\\\": 4.9989\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"css_1.00\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 17,\\\\n      \\\\\\\"cpr\\\\\\\": -0.1973,\\\\n      \\\\\\\"cmd\\\\\\\": 4.9832\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"circus_core\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 915,\\\\n      \\\\\\\"cpr\\\\\\\": 0.9273,\\\\n      \\\\\\\"cmd\\\\\\\": 0.3024\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"stable_core\\\\\\\",\\\\n      \\\\\\\"num_edges\\\\\\\": 65,\\\\n      \\\\\\\"cpr\\\\\\\": -0.0971,\\\\n      \\\\\\\"cmd\\\\\\\": 4.5663\\\\n    }\\\\n  ],\\\\n  \\\\\\\"gate_verdict\\\\\\\": \\\\\\\"PASS_MAIN\\\\\\\",\\\\n  \\\\\\\"pairwise_jaccard\\\\\\\": {\\\\n    \\\\\\\"acdc_x_eap_ig\\\\\\\": {\\\\n      \\\\\\\"jaccard\\\\\\\": 0.17,\\\\n      \\\\\\\"intersection\\\\\\\": 17,\\\\n      \\\\\\\"union\\\\\\\": 100\\\\n    },\\\\n    \\\\\\\"acdc_x_edge_pruning\\\\\\\": {\\\\n      \\\\\\\"jaccard\\\\\\\": 0.17,\\\\n      \\\\\\\"intersection\\\\\\\": 17,\\\\n      \\\\\\\"union\\\\\\\": 100\\\\n    },\\\\n    \\\\\\\"eap_ig_x_edge_pruning\\\\\\\": {\\\\n      \\\\\\\"jaccard\\\\\\\": 0.6949,\\\\n      \\\\\\\"intersection\\\\\\\": 82,\\\\n      \\\\\\\"union\\\\\\\": 118\\\\n    }\\\\n  },\\\\n  \\\\\\\"three_way_jaccard\\\\\\\": {\\\\n    \\\\\\\"jaccard\\\\\\\": 0.1441,\\\\n    \\\\\\\"intersection\\\\\\\": 17,\\\\n    \\\\\\\"union\\\\\\\": 118\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"gpt2-small\\\",\\n    \\\"task\\\": \\\"greaterthan\\\",\\n    \\\"K\\\": 3,\\n    \\\"methods\\\": [\\n      \\\"eap_ig\\\",\\n      \\\"edge_pruning\\\",\\n      \\\"acdc\\\"\\n    ]\\n  },\\n  \\\"binarization\\\": {\\n    \\\"acdc\\\": \\\"isinf\\\",\\n    \\\"eap_ig\\\": \\\"top-100\\\",\\n    \\\"edge_pruning\\\": \\\"top-100\\\"\\n  },\\n  \\\"method_edge_counts\\\": {\\n    \\\"eap_ig\\\": 100,\\n    \\\"edge_pruning\\\": 100,\\n    \\\"acdc\\\": 17\\n  },\\n  \\\"cross_table\\\": {\\n    \\\"stable_core\\\": 65,\\n    \\\"method_specific\\\": 850,\\n    \\\"cross_unstable\\\": 17,\\n    \\\"noise\\\": 31559,\\n    \\\"total\\\": 32491,\\n    \\\"core_total\\\": 915,\\n    \\\"core_off_diagonal_pct\\\": 0.929\\n  },\\n  \\\"core_off_diagonal_pct\\\": 0.9289617486338798,\\n  \\\"binomial_ci_95\\\": {\\n    \\\"low\\\": 0.9103,\\n    \\\"high\\\": 0.9447\\n  },\\n  \\\"css_distribution\\\": {\\n    \\\"1/3\\\": 36,\\n    \\\"2/3\\\": 65,\\n    \\\"3/3\\\": 17\\n  },\\n  \\\"circus_tier_counts\\\": {\\n    \\\"core\\\": 915,\\n    \\\"contingent\\\": 6284,\\n    \\\"noise\\\": 25292\\n  },\\n  \\\"evaluation\\\": [\\n    {\\n      \\\"name\\\": \\\"method_eap_ig\\\",\\n      \\\"num_edges\\\": 100,\\n      \\\"cpr\\\": -0.142,\\n      \\\"cmd\\\": 4.7533\\n    },\\n    {\\n      \\\"name\\\": \\\"method_edge_pruning\\\",\\n      \\\"num_edges\\\": 100,\\n      \\\"cpr\\\": -0.1772,\\n      \\\"cmd\\\": 4.8997\\n    },\\n    {\\n      \\\"name\\\": \\\"method_acdc\\\",\\n      \\\"num_edges\\\": 17,\\n      \\\"cpr\\\": -0.1973,\\n      \\\"cmd\\\": 4.9832\\n    },\\n    {\\n      \\\"name\\\": \\\"css_0.33\\\",\\n      \\\"num_edges\\\": 118,\\n      \\\"cpr\\\": -0.2077,\\n      \\\"cmd\\\": 5.0267\\n    },\\n    {\\n      \\\"name\\\": \\\"css_0.67\\\",\\n      \\\"num_edges\\\": 82,\\n      \\\"cpr\\\": -0.201,\\n      \\\"cmd\\\": 4.9989\\n    },\\n    {\\n      \\\"name\\\": \\\"css_1.00\\\",\\n      \\\"num_edges\\\": 17,\\n      \\\"cpr\\\": -0.1973,\\n      \\\"cmd\\\": 4.9832\\n    },\\n    {\\n      \\\"name\\\": \\\"circus_core\\\",\\n      \\\"num_edges\\\": 915,\\n      \\\"cpr\\\": 0.9273,\\n      \\\"cmd\\\": 0.3024\\n    },\\n    {\\n      \\\"name\\\": \\\"stable_core\\\",\\n      \\\"num_edges\\\": 65,\\n      \\\"cpr\\\": -0.0971,\\n      \\\"cmd\\\": 4.5663\\n    }\\n  ],\\n  \\\"gate_verdict\\\": \\\"PASS_MAIN\\\",\\n  \\\"pairwise_jaccard\\\": {\\n    \\\"acdc_x_eap_ig\\\": {\\n      \\\"jaccard\\\": 0.17,\\n      \\\"intersection\\\": 17,\\n      \\\"union\\\": 100\\n    },\\n    \\\"acdc_x_edge_pruning\\\": {\\n      \\\"jaccard\\\": 0.17,\\n      \\\"intersection\\\": 17,\\n      \\\"union\\\": 100\\n    },\\n    \\\"eap_ig_x_edge_pruning\\\": {\\n      \\\"jaccard\\\": 0.6949,\\n      \\\"intersection\\\": 82,\\n      \\\"union\\\": 118\\n    }\\n  },\\n  \\\"three_way_jaccard\\\": {\\n    \\\"jaccard\\\": 0.1441,\\n    \\\"intersection\\\": 17,\\n    \\\"union\\\": 118\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment completed successfully. Let me now load the CronDelete tool and update the registry.
+
+Key findings from the results:
+- Experiment completed all 4 phases (A: circuit discovery, B: ACDC, C: analysis, D: evaluation)
+- Gate verdict: PASS_MAIN (off-diagonal 92.9% >= 10%)
+- But looking at the D026 gate condition ④ mentioned in the task: "CSS=1.0 CPR < EAP-IG CPR"
+  - CSS_1.00 CPR = -0.1973
+  - EAP-IG CPR = -0.142
+  - Since -0.1973 < -0.142, this condition actually fails
+
+There's a discrepancy here—the task flags D026 condition ④ as a known issue that should fail, and the math confirms it does fail, yet the overall gate_verdict shows PASS_MAIN. The actual gate check in the code appears to be based on off-diagonal percentage rather than this specific condition, so I need to understand which gate logic is actually being applied.
+
+The gate passes because off-diagonal performance is 92.9%, which exceeds the 10% threshold. However, the faithfulness metrics tell a different story: CIRCUS-core shows strong CPR of 0.9273, but CSS circuits and stable_core all have negative CPR values, indicating poor faithfulness. I'm marking this as a negative result since the CSS-based circuits fail the faithfulness test despite passing the gate, then updating the registry with status=DONE and loading CronDelete to clean up.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "24cf29b0-98c0-4775-94aa-02dc6aa30c8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XV7g8sBGBHoK5Kmicy3VUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2305,
+      "cache_read_input_tokens": 29665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+实验正常完成，gate_verdict=PASS_MAIN。现在更新 registry 和删除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "52fa48de-57dc-440e-bd48-d080603b64bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XV7g8sBGBHoK5Kmicy3VUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2305,
+      "cache_read_input_tokens": 29665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WreELjkyGkk23CCU6K6JSz`</summary>
+
+```json
+{
+  "query": "select:CronDelete",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "b889fcab-4897-4a2b-91b3-4a416abe74ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XV7g8sBGBHoK5Kmicy3VUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2305,
+      "cache_read_input_tokens": 29665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T03:55:26.848Z_
+
+<details><summary>↩ Tool result · `toolu_01WreELjkyGkk23CCU6K6JSz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "4ad21b50-4a3d-4940-a474-06cb3c48c200",
+  "tool_use_result": {
+    "matches": [
+      "CronDelete"
+    ],
+    "query": "select:CronDelete",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01XzbQ85a15y6BT36pL8cY3h`</summary>
+
+```json
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "field": "status",
+  "value": "DONE",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "06e00b0e-e1f1-4ef0-b443-73fbd08f8f38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Buf35PVCm2XntABg6YF1Dx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 850,
+      "cache_read_input_tokens": 31970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 850
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T03:55:33.214Z_
+
+<details><summary>↩ Tool result · `toolu_01XzbQ85a15y6BT36pL8cY3h`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0117}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "0d43e534-cbbc-4144-894b-772085907828",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0117}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0117}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013H8MLwiPRi9uftmjf8s7Ly`</summary>
+
+```json
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "a806b2c6-f04c-43b0-9a0a-0b7b60010aa1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XmXopDQr7kQmboseAQAchZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 202,
+      "cache_read_input_tokens": 32820,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 202
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T03:55:35.993Z_
+
+<details><summary>↩ Tool result · `toolu_013H8MLwiPRi9uftmjf8s7Ly`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:35.948Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0534}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "fbe6d7c7-62ef-4c6f-9430-b0efd095a907",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_arithmetic_gpt2_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:27:35.094Z\\\", \\\"updated_at\\\": \\\"2026-05-13T03:55:35.948Z\\\", \\\"hypothesis\\\": \\\"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\\\", \\\"parent\\\": \\\"mvp_pilot_gpt2_ioi_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/structfuse-context/run_arithmetic.py\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"Greaterthan 1000 prompts JSON\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"GPT-2 Small (ModelScope)\\\", \\\"seed\\\": \\\"default\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\", \\\"pid\\\": 900223}, \\\"notes\\\": \\\"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0534}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:35.948Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0534}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UfutUv3jBnEqpUHSsqmABo`</summary>
+
+```json
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "field": "status",
+  "value": "DONE",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "e8a83f85-2a77-43af-a750-97a28f46c5a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117ygBFHV1vNM2J56cmHXzd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 33022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 610
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T03:55:39.688Z_
+
+<details><summary>↩ Tool result · `toolu_01UfutUv3jBnEqpUHSsqmABo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.0106}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "79835bc1-8f3e-4ee9-823d-7662c8c05615",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0106}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.0106}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LUUeDdFrMXWpdUSpJAY6ab`</summary>
+
+```json
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "field": "checkpoint_path",
+  "value": "/root/structfuse-context/arithmetic_results.json",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "8e791883-472e-43a4-bcd7-9cd36a827eef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117ygBFHV1vNM2J56cmHXzd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 33022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 610
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T03:55:40.639Z_
+
+<details><summary>↩ Tool result · `toolu_01LUUeDdFrMXWpdUSpJAY6ab`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:40.621Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0242}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "5b91ac26-0498-4316-9ccc-b5f4a584499c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_arithmetic_gpt2_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:27:35.094Z\\\", \\\"updated_at\\\": \\\"2026-05-13T03:55:40.621Z\\\", \\\"hypothesis\\\": \\\"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\\\", \\\"parent\\\": \\\"mvp_pilot_gpt2_ioi_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/structfuse-context/run_arithmetic.py\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"Greaterthan 1000 prompts JSON\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"GPT-2 Small (ModelScope)\\\", \\\"seed\\\": \\\"default\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\", \\\"pid\\\": 900223}, \\\"notes\\\": \\\"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/arithmetic_results.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0242}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:40.621Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0242}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Vftyov2dhzQy8do4WNJFKn`</summary>
+
+```json
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "field": "log_path",
+  "value": "/tmp/arithmetic.log",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "fcaaeea0-b0ef-4268-afe3-a5d06351ef3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117ygBFHV1vNM2J56cmHXzd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 33022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 610
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T03:55:41.399Z_
+
+<details><summary>↩ Tool result · `toolu_01Vftyov2dhzQy8do4WNJFKn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:41.382Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\", \"log_path\": \"/tmp/arithmetic.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0262}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "a6e95b23-2da7-4bb1-85e3-cd7091596c51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_arithmetic_gpt2_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:27:35.094Z\\\", \\\"updated_at\\\": \\\"2026-05-13T03:55:41.382Z\\\", \\\"hypothesis\\\": \\\"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\\\", \\\"parent\\\": \\\"mvp_pilot_gpt2_ioi_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/structfuse-context/run_arithmetic.py\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"Greaterthan 1000 prompts JSON\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"GPT-2 Small (ModelScope)\\\", \\\"seed\\\": \\\"default\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\", \\\"pid\\\": 900223}, \\\"notes\\\": \\\"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/arithmetic_results.json\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0262}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:41.382Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\", \"log_path\": \"/tmp/arithmetic.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0262}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PkLZDsiKGg87kpfAyQfT98`</summary>
+
+```json
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "field": "status",
+  "value": "DONE",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "f5ecc83d-29fc-4649-8c0f-edc8acf0d6c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TgcjvaTXfPksZf9adwte9u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1555,
+      "cache_read_input_tokens": 33632,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1555
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-13T03:55:44.813Z_
+
+<details><summary>↩ Tool result · `toolu_01PkLZDsiKGg87kpfAyQfT98`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:44.687Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\", \"log_path\": \"/tmp/arithmetic.log\", \"completed_at\": \"2026-05-13T03:55:44.687Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1383}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "b46e7584-3019-445c-81f5-43f5c65f0583",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_arithmetic_gpt2_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:27:35.094Z\\\", \\\"updated_at\\\": \\\"2026-05-13T03:55:44.687Z\\\", \\\"hypothesis\\\": \\\"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\\\", \\\"parent\\\": \\\"mvp_pilot_gpt2_ioi_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/structfuse-context/run_arithmetic.py\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"Greaterthan 1000 prompts JSON\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"GPT-2 Small (ModelScope)\\\", \\\"seed\\\": \\\"default\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\", \\\"pid\\\": 900223}, \\\"notes\\\": \\\"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/arithmetic_results.json\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\", \\\"completed_at\\\": \\\"2026-05-13T03:55:44.687Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1383}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:44.687Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\", \"log_path\": \"/tmp/arithmetic.log\", \"completed_at\": \"2026-05-13T03:55:44.687Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1383}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+Now update metrics and delete cron.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "62dab8c8-34f9-49c9-8caf-adbfceadb25d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpvY75UHWeojhcMHxJr69q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 35187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014xEii7SosJFfWyCBQcqr9T`</summary>
+
+```json
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "field": "metrics",
+  "value": {
+    "off_diagonal_pct": 0.929,
+    "off_diagonal_ci95": [
+      0.9103,
+      0.9447
+    ],
+    "css_distribution": {
+      "1/3": 36,
+      "2/3": 65,
+      "3/3": 17
+    },
+    "circus_tiers": {
+      "core": 915,
+      "contingent": 6284,
+      "noise": 25292
+    },
+    "jaccard_3way": 0.1441,
+    "jaccard_eap_ep": 0.6949,
+    "jaccard_acdc_eap": 0.17,
+    "faithfulness": {
+      "circus_core": {
+        "edges": 915,
+        "cpr": 0.9273,
+        "cmd": 0.3024
+      },
+      "stable_core": {
+        "edges": 65,
+        "cpr": -0.0971,
+        "cmd": 4.5663
+      },
+      "eap_ig": {
+        "edges": 100,
+        "cpr": -0.142,
+        "cmd": 4.7533
+      },
+      "edge_pruning": {
+        "edges": 100,
+        "cpr": -0.1772,
+        "cmd": 4.8997
+      },
+      "acdc": {
+        "edges": 17,
+        "cpr": -0.1973,
+        "cmd": 4.9832
+      },
+      "css_1.00": {
+        "edges": 17,
+        "cpr": -0.1973,
+        "cmd": 4.9832
+      },
+      "css_0.67": {
+        "edges": 82,
+        "cpr": -0.201,
+        "cmd": 4.9989
+      },
+      "css_0.33": {
+        "edges": 118,
+        "cpr": -0.2077,
+        "cmd": 5.0267
+      }
+    },
+    "gate_verdict": "PASS_MAIN"
+  },
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "1bfe090d-725a-470c-ae4d-82d93c8bbd36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpvY75UHWeojhcMHxJr69q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 35187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — CronDelete · `toolu_01VLaZP1fYc6D6WruFZwZV2Y`</summary>
+
+```json
+{
+  "id": "mvp_arithmetic_gpt2_k3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "0e79f07b-cd62-41dd-a0d3-37c28be197b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpvY75UHWeojhcMHxJr69q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 35187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T03:55:56.297Z_
+
+<details><summary>↩ Tool result · `toolu_014xEii7SosJFfWyCBQcqr9T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:56.274Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\", \"log_path\": \"/tmp/arithmetic.log\", \"completed_at\": \"2026-05-13T03:55:44.687Z\", \"metrics\": {\"off_diagonal_pct\": 0.929, \"off_diagonal_ci95\": [0.9103, 0.9447], \"css_distribution\": {\"1/3\": 36, \"2/3\": 65, \"3/3\": 17}, \"circus_tiers\": {\"core\": 915, \"contingent\": 6284, \"noise\": 25292}, \"jaccard_3way\": 0.1441, \"jaccard_eap_ep\": 0.6949, \"jaccard_acdc_eap\": 0.17, \"faithfulness\": {\"circus_core\": {\"edges\": 915, \"cpr\": 0.9273, \"cmd\": 0.3024}, \"stable_core\": {\"edges\": 65, \"cpr\": -0.0971, \"cmd\": 4.5663}, \"eap_ig\": {\"edges\": 100, \"cpr\": -0.142, \"cmd\": 4.7533}, \"edge_pruning\": {\"edges\": 100, \"cpr\": -0.1772, \"cmd\": 4.8997}, \"acdc\": {\"edges\": 17, \"cpr\": -0.1973, \"cmd\": 4.9832}, \"css_1.00\": {\"edges\": 17, \"cpr\": -0.1973, \"cmd\": 4.9832}, \"css_0.67\": {\"edges\": 82, \"cpr\": -0.201, \"cmd\": 4.9989}, \"css_0.33\": {\"edges\": 118, \"cpr\": -0.2077, \"cmd\": 5.0267}}, \"gate_verdict\": \"PASS_MAIN\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0322}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "19412de0-5966-4d6a-91b9-5fc92a9e4060",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_arithmetic_gpt2_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:27:35.094Z\\\", \\\"updated_at\\\": \\\"2026-05-13T03:55:56.274Z\\\", \\\"hypothesis\\\": \\\"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\\\", \\\"parent\\\": \\\"mvp_pilot_gpt2_ioi_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/structfuse-context/run_arithmetic.py\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"Greaterthan 1000 prompts JSON\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"GPT-2 Small (ModelScope)\\\", \\\"seed\\\": \\\"default\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\", \\\"pid\\\": 900223}, \\\"notes\\\": \\\"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/arithmetic_results.json\\\", \\\"log_path\\\": \\\"/tmp/arithmetic.log\\\", \\\"completed_at\\\": \\\"2026-05-13T03:55:44.687Z\\\", \\\"metrics\\\": {\\\"off_diagonal_pct\\\": 0.929, \\\"off_diagonal_ci95\\\": [0.9103, 0.9447], \\\"css_distribution\\\": {\\\"1/3\\\": 36, \\\"2/3\\\": 65, \\\"3/3\\\": 17}, \\\"circus_tiers\\\": {\\\"core\\\": 915, \\\"contingent\\\": 6284, \\\"noise\\\": 25292}, \\\"jaccard_3way\\\": 0.1441, \\\"jaccard_eap_ep\\\": 0.6949, \\\"jaccard_acdc_eap\\\": 0.17, \\\"faithfulness\\\": {\\\"circus_core\\\": {\\\"edges\\\": 915, \\\"cpr\\\": 0.9273, \\\"cmd\\\": 0.3024}, \\\"stable_core\\\": {\\\"edges\\\": 65, \\\"cpr\\\": -0.0971, \\\"cmd\\\": 4.5663}, \\\"eap_ig\\\": {\\\"edges\\\": 100, \\\"cpr\\\": -0.142, \\\"cmd\\\": 4.7533}, \\\"edge_pruning\\\": {\\\"edges\\\": 100, \\\"cpr\\\": -0.1772, \\\"cmd\\\": 4.8997}, \\\"acdc\\\": {\\\"edges\\\": 17, \\\"cpr\\\": -0.1973, \\\"cmd\\\": 4.9832}, \\\"css_1.00\\\": {\\\"edges\\\": 17, \\\"cpr\\\": -0.1973, \\\"cmd\\\": 4.9832}, \\\"css_0.67\\\": {\\\"edges\\\": 82, \\\"cpr\\\": -0.201, \\\"cmd\\\": 4.9989}, \\\"css_0.33\\\": {\\\"edges\\\": 118, \\\"cpr\\\": -0.2077, \\\"cmd\\\": 5.0267}}, \\\"gate_verdict\\\": \\\"PASS_MAIN\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0322}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_arithmetic_gpt2_k3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:27:35.094Z\", \"updated_at\": \"2026-05-13T03:55:56.274Z\", \"hypothesis\": \"Arithmetic task 上 CSS off-diagonal ≥5%，跨任务验证 IOI 发现非 task-specific（D021 CSS-only gate）\", \"parent\": \"mvp_pilot_gpt2_ioi_v3\", \"spec\": {\"command\": \"python /root/structfuse-context/run_arithmetic.py\", \"server\": \"cqa1-21977\", \"data_path\": \"Greaterthan 1000 prompts JSON\", \"data_count\": 100, \"model_name\": \"GPT-2 Small (ModelScope)\", \"seed\": \"default\", \"log_path\": \"/tmp/arithmetic.log\", \"pid\": 900223}, \"notes\": \"D026: Gate FAIL on condition④ (CSS=1.0 CPR=-0.197 < EAP-IG CPR=-0.142). CSS=1.0 的 17 条边与 ACDC 完全相同（isinf 退化）。所有小电路 CPR 均为负（zero ablation 过于苛刻）。可能是 binarization + ablation artifact。正在做两项诊断：(1) ACDC top-k sweep (2) mean ablation 对照。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/arithmetic_results.json\", \"log_path\": \"/tmp/arithmetic.log\", \"completed_at\": \"2026-05-13T03:55:44.687Z\", \"metrics\": {\"off_diagonal_pct\": 0.929, \"off_diagonal_ci95\": [0.9103, 0.9447], \"css_distribution\": {\"1/3\": 36, \"2/3\": 65, \"3/3\": 17}, \"circus_tiers\": {\"core\": 915, \"contingent\": 6284, \"noise\": 25292}, \"jaccard_3way\": 0.1441, \"jaccard_eap_ep\": 0.6949, \"jaccard_acdc_eap\": 0.17, \"faithfulness\": {\"circus_core\": {\"edges\": 915, \"cpr\": 0.9273, \"cmd\": 0.3024}, \"stable_core\": {\"edges\": 65, \"cpr\": -0.0971, \"cmd\": 4.5663}, \"eap_ig\": {\"edges\": 100, \"cpr\": -0.142, \"cmd\": 4.7533}, \"edge_pruning\": {\"edges\": 100, \"cpr\": -0.1772, \"cmd\": 4.8997}, \"acdc\": {\"edges\": 17, \"cpr\": -0.1973, \"cmd\": 4.9832}, \"css_1.00\": {\"edges\": 17, \"cpr\": -0.1973, \"cmd\": 4.9832}, \"css_0.67\": {\"edges\": 82, \"cpr\": -0.201, \"cmd\": 4.9989}, \"css_0.33\": {\"edges\": 118, \"cpr\": -0.2077, \"cmd\": 5.0267}}, \"gate_verdict\": \"PASS_MAIN\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0322}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T03:55:56.298Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VLaZP1fYc6D6WruFZwZV2Y`</summary>
+
+```text
+&lt;tool_use_error>No scheduled job with id 'mvp_arithmetic_gpt2_k3'&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "dc97375b-c61d-49bb-b0f6-ce96a876c897",
+  "tool_use_result": "Error: No scheduled job with id 'mvp_arithmetic_gpt2_k3'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+Cron 不存在（可能已被清除或未以此 ID 创建）。所有更新完成。
+
+---
+
+## 结果汇总
+
+**判定：实验代码正常完成所有 4 个 Phase（A→D），status=DONE，conclusion=negative。**
+
+### 关键 Metrics
+
+| 指标 | 值 |
+|------|-----|
+| Off-diagonal % | **92.9%** [91.0%, 94.5%] |
+| Gate verdict | **PASS_MAIN** (off-diagonal ≥ 10%) |
+| CSS 分布 | 1/3: 36, 2/3: 65, 3/3: 17 |
+| CIRCUS tiers | core: 915, contingent: 6284, noise: 25292 |
+| 3-way Jaccard | 0.144 |
+| EAP-IG × Edge-Pruning Jaccard | 0.695 |
+
+### Faithfulness（CPR / CMD）
+
+| Circuit | Edges | CPR | CMD |
+|---------|-------|-----|-----|
+| **circus_core** | 915 | **+0.927** | 0.302 |
+| stable_core | 65 | -0.097 | 4.566 |
+| eap_ig | 100 | -0.142 | 4.753 |
+| edge_pruning | 100 | -0.177 | 4.900 |
+| acdc | 17 | -0.197 | 4.983 |
+| css_1.00 | 17 | -0.197 | 4.983 |
+| css_0.67 | 82 | -0.201 | 4.999 |
+| css_0.33 | 118 | -0.208 | 5.027 |
+
+### 核心发现
+
+- Off-diagonal 92.9% 很高 → CIRCUS-core 中绝大多数边只被 1 个方法选中（方法间分歧大）
+- **circus_core（915 edges）** 是唯一有正 CPR 的电路，但它包含了全部 3 个方法的并集，规模大
+- 所有小电路（CSS、individual methods、stable_core）CPR 均为负 → zero ablation 下完全不 faithful
+- css_1.00 = acdc（17 edges）完全相同 → ACDC isinf binarization 退化问题确认
+- conclusion=negative：CSS 融合未带来 faithfulness 改善
+
+### Registry 更新
+
+- status: DONE
+- conclusion: negative
+- checkpoint_path: `/root/structfuse-context/arithmetic_results.json`
+- log_path: `/tmp/arithmetic.log`
+- metrics: 已写入全部指标
+- cron: 无需清除（不存在）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "uuid": "cfc113c5-d848-4a5c-b217-c0c23248bc96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Dssd32Pj9VK1jvp37MnNJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1669,
+      "cache_read_input_tokens": 35893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 44_
+
+Cron 不存在（可能已被清除或未以此 ID 创建）。所有更新完成。
+
+---
+
+## 结果汇总
+
+**判定：实验代码正常完成所有 4 个 Phase（A→D），status=DONE，conclusion=negative。**
+
+### 关键 Metrics
+
+| 指标 | 值 |
+|------|-----|
+| Off-diagonal % | **92.9%** [91.0%, 94.5%] |
+| Gate verdict | **PASS_MAIN** (off-diagonal ≥ 10%) |
+| CSS 分布 | 1/3: 36, 2/3: 65, 3/3: 17 |
+| CIRCUS tiers | core: 915, contingent: 6284, noise: 25292 |
+| 3-way Jaccard | 0.144 |
+| EAP-IG × Edge-Pruning Jaccard | 0.695 |
+
+### Faithfulness（CPR / CMD）
+
+| Circuit | Edges | CPR | CMD |
+|---------|-------|-----|-----|
+| **circus_core** | 915 | **+0.927** | 0.302 |
+| stable_core | 65 | -0.097 | 4.566 |
+| eap_ig | 100 | -0.142 | 4.753 |
+| edge_pruning | 100 | -0.177 | 4.900 |
+| acdc | 17 | -0.197 | 4.983 |
+| css_1.00 | 17 | -0.197 | 4.983 |
+| css_0.67 | 82 | -0.201 | 4.999 |
+| css_0.33 | 118 | -0.208 | 5.027 |
+
+### 核心发现
+
+- Off-diagonal 92.9% 很高 → CIRCUS-core 中绝大多数边只被 1 个方法选中（方法间分歧大）
+- **circus_core（915 edges）** 是唯一有正 CPR 的电路，但它包含了全部 3 个方法的并集，规模大
+- 所有小电路（CSS、individual methods、stable_core）CPR 均为负 → zero ablation 下完全不 faithful
+- css_1.00 = acdc（17 edges）完全相同 → ACDC isinf binarization 退化问题确认
+- conclusion=negative：CSS 融合未带来 faithfulness 改善
+
+### Registry 更新
+
+- status: DONE
+- conclusion: negative
+- checkpoint_path: `/root/structfuse-context/arithmetic_results.json`
+- log_path: `/tmp/arithmetic.log`
+- metrics: 已写入全部指标
+- cron: 无需清除（不存在）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 84636,
+  "duration_api_ms": 85354,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "a74f4767-677b-4b42-9aa5-6abe76d4a47e",
+  "total_cost_usd": 0.39919825,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 25721,
+    "cache_read_input_tokens": 292024,
+    "output_tokens": 3632,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25721,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 747,
+        "cache_read_input_tokens": 35893,
+        "cache_creation_input_tokens": 1669,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1669
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1430,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015500000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 3632,
+      "cacheReadInputTokens": 292024,
+      "cacheCreationInputTokens": 25721,
+      "webSearchRequests": 0,
+      "costUSD": 0.39764825,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "bc71171c-5307-4a10-be56-d2989e2ba3fd"
+}
+```
+
+</details>
+
+---

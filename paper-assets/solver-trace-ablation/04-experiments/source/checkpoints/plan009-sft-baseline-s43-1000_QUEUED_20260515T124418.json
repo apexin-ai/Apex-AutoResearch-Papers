@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan009-sft-baseline-s43-1000",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:28:46.064Z",
+    "updated_at": "2026-05-15T12:44:18.334Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "num_steps": 1000,
+      "reward_mode": "sft",
+      "beta": null,
+      "checkpoint_source": "Qwen/Qwen3-4B (base, no checkpoint)"
+    },
+    "hypothesis": "SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。",
+    "parent": "plan009-sft-baseline-s43"
+  },
+  "timestamp": "2026-05-15T12:44:18.543674+00:00",
+  "trigger": "update_registry"
+}

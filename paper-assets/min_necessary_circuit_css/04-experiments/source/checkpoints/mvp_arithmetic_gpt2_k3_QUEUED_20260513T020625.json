@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_arithmetic_gpt2_k3",
+  "project": "min_necessary_circuit_css",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T01:27:35.094Z",
+    "updated_at": "2026-05-13T02:06:25.266Z",
+    "hypothesis": "Arithmetic task 上 CIRCUS-core edges 中 ≥10% 落入 off-diagonal cell，确认 IOI 发现非 task-specific（D002 确认实验）",
+    "parent": "mvp_pilot_gpt2_ioi_v3"
+  },
+  "timestamp": "2026-05-13T02:06:25.317807+00:00",
+  "trigger": "update_registry"
+}

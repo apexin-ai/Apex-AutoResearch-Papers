@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9f01f3adb0ecba197bf",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code edge pruning hf backend",
+  "task_key": "worker_code_edge_pruning_hf_backend_20260512T184445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_edge_pruning_hf_backend_20260512T184445_result.json",
+    "occurrence": 1,
+    "bytes": 1766,
+    "sha256": "c6938f21c12034d1b57f44f50de572f637964bdf52355b82b92303812bba74ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 实现汇报\n\n### 产出文件\n- `artifacts/edge_pruning_scoring.py` — Edge Pruning L0 完整实现\n- `artifacts/test_edge_pruning_scoring.py` — Smoke tests（7/7 通过，torch 测试需 GPU 环境）\n\n### 实现方案\n\n**Hard Concrete 分布**：`HardConcrete(nn.Module)` 封装 `log_alpha` 参数，采样时通过 Binary Concrete → stretch 到 [γ=-0.1, ζ=1.1] → clamp [0,1]，β=2/3。`l0_penalty()` 返回 P(z≠0) 的和。\n\n**Hook-based masked forward**：\n- Embedding hook 捕获 `input` 激活\n- `o_proj` hook 按 head 分解 attention 输出（通过 weight slicing）\n- MLP hook 捕获 MLP 输出\n- Layer pre-hook 用 mask 加权重建 residual stream 输入\n\n**GQA mask 共享策略**：\n- Q edges：每个 query head 独立 mask\n- K/V edges：同一 KV group 内的 query heads 共享 mask\n- Qwen-2.5 0.5B (14H, 2KV)：每个 source 对 K 和 V 各 2 个独立 mask（而非 14 个），Q 仍为 14 个\n\n### 内存估算\n\n| 模型 | 总边数 | 独立 mask 参数 | Mask 内存 (float32) |\n|------|--------|---------------|-------------------|\n| Qwen-2.5 0.5B (24L, 14H, 2KV) | 179,388 | 79,452 | **0.30 MB** |\n| GPT-2 small (12L, 12H, 12KV) | 32,334 | 32,334 | 0.12 MB |\n\nMask 参数本身内存可忽略。主要瓶颈是 forward pass 中源激活缓存（每层 n_heads 个 head 输出 × [B, S, D]）和反向传播的计算图。Qwen-2.5 0.5B (d=896) 估计额外 ~2-4 GB（batch_size=8, seq_len=128）。\n\n### 预估耗时\n\n| 模型 | 100 epochs (batch=8, seq=128) |\n|------|------------------------------|\n| Qwen-2.5 0.5B | ~10-20 min (single A6000) |\n| GPT-2 small | ~3-5 min (single A6000) |\n| Qwen-2.5 7B | ~2-4 hours，建议 gradient checkpointing + 按层分组优化 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-edge-pruning-hf-backend.md"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "sta-phase1-exec-sta-r5",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:54:31.353Z",
+    "updated_at": "2026-05-13T21:15:56.697Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=1 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "75968",
+      "log_path": "~/runs/solver-trace-ablation/sta-phase1-exec-sta-r5.log",
+      "submitted_at": "2026-05-13T20:54:38.781Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_500.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Full STA continuous ISR (0.0-1.0) 作为 reward 组件，应在训练中产生与 execution-only 不同的 ISR 趋势——execution-only ISR 随 prove_rate 上升而虚高(reward hacking)，execution+STA ISR 维持真实水平(STA 抑制 hacking)"
+    }
+  },
+  "timestamp": "2026-05-13T21:15:56.725538+00:00",
+  "trigger": "update_registry"
+}

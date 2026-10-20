@@ -1,0 +1,42 @@
+{
+  "exp_id": "plan001-exec-only-s42-r2",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-13T22:40:41.773Z",
+    "updated_at": "2026-05-13T23:48:41.187Z",
+    "completed_at": "",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      },
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T23:46:01.596431+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "GRPO exec-only 500 steps",
+      "server": "westd-39279",
+      "data_path": "/root/autodl-tmp/outputs/plan001_exec_only_s42/",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B (exec-only fine-tuned)",
+      "seed": 42,
+      "hypothesis": "500-step exec-only baseline for STA comparison (K=8)",
+      "pid": "84901"
+    },
+    "notes": "Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。",
+    "reproduce": {
+      "finished_at": "2026-05-13T23:46:00.369Z"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T23:48:41.248141+00:00",
+  "trigger": "update_registry"
+}

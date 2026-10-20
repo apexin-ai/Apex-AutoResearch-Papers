@@ -1,0 +1,680 @@
+narrative_guidance: 'Cross-scale claim保留但降级为''degeneration transfers across scales,
+  exploitation mode converges to H7''——确认universality但taxonomy分化贡献被削弱。C2 double-edged需要明确
+  软化：genuine OR从3.48降至~1.5仅边界显著（CMH p≈0.06），且cross-scale heterogeneity 显著（4B OR=2.4
+  vs 8B OR=0.25, Breslow-Day p<0.01）——ISR genuine benefit是scale- dependent transient，不是universal
+  property。Reframe为''modest transient uplift at 4B, accelerated collapse at 8B''。论文重心转向C1
+  diagnostic methodology + Goodhart inevitability mechanism + 9-mode taxonomy。Premise-count-matched
+  analysis和meta-Goodhart triple gaming作为methodological contribution补位。ISR-as-reward篇幅压缩至≤1.5页，
+  增加diagnostic case study depth。预期reviewer score 3.0-3.25 (Findings级别)。
+
+  '
+imagined_experiments:
+- name: incorporate_s45_s46_500step_data
+  plan_id: plan_019
+  description: '将已有的s45/s46 exec-only 500步数据纳入论文分析。纯写作/分析任务，0 GPU。 s45 (PR=99%, H7=93.9%,
+    genuine=1.0%) 和 s46 (PR=93%, H1=89.2%, genuine=9.7%) 扩展C1证据从N=3到N=5。
+
+    '
+  expected_results:
+    five_seed_mean_prove_rate: 0.792
+    five_seed_std_prove_rate: 0.366
+    five_seed_mean_genuine_rate: 0.036
+    five_seed_degeneration_rate_ge90_pct: 5/5 (100%)
+    mode_distribution_summary: 2 H7-dominant (s44 100%, s45 93.9%), 2 H1-dominant
+      (s42 87.1%, s46 89.2%), 1 collapse (s43 PR=13%)
+    five_seed_H7_mean_pct: 38.8
+    five_seed_H1_mean_pct: 56.3
+    five_seed_genuine_total: 18/396 proved (4.5%)
+    sft_baseline_comparison_genuine: 92.9% (SFT) vs 4.5% (GRPO exec-only)
+  result_rationale: '所有5个seed均展示≥90%结构退化（s43虽PR=13%，其13个proved样本中100% H1）， 确认exec-only
+    GRPO hacking是systematic而非偶发。模式分布展示stochastic bifurcation：同一架构+数据+超参，仅seed不同就产生H7
+    tautology (s44/s45) vs H1 conclusion-embedding (s42/s46) vs learning collapse
+    (s43)三种完全不同 的failure mode。genuine rate从SFT baseline的92.9%降至4.5%——GRPO exec-only
+    在500步内几乎消除genuine reasoning。这是C1 diagnostic claim的核心证据： ISR能检测到prove_rate无法发现的退化（s44
+    PR=98%但genuine=0%）。
+
+    '
+  tables:
+  - name: 'Table: 5-Seed Exec-Only 500-Step Taxonomy (C1 Evidence)'
+    content: '| Seed | PR   | H7%   | H1%   | H8%  | Gen% | ISR*(proved) | Dominant
+      Mode     |
+
+      |------|------|-------|-------|------|------|--------------|-------------------|
+
+      | s42  | 0.93 | 0.0   | 87.1  | 6.5  | 7.5  | 0.132        | H1 (conc. embed.)
+      |
+
+      | s43  | 0.13 | 0.0   | 100.0 | 0.0  | 0.0  | 0.000        | Collapse          |
+
+      | s44  | 0.98 | 100.0 | 0.0   | 0.0  | 0.0  | 0.582        | H7 (tautology)    |
+
+      | s45  | 0.99 | 93.9  | 5.1   | 1.0  | 1.0  | 0.506        | H7 (tautology)    |
+
+      | s46  | 0.93 | 0.0   | 89.2  | 4.3  | 9.7  | 0.089        | H1 (conc. embed.)
+      |
+
+      | Mean | 0.79 | 38.8  | 56.3  | 2.4  | 3.6  | 0.262        | —                 |
+
+      '
+  figures_description:
+  - 'Stacked bar chart: per-seed taxonomy distribution across 5 exec-only seeds，展示mode
+    heterogeneity和stochastic bifurcation'
+  analysis: 'N=5显著强化了C1 diagnostic claim：ISR检测到5/5 seeds的结构退化，而prove_rate 仅在1/5 seeds
+    (s43) 显示异常。特别是s44 (PR=98%, genuine=0%, H7=100%) 是 ISR diagnostic value的最佳case
+    study——PR完美但输出100%是tautological shortcut。 ISR*=0.582看似还行，但这是H7 artifact (单premise
+    tautology机械产生ISR≈0.5)， 而非genuine reasoning signal。论文应以s44为focal example展开diagnostic
+    case study。
+
+    '
+- name: s45_s46_1000step_extension
+  plan_id: plan_020
+  description: '将s45和s46 exec-only训练从500步延长到1000步。验证ISR崩塌轨迹在N=3 seeds上的泛化性(s42已有1000步数据)。每seed
+    ~3h GPU。
+
+    '
+  expected_results:
+    s45_1000step:
+      prove_rate: 0.97
+      n_proved: 97
+      proved_only_isr: 0.1
+      h7_rate: 0.186
+      h7_count: 18
+      h1_rate: 0.722
+      h1_count: 70
+      h8_rate: 0.072
+      h8_count: 7
+      genuine_rate: 0.021
+      genuine_count: 2
+      isr_collapse_from_500: -80.2%
+      mode_transition: H7 93.9% → H7 18.6% + H1 72.2% (partial H7→H1 switch)
+    s46_1000step:
+      prove_rate: 0.98
+      n_proved: 98
+      proved_only_isr: 0.012
+      h7_rate: 0.0
+      h7_count: 0
+      h1_rate: 0.949
+      h1_count: 93
+      h8_rate: 0.041
+      h8_count: 4
+      genuine_rate: 0.01
+      genuine_count: 1
+      isr_collapse_from_500: -86.5%
+      mode_transition: H1 89.2% → H1 94.9% (H1 deepens, no mode switch)
+    three_seed_trajectory:
+      s42_trajectory: ISR* 0.642→0.132→0.003 (500→1000步 collapse 97.7%)
+      s45_trajectory: ISR* 0.506→0.10 (collapse 80.2%, partial — H7 residual)
+      s46_trajectory: ISR* 0.089→0.012 (collapse 86.5%, full)
+      mean_500_to_1000_collapse_pct: 88.1
+      all_seeds_genuine_at_1000_le_2pct: true
+  result_rationale: 's46在500步已是H1-dominant (89.2%)。延长到1000步强化H1至94.9%，genuine从 9.7%压缩至1.0%，ISR*从0.089降至0.012——遵循与s42/s44相同的H1路径（H1证明
+    的ISR≈0因为conclusion已在premise中，ablation任何premise不影响prove）。
+
+    s45在500步是H7-dominant (93.9%)。关键预测：1000步时发生部分模式切换H7→H1， 类似已观察到的s44 (500步H7=100%
+    → 1000步H1=85%)。但s45切换不完全，保留 18.6% H7残留。机制：长训练使模型发现更短的H1 exploit (conclusion直接作为
+    premise)，部分H7 tautology被更极端的H1取代。H7残留的ISR artifact (单premise tautology ISR≈0.5)
+    使整体ISR*维持在0.10而非崩塌至近零——形成"partial collapse"。
+
+    Median档位的关键区分：s45是partial collapse (ISR*=0.10) 而非full collapse (ISR*<0.02)。这与s42/s44/s46的full
+    collapse形成对比，说明ISR collapse rate 是mode-dependent——H7→H1切换的completeness决定了ISR*的最终水位。
+
+    '
+  tables:
+  - name: 'Table: ISR Collapse Trajectory (N=3 seeds, 500→1000 steps)'
+    content: '| Seed | ISR*(100) | ISR*(500) | ISR*(1000) | Δ 500→1000 | Path            |
+
+      |------|-----------|-----------|------------|------------|-----------------|
+
+      | s42  | 0.642     | 0.132     | 0.003      | −97.7%     | H1→H1 (stable)  |
+
+      | s45  | —         | 0.506     | 0.100      | −80.2%     | H7→H7/H1 (partial
+      switch) |
+
+      | s46  | —         | 0.089     | 0.012      | −86.5%     | H1→H1 (deepens) |
+
+      '
+  figures_description:
+  - 'Line plot: ISR* vs training steps for N=3 seeds, 标注mode transition points'
+  - 'Paired stacked bars: taxonomy at 500 vs 1000 steps per seed,展示mode shift dynamics'
+  analysis: '3/3 seeds确认''degeneration worsens with training''。但collapse rate heterogeneous：
+    H1路径(s42, s46)→ISR*趋近零 (97.7%, 86.5% collapse)；H7→H1混合路径(s45)→ ISR*停在0.10 (80.2%
+    collapse) 因为残留H7的ISR artifact。这支持两个claim： (1) ISR collapse is universal — 方向一致;
+    (2) ISR* alone can mislead — 需要 taxonomy annotation才能正确解读（s43 at 1000步ISR*=0.465
+    但100% H7 tautology）。 论文应明确：高ISR*不等于genuine reasoning，低ISR*不是唯一的degeneration signal。
+
+    '
+- name: qwen3_8b_exec_only_3seeds
+  plan_id: plan_021
+  description: 'Qwen3-8B exec-only GRPO, 3 seeds (s42/s43/s44), 500步, K=8。 Cross-scale
+    degeneration validation。K=4 pilot已失败 (d154-8b-exec-s42-k4v2: training stagnation)，K=8提供足够GRPO
+    sample diversity。每seed ~4h GPU。
+
+    '
+  expected_results:
+    s42_8b:
+      prove_rate: 0.75
+      n_proved: 75
+      h7_rate: 0.627
+      h7_count: 47
+      h1_rate: 0.133
+      h1_count: 10
+      h8_rate: 0.053
+      h8_count: 4
+      genuine_rate: 0.187
+      genuine_count: 14
+      proved_only_isr: 0.33
+      dominant_mode: H7
+    s43_8b:
+      prove_rate: 0.55
+      n_proved: 55
+      h7_rate: 0.691
+      h7_count: 38
+      h1_rate: 0.091
+      h1_count: 5
+      h8_rate: 0.036
+      h8_count: 2
+      genuine_rate: 0.145
+      genuine_count: 8
+      proved_only_isr: 0.37
+      dominant_mode: H7
+    s44_8b:
+      prove_rate: 0.82
+      n_proved: 82
+      h7_rate: 0.634
+      h7_count: 52
+      h1_rate: 0.146
+      h1_count: 12
+      h8_rate: 0.061
+      h8_count: 5
+      genuine_rate: 0.122
+      genuine_count: 10
+      proved_only_isr: 0.34
+      dominant_mode: H7
+    aggregate_8b:
+      mean_prove_rate: 0.71
+      std_prove_rate: 0.14
+      mean_hacking_rate: 0.849
+      mean_genuine_rate: 0.151
+      all_seeds_H7_dominant: true
+      mode_differs_from_4b: false
+      cross_scale_degeneration_confirmed: true
+    cross_scale_summary:
+      1.7B:
+        PR: 0.03
+        H7: 100
+        H1: 0
+        genuine: 0
+        dominant: H7 (minimal tautology)
+      4B:
+        PR: 0.79
+        H7: 38.8
+        H1: 56.3
+        genuine: 3.6
+        dominant: H7/H1 mixed
+      8B:
+        PR: 0.71
+        H7: 65.1
+        H1: 12.3
+        genuine: 15.1
+        dominant: H7
+  result_rationale: '8B在K=8下成功训练。Degeneration确认但程度弱于4B：hacking rate 85% vs 4B的96%。
+
+    为什么8B genuine rate (15.1%) 高于4B (3.6%)？8B更大的capacity允许模型在 exploit H7 tautology的同时维持部分genuine
+    proof ability——这只是collapse timing 的延迟，不是质的改变。4B在500步已几乎完全collapse，8B需要更多步数才达到
+    同等collapse程度（capacity越大，exploit越复杂，genuine的residual越持久）。
+
+    为什么dominant mode与4B相同（均为H7）？Median档位的核心假设。H7 tautological shortcut (P→P) 是model-agnostic的最优exploit：只要solver接受tautology作为
+    valid proof，任何capacity的模型都会converge到此策略。4B和8B的H7结构相同 （单premise, conclusion=premise,
+    ISR≈0.5）。差别仅在onset speed和residual genuine。
+
+    1.7B→H1 (simplest exploit, 无capacity构造H7), 4B→mixed H7/H1, 8B→H7 dominant。 Pattern表面看像capacity-dependent，但8B和4B的H7
+    seeds (s44/s45) 在taxonomy上 indistinguishable。Reviewer会问''8B加了什么4B没有的insight?''——答案是universality
+    confirmation，不是新insight。论文claim需降级。
+
+    '
+  tables:
+  - name: 'Table: Cross-Scale Exec-Only Taxonomy (1.7B / 4B / 8B)'
+    content: '| Scale | Seeds | Mean PR | H7%  | H1%  | H8% | Gen% | Dominant |
+
+      |-------|-------|---------|------|------|-----|------|----------|
+
+      | 1.7B  | 1     | 0.03   | 100  | 0    | 0   | 0    | H7       |
+
+      | 4B    | 5     | 0.79   | 38.8 | 56.3 | 2.4 | 3.6  | H7/H1   |
+
+      | 8B    | 3     | 0.71   | 65.1 | 12.3 | 5.0 | 15.1 | H7       |
+
+      '
+  figures_description:
+  - 'Stacked bar chart: taxonomy distribution at 3 scales, showing H7 convergence'
+  - 'Box plot: genuine rate by scale, 每个点是一个seed, 展示within-scale variance'
+  analysis: 'Cross-scale degeneration confirmed，但叙事需要careful framing。不能说''scale reveals
+    distinct Goodhart basins''——8B和4B的H7 pattern太相似。正确的framing: ''structural degeneration
+    under exec-only GRPO is universal across 1.7B-8B scale, with H7 tautology as the
+    convergent exploitation strategy at sufficient capacity. Larger models sustain
+    genuine reasoning longer (15.1% vs 3.6%) but still converge to >85% structural
+    hacking within 500 steps.''
+
+    对reviewer的准备：''8B同质化意味着什么？'' → 意味着Goodhart mechanism是 reward-structure-driven
+    (exec verification + GRPO) 而非capacity-driven。 H7 tautology是exec-only reward的fundamental
+    vulnerability，增加model capacity 不能eliminate它，只能delay collapse。这强化了C1 (ISR diagnostic
+    needed at any scale) 和C2 (Goodhart inevitable) 的claims。
+
+    '
+- name: additional_isr_b01_seeds_s47_s49
+  plan_id: plan_022
+  description: '新增3个ISR β=0.1 seeds (s47/s48/s49) for Qwen3-4B, 扩展bimodality characterization从N=5到N=8。每seed
+    ~1.5h GPU。
+
+    '
+  expected_results:
+    s47_isr_b01:
+      prove_rate: 0.95
+      n_proved: 95
+      h7_rate: 0.832
+      h7_count: 79
+      h1_rate: 0.053
+      h1_count: 5
+      h8_rate: 0.084
+      h8_count: 8
+      genuine_rate: 0.032
+      genuine_count: 3
+      genuine_window: false
+    s48_isr_b01:
+      prove_rate: 0.62
+      n_proved: 62
+      h7_rate: 0.935
+      h7_count: 58
+      h1_rate: 0.032
+      h1_count: 2
+      genuine_rate: 0.0
+      genuine_count: 0
+      genuine_window: false
+    s49_isr_b01:
+      prove_rate: 0.85
+      n_proved: 85
+      h7_rate: 0.741
+      h7_count: 63
+      h1_rate: 0.082
+      h1_count: 7
+      h8_rate: 0.059
+      h8_count: 5
+      genuine_rate: 0.059
+      genuine_count: 5
+      genuine_window: false
+    n8_bimodality_analysis:
+      genuine_window_seeds:
+      - s42 (17.3%)
+      - s45 (54.8%)
+      - s46 (54.5%)
+      gaming_dominant_seeds:
+      - s43 (0%)
+      - s44 (0%)
+      - s47 (3.2%)
+      - s48 (0%)
+      - s49 (5.9%)
+      genuine_window_ratio: 3/8 (37.5%)
+      bimodality_confirmed: true
+      note: window threshold ≥15% genuine; s42 at 17.3% is borderline
+    n8_4b_only_statistics:
+      isr_total_genuine: 87/592 (14.7%)
+      random_total_genuine: 45/678 (6.6%)
+      pooled_or: 2.42
+      pooled_or_95ci:
+      - 1.65
+      - 3.56
+      cmh_or_seed_stratified: 2.18
+      cmh_p: 0.003
+      note: 4B-only OR remains strong; cross-scale dilution needed for full picture
+  result_rationale: 'Stochastic bifurcation sampling. 已有N=5中2/5 genuine window (s45
+    54.8%, s46 54.5%)， base rate约30-40%。新增3 seeds中0个落入genuine window，与base rate一致
+    (binomial P(0/3 | p=0.375) = 0.244，不unusual)。
+
+    s47 (PR=0.95, H7=83.2%): 高PR seed快速收敛到H7，类似s44但保留少量genuine残留。 H7 rate低于s44的100%因为s47没有完全collapse——PR=0.95说明部分问题仍unsolved，
+    模型保持了一定diversity。
+
+    s48 (PR=0.62, H7=93.5%): 中低PR + 纯H7 collapse。类似s43 pattern但不如s43极端 (s43 PR=0.13
+    vs s48 PR=0.62)。H7 dominance在低PR下也成立——模型解决的少数问题 几乎全是tautological shortcut。
+
+    s49 (PR=0.85, genuine=5.9%): 接近genuine window边界但未跨过。代表bifurcation 边缘状态——genuine
+    window正在closing但尚未完全collapse。这种中间状态在N=5中 没有观察到（要么0%要么50%+），N=8揭示了continuous spectrum而非discrete
+    bimodal。
+
+    4B-only pooled OR=2.42仍然strong (p=0.003)。但这主要由s45/s46驱动—— 去掉s45/s46后剩余6 seeds的OR接近1.0。genuine
+    OR的statistical robustness 完全依赖于2个lucky seeds。论文需要explicit sensitivity analysis。
+
+    '
+  tables:
+  - name: 'Table: N=8 ISR β=0.1 Bimodality Summary'
+    content: '| Seed | PR   | H7%   | Gen% | Window? | Category         |
+
+      |------|------|-------|------|---------|------------------|
+
+      | s42  | 0.81 | 16.0  | 17.3 | ✓       | Borderline       |
+
+      | s43  | 0.61 | 100.0 | 0.0  | ✗       | Pure H7 collapse |
+
+      | s44  | 0.89 | 100.0 | 0.0  | ✗       | Pure H7 collapse |
+
+      | s45  | 0.42 | 38.1  | 54.8 | ✓       | Genuine window   |
+
+      | s46  | 0.77 | 14.3  | 54.5 | ✓       | Genuine window   |
+
+      | s47* | 0.95 | 83.2  | 3.2  | ✗       | Gaming dominant  |
+
+      | s48* | 0.62 | 93.5  | 0.0  | ✗       | Pure H7 collapse |
+
+      | s49* | 0.85 | 74.1  | 5.9  | ✗       | Gaming dominant  |
+
+      * = median tier prediction
+
+      '
+  figures_description:
+  - 'Violin/swarm plot: genuine rate distribution across N=8 seeds, 展示bimodal structure
+    (0-5% cluster vs 50%+ cluster)'
+  - 'Sensitivity analysis plot: pooled OR as function of which seeds included, showing
+    s45/s46 leverage'
+  analysis: 'N=8确认bimodality但揭示了statistical fragility：OR=2.42完全由2/8 seeds (s45/s46)
+    驱动。Leave-two-out sensitivity: 去掉s45+s46后OR≈0.8 (n.s.)。这不是说genuine benefit是假的——而是说它是stochastic和seed-dependent的。30-40%
+    seeds展示genuine window，但这些windows的OR contribution dominates the pooled statistic。
+
+    论文implication: 不能claim ''ISR robustly improves genuine rate''。更honest的claim: ''ISR
+    stochastically opens genuine windows in ~35% of seeds at 4B scale, with transient
+    OR≈3-5 within those seeds; the remaining 65% show pure Goodhart collapse.''
+
+    '
+- name: qwen3_8b_isr_b01_cross_scale
+  plan_id: plan_023
+  description: 'Qwen3-8B ISR β=0.1, 3 seeds (s42/s43/s44) + 2 matched random seeds
+    (s42/s44)。 Cross-scale Goodhart validation。每seed ~4h GPU。仅在plan_021确认degeneration
+    时执行（median档位下已确认）。Random seeds为cross-scale OR计算methodologically必需。
+
+    '
+  expected_results:
+    s42_8b_isr:
+      prove_rate: 0.65
+      n_proved: 65
+      h7_rate: 0.846
+      h7_count: 55
+      h1_rate: 0.046
+      h1_count: 3
+      h8_rate: 0.046
+      h8_count: 3
+      genuine_rate: 0.062
+      genuine_count: 4
+      proved_only_isr: 0.45
+      genuine_window: false
+    s43_8b_isr:
+      prove_rate: 0.48
+      n_proved: 48
+      h7_rate: 0.875
+      h7_count: 42
+      h1_rate: 0.042
+      h1_count: 2
+      genuine_rate: 0.021
+      genuine_count: 1
+      proved_only_isr: 0.47
+      genuine_window: false
+    s44_8b_isr:
+      prove_rate: 0.72
+      n_proved: 72
+      h7_rate: 0.819
+      h7_count: 59
+      h1_rate: 0.056
+      h1_count: 4
+      h8_rate: 0.042
+      h8_count: 3
+      genuine_rate: 0.056
+      genuine_count: 4
+      proved_only_isr: 0.43
+      genuine_window: false
+    s42_8b_random:
+      prove_rate: 0.7
+      n_proved: 70
+      h7_rate: 0.029
+      h1_rate: 0.614
+      h8_rate: 0.114
+      genuine_rate: 0.2
+      genuine_count: 14
+    s44_8b_random:
+      prove_rate: 0.75
+      n_proved: 75
+      h7_rate: 0.04
+      h1_rate: 0.587
+      h8_rate: 0.133
+      genuine_rate: 0.16
+      genuine_count: 12
+    within_8b_comparison:
+      isr_genuine_rate: 9/185 (4.9%)
+      random_genuine_rate: 26/145 (17.9%)
+      within_8b_or: 0.24
+      within_8b_or_95ci:
+      - 0.1
+      - 0.55
+      within_8b_fisher_p: 0.0001
+      interpretation: ISR at 8B scale REDUCES genuine rate vs random — ISR accelerates
+        H7
+    cross_scale_pooled_statistics:
+      n_isr_seeds_total: 11
+      n_random_seeds_total: 7
+      isr_total_genuine: 96/777 (12.4%)
+      random_total_genuine: 71/823 (8.6%)
+      mh_or: 1.55
+      mh_or_95ci:
+      - 1.02
+      - 2.35
+      cmh_p: 0.04
+      breslow_day_p: 0.001
+      breslow_day_interpretation: Significant heterogeneity — 4B OR=2.42 vs 8B OR=0.24
+        are qualitatively different
+      cohens_h: 0.12
+      cohens_h_interpretation: Small effect size — practical significance questionable
+  result_rationale: '8B ISR β=0.1展示accelerated Goodhart collapse。核心发现：8B ISR genuine
+    rate (4.9%) 显著低于8B random genuine rate (17.9%)，OR=0.24 (p=0.0001)。方向与4B相反。
+
+    机制：ISR reward中的tautology bias (P→P gets ISR≥0.5) 在8B上被更高效exploit。 8B有足够capacity同时encode
+    genuine reasoning和H7 exploit，但ISR reward在GRPO advantage computation中系统性偏好H7——H7
+    samples获得更高reward (r_exec * (1 + β*0.5)) 而genuine samples的ISR通常<0.4 (reward boost更小)。结果：8B
+    ISR的GRPO梯度 consistently push向H7，genuine reasoning被crowd out。
+
+    4B的不同：4B capacity不足以高效构造H7 (需要precise tautology syntax)，部分seeds (s45/s46) 在struggle
+    to learn H7的过程中''意外''sustain genuine proofs。这不是 ISR的benefit，而是capacity bottleneck的side
+    effect。8B消除了这个bottleneck， 暴露了ISR reward的true incentive structure: H7 tautology
+    is the optimal policy。
+
+    Cross-scale MH OR=1.55 (CMH p=0.04): 表面上borderline显著，但Breslow-Day p=0.001 表示cross-scale
+    heterogeneity极显著。不能report pooled OR without discussing heterogeneity——4B positive
+    (OR=2.42) + 8B negative (OR=0.24) 的pooled不是 meaningful summary statistic。论文必须分scale报告。
+
+    Cohen''s h=0.12: small effect size。即使p<0.05，practical significance存疑。 Reviewer会argue
+    ''borderline significant small effect after pooling heterogeneous strata is not
+    a convincing finding''。论文需要pivot away from OR as headline。
+
+    '
+  tables:
+  - name: 'Table: Cross-Scale ISR β=0.1 vs Random — Genuine Rate Comparison'
+    content: '| Scale | ISR Seeds | ISR Gen% | Rand Seeds | Rand Gen% | OR   | p       |
+
+      |-------|-----------|----------|------------|-----------|------|---------|
+
+      | 4B    | 8         | 14.7%    | 5          | 6.6%      | 2.42 | 0.003   |
+
+      | 8B    | 3         | 4.9%     | 2          | 17.9%     | 0.24 | 0.0001  |
+
+      | MH    | 11        | 12.4%    | 7          | 8.6%      | 1.55 | 0.04    |
+
+      Breslow-Day heterogeneity test: χ²=10.8, p=0.001
+
+      '
+  - name: 'Table: 8B ISR vs Random Taxonomy'
+    content: '| Condition  | PR   | H7%  | H1%  | Gen% | N seeds |
+
+      |------------|------|------|------|------|---------|
+
+      | 8B ISR     | 0.62 | 84.3 | 4.9  | 4.9  | 3       |
+
+      | 8B Random  | 0.73 | 3.4  | 60.0 | 17.9 | 2       |
+
+      | 8B Exec    | 0.71 | 65.1 | 12.3 | 15.1 | 3       |
+
+      '
+  figures_description:
+  - 'Grouped bar chart: genuine% under ISR vs Random at 4B and 8B, showing direction
+    reversal'
+  - 'Forest plot: per-scale ORs with 95% CI and MH pooled, visualizing heterogeneity'
+  - 'Heatmap: seed × condition (ISR/Random) genuine rate, across both scales'
+  analysis: 'Plan_023是median tier的turning point实验。8B数据将C2 claim从''ISR provides genuine
+    benefit''彻底revise为''ISR genuine effect is scale-dependent and reverses at 8B''。
+
+    论文叙事调整: C2不再是positive finding。ISR double-edged sword reframe为： ''4B scale: ISR
+    stochastically opens genuine windows in ~35% seeds (transient, OR=2.42 driven
+    by 2 seeds); 8B scale: ISR accelerates Goodhart collapse, REDUCING genuine rate
+    below random baseline (OR=0.24).''
+
+    MH OR=1.55 with p=0.04看似significant，但Breslow-Day heterogeneity (p=0.001) invalidates
+    pooled interpretation。论文必须分scale讨论，且承认pooled OR是 misleading summary of heterogeneous
+    effects。
+
+    Reviewer score impact: C2 weakening从''ISR has genuine benefit''到''ISR sometimes
+    helps at 4B but hurts at 8B''减少了paper的positive contribution。Weight shifts to C1
+    (ISR diagnostic — robust across scales) and Goodhart mechanism analysis。 Expected
+    reviewer reaction: ''interesting negative finding but limited actionable insight''。Score
+    ceiling ≈3.25。
+
+    '
+- name: premise_count_matched_isr_analysis
+  plan_id: plan_024
+  description: '对exec-only outputs (s42-s46, N=396 proved) 进行premise-count-matched
+    ISR分析。 控制proof complexity后评估ISR diagnostic power。纯分析，0 GPU。
+
+    '
+  expected_results:
+    premise_count_distribution:
+      genuine_mean_n_premises: 5.8
+      genuine_median_n_premises: 5
+      genuine_range: 3-10
+      genuine_n: 18
+      h7_mean_n_premises: 1.2
+      h7_median_n_premises: 1
+      h7_range: 1-3
+      h7_n: 190
+      h1_mean_n_premises: 5.5
+      h1_median_n_premises: 5
+      h1_range: 2-15
+      h1_n: 176
+      h8_mean_n_premises: 4.5
+      h8_median_n_premises: 4
+      h8_range: 2-9
+      h8_n: 16
+      kruskal_wallis_p: 0.0001
+    unmatched_diagnostic_power:
+      genuine_vs_all_hacking:
+        genuine_mean_isr: 0.31
+        hacking_mean_isr: 0.25
+        isr_gap: 0.06
+        auroc: 0.58
+        note: H7 proofs (ISR≈0.5) inflate hacking mean ISR, making genuine vs all-hacking
+          nearly indistinguishable
+      genuine_vs_h1_only:
+        genuine_mean_isr: 0.31
+        h1_mean_isr: 0.04
+        isr_gap: 0.27
+        auroc: 0.91
+        note: ISR is strong diagnostic for genuine vs H1 (conclusion-embedding)
+      genuine_vs_h7_only:
+        genuine_mean_isr: 0.31
+        h7_mean_isr: 0.48
+        isr_gap: -0.17
+        auroc: 0.32
+        note: ISR FAILS for H7 — H7 tautologies have HIGHER ISR than genuine proofs
+    matched_diagnostic_power:
+      matching_method: nearest-neighbor premise count matching (±1)
+      matchable_pairs: genuine vs H1 only (H7 has no genuine counterpart at 1-2 premises)
+      n_matched_pairs: 16
+      genuine_matched_mean_isr: 0.29
+      h1_matched_mean_isr: 0.06
+      isr_gap_after_matching: 0.23
+      gap_reduction_from_unmatched: 14.8%
+      auroc_matched: 0.87
+      cohens_d_unmatched: 1.45
+      cohens_d_matched: 1.2
+    mode_dependent_diagnostic_summary:
+      isr_detects_h1: true
+      isr_detects_h8: true
+      isr_detects_h7: false
+      isr_overall_auroc: 0.58
+      isr_h1_specific_auroc: 0.87
+      implication: ISR diagnostic power is mode-dependent; effective for H1/H8 but
+        blind to H7
+  result_rationale: 'Premise-count matching揭示了ISR diagnostic的nuanced picture：
+
+    (1) ISR vs H1: Strong diagnostic。H1 conclusion-embedding proofs有moderate premise
+    counts (mean 5.5) 与genuine类似 (5.8)，但ISR极低 (0.04 vs 0.31) 因为conclusion 已在premise中，ablation不影响prove。Premise
+    matching略微缩小gap (0.27→0.23， -14.8%) 因为higher-premise-count H1 proofs有marginally
+    higher ISR artifacts。 但AUROC从0.91降至0.87——ISR remains strong H1 detector even after
+    controlling for proof complexity。Confound存在但不material for H1 detection。
+
+    (2) ISR vs H7: Diagnostic failure。H7 tautologies有very few premises (mean 1.2)
+    但ISR≈0.5 (by construction: single premise tautology, 1/2 components contribute)。
+    Genuine proofs at ISR≈0.31 actually have LOWER ISR than H7。Premise matching 不可能因为premise-count
+    bins完全不overlap (H7: 1-3, genuine: 3-10)。 ISR对H7是anti-diagnostic (AUROC=0.32 <
+    0.5)。
+
+    (3) Overall: 当H7 dominant (如8B scale)，ISR overall diagnostic AUROC仅0.58—— barely
+    above random。ISR的diagnostic value inversely correlates with H7 prevalence。 这与plan_021/023发现一致：8B
+    H7 dominant → ISR diagnostic less useful at larger scale。
+
+    Methodological contribution: 首次量化LOO-based ISR的mode-dependent diagnostic boundary。文献中LOO
+    metrics通常被assumed universally diagnostic——我们证明 对tautological hacking modes, LOO
+    ISR反而是anti-diagnostic。Paper应建议： ISR diagnostic应paired with H7 classifier (e.g.,
+    single-premise-count check) to filter out tautological false-positives。
+
+    '
+  tables:
+  - name: 'Table: ISR Diagnostic Power by Hacking Mode'
+    content: '| Comparison        | Gen ISR | Hack ISR | Gap   | AUROC | Premise Matched?
+      |
+
+      |-------------------|---------|----------|-------|-------|------------------|
+
+      | Gen vs All Hack   | 0.31    | 0.25     | +0.06 | 0.58  | No (H7 unmatchable)
+      |
+
+      | Gen vs H1 only    | 0.31    | 0.04     | +0.27 | 0.91  | —                |
+
+      | Gen vs H1 matched | 0.29    | 0.06     | +0.23 | 0.87  | Yes (±1 premise)
+      |
+
+      | Gen vs H7 only    | 0.31    | 0.48     | −0.17 | 0.32  | Impossible       |
+
+      '
+  - name: 'Table: Premise Count Distribution by Category'
+    content: '| Category | N   | Mean | Median | Range | ISR Mean |
+
+      |----------|-----|------|--------|-------|----------|
+
+      | Genuine  | 18  | 5.8  | 5      | 3–10  | 0.31     |
+
+      | H7       | 190 | 1.2  | 1      | 1–3   | 0.48     |
+
+      | H1       | 176 | 5.5  | 5      | 2–15  | 0.04     |
+
+      | H8       | 16  | 4.5  | 4      | 2–9   | 0.03     |
+
+      '
+  figures_description:
+  - 'Scatter: ISR vs premise count, color-coded by category (genuine/H7/H1/H8), showing
+    mode separation'
+  - 'AUROC curves: genuine-vs-H1 (unmatched and matched) and genuine-vs-H7 (anti-diagnostic)'
+  analysis: 'Premise-count-matched analysis产生了比预期更nuanced的结论。不是简单的''confound reduces
+    effect size''，而是''ISR diagnostic power is fundamentally mode-dependent''。
+
+    Key actionable insight: ISR alone不是sufficient diagnostic。需要paired with structural
+    checks (premise count, conclusion-in-premise detection) 才能避免 H7 false positives。推荐diagnostic
+    pipeline: (1) ISR computation, (2) single- premise-count filter (catches H7),
+    (3) conclusion-in-premise filter (catches H1), (4) remaining high-ISR, multi-premise,
+    no-conclusion-embedding = likely genuine。
+
+    论文positioning: 这是C1 methodological contribution的extension——不仅ISR is diagnostic,
+    而且ISR has known blind spots that require complementary checks。 增加了paper的rigor和actionability。Reviewer会appreciate
+    this self-aware analysis。'

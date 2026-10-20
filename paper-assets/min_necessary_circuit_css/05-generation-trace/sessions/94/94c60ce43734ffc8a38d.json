@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94c60ce43734ffc8a38d",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code mvp collect final",
+  "task_key": "worker_code_mvp-collect-final_20260512T130219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-collect-final_20260512T130219_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "9b6d6dd3a48583aae685cd133541b0c472185f1d684a61da55b42c634f68f175"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ACDC 进度：**5464/32491 (16.8%)**，速度 24.3 it/s，预计还需 ~18.5 分钟。3 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-collect-final.md"
+}

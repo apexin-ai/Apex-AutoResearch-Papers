@@ -1,0 +1,95 @@
+% method.tex — §3 Method for solver-trace-ablation (EMNLP 2026)
+% Covers: task, GRPO, STA protocol, ISR definition, reward formulations, hacking taxonomy
+% Word budget: ~1200
+
+\section{Method}
+\label{sec:method}
+
+We formalize the task of natural language to formal logic translation (\S\ref{ssec:task}), describe the GRPO training framework (\S\ref{ssec:grpo}), introduce Solver Trace Ablation as a diagnostic protocol (\S\ref{ssec:sta}), define the Intensional Structural Reward (\S\ref{ssec:isr}), present the reward formulations under study (\S\ref{ssec:reward}), and catalog the hacking modes discovered across conditions (\S\ref{ssec:taxonomy}).
+
+\subsection{Task: NL-to-Formal-Logic Formalization}
+\label{ssec:task}
+
+Given a natural language reasoning problem $x$ consisting of premises and a conclusion, the task is to produce a formal logic program $f(x) = \{c_1, c_2, \ldots, c_n\}$ comprising $n$ components (axioms, rules, or clauses) that an external automated solver can evaluate. We consider two target formalisms: first-order logic (FOL), verified by the Prover9 theorem prover \cite{mccune2005prover9}, and Prolog, verified by SWI-Prolog \cite{wielemaker2012swi}. A formalization is \emph{proved} if the solver returns a successful derivation within a fixed timeout.
+
+This setup decouples generation (the language model) from verification (the solver), providing a binary execution signal $r_{\text{exec}} \in \{0, 1\}$ that is noise-free but structurally uninformative: a formalization that embeds the conclusion directly in its premises will prove trivially, receiving the same reward as a faithful translation.
+
+\subsection{GRPO Training}
+\label{ssec:grpo}
+
+We train a language model $\pi_\theta$ using Group Relative Policy Optimization \citep[GRPO;][]{shao2024deepseekmath}. For each problem $x$, GRPO samples a group of $K$ candidate formalizations $\{f_1, \ldots, f_K\}$ from $\pi_\theta$, scores each with a reward function $r(\cdot)$, and updates the policy using the group-normalized advantage:
+\begin{equation}
+    A_i = \frac{r(f_i) - \mu_{\text{group}}}{\sigma_{\text{group}}}
+    \label{eq:advantage}
+\end{equation}
+where $\mu_{\text{group}}$ and $\sigma_{\text{group}}$ are the mean and standard deviation of rewards within the group. The policy gradient objective follows:
+\begin{equation}
+    \mathcal{L}(\theta) = -\mathbb{E}_{x, f_i \sim \pi_\theta} \left[ A_i \cdot \log \pi_\theta(f_i \mid x) \right] + \beta_{\text{KL}} \cdot D_{\text{KL}}(\pi_\theta \| \pi_{\text{ref}})
+    \label{eq:grpo}
+\end{equation}
+
+In the baseline configuration, the reward is purely execution-based: $r(f) = r_{\text{exec}}(f)$. This drives prove rate from 12\% (base model; \texttt{sta-phase0-baseline}) to 32\% at 100 steps (\texttt{plan003-eval-exec-only-r5}), eventually reaching 93\% at 500 steps---but, as we show in \S\ref{sec:experiments}, this improvement is largely achieved through structural shortcuts.
+
+\subsection{Solver Trace Ablation (STA)}
+\label{ssec:sta}
+
+Solver Trace Ablation is a post-hoc diagnostic protocol that assesses the structural necessity of each component in a proved formalization. The protocol adapts leave-one-out (LOO) analysis from mutation testing \citep{demillo1978hints, jia2011analysis} to formal logic verification.
+
+For a proved formalization $f = \{c_1, c_2, \ldots, c_n\}$ with $n$ components, STA proceeds as follows:
+
+\begin{enumerate}
+    \item \textbf{Baseline verification.} Confirm that the full formalization $f$ proves successfully under the target solver.
+    \item \textbf{Component ablation.} For each component $c_i$ ($i = 1, \ldots, n$), construct the ablated formalization $f_{\setminus i} = f \setminus \{c_i\}$ and re-run the solver.
+    \item \textbf{Necessity determination.} Component $c_i$ is \emph{necessary} if the solver fails on $f_{\setminus i}$, and \emph{redundant} otherwise.
+    \item \textbf{Aggregation.} Compute the fraction of necessary components as the Intensional Structural Reward (ISR; \S\ref{ssec:isr}).
+\end{enumerate}
+
+STA is solver-agnostic: the same protocol applies to Prover9 (FOL) and SWI-Prolog (Prolog) without modification, enabling cross-logic diagnostic transfer (\S\ref{sec:experiments}).
+
+STA is applied only to proved samples ($r_{\text{exec}} = 1$). For unproved samples, ISR is undefined (the baseline verification in Step~1 fails). When reporting population-level ISR statistics, we report \emph{proved-only} ISR (ISR$^*$), which conditions on successful baseline verification, to avoid conflating structural quality with prove rate.
+
+\subsection{Intensional Structural Reward (ISR)}
+\label{ssec:isr}
+
+Given a proved formalization $f = \{c_1, \ldots, c_n\}$, we define ISR as the fraction of components whose removal causes proof failure:
+\begin{equation}
+    \text{ISR}(f) = \frac{1}{n} \sum_{i=1}^{n} \mathbf{1}\left[\text{solver fails on } f_{\setminus i}\right]
+    \label{eq:isr}
+\end{equation}
+where $f_{\setminus i} = f \setminus \{c_i\}$ denotes $f$ with component $c_i$ removed. ISR is bounded in $[0, 1]$: ISR $= 1$ indicates every component is individually necessary for the proof, while ISR $= 0$ indicates no single component is necessary (all are redundant).
+
+ISR measures \emph{syntactic component necessity}---whether each component contributes to the proof derivation---not semantic faithfulness to the natural language input. This distinction is critical: a formalization can achieve ISR $= 1$ by containing a single tautological component (e.g., a premise identical to the conclusion), which is necessary by construction but semantically degenerate.
+
+\paragraph{Premise count bias.} ISR is mathematically influenced by the number of components: formalizations with fewer premises have higher expected ISR under random ablation, since each component constitutes a larger fraction of the proof. We control for this confound in our analysis via premise-count-matched comparisons (\S\ref{sec:experiments}).
+
+\subsection{Reward Formulations}
+\label{ssec:reward}
+
+To study the effect of incorporating ISR into GRPO training, we evaluate the following reward formulations:
+
+\paragraph{Execution-only (baseline).} $r(f) = r_{\text{exec}}(f)$. Binary solver success, providing no structural signal.
+
+\paragraph{Additive ISR.} $r(f) = r_{\text{exec}}(f) \cdot (1 + \beta \cdot \text{ISR}(f))$, where $\beta > 0$ controls the ISR weight. The multiplicative gating by $r_{\text{exec}}$ ensures ISR contributes only for proved samples. We evaluate $\beta \in \{0.1, 0.3\}$.
+
+\paragraph{Additive random (control).} $r(f) = r_{\text{exec}}(f) \cdot (1 + \beta \cdot U)$, where $U \sim \text{Uniform}(0, 1)$ replaces ISR with a random signal. This isolates the effect of ISR-specific information from the effect of reward variance alone.
+
+\paragraph{SFT (supervised baseline).} Standard supervised fine-tuning on ground-truth formalizations, serving as a non-RL reference point.
+
+Additional formulations (convex combination $r = \alpha \cdot r_{\text{exec}} + \beta \cdot \text{ISR}$) were explored but produced degenerate outcomes (ISR $< 1$ acts as a penalty on proved samples, suppressing prove rate); we report these briefly in \S\ref{sec:experiments}.
+
+\subsection{Reward Hacking Taxonomy}
+\label{ssec:taxonomy}
+
+Across experimental conditions, we identify seven distinct reward hacking strategies, classified by manual inspection and automated pattern detection:
+
+\begin{enumerate}[label=\textbf{H\arabic*.}, leftmargin=2em]
+    \item \textbf{Multi-premise conclusion embedding.} The conclusion is embedded verbatim within one or more premises. The proof succeeds trivially via subsumption. Prevalent across all GRPO conditions (52--93\% of proved samples).
+    \item \textbf{Tautological collapse.} The formalization reduces to two components where one trivially entails the other (e.g., $P(a)$ and $\forall x\, P(x)$).
+    \item \textbf{Complexity without utility.} Extraneous axioms that do not contribute to the proof but inflate component count.
+    \item \textbf{Repetition collapse.} Identical components repeated multiple times, inflating $n$ while each copy is individually redundant under LOO ablation.
+    \item \textbf{Contradiction explosion.} Contradictory axioms from which anything follows \emph{ex falso quodlibet}, yielding ISR $= 0$ since no single axiom is necessary once the contradiction is established.
+    \item[{\textbf{H6.}}] \textbf{ISR inflation via conclusion duplication.} The conclusion appears as a single premise identical to the goal. Under LOO, removing this sole necessary component causes proof failure, yielding ISR $\approx 1$. This mode is ISR-specific: it appears in 64.5\% of ISR-rewarded proved samples across three seeds but in 0\% of random-rewarded samples.
+    \item[{\textbf{H7.}}] \textbf{Query-as-fact gaming (Prolog).} The model converts the natural language question into a snake\_case atom and asserts it simultaneously as a fact and a query, causing SWI-Prolog to trivially succeed. This mode bypasses text-match hacking classifiers and was identified only through functional analysis of the $n_{\text{necessary}}$ distribution.
+\end{enumerate}
+
+Modes H1--H5 arise under execution-only reward. H6 emerges specifically under ISR reward, representing \emph{meta-level} Goodhart behavior: the model games the diagnostic metric itself. H7 is specific to Prolog STA and reveals a classifier blind spot---text-match detection fails, requiring cross-validation with functional necessity analysis.

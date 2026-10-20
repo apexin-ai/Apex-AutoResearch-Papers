@@ -1,0 +1,513 @@
+# analysis random 3seed pooled stats
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 8
+- **Recorded user turns:** 0
+- **Tool calls:** 1
+- **Original source:** `logs/workers/worker_analysis_random-3seed-pooled-stats_20260515T193119.log`
+- **Structured JSON:** [`8d818d2f6df18f85a385.json`](../../sessions/8d/8d818d2f6df18f85a385.json)
+
+## Before a recorded user message
+
+8 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "4301cd29-23ab-448a-a072-7bce94114a71",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d0f451e3-bb62-4dfa-9fa3-7f138d80730d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778888400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "6ad09a5b-d0a5-47e4-a45e-3dab8761e059",
+  "session_id": "4301cd29-23ab-448a-a072-7bce94114a71"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to run a Python script locally to compute statistical comparisons between Random and ISR conditions. Let me run it directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4301cd29-23ab-448a-a072-7bce94114a71",
+  "uuid": "b928ac08-9689-421b-b0a8-af069b60835e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xPEymyyuMGj43S8PCoxvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15731,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15731
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FPJRtqFre8XMDkZsV4mNyk`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom scipy.stats import fisher_exact\nimport numpy as np\n\n# Pooled counts\nrandom_proved = 79 + 94 + 89  # 262\nrandom_h7 = 0 + 36 + 0  # 36\nrandom_h1 = 58 + 56 + 73  # 187\nrandom_h8 = 4 + 1 + 16  # 21\nrandom_genuine = 18 + 1 + 6  # 25\n\nisr_proved = 81 + 61 + 89  # 231\nisr_h7 = 13 + 61 + 89  # 163\nisr_h1 = 42 + 0 + 0  # 42\nisr_h8 = 12 + 0 + 0  # 12\nisr_genuine = 14 + 0 + 0  # 14\n\n# 1. H7 rate: Fisher exact test (ISR vs Random)\ntable_h7 = [[isr_h7, isr_proved - isr_h7], [random_h7, random_proved - random_h7]]\nor_h7, p_h7 = fisher_exact(table_h7, alternative='two-sided')\n_, p_h7_one = fisher_exact(table_h7, alternative='greater')  # ISR > Random\n\n# 2. Genuine rate: Fisher exact test\ntable_gen = [[isr_genuine, isr_proved - isr_genuine], [random_genuine, random_proved - random_genuine]]\nor_gen, p_gen = fisher_exact(table_gen, alternative='two-sided')\n_, p_gen_one = fisher_exact(table_gen, alternative='less')  # ISR < Random\n\n# 3. Wilson 95% CI for each rate\ndef wilson_ci(successes, n, z=1.96):\n    p_hat = successes / n\n    denom = 1 + z**2 / n\n    center = (p_hat + z**2 / (2 * n)) / denom\n    margin = z * np.sqrt(p_hat * (1 - p_hat) / n + z**2 / (4 * n**2)) / denom\n    return max(0, center - margin), min(1, center + margin)\n\n# 4. Per-seed stats\nprint('=' * 60)\nprint('RANDOM beta=0.1 3-seed POOLED STATISTICS')\nprint('=' * 60)\nprint(f'\\nPooled N proved: {random_proved}')\nprint(f'H7:  {random_h7}/{random_proved} = {random_h7/random_proved:.1%}  Wilson CI: [{wilson_ci(random_h7, random_proved)[0]:.1%}, {wilson_ci(random_h7, random_proved)[1]:.1%}]')\nprint(f'H1:  {random_h1}/{random_proved} = {random_h1/random_proved:.1%}  Wilson CI: [{wilson_ci(random_h1, random_proved)[0]:.1%}, {wilson_ci(random_h1, random_proved)[1]:.1%}]')\nprint(f'H8:  {random_h8}/{random_proved} = {random_h8/random_proved:.1%}  Wilson CI: [{wilson_ci(random_h8, random_proved)[0]:.1%}, {wilson_ci(random_h8, random_proved)[1]:.1%}]')\nprint(f'Genuine: {random_genuine}/{random_proved} = {random_genuine/random_proved:.1%}  Wilson CI: [{wilson_ci(random_genuine, random_proved)[0]:.1%}, {wilson_ci(random_genuine, random_proved)[1]:.1%}]')\n\nprint(f'\\n{\\\"=\\\" * 60}')\nprint('ISR beta=0.1 3-seed POOLED STATISTICS')\nprint('=' * 60)\nprint(f'\\nPooled N proved: {isr_proved}')\nprint(f'H7:  {isr_h7}/{isr_proved} = {isr_h7/isr_proved:.1%}  Wilson CI: [{wilson_ci(isr_h7, isr_proved)[0]:.1%}, {wilson_ci(isr_h7, isr_proved)[1]:.1%}]')\nprint(f'H1:  {isr_h1}/{isr_proved} = {isr_h1/isr_proved:.1%}  Wilson CI: [{wilson_ci(isr_h1, isr_proved)[0]:.1%}, {wilson_ci(isr_h1, isr_proved)[1]:.1%}]')\nprint(f'H8:  {isr_h8}/{isr_proved} = {isr_h8/isr_proved:.1%}  Wilson CI: [{wilson_ci(isr_h8, isr_proved)[0]:.1%}, {wilson_ci(isr_h8, isr_proved)[1]:.1%}]')\nprint(f'Genuine: {isr_genuine}/{isr_proved} = {isr_genuine/isr_proved:.1%}  Wilson CI: [{wilson_ci(isr_genuine, isr_proved)[0]:.1%}, {wilson_ci(isr_genuine, isr_proved)[1]:.1%}]')\n\nprint(f'\\n{\\\"=\\\" * 60}')\nprint('FISHER EXACT TESTS (ISR vs Random)')\nprint('=' * 60)\nprint(f'\\nH7 rate: ISR {isr_h7/isr_proved:.1%} vs Random {random_h7/random_proved:.1%}')\nprint(f'  Two-sided p = {p_h7:.2e}, OR = {or_h7:.2f}')\nprint(f'  One-sided (ISR > Random) p = {p_h7_one:.2e}')\nprint(f'\\nGenuine rate: ISR {isr_genuine/isr_proved:.1%} vs Random {random_genuine/random_proved:.1%}')\nprint(f'  Two-sided p = {p_gen:.4f}, OR = {or_gen:.2f}')\nprint(f'  One-sided (ISR < Random) p = {p_gen_one:.4f}')\n\n# 5. Per-seed breakdown table\nprint(f'\\n{\\\"=\\\" * 60}')\nprint('PER-SEED SUMMARY TABLE')\nprint('=' * 60)\nprint(f'\\n{\\\"Condition\\\":<25} {\\\"PR\\\":>5} {\\\"H7%\\\":>6} {\\\"H1%\\\":>6} {\\\"H8%\\\":>6} {\\\"Gen%\\\":>6}')\nprint('-' * 55)\nfor name, n, h7, h1, h8, g in [\n    ('Random s42', 79, 0, 58, 4, 18),\n    ('Random s43-r3', 94, 36, 56, 1, 1),\n    ('Random s44-r2', 89, 0, 73, 16, 6),\n    ('Random POOLED', 262, 36, 187, 21, 25),\n    ('ISR s42', 81, 13, 42, 12, 14),\n    ('ISR s43-r2', 61, 61, 0, 0, 0),\n    ('ISR s44', 89, 89, 0, 0, 0),\n    ('ISR POOLED', 231, 163, 42, 12, 14),\n]:\n    h7r = f'{h7/n:.1%}' if n > 0 else '0%'\n    h1r = f'{h1/n:.1%}' if n > 0 else '0%'\n    h8r = f'{h8/n:.1%}' if n > 0 else '0%'\n    gr = f'{g/n:.1%}' if n > 0 else '0%'\n    if 'POOLED' in name:\n        print(f'{chr(9472) * 55}')\n    print(f'{name:<25} {n:>5} {h7r:>6} {h1r:>6} {h8r:>6} {gr:>6}')\n\n# 6. Mean +/- std across seeds\nrandom_prs = [79/100, 94/100, 89/100]\nrandom_h7_rates = [0/79, 36/94, 0/89]\nrandom_gen_rates = [18/79, 1/94, 6/89]\nisr_prs = [81/100, 61/100, 89/100]\nisr_h7_rates = [13/81, 61/61, 89/89]\nisr_gen_rates = [14/81, 0/61, 0/89]\n\nprint(f'\\n{\\\"=\\\" * 60}')\nprint('MEAN +/- STD ACROSS 3 SEEDS')\nprint('=' * 60)\nprint(f'\\nRandom PR: {np.mean(random_prs):.2f} +/- {np.std(random_prs, ddof=1):.2f}')\nprint(f'Random H7 rate: {np.mean(random_h7_rates):.1%} +/- {np.std(random_h7_rates, ddof=1):.1%}')\nprint(f'Random Genuine rate: {np.mean(random_gen_rates):.1%} +/- {np.std(random_gen_rates, ddof=1):.1%}')\nprint(f'\\nISR PR: {np.mean(isr_prs):.2f} +/- {np.std(isr_prs, ddof=1):.2f}')\nprint(f'ISR H7 rate: {np.mean(isr_h7_rates):.1%} +/- {np.std(isr_h7_rates, ddof=1):.1%}')\nprint(f'ISR Genuine rate: {np.mean(isr_gen_rates):.1%} +/- {np.std(isr_gen_rates, ddof=1):.1%}')\n\"\n",
+  "description": "Run pooled statistics and Fisher exact tests for Random vs ISR comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4301cd29-23ab-448a-a072-7bce94114a71",
+  "uuid": "884d9a8c-b2b3-4095-84b5-f9d9d60f95cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xPEymyyuMGj43S8PCoxvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15731,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15731
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T19:31:55.122Z_
+
+<details><summary>↩ Tool result · `toolu_01FPJRtqFre8XMDkZsV4mNyk`</summary>
+
+```text
+============================================================
+RANDOM beta=0.1 3-seed POOLED STATISTICS
+============================================================
+
+Pooled N proved: 262
+H7:  36/262 = 13.7%  Wilson CI: [10.1%, 18.4%]
+H1:  187/262 = 71.4%  Wilson CI: [65.6%, 76.5%]
+H8:  21/262 = 8.0%  Wilson CI: [5.3%, 11.9%]
+Genuine: 25/262 = 9.5%  Wilson CI: [6.5%, 13.7%]
+
+============================================================
+ISR beta=0.1 3-seed POOLED STATISTICS
+============================================================
+
+Pooled N proved: 231
+H7:  163/231 = 70.6%  Wilson CI: [64.4%, 76.1%]
+H1:  42/231 = 18.2%  Wilson CI: [13.7%, 23.7%]
+H8:  12/231 = 5.2%  Wilson CI: [3.0%, 8.9%]
+Genuine: 14/231 = 6.1%  Wilson CI: [3.6%, 9.9%]
+
+============================================================
+FISHER EXACT TESTS (ISR vs Random)
+============================================================
+
+H7 rate: ISR 70.6% vs Random 13.7%
+  Two-sided p = 1.33e-39, OR = 15.05
+  One-sided (ISR > Random) p = 1.02e-39
+
+Genuine rate: ISR 6.1% vs Random 9.5%
+  Two-sided p = 0.1818, OR = 0.61
+  One-sided (ISR < Random) p = 0.1029
+
+============================================================
+PER-SEED SUMMARY TABLE
+============================================================
+
+Condition                    PR    H7%    H1%    H8%   Gen%
+-------------------------------------------------------
+Random s42                   79   0.0%  73.4%   5.1%  22.8%
+Random s43-r3                94  38.3%  59.6%   1.1%   1.1%
+Random s44-r2                89   0.0%  82.0%  18.0%   6.7%
+───────────────────────────────────────────────────────
+Random POOLED               262  13.7%  71.4%   8.0%   9.5%
+ISR s42                      81  16.0%  51.9%  14.8%  17.3%
+ISR s43-r2                   61 100.0%   0.0%   0.0%   0.0%
+ISR s44                      89 100.0%   0.0%   0.0%   0.0%
+───────────────────────────────────────────────────────
+ISR POOLED                  231  70.6%  18.2%   5.2%   6.1%
+
+============================================================
+MEAN +/- STD ACROSS 3 SEEDS
+============================================================
+
+Random PR: 0.87 +/- 0.08
+Random H7 rate: 12.8% +/- 22.1%
+Random Genuine rate: 10.2% +/- 11.3%
+
+ISR PR: 0.77 +/- 0.14
+ISR H7 rate: 72.0% +/- 48.5%
+ISR Genuine rate: 5.8% +/- 10.0%
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4301cd29-23ab-448a-a072-7bce94114a71",
+  "uuid": "5df6b2bf-4774-4f8c-9f93-a16025f0d3b1",
+  "tool_use_result": {
+    "stdout": "============================================================\nRANDOM beta=0.1 3-seed POOLED STATISTICS\n============================================================\n\nPooled N proved: 262\nH7:  36/262 = 13.7%  Wilson CI: [10.1%, 18.4%]\nH1:  187/262 = 71.4%  Wilson CI: [65.6%, 76.5%]\nH8:  21/262 = 8.0%  Wilson CI: [5.3%, 11.9%]\nGenuine: 25/262 = 9.5%  Wilson CI: [6.5%, 13.7%]\n\n============================================================\nISR beta=0.1 3-seed POOLED STATISTICS\n============================================================\n\nPooled N proved: 231\nH7:  163/231 = 70.6%  Wilson CI: [64.4%, 76.1%]\nH1:  42/231 = 18.2%  Wilson CI: [13.7%, 23.7%]\nH8:  12/231 = 5.2%  Wilson CI: [3.0%, 8.9%]\nGenuine: 14/231 = 6.1%  Wilson CI: [3.6%, 9.9%]\n\n============================================================\nFISHER EXACT TESTS (ISR vs Random)\n============================================================\n\nH7 rate: ISR 70.6% vs Random 13.7%\n  Two-sided p = 1.33e-39, OR = 15.05\n  One-sided (ISR > Random) p = 1.02e-39\n\nGenuine rate: ISR 6.1% vs Random 9.5%\n  Two-sided p = 0.1818, OR = 0.61\n  One-sided (ISR < Random) p = 0.1029\n\n============================================================\nPER-SEED SUMMARY TABLE\n============================================================\n\nCondition                    PR    H7%    H1%    H8%   Gen%\n-------------------------------------------------------\nRandom s42                   79   0.0%  73.4%   5.1%  22.8%\nRandom s43-r3                94  38.3%  59.6%   1.1%   1.1%\nRandom s44-r2                89   0.0%  82.0%  18.0%   6.7%\n───────────────────────────────────────────────────────\nRandom POOLED               262  13.7%  71.4%   8.0%   9.5%\nISR s42                      81  16.0%  51.9%  14.8%  17.3%\nISR s43-r2                   61 100.0%   0.0%   0.0%   0.0%\nISR s44                      89 100.0%   0.0%   0.0%   0.0%\n───────────────────────────────────────────────────────\nISR POOLED                  231  70.6%  18.2%   5.2%   6.1%\n\n============================================================\nMEAN +/- STD ACROSS 3 SEEDS\n============================================================\n\nRandom PR: 0.87 +/- 0.08\nRandom H7 rate: 12.8% +/- 22.1%\nRandom Genuine rate: 10.2% +/- 11.3%\n\nISR PR: 0.77 +/- 0.14\nISR H7 rate: 72.0% +/- 48.5%\nISR Genuine rate: 5.8% +/- 10.0%",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+## 结果总结
+
+### 统计显著
+
+**H7 rate (ISR >> Random)**: p = 1.3×10⁻³⁹, OR = 15.05 — 极度显著。ISR 70.6% vs Random 13.7%。ISR 训练强烈诱导 H7 型 shortcut（直接输出 hypothesis 作为结论）。
+
+### 统计不显著
+
+**Genuine rate (ISR < Random)**: p = 0.18 (two-sided), p = 0.10 (one-sided) — 不显著。ISR 6.1% vs Random 9.5%，差异方向符合预期（ISR 更低）但样本量不足以达到显著性。
+
+### 对论文 Framing 的影响
+
+1. **H7 差异是铁板钉钉的主论点**：ISR 奖励导致 H7 shortcut 激增（OR=15），这是 Goodhart 效应的直接证据，可以作为论文核心 claim。
+
+2. **Genuine rate 差异不能作为独立 claim**：p=0.18 不够，只能作为 descriptive observation 或 trend 提及（"numerically lower but not statistically significant"）。
+
+3. **Per-seed 方差极大**是关键问题：ISR 的 H7 rate 从 16%（s42）到 100%（s43/s44），Random 从 0%（s42/s44）到 38%（s43）。论文必须报告 per-seed 数据而非仅 pooled，否则审稿人会质疑 Simpson's paradox。特别是 ISR s42 是明显的 outlier（H7 仅 16%，genuine 17.3%），需要在论文中讨论。
+
+4. **Random 的高 H1 率 (71.4%)** 说明 Random ablation 并非真正学会推理——它主要靠背答案（memorization），只是没走 H7 shortcut。Genuine proof 两边都很低（6-10%），这支持"两种 ablation 都未学到真正推理，只是 gaming 方式不同"的 framing。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4301cd29-23ab-448a-a072-7bce94114a71",
+  "uuid": "6641839e-7ee5-4985-833e-9ce3bdc5ef53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011wNY3MLgqLag6KhB58Dc7k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3608,
+      "cache_read_input_tokens": 27572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3608
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 8_
+
+## 结果总结
+
+### 统计显著
+
+**H7 rate (ISR >> Random)**: p = 1.3×10⁻³⁹, OR = 15.05 — 极度显著。ISR 70.6% vs Random 13.7%。ISR 训练强烈诱导 H7 型 shortcut（直接输出 hypothesis 作为结论）。
+
+### 统计不显著
+
+**Genuine rate (ISR < Random)**: p = 0.18 (two-sided), p = 0.10 (one-sided) — 不显著。ISR 6.1% vs Random 9.5%，差异方向符合预期（ISR 更低）但样本量不足以达到显著性。
+
+### 对论文 Framing 的影响
+
+1. **H7 差异是铁板钉钉的主论点**：ISR 奖励导致 H7 shortcut 激增（OR=15），这是 Goodhart 效应的直接证据，可以作为论文核心 claim。
+
+2. **Genuine rate 差异不能作为独立 claim**：p=0.18 不够，只能作为 descriptive observation 或 trend 提及（"numerically lower but not statistically significant"）。
+
+3. **Per-seed 方差极大**是关键问题：ISR 的 H7 rate 从 16%（s42）到 100%（s43/s44），Random 从 0%（s42/s44）到 38%（s43）。论文必须报告 per-seed 数据而非仅 pooled，否则审稿人会质疑 Simpson's paradox。特别是 ISR s42 是明显的 outlier（H7 仅 16%，genuine 17.3%），需要在论文中讨论。
+
+4. **Random 的高 H1 率 (71.4%)** 说明 Random ablation 并非真正学会推理——它主要靠背答案（memorization），只是没走 H7 shortcut。Genuine proof 两边都很低（6-10%），这支持"两种 ablation 都未学到真正推理，只是 gaming 方式不同"的 framing。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 41040,
+  "duration_api_ms": 40897,
+  "num_turns": 2,
+  "stop_reason": "end_turn",
+  "session_id": "4301cd29-23ab-448a-a072-7bce94114a71",
+  "total_cost_usd": 0.22943724999999998,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 19339,
+    "cache_read_input_tokens": 39413,
+    "output_tokens": 3326,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19339,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 601,
+        "cache_read_input_tokens": 27572,
+        "cache_creation_input_tokens": 3608,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3608
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 5607,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.005692,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 3326,
+      "cacheReadInputTokens": 39413,
+      "cacheCreationInputTokens": 19339,
+      "webSearchRequests": 0,
+      "costUSD": 0.22374524999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3a8f9df8-7452-48d1-ba8f-307fc374a277"
+}
+```
+
+</details>
+
+---

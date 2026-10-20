@@ -1,0 +1,105 @@
+{
+  "exp_id": "plan009-sft-baseline-s44-1000",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T12:47:54.021Z",
+    "updated_at": "2026-05-15T13:36:37.279Z",
+    "hypothesis": "SFT 1000步 seed=44：与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。",
+    "parent": "plan009-sft-baseline-s42-r4",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T12:49:08.008Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 1\"",
+      "finished_at": "2026-05-15T12:50:00.305Z",
+      "training_hours": 0.01
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 742.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 100.25 MiB is free. Process 352142 has 62.36 GiB memory in use. Including non-PyTorch memory, this process has 32.51 GiB memory in use. Of the allocate",
+    "completed_at": "2026-05-15T12:50:04.083Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T12:50:14.696431+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 1\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "352970",
+      "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log",
+      "submitted_at": "2026-05-15T12:52:29.266Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 332.7,
+      "gpu_hours": 0.09
+    },
+    "pid": "352970",
+    "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log",
+    "conclusion": "success",
+    "metrics": {
+      "prove_rate": 0.15,
+      "n_proved": 15,
+      "n_problems": 100,
+      "mean_isr": 0.0884,
+      "isr_std": 0.2268,
+      "median_isr": 0,
+      "proved_only_mean_isr": 0.5892,
+      "max_isr": 0.8571,
+      "by_answer_type": {
+        "true": {
+          "count": 34,
+          "proved": 15,
+          "prove_rate": 0.4412
+        },
+        "false": {
+          "count": 25,
+          "proved": 0,
+          "prove_rate": 0
+        },
+        "unknown": {
+          "count": 41,
+          "proved": 0,
+          "prove_rate": 0
+        }
+      },
+      "genuine_count": 14,
+      "genuine_rate": 0.9333,
+      "h7_strict_count": 0,
+      "h7_strict_rate": 0,
+      "h1_strict_count": 1,
+      "h1_strict_rate": 0.0667,
+      "h8_conjunction_collapse_count": 0,
+      "h8_conjunction_collapse_rate": 0,
+      "conclusion_in_premise_count": 1,
+      "conclusion_in_premise_rate": 0.0667,
+      "content_independent_count": 0,
+      "content_independent_rate": 0,
+      "isr_1_count": 0,
+      "isr_1_rate": 0,
+      "train_final_loss": 0.0171,
+      "train_avg_loss": 0.1544,
+      "train_token_accuracy": 0.995,
+      "train_runtime_s": 1580.97,
+      "eval_elapsed_s": 391.8
+    }
+  },
+  "timestamp": "2026-05-15T13:36:37.472811+00:00",
+  "trigger": "update_registry"
+}

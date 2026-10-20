@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "07edef5e163c9b772371",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code circus random subset fix",
+  "task_key": "worker_code_circus-random-subset-fix_20260513T013603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_circus-random-subset-fix_20260513T013603.log",
+    "occurrence": 1,
+    "bytes": 843566,
+    "sha256": "aca514a2467a50be133bb77ca0e8f365670e50710b2558c043035d9ba989c0d4"
+  },
+  "statistics": {
+    "messages": 447,
+    "user_turns": 1,
+    "tool_calls": 181,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 78,
+      "tool_call": 181,
+      "record": 1,
+      "tool_result": 181,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 446,
+      "chunks": [
+        {
+          "path": "07edef5e163c9b772371-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "07edef5e163c9b772371-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "07edef5e163c9b772371-part-0003.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "07edef5e163c9b772371-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-circus-random-subset-fix.md"
+}

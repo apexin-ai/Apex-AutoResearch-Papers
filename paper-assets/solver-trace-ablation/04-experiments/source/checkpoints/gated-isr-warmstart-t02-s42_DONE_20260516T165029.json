@@ -1,0 +1,27 @@
+{
+  "exp_id": "gated-isr-warmstart-t02-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:36:37.408Z",
+    "updated_at": "2026-05-16T16:50:29.342Z",
+    "spec": {
+      "command": "train_grpo.py --reward_mode isr_gated --isr_threshold 0.2 --num_steps 300 --seed 42",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B (warmstart)",
+      "seed": 42,
+      "gpu_id": "cuda:0",
+      "checkpoint_source": "/root/autodl-tmp/outputs/exec_retrain_v3_s42/checkpoint-200"
+    },
+    "conclusion": "failed",
+    "failure_reason": "Reward collapsed: ISR gate τ=0.2 too strict for warmstart model. gate_pass=0.000 throughout 78 steps, ISR < 0.2 for all outputs → no gradient. Killed.",
+    "completed_at": "2026-05-16T16:45:23.439Z"
+  },
+  "timestamp": "2026-05-16T16:50:29.611885+00:00",
+  "trigger": "update_registry"
+}

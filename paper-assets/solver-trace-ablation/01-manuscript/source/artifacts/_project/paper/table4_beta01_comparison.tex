@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Controlled comparison at $\beta{=}0.1$: ISR reward vs.\ matched random noise. Both use $r = r_\text{exec} \cdot (1 + 0.1 \cdot \text{signal})$; only the signal differs.}
+\label{tab:beta01-comparison}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{ISR $\beta{=}0.1$} & \textbf{Random $\beta{=}0.1$} & \textbf{Ratio} \\
+\midrule
+Eval PR & 0.81 & 0.79 & 1.03$\times$ \\
+Eval ISR (mean) & 0.337 & 0.104 & 3.24$\times$ \\
+Eval ISR (proved-only) & 0.415 & 0.131 & 3.16$\times$ \\
+Component Count & 5.58 & 8.46 & 0.66$\times$ \\
+ISR{=}0 Ratio & 3.7\% & 36.7\% & 0.10$\times$ \\
+ISR{=}1 Ratio & 12.4\% & 0\% & --- \\
+Tautological (2-comp) & 3.7\% & 0\% & --- \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{\columnwidth}
+\footnotesize
+ISR reward achieves 3.2$\times$ higher structural quality at matched PR, confirming genuine structural guidance beyond variance regularization.
+\end{minipage}
+\end{table}

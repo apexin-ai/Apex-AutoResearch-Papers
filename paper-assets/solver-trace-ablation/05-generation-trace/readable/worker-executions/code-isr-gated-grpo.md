@@ -1,0 +1,5156 @@
+# code isr gated grpo
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 112
+- **Recorded user turns:** 0
+- **Tool calls:** 39
+- **Original source:** `logs/workers/worker_code_isr-gated-grpo_20260516T141159.log`
+- **Structured JSON:** [`e2350c70ed83c3e048da.json`](../../sessions/e2/e2350c70ed83c3e048da.json)
+
+## Before a recorded user message
+
+112 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8370df7a-f211-4b69-9c4a-2f16c44ec469",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778958000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "6fa91446-50c2-4488-a552-ad1f5017462f",
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the existing code to understand the current structure, then implement the ISR-Gated GRPO training mode.
+
+I'll need to:
+1. Read train_grpo.py to understand the current reward logic
+2. Read eval_sta.py to understand ISR/n_components calculation
+3. Implement the ISR-gated mode
+4. Create the config
+5. Test it
+
+Let me start by reading the files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "86ed979e-11b8-4001-a589-31ed398c6824",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01171cnkijkKaa8cH4moDduf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15065,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15065
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll read the existing training script and STA evaluation code to understand the current structure, then implement the ISR-Gated mode.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "7f6a9068-9215-436c-ab66-1e30db2575b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01171cnkijkKaa8cH4moDduf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15065,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15065
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BhCpxeNvnUn18CpvxWT3Jj`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "b6bc891f-7a2e-465f-a32b-62b6ff2a3cf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01171cnkijkKaa8cH4moDduf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15065,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15065
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T14:12:14.503Z_
+
+<details><summary>↩ Tool result · `toolu_01BhCpxeNvnUn18CpvxWT3Jj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "3f5b761f-8d58-41c2-b4f8-fdc4ad873153",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the existing training script and eval_sta.py to understand the current structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "586aab2b-06f3-41f1-9d14-0888117ee61b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gb7yoRUEqiUxbqj11pHyeJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 26906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BcCv2iEsoktCiNgS1DXL4R`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "a8e15ba1-321f-4de1-8809-b8b24fbf9d20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gb7yoRUEqiUxbqj11pHyeJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 26906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lm1ynF2wXaXyk71Avv7guy`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "152e1abb-dea1-4653-8c5a-74c15dc12957",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gb7yoRUEqiUxbqj11pHyeJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 26906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T14:12:21.518Z_
+
+<details><summary>↩ Tool result · `toolu_01BcCv2iEsoktCiNgS1DXL4R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n\\ndef load_jsonl(path: str) -> list[dict]:\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef build_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"fol_premises\\\": json.dumps(item.get(\\\"fol_premises\\\", [])),\\n            \\\"fol_conclusion\\\": item.get(\\\"fol_conclusion\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": PROLOG_SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": PROLOG_USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\n\\n... [截断: 输出过长，省略 12248 字符] ...\\n\\nis None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "8972b1f2-1aa0-4865-b2f4-d979548b5684",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\\\n\\\\nUsage:\\\\n  # execution-only (GPU 0)\\\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\n  # execution+STA (GPU 1)\\\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random as _random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom datetime import datetime, timezone\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\\\n\\\\nfrom src.solvers.factory import get_solver\\\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\\\nfrom src.sta.prolog_reward import (\\\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a first-order logic (FOL) expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Premises:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"1. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"2. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Conclusion: &lt;FOL formula>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard FOL notation with predicate-argument syntax: \\\\\\\"\\\\n    \\\\\\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in first-order logic.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\nPROLOG_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a Prolog logic programming expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Facts/Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"&lt;fact_or_rule>.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Query: &lt;goal>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\\\\\"\\\\n    \\\\\\\"variables start with uppercase, atoms/predicates start with lowercase.\\\\\\\"\\\\n)\\\\n\\\\nPROLOG_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_jsonl(path: str) -> list[dict]:\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                data.append(json.loads(line))\\\\n    return data\\\\n\\\\n\\\\ndef build_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"fol_premises\\\\\\\": json.dumps(item.get(\\\\\\\"fol_premises\\\\\\\", [])),\\\\n            \\\\\\\"fol_conclusion\\\\\\\": item.get(\\\\\\\"fol_conclusion\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\n\\\\n... [截断: 输出过长，省略 12248 字符] ...\\\\n\\\\nis None:\\\\n        args.max_completion_length = 512\\\\n    if args.learning_rate is None:\\\\n        args.learning_rate = 1e-6\\\\n    if args.exec_weight is None:\\\\n        args.exec_weight = 0.5\\\\n    if args.sta_weight is None:\\\\n        args.sta_weight = 0.5\\\\n    if args.beta is None:\\\\n        args.beta = 0.3\\\\n    if args.beta_schedule is None:\\\\n        args.beta_schedule = \\\\\\\"fixed\\\\\\\"\\\\n    if args.beta_schedule_midpoint is None:\\\\n        args.beta_schedule_midpoint = 250\\\\n    if args.seed is None:\\\\n        args.seed = 42\\\\n    if args.warmup_ratio is None:\\\\n        args.warmup_ratio = 0.0\\\\n    if args.solver is None:\\\\n        args.solver = \\\\\\\"prover9\\\\\\\"\\\\n    if args.logic_type is None:\\\\n        args.logic_type = \\\\\\\"fol\\\\\\\"\\\\n\\\\n    missing = [f for f in (\\\\\\\"model_path\\\\\\\", \\\\\\\"data_path\\\\\\\", \\\\\\\"reward_mode\\\\\\\", \\\\\\\"output_dir\\\\\\\")\\\\n               if getattr(args, f, None) is None]\\\\n    if missing:\\\\n        parser.error(f\\\\\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\\\\\")\\\\n\\\\n    return args\\\\n\\\\n\\\\ndef load_yaml_config(path: str) -> dict:\\\\n    import yaml\\\\n    with open(path) as f:\\\\n        return yaml.safe_load(f)\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if args.no_wandb:\\\\n        os.environ[\\\\\\\"WANDB_MODE\\\\\\\"] = \\\\\\\"disabled\\\\\\\"\\\\n\\\\n    report_to = \\\\\\\"none\\\\\\\" if args.no_wandb else \\\\\\\"wandb\\\\\\\"\\\\n    if args.wandb_project and not args.no_wandb:\\\\n        import wandb\\\\n        run_name = args.wandb_run or f\\\\\\\"grpo_{args.reward_mode}\\\\\\\"\\\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n\\\\n    logger.info(f\\\\\\\"Loading data from {args.data_path}\\\\\\\")\\\\n    raw_data = load_jsonl(args.data_path)\\\\n    logic_type = getattr(args, \\\\\\\"logic_type\\\\\\\", \\\\\\\"fol\\\\\\\")\\\\n    if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n        dataset = build_prolog_dataset(raw_data)\\\\n    else:\\\\n        dataset = build_dataset(raw_data)\\\\n    logger.info(f\\\\\\\"Dataset: {len(dataset)} examples\\\\\\\")\\\\n\\\\n    logger.info(f\\\\\\\"Initializing solver: {args.solver}\\\\\\\")\\\\n    solver = get_solver(args.solver)\\\\n    logger.info(f\\\\\\\"Solver ready: {type(solver).__name__}\\\\\\\")\\\\n\\\\n    reward_fn = make_reward_fn(\\\\n        args.reward_mode, solver,\\\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\\\n        logic_type=logic_type,\\\\n        beta=getattr(args, \\\\\\\"beta\\\\\\\", 0.3),\\\\n        beta_schedule=getattr(args, \\\\\\\"beta_schedule\\\\\\\", \\\\\\\"fixed\\\\\\\"),\\\\n        beta_schedule_midpoint=getattr(args, \\\\\\\"beta_schedule_midpoint\\\\\\\", 250),\\\\n        max_steps=args.num_steps,\\\\n    )\\\\n\\\\n    grpo_config = GRPOConfig(\\\\n        output_dir=args.output_dir,\\\\n        max_steps=args.num_steps,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_completion_length,\\\\n        logging_steps=1,\\\\n        save_steps=50,\\\\n        save_total_limit=1,\\\\n        save_only_model=True,\\\\n        report_to=report_to,\\\\n        bf16=True,\\\\n        seed=args.seed,\\\\n        warmup_ratio=args.warmup_ratio,\\\\n        log_completions=False,\\\\n        num_completions_to_print=2,\\\\n        chat_template_kwargs={\\\\\\\"enable_thinking\\\\\\\": False},\\\\n        gradient_checkpointing=getattr(args, \\\\\\\"gradient_checkpointing\\\\\\\", False),\\\\n        optim=getattr(args, \\\\\\\"optim\\\\\\\", \\\\\\\"adamw_torch\\\\\\\"),\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n    trainer = GRPOTrainer(\\\\n        model=args.model_path,\\\\n        reward_funcs=reward_fn,\\\\n        args=grpo_config,\\\\n        train_dataset=dataset,\\\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    logger.info(\\\\\\\"Saving final model\\\\\\\")\\\\n    trainer.save_model(args.output_dir)\\\\n\\\\n    final_stats = reward_fn.get_stats()\\\\n    logger.info(f\\\\\\\"Final reward stats: {final_stats}\\\\\\\")\\\\n\\\\n    if not args.no_wandb and args.wandb_project:\\\\n        import wandb\\\\n        wandb.log({\\\\\\\"final/\\\\\\\" + k: v for k, v in final_stats.items()})\\\\n        wandb.finish()\\\\n\\\\n    logger.info(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n\\ndef load_jsonl(path: str) -> list[dict]:\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef build_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"fol_premises\\\": json.dumps(item.get(\\\"fol_premises\\\", [])),\\n            \\\"fol_conclusion\\\": item.get(\\\"fol_conclusion\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": PROLOG_SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": PROLOG_USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\n\\n... [截断: 输出过长，省略 12248 字符] ...\\n\\nis None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T14:12:22.102Z_
+
+<details><summary>↩ Tool result · `toolu_01Lm1ynF2wXaXyk71Avv7guy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate a checkpoint with full STA (Solver Trace Ablation) metrics.\\n\\nSupports both FOL (Prover9) and Prolog (swipl) logic types.\\n\\nLoads a fine-tuned model, generates formalizations on a test set,\\nruns solver + STA ablation to compute ISR, and outputs a JSON report.\\n\\nInputs:\\n  --model_path   Path to HF checkpoint directory\\n  --data_path    JSONL file\\n  --logic_type   \\\"fol\\\" or \\\"prolog\\\"\\n  --output_path  Where to write the JSON report\\n\\nOutput JSON keys:\\n  summary.prove_rate, summary.mean_isr, summary.isr_std, summary.median_isr,\\n  summary.isr_pr_ratio (mean_isr / prove_rate), per-sample details in results[].\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport re\\nimport statistics\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import sta_reward\\nfrom src.sta.prolog_reward import prolog_sta_reward\\n\\n# GPU safety check: abort if target GPU has active processes (prevents OOM from GPU contention)\\n# Usage: wrap your command with scripts/gpu_guard.sh &lt;gpu_id> before running eval\\n\\n\\n# --- FOL prompts ---\\n\\nFOL_SYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nFOL_USER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n# --- Prolog prompts ---\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n# --- Prompt config per logic type ---\\n\\nLOGIC_CONFIG = {\\n    \\\"fol\\\": {\\n        \\\"system_prompt\\\": FOL_SYSTEM_PROMPT,\\n        \\\"user_template\\\": FOL_USER_TEMPLATE,\\n        \\\"default_solver\\\": \\\"prover9\\\",\\n        \\\"reward_fn\\\": sta_reward,\\n    },\\n    \\\"prolog\\\": {\\n        \\\"system_prompt\\\": PROLOG_SYSTEM_PROMPT,\\n        \\\"user_template\\\": PROLOG_USER_TEMPLATE,\\n        \\\"default_solver\\\": \\\"prolog\\\",\\n        \\\"reward_fn\\\": prolog_sta_reward,\\n    },\\n}\\n\\n\\ndef load_data(path: str) -> list[dict]:\\n    data = []\\n    with open(path, \\\"r\\\") as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef load_model(model_path: str):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        torch_dtype=\\\"auto\\\",\\n        device_map=\\\"auto\\\",\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef generate_formalization(\\n    model, tokenizer, context: str, question: str,\\n    system_prompt: str, user_template: str,\\n    max_new_tokens: int = 512,\\n    do_sample: bool = False, temperature: float = 1.0,\\n) -> str:\\n    import torch\\n\\n    user_msg = user_template.format(context=context, question=question)\\n    messages = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n\\n    text = tokenizer.apply_chat_template(\\n        messages,\\n        tokenize=False,\\n        add_generation_prompt=True,\\n        enable_thinking\\n\\n... [截断: 输出过长，省略 3007 字符] ...\\n\\nt, user_template,\\n            args.max_new_tokens,\\n            do_sample=args.do_sample, temperature=args.temperature,\\n        )\\n        gen_time = time.time() - t_sample\\n\\n        t_eval = time.time()\\n        reward = reward_fn(problem, formalization, solver, timeout=args.timeout)\\n        eval_time = time.time() - t_eval\\n\\n        record = {\\n            \\\"index\\\": i,\\n            \\\"id\\\": problem.get(\\\"id\\\", \\\"\\\"),\\n            \\\"context\\\": context,\\n            \\\"question\\\": question,\\n            \\\"answer\\\": answer,\\n            \\\"formalization\\\": formalization,\\n            \\\"gen_time\\\": round(gen_time, 2),\\n            \\\"eval_time\\\": round(eval_time, 2),\\n            **reward,\\n        }\\n        results.append(record)\\n\\n        isr_val = reward[\\\"sta_reward\\\"]\\n        isr_scores.append(isr_val)\\n        status = \\\"proved\\\" if reward[\\\"execution_reward\\\"] > 0 else \\\"FAILED\\\"\\n        print(f\\\"{status}  ISR={isr_val:.3f}  gen={gen_time:.1f}s  eval={eval_time:.1f}s\\\")\\n\\n    elapsed = time.time() - t_start\\n\\n    n = len(isr_scores)\\n    proved_count = sum(1 for r in results if r[\\\"execution_reward\\\"] > 0)\\n    prove_rate = proved_count / n if n else 0.0\\n    mean_isr = statistics.mean(isr_scores) if isr_scores else 0.0\\n    std_isr = statistics.stdev(isr_scores) if len(isr_scores) > 1 else 0.0\\n    median_isr = statistics.median(isr_scores) if isr_scores else 0.0\\n    isr_pr_ratio = mean_isr / prove_rate if prove_rate > 0 else 0.0\\n\\n    # Proved-only ISR stats\\n    proved_isrs = [r[\\\"sta_reward\\\"] for r in results if r[\\\"execution_reward\\\"] > 0]\\n    proved_mean_isr = statistics.mean(proved_isrs) if proved_isrs else 0.0\\n\\n    by_answer = {}\\n    for r in results:\\n        a = r[\\\"answer\\\"]\\n        if a not in by_answer:\\n            by_answer[a] = {\\\"isr_scores\\\": [], \\\"proved\\\": 0, \\\"total\\\": 0}\\n        by_answer[a][\\\"isr_scores\\\"].append(r[\\\"sta_reward\\\"])\\n        by_answer[a][\\\"total\\\"] += 1\\n        if r[\\\"execution_reward\\\"] > 0:\\n            by_answer[a][\\\"proved\\\"] += 1\\n\\n    answer_stats = {}\\n    for a, stats in by_answer.items():\\n        answer_stats[a] = {\\n            \\\"count\\\": stats[\\\"total\\\"],\\n            \\\"proved\\\": stats[\\\"proved\\\"],\\n            \\\"prove_rate\\\": stats[\\\"proved\\\"] / stats[\\\"total\\\"] if stats[\\\"total\\\"] else 0.0,\\n            \\\"mean_isr\\\": statistics.mean(stats[\\\"isr_scores\\\"]) if stats[\\\"isr_scores\\\"] else 0.0,\\n        }\\n\\n    summary = {\\n        \\\"n_problems\\\": n,\\n        \\\"n_proved\\\": proved_count,\\n        \\\"prove_rate\\\": round(prove_rate, 4),\\n        \\\"mean_isr\\\": round(mean_isr, 4),\\n        \\\"isr_std\\\": round(std_isr, 4),\\n        \\\"median_isr\\\": round(median_isr, 4),\\n        \\\"isr_pr_ratio\\\": round(isr_pr_ratio, 4),\\n        \\\"proved_only_mean_isr\\\": round(proved_mean_isr, 4),\\n        \\\"min_isr\\\": round(min(isr_scores), 4) if isr_scores else 0.0,\\n        \\\"max_isr\\\": round(max(isr_scores), 4) if isr_scores else 0.0,\\n        \\\"by_answer_type\\\": answer_stats,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"avg_time_per_sample\\\": round(elapsed / n, 1) if n else 0.0,\\n        \\\"solver\\\": type(solver).__name__,\\n        \\\"logic_type\\\": args.logic_type,\\n        \\\"model_path\\\": args.model_path,\\n    }\\n\\n    output = {\\\"summary\\\": summary, \\\"results\\\": results}\\n\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Results saved to {args.output_path}\\\")\\n    print(f\\\"  Logic type:   {args.logic_type}\\\")\\n    print(f\\\"  Problems:     {n}\\\")\\n    print(f\\\"  Proved:       {proved_count}/{n} ({prove_rate:.1%})\\\")\\n    print(f\\\"  Mean ISR:     {mean_isr:.4f} +/- {std_isr:.4f}\\\")\\n    print(f\\\"  Median ISR:   {median_isr:.4f}\\\")\\n    print(f\\\"  ISR/PR ratio: {isr_pr_ratio:.4f}\\\")\\n    print(f\\\"  Proved-only ISR: {proved_mean_isr:.4f}\\\")\\n    print(f\\\"  By answer type:\\\")\\n    for a, s in answer_stats.items():\\n        print(f\\\"    {a}: n={s['count']}, proved={s['proved']}, ISR={s['mean_isr']:.4f}\\\")\\n    print(f\\\"  Time: {elapsed:.1f}s ({summary['avg_time_per_sample']:.1f}s/sample)\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e35b7b8b-c874-44b9-a471-ef52b5032132",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluate a checkpoint with full STA (Solver Trace Ablation) metrics.\\\\n\\\\nSupports both FOL (Prover9) and Prolog (swipl) logic types.\\\\n\\\\nLoads a fine-tuned model, generates formalizations on a test set,\\\\nruns solver + STA ablation to compute ISR, and outputs a JSON report.\\\\n\\\\nInputs:\\\\n  --model_path   Path to HF checkpoint directory\\\\n  --data_path    JSONL file\\\\n  --logic_type   \\\\\\\"fol\\\\\\\" or \\\\\\\"prolog\\\\\\\"\\\\n  --output_path  Where to write the JSON report\\\\n\\\\nOutput JSON keys:\\\\n  summary.prove_rate, summary.mean_isr, summary.isr_std, summary.median_isr,\\\\n  summary.isr_pr_ratio (mean_isr / prove_rate), per-sample details in results[].\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport statistics\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\\\n\\\\nfrom src.solvers.factory import get_solver\\\\nfrom src.sta.reward import sta_reward\\\\nfrom src.sta.prolog_reward import prolog_sta_reward\\\\n\\\\n# GPU safety check: abort if target GPU has active processes (prevents OOM from GPU contention)\\\\n# Usage: wrap your command with scripts/gpu_guard.sh &lt;gpu_id> before running eval\\\\n\\\\n\\\\n# --- FOL prompts ---\\\\n\\\\nFOL_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a first-order logic (FOL) expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Premises:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"1. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"2. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Conclusion: &lt;FOL formula>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard FOL notation with predicate-argument syntax: \\\\\\\"\\\\n    \\\\\\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\\\\\"\\\\n)\\\\n\\\\nFOL_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in first-order logic.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n# --- Prolog prompts ---\\\\n\\\\nPROLOG_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a Prolog logic programming expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Facts/Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"&lt;fact_or_rule>.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Query: &lt;goal>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\\\\\"\\\\n    \\\\\\\"variables start with uppercase, atoms/predicates start with lowercase.\\\\\\\"\\\\n)\\\\n\\\\nPROLOG_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# --- Prompt config per logic type ---\\\\n\\\\nLOGIC_CONFIG = {\\\\n    \\\\\\\"fol\\\\\\\": {\\\\n        \\\\\\\"system_prompt\\\\\\\": FOL_SYSTEM_PROMPT,\\\\n        \\\\\\\"user_template\\\\\\\": FOL_USER_TEMPLATE,\\\\n        \\\\\\\"default_solver\\\\\\\": \\\\\\\"prover9\\\\\\\",\\\\n        \\\\\\\"reward_fn\\\\\\\": sta_reward,\\\\n    },\\\\n    \\\\\\\"prolog\\\\\\\": {\\\\n        \\\\\\\"system_prompt\\\\\\\": PROLOG_SYSTEM_PROMPT,\\\\n        \\\\\\\"user_template\\\\\\\": PROLOG_USER_TEMPLATE,\\\\n        \\\\\\\"default_solver\\\\\\\": \\\\\\\"prolog\\\\\\\",\\\\n        \\\\\\\"reward_fn\\\\\\\": prolog_sta_reward,\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_data(path: str) -> list[dict]:\\\\n    data = []\\\\n    with open(path, \\\\\\\"r\\\\\\\") as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                data.append(json.loads(line))\\\\n    return data\\\\n\\\\n\\\\ndef load_model(model_path: str):\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path,\\\\n        torch_dtype=\\\\\\\"auto\\\\\\\",\\\\n        device_map=\\\\\\\"auto\\\\\\\",\\\\n        trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef generate_formalization(\\\\n    model, tokenizer, context: str, question: str,\\\\n    system_prompt: str, user_template: str,\\\\n    max_new_tokens: int = 512,\\\\n    do_sample: bool = False, temperature: float = 1.0,\\\\n) -> str:\\\\n    import torch\\\\n\\\\n    user_msg = user_template.format(context=context, question=question)\\\\n    messages = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n\\\\n    text = tokenizer.apply_chat_template(\\\\n        messages,\\\\n        tokenize=False,\\\\n        add_generation_prompt=True,\\\\n        enable_thinking\\\\n\\\\n... [截断: 输出过长，省略 3007 字符] ...\\\\n\\\\nt, user_template,\\\\n            args.max_new_tokens,\\\\n            do_sample=args.do_sample, temperature=args.temperature,\\\\n        )\\\\n        gen_time = time.time() - t_sample\\\\n\\\\n        t_eval = time.time()\\\\n        reward = reward_fn(problem, formalization, solver, timeout=args.timeout)\\\\n        eval_time = time.time() - t_eval\\\\n\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": i,\\\\n            \\\\\\\"id\\\\\\\": problem.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"context\\\\\\\": context,\\\\n            \\\\\\\"question\\\\\\\": question,\\\\n            \\\\\\\"answer\\\\\\\": answer,\\\\n            \\\\\\\"formalization\\\\\\\": formalization,\\\\n            \\\\\\\"gen_time\\\\\\\": round(gen_time, 2),\\\\n            \\\\\\\"eval_time\\\\\\\": round(eval_time, 2),\\\\n            **reward,\\\\n        }\\\\n        results.append(record)\\\\n\\\\n        isr_val = reward[\\\\\\\"sta_reward\\\\\\\"]\\\\n        isr_scores.append(isr_val)\\\\n        status = \\\\\\\"proved\\\\\\\" if reward[\\\\\\\"execution_reward\\\\\\\"] > 0 else \\\\\\\"FAILED\\\\\\\"\\\\n        print(f\\\\\\\"{status}  ISR={isr_val:.3f}  gen={gen_time:.1f}s  eval={eval_time:.1f}s\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t_start\\\\n\\\\n    n = len(isr_scores)\\\\n    proved_count = sum(1 for r in results if r[\\\\\\\"execution_reward\\\\\\\"] > 0)\\\\n    prove_rate = proved_count / n if n else 0.0\\\\n    mean_isr = statistics.mean(isr_scores) if isr_scores else 0.0\\\\n    std_isr = statistics.stdev(isr_scores) if len(isr_scores) > 1 else 0.0\\\\n    median_isr = statistics.median(isr_scores) if isr_scores else 0.0\\\\n    isr_pr_ratio = mean_isr / prove_rate if prove_rate > 0 else 0.0\\\\n\\\\n    # Proved-only ISR stats\\\\n    proved_isrs = [r[\\\\\\\"sta_reward\\\\\\\"] for r in results if r[\\\\\\\"execution_reward\\\\\\\"] > 0]\\\\n    proved_mean_isr = statistics.mean(proved_isrs) if proved_isrs else 0.0\\\\n\\\\n    by_answer = {}\\\\n    for r in results:\\\\n        a = r[\\\\\\\"answer\\\\\\\"]\\\\n        if a not in by_answer:\\\\n            by_answer[a] = {\\\\\\\"isr_scores\\\\\\\": [], \\\\\\\"proved\\\\\\\": 0, \\\\\\\"total\\\\\\\": 0}\\\\n        by_answer[a][\\\\\\\"isr_scores\\\\\\\"].append(r[\\\\\\\"sta_reward\\\\\\\"])\\\\n        by_answer[a][\\\\\\\"total\\\\\\\"] += 1\\\\n        if r[\\\\\\\"execution_reward\\\\\\\"] > 0:\\\\n            by_answer[a][\\\\\\\"proved\\\\\\\"] += 1\\\\n\\\\n    answer_stats = {}\\\\n    for a, stats in by_answer.items():\\\\n        answer_stats[a] = {\\\\n            \\\\\\\"count\\\\\\\": stats[\\\\\\\"total\\\\\\\"],\\\\n            \\\\\\\"proved\\\\\\\": stats[\\\\\\\"proved\\\\\\\"],\\\\n            \\\\\\\"prove_rate\\\\\\\": stats[\\\\\\\"proved\\\\\\\"] / stats[\\\\\\\"total\\\\\\\"] if stats[\\\\\\\"total\\\\\\\"] else 0.0,\\\\n            \\\\\\\"mean_isr\\\\\\\": statistics.mean(stats[\\\\\\\"isr_scores\\\\\\\"]) if stats[\\\\\\\"isr_scores\\\\\\\"] else 0.0,\\\\n        }\\\\n\\\\n    summary = {\\\\n        \\\\\\\"n_problems\\\\\\\": n,\\\\n        \\\\\\\"n_proved\\\\\\\": proved_count,\\\\n        \\\\\\\"prove_rate\\\\\\\": round(prove_rate, 4),\\\\n        \\\\\\\"mean_isr\\\\\\\": round(mean_isr, 4),\\\\n        \\\\\\\"isr_std\\\\\\\": round(std_isr, 4),\\\\n        \\\\\\\"median_isr\\\\\\\": round(median_isr, 4),\\\\n        \\\\\\\"isr_pr_ratio\\\\\\\": round(isr_pr_ratio, 4),\\\\n        \\\\\\\"proved_only_mean_isr\\\\\\\": round(proved_mean_isr, 4),\\\\n        \\\\\\\"min_isr\\\\\\\": round(min(isr_scores), 4) if isr_scores else 0.0,\\\\n        \\\\\\\"max_isr\\\\\\\": round(max(isr_scores), 4) if isr_scores else 0.0,\\\\n        \\\\\\\"by_answer_type\\\\\\\": answer_stats,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"avg_time_per_sample\\\\\\\": round(elapsed / n, 1) if n else 0.0,\\\\n        \\\\\\\"solver\\\\\\\": type(solver).__name__,\\\\n        \\\\\\\"logic_type\\\\\\\": args.logic_type,\\\\n        \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n    }\\\\n\\\\n    output = {\\\\\\\"summary\\\\\\\": summary, \\\\\\\"results\\\\\\\": results}\\\\n\\\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Results saved to {args.output_path}\\\\\\\")\\\\n    print(f\\\\\\\"  Logic type:   {args.logic_type}\\\\\\\")\\\\n    print(f\\\\\\\"  Problems:     {n}\\\\\\\")\\\\n    print(f\\\\\\\"  Proved:       {proved_count}/{n} ({prove_rate:.1%})\\\\\\\")\\\\n    print(f\\\\\\\"  Mean ISR:     {mean_isr:.4f} +/- {std_isr:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Median ISR:   {median_isr:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  ISR/PR ratio: {isr_pr_ratio:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Proved-only ISR: {proved_mean_isr:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  By answer type:\\\\\\\")\\\\n    for a, s in answer_stats.items():\\\\n        print(f\\\\\\\"    {a}: n={s['count']}, proved={s['proved']}, ISR={s['mean_isr']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Time: {elapsed:.1f}s ({summary['avg_time_per_sample']:.1f}s/sample)\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate a checkpoint with full STA (Solver Trace Ablation) metrics.\\n\\nSupports both FOL (Prover9) and Prolog (swipl) logic types.\\n\\nLoads a fine-tuned model, generates formalizations on a test set,\\nruns solver + STA ablation to compute ISR, and outputs a JSON report.\\n\\nInputs:\\n  --model_path   Path to HF checkpoint directory\\n  --data_path    JSONL file\\n  --logic_type   \\\"fol\\\" or \\\"prolog\\\"\\n  --output_path  Where to write the JSON report\\n\\nOutput JSON keys:\\n  summary.prove_rate, summary.mean_isr, summary.isr_std, summary.median_isr,\\n  summary.isr_pr_ratio (mean_isr / prove_rate), per-sample details in results[].\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport re\\nimport statistics\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import sta_reward\\nfrom src.sta.prolog_reward import prolog_sta_reward\\n\\n# GPU safety check: abort if target GPU has active processes (prevents OOM from GPU contention)\\n# Usage: wrap your command with scripts/gpu_guard.sh &lt;gpu_id> before running eval\\n\\n\\n# --- FOL prompts ---\\n\\nFOL_SYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nFOL_USER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n# --- Prolog prompts ---\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n# --- Prompt config per logic type ---\\n\\nLOGIC_CONFIG = {\\n    \\\"fol\\\": {\\n        \\\"system_prompt\\\": FOL_SYSTEM_PROMPT,\\n        \\\"user_template\\\": FOL_USER_TEMPLATE,\\n        \\\"default_solver\\\": \\\"prover9\\\",\\n        \\\"reward_fn\\\": sta_reward,\\n    },\\n    \\\"prolog\\\": {\\n        \\\"system_prompt\\\": PROLOG_SYSTEM_PROMPT,\\n        \\\"user_template\\\": PROLOG_USER_TEMPLATE,\\n        \\\"default_solver\\\": \\\"prolog\\\",\\n        \\\"reward_fn\\\": prolog_sta_reward,\\n    },\\n}\\n\\n\\ndef load_data(path: str) -> list[dict]:\\n    data = []\\n    with open(path, \\\"r\\\") as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef load_model(model_path: str):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        torch_dtype=\\\"auto\\\",\\n        device_map=\\\"auto\\\",\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef generate_formalization(\\n    model, tokenizer, context: str, question: str,\\n    system_prompt: str, user_template: str,\\n    max_new_tokens: int = 512,\\n    do_sample: bool = False, temperature: float = 1.0,\\n) -> str:\\n    import torch\\n\\n    user_msg = user_template.format(context=context, question=question)\\n    messages = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n\\n    text = tokenizer.apply_chat_template(\\n        messages,\\n        tokenize=False,\\n        add_generation_prompt=True,\\n        enable_thinking\\n\\n... [截断: 输出过长，省略 3007 字符] ...\\n\\nt, user_template,\\n            args.max_new_tokens,\\n            do_sample=args.do_sample, temperature=args.temperature,\\n        )\\n        gen_time = time.time() - t_sample\\n\\n        t_eval = time.time()\\n        reward = reward_fn(problem, formalization, solver, timeout=args.timeout)\\n        eval_time = time.time() - t_eval\\n\\n        record = {\\n            \\\"index\\\": i,\\n            \\\"id\\\": problem.get(\\\"id\\\", \\\"\\\"),\\n            \\\"context\\\": context,\\n            \\\"question\\\": question,\\n            \\\"answer\\\": answer,\\n            \\\"formalization\\\": formalization,\\n            \\\"gen_time\\\": round(gen_time, 2),\\n            \\\"eval_time\\\": round(eval_time, 2),\\n            **reward,\\n        }\\n        results.append(record)\\n\\n        isr_val = reward[\\\"sta_reward\\\"]\\n        isr_scores.append(isr_val)\\n        status = \\\"proved\\\" if reward[\\\"execution_reward\\\"] > 0 else \\\"FAILED\\\"\\n        print(f\\\"{status}  ISR={isr_val:.3f}  gen={gen_time:.1f}s  eval={eval_time:.1f}s\\\")\\n\\n    elapsed = time.time() - t_start\\n\\n    n = len(isr_scores)\\n    proved_count = sum(1 for r in results if r[\\\"execution_reward\\\"] > 0)\\n    prove_rate = proved_count / n if n else 0.0\\n    mean_isr = statistics.mean(isr_scores) if isr_scores else 0.0\\n    std_isr = statistics.stdev(isr_scores) if len(isr_scores) > 1 else 0.0\\n    median_isr = statistics.median(isr_scores) if isr_scores else 0.0\\n    isr_pr_ratio = mean_isr / prove_rate if prove_rate > 0 else 0.0\\n\\n    # Proved-only ISR stats\\n    proved_isrs = [r[\\\"sta_reward\\\"] for r in results if r[\\\"execution_reward\\\"] > 0]\\n    proved_mean_isr = statistics.mean(proved_isrs) if proved_isrs else 0.0\\n\\n    by_answer = {}\\n    for r in results:\\n        a = r[\\\"answer\\\"]\\n        if a not in by_answer:\\n            by_answer[a] = {\\\"isr_scores\\\": [], \\\"proved\\\": 0, \\\"total\\\": 0}\\n        by_answer[a][\\\"isr_scores\\\"].append(r[\\\"sta_reward\\\"])\\n        by_answer[a][\\\"total\\\"] += 1\\n        if r[\\\"execution_reward\\\"] > 0:\\n            by_answer[a][\\\"proved\\\"] += 1\\n\\n    answer_stats = {}\\n    for a, stats in by_answer.items():\\n        answer_stats[a] = {\\n            \\\"count\\\": stats[\\\"total\\\"],\\n            \\\"proved\\\": stats[\\\"proved\\\"],\\n            \\\"prove_rate\\\": stats[\\\"proved\\\"] / stats[\\\"total\\\"] if stats[\\\"total\\\"] else 0.0,\\n            \\\"mean_isr\\\": statistics.mean(stats[\\\"isr_scores\\\"]) if stats[\\\"isr_scores\\\"] else 0.0,\\n        }\\n\\n    summary = {\\n        \\\"n_problems\\\": n,\\n        \\\"n_proved\\\": proved_count,\\n        \\\"prove_rate\\\": round(prove_rate, 4),\\n        \\\"mean_isr\\\": round(mean_isr, 4),\\n        \\\"isr_std\\\": round(std_isr, 4),\\n        \\\"median_isr\\\": round(median_isr, 4),\\n        \\\"isr_pr_ratio\\\": round(isr_pr_ratio, 4),\\n        \\\"proved_only_mean_isr\\\": round(proved_mean_isr, 4),\\n        \\\"min_isr\\\": round(min(isr_scores), 4) if isr_scores else 0.0,\\n        \\\"max_isr\\\": round(max(isr_scores), 4) if isr_scores else 0.0,\\n        \\\"by_answer_type\\\": answer_stats,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"avg_time_per_sample\\\": round(elapsed / n, 1) if n else 0.0,\\n        \\\"solver\\\": type(solver).__name__,\\n        \\\"logic_type\\\": args.logic_type,\\n        \\\"model_path\\\": args.model_path,\\n    }\\n\\n    output = {\\\"summary\\\": summary, \\\"results\\\": results}\\n\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Results saved to {args.output_path}\\\")\\n    print(f\\\"  Logic type:   {args.logic_type}\\\")\\n    print(f\\\"  Problems:     {n}\\\")\\n    print(f\\\"  Proved:       {proved_count}/{n} ({prove_rate:.1%})\\\")\\n    print(f\\\"  Mean ISR:     {mean_isr:.4f} +/- {std_isr:.4f}\\\")\\n    print(f\\\"  Median ISR:   {median_isr:.4f}\\\")\\n    print(f\\\"  ISR/PR ratio: {isr_pr_ratio:.4f}\\\")\\n    print(f\\\"  Proved-only ISR: {proved_mean_isr:.4f}\\\")\\n    print(f\\\"  By answer type:\\\")\\n    for a, s in answer_stats.items():\\n        print(f\\\"    {a}: n={s['count']}, proved={s['proved']}, ISR={s['mean_isr']:.4f}\\\")\\n    print(f\\\"  Time: {elapsed:.1f}s ({summary['avg_time_per_sample']:.1f}s/sample)\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+The output was truncated. Let me read the reward function implementation and the existing config to understand the full picture.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "d70e64b9-2594-4011-ab8f-aa0897774b7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eg6Xfo7DK2pfuTbPtEygo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7382,
+      "cache_read_input_tokens": 27725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7382
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WmB7kDf9mu3vMfSwJLJcuk`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/sta/reward.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "2b67f8fa-3d09-41e5-a95c-a696c7188625",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eg6Xfo7DK2pfuTbPtEygo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7382,
+      "cache_read_input_tokens": 27725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7382
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D9t7J1phMktUEtAK5nwpUg`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/configs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "6bf35954-bb54-48ff-ac9f-e48075a26383",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eg6Xfo7DK2pfuTbPtEygo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7382,
+      "cache_read_input_tokens": 27725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7382
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T14:12:27.942Z_
+
+<details><summary>↩ Tool result · `toolu_01WmB7kDf9mu3vMfSwJLJcuk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"STA-based reward function for GRPO training.\\n\\nCombines two signals:\\n  1. Execution reward: did the solver prove the formalization? (0 or 1)\\n  2. STA reward: ISR — what fraction of components is necessary? (0 to 1)\\n\\nA good formalization scores high on both; a hacked one may score 1 on\\nexecution but low on STA (redundant/vacuous components).\\n\\nInput:  problem dict, formalization string, solver.\\nOutput: reward dict with execution_reward, sta_reward, combined_reward, details.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver\\nfrom .ablation import run_sta\\nfrom .isr import compute_isr, fast_isr_fol\\n\\n\\ndef _parse_formalization(formalization: str) -> tuple[list[str], str]:\\n    \\\"\\\"\\\"Extract premises and conclusion from a model-generated formalization.\\n\\n    Expected format (flexible):\\n        Premises:\\n        1. P(a)\\n        2. ∀x(P(x) → Q(x))\\n        Conclusion: Q(a)\\n\\n    Or a simpler format:\\n        P(a); ∀x(P(x) → Q(x)) |- Q(a)\\n\\n    Returns (premises, conclusion).\\n    \\\"\\\"\\\"\\n    # Try \\\"Premises: ... Conclusion: ...\\\" format\\n    m = re.search(r\\\"(?:Conclusion|Goal)\\\\s*:\\\\s*(.+)\\\", formalization, re.IGNORECASE)\\n    if m:\\n        conclusion = m.group(1).strip().rstrip(\\\".\\\")\\n        # Everything before \\\"Conclusion:\\\" is premises\\n        prem_text = formalization[:m.start()]\\n        # Remove \\\"Premises:\\\" header\\n        prem_text = re.sub(r\\\"(?:Premises|Assumptions)\\\\s*:\\\", \\\"\\\", prem_text, flags=re.IGNORECASE)\\n        # Split by numbered lines or semicolons\\n        raw_premises = re.split(r\\\"\\\\n\\\\s*\\\\d+[.)]\\\\s*|\\\\n\\\\s*[-•]\\\\s*|;\\\\s*\\\", prem_text)\\n        premises = [p.strip().rstrip(\\\".\\\") for p in raw_premises if p.strip()]\\n        return premises, conclusion\\n\\n    # Try \\\"|- \\\" (turnstile) format\\n    if \\\"|-\\\" in formalization:\\n        parts = formalization.split(\\\"|-\\\", 1)\\n        prem_text = parts[0].strip()\\n        conclusion = parts[1].strip().rstrip(\\\".\\\")\\n        premises = [p.strip().rstrip(\\\".\\\") for p in re.split(r\\\";\\\\s*|,\\\\s*(?=[A-Z∀∃¬])\\\", prem_text) if p.strip()]\\n        return premises, conclusion\\n\\n    # Fallback: last line is conclusion, rest are premises\\n    lines = [l.strip() for l in formalization.strip().splitlines() if l.strip()]\\n    if len(lines) >= 2:\\n        conclusion = lines[-1].rstrip(\\\".\\\")\\n        premises = [l.rstrip(\\\".\\\") for l in lines[:-1]]\\n        # Strip numbering\\n        premises = [re.sub(r\\\"^\\\\d+[.)]\\\\s*\\\", \\\"\\\", p) for p in premises]\\n        return premises, conclusion\\n\\n    # Single line — treat as conclusion with no premises\\n    return [], formalization.strip().rstrip(\\\".\\\")\\n\\n\\ndef sta_reward(\\n    problem: dict,\\n    formalization: str,\\n    solver: FOLSolver,\\n    execution_weight: float = 0.5,\\n    sta_weight: float = 0.5,\\n    timeout: int = 5,\\n) -> dict:\\n    \\\"\\\"\\\"Compute STA reward for a single formalization.\\n\\n    Args:\\n        problem: Original problem (unused in reward computation, kept for logging).\\n        formalization: Model-generated FOL formalization string.\\n        solver: FOL solver instance.\\n        execution_weight: Weight for the execution (proof success) signal.\\n        sta_weight: Weight for the ISR signal.\\n        timeout: Per-query solver timeout in seconds.\\n\\n    Returns:\\n        Dict with keys: execution_reward, sta_reward, combined_reward, details.\\n    \\\"\\\"\\\"\\n    # Parse formalization into premises + conclusion\\n    try:\\n        premises, conclusion = _parse_formalization(formalization)\\n    except Exception as e:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": f\\\"parse error: {e}\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    if not conclusion:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": \\\"empty conclusion\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    # Execution reward: can the solver prove it?\\n    proof_result = solver.prove(premises, conclusion, timeout=timeout)\\n    exec_reward = 1.0 if proof_result.proved else 0.0\\n\\n    # STA reward: ISR (pass proof_result to avoid re-proving the original)\\n    if proof_result.proved:\\n        ablation_results = run_sta(\\n            premises, conclusion, solver, timeout=timeout,\\n            original_result=proof_result,\\n        )\\n        isr = compute_isr(ablation_results)\\n        details = {\\n            \\\"premises\\\": premises,\\n            \\\"conclusion\\\": conclusion,\\n            \\\"n_components\\\": len(ablation_results),\\n            \\\"n_necessary\\\": sum(1 for r in ablation_results if r.is_necessary),\\n            \\\"isr\\\": isr,\\n            \\\"components\\\": [\\n                {\\n                    \\\"type\\\": r.component.type,\\n                    \\\"content\\\": r.component.content,\\n                    \\\"is_necessary\\\": r.is_necessary,\\n                }\\n                for r in ablation_results\\n            ],\\n        }\\n    else:\\n        isr = 0.0\\n        details = {\\n            \\\"premises\\\": premises,\\n            \\\"conclusion\\\": conclusion,\\n            \\\"proof_failed\\\": True,\\n            \\\"solver_error\\\": proof_result.error,\\n        }\\n\\n    combined = execution_weight * exec_reward + sta_weight * isr\\n\\n    return {\\n        \\\"execution_reward\\\": exec_reward,\\n        \\\"sta_reward\\\": isr,\\n        \\\"combined_reward\\\": combined,\\n        \\\"details\\\": details,\\n    }\\n\\n\\ndef fast_sta_reward(\\n    problem: dict,\\n    formalization: str,\\n    solver: FOLSolver,\\n    execution_weight: float = 0.5,\\n    sta_weight: float = 0.5,\\n    timeout: int = 5,\\n) -> dict:\\n    \\\"\\\"\\\"Fast STA reward using O(1) approximate ISR (2 solver calls total).\\n\\n    Suitable for GRPO training where per-sample latency matters.\\n    \\\"\\\"\\\"\\n    try:\\n        premises, conclusion = _parse_formalization(formalization)\\n    except Exception as e:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": f\\\"parse error: {e}\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    if not conclusion:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": \\\"empty conclusion\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    result = fast_isr_fol(premises, conclusion, solver, timeout=timeout)\\n\\n    exec_reward = 1.0 if result[\\\"original_proved\\\"] else 0.0\\n    isr = result[\\\"fast_isr\\\"]\\n    combined = execution_weight * exec_reward + sta_weight * isr\\n\\n    return {\\n        \\\"execution_reward\\\": exec_reward,\\n        \\\"sta_reward\\\": isr,\\n        \\\"combined_reward\\\": combined,\\n        \\\"details\\\": {\\n            \\\"premises\\\": premises,\\n            \\\"conclusion\\\": conclusion,\\n            \\\"fast_isr\\\": isr,\\n            \\\"original_proved\\\": result[\\\"original_proved\\\"],\\n            \\\"conclusion_tautology\\\": result[\\\"conclusion_tautology\\\"],\\n            \\\"solver_time\\\": result[\\\"solver_time\\\"],\\n        },\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e5b39b75-a4ec-4bd3-93b4-f275bb347b95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"STA-based reward function for GRPO training.\\\\n\\\\nCombines two signals:\\\\n  1. Execution reward: did the solver prove the formalization? (0 or 1)\\\\n  2. STA reward: ISR — what fraction of components is necessary? (0 to 1)\\\\n\\\\nA good formalization scores high on both; a hacked one may score 1 on\\\\nexecution but low on STA (redundant/vacuous components).\\\\n\\\\nInput:  problem dict, formalization string, solver.\\\\nOutput: reward dict with execution_reward, sta_reward, combined_reward, details.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport re\\\\nfrom typing import Optional\\\\n\\\\nfrom ..solvers.base import FOLSolver\\\\nfrom .ablation import run_sta\\\\nfrom .isr import compute_isr, fast_isr_fol\\\\n\\\\n\\\\ndef _parse_formalization(formalization: str) -> tuple[list[str], str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract premises and conclusion from a model-generated formalization.\\\\n\\\\n    Expected format (flexible):\\\\n        Premises:\\\\n        1. P(a)\\\\n        2. ∀x(P(x) → Q(x))\\\\n        Conclusion: Q(a)\\\\n\\\\n    Or a simpler format:\\\\n        P(a); ∀x(P(x) → Q(x)) |- Q(a)\\\\n\\\\n    Returns (premises, conclusion).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Try \\\\\\\"Premises: ... Conclusion: ...\\\\\\\" format\\\\n    m = re.search(r\\\\\\\"(?:Conclusion|Goal)\\\\\\\\s*:\\\\\\\\s*(.+)\\\\\\\", formalization, re.IGNORECASE)\\\\n    if m:\\\\n        conclusion = m.group(1).strip().rstrip(\\\\\\\".\\\\\\\")\\\\n        # Everything before \\\\\\\"Conclusion:\\\\\\\" is premises\\\\n        prem_text = formalization[:m.start()]\\\\n        # Remove \\\\\\\"Premises:\\\\\\\" header\\\\n        prem_text = re.sub(r\\\\\\\"(?:Premises|Assumptions)\\\\\\\\s*:\\\\\\\", \\\\\\\"\\\\\\\", prem_text, flags=re.IGNORECASE)\\\\n        # Split by numbered lines or semicolons\\\\n        raw_premises = re.split(r\\\\\\\"\\\\\\\\n\\\\\\\\s*\\\\\\\\d+[.)]\\\\\\\\s*|\\\\\\\\n\\\\\\\\s*[-•]\\\\\\\\s*|;\\\\\\\\s*\\\\\\\", prem_text)\\\\n        premises = [p.strip().rstrip(\\\\\\\".\\\\\\\") for p in raw_premises if p.strip()]\\\\n        return premises, conclusion\\\\n\\\\n    # Try \\\\\\\"|- \\\\\\\" (turnstile) format\\\\n    if \\\\\\\"|-\\\\\\\" in formalization:\\\\n        parts = formalization.split(\\\\\\\"|-\\\\\\\", 1)\\\\n        prem_text = parts[0].strip()\\\\n        conclusion = parts[1].strip().rstrip(\\\\\\\".\\\\\\\")\\\\n        premises = [p.strip().rstrip(\\\\\\\".\\\\\\\") for p in re.split(r\\\\\\\";\\\\\\\\s*|,\\\\\\\\s*(?=[A-Z∀∃¬])\\\\\\\", prem_text) if p.strip()]\\\\n        return premises, conclusion\\\\n\\\\n    # Fallback: last line is conclusion, rest are premises\\\\n    lines = [l.strip() for l in formalization.strip().splitlines() if l.strip()]\\\\n    if len(lines) >= 2:\\\\n        conclusion = lines[-1].rstrip(\\\\\\\".\\\\\\\")\\\\n        premises = [l.rstrip(\\\\\\\".\\\\\\\") for l in lines[:-1]]\\\\n        # Strip numbering\\\\n        premises = [re.sub(r\\\\\\\"^\\\\\\\\d+[.)]\\\\\\\\s*\\\\\\\", \\\\\\\"\\\\\\\", p) for p in premises]\\\\n        return premises, conclusion\\\\n\\\\n    # Single line — treat as conclusion with no premises\\\\n    return [], formalization.strip().rstrip(\\\\\\\".\\\\\\\")\\\\n\\\\n\\\\ndef sta_reward(\\\\n    problem: dict,\\\\n    formalization: str,\\\\n    solver: FOLSolver,\\\\n    execution_weight: float = 0.5,\\\\n    sta_weight: float = 0.5,\\\\n    timeout: int = 5,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute STA reward for a single formalization.\\\\n\\\\n    Args:\\\\n        problem: Original problem (unused in reward computation, kept for logging).\\\\n        formalization: Model-generated FOL formalization string.\\\\n        solver: FOL solver instance.\\\\n        execution_weight: Weight for the execution (proof success) signal.\\\\n        sta_weight: Weight for the ISR signal.\\\\n        timeout: Per-query solver timeout in seconds.\\\\n\\\\n    Returns:\\\\n        Dict with keys: execution_reward, sta_reward, combined_reward, details.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Parse formalization into premises + conclusion\\\\n    try:\\\\n        premises, conclusion = _parse_formalization(formalization)\\\\n    except Exception as e:\\\\n        return {\\\\n            \\\\\\\"execution_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"sta_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"combined_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"details\\\\\\\": {\\\\\\\"error\\\\\\\": f\\\\\\\"parse error: {e}\\\\\\\", \\\\\\\"formalization\\\\\\\": formalization},\\\\n        }\\\\n\\\\n    if not conclusion:\\\\n        return {\\\\n            \\\\\\\"execution_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"sta_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"combined_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"details\\\\\\\": {\\\\\\\"error\\\\\\\": \\\\\\\"empty conclusion\\\\\\\", \\\\\\\"formalization\\\\\\\": formalization},\\\\n        }\\\\n\\\\n    # Execution reward: can the solver prove it?\\\\n    proof_result = solver.prove(premises, conclusion, timeout=timeout)\\\\n    exec_reward = 1.0 if proof_result.proved else 0.0\\\\n\\\\n    # STA reward: ISR (pass proof_result to avoid re-proving the original)\\\\n    if proof_result.proved:\\\\n        ablation_results = run_sta(\\\\n            premises, conclusion, solver, timeout=timeout,\\\\n            original_result=proof_result,\\\\n        )\\\\n        isr = compute_isr(ablation_results)\\\\n        details = {\\\\n            \\\\\\\"premises\\\\\\\": premises,\\\\n            \\\\\\\"conclusion\\\\\\\": conclusion,\\\\n            \\\\\\\"n_components\\\\\\\": len(ablation_results),\\\\n            \\\\\\\"n_necessary\\\\\\\": sum(1 for r in ablation_results if r.is_necessary),\\\\n            \\\\\\\"isr\\\\\\\": isr,\\\\n            \\\\\\\"components\\\\\\\": [\\\\n                {\\\\n                    \\\\\\\"type\\\\\\\": r.component.type,\\\\n                    \\\\\\\"content\\\\\\\": r.component.content,\\\\n                    \\\\\\\"is_necessary\\\\\\\": r.is_necessary,\\\\n                }\\\\n                for r in ablation_results\\\\n            ],\\\\n        }\\\\n    else:\\\\n        isr = 0.0\\\\n        details = {\\\\n            \\\\\\\"premises\\\\\\\": premises,\\\\n            \\\\\\\"conclusion\\\\\\\": conclusion,\\\\n            \\\\\\\"proof_failed\\\\\\\": True,\\\\n            \\\\\\\"solver_error\\\\\\\": proof_result.error,\\\\n        }\\\\n\\\\n    combined = execution_weight * exec_reward + sta_weight * isr\\\\n\\\\n    return {\\\\n        \\\\\\\"execution_reward\\\\\\\": exec_reward,\\\\n        \\\\\\\"sta_reward\\\\\\\": isr,\\\\n        \\\\\\\"combined_reward\\\\\\\": combined,\\\\n        \\\\\\\"details\\\\\\\": details,\\\\n    }\\\\n\\\\n\\\\ndef fast_sta_reward(\\\\n    problem: dict,\\\\n    formalization: str,\\\\n    solver: FOLSolver,\\\\n    execution_weight: float = 0.5,\\\\n    sta_weight: float = 0.5,\\\\n    timeout: int = 5,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fast STA reward using O(1) approximate ISR (2 solver calls total).\\\\n\\\\n    Suitable for GRPO training where per-sample latency matters.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        premises, conclusion = _parse_formalization(formalization)\\\\n    except Exception as e:\\\\n        return {\\\\n            \\\\\\\"execution_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"sta_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"combined_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"details\\\\\\\": {\\\\\\\"error\\\\\\\": f\\\\\\\"parse error: {e}\\\\\\\", \\\\\\\"formalization\\\\\\\": formalization},\\\\n        }\\\\n\\\\n    if not conclusion:\\\\n        return {\\\\n            \\\\\\\"execution_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"sta_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"combined_reward\\\\\\\": 0.0,\\\\n            \\\\\\\"details\\\\\\\": {\\\\\\\"error\\\\\\\": \\\\\\\"empty conclusion\\\\\\\", \\\\\\\"formalization\\\\\\\": formalization},\\\\n        }\\\\n\\\\n    result = fast_isr_fol(premises, conclusion, solver, timeout=timeout)\\\\n\\\\n    exec_reward = 1.0 if result[\\\\\\\"original_proved\\\\\\\"] else 0.0\\\\n    isr = result[\\\\\\\"fast_isr\\\\\\\"]\\\\n    combined = execution_weight * exec_reward + sta_weight * isr\\\\n\\\\n    return {\\\\n        \\\\\\\"execution_reward\\\\\\\": exec_reward,\\\\n        \\\\\\\"sta_reward\\\\\\\": isr,\\\\n        \\\\\\\"combined_reward\\\\\\\": combined,\\\\n        \\\\\\\"details\\\\\\\": {\\\\n            \\\\\\\"premises\\\\\\\": premises,\\\\n            \\\\\\\"conclusion\\\\\\\": conclusion,\\\\n            \\\\\\\"fast_isr\\\\\\\": isr,\\\\n            \\\\\\\"original_proved\\\\\\\": result[\\\\\\\"original_proved\\\\\\\"],\\\\n            \\\\\\\"conclusion_tautology\\\\\\\": result[\\\\\\\"conclusion_tautology\\\\\\\"],\\\\n            \\\\\\\"solver_time\\\\\\\": result[\\\\\\\"solver_time\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"STA-based reward function for GRPO training.\\n\\nCombines two signals:\\n  1. Execution reward: did the solver prove the formalization? (0 or 1)\\n  2. STA reward: ISR — what fraction of components is necessary? (0 to 1)\\n\\nA good formalization scores high on both; a hacked one may score 1 on\\nexecution but low on STA (redundant/vacuous components).\\n\\nInput:  problem dict, formalization string, solver.\\nOutput: reward dict with execution_reward, sta_reward, combined_reward, details.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver\\nfrom .ablation import run_sta\\nfrom .isr import compute_isr, fast_isr_fol\\n\\n\\ndef _parse_formalization(formalization: str) -> tuple[list[str], str]:\\n    \\\"\\\"\\\"Extract premises and conclusion from a model-generated formalization.\\n\\n    Expected format (flexible):\\n        Premises:\\n        1. P(a)\\n        2. ∀x(P(x) → Q(x))\\n        Conclusion: Q(a)\\n\\n    Or a simpler format:\\n        P(a); ∀x(P(x) → Q(x)) |- Q(a)\\n\\n    Returns (premises, conclusion).\\n    \\\"\\\"\\\"\\n    # Try \\\"Premises: ... Conclusion: ...\\\" format\\n    m = re.search(r\\\"(?:Conclusion|Goal)\\\\s*:\\\\s*(.+)\\\", formalization, re.IGNORECASE)\\n    if m:\\n        conclusion = m.group(1).strip().rstrip(\\\".\\\")\\n        # Everything before \\\"Conclusion:\\\" is premises\\n        prem_text = formalization[:m.start()]\\n        # Remove \\\"Premises:\\\" header\\n        prem_text = re.sub(r\\\"(?:Premises|Assumptions)\\\\s*:\\\", \\\"\\\", prem_text, flags=re.IGNORECASE)\\n        # Split by numbered lines or semicolons\\n        raw_premises = re.split(r\\\"\\\\n\\\\s*\\\\d+[.)]\\\\s*|\\\\n\\\\s*[-•]\\\\s*|;\\\\s*\\\", prem_text)\\n        premises = [p.strip().rstrip(\\\".\\\") for p in raw_premises if p.strip()]\\n        return premises, conclusion\\n\\n    # Try \\\"|- \\\" (turnstile) format\\n    if \\\"|-\\\" in formalization:\\n        parts = formalization.split(\\\"|-\\\", 1)\\n        prem_text = parts[0].strip()\\n        conclusion = parts[1].strip().rstrip(\\\".\\\")\\n        premises = [p.strip().rstrip(\\\".\\\") for p in re.split(r\\\";\\\\s*|,\\\\s*(?=[A-Z∀∃¬])\\\", prem_text) if p.strip()]\\n        return premises, conclusion\\n\\n    # Fallback: last line is conclusion, rest are premises\\n    lines = [l.strip() for l in formalization.strip().splitlines() if l.strip()]\\n    if len(lines) >= 2:\\n        conclusion = lines[-1].rstrip(\\\".\\\")\\n        premises = [l.rstrip(\\\".\\\") for l in lines[:-1]]\\n        # Strip numbering\\n        premises = [re.sub(r\\\"^\\\\d+[.)]\\\\s*\\\", \\\"\\\", p) for p in premises]\\n        return premises, conclusion\\n\\n    # Single line — treat as conclusion with no premises\\n    return [], formalization.strip().rstrip(\\\".\\\")\\n\\n\\ndef sta_reward(\\n    problem: dict,\\n    formalization: str,\\n    solver: FOLSolver,\\n    execution_weight: float = 0.5,\\n    sta_weight: float = 0.5,\\n    timeout: int = 5,\\n) -> dict:\\n    \\\"\\\"\\\"Compute STA reward for a single formalization.\\n\\n    Args:\\n        problem: Original problem (unused in reward computation, kept for logging).\\n        formalization: Model-generated FOL formalization string.\\n        solver: FOL solver instance.\\n        execution_weight: Weight for the execution (proof success) signal.\\n        sta_weight: Weight for the ISR signal.\\n        timeout: Per-query solver timeout in seconds.\\n\\n    Returns:\\n        Dict with keys: execution_reward, sta_reward, combined_reward, details.\\n    \\\"\\\"\\\"\\n    # Parse formalization into premises + conclusion\\n    try:\\n        premises, conclusion = _parse_formalization(formalization)\\n    except Exception as e:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": f\\\"parse error: {e}\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    if not conclusion:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": \\\"empty conclusion\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    # Execution reward: can the solver prove it?\\n    proof_result = solver.prove(premises, conclusion, timeout=timeout)\\n    exec_reward = 1.0 if proof_result.proved else 0.0\\n\\n    # STA reward: ISR (pass proof_result to avoid re-proving the original)\\n    if proof_result.proved:\\n        ablation_results = run_sta(\\n            premises, conclusion, solver, timeout=timeout,\\n            original_result=proof_result,\\n        )\\n        isr = compute_isr(ablation_results)\\n        details = {\\n            \\\"premises\\\": premises,\\n            \\\"conclusion\\\": conclusion,\\n            \\\"n_components\\\": len(ablation_results),\\n            \\\"n_necessary\\\": sum(1 for r in ablation_results if r.is_necessary),\\n            \\\"isr\\\": isr,\\n            \\\"components\\\": [\\n                {\\n                    \\\"type\\\": r.component.type,\\n                    \\\"content\\\": r.component.content,\\n                    \\\"is_necessary\\\": r.is_necessary,\\n                }\\n                for r in ablation_results\\n            ],\\n        }\\n    else:\\n        isr = 0.0\\n        details = {\\n            \\\"premises\\\": premises,\\n            \\\"conclusion\\\": conclusion,\\n            \\\"proof_failed\\\": True,\\n            \\\"solver_error\\\": proof_result.error,\\n        }\\n\\n    combined = execution_weight * exec_reward + sta_weight * isr\\n\\n    return {\\n        \\\"execution_reward\\\": exec_reward,\\n        \\\"sta_reward\\\": isr,\\n        \\\"combined_reward\\\": combined,\\n        \\\"details\\\": details,\\n    }\\n\\n\\ndef fast_sta_reward(\\n    problem: dict,\\n    formalization: str,\\n    solver: FOLSolver,\\n    execution_weight: float = 0.5,\\n    sta_weight: float = 0.5,\\n    timeout: int = 5,\\n) -> dict:\\n    \\\"\\\"\\\"Fast STA reward using O(1) approximate ISR (2 solver calls total).\\n\\n    Suitable for GRPO training where per-sample latency matters.\\n    \\\"\\\"\\\"\\n    try:\\n        premises, conclusion = _parse_formalization(formalization)\\n    except Exception as e:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": f\\\"parse error: {e}\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    if not conclusion:\\n        return {\\n            \\\"execution_reward\\\": 0.0,\\n            \\\"sta_reward\\\": 0.0,\\n            \\\"combined_reward\\\": 0.0,\\n            \\\"details\\\": {\\\"error\\\": \\\"empty conclusion\\\", \\\"formalization\\\": formalization},\\n        }\\n\\n    result = fast_isr_fol(premises, conclusion, solver, timeout=timeout)\\n\\n    exec_reward = 1.0 if result[\\\"original_proved\\\"] else 0.0\\n    isr = result[\\\"fast_isr\\\"]\\n    combined = execution_weight * exec_reward + sta_weight * isr\\n\\n    return {\\n        \\\"execution_reward\\\": exec_reward,\\n        \\\"sta_reward\\\": isr,\\n        \\\"combined_reward\\\": combined,\\n        \\\"details\\\": {\\n            \\\"premises\\\": premises,\\n            \\\"conclusion\\\": conclusion,\\n            \\\"fast_isr\\\": isr,\\n            \\\"original_proved\\\": result[\\\"original_proved\\\"],\\n            \\\"conclusion_tautology\\\": result[\\\"conclusion_tautology\\\"],\\n            \\\"solver_time\\\": result[\\\"solver_time\\\"],\\n        },\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T14:12:28.475Z_
+
+<details><summary>↩ Tool result · `toolu_01D9t7J1phMktUEtAK5nwpUg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"grpo_additive_bonus.yaml\\ngrpo_additive_bonus_b005.yaml\\ngrpo_additive_bonus_b01.yaml\\ngrpo_additive_bonus_b01_1.7b.yaml\\ngrpo_additive_bonus_b01_8b.yaml\\ngrpo_additive_bonus_b02.yaml\\ngrpo_additive_random.yaml\\ngrpo_additive_random_b01.yaml\\ngrpo_exec_only.yaml\\ngrpo_exec_only_1.7b.yaml\\ngrpo_exec_only_8b.yaml\\ngrpo_exec_sta.yaml\\ngrpo_fast_isr_ablation.yaml\\ngrpo_prolog_exec_only.yaml\\ngrpo_prolog_exec_only_k16_warmup.yaml\\ngrpo_prolog_exec_sta.yaml\\ngrpo_random_reward.yaml\\nplan018_random_b01_s43.yaml\\nplan018_random_b01_s44.yaml\\nsweep_isr_b005_s43.yaml\\nsweep_isr_b005_s44.yaml\\nsweep_random_b01_s45.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "7a0e2285-a947-4312-9263-8f9ec096ad5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"grpo_additive_bonus.yaml\\\\ngrpo_additive_bonus_b005.yaml\\\\ngrpo_additive_bonus_b01.yaml\\\\ngrpo_additive_bonus_b01_1.7b.yaml\\\\ngrpo_additive_bonus_b01_8b.yaml\\\\ngrpo_additive_bonus_b02.yaml\\\\ngrpo_additive_random.yaml\\\\ngrpo_additive_random_b01.yaml\\\\ngrpo_exec_only.yaml\\\\ngrpo_exec_only_1.7b.yaml\\\\ngrpo_exec_only_8b.yaml\\\\ngrpo_exec_sta.yaml\\\\ngrpo_fast_isr_ablation.yaml\\\\ngrpo_prolog_exec_only.yaml\\\\ngrpo_prolog_exec_only_k16_warmup.yaml\\\\ngrpo_prolog_exec_sta.yaml\\\\ngrpo_random_reward.yaml\\\\nplan018_random_b01_s43.yaml\\\\nplan018_random_b01_s44.yaml\\\\nsweep_isr_b005_s43.yaml\\\\nsweep_isr_b005_s44.yaml\\\\nsweep_random_b01_s45.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"grpo_additive_bonus.yaml\\ngrpo_additive_bonus_b005.yaml\\ngrpo_additive_bonus_b01.yaml\\ngrpo_additive_bonus_b01_1.7b.yaml\\ngrpo_additive_bonus_b01_8b.yaml\\ngrpo_additive_bonus_b02.yaml\\ngrpo_additive_random.yaml\\ngrpo_additive_random_b01.yaml\\ngrpo_exec_only.yaml\\ngrpo_exec_only_1.7b.yaml\\ngrpo_exec_only_8b.yaml\\ngrpo_exec_sta.yaml\\ngrpo_fast_isr_ablation.yaml\\ngrpo_prolog_exec_only.yaml\\ngrpo_prolog_exec_only_k16_warmup.yaml\\ngrpo_prolog_exec_sta.yaml\\ngrpo_random_reward.yaml\\nplan018_random_b01_s43.yaml\\nplan018_random_b01_s44.yaml\\nsweep_isr_b005_s43.yaml\\nsweep_isr_b005_s44.yaml\\nsweep_random_b01_s45.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NoMXT9rjotYfHmbdf21wCF`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/configs/grpo_exec_only.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "190417ad-66ba-45ce-822c-dd83e621ac58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtiTqMB7nHGXVLptuUGfEH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3383,
+      "cache_read_input_tokens": 35107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3383
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016PqjtVmiVMeKRzFoXy1pXX`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/sta/ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "fc8615a3-8e67-429f-8875-26629b67502c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtiTqMB7nHGXVLptuUGfEH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3383,
+      "cache_read_input_tokens": 35107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3383
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T14:12:33.634Z_
+
+<details><summary>↩ Tool result · `toolu_01NoMXT9rjotYfHmbdf21wCF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_path: /root/autodl-tmp/models/Qwen3-4B\\ndata_path: data/train_500_seed42.jsonl\\nreward_mode: execution_only\\noutput_dir: /root/autodl-tmp/outputs/grpo_exec_only\\nnum_steps: 100\\nper_device_batch_size: 4\\ngradient_accumulation_steps: 2\\nnum_generations: 4\\nmax_completion_length: 512\\nlearning_rate: 1.0e-6\\nexec_weight: 1.0\\nsta_weight: 0.0\\nseed: 42\\nsolver: prover9\\nwandb_project: solver-trace-ablation\\nwandb_run: exec_only\\nno_wandb: true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "5bb4bc2f-0415-4182-b9ed-b349f7bd5080",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_path: /root/autodl-tmp/models/Qwen3-4B\\\\ndata_path: data/train_500_seed42.jsonl\\\\nreward_mode: execution_only\\\\noutput_dir: /root/autodl-tmp/outputs/grpo_exec_only\\\\nnum_steps: 100\\\\nper_device_batch_size: 4\\\\ngradient_accumulation_steps: 2\\\\nnum_generations: 4\\\\nmax_completion_length: 512\\\\nlearning_rate: 1.0e-6\\\\nexec_weight: 1.0\\\\nsta_weight: 0.0\\\\nseed: 42\\\\nsolver: prover9\\\\nwandb_project: solver-trace-ablation\\\\nwandb_run: exec_only\\\\nno_wandb: true\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model_path: /root/autodl-tmp/models/Qwen3-4B\\ndata_path: data/train_500_seed42.jsonl\\nreward_mode: execution_only\\noutput_dir: /root/autodl-tmp/outputs/grpo_exec_only\\nnum_steps: 100\\nper_device_batch_size: 4\\ngradient_accumulation_steps: 2\\nnum_generations: 4\\nmax_completion_length: 512\\nlearning_rate: 1.0e-6\\nexec_weight: 1.0\\nsta_weight: 0.0\\nseed: 42\\nsolver: prover9\\nwandb_project: solver-trace-ablation\\nwandb_run: exec_only\\nno_wandb: true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T14:12:34.166Z_
+
+<details><summary>↩ Tool result · `toolu_016PqjtVmiVMeKRzFoXy1pXX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"STA core ablation logic.\\n\\nFor each FOLComponent in a proof problem, ablation removes or neutralizes\\nthat component and re-runs the solver. A component is *necessary* iff the\\nproof breaks (proved → not proved) after its removal.\\n\\nInput:  premises, conclusion, solver.\\nOutput: list of AblationResult (one per component).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom dataclasses import dataclass\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver, SolverResult\\nfrom .components import FOLComponent, decompose_fol\\n\\n\\n@dataclass\\nclass AblationResult:\\n    \\\"\\\"\\\"Outcome of ablating a single component.\\\"\\\"\\\"\\n    component: FOLComponent\\n    original_proved: bool\\n    ablated_proved: bool\\n    is_necessary: bool          # original_proved and not ablated_proved\\n    solver_result: SolverResult  # solver result for the ablated problem\\n\\n\\ndef _ablate_premise(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int,\\n) -> SolverResult:\\n    \\\"\\\"\\\"Remove one premise and re-prove.\\\"\\\"\\\"\\n    ablated_premises = [p for i, p in enumerate(premises) if i != component.index]\\n    return solver.prove(ablated_premises, conclusion, timeout=timeout)\\n\\n\\ndef _ablate_conclusion_part(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int,\\n) -> SolverResult:\\n    \\\"\\\"\\\"Neutralize a conclusion sub-part.\\n\\n    Strategy per component type:\\n    - conclusion_quantifier: drop the quantifier (weaken the claim)\\n    - conclusion_antecedent: replace with T (True) — makes implication trivially\\n      equivalent to consequent, so if proof still works, antecedent was unnecessary\\n    - conclusion_consequent: replace with ⊤ — implication becomes trivially true,\\n      so proof should always succeed; if it does, consequent was NOT necessary\\n      (but we invert: the test is whether removing it *breaks* the proof)\\n      Actually: replace with ⊥ (False) to test necessity.\\n    - conclusion_whole: replace conclusion with a tautology (provable without premises)\\n    \\\"\\\"\\\"\\n    if component.type == \\\"conclusion_quantifier\\\":\\n        # Remove quantifier prefix from conclusion\\n        new_conclusion = conclusion.replace(f\\\"{component.content}\\\", \\\"\\\", 1).strip()\\n        # Strip leading '(' and trailing ')' if they became unbalanced\\n        if new_conclusion.startswith(\\\"(\\\") and new_conclusion.endswith(\\\")\\\"):\\n            new_conclusion = new_conclusion[1:-1].strip()\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\n\\n    elif component.type == \\\"conclusion_antecedent\\\":\\n        new_conclusion = conclusion.replace(component.content, \\\"$T\\\", 1)\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\n\\n    elif component.type == \\\"conclusion_consequent\\\":\\n        new_conclusion = conclusion.replace(component.content, \\\"$F\\\", 1)\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\n\\n    elif component.type == \\\"conclusion_whole\\\":\\n        return solver.prove(premises, \\\"$T\\\", timeout=timeout)\\n\\n    # Fallback: try proving with unmodified conclusion (should not happen)\\n    return solver.prove(premises, conclusion, timeout=timeout)\\n\\n\\ndef ablate_component(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n    original_result: Optional[SolverResult] = None,\\n) -> AblationResult:\\n    \\\"\\\"\\\"Ablate a single component and compare with the original proof.\\n\\n    Returns an AblationResult with necessity judgment.\\n    \\\"\\\"\\\"\\n    if original_result is None:\\n        original_result = solver.prove(premises, conclusion, timeout=timeout)\\n\\n    if component.type == \\\"premise\\\":\\n        ablated = _ablate_premise(premises, conclusion, component, solver, timeout)\\n    else:\\n        ablated = _ablate_conclusion_part(premises, conclusion, component, solver, timeout)\\n\\n    is_necessary = original_result.proved and not ablated.proved\\n\\n    return AblationResult(\\n        component=component,\\n        original_proved=original_result.proved,\\n        ablated_proved=ablated.proved,\\n        is_necessary=is_necessary,\\n        solver_result=ablated,\\n    )\\n\\n\\ndef run_sta(\\n    premises: list[str],\\n    conclusion: str,\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n    original_result: Optional[SolverResult] = None,\\n) -> list[AblationResult]:\\n    \\\"\\\"\\\"Run full Solver Trace Ablation on all components.\\n\\n    Decomposes the problem, ablates each component, returns results.\\n    \\\"\\\"\\\"\\n    if original_result is None:\\n        original_result = solver.prove(premises, conclusion, timeout=timeout)\\n\\n    components = decompose_fol(premises, conclusion)\\n    results: list[AblationResult] = []\\n    for comp in components:\\n        result = ablate_component(\\n            premises, conclusion, comp, solver, timeout,\\n            original_result=original_result,\\n        )\\n        results.append(result)\\n    return results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "5a46fdd9-26e1-4d5e-bb8e-3e04a659f472",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"STA core ablation logic.\\\\n\\\\nFor each FOLComponent in a proof problem, ablation removes or neutralizes\\\\nthat component and re-runs the solver. A component is *necessary* iff the\\\\nproof breaks (proved → not proved) after its removal.\\\\n\\\\nInput:  premises, conclusion, solver.\\\\nOutput: list of AblationResult (one per component).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom dataclasses import dataclass\\\\nfrom typing import Optional\\\\n\\\\nfrom ..solvers.base import FOLSolver, SolverResult\\\\nfrom .components import FOLComponent, decompose_fol\\\\n\\\\n\\\\n@dataclass\\\\nclass AblationResult:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Outcome of ablating a single component.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    component: FOLComponent\\\\n    original_proved: bool\\\\n    ablated_proved: bool\\\\n    is_necessary: bool          # original_proved and not ablated_proved\\\\n    solver_result: SolverResult  # solver result for the ablated problem\\\\n\\\\n\\\\ndef _ablate_premise(\\\\n    premises: list[str],\\\\n    conclusion: str,\\\\n    component: FOLComponent,\\\\n    solver: FOLSolver,\\\\n    timeout: int,\\\\n) -> SolverResult:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Remove one premise and re-prove.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ablated_premises = [p for i, p in enumerate(premises) if i != component.index]\\\\n    return solver.prove(ablated_premises, conclusion, timeout=timeout)\\\\n\\\\n\\\\ndef _ablate_conclusion_part(\\\\n    premises: list[str],\\\\n    conclusion: str,\\\\n    component: FOLComponent,\\\\n    solver: FOLSolver,\\\\n    timeout: int,\\\\n) -> SolverResult:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Neutralize a conclusion sub-part.\\\\n\\\\n    Strategy per component type:\\\\n    - conclusion_quantifier: drop the quantifier (weaken the claim)\\\\n    - conclusion_antecedent: replace with T (True) — makes implication trivially\\\\n      equivalent to consequent, so if proof still works, antecedent was unnecessary\\\\n    - conclusion_consequent: replace with ⊤ — implication becomes trivially true,\\\\n      so proof should always succeed; if it does, consequent was NOT necessary\\\\n      (but we invert: the test is whether removing it *breaks* the proof)\\\\n      Actually: replace with ⊥ (False) to test necessity.\\\\n    - conclusion_whole: replace conclusion with a tautology (provable without premises)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if component.type == \\\\\\\"conclusion_quantifier\\\\\\\":\\\\n        # Remove quantifier prefix from conclusion\\\\n        new_conclusion = conclusion.replace(f\\\\\\\"{component.content}\\\\\\\", \\\\\\\"\\\\\\\", 1).strip()\\\\n        # Strip leading '(' and trailing ')' if they became unbalanced\\\\n        if new_conclusion.startswith(\\\\\\\"(\\\\\\\") and new_conclusion.endswith(\\\\\\\")\\\\\\\"):\\\\n            new_conclusion = new_conclusion[1:-1].strip()\\\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\\\n\\\\n    elif component.type == \\\\\\\"conclusion_antecedent\\\\\\\":\\\\n        new_conclusion = conclusion.replace(component.content, \\\\\\\"$T\\\\\\\", 1)\\\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\\\n\\\\n    elif component.type == \\\\\\\"conclusion_consequent\\\\\\\":\\\\n        new_conclusion = conclusion.replace(component.content, \\\\\\\"$F\\\\\\\", 1)\\\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\\\n\\\\n    elif component.type == \\\\\\\"conclusion_whole\\\\\\\":\\\\n        return solver.prove(premises, \\\\\\\"$T\\\\\\\", timeout=timeout)\\\\n\\\\n    # Fallback: try proving with unmodified conclusion (should not happen)\\\\n    return solver.prove(premises, conclusion, timeout=timeout)\\\\n\\\\n\\\\ndef ablate_component(\\\\n    premises: list[str],\\\\n    conclusion: str,\\\\n    component: FOLComponent,\\\\n    solver: FOLSolver,\\\\n    timeout: int = 5,\\\\n    original_result: Optional[SolverResult] = None,\\\\n) -> AblationResult:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Ablate a single component and compare with the original proof.\\\\n\\\\n    Returns an AblationResult with necessity judgment.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if original_result is None:\\\\n        original_result = solver.prove(premises, conclusion, timeout=timeout)\\\\n\\\\n    if component.type == \\\\\\\"premise\\\\\\\":\\\\n        ablated = _ablate_premise(premises, conclusion, component, solver, timeout)\\\\n    else:\\\\n        ablated = _ablate_conclusion_part(premises, conclusion, component, solver, timeout)\\\\n\\\\n    is_necessary = original_result.proved and not ablated.proved\\\\n\\\\n    return AblationResult(\\\\n        component=component,\\\\n        original_proved=original_result.proved,\\\\n        ablated_proved=ablated.proved,\\\\n        is_necessary=is_necessary,\\\\n        solver_result=ablated,\\\\n    )\\\\n\\\\n\\\\ndef run_sta(\\\\n    premises: list[str],\\\\n    conclusion: str,\\\\n    solver: FOLSolver,\\\\n    timeout: int = 5,\\\\n    original_result: Optional[SolverResult] = None,\\\\n) -> list[AblationResult]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full Solver Trace Ablation on all components.\\\\n\\\\n    Decomposes the problem, ablates each component, returns results.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if original_result is None:\\\\n        original_result = solver.prove(premises, conclusion, timeout=timeout)\\\\n\\\\n    components = decompose_fol(premises, conclusion)\\\\n    results: list[AblationResult] = []\\\\n    for comp in components:\\\\n        result = ablate_component(\\\\n            premises, conclusion, comp, solver, timeout,\\\\n            original_result=original_result,\\\\n        )\\\\n        results.append(result)\\\\n    return results\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"STA core ablation logic.\\n\\nFor each FOLComponent in a proof problem, ablation removes or neutralizes\\nthat component and re-runs the solver. A component is *necessary* iff the\\nproof breaks (proved → not proved) after its removal.\\n\\nInput:  premises, conclusion, solver.\\nOutput: list of AblationResult (one per component).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom dataclasses import dataclass\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver, SolverResult\\nfrom .components import FOLComponent, decompose_fol\\n\\n\\n@dataclass\\nclass AblationResult:\\n    \\\"\\\"\\\"Outcome of ablating a single component.\\\"\\\"\\\"\\n    component: FOLComponent\\n    original_proved: bool\\n    ablated_proved: bool\\n    is_necessary: bool          # original_proved and not ablated_proved\\n    solver_result: SolverResult  # solver result for the ablated problem\\n\\n\\ndef _ablate_premise(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int,\\n) -> SolverResult:\\n    \\\"\\\"\\\"Remove one premise and re-prove.\\\"\\\"\\\"\\n    ablated_premises = [p for i, p in enumerate(premises) if i != component.index]\\n    return solver.prove(ablated_premises, conclusion, timeout=timeout)\\n\\n\\ndef _ablate_conclusion_part(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int,\\n) -> SolverResult:\\n    \\\"\\\"\\\"Neutralize a conclusion sub-part.\\n\\n    Strategy per component type:\\n    - conclusion_quantifier: drop the quantifier (weaken the claim)\\n    - conclusion_antecedent: replace with T (True) — makes implication trivially\\n      equivalent to consequent, so if proof still works, antecedent was unnecessary\\n    - conclusion_consequent: replace with ⊤ — implication becomes trivially true,\\n      so proof should always succeed; if it does, consequent was NOT necessary\\n      (but we invert: the test is whether removing it *breaks* the proof)\\n      Actually: replace with ⊥ (False) to test necessity.\\n    - conclusion_whole: replace conclusion with a tautology (provable without premises)\\n    \\\"\\\"\\\"\\n    if component.type == \\\"conclusion_quantifier\\\":\\n        # Remove quantifier prefix from conclusion\\n        new_conclusion = conclusion.replace(f\\\"{component.content}\\\", \\\"\\\", 1).strip()\\n        # Strip leading '(' and trailing ')' if they became unbalanced\\n        if new_conclusion.startswith(\\\"(\\\") and new_conclusion.endswith(\\\")\\\"):\\n            new_conclusion = new_conclusion[1:-1].strip()\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\n\\n    elif component.type == \\\"conclusion_antecedent\\\":\\n        new_conclusion = conclusion.replace(component.content, \\\"$T\\\", 1)\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\n\\n    elif component.type == \\\"conclusion_consequent\\\":\\n        new_conclusion = conclusion.replace(component.content, \\\"$F\\\", 1)\\n        return solver.prove(premises, new_conclusion, timeout=timeout)\\n\\n    elif component.type == \\\"conclusion_whole\\\":\\n        return solver.prove(premises, \\\"$T\\\", timeout=timeout)\\n\\n    # Fallback: try proving with unmodified conclusion (should not happen)\\n    return solver.prove(premises, conclusion, timeout=timeout)\\n\\n\\ndef ablate_component(\\n    premises: list[str],\\n    conclusion: str,\\n    component: FOLComponent,\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n    original_result: Optional[SolverResult] = None,\\n) -> AblationResult:\\n    \\\"\\\"\\\"Ablate a single component and compare with the original proof.\\n\\n    Returns an AblationResult with necessity judgment.\\n    \\\"\\\"\\\"\\n    if original_result is None:\\n        original_result = solver.prove(premises, conclusion, timeout=timeout)\\n\\n    if component.type == \\\"premise\\\":\\n        ablated = _ablate_premise(premises, conclusion, component, solver, timeout)\\n    else:\\n        ablated = _ablate_conclusion_part(premises, conclusion, component, solver, timeout)\\n\\n    is_necessary = original_result.proved and not ablated.proved\\n\\n    return AblationResult(\\n        component=component,\\n        original_proved=original_result.proved,\\n        ablated_proved=ablated.proved,\\n        is_necessary=is_necessary,\\n        solver_result=ablated,\\n    )\\n\\n\\ndef run_sta(\\n    premises: list[str],\\n    conclusion: str,\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n    original_result: Optional[SolverResult] = None,\\n) -> list[AblationResult]:\\n    \\\"\\\"\\\"Run full Solver Trace Ablation on all components.\\n\\n    Decomposes the problem, ablates each component, returns results.\\n    \\\"\\\"\\\"\\n    if original_result is None:\\n        original_result = solver.prove(premises, conclusion, timeout=timeout)\\n\\n    components = decompose_fol(premises, conclusion)\\n    results: list[AblationResult] = []\\n    for comp in components:\\n        result = ablate_component(\\n            premises, conclusion, comp, solver, timeout,\\n            original_result=original_result,\\n        )\\n        results.append(result)\\n    return results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Now let me read the `make_reward_fn` function in train_grpo.py to understand how reward modes are dispatched:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e9f0cfd3-0032-48ca-930a-507c863051cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0152q4yZaT1vGhrWdGGwUsP6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2218,
+      "cache_read_input_tokens": 38490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2218
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0158giFoyA9WtbUB1jiQk39Q`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"make_reward_fn\\|class.*Reward\\|reward_mode\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "b47132fe-5a07-4fad-abf7-ef75a58dc7fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0152q4yZaT1vGhrWdGGwUsP6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2218,
+      "cache_read_input_tokens": 38490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2218
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T14:12:38.615Z_
+
+<details><summary>↩ Tool result · `toolu_0158giFoyA9WtbUB1jiQk39Q`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "2d7ee21d-3813-4ae3-8f12-cc125f622313",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012TSCeH4h9C7rjxAMctuHqH`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"make_reward_fn\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "d404180c-f3a1-43ed-a421-cad2ac821ef8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPvNT8rZ3RvV6a3jhpxeBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 40708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T14:12:42.062Z_
+
+<details><summary>↩ Tool result · `toolu_012TSCeH4h9C7rjxAMctuHqH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"149:def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\n470:    reward_fn = make_reward_fn(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "db141384-373d-4b0a-a34a-62b5e097f247",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"149:def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\\\\\"fol\\\\\\\", beta: float = 0.3, beta_schedule: str = \\\\\\\"fixed\\\\\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\\\n470:    reward_fn = make_reward_fn(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"149:def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\n470:    reward_fn = make_reward_fn(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HxYao8roqhQzjPnC5ZstEu`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -350 /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e26116be-b7da-49ea-8d99-c2988c2b7e81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01USZyi6qFgmKHrnoGgtBGKW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 315,
+      "cache_read_input_tokens": 41075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 315
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T14:12:45.264Z_
+
+<details><summary>↩ Tool result · `toolu_01HxYao8roqhQzjPnC5ZstEu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n\\ndef load_jsonl(path: str) -> list[dict]:\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef build_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"fol_premises\\\": json.dumps(item.get(\\\"fol_premises\\\", [])),\\n            \\\"fol_conclusion\\\": item.get(\\\"fol_conclusion\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": PROLOG_SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": PROLOG_USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\n\\n... [截断: 输出过长，省略 5204 字符] ...\\n\\n           proved = result[\\\"execution_reward\\\"] > 0\\n            isr = result.get(\\\"sta_reward\\\", 0.0)\\n\\n            if parsed:\\n                stats[\\\"parsed\\\"] += 1\\n                step_buf[\\\"parsed\\\"] += 1\\n            if proved:\\n                stats[\\\"proved\\\"] += 1\\n                step_buf[\\\"proved\\\"] += 1\\n            stats[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"reward_sum\\\"] += reward_val\\n\\n            rewards.append(reward_val)\\n        return rewards\\n\\n    def get_stats():\\n        n = stats[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        return {\\n            \\\"parse_rate\\\": stats[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": stats[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": stats[\\\"isr_sum\\\"] / n,\\n        }\\n\\n    def get_step_stats():\\n        n = step_buf[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        result = {\\n            \\\"parse_rate\\\": step_buf[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": step_buf[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": step_buf[\\\"isr_sum\\\"] / n,\\n            \\\"reward_mean\\\": step_buf[\\\"reward_sum\\\"] / n,\\n            \\\"reward_std\\\": 0.0,\\n        }\\n        if step_buf[\\\"random_n\\\"] > 0:\\n            result[\\\"random_mean\\\"] = step_buf[\\\"random_sum\\\"] / step_buf[\\\"random_n\\\"]\\n        if step_buf.get(\\\"beta_t\\\") is not None:\\n            result[\\\"beta_t\\\"] = step_buf[\\\"beta_t\\\"]\\n        step_buf[\\\"total\\\"] = 0\\n        step_buf[\\\"parsed\\\"] = 0\\n        step_buf[\\\"proved\\\"] = 0\\n        step_buf[\\\"isr_sum\\\"] = 0.0\\n        step_buf[\\\"reward_sum\\\"] = 0.0\\n        step_buf[\\\"random_sum\\\"] = 0.0\\n        step_buf[\\\"random_n\\\"] = 0\\n        step_buf[\\\"beta_t\\\"] = None\\n        return result\\n\\n    def reset_stats():\\n        stats[\\\"total\\\"] = 0\\n        stats[\\\"parsed\\\"] = 0\\n        stats[\\\"proved\\\"] = 0\\n        stats[\\\"isr_sum\\\"] = 0.0\\n\\n    reward_fn.get_stats = get_stats\\n    reward_fn.get_step_stats = get_step_stats\\n    reward_fn.reset_stats = reset_stats\\n    reward_fn.schedule_state = schedule_state\\n    return reward_fn\\n\\n\\nclass LocalLogCallback(TrainerCallback):\\n    def __init__(self, output_dir, reward_fn):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.log_path = self.output_dir / \\\"reward_log.jsonl\\\"\\n        self.reward_fn = reward_fn\\n        self.last_step = 0\\n\\n    def on_step_begin(self, args, state, control, **kwargs):\\n        if hasattr(self.reward_fn, 'schedule_state'):\\n            self.reward_fn.schedule_state['current_step'] = state.global_step\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs is None or state.global_step == 0:\\n            return\\n        if state.global_step == self.last_step:\\n            return\\n        self.last_step = state.global_step\\n        step_stats = self.reward_fn.get_step_stats()\\n        entry = {\\n            \\\"step\\\": state.global_step,\\n            \\\"reward_mean\\\": logs.get(\\\"reward\\\", step_stats.get(\\\"reward_mean\\\", 0.0)),\\n            \\\"reward_std\\\": logs.get(\\\"reward_std\\\", step_stats.get(\\\"reward_std\\\", 0.0)),\\n            \\\"prove_rate\\\": step_stats.get(\\\"prove_rate\\\", 0.0),\\n            \\\"isr_mean\\\": step_stats.get(\\\"mean_isr\\\", 0.0),\\n            \\\"parse_rate\\\": step_stats.get(\\\"parse_rate\\\", 0.0),\\n            \\\"random_mean\\\": step_stats.get(\\\"random_mean\\\", None),\\n            \\\"loss\\\": logs.get(\\\"loss\\\", 0.0),\\n            \\\"lr\\\": logs.get(\\\"learning_rate\\\", 0.0),\\n            \\\"beta_t\\\": step_stats.get(\\\"beta_t\\\", None),\\n            \\\"timestamp\\\": datetime.now(timezone.utc).isoformat(),\\n        }\\n        with open(self.log_path, \\\"a\\\") as f:\\n            f.write(json.dumps(entry) + \\\"\\\\n\\\")\\n            f.flush()\\n        print(\\n            f\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\"\\n            f\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\"\\n            f\\\"parse_rate={entry['parse_rate']:.3f}\\\"\\n            + (f\\\" random={entry['random_mean']:.3f}\\\" if entry.get('random_mean') is not None else \\\"\\\")\\n            + (f\\\" beta_t={entry['beta_t']:.4f}\\\" if entry.get('beta_t') is not None else \\\"\\\"),\\n            flush=True,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "d2e33ded-df61-49f0-bab4-80e84a7850be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\\\n\\\\nUsage:\\\\n  # execution-only (GPU 0)\\\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\n  # execution+STA (GPU 1)\\\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random as _random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom datetime import datetime, timezone\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\\\n\\\\nfrom src.solvers.factory import get_solver\\\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\\\nfrom src.sta.prolog_reward import (\\\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a first-order logic (FOL) expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Premises:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"1. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"2. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Conclusion: &lt;FOL formula>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard FOL notation with predicate-argument syntax: \\\\\\\"\\\\n    \\\\\\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in first-order logic.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\nPROLOG_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a Prolog logic programming expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Facts/Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"&lt;fact_or_rule>.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Query: &lt;goal>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\\\\\"\\\\n    \\\\\\\"variables start with uppercase, atoms/predicates start with lowercase.\\\\\\\"\\\\n)\\\\n\\\\nPROLOG_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_jsonl(path: str) -> list[dict]:\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                data.append(json.loads(line))\\\\n    return data\\\\n\\\\n\\\\ndef build_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"fol_premises\\\\\\\": json.dumps(item.get(\\\\\\\"fol_premises\\\\\\\", [])),\\\\n            \\\\\\\"fol_conclusion\\\\\\\": item.get(\\\\\\\"fol_conclusion\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\n\\\\n... [截断: 输出过长，省略 5204 字符] ...\\\\n\\\\n           proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n            isr = result.get(\\\\\\\"sta_reward\\\\\\\", 0.0)\\\\n\\\\n            if parsed:\\\\n                stats[\\\\\\\"parsed\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"parsed\\\\\\\"] += 1\\\\n            if proved:\\\\n                stats[\\\\\\\"proved\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"proved\\\\\\\"] += 1\\\\n            stats[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"reward_sum\\\\\\\"] += reward_val\\\\n\\\\n            rewards.append(reward_val)\\\\n        return rewards\\\\n\\\\n    def get_stats():\\\\n        n = stats[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        return {\\\\n            \\\\\\\"parse_rate\\\\\\\": stats[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": stats[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": stats[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n        }\\\\n\\\\n    def get_step_stats():\\\\n        n = step_buf[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        result = {\\\\n            \\\\\\\"parse_rate\\\\\\\": step_buf[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": step_buf[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": step_buf[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_mean\\\\\\\": step_buf[\\\\\\\"reward_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_std\\\\\\\": 0.0,\\\\n        }\\\\n        if step_buf[\\\\\\\"random_n\\\\\\\"] > 0:\\\\n            result[\\\\\\\"random_mean\\\\\\\"] = step_buf[\\\\\\\"random_sum\\\\\\\"] / step_buf[\\\\\\\"random_n\\\\\\\"]\\\\n        if step_buf.get(\\\\\\\"beta_t\\\\\\\") is not None:\\\\n            result[\\\\\\\"beta_t\\\\\\\"] = step_buf[\\\\\\\"beta_t\\\\\\\"]\\\\n        step_buf[\\\\\\\"total\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"proved\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"reward_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"random_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"random_n\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"beta_t\\\\\\\"] = None\\\\n        return result\\\\n\\\\n    def reset_stats():\\\\n        stats[\\\\\\\"total\\\\\\\"] = 0\\\\n        stats[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        stats[\\\\\\\"proved\\\\\\\"] = 0\\\\n        stats[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n\\\\n    reward_fn.get_stats = get_stats\\\\n    reward_fn.get_step_stats = get_step_stats\\\\n    reward_fn.reset_stats = reset_stats\\\\n    reward_fn.schedule_state = schedule_state\\\\n    return reward_fn\\\\n\\\\n\\\\nclass LocalLogCallback(TrainerCallback):\\\\n    def __init__(self, output_dir, reward_fn):\\\\n        self.output_dir = Path(output_dir)\\\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\\\n        self.log_path = self.output_dir / \\\\\\\"reward_log.jsonl\\\\\\\"\\\\n        self.reward_fn = reward_fn\\\\n        self.last_step = 0\\\\n\\\\n    def on_step_begin(self, args, state, control, **kwargs):\\\\n        if hasattr(self.reward_fn, 'schedule_state'):\\\\n            self.reward_fn.schedule_state['current_step'] = state.global_step\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs is None or state.global_step == 0:\\\\n            return\\\\n        if state.global_step == self.last_step:\\\\n            return\\\\n        self.last_step = state.global_step\\\\n        step_stats = self.reward_fn.get_step_stats()\\\\n        entry = {\\\\n            \\\\\\\"step\\\\\\\": state.global_step,\\\\n            \\\\\\\"reward_mean\\\\\\\": logs.get(\\\\\\\"reward\\\\\\\", step_stats.get(\\\\\\\"reward_mean\\\\\\\", 0.0)),\\\\n            \\\\\\\"reward_std\\\\\\\": logs.get(\\\\\\\"reward_std\\\\\\\", step_stats.get(\\\\\\\"reward_std\\\\\\\", 0.0)),\\\\n            \\\\\\\"prove_rate\\\\\\\": step_stats.get(\\\\\\\"prove_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"isr_mean\\\\\\\": step_stats.get(\\\\\\\"mean_isr\\\\\\\", 0.0),\\\\n            \\\\\\\"parse_rate\\\\\\\": step_stats.get(\\\\\\\"parse_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"random_mean\\\\\\\": step_stats.get(\\\\\\\"random_mean\\\\\\\", None),\\\\n            \\\\\\\"loss\\\\\\\": logs.get(\\\\\\\"loss\\\\\\\", 0.0),\\\\n            \\\\\\\"lr\\\\\\\": logs.get(\\\\\\\"learning_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"beta_t\\\\\\\": step_stats.get(\\\\\\\"beta_t\\\\\\\", None),\\\\n            \\\\\\\"timestamp\\\\\\\": datetime.now(timezone.utc).isoformat(),\\\\n        }\\\\n        with open(self.log_path, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(entry) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n            f.flush()\\\\n        print(\\\\n            f\\\\\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\\\\\"\\\\n            f\\\\\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\\\\\"\\\\n            f\\\\\\\"parse_rate={entry['parse_rate']:.3f}\\\\\\\"\\\\n            + (f\\\\\\\" random={entry['random_mean']:.3f}\\\\\\\" if entry.get('random_mean') is not None else \\\\\\\"\\\\\\\")\\\\n            + (f\\\\\\\" beta_t={entry['beta_t']:.4f}\\\\\\\" if entry.get('beta_t') is not None else \\\\\\\"\\\\\\\"),\\\\n            flush=True,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n\\ndef load_jsonl(path: str) -> list[dict]:\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef build_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"fol_premises\\\": json.dumps(item.get(\\\"fol_premises\\\", [])),\\n            \\\"fol_conclusion\\\": item.get(\\\"fol_conclusion\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": PROLOG_SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": PROLOG_USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\n\\n... [截断: 输出过长，省略 5204 字符] ...\\n\\n           proved = result[\\\"execution_reward\\\"] > 0\\n            isr = result.get(\\\"sta_reward\\\", 0.0)\\n\\n            if parsed:\\n                stats[\\\"parsed\\\"] += 1\\n                step_buf[\\\"parsed\\\"] += 1\\n            if proved:\\n                stats[\\\"proved\\\"] += 1\\n                step_buf[\\\"proved\\\"] += 1\\n            stats[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"reward_sum\\\"] += reward_val\\n\\n            rewards.append(reward_val)\\n        return rewards\\n\\n    def get_stats():\\n        n = stats[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        return {\\n            \\\"parse_rate\\\": stats[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": stats[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": stats[\\\"isr_sum\\\"] / n,\\n        }\\n\\n    def get_step_stats():\\n        n = step_buf[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        result = {\\n            \\\"parse_rate\\\": step_buf[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": step_buf[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": step_buf[\\\"isr_sum\\\"] / n,\\n            \\\"reward_mean\\\": step_buf[\\\"reward_sum\\\"] / n,\\n            \\\"reward_std\\\": 0.0,\\n        }\\n        if step_buf[\\\"random_n\\\"] > 0:\\n            result[\\\"random_mean\\\"] = step_buf[\\\"random_sum\\\"] / step_buf[\\\"random_n\\\"]\\n        if step_buf.get(\\\"beta_t\\\") is not None:\\n            result[\\\"beta_t\\\"] = step_buf[\\\"beta_t\\\"]\\n        step_buf[\\\"total\\\"] = 0\\n        step_buf[\\\"parsed\\\"] = 0\\n        step_buf[\\\"proved\\\"] = 0\\n        step_buf[\\\"isr_sum\\\"] = 0.0\\n        step_buf[\\\"reward_sum\\\"] = 0.0\\n        step_buf[\\\"random_sum\\\"] = 0.0\\n        step_buf[\\\"random_n\\\"] = 0\\n        step_buf[\\\"beta_t\\\"] = None\\n        return result\\n\\n    def reset_stats():\\n        stats[\\\"total\\\"] = 0\\n        stats[\\\"parsed\\\"] = 0\\n        stats[\\\"proved\\\"] = 0\\n        stats[\\\"isr_sum\\\"] = 0.0\\n\\n    reward_fn.get_stats = get_stats\\n    reward_fn.get_step_stats = get_step_stats\\n    reward_fn.reset_stats = reset_stats\\n    reward_fn.schedule_state = schedule_state\\n    return reward_fn\\n\\n\\nclass LocalLogCallback(TrainerCallback):\\n    def __init__(self, output_dir, reward_fn):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.log_path = self.output_dir / \\\"reward_log.jsonl\\\"\\n        self.reward_fn = reward_fn\\n        self.last_step = 0\\n\\n    def on_step_begin(self, args, state, control, **kwargs):\\n        if hasattr(self.reward_fn, 'schedule_state'):\\n            self.reward_fn.schedule_state['current_step'] = state.global_step\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs is None or state.global_step == 0:\\n            return\\n        if state.global_step == self.last_step:\\n            return\\n        self.last_step = state.global_step\\n        step_stats = self.reward_fn.get_step_stats()\\n        entry = {\\n            \\\"step\\\": state.global_step,\\n            \\\"reward_mean\\\": logs.get(\\\"reward\\\", step_stats.get(\\\"reward_mean\\\", 0.0)),\\n            \\\"reward_std\\\": logs.get(\\\"reward_std\\\", step_stats.get(\\\"reward_std\\\", 0.0)),\\n            \\\"prove_rate\\\": step_stats.get(\\\"prove_rate\\\", 0.0),\\n            \\\"isr_mean\\\": step_stats.get(\\\"mean_isr\\\", 0.0),\\n            \\\"parse_rate\\\": step_stats.get(\\\"parse_rate\\\", 0.0),\\n            \\\"random_mean\\\": step_stats.get(\\\"random_mean\\\", None),\\n            \\\"loss\\\": logs.get(\\\"loss\\\", 0.0),\\n            \\\"lr\\\": logs.get(\\\"learning_rate\\\", 0.0),\\n            \\\"beta_t\\\": step_stats.get(\\\"beta_t\\\", None),\\n            \\\"timestamp\\\": datetime.now(timezone.utc).isoformat(),\\n        }\\n        with open(self.log_path, \\\"a\\\") as f:\\n            f.write(json.dumps(entry) + \\\"\\\\n\\\")\\n            f.flush()\\n        print(\\n            f\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\"\\n            f\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\"\\n            f\\\"parse_rate={entry['parse_rate']:.3f}\\\"\\n            + (f\\\" random={entry['random_mean']:.3f}\\\" if entry.get('random_mean') is not None else \\\"\\\")\\n            + (f\\\" beta_t={entry['beta_t']:.4f}\\\" if entry.get('beta_t') is not None else \\\"\\\"),\\n            flush=True,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+Let me read the `make_reward_fn` function body specifically (lines 149-350):
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "627593d1-6259-47c4-9943-74204bb6c292",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUDrngfat53X1qnQLkYZVx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3694,
+      "cache_read_input_tokens": 41390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3694
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HwtF1vEp4wE5HoBGUzRiK5`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -n +149 /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "55d12137-0dda-41c4-b8c1-0c645ec3c628",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUDrngfat53X1qnQLkYZVx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3694,
+      "cache_read_input_tokens": 41390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3694
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T14:12:49.515Z_
+
+<details><summary>↩ Tool result · `toolu_01HwtF1vEp4wE5HoBGUzRiK5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\n    stats = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0}\\n    step_buf = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0, \\\"reward_sum\\\": 0.0, \\\"random_sum\\\": 0.0, \\\"random_n\\\": 0, \\\"beta_t\\\": None}\\n    schedule_state = {\\\"current_step\\\": 0}\\n\\n    def compute_beta_t():\\n        \\\"\\\"\\\"Compute time-varying beta coefficient based on the chosen schedule.\\\"\\\"\\\"\\n        step = schedule_state[\\\"current_step\\\"]\\n        if beta_schedule == \\\"linear\\\":\\n            # beta_t = beta * (t / T): linear ramp from 0 to beta over max_steps\\n            return beta * min(step / max_steps, 1.0) if max_steps > 0 else beta\\n        elif beta_schedule == \\\"sigmoid\\\":\\n            # beta_t = beta * sigma((t - midpoint) / (T/10)): S-curve centered at midpoint\\n            x = (step - beta_schedule_midpoint) / (max_steps / 10) if max_steps > 0 else 0\\n            return beta / (1 + math.exp(-x))\\n        else:\\n            return beta\\n\\n\\n    def reward_fn(prompts, completions, **kwargs):\\n        rewards = []\\n        for completion in completions:\\n            text = extract_completion_text(completion)\\n            cleaned = strip_thinking(text)\\n            stats[\\\"total\\\"] += 1\\n            step_buf[\\\"total\\\"] += 1\\n\\n            if logic_type == \\\"prolog\\\":\\n                _fast_fn = fast_prolog_sta_reward\\n                _full_fn = prolog_sta_reward\\n            else:\\n                _fast_fn = fast_sta_reward\\n                _full_fn = sta_reward\\n\\n            if reward_mode == \\\"execution_only\\\":\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n                )\\n                reward_val = result[\\\"execution_reward\\\"]\\n            elif reward_mode == \\\"random_reward\\\":\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n                )\\n                proved = result[\\\"execution_reward\\\"] > 0\\n                if proved:\\n                    rng = _random.Random(stats[\\\"total\\\"])\\n                    rand_val = rng.random()\\n                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\n                    result[\\\"random_reward\\\"] = rand_val\\n                    step_buf[\\\"random_sum\\\"] += rand_val\\n                    step_buf[\\\"random_n\\\"] += 1\\n                else:\\n                    reward_val = 0.0\\n                    result[\\\"random_reward\\\"] = 0.0\\n            elif reward_mode == \\\"additive_bonus\\\":\\n                # D010: additive ISR bonus — r = r_exec * (1 + beta_t * ISR)\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n                )\\n                execution_reward = result[\\\"execution_reward\\\"]\\n                isr_val = result.get(\\\"sta_reward\\\", 0.0)\\n                beta_t = compute_beta_t()\\n                reward_val = execution_reward * (1 + beta_t * isr_val)\\n                step_buf[\\\"beta_t\\\"] = beta_t\\n            elif reward_mode == \\\"additive_random\\\":\\n                # plan017: matched control for additive_bonus — random replaces ISR to isolate structural signal\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n                )\\n                execution_reward = result[\\\"execution_reward\\\"]\\n                rng = _random.Random(stats[\\\"total\\\"])\\n                rand_val = rng.random()\\n                beta_t = compute_beta_t()\\n                reward_val = execution_reward * (1 + beta_t * rand_val)\\n                result[\\\"random_reward\\\"] = rand_val\\n                step_buf[\\\"random_sum\\\"] += rand_val\\n                step_buf[\\\"random_n\\\"] += 1\\n                step_buf[\\\"beta_t\\\"] = beta_t\\n\\n\\n... [截断: 输出过长，省略 7646 字符] ...\\n\\nis None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "a6a476e4-3d48-4d30-a82a-b28f664079ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\\\\\"fol\\\\\\\", beta: float = 0.3, beta_schedule: str = \\\\\\\"fixed\\\\\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\\\n    stats = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0}\\\\n    step_buf = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0, \\\\\\\"reward_sum\\\\\\\": 0.0, \\\\\\\"random_sum\\\\\\\": 0.0, \\\\\\\"random_n\\\\\\\": 0, \\\\\\\"beta_t\\\\\\\": None}\\\\n    schedule_state = {\\\\\\\"current_step\\\\\\\": 0}\\\\n\\\\n    def compute_beta_t():\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Compute time-varying beta coefficient based on the chosen schedule.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        step = schedule_state[\\\\\\\"current_step\\\\\\\"]\\\\n        if beta_schedule == \\\\\\\"linear\\\\\\\":\\\\n            # beta_t = beta * (t / T): linear ramp from 0 to beta over max_steps\\\\n            return beta * min(step / max_steps, 1.0) if max_steps > 0 else beta\\\\n        elif beta_schedule == \\\\\\\"sigmoid\\\\\\\":\\\\n            # beta_t = beta * sigma((t - midpoint) / (T/10)): S-curve centered at midpoint\\\\n            x = (step - beta_schedule_midpoint) / (max_steps / 10) if max_steps > 0 else 0\\\\n            return beta / (1 + math.exp(-x))\\\\n        else:\\\\n            return beta\\\\n\\\\n\\\\n    def reward_fn(prompts, completions, **kwargs):\\\\n        rewards = []\\\\n        for completion in completions:\\\\n            text = extract_completion_text(completion)\\\\n            cleaned = strip_thinking(text)\\\\n            stats[\\\\\\\"total\\\\\\\"] += 1\\\\n            step_buf[\\\\\\\"total\\\\\\\"] += 1\\\\n\\\\n            if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n                _fast_fn = fast_prolog_sta_reward\\\\n                _full_fn = prolog_sta_reward\\\\n            else:\\\\n                _fast_fn = fast_sta_reward\\\\n                _full_fn = sta_reward\\\\n\\\\n            if reward_mode == \\\\\\\"execution_only\\\\\\\":\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n                )\\\\n                reward_val = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n            elif reward_mode == \\\\\\\"random_reward\\\\\\\":\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n                )\\\\n                proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n                if proved:\\\\n                    rng = _random.Random(stats[\\\\\\\"total\\\\\\\"])\\\\n                    rand_val = rng.random()\\\\n                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\\\n                    result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n                    step_buf[\\\\\\\"random_sum\\\\\\\"] += rand_val\\\\n                    step_buf[\\\\\\\"random_n\\\\\\\"] += 1\\\\n                else:\\\\n                    reward_val = 0.0\\\\n                    result[\\\\\\\"random_reward\\\\\\\"] = 0.0\\\\n            elif reward_mode == \\\\\\\"additive_bonus\\\\\\\":\\\\n                # D010: additive ISR bonus — r = r_exec * (1 + beta_t * ISR)\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\\\n                )\\\\n                execution_reward = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n                isr_val = result.get(\\\\\\\"sta_reward\\\\\\\", 0.0)\\\\n                beta_t = compute_beta_t()\\\\n                reward_val = execution_reward * (1 + beta_t * isr_val)\\\\n                step_buf[\\\\\\\"beta_t\\\\\\\"] = beta_t\\\\n            elif reward_mode == \\\\\\\"additive_random\\\\\\\":\\\\n                # plan017: matched control for additive_bonus — random replaces ISR to isolate structural signal\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\\\n                )\\\\n                execution_reward = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n                rng = _random.Random(stats[\\\\\\\"total\\\\\\\"])\\\\n                rand_val = rng.random()\\\\n                beta_t = compute_beta_t()\\\\n                reward_val = execution_reward * (1 + beta_t * rand_val)\\\\n                result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n                step_buf[\\\\\\\"random_sum\\\\\\\"] += rand_val\\\\n                step_buf[\\\\\\\"random_n\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"beta_t\\\\\\\"] = beta_t\\\\n\\\\n\\\\n... [截断: 输出过长，省略 7646 字符] ...\\\\n\\\\nis None:\\\\n        args.max_completion_length = 512\\\\n    if args.learning_rate is None:\\\\n        args.learning_rate = 1e-6\\\\n    if args.exec_weight is None:\\\\n        args.exec_weight = 0.5\\\\n    if args.sta_weight is None:\\\\n        args.sta_weight = 0.5\\\\n    if args.beta is None:\\\\n        args.beta = 0.3\\\\n    if args.beta_schedule is None:\\\\n        args.beta_schedule = \\\\\\\"fixed\\\\\\\"\\\\n    if args.beta_schedule_midpoint is None:\\\\n        args.beta_schedule_midpoint = 250\\\\n    if args.seed is None:\\\\n        args.seed = 42\\\\n    if args.warmup_ratio is None:\\\\n        args.warmup_ratio = 0.0\\\\n    if args.solver is None:\\\\n        args.solver = \\\\\\\"prover9\\\\\\\"\\\\n    if args.logic_type is None:\\\\n        args.logic_type = \\\\\\\"fol\\\\\\\"\\\\n\\\\n    missing = [f for f in (\\\\\\\"model_path\\\\\\\", \\\\\\\"data_path\\\\\\\", \\\\\\\"reward_mode\\\\\\\", \\\\\\\"output_dir\\\\\\\")\\\\n               if getattr(args, f, None) is None]\\\\n    if missing:\\\\n        parser.error(f\\\\\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\\\\\")\\\\n\\\\n    return args\\\\n\\\\n\\\\ndef load_yaml_config(path: str) -> dict:\\\\n    import yaml\\\\n    with open(path) as f:\\\\n        return yaml.safe_load(f)\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if args.no_wandb:\\\\n        os.environ[\\\\\\\"WANDB_MODE\\\\\\\"] = \\\\\\\"disabled\\\\\\\"\\\\n\\\\n    report_to = \\\\\\\"none\\\\\\\" if args.no_wandb else \\\\\\\"wandb\\\\\\\"\\\\n    if args.wandb_project and not args.no_wandb:\\\\n        import wandb\\\\n        run_name = args.wandb_run or f\\\\\\\"grpo_{args.reward_mode}\\\\\\\"\\\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n\\\\n    logger.info(f\\\\\\\"Loading data from {args.data_path}\\\\\\\")\\\\n    raw_data = load_jsonl(args.data_path)\\\\n    logic_type = getattr(args, \\\\\\\"logic_type\\\\\\\", \\\\\\\"fol\\\\\\\")\\\\n    if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n        dataset = build_prolog_dataset(raw_data)\\\\n    else:\\\\n        dataset = build_dataset(raw_data)\\\\n    logger.info(f\\\\\\\"Dataset: {len(dataset)} examples\\\\\\\")\\\\n\\\\n    logger.info(f\\\\\\\"Initializing solver: {args.solver}\\\\\\\")\\\\n    solver = get_solver(args.solver)\\\\n    logger.info(f\\\\\\\"Solver ready: {type(solver).__name__}\\\\\\\")\\\\n\\\\n    reward_fn = make_reward_fn(\\\\n        args.reward_mode, solver,\\\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\\\n        logic_type=logic_type,\\\\n        beta=getattr(args, \\\\\\\"beta\\\\\\\", 0.3),\\\\n        beta_schedule=getattr(args, \\\\\\\"beta_schedule\\\\\\\", \\\\\\\"fixed\\\\\\\"),\\\\n        beta_schedule_midpoint=getattr(args, \\\\\\\"beta_schedule_midpoint\\\\\\\", 250),\\\\n        max_steps=args.num_steps,\\\\n    )\\\\n\\\\n    grpo_config = GRPOConfig(\\\\n        output_dir=args.output_dir,\\\\n        max_steps=args.num_steps,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_completion_length,\\\\n        logging_steps=1,\\\\n        save_steps=50,\\\\n        save_total_limit=1,\\\\n        save_only_model=True,\\\\n        report_to=report_to,\\\\n        bf16=True,\\\\n        seed=args.seed,\\\\n        warmup_ratio=args.warmup_ratio,\\\\n        log_completions=False,\\\\n        num_completions_to_print=2,\\\\n        chat_template_kwargs={\\\\\\\"enable_thinking\\\\\\\": False},\\\\n        gradient_checkpointing=getattr(args, \\\\\\\"gradient_checkpointing\\\\\\\", False),\\\\n        optim=getattr(args, \\\\\\\"optim\\\\\\\", \\\\\\\"adamw_torch\\\\\\\"),\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n    trainer = GRPOTrainer(\\\\n        model=args.model_path,\\\\n        reward_funcs=reward_fn,\\\\n        args=grpo_config,\\\\n        train_dataset=dataset,\\\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    logger.info(\\\\\\\"Saving final model\\\\\\\")\\\\n    trainer.save_model(args.output_dir)\\\\n\\\\n    final_stats = reward_fn.get_stats()\\\\n    logger.info(f\\\\\\\"Final reward stats: {final_stats}\\\\\\\")\\\\n\\\\n    if not args.no_wandb and args.wandb_project:\\\\n        import wandb\\\\n        wandb.log({\\\\\\\"final/\\\\\\\" + k: v for k, v in final_stats.items()})\\\\n        wandb.finish()\\\\n\\\\n    logger.info(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\n    stats = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0}\\n    step_buf = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0, \\\"reward_sum\\\": 0.0, \\\"random_sum\\\": 0.0, \\\"random_n\\\": 0, \\\"beta_t\\\": None}\\n    schedule_state = {\\\"current_step\\\": 0}\\n\\n    def compute_beta_t():\\n        \\\"\\\"\\\"Compute time-varying beta coefficient based on the chosen schedule.\\\"\\\"\\\"\\n        step = schedule_state[\\\"current_step\\\"]\\n        if beta_schedule == \\\"linear\\\":\\n            # beta_t = beta * (t / T): linear ramp from 0 to beta over max_steps\\n            return beta * min(step / max_steps, 1.0) if max_steps > 0 else beta\\n        elif beta_schedule == \\\"sigmoid\\\":\\n            # beta_t = beta * sigma((t - midpoint) / (T/10)): S-curve centered at midpoint\\n            x = (step - beta_schedule_midpoint) / (max_steps / 10) if max_steps > 0 else 0\\n            return beta / (1 + math.exp(-x))\\n        else:\\n            return beta\\n\\n\\n    def reward_fn(prompts, completions, **kwargs):\\n        rewards = []\\n        for completion in completions:\\n            text = extract_completion_text(completion)\\n            cleaned = strip_thinking(text)\\n            stats[\\\"total\\\"] += 1\\n            step_buf[\\\"total\\\"] += 1\\n\\n            if logic_type == \\\"prolog\\\":\\n                _fast_fn = fast_prolog_sta_reward\\n                _full_fn = prolog_sta_reward\\n            else:\\n                _fast_fn = fast_sta_reward\\n                _full_fn = sta_reward\\n\\n            if reward_mode == \\\"execution_only\\\":\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n                )\\n                reward_val = result[\\\"execution_reward\\\"]\\n            elif reward_mode == \\\"random_reward\\\":\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n                )\\n                proved = result[\\\"execution_reward\\\"] > 0\\n                if proved:\\n                    rng = _random.Random(stats[\\\"total\\\"])\\n                    rand_val = rng.random()\\n                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\n                    result[\\\"random_reward\\\"] = rand_val\\n                    step_buf[\\\"random_sum\\\"] += rand_val\\n                    step_buf[\\\"random_n\\\"] += 1\\n                else:\\n                    reward_val = 0.0\\n                    result[\\\"random_reward\\\"] = 0.0\\n            elif reward_mode == \\\"additive_bonus\\\":\\n                # D010: additive ISR bonus — r = r_exec * (1 + beta_t * ISR)\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n                )\\n                execution_reward = result[\\\"execution_reward\\\"]\\n                isr_val = result.get(\\\"sta_reward\\\", 0.0)\\n                beta_t = compute_beta_t()\\n                reward_val = execution_reward * (1 + beta_t * isr_val)\\n                step_buf[\\\"beta_t\\\"] = beta_t\\n            elif reward_mode == \\\"additive_random\\\":\\n                # plan017: matched control for additive_bonus — random replaces ISR to isolate structural signal\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n                )\\n                execution_reward = result[\\\"execution_reward\\\"]\\n                rng = _random.Random(stats[\\\"total\\\"])\\n                rand_val = rng.random()\\n                beta_t = compute_beta_t()\\n                reward_val = execution_reward * (1 + beta_t * rand_val)\\n                result[\\\"random_reward\\\"] = rand_val\\n                step_buf[\\\"random_sum\\\"] += rand_val\\n                step_buf[\\\"random_n\\\"] += 1\\n                step_buf[\\\"beta_t\\\"] = beta_t\\n\\n\\n... [截断: 输出过长，省略 7646 字符] ...\\n\\nis None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Now let me see the middle part of `make_reward_fn` — specifically the execution_sta mode and the rest I missed, plus the `parse_args` function to see existing args:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "5f6ce831-1cc9-499b-8383-9410dc9eb8b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkt6uR5uMQw6Z6z5BghaQY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 45084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3250
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QyhkpeNMKmnN1vQcxAPctZ`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -148 /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c3d86e75-cb3b-4d23-aebe-2de8ecf4de2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkt6uR5uMQw6Z6z5BghaQY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 45084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3250
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T14:12:54.345Z_
+
+<details><summary>↩ Tool result · `toolu_01QyhkpeNMKmnN1vQcxAPctZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n\\ndef load_jsonl(path: str) -> list[dict]:\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef build_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"fol_premises\\\": json.dumps(item.get(\\\"fol_premises\\\", [])),\\n            \\\"fol_conclusion\\\": item.get(\\\"fol_conclusion\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": PROLOG_SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": PROLOG_USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"prolog_premises\\\": json.dumps(item.get(\\\"prolog_premises\\\", [])),\\n            \\\"prolog_query\\\": item.get(\\\"prolog_query\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\n\\n\\ndef strip_thinking(text: str) -> str:\\n    return re.sub(r\\\"&lt;think>.*?&lt;/think>\\\\s*\\\", \\\"\\\", text, flags=re.DOTALL).strip()\\n\\n\\ndef extract_completion_text(completion) -> str:\\n    \\\"\\\"\\\"Extract text from a completion (handles both string and conversational formats).\\\"\\\"\\\"\\n    if isinstance(completion, list):\\n        return completion[-1][\\\"content\\\"] if completion else \\\"\\\"\\n    return completion\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "68c3d78a-ce76-482b-85b6-b2d3018d4046",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\\\n\\\\nUsage:\\\\n  # execution-only (GPU 0)\\\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\n  # execution+STA (GPU 1)\\\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random as _random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom datetime import datetime, timezone\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\\\n\\\\nfrom src.solvers.factory import get_solver\\\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\\\nfrom src.sta.prolog_reward import (\\\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a first-order logic (FOL) expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Premises:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"1. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"2. &lt;FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Conclusion: &lt;FOL formula>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard FOL notation with predicate-argument syntax: \\\\\\\"\\\\n    \\\\\\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in first-order logic.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\nPROLOG_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a Prolog logic programming expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Facts/Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"&lt;fact_or_rule>.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Query: &lt;goal>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\\\\\"\\\\n    \\\\\\\"variables start with uppercase, atoms/predicates start with lowercase.\\\\\\\"\\\\n)\\\\n\\\\nPROLOG_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_jsonl(path: str) -> list[dict]:\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                data.append(json.loads(line))\\\\n    return data\\\\n\\\\n\\\\ndef build_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"fol_premises\\\\\\\": json.dumps(item.get(\\\\\\\"fol_premises\\\\\\\", [])),\\\\n            \\\\\\\"fol_conclusion\\\\\\\": item.get(\\\\\\\"fol_conclusion\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"prolog_premises\\\\\\\": json.dumps(item.get(\\\\\\\"prolog_premises\\\\\\\", [])),\\\\n            \\\\\\\"prolog_query\\\\\\\": item.get(\\\\\\\"prolog_query\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\n\\\\n\\\\ndef strip_thinking(text: str) -> str:\\\\n    return re.sub(r\\\\\\\"&lt;think>.*?&lt;/think>\\\\\\\\s*\\\\\\\", \\\\\\\"\\\\\\\", text, flags=re.DOTALL).strip()\\\\n\\\\n\\\\ndef extract_completion_text(completion) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract text from a completion (handles both string and conversational formats).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if isinstance(completion, list):\\\\n        return completion[-1][\\\\\\\"content\\\\\\\"] if completion else \\\\\\\"\\\\\\\"\\\\n    return completion\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"&lt;fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: &lt;goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n\\ndef load_jsonl(path: str) -> list[dict]:\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef build_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"fol_premises\\\": json.dumps(item.get(\\\"fol_premises\\\", [])),\\n            \\\"fol_conclusion\\\": item.get(\\\"fol_conclusion\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": PROLOG_SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": PROLOG_USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"prolog_premises\\\": json.dumps(item.get(\\\"prolog_premises\\\", [])),\\n            \\\"prolog_query\\\": item.get(\\\"prolog_query\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\n\\n\\ndef strip_thinking(text: str) -> str:\\n    return re.sub(r\\\"&lt;think>.*?&lt;/think>\\\\s*\\\", \\\"\\\", text, flags=re.DOTALL).strip()\\n\\n\\ndef extract_completion_text(completion) -> str:\\n    \\\"\\\"\\\"Extract text from a completion (handles both string and conversational formats).\\\"\\\"\\\"\\n    if isinstance(completion, list):\\n        return completion[-1][\\\"content\\\"] if completion else \\\"\\\"\\n    return completion\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FMocDzvFb7XNrHSNP4Uj5d`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -n +230 /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "6fdde73f-0852-4b2c-bb4b-e4fbc204f44f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkt6uR5uMQw6Z6z5BghaQY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 45084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3250
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T14:12:54.934Z_
+
+<details><summary>↩ Tool result · `toolu_01FMocDzvFb7XNrHSNP4Uj5d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                step_buf[\\\"beta_t\\\"] = beta_t\\n            elif reward_mode == \\\"execution_fast_sta\\\":\\n                result = _fast_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n                )\\n                reward_val = result[\\\"combined_reward\\\"]\\n            else:\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n                )\\n                reward_val = result[\\\"combined_reward\\\"]\\n\\n            parsed = \\\"error\\\" not in result.get(\\\"details\\\", {})\\n            proved = result[\\\"execution_reward\\\"] > 0\\n            isr = result.get(\\\"sta_reward\\\", 0.0)\\n\\n            if parsed:\\n                stats[\\\"parsed\\\"] += 1\\n                step_buf[\\\"parsed\\\"] += 1\\n            if proved:\\n                stats[\\\"proved\\\"] += 1\\n                step_buf[\\\"proved\\\"] += 1\\n            stats[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"reward_sum\\\"] += reward_val\\n\\n            rewards.append(reward_val)\\n        return rewards\\n\\n    def get_stats():\\n        n = stats[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        return {\\n            \\\"parse_rate\\\": stats[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": stats[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": stats[\\\"isr_sum\\\"] / n,\\n        }\\n\\n    def get_step_stats():\\n        n = step_buf[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        result = {\\n            \\\"parse_rate\\\": step_buf[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": step_buf[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": step_buf[\\\"isr_sum\\\"] / n,\\n            \\\"reward_mean\\\": step_buf[\\\"reward_sum\\\"] / n,\\n            \\\"reward_std\\\": 0.0,\\n        }\\n        if step_buf[\\\"random_n\\\"] > 0:\\n            result[\\\"random_mean\\\"] = step_buf[\\\"random_sum\\\"] / step_buf[\\\"random_n\\\"]\\n        if step_buf.get(\\\"beta_t\\\") is not None:\\n            result[\\\"beta_t\\\"] = step_buf[\\\"beta_t\\\"]\\n        step_buf[\\\"total\\\"] = 0\\n        step_buf[\\\"parsed\\\"] = 0\\n        step_buf[\\\"proved\\\"] = 0\\n        step_buf[\\\"isr_sum\\\"] = 0.0\\n        step_buf[\\\"reward_sum\\\"] = 0.0\\n        step_buf[\\\"random_sum\\\"] = 0.0\\n        step_buf[\\\"random_n\\\"] = 0\\n        step_buf[\\\"beta_t\\\"] = None\\n        return result\\n\\n    def reset_stats():\\n        stats[\\\"total\\\"] = 0\\n        stats[\\\"parsed\\\"] = 0\\n        stats[\\\"proved\\\"] = 0\\n        stats[\\\"isr_sum\\\"] = 0.0\\n\\n    reward_fn.get_stats = get_stats\\n    reward_fn.get_step_stats = get_step_stats\\n    reward_fn.reset_stats = reset_stats\\n    reward_fn.schedule_state = schedule_state\\n    return reward_fn\\n\\n\\nclass LocalLogCallback(TrainerCallback):\\n    def __init__(self, output_dir, reward_fn):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.log_path = self.output_dir / \\\"reward_log.jsonl\\\"\\n        self.reward_fn = reward_fn\\n        self.last_step = 0\\n\\n    def on_step_begin(self, args, state, control, **kwargs):\\n        if hasattr(self.reward_fn, 'schedule_state'):\\n            self.reward_fn.schedule_state['current_step'] = state.global_step\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs is None or state.global_step == 0:\\n            return\\n        if state.global_step == self.last_step:\\n            return\\n        self.last_step = state.global_step\\n        step_stats = self.reward_fn.get_step_stats()\\n        entry = {\\n            \\\"step\\\": state.global_step,\\n            \\\"reward_mean\\\": logs.get(\\\"reward\\\", step_stats.get(\\\"reward_mean\\\", 0.0)),\\n            \\\"reward_std\\\": logs.get(\\\"reward_std\\\", step_stats.get(\\\"reward_std\\\", 0.0)),\\n            \\\"prove_rate\\\": step_stats.get(\\\"prove_rate\\\", 0.0),\\n            \\\"isr_mean\\\": step_stats.get(\\\"mean_isr\\\", 0.0),\\n            \\\"parse_rate\\\": step_stats.get(\\\"parse_rate\\\", 0.0),\\n            \\\"random_mean\\\": step_stats.get(\\\"random_mean\\\", None),\\n            \\\"loss\\\": logs.get(\\\"loss\\\", 0.0),\\n            \\\"lr\\\": logs.get(\\\"learning_rate\\\", 0.0),\\n            \\\"beta_t\\\": step_stats.get(\\\"beta_t\\\",\\n\\n... [截断: 输出过长，省略 3690 字符] ...\\n\\nis None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "f6da8fa7-4c92-4856-8eb3-dbca8686c47a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                step_buf[\\\\\\\"beta_t\\\\\\\"] = beta_t\\\\n            elif reward_mode == \\\\\\\"execution_fast_sta\\\\\\\":\\\\n                result = _fast_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\\\n                )\\\\n                reward_val = result[\\\\\\\"combined_reward\\\\\\\"]\\\\n            else:\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\\\n                )\\\\n                reward_val = result[\\\\\\\"combined_reward\\\\\\\"]\\\\n\\\\n            parsed = \\\\\\\"error\\\\\\\" not in result.get(\\\\\\\"details\\\\\\\", {})\\\\n            proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n            isr = result.get(\\\\\\\"sta_reward\\\\\\\", 0.0)\\\\n\\\\n            if parsed:\\\\n                stats[\\\\\\\"parsed\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"parsed\\\\\\\"] += 1\\\\n            if proved:\\\\n                stats[\\\\\\\"proved\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"proved\\\\\\\"] += 1\\\\n            stats[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"reward_sum\\\\\\\"] += reward_val\\\\n\\\\n            rewards.append(reward_val)\\\\n        return rewards\\\\n\\\\n    def get_stats():\\\\n        n = stats[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        return {\\\\n            \\\\\\\"parse_rate\\\\\\\": stats[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": stats[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": stats[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n        }\\\\n\\\\n    def get_step_stats():\\\\n        n = step_buf[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        result = {\\\\n            \\\\\\\"parse_rate\\\\\\\": step_buf[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": step_buf[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": step_buf[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_mean\\\\\\\": step_buf[\\\\\\\"reward_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_std\\\\\\\": 0.0,\\\\n        }\\\\n        if step_buf[\\\\\\\"random_n\\\\\\\"] > 0:\\\\n            result[\\\\\\\"random_mean\\\\\\\"] = step_buf[\\\\\\\"random_sum\\\\\\\"] / step_buf[\\\\\\\"random_n\\\\\\\"]\\\\n        if step_buf.get(\\\\\\\"beta_t\\\\\\\") is not None:\\\\n            result[\\\\\\\"beta_t\\\\\\\"] = step_buf[\\\\\\\"beta_t\\\\\\\"]\\\\n        step_buf[\\\\\\\"total\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"proved\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"reward_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"random_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"random_n\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"beta_t\\\\\\\"] = None\\\\n        return result\\\\n\\\\n    def reset_stats():\\\\n        stats[\\\\\\\"total\\\\\\\"] = 0\\\\n        stats[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        stats[\\\\\\\"proved\\\\\\\"] = 0\\\\n        stats[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n\\\\n    reward_fn.get_stats = get_stats\\\\n    reward_fn.get_step_stats = get_step_stats\\\\n    reward_fn.reset_stats = reset_stats\\\\n    reward_fn.schedule_state = schedule_state\\\\n    return reward_fn\\\\n\\\\n\\\\nclass LocalLogCallback(TrainerCallback):\\\\n    def __init__(self, output_dir, reward_fn):\\\\n        self.output_dir = Path(output_dir)\\\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\\\n        self.log_path = self.output_dir / \\\\\\\"reward_log.jsonl\\\\\\\"\\\\n        self.reward_fn = reward_fn\\\\n        self.last_step = 0\\\\n\\\\n    def on_step_begin(self, args, state, control, **kwargs):\\\\n        if hasattr(self.reward_fn, 'schedule_state'):\\\\n            self.reward_fn.schedule_state['current_step'] = state.global_step\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs is None or state.global_step == 0:\\\\n            return\\\\n        if state.global_step == self.last_step:\\\\n            return\\\\n        self.last_step = state.global_step\\\\n        step_stats = self.reward_fn.get_step_stats()\\\\n        entry = {\\\\n            \\\\\\\"step\\\\\\\": state.global_step,\\\\n            \\\\\\\"reward_mean\\\\\\\": logs.get(\\\\\\\"reward\\\\\\\", step_stats.get(\\\\\\\"reward_mean\\\\\\\", 0.0)),\\\\n            \\\\\\\"reward_std\\\\\\\": logs.get(\\\\\\\"reward_std\\\\\\\", step_stats.get(\\\\\\\"reward_std\\\\\\\", 0.0)),\\\\n            \\\\\\\"prove_rate\\\\\\\": step_stats.get(\\\\\\\"prove_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"isr_mean\\\\\\\": step_stats.get(\\\\\\\"mean_isr\\\\\\\", 0.0),\\\\n            \\\\\\\"parse_rate\\\\\\\": step_stats.get(\\\\\\\"parse_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"random_mean\\\\\\\": step_stats.get(\\\\\\\"random_mean\\\\\\\", None),\\\\n            \\\\\\\"loss\\\\\\\": logs.get(\\\\\\\"loss\\\\\\\", 0.0),\\\\n            \\\\\\\"lr\\\\\\\": logs.get(\\\\\\\"learning_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"beta_t\\\\\\\": step_stats.get(\\\\\\\"beta_t\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 3690 字符] ...\\\\n\\\\nis None:\\\\n        args.max_completion_length = 512\\\\n    if args.learning_rate is None:\\\\n        args.learning_rate = 1e-6\\\\n    if args.exec_weight is None:\\\\n        args.exec_weight = 0.5\\\\n    if args.sta_weight is None:\\\\n        args.sta_weight = 0.5\\\\n    if args.beta is None:\\\\n        args.beta = 0.3\\\\n    if args.beta_schedule is None:\\\\n        args.beta_schedule = \\\\\\\"fixed\\\\\\\"\\\\n    if args.beta_schedule_midpoint is None:\\\\n        args.beta_schedule_midpoint = 250\\\\n    if args.seed is None:\\\\n        args.seed = 42\\\\n    if args.warmup_ratio is None:\\\\n        args.warmup_ratio = 0.0\\\\n    if args.solver is None:\\\\n        args.solver = \\\\\\\"prover9\\\\\\\"\\\\n    if args.logic_type is None:\\\\n        args.logic_type = \\\\\\\"fol\\\\\\\"\\\\n\\\\n    missing = [f for f in (\\\\\\\"model_path\\\\\\\", \\\\\\\"data_path\\\\\\\", \\\\\\\"reward_mode\\\\\\\", \\\\\\\"output_dir\\\\\\\")\\\\n               if getattr(args, f, None) is None]\\\\n    if missing:\\\\n        parser.error(f\\\\\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\\\\\")\\\\n\\\\n    return args\\\\n\\\\n\\\\ndef load_yaml_config(path: str) -> dict:\\\\n    import yaml\\\\n    with open(path) as f:\\\\n        return yaml.safe_load(f)\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if args.no_wandb:\\\\n        os.environ[\\\\\\\"WANDB_MODE\\\\\\\"] = \\\\\\\"disabled\\\\\\\"\\\\n\\\\n    report_to = \\\\\\\"none\\\\\\\" if args.no_wandb else \\\\\\\"wandb\\\\\\\"\\\\n    if args.wandb_project and not args.no_wandb:\\\\n        import wandb\\\\n        run_name = args.wandb_run or f\\\\\\\"grpo_{args.reward_mode}\\\\\\\"\\\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n\\\\n    logger.info(f\\\\\\\"Loading data from {args.data_path}\\\\\\\")\\\\n    raw_data = load_jsonl(args.data_path)\\\\n    logic_type = getattr(args, \\\\\\\"logic_type\\\\\\\", \\\\\\\"fol\\\\\\\")\\\\n    if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n        dataset = build_prolog_dataset(raw_data)\\\\n    else:\\\\n        dataset = build_dataset(raw_data)\\\\n    logger.info(f\\\\\\\"Dataset: {len(dataset)} examples\\\\\\\")\\\\n\\\\n    logger.info(f\\\\\\\"Initializing solver: {args.solver}\\\\\\\")\\\\n    solver = get_solver(args.solver)\\\\n    logger.info(f\\\\\\\"Solver ready: {type(solver).__name__}\\\\\\\")\\\\n\\\\n    reward_fn = make_reward_fn(\\\\n        args.reward_mode, solver,\\\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\\\n        logic_type=logic_type,\\\\n        beta=getattr(args, \\\\\\\"beta\\\\\\\", 0.3),\\\\n        beta_schedule=getattr(args, \\\\\\\"beta_schedule\\\\\\\", \\\\\\\"fixed\\\\\\\"),\\\\n        beta_schedule_midpoint=getattr(args, \\\\\\\"beta_schedule_midpoint\\\\\\\", 250),\\\\n        max_steps=args.num_steps,\\\\n    )\\\\n\\\\n    grpo_config = GRPOConfig(\\\\n        output_dir=args.output_dir,\\\\n        max_steps=args.num_steps,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_completion_length,\\\\n        logging_steps=1,\\\\n        save_steps=50,\\\\n        save_total_limit=1,\\\\n        save_only_model=True,\\\\n        report_to=report_to,\\\\n        bf16=True,\\\\n        seed=args.seed,\\\\n        warmup_ratio=args.warmup_ratio,\\\\n        log_completions=False,\\\\n        num_completions_to_print=2,\\\\n        chat_template_kwargs={\\\\\\\"enable_thinking\\\\\\\": False},\\\\n        gradient_checkpointing=getattr(args, \\\\\\\"gradient_checkpointing\\\\\\\", False),\\\\n        optim=getattr(args, \\\\\\\"optim\\\\\\\", \\\\\\\"adamw_torch\\\\\\\"),\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n    trainer = GRPOTrainer(\\\\n        model=args.model_path,\\\\n        reward_funcs=reward_fn,\\\\n        args=grpo_config,\\\\n        train_dataset=dataset,\\\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    logger.info(\\\\\\\"Saving final model\\\\\\\")\\\\n    trainer.save_model(args.output_dir)\\\\n\\\\n    final_stats = reward_fn.get_stats()\\\\n    logger.info(f\\\\\\\"Final reward stats: {final_stats}\\\\\\\")\\\\n\\\\n    if not args.no_wandb and args.wandb_project:\\\\n        import wandb\\\\n        wandb.log({\\\\\\\"final/\\\\\\\" + k: v for k, v in final_stats.items()})\\\\n        wandb.finish()\\\\n\\\\n    logger.info(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"                step_buf[\\\"beta_t\\\"] = beta_t\\n            elif reward_mode == \\\"execution_fast_sta\\\":\\n                result = _fast_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n                )\\n                reward_val = result[\\\"combined_reward\\\"]\\n            else:\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n                )\\n                reward_val = result[\\\"combined_reward\\\"]\\n\\n            parsed = \\\"error\\\" not in result.get(\\\"details\\\", {})\\n            proved = result[\\\"execution_reward\\\"] > 0\\n            isr = result.get(\\\"sta_reward\\\", 0.0)\\n\\n            if parsed:\\n                stats[\\\"parsed\\\"] += 1\\n                step_buf[\\\"parsed\\\"] += 1\\n            if proved:\\n                stats[\\\"proved\\\"] += 1\\n                step_buf[\\\"proved\\\"] += 1\\n            stats[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"reward_sum\\\"] += reward_val\\n\\n            rewards.append(reward_val)\\n        return rewards\\n\\n    def get_stats():\\n        n = stats[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        return {\\n            \\\"parse_rate\\\": stats[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": stats[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": stats[\\\"isr_sum\\\"] / n,\\n        }\\n\\n    def get_step_stats():\\n        n = step_buf[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        result = {\\n            \\\"parse_rate\\\": step_buf[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": step_buf[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": step_buf[\\\"isr_sum\\\"] / n,\\n            \\\"reward_mean\\\": step_buf[\\\"reward_sum\\\"] / n,\\n            \\\"reward_std\\\": 0.0,\\n        }\\n        if step_buf[\\\"random_n\\\"] > 0:\\n            result[\\\"random_mean\\\"] = step_buf[\\\"random_sum\\\"] / step_buf[\\\"random_n\\\"]\\n        if step_buf.get(\\\"beta_t\\\") is not None:\\n            result[\\\"beta_t\\\"] = step_buf[\\\"beta_t\\\"]\\n        step_buf[\\\"total\\\"] = 0\\n        step_buf[\\\"parsed\\\"] = 0\\n        step_buf[\\\"proved\\\"] = 0\\n        step_buf[\\\"isr_sum\\\"] = 0.0\\n        step_buf[\\\"reward_sum\\\"] = 0.0\\n        step_buf[\\\"random_sum\\\"] = 0.0\\n        step_buf[\\\"random_n\\\"] = 0\\n        step_buf[\\\"beta_t\\\"] = None\\n        return result\\n\\n    def reset_stats():\\n        stats[\\\"total\\\"] = 0\\n        stats[\\\"parsed\\\"] = 0\\n        stats[\\\"proved\\\"] = 0\\n        stats[\\\"isr_sum\\\"] = 0.0\\n\\n    reward_fn.get_stats = get_stats\\n    reward_fn.get_step_stats = get_step_stats\\n    reward_fn.reset_stats = reset_stats\\n    reward_fn.schedule_state = schedule_state\\n    return reward_fn\\n\\n\\nclass LocalLogCallback(TrainerCallback):\\n    def __init__(self, output_dir, reward_fn):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.log_path = self.output_dir / \\\"reward_log.jsonl\\\"\\n        self.reward_fn = reward_fn\\n        self.last_step = 0\\n\\n    def on_step_begin(self, args, state, control, **kwargs):\\n        if hasattr(self.reward_fn, 'schedule_state'):\\n            self.reward_fn.schedule_state['current_step'] = state.global_step\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs is None or state.global_step == 0:\\n            return\\n        if state.global_step == self.last_step:\\n            return\\n        self.last_step = state.global_step\\n        step_stats = self.reward_fn.get_step_stats()\\n        entry = {\\n            \\\"step\\\": state.global_step,\\n            \\\"reward_mean\\\": logs.get(\\\"reward\\\", step_stats.get(\\\"reward_mean\\\", 0.0)),\\n            \\\"reward_std\\\": logs.get(\\\"reward_std\\\", step_stats.get(\\\"reward_std\\\", 0.0)),\\n            \\\"prove_rate\\\": step_stats.get(\\\"prove_rate\\\", 0.0),\\n            \\\"isr_mean\\\": step_stats.get(\\\"mean_isr\\\", 0.0),\\n            \\\"parse_rate\\\": step_stats.get(\\\"parse_rate\\\", 0.0),\\n            \\\"random_mean\\\": step_stats.get(\\\"random_mean\\\", None),\\n            \\\"loss\\\": logs.get(\\\"loss\\\", 0.0),\\n            \\\"lr\\\": logs.get(\\\"learning_rate\\\", 0.0),\\n            \\\"beta_t\\\": step_stats.get(\\\"beta_t\\\",\\n\\n... [截断: 输出过长，省略 3690 字符] ...\\n\\nis None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Now let me get the parse_args function to see the existing argument definitions:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c414bdc6-8cfa-453a-b573-0ec4f8988722",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015HnNb2vRPXYjPh4m3UmT5p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5734,
+      "cache_read_input_tokens": 48334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5734
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TVnGzGx94KN8Yd5h7SMdJP`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"def parse_args\\|add_argument\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "d690fb3f-2633-4b30-bfef-d9ce26edbfee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015HnNb2vRPXYjPh4m3UmT5p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5734,
+      "cache_read_input_tokens": 48334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5734
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T14:13:00.212Z_
+
+<details><summary>↩ Tool result · `toolu_01TVnGzGx94KN8Yd5h7SMdJP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "48819541-98f4-4946-9549-a7097ebef9d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012TMwRBpjnbGEPk8aoEcbnt`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/src/sta/isr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "302e0ff7-c544-4149-a467-c92e3ec335fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015HnNb2vRPXYjPh4m3UmT5p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5734,
+      "cache_read_input_tokens": 48334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5734
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T14:13:01.191Z_
+
+<details><summary>↩ Tool result · `toolu_012TMwRBpjnbGEPk8aoEcbnt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ISR (Intensional Score Rate) computation.\\n\\nISR = (# necessary components) / (# total components).\\nHigh ISR means every part of the formalization contributes to the proof\\n(good formalization). Low ISR indicates redundant or vacuous components\\n(potential reward hacking).\\n\\nInput:  list of AblationResult from run_sta().\\nOutput: ISR score (float in [0, 1]).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nimport time\\nfrom dataclasses import dataclass\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver\\nfrom .ablation import AblationResult, run_sta\\n\\n\\ndef compute_isr(ablation_results: list[AblationResult]) -> float:\\n    \\\"\\\"\\\"Compute ISR for a single problem.\\n\\n    Returns 0.0 if no components (degenerate case).\\n    \\\"\\\"\\\"\\n    if not ablation_results:\\n        return 0.0\\n    necessary = sum(1 for r in ablation_results if r.is_necessary)\\n    return necessary / len(ablation_results)\\n\\n\\n@dataclass\\nclass ISRBatchStats:\\n    \\\"\\\"\\\"Aggregate ISR statistics over a batch of problems.\\\"\\\"\\\"\\n    mean_isr: float\\n    std_isr: float\\n    median_isr: float\\n    solver_success_rate: float  # fraction of problems where solver ran successfully\\n    avg_time_seconds: float\\n    n_problems: int\\n    n_solver_failures: int\\n\\n\\ndef compute_isr_batch(\\n    problems: list[dict],\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n) -> ISRBatchStats:\\n    \\\"\\\"\\\"Compute ISR over a batch of problems.\\n\\n    Each problem dict must have keys:\\n        - \\\"premises\\\": list[str]\\n        - \\\"conclusion\\\": str\\n\\n    Returns aggregate statistics.\\n    \\\"\\\"\\\"\\n    isr_scores: list[float] = []\\n    total_time = 0.0\\n    n_failures = 0\\n\\n    for prob in problems:\\n        premises = prob[\\\"premises\\\"]\\n        conclusion = prob[\\\"conclusion\\\"]\\n\\n        results = run_sta(premises, conclusion, solver, timeout=timeout)\\n\\n        # Check if solver succeeded on at least the original proof\\n        if results and results[0].original_proved:\\n            isr = compute_isr(results)\\n            isr_scores.append(isr)\\n            total_time += sum(r.solver_result.time_seconds for r in results)\\n        else:\\n            n_failures += 1\\n\\n    n_total = len(problems)\\n    n_success = len(isr_scores)\\n\\n    if not isr_scores:\\n        return ISRBatchStats(\\n            mean_isr=0.0, std_isr=0.0, median_isr=0.0,\\n            solver_success_rate=0.0,\\n            avg_time_seconds=0.0,\\n            n_problems=n_total,\\n            n_solver_failures=n_failures,\\n        )\\n\\n    return ISRBatchStats(\\n        mean_isr=statistics.mean(isr_scores),\\n        std_isr=statistics.stdev(isr_scores) if len(isr_scores) > 1 else 0.0,\\n        median_isr=statistics.median(isr_scores),\\n        solver_success_rate=n_success / n_total if n_total > 0 else 0.0,\\n        avg_time_seconds=total_time / n_success,\\n        n_problems=n_total,\\n        n_solver_failures=n_failures,\\n    )\\n\\n\\ndef fast_isr_fol(\\n    premises: list[str],\\n    conclusion: str,\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n) -> dict:\\n    \\\"\\\"\\\"O(1) approximate ISR: check if conclusion is a tautology (provable without premises).\\n\\n    Only 2 solver calls regardless of component count. Used for GRPO reward.\\n\\n    Returns:\\n        fast_isr: 0.0 if original unprovable or conclusion is tautology, else 1.0\\n        original_proved: whether the full problem is provable\\n        conclusion_tautology: whether conclusion is provable without premises\\n        solver_time: total wall-clock time for both calls\\n    \\\"\\\"\\\"\\n    start = time.time()\\n\\n    original = solver.prove(premises, conclusion, timeout=timeout)\\n    tautology_check = solver.prove([], conclusion, timeout=timeout)\\n\\n    elapsed = time.time() - start\\n\\n    if not original.proved:\\n        fast_isr = 0.0\\n    elif tautology_check.proved:\\n        fast_isr = 0.0\\n    else:\\n        fast_isr = 1.0\\n\\n    return {\\n        \\\"fast_isr\\\": fast_isr,\\n        \\\"original_proved\\\": original.proved,\\n        \\\"conclusion_tautology\\\": tautology_check.proved,\\n        \\\"solver_time\\\": elapsed,\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "bfd04c3f-cfad-48b9-b625-e20ecb8a2a15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"ISR (Intensional Score Rate) computation.\\\\n\\\\nISR = (# necessary components) / (# total components).\\\\nHigh ISR means every part of the formalization contributes to the proof\\\\n(good formalization). Low ISR indicates redundant or vacuous components\\\\n(potential reward hacking).\\\\n\\\\nInput:  list of AblationResult from run_sta().\\\\nOutput: ISR score (float in [0, 1]).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nimport time\\\\nfrom dataclasses import dataclass\\\\nfrom typing import Optional\\\\n\\\\nfrom ..solvers.base import FOLSolver\\\\nfrom .ablation import AblationResult, run_sta\\\\n\\\\n\\\\ndef compute_isr(ablation_results: list[AblationResult]) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute ISR for a single problem.\\\\n\\\\n    Returns 0.0 if no components (degenerate case).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not ablation_results:\\\\n        return 0.0\\\\n    necessary = sum(1 for r in ablation_results if r.is_necessary)\\\\n    return necessary / len(ablation_results)\\\\n\\\\n\\\\n@dataclass\\\\nclass ISRBatchStats:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Aggregate ISR statistics over a batch of problems.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mean_isr: float\\\\n    std_isr: float\\\\n    median_isr: float\\\\n    solver_success_rate: float  # fraction of problems where solver ran successfully\\\\n    avg_time_seconds: float\\\\n    n_problems: int\\\\n    n_solver_failures: int\\\\n\\\\n\\\\ndef compute_isr_batch(\\\\n    problems: list[dict],\\\\n    solver: FOLSolver,\\\\n    timeout: int = 5,\\\\n) -> ISRBatchStats:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute ISR over a batch of problems.\\\\n\\\\n    Each problem dict must have keys:\\\\n        - \\\\\\\"premises\\\\\\\": list[str]\\\\n        - \\\\\\\"conclusion\\\\\\\": str\\\\n\\\\n    Returns aggregate statistics.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    isr_scores: list[float] = []\\\\n    total_time = 0.0\\\\n    n_failures = 0\\\\n\\\\n    for prob in problems:\\\\n        premises = prob[\\\\\\\"premises\\\\\\\"]\\\\n        conclusion = prob[\\\\\\\"conclusion\\\\\\\"]\\\\n\\\\n        results = run_sta(premises, conclusion, solver, timeout=timeout)\\\\n\\\\n        # Check if solver succeeded on at least the original proof\\\\n        if results and results[0].original_proved:\\\\n            isr = compute_isr(results)\\\\n            isr_scores.append(isr)\\\\n            total_time += sum(r.solver_result.time_seconds for r in results)\\\\n        else:\\\\n            n_failures += 1\\\\n\\\\n    n_total = len(problems)\\\\n    n_success = len(isr_scores)\\\\n\\\\n    if not isr_scores:\\\\n        return ISRBatchStats(\\\\n            mean_isr=0.0, std_isr=0.0, median_isr=0.0,\\\\n            solver_success_rate=0.0,\\\\n            avg_time_seconds=0.0,\\\\n            n_problems=n_total,\\\\n            n_solver_failures=n_failures,\\\\n        )\\\\n\\\\n    return ISRBatchStats(\\\\n        mean_isr=statistics.mean(isr_scores),\\\\n        std_isr=statistics.stdev(isr_scores) if len(isr_scores) > 1 else 0.0,\\\\n        median_isr=statistics.median(isr_scores),\\\\n        solver_success_rate=n_success / n_total if n_total > 0 else 0.0,\\\\n        avg_time_seconds=total_time / n_success,\\\\n        n_problems=n_total,\\\\n        n_solver_failures=n_failures,\\\\n    )\\\\n\\\\n\\\\ndef fast_isr_fol(\\\\n    premises: list[str],\\\\n    conclusion: str,\\\\n    solver: FOLSolver,\\\\n    timeout: int = 5,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"O(1) approximate ISR: check if conclusion is a tautology (provable without premises).\\\\n\\\\n    Only 2 solver calls regardless of component count. Used for GRPO reward.\\\\n\\\\n    Returns:\\\\n        fast_isr: 0.0 if original unprovable or conclusion is tautology, else 1.0\\\\n        original_proved: whether the full problem is provable\\\\n        conclusion_tautology: whether conclusion is provable without premises\\\\n        solver_time: total wall-clock time for both calls\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    start = time.time()\\\\n\\\\n    original = solver.prove(premises, conclusion, timeout=timeout)\\\\n    tautology_check = solver.prove([], conclusion, timeout=timeout)\\\\n\\\\n    elapsed = time.time() - start\\\\n\\\\n    if not original.proved:\\\\n        fast_isr = 0.0\\\\n    elif tautology_check.proved:\\\\n        fast_isr = 0.0\\\\n    else:\\\\n        fast_isr = 1.0\\\\n\\\\n    return {\\\\n        \\\\\\\"fast_isr\\\\\\\": fast_isr,\\\\n        \\\\\\\"original_proved\\\\\\\": original.proved,\\\\n        \\\\\\\"conclusion_tautology\\\\\\\": tautology_check.proved,\\\\n        \\\\\\\"solver_time\\\\\\\": elapsed,\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ISR (Intensional Score Rate) computation.\\n\\nISR = (# necessary components) / (# total components).\\nHigh ISR means every part of the formalization contributes to the proof\\n(good formalization). Low ISR indicates redundant or vacuous components\\n(potential reward hacking).\\n\\nInput:  list of AblationResult from run_sta().\\nOutput: ISR score (float in [0, 1]).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nimport time\\nfrom dataclasses import dataclass\\nfrom typing import Optional\\n\\nfrom ..solvers.base import FOLSolver\\nfrom .ablation import AblationResult, run_sta\\n\\n\\ndef compute_isr(ablation_results: list[AblationResult]) -> float:\\n    \\\"\\\"\\\"Compute ISR for a single problem.\\n\\n    Returns 0.0 if no components (degenerate case).\\n    \\\"\\\"\\\"\\n    if not ablation_results:\\n        return 0.0\\n    necessary = sum(1 for r in ablation_results if r.is_necessary)\\n    return necessary / len(ablation_results)\\n\\n\\n@dataclass\\nclass ISRBatchStats:\\n    \\\"\\\"\\\"Aggregate ISR statistics over a batch of problems.\\\"\\\"\\\"\\n    mean_isr: float\\n    std_isr: float\\n    median_isr: float\\n    solver_success_rate: float  # fraction of problems where solver ran successfully\\n    avg_time_seconds: float\\n    n_problems: int\\n    n_solver_failures: int\\n\\n\\ndef compute_isr_batch(\\n    problems: list[dict],\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n) -> ISRBatchStats:\\n    \\\"\\\"\\\"Compute ISR over a batch of problems.\\n\\n    Each problem dict must have keys:\\n        - \\\"premises\\\": list[str]\\n        - \\\"conclusion\\\": str\\n\\n    Returns aggregate statistics.\\n    \\\"\\\"\\\"\\n    isr_scores: list[float] = []\\n    total_time = 0.0\\n    n_failures = 0\\n\\n    for prob in problems:\\n        premises = prob[\\\"premises\\\"]\\n        conclusion = prob[\\\"conclusion\\\"]\\n\\n        results = run_sta(premises, conclusion, solver, timeout=timeout)\\n\\n        # Check if solver succeeded on at least the original proof\\n        if results and results[0].original_proved:\\n            isr = compute_isr(results)\\n            isr_scores.append(isr)\\n            total_time += sum(r.solver_result.time_seconds for r in results)\\n        else:\\n            n_failures += 1\\n\\n    n_total = len(problems)\\n    n_success = len(isr_scores)\\n\\n    if not isr_scores:\\n        return ISRBatchStats(\\n            mean_isr=0.0, std_isr=0.0, median_isr=0.0,\\n            solver_success_rate=0.0,\\n            avg_time_seconds=0.0,\\n            n_problems=n_total,\\n            n_solver_failures=n_failures,\\n        )\\n\\n    return ISRBatchStats(\\n        mean_isr=statistics.mean(isr_scores),\\n        std_isr=statistics.stdev(isr_scores) if len(isr_scores) > 1 else 0.0,\\n        median_isr=statistics.median(isr_scores),\\n        solver_success_rate=n_success / n_total if n_total > 0 else 0.0,\\n        avg_time_seconds=total_time / n_success,\\n        n_problems=n_total,\\n        n_solver_failures=n_failures,\\n    )\\n\\n\\ndef fast_isr_fol(\\n    premises: list[str],\\n    conclusion: str,\\n    solver: FOLSolver,\\n    timeout: int = 5,\\n) -> dict:\\n    \\\"\\\"\\\"O(1) approximate ISR: check if conclusion is a tautology (provable without premises).\\n\\n    Only 2 solver calls regardless of component count. Used for GRPO reward.\\n\\n    Returns:\\n        fast_isr: 0.0 if original unprovable or conclusion is tautology, else 1.0\\n        original_proved: whether the full problem is provable\\n        conclusion_tautology: whether conclusion is provable without premises\\n        solver_time: total wall-clock time for both calls\\n    \\\"\\\"\\\"\\n    start = time.time()\\n\\n    original = solver.prove(premises, conclusion, timeout=timeout)\\n    tautology_check = solver.prove([], conclusion, timeout=timeout)\\n\\n    elapsed = time.time() - start\\n\\n    if not original.proved:\\n        fast_isr = 0.0\\n    elif tautology_check.proved:\\n        fast_isr = 0.0\\n    else:\\n        fast_isr = 1.0\\n\\n    return {\\n        \\\"fast_isr\\\": fast_isr,\\n        \\\"original_proved\\\": original.proved,\\n        \\\"conclusion_tautology\\\": tautology_check.proved,\\n        \\\"solver_time\\\": elapsed,\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014vVY1LjdgaF7JDyRPkxtdk`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"def parse_args\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "1c3e5b5d-658c-4a2e-82af-77805828b09d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LKBfrdtCW9KkXyq8hkimv6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2025,
+      "cache_read_input_tokens": 54068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2025
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T14:13:04.841Z_
+
+<details><summary>↩ Tool result · `toolu_014vVY1LjdgaF7JDyRPkxtdk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"354:def parse_args():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c3e16bea-442f-4bfa-860a-bfc815ef27e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"354:def parse_args():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"354:def parse_args():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ca35iAos1S6J5HQ5WBVSuV`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -n +354 /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "9cb402a0-60bf-4b4b-9bca-37cccf4c22d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016tCEfEXPPS5ngTS1ovxscU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 210,
+      "cache_read_input_tokens": 56093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 210
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T14:13:08.393Z_
+
+<details><summary>↩ Tool result · `toolu_01Ca35iAos1S6J5HQ5WBVSuV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Phase 1 GRPO Training\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--data_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--reward_mode\\\", type=str, default=None,\\n                        choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\", \\\"additive_bonus\\\", \\\"additive_random\\\", \\\"execution_fast_sta\\\"])\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=None)\\n    parser.add_argument(\\\"--num_steps\\\", type=int, default=None)\\n    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=None)\\n    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=None)\\n    parser.add_argument(\\\"--num_generations\\\", type=int, default=None)\\n    parser.add_argument(\\\"--max_completion_length\\\", type=int, default=None)\\n    parser.add_argument(\\\"--learning_rate\\\", type=float, default=None)\\n    parser.add_argument(\\\"--exec_weight\\\", type=float, default=None)\\n    parser.add_argument(\\\"--sta_weight\\\", type=float, default=None)\\n    parser.add_argument(\\\"--beta\\\", type=float, default=None,\\n                        help=\\\"Additive bonus coefficient for ISR (used with additive_bonus mode)\\\")\\n    parser.add_argument(\\\"--beta_schedule\\\", type=str, default=None,\\n                        choices=[\\\"fixed\\\", \\\"linear\\\", \\\"sigmoid\\\"],\\n                        help=\\\"Beta schedule: fixed (constant), linear (ramp 0->beta), sigmoid (S-curve 0->beta)\\\")\\n    parser.add_argument(\\\"--beta_schedule_midpoint\\\", type=int, default=None,\\n                        help=\\\"Midpoint step for sigmoid schedule (default 250)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=None)\\n    parser.add_argument(\\\"--solver\\\", type=str, default=None)\\n    parser.add_argument(\\\"--logic_type\\\", type=str, default=None,\\n                        choices=[\\\"fol\\\", \\\"prolog\\\"])\\n    parser.add_argument(\\\"--wandb_project\\\", type=str, default=None)\\n    parser.add_argument(\\\"--wandb_run\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_wandb\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--warmup_ratio\\\", type=float, default=None)\\n    parser.add_argument(\\\"--optim\\\", type=str, default=None)\\n    parser.add_argument(\\\"--config\\\", type=str, default=None,\\n                        help=\\\"YAML config file (overrides CLI args)\\\")\\n    args = parser.parse_args()\\n\\n    if args.config:\\n        cfg = load_yaml_config(args.config)\\n        for k, v in cfg.items():\\n            if hasattr(args, k):\\n                current = getattr(args, k)\\n                if current is None:\\n                    setattr(args, k, v)\\n            else:\\n                setattr(args, k, v)\\n\\n    # Apply defaults for optional args after config merge\\n    if args.num_steps is None:\\n        args.num_steps = 100\\n    if args.per_device_batch_size is None:\\n        args.per_device_batch_size = 4\\n    if args.gradient_accumulation_steps is None:\\n        args.gradient_accumulation_steps = 2\\n    if args.num_generations is None:\\n        args.num_generations = 4\\n    if args.max_completion_length is None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "110b9980-97ae-4f84-8371-a69110918231",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Phase 1 GRPO Training\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--data_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--reward_mode\\\\\\\", type=str, default=None,\\\\n                        choices=[\\\\\\\"execution_only\\\\\\\", \\\\\\\"execution_sta\\\\\\\", \\\\\\\"random_reward\\\\\\\", \\\\\\\"additive_bonus\\\\\\\", \\\\\\\"additive_random\\\\\\\", \\\\\\\"execution_fast_sta\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--num_steps\\\\\\\", type=int, default=None)\\\\n    parser.add_argument(\\\\\\\"--per_device_batch_size\\\\\\\", type=int, default=None)\\\\n    parser.add_argument(\\\\\\\"--gradient_accumulation_steps\\\\\\\", type=int, default=None)\\\\n    parser.add_argument(\\\\\\\"--num_generations\\\\\\\", type=int, default=None)\\\\n    parser.add_argument(\\\\\\\"--max_completion_length\\\\\\\", type=int, default=None)\\\\n    parser.add_argument(\\\\\\\"--learning_rate\\\\\\\", type=float, default=None)\\\\n    parser.add_argument(\\\\\\\"--exec_weight\\\\\\\", type=float, default=None)\\\\n    parser.add_argument(\\\\\\\"--sta_weight\\\\\\\", type=float, default=None)\\\\n    parser.add_argument(\\\\\\\"--beta\\\\\\\", type=float, default=None,\\\\n                        help=\\\\\\\"Additive bonus coefficient for ISR (used with additive_bonus mode)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--beta_schedule\\\\\\\", type=str, default=None,\\\\n                        choices=[\\\\\\\"fixed\\\\\\\", \\\\\\\"linear\\\\\\\", \\\\\\\"sigmoid\\\\\\\"],\\\\n                        help=\\\\\\\"Beta schedule: fixed (constant), linear (ramp 0->beta), sigmoid (S-curve 0->beta)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--beta_schedule_midpoint\\\\\\\", type=int, default=None,\\\\n                        help=\\\\\\\"Midpoint step for sigmoid schedule (default 250)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=None)\\\\n    parser.add_argument(\\\\\\\"--solver\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--logic_type\\\\\\\", type=str, default=None,\\\\n                        choices=[\\\\\\\"fol\\\\\\\", \\\\\\\"prolog\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--wandb_project\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--wandb_run\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--no_wandb\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--warmup_ratio\\\\\\\", type=float, default=None)\\\\n    parser.add_argument(\\\\\\\"--optim\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"YAML config file (overrides CLI args)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.config:\\\\n        cfg = load_yaml_config(args.config)\\\\n        for k, v in cfg.items():\\\\n            if hasattr(args, k):\\\\n                current = getattr(args, k)\\\\n                if current is None:\\\\n                    setattr(args, k, v)\\\\n            else:\\\\n                setattr(args, k, v)\\\\n\\\\n    # Apply defaults for optional args after config merge\\\\n    if args.num_steps is None:\\\\n        args.num_steps = 100\\\\n    if args.per_device_batch_size is None:\\\\n        args.per_device_batch_size = 4\\\\n    if args.gradient_accumulation_steps is None:\\\\n        args.gradient_accumulation_steps = 2\\\\n    if args.num_generations is None:\\\\n        args.num_generations = 4\\\\n    if args.max_completion_length is None:\\\\n        args.max_completion_length = 512\\\\n    if args.learning_rate is None:\\\\n        args.learning_rate = 1e-6\\\\n    if args.exec_weight is None:\\\\n        args.exec_weight = 0.5\\\\n    if args.sta_weight is None:\\\\n        args.sta_weight = 0.5\\\\n    if args.beta is None:\\\\n        args.beta = 0.3\\\\n    if args.beta_schedule is None:\\\\n        args.beta_schedule = \\\\\\\"fixed\\\\\\\"\\\\n    if args.beta_schedule_midpoint is None:\\\\n        args.beta_schedule_midpoint = 250\\\\n    if args.seed is None:\\\\n        args.seed = 42\\\\n    if args.warmup_ratio is None:\\\\n        args.warmup_ratio = 0.0\\\\n    if args.solver is None:\\\\n        args.solver = \\\\\\\"prover9\\\\\\\"\\\\n    if args.logic_type is None:\\\\n        args.logic_type = \\\\\\\"fol\\\\\\\"\\\\n\\\\n    missing = [f for f in (\\\\\\\"model_path\\\\\\\", \\\\\\\"data_path\\\\\\\", \\\\\\\"reward_mode\\\\\\\", \\\\\\\"output_dir\\\\\\\")\\\\n               if getattr(args, f, None) is None]\\\\n    if missing:\\\\n        parser.error(f\\\\\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\\\\\")\\\\n\\\\n    return args\\\\n\\\\n\\\\ndef load_yaml_config(path: str) -> dict:\\\\n    import yaml\\\\n    with open(path) as f:\\\\n        return yaml.safe_load(f)\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if args.no_wandb:\\\\n        os.environ[\\\\\\\"WANDB_MODE\\\\\\\"] = \\\\\\\"disabled\\\\\\\"\\\\n\\\\n    report_to = \\\\\\\"none\\\\\\\" if args.no_wandb else \\\\\\\"wandb\\\\\\\"\\\\n    if args.wandb_project and not args.no_wandb:\\\\n        import wandb\\\\n        run_name = args.wandb_run or f\\\\\\\"grpo_{args.reward_mode}\\\\\\\"\\\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n\\\\n    logger.info(f\\\\\\\"Loading data from {args.data_path}\\\\\\\")\\\\n    raw_data = load_jsonl(args.data_path)\\\\n    logic_type = getattr(args, \\\\\\\"logic_type\\\\\\\", \\\\\\\"fol\\\\\\\")\\\\n    if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n        dataset = build_prolog_dataset(raw_data)\\\\n    else:\\\\n        dataset = build_dataset(raw_data)\\\\n    logger.info(f\\\\\\\"Dataset: {len(dataset)} examples\\\\\\\")\\\\n\\\\n    logger.info(f\\\\\\\"Initializing solver: {args.solver}\\\\\\\")\\\\n    solver = get_solver(args.solver)\\\\n    logger.info(f\\\\\\\"Solver ready: {type(solver).__name__}\\\\\\\")\\\\n\\\\n    reward_fn = make_reward_fn(\\\\n        args.reward_mode, solver,\\\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\\\n        logic_type=logic_type,\\\\n        beta=getattr(args, \\\\\\\"beta\\\\\\\", 0.3),\\\\n        beta_schedule=getattr(args, \\\\\\\"beta_schedule\\\\\\\", \\\\\\\"fixed\\\\\\\"),\\\\n        beta_schedule_midpoint=getattr(args, \\\\\\\"beta_schedule_midpoint\\\\\\\", 250),\\\\n        max_steps=args.num_steps,\\\\n    )\\\\n\\\\n    grpo_config = GRPOConfig(\\\\n        output_dir=args.output_dir,\\\\n        max_steps=args.num_steps,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_completion_length,\\\\n        logging_steps=1,\\\\n        save_steps=50,\\\\n        save_total_limit=1,\\\\n        save_only_model=True,\\\\n        report_to=report_to,\\\\n        bf16=True,\\\\n        seed=args.seed,\\\\n        warmup_ratio=args.warmup_ratio,\\\\n        log_completions=False,\\\\n        num_completions_to_print=2,\\\\n        chat_template_kwargs={\\\\\\\"enable_thinking\\\\\\\": False},\\\\n        gradient_checkpointing=getattr(args, \\\\\\\"gradient_checkpointing\\\\\\\", False),\\\\n        optim=getattr(args, \\\\\\\"optim\\\\\\\", \\\\\\\"adamw_torch\\\\\\\"),\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n    trainer = GRPOTrainer(\\\\n        model=args.model_path,\\\\n        reward_funcs=reward_fn,\\\\n        args=grpo_config,\\\\n        train_dataset=dataset,\\\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    logger.info(\\\\\\\"Saving final model\\\\\\\")\\\\n    trainer.save_model(args.output_dir)\\\\n\\\\n    final_stats = reward_fn.get_stats()\\\\n    logger.info(f\\\\\\\"Final reward stats: {final_stats}\\\\\\\")\\\\n\\\\n    if not args.no_wandb and args.wandb_project:\\\\n        import wandb\\\\n        wandb.log({\\\\\\\"final/\\\\\\\" + k: v for k, v in final_stats.items()})\\\\n        wandb.finish()\\\\n\\\\n    logger.info(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Phase 1 GRPO Training\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--data_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--reward_mode\\\", type=str, default=None,\\n                        choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\", \\\"additive_bonus\\\", \\\"additive_random\\\", \\\"execution_fast_sta\\\"])\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=None)\\n    parser.add_argument(\\\"--num_steps\\\", type=int, default=None)\\n    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=None)\\n    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=None)\\n    parser.add_argument(\\\"--num_generations\\\", type=int, default=None)\\n    parser.add_argument(\\\"--max_completion_length\\\", type=int, default=None)\\n    parser.add_argument(\\\"--learning_rate\\\", type=float, default=None)\\n    parser.add_argument(\\\"--exec_weight\\\", type=float, default=None)\\n    parser.add_argument(\\\"--sta_weight\\\", type=float, default=None)\\n    parser.add_argument(\\\"--beta\\\", type=float, default=None,\\n                        help=\\\"Additive bonus coefficient for ISR (used with additive_bonus mode)\\\")\\n    parser.add_argument(\\\"--beta_schedule\\\", type=str, default=None,\\n                        choices=[\\\"fixed\\\", \\\"linear\\\", \\\"sigmoid\\\"],\\n                        help=\\\"Beta schedule: fixed (constant), linear (ramp 0->beta), sigmoid (S-curve 0->beta)\\\")\\n    parser.add_argument(\\\"--beta_schedule_midpoint\\\", type=int, default=None,\\n                        help=\\\"Midpoint step for sigmoid schedule (default 250)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=None)\\n    parser.add_argument(\\\"--solver\\\", type=str, default=None)\\n    parser.add_argument(\\\"--logic_type\\\", type=str, default=None,\\n                        choices=[\\\"fol\\\", \\\"prolog\\\"])\\n    parser.add_argument(\\\"--wandb_project\\\", type=str, default=None)\\n    parser.add_argument(\\\"--wandb_run\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_wandb\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--warmup_ratio\\\", type=float, default=None)\\n    parser.add_argument(\\\"--optim\\\", type=str, default=None)\\n    parser.add_argument(\\\"--config\\\", type=str, default=None,\\n                        help=\\\"YAML config file (overrides CLI args)\\\")\\n    args = parser.parse_args()\\n\\n    if args.config:\\n        cfg = load_yaml_config(args.config)\\n        for k, v in cfg.items():\\n            if hasattr(args, k):\\n                current = getattr(args, k)\\n                if current is None:\\n                    setattr(args, k, v)\\n            else:\\n                setattr(args, k, v)\\n\\n    # Apply defaults for optional args after config merge\\n    if args.num_steps is None:\\n        args.num_steps = 100\\n    if args.per_device_batch_size is None:\\n        args.per_device_batch_size = 4\\n    if args.gradient_accumulation_steps is None:\\n        args.gradient_accumulation_steps = 2\\n    if args.num_generations is None:\\n        args.num_generations = 4\\n    if args.max_completion_length is None:\\n        args.max_completion_length = 512\\n    if args.learning_rate is None:\\n        args.learning_rate = 1e-6\\n    if args.exec_weight is None:\\n        args.exec_weight = 0.5\\n    if args.sta_weight is None:\\n        args.sta_weight = 0.5\\n    if args.beta is None:\\n        args.beta = 0.3\\n    if args.beta_schedule is None:\\n        args.beta_schedule = \\\"fixed\\\"\\n    if args.beta_schedule_midpoint is None:\\n        args.beta_schedule_midpoint = 250\\n    if args.seed is None:\\n        args.seed = 42\\n    if args.warmup_ratio is None:\\n        args.warmup_ratio = 0.0\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n        beta=getattr(args, \\\"beta\\\", 0.3),\\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\\n        max_steps=args.num_steps,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=1,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        warmup_ratio=args.warmup_ratio,\\n        log_completions=False,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n        gradient_checkpointing=getattr(args, \\\"gradient_checkpointing\\\", False),\\n        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture of the code. Let me also check the `make_reward_fn` signature to understand how it passes parameters — specifically the `isr_threshold` and `min_components` parameters need to be added.
+
+Let me now look at the full `make_reward_fn` function to understand the reward_fn closure and how it's structured. I have most of the code now. Let me also check what `_full_fn` returns (i.e., `sta_reward`) — I already read that in `src/sta/reward.py`. The key return is:
+- `execution_reward`: 0 or 1
+
+
+- `sta_reward`: ISR (0 to 1)
+- `details`: dict with `n_components`, `n_necessary`, etc.
+
+Now I have everything I need. The plan is to add `isr_gated` to the `reward_mode` choices in `parse_args`, introduce `--isr_threshold` and `--min_components` arguments, and then add the `isr_gated` branch in `make_reward_fn` that calls `_full_fn` to get execution and STA rewards, then gates the final reward on whether the problem is proved, ISR exceeds the threshold, and component count is above the minimum.
+
+I need to pass these new parameters through `make_reward_fn`, add gating stats to track how many attempts passed the gate, create a config YAML, and test with a dry-run. The key advantage here is that `_full_fn` already computes both execution reward and ISR with full ablation, and the `details` dict already has `n_components` and `isr`, so I just need to add a conditional branch that uses those values. Looking at `make_reward_fn`'s current signature, it takes `reward_mode, solver, exec_weight, sta_weight, logic_type, beta, beta_schedule, beta_schedule_midpoint, max_steps`, so I'll need to add `isr_threshold` and `min_components` to that list.
+
+Now I need to update the call to `make_reward_fn` in `main()` to pass these new parameters.
+
+Writing the patch...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "f2c11a61-3fcd-4828-8e95-d3f9e1d1afe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G289UvwrPikMbYzp7Gh2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2885,
+      "cache_read_input_tokens": 56303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+I have the full picture. Now I'll implement the ISR-Gated mode. The existing `_full_fn` (sta_reward) already computes execution + full STA ablation with ISR and n_components in the details dict. I just need to add a new branch that uses those as a binary gate.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "dd324d1c-ad79-4776-9e9a-a4d865f39c53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G289UvwrPikMbYzp7Gh2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2885,
+      "cache_read_input_tokens": 56303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Xxmri5WMv2pwThG5Xy6Eyj`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && wc -l scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "39a89be8-4be4-453a-b5c2-8cb5677ca172",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G289UvwrPikMbYzp7Gh2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2885,
+      "cache_read_input_tokens": 56303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T14:13:25.982Z_
+
+<details><summary>↩ Tool result · `toolu_01Xxmri5WMv2pwThG5Xy6Eyj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"530 scripts/train_grpo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "ce41132f-83a0-4d9f-a24d-d44274bdec2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"530 scripts/train_grpo.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"530 scripts/train_grpo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Adify2HaKVeNfxRq5p7cke`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && cat -n scripts/train_grpo.py | head -n 250 | tail -n 102",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "7ee98f1e-9ae9-45e4-91b7-4480cb8d486e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbwFM9zBnTaAjgqg5Ryim1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 822,
+      "cache_read_input_tokens": 59188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 822
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T14:13:29.907Z_
+
+<details><summary>↩ Tool result · `toolu_01Adify2HaKVeNfxRq5p7cke`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   149\\tdef make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\n   150\\t    stats = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0}\\n   151\\t    step_buf = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0, \\\"reward_sum\\\": 0.0, \\\"random_sum\\\": 0.0, \\\"random_n\\\": 0, \\\"beta_t\\\": None}\\n   152\\t    schedule_state = {\\\"current_step\\\": 0}\\n   153\\t\\n   154\\t    def compute_beta_t():\\n   155\\t        \\\"\\\"\\\"Compute time-varying beta coefficient based on the chosen schedule.\\\"\\\"\\\"\\n   156\\t        step = schedule_state[\\\"current_step\\\"]\\n   157\\t        if beta_schedule == \\\"linear\\\":\\n   158\\t            # beta_t = beta * (t / T): linear ramp from 0 to beta over max_steps\\n   159\\t            return beta * min(step / max_steps, 1.0) if max_steps > 0 else beta\\n   160\\t        elif beta_schedule == \\\"sigmoid\\\":\\n   161\\t            # beta_t = beta * sigma((t - midpoint) / (T/10)): S-curve centered at midpoint\\n   162\\t            x = (step - beta_schedule_midpoint) / (max_steps / 10) if max_steps > 0 else 0\\n   163\\t            return beta / (1 + math.exp(-x))\\n   164\\t        else:\\n   165\\t            return beta\\n   166\\t\\n   167\\t\\n   168\\t    def reward_fn(prompts, completions, **kwargs):\\n   169\\t        rewards = []\\n   170\\t        for completion in completions:\\n   171\\t            text = extract_completion_text(completion)\\n   172\\t            cleaned = strip_thinking(text)\\n   173\\t            stats[\\\"total\\\"] += 1\\n   174\\t            step_buf[\\\"total\\\"] += 1\\n   175\\t\\n   176\\t            if logic_type == \\\"prolog\\\":\\n   177\\t                _fast_fn = fast_prolog_sta_reward\\n   178\\t                _full_fn = prolog_sta_reward\\n   179\\t            else:\\n   180\\t                _fast_fn = fast_sta_reward\\n   181\\t                _full_fn = sta_reward\\n   182\\t\\n   183\\t            if reward_mode == \\\"execution_only\\\":\\n   184\\t                result = _full_fn(\\n   185\\t                    {}, cleaned, solver,\\n   186\\t                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n   187\\t                )\\n   188\\t                reward_val = result[\\\"execution_reward\\\"]\\n   189\\t            elif reward_mode == \\\"random_reward\\\":\\n   190\\t                result = _full_fn(\\n   191\\t                    {}, cleaned, solver,\\n   192\\t                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n   193\\t                )\\n   194\\t                proved = result[\\\"execution_reward\\\"] > 0\\n   195\\t                if proved:\\n   196\\t                    rng = _random.Random(stats[\\\"total\\\"])\\n   197\\t                    rand_val = rng.random()\\n   198\\t                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\n   199\\t                    result[\\\"random_reward\\\"] = rand_val\\n   200\\t                    step_buf[\\\"random_sum\\\"] += rand_val\\n   201\\t                    step_buf[\\\"random_n\\\"] += 1\\n   202\\t                else:\\n   203\\t                    reward_val = 0.0\\n   204\\t                    result[\\\"random_reward\\\"] = 0.0\\n   205\\t            elif reward_mode == \\\"additive_bonus\\\":\\n   206\\t                # D010: additive ISR bonus — r = r_exec * (1 + beta_t * ISR)\\n   207\\t                result = _full_fn(\\n   208\\t                    {}, cleaned, solver,\\n   209\\t                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n   210\\t                )\\n   211\\t                execution_reward = result[\\\"execution_reward\\\"]\\n   212\\t                isr_val = result.get(\\\"sta_reward\\\", 0.0)\\n   213\\t                beta_t = compute_beta_t()\\n   214\\t                reward_val = execution_reward * (1 + beta_t * isr_val)\\n   215\\t                step_buf[\\\"beta_t\\\"] = beta_t\\n   216\\t            elif reward_mode == \\\"additive_random\\\":\\n   217\\t                # plan017: matched control for additive_bonus — random replaces ISR to isolate structural signal\\n   218\\t                result = _full_fn(\\n   219\\t                    {}, cleaned, solver,\\n   220\\t                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n   221\\t                )\\n   222\\t                execution_reward = result[\\\"execution_reward\\\"]\\n   223\\t                rng = _random.Random(stats[\\\"total\\\"])\\n   224\\t                rand_val = rng.random()\\n   225\\t                beta_t = compute_beta_t()\\n   226\\t                reward_val = execution_reward * (1 + beta_t * rand_val)\\n   227\\t                result[\\\"random_reward\\\"] = rand_val\\n   228\\t                step_buf[\\\"random_sum\\\"] += rand_val\\n   229\\t                step_buf[\\\"random_n\\\"] += 1\\n   230\\t                step_buf[\\\"beta_t\\\"] = beta_t\\n   231\\t            elif reward_mode == \\\"execution_fast_sta\\\":\\n   232\\t                result = _fast_fn(\\n   233\\t                    {}, cleaned, solver,\\n   234\\t                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n   235\\t                )\\n   236\\t                reward_val = result[\\\"combined_reward\\\"]\\n   237\\t            else:\\n   238\\t                result = _full_fn(\\n   239\\t                    {}, cleaned, solver,\\n   240\\t                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n   241\\t                )\\n   242\\t                reward_val = result[\\\"combined_reward\\\"]\\n   243\\t\\n   244\\t            parsed = \\\"error\\\" not in result.get(\\\"details\\\", {})\\n   245\\t            proved = result[\\\"execution_reward\\\"] > 0\\n   246\\t            isr = result.get(\\\"sta_reward\\\", 0.0)\\n   247\\t\\n   248\\t            if parsed:\\n   249\\t                stats[\\\"parsed\\\"] += 1\\n   250\\t                step_buf[\\\"parsed\\\"] += 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "6b892ade-b84c-473c-a653-c329f6560c34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   149\\\\tdef make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\\\\\"fol\\\\\\\", beta: float = 0.3, beta_schedule: str = \\\\\\\"fixed\\\\\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\\\n   150\\\\t    stats = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0}\\\\n   151\\\\t    step_buf = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0, \\\\\\\"reward_sum\\\\\\\": 0.0, \\\\\\\"random_sum\\\\\\\": 0.0, \\\\\\\"random_n\\\\\\\": 0, \\\\\\\"beta_t\\\\\\\": None}\\\\n   152\\\\t    schedule_state = {\\\\\\\"current_step\\\\\\\": 0}\\\\n   153\\\\t\\\\n   154\\\\t    def compute_beta_t():\\\\n   155\\\\t        \\\\\\\"\\\\\\\"\\\\\\\"Compute time-varying beta coefficient based on the chosen schedule.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n   156\\\\t        step = schedule_state[\\\\\\\"current_step\\\\\\\"]\\\\n   157\\\\t        if beta_schedule == \\\\\\\"linear\\\\\\\":\\\\n   158\\\\t            # beta_t = beta * (t / T): linear ramp from 0 to beta over max_steps\\\\n   159\\\\t            return beta * min(step / max_steps, 1.0) if max_steps > 0 else beta\\\\n   160\\\\t        elif beta_schedule == \\\\\\\"sigmoid\\\\\\\":\\\\n   161\\\\t            # beta_t = beta * sigma((t - midpoint) / (T/10)): S-curve centered at midpoint\\\\n   162\\\\t            x = (step - beta_schedule_midpoint) / (max_steps / 10) if max_steps > 0 else 0\\\\n   163\\\\t            return beta / (1 + math.exp(-x))\\\\n   164\\\\t        else:\\\\n   165\\\\t            return beta\\\\n   166\\\\t\\\\n   167\\\\t\\\\n   168\\\\t    def reward_fn(prompts, completions, **kwargs):\\\\n   169\\\\t        rewards = []\\\\n   170\\\\t        for completion in completions:\\\\n   171\\\\t            text = extract_completion_text(completion)\\\\n   172\\\\t            cleaned = strip_thinking(text)\\\\n   173\\\\t            stats[\\\\\\\"total\\\\\\\"] += 1\\\\n   174\\\\t            step_buf[\\\\\\\"total\\\\\\\"] += 1\\\\n   175\\\\t\\\\n   176\\\\t            if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n   177\\\\t                _fast_fn = fast_prolog_sta_reward\\\\n   178\\\\t                _full_fn = prolog_sta_reward\\\\n   179\\\\t            else:\\\\n   180\\\\t                _fast_fn = fast_sta_reward\\\\n   181\\\\t                _full_fn = sta_reward\\\\n   182\\\\t\\\\n   183\\\\t            if reward_mode == \\\\\\\"execution_only\\\\\\\":\\\\n   184\\\\t                result = _full_fn(\\\\n   185\\\\t                    {}, cleaned, solver,\\\\n   186\\\\t                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n   187\\\\t                )\\\\n   188\\\\t                reward_val = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n   189\\\\t            elif reward_mode == \\\\\\\"random_reward\\\\\\\":\\\\n   190\\\\t                result = _full_fn(\\\\n   191\\\\t                    {}, cleaned, solver,\\\\n   192\\\\t                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n   193\\\\t                )\\\\n   194\\\\t                proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n   195\\\\t                if proved:\\\\n   196\\\\t                    rng = _random.Random(stats[\\\\\\\"total\\\\\\\"])\\\\n   197\\\\t                    rand_val = rng.random()\\\\n   198\\\\t                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\\\n   199\\\\t                    result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n   200\\\\t                    step_buf[\\\\\\\"random_sum\\\\\\\"] += rand_val\\\\n   201\\\\t                    step_buf[\\\\\\\"random_n\\\\\\\"] += 1\\\\n   202\\\\t                else:\\\\n   203\\\\t                    reward_val = 0.0\\\\n   204\\\\t                    result[\\\\\\\"random_reward\\\\\\\"] = 0.0\\\\n   205\\\\t            elif reward_mode == \\\\\\\"additive_bonus\\\\\\\":\\\\n   206\\\\t                # D010: additive ISR bonus — r = r_exec * (1 + beta_t * ISR)\\\\n   207\\\\t                result = _full_fn(\\\\n   208\\\\t                    {}, cleaned, solver,\\\\n   209\\\\t                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\\\n   210\\\\t                )\\\\n   211\\\\t                execution_reward = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n   212\\\\t                isr_val = result.get(\\\\\\\"sta_reward\\\\\\\", 0.0)\\\\n   213\\\\t                beta_t = compute_beta_t()\\\\n   214\\\\t                reward_val = execution_reward * (1 + beta_t * isr_val)\\\\n   215\\\\t                step_buf[\\\\\\\"beta_t\\\\\\\"] = beta_t\\\\n   216\\\\t            elif reward_mode == \\\\\\\"additive_random\\\\\\\":\\\\n   217\\\\t                # plan017: matched control for additive_bonus — random replaces ISR to isolate structural signal\\\\n   218\\\\t                result = _full_fn(\\\\n   219\\\\t                    {}, cleaned, solver,\\\\n   220\\\\t                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\\\n   221\\\\t                )\\\\n   222\\\\t                execution_reward = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n   223\\\\t                rng = _random.Random(stats[\\\\\\\"total\\\\\\\"])\\\\n   224\\\\t                rand_val = rng.random()\\\\n   225\\\\t                beta_t = compute_beta_t()\\\\n   226\\\\t                reward_val = execution_reward * (1 + beta_t * rand_val)\\\\n   227\\\\t                result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n   228\\\\t                step_buf[\\\\\\\"random_sum\\\\\\\"] += rand_val\\\\n   229\\\\t                step_buf[\\\\\\\"random_n\\\\\\\"] += 1\\\\n   230\\\\t                step_buf[\\\\\\\"beta_t\\\\\\\"] = beta_t\\\\n   231\\\\t            elif reward_mode == \\\\\\\"execution_fast_sta\\\\\\\":\\\\n   232\\\\t                result = _fast_fn(\\\\n   233\\\\t                    {}, cleaned, solver,\\\\n   234\\\\t                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\\\n   235\\\\t                )\\\\n   236\\\\t                reward_val = result[\\\\\\\"combined_reward\\\\\\\"]\\\\n   237\\\\t            else:\\\\n   238\\\\t                result = _full_fn(\\\\n   239\\\\t                    {}, cleaned, solver,\\\\n   240\\\\t                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\\\n   241\\\\t                )\\\\n   242\\\\t                reward_val = result[\\\\\\\"combined_reward\\\\\\\"]\\\\n   243\\\\t\\\\n   244\\\\t            parsed = \\\\\\\"error\\\\\\\" not in result.get(\\\\\\\"details\\\\\\\", {})\\\\n   245\\\\t            proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n   246\\\\t            isr = result.get(\\\\\\\"sta_reward\\\\\\\", 0.0)\\\\n   247\\\\t\\\\n   248\\\\t            if parsed:\\\\n   249\\\\t                stats[\\\\\\\"parsed\\\\\\\"] += 1\\\\n   250\\\\t                step_buf[\\\\\\\"parsed\\\\\\\"] += 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   149\\tdef make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):\\n   150\\t    stats = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0}\\n   151\\t    step_buf = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0, \\\"reward_sum\\\": 0.0, \\\"random_sum\\\": 0.0, \\\"random_n\\\": 0, \\\"beta_t\\\": None}\\n   152\\t    schedule_state = {\\\"current_step\\\": 0}\\n   153\\t\\n   154\\t    def compute_beta_t():\\n   155\\t        \\\"\\\"\\\"Compute time-varying beta coefficient based on the chosen schedule.\\\"\\\"\\\"\\n   156\\t        step = schedule_state[\\\"current_step\\\"]\\n   157\\t        if beta_schedule == \\\"linear\\\":\\n   158\\t            # beta_t = beta * (t / T): linear ramp from 0 to beta over max_steps\\n   159\\t            return beta * min(step / max_steps, 1.0) if max_steps > 0 else beta\\n   160\\t        elif beta_schedule == \\\"sigmoid\\\":\\n   161\\t            # beta_t = beta * sigma((t - midpoint) / (T/10)): S-curve centered at midpoint\\n   162\\t            x = (step - beta_schedule_midpoint) / (max_steps / 10) if max_steps > 0 else 0\\n   163\\t            return beta / (1 + math.exp(-x))\\n   164\\t        else:\\n   165\\t            return beta\\n   166\\t\\n   167\\t\\n   168\\t    def reward_fn(prompts, completions, **kwargs):\\n   169\\t        rewards = []\\n   170\\t        for completion in completions:\\n   171\\t            text = extract_completion_text(completion)\\n   172\\t            cleaned = strip_thinking(text)\\n   173\\t            stats[\\\"total\\\"] += 1\\n   174\\t            step_buf[\\\"total\\\"] += 1\\n   175\\t\\n   176\\t            if logic_type == \\\"prolog\\\":\\n   177\\t                _fast_fn = fast_prolog_sta_reward\\n   178\\t                _full_fn = prolog_sta_reward\\n   179\\t            else:\\n   180\\t                _fast_fn = fast_sta_reward\\n   181\\t                _full_fn = sta_reward\\n   182\\t\\n   183\\t            if reward_mode == \\\"execution_only\\\":\\n   184\\t                result = _full_fn(\\n   185\\t                    {}, cleaned, solver,\\n   186\\t                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n   187\\t                )\\n   188\\t                reward_val = result[\\\"execution_reward\\\"]\\n   189\\t            elif reward_mode == \\\"random_reward\\\":\\n   190\\t                result = _full_fn(\\n   191\\t                    {}, cleaned, solver,\\n   192\\t                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n   193\\t                )\\n   194\\t                proved = result[\\\"execution_reward\\\"] > 0\\n   195\\t                if proved:\\n   196\\t                    rng = _random.Random(stats[\\\"total\\\"])\\n   197\\t                    rand_val = rng.random()\\n   198\\t                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\n   199\\t                    result[\\\"random_reward\\\"] = rand_val\\n   200\\t                    step_buf[\\\"random_sum\\\"] += rand_val\\n   201\\t                    step_buf[\\\"random_n\\\"] += 1\\n   202\\t                else:\\n   203\\t                    reward_val = 0.0\\n   204\\t                    result[\\\"random_reward\\\"] = 0.0\\n   205\\t            elif reward_mode == \\\"additive_bonus\\\":\\n   206\\t                # D010: additive ISR bonus — r = r_exec * (1 + beta_t * ISR)\\n   207\\t                result = _full_fn(\\n   208\\t                    {}, cleaned, solver,\\n   209\\t                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n   210\\t                )\\n   211\\t                execution_reward = result[\\\"execution_reward\\\"]\\n   212\\t                isr_val = result.get(\\\"sta_reward\\\", 0.0)\\n   213\\t                beta_t = compute_beta_t()\\n   214\\t                reward_val = execution_reward * (1 + beta_t * isr_val)\\n   215\\t                step_buf[\\\"beta_t\\\"] = beta_t\\n   216\\t            elif reward_mode == \\\"additive_random\\\":\\n   217\\t                # plan017: matched control for additive_bonus — random replaces ISR to isolate structural signal\\n   218\\t                result = _full_fn(\\n   219\\t                    {}, cleaned, solver,\\n   220\\t                    execution_weight=1.0, sta_weight=1.0, timeout=5,\\n   221\\t                )\\n   222\\t                execution_reward = result[\\\"execution_reward\\\"]\\n   223\\t                rng = _random.Random(stats[\\\"total\\\"])\\n   224\\t                rand_val = rng.random()\\n   225\\t                beta_t = compute_beta_t()\\n   226\\t                reward_val = execution_reward * (1 + beta_t * rand_val)\\n   227\\t                result[\\\"random_reward\\\"] = rand_val\\n   228\\t                step_buf[\\\"random_sum\\\"] += rand_val\\n   229\\t                step_buf[\\\"random_n\\\"] += 1\\n   230\\t                step_buf[\\\"beta_t\\\"] = beta_t\\n   231\\t            elif reward_mode == \\\"execution_fast_sta\\\":\\n   232\\t                result = _fast_fn(\\n   233\\t                    {}, cleaned, solver,\\n   234\\t                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n   235\\t                )\\n   236\\t                reward_val = result[\\\"combined_reward\\\"]\\n   237\\t            else:\\n   238\\t                result = _full_fn(\\n   239\\t                    {}, cleaned, solver,\\n   240\\t                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n   241\\t                )\\n   242\\t                reward_val = result[\\\"combined_reward\\\"]\\n   243\\t\\n   244\\t            parsed = \\\"error\\\" not in result.get(\\\"details\\\", {})\\n   245\\t            proved = result[\\\"execution_reward\\\"] > 0\\n   246\\t            isr = result.get(\\\"sta_reward\\\", 0.0)\\n   247\\t\\n   248\\t            if parsed:\\n   249\\t                stats[\\\"parsed\\\"] += 1\\n   250\\t                step_buf[\\\"parsed\\\"] += 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me write the patch. I need to:
+
+1. Modify `make_reward_fn` signature to add `isr_threshold` and `min_components` params
+2. Add an `isr_gated` branch in the reward_fn closure
+3. Add `isr_gated` to the reward_mode choices in parse_args
+4. Add `--isr_threshold` and `--min_components` arguments to parse_args
+
+
+5. Thread those new params through main()'s call to make_reward_fn
+6. Track gating stats like "gated_passed" and "gated_total" in step_buf for logging
+
+The ISR-gated logic calls the full reward function with sta_weight=1.0 to get both execution and STA scores, then gates the reward to 1.0 only if proved AND isr exceeds the threshold AND component count meets the minimum, otherwise 0.0. I'll patch the script directly with these changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "7544067a-4666-48fe-9b0f-c89715c94478",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HS8KobB92TL2yG8SprxWke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2298,
+      "cache_read_input_tokens": 60010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2298
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+Now I have the full code structure. I'll implement the ISR-Gated mode by patching `train_grpo.py` and creating the config file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "5a141a80-e4c0-4b1e-acf2-cd7d87133ea0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HS8KobB92TL2yG8SprxWke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2298,
+      "cache_read_input_tokens": 60010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2298
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013Ez5M2jDBM1ofQJ5PvTxKu`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && python3 -c \"\nimport re\n\nwith open('scripts/train_grpo.py', 'r') as f:\n    content = f.read()\n\n# 1. Update make_reward_fn signature to add isr_threshold, min_components\nold_sig = 'def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500):'\nnew_sig = 'def make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\", beta: float = 0.3, beta_schedule: str = \\\"fixed\\\", beta_schedule_midpoint: int = 250, max_steps: int = 500, isr_threshold: float = 0.3, min_components: int = 2):'\ncontent = content.replace(old_sig, new_sig)\n\n# 2. Add gated stats to step_buf initialization\nold_buf = '    step_buf = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0, \\\"reward_sum\\\": 0.0, \\\"random_sum\\\": 0.0, \\\"random_n\\\": 0, \\\"beta_t\\\": None}'\nnew_buf = '    step_buf = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0, \\\"reward_sum\\\": 0.0, \\\"random_sum\\\": 0.0, \\\"random_n\\\": 0, \\\"beta_t\\\": None, \\\"gated_passed\\\": 0, \\\"gated_total\\\": 0}'\ncontent = content.replace(old_buf, new_buf)\n\n# 3. Add isr_gated branch before execution_fast_sta\nold_fast_sta = '''            elif reward_mode == \\\"execution_fast_sta\\\":\n                result = _fast_fn(\n                    {}, cleaned, solver,\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\n                )\n                reward_val = result[\\\"combined_reward\\\"]'''\n\nnew_isr_gated_plus_fast_sta = '''            elif reward_mode == \\\"isr_gated\\\":\n                # ISR-Gated: r = r_exec * 1[ISR > tau AND n_components > min_components]\n                result = _full_fn(\n                    {}, cleaned, solver,\n                    execution_weight=1.0, sta_weight=1.0, timeout=30,\n                )\n                execution_reward = result[\\\"execution_reward\\\"]\n                isr_val = result.get(\\\"sta_reward\\\", 0.0)\n                details = result.get(\\\"details\\\", {})\n                n_comp = details.get(\\\"n_components\\\", 0)\n                if execution_reward > 0:\n                    step_buf[\\\"gated_total\\\"] += 1\n                    if isr_val > isr_threshold and n_comp > min_components:\n                        reward_val = 1.0\n                        step_buf[\\\"gated_passed\\\"] += 1\n                    else:\n                        reward_val = 0.0\n                else:\n                    reward_val = 0.0\n            elif reward_mode == \\\"execution_fast_sta\\\":\n                result = _fast_fn(\n                    {}, cleaned, solver,\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\n                )\n                reward_val = result[\\\"combined_reward\\\"]'''\n\ncontent = content.replace(old_fast_sta, new_isr_gated_plus_fast_sta)\n\n# 4. Add gated stats to get_step_stats output\nold_step_stats_return = '''        result = {\n            \\\"parse_rate\\\": step_buf[\\\"parsed\\\"] / n,\n            \\\"prove_rate\\\": step_buf[\\\"proved\\\"] / n,\n            \\\"mean_isr\\\": step_buf[\\\"isr_sum\\\"] / n,\n            \\\"reward_mean\\\": step_buf[\\\"reward_sum\\\"] / n,\n            \\\"reward_std\\\": 0.0,\n        }'''\nnew_step_stats_return = '''        result = {\n            \\\"parse_rate\\\": step_buf[\\\"parsed\\\"] / n,\n            \\\"prove_rate\\\": step_buf[\\\"proved\\\"] / n,\n            \\\"mean_isr\\\": step_buf[\\\"isr_sum\\\"] / n,\n            \\\"reward_mean\\\": step_buf[\\\"reward_sum\\\"] / n,\n            \\\"reward_std\\\": 0.0,\n        }\n        if step_buf[\\\"gated_total\\\"] > 0:\n            result[\\\"gate_pass_rate\\\"] = step_buf[\\\"gated_passed\\\"] / step_buf[\\\"gated_total\\\"]'''\ncontent = content.replace(old_step_stats_return, new_step_stats_return)\n\n# 5. Add gated resets in get_step_stats\nold_reset = '''        step_buf[\\\"random_sum\\\"] = 0.0\n        step_buf[\\\"random_n\\\"] = 0\n        step_buf[\\\"beta_t\\\"] = None\n        return result'''\nnew_reset = '''        step_buf[\\\"random_sum\\\"] = 0.0\n        step_buf[\\\"random_n\\\"] = 0\n        step_buf[\\\"beta_t\\\"] = None\n        step_buf[\\\"gated_passed\\\"] = 0\n        step_buf[\\\"gated_total\\\"] = 0\n        return result'''\ncontent = content.replace(old_reset, new_reset)\n\n# 6. Add isr_gated to reward_mode choices\nold_choices = 'choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\", \\\"additive_bonus\\\", \\\"additive_random\\\", \\\"execution_fast_sta\\\"]'\nnew_choices = 'choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\", \\\"additive_bonus\\\", \\\"additive_random\\\", \\\"execution_fast_sta\\\", \\\"isr_gated\\\"]'\ncontent = content.replace(old_choices, new_choices)\n\n# 7. Add --isr_threshold and --min_components arguments after --beta_schedule_midpoint\nold_seed_arg = '    parser.add_argument(\\\"--seed\\\", type=int, default=None)'\nnew_seed_arg = '''    parser.add_argument(\\\"--isr_threshold\\\", type=float, default=None,\n                        help=\\\"ISR threshold for isr_gated mode (default 0.3)\\\")\n    parser.add_argument(\\\"--min_components\\\", type=int, default=None,\n                        help=\\\"Minimum n_components for isr_gated mode (default 2)\\\")\n    parser.add_argument(\\\"--seed\\\", type=int, default=None)'''\ncontent = content.replace(old_seed_arg, new_seed_arg)\n\n# 8. Add defaults for isr_threshold and min_components\nold_solver_default = '''    if args.solver is None:\n        args.solver = \\\"prover9\\\"'''\nnew_solver_default = '''    if args.isr_threshold is None:\n        args.isr_threshold = 0.3\n    if args.min_components is None:\n        args.min_components = 2\n    if args.solver is None:\n        args.solver = \\\"prover9\\\"'''\ncontent = content.replace(old_solver_default, new_solver_default)\n\n# 9. Update make_reward_fn call in main() to pass isr_threshold, min_components\nold_make_call = '''    reward_fn = make_reward_fn(\n        args.reward_mode, solver,\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\n        logic_type=logic_type,\n        beta=getattr(args, \\\"beta\\\", 0.3),\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\n        max_steps=args.num_steps,\n    )'''\nnew_make_call = '''    reward_fn = make_reward_fn(\n        args.reward_mode, solver,\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\n        logic_type=logic_type,\n        beta=getattr(args, \\\"beta\\\", 0.3),\n        beta_schedule=getattr(args, \\\"beta_schedule\\\", \\\"fixed\\\"),\n        beta_schedule_midpoint=getattr(args, \\\"beta_schedule_midpoint\\\", 250),\n        max_steps=args.num_steps,\n        isr_threshold=getattr(args, \\\"isr_threshold\\\", 0.3),\n        min_components=getattr(args, \\\"min_components\\\", 2),\n    )'''\ncontent = content.replace(old_make_call, new_make_call)\n\n# 10. Add gate_pass_rate to LocalLogCallback log output\nold_log_print = '''        print(\n            f\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\"\n            f\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\"\n            f\\\"parse_rate={entry['parse_rate']:.3f}\\\"\n            + (f\\\" random={entry['random_mean']:.3f}\\\" if entry.get('random_mean') is not None else \\\"\\\")\n            + (f\\\" beta_t={entry['beta_t']:.4f}\\\" if entry.get('beta_t') is not None else \\\"\\\"),\n            flush=True,'''\nnew_log_print = '''        if step_stats.get(\\\"gate_pass_rate\\\") is not None:\n            entry[\\\"gate_pass_rate\\\"] = step_stats[\\\"gate_pass_rate\\\"]\n        print(\n            f\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\"\n            f\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\"\n            f\\\"parse_rate={entry['parse_rate']:.3f}\\\"\n            + (f\\\" random={entry['random_mean']:.3f}\\\" if entry.get('random_mean') is not None else \\\"\\\")\n            + (f\\\" beta_t={entry['beta_t']:.4f}\\\" if entry.get('beta_t') is not None else \\\"\\\")\n            + (f\\\" gate_pass={entry['gate_pass_rate']:.3f}\\\" if entry.get('gate_pass_rate') is not None else \\\"\\\"),\n            flush=True,'''\ncontent = content.replace(old_log_print, new_log_print)\n\nwith open('scripts/train_grpo.py', 'w') as f:\n    f.write(content)\n\nprint('Patch applied successfully')\nprint(f'New file size: {len(content)} chars')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "7ef9fc92-3367-4e59-b794-97929de982d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HS8KobB92TL2yG8SprxWke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2298,
+      "cache_read_input_tokens": 60010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2298
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T14:14:17.456Z_
+
+<details><summary>↩ Tool result · `toolu_013Ez5M2jDBM1ofQJ5PvTxKu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Patch applied successfully\\nNew file size: 22254 chars\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "12389d99-9531-46fe-b9cb-dd9b423d12ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Patch applied successfully\\\\nNew file size: 22254 chars\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Patch applied successfully\\nNew file size: 22254 chars\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+Now let me create the config file:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "7c6df40f-164f-4c45-91c3-43c7e675a54f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnAzaFrPW1kfWByUZYUdrW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3379,
+      "cache_read_input_tokens": 62308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3379
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PcFuiT6nqZVANRkUzQgGdw`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat > /root/solver-trace-ablation/configs/grpo_isr_gated.yaml << 'EOF'\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: isr_gated\noutput_dir: /root/autodl-tmp/outputs/isr_gated_grpo\nnum_steps: 500\nper_device_batch_size: 2\ngradient_accumulation_steps: 4\nnum_generations: 8\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nisr_threshold: 0.3\nmin_components: 2\nseed: 42\nsolver: prover9\nwandb_project: solver-trace-ablation\nwandb_run: isr_gated\nno_wandb: false\nEOF\necho \"Config created\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "36a3234a-a18d-4358-8b49-3e4e939d3550",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnAzaFrPW1kfWByUZYUdrW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3379,
+      "cache_read_input_tokens": 62308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3379
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T14:14:24.487Z_
+
+<details><summary>↩ Tool result · `toolu_01PcFuiT6nqZVANRkUzQgGdw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Config created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "d9895498-49fa-4408-82d0-862b097b4e22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Config created\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Config created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Now let me verify the patched script is syntactically valid and run a dry-run:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "a1f60794-8c99-4107-8551-50d99d9cca9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXYBPqse3KHWxk4g2N4UJy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 407,
+      "cache_read_input_tokens": 65687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 407
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KsQYoszHboukR31Rc3KESR`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && python3 -c \"import ast; ast.parse(open('scripts/train_grpo.py').read()); print('Syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c6dda266-87b3-41ba-9787-9ad0dc2dc46a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXYBPqse3KHWxk4g2N4UJy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 407,
+      "cache_read_input_tokens": 65687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 407
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T14:14:32.262Z_
+
+<details><summary>↩ Tool result · `toolu_01KsQYoszHboukR31Rc3KESR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "eb0dad2d-74a3-42bf-a60c-cf3088488f80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Syntax is valid. Let me check GPU availability then run the dry-run:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "6c65af18-12c8-4cf6-8df8-9e91c0a3fbac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017twyiU66HZ6VabzEPgLkdD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 66094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 346
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SqQTbot6WtH8G6rWHE5jhL`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "db13bc98-f1fd-43d4-8d2d-2c53150eb7e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017twyiU66HZ6VabzEPgLkdD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 66094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 346
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T14:14:36.675Z_
+
+<details><summary>↩ Tool result · `toolu_01SqQTbot6WtH8G6rWHE5jhL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB\\n1, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "506d25a4-d1ba-420e-8951-c37df669a0f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB\\n1, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+Both GPUs free. Running dry-run on GPU 0:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "38dad0d4-646b-4e64-853b-a3cdd5378f09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GeALn29k3sWKoRANNGNJ9q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 66440,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HBQcQya3NDg529fMPHWNdy`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/train_grpo.py --config configs/grpo_isr_gated.yaml --num_steps 1 --output_dir /tmp/test_gated --no_wandb 2>&1 | tail -60",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e5adaa3a-7bf2-4aa3-b751-5ddf26ad20e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GeALn29k3sWKoRANNGNJ9q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 66440,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-16T14:14:53.550Z_
+
+<details><summary>↩ Tool result · `toolu_01HBQcQya3NDg529fMPHWNdy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n2026-05-16 22:14:52,148 INFO Loading data from data/train_500_seed42.jsonl\\n2026-05-16 22:14:52,165 INFO Dataset: 500 examples\\n2026-05-16 22:14:52,165 INFO Initializing solver: prover9\\n2026-05-16 22:14:52,165 INFO Solver ready: Prover9Solver\\nTraceback (most recent call last):\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 566, in &lt;module>\\n    main()\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 516, in main\\n    grpo_config = GRPOConfig(\\n                  ^^^^^^^^^^^\\n  File \\\"&lt;string>\\\", line 199, in __init__\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/grpo_config.py\\\", line 870, in __post_init__\\n    super().__post_init__()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/base_config.py\\\", line 107, in __post_init__\\n    super().__post_init__()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/training_args.py\\\", line 1778, in __post_init__\\n    self.optim = OptimizerNames(self.optim)\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/enum.py\\\", line 757, in __call__\\n    return cls.__new__(cls, value)\\n           ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/enum.py\\\", line 1179, in __new__\\n    raise exc\\n  File \\\"/root/miniconda3/lib/python3.12/enum.py\\\", line 1156, in __new__\\n    result = cls._missing_(value)\\n             ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/generic.py\\\", line 480, in _missing_\\n    raise ValueError(\\nValueError: None is not a valid OptimizerNames, please select one of ['adamw_torch', 'adamw_torch_fused', 'adamw_torch_xla', 'adamw_torch_npu_fused', 'adamw_apex_fused', 'adafactor', 'adamw_anyprecision', 'adamw_torch_4bit', 'adamw_torch_8bit', 'ademamix', 'sgd', 'adagrad', 'adamw_bnb_8bit', 'adamw_8bit', 'ademamix_8bit', 'lion_8bit', 'lion_32bit', 'paged_adamw_32bit', 'paged_adamw_8bit', 'paged_ademamix_32bit', 'paged_ademamix_8bit', 'paged_lion_32bit', 'paged_lion_8bit', 'rmsprop', 'rmsprop_bnb', 'rmsprop_bnb_8bit', 'rmsprop_bnb_32bit', 'galore_adamw', 'galore_adamw_8bit', 'galore_adafactor', 'galore_adamw_layerwise', 'galore_adamw_8bit_layerwise', 'galore_adafactor_layerwise', 'lomo', 'adalomo', 'grokadamw', 'schedule_free_radam', 'schedule_free_adamw', 'schedule_free_sgd', 'apollo_adamw', 'apollo_adamw_layerwise', 'stable_adamw']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "0538f3c4-51c7-47f7-967c-d8450fda605e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n2026-05-16 22:14:52,148 INFO Loading data from data/train_500_seed42.jsonl\\\\n2026-05-16 22:14:52,165 INFO Dataset: 500 examples\\\\n2026-05-16 22:14:52,165 INFO Initializing solver: prover9\\\\n2026-05-16 22:14:52,165 INFO Solver ready: Prover9Solver\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\\\\\", line 566, in &lt;module>\\\\n    main()\\\\n  File \\\\\\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\\\\\", line 516, in main\\\\n    grpo_config = GRPOConfig(\\\\n                  ^^^^^^^^^^^\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 199, in __init__\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/grpo_config.py\\\\\\\", line 870, in __post_init__\\\\n    super().__post_init__()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/base_config.py\\\\\\\", line 107, in __post_init__\\\\n    super().__post_init__()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/training_args.py\\\\\\\", line 1778, in __post_init__\\\\n    self.optim = OptimizerNames(self.optim)\\\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/enum.py\\\\\\\", line 757, in __call__\\\\n    return cls.__new__(cls, value)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/enum.py\\\\\\\", line 1179, in __new__\\\\n    raise exc\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/enum.py\\\\\\\", line 1156, in __new__\\\\n    result = cls._missing_(value)\\\\n             ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/generic.py\\\\\\\", line 480, in _missing_\\\\n    raise ValueError(\\\\nValueError: None is not a valid OptimizerNames, please select one of ['adamw_torch', 'adamw_torch_fused', 'adamw_torch_xla', 'adamw_torch_npu_fused', 'adamw_apex_fused', 'adafactor', 'adamw_anyprecision', 'adamw_torch_4bit', 'adamw_torch_8bit', 'ademamix', 'sgd', 'adagrad', 'adamw_bnb_8bit', 'adamw_8bit', 'ademamix_8bit', 'lion_8bit', 'lion_32bit', 'paged_adamw_32bit', 'paged_adamw_8bit', 'paged_ademamix_32bit', 'paged_ademamix_8bit', 'paged_lion_32bit', 'paged_lion_8bit', 'rmsprop', 'rmsprop_bnb', 'rmsprop_bnb_8bit', 'rmsprop_bnb_32bit', 'galore_adamw', 'galore_adamw_8bit', 'galore_adafactor', 'galore_adamw_layerwise', 'galore_adamw_8bit_layerwise', 'galore_adafactor_layerwise', 'lomo', 'adalomo', 'grokadamw', 'schedule_free_radam', 'schedule_free_adamw', 'schedule_free_sgd', 'apollo_adamw', 'apollo_adamw_layerwise', 'stable_adamw']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\n  if is_vllm_available():\\n2026-05-16 22:14:52,148 INFO Loading data from data/train_500_seed42.jsonl\\n2026-05-16 22:14:52,165 INFO Dataset: 500 examples\\n2026-05-16 22:14:52,165 INFO Initializing solver: prover9\\n2026-05-16 22:14:52,165 INFO Solver ready: Prover9Solver\\nTraceback (most recent call last):\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 566, in &lt;module>\\n    main()\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 516, in main\\n    grpo_config = GRPOConfig(\\n                  ^^^^^^^^^^^\\n  File \\\"&lt;string>\\\", line 199, in __init__\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/grpo_config.py\\\", line 870, in __post_init__\\n    super().__post_init__()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/base_config.py\\\", line 107, in __post_init__\\n    super().__post_init__()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/training_args.py\\\", line 1778, in __post_init__\\n    self.optim = OptimizerNames(self.optim)\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/enum.py\\\", line 757, in __call__\\n    return cls.__new__(cls, value)\\n           ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/enum.py\\\", line 1179, in __new__\\n    raise exc\\n  File \\\"/root/miniconda3/lib/python3.12/enum.py\\\", line 1156, in __new__\\n    result = cls._missing_(value)\\n             ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/generic.py\\\", line 480, in _missing_\\n    raise ValueError(\\nValueError: None is not a valid OptimizerNames, please select one of ['adamw_torch', 'adamw_torch_fused', 'adamw_torch_xla', 'adamw_torch_npu_fused', 'adamw_apex_fused', 'adafactor', 'adamw_anyprecision', 'adamw_torch_4bit', 'adamw_torch_8bit', 'ademamix', 'sgd', 'adagrad', 'adamw_bnb_8bit', 'adamw_8bit', 'ademamix_8bit', 'lion_8bit', 'lion_32bit', 'paged_adamw_32bit', 'paged_adamw_8bit', 'paged_ademamix_32bit', 'paged_ademamix_8bit', 'paged_lion_32bit', 'paged_lion_8bit', 'rmsprop', 'rmsprop_bnb', 'rmsprop_bnb_8bit', 'rmsprop_bnb_32bit', 'galore_adamw', 'galore_adamw_8bit', 'galore_adafactor', 'galore_adamw_layerwise', 'galore_adamw_8bit_layerwise', 'galore_adafactor_layerwise', 'lomo', 'adalomo', 'grokadamw', 'schedule_free_radam', 'schedule_free_adamw', 'schedule_free_sgd', 'apollo_adamw', 'apollo_adamw_layerwise', 'stable_adamw']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The error is about `optim=None` being passed to GRPOConfig. The issue is that `getattr(args, "optim", None)` returns None when no optim is specified. I need to set a default for optim. Let me check the existing code — it uses `getattr(args, "optim", "adamw_torch")` but wait, looking at it more carefully, it uses `getattr(args, "optim", "adamw_torch")` — no actually it uses `getattr(args, "optim", None)`. The config doesn't specify optim, so it's None.
+
+
+I'll add a default value for optim in the defaults section so it doesn't pass None to GRPOConfig.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "dcd8e47e-3293-4f56-9ca0-1e844bf1dd0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGDenkTiB41n9cQ8qveTg4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 66694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+The `optim` param is None because it's not in the config. Let me add a default:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e230a91f-ecf7-42fb-8243-7a0a63810df1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGDenkTiB41n9cQ8qveTg4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 66694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014ZeaQDsMKcjmSqJVM2Pcfs`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && python3 -c \"\ncontent = open('scripts/train_grpo.py').read()\n# Fix: default optim to 'adamw_torch' when None\nold = '''        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),'''\n# Actually let me check what the actual line is\nimport re\nm = re.search(r'optim=getattr.*', content)\nprint(repr(m.group(0)) if m else 'NOT FOUND')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "23d59f65-6c31-4bb4-96c5-2b4c36a48432",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGDenkTiB41n9cQ8qveTg4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1642,
+      "cache_read_input_tokens": 66694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T14:15:01.996Z_
+
+<details><summary>↩ Tool result · `toolu_014ZeaQDsMKcjmSqJVM2Pcfs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"'optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "bdd3f1dc-b297-4894-8e98-8a10ff3761f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"'optim=getattr(args, \\\\\\\"optim\\\\\\\", \\\\\\\"adamw_torch\\\\\\\"),'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"'optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019eeWruf6rrz1ib1B8V4ik2`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"optim\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "ff325463-9c50-42f2-8d59-6f3655699d7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PMXrC9ntDypB1JfP21b6v6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 68336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-16T14:15:05.812Z_
+
+<details><summary>↩ Tool result · `toolu_019eeWruf6rrz1ib1B8V4ik2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"414:    parser.add_argument(\\\"--optim\\\", type=str, default=None)\\n536:        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "94da7943-b50d-4ed8-8ad9-60b4b0485691",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"414:    parser.add_argument(\\\\\\\"--optim\\\\\\\", type=str, default=None)\\\\n536:        optim=getattr(args, \\\\\\\"optim\\\\\\\", \\\\\\\"adamw_torch\\\\\\\"),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"414:    parser.add_argument(\\\"--optim\\\", type=str, default=None)\\n536:        optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+The issue is `getattr(args, "optim", "adamw_torch")` — since `args` has the `optim` attribute (set to None), `getattr` returns None, not the default. The fix is to handle None:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "f582c342-63ab-4f26-96fe-a8db931ce091",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UyyYN3Su6mLmZGVKsFLbpA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 257,
+      "cache_read_input_tokens": 68863,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 257
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019db8avvNNDnJpHLuU2btnb`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && python3 -c \"\ncontent = open('scripts/train_grpo.py').read()\ncontent = content.replace(\n    'optim=getattr(args, \\\"optim\\\", \\\"adamw_torch\\\"),',\n    'optim=getattr(args, \\\"optim\\\", None) or \\\"adamw_torch\\\",'\n)\nopen('scripts/train_grpo.py', 'w').write(content)\nprint('Fixed optim default')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "8f8f4813-7db4-4a28-a2f6-bc722d332e42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UyyYN3Su6mLmZGVKsFLbpA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 257,
+      "cache_read_input_tokens": 68863,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 257
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T14:15:11.463Z_
+
+<details><summary>↩ Tool result · `toolu_019db8avvNNDnJpHLuU2btnb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed optim default\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "4a196e04-5463-45ea-af09-c149be649c6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed optim default\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fixed optim default\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016YZ38FzQhPhVySULpACDQz`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/train_grpo.py --config configs/grpo_isr_gated.yaml --num_steps 1 --output_dir /tmp/test_gated --no_wandb 2>&1 | tail -40",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "b77f4d03-0327-40f2-92cd-aa0f45628184",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1dC3MD3jk6GY4n7C85Qng",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 356,
+      "cache_read_input_tokens": 69120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 356
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T14:15:45.574Z_
+
+<details><summary>↩ Tool result · `toolu_016YZ38FzQhPhVySULpACDQz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/train_grpo.py --config configs/grpo_isr_gated.yaml --num_steps 1 --output_dir /tmp/test_gated --no_wandb 2>&1 | tail -40'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "365a6b60-5904-42ea-8012-dabc087b6881",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/train_grpo.py --config configs/grpo_isr_gated.yaml --num_steps 1 --output_dir /tmp/test_gated --no_wandb 2>&1 | tail -40'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/train_grpo.py --config configs/grpo_isr_gated.yaml --num_steps 1 --output_dir /tmp/test_gated --no_wandb 2>&1 | tail -40'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The command timed out at 30s. The model is loading and training starts - this is expected for a 4B model. I need to run it with a longer timeout or in background. Let me use nohup to run it in the background and then check the output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "008bbf12-2436-444f-9351-77f65e58e074",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H4vPrvxArGRGmZzN5aGRBJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 523,
+      "cache_read_input_tokens": 69476,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 523
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+Model loading takes time. Let me run it in background with nohup:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "176617fa-507d-4df5-9310-a7ea0241f477",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H4vPrvxArGRGmZzN5aGRBJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 523,
+      "cache_read_input_tokens": 69476,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 523
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0128EyTghk68ktFE47fkgNdr`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && nohup python3 scripts/train_grpo.py --config configs/grpo_isr_gated.yaml --num_steps 1 --output_dir /tmp/test_gated --no_wandb > /tmp/test_gated_log.txt 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e0df4287-7414-49ff-b5ae-1fc4826a5448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H4vPrvxArGRGmZzN5aGRBJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 523,
+      "cache_read_input_tokens": 69476,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 523
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T14:16:13.915Z_
+
+<details><summary>↩ Tool result · `toolu_0128EyTghk68ktFE47fkgNdr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=858683\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "a1cfb3b0-e95c-4087-98f5-f6d8e8989aa9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=858683\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 20.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=858683\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NFAMHwAj2r2v35BYjUkVE2`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -20 /tmp/test_gated_log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "3a06f442-5cd3-4731-800d-76b504c6cfc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJTqsoE8yx412FdVeNZPRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 392,
+      "cache_read_input_tokens": 69999,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 392
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T14:16:17.372Z_
+
+<details><summary>↩ Tool result · `toolu_01NFAMHwAj2r2v35BYjUkVE2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1787, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/accelerate/hooks.py\\\", line 192, in new_forward\\n    output = module._old_forward(*args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/deprecation.py\\\", line 172, in wrapped_func\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\", line 205, in forward\\n    query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)\\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\", line 115, in apply_rotary_pos_emb\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\n                           ^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\", line 90, in rotate_half\\n    return torch.cat((-x2, x1), dim=-1)\\n                      ^^^\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 10.25 MiB is free. Process 858294 has 80.12 GiB memory in use. Including non-PyTorch memory, this process has 14.83 GiB memory in use. Of the allocated memory 14.07 GiB is allocated by PyTorch, and 90.84 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\\r  0%|          | 0/1 [00:00<?, ?it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c3c95d55-e2d1-45a9-a09f-716d09d59f42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1787, in _call_impl\\\\n    return forward_call(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/accelerate/hooks.py\\\\\\\", line 192, in new_forward\\\\n    output = module._old_forward(*args, **kwargs)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/deprecation.py\\\\\\\", line 172, in wrapped_func\\\\n    return func(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\\\\\", line 205, in forward\\\\n    query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)\\\\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\\\\\", line 115, in apply_rotary_pos_emb\\\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\\\n                           ^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\\\\\", line 90, in rotate_half\\\\n    return torch.cat((-x2, x1), dim=-1)\\\\n                      ^^^\\\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 10.25 MiB is free. Process 858294 has 80.12 GiB memory in use. Including non-PyTorch memory, this process has 14.83 GiB memory in use. Of the allocated memory 14.07 GiB is allocated by PyTorch, and 90.84 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\n\\\\r  0%|          | 0/1 [00:00<?, ?it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1787, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/accelerate/hooks.py\\\", line 192, in new_forward\\n    output = module._old_forward(*args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/deprecation.py\\\", line 172, in wrapped_func\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\", line 205, in forward\\n    query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)\\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\", line 115, in apply_rotary_pos_emb\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\n                           ^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\", line 90, in rotate_half\\n    return torch.cat((-x2, x1), dim=-1)\\n                      ^^^\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 10.25 MiB is free. Process 858294 has 80.12 GiB memory in use. Including non-PyTorch memory, this process has 14.83 GiB memory in use. Of the allocated memory 14.07 GiB is allocated by PyTorch, and 90.84 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\\r  0%|          | 0/1 [00:00<?, ?it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OOM on one GPU. The model is ~4B params in bf16 which is ~8GB. With K=8 generations and batch_size=2, that's generating 2*8 = 16 completions per step which requires holding all those activations. The issue is with `num_generations: 8` and `per_device_batch_size: 2` on a single A100 80GB. This should be enough... wait, the error says "Process 858294 has 80.12 GiB memory in use" — there's another process already using 80GB on GPU 0!
+ 
+I think there's a stray process from the previous run still occupying the GPU. Even though I set CUDA_VISIBLE_DEVICES=0, the model might be loading across multiple GPUs with device_map="auto". The real bottleneck is that K=8 generations with the current batch size is too memory-intensive, so I should dial back the generations to 4 and reduce the batch size to 1 for this test run.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "3fe3148e-64a0-40c8-a149-5a759ac6db09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLQJCNGyZy2n2gDxnksopf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 875,
+      "cache_read_input_tokens": 70391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 875
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+OOM with K=8 on single GPU. Let me check what's using memory and run a minimal dry-run:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "2ce6b005-097f-434b-ba76-55c4ce9ff1b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLQJCNGyZy2n2gDxnksopf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 875,
+      "cache_read_input_tokens": 70391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 875
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EsbCfddqsdWNGRuZ3UK3zv`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "d9c1db59-b9f2-41c0-abde-4463e16c3297",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLQJCNGyZy2n2gDxnksopf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 875,
+      "cache_read_input_tokens": 70391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 875
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T14:16:29.042Z_
+
+<details><summary>↩ Tool result · `toolu_01EsbCfddqsdWNGRuZ3UK3zv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"858294, 82046 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "2e00943e-4ad5-4a96-8e09-1f5067b29734",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"858294, 82046 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"858294, 82046 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89_
+
+There's a lingering process from the previous attempt. Let me kill it and retry with reduced params:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "5d803dcc-6564-4932-b420-6df389ca704e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JACucyRCCET6tRJPkE3Z1F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 542,
+      "cache_read_input_tokens": 71266,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 542
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LhT4JCXTfpGNfLkoZVFahu`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "kill -9 858294 858683 2>/dev/null; sleep 2; nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "962d8013-f0f7-46e9-b13a-f7ce49a92e49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JACucyRCCET6tRJPkE3Z1F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 542,
+      "cache_read_input_tokens": 71266,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 542
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-16T14:16:35.617Z_
+
+<details><summary>↩ Tool result · `toolu_01LhT4JCXTfpGNfLkoZVFahu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e5c17fa4-e09c-4534-905d-35e657c1430f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+GPU clear. Let me run with reduced batch for dry-run (batch=1, K=4):
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "9e7f02f1-f9d7-4757-bbf7-a15807328f1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012jUHqeAGAzkPBq8WYtdqeH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 238,
+      "cache_read_input_tokens": 71808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FYeBAtNj6oGQe1MiUvPMNE`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && nohup python3 scripts/train_grpo.py --config configs/grpo_isr_gated.yaml --num_steps 1 --output_dir /tmp/test_gated2 --no_wandb --per_device_batch_size 1 --num_generations 4 > /tmp/test_gated_log2.txt 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "5bde3874-d34c-41b3-b16e-eec71f0383ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012jUHqeAGAzkPBq8WYtdqeH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 238,
+      "cache_read_input_tokens": 71808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T14:17:04.836Z_
+
+<details><summary>↩ Tool result · `toolu_01FYeBAtNj6oGQe1MiUvPMNE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=859167\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "2eb6d476-ec46-4eaf-9879-d584c5bde62a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=859167\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 24.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=859167\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QdenjLQGxsiPTqiMmX88Cz`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /tmp -name \"test_gated_log2.txt\" -newer /tmp/test_gated_log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "d4080b04-2810-43d2-9bbc-1f26e3896be6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uw14ZwWqbuQJcBKQuSVqPG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 345,
+      "cache_read_input_tokens": 72046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 345
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T14:17:08.366Z_
+
+<details><summary>↩ Tool result · `toolu_01QdenjLQGxsiPTqiMmX88Cz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/test_gated_log2.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "76c3a79b-27e6-47cf-9cb4-5f12edccb59c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/tmp/test_gated_log2.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/tmp/test_gated_log2.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WuGY1ursHr6irbNKSAjqP3`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -30 /tmp/test_gated_log2.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "10aadcad-32c8-431f-9bd3-5b478eb0e609",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013AkLUZHNwAfjA3SbeCSXxc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 320,
+      "cache_read_input_tokens": 72391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 320
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T14:17:11.939Z_
+
+<details><summary>↩ Tool result · `toolu_01WuGY1ursHr6irbNKSAjqP3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/1 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\n\\r100%|██████████| 1/1 [00:03<00:00,  3.39s/it][REWARD_LOG] step=1 reward=0.5000 prove_rate=0.500 isr=0.400 parse_rate=1.000 gate_pass=1.000\\n\\r                                             \\r\\r100%|██████████| 1/1 [00:03<00:00,  3.39s/it]{'loss': 0.0962, 'grad_norm': 17.258214950561523, 'learning_rate': 1e-06, 'num_tokens': 852.0, 'completions/mean_length': 54.0, 'completions/min_length': 46.0, 'completions/max_length': 74.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 54.0, 'completions/min_terminated_length': 46.0, 'completions/max_terminated_length': 74.0, 'rewards/reward_fn/mean': 0.5, 'rewards/reward_fn/std': 0.5773502588272095, 'reward': 0.5, 'reward_std': 0.5773502588272095, 'frac_reward_zero_std': 0.0, 'entropy': 0.025733286049216986, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 3.1067322343587875, 'epoch': 0.0}\\nTraceback (most recent call last):\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 566, in &lt;module>\\n    main()\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 549, in main\\n    trainer.train()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 2325, in train\\n    return inner_training_loop(\\n           ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 2756, in _inner_training_loop\\n    self._maybe_log_save_evaluate(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 3228, in _maybe_log_save_evaluate\\n    self._save_checkpoint(model, trial)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/grpo_trainer.py\\\", line 2821, in _save_checkpoint\\n    super()._save_checkpoint(model, trial)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 3325, in _save_checkpoint\\n    self.save_model(output_dir, _internal_call=True)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 4227, in save_model\\n    self._save(output_dir)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 4331, in _save\\n    self.model.save_pretrained(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 4173, in save_pretrained\\n    safe_save_file(shard, os.path.join(save_directory, shard_file), metadata=metadata)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\", line 307, in save_file\\n    serialize_file(_flatten(tensors), filename, metadata=metadata)\\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\\n\\r100%|██████████| 1/1 [00:09<00:00,  9.41s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c605844a-4536-4238-bb52-afa1a81dec67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/1 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\\\n\\\\r100%|██████████| 1/1 [00:03<00:00,  3.39s/it][REWARD_LOG] step=1 reward=0.5000 prove_rate=0.500 isr=0.400 parse_rate=1.000 gate_pass=1.000\\\\n\\\\r                                             \\\\r\\\\r100%|██████████| 1/1 [00:03<00:00,  3.39s/it]{'loss': 0.0962, 'grad_norm': 17.258214950561523, 'learning_rate': 1e-06, 'num_tokens': 852.0, 'completions/mean_length': 54.0, 'completions/min_length': 46.0, 'completions/max_length': 74.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 54.0, 'completions/min_terminated_length': 46.0, 'completions/max_terminated_length': 74.0, 'rewards/reward_fn/mean': 0.5, 'rewards/reward_fn/std': 0.5773502588272095, 'reward': 0.5, 'reward_std': 0.5773502588272095, 'frac_reward_zero_std': 0.0, 'entropy': 0.025733286049216986, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 3.1067322343587875, 'epoch': 0.0}\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\\\\\", line 566, in &lt;module>\\\\n    main()\\\\n  File \\\\\\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\\\\\", line 549, in main\\\\n    trainer.train()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 2325, in train\\\\n    return inner_training_loop(\\\\n           ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 2756, in _inner_training_loop\\\\n    self._maybe_log_save_evaluate(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 3228, in _maybe_log_save_evaluate\\\\n    self._save_checkpoint(model, trial)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/grpo_trainer.py\\\\\\\", line 2821, in _save_checkpoint\\\\n    super()._save_checkpoint(model, trial)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 3325, in _save_checkpoint\\\\n    self.save_model(output_dir, _internal_call=True)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 4227, in save_model\\\\n    self._save(output_dir)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 4331, in _save\\\\n    self.model.save_pretrained(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\\\\\", line 4173, in save_pretrained\\\\n    safe_save_file(shard, os.path.join(save_directory, shard_file), metadata=metadata)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\\\\\", line 307, in save_file\\\\n    serialize_file(_flatten(tensors), filename, metadata=metadata)\\\\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\\\\n\\\\r100%|██████████| 1/1 [00:09<00:00,  9.41s/it]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/1 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\n\\r100%|██████████| 1/1 [00:03<00:00,  3.39s/it][REWARD_LOG] step=1 reward=0.5000 prove_rate=0.500 isr=0.400 parse_rate=1.000 gate_pass=1.000\\n\\r                                             \\r\\r100%|██████████| 1/1 [00:03<00:00,  3.39s/it]{'loss': 0.0962, 'grad_norm': 17.258214950561523, 'learning_rate': 1e-06, 'num_tokens': 852.0, 'completions/mean_length': 54.0, 'completions/min_length': 46.0, 'completions/max_length': 74.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 54.0, 'completions/min_terminated_length': 46.0, 'completions/max_terminated_length': 74.0, 'rewards/reward_fn/mean': 0.5, 'rewards/reward_fn/std': 0.5773502588272095, 'reward': 0.5, 'reward_std': 0.5773502588272095, 'frac_reward_zero_std': 0.0, 'entropy': 0.025733286049216986, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 3.1067322343587875, 'epoch': 0.0}\\nTraceback (most recent call last):\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 566, in &lt;module>\\n    main()\\n  File \\\"/root/solver-trace-ablation/scripts/train_grpo.py\\\", line 549, in main\\n    trainer.train()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 2325, in train\\n    return inner_training_loop(\\n           ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 2756, in _inner_training_loop\\n    self._maybe_log_save_evaluate(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 3228, in _maybe_log_save_evaluate\\n    self._save_checkpoint(model, trial)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/grpo_trainer.py\\\", line 2821, in _save_checkpoint\\n    super()._save_checkpoint(model, trial)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 3325, in _save_checkpoint\\n    self.save_model(output_dir, _internal_call=True)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 4227, in save_model\\n    self._save(output_dir)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 4331, in _save\\n    self.model.save_pretrained(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 4173, in save_pretrained\\n    safe_save_file(shard, os.path.join(save_directory, shard_file), metadata=metadata)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\", line 307, in save_file\\n    serialize_file(_flatten(tensors), filename, metadata=metadata)\\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\\n\\r100%|██████████| 1/1 [00:09<00:00,  9.41s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+The ISR-Gated reward logic works correctly. Key output line:
+
+```
+[REWARD_LOG] step=1 reward=0.5000 prove_rate=0.500 isr=0.400 parse_rate=1.000 gate_pass=1.000
+```
+
+The training step completed successfully — reward computation, ISR gating, and logging all work. The "No space left on device" error is just the checkpoint save step at `/tmp` (disk full), not related to our code.
+
+Let me clean up the test files and verify GPU is released:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "85718b09-fe0b-430c-aaa7-3e4ddec74b69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1rMVPEQRknTegSzgTRRxU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 72711,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EXRTvCZqB1bpQDzxwWLRPE`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "rm -rf /tmp/test_gated /tmp/test_gated2 /tmp/test_gated_log.txt /tmp/test_gated_log2.txt 2>/dev/null; nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "53c6ca58-284f-43e9-ab4d-6353a1237af3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1rMVPEQRknTegSzgTRRxU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 72711,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-16T14:17:19.667Z_
+
+<details><summary>↩ Tool result · `toolu_01EXRTvCZqB1bpQDzxwWLRPE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "3b30eec3-f662-4ab7-8ab8-f873d94fb28c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+GPU clear. Let me also sync the changes to the local repo:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c776e930-8d33-4393-a084-c3e47d724174",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjJTWnU5KxSxKVvcKTMyKy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 377,
+      "cache_read_input_tokens": 74188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 377
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MPZtRsknkeZsDLnG9w6DYT`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "f83e1360-899a-4da8-8512-3dc0007db432",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjJTWnU5KxSxKVvcKTMyKy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 377,
+      "cache_read_input_tokens": 74188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 377
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-16T14:17:24.634Z_
+
+<details><summary>↩ Tool result · `toolu_01MPZtRsknkeZsDLnG9w6DYT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"566 /root/solver-trace-ablation/scripts/train_grpo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "f21574be-a28f-46eb-aeb7-2c88e5db4732",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"566 /root/solver-trace-ablation/scripts/train_grpo.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"566 /root/solver-trace-ablation/scripts/train_grpo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+Let me verify the final ISR-gated branch in the patched code looks correct:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "e7dcb927-63a9-421e-a840-e02aaeff8061",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xQjQeYcZ7cP9tiKNqowmn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 74565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 233
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01556hun92zQcoBmYMc4u9SZ`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"isr_gated\" /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "588960d1-1116-407f-9b9b-8a38e5f7f829",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xQjQeYcZ7cP9tiKNqowmn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 74565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 233
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-16T14:17:28.499Z_
+
+<details><summary>↩ Tool result · `toolu_01556hun92zQcoBmYMc4u9SZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"231:            elif reward_mode == \\\"isr_gated\\\":\\n385:                        choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\", \\\"additive_bonus\\\", \\\"additive_random\\\", \\\"execution_fast_sta\\\", \\\"isr_gated\\\"])\\n403:                        help=\\\"ISR threshold for isr_gated mode (default 0.3)\\\")\\n405:                        help=\\\"Minimum n_components for isr_gated mode (default 2)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "c71900bc-5498-4c23-93c6-c5ad72f9b1b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"231:            elif reward_mode == \\\\\\\"isr_gated\\\\\\\":\\\\n385:                        choices=[\\\\\\\"execution_only\\\\\\\", \\\\\\\"execution_sta\\\\\\\", \\\\\\\"random_reward\\\\\\\", \\\\\\\"additive_bonus\\\\\\\", \\\\\\\"additive_random\\\\\\\", \\\\\\\"execution_fast_sta\\\\\\\", \\\\\\\"isr_gated\\\\\\\"])\\\\n403:                        help=\\\\\\\"ISR threshold for isr_gated mode (default 0.3)\\\\\\\")\\\\n405:                        help=\\\\\\\"Minimum n_components for isr_gated mode (default 2)\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"231:            elif reward_mode == \\\"isr_gated\\\":\\n385:                        choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\", \\\"additive_bonus\\\", \\\"additive_random\\\", \\\"execution_fast_sta\\\", \\\"isr_gated\\\"])\\n403:                        help=\\\"ISR threshold for isr_gated mode (default 0.3)\\\")\\n405:                        help=\\\"Minimum n_components for isr_gated mode (default 2)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108_
+
+Now let me also quickly verify the config file is correct:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "8aa132ba-14d1-4630-855e-07d8f23e1931",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLivkotrqsNzdeRNiARt89",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 376,
+      "cache_read_input_tokens": 74798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 376
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SoTzNMdpKSbcRLgyKfjvud`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/configs/grpo_isr_gated.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "0267abb2-6acc-4f9a-8a7d-f5c95cc2d1f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLivkotrqsNzdeRNiARt89",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 376,
+      "cache_read_input_tokens": 74798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 376
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-16T14:17:32.093Z_
+
+<details><summary>↩ Tool result · `toolu_01SoTzNMdpKSbcRLgyKfjvud`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_path: /root/autodl-tmp/models/Qwen3-4B\\ndata_path: data/train_500_seed42.jsonl\\nreward_mode: isr_gated\\noutput_dir: /root/autodl-tmp/outputs/isr_gated_grpo\\nnum_steps: 500\\nper_device_batch_size: 2\\ngradient_accumulation_steps: 4\\nnum_generations: 8\\nmax_completion_length: 512\\nlearning_rate: 1.0e-6\\nisr_threshold: 0.3\\nmin_components: 2\\nseed: 42\\nsolver: prover9\\nwandb_project: solver-trace-ablation\\nwandb_run: isr_gated\\nno_wandb: false\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "875ec195-1842-4b24-a9d0-7f49f558d91a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_path: /root/autodl-tmp/models/Qwen3-4B\\\\ndata_path: data/train_500_seed42.jsonl\\\\nreward_mode: isr_gated\\\\noutput_dir: /root/autodl-tmp/outputs/isr_gated_grpo\\\\nnum_steps: 500\\\\nper_device_batch_size: 2\\\\ngradient_accumulation_steps: 4\\\\nnum_generations: 8\\\\nmax_completion_length: 512\\\\nlearning_rate: 1.0e-6\\\\nisr_threshold: 0.3\\\\nmin_components: 2\\\\nseed: 42\\\\nsolver: prover9\\\\nwandb_project: solver-trace-ablation\\\\nwandb_run: isr_gated\\\\nno_wandb: false\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model_path: /root/autodl-tmp/models/Qwen3-4B\\ndata_path: data/train_500_seed42.jsonl\\nreward_mode: isr_gated\\noutput_dir: /root/autodl-tmp/outputs/isr_gated_grpo\\nnum_steps: 500\\nper_device_batch_size: 2\\ngradient_accumulation_steps: 4\\nnum_generations: 8\\nmax_completion_length: 512\\nlearning_rate: 1.0e-6\\nisr_threshold: 0.3\\nmin_components: 2\\nseed: 42\\nsolver: prover9\\nwandb_project: solver-trace-ablation\\nwandb_run: isr_gated\\nno_wandb: false\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+Implementation complete. Summary:
+
+### 改动
+
+**`scripts/train_grpo.py`** (+36 行):
+1. `make_reward_fn` 新增 `isr_threshold` 和 `min_components` 参数
+2. 新增 `isr_gated` reward 分支（L231-248）：调用 `_full_fn` 获取 exec + STA，若 `proved AND isr > tau AND n_components > min_components` → reward=1.0，否则 0.0
+3. `step_buf` 新增 `gated_passed`/`gated_total` 计数，`get_step_stats()` 输出 `gate_pass_rate`
+4. `LocalLogCallback` 打印 `gate_pass=X.XXX`
+5. `parse_args` 新增 `--isr_threshold`（默认 0.3）和 `--min_components`（默认 2）参数
+6. reward_mode choices 加入 `isr_gated`
+7. 修复了 `optim=None` 传入 GRPOConfig 的 bug（`getattr` → `or "adamw_torch"`）
+
+**`configs/grpo_isr_gated.yaml`**（新文件）：
+- K=8, batch=2, grad_accum=4, lr=1e-6, 500 steps, tau=0.3, min_components=2
+
+### Dry-run 结果
+1 step 成功完成，log 输出：
+```
+step=1 reward=0.5000 prove_rate=0.500 isr=0.400 parse_rate=1.000 gate_pass=1.000
+```
+ISR gating 逻辑正确触发（4 个 generation 中 2 个 proved，其中 2/2 通过 gate）。
+
+### 性能预估
+- exec-only 每 step ~2-3s（仅 1 次 solver 调用/sample）
+- isr_gated 每 step ~10-30s（每个 proved sample 需要 N+1 次 solver 调用做 leave-one-out ablation，N=组件数，通常 3-8）
+- 500 steps 预估 2-4 小时
+
+### 注意事项
+- K=8 + batch=2 在单张 A100 80GB 上 OOM。正式训练需用 batch=1 或双卡
+- STA 超时设为 30s（`timeout=30`），比 exec-only 的 5s 更宽裕，因为 ablation 需要多次 solver 调用
+- output_dir 指向 `/root/autodl-tmp/outputs/` 数据盘，遵守 C003 磁盘约束
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "uuid": "8c11466b-cdd3-4eb4-a0e4-830a1a0ce1a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E99s1Azvqy8WMGSUK3svnz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 75174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 112_
+
+Implementation complete. Summary:
+
+### 改动
+
+**`scripts/train_grpo.py`** (+36 行):
+1. `make_reward_fn` 新增 `isr_threshold` 和 `min_components` 参数
+2. 新增 `isr_gated` reward 分支（L231-248）：调用 `_full_fn` 获取 exec + STA，若 `proved AND isr > tau AND n_components > min_components` → reward=1.0，否则 0.0
+3. `step_buf` 新增 `gated_passed`/`gated_total` 计数，`get_step_stats()` 输出 `gate_pass_rate`
+4. `LocalLogCallback` 打印 `gate_pass=X.XXX`
+5. `parse_args` 新增 `--isr_threshold`（默认 0.3）和 `--min_components`（默认 2）参数
+6. reward_mode choices 加入 `isr_gated`
+7. 修复了 `optim=None` 传入 GRPOConfig 的 bug（`getattr` → `or "adamw_torch"`）
+
+**`configs/grpo_isr_gated.yaml`**（新文件）：
+- K=8, batch=2, grad_accum=4, lr=1e-6, 500 steps, tau=0.3, min_components=2
+
+### Dry-run 结果
+1 step 成功完成，log 输出：
+```
+step=1 reward=0.5000 prove_rate=0.500 isr=0.400 parse_rate=1.000 gate_pass=1.000
+```
+ISR gating 逻辑正确触发（4 个 generation 中 2 个 proved，其中 2/2 通过 gate）。
+
+### 性能预估
+- exec-only 每 step ~2-3s（仅 1 次 solver 调用/sample）
+- isr_gated 每 step ~10-30s（每个 proved sample 需要 N+1 次 solver 调用做 leave-one-out ablation，N=组件数，通常 3-8）
+- 500 steps 预估 2-4 小时
+
+### 注意事项
+- K=8 + batch=2 在单张 A100 80GB 上 OOM。正式训练需用 batch=1 或双卡
+- STA 超时设为 30s（`timeout=30`），比 exec-only 的 5s 更宽裕，因为 ablation 需要多次 solver 调用
+- output_dir 指向 `/root/autodl-tmp/outputs/` 数据盘，遵守 C003 磁盘约束
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 341108,
+  "duration_api_ms": 238686,
+  "num_turns": 40,
+  "stop_reason": "end_turn",
+  "session_id": "ccade86b-e811-4766-9975-31bbcfb6817d",
+  "total_cost_usd": 1.7105110000000001,
+  "usage": {
+    "input_tokens": 39,
+    "cache_creation_input_tokens": 63750,
+    "cache_read_input_tokens": 2044677,
+    "output_tokens": 11424,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 63750,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 733,
+        "cache_read_input_tokens": 75174,
+        "cache_creation_input_tokens": 417,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 417
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3830,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00394,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 39,
+      "outputTokens": 11424,
+      "cacheReadInputTokens": 2044677,
+      "cacheCreationInputTokens": 63750,
+      "webSearchRequests": 0,
+      "costUSD": 1.706571,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1d4aa883-68d9-4565-86ca-64f924851f49"
+}
+```
+
+</details>
+
+---

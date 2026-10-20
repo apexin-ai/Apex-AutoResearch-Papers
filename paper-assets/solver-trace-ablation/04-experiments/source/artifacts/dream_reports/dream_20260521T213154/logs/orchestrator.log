@@ -1,0 +1,9 @@
+2026-05-21 21:32:03,677 WARNING core.tools.dream  [dream] Phase 1 subprocess failed (attempt 0): [Errno 7] Argument list too long: '/usr/bin/claude'
+2026-05-21 21:32:03,743 WARNING core.tools.dream  [dream] Phase 1 subprocess failed (attempt 1): [Errno 7] Argument list too long: '/usr/bin/claude'
+2026-05-21 21:32:03,743 ERROR   core.tools.dream  [dream:dream_20260521T213154] Phase 1 failed
+Traceback (most recent call last):
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1772, in _run_dream_pipeline
+    tier_defs = _define_tiers(context, log_dir=log_dir)
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 915, in _define_tiers
+    raise ValueError(f"Phase 1 failed: {last_err}")
+ValueError: Phase 1 failed: [Errno 7] Argument list too long: '/usr/bin/claude'

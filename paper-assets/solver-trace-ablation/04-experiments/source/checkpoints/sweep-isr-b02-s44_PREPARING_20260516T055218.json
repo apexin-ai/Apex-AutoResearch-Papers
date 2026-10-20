@@ -1,0 +1,34 @@
+{
+  "exp_id": "sweep-isr-b02-s44",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:42:05.473Z",
+    "updated_at": "2026-05-16T05:52:18.030Z",
+    "hypothesis": "W3: β=0.2 ISR bonus seed=44, intermediate dose replication",
+    "reproduce": {
+      "finished_at": "2026-05-16T05:50:06.491Z"
+    },
+    "failure_reason": "磁盘满: safetensors save_pretrained at step 400/500 — No space left on device (os error 28). /root/autodl-tmp/ 空间不足",
+    "completed_at": "2026-05-16T05:50:08.889Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T05:50:11.936726+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "训练正常推进到 step 400/500 (80%)，在 checkpoint save 时磁盘满崩溃。需清理 /root/autodl-tmp/outputs/ 下旧 checkpoint 后重跑。reward_log.csv 未生成（output_dir 可能只有部分 checkpoint）。"
+      }
+    },
+    "notes": "训练正常推进到 step 400/500 (80%)，在 checkpoint save 时磁盘满崩溃。需清理 /root/autodl-tmp/outputs/ 下旧 checkpoint 后重跑。reward_log.csv 未生成（output_dir 可能只有部分 checkpoint）。"
+  },
+  "timestamp": "2026-05-16T05:52:18.358577+00:00",
+  "trigger": "update_registry"
+}

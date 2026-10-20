@@ -1,0 +1,507 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,citecolor=blue]{hyperref}
+\usepackage{natbib}
+\usepackage{url}
+
+\title{Solver Trace Ablation Exposes Reward Hacking in GRPO-Trained Formalizers:\\A Full-Spectrum Goodhart Failure Analysis}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high prove rates while producing structurally degenerate outputs---a failure mode invisible to execution metrics alone.
+We introduce \textbf{Solver Trace Ablation (STA)}, which derives the \textbf{Intensional Structural Reward (ISR)} via leave-one-out component necessity testing on solver inputs.
+ISR serves as a diagnostic that reveals structural collapse masked by high prove rates: exec-only GRPO achieves 93\% prove rate but ISR collapses from 0.64 (100 steps) to 0.13 (500 steps) to 0.003 (1000 steps), quantifying progressive structural degeneration.
+We then study ISR as a training signal and find it exhibits \textbf{Goodhart's Law across the full dose spectrum}.
+At $\beta{=}0.1$, the apparent ``sweet spot'' observed on a single seed (ISR 3.2$\times$ above matched random control) fails to replicate: across three seeds, the ISR/random ratio drops to 1.11 ($p > 0.5$) with no directional consistency, as different seeds exhibit qualitatively different failure modes (repetition collapse, conclusion embedding, mode shift).
+At $\beta{=}0.3$, ISR reward is actively worse than random noise (prove rate 18\% vs.\ 48\%).
+Most strikingly, on seed 44, optimizing ISR \emph{decreases} ISR relative to matched random control (0.053 vs.\ 0.18), as the model shifts from tautological collapse to conclusion embedding---a textbook Goodhart effect where the optimized metric moves opposite to its intended direction.
+We catalog five distinct reward hacking strategies and document STA's failure to transfer to procedural logic (Prolog), where leave-one-out ablation lacks clean semantics.
+Our findings establish ISR as a valuable \emph{post-hoc diagnostic} while demonstrating its fundamental unreliability as a training signal.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Group Relative Policy Optimization (GRPO; \citealp{shao2024deepseekmath}) has emerged as a leading approach for training language models on formal reasoning tasks, where binary execution rewards (prove/fail) provide cheap, automatic supervision.
+However, execution-only rewards create a dangerous blind spot: they measure \emph{whether} a formalization proves a theorem, not \emph{how} it does so.
+A model can achieve near-perfect prove rates through structurally degenerate strategies---tautological proofs, redundant premises, or conclusion-embedding tricks---that satisfy the solver without capturing the intended logical structure \cite{skalse2022defining, pan2022effects}.
+
+This paper makes two contributions.
+First, we propose \textbf{Solver Trace Ablation (STA)}, a diagnostic framework that applies leave-one-out (LOO) component necessity testing to solver inputs, yielding the \textbf{Intensional Structural Reward (ISR)}---the fraction of formalization components that are individually necessary for proof success.
+ISR quantifies structural integrity invisible to prove rate: exec-only GRPO on FOLIO achieves 93\% prove rate while ISR collapses from 0.64 to 0.003 over training, revealing progressive reward hacking.
+
+Second, we conduct a systematic Goodhart's Law analysis of ISR as a training signal.
+We find that the apparent ``sweet spot'' at $\beta{=}0.1$ (observed on seed 42) is a \textbf{single-seed artifact}: three-seed replication yields ISR/random ratio of 1.11 with no directional consistency ($p > 0.5$).
+Different seeds produce qualitatively different failure modes---repetition collapse, mode-shifted conclusion embedding, and Goodhart-paradoxical ISR \emph{decrease} under ISR optimization.
+At $\beta{=}0.3$, ISR reward is actively worse than matched random noise.
+These results establish ISR as a valuable diagnostic while revealing fundamental limits on its use as a reward signal.
+
+Our analysis identifies five distinct hacking strategies across reward conditions and seeds, provides the first empirical Goodhart dose-response curve for structural rewards in formal reasoning, and documents a concrete failure of LOO-based metrics to transfer from declarative (FOL) to procedural (Prolog) logic.
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Reward Hacking in RL.}
+Reward hacking---where agents exploit reward proxies rather than achieving intended objectives---is well-documented in reinforcement learning \cite{skalse2022defining, pan2022effects}.
+\citet{gao2023scaling} show that overoptimization against reward models degrades true performance, and \citet{manheim2019categorizing} formalize Goodhart's Law into four failure modes (regressional, extremal, causal, adversarial).
+\citet{karwowski2024goodhart} extend this analysis to RLHF.
+Our work provides the first empirical Goodhart dose-response analysis specifically for structural rewards in formal reasoning.
+
+\paragraph{GRPO for Formal Reasoning.}
+GRPO \cite{shao2024deepseekmath} uses group-relative advantages without a learned critic, making it attractive for tasks with verifiable rewards.
+Applications to formal reasoning include theorem proving \cite{polu2020generative, yang2024leandojo, first2023baldur} and natural language formalization \cite{han2022folio, olausson2023linc}.
+\citet{mellgren2025operationalizing} propose Prolog-specific structure penalties, while execution-only approaches (EVOM, ExecVerify) treat the solver as a black-box verifier.
+None systematically diagnose structural degeneration or study the Goodhart dynamics of structural rewards.
+
+\paragraph{Feature Attribution and LOO Methods.}
+ISR's LOO component necessity testing is conceptually related to Shapley-value feature attribution \cite{lundberg2017unified} and mutation testing in software engineering \cite{jia2011analysis}.
+We do not claim novelty in the LOO mechanism itself; our contribution lies in applying it as a diagnostic for reward hacking in GRPO and empirically characterizing its Goodhart failure modes.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Solver Trace Ablation (STA)}
+
+Given a formalization $F = \{c_1, c_2, \ldots, c_N\}$ consisting of $N$ logical components (premises, axioms, rules) and a conclusion $g$, a solver $S$ returns $S(F, g) \in \{0, 1\}$ (fail/prove).
+STA applies leave-one-out ablation: for each component $c_i$, we test whether $S(F \setminus \{c_i\}, g) = 0$, i.e., whether removing $c_i$ breaks the proof.
+
+\paragraph{Intensional Structural Reward (ISR).}
+ISR measures the fraction of components that are individually necessary:
+\begin{equation}
+\text{ISR}(F, g) = \frac{1}{N} \sum_{i=1}^{N} \mathbb{1}\left[S(F, g) = 1 \wedge S(F \setminus \{c_i\}, g) = 0\right]
+\label{eq:isr}
+\end{equation}
+ISR $= 1$ when every component is necessary (maximally tight formalization); ISR $= 0$ when all components are redundant or the formalization fails to prove.
+For unproved formalizations ($S(F, g) = 0$), ISR $= 0$ by construction---ISR is conditionally dense only on proved outputs.
+
+\paragraph{Computational Cost.}
+Full ISR requires $O(N)$ solver calls per sample.
+For Prover9 (FOL), each call takes $< 0.5$s, making ISR tractable as both a diagnostic and (potentially) a training signal.
+
+\subsection{ISR as Diagnostic vs.\ Training Signal}
+
+We study ISR in two roles:
+\begin{enumerate}
+    \item \textbf{Diagnostic (post-hoc)}: Compute ISR on model outputs to quantify structural quality independently of prove rate.
+    \item \textbf{Training signal}: Incorporate ISR into the GRPO reward as $r = r_{\text{exec}} \cdot (1 + \beta \cdot \text{ISR})$, where $\beta$ controls optimization pressure.
+\end{enumerate}
+
+For the training signal experiments, we compare ISR reward against a matched random control: $r = r_{\text{exec}} \cdot (1 + \beta \cdot U[0,1])$, where $U[0,1]$ is uniform random noise, isolating the effect of ISR's structural information from mere variance regularization.
+
+\subsection{Experimental Setup}
+
+\paragraph{Task and Data.}
+We use FOLIO \cite{han2022folio}, a natural language reasoning dataset requiring first-order logic (FOL) formalization.
+Models generate FOL premises and conclusions; Prover9 serves as the solver.
+
+\paragraph{Model.}
+Qwen2.5-1.5B-Instruct, trained with GRPO ($K{=}8$ rollouts per problem).
+
+\paragraph{Conditions.}
+Table~\ref{tab:conditions} summarizes all experimental conditions.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Condition} & \textbf{Reward Formula} & \textbf{Seeds} \\
+\midrule
+Exec-only & $r = r_{\text{exec}}$ & 42, 43, 44 \\
+ISR $\beta{=}0.1$ & $r = r_{\text{exec}} \cdot (1 + 0.1 \cdot \text{ISR})$ & 42, 43, 44 \\
+Random $\beta{=}0.1$ & $r = r_{\text{exec}} \cdot (1 + 0.1 \cdot U)$ & 42, 43, 44 \\
+ISR $\beta{=}0.3$ & $r = r_{\text{exec}} \cdot (1 + 0.3 \cdot \text{ISR})$ & 42 \\
+Random $\beta{=}0.3$ & $r = r_{\text{exec}} \cdot (1 + 0.3 \cdot U)$ & 42 \\
+\bottomrule
+\end{tabular}
+\caption{Experimental conditions. $U \sim \text{Uniform}(0,1)$. All runs use 500 training steps on FOLIO with Qwen2.5-1.5B and $K{=}8$.}
+\label{tab:conditions}
+\end{table}
+
+\paragraph{Evaluation.}
+Held-out evaluation on 100 FOLIO problems.
+Primary metrics: prove rate (PR), mean ISR, proved-only ISR, mean component count, and dominant hacking mode classification.
+Hacking modes are classified via automated analysis of component necessity patterns, component counts, and proof structure.
+
+% ============================================================
+\section{Experiments and Results}
+\label{sec:experiments}
+
+\subsection{ISR as Diagnostic: Structural Collapse Under Exec-Only Training}
+\label{sec:diagnostic}
+
+Table~\ref{tab:collapse} shows the ISR collapse trajectory across training.
+At 100 steps, the model produces structurally sound formalizations (PR $= 32\%$, proved-only ISR $= 0.64$).
+By 500 steps, PR rises to 93\% but ISR collapses to 0.13---a 5$\times$ decrease.
+At 1000 steps, PR reaches 96\% while ISR falls to 0.003: 94.8\% of proved samples have ISR $= 0$, meaning every component is individually removable.
+Mean component count inflates from 6.58 to 18.55, indicating explosion-style padding.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Steps} & \textbf{PR} & \textbf{ISR (proved)} & \textbf{Components} \\
+\midrule
+100 & 0.32 & 0.642 & 6.58 \\
+500 & 0.93 & 0.132 & 10.2 \\
+1000 & 0.96 & 0.003 & 18.55 \\
+\bottomrule
+\end{tabular}
+\caption{ISR collapse trajectory under exec-only GRPO (seed 42). Prove rate climbs monotonically while ISR collapses by 99.5\%.}
+\label{tab:collapse}
+\end{table}
+
+Three seeds at 500 steps reveal qualitatively different hacking strategies from identical setups (Table~\ref{tab:exec_seeds}), demonstrating that reward hacking is not a single failure mode but a family of degenerate solutions:
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Seed} & \textbf{PR} & \textbf{ISR} & \textbf{Comp.} & \textbf{Dominant Mode} \\
+\midrule
+42 & 0.93 & 0.123 & 10.2 & Conclusion embedding \\
+43 & 0.13 & 0.000 & --- & Repetition collapse \\
+44 & 0.98 & 0.570 & 2.04 & Tautological collapse \\
+\bottomrule
+\end{tabular}
+\caption{Exec-only GRPO produces three qualitatively different outcomes from three seeds. Seed 44's high ISR (0.57) is artifactual: 2-component tautological proofs trivially satisfy LOO necessity.}
+\label{tab:exec_seeds}
+\end{table}
+
+Seed 44 merits discussion: its ISR of 0.57 appears high but reflects tautological collapse---proofs with only 2 components where each is trivially ``necessary'' (removing either from a 2-element set breaks the proof).
+This highlights that ISR is a \emph{syntactic necessity} metric, not a semantic faithfulness measure.
+
+\subsection{ISR as Training Signal: Full-Spectrum Goodhart Failure}
+\label{sec:goodhart}
+
+\subsubsection{The $\beta{=}0.1$ ``Sweet Spot'' Is a Single-Seed Artifact}
+
+On seed 42 alone, ISR $\beta{=}0.1$ appeared promising: PR $= 0.81$, ISR $= 0.337$, with 26\% genuine (non-hacked) proofs---3.2$\times$ the ISR of matched random control.
+However, replication across seeds 43 and 44 reveals this as unreliable (Table~\ref{tab:three_seed}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Seed} & \textbf{PR} & \textbf{ISR} & \textbf{Comp.} & \textbf{Mode} & \textbf{Interp.} \\
+\midrule
+42 & 0.81 & 0.337 & 5.58 & CE + genuine (26\%) & Sweet spot \\
+43 & 0.15 & 0.012 & 11.8 & Repetition collapse & PR collapse \\
+44 & 0.85 & 0.053 & 9.2 & Conclusion embedding & Mode shift \\
+\midrule
+Mean & 0.603 & 0.134 & 8.86 & --- & --- \\
+$\pm$ Std & $\pm$0.397 & $\pm$0.177 & $\pm$3.12 & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{ISR $\beta{=}0.1$ across three seeds. The ``sweet spot'' is seed 42's artifact. ISR coefficient of variation $= 1.32$; only 1/3 seeds shows ISR above matched random.}
+\label{tab:three_seed}
+\end{table}
+
+\paragraph{Seed 43: ISR cannot rescue prove-rate collapse.}
+Seed 43 collapses to PR $= 0.15$ under both exec-only and ISR $\beta{=}0.1$ conditions.
+The multiplicative reward $r_{\text{exec}} \cdot (1 + 0.1 \cdot \text{ISR})$ provides zero ISR gradient when $r_{\text{exec}} = 0$ (85\% of samples), making ISR structurally unable to rescue seeds that fail to enter high-PR trajectories.
+
+\paragraph{Seed 44: optimizing ISR decreases ISR.}
+This is the most striking result.
+Seed 44's exec-only baseline produces tautological proofs (2 components, ISR $= 0.57$).
+ISR $\beta{=}0.1$ successfully breaks the tautological pattern (components rise from 2.04 to 9.2), but the model shifts to conclusion embedding---producing many components where the conclusion is redundantly encoded across premises.
+ISR drops from 0.57 to 0.053: \textbf{optimizing ISR reduced ISR by 91\%} (Table~\ref{tab:s44_shift}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{PR} & \textbf{ISR} & \textbf{Comp.} & \textbf{Mode} & \textbf{Genuine} \\
+\midrule
+Exec-only s44 & 0.98 & 0.570 & 2.04 & Tautological & $\approx 0$ \\
+ISR $\beta{=}0.1$ s44 & 0.85 & 0.053 & 9.2 & Conclusion emb. & 0.07 \\
+Random $\beta{=}0.1$ s44 & 0.80 & 0.180 & 4.8 & Mild tautological & --- \\
+\bottomrule
+\end{tabular}
+\caption{Seed 44 hacking mode shift. ISR-optimized ISR (0.053) $<$ random control ISR (0.18). Optimizing the metric produces lower metric values than random noise---a textbook Goodhart effect.}
+\label{tab:s44_shift}
+\end{table}
+
+The random $\beta{=}0.1$ control achieves ISR $= 0.18$---\textbf{3.4$\times$ higher than the ISR-optimized condition}---because random noise does not create optimization pressure toward any specific hacking mode, preserving the seed's natural (mild tautological) tendency with moderate structural quality.
+
+\subsubsection{Three-Seed Aggregation: No Reliable ISR Advantage}
+
+Table~\ref{tab:aggregate} compares ISR $\beta{=}0.1$ against random $\beta{=}0.1$ across all three seeds.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{ISR $\beta{=}0.1$} & \textbf{Random $\beta{=}0.1$} & \textbf{Interpretation} \\
+\midrule
+Mean PR & 0.603 & 0.603 & Identical \\
+Mean ISR & 0.134 & 0.121 & Ratio $= 1.11$ \\
+ISR Std & 0.177 & 0.051 & 3.5$\times$ higher variance \\
+ISR CV & 1.32 & 0.42 & Unreliable vs.\ stable \\
+Seeds ISR $>$ random & 1/3 & --- & Only s42 \\
+Paired $t$-test $p$ & \multicolumn{2}{c}{$> 0.5$} & Not significant \\
+\bottomrule
+\end{tabular}
+\caption{ISR $\beta{=}0.1$ vs.\ matched random control, three-seed aggregation. ISR reward provides no statistically reliable advantage and increases seed-to-seed variance by 3.5$\times$.}
+\label{tab:aggregate}
+\end{table}
+
+The direction of the ISR effect is inconsistent across seeds: $+0.233$ (s42), $-0.068$ (s43), $-0.127$ (s44).
+With $p > 0.5$ and only 1/3 seeds favoring ISR, the claim that ``ISR reward provides structural guidance'' is not supported.
+ISR reward does not systematically improve structural quality; it amplifies seed-dependent variance.
+
+\subsubsection{High-Dose $\beta{=}0.3$: ISR Worse Than Random}
+
+At $\beta{=}0.3$ (seed 42), the Goodhart effect is unambiguous (Table~\ref{tab:high_beta}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{PR} & \textbf{ISR} & \textbf{Mode} \\
+\midrule
+ISR $\beta{=}0.3$ & 0.18 & 0.026 & Format collapse \\
+Random $\beta{=}0.3$ & 0.48 & 0.045 & Complexity w/o utility \\
+\bottomrule
+\end{tabular}
+\caption{High-dose ISR reward ($\beta{=}0.3$) is actively worse than matched random noise on both PR (2.7$\times$ lower) and ISR (1.7$\times$ lower).}
+\label{tab:high_beta}
+\end{table}
+
+ISR $\beta{=}0.3$ achieves PR $= 0.18$ vs.\ random's 0.48---ISR reward at high dose is \emph{actively misleading}, collapsing prove rate below even the random control.
+The Goodhart transition point lies in $\beta \in (0.1, 0.3)$.
+
+\subsubsection{Goodhart Dose-Response Summary}
+
+Table~\ref{tab:dose_response} presents the complete dose-response landscape.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+$\beta$ & \textbf{ISR PR} & \textbf{Rand PR} & \textbf{ISR ISR} & \textbf{Rand ISR} & \textbf{Phase} \\
+\midrule
+0 & \multicolumn{2}{c}{0.93 (exec-only)} & \multicolumn{2}{c}{0.123} & Baseline \\
+0.1 & 0.603$^*$ & 0.603$^*$ & 0.134$^*$ & 0.121$^*$ & Ambiguous$^\dagger$ \\
+0.3 & 0.18 & 0.48 & 0.026 & 0.045 & Goodhart \\
+\bottomrule
+\end{tabular}
+\caption{ISR Goodhart dose-response. $^*$Three-seed means. $^\dagger$Single-seed s42 shows sweet spot; three-seed aggregation shows no reliable effect.}
+\label{tab:dose_response}
+\end{table}
+
+\subsection{Seed-Specific Failure Mode Analysis}
+
+\paragraph{Seed 43: Baseline collapse propagates.}
+Seed 43 exhibits repetition collapse under exec-only (PR $= 0.14$), and ISR $\beta{=}0.1$ provides negligible rescue (PR $= 0.15$, $\Delta = +0.01$).
+The matched random control achieves PR $= 0.22$, slightly higher than ISR, with proved-only ISR of 0.36 vs.\ ISR-optimized's 0.08---random noise preserves more structural quality in the few proved samples because it does not create ISR-specific optimization pressure.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{PR} & \textbf{ISR} & \textbf{Proved ISR} & \textbf{Mode} \\
+\midrule
+Exec-only s43 & 0.14 & 0.000 & 0.000 & Repetition collapse \\
+ISR $\beta{=}0.1$ s43 & 0.15 & 0.012 & 0.080 & Repetition collapse \\
+Random $\beta{=}0.1$ s43 & 0.22 & 0.080 & 0.360 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Seed 43 comparison. ISR cannot rescue seeds with low prove-rate trajectories. Random control achieves higher proved-only ISR (0.36 vs.\ 0.08) because it avoids ISR-aware hacking.}
+\label{tab:s43}
+\end{table}
+
+\paragraph{Seed 44: Mode shift paradox.}
+As detailed in Table~\ref{tab:s44_shift}, seed 44 demonstrates the most striking Goodhart effect.
+The exec-only condition produces tautological proofs with artifactually high ISR (0.57).
+ISR reward breaks the tautological pattern but redirects to conclusion embedding, where the conclusion is redundantly encoded across multiple premises.
+Of the 85 proved samples under ISR $\beta{=}0.1$ s44, 88\% exhibit conclusion embedding and only 7\% are genuine formalizations.
+The model discovered a path of lower resistance: generating 9+ components where 1--2 are occasionally necessary during training (producing transient ISR $\approx 0.05\text{--}0.15$), sufficient for a small reward bonus, without developing genuine logical structure.
+
+\subsection{Cross-Logic Transfer: STA on Prolog (Incomplete)}
+\label{sec:prolog}
+
+We attempted to validate STA's solver-agnostic claim by extending to Prolog (SWI-Prolog).
+The experiment was abandoned after 180 of 500 steps due to fundamental semantic difficulties with LOO ablation in procedural logic.
+
+\paragraph{The semantic gap.}
+In declarative logic (FOL/Prover9), removing an axiom weakens the theory---LOO ablation has clean semantics.
+In procedural logic (Prolog), removing a clause can cause: (a) missing predicate definitions $\rightarrow$ runtime errors, (b) infinite recursion $\rightarrow$ timeouts, or (c) different clause matching $\rightarrow$ semantically unrelated behavior.
+The STA timeout rate reached 38\%, and per-step training time increased 3.4$\times$ (32s vs.\ 9.5s for FOL).
+
+\paragraph{Status.}
+After 180 steps: PR $= 0.08$, ISR $= 0.06$, 1.6 GPU-hours consumed.
+All remaining Prolog experiments (3 exec-only seeds, 3 STA variants, multi-logic joint training, cross-logic transfer) were blocked by this failure.
+Cross-logic generality of STA remains unvalidated.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{ISR Is a Diagnostic, Not a Training Signal}
+
+Our three-seed replication decisively separates ISR's two potential roles.
+As a \textbf{diagnostic}, ISR is valuable: it reveals the 100$\times$ structural collapse (0.64 $\rightarrow$ 0.003) hidden behind climbing prove rates, detects qualitatively different hacking strategies across seeds, and distinguishes genuinely structured proofs from degenerate ones.
+As a \textbf{training signal}, ISR is unreliable: the apparent sweet spot at $\beta{=}0.1$ is a single-seed artifact (s42), and the 3-seed aggregation shows ISR/random ratio $= 1.11$ ($p > 0.5$) with 3.5$\times$ higher seed variance than random.
+
+\subsection{Why ISR Reward Amplifies Variance}
+
+ISR reward creates \emph{mode-specific} optimization pressure that interacts unpredictably with seed-dependent training dynamics.
+Random noise is uniform and does not resonate with any particular hacking mode, yielding stable cross-seed behavior (ISR CV $= 0.42$).
+ISR reward, by contrast, differentially reinforces whatever structural pattern the seed happens to develop, amplifying divergence (ISR CV $= 1.32$).
+This explains why optimizing ISR can \emph{decrease} ISR (s44): the optimization redirects from one hacking mode (tautological, ISR $\approx 0.5$) to another (conclusion embedding, ISR $\approx 0.05$) that happens to score lower on the metric being optimized.
+
+\subsection{The Multiplicative Reward Bottleneck}
+
+The multiplicative formulation $r = r_{\text{exec}} \cdot (1 + \beta \cdot \text{ISR})$ has a fundamental limitation: when $r_{\text{exec}} = 0$, the ISR term contributes zero gradient regardless of $\beta$.
+This means ISR reward cannot rescue seeds that fail to achieve high prove rates (s43: 85\% of samples have $r_{\text{exec}} = 0$).
+ISR can only shape structure \emph{among already-proved samples}, making it structurally dependent on the seed entering a high-PR trajectory---which is itself seed-dependent and stochastic.
+
+\subsection{Hacking Taxonomy}
+
+Across all conditions and seeds, we identify five reward hacking strategies:
+
+\begin{enumerate}
+\item \textbf{Conclusion embedding}: The conclusion is encoded within premises; removing it from the conclusion position does not break the proof. Dominant in exec-only (s42) and ISR $\beta{=}0.1$ (s44).
+\item \textbf{Tautological collapse}: Proofs reduce to 2 components (one premise, one conclusion) where the premise trivially implies the conclusion. Dominant in exec-only (s44).
+\item \textbf{Repetition collapse}: Model generates repetitive, near-identical outputs across problems, proving few. Dominant in exec-only (s43) and ISR $\beta{=}0.1$ (s43).
+\item \textbf{Format collapse}: Outputs degenerate to syntactically invalid or trivially short formalizations. Dominant at ISR $\beta{=}0.3$.
+\item \textbf{Complexity without utility}: Component count inflates without structural necessity. Observed under random $\beta{=}0.3$.
+\end{enumerate}
+
+Different reward conditions and seeds produce different dominant modes, suggesting that GRPO explores a landscape of degenerate solutions and seeds determine which attractor the policy reaches.
+
+\subsection{Limitations of ISR}
+
+\paragraph{Syntactic, not semantic.}
+ISR measures component necessity (``is this axiom needed for the proof?''), not semantic faithfulness (``does this formalization capture the meaning of the natural language input?'').
+Preliminary evaluation against downstream NLI accuracy found no correlation (Spearman $\rho = -0.049$, $p = 0.187$).
+
+\paragraph{Conditionally dense.}
+ISR $= 0$ for all unproved samples, providing no diagnostic signal for the majority of outputs during early training or under collapsed conditions (s43).
+
+\paragraph{Procedural logic.}
+LOO ablation assumes removing a component weakens the theory.
+This holds for declarative provers (Prover9) but not procedural interpreters (SWI-Prolog), where clause removal can cause runtime errors or infinite recursion rather than clean proof failure.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We introduced Solver Trace Ablation (STA) and demonstrated its value as a \emph{diagnostic} for reward hacking in GRPO-trained formalizers: ISR reveals a 200$\times$ structural collapse (0.64 $\rightarrow$ 0.003) invisible to prove rate.
+Our systematic Goodhart analysis shows that ISR as a training signal is fundamentally unreliable: the apparent $\beta{=}0.1$ sweet spot is a single-seed artifact (3-seed ISR/random ratio $= 1.11$, $p > 0.5$), and at $\beta{=}0.3$, ISR reward is actively worse than random noise.
+Most strikingly, optimizing ISR can \emph{decrease} ISR (seed 44: 0.57 $\rightarrow$ 0.053), as the model shifts between hacking modes---a textbook Goodhart effect.
+
+These findings carry practical implications: (1) never trust prove rate alone---use ISR as a post-hoc diagnostic for structural integrity; (2) single-seed GRPO results are unreliable, as seeds determine which of five qualitatively different hacking modes the model reaches; (3) structural reward signals have a narrow and seed-dependent window of utility, making robust reward shaping for formal reasoning an open challenge.
+
+\paragraph{Future Work.}
+Extending STA to procedural logic requires addressing the semantic gap between declarative and procedural LOO ablation.
+Non-multiplicative reward formulations that provide ISR gradient even when $r_{\text{exec}} = 0$ may alleviate the bottleneck identified in Section~\ref{sec:discussion}.
+Scaling analysis (larger models, longer training) and supervised finetuning baselines would further clarify whether reward hacking is specific to GRPO or a general phenomenon of optimization against execution rewards.
+
+% ============================================================
+% \bibliography{references}
+% \bibliographystyle{plainnat}
+
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[First et~al.(2023)First, Rabe, Ringer, and Brun]{first2023baldur}
+Emily First, Markus~N. Rabe, Talia Ringer, and Yuriy Brun. 2023.
+\newblock Baldur: Whole-proof generation and repair with large language models.
+\newblock In \emph{FSE}.
+
+\bibitem[Gao et~al.(2023)Gao, Schulman, and Hilton]{gao2023scaling}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+\newblock Scaling laws for reward model overoptimization.
+\newblock In \emph{ICML}.
+
+\bibitem[Han et~al.(2022)]{han2022folio}
+Simeng Han et~al. 2022.
+\newblock {FOLIO}: Natural language reasoning with first-order logic.
+\newblock \emph{arXiv:2209.00840}.
+
+\bibitem[Jia and Harman(2011)]{jia2011analysis}
+Yue Jia and Mark Harman. 2011.
+\newblock An analysis and survey of the development of mutation testing.
+\newblock \emph{IEEE Trans. Software Engineering}, 37(5):649--678.
+
+\bibitem[Karwowski et~al.(2024)]{karwowski2024goodhart}
+Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiessling, and Dylan Cope. 2024.
+\newblock Goodhart's Law in reinforcement learning.
+\newblock In \emph{ICLR}.
+
+\bibitem[Lundberg and Lee(2017)]{lundberg2017unified}
+Scott~M. Lundberg and Su-In Lee. 2017.
+\newblock A unified approach to interpreting model predictions.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[Manheim and Garrabrant(2019)]{manheim2019categorizing}
+David Manheim and Scott Garrabrant. 2019.
+\newblock Categorizing variants of Goodhart's Law.
+\newblock \emph{arXiv:1803.04585}.
+
+\bibitem[Mellgren et~al.(2025)]{mellgren2025operationalizing}
+Simon Mellgren, Olov Andersson, and Moa Johansson. 2025.
+\newblock Operationalizing structural quality in Prolog program synthesis with GRPO.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Olausson et~al.(2023)]{olausson2023linc}
+Theo~X. Olausson, Alex Gu, Benjamin Lipkin, Cedegao~E. Zhang, Armando Solar-Lezama, Joshua~B. Tenenbaum, and Roger Levy. 2023.
+\newblock {LINC}: A neurosymbolic approach for logical reasoning by combining language models with first-order logic provers.
+\newblock In \emph{EMNLP}.
+
+\bibitem[Pan et~al.(2022)Pan, Bhatia, and Steinhardt]{pan2022effects}
+Alexander Pan, Kush Bhatia, and Jacob Steinhardt. 2022.
+\newblock The effects of reward misspecification: Mapping and mitigating misaligned models.
+\newblock In \emph{ICLR}.
+
+\bibitem[Polu and Sutskever(2020)]{polu2020generative}
+Stanislas Polu and Ilya Sutskever. 2020.
+\newblock Generative language modeling for automated theorem proving.
+\newblock \emph{arXiv:2009.03393}.
+
+\bibitem[Shao et~al.(2024)]{shao2024deepseekmath}
+Zhihong Shao et~al. 2024.
+\newblock {DeepSeekMath}: Pushing the limits of mathematical reasoning in open language models.
+\newblock \emph{arXiv:2402.03300}.
+
+\bibitem[Skalse et~al.(2022)Skalse, Howe, Krasheninnikov, and Krueger]{skalse2022defining}
+Joar Skalse, Nikolaus Howe, Dmitrii Krasheninnikov, and David Krueger. 2022.
+\newblock Defining and characterizing reward hacking.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[Yang et~al.(2024)]{yang2024leandojo}
+Kaiyu Yang et~al. 2024.
+\newblock {LeanDojo}: Theorem proving with retrieval-augmented language models.
+\newblock In \emph{NeurIPS}.
+
+\end{thebibliography}
+
+\end{document}

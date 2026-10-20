@@ -1,0 +1,101 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shao2024deepseekmath}
+\citation{skalse2022defining,pan2022effects}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{skalse2022defining,pan2022effects}
+\citation{gao2023scaling}
+\citation{manheim2019categorizing}
+\citation{karwowski2024goodhart}
+\citation{shao2024deepseekmath}
+\citation{polu2020generative,yang2024leandojo,first2023baldur}
+\citation{han2022folio,olausson2023linc}
+\citation{mellgren2025operationalizing}
+\citation{lundberg2017unified}
+\citation{jia2011analysis}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Reward Hacking in RL.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRPO for Formal Reasoning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature Attribution and LOO Methods.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Solver Trace Ablation (STA)}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intensional Structural Reward (ISR).}{2}{section*.4}\protected@file@percent }
+\newlabel{eq:isr}{{1}{2}{Intensional Structural Reward (ISR)}{equation.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Computational Cost.}{2}{section*.5}\protected@file@percent }
+\citation{han2022folio}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experimental conditions. $U \sim \text  {Uniform}(0,1)$. All runs use 500 training steps on FOLIO with Qwen2.5-1.5B and $K{=}8$.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:conditions}{{1}{3}{Experimental conditions. $U \sim \text {Uniform}(0,1)$. All runs use 500 training steps on FOLIO with Qwen2.5-1.5B and $K{=}8$}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}ISR as Diagnostic vs.\ Training Signal}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimental Setup}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Task and Data.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conditions.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments and Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ISR as Diagnostic: Structural Collapse Under Exec-Only Training}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:diagnostic}{{4.1}{3}{ISR as Diagnostic: Structural Collapse Under Exec-Only Training}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces ISR collapse trajectory under exec-only GRPO (seed 42). Prove rate climbs monotonically while ISR collapses by 99.5\%.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:collapse}{{2}{4}{ISR collapse trajectory under exec-only GRPO (seed 42). Prove rate climbs monotonically while ISR collapses by 99.5\%}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Exec-only GRPO produces three qualitatively different outcomes from three seeds. Seed 44's high ISR (0.57) is artifactual: 2-component tautological proofs trivially satisfy LOO necessity.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:exec_seeds}{{3}{4}{Exec-only GRPO produces three qualitatively different outcomes from three seeds. Seed 44's high ISR (0.57) is artifactual: 2-component tautological proofs trivially satisfy LOO necessity}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}ISR as Training Signal: Full-Spectrum Goodhart Failure}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:goodhart}{{4.2}{4}{ISR as Training Signal: Full-Spectrum Goodhart Failure}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}The $\beta {=}0.1$ ``Sweet Spot'' Is a Single-Seed Artifact}{4}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seed 43: ISR cannot rescue prove-rate collapse.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seed 44: optimizing ISR decreases ISR.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Three-Seed Aggregation: No Reliable ISR Advantage}{4}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ISR $\beta {=}0.1$ across three seeds. The ``sweet spot'' is seed 42's artifact. ISR coefficient of variation $= 1.32$; only 1/3 seeds shows ISR above matched random.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:three_seed}{{4}{5}{ISR $\beta {=}0.1$ across three seeds. The ``sweet spot'' is seed 42's artifact. ISR coefficient of variation $= 1.32$; only 1/3 seeds shows ISR above matched random}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Seed 44 hacking mode shift. ISR-optimized ISR (0.053) $<$ random control ISR (0.18). Optimizing the metric produces lower metric values than random noise---a textbook Goodhart effect.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:s44_shift}{{5}{5}{Seed 44 hacking mode shift. ISR-optimized ISR (0.053) $<$ random control ISR (0.18). Optimizing the metric produces lower metric values than random noise---a textbook Goodhart effect}{table.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}High-Dose $\beta {=}0.3$: ISR Worse Than Random}{5}{subsubsection.4.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Goodhart Dose-Response Summary}{5}{subsubsection.4.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Seed-Specific Failure Mode Analysis}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seed 43: Baseline collapse propagates.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seed 44: Mode shift paradox.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Logic Transfer: STA on Prolog (Incomplete)}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:prolog}{{4.4}{5}{Cross-Logic Transfer: STA on Prolog (Incomplete)}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces ISR $\beta {=}0.1$ vs.\ matched random control, three-seed aggregation. ISR reward provides no statistically reliable advantage and increases seed-to-seed variance by 3.5$\times $.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:aggregate}{{6}{6}{ISR $\beta {=}0.1$ vs.\ matched random control, three-seed aggregation. ISR reward provides no statistically reliable advantage and increases seed-to-seed variance by 3.5$\times $}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces High-dose ISR reward ($\beta {=}0.3$) is actively worse than matched random noise on both PR (2.7$\times $ lower) and ISR (1.7$\times $ lower).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:high_beta}{{7}{6}{High-dose ISR reward ($\beta {=}0.3$) is actively worse than matched random noise on both PR (2.7$\times $ lower) and ISR (1.7$\times $ lower)}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{The semantic gap.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Status.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}ISR Is a Diagnostic, Not a Training Signal}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Why ISR Reward Amplifies Variance}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces ISR Goodhart dose-response. $^*$Three-seed means. $^\dagger $Single-seed s42 shows sweet spot; three-seed aggregation shows no reliable effect.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:dose_response}{{8}{7}{ISR Goodhart dose-response. $^*$Three-seed means. $^\dagger $Single-seed s42 shows sweet spot; three-seed aggregation shows no reliable effect}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Seed 43 comparison. ISR cannot rescue seeds with low prove-rate trajectories. Random control achieves higher proved-only ISR (0.36 vs.\ 0.08) because it avoids ISR-aware hacking.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:s43}{{9}{7}{Seed 43 comparison. ISR cannot rescue seeds with low prove-rate trajectories. Random control achieves higher proved-only ISR (0.36 vs.\ 0.08) because it avoids ISR-aware hacking}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}The Multiplicative Reward Bottleneck}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Hacking Taxonomy}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Limitations of ISR}{7}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Syntactic, not semantic.}{7}{section*.16}\protected@file@percent }
+\bibcite{first2023baldur}{{1}{2023}{{First et~al.}}{{First, Rabe, Ringer, and Brun}}}
+\bibcite{gao2023scaling}{{2}{2023}{{Gao et~al.}}{{Gao, Schulman, and Hilton}}}
+\bibcite{han2022folio}{{3}{2022}{{Han et~al.}}{{}}}
+\bibcite{jia2011analysis}{{4}{2011}{{Jia and Harman}}{{}}}
+\bibcite{karwowski2024goodhart}{{5}{2024}{{Karwowski et~al.}}{{}}}
+\bibcite{lundberg2017unified}{{6}{2017}{{Lundberg and Lee}}{{}}}
+\bibcite{manheim2019categorizing}{{7}{2019}{{Manheim and Garrabrant}}{{}}}
+\bibcite{mellgren2025operationalizing}{{8}{2025}{{Mellgren et~al.}}{{}}}
+\bibcite{olausson2023linc}{{9}{2023}{{Olausson et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Conditionally dense.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Procedural logic.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Future Work.}{8}{section*.19}\protected@file@percent }
+\bibcite{pan2022effects}{{10}{2022}{{Pan et~al.}}{{Pan, Bhatia, and Steinhardt}}}
+\bibcite{polu2020generative}{{11}{2020}{{Polu and Sutskever}}{{}}}
+\bibcite{shao2024deepseekmath}{{12}{2024}{{Shao et~al.}}{{}}}
+\bibcite{skalse2022defining}{{13}{2022}{{Skalse et~al.}}{{Skalse, Howe, Krasheninnikov, and Krueger}}}
+\bibcite{yang2024leandojo}{{14}{2024}{{Yang et~al.}}{{}}}
+\gdef \@abspage@last{9}

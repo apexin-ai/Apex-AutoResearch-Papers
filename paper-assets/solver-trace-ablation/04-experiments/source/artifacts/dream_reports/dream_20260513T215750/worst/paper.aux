@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shao2024deepseek}
+\citation{skalse2022defining}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shao2024deepseek}
+\citation{skalse2022defining}
+\citation{gao2023scaling}
+\citation{jia2011analysis}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for formal reasoning.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward hacking in RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mutation testing and the RIP framework.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural rewards for formalization.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Solver Trace Ablation (STA)}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{5-step derivation protocol.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intensional Structural Reward (ISR).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Composite reward.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Computational complexity.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}ISR/PR Ratio as Diagnostic Metric}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model and data.}{3}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Exec-only GRPO training dynamics (3-seed average). PR = prove rate, ISR = mean Intensional Structural Reward, ISR/PR = structural quality ratio. The declining ISR/PR ratio reveals progressive reward hacking masked by increasing prove rate.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:exec-only}{{1}{4}{Exec-only GRPO training dynamics (3-seed average). PR = prove rate, ISR = mean Intensional Structural Reward, ISR/PR = structural quality ratio. The declining ISR/PR ratio reveals progressive reward hacking masked by increasing prove rate}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Exec+STA GRPO training dynamics ($\alpha = \beta = 0.5$, 3-seed average). STA reward simultaneously reduces prove rate and fails to improve structural quality (ISR/PR).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:sta-reward}{{2}{4}{Exec+STA GRPO training dynamics ($\alpha = \beta = 0.5$, 3-seed average). STA reward simultaneously reduces prove rate and fails to improve structural quality (ISR/PR)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conditions.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Exec-Only Baseline Exhibits Reward Hacking}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:exec-only}{{5.1}{4}{Exec-Only Baseline Exhibits Reward Hacking}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}STA Reward Harms Training}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:sta-reward}{{5.2}{4}{STA Reward Harms Training}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Held-out evaluation. The base model (no training) has the highest structural quality (ISR/PR = 0.53), indicating that GRPO training itself---regardless of reward design---induces structural degeneracy.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:held-out}{{3}{5}{Held-out evaluation. The base model (no training) has the highest structural quality (ISR/PR = 0.53), indicating that GRPO training itself---regardless of reward design---induces structural degeneracy}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces O(1) vs.\ O($N$) ISR comparison at step 500. O(1) tautology-only check has near-zero discriminability (0.02 vs.\ 0.31), confirming that fine-grained ablation is necessary for meaningful structural assessment.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:o1-on}{{4}{5}{O(1) vs.\ O($N$) ISR comparison at step 500. O(1) tautology-only check has near-zero discriminability (0.02 vs.\ 0.31), confirming that fine-grained ablation is necessary for meaningful structural assessment}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Held-Out Evaluation}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:held-out}{{5.3}{5}{Held-Out Evaluation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}O(1) vs.\ O(N) Ablation Granularity}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:o1-on}{{5.4}{5}{O(1) vs.\ O(N) Ablation Granularity}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Reward Weight Ablation}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:weight-ablation}{{5.5}{5}{Reward Weight Ablation}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Prolog Instantiation Failure}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:prolog}{{5.6}{5}{Prolog Instantiation Failure}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Reward weight ablation at step 200. No configuration simultaneously improves prove rate and ISR/PR ratio over the exec-only baseline (PR = 0.24, ISR/PR = 0.29 at step 200). Higher $\beta $ (more STA weight) suppresses prove rate without proportional structural quality gains.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:weight-ablation}{{5}{6}{Reward weight ablation at step 200. No configuration simultaneously improves prove rate and ISR/PR ratio over the exec-only baseline (PR = 0.24, ISR/PR = 0.29 at step 200). Higher $\beta $ (more STA weight) suppresses prove rate without proportional structural quality gains}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Prolog STA instantiation diagnostics. High solver timeout rates, low prove rate, and near-binary ISR values prevented meaningful training.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:prolog}{{6}{6}{Prolog STA instantiation diagnostics. High solver timeout rates, low prove rate, and near-binary ISR values prevented meaningful training}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Logic Transfer}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:transfer}{{5.7}{6}{Cross-Logic Transfer}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}SFT Baseline Comparison}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:sft}{{5.8}{6}{SFT Baseline Comparison}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-logic transfer matrix. Off-diagonal entries are at or below baseline, indicating no positive transfer between FOL and Prolog.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:transfer}{{7}{7}{Cross-logic transfer matrix. Off-diagonal entries are at or below baseline, indicating no positive transfer between FOL and Prolog}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces SFT vs.\ GRPO comparison. SFT achieves the best prove rate \emph  {and} structural quality. GRPO exec-only achieves moderate accuracy but with highest hacking rate (74\%). GRPO exec+STA is worst on both dimensions.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:sft}{{8}{7}{SFT vs.\ GRPO comparison. SFT achieves the best prove rate \emph {and} structural quality. GRPO exec-only achieves moderate accuracy but with highest hacking rate (74\%). GRPO exec+STA is worst on both dimensions}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Reward Hacking Taxonomy}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:taxonomy}{{5.9}{7}{Reward Hacking Taxonomy}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Diverse hacking modes.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{STA reward does not selectively suppress hacking.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Differential ISR sensitivity.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overall ISR diagnostic sensitivity.}{7}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Reward hacking taxonomy (200 samples per condition). Hacking pattern distributions are nearly identical between conditions ($\chi ^2$ test $p = 0.68$), confirming that STA reward does not selectively suppress any hacking mode. ISR Det.\ = percentage of instances detected by ISR.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:taxonomy}{{9}{8}{Reward hacking taxonomy (200 samples per condition). Hacking pattern distributions are nearly identical between conditions ($\chi ^2$ test $p = 0.68$), confirming that STA reward does not selectively suppress any hacking mode. ISR Det.\ = percentage of instances detected by ISR}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces ISR detection sensitivity by hacking mode. ISR is most effective at detecting premise redundancy and tautology injection, but struggles with trivial conclusions.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:isr-sensitivity}{{10}{8}{ISR detection sensitivity by hacking mode. ISR is most effective at detecting premise redundancy and tautology injection, but struggles with trivial conclusions}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does STA fail as training reward?}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When might STA-as-reward work?}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{STA as diagnostic retains value.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRPO amplifies solver shortcuts.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.20}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{shao2024deepseek}{{1}{2024}{{Shao et~al.}}{{}}}
+\bibcite{skalse2022defining}{{2}{2022}{{Skalse et~al.}}{{}}}
+\bibcite{gao2023scaling}{{3}{2023}{{Gao et~al.}}{{}}}
+\bibcite{jia2011analysis}{{4}{2011}{{Jia and Harman}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\gdef \@abspage@last{9}

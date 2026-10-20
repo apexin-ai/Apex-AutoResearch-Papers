@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan018-additive-random-b01-s44-r2",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:17:54.315Z",
+    "updated_at": "2026-05-15T14:17:54.315Z",
+    "spec": {
+      "hypothesis": "Random β=0.1 seed=44 重训（r2）：原始实验的 eval/checkpoint 全部丢失，genuine=18 是推算值从未直接测量。完全重训+完整 eval+H7/H1/H8 taxonomy，确保数据可验证。",
+      "parent": "plan018-additive-random-b01-s44",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "reward_formula": "r = r_exec * (1 + 0.1 * random[0,1])",
+      "plan_id": "plan018",
+      "num_steps": 500
+    }
+  },
+  "timestamp": "2026-05-15T14:17:54.534558+00:00",
+  "trigger": "update_registry"
+}

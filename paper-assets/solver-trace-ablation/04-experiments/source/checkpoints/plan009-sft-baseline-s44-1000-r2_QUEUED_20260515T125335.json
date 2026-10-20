@@ -1,0 +1,19 @@
+{
+  "exp_id": "plan009-sft-baseline-s44-1000-r2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:53:24.774Z",
+    "updated_at": "2026-05-15T12:53:35.504Z",
+    "hypothesis": "SFT 1000步 seed=44（重试）：r1 因 CUDA_VISIBLE_DEVICES 未设导致 OOM 失败。与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。",
+    "parent": "plan009-sft-baseline-s44-1000",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root"
+  },
+  "timestamp": "2026-05-15T12:53:35.712063+00:00",
+  "trigger": "update_registry"
+}

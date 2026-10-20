@@ -1,0 +1,61 @@
+{
+  "exp_id": "plan018-additive-random-b01-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:01:24.111Z",
+    "updated_at": "2026-05-14T16:57:07.360Z",
+    "hypothesis": "Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。",
+    "parent": "plan018-additive-random-b01-s43",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r2\"",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r2\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "858386",
+      "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s43-r2.log",
+      "submitted_at": "2026-05-14T15:24:32.942Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "858386",
+    "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s43-r2.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r2\"",
+      "finished_at": "2026-05-14T16:43:53.042Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T16:43:54.952857+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.88,
+      "eval_mean_isr": 0.0506,
+      "eval_proved_only_isr": 0.0575,
+      "n_proved": 88,
+      "h7_count": 0,
+      "h7_rate": 0,
+      "h1_count": 82,
+      "h1_rate": 0.932,
+      "genuine_count": 6,
+      "genuine_rate": 0.068
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T16:57:07.483316+00:00",
+  "trigger": "update_registry"
+}

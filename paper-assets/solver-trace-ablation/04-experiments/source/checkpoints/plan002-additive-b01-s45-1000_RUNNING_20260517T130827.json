@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan002-additive-b01-s45-1000",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-17T11:48:04.009Z",
+    "updated_at": "2026-05-17T13:08:26.935Z",
+    "hypothesis": "ISR β=0.1 seed=45 genuine window (~55% at 500 steps) will collapse by 1000 steps, consistent with the inevitable collapse pattern observed in s42 (17%→2%). Extended training drives ISR-trained models toward metric gaming regardless of initial genuine rate.",
+    "parent": "plan002-additive-b01-s45",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-17T12:09:43.365Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 45 --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s45_1000 --no_wandb",
+      "server": "westd-39279",
+      "gpu_ids": [
+        1
+      ],
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 45,
+      "reward_mode": "additive_bonus",
+      "beta": 0.1,
+      "num_steps": 1000,
+      "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s45_1000",
+      "log_path": "/root/runs/solver-trace-ablation/plan002-additive-b01-s45-1000.log",
+      "checkpoint_source": "plan002-additive-b01-s45",
+      "eval_data": "proofwriter_fol_100.jsonl"
+    }
+  },
+  "timestamp": "2026-05-17T13:08:27.227320+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa0342083fefdc449871",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "ops cuda guard audit fix",
+  "task_key": "worker_ops_cuda-guard-audit-fix_20260513T021918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda-guard-audit-fix_20260513T021918_result.json",
+    "occurrence": 1,
+    "bytes": 2642,
+    "sha256": "dcbf2292bcfa0cd0a3143abfcd60338f3012cf71bc0863a07e60db544ed8aaff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。以下是完整产出：\n\n---\n\n## 1. analysis_fix_v3.py 修复确认\n\n| | 修改前 | 修改后 |\n|---|---|---|\n| 第 2 行 | `os.environ.setdefault(\"CUDA_VISIBLE_DEVICES\", \"5\")` | `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"5\"` |\n\n已确认生效。\n\n---\n\n## 2. 全量 CUDA guard 扫描结果\n\n| 文件 | torch 导入行 | guard 类型 | 状态 |\n|------|-------------|-----------|------|\n| `run_mvp.py` | L11 | 硬覆盖 `os.environ[...] = \"5\"` (L2) | ✅ 入口脚本，正确 |\n| `run_arithmetic.py` | L13 | 硬覆盖 (L2) | ✅ 入口脚本，正确 |\n| `run_phase_d_only.py` | L13 | 硬覆盖 (L6) | ✅ 入口脚本，正确 |\n| `run_circus_fix.py` | L8 | 硬覆盖 (L3) | ✅ 入口脚本，正确 |\n| `eval_faithfulness.py` | L5 | 硬覆盖 (L2) | ✅ 入口脚本，正确 |\n| `analysis_fix_v3.py` | (间接) | 硬覆盖 (L2) — **刚修复** | ✅ 入口脚本，已修复 |\n| `evaluation.py` | L11 | `setdefault` (L2) | ✅ 库模块，正确 |\n| `edge_pruning_l0.py` | L18 | `setdefault` (L2) | ✅ 库模块，正确 |\n| `ifr_discovery.py` | L19 | `setdefault` (L2) | ✅ 库模块，正确 |\n\n**结论：所有文件 guard 均在 import torch 之前，且类型正确。除 `analysis_fix_v3.py`（已修复）外无其他问题。**\n\n---\n\n## 3. 修复文件清单\n\n仅 1 个文件需修复：\n- `/root/min_necessary_circuit_css/analysis_fix_v3.py` — `setdefault` → 硬覆盖\n\n---\n\n## 4. D022 根因补充调查\n\n**python vs python3 关系：**\n```\n/root/miniconda3/bin/python  -> python3.12 (symlink)\n/root/miniconda3/bin/python3 -> python3.12 (symlink)\n```\n两者指向同一个二进制 `python3.12`。系统 PATH 中没有独立的 `/usr/bin/python`，只有 conda 环境下的 `python`。\n\n**当前运行的 `python`（非 python3）进程：**\n- `python extraction/batch_extract.py` — 批量 CodeQL 提取（PID 577872 起，多进程）\n- `python training/train.py` — M2 pilot 训练（PID 795791 起，多子进程）\n\n**bash_history：** 文件不存在（`~/.bash_history: No such file or directory`），无法追溯历史命令。\n\n**结论：** 该服务器上 `python` 和 `python3` 是同一个二进制（conda 的 python3.12）。被杀进程（D022）使用 `python` 而非 `python3` 启动，来源是 conda 环境下的默认调用习惯。当前仍有多个 `python` 进程在运行（extraction 和 training），它们通过 conda 的 `python` 符号链接执行，与直接调用 `python3` 效果完全相同。D022 被杀进程最可能是之前某次手动或脚本启动的 training/extraction 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda-guard-audit-fix.md"
+}

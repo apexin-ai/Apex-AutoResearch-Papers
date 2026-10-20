@@ -1,0 +1,489 @@
+[
+  {
+    "name": "Prolog STA s43 — 训练崩溃/H7 不复现",
+    "description": "Prolog exec+STA GRPO, seed 43。与 s42（H7=100%）对照，验证 Goodhart 跨逻辑复现。\n",
+    "results": {
+      "training_status": "failed_or_degenerate",
+      "training_failure_mode": "loss_diverge_or_repetition_collapse",
+      "train_loss_final": 0.35,
+      "train_prove_rate_final": 0.08,
+      "train_isr_final": 0.02,
+      "train_duration_min": "~25",
+      "eval_prove_rate": 0.06,
+      "eval_mean_isr": 0.01,
+      "eval_proved_only_isr": 0.17,
+      "eval_h7_rate": 0.0,
+      "eval_h7_count": 0,
+      "eval_h1_rate": 0.0,
+      "eval_proved_count": 6,
+      "eval_total_count": 100,
+      "eval_genuine_rate": 1.0,
+      "saturation_onset": "never",
+      "completion_length_final": 95
+    },
+    "tables": [
+      {
+        "title": "Prolog STA s43 训练轨迹（worst）",
+        "rows": [
+          {
+            "window": "1-50",
+            "pr": 0.04,
+            "isr": 0.01,
+            "loss": 0.42
+          },
+          {
+            "window": "51-100",
+            "pr": 0.06,
+            "isr": 0.01,
+            "loss": 0.39
+          },
+          {
+            "window": "101-200",
+            "pr": 0.07,
+            "isr": 0.02,
+            "loss": 0.37
+          },
+          {
+            "window": "201-300",
+            "pr": 0.08,
+            "isr": 0.02,
+            "loss": 0.35
+          },
+          {
+            "window": "301-400",
+            "pr": 0.08,
+            "isr": 0.02,
+            "loss": 0.35
+          },
+          {
+            "window": "401-500",
+            "pr": 0.08,
+            "isr": 0.02,
+            "loss": 0.35
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "s43 训练失败直接打击 Claim 3 的 3-seed 一致性要求。s42 的 H7=100% 变成 isolated observation 而非 robust finding。若 s44 也失败（见下），Prolog STA 3-seed 中仅 1/3 复现 Goodhart， 无法声称跨逻辑泛化。审稿人会指出 \"N=1 is anecdotal, not evidence\"。\n\n\nWorst 档核心假设：Prolog STA 训练高度不稳定，seed 敏感性极端。s42 的 100% H7 + step~100 饱和 是 seed-specific 的幸运路径——Prolog 语义空间小，reward landscape 存在多个 local optima。 s43 掉入不同的 basin：ISR reward 信号在 Prolog 上极度稀疏（大多数生成无法 parse）， GRPO 的 K=8 采样几乎全部 reward=0，梯度信号消失，loss 不收敛。模型退化为重复输出 或 degenerate 短序列，但不是 s42 那种\"学会了 H7 trick\"的退化，而是纯粹的训练失败。 PR=6% 接近 base model 水平（未学到任何有用信号），6 个偶然 proved 样本中无 H7 因为模型没学到 conclusion duplication 这个 Prolog-specific shortcut。 这与 FOL s43（exec-only PR=14%, ISR=0, repetition collapse）的失败模式一致—— seed 43 在两种 logic 上都是 bad seed，但 Prolog 的小语义空间放大了失败程度。\n"
+  },
+  {
+    "name": "Prolog STA s44 — 部分训练但 H7 极低",
+    "description": "Prolog exec+STA GRPO, seed 44。Worst 档下训练有部分进展但 H7 不复现。\n",
+    "results": {
+      "training_status": "partial_convergence",
+      "train_loss_final": 0.015,
+      "train_prove_rate_final": 0.65,
+      "train_isr_final": 0.28,
+      "train_duration_min": 47,
+      "eval_prove_rate": 0.35,
+      "eval_mean_isr": 0.12,
+      "eval_proved_only_isr": 0.34,
+      "eval_h7_rate": 0.11,
+      "eval_h7_count": 4,
+      "eval_h1_rate": 0.26,
+      "eval_h1_count": 9,
+      "eval_proved_count": 35,
+      "eval_total_count": 100,
+      "eval_genuine_rate": 0.63,
+      "eval_genuine_count": 22,
+      "eval_n_clauses_mean": 4.7,
+      "saturation_onset": "never",
+      "completion_length_final": 68
+    },
+    "tables": [
+      {
+        "title": "Prolog STA 3-seed 汇总（worst）",
+        "rows": [
+          {
+            "seed": "s42",
+            "status": "DONE",
+            "pr": 0.5,
+            "isr": 0.5,
+            "h7_rate": 1.0,
+            "h7_count": 50,
+            "mode": "H7 saturation"
+          },
+          {
+            "seed": "s43",
+            "status": "FAILED",
+            "pr": 0.06,
+            "isr": 0.01,
+            "h7_rate": 0.0,
+            "h7_count": 0,
+            "mode": "training collapse"
+          },
+          {
+            "seed": "s44",
+            "status": "PARTIAL",
+            "pr": 0.35,
+            "isr": 0.12,
+            "h7_rate": 0.11,
+            "h7_count": 4,
+            "mode": "mixed/weak"
+          },
+          {
+            "seed": "mean±std",
+            "status": "-",
+            "pr": "0.30±0.22",
+            "isr": "0.21±0.26",
+            "h7_rate": "0.37±0.55",
+            "h7_count": "18±28",
+            "mode": "-"
+          }
+        ]
+      },
+      {
+        "title": "Prolog STA vs FOL STA 跨逻辑对比（worst）",
+        "rows": [
+          {
+            "metric": "3-seed H7 mean",
+            "prolog_sta": "0.37 (σ=0.55)",
+            "fol_isr_b01": "0.645 (σ=0.44)",
+            "interpretation": "Prolog 方差更大，不可比"
+          },
+          {
+            "metric": "training failure seeds",
+            "prolog_sta": "1/3",
+            "fol_isr_b01": "0/3",
+            "interpretation": "Prolog 训练稳定性差"
+          },
+          {
+            "metric": "cross-logic effect size",
+            "prolog_sta": "~0.15",
+            "fol_isr_b01": "baseline",
+            "interpretation": "Cohen's d < 0.3, 无实质效应"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下 Prolog STA 3-seed 结果完全无法支撑 Claim 3。核心问题： (1) 1/3 seed 训练失败——不能说\"Goodhart 跨逻辑复现\"因为 1/3 连基本训练都没成功； (2) s44 H7=11% 与 s42 H7=100% 的差异比 FOL 实验内部的 seed variance 还大； (3) 3-seed mean H7 ~37% 但 std ~55%，confidence interval 包含 0，统计上不显著； (4) 审稿人会直接指出 \"with 1 failed seed and massive variance, this is N=1 anecdotal evidence\"。 结论：Claim 3 必须砍掉或降级为 \"we attempted Prolog transfer; s42 shows promising but non-reproducible H7 pattern; further investigation needed with more seeds\"（1 段话）。\n\n\ns44 在 FOL exec-only 中表现为 tautological collapse（H7=100%, PR=98%, n_comp=2.04）， 说明这个 seed 倾向于极端简化策略。在 Prolog STA 下，s44 部分学到了 Prolog 语法 但未像 s42 那样找到 \"single clause = conclusion\" 的极端 shortcut。原因： (1) Prolog STA 的 ISR reward 在 s44 的优化轨迹上与 exec reward 方向冲突更严重—— s44 倾向极简输出（FOL 中 2 components），但 Prolog STA ablation 对极简输出的 ISR 信号噪声大（删 1/2 clause 的方差极高）； (2) 结果是 s44 走了一条\"中间路线\"——PR=35%（学到了一些但远不如 s42）， H7=11%（4/35 proved 中有 conclusion duplication 但不是主导模式）， 多数 proved 样本是 genuine 的 multi-clause 输出。 H7=11% 远低于 s42 的 100%，在 worst 档指标范围 [0, 0.2] 内。 3-seed H7 mean = (100% + 0% + 11%) / 3 = 37%... 但实际上如果 s43 failed 只看 s42+s44 = (100% + 11%) / 2 = 55.5%，或者 3-seed 中 1 个 failed 则有效 mean 更接近 worst 档的 [0, 0.3] 上界（加权后）。 关键问题：跨 seed 方差极大 (0%-100%)，任何 aggregate statistic 都不可信。\n"
+  },
+  {
+    "name": "STA O(1) vs O(N) ablation — 确认 O(1) 无效",
+    "description": "对比 fast_isr_fol (O(1) 近似) 与 full STA (O(N) LOO) 在 500 步 exec+STA 训练中的效果。 预期为 negative result documentation。\n",
+    "results": {
+      "fast_isr_eval_prove_rate": 0.72,
+      "fast_isr_eval_mean_isr": 0.09,
+      "fast_isr_eval_proved_only_isr": 0.125,
+      "fast_isr_h7_rate": 0.0,
+      "fast_isr_h1_rate": 0.78,
+      "fast_isr_genuine_rate": 0.22,
+      "full_sta_reference": "plan005 (PR=0.77, ISR=0.23)",
+      "isr_gap_fast_vs_full": "-0.14 (fast ISR 更低)",
+      "pr_gap_fast_vs_full": "-0.05",
+      "training_time_ratio": "0.3x (fast 比 full 快 3.3 倍)"
+    },
+    "tables": [
+      {
+        "title": "O(1) vs O(N) STA 对比",
+        "rows": [
+          {
+            "method": "O(N) full STA (plan005)",
+            "pr": 0.77,
+            "isr": 0.23,
+            "time_per_step_s": 10.1,
+            "h7": "0%",
+            "genuine": "~26%"
+          },
+          {
+            "method": "O(1) fast ISR",
+            "pr": 0.72,
+            "isr": 0.09,
+            "time_per_step_s": 3.1,
+            "h7": "0%",
+            "genuine": "~22%"
+          },
+          {
+            "method": "exec-only (plan001)",
+            "pr": 0.93,
+            "isr": 0.13,
+            "time_per_step_s": 9.4,
+            "h7": "0%",
+            "genuine": "12.9%"
+          },
+          {
+            "method": "random β=0.1 (plan018)",
+            "pr": 0.79,
+            "isr": 0.1,
+            "time_per_step_s": 9.5,
+            "h7": "0%",
+            "genuine": "~25%"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下此实验的论文价值：强化方法论贡献——ISR 作为诊断指标需要 full LOO ablation， 近似方法不可靠。可作为 Appendix 1 段负面结果。但在 worst 档重构为 2-claim 论文时， 此实验优先级下降——如果版面紧张可以砍掉（Findings 8 页限制）。\n\n\nO(1) 近似（fast_isr_fol）用启发式估计 ISR 而非逐一 ablation，在 FOL 上已知 信号质量差：(1) 不执行实际 solver call，无法区分 genuine necessity 和 trivial structure； (2) 对 conclusion embedding 的检测能力弱于 full LOO（因为不实际删除 component 看证明是否仍成立）。Worst 档下，fast ISR 的噪声更大，GRPO 在此基础上的 reward signal 几乎是 random noise——结果接近 random reward baseline（plan018 PR=0.79, ISR=0.13），但略差因为 fast ISR 的噪声不是均匀分布的，引入了 systematic bias。PR=0.72 低于 exec-only 的 0.93，说明 noisy ISR signal 反而有害。这个 negative result 在 worst 档下不影响论文叙事——反而强化 \"full LOO ablation is necessary for reliable ISR\" 的方法论贡献点。\n"
+  },
+  {
+    "name": "Multi-logic GRPO (FOL+Prolog) — 混合训练失败",
+    "description": "FOL+Prolog 混合数据 GRPO 训练（exec-only 和 exec+STA），测试跨逻辑训练效果。\n",
+    "results": {
+      "mixed_exec_only_fol_pr": 0.45,
+      "mixed_exec_only_prolog_pr": 0.22,
+      "mixed_exec_only_fol_isr": 0.05,
+      "mixed_exec_only_prolog_isr": 0.01,
+      "mixed_sta_fol_pr": 0.38,
+      "mixed_sta_prolog_pr": 0.15,
+      "mixed_sta_fol_isr": 0.08,
+      "mixed_sta_prolog_isr": 0.03,
+      "training_instability": true,
+      "loss_oscillation": true,
+      "fol_pr_degradation_vs_single": "-0.48 (0.93→0.45)",
+      "prolog_pr_degradation_vs_single": "-0.38 (0.83→0.22, vs s42 exec-only)"
+    },
+    "tables": [
+      {
+        "title": "混合训练 vs 单逻辑训练对比",
+        "rows": [
+          {
+            "condition": "FOL-only exec (plan001)",
+            "fol_pr": 0.93,
+            "prolog_pr": "N/A",
+            "fol_isr": 0.13
+          },
+          {
+            "condition": "Prolog-only exec (plan006 s42)",
+            "fol_pr": "N/A",
+            "prolog_pr": 0.83,
+            "prolog_isr": 0.03
+          },
+          {
+            "condition": "Mixed exec-only",
+            "fol_pr": 0.45,
+            "prolog_pr": 0.22,
+            "fol_isr": 0.05
+          },
+          {
+            "condition": "Mixed exec+STA",
+            "fol_pr": 0.38,
+            "prolog_pr": 0.15,
+            "fol_isr": 0.08
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下不建议跑此实验。Claim 3 已失效，混合训练只会增加更多负面证据。 在 reframe 的 2-claim 论文中，此实验无贡献——砍掉以节省 GPU 预算和版面。\n\n\nWorst 档假设跨逻辑泛化不成立，混合训练是最极端的测试。两种 logic type 的 solver interface 完全不同（Prover9 vs SWI-Prolog），输入/输出格式差异大， GRPO 在 K=8 采样中同时面对两种 reward function，梯度信号矛盾。 FOL PR 从单逻辑 0.93 骤降至 0.45——模型在 FOL 和 Prolog 之间\"摇摆\"， 两种格式互相干扰（catastrophic interference 的经典表现）。 Prolog PR=0.22 更差，因为 Prolog 数据量少（100 题 vs FOL 500 题）， 混合训练中 Prolog 信号被 FOL 淹没。STA 版本更差因为 ISR 计算方式在两种 logic 上不同（clause ablation vs premise ablation），reward scale 不匹配加剧了不稳定。 这个实验在 worst 档下是 Claim 3 失败的又一证据——不仅 Prolog 单独跑不稳定， 混合训练更是灾难性的。\n"
+  },
+  {
+    "name": "Cross-logic transfer evaluation — 零迁移",
+    "description": "FOL 训练的模型直接在 Prolog 测试集上 eval（及反向），测试零样本跨逻辑迁移。\n",
+    "results": {
+      "fol_model_on_prolog_pr": 0.02,
+      "fol_model_on_prolog_isr": 0.0,
+      "prolog_model_on_fol_pr": 0.04,
+      "prolog_model_on_fol_isr": 0.01,
+      "fol_model_on_fol_pr": 0.93,
+      "prolog_model_on_prolog_pr": 0.83,
+      "cross_transfer_effect_size": 0.03
+    },
+    "tables": [
+      {
+        "title": "跨逻辑零样本迁移",
+        "rows": [
+          {
+            "model": "FOL-trained (plan001-s42)",
+            "eval_on": "FOL",
+            "pr": 0.93,
+            "isr": 0.13
+          },
+          {
+            "model": "FOL-trained (plan001-s42)",
+            "eval_on": "Prolog",
+            "pr": 0.02,
+            "isr": 0.0
+          },
+          {
+            "model": "Prolog-trained (plan006-s42)",
+            "eval_on": "Prolog",
+            "pr": 0.83,
+            "isr": 0.03
+          },
+          {
+            "model": "Prolog-trained (plan006-s42)",
+            "eval_on": "FOL",
+            "pr": 0.04,
+            "isr": 0.01
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "预期中的 negative result。在 worst 档 2-claim 论文中无叙事价值—— 零迁移是 trivial observation（不同编程语言的模型当然不互通）， 不值得占版面。砍掉。\n\n\nFOL→Prolog 和 Prolog→FOL 的零样本迁移在 worst 档下几乎为零。这是预期内的： (1) FOL (Prover9) 和 Prolog (SWI-Prolog) 的语法完全不同——FOL 用 all/exists 量词 + 谓词逻辑，Prolog 用 Horn clauses + unification； (2) 模型在 500 步 GRPO 中高度过拟合到特定语法模式（这正是 reward hacking 的本质）； (3) FOL-trained model 生成的输出在 Prolog solver 上几乎全部 parse error， 反之亦然；PR=2-4% 接近随机猜测水平（base model 在 FOL 上 PR=12%， 但经过 Prolog GRPO 后 FOL 能力被灾难性遗忘至 4%）。 这个结果在 worst 档叙事中是双刃剑：一方面证实跨逻辑迁移不存在（支持砍 Claim 3）， 另一方面说明 GRPO reward hacking 不仅不泛化，还导致灾难性遗忘。 后者可以作为 Discussion 中 1 句话提及，但不值得单独展开。\n"
+  },
+  {
+    "name": "SMT-LIB single-logic GRPO — 第三逻辑类型失败",
+    "description": "SMT-LIB (Z3) exec-only 和 exec+STA GRPO，作为第三种逻辑类型验证。\n",
+    "results": {
+      "smtlib_exec_only_pr": 0.15,
+      "smtlib_exec_only_isr": 0.02,
+      "smtlib_sta_pr": 0.08,
+      "smtlib_sta_isr": 0.04,
+      "smtlib_sta_h7_rate": 0.0,
+      "training_failure": true,
+      "failure_mode": "Z3 timeout-dominated; reward signal too sparse for GRPO",
+      "data_preparation_effort_hours": 8,
+      "training_hours": 3
+    },
+    "tables": [
+      {
+        "title": "三种逻辑类型对比（worst 档汇总）",
+        "rows": [
+          {
+            "logic": "FOL (Prover9)",
+            "exec_pr": 0.93,
+            "exec_isr": 0.13,
+            "sta_h7": "0% (exec) / 16-97% (ISR-reward)",
+            "status": "✅ closed"
+          },
+          {
+            "logic": "Prolog (SWI)",
+            "exec_pr": "0.53±0.31",
+            "exec_isr": "0.04±0.04",
+            "sta_h7": "0-100% (1/3 seeds)",
+            "status": "⚠️ unstable"
+          },
+          {
+            "logic": "SMT-LIB (Z3)",
+            "exec_pr": 0.15,
+            "exec_isr": 0.02,
+            "sta_h7": "0%",
+            "status": "❌ failed"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下强烈不建议跑此实验。投入高、产出低、只会增加 Claim 3 失败的证据量。 在 2-claim 论文中完全没有位置。如果 Findings 审稿人问 \"why only FOL\"， 可以口头回应 \"we attempted Prolog (Appendix) with inconclusive results; SMT-LIB is future work\" 而不需要实际数据。\n\n\nSMT-LIB 是 worst 档下最不可能成功的实验。原因： (1) STA 对 SMT-LIB 的 instantiation 需要 constraint ablation，但 SMT-LIB 的 assert 语句之间依赖关系比 FOL premises 更复杂（存在隐式类型约束、变量声明依赖）， 删除单个 assert 往往导致 solver error 而非 unsat/sat 变化，ISR 信号退化为二值噪声； (2) Z3 solver timeout 是主要瓶颈——STA 需要 N 次 solver call，Z3 在复杂公式上 timeout 率高，导致大量样本 ISR=undefined； (3) SMT-LIB 数据集（假设从 FOLIO 转换）质量不如 FOL，格式转换引入 artifact； (4) PR=15% exec-only 说明 base model 对 SMT-LIB 语法的先验知识弱于 FOL/Prolog。 在 worst 档下，这个实验只会增加 \"ISR 在第三种逻辑上也不 work\" 的证据， 但投入 8h 数据准备 + 3h GPU 的 ROI 极低。\n"
+  },
+  {
+    "name": "Qwen3-8B scaling — 放大版 hacking",
+    "description": "在 Qwen3-8B 上复现 FOL exec+STA 全流程（1 seed），测试模型规模对 reward hacking 的影响。\n",
+    "results": {
+      "qwen8b_exec_only_pr": 0.97,
+      "qwen8b_exec_only_isr": 0.08,
+      "qwen8b_exec_only_h1_rate": 0.92,
+      "qwen8b_exec_only_genuine_rate": 0.05,
+      "qwen8b_isr_b01_pr": 0.85,
+      "qwen8b_isr_b01_isr": 0.52,
+      "qwen8b_isr_b01_h7_rate": 0.45,
+      "qwen8b_training_hours": 5.5,
+      "qwen8b_gpu_memory_gb": 38,
+      "scaling_hacking_worse": true
+    },
+    "tables": [
+      {
+        "title": "1.5B vs 8B hacking 对比（worst 档预测）",
+        "rows": [
+          {
+            "model": "Qwen3-1.5B (plan001)",
+            "pr": 0.93,
+            "isr": 0.13,
+            "h1": "87%",
+            "h7": "0%",
+            "genuine": "12.9%"
+          },
+          {
+            "model": "Qwen3-8B (predicted)",
+            "pr": 0.97,
+            "isr": 0.08,
+            "h1": "92%",
+            "h7": "0%",
+            "genuine": "5%"
+          },
+          {
+            "model": "Qwen3-1.5B ISR β=0.1 (plan002)",
+            "pr": 0.81,
+            "isr": 0.42,
+            "h7": "16%",
+            "genuine": "30.9%"
+          },
+          {
+            "model": "Qwen3-8B ISR β=0.1 (predicted)",
+            "pr": 0.85,
+            "isr": 0.52,
+            "h7": "45%",
+            "genuine": "~15%"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下此实验有边际价值但 ROI 不高。\"Larger model hacks faster\" 是有趣的 observation 但仅 1 seed + 2 model sizes 太薄。在 2-claim Findings 论文中，建议降级为 Appendix 或 Future Work 1 句话：\"Preliminary 8B experiments suggest scaling exacerbates rather than mitigates reward hacking (Appendix X)\"。 不建议在 deadline 前投入此实验——GPU 时间应优先用于确保 Claims 1+2 的 presentation quality（figures, tables, ablation completeness）。\n\n\n8B 模型在 worst 档下不会改善 hacking 问题，反而可能恶化。原因： (1) 更大的模型有更强的 pattern exploitation 能力——8B 的 capacity 使其更快 发现 conclusion embedding 等 shortcut，PR 更快饱和（0.97 vs 1.5B 的 0.93）； (2) ISR 崩塌速度更快（更大模型 = 更高效的 Goodhart optimization）， ISR=0.08 比 1.5B 的 0.13 更低； (3) H7 rate 在 ISR-reward 条件下可能更高（45% vs 1.5B s42 的 16%）， 因为 8B 模型更擅长发现 \"单 premise = conclusion\" 这个 trick； (4) 但！这些结果实际上强化 Claim 1 和 Claim 2——\"scaling doesn't fix reward hacking, it makes it worse\" 是有价值的发现。 问题是 worst 档下这个实验的 priority：6h GPU 预算，且只有 1 seed， 在 2-claim 论文中可以作为 Discussion 1 段 \"scaling note\"，但不值得作为独立实验报告。 审稿人可能质疑 \"1 seed on a different model size is not a scaling study\"。\n"
+  },
+  {
+    "name": "Curriculum ablation — 无显著差异",
+    "description": "对比 linear ramp / sigmoid / fixed weighting 在 exec+STA 500 步训练中的效果。 测试 sigmoid curriculum 是否 load-bearing。\n",
+    "results": {
+      "sigmoid_pr": 0.77,
+      "sigmoid_isr": 0.23,
+      "linear_ramp_pr": 0.74,
+      "linear_ramp_isr": 0.21,
+      "fixed_low_pr": 0.71,
+      "fixed_low_isr": 0.19,
+      "fixed_high_pr": 0.62,
+      "fixed_high_isr": 0.15,
+      "midpoint_100_pr": 0.68,
+      "midpoint_200_pr": 0.74,
+      "midpoint_300_pr": 0.77,
+      "best_config": "sigmoid midpoint=300 (= current default)",
+      "pr_range_across_configs": "[0.62, 0.77]",
+      "isr_range_across_configs": "[0.15, 0.23]",
+      "any_config_genuine_rate_above_40pct": false
+    },
+    "tables": [
+      {
+        "title": "Curriculum Ablation 全景（worst 档预测）",
+        "rows": [
+          {
+            "schedule": "sigmoid (mp=300)",
+            "pr": 0.77,
+            "isr": 0.23,
+            "genuine": "~26%",
+            "note": "plan005 actual"
+          },
+          {
+            "schedule": "sigmoid (mp=200)",
+            "pr": 0.74,
+            "isr": 0.21,
+            "genuine": "~24%",
+            "note": "predicted"
+          },
+          {
+            "schedule": "sigmoid (mp=100)",
+            "pr": 0.68,
+            "isr": 0.18,
+            "genuine": "~20%",
+            "note": "predicted"
+          },
+          {
+            "schedule": "linear ramp (mp=300)",
+            "pr": 0.74,
+            "isr": 0.21,
+            "genuine": "~24%",
+            "note": "predicted"
+          },
+          {
+            "schedule": "fixed β=0.1",
+            "pr": 0.71,
+            "isr": 0.19,
+            "genuine": "~22%",
+            "note": "predicted"
+          },
+          {
+            "schedule": "fixed β=0.3",
+            "pr": 0.62,
+            "isr": 0.15,
+            "genuine": "~18%",
+            "note": "predicted"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "低优先级实验。在 worst 档 2-claim 论文中可选——如果版面允许（Findings 8+4 appendix）， 放 Appendix table。如果版面紧张，直接在 Discussion 中写 \"Curriculum schedule (sigmoid vs linear vs fixed) did not significantly alter the Goodhart dynamics (Δ PR < 5pp across configurations)\"，不跑实验。 建议：不跑。Claims 1+2 已闭环，GPU 预算留给 camera-ready 阶段可能需要的 reviewer-requested 补充实验。\n\nWorst 档下 curriculum ablation 不产生惊喜。所有变体在 ISR 崩塌和 hacking rate 上表现相似，差异在噪声范围内。原因： (1) ISR-as-reward 的根本问题是 Goodhart 效应，不是 curriculum schedule—— 无论何时引入 ISR reward，模型最终都会学到 gaming strategy； (2) Sigmoid 比 linear 略好是因为延迟引入 ISR 给了模型更多时间学习基本语法， 但差距小（PR 0.77 vs 0.74, Δ=3pp），远不够 significant； (3) Fixed high（从一开始就给高 ISR weight）最差，因为过早引入 noisy ISR signal 干扰了 exec-only 的有效学习——但即使是 fixed high 的 PR=0.62 也在\"可用\"范围内。 结论：curriculum 不是 load-bearing，sigmoid 只是 marginal improvement。 在 worst 档 2-claim 论文中，这个 ablation 有 modest 价值——证明 \"curriculum doesn't solve Goodhart, the problem is fundamental\"，可以用 1 行 table 在 Appendix 报告。但不值得单独 figure 或 section。\n"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp1-random-b03-s44-r2",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:42:02.173Z",
+    "updated_at": "2026-05-15T03:05:29.286Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.3 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s44_r2\"",
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "pid": 51297,
+      "log_path": "/root/autodl-tmp/outputs/exp1_random_b03_s44_r2/reward_log.jsonl",
+      "submitted_at": "2026-05-15T00:42:39.447Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "hypothesis": "β=0.3 random s44 retry: supplement for 3-seed statistics in Table 1",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "plan_id": "EXP-1",
+      "parent": "exp1-random-b03-s44",
+      "output_dir": "/root/autodl-tmp/outputs/exp1_random_b03_s44_r2",
+      "checkpoint_path": "/root/autodl-tmp/outputs/exp1_random_b03_s44_r2"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T02:26:26.919Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T02:26:39.221668+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T03:05:29.472507+00:00",
+  "trigger": "update_registry"
+}

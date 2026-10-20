@@ -1,0 +1,19 @@
+{
+  "exp_id": "plan016-extended-1000-s42",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:29:47.634Z",
+    "updated_at": "2026-05-14T05:31:26.051Z",
+    "hypothesis": "Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？",
+    "parent": "plan001-exec-only-s42-r2",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root"
+  },
+  "timestamp": "2026-05-14T05:31:26.176466+00:00",
+  "trigger": "update_registry"
+}

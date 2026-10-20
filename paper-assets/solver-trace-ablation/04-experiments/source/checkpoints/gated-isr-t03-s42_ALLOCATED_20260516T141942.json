@@ -1,0 +1,14 @@
+{
+  "exp_id": "gated-isr-t03-s42",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:19:35.600Z",
+    "updated_at": "2026-05-16T14:19:42.633Z"
+  },
+  "timestamp": "2026-05-16T14:19:42.927113+00:00",
+  "trigger": "update_registry"
+}

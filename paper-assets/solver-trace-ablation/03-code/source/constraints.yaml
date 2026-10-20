@@ -1,13 +1,89 @@
-_next_id: 3
+_next_id: 14
 constraints:
 - id: C001
-  added: 2026-05-13 09:04 UTC
-  summary: GPU 仅限 autodl-pgpf 的 cuda:0 和 cuda:1，禁止使用其他服务器的卡
+  added: 2026-05-13 23:57 UTC
+  summary: 所有实验统一使用 data/train_500_seed42.jsonl 作为训练数据，禁止使用 proofwriter_fol_500.jsonl
+    或其他数据文件
   scope: all
-  reason: 项目分配的 GPU 白名单，2×RTX PRO 6000 96GB
+  reason: 'Reviewer CRITICAL: plan001-s43 使用了不同数据文件导致多 seed 对比 confound。多 seed 实验必须控制数据变量，seed
+    仅控制模型初始化和训练随机性。'
 - id: C002
-  added: 2026-05-13 10:14 UTC
-  summary: 正交性检查必须同时计算 Pearson 和 Spearman，取 max(|r|, |ρ|) 作为判定值
+  added: 2026-05-14 00:01 UTC
+  summary: 提交训练任务前必须用 export CUDA_VISIBLE_DEVICES=N 显式设置 GPU，禁止 inline 赋值（bash -c
+    VAR=X cmd），提交后验证 nvidia-smi 确认只占用分配的 GPU
   scope: all
-  reason: 'D003: Pearson-only 对非线性单调关系低估相关性，Phase 0 已暴露该缺陷'
-  decision_id: D003
+  reason: plan013 因 CUDA_VISIBLE_DEVICES inline 赋值引号问题越界占用两张 GPU，导致 plan001-s43 OOM
+    死亡。这是第二次 GPU 冲突事故。
+- id: C003
+  added: 2026-05-14 01:40 UTC
+  summary: 训练配置必须设置 save_total_limit=1 且禁用/限制 completions parquet 保存，防止磁盘耗尽
+  scope: all
+  reason: plan013-r3 和 plan001-s43-r3 因磁盘 250G/250G 满导致 step 23/28 崩溃。根因：TRL 每实验保存
+    3 份模型权重（~48GB）+ completions parquet（~2.5GB）。
+- id: C004
+  added: 2026-05-14 02:36 UTC
+  summary: 跨 seed/跨 run 的 ISR 对比必须使用 eval_sta.py 统一评估，禁止引用训练日志 ISR 做跨 run 对比（不同 run
+    可能使用不同版本的 ISR 计算代码）
+  scope: all
+  reason: Reviewer 核实发现 plan001-s42-r2 训练日志 ISR 使用 binary _fast_fn，plan001-s43-r4
+    使用 full STA _full_fn，同一指标名下计算方法不同导致不可比。论文中所有 ISR 数据必须来自 eval_sta.py 统一评估。
+- id: C005
+  added: 2026-05-14 04:01 UTC
+  summary: 所有 worker（含 fix/ops 类）启动任何 Python 进程前必须显式设置 CUDA_VISIBLE_DEVICES，禁止裸跑
+  scope: worker
+  reason: fix worker 未设 CUDA_VISIBLE_DEVICES 导致测试进程泄漏到 cuda:1（plan017 训练卡），占用 8638
+    MiB 显存。2026-05-14 事故。
+- id: C006
+  added: 2026-05-14 11:53 UTC
+  summary: 论文讨论 ISR 时必须区分两种语义：exec-only 的 low ISR = 冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA
+    的 high ISR = metric gaming（Goodhart 效应）。不可将 ISR 差异直接等同于 reasoning 能力差异。
+  scope: all
+  reason: Reviewer 发现 Prolog exec-only 生成大量重复 ground facts（如 penguin(fido). 出现 3 次），per-clause
+    ablation 下删任一重复不影响结果，ISR=0。这是冗余不是无推理。如不区分，审稿人会误读 ISR 差异。
+- id: C007
+  added: 2026-05-14 23:23 UTC
+  summary: kill_job 后必须 nvidia-smi 确认 GPU 释放，submit 前必须 nvidia-smi 确认目标 GPU 无残留进程
+  scope: worker
+  reason: 同一 session 两次出现 kill tmux → Python orphan → 新实验 OOM 的 pattern。kill_job 只杀
+    tmux session 不杀进程组，submit_on_allocated 只检查 registry 不检查实际 GPU 占用。
+- id: C008
+  added: 2026-05-15 00:50 UTC
+  summary: 所有 eval 命令必须显式指定 --data_path data/proofwriter_fol_100.jsonl，禁止依赖默认值或使用
+    test_100.jsonl
+  scope: worker
+  reason: 'D063: exp1 系列 eval 使用了 test_100.jsonl（与论文数据集零重叠），导致结果不可比。C004 约束的加固版。'
+  decision_id: D063
+- id: C009
+  added: 2026-05-15 00:52 UTC
+  summary: 所有 eval 命令必须显式指定 --data_path data/proofwriter_fol_100.jsonl，禁止使用默认值或 test_100.jsonl
+  scope: all
+  reason: exp1 系列 eval 使用了错误的 test_100.jsonl（与 plan 系列的 proofwriter_fol_100.jsonl
+    零重叠），导致跨系列数据不可比。违反 C004。
+  decision_id: D062
+- id: C010
+  added: 2026-05-15 01:09 UTC
+  summary: 磁盘清理禁止删除 conclusion=success 且标记 needs-re-eval 的 checkpoint，删前必须检查 registry
+    状态
+  scope: worker
+  reason: disk-cleanup-v2 误删了 exp1-isr-b03-s43 和 exp1-random-b03-s43 的 checkpoint，导致必须重训。这两个
+    checkpoint 因 D062/D063 需要用正确测试集 re-eval。
+- id: C011
+  added: 2026-05-15 01:09 UTC
+  summary: 磁盘清理禁止删除 conclusion=success 且标记 needs-re-eval 的 checkpoint 目录
+  scope: worker
+  reason: disk-cleanup-v2 Worker 误删 exp1_isr_b03_s43 和 exp1_random_b03_s43 checkpoint，导致必须重训。清理前必须交叉检查
+    registry 中 re-eval 标记。
+- id: C012
+  added: 2026-05-15 10:32 UTC
+  summary: Resume 训练时必须验证步数语义：--model_path 指向 checkpoint 时，确认 train_grpo.py 是从该 step
+    继续（resume）还是从 0 开始新训练。如不确定，从 base model 重新训练，不用 checkpoint。禁止第三次犯 resume 步数不对等错误。
+  scope: all
+  reason: Agent 两次将 checkpoint-350 作为 model_path 启动 1000 步训练，实际训练了 1350 步（350+1000）而非
+    resume 到 1000 步，导致与 ISR 1000 步实验不可比。plan018-r2 数据作废。
+- id: C013
+  added: 2026-05-15 14:23 UTC
+  summary: Taxonomy 标准：genuine = proved − H7 − H1_exact − H8。H1-near 保留为 genuine 但单独标记。ISR
+    和 Random 两侧必须对称使用同一标准。
+  scope: all
+  reason: D084 决策。H8 是退化证明必须扣除；H1-near 仍需推理步骤保留为 genuine；标准必须两侧对称以确保论文方法论一致性。
+  decision_id: D084

@@ -1,0 +1,50 @@
+{
+  "exp_id": "plan005-sta-low-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:20:47.812Z",
+    "updated_at": "2026-05-13T23:59:25.396Z",
+    "spec": {
+      "command": "GRPO exec+STA sta_weight=0.1, 500 steps, K=8, seed=42",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "85790",
+      "log_path": "~/runs/solver-trace-ablation/plan005-sta-low-s42.log",
+      "submitted_at": "2026-05-13T22:42:41.563Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/outputs/plan005_sta_low_s42/",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B",
+      "seed": 42,
+      "hypothesis": "STA weight=0.1 (exec=0.9) 应避免 prove_rate 退化至 baseline 以下，同时保留 STA 信号对 hacking 的抑制",
+      "wall_clock_seconds": 4603.8,
+      "gpu_hours": 1.28
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T23:55:02.341Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T23:55:06.559440+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500",
+    "log_path": "/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl",
+    "completed_at": "2026-05-13T23:59:25.396Z"
+  },
+  "timestamp": "2026-05-13T23:59:25.438365+00:00",
+  "trigger": "update_registry"
+}

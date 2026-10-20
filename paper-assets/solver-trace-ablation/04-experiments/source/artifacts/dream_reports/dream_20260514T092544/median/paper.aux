@@ -1,0 +1,113 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shao2024deepseekmath}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ISR as a Diagnostic for Reward Hacking.}{1}{section*.1}\protected@file@percent }
+\citation{manheim2019categorizing}
+\citation{gao2023scaling,skalse2022defining}
+\citation{manheim2019categorizing}
+\citation{karwowski2024goodhart}
+\citation{shao2024deepseekmath}
+\citation{shao2024deepseekmath}
+\citation{han2022folio}
+\citation{lundberg2017unified}
+\citation{yang2023leandojo}
+\citation{first2023baldur}
+\@writefile{toc}{\contentsline {paragraph}{ISR as Reward: A Goodhart Case Study.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seed Variability as Evidence of GRPO Instability.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward Hacking and Goodhart's Law.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRPO and Formal Reasoning.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature Attribution and Ablation.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural Theorem Proving.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Solver Trace Ablation}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}ISR: Intensional Structural Reward}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:isr}{{1}{3}{ISR: Intensional Structural Reward}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}ISR as Auxiliary Reward}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Additive Bonus.}{3}{section*.8}\protected@file@percent }
+\newlabel{eq:additive}{{2}{3}{Additive Bonus}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Convex Combination.}{3}{section*.9}\protected@file@percent }
+\newlabel{eq:convex}{{3}{3}{Convex Combination}{equation.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Hacking Taxonomy}{3}{subsection.3.4}\protected@file@percent }
+\citation{han2022folio}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces ISR collapse trajectory under exec-only GRPO (seed 42). Prove rate increases monotonically while ISR collapses by 99.6\% over 1000 steps. Component count inflation (6.58$\to $18.55) indicates explosion-style degeneration.}}{4}{table.caption.15}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:collapse}{{1}{4}{ISR collapse trajectory under exec-only GRPO (seed 42). Prove rate increases monotonically while ISR collapses by 99.6\% over 1000 steps. Component count inflation (6.58$\to $18.55) indicates explosion-style degeneration}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prover.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conditions.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Claim 1: ISR Quantifies Structural Collapse}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:claim1}{{4.2}{4}{Claim 1: ISR Quantifies Structural Collapse}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Three exec-only seeds produce qualitatively different hacking strategies. s44's high ISR (0.57) is a false positive: with only 2.04 components, both are trivially ``necessary'' in a tautological proof.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:seeds}{{2}{5}{Three exec-only seeds produce qualitatively different hacking strategies. s44's high ISR (0.57) is a false positive: with only 2.04 components, both are trivially ``necessary'' in a tautological proof}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Goodhart landscape: $\beta {=}0.1$ ISR reward improves structural quality over matched random; $\beta {=}0.3$ ISR reward is \emph  {worse} than random noise on both PR and ISR. The Goodhart transition lies between $\beta \in (0.1, 0.3)$.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:goodhart}{{3}{5}{Goodhart landscape: $\beta {=}0.1$ ISR reward improves structural quality over matched random; $\beta {=}0.3$ ISR reward is \emph {worse} than random noise on both PR and ISR. The Goodhart transition lies between $\beta \in (0.1, 0.3)$}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Seed Variability and Hacking Taxonomy}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Claim 2: ISR as Reward Exhibits Goodhart's Law}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:claim2}{{4.4}{5}{Claim 2: ISR as Reward Exhibits Goodhart's Law}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}3-Seed $\beta {=}0.1$ Aggregate}{5}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 3-seed $\beta {=}0.1$ ISR vs.\ random comparison. ISR shows directional improvement (mean ratio ${\sim }2.1\times $) but high inter-seed variance. The 95\% CI for the ISR ratio spans [0.85, 3.45], crossing 1.0.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:3seed}{{4}{6}{3-seed $\beta {=}0.1$ ISR vs.\ random comparison. ISR shows directional improvement (mean ratio ${\sim }2.1\times $) but high inter-seed variance. The 95\% CI for the ISR ratio spans [0.85, 3.45], crossing 1.0}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-seed $\beta {=}0.1$ breakdown for s43 and s44. CE\% = conclusion embedding rate. s43: ISR rescues a collapsed baseline (exec-only PR$=$14\%) but effect is weaker than s42. s44: ISR is counterproductive---PR drops below random control.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:perseed}{{5}{6}{Per-seed $\beta {=}0.1$ breakdown for s43 and s44. CE\% = conclusion embedding rate. s43: ISR rescues a collapsed baseline (exec-only PR$=$14\%) but effect is weaker than s42. s44: ISR is counterproductive---PR drops below random control}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Per-Seed $\beta {=}0.1$ Analysis}{6}{subsubsection.4.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}SFT Baseline: The PR--ISR Tradeoff}{6}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Answer-type breakdown for ISR $\beta {=}0.1$ seeds 43 and 44. s44 shows uniformly low ISR across all answer types, confirming that the ISR signal failure is not type-specific.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:perseed-detail}{{6}{7}{Answer-type breakdown for ISR $\beta {=}0.1$ seeds 43 and 44. s44 shows uniformly low ISR across all answer types, confirming that the ISR signal failure is not type-specific}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces SFT vs.\ GRPO variants. SFT achieves the highest ISR (0.45) and genuine rate (58\%) but the lowest prove rate (48\%), establishing upper and lower bounds for the PR--ISR tradeoff.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:sft}{{7}{7}{SFT vs.\ GRPO variants. SFT achieves the highest ISR (0.45) and genuine rate (58\%) but the lowest prove rate (48\%), establishing upper and lower bounds for the PR--ISR tradeoff}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}STA Approximation: $O(1)$ vs.\ $O(N)$}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:sta-approx}{{4.6}{7}{STA Approximation: $O(1)$ vs.\ $O(N)$}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Curriculum Ablation}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:curriculum}{{4.7}{7}{Curriculum Ablation}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Preliminary Evidence: Cross-Logic Transfer to Prolog}{7}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces $O(1)$ single-component sampling vs.\ $O(N)$ full LOO ablation. The $10\times $ speed gain of $O(1)$ comes at the cost of near-random discrimination (AUROC 0.56). ISR's diagnostic power requires complete ablation.}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:approx}{{8}{8}{$O(1)$ single-component sampling vs.\ $O(N)$ full LOO ablation. The $10\times $ speed gain of $O(1)$ comes at the cost of near-random discrimination (AUROC 0.56). ISR's diagnostic power requires complete ablation}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Curriculum ablation within the convex combination formula. Sigmoid scheduling provides marginal improvement (${\sim }$3pp PR) over linear ramp. All variants underperform the additive bonus formulation (Table~\ref {tab:goodhart}), confirming that the convex formula's implicit penalty structure is the first-order problem.}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:curriculum}{{9}{8}{Curriculum ablation within the convex combination formula. Sigmoid scheduling provides marginal improvement (${\sim }$3pp PR) over linear ramp. All variants underperform the additive bonus formulation (Table~\ref {tab:goodhart}), confirming that the convex formula's implicit penalty structure is the first-order problem}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Multi-Logic Training and Cross-Transfer}{8}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Model Scaling: 1.5B vs.\ 8B}{8}{subsection.4.10}\protected@file@percent }
+\citation{manheim2019categorizing}
+\citation{lundberg2017unified}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Prolog GRPO: exec-only vs.\ exec+STA ($\beta {=}0.1$). ISR improvement is marginal (ratio $1.12\times $) and PR decreases. Hacking modes are partially identifiable: s42 shows partial rule shortcutting, s44 shows builtin bypass.}}{9}{table.caption.24}\protected@file@percent }
+\newlabel{tab:prolog}{{10}{9}{Prolog GRPO: exec-only vs.\ exec+STA ($\beta {=}0.1$). ISR improvement is marginal (ratio $1.12\times $) and PR decreases. Hacking modes are partially identifiable: s42 shows partial rule shortcutting, s44 shows builtin bypass}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Single-logic vs.\ multi-logic (FOL+Prolog) joint training. Negative interference is significant for both logics, particularly FOL ($-$23pp).}}{9}{table.caption.25}\protected@file@percent }
+\newlabel{tab:multilogic}{{11}{9}{Single-logic vs.\ multi-logic (FOL+Prolog) joint training. Negative interference is significant for both logics, particularly FOL ($-$23pp)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ISR as Diagnostic vs.\ Reward.}{9}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seed Variability as a Finding.}{9}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ISR's Capability Boundary.}{9}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Full LOO Is Necessary.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Power.}{9}{section*.32}\protected@file@percent }
+\bibcite{gao2023scaling}{{1}{2023}{{Gao et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-logic zero-shot transfer yields near-zero prove rates, confirming that logic-specific STA instantiation is necessary.}}{10}{table.caption.26}\protected@file@percent }
+\newlabel{tab:transfer}{{12}{10}{Cross-logic zero-shot transfer yields near-zero prove rates, confirming that logic-specific STA instantiation is necessary}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Model scaling does not resolve reward hacking. The 8B model achieves marginally higher PR but \emph  {lower} ISR (0.09 vs.\ 0.13) with more components (14.2 vs.\ 8.5), indicating more ``refined'' hacking. ISR collapse onset is earlier (${\sim }$150 vs.\ ${\sim }$200 steps).}}{10}{table.caption.27}\protected@file@percent }
+\newlabel{tab:scaling}{{13}{10}{Model scaling does not resolve reward hacking. The 8B model achieves marginally higher PR but \emph {lower} ISR (0.09 vs.\ 0.13) with more components (14.2 vs.\ 8.5), indicating more ``refined'' hacking. ISR collapse onset is earlier (${\sim }$150 vs.\ ${\sim }$200 steps)}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Single Dataset and Model Family.}{10}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ISR and Semantic Faithfulness.}{10}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Computational Cost.}{10}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prolog Generalization.}{10}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SMT-LIB.}{10}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\bibcite{han2022folio}{{2}{2022}{{Han et~al.}}{{}}}
+\bibcite{first2023baldur}{{3}{2023}{{First et~al.}}{{}}}
+\bibcite{karwowski2024goodhart}{{4}{2024}{{Karwowski et~al.}}{{}}}
+\bibcite{lundberg2017unified}{{5}{2017}{{Lundberg and Lee}}{{}}}
+\bibcite{manheim2019categorizing}{{6}{2019}{{Manheim and Garrabrant}}{{}}}
+\bibcite{shao2024deepseekmath}{{7}{2024}{{Shao et~al.}}{{}}}
+\bibcite{skalse2022defining}{{8}{2022}{{Skalse et~al.}}{{}}}
+\bibcite{yang2023leandojo}{{9}{2023}{{Yang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Hacking Taxonomy Details}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:taxonomy}{{A}{11}{Hacking Taxonomy Details}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Reproducibility Details}{12}{appendix.B}\protected@file@percent }
+\newlabel{app:repro}{{B}{12}{Reproducibility Details}{appendix.B}{}}
+\gdef \@abspage@last{12}

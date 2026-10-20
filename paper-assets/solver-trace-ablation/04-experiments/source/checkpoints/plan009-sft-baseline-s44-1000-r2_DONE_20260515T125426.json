@@ -1,0 +1,43 @@
+{
+  "exp_id": "plan009-sft-baseline-s44-1000-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:53:24.774Z",
+    "updated_at": "2026-05-15T12:54:25.923Z",
+    "hypothesis": "SFT 1000步 seed=44（重试）：r1 因 CUDA_VISIBLE_DEVICES 未设导致 OOM 失败。与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。",
+    "parent": "plan009-sft-baseline-s44-1000",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "353256",
+      "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000-r2.log",
+      "submitted_at": "2026-05-15T12:53:53.733Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 32.2,
+      "gpu_hours": 0.01
+    },
+    "pid": "353256",
+    "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000-r2.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\"",
+      "finished_at": "2026-05-15T12:54:24.026Z"
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 742.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 100.25 MiB is free. Process 352142 has 62.36 GiB memory in use. Including non-PyTorch memory, this process has 32.51 GiB memory in use. Of the allocate",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T12:54:25.923Z"
+  },
+  "timestamp": "2026-05-15T12:54:26.121645+00:00",
+  "trigger": "update_registry"
+}

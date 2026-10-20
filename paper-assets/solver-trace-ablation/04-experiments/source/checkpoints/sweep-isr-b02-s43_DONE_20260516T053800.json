@@ -1,0 +1,65 @@
+{
+  "exp_id": "sweep-isr-b02-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:42:04.644Z",
+    "updated_at": "2026-05-16T05:38:00.603Z",
+    "hypothesis": "W3: β=0.2 ISR bonus seed=43, intermediate dose replication",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b02.yaml --seed 43 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_isr_b02_s43 --no_wandb",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "pid": "633515",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "reward_mode": "isr_additive_bonus",
+      "beta": 0.2,
+      "num_steps": 500,
+      "num_generations": 4,
+      "account": "root",
+      "note": "resubmitted by fix worker with --no_wandb (wandb key missing on server)",
+      "checkpoint_path": "/root/autodl-tmp/outputs/sweep_isr_b02_s43",
+      "log_path": "~/runs/solver-trace-ablation/sweep-isr-b02-s43.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T05:28:39.725Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T05:28:40.361Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T05:28:44.977720+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/sweep_isr_b02_s43/checkpoint-500",
+    "metrics": {
+      "eval_prove_rate": 0.96,
+      "eval_mean_isr": 0.5298,
+      "eval_isr_std": 0.1801,
+      "eval_median_isr": 0.5,
+      "eval_proved_only_isr": 0.5519,
+      "h7a": 93,
+      "h7b": 0,
+      "h7_total": 93,
+      "h1_strict": 1,
+      "h8": 2,
+      "genuine": 0,
+      "genuine_pct": 0,
+      "single_premise_pct": 96.9,
+      "content_independent": 1
+    }
+  },
+  "timestamp": "2026-05-16T05:38:00.922751+00:00",
+  "trigger": "update_registry"
+}

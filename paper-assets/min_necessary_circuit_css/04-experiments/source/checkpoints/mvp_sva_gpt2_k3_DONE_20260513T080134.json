@@ -1,0 +1,31 @@
+{
+  "exp_id": "mvp_sva_gpt2_k3",
+  "project": "min_necessary_circuit_css",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T05:56:29.357Z",
+    "updated_at": "2026-05-13T08:01:34.006Z",
+    "hypothesis": "SVA (localized-circuit task) 上 CSS=1.0 faithfulness > single-method，验证 IOI 发现在第三任务泛化（D025 条件④）",
+    "parent": "mvp_arithmetic_gpt2_k3",
+    "notes": "关键改进：ACDC 用 top-100 替代 isinf（D026 教训）。Zero + mean ablation 双评估。Dream 等待期间充分利用 GPU。",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=5 python3 /root/min_necessary_circuit_css/run_sva.py",
+      "server": "cqa1-21977",
+      "data_path": "/root/miniconda3/lib/python3.12/site-packages/datasets/sva_gpt2-small_prompts.json",
+      "data_count": 500,
+      "model_name": "gpt2-small",
+      "seed": 42,
+      "checkpoint_source": "gpt2-small-pretrained",
+      "eval_data": "sva_gpt2-small_prompts (500 generated SVA prompts)"
+    },
+    "conclusion": "success",
+    "log_path": "/root/min_necessary_circuit_css/sva_run.log",
+    "checkpoint_path": "/root/min_necessary_circuit_css/sva_results.json",
+    "completed_at": "2026-05-13T08:01:34.007Z"
+  },
+  "timestamp": "2026-05-13T08:01:34.029845+00:00",
+  "trigger": "update_registry"
+}

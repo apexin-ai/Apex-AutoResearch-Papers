@@ -1,0 +1,12 @@
+\section{Limitations}
+\label{sec:limitations}
+
+Experiments use a single base model (Qwen3-4B) and dataset family (FOLIO); generalization remains untested.
+ISR quantifies syntactic component necessity, not semantic faithfulness: a downstream NLI evaluation finds ISR and task accuracy uncorrelated (Spearman $\rho{=}{-}0.049$, $p{=}0.187$; Appendix~\ref{app:extended-discussion}).
+Three seeds demonstrate qualitative divergence but limit statistical power.
+STA requires solvers supporting component-level input manipulation.
+
+\paragraph{Data scale.}
+Our experiments use 500 training examples and 100 evaluation examples, drawn from FOLIO~\citep{folio}.
+The training subset is selected via stratified sampling (seed 42) and held constant across all conditions.
+While our findings are consistent across seeds and logic types, the effect of training data scale on hacking prevalence and mode distribution remains an open question for future work.

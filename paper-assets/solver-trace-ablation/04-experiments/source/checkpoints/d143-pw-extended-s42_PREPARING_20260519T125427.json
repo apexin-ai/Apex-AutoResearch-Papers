@@ -1,0 +1,15 @@
+{
+  "exp_id": "d143-pw-extended-s42",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:59:45.510Z",
+    "updated_at": "2026-05-19T12:54:27.062Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T12:54:27.458256+00:00",
+  "trigger": "update_registry"
+}

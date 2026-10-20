@@ -1,0 +1,18 @@
+{
+  "exp_id": "plan009-sft-baseline-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:51:58.328Z",
+    "updated_at": "2026-05-14T14:20:43.363Z",
+    "hypothesis": "SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.",
+    "conclusion": "killed",
+    "notes": "模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。",
+    "completed_at": "2026-05-14T14:20:42.452Z"
+  },
+  "timestamp": "2026-05-14T14:20:43.475077+00:00",
+  "trigger": "update_registry"
+}

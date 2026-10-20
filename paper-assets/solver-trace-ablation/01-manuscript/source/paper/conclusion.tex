@@ -1,0 +1,8 @@
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+
+STA exposes structural degeneration invisible to execution-based evaluation; repurposed as reward, ISR produces a seed-dependent Goodhart effect: structural proxies for formalization integrity are easier to observe than to optimize (Appendix~\ref{app:practical-guidelines}).
+Cross-logic experiments (Prolog) confirm the compositional mode shift; cross-benchmark evidence (ProofFOL, $p{=}0.10$) is exploratory (\S\ref{sec:crossdomain}).
+Convergence appears necessary for degeneration (Appendix~\ref{app:seed-convergence}); for practitioners, structural diagnostics should be applied post-hoc, with the mode breakdown providing the reliable signal.
+The observe-vs-optimize asymmetry motivates targeted mitigations (mode-aware reward shaping~\citep{tarek2025reward, pronesti2026beyond} or single-premise penalties) over blanket structural optimization; that 2/5 seeds retain genuine reasoning suggests this is feasible.
+Remaining open questions include disentangling LOO's premise-count bias from genuine complexity and extending our hacking taxonomy to process reward settings.

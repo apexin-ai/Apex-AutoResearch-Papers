@@ -1,0 +1,419 @@
+issues:
+- id: R1-W1
+  summary: "统计效力严重不足：β=0.3 仅 single seed"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 0
+  last_seen_round: 2
+  resolution: "β=0.3 ISR 和 Random 各 3 seeds 已完成。"
+  resolution_round: 2
+- id: v22-R12-N3
+  summary: "Premise-count confound 使 ISR scalar 诊断价值严重削弱"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 22
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 34, reviewers: [1, 2], note: "Compositional narrative + screening trigger 定位。method.tex L54 显式定位 ISR 为 screening trigger。"}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: R1-N1 重新提出。1.06× p=0.317 n.s. 仍是核心问题。Abstract/Intro 仍以 ISR 为中心叙事，framing 修复不充分。两位 Reviewer 共识：核心贡献应从 ISR 标量转向 STA procedure + mode taxonomy。"}
+- id: v22-R12-N1
+  summary: "ISR vs Random non-hacking rate p=0.182 不显著"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 22
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 33, reviewers: [1, 2], note: "Compositional Goodhart reframed. χ² as primary evidence."}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: R1-N2 重新提出。Fisher p=0.182 n.s. 仍在。R1 建议限定为 compositional Goodhart，R2 同意（with nuance）。当前叙述仍暗示 ISR 优化恶化了整体结果。"}
+- id: v17-R12-W1
+  summary: "单模型 (Qwen3-4B) 无法支撑通用性声明"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 17
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 35, reviewers: [2], note: "Claims scoped to Qwen3-4B."}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: R2-N2 Must-Fix。R1 反驳认为 Should-Fix（cross-logic/cross-dataset 已有泛化证据）。分歧：严重程度。标题 'Neurosymbolic Reasoning' 仍过于泛化。"}
+- id: v27-R1-N2
+  summary: "CMH pseudo-replication：within-seed samples 非独立"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 27
+  last_seen_round: 34
+  resolution: "Table 5 caption 增加 descriptive-only 限定 + CMH 引用。"
+  resolution_round: 34
+- id: v17-R1-W9
+  summary: "Seed 43 使用 T=0.7 sampling 评估而非 greedy"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 17
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 36, reviewers: [1, 2], note: "R36 W5 确认已解决，无需进一步修改。"}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: R1-W1 重新提出。s43 对 Random β=0.1 TS rate 影响大（s43:38.3%, s42/s44:0%）。建议主文 pooled 分析基于 protocol 一致的 seeds。R2 同意但注意到 N=2 robustness check 存在。"}
+- id: v22-R2-N1
+  summary: "方法论新颖性不足——LOO 是标准技术"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 22
+  last_seen_round: 35
+  resolution: "R35 修复：C1 从 'we propose STA' 降级为 'systematic empirical analysis using LOO ablation'。Reviewer 验证 PASS。"
+  resolution_round: 35
+- id: v29-R2-W5
+  summary: "'Observe-vs-optimize asymmetry' 非新概念"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 29
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 31, reviewers: [2], note: "Reframed as empirical instantiation of Goodhart's Law."}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: R2-W1 提出理论解释偏浅。缺少讨论：(a) LOO 特有还是所有 structural diagnostic 共性？(b) 修复 ISR 的可能性？R1 同意，补充 full Shapley 免疫性讨论缺失。"}
+- id: v30-R1-W1
+  summary: "SFT baseline selection bias"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 30
+  last_seen_round: 32
+  resolution: "SFT positioned as pre-RL temporal reference."
+  resolution_round: 31
+- id: v22-R1-W4
+  summary: "Shuffled-ISR control N=46 统计效力有限"
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 22
+  last_seen_round: 31
+  resolution: "Positioned as corroborating rather than definitive."
+- id: v27-R2-W4
+  summary: "Hacking taxonomy recall 未评估"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 34, reviewers: [2], note: "Limitations 增加 recall 自约束论证。"}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: R1-W5 重新提出。Precision=100% (152 samples) 但 recall 未知。TSb 发现说明 subtle modes 被遗漏。non-hacking rate 应一致标记为 upper bound（≤6% 而非 6%）。R2 同意。"}
+- id: v19-R12-W3
+  summary: "ProofFOL p=0.10 被过度引用 / 跨数据集 persistence claim 误导"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 19
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 36, reviewers: [1, 2], note: "R36 修复：Abstract + Intro 同步改为 'boundary conditions'。"}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: R1-W4 ProofFOL dataset-dependent asymmetry 解释仍被认为 post-hoc。'ISR reward effectively corrective' 是 overinterpretation。应标记为 hypothesis generation 而非 confirmation。"}
+- id: v30-R2-W3
+  summary: "ISR 与 NLI accuracy 不相关限制 actionability"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 30
+  last_seen_round: 33
+  resolution: "'reasoning quality' → 'formalization integrity'."
+  resolution_round: 32
+- id: v33-N2-BIMODAL
+  summary: "5-seed 双峰弱化 Goodhart 核心叙事"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 33
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 33, reviewers: [1, 2], note: "C2 changed to 'seed-dependent Goodhart effect'."}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: 两位 Reviewer 一致认为 3/5 seeds 95% CI [11.8%, 88.1%] 无信息量。seeds 45-46 post-hoc 添加进一步削弱。Existence proof 定位在 Limitations 有但正文叙述超越。R1 补充：multi-attractor dynamics 使增加 seeds 仍可能高方差。"}
+- id: v33-W1-EXEC-POOLING
+  summary: "Table 1 exec-only 仅报告 s42"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 33
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 33, reviewers: [1], note: "§4.2 explains. Table 1 footnote expanded."}
+    - {round: 37, reviewers: [1], note: "R37 minor issue: Table 1 exec-only 行仅 seed 42（脚注 †）与 3-seed pooled 行并列，易造成误读。建议行内标注 (single seed)。"}
+- id: v33-M8-CONVERTS
+  summary: "'ISR converts CE into TS' 不准确"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 33
+  last_seen_round: 33
+  resolution: "'converts' → 'systematically selects for TS over CE'."
+  resolution_round: 33
+- id: v33-W3-TAXONOMY
+  summary: "Taxonomy 互斥性和 N-H upper bound 未在正文说明"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 33
+  last_seen_round: 33
+  resolution: "Priority rule and N-H upper bound added to §3.3."
+  resolution_round: 33
+- id: v31-R2-MR-SPECGAMING
+  summary: "缺失引用：Nishimura et al. 2026 spec gaming"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 31
+  resolution: "Citation added."
+  resolution_round: 31
+- id: v31-R2-W-TITLE-LENGTH
+  summary: "标题过长"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 32
+  resolution: "Title shortened."
+  resolution_round: 32
+- id: v31-R2-ISR0-AMBIGUITY
+  summary: "ISR=0 语义不同"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 31
+  resolution: "ISR=0 disambiguation added."
+  resolution_round: 31
+- id: v32-R12-MR-UNFAITHFUL-COT
+  summary: "缺失引用：Lanham/Turpin"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 32
+  resolution: "Both citations added."
+  resolution_round: 32
+- id: v34-R12-N1
+  summary: "C3 贡献声称 overclaim"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "C3 establishing→confirming(Prolog)+exploratory(ProofFOL)。"
+  resolution_round: 34
+- id: v34-R12-N2
+  summary: "ISR scalar framing 张力"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "method.tex L54 ISR screening trigger 定位句。"
+  resolution_round: 34
+- id: v34-R1-N1
+  summary: "3-5 seeds proportion claim CI 宽"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 34
+  last_seen_round: 37
+  mentions:
+    - {round: 36, reviewers: [1, 2], note: "R36 W1: CI 已展示，'can occur' framing 正确。新增 optional stopping concern → limitations 加 post-hoc 声明。"}
+    - {round: 37, reviewers: [1, 2], note: "R37 fresh review: 两位 Reviewer 再次一致标记为 critical。根本问题（仅 5 seeds）未变，framing 修复不足以消解。"}
+- id: v34-R1-N2
+  summary: "Seed 43 sensitivity 可见性不足"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "正文 L65 N=2 统计句。"
+  resolution_round: 34
+- id: v34-R1-N3
+  summary: "Table 5 pooled Fisher 缺 descriptive-only 限定"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "Appendix Table 5 caption 增加限定 + CMH 引用。"
+  resolution_round: 34
+- id: v34-R12-W1
+  summary: "Table 1 caption 过长"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "150 词→48 词。"
+  resolution_round: 34
+- id: v34-R1-W3
+  summary: "convergence 因果 claim 过强"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 34
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 34, reviewers: [1], note: "experiments.tex + conclusion.tex 两处同步弱化。"}
+    - {round: 37, reviewers: [1], note: "R37 R1-W3: 8B 不收敛仍被解读为 'degeneration requires convergence'，但 8B 配置与 4B 存在混淆变量。应降级为 correlational observation。"}
+- id: v34-R2-W3
+  summary: "正文信息密度过高"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 34
+  last_seen_round: 37
+  resolution: ""
+  mentions:
+    - {round: 34, reviewers: [2], note: "§4.4 开头 exploratory signposting。"}
+    - {round: 37, reviewers: [1, 2], note: "R37 R2-W3 + R1-W2: Abstract 信息过载（~187 words 内塞入过多细节），observe-vs-optimize asymmetry 被淹没。标题泛化措辞与实验范围不匹配。"}
+- id: v34-R2-W5
+  summary: "Abstract [anonymized] 脚注"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "已移除。"
+  resolution_round: 34
+- id: v34-R1-W5
+  summary: "ISR = Shapley 声称缺推导"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 35
+  resolution: "R35: 正文改为 'maximal coalition restriction'。"
+  resolution_round: 35
+- id: v34-REVIEWER-FIG2
+  summary: "Figure 2 未被正文引用"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "method.tex 两处引用。"
+  resolution_round: 34
+- id: v34-REVIEWER-CONCL
+  summary: "conclusion.tex confirm 对 ProofFOL 过强"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: "ProofFOL 标注 exploratory。"
+  resolution_round: 34
+- id: v35-R1-M1
+  summary: "Exec-only 条件仅 1 seed (s42) 完整报告"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 35
+  last_seen_round: 35
+  resolution: "R35: experiments.tex L35 加 3-seed 1000-step 证据句。"
+  resolution_round: 35
+- id: v35-R1-M3
+  summary: "Premise-count confound 对 compositional evidence 未隔离"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 35
+  last_seen_round: 35
+  resolution: "R35: Discussion 加 confound 承认句。R36: 整合为 open question。"
+  resolution_round: 35
+- id: v35-R2-W2
+  summary: "缺少与 PRM 的 Goodhart susceptibility 对比讨论"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 35
+  last_seen_round: 35
+  resolution: "R35: Discussion 安全 framing。R36: 整合为 open question。"
+  resolution_round: 35
+- id: v35-R2-W4
+  summary: "ISR/ISR* 术语使用不一致"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 35
+  last_seen_round: 35
+  resolution: "功能性 PASS。method.tex L56 'throughout' 约定 + 数值处均用 ISR*。"
+  resolution_round: 35
+- id: v35-R2-MR1
+  summary: "缺失引用：Krakovna et al. (2020)"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 35
+  last_seen_round: 35
+  resolution: "Related Work 加引用。"
+  resolution_round: 35
+- id: v36-R12-N2
+  summary: "Section 1 'any verifiable proxy' 从极窄实验范围过度推广"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 36
+  last_seen_round: 36
+  resolution: "R36 修复：intro L27 改为 'LOO-based structural proxies---and plausibly other component-necessity measures---face analogous exploitation risks in neurosymbolic settings'。三层限定 + hedge。Reviewer 验证 PASS。"
+  resolution_round: 36
+- id: v36-R12-W1
+  summary: "缺少代码和数据可用性声明"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 36
+  last_seen_round: 36
+  resolution: "R36 修复：Limitations 末尾加 'Code, training scripts, and evaluation data will be released upon acceptance.' Reviewer 验证 PASS。"
+  resolution_round: 36
+- id: v36-R2-W2
+  summary: "Shuffled-ISR 非收敛替代解释未讨论"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 36
+  last_seen_round: 36
+  resolution: "R36 修复：experiments L56 'confirms' → 'consistent with' + 显式承认 non-convergence confound。Reviewer 验证 PASS。"
+  resolution_round: 36
+- id: v36-R2-W4
+  summary: "Hacking taxonomy 5/8 modes 可靠性存疑"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 36
+  last_seen_round: 36
+  resolution: "R36 修复：method L97 'CE and TS are robust; remaining five modes are configuration-specific observations'。Reviewer 验证 PASS。"
+  resolution_round: 36
+- id: v37-R2-W1
+  summary: "Observe-vs-optimize 理论解释偏浅，缺 LOO 特异性讨论和修复方案"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 37
+  last_seen_round: 37
+  mentions:
+    - {round: 37, reviewers: [1, 2], note: "R2 提出，R1 同意。缺少：(a) LOO 特有 vs 所有 structural diagnostic 共性？(b) full Shapley 是否免疫？(c) 修复 ISR（如 tautology pre-filter + ISR）的讨论。"}
+- id: v37-R2-W4
+  summary: "C1-C3 contribution 独立性值得商榷"
+  category: framing
+  severity: info
+  status: open
+  first_raised_round: 37
+  last_seen_round: 37
+  mentions:
+    - {round: 37, reviewers: [1, 2], note: "R2 建议合并为 2 个 contributions；R1 反驳，认为三个对不同读者群有独立价值。轻微分歧，不影响接收。"}

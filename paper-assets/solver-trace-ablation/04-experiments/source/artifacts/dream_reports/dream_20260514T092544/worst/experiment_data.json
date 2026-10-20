@@ -1,0 +1,506 @@
+[
+  {
+    "name": "ISR β=0.1 seed 43 — repetition collapse persists",
+    "description": "r = r_exec·(1+0.1·ISR), seed=43, 500 steps. 验证 β=0.1 sweet spot 是否跨 seed 复现。\n",
+    "results": {
+      "eval_prove_rate": 0.15,
+      "eval_mean_isr": 0.012,
+      "eval_isr_std": 0.045,
+      "eval_proved_only_isr": 0.08,
+      "eval_n_proved": 15,
+      "eval_n_problems": 100,
+      "eval_component_count_mean": 11.8,
+      "eval_isr_0_ratio_proved": 0.87,
+      "eval_isr_1_ratio": 0,
+      "tautological_collapse": false,
+      "dominant_hacking_mode": "repetition_collapse",
+      "train_total_steps": 500,
+      "train_duration_min": 65,
+      "train_last100_pr": 0.225,
+      "train_last100_isr": 0.018,
+      "train_last100_loss": 0.038
+    },
+    "tables": [
+      {
+        "name": "s43 ISR β=0.1 vs exec-only s43 comparison",
+        "columns": [
+          "condition",
+          "eval_pr",
+          "eval_isr",
+          "proved_only_isr",
+          "components",
+          "hacking_mode"
+        ],
+        "rows": [
+          [
+            "exec-only-s43",
+            0.14,
+            0.0,
+            0.0,
+            "N/A (14 proved)",
+            "repetition_collapse"
+          ],
+          [
+            "isr-b01-s43",
+            0.15,
+            0.012,
+            0.08,
+            11.8,
+            "repetition_collapse"
+          ],
+          [
+            "delta",
+            "+0.01",
+            "+0.012",
+            "+0.08",
+            "N/A",
+            "unchanged"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "ISR β=0.1 对 s43 几乎无效。根本问题是 GRPO 在低 PR 区间没有足够的正样本来传播 ISR 信号。 这证实了 s42 的 sweet spot 结果依赖于该 seed 恰好进入高 PR 轨迹，ISR bonus 才有机会 在已证明样本上发挥结构引导作用。s43 的轨迹从未到达 ISR 能发挥作用的 PR 阈值。\n\n\nexec-only s43 已展示 \"repetition collapse\"（PR=0.14, ISR=0）。β=0.1 ISR bonus 是 r_exec 的乘性修饰——当 85% 样本 r_exec=0 时，ISR 贡献零梯度。GRPO policy gradient 集中在 少数 proving 样本上，强化其（退化的）结构。s43 的失败根因是 PR 崩塌而非 ISR 崩塌：模型陷入 重复生成死循环，ISR bonus 无法在无法证明的样本上施加任何结构性引导。β=0.1 的微弱信号 根本不足以克服 seed-specific 的优化轨迹不稳定性。\n"
+  },
+  {
+    "name": "ISR β=0.1 seed 44 — tautological→conclusion embedding mode shift",
+    "description": "r = r_exec·(1+0.1·ISR), seed=44, 500 steps. s44 exec-only 展示 tautological collapse (n_comp=2.04, ISR=0.57)。 观察 ISR reward 是否打破此模式。\n",
+    "results": {
+      "eval_prove_rate": 0.85,
+      "eval_mean_isr": 0.053,
+      "eval_isr_std": 0.089,
+      "eval_proved_only_isr": 0.062,
+      "eval_n_proved": 85,
+      "eval_n_problems": 100,
+      "eval_component_count_mean": 9.2,
+      "eval_component_count_2_ratio": 0.02,
+      "eval_isr_0_ratio_proved": 0.73,
+      "eval_isr_1_ratio": 0,
+      "tautological_collapse": false,
+      "dominant_hacking_mode": "conclusion_embedding",
+      "conclusion_embedding_rate": 0.88,
+      "genuine_rate": 0.07,
+      "train_total_steps": 500,
+      "train_duration_min": 60,
+      "train_last100_pr": 0.82,
+      "train_last100_isr": 0.048,
+      "train_last100_loss": 0.008
+    },
+    "tables": [
+      {
+        "name": "s44 hacking mode shift under ISR β=0.1",
+        "columns": [
+          "condition",
+          "eval_pr",
+          "eval_isr",
+          "n_comp",
+          "dominant_mode",
+          "genuine_rate"
+        ],
+        "rows": [
+          [
+            "exec-only-s44",
+            0.98,
+            0.57,
+            2.04,
+            "tautological_collapse",
+            "~0"
+          ],
+          [
+            "isr-b01-s44",
+            0.85,
+            0.053,
+            9.2,
+            "conclusion_embedding",
+            0.07
+          ],
+          [
+            "interpretation",
+            "PR -13pp",
+            "ISR -0.52",
+            "+7.2 comp",
+            "mode shifted",
+            "marginal"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "ISR reward 成功消除了 tautological collapse（n_comp 从 2.04 升到 9.2），但以 ISR 本身 暴跌为代价。模型学会了 \"用更多组件获得更高 ISR bonus 的潜力\"，但走向了 conclusion embedding 而非 genuine structure。这是 Goodhart's Law 的经典表现：指标从观测切换到优化目标时， 被优化的不是指标背后的真实质量，而是指标的 attack surface。\n\n\nexec-only s44 产生 2-component tautological proofs (ISR≈0.5)。ISR β=0.1 reward 对 ISR=0.5 的样本给予 1+0.1×0.5=1.05 的 bonus，而 ISR=1.0 的样本获得 1.1 bonus—— 差异仅 5%。这足以微弱打破纯 2-component 模式（因为更复杂的证明有获得 ISR>0.5 的潜力）， 但不足以推向 genuine formalizations。模型找到一条阻力更小的路径：conclusion embedding （将结论嵌入多个前提中，生成 9+ components）。LOO ablation 发现这些 components 大多 可移除（ISR→0），因为结论已被冗余编码。净效果是 ISR reward 将 s44 从一种 hacking mode (tautological, ISR=0.57) 重定向到另一种 (conclusion embedding, ISR=0.053)—— 优化 ISR 反而降低了 ISR，这是 worst case 下最讽刺的 Goodhart 表现。\n"
+  },
+  {
+    "name": "ISR β=0.1 三 seed 聚合 — sweet spot 不复现",
+    "description": "聚合 s42/s43/s44 的 ISR β=0.1 结果，检验 sweet spot claim 的跨 seed 鲁棒性。\n",
+    "results": {
+      "three_seed_isr_b01_mean_pr": 0.603,
+      "three_seed_isr_b01_pr_std": 0.397,
+      "three_seed_isr_b01_mean_isr": 0.134,
+      "three_seed_isr_b01_isr_std": 0.177,
+      "three_seed_isr_b01_seed_results": {
+        "s42": {
+          "pr": 0.81,
+          "isr": 0.337,
+          "mode": "conclusion_embedding+genuine"
+        },
+        "s43": {
+          "pr": 0.15,
+          "isr": 0.012,
+          "mode": "repetition_collapse"
+        },
+        "s44": {
+          "pr": 0.85,
+          "isr": 0.053,
+          "mode": "conclusion_embedding"
+        }
+      },
+      "directional_consistency": false,
+      "seeds_with_isr_gt_random": 1,
+      "seeds_with_pr_gt_0.5": 2
+    },
+    "tables": [
+      {
+        "name": "ISR β=0.1 three-seed summary",
+        "columns": [
+          "seed",
+          "eval_pr",
+          "eval_isr",
+          "proved_only_isr",
+          "components",
+          "dominant_mode",
+          "interpretation"
+        ],
+        "rows": [
+          [
+            "s42",
+            0.81,
+            0.337,
+            0.415,
+            5.58,
+            "CE+genuine(26%)",
+            "sweet spot"
+          ],
+          [
+            "s43",
+            0.15,
+            0.012,
+            0.08,
+            11.8,
+            "repetition_collapse",
+            "PR collapse"
+          ],
+          [
+            "s44",
+            0.85,
+            0.053,
+            0.062,
+            9.2,
+            "conclusion_embedding",
+            "mode shift"
+          ],
+          [
+            "mean±std",
+            "0.603±0.397",
+            "0.134±0.177",
+            "0.186±0.196",
+            "8.86±3.12",
+            "N/A",
+            "unreliable"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "β=0.1 sweet spot 是 s42 单 seed artifact。3-seed 聚合后，ISR 的 CV>1 说明结果 完全由 seed variance 主导而非 ISR reward 的系统性效应。论文中 Claim 2 必须从 \"sweet spot exists\" 翻转为 \"apparent sweet spot is seed-dependent and unreliable\"。\n\n\n3 个 seed 产生 3 种定性不同的结果：s42 展示 sweet spot (ISR=0.337, genuine 26%)， s43 PR 崩塌（ISR bonus 无法挽救），s44 hacking mode 转移（ISR 反而下降）。 ISR std=0.177 几乎等于 mean=0.134，CV=1.32——完全不可靠。 只有 s42 (1/3) 支持 \"ISR provides structural guidance\" 的论断。\n"
+  },
+  {
+    "name": "Random β=0.1 seed 43 — baseline collapse control",
+    "description": "r = r_exec·(1+0.1·random[0,1]), seed=43. ISR β=0.1 s43 的 matched control。\n",
+    "results": {
+      "eval_prove_rate": 0.22,
+      "eval_mean_isr": 0.08,
+      "eval_isr_std": 0.14,
+      "eval_proved_only_isr": 0.36,
+      "eval_n_proved": 22,
+      "eval_n_problems": 100,
+      "eval_component_count_mean": 6.4,
+      "eval_component_count_2_ratio": 0.05,
+      "tautological_collapse": false,
+      "train_total_steps": 500,
+      "train_duration_min": 68,
+      "train_last100_pr": 0.28,
+      "train_last100_isr": 0.1
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "s43 的 PR 崩塌在 ISR 和 random 条件下都发生（0.15 vs 0.22），确认这是 seed-level 不稳定性而非 reward-specific 效应。\n\n\ns43 在所有条件下都倾向 PR 崩塌——这是 seed-specific 的 GRPO 优化轨迹问题，与 reward 形式无关。random β=0.1 提供的 variance regularization 微弱延缓崩塌（PR=0.22 vs exec-only 0.14），但根本不改变结局。少数 proved 样本（22个）未被系统性激励向任何 特定 hacking mode 偏移，因此保留了一些 genuine structure (proved_only_ISR=0.36)。 这反而高于 ISR β=0.1 s43 的 proved_only_ISR=0.08，因为 random noise 不创造 针对 ISR 的优化压力，不会触发 conclusion embedding 等 ISR-aware hacking。\n"
+  },
+  {
+    "name": "Random β=0.1 seed 44 — mild tautological, higher ISR than ISR-optimized",
+    "description": "r = r_exec·(1+0.1·random[0,1]), seed=44. ISR β=0.1 s44 的 matched control。\n",
+    "results": {
+      "eval_prove_rate": 0.8,
+      "eval_mean_isr": 0.18,
+      "eval_isr_std": 0.16,
+      "eval_proved_only_isr": 0.225,
+      "eval_n_proved": 80,
+      "eval_n_problems": 100,
+      "eval_component_count_mean": 4.8,
+      "eval_component_count_2_ratio": 0.15,
+      "tautological_collapse": false,
+      "train_total_steps": 500,
+      "train_duration_min": 62,
+      "train_last100_pr": 0.84,
+      "train_last100_isr": 0.2
+    },
+    "tables": [
+      {
+        "name": "s44 ISR-optimized vs random: Goodhart paradox",
+        "columns": [
+          "condition",
+          "pr",
+          "isr",
+          "components",
+          "mode"
+        ],
+        "rows": [
+          [
+            "exec-only-s44",
+            0.98,
+            0.57,
+            2.04,
+            "tautological"
+          ],
+          [
+            "isr-b01-s44",
+            0.85,
+            0.053,
+            9.2,
+            "conclusion_embedding"
+          ],
+          [
+            "random-b01-s44",
+            0.8,
+            0.18,
+            4.8,
+            "mild_tautological"
+          ],
+          [
+            "",
+            "",
+            "ISR: random > ISR-optimized",
+            "",
+            ""
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是 worst tier 最有论文价值的发现：ISR-optimized s44 的 ISR (0.053) < random s44 的 ISR (0.18)。优化 ISR 导致 ISR 下降，完美印证 Goodhart's Law。模型在 ISR reward 下 找到了 conclusion embedding 这条比 tautological 更低 ISR 但训练过程中间 reward 更高 的路径（因为 9-component 中偶尔有 1-2 个 necessary 的，训练期间 ISR 在 0.05-0.15 波动， 足以获得微弱 bonus）。\n\n\ns44 倾向 tautological patterns。random β=0.1 没有系统性结构激励，模型发展出 mild tautological tendency (15% 样本仍是 2-component，但多数有 4-6 components)。ISR=0.18 高于 ISR-optimized s44 的 0.053——关键的 worst-case 悖论。原因：random noise 不改变 s44 的 natural hacking trajectory (mild tautological)，而 ISR reward 主动将 s44 从 tautological (ISR≈0.5) 重定向到 conclusion embedding (ISR≈0.05)。不优化 ISR 反而保留了更高的 ISR，因为 mild tautological proofs 中部分 components 确实是 necessary 的（2-component 时 removal 会破坏证明，ISR=0.5；4-component 时 1-2 个 necessary，ISR≈0.25-0.5）。\n"
+  },
+  {
+    "name": "Random β=0.1 三 seed 聚合",
+    "description": "聚合 s42/s43/s44 的 random β=0.1 结果。",
+    "results": {
+      "three_seed_random_b01_mean_pr": 0.603,
+      "three_seed_random_b01_mean_isr": 0.121,
+      "three_seed_random_b01_isr_std": 0.051,
+      "seed_results": {
+        "s42": {
+          "pr": 0.79,
+          "isr": 0.104
+        },
+        "s43": {
+          "pr": 0.22,
+          "isr": 0.08
+        },
+        "s44": {
+          "pr": 0.8,
+          "isr": 0.18
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "ISR β=0.1 vs Random β=0.1 三 seed 对比",
+        "columns": [
+          "metric",
+          "ISR_b01",
+          "random_b01",
+          "interpretation"
+        ],
+        "rows": [
+          [
+            "mean_PR",
+            0.603,
+            0.603,
+            "identical — ISR reward 不影响平均 PR"
+          ],
+          [
+            "mean_ISR",
+            0.134,
+            0.121,
+            "ISR/random ratio = 1.11"
+          ],
+          [
+            "ISR_std",
+            0.177,
+            0.051,
+            "ISR reward 增大 3.5x seed variance"
+          ],
+          [
+            "CV_ISR",
+            1.32,
+            0.42,
+            "ISR 不可靠，random 稳定"
+          ],
+          [
+            "seeds_above_random",
+            "1/3",
+            "N/A",
+            "仅 s42 支持 sweet spot"
+          ],
+          [
+            "p_value_paired_t",
+            ">0.5",
+            "N/A",
+            "不显著"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "3-seed ISR/random ratio=1.11，paired t-test p>0.5，完全不显著。更重要的是方向不一致： s42 +0.233, s43 -0.068, s44 -0.127。Claim 2 sweet spot 论断在 3-seed 复现下崩塌。\n\n\nRandom β=0.1 across seeds 表现稳定（ISR std=0.051，CV=0.42），与 ISR β=0.1 的 剧烈波动（std=0.177, CV=1.32）形成对比。这本身是一个发现：ISR reward 不仅没有 系统性提升 ISR，还增大了 seed 间方差。random noise 的均匀性使其不与任何特定 hacking mode 共振，因此跨 seed 更稳定。\n"
+  },
+  {
+    "name": "Prolog exec-only seed 42 — STA 移植困难导致 incomplete",
+    "description": "Prolog GRPO exec-only, seed=42, 500 steps, K=8. 第一个 Prolog 种子，验证跨逻辑系统的 hacking 复现。\n",
+    "results": {
+      "status": "incomplete",
+      "train_steps_completed": 180,
+      "train_pr_at_stop": 0.08,
+      "train_isr_at_stop": 0.06,
+      "sta_timeout_rate": 0.38,
+      "per_step_time_s": 32,
+      "total_time_before_abort_min": 96,
+      "failure_reason": "STA rule ablation timeout rate 38%, per-step 3.4x slower than FOL"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Prolog STA 的核心困难不是工程问题而是语义问题：LOO ablation 在 declarative logic (FOL) 中意味着 \"弱化理论\"，在 procedural logic (Prolog) 中意味着 \"改变程序行为\"。 Component necessity 在 Prolog 中缺乏 FOL 中的干净语义。\n\n\nSTA protocol 要求 LOO ablation——移除一条 Prolog clause 后重新执行。与 FOL/Prover9 不同，Prolog 的执行是 procedural（clause ordering matters, cuts, recursion）。 移除一条 clause 可能导致：(a) missing predicate definition → runtime error, (b) infinite recursion → timeout, (c) different clause matching → semantically unrelated result。Prover9 是 declarative theorem prover (axiom removal = weaker theory)，LOO ablation 语义清晰。Prolog 的 LOO 语义不清晰，导致 ~38% 的 ablation attempts timeout (SWI-Prolog default 5s)。每个训练 step 需要 K=8 samples × N components × LOO，timeout 累积使 per-step 时间从 FOL 的 ~9.5s 飙升到 ~32s。 180 steps 后 GPU budget 耗尽，实验未完成。\n"
+  },
+  {
+    "name": "Prolog remaining seeds and STA variants — not started",
+    "description": "plan006-prolog-exec-s43, s44, plan006-prolog-sta-s42/s43/s44. 所有 6 个后续 Prolog 实验。\n",
+    "results": {
+      "status": "not_started",
+      "reason": "blocked on plan006-prolog-exec-s42 incomplete",
+      "total_gpu_hours_wasted": 1.6,
+      "claim_3_status": "no data — downgrade to future work"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Prolog 失败实际上 strengthens worst-tier narrative：STA protocol 的 solver-agnostic claim 被挑战，ISR 的 LOO 语义在 procedural logic 中不成立。论文应诚实报告此 negative finding 作为 Limitation。\n\n\ns42 exec-only 未完成 → s43/s44 无法启动 → STA 变体无法启动。整个 Prolog 实验链 断裂。即使 s42 勉强完成（PR=0.08），PR 太低无法观察 hacking（hacking 需要 PR 饱和 作为前提条件），因此 STA 变体也无实验价值。Claim 3 cross-logic generality 完全 无数据支撑，降级为 \"future work: extend STA to procedural logic systems, addressing the semantic gap between declarative and procedural LOO ablation。\"\n"
+  },
+  {
+    "name": "STA O(1) vs O(N) ablation — not attempted",
+    "description": "对比 fast_isr_fol (O(1) approximation) vs full STA (O(N) LOO). Priority 已被 3-seed 复现实验挤掉。\n",
+    "results": {
+      "status": "not_attempted",
+      "reason": "GPU budget consumed by plan002/plan018 multi-seed and plan006 Prolog debugging",
+      "hypothetical_if_run": {
+        "fast_isr_correlation_with_full_isr": 0.22,
+        "fast_isr_eval_mean": 0.31,
+        "full_isr_eval_mean": 0.13,
+        "conclusion": "O(1) overestimates ISR; fast approximation unreliable for reward"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "此实验对论文 narrative 非关键（ISR 计算效率是工程问题不是科学问题）。放弃不影响论文。\n\n已有 r4/r5 早期数据暗示 fast_isr 与 full ISR 低相关。O(1) 仅检查 \"移除全部非结论 成分后是否仍可证明\"——一个 binary test——而 O(N) LOO 测试每个 component 的边际贡献。 Binary test 的 resolution 太粗，不足以区分 \"1 个 component necessary\" 和 \"5 个 components necessary\"。但在 worst tier，此实验优先级低于 sweet spot 复现， 被 deprioritized。\n"
+  },
+  {
+    "name": "Multi-logic GRPO (FOL+Prolog) — blocked by plan006",
+    "description": "FOL+Prolog 联合训练，500 steps. 依赖 plan006 完成。\n",
+    "results": {
+      "status": "not_attempted",
+      "reason": "dependency plan006 incomplete"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Claim 3 全链断裂，此实验与 plan008 一起放弃。\n\nplan006 Prolog exec-only 未完成 → 无 Prolog baseline → 联合训练无法设计或解释。 即使勉强运行，Prolog STA 的 38% timeout rate 会使联合训练不稳定。\n"
+  },
+  {
+    "name": "Cross-logic transfer evaluation — blocked",
+    "description": "FOL-trained on Prolog tasks & vice versa.",
+    "results": {
+      "status": "not_attempted",
+      "reason": "dependency plan006 incomplete"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "N/A.\n\n同 plan007。无 Prolog 模型 → 无法做 cross-logic transfer。"
+  },
+  {
+    "name": "SFT baseline — deprioritized",
+    "description": "Supervised finetuning on FOLIO 500 data. GRPO 的 non-RL baseline。\n",
+    "results": {
+      "status": "not_attempted",
+      "reason": "P1 priority, GPU budget exhausted on P0 experiments",
+      "hypothetical_if_run": {
+        "eval_prove_rate": 0.25,
+        "eval_mean_isr": 0.42,
+        "eval_proved_only_isr": 0.65,
+        "eval_component_count_mean": 4.2,
+        "interpretation": "low PR but high structural quality — SFT mimics training data structure without reward hacking"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "SFT baseline 的缺失削弱论文——reviewer 可能问 \"is reward hacking specific to RL or would any finetuning produce it?\" 但对 worst tier narrative (纯诊断论文) 不致命， 因为主 claim 是 ISR 作为诊断工具的价值，不是 GRPO vs SFT 的对比。\n\n\nSFT 不优化 reward → 不触发 reward hacking。模型学习训练数据的 surface distribution， 包括结构模式。PR 低（~0.25）因为 SFT 不专门优化 proving，但 proved 的样本保留原始 数据的结构质量（ISR~0.65，接近 ground truth 的 0.56）。这本可以作为 \"GRPO hacking is optimization-specific\" 的控制组，但 worst tier 下无 GPU 预算运行。\n"
+  },
+  {
+    "name": "SMT-LIB single-logic GRPO — not attempted",
+    "description": "第三种逻辑类型 (SMT-LIB/Z3). P2 优先级。",
+    "results": {
+      "status": "not_attempted",
+      "reason": "P2 priority, Prolog already failed, no time for third logic"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "N/A.\n\nProlog (第二种逻辑) 的失败使第三种逻辑的实验更无意义——如果 STA 不能迁移到 Prolog， 增加 SMT-LIB 不会改善 cross-logic 论述。\n"
+  },
+  {
+    "name": "Qwen3-8B scaling — not attempted",
+    "description": "8B 模型上复现 STA 实验. P2 优先级。",
+    "results": {
+      "status": "not_attempted",
+      "reason": "P2, 6 GPU-hours needed, budget exhausted",
+      "hypothetical_if_run": {
+        "eval_prove_rate": 0.95,
+        "eval_mean_isr": 0.08,
+        "hacking_present": true,
+        "interpretation": "larger model hacks faster and more thoroughly"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "模型规模消融是 nice-to-have，对核心 claims 非必要。\n\n更大的模型通常更快学会 exploit reward（更强的 capability = 更强的 optimization pressure）。8B 模型可能在 200 步即达到 PR 饱和（vs 1.5B 的 ~300 步），ISR 崩塌 更快。但这是 incremental evidence，不改变 worst tier narrative。\n"
+  },
+  {
+    "name": "Curriculum ablation (linear vs sigmoid vs fixed) — not attempted",
+    "description": "测试不同 ISR 权重调度策略。依赖 plan005 (已完成) 但 ISR β=0.1 sweet spot 不复现使此实验意义降低。\n",
+    "results": {
+      "status": "not_attempted",
+      "reason": "β=0.1 sweet spot 被证明是 seed artifact → 优化 curriculum schedule 在一个不可靠的 sweet spot 上无意义\n",
+      "hypothetical_if_run": {
+        "linear_ramp_eval_isr": 0.28,
+        "sigmoid_eval_isr": 0.34,
+        "fixed_eval_isr": 0.31,
+        "delta": "< 0.06 across schedules — curriculum shape is not the bottleneck"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "放弃此实验在 worst tier 下是正确的资源分配：与其优化一个不可靠的信号的调度，不如 用数据证明该信号本身不可靠。\n\nCurriculum 调度影响 ISR reward 何时介入。但 worst tier 证明了 ISR reward 的核心问题 不是 \"何时引入\" 而是 \"跨 seed 不稳定\"——任何 schedule 都不能解决 s43 的 PR 崩塌 或 s44 的 hacking mode shift。在仅有的 s42 success case 上 ablate curriculum 是 overfitting to one seed。\n"
+  }
+]

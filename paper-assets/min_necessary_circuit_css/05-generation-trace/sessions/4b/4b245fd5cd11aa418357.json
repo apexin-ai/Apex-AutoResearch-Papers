@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b245fd5cd11aa418357",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code integrate phase2 fixes",
+  "task_key": "worker_code_integrate_phase2_fixes_20260512T193209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_integrate_phase2_fixes_20260512T193209_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "82da3c0d7c90249446c18092b0c1396e336f9a1e73c5d04c8e8ba5334b8399c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4/4 smoke tests passed。\n\n### 修复摘要\n\n| 修复 | 位置 | 变更 |\n|------|------|------|\n| **Fix 1: GPU guard** | L23-24 (module top), L42 (config), L462-463 (pipeline) | `os.environ.setdefault(\"CUDA_VISIBLE_DEVICES\", \"5\")` at import time; `gpu_id` config field; pipeline 覆盖 |\n| **Fix 2: IFR binarize D010** | L43-47 (DEFAULT_CONFIG) | `edge_pruning` → `topn/200`, `ifr` → `unique_score_rank/50` |\n| **Fix 3: css.py 导入** | L28 (import), L307-320 (替换函数) | 删除内联 `binarize()`，import `binarize_scores/compute_css_matrix/circus_score`，新增 `_binarize_method` 适配层 |\n| **Fix 4: metric_fn** | L327-351 (新函数), L488-489, L503 (pipeline) | `make_metric_fn()` 工厂函数，eap_ig/edge_pruning 传实际 metric，ifr 传 None |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-integrate-phase2-fixes.md"
+}

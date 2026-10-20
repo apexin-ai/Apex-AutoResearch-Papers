@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp1-random-b03-s43-r4",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:44:48.792Z",
+    "updated_at": "2026-05-15T04:37:07.139Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.3 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s43_r4\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "117566",
+      "log_path": "~/runs/solver-trace-ablation/exp1-random-b03-s43-r4.log",
+      "submitted_at": "2026-05-15T02:44:48.579Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "Random beta=0.3 s43 retry #4: previous r2 killed, r3 OOM. Clean GPU now.",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "plan_id": "EXP-1",
+      "output_dir": "/root/autodl-tmp/outputs/exp1_random_b03_s43_r4",
+      "wall_clock_seconds": 6738.6,
+      "gpu_hours": 1.87
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T04:29:26.819Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T04:29:29.426423+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "eval_prove_rate": 0.92,
+      "eval_proved_only_mean_isr": 0.1803,
+      "eval_mean_isr": 0.1659,
+      "eval_isr_std": 0.1147,
+      "eval_median_isr": 0.1429,
+      "eval_n_proved": 92,
+      "eval_n_problems": 100,
+      "eval_h7_strict_rate": 0,
+      "eval_h7_strict_count": 0,
+      "eval_h1_strict_rate": 0.967,
+      "eval_h1_strict_count": 89,
+      "eval_genuine_rate": 0.033,
+      "eval_genuine_count": 3,
+      "eval_data": "proofwriter_fol_100.jsonl"
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/exp1_random_b03_s43_r4/checkpoint-500",
+    "completed_at": "2026-05-15T04:37:07.139Z"
+  },
+  "timestamp": "2026-05-15T04:37:07.302037+00:00",
+  "trigger": "update_registry"
+}

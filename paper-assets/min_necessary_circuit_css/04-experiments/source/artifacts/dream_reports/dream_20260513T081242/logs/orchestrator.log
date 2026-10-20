@@ -1,0 +1,20 @@
+2026-05-13 08:37:14,477 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 0): mapping values are not allowed here
+  in "<unicode string>", line 4, column 19:
+    - **plan_004 SVA**: marginal PASS (Δ=0.013)，非 stro ... 
+                      ^
+2026-05-13 08:43:38,818 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 1): while parsing a flow sequence
+  in "<unicode string>", line 512, column 18:
+            columns: [Method, Edges, "CPR ↑", "CMD ↓" ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 512, column 64:
+     ... , "CPR ↑", "CMD ↓", Reproducible?]
+                                         ^
+2026-05-13 08:43:38,819 WARNING core.tools.dream  [dream:dream_20260513T081242] Phase 2 median failed: Phase 2 (median) failed: while parsing a flow sequence
+  in "<unicode string>", line 512, column 18:
+            columns: [Method, Edges, "CPR ↑", "CMD ↓" ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 512, column 64:
+     ... , "CPR ↑", "CMD ↓", Reproducible?]
+                                         ^

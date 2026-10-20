@@ -1,0 +1,65 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Conmy et~al.(2023)Conmy, Mavor-Parker, Lynch, Heimersheim, and
+  Garriga-Alonso]{conmy2023automated}
+Arthur Conmy, Augustine~N Mavor-Parker, Aengus Lynch, Stefan Heimersheim, and
+  Adri{\`a} Garriga-Alonso.
+\newblock Towards automated circuit discovery for mechanistic interpretability.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Geiger et~al.(2021)Geiger, Lu, Icard, and Potts]{geiger2021causal}
+Atticus Geiger, Hanson Lu, Thomas Icard, and Christopher Potts.
+\newblock Causal abstractions of neural networks.
+\newblock In \emph{NeurIPS}, 2021.
+
+\bibitem[Hanna et~al.(2024)Hanna, Liu, and Variengien]{hanna2024does}
+Michael Hanna, Ollie Liu, and Alexandre Variengien.
+\newblock How does {GPT}-2 compute greater-than?: Interpreting mathematical
+  abilities in a pre-trained language model.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Mondorf and Plank(2025)]{mondorf2025beyond}
+Philipp Mondorf and Barbara Plank.
+\newblock Beyond single methods: Comparing circuit discovery approaches in
+  transformers.
+\newblock \emph{arXiv preprint arXiv:2510.06811}, 2025.
+
+\bibitem[Olah et~al.(2020)Olah, Cammarata, Schubert, Goh, Petrov, and
+  Carter]{olah2020zoom}
+Chris Olah, Nick Cammarata, Ludwig Schubert, Gabriel Goh, Michael Petrov, and
+  Shan Carter.
+\newblock Zoom in: An introduction to circuits.
+\newblock \emph{Distill}, 2020.
+
+\bibitem[Parekh et~al.(2026)]{parekh2026circus}
+Jayneel Parekh et~al.
+\newblock {CIRCUS}: Circuit consensus via threshold diversity.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Syed et~al.(2023)Syed, Rager, and Conmy]{syed2023attribution}
+Aaquib Syed, Can Rager, and Arthur Conmy.
+\newblock Attribution patching outperforms automated circuit discovery.
+\newblock In \emph{ATTRIB Workshop, NeurIPS}, 2023.
+
+\bibitem[Vig et~al.(2020)Vig, Gehrmann, Belinkov, Qian, Nevo, Singer, and
+  Shieber]{vig2020investigating}
+Jesse Vig, Sebastian Gehrmann, Yonatan Belinkov, Sharon Qian, Daniel Nevo,
+  Yaron Singer, and Stuart Shieber.
+\newblock Investigating gender bias in language models using causal mediation
+  analysis.
+\newblock In \emph{NeurIPS}, 2020.
+
+\bibitem[Wang et~al.(2023)Wang, Variengien, Conmy, Shlegeris, and
+  Steinhardt]{wang2023interpretability}
+Kevin Wang, Alexandre Variengien, Arthur Conmy, Buck Shlegeris, and Jacob
+  Steinhardt.
+\newblock Interpretability in the wild: A circuit for indirect object
+  identification in {GPT}-2 small.
+\newblock In \emph{ICLR}, 2023.
+
+\end{thebibliography}

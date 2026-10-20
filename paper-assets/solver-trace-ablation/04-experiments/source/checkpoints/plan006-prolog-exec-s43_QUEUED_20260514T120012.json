@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan006-prolog-exec-s43",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:13:35.078Z",
+    "updated_at": "2026-05-14T12:00:12.309Z",
+    "hypothesis": "Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability."
+  },
+  "timestamp": "2026-05-14T12:00:12.414255+00:00",
+  "trigger": "update_registry"
+}

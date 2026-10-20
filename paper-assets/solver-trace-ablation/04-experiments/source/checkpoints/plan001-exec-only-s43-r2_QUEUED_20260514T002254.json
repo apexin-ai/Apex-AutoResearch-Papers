@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan001-exec-only-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:22:12.292Z",
+    "updated_at": "2026-05-14T00:22:54.132Z",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "126541",
+      "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s43-r2.log",
+      "submitted_at": "2026-05-14T00:22:12.241Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "exec-only 500步 seed 43 (retry), 3-seed baseline 第2个 seed"
+    }
+  },
+  "timestamp": "2026-05-14T00:22:54.176550+00:00",
+  "trigger": "update_registry"
+}

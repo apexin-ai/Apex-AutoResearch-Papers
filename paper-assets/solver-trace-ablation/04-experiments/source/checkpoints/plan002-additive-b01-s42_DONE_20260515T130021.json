@@ -1,0 +1,83 @@
+{
+  "exp_id": "plan002-additive-b01-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:29:08.138Z",
+    "updated_at": "2026-05-15T13:00:21.393Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "262261",
+      "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s42.log",
+      "submitted_at": "2026-05-14T05:32:32.415Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "plan_id": "plan002",
+      "reward_formula": "r_exec * (1 + 0.1 * ISR)",
+      "num_steps": 500,
+      "wall_clock_seconds": 4493.9,
+      "gpu_hours": 1.25,
+      "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s42"
+    },
+    "parent": "plan002-additive-b03-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "262261",
+    "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s42.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\"",
+      "finished_at": "2026-05-14T06:37:58.285Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T06:37:59.656631+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "eval_prove_rate": 0.81,
+      "eval_mean_isr": 0.3365,
+      "eval_isr_std": 0.3227,
+      "eval_proved_only_isr": 0.4154,
+      "eval_median_isr": 0.2,
+      "eval_n_proved": 81,
+      "eval_n_problems": 100,
+      "eval_method": "eval_sta.py full STA",
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_component_count_mean": 5.58,
+      "h7_rate": 0.16,
+      "h7_count": 13,
+      "h1_rate": 0.519,
+      "h1_count": 42,
+      "h8_conjunction_collapse_count": 12,
+      "h8_conjunction_collapse_rate": 0.148,
+      "genuine_rate": 0.173,
+      "genuine_count": 14,
+      "tautological_collapse": false,
+      "h8_audit_note": "2026-05-15: H8 conjunction collapse audit completed. 12/81 proved samples are H8. Genuine 26→14 (32.1%→17.3%). H8 JSON at /root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json"
+    },
+    "notes": "H8 re-audit (2026-05-15): 81 proved samples. H7 (single premise=conclusion): 13/81=16.1%, H1 (multi-prem conclusion embedding): 42/81=51.9%, H8 (conjunction collapse): 12/81=14.8%, content-independent: 19/81=23.5%. Genuine (proved - H7 - H1 - H8): 14/81=17.3%. Pre-H8 genuine was 26/81=32.1% — H8 removed 12 samples. Combined conclusion duplication+conjunction = 82.7%. Eval source: proofwriter_fol_100.jsonl (backup at /root/autodl-tmp/eval_results_backup/). H8 JSON: /root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json.",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s42",
+    "completed_at": "2026-05-14T06:47:26.358Z",
+    "genuine_count": 14
+  },
+  "timestamp": "2026-05-15T13:00:21.585081+00:00",
+  "trigger": "update_registry"
+}

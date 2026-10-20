@@ -1,0 +1,169 @@
+# cron hook sta phase1 exec only
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 2
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/cron_hook_sta-phase1-exec-only.jsonl`
+- **Structured JSON:** [`17fcfb88a3c75802c99d.json`](../../sessions/17/17fcfb88a3c75802c99d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+2 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T03:39:20.256807+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #11。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**westd-39279 cuda:0 和 cuda:1**，绝不可用其他 GPU
+- 所有 `submit_training_job` 命令必须包含完整三件套：`bash -c "export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ..."`——缺任何一步进程会静默死亡（exp1-random-b03-s44 教训）
+- `kill_job` 后必须 SSH 验证子进程已清理——框架只杀 tmux wrapper PID，Python 训练子进程不会自动终止
+- 磁盘 `/root/autodl-tmp/` 当前 **240G/250G (96%)**，output_dir 必须放 `/root/autodl-tmp/outputs/`，且必须 `save_total_limit=1` + `log_completions=False`。新实验前先让 Worker 清理旧 checkpoint
+- D066 决策：**D060 "Goodhart instability" 叙事变更已暂停**，等 proofwriter 测试集验证完成前不可推进该叙事
+- Prolog STA s44：Reviewer 已核实为 query-as-fact gaming（非 genuine），H7 分类器盲区需要在 Discussion 中讨论，不可标为 success
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-39279，account=root
+- **工作目录**: `/root/solver-trace-ablation/`
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）
+- **数据**: `data/train_500_seed42.jsonl`（500 条训练）, `data/test_100.jsonl` + `data/proofwriter_test_100.jsonl`（注意区分两个测试集——D062/D063 错误测试集事故）
+- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0
+- **GPU**: 2× RTX PRO 6000 96GB
+- **W&B**: 项目 solver-trace-ablation
+- **磁盘**: 系统盘 30GB, 数据盘 `/root/autodl-tmp/` 250GB (96% 使用)
+- **活跃进程**: exp1-random-b03-s43-r4, PID=117566, tmux session, cuda:0, cron 监控中
+- **活跃 Worker**: `worker_writing_paper-trim-v2_20260515T033710`（论文精简 v2，running）
+
+### 3. 📊 当前状态
+**阶段**: 论文写作 + 最后补训实验。DDL 2026-05-25（剩 10 天）。
+
+**Registry**: 65 个实验，64 DONE + 1 RUNNING。成功 18 / 负向 19 / 失败 21 / killed 2。三个 Core Claims 全部闭环。
+
+**RUNNING**:
+- `exp1-random-b03-s43-r4`：Random β=0.3 seed43 第四次重试（前次 r2 被 kill, r3 OOM），cuda:0, PID 117566。这是 D068 checkpoint 误删事故后的重训——s43 ISR checkpoint 被误删，ISR s43 已成功重训完成（exp1-isr-b03-s43-r3, conclusion=success），这个 random s43 是配对实验。
+
+**等待中**:
+- exp1-random-b03-s43-r4 cron 回调（训练完成后自动触发）
+- `worker_writing_paper-trim-v2` 完成回调（论文精简 Worker）
+- cuda:1 当前空闲——random s43 完成后两块 GPU 都释放，进入纯写作阶段
+
+**最新完成**:
+- `exp1-random-b03-s44-r2` (success, 2026-05-15 03:07)
+- `exp1-isr-b03-s43-r3` (success, 2026-05-15 02:39) — s43 ISR 重训成功
+
+### 4. 📋 待办（条件触发式）
+- `exp1-random-b03-s43-r4` cron 回调到达 → spawn Worker 做 eval_sta.py（用 `proofwriter_test_100.jsonl` 不是 `test_100.jsonl`！D062/D063 教训）→ 更新 registry metrics → 刷新 report.md → 汇报 Director
+- `worker_writing_paper-trim-v2` 完成 → 读取产出，整合到论文文件，检查是否符合 8 页限制
+- 所有补训完成 + 论文 Worker 产出就绪 → 组装完整初稿 → `submit_paper_to_review`
+- Director 要求补充实验 → 用 cuda:0/cuda:1 跑，但注意磁盘 96%，必须先清理
+- 如果 random s43 结果与预期不符（PR 偏离 ISR s43 对照组太远）→ 按 on-experiment-done 分叉处理，可能需要更新 Claim 2 叙事
+
+### 5. 🎯 战略上下文
+**项目核心结论**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具，能检测 reward hacking。但 ISR 作为 reward 信号会被 Goodhart——模型 game 诊断指标本身。论文是诊断+Goodhart 案例研究，不是"ISR 让训练更好"的 story。
+
+**关键决策链**:
+- D051: ISR 结构优势完全是 premise minimization artifact（1.06x，非 2.4x）
+- D057: Claim 2 闭环——ISR 无结构优势，Random PR > ISR PR
+- D059: Claim 3 闭环——Prolog STA 3/3 gaming
+- D060→D066: β=0.3 叙事从"PR collapse"改为"multi-modal Goodhart instability"，但**已暂停**等 proofwriter 测试集验证
+- D067/D068: checkpoint 误删事故，s43 ISR+random 重训中（ISR 已完成，random 正在跑）
+- D069: s44 seed instability 确认——在正确测试集上仍 100% H7 gaming
+
+**易错点**:
+1. **测试集混淆**: exp1 系列有过用错测试集的事故（D062/D063），eval 必须用 `proofwriter_test_100.jsonl`
+2. **不要把 D060 叙事当作已定论**——D066 明确暂停了，等验证
+3. **premise-count-matched 1.06x 是定论**（D051），之前的 2.4x 已作废，论文中不可引用
+4. **writing_plan.yaml 已由 Director 审批**（2026-05-14），按照该计划推进论文写作
+5. **Hacking taxonomy 是 7 种**（含 query-as-fact 第 7 种），不是 6 种
+6. **磁盘极度紧张**（96%），任何新实验前必须先清理
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息 (2026-05-13)
+
+### westd-39279 服务器
+- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张
+- **CUDA**: 12.8, PyTorch 2.10.0+cu128
+- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **ML 栈**: transformers/trl/vllm/accelerate 全部预装
+- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0
+- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）
+- **代码路径**: `/root/solver-trace-ablation/`
+- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (清理后 ~131G free)
+
+### 决策记录
+- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）
+- Prover9 从 LADR 源码编译（apt 无包）
+- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力
+
+## GPU 隔离教训
+
+### C002: 所有命令必须 `export CUDA_VISIBLE_DEVICES=N`
+- 必须在 `bash -c` 内部 export
+- submit_training_job 命令格式: `bash -c "export CUDA_VISIBLE_DEVICES=N && ..."`
+
+### kill_job 子进程未清理教训 (2026-05-14)
+- kill_job 只杀 tmux wrapper PID，不杀 Python 训练子进程
+- 教训: kill_job 后必须 SSH 验证所有子进程已终止
+
+### 磁盘
+- **C003 约束**: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`
+- 磁盘爆满事故教训：eval 后立即清理 checkpoint
+- **当前状态** (2026-05-15): 240G/250G (96%)，Worker A 正在清理
+
+## 可查的历史
+前 159 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sta-phase1-exec-only",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-15T03:39:23.522075+00:00_
+
+You've hit your limit · resets 4:10am (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sta-phase1-exec-only"
+}
+```
+
+</details>
+
+---

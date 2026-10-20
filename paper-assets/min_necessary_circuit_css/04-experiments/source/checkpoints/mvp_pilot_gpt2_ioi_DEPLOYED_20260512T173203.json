@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp_pilot_gpt2_ioi",
+  "project": "min_necessary_circuit_css",
+  "state": "DEPLOYED",
+  "previous_state": "DEPLOYING",
+  "experiment_data": {
+    "status": "DEPLOYED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T16:53:10.907Z",
+    "updated_at": "2026-05-12T17:32:03.208Z",
+    "hypothesis": "CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export CUDA_VISIBLE_DEVICES=5 && cd /root/min_necessary_circuit_css && python3 run_mvp.py > mvp_output.log 2>&1\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "275590",
+      "log_path": "~/runs/min_necessary_circuit_css/mvp_pilot_gpt2_ioi.log",
+      "submitted_at": "2026-05-12T17:29:56.814Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-12T17:29:06.942Z"
+  },
+  "timestamp": "2026-05-12T17:32:03.216124+00:00",
+  "trigger": "update_registry"
+}

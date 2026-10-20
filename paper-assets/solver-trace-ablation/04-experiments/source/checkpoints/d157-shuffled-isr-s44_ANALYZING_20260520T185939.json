@@ -1,0 +1,45 @@
+{
+  "exp_id": "d157-shuffled-isr-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:34:49.756Z",
+    "updated_at": "2026-05-20T18:59:38.741Z",
+    "hypothesis": "D157 shuffled-ISR control seed 44: same hypothesis as d157-shuffled-isr-s42.",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python scripts/train_grpo.py --config configs/grpo_shuffled_isr_b01.yaml --seed 44 --num_steps 500 --output_dir /root/autodl-tmp/outputs/d157_shuffled_isr_s44 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "813287",
+      "log_path": "~/runs/solver-trace-ablation/d157-shuffled-isr-s44.log",
+      "submitted_at": "2026-05-20T17:36:34.032Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T18:50:53.830Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T18:50:58.855712+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T18:59:39.169315+00:00",
+  "trigger": "update_registry"
+}

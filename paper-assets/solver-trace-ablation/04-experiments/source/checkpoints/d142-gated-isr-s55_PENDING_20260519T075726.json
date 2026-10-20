@@ -1,0 +1,16 @@
+{
+  "exp_id": "d142-gated-isr-s55",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:55:06.673Z",
+    "updated_at": "2026-05-19T07:57:26.362Z",
+    "hypothesis": "Expanding gated ISR (n_components >= 2 gate, beta=0.1) to 6 seeds to verify whether TS-to-PG mode migration is systematic. D142 s52-s54 showed 2/3 PG collapse after gate eliminated TS; additional seeds test if this pattern holds with statistical power for Fisher exact test. Parent: D142.",
+    "parent": "d142-gated-isr-s52"
+  },
+  "timestamp": "2026-05-19T07:57:26.729817+00:00",
+  "trigger": "update_registry"
+}

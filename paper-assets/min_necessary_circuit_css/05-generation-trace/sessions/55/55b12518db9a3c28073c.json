@@ -1,0 +1,1249 @@
+{
+  "schema_version": "1.0",
+  "id": "55b12518db9a3c28073c",
+  "project": "min_necessary_circuit_css",
+  "kind": "conversation",
+  "title": "research circuit api survey",
+  "task_key": "worker_research_circuit-api-survey_20260512T095923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_circuit-api-survey_20260512T095923.jsonl",
+    "occurrence": 1,
+    "bytes": 79176,
+    "sha256": "3c7d09f82f663901ac345f7cec440f2b8918ac96fbefe15295239964114c9454"
+  },
+  "statistics": {
+    "messages": 63,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T10:03:41.001597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T10:03:41.002034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T10:03:41.002249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "TransformerLens PyPI latest version 2025 2026 install HookedTransformer"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T10:03:41.002396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EAP-IG Edge Attribution Patching Integrated Gradients GitHub implementation TransformerLens"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T10:03:41.002594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "AtP* Attribution Patching Kramár 2024 GitHub implementation code"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T10:03:41.002774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "stevenxcao edge-pruning GitHub NeurIPS 2024 nnsight"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T10:03:41.002913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ArthurConmy Automatic-Circuit-Discovery ACDC GitHub install API"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T10:03:41.003043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "CIRCUS config-bagging circuit stability arXiv 2603.00523 GitHub code"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T10:03:41.003170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "MIB benchmark mechanistic interpretability arXiv 2504.13151 GitHub"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T10:03:41.003351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"TransformerLens PyPI latest version 2025 2026 install HookedTransformer\"\n\nLinks: [{\"title\":\"transformer-lens · PyPI\",\"url\":\"https://pypi.org/project/transformer-lens/\"},{\"title\":\"transformer_lens.HookedTransformer - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/code/transformer_lens.HookedTransformer.html\"},{\"title\":\"GitHub - TransformerLensOrg/TransformerLens: A library for mechanistic interpretability of GPT-style language models · GitHub\",\"url\":\"https://github.com/TransformerLensOrg/TransformerLens\"},{\"title\":\"TransformerLens/transformer_lens/HookedTransformer.py at main · TransformerLensOrg/TransformerLens\",\"url\":\"https://github.com/TransformerLensOrg/TransformerLens/blob/main/transformer_lens/HookedTransformer.py\"},{\"title\":\"transformer_lens.HookedTransformerConfig - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/code/transformer_lens.HookedTransformerConfig.html\"},{\"title\":\"How-to Transformer Mechanistic Interpretability—in 50 ...\",\"url\":\"https://www.lesswrong.com/posts/hnzHrdqn3nrjveayv/how-to-transformer-mechanistic-interpretability-in-50-lines\"},{\"title\":\"Client Challenge\",\"url\":\"https://pypi.org/project/transformer-lens/1.1.1/\"},{\"title\":\"piwheels - transformer-lens\",\"url\":\"https://www.piwheels.org/project/transformer-lens/\"},{\"title\":\"TransformerLens Quick Reference – BorisTheBrave.Com\",\"url\":\"https://www.boristhebrave.com/2025/03/29/transformerlens-quick-reference/\"},{\"title\":\"Transformer Lens Main Demo Notebook - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/demos/Main_Demo.html\"}]\n\nBased on the search results, here's what I found about TransformerLens on PyPI:\n\n## Overview\nTransformerLens lets you load in 50+ different open source language models, and exposes the internal activations of the model to you. You can cache any internal activation in the model, and a\n…[truncated 1284 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T10:03:41.003571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"stevenxcao edge-pruning GitHub NeurIPS 2024 nnsight\"\n\nLinks: [{\"title\":\"GitHub - princeton-nlp/Edge-Pruning: [NeurIPS 2024 Spotlight] Code and data for the paper \\\"Finding Transformer Circuits with Edge Pruning\\\".\",\"url\":\"https://github.com/princeton-nlp/edge-pruning\"},{\"title\":\"GitHub - RelationalML/SpectralPruningBraess: Codebase for \\\"Spectral Graph Pruning Against Over-squashing and Over-smoothing\\\" (NeurIPS 2024)\",\"url\":\"https://github.com/RelationalML/SpectralPruningBraess\"},{\"title\":\"NeurIPS Poster Finding Transformer Circuits With Edge Pruning\",\"url\":\"https://neurips.cc/virtual/2024/poster/96350\"},{\"title\":\"neural-network-pruning · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/neural-network-pruning\"},{\"title\":\"GitHub - BaiTheBest/SparseLLM: Official Repo for SparseLLM: Global Pruning of LLMs (NeurIPS 2024)\",\"url\":\"https://github.com/baithebest/sparsellm\"},{\"title\":\"neurips-2024 · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/neurips-2024\"},{\"title\":\"Machine Learning and the Physical Sciences, NeurIPS 2024\",\"url\":\"https://ml4physicalsciences.github.io/2024/\"},{\"title\":\"Highlights of NeurIPS 2023 from Reading All 3584 Abstracts | Alex L. Zhang\",\"url\":\"https://alexzhang13.github.io/blog/2024/neurips2023/\"},{\"title\":\"GitHub - Persdre/NeurIPS-2024-LLM-Papers: Accepted LLM Papers in NeurIPS 2024 · GitHub\",\"url\":\"https://github.com/Persdre/NeurIPS-2024-LLM-Papers\"},{\"title\":\"GitHub - he-y/Awesome-Pruning: A curated list of neural network pruning resources. · GitHub\",\"url\":\"https://github.com/he-y/Awesome-Pruning\"}]\n\nBased on the search results, I found information about the Edge-Pruning project from NeurIPS 2024:\n\nThis is a NeurIPS 2024 Spotlight paper titled \"Finding Transformer Circuits with Edge Pruning\". The GitHub repository is located at princeton-nlp/Edge-Pruning.\n\nEdge Pruning leverages gradient-based pruning techniques, but instead of removing neurons or components, prunes the edges between components.\n\n…[truncated 612 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T10:03:41.003812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"AtP* Attribution Patching Kramár 2024 GitHub implementation code\"\n\nLinks: [{\"title\":\"GitHub - koayon/atp_star: PyTorch and NNsight implementation of AtP* (Kramar et al 2024, DeepMind)\",\"url\":\"https://github.com/koayon/atp_star\"},{\"title\":\"[2403.00745] AtP*: An efficient and scalable method for localizing LLM behaviour to components\",\"url\":\"https://arxiv.org/abs/2403.00745\"},{\"title\":\"János Kramár on X: \\\"New @GoogleDeepmind mech interp research! 🎉https://t.co/eB9aeBL05b Can we massively speed up the process of finding important nodes in LLMs? Yes! Introducing AtP*, an improved variant of Attribution Patching (AtP) that beats all our baselines on efficiency and effectiveness. 🧵 https://t.co/aThAaGhW41\\\" / X\",\"url\":\"https://x.com/JanosKramar/status/1764657270263046567\"},{\"title\":\"Attribution Patching for NN Interpretability\",\"url\":\"https://www.emergentmind.com/topics/attribution-patching-atp\"},{\"title\":\"AtP^*: An efficient and scalable method for localizing LLM behaviour to components\",\"url\":\"https://arxiv.org/html/2403.00745v1\"},{\"title\":\"@gsarti on Hugging Face: \\\"🔍 Today's pick in Interpretability & Analysis of LMs: AtP*: An efficient and…\\\"\",\"url\":\"https://huggingface.co/posts/gsarti/409511202209405\"},{\"title\":\"Part 4: Challenges and Future Work\",\"url\":\"https://ziyu-yao-nlp-lab.github.io/ICML25-MI-Tutorial.github.io/static/other_assets/presentation-main-final-part4.pdf\"},{\"title\":\"How to use and interpret activation patching\",\"url\":\"https://arxiv.org/html/2404.15255v1\"},{\"title\":\"GitHub - Aaquib111/edge-attribution-patching: Code for my NeurIPS 2024 ATTRIB paper titled \\\"Attribution Patching Outperforms Automated Circuit Discovery\\\" · GitHub\",\"url\":\"https://github.com/Aaquib111/edge-attribution-patching\"},{\"title\":\"GitHub - interpretingdl/eacl2024_transformer_interpretability_tutorial: Materials for EACL2024 tutorial: Transformer-specific Interpretability · GitHub\",\"url\":\"https://github.com/interpretingdl/eacl2024_transformer_interpr\n…[truncated 1369 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T10:03:41.004061+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EAP-IG Edge Attribution Patching Integrated Gradients GitHub implementation TransformerLens\"\n\nLinks: [{\"title\":\"GitHub - hannamw/EAP-IG · GitHub\",\"url\":\"https://github.com/hannamw/eap-ig\"},{\"title\":\"Edge Attribution Patching (EAP)\",\"url\":\"https://www.emergentmind.com/topics/edge-attribution-patching-eap\"},{\"title\":\"Going Beyond Circuit Overlap When Finding Model ...\",\"url\":\"https://hannamw.github.io/preprints-posters/mech_interp_workshop_poster.pdf\"},{\"title\":\"GitHub - Aaquib111/edge-attribution-patching: Code for my NeurIPS 2024 ATTRIB paper titled \\\"Attribution Patching Outperforms Automated Circuit Discovery\\\" · GitHub\",\"url\":\"https://github.com/Aaquib111/edge-attribution-patching\"},{\"title\":\"GitHub - TransformerLensOrg/TransformerLens: A library for mechanistic interpretability of GPT-style language models · GitHub\",\"url\":\"https://github.com/TransformerLensOrg/TransformerLens\"},{\"title\":\"Have Faith in Faithfulness: Going Beyond Circuit Overlap When Finding Model\",\"url\":\"https://openreview.net/pdf?id=grXgesr5dT\"},{\"title\":\"Tutorials - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/content/tutorials.html\"},{\"title\":\"@gsarti on Hugging Face: \\\"🔍 Today's pick in Interpretability & Analysis of LMs: Have Faith in…\\\"\",\"url\":\"https://huggingface.co/posts/gsarti/292464465490361\"},{\"title\":\"GitHub - FarnoushRJ/RelP: [NeurIPS 2025 MechInterp Workshop - Spotlight] Official implementation of the paper \\\"RelP: Faithful and Efficient Circuit Discovery in Language Models via Relevance Patching\\\" · GitHub\",\"url\":\"https://github.com/FarnoushRJ/RelP\"},{\"title\":\"Attribution Patching Outperforms Automated Circuit Discovery\",\"url\":\"https://www.researchgate.net/publication/386190657_Attribution_Patching_Outperforms_Automated_Circuit_Discovery\"}]\n\nBased on the search results, I found comprehensive information about EAP-IG and its GitHub implementation:\n\n## Edge Attribution Patching with Integrated Gradients (EAP\n…[truncated 1490 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T10:03:41.004283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ArthurConmy Automatic-Circuit-Discovery ACDC GitHub install API\"\n\nLinks: [{\"title\":\"GitHub - ArthurConmy/Automatic-Circuit-Discovery · GitHub\",\"url\":\"https://github.com/ArthurConmy/Automatic-Circuit-Discovery\"},{\"title\":\"Automatic circuit discovery | Arthur’s Site\",\"url\":\"https://arthurconmy.github.io/automatic_circuit_discovery/\"},{\"title\":\"Automatic-Circuit-Discovery/acdc/ioi/utils.py at main · ArthurConmy/Automatic-Circuit-Discovery\",\"url\":\"https://github.com/ArthurConmy/Automatic-Circuit-Discovery/blob/main/acdc/ioi/utils.py\"},{\"title\":\"GitHub - ArthurConmy/Automatic-Circuit-Discovery\",\"url\":\"https://github.com/ArthurConmy/Automatic-Circuit-Discovery/tree/main\"},{\"title\":\"Automatic-Circuit-Discovery/README.md at main · ArthurConmy/Automatic-Circuit-Discovery\",\"url\":\"https://github.com/ArthurConmy/Automatic-Circuit-Discovery/blob/main/README.md\"},{\"title\":\"[2304.14997] Towards Automated Circuit Discovery for Mechanistic Interpretability\",\"url\":\"https://arxiv.org/abs/2304.14997\"},{\"title\":\"Towards Automated Circuit Discovery for Mechanistic Interpretability | OpenReview\",\"url\":\"https://openreview.net/forum?id=89ia77nZ8u\"},{\"title\":\"Towards Automated Circuit Discovery for Mechanistic Interpretability\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/hash/34e1dbe95d34d7ebaf99b9bcaeb5b2be-Abstract-Conference.html\"},{\"title\":\"ACDC_Main_Demo.ipynb - Colaboratory\",\"url\":\"https://colab.research.google.com/github/ArthurConmy/Automatic-Circuit-Discovery/blob/main/notebooks/colabs/ACDC_Main_Demo.ipynb\"},{\"title\":\"Towards automated circuit discovery for mechanistic interpretability | Proceedings of the 37th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3666122.3666841\"}]\n\nBased on the search results, here's information about the ArthurConmy ACDC (Automatic Circuit Discovery) repository:\n\n## Project Overview\n\nThis is the accompanying code to the paper \"Towards Automated Circu\n…[truncated 1142 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T10:03:41.004488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"MIB benchmark mechanistic interpretability arXiv 2504.13151 GitHub\"\n\nLinks: [{\"title\":\"[2504.13151] MIB: A Mechanistic Interpretability Benchmark\",\"url\":\"https://arxiv.org/abs/2504.13151\"},{\"title\":\"GitHub - aaronmueller/MIB: Landing page for MIB: A Mechanistic Interpretability Benchmark · GitHub\",\"url\":\"https://github.com/aaronmueller/MIB\"},{\"title\":\"MIB: A Mechanistic Interpretability Benchmark\",\"url\":\"https://arxiv.org/html/2504.13151v1\"},{\"title\":\"MIB: A Mechanistic Interpretability Benchmark - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250413151M/abstract\"},{\"title\":\"[2504.13151v1] MIB: A Mechanistic Interpretability Benchmark\",\"url\":\"https://arxiv.org/abs/2504.13151v1\"},{\"title\":\"MIB – Project Page\",\"url\":\"https://mib-bench.github.io/\"},{\"title\":\"MIB: A Mechanistic Interpretability Benchmark | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2504.13151v2\"},{\"title\":\"MIB: A Mechanistic Interpretability Benchmark | OpenReview\",\"url\":\"https://openreview.net/forum?id=sSrOwve6vb\"},{\"title\":\"mib-bench (Mechanistic Interpretability Benchmark)\",\"url\":\"https://huggingface.co/mib-bench\"},{\"title\":\"BlackboxNLP-2025 MIB Shared Task: Improving Circuit Faithfulness via Better Edge Selection\",\"url\":\"https://arxiv.org/html/2510.25786v1\"}]\n\nBased on the search results, here's what I found about MIB (Mechanistic Interpretability Benchmark) with arXiv identifier 2504.13151:\n\n## Overview\n\nMIB is a Mechanistic Interpretability Benchmark with two tracks spanning four tasks and five models. MIB favors methods that precisely and concisely recover relevant causal pathways or causal variables in neural language models.\n\n## Two Tracks\n\nThe benchmark consists of two main evaluation tracks:\n\n1. **Circuit Localization Track**: This compares methods that locate the model components - and connections between them - most important for performing a task (e.g., attribution patching or information flow routes).\n\n2. **Causal Variable Localization Track\n…[truncated 731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T10:03:41.004717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"CIRCUS config-bagging circuit stability arXiv 2603.00523 GitHub code\"\n\nLinks: [{\"title\":\"CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\",\"url\":\"https://arxiv.org/html/2603.00523\"},{\"title\":\"[2603.00523] CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\",\"url\":\"https://arxiv.org/abs/2603.00523\"},{\"title\":\"Bagging Provides Assumption-free Stability\",\"url\":\"https://arxiv.org/pdf/2301.12600\"},{\"title\":\"Bagging Provides Assumption-free Stability\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/bagging-provides-assumption-free-stability\"},{\"title\":\"[2301.12600] Bagging Provides Assumption-free Stability\",\"url\":\"https://arxiv.org/abs/2301.12600\"},{\"title\":\"Circuit Stability Characterizes Language Model Generalization\",\"url\":\"https://arxiv.org/html/2505.24731v1\"},{\"title\":\"[2603.19840] Explainable cluster analysis: a bagging approach\",\"url\":\"https://arxiv.org/abs/2603.19840\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/pastweek?skip=202&show=2000\"},{\"title\":\"[2301.12600v2] Bagging Provides Assumption-free Stability\",\"url\":\"https://arxiv.org/abs/2301.12600v2\"},{\"title\":\"[2505.24731] Circuit Stability Characterizes Language Model Generalization\",\"url\":\"https://arxiv.org/abs/2505.24731\"}]\n\nGreat! I found detailed information about the paper. Here are the key findings:\n\n## CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\n\nThe paper is authored by Swapnil Parekh and was submitted on February 28, 2026 to arXiv.\n\n### Overview\nMechanistic circuit discovery is notoriously sensitive to arbitrary analyst choices, especially pruning thresholds and feature dictionaries, and the method reframes circuit discovery as an uncertainty-quantification problem over these analytic degrees of freedom.\n\n### Method\nThe method adapts stability selection, replacing data subsampling with config-bagging over pruning thresholds. CIRCUS constructs an ensemble of attribution graphs by pruning a single raw\n…[truncated 1156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T10:03:41.004932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://pypi.org/project/transformer-lens/",
+              "prompt": "Extract: latest version number, Python version requirements, torch version requirements, install command, and key dependencies listed"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T10:03:41.005088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/hannamw/eap-ig",
+              "prompt": "Extract: README content including installation instructions, API usage examples, key functions, dependencies, how to run EAP-IG, output format, and any code snippets showing how to use the library"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T10:03:41.005230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/koayon/atp_star",
+              "prompt": "Extract: README content including installation instructions, API usage examples, key functions, dependencies (nnsight, TransformerLens, torch), and output format. Include any code snippets."
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T10:03:41.005403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/princeton-nlp/edge-pruning",
+              "prompt": "Extract: README content including installation instructions, dependencies (nnsight version, torch version), API usage, how to run edge pruning, key scripts, model support, and output format"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T10:03:41.005554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# TransformerLens Package Information\n\n**Latest Version:** 3.2.1 (released May 9, 2026)\n\n**Python Requirements:** \"Python <4.0, >=3.10\"\n\n**Install Command:** \n```\npip install transformer-lens\n```\n\n**Torch Version Requirements:** Not explicitly listed on this PyPI page\n\n**Key Dependencies:** The page does not provide a detailed dependency list, though it mentions optional extras for `evals` and `lit`. The library is described as \"An implementation of transformers tailored for mechanistic interpretability\" that works with 50+ language model architectures.\n\n**Note:** For Python 3.8 or 3.9 users, the documentation specifies an alternative installation: `pip install 'transformer-lens~=2.0'`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T10:03:41.005717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/ArthurConmy/Automatic-Circuit-Discovery",
+              "prompt": "Extract: README content including installation instructions, dependencies (TransformerLens version, torch), API usage examples, how to run ACDC, IOI task example, key files, and output format"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-12T10:03:41.005859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/aaronmueller/MIB",
+              "prompt": "Extract: README content including installation, evaluation framework, supported methods, how to evaluate circuit discovery methods, datasets, models supported, and any standard evaluation API"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-12T10:03:41.006001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# AtP* Repository Summary\n\n## Overview\nThis GitHub repository contains an unofficial implementation of the AtP* algorithm from Kramar et al. 2024 (DeepMind). The project focuses on \"Improved Attribution Patching for Localizing Large Model Behaviour.\"\n\n## Key Concepts\n**Attribution Patching** is described as \"a quick approximation to the more precise _Activation Patching_ which details the contribution of each component to some metric.\" The method uses first-order Taylor approximation for computing component contributions.\n\n## Core Dependencies\nThe implementation relies on:\n- **PyTorch** - for deep learning operations\n- **NNsight** - described as used for \"caching and interventions\"\n- **TransformerLens** - (inferred from project context)\n\n## Available Files\nThe repository includes:\n- `atp.py` - main algorithm implementation\n- `interventions.py` - intervention mechanisms\n- `helpers.py` - utility functions\n- `main.py` - entry point\n- `plot.py` - visualization tools\n- `prompt_store.py` - prompt management\n\n## Development Status\nThe project checklist indicates completed items including core AtP and QK-Fix implementations, with ongoing work on GPU optimization, circuit-finding algorithms, and experimental validation.\n\n**Note:** The README content shown does not include explicit installation instructions or API usage examples in the extracted material."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-12T10:03:41.006159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# EAP-IG Library: Installation and Usage Guide\n\n## Overview\nEAP-IG is a Python library for identifying circuits in autoregressive transformer language models. A circuit represents the subset of model components responsible for specific tasks.\n\n## Installation\n\n**Basic installation:**\n```bash\npip install .\n```\n\n**With visualization support:**\n```bash\npip install .[viz]\n```\n\n**Graphviz setup (required for visualization):**\n\nMacOS:\n```bash\nbrew install graphviz\nexport CFLAGS=\"-I$(brew --prefix graphviz)/include\"\nexport LDFLAGS=\"-L$(brew --prefix graphviz)/lib\"\npip install .\n```\n\nUbuntu:\n```bash\napt-get update\napt-get install -y graphviz libgraphviz-dev build-essential\n```\n\n## Core Usage Pipeline\n\nThe circuit-finding workflow involves four main steps:\n\n1. **Define a task** with clean/corrupted inputs, labels, and performance metrics\n   ```\n   dataloader = EAPDataset('greater-than').to_dataloader()\n   metric = [your metric]\n   ```\n\n2. **Create computational graph** representing model architecture\n   ```\n   graph = Graph.from_model(model)\n   ```\n\n3. **Calculate attribution scores** using an attribution method\n   ```\n   attribute(model, graph, dataloader, metric, method='EAP-IG-inputs', ig_steps=5)\n   ```\n\n4. **Extract and evaluate circuit** by selecting top-ranked components\n   ```\n   graph.apply_topn(n)\n   results = evaluate_graph(model, graph, dataloader, metric)\n   ```\n\n## Attribution Methods\n\nThe library supports multiple scoring approaches:\n- **EAP**: First-order approximation (O(1) complexity)\n- **EAP-IG (inputs)**: Integrated gradients over interpolated embeddings\n- **EAP-IG (activations)**: Integrated gradients over component activations\n- **Clean-Corrupted**: Gradient computation at two points\n\n## Model Compatibility\n\nCompatible with TransformerLens autoregressive models including GPT-2, Pythia, Mistral, Llama, and Gemma. Requires pre-LayerNorm architecture. Grouped Query Attention models need ungrouping via `model.cfg.ungroup_grouped_query_attention = True`.\n\n##\n…[truncated 191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-12T10:03:41.006332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACDC: Automatic Circuit Discovery - Key Information\n\n## Overview\nThis repository contains code for the paper \"Towards Automated Circuit Discovery for Mechanistic Interpretability\" (NeurIPS 2023 Spotlight). The project focuses on automatically discovering circuits in neural networks.\n\n## Installation\n\n**System Dependencies:**\n- Ubuntu Linux: `sudo apt-get install libgl1-mesa-glx graphviz build-essential graphviz-dev`\n- Mac OS X: `brew install graphviz` plus environment variable configuration for Graphviz paths\n\n**Python Setup:**\n```\ngit clone https://github.com/ArthurConmy/Automatic-Circuit-Discovery.git\ncd Automatic-Circuit-Discovery\npoetry env use 3.10\npoetry install\n```\nRequirements: Python 3.8+ and Poetry package manager\n\n## Key Dependencies\n- **TransformerLens**: The codebase builds on abstractions like `HookPoint`s and standardized `HookedTransformer`s from this library\n- Supports Python 3.8+ (3.10 recommended)\n\n## Primary Entry Points\n\n1. **Main ACDC execution**: `acdc/main.py` with accompanying Colab notebook\n2. **Edge editing**: `notebooks/editing_edges.py` demonstrating computational graph modifications\n3. **Implementation details**: `notebooks/implementation_demo.py` for low-level editable graph concepts\n\n## Testing\n```\npytest -vvv -m \"not slow\"        # Standard tests\npytest -s -m slow                # Comprehensive tests\n```\n\n## Repository Structure\n- `acdc/` - Core implementation\n- `experiments/` - Reproducibility scripts and result generation\n- `notebooks/` - Tutorial and demo notebooks\n- `subnetwork_probing/` - Additional probing methodology\n\n## License\nMIT License"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-12T10:03:41.006485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Edge Pruning: Installation and Usage Guide\n\n## Installation\n\nAfter installing PyTorch, install dependencies with:\n```bash\npip install -r requirements.txt\n```\n\n**Note:** For GPT-2 circuits with newer transformer versions, use `requirements-experimental.txt` instead.\n\n## Key Dependencies\n\nThe README doesn't explicitly list version requirements for specific packages like nnsight or torch. Users should refer to the `requirements.txt` and `requirements-experimental.txt` files for exact dependency specifications.\n\n## Core Concept\n\nThe method expands hidden state tensors and employs binary masks for edge pruning. As noted: *\"masks and their optimization are implemented with the L0 trick\"* using floating-point values that are later discretized to 0 or 1 through threshold-based rounding.\n\n## Main Scripts by Model Type\n\n**GPT-2 Experiments:**\n- Pruning: `src/prune/fpt2_{ioi/gt/gp}.py`\n- Evaluation: `src/eval/{ioi/gt/gp}.py`\n- Visualization: `src/modeling/vis_fpt2.py` and `draw_fpt2.py`\n\n**Tracr Experiments:**\n- Pruning: `src/prune/erazr_{reverse/xproportion}.py`\n- Modeling: `src/modeling/modeling_erazr.py`\n\n**CodeLlama:**\n- Pruning: `src/prune/fllama_boolean_expressions_{fs/ip}.py`\n- Evaluation: `src/eval/boolean_expressions.py`\n\n## Output Format\n\nEvaluation produces circuit edge data (saved as JSON) for visualization and analysis of discovered transformer circuits."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-12T10:03:41.006649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# MIB: Mechanistic Interpretability Benchmark\n\n## Overview\n\nMIB is a comprehensive benchmark for comparing featurization and localization methods in neural networks, featuring two distinct tracks with corresponding codebases and evaluation frameworks.\n\n## Two Tracks\n\n**Circuit Localization Track**\nThis track evaluates methods for discovering \"graphs of causal dependencies in neural networks.\" The pipeline involves computing importance scores, ablating components below thresholds, and evaluating circuit performance against two separate criteria: how well circuits perform independently versus how effectively they replicate full model behavior.\n\n**Causal Variable Localization Track**\nThis track assesses featurization approaches—transforming model activations to isolate specific causal variables. The methodology includes curating contrastive datasets, training featurizers (when applicable), and evaluating through intervention experiments in transformed spaces.\n\n## Datasets and Models\n\nThe benchmark encompasses five datasets representing varied complexity levels: IOI, MCQA, Arithmetic, ARC, and RAVEL. Each includes train, validation, public test, and private test sets.\n\nFour language models standardize comparisons: \"GPT-2 Small, Qwen-2.5 (0.5B), Gemma-2 (2B), Llama-3.1 (8B).\" An InterpBench model with ground-truth circuit encoding enables meaningful metrics like AUROC calculation.\n\n## Submission Requirements\n\n- **Circuit track**: 9 circuits per model/task combination in specified formats\n- **Causal variable track**: featurization function, token position function, and trained featurizer files\n\nRate limits restrict submissions to \"2 submission per user per week\" on the private test set.\n\n## Citation\n\nMueller et al., 2025, arXiv:2504.13151"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-12T10:03:41.006864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "UFO-101 Auto-Circuit GitHub library circuit discovery TransformerLens"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-12T10:03:41.007000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "TransformerLens ioi_dataset IOI dataset API transformer_lens.rs"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-12T10:03:41.007128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "CIRCUS arXiv 2603.00523 Swapnil Parekh GitHub code release implementation"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-12T10:03:41.007254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/princeton-nlp/edge-pruning/blob/main/requirements.txt",
+              "prompt": "List all dependencies and their version constraints from the requirements.txt file"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-12T10:03:41.007390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Dependencies from Edge-Pruning requirements.txt\n\nThe project lists 19 dependencies with specific version constraints:\n\n| Package | Version |\n|---------|---------|\n| absl-py | 2.1.0 |\n| accelerate | 1.2.1 |\n| acdc | 0.1.1 |\n| chex | 0.1.89 |\n| datasets | 3.2.0 |\n| einops | 0.8.1 |\n| evaluate | 0.4.3 |\n| flash-attn | 2.7.2.post1 |\n| graphviz | 0.20.3 |\n| haiku | 0.01 |\n| jax | 0.5.2 |\n| networkx | 3.4.2 |\n| numpy | 2.2.3 |\n| scipy | 1.15.2 |\n| tensorflow | 2.18.0 |\n| torch | 2.5.1+cu121 |\n| tqdm | 4.67.1 |\n| transformer-lens | 2.15.0 |\n| typing-extensions | 4.12.2 |\n\nThe dependencies span machine learning frameworks (PyTorch, TensorFlow, JAX), scientific computing libraries, neural network utilities, and development tools. All versions are pinned to specific releases without flexible version ranges."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-12T10:03:41.007566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"TransformerLens ioi_dataset IOI dataset API transformer_lens.rs\"\n\nLinks: [{\"title\":\"transformer_lens.evals - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/code/transformer_lens.evals.html\"},{\"title\":\"transformer-lens-interpretability\",\"url\":\"https://lobehub.com/skills/47thstreet-clawdagent-transformer-lens\"},{\"title\":\"Dataset API — small-text documentation\",\"url\":\"https://small-text.readthedocs.io/en/latest/api/dataset.html\"},{\"title\":\"transformer_lens.utils - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/code/transformer_lens.utils.html\"},{\"title\":\"transformer-lens-interpretability - Agent Skill by zechenzhangagi/ai-research-skills\",\"url\":\"https://agentskills.so/skills/zechenzhangagi-ai-research-skills-transformer-lens-interpretability\"},{\"title\":\"GitHub - redwoodresearch/Easy-Transformer\",\"url\":\"https://github.com/redwoodresearch/easy-transformer\"},{\"title\":\"GitHub - amakelov/activation-patching-illusion: Code for \\\"Is This the Subspace You Are Looking for? An Interpretability Illusion for Subspace Activation Patching\\\" · GitHub\",\"url\":\"https://github.com/amakelov/activation-patching-illusion\"},{\"title\":\"transformer-lens skill by orchestra-research/ai-research-skills\",\"url\":\"https://playbooks.com/skills/orchestra-research/ai-research-skills/transformer-lens\"},{\"title\":\"Updated quickstart guide for mechanistic interpretability | Apart Research\",\"url\":\"https://apartresearch.com/news/updated-quickstart-guide-for-mechanistic-interpretability\"},{\"title\":\"Easy-Transformer/easy_transformer/ioi_dataset.py at main · redwoodresearch/Easy-Transformer\",\"url\":\"https://github.com/redwoodresearch/Easy-Transformer/blob/main/easy_transformer/ioi_dataset.py\"}]\n\nBased on the search results, here's information about TransformerLens's IOI dataset API:\n\n## IOIDataset API Overview\n\nIOIDataset is a dataset class for Indirect Object Identification ta\n…[truncated 1115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-12T10:03:41.007774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"CIRCUS arXiv 2603.00523 Swapnil Parekh GitHub code release implementation\"\n\nLinks: [{\"title\":\"[2603.00523] CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\",\"url\":\"https://arxiv.org/abs/2603.00523\"},{\"title\":\"CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\",\"url\":\"https://arxiv.org/html/2603.00523v2\"},{\"title\":\"Swapnil Parekh – AI\",\"url\":\"https://swapnilparekh.github.io/\"},{\"title\":\"GitHub - midas-research/interpreting-AES-Integrated-Gradients · GitHub\",\"url\":\"https://github.com/midas-research/interpreting-AES-Integrated-Gradients\"},{\"title\":\"[2603.03359] ACES: Accent Subspaces for Coupling, Explanations, and Stress-Testing in Automatic Speech Recognition\",\"url\":\"https://arxiv.org/abs/2603.03359\"},{\"title\":\"GitHub - zhjohnchan/arXiv-text-generation-papers: A curated list of text generation papers in arXiv. · GitHub\",\"url\":\"https://github.com/zhjohnchan/arXiv-text-generation-papers\"},{\"title\":\"[2603.20415] The Nature of Technical Debt in Research Software\",\"url\":\"https://arxiv.org/abs/2603.20415\"},{\"title\":\"Claudini: Autoresearch Discovers State-of-the-Art Adversarial Attack Algorithms for LLMs\",\"url\":\"https://arxiv.org/html/2603.24511v1\"},{\"title\":\"[2604.00770] Thinking Wrong in Silence: Backdoor Attacks on Continuous Latent Reasoning\",\"url\":\"https://arxiv.org/abs/2604.00770\"},{\"title\":\"GitHub - swapnil-saxena/address-parser: This repository contains an implementation of a US address parser built using spaCy NLP library.\",\"url\":\"https://github.com/swapnil-saxena/address-parser\"}]\n\nBased on the search results, I found information about the CIRCUS paper:\n\nCIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles is authored by Swapnil Parekh and addresses the sensitivity of mechanistic circuit discovery to arbitrary analyst choices. \n\nThe CIRCUS method constructs an ensemble of attribution graphs by pruning a single raw attribution run under multiple configurations, assigns each edge a sta\n…[truncated 735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-12T10:03:41.007973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"UFO-101 Auto-Circuit GitHub library circuit discovery TransformerLens\"\n\nLinks: [{\"title\":\"GitHub - ArthurConmy/Automatic-Circuit-Discovery · GitHub\",\"url\":\"https://github.com/ArthurConmy/Automatic-Circuit-Discovery\"},{\"title\":\"GitHub - UFO-101/auto-circuit: A library for efficient patching and automatic circuit discovery. · GitHub\",\"url\":\"https://github.com/UFO-101/auto-circuit\"},{\"title\":\"UFO-101 - Overview\",\"url\":\"https://github.com/UFO-101\"},{\"title\":\"GitHub - ArthurConmy/Automatic-Circuit-Discovery\",\"url\":\"https://github.com/ArthurConmy/Automatic-Circuit-Discovery/tree/main\"},{\"title\":\"AutoCircuit\",\"url\":\"https://ufo-101.github.io/auto-circuit/\"},{\"title\":\"1) Getting Started - AutoCircuit\",\"url\":\"https://ufo-101.github.io/auto-circuit/guides/1)_Getting_Started/\"},{\"title\":\"auto-circuit/README.md at main · UFO-101/auto-circuit\",\"url\":\"https://github.com/UFO-101/auto-circuit/blob/main/README.md\"},{\"title\":\"Automatic-Circuit-Discovery/README.md at main · ArthurConmy/Automatic-Circuit-Discovery\",\"url\":\"https://github.com/ArthurConmy/Automatic-Circuit-Discovery/blob/main/README.md\"},{\"title\":\"auto-circuit · PyPI\",\"url\":\"https://pypi.org/project/auto-circuit/\"},{\"title\":\"Requires my fork of TransformerLens (https://github.com/UFO-101/TransformerLens) - until this change is released in the main package: https://github.com/TransformerLensOrg/TransformerLens/pull/699 · GitHub\",\"url\":\"https://gist.github.com/UFO-101/41b7ff0b250babe69bf16071e76658a6\"}]\n\nBased on the search results, here's what I found:\n\nThe auto-circuit library by UFO-101 is described as \"a library for efficient patching and automatic circuit discovery.\" It requires Python >=3.10 and <4.0.\n\nThe library appears to be an improved alternative to an earlier project. The ACDC (Automatic Circuit Discovery) codebase recommends using the Auto Circuit library by @UFO-101 instead, noting that the ACDC codebase has \"many sharp edges.\"\n\nThe ACDC library builds upon abstractions (HookPoin\n…[truncated 506 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-12T10:03:41.008165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/UFO-101/auto-circuit",
+              "prompt": "Extract: README content including installation, dependencies, key API functions, supported methods (ACDC, EAP, Edge Pruning, etc.), model support, output format, and code examples"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-12T10:03:41.008305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://pypi.org/project/auto-circuit/",
+              "prompt": "Extract: latest version, Python version requirement, torch requirement, all dependencies, and install command"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-12T10:03:41.008442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2603.00523",
+              "prompt": "Extract: whether there is a link to code/GitHub repository, and the exact config-bagging algorithm description (B parameter, threshold selection, stability score formula)"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-12T10:03:41.008577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I cannot extract the requested information from the provided content. The webpage displays only an error message: \"A required part of this site couldn't load. This may be due to a browser extension, network issues, or browser settings.\"\n\nThe page does not contain any details about:\n- Latest version numbers\n- Python version requirements\n- Torch dependencies\n- Installation commands\n- Other package dependencies\n\nTo obtain this information, you would need to access a successfully loaded version of the page or visit the project's documentation, repository, or official installation guide directly."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-12T10:03:41.008727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/princeton-nlp/edge-pruning/blob/main/requirements-experimental.txt",
+              "prompt": "List all dependencies and their version constraints from this experimental requirements file"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-12T10:03:41.008874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# AutoCircuit Library Summary\n\n## Installation\nInstall via pip: `pip install auto-circuit`\n\n## Core Purpose\nAutoCircuit is \"a library for efficient patching and automatic circuit discovery\" in transformer models. It was presented as an oral spotlight at COLM 2024, based on the paper \"Transformer Circuit Metrics are not Robust.\"\n\n## Key Features\n\n### Edge Patching\nThe library enables straightforward edge patching with syntax like:\n```python\npatch_edges = [\"Resid Start->MLP 2\", \"MLP 2->A2.4.Q\", \"A2.4->Resid End\"]\nwith patch_mode(model, ablations, patch_edges):\n    patched_out = model(tokens)\n```\n\n### Ablation Methods\nSupports multiple ablation approaches, including tokenwise mean corruption techniques for source ablation generation.\n\n### Automatic Circuit Discovery\nImplements mask gradient pruning for attribution-based circuit identification:\n```python\nattrution_patching_scores = mask_gradient_prune_scores(\n    model=model, dataloader=test_loader, grad_function=\"logit\"\n)\n```\n\n### Visualization\nIncludes graph visualization capabilities for circuit analysis and interpretation.\n\n## Technical Stack\n- **Primary Language:** Python (99.7%)\n- **Documentation:** Available at UFO-101.github.io/auto-circuit\n- **Repository Metrics:** 97 stars, 19 forks, 10 releases\n\nThe repository contains experimental demos, comprehensive test suites, and measurement caches for reproducible research."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-12T10:03:41.009018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Dependencies from requirements-experimental.txt\n\nBased on the file content, here are all the dependencies and their version constraints:\n\n1. **accelerate** - version 1.9.0\n2. **datasets** - version 3.3.2\n3. **einops** - no version specified\n4. **evaluate** - no version specified\n5. **flash_attn** - version 2.8.2\n6. **graphviz** - no version specified\n7. **networkx** - version 3.4.2\n8. **numpy** - version 2.2.6\n9. **scipy** - no version specified\n10. **torch** - version 2.7.1\n11. **torchvision** - version 0.22.1\n12. **tqdm** - no version specified\n13. **transformers** - version 4.54.0\n\nThe file also contains commented-out entries for haiku and jax. Seven packages have pinned versions, while six have no version constraints specified."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-12T10:03:41.009172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# CIRCUS Paper Analysis\n\n## Code/GitHub Repository\nNo link to a code repository or GitHub is provided in the content shown. The page displays standard arXiv metadata and bibliographic tools, but no code availability statement is visible.\n\n## Algorithm Description\nThe provided abstract contains limited algorithmic details. The available information states:\n\n**Core approach:** \"CIRCUS prunes one attribution graph under B configurations, assigns each edge an empirical inclusion frequency s(e) in [0,1]\" measuring robustness across configuration families.\n\n**Key limitations in this excerpt:**\n- The **B parameter** (number of configurations) is mentioned but not numerically specified\n- **Threshold selection methodology** is not detailed\n- **Stability score formula** is indicated as s(e) ∈ [0,1] representing \"inclusion frequency,\" but the exact computational formula is absent\n\nThe abstract emphasizes the method yields a \"core/contingent/noise decomposition\" analogous to Bayesian variable selection, but full algorithmic specifications would require accessing the complete paper PDF or HTML version linked on the page."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-12T10:03:41.009375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2603.00523",
+              "prompt": "Extract: (1) the config-bagging algorithm details - B parameter value, threshold range, stability score formula s(e), (2) which base methods CIRCUS wraps (EAP-IG, ACDC, etc.), (3) whether code is released (GitHub link), (4) the Core/Contingent/Noise thresholds"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-12T10:03:41.009531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "MIB benchmark circuit localization track GitHub code evaluation API edge scores format"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-12T10:03:41.009661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "hannamw eap-ig requirements.txt dependencies pyproject.toml TransformerLens version"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-12T10:03:41.009849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"hannamw eap-ig requirements.txt dependencies pyproject.toml TransformerLens version\"\n\nLinks: [{\"title\":\"Why Should I Choose pyproject.toml over requirements.txt for managing dependencies? | pydevtools\",\"url\":\"https://pydevtools.com/handbook/explanation/pyproject-vs-requirements/\"},{\"title\":\"GitHub - hannamw/EAP-IG · GitHub\",\"url\":\"https://github.com/hannamw/eap-ig\"},{\"title\":\"TransformerLens/pyproject.toml at main · TransformerLensOrg/TransformerLens\",\"url\":\"https://github.com/TransformerLensOrg/TransformerLens/blob/main/pyproject.toml\"},{\"title\":\"PEP 735 – Dependency Groups in pyproject.toml | peps.python.org\",\"url\":\"https://peps.python.org/pep-0735/\"},{\"title\":\"Install dependencies from pyproject.toml like from requirements.txt with -r · Issue #11584 · pypa/pip\",\"url\":\"https://github.com/pypa/pip/issues/11584\"},{\"title\":\"The Complete Guide to pyproject.toml: replace setup.py and requirements.txt | by devsjc | Medium\",\"url\":\"https://medium.com/@devsjc/the-complete-guide-to-pyproject-toml-replace-setup-py-and-requirements-txt-553f899dc267\"},{\"title\":\"Install dependencies from pyproject.toml like from requirements.txt with -r, (again) · Issue #13449 · pypa/pip\",\"url\":\"https://github.com/pypa/pip/issues/13449\"},{\"title\":\"Manually adding dependencies to pyproject.toml - Packaging - Discussions on Python.org\",\"url\":\"https://discuss.python.org/t/manually-adding-dependencies-to-pyproject-toml/18345\"},{\"title\":\"PEP 633 – Dependency specification in pyproject.toml using an exploded TOML table | peps.python.org\",\"url\":\"https://peps.python.org/pep-0633/\"},{\"title\":\"PEP 725 – Specifying external dependencies in pyproject.toml | peps.python.org\",\"url\":\"https://peps.python.org/pep-0725/\"}]\n\nBased on the search results, I found the hannamw/eap-ig library works with autoregressive transformer LMs in TransformerLens. The GitHub repository for the eap-ig project is available at https://github.com/hannamw/eap-ig.\n\nHowever, the search results don't conta\n…[truncated 528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-12T10:03:41.010047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# CIRCUS: Circuit Consensus under Uncertainty - Key Details\n\n## (1) Config-Bagging Algorithm Details\n\n**B Parameter & Threshold Range:**\nThe paper uses B=25 for stability analysis and B=9 for main evaluation, implemented as \"a 5×5 grid\" for the larger set. The configurations cross node and edge cumulative-influence thresholds in opposite directions to ensure non-nested pruning.\n\n**Stability Score Formula:**\nAs stated in Equation 1: \"s(e) = (1/B) Σ 𝟙[e ∈ E^(b)]\" where the score represents empirical inclusion frequency across configurations, ranging from 0 to 1.\n\n## (2) Base Methods Wrapped by CIRCUS\n\nCIRCUS doesn't wrap existing circuit discovery frameworks like ACDC or EAP-IG. Instead, it builds directly on attribution graphs produced by \"cross-layer transcoders (CLTs)\" using publicly available tools (Ameisen et al., 2025; Hanna et al., 2025) for Gemma-2-2B and Llama-3.2-1B models.\n\n## (3) Code Release Status\n\nThe paper includes no GitHub link or code release information. The author acknowledges \"the teams that open-sourced attribution tools\" but provides no repository for CIRCUS itself.\n\n## (4) Core/Contingent/Noise Thresholds\n\nThe taxonomy uses stability score thresholds:\n- **Core:** s(e) = 1 (edges in every view)\n- **Contingent:** 0.5 ≤ s(e) < 1 (alternative pathways)\n- **Noise:** s(e) < 0.5 (edges in fewer than half of views)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-12T10:03:41.010445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"MIB benchmark circuit localization track GitHub code evaluation API edge scores format\"\n\nLinks: [{\"title\":\"MIB – Project Page\",\"url\":\"https://mib-bench.github.io/\"},{\"title\":\"MIB: A Mechanistic Interpretability Benchmark\",\"url\":\"https://arxiv.org/html/2504.13151v1\"},{\"title\":\"BlackboxNLP-2025 MIB Shared Task: Exploring Ensemble Strategies for Circuit Localization Methods\",\"url\":\"https://arxiv.org/html/2510.06811\"},{\"title\":\"GitHub - aaronmueller/MIB: Landing page for MIB: A Mechanistic Interpretability Benchmark · GitHub\",\"url\":\"https://github.com/aaronmueller/MIB\"},{\"title\":\"MIB: A Mechanistic Interpretability Benchmark | OpenReview\",\"url\":\"https://openreview.net/forum?id=sSrOwve6vb\"},{\"title\":\"GitHub - hannamw/MIB-circuit-track\",\"url\":\"https://github.com/hannamw/MIB-circuit-track\"},{\"title\":\"Shared Task - BlackboxNLP 2025 - GitHub Pages\",\"url\":\"https://blackboxnlp.github.io/2025/task/\"},{\"title\":\"BlackboxNLP-2025 MIB Shared Task: Exploring Ensemble ...\",\"url\":\"https://aclanthology.org/2025.blackboxnlp-1.31.pdf\"},{\"title\":\"Findings of the BlackboxNLP 2025 Shared Task: Localizing Circuits and Causal Variables in Language Models\",\"url\":\"https://arxiv.org/html/2511.18409v1\"},{\"title\":\"[2504.13151] MIB: A Mechanistic Interpretability Benchmark\",\"url\":\"https://arxiv.org/abs/2504.13151\"}]\n\nBased on the search results, here's what I found about the MIB benchmark circuit localization track:\n\n## Overview\n\nThe circuit localization track compares methods that locate the model components—and connections between them—most important for performing a task (e.g., attribution patching or information flow routes).\n\n## Code & Repository\n\nCode is available at this GitHub URL, with the main repository at https://github.com/hannamw/MIB-circuit-track. This repository provides code for the circuit localization track of the Mechanistic Interpretability Benchmark, including code for circuit discovery and evaluation.\n\n## Edge Scores Format\n\nEach circuit is a di\n…[truncated 1127 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-12T10:03:41.010662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/hannamw/eap-ig/blob/main/pyproject.toml",
+              "prompt": "Extract all dependencies, version constraints, Python version requirement, and package metadata from this pyproject.toml"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-12T10:03:41.010831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/hannamw/MIB-circuit-track",
+              "prompt": "Extract: README content including installation, how to run evaluation, supported circuit discovery methods, input/output format for circuits, and how to add a new method"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-12T10:03:41.010967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/swapnilparekh/circus",
+              "prompt": "Check if this repository exists and extract any content about CIRCUS implementation"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-12T10:03:41.011103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# EAP-IG Project Dependencies and Metadata\n\n**Package Information:**\n- Name: \"eap\"\n- Version: \"2.0.0\"\n- Python requirement: >=3.10\n- Author: Michael Hanna (mh2parker@gmail.com)\n\n**Core Dependencies:**\n- matplotlib >= 3.10.1\n- transformer-lens >= 2.15.0\n\n**Optional Dependencies:**\n- viz group: pygraphviz >= 1.14\n\n**Build System:**\n- Backend: hatchling\n- Build requirement: hatchling\n\nThe project uses a standard pyproject.toml configuration with minimal dependencies focused on visualization and machine learning transformer analysis utilities."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-12T10:03:41.011232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 404"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-12T10:03:41.011363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# MIB Circuit Localization Track: Key Information\n\n## Installation\nThe repository requires minimal dependencies. Users should `pip install .` after pulling submodules with `git submodule update --init --recursive`. The core dependency is EAP-IG, though visualizing circuits requires optionally installing `pygraphviz`. Testing used `torch == 2.4.1`.\n\n## Circuit Discovery Methods\nThe framework supports several attribution approaches:\n\n- **Edge Attribution Patching (EAP)** with node/neuron variants via `--level` parameter\n- **EAP with Optimal Ablations** requiring preliminary computation via `oa.py` script\n- **EAP-IG** in two variants: inputs-focused and activations-focused interpolations\n- **Exact Activation Patching** for precise but computationally expensive analysis\n- **Information Flow Routes (IFR)**\n- **Uniform Gradient Sampling (UGS)** requiring mask training beforehand\n\n## Running Attribution\nExecute circuit discovery using: `\"python run_attribution.py --models [MODELS] --tasks [TASKS]\"` with parameters for method, granularity level, and ablation strategy.\n\n## Evaluation Process\nSimilar command structure: `\"python run_evaluation.py --models [MODELS] --tasks [TASKS]\"` generates faithfulness scores and CPR/CMD metrics saved as pickle files.\n\n## Circuit Formats\nSubmissions accept either single files with floating-point importance scores or nine binary membership circuits at specified edge percentage thresholds: 0.1%, 0.2%, 0.5%, 1%, 2%, 5%, 10%, 20%, 50%."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-12T10:03:41.011538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "nnsight PyPI latest version 2025 2026 TransformerLens compatibility"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-12T10:03:41.011670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/UFO-101/auto-circuit/blob/main/pyproject.toml",
+              "prompt": "Extract all dependencies, version constraints, Python version requirement from this pyproject.toml"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-12T10:03:41.013554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Auto-Circuit Dependencies Summary\n\n## Python Version\n- **Required:** Python 3.10 or higher (`\"python = \"^3.10\"`)\n\n## Main Dependencies\n- torch >= 2.1.1\n- transformer-lens >= 1.13.0\n- einops >= 0.6.1\n- ordered-set >= 4.1.0\n- plotly >= 5.18.0\n- kaleido == 0.2.1\n- blobfile >= 2.0.2\n- word2word >= 1.0.0\n- vscode-tqdm >= 4.66.2\n- tracr-pypi >= 1.0.0\n\n## Development Dependencies\n- pre-commit ^3.3.3\n- ipykernel ^6.25.0\n- ipywidgets ^8.1.0\n- jupyter ^1.0.0\n- pytest ^7.4.0\n- pyright ^1.1.350\n- ipytest ^0.13.3\n\n## Documentation Dependencies\n- mkdocs-material ^9.5.17\n- mkdocstrings (with Python extras) ^0.24.3\n- mkdocs-gen-files ^0.5.0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-12T10:03:41.014621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"nnsight PyPI latest version 2025 2026 TransformerLens compatibility\"\n\nLinks: [{\"title\":\"transformer-lens · PyPI\",\"url\":\"https://pypi.org/project/transformer-lens/\"},{\"title\":\"nnsight · PyPI\",\"url\":\"https://pypi.org/project/nnsight/\"},{\"title\":\"sae-lens · PyPI\",\"url\":\"https://pypi.org/project/sae-lens/\"},{\"title\":\"piwheels - transformer-lens\",\"url\":\"https://www.piwheels.org/project/transformer-lens/\"},{\"title\":\"transformers · PyPI\",\"url\":\"https://pypi.org/project/transformers/\"},{\"title\":\"GitHub - TransformerLensOrg/TransformerLens: A library for mechanistic interpretability of GPT-style language models · GitHub\",\"url\":\"https://github.com/TransformerLensOrg/TransformerLens\"},{\"title\":\"nnsight and nnterp | Learn Mechanistic Interpretability\",\"url\":\"https://learnmechinterp.com/topics/nnsight-and-nnterp/\"},{\"title\":\"piwheels - nnsight\",\"url\":\"https://www.piwheels.org/project/nnsight/\"},{\"title\":\"Releases · ndif-team/nnsight\",\"url\":\"https://github.com/ndif-team/nnsight/releases\"},{\"title\":\"transformers-openpi · PyPI\",\"url\":\"https://pypi.org/project/transformers-openpi/\"}]\n\nBased on the search results, here's what I found about nnsight and its compatibility with TransformerLens:\n\n## nnsight Latest Version\n\nThe latest version of nnsight was released on March 20, 2026.\n\n## TransformerLens Compatibility\n\nWhile the search results indicate that SAEs can be used with NNsight or any other framework by extracting activations and passing them to the SAE's encode() and decode() methods, there isn't explicit information about direct dependency compatibility between nnsight and TransformerLens in the PyPI documentation.\n\nHowever, the search results show that nnsight works with any PyTorch model and complements TransformerLens as a tool for interpretability research that works directly with HuggingFace models. This suggests they can be used together for interpretability work, though they serve somewhat different purposes in the mechanistic interpretabili\n…[truncated 340 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "WebSearch",
+            "elapsed_ms": 3
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-12T10:03:41.015000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/structfuse-mvp/API_SURVEY.md",
+              "content": "# Circuit Discovery API Survey\n\n> 调研日期：2026-05-12\n> 目标：确认 EAP-IG / AtP* / Edge Pruning / ACDC 四种电路发现方法的库、API、兼容性，以及 CIRCUS / MIB 的可复用性。\n\n---\n\n## 1. TransformerLens\n\n- **Version**: 3.2.1（2026-05-09 发布）；v2.x 仍可通过 `pip install 'transformer-lens~=2.0'` 安装\n- **Install**: `pip install transformer-lens`\n- **Python**: >=3.10, <4.0\n- **Torch**: 未在 PyPI 显式声明最低版本，实际兼容 torch >=2.1\n- **GPT-2 Small 加载**:\n  ```python\n  from transformer_lens import HookedTransformer\n  model = HookedTransformer.from_pretrained(\"gpt2-small\")\n  # v3.x 推荐 TransformerBridge，但 HookedTransformer 仍可用\n  ```\n- **IOI Dataset API**:\n  ```python\n  from transformer_lens.evals import ioi_eval, IOIDataset\n  dataset = IOIDataset(\n      tokenizer=model.tokenizer,\n      num_samples=100,\n  )\n  # dataset.toks: tokenized sentences\n  # dataset.s_tokenIDs / dataset.io_tokenIDs: subject/IO token positions\n  # ioi_eval(model) → (avg_logit_diff, accuracy)\n  ```\n- **Hook 机制**（edge-level attribution 基础）:\n  ```python\n  # 每个组件有标准 hook point name, e.g.:\n  # \"blocks.{layer}.attn.hook_result\"  (attention output)\n  # \"blocks.{layer}.mlp.hook_post\"     (MLP output)\n  # \"blocks.{layer}.hook_resid_pre\"    (residual stream)\n  cache = {}\n  model.run_with_cache(tokens, names_filter=lambda name: \"hook_result\" in name)\n  ```\n- **Source**: [PyPI](https://pypi.org/project/transformer-lens/) · [GitHub](https://github.com/TransformerLensOrg/TransformerLens)\n\n---\n\n## 2. EAP-IG（Edge Attribution Patching with Integrated Gradients）\n\n- **Repo**: https://github.com/hannamw/eap-ig\n- **Package**: `eap` v2.0.0\n- **Install**:\n  ```bash\n  git clone https://github.com/hannamw/eap-ig.git\n  cd eap-ig && pip install .\n  # 可选可视化: pip install .[viz]  (需系统装 graphviz)\n  ```\n- **Python**: >=3.10\n- **Dependencies**: `transformer-lens >= 2.15.0`, `matplotlib >= 3.10.1`\n- **核心 API（4 步流程）**:\n  ```python\n  from eap import Graph, attribute, evaluate_graph, EAPDataset\n\n  # 1. 加载模型\n  model = HookedTransformer.from_pretrained(\"gpt2-small\")\n\n  # 2. 构建计算图（自动从模型结构提取 nodes/edges）\n  graph = Graph.from_model(model)\n\n  # 3. 计算 edge attribution scores\n  dataloader = EAPDataset('greater-than').to_dataloader()\n  metric = ...  # 自定义 metric function\n  attribute(\n      model, graph, dataloader, metric,\n      method='EAP-IG-inputs',  # 或 'EAP-IG-activations', 'EAP'\n      ig_steps=5               # IG 插值步数 m\n  )\n  # graph 内部存储每条 edge 的 attribution score\n\n  # 4. Top-K thresholding → binary circuit\n  graph.apply_topn(n=100)   # 保留 top-100 edges\n  results = evaluate_graph(model, graph, dataloader, metric)\n  ```\n- **Attribution 方法**:\n  | 方法 | 复杂度 | 说明 |\n  |------|--------|------|\n  | `EAP` | O(1) | 一阶近似 |\n  | `EAP-IG-inputs` | O(m) | 输入 embedding 层面的 IG |\n  | `EAP-IG-activations` | O(m) | 每个组件 activation 层面的 IG |\n  | `clean-corrupted` | O(2) | 两点梯度 |\n- **Output**: `Graph` 对象，每条 edge 有 `.score` 属性；`apply_topn(n)` 后变为 binary mask\n- **模型兼容**: GPT-2, Pythia, Mistral, Llama, Qwen, OLMo, Gemma（需 pre-LayerNorm；GQA 模型需 `model.cfg.ungroup_grouped_query_attention = True`）\n- **论文**: Syed et al. 2023 \"Attribution Patching Outperforms Automated Circuit Discovery\"；Hanna et al. 2024 \"Have Faith in Faithfulness\"\n\n---\n\n## 3. AtP*（Attribution Patching Star）\n\n- **论文**: Kramár et al. 2024, \"AtP*: An efficient and scalable method for localizing LLM behaviour to components\" ([arXiv:2403.00745](https://arxiv.org/abs/2403.00745))\n- **官方代码**: DeepMind 未开源官方实现\n- **社区实现**: https://github.com/koayon/atp_star（非官方，PyTorch + NNsight 实现）\n- **Install**: `git clone https://github.com/koayon/atp_star.git`（无 PyPI 包，无 pyproject.toml / requirements.txt 公开）\n- **Dependencies**: PyTorch, NNsight（用于 caching/interventions）\n- **核心改进**（相对于标准 AtP）:\n  1. **QK-Fix**: 对 attention 节点显式线性化 attention probabilities（而非 softmax inputs）\n  2. **GradDrop**: 将 residual skip 路径上的 gradient 置零，消除 path-cancellation\n- **关键文件**: `atp.py`（核心算法）, `interventions.py`（干预机制）, `main.py`（入口）\n- **Output**: 组件级别的 attribution scores（node-level，非 edge-level）\n- **状态**: 开发中，尚不成熟；核心 AtP + QK-Fix 已实现，GPU 优化和 circuit-finding 部分仍 WIP\n- **⚠️ 注意**: AtP* 原论文是 **node-level** localization（定位重要组件），不直接产出 edge-level scores。要得到 edge-level circuit 需额外适配。\n\n---\n\n## 4. Edge Pruning\n\n- **Repo**: https://github.com/princeton-nlp/edge-pruning（NeurIPS 2024 Spotlight）\n- **论文**: Bhaskar et al. 2024, \"Finding Transformer Circuits with Edge Pruning\"\n- **Install**:\n  ```bash\n  git clone https://github.com/princeton-nlp/edge-pruning.git\n  cd edge-pruning\n  pip install -r requirements.txt\n  # GPT-2 + 新版 transformers: pip install -r requirements-experimental.txt\n  ```\n- **Dependencies（requirements.txt，原版）**:\n  - `torch == 2.5.1+cu121`\n  - `transformer-lens == 2.15.0`\n  - `accelerate == 1.2.1`, `datasets == 3.2.0`, `einops == 0.8.1`\n  - `flash-attn == 2.7.2.post1`\n  - `numpy == 2.2.3`, `scipy == 1.15.2`, `networkx == 3.4.2`\n  - `jax == 0.5.2`, `tensorflow == 2.18.0`（用于 Tracr 实验，非核心）\n- **Dependencies（requirements-experimental.txt，新版）**:\n  - `torch == 2.7.1`\n  - `transformers == 4.54.0`（HuggingFace，**不再依赖 TransformerLens**）\n  - `flash_attn == 2.8.2`, `accelerate == 1.9.0`\n- **核心方法**: 使用 L0 regularization 对 edge masks 进行可微优化（非贪心搜索），mask 值连续优化后 threshold → binary\n- **Key Scripts**:\n  | 任务 | Pruning 脚本 | 评估脚本 |\n  |------|-------------|---------|\n  | IOI | `src/prune/fpt2_ioi.py` | `src/eval/ioi.py` |\n  | Greater-Than | `src/prune/fpt2_gt.py` | `src/eval/gt.py` |\n  | Gendered Pronoun | `src/prune/fpt2_gp.py` | `src/eval/gp.py` |\n  | CodeLlama Boolean | `src/prune/fllama_boolean_expressions_*.py` | `src/eval/boolean_expressions.py` |\n- **Output**: JSON 格式的 edge set（pruned circuit），可通过 `src/modeling/vis_fpt2.py` 可视化\n- **⚠️ 注意**: 原版依赖 `transformer-lens==2.15.0`；实验版已迁移到 HuggingFace `transformers`。**不使用 nnsight**。\n\n---\n\n## 5. ACDC（Automatic Circuit Discovery）\n\n- **Repo**: https://github.com/ArthurConmy/Automatic-Circuit-Discovery（NeurIPS 2023 Spotlight）\n- **论文**: Conmy et al. 2023, \"Towards Automated Circuit Discovery for Mechanistic Interpretability\"\n- **Install**:\n  ```bash\n  git clone https://github.com/ArthurConmy/Automatic-Circuit-Discovery.git\n  cd Automatic-Circuit-Discovery\n  # 推荐用 poetry:\n  poetry env use 3.10\n  poetry install\n  # 或 conda/venv + pip install -e .\n  ```\n- **System deps**: `graphviz`, `libgraphviz-dev`（Ubuntu）或 `brew install graphviz`（Mac）\n- **Python**: >=3.8（推荐 3.10）\n- **Dependencies**: TransformerLens（HookPoints + HookedTransformer 抽象），具体版本由 poetry.lock 管理\n- **核心 API**:\n  ```python\n  # 主入口: acdc/main.py\n  # IOI 示例: 加载 GPT-2 Small + IOI dataset\n  from acdc.ioi.utils import get_ioi_gpt2_small\n  model, dataset = get_ioi_gpt2_small()\n\n  # 运行 ACDC 搜索（迭代 knock-out + 恢复）\n  # 见 notebooks/colabs/ACDC_Main_Demo.ipynb\n  ```\n- **算法**: 迭代地逐条删除 edge，检查 metric 变化是否超过 threshold τ；不超过则永久删除\n- **Output**: 计算图中保留的 edge set。GPT-2 Small + IOI 任务上从 ~32,000 edges 筛选出 68 条。\n- **⚠️ 推荐替代**: 作者推荐使用 **Auto-Circuit**（`pip install auto-circuit`）替代原始 ACDC 代码库\n\n### 5.1 Auto-Circuit（推荐的现代替代）\n\n- **Repo**: https://github.com/UFO-101/auto-circuit\n- **Install**: `pip install auto-circuit`\n- **Python**: >=3.10\n- **Dependencies**: `transformer-lens >= 1.13.0`, `torch >= 2.1.1`, `einops >= 0.6.1`, `plotly >= 5.18.0`\n- **核心 API**:\n  ```python\n  from auto_circuit.model_utils.micro_model_utils import MicroModel\n  from auto_circuit.prune_algos.mask_gradient import mask_gradient_prune_scores\n  from auto_circuit.types import PatchType\n\n  # Attribution-based circuit discovery\n  scores = mask_gradient_prune_scores(\n      model=model, dataloader=test_loader, grad_function=\"logit\"\n  )\n\n  # Edge patching\n  from auto_circuit.utils.patch_mode import patch_mode\n  patch_edges = [\"Resid Start->MLP 2\", \"MLP 2->A2.4.Q\", \"A2.4->Resid End\"]\n  with patch_mode(model, ablations, patch_edges):\n      patched_out = model(tokens)\n  ```\n- **支持方法**: ACDC, mask gradient pruning, attribution patching 等多种算法\n- **论文**: COLM 2024 Oral Spotlight, \"Transformer Circuit Metrics are not Robust\"\n\n---\n\n## 6. CIRCUS（Circuit Consensus under Uncertainty via Stability Ensembles）\n\n- **论文**: Parekh 2026, [arXiv:2603.00523](https://arxiv.org/abs/2603.00523)\n- **代码**: **未开源**（截至 2026-05-12 无 GitHub 仓库）\n- **方法概述**: Config-bagging over pruning thresholds\n  1. 对单次 attribution run 的结果，用 B 组不同 pruning 配置（node threshold × edge threshold 网格）进行裁剪\n  2. 每条 edge 计算 stability score: `s(e) = (1/B) Σ 𝟙[e ∈ E^(b)]`\n  3. 按 stability score 划分三层:\n     - **Core**: s(e) = 1（所有配置都保留）\n     - **Contingent**: 0.5 ≤ s(e) < 1（替代路径）\n     - **Noise**: s(e) < 0.5\n- **参数**: 主实验用 B=9（3×3 网格），稳定性分析用 B=25（5×5 网格）\n- **Base Attribution**: 基于 cross-layer transcoders (CLTs) 的 attribution graph，**不直接 wrap EAP-IG/ACDC**\n- **模型**: Gemma-2-2B（50 prompts），Llama-3.2-1B（20 prompts）\n- **结果**: Consensus circuit 比 union 小 ~40×，faithfulness 相当\n- **⚠️ 自行复现**: 核心逻辑简单——对任意 edge-level scores 做多阈值 bagging，可用 ~50 行 Python 实现:\n  ```python\n  def config_bag(edge_scores, thresholds, B=9):\n      \"\"\"edge_scores: dict{edge: float}, thresholds: list of cutoff values\"\"\"\n      counts = {e: 0 for e in edge_scores}\n      for t in thresholds:\n          for e, s in edge_scores.items():\n              if s >= t:\n                  counts[e] += 1\n      return {e: counts[e] / len(thresholds) for e in edge_scores}\n  ```\n\n---\n\n## 7. MIB Benchmark（Mechanistic Interpretability Benchmark）\n\n- **论文**: Mueller et al. 2025, [arXiv:2504.13151](https://arxiv.org/abs/2504.13151)（ICML 2025）\n- **Landing page**: https://github.com/aaronmueller/MIB\n- **Circuit Track 代码**: https://github.com/hannamw/MIB-circuit-track\n- **Install**:\n  ```bash\n  git clone https://github.com/hannamw/MIB-circuit-track.git\n  cd MIB-circuit-track\n  git submodule update --init --recursive  # 拉取 EAP-IG 子模块\n  pip install .\n  ```\n- **测试环境**: `torch == 2.4.1`\n- **支持的 Circuit Discovery 方法**:\n  - EAP（node / edge / neuron 级别，通过 `--level` 参数）\n  - EAP-IG（inputs / activations 两种变体）\n  - Exact Activation Patching\n  - Information Flow Routes (IFR)\n  - Uniform Gradient Sampling (UGS)\n  - EAP with Optimal Ablations\n- **模型**: GPT-2 Small, Qwen-2.5-0.5B, Gemma-2-2B, Llama-3.1-8B, InterpBench（含 ground-truth circuit）\n- **任务**: IOI, MCQA, Arithmetic, ARC, RAVEL\n- **运行**:\n  ```bash\n  # Attribution\n  python run_attribution.py --models gpt2-small --tasks ioi --method EAP-IG-inputs --level edge\n\n  # Evaluation\n  python run_evaluation.py --models gpt2-small --tasks ioi\n  ```\n- **Circuit 格式**:\n  - 浮点 scores: 单个 `.json` / `.pt` 文件，`{edge_name: float_score}`\n  - Binary circuits: 9 个文件，对应 edge 比例 thresholds（0.1%, 0.2%, 0.5%, 1%, 2%, 5%, 10%, 20%, 50%）\n- **评估指标**:\n  - **CPR**（Circuit Performance Ratio）: 电路独立执行时的性能保留率\n  - **CMD**（Circuit-Model Difference）: 电路行为与完整模型行为的差异\n- **⚠️ 复用价值**: MIB circuit track 基于 EAP-IG 库构建，可直接作为标准化评估框架使用\n\n---\n\n## 8. Compatibility Matrix\n\n### Python 版本\n\n| 库 | Python 要求 |\n|----|------------|\n| TransformerLens 3.x | >=3.10 |\n| EAP-IG 2.0 | >=3.10 |\n| Edge Pruning | >=3.10（推断） |\n| ACDC | >=3.8（推荐 3.10） |\n| Auto-Circuit | >=3.10 |\n| AtP*（社区版） | >=3.10（推断） |\n\n**结论**: Python 3.10 是所有库的安全基线。\n\n### PyTorch 版本\n\n| 库 | Torch 版本 |\n|----|-----------|\n| TransformerLens 3.x | >=2.1 |\n| EAP-IG 2.0 | 未声明（跟随 TransformerLens） |\n| Edge Pruning（原版） | ==2.5.1+cu121 |\n| Edge Pruning（实验版） | ==2.7.1 |\n| ACDC | 未显式声明 |\n| Auto-Circuit | >=2.1.1 |\n| MIB Circuit Track | ==2.4.1（测试版本） |\n\n**结论**: `torch >= 2.4, < 2.6` 是兼容性最优区间（覆盖 Edge Pruning 原版和 MIB）。如果不用 Edge Pruning 原版，`torch >= 2.4` 即可。\n\n### TransformerLens vs NNsight\n\n| 库 | 框架依赖 |\n|----|---------|\n| EAP-IG | TransformerLens >=2.15.0 |\n| Edge Pruning（原版） | TransformerLens ==2.15.0 |\n| Edge Pruning（实验版） | HuggingFace transformers（无 TransformerLens） |\n| ACDC | TransformerLens（版本由 poetry 管理） |\n| Auto-Circuit | TransformerLens >=1.13.0 |\n| AtP*（社区版） | NNsight + PyTorch |\n\n**结论**:\n- EAP-IG / Edge Pruning（原版） / ACDC / Auto-Circuit 全部基于 **TransformerLens**，共存无问题\n- AtP* 社区实现用 **NNsight**，但 NNsight 与 TransformerLens 无直接冲突（不同包，不同 hook 机制），可在同一环境安装\n- **推荐**: 统一使用 TransformerLens 生态（EAP-IG + Auto-Circuit），AtP* 如需使用则参考论文自行在 TransformerLens 上实现 QK-Fix + GradDrop\n\n### 潜在冲突\n\n1. **TransformerLens 2.x vs 3.x**: EAP-IG 和 Edge Pruning 要求 `>=2.15.0`，Auto-Circuit 要求 `>=1.13.0`。TransformerLens 3.x 保留了 `HookedTransformer` 兼容层，但可能有 breaking changes。**建议先用 `transformer-lens~=2.15` 保守路线**，待 EAP-IG 更新后再升级。\n2. **Edge Pruning 的额外依赖**: 原版 pinned `jax==0.5.2` 和 `tensorflow==2.18.0`（Tracr 实验用），与 torch 同装可能导致 CUDA 冲突。**若只做 GPT-2 实验，可删除 jax/tensorflow 行**。\n3. **flash-attn**: Edge Pruning 要求 `flash-attn==2.7.2.post1`，需编译安装且 CUDA 版本敏感。\n\n---\n\n## 9. Recommended requirements.txt\n\n```txt\n# Core\npython>=3.10\ntorch==2.5.1  # 兼容 Edge Pruning 原版；CUDA 版本按 GPU 选择\ntransformer-lens==2.15.0  # EAP-IG + Edge Pruning + Auto-Circuit 共同基线\n\n# EAP-IG (circuit discovery)\neap @ git+https://github.com/hannamw/eap-ig.git\nmatplotlib>=3.10.1\n\n# Auto-Circuit (ACDC 替代 + 多种方法)\nauto-circuit>=0.1.0\n\n# Edge Pruning (clone separately, use its own requirements)\n# git clone https://github.com/princeton-nlp/edge-pruning.git\n\n# Common\neinops>=0.8.1\ndatasets>=3.2.0\naccelerate>=1.2.1\nnetworkx>=3.4.2\nnumpy>=2.2.0\nscipy>=1.15.0\ntqdm>=4.67.0\n\n# Visualization (optional)\ngraphviz>=0.20.3\n# pygraphviz>=1.14  # 需系统 apt install libgraphviz-dev\nplotly>=5.18.0\n\n# Flash Attention (optional, 需编译)\n# flash-attn==2.7.2.post1\n\n# NNsight (仅 AtP* 社区实现需要)\n# nnsight>=0.3\n```\n\n---\n\n## 10. 推荐集成策略\n\n对于 StructFuse 项目，推荐以下集成路径：\n\n1. **主力框架**: TransformerLens 2.15.x + EAP-IG 2.0 作为 edge-level attribution 的核心\n2. **ACDC**: 通过 Auto-Circuit 库调用（比原始 ACDC 代码更稳定）\n3. **Edge Pruning**: 作为独立模块，clone 仓库后用其原版 requirements 运行（避免依赖冲突）\n4. **AtP***: 不推荐用社区实现（不成熟 + node-level only）；如需 AtP* 的 QK-Fix，在 EAP-IG 框架内自行实现更可控\n5. **CIRCUS Config-Bagging**: 自行实现（<100 行），作为 post-processing 叠加在任意 edge attribution 方法之上\n6. **评估**: 直接复用 MIB Circuit Track 框架（`run_attribution.py` + `run_evaluation.py`），获得标准化的 CPR/CMD 指标\n"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-12T10:03:41.015560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/structfuse-mvp/API_SURVEY.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-12T10:03:41.015863+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已写入 `artifacts/structfuse-mvp/API_SURVEY.md`。\n\n关键发现：\n\n- **EAP-IG**（`hannamw/eap-ig` v2.0）是最成熟的 edge-level attribution 库，依赖 `transformer-lens>=2.15.0`，4 步 API（Graph → attribute → topn → evaluate）\n- **ACDC** 原始代码作者推荐用 **Auto-Circuit**（`pip install auto-circuit`）替代，同样基于 TransformerLens\n- **Edge Pruning**（`princeton-nlp/edge-pruning`）用 L0 mask 优化，原版也依赖 TransformerLens 2.15.0（**不是 nnsight**），实验版已迁移到 HuggingFace transformers\n- **AtP*** 官方未开源，社区实现（`koayon/atp_star`）不成熟且是 node-level，不推荐直接用\n- **CIRCUS** 无开源代码，但 config-bagging 逻辑简单可自行实现（~50 行）\n- **MIB Circuit Track** 基于 EAP-IG 构建，可直接作为标准化评估框架复用\n- **兼容性**: Python 3.10 + torch 2.5.x + transformer-lens 2.15.0 是所有库的安全公共基线"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_circuit-api-survey_20260512T095923"
+          },
+          "id": "event-000063"
+        }
+      ],
+      "message_count": 63
+    }
+  ],
+  "readable_path": "readable/conversations/research-circuit-api-survey.md"
+}

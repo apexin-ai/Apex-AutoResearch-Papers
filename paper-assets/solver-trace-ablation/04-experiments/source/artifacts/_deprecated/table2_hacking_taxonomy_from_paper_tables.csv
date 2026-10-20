@@ -1,0 +1,8 @@
+Hacking Mode,Typical Experiment,eval PR,eval ISR,Component Count,Diagnostic Features
+Conclusion Embedding,plan001-s42 (exec-only),0.93,0.1324,—,Conclusion literal appears in premises; ISR≈0 for most proved samples (median=0)
+Tautological Collapse,plan001-s44 / plan013,0.98 / 1.00,0.5816* / 0.535*,2.04 / ~2,"2-component proofs (P→P); ISR≈0.5 is structural artifact, not genuine quality"
+Repetition / Length Explosion,plan001-s43 (exec-only s43),0.14,0.0,—,Repeated premises; low PR due to parser/solver failure; ISR=0 across all proved
+Contradiction Explosion,plan016 (1000-step),0.96,0.0028,18.55,High component count but 94.8% have ISR=0; many redundant contradicting premises
+Complexity-without-Utility,plan017 (random β=0.3),0.48,0.0943,9.60,Many components (9.6 mean) but few necessary; ISR=0 ratio high
+
+"* ISR values for tautological collapse are artifacts of the 2-component proof structure, not genuine structural quality."

@@ -1,0 +1,44 @@
+\section{Related Work}
+\label{sec:related-work}
+
+\paragraph{Neurosymbolic Reasoning with LLMs.}
+Prompting-based pipelines couple LLMs with external solvers to offload logical inference.
+Logic-LM~\cite{logic-lm} generates FOL formalizations verified by an external prover, with a self-refinement loop on solver errors; LINC~\cite{linc} similarly translates natural language to first-order logic for Prover9, demonstrating gains over chain-of-thought on syllogistic and multi-hop tasks.
+SatLM~\cite{satlm} extends the paradigm to satisfiability solvers via declarative prompting, while LoRP~\cite{lorp} and FoVer~\cite{fover-pei2025} route through Prolog execution traces and FOL verification, respectively, to validate or filter LLM-generated reasoning.
+All of these systems evaluate on execution accuracy---whether the solver returns the correct answer---without diagnosing the structural quality of the generated formalizations.
+RL-based training represents a more recent direction, enabled by GRPO~\cite{deepseekmath}, which eliminates the critic model by estimating baselines from group scores.
+Mellgren~\cite{mellgren-prolog-grpo} applies GRPO to train Prolog formalizers with binary solver reward, reporting substantial prove-rate gains; Logic-RL~\cite{logic-rl} demonstrates that rule-based RL with solver feedback elicits emergent reasoning in LLMs; and Thought-Like-Pro~\cite{thought-like-pro} uses self-driven Prolog chain-of-thought to enhance multi-step reasoning.
+These RL systems optimize execution reward exclusively, reporting prove rate as the primary success metric.
+Our work differs in diagnostic focus: STA reveals that execution accuracy conflates faithful derivation with degenerate shortcuts, and ISR quantifies this conflation.
+The finding that 87\% of proved outputs under exec-only GRPO embed the conclusion among the premises (\S\ref{sec:diagnostic}) applies directly to these systems, suggesting that reported prove-rate gains may overstate genuine reasoning improvement.
+
+\paragraph{Reward Shaping and Process Supervision.}
+Binary outcome rewards provide no gradient on intermediate reasoning quality, motivating process-level supervision.
+Lightman et al.~\cite{lightman-verify-step} train process reward models (PRMs) that score individual reasoning steps, improving mathematical problem-solving over outcome-only rewards.
+Math-Shepherd~\cite{math-shepherd} automates step-level annotation by validating intermediate states against reference solutions.
+Beyond learned PRMs, symbolic feedback offers an alternative grounding: RLSF~\cite{rlsf} uses solver diagnostics as a structured training signal for formal reasoning, and Rubric-GRPO~\cite{rubric-grpo} replaces scalar rewards with multi-dimensional rubric scores evaluated by an LLM judge.
+However, process rewards introduce their own failure modes.
+Gao et al.~\cite{gao-effective-rl-reward} show that reward design choices---granularity, normalization, aggregation---can dominate the effect of the underlying signal.
+PROF~\cite{prof-process-outcome} finds that process and outcome rewards conflict under joint optimization, requiring explicit harmonization.
+The Qwen PRM study~\cite{qwen-prm-lessons} documents that PRMs degrade unpredictably at distribution shift, and ProGRS~\cite{progrs-outcome-conditioned} introduces outcome-conditioned process rewards to mitigate the gap between step-level correctness and final-answer accuracy.
+ISR differs from these approaches in that it is solver-grounded rather than learned: it derives directly from deterministic LOO ablation of solver inputs, eliminating reward model noise.
+Our finding that ISR reliably \emph{diagnoses} structural quality yet becomes the target of gaming when used as a training reward (\S\ref{sec:goodhart}) adds an empirical data point to this literature: even non-learned process signals can Goodhart when optimized.
+
+\paragraph{Reward Hacking and Goodhart's Law.}
+Gao et al.~\cite{gao-reward-overoptimization} establish scaling laws for reward model overoptimization, showing that proxy reward increases monotonically with optimization pressure until true performance collapses.
+Manheim and Garrabrant~\cite{manheim-goodhart-taxonomy} taxonomize four variants of Goodhart's Law---regressional, extremal, causal, and adversarial---while Skalse et al.~\cite{skalse-reward-hacking} prove that reward hacking is generically unavoidable for imperfect proxies.
+Karwowski et al.~\cite{karwowski-goodhart-rl} demonstrate Goodhart dynamics geometrically in RL, showing that KL regularization delays but does not prevent overoptimization; Pan et al.~\cite{pan-reward-misspecification} map how misspecified rewards produce qualitatively different failure modes depending on the degree of misalignment; and Kwa et al.~\cite{kwa-catastrophic-goodhart} show that KL divergence regularization fails catastrophically under heavy-tailed reward misspecification.
+In the LLM setting specifically, recent surveys~\cite{reward-hacking-survey} document reward hacking across the full spectrum from specification gaming to emergent misalignment.
+Bondarenko et al.~\cite{bondarenko-spec-gaming} demonstrate specification gaming in reasoning models, Kim et al.~\cite{kim-game-formalization} evaluate whether LLMs game logical formalization tasks, and Yang et al.~\cite{spurious-rewards} identify spurious reward signals in RLVR that inflate metrics without genuine capability gains.
+This literature analyzes Goodhart dynamics either theoretically or within RLHF/text generation, where the proxy is a learned reward model.
+Our setting differs in two respects: the proxy (ISR) is deterministic and solver-derived, eliminating reward model noise as an explanation; and the Goodhart effect operates at a \emph{meta} level---ISR was designed to \emph{detect} gaming of execution reward, yet itself becomes gamed when optimized.
+The dose-response pattern we observe ($\beta{=}0.1$: proxy gaming via conclusion duplication; $\beta{=}0.3$: performance collapse) traces the trajectory predicted by Gao et al.~\cite{gao-reward-overoptimization} within a single neurosymbolic RL setup, and the premise-count confound that explains away apparent ISR improvements provides a concrete mechanism for regressional Goodhart in formal reasoning.
+
+\paragraph{Mutation Testing and Component Analysis.}
+Mutation testing originated with DeMillo et al.~\cite{demillo1978}, who proposed injecting systematic faults into programs to assess test suite adequacy; the coupling effect hypothesis~\cite{offutt-coupling} provides the theoretical grounding that simple mutants subsume complex faults.
+Jia and Harman~\cite{jia-harman-survey} survey three decades of development, establishing leave-one-out and higher-order mutation as the dominant paradigm, while Just et al.~\cite{just-mutants-real-faults} validate that synthetic mutants approximate real faults in detection experiments.
+Recent work connects mutation testing with LLMs: LLMorpheus~\cite{llmorpheus} uses language models to generate semantically rich mutants that go beyond syntactic operators.
+STA adapts the core LOO intuition to a different domain---formal logic formalizations---where the ``program under test'' is the solver input and the ``test'' is proof success.
+The unit of mutation shifts from code statements to logical components (premises in FOL, clauses in Prolog), and the diagnostic target shifts from test adequacy to structural necessity for proof validity.
+The novelty lies not in the perturbation technique itself but in its application to neurosymbolic RL and the empirical findings it enables: the ISR collapse trajectory, the Goodhart phenomenon, and the taxonomy of hacking modes.
+

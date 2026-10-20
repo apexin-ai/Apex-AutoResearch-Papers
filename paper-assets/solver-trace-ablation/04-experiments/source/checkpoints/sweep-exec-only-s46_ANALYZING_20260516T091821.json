@@ -1,0 +1,47 @@
+{
+  "exp_id": "sweep-exec-only-s46",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:42:17.401Z",
+    "updated_at": "2026-05-16T09:18:21.449Z",
+    "hypothesis": "W4: Exec-only s46 extends baseline to 5-seed for tighter confidence intervals",
+    "conclusion": "killed",
+    "notes": "去重取消：与 plan001-exec-only-s46 重复（同 exec-only, seed=46）",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 46 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s46 --no_wandb",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 46,
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "728319",
+      "reward_mode": "execution_only",
+      "num_steps": 500,
+      "num_generations": 4,
+      "account": "root",
+      "log_path": "~/runs/solver-trace-ablation/sweep-exec-only-s46.log",
+      "checkpoint_source": "base_model"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T08:58:35.966Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T08:58:39.354910+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T09:18:21.698022+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "d157-shuffled-isr-s42-r3",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:52:35.114Z",
+    "updated_at": "2026-05-20T15:11:38.288Z",
+    "hypothesis": "D157 shuffled-ISR control (retry 3): batch-internal ISR permutation preserves ISR distribution but breaks sample↔ISR semantic link. Tests limitations.tex L11 distributional confound gap. Parent: d157-shuffled-isr-s42 (r1 failed: wandb, r2 failed: GPU collision with D158 SFT).",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python scripts/train_grpo.py --config configs/grpo_shuffled_isr_b01.yaml --seed 42 --num_steps 500 --output_dir /root/autodl-tmp/outputs/d157_shuffled_isr_s42_r3 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "788428",
+      "log_path": "~/runs/solver-trace-ablation/d157-shuffled-isr-s42-r3.log",
+      "submitted_at": "2026-05-20T15:07:20.164Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T15:11:38.683506+00:00",
+  "trigger": "update_registry"
+}

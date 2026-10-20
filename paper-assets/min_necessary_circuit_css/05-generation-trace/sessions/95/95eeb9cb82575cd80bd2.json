@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "95eeb9cb82575cd80bd2",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code ioi size controlled v2",
+  "task_key": "worker_code_ioi-size-controlled-v2_20260513T091632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ioi-size-controlled-v2_20260513T091632.log",
+    "occurrence": 1,
+    "bytes": 2252907,
+    "sha256": "4432f73279f39fbef6953f151d607b5a28aab2b4ede93c80dafbb701540ca6f8"
+  },
+  "statistics": {
+    "messages": 1264,
+    "user_turns": 2,
+    "tool_calls": 470,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 2,
+      "assistant": 311,
+      "tool_call": 470,
+      "tool_result": 470,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 711,
+      "chunks": [
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0004.json",
+          "message_count": 171
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 540,
+      "chunks": [
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0004.json",
+          "message_count": 9
+        },
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0007.json",
+          "message_count": 171
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0007.json",
+          "message_count": 9
+        },
+        {
+          "path": "95eeb9cb82575cd80bd2-part-0008.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ioi-size-controlled-v2.md"
+}

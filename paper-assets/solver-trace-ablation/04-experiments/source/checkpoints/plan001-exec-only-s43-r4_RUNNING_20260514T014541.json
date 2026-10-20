@@ -1,0 +1,33 @@
+{
+  "exp_id": "plan001-exec-only-s43-r4",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:40:37.808Z",
+    "updated_at": "2026-05-14T01:45:41.745Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_r4\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "136339",
+      "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s43-r4.log",
+      "submitted_at": "2026-05-14T01:40:37.746Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "Exec-only seed=43 replication: confirm plan001-r2 (seed=42) prove_rate convergence is reproducible across seeds",
+      "plan_id": "plan001"
+    }
+  },
+  "timestamp": "2026-05-14T01:45:41.798037+00:00",
+  "trigger": "update_registry"
+}

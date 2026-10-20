@@ -1,0 +1,57 @@
+\section*{Responsible NLP Research Checklist}
+
+\paragraph{A. For every submission:}
+
+\begin{enumerate}[label=A\arabic*.,leftmargin=*]
+\item \textbf{Did you describe the limitations of your work?}
+Yes. Section~\ref{sec:limitations} discusses single model family and dataset, ISR's syntactic-only nature, limited seed counts, classifier coverage gaps, data scale, and temporal-snapshot caveats.
+
+\item \textbf{Did you discuss any potential risks of your work?}
+Yes. Section~\ref{sec:discussion} discusses implications for AI safety, specifically that structural metrics designed to detect reward hacking may themselves become optimization targets (observe-vs-optimize asymmetry).
+
+\item \textbf{Do the abstract and introduction summarize the paper's main claims?}
+Yes. Both summarize the three contributions (C1--C3) and key quantitative findings.
+
+\item \textbf{Have you used AI writing assistants when working on this paper?}
+Yes. AI assistants were used for drafting and editing. All scientific claims, experimental results, and analyses were verified by the authors.
+\end{enumerate}
+
+\paragraph{B. Did you use or create scientific artifacts?}
+Yes.
+
+\begin{enumerate}[label=B\arabic*.,leftmargin=*]
+\item \textbf{Did you cite the creators of artifacts you used?}
+Yes. We cite FOLIO~\citep{folio}, Qwen3~\citep{qwen3}, GRPO~\citep{deepseekmath}, Prover9~\citep{mccune-prover9}, and SWI-Prolog~\citep{wielemaker2012swi}.
+
+\item \textbf{Did you discuss the license or terms for use and/or distribution of any artifacts?}
+Yes. Qwen3 is released under the Tongyi Qianwen License; FOLIO is released under CC BY-SA 4.0. Both permit research use.
+
+\item \textbf{Did you discuss if your use of existing artifact(s) was consistent with their intended use?}
+Yes. FOLIO is used for its intended purpose (NLI evaluation); Qwen3 is used within its intended scope (language model fine-tuning).
+
+\item \textbf{Did you discuss the steps taken to check whether the data that you are using/creating contains any information that names or uniquely identifies individual people or offensive content?}
+Not applicable. FOLIO contains logical reasoning problems without personal information or offensive content.
+\end{enumerate}
+
+\paragraph{C. Did you run computational experiments?}
+Yes.
+
+\begin{enumerate}[label=C\arabic*.,leftmargin=*]
+\item \textbf{Did you report the number of parameters in the models used, the total computational budget, and computing infrastructure used?}
+Yes. The model size (4B) is reported in \S\ref{sec:task}. Training details (GRPO $K{=}4$, 500/1000 steps, seeds, batch sizes) are in \S\ref{sec:task} and Appendix~\ref{app:setup}. Computing infrastructure and total GPU hours are reported in Appendix~\ref{app:setup}.
+
+\item \textbf{Did you discuss the experimental setup, including hyperparameter search and best model selection strategies?}
+Yes. All hyperparameters are reported in \S\ref{sec:rewards} and Appendix~\ref{app:setup}. No hyperparameter search was performed; $\beta$ values were chosen for dose-response analysis.
+
+\item \textbf{Did you report descriptive statistics about your results (e.g., error bars, confidence intervals)?}
+Yes. We report mean$\pm$std across seeds (Table~\ref{tab:goodhart-landscape}), per-seed ranges, bootstrap confidence intervals (Appendix Table~\ref{tab:bootstrap-ci}), and discuss statistical power limitations (\S\ref{sec:limitations}).
+
+\item \textbf{If you used existing packages (e.g., for pre-processing, models, or evaluation), did you report the implementation, model, and version numbers?}
+Yes. We report Qwen3-4B model versions, Prover9, and SWI-Prolog. Training uses TRL 0.17.0, PyTorch 2.6.0, and Transformers 4.51.3; versions are listed in Appendix~\ref{app:setup}.
+\end{enumerate}
+
+\paragraph{D. Did you use human annotators (e.g., crowdsourcing or research with human participants)?}
+Minimal. Manual audit was conducted for classifier precision (50 random CE/TS samples verified; Appendix~\ref{app:hacking-modes}) and for PG false-negative correction (seed 42 only). No crowdsourced annotation was used.
+
+\paragraph{E. Did you use AI assistants (e.g., ChatGPT, Copilot, or Code Interpreter)?}
+Yes. AI assistants were used for code development and manuscript preparation. All experimental designs, analyses, and scientific conclusions were verified by the authors.

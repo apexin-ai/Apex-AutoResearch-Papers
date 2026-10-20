@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan017-additive-random-s42",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:11:14.694Z",
+    "updated_at": "2026-05-14T03:48:38.470Z",
+    "hypothesis": "Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。",
+    "parent": "plan013-random-reward-s42-r4",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "207116",
+      "log_path": "~/runs/solver-trace-ablation/plan017-additive-random-s42.log",
+      "submitted_at": "2026-05-14T03:48:38.168Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "207116",
+    "log_path": "~/runs/solver-trace-ablation/plan017-additive-random-s42.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\""
+    }
+  },
+  "timestamp": "2026-05-14T03:48:38.952946+00:00",
+  "trigger": "update_registry"
+}

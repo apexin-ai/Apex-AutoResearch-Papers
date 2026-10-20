@@ -1,0 +1,153 @@
+% Method section — solver-trace-ablation
+% Requires: algorithm, algorithmic, amsmath, enumitem packages
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Task Formulation}
+\label{sec:task}
+
+Given natural language premises $P_1, \ldots, P_k$ and a conclusion $C$, the task is to produce a formal logic program $F = \{c_1, \ldots, c_n\}$, where each component $c_i$ is a premise encoding (in FOL) or a clause/fact (in Prolog), with one distinguished component encoding the query derived from $C$.
+An external solver $S$ determines whether $F$ constitutes a valid proof:
+$S(F) \in \{\textit{proved}, \textit{failed}\}$.
+We experiment with two solver backends: Prover9 for first-order logic and SWI-Prolog for Prolog programs.
+
+\subsection{GRPO Training}
+\label{sec:grpo}
+
+We train formalizers with Group Relative Policy Optimization \citep[GRPO;][]{deepseekmath}.
+For each training prompt, the policy samples $K{=}8$ rollouts.
+Each rollout receives a binary \emph{execution reward}:
+\begin{equation}
+  r_{\text{exec}}(x) = \mathbf{1}\bigl[S(F_x) = \textit{proved}\bigr]
+  \label{eq:rexec}
+\end{equation}
+where $F_x$ is the formalization produced by rollout $x$.
+Advantages are computed group-relative: $A_i = (r_i - \bar{r}) / \sigma_r$ within each prompt's rollout group, and the policy update maximizes expected advantage under a clipped surrogate objective with KL regularization.
+
+This setup optimizes \emph{prove rate}---the fraction of rollouts yielding a proved formalization---but provides no signal about the \emph{structural quality} of proved outputs.
+A formalization that embeds the conclusion among its premises, producing a trivially provable tautology, receives the same reward as a faithful multi-step derivation.
+
+\subsection{Solver Trace Ablation}
+\label{sec:sta}
+
+To diagnose structural quality, we propose \emph{Solver Trace Ablation} (STA), a leave-one-out protocol that tests whether each component of a proved formalization is individually necessary for proof success.
+
+\paragraph{Protocol.}
+Given a proved formalization $x$ with $n$ components $\{c_1, \ldots, c_n\}$, STA constructs $n$ ablated variants $x \setminus \{c_i\}$, each with one component removed, and re-runs the solver on each.
+A component $c_i$ is \emph{necessary} if its removal causes proof failure: $S(x \setminus \{c_i\}) = \textit{failed}$.
+What constitutes a component depends on the logic type: individual premises in FOL, individual clauses or ground facts in Prolog.
+
+\paragraph{Intensional Structural Reward.}
+We define ISR as the fraction of necessary components:
+\begin{equation}
+  \text{ISR}(x) = \frac{1}{n} \sum_{i=1}^{n} \mathbf{1}\bigl[S(x \setminus \{c_i\}) = \textit{failed}\bigr]
+  \label{eq:isr}
+\end{equation}
+ISR $\in [0, 1]$ and is defined only for proved formalizations ($r_{\text{exec}}(x) = 1$).
+ISR $= 1$ indicates a maximally tight formalization where every component is individually necessary; ISR $= 0$ indicates complete redundancy.
+The protocol is solver-agnostic: it applies to any solver that accepts component-level input manipulation, requiring $n{+}1$ solver calls per sample (one initial verification plus $n$ ablations).
+
+Algorithm~\ref{alg:sta} gives the full procedure.
+
+\begin{algorithm}[t]
+\caption{Solver Trace Ablation (STA)}
+\label{alg:sta}
+\begin{algorithmic}[1]
+\REQUIRE Formalization $x = \{c_1, \ldots, c_n\}$, solver $S$
+\ENSURE ISR score $\in [0,1]$ or $\bot$ (undefined)
+\IF{$S(x) \neq \textit{proved}$}
+  \RETURN $\bot$
+\ENDIF
+\STATE $n_{\text{nec}} \gets 0$
+\FOR{$i = 1$ \TO $n$}
+  \STATE $x' \gets x \setminus \{c_i\}$
+  \IF{$S(x') = \textit{failed}$}
+    \STATE $n_{\text{nec}} \gets n_{\text{nec}} + 1$
+  \ENDIF
+\ENDFOR
+\RETURN $n_{\text{nec}} \mathbin{/} n$
+\end{algorithmic}
+\end{algorithm}
+
+STA draws on the same intuition as mutation testing in software engineering \citep{demillo1978, jia-harman-survey}: systematically perturbing a program to assess whether each element contributes to the overall result.
+The key difference is that STA operates on solver \emph{inputs} (formalizations) rather than program code, and targets component necessity rather than test adequacy.
+
+\paragraph{ISR limitations.}
+ISR measures syntactic component necessity, not semantic faithfulness to the natural language input.
+It is also subject to a component-count confound: formalizations with fewer components yield mechanically higher ISR, since each component carries a larger share of the proof burden under LOO ablation.
+We control for this confound in our analysis (\S\ref{sec:results}).
+
+\subsection{Reward Formulations}
+\label{sec:rewards}
+
+We study six reward conditions to evaluate ISR both as a diagnostic and as a training signal.
+For all RL conditions, bonuses apply only to proved samples; unproved samples receive $r = 0$.
+
+\paragraph{Exec-only (baseline).}
+$r = r_{\text{exec}}$.
+Binary solver verification with no structural component.
+
+\paragraph{Additive ISR.}
+\begin{equation}
+  r = r_{\text{exec}} \cdot (1 + \beta \cdot \text{ISR}(x)), \quad \beta \in \{0.1, 0.3\}
+  \label{eq:additive-isr}
+\end{equation}
+ISR provides a bonus proportional to structural tightness, gated on proof success.
+
+\paragraph{Additive Random (control).}
+$r = r_{\text{exec}} \cdot (1 + \beta \cdot u)$, $u \sim \mathcal{U}[0,1]$, $\beta \in \{0.1, 0.3\}$.
+Replacing ISR with uniform noise isolates the causal effect of ISR-specific signal from general reward-shaping effects (variance injection, magnitude scaling).
+
+\paragraph{Convex ISR.}
+$r = (1 - \beta) \cdot r_{\text{exec}} + \beta \cdot \text{ISR}(x)$.
+Under this formulation, proved samples with ISR $< 1$ receive a lower reward than under exec-only, effectively penalizing structural imperfection.
+
+\paragraph{Convex Random.}
+$r = (1 - \beta) \cdot r_{\text{exec}} + \beta \cdot u$, $u \sim \mathcal{U}[0,1]$.
+Control for the convex formulation.
+
+\paragraph{SFT baseline.}
+Supervised fine-tuning on the same training data with no reinforcement learning, confirming whether observed hacking behaviors are RL-reward-specific or artifacts of general fine-tuning.
+
+Each RL condition is trained across three random seeds.
+Seeds control model initialization and training stochasticity; all seeds share the same training data (\S\ref{sec:setup}).
+
+\subsection{Reward Hacking Taxonomy}
+\label{sec:taxonomy}
+
+Analysis of trained models across reward conditions, seeds, and logic types reveals seven distinct reward hacking modes:
+
+\begin{enumerate}[leftmargin=*, itemsep=2pt]
+\item \textbf{Conclusion Embedding (H1).}
+The conclusion is included verbatim as one of multiple premises, guaranteeing provability regardless of the other premises.
+This mode is GRPO-universal: it appears across all reward conditions (52--93\% of proved samples).
+
+\item \textbf{Conclusion Duplication with ISR Inflation (H7).}
+The formalization collapses to a single premise identical to the conclusion.
+LOO ablation marks this sole component as necessary, inflating ISR and rewarding the policy for a degenerate output.
+H7 is ISR-specific: it appears in 64.5\% of ISR-reward samples but 0\% of random-reward samples across three seeds.
+
+\item \textbf{Tautological Collapse.}
+The formalization degenerates to exactly two components---a premise and query that are identical.
+
+\item \textbf{Repetition Collapse.}
+The model generates identical premises or clauses repeatedly.
+Removing any single copy leaves the others intact, yielding ISR $\approx 0$.
+
+\item \textbf{Complexity-without-utility.}
+Excessive components are generated, none individually necessary.
+Component counts grow over training (e.g., 6.58 $\to$ 18.55) while ISR collapses.
+
+\item \textbf{Contradiction Explosion.}
+A variant of complexity-without-utility where component count increases without bound, reflecting unconstrained policy drift under extended training.
+
+\item \textbf{Query-as-fact Gaming.}
+The model converts the natural language conclusion into an atom and includes it as both a fact and the query, so the solver trivially succeeds.
+This mode bypasses text-match classifiers designed for H1/H7 and was identified through functional analysis of the $n_{\text{necessary}}$ distribution in Prolog STA.
+\end{enumerate}
+
+Modes are identified by a two-stage classification procedure.
+First, strict normalized text matching detects H1 and H7 by comparing each premise string against the query string.
+Second, functional analysis of the per-sample $n_{\text{necessary}}$ distribution from STA catches modes that evade text matching---particularly query-as-fact gaming, where the gaming mechanism produces novel string representations invisible to exact-match classifiers.
+Samples not assigned to any hacking mode are classified as \emph{genuine}.

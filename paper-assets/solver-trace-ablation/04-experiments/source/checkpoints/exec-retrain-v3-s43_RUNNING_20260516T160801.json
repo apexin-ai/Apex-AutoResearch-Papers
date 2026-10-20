@@ -1,0 +1,40 @@
+{
+  "exp_id": "exec-retrain-v3-s43",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:04:28.770Z",
+    "updated_at": "2026-05-16T16:08:01.375Z",
+    "spec": {
+      "hypothesis": "Exec-only retrain from base Qwen3-4B to generate intermediate checkpoints (step 200-250) for ISR-gated warmstart",
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "data_path": "data/proofwriter_fol_100.jsonl",
+      "data_count": 100,
+      "hyperparams": {
+        "reward_mode": "exec_only",
+        "num_generations": 8,
+        "per_device_train_batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "lr": 1e-06,
+        "max_steps": 500,
+        "save_steps": 50,
+        "save_total_limit": 3
+      },
+      "command": "python scripts/train_grpo.py --config configs/grpo_exec_retrain_v3.yaml --seed 43 --output_dir /root/autodl-tmp/outputs/exec_retrain_v3_s43 --no_wandb",
+      "pid": 875573,
+      "num_generations": 8,
+      "num_steps": 500,
+      "save_steps": 50,
+      "checkpoint_path": "/root/autodl-tmp/outputs/exec_retrain_v3_s43",
+      "log_path": "/root/autodl-tmp/outputs/exec_retrain_v3_s43.log"
+    }
+  },
+  "timestamp": "2026-05-16T16:08:01.628141+00:00",
+  "trigger": "update_registry"
+}

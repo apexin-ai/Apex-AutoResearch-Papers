@@ -1,0 +1,48 @@
+{
+  "exp_id": "d146-pf-isr-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:01.436Z",
+    "updated_at": "2026-05-20T02:37:03.296Z",
+    "hypothesis": "D146 ProofFOL ISR beta=0.1 seed=42. Tests if ISR triggers same Goodhart collapse pattern on ProofFOL as observed on FOLIO.",
+    "parent": "d146-pf-exec-s42",
+    "spec": {
+      "command": "PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python3 scripts/train_grpo.py --config configs/grpo_prooffol_isr_b01.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/d146_pf_isr_s42 --no_wandb",
+      "server": "westd-39279",
+      "data_path": "/root/solver-trace-ablation/data/prooffol_train_500.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "gpu": [
+        "cuda:0"
+      ],
+      "tmux_session": "d146-pipeline",
+      "batch_size": 2,
+      "gradient_accumulation": 4,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "/root/solver-trace-ablation/data/prooffol_eval_100.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/outputs/d146_pf_isr_s42/",
+      "log_path": "/root/autodl-tmp/outputs/d146_pf_isr_s42/reward_log.jsonl"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T23:50:31.875Z",
+    "metrics": {
+      "reward_final": 0,
+      "prove_rate_final": 0,
+      "isr_final": 0,
+      "parse_rate": 1,
+      "prove_rate_mean": 0.354,
+      "prove_rate_final50": 0.35,
+      "isr_mean": 0.12,
+      "isr_peak": 0.409,
+      "steps_completed": 500,
+      "note": "bimodal: 38% PR=0, 36.8% PR=0.5, 10.8% PR=1.0; saturated after step 300"
+    }
+  },
+  "timestamp": "2026-05-20T02:37:03.773362+00:00",
+  "trigger": "update_registry"
+}

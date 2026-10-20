@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan006-prolog-sta-s43",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:19:39.141Z",
+    "updated_at": "2026-05-14T16:09:43.794Z",
+    "hypothesis": "Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。",
+    "notes": "PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=43. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s43. 等 GPU 释放。"
+  },
+  "timestamp": "2026-05-14T16:09:43.922592+00:00",
+  "trigger": "update_registry"
+}

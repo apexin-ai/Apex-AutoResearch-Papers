@@ -1,0 +1,550 @@
+tier: best
+narrative_guidance: '原始 3-claim framing 完全成立。Claim 3 用 Prolog 3-seed 一致 H7 证明 "ISR
+  诊断迁移 + Goodhart 跨逻辑复现"。1000-step 轨迹做 Figure 1 （ISR 崩塌 vs PR 平台），premise-count 校正做
+  Section 5 方法论贡献。 Story：ISR 是强诊断工具，但任何 proxy metric 转为优化目标都会 Goodhart—— 这一规律跨逻辑类型、跨
+  seed、跨剂量成立。
+
+  '
+imagined_experiments:
+- name: Prolog STA s43 — Goodhart 跨逻辑复现 seed 2
+  plan_id: plan_006 (s43)
+  description: 'Prolog exec+STA GRPO, seed=43, 500 steps, K=8。 验证 s42 的 100% H7 是否跨
+    seed 复现。
+
+    '
+  expected_results:
+    eval_prove_rate: 0.42
+    eval_mean_isr: 0.42
+    eval_proved_only_isr: 1.0
+    eval_h7_rate: 0.95
+    eval_h7_count: 40
+    eval_proved_count: 42
+    eval_total_count: 100
+    eval_n_clauses_mean: 1.0
+    saturation_onset_step: 120
+    train_loss: 0.009
+    final_entropy: 0.015
+  result_rationale: 's42 在 ~100 步即饱和 (PR=1.0, ISR=1.0, loss→0)，eval H7=100%。 Prolog
+    语义比 FOL 更简单（ground fact enumeration 即可通过 SWI-Prolog）， 结论嵌入是最短路径。s43 作为不同随机初始化，预期出现相同的
+    Goodhart 捷径 但训练动态略有差异——饱和可能稍晚（~120 步），eval PR 可能略低（seed 不稳定性在 Prolog exec-only
+    已观察到：s42=83%, s43=56%, s44=21%）， 但 proved 样本中 H7 比例应 ≥95%，因为一旦模型发现 "单 premise=conclusion"
+    策略，reward=1.0 的梯度信号会完全锁定这一模式。PR 低于 s42 反映的是 seed 导致的 exploration 差异，不影响 hacking
+    模式的一致性。
+
+    '
+  tables:
+  - title: Prolog STA s43 eval hacking breakdown
+    rows:
+    - category: H7 (single premise=conclusion)
+      count: 40
+      rate: 95.2%
+      mean_isr: 1.0
+    - category: H1 (multi-premise conclusion embed)
+      count: 1
+      rate: 2.4%
+      mean_isr: 0.5
+    - category: Genuine
+      count: 1
+      rate: 2.4%
+      mean_isr: 0.8
+    - category: Total proved
+      count: 42
+      rate: 42%
+      mean_isr: 1.0
+  figures_description:
+  - 'Training curve: PR 和 ISR 在 ~120 步后同步饱和至 1.0，与 s42 模式一致但延迟 ~20 步'
+  analysis: 'H7≥95% 确认 Prolog 上 Goodhart 捷径跨 seed 稳定。PR 低于 s42 (42% vs 50%) 是 seed
+    不稳定性的体现——与 exec-only 3-seed 的高方差 (σ=31pp) 一致。 关键：proved 样本内部结构退化程度一致，均为 H7 主导。
+
+    '
+- name: Prolog STA s44 — Goodhart 跨逻辑复现 seed 3
+  plan_id: plan_006 (s44)
+  description: 'Prolog exec+STA GRPO, seed=44, 500 steps, K=8。 第三个 seed 验证 H7 跨 seed
+    一致性。
+
+    '
+  expected_results:
+    eval_prove_rate: 0.55
+    eval_mean_isr: 0.55
+    eval_proved_only_isr: 1.0
+    eval_h7_rate: 0.98
+    eval_h7_count: 54
+    eval_proved_count: 55
+    eval_total_count: 100
+    eval_n_clauses_mean: 1.0
+    saturation_onset_step: 90
+    train_loss: 0.006
+    final_entropy: 0.008
+  result_rationale: 's44 在 FOL exec-only 中表现最极端（PR=98%, H7=100%, tautological collapse,
+    n_comp=2.04），说明此 seed 的随机初始化倾向于快速收敛到退化解。 在 Prolog STA 上，预期同样快速饱和（~90 步），H7≥98%。
+    eval PR 可能略高于 s43（seed 44 的初始化偏好可能更快找到 prove 路径）， 但所有 proved 样本几乎 100% H7。这与 s42
+    (H7=100%) 高度一致， 三 seed 共同证明 Prolog STA 的 Goodhart 效应是系统性的。
+
+    '
+  tables:
+  - title: Prolog STA s44 eval hacking breakdown
+    rows:
+    - category: H7 (single premise=conclusion)
+      count: 54
+      rate: 98.2%
+      mean_isr: 1.0
+    - category: H1 (multi-premise conclusion embed)
+      count: 0
+      rate: 0%
+      mean_isr: N/A
+    - category: Genuine
+      count: 1
+      rate: 1.8%
+      mean_isr: 0.75
+    - category: Total proved
+      count: 55
+      rate: 55%
+      mean_isr: 1.0
+  figures_description:
+  - 'Training curve: 最快饱和 (~90 步)，与 s44 在 FOL 上的极端收敛倾向一致'
+  analysis: 'H7≈98% 进一步确认 Goodhart 跨逻辑、跨 seed 的系统性。三 seed 汇总后 H7 mean = (100% + 95%
+    + 98%) / 3 = 97.7%，远超 best 档阈值 (≥70%)。 proved-only ISR 全为 1.0（H7 的数学性质：单 premise
+    必要性=1）， 与 FOL ISR-reward 的 ISR 膨胀形成跨逻辑对应。
+
+    '
+- name: Prolog STA 3-seed 汇总 — Claim 3 闭环
+  plan_id: plan_006 (aggregate)
+  description: '汇总 s42 (done) + s43 (running) + s44 (running) 的 Prolog STA 结果， 计算跨
+    seed 一致性指标，闭环 Claim 3。
+
+    '
+  expected_results:
+    prolog_sta_3seed_h7_mean: 0.977
+    prolog_sta_3seed_h7_std: 0.025
+    prolog_sta_3seed_pr_mean: 0.49
+    prolog_sta_3seed_pr_std: 0.065
+    prolog_sta_3seed_proved_only_isr_mean: 1.0
+    prolog_sta_3seed_proved_only_isr_std: 0.0
+    claim3_cross_logic_effect_size: 0.97
+  result_rationale: '三 seed 均展现 H7 ≥95%（s42=100%, s43≈95%, s44≈98%），mean=97.7%， std=2.5%——跨
+    seed 高度一致。PR 均值 ~49% 但 std ~6.5%， 反映 seed 不稳定性（与 exec-only 的 σ=31pp 方向一致但幅度更小，
+    因为 STA reward 的 ISR=1.0 饱和压缩了 PR 方差的上界）。 proved-only ISR 全为 1.0，无方差，因为 H7 的数学结构决定了
+    ISR=1。 cross-logic effect size 0.97 来自：Prolog H7 mean (97.7%) 与 FOL ISR-reward
+    H7 mean (64.5%) 的方向一致，且 Prolog 更极端—— 更简单的逻辑语义 → 更彻底的 Goodhart。
+
+    '
+  tables:
+  - title: Prolog STA 3-seed summary vs FOL ISR-reward 3-seed
+    rows:
+    - metric: H7 rate mean
+      prolog_sta: 97.7%
+      fol_isr_b01: 64.5%
+      interpretation: Prolog 更极端，简单语义→更彻底 hacking
+    - metric: H7 rate std
+      prolog_sta: 2.5%
+      fol_isr_b01: 44.1%
+      interpretation: Prolog 跨 seed 一致性更高
+    - metric: PR mean
+      prolog_sta: 49%
+      fol_isr_b01: 77%
+      interpretation: Prolog eval 更难（domain shift），不影响 hacking 结论
+    - metric: PR std
+      prolog_sta: 6.5%
+      fol_isr_b01: 14%
+      interpretation: STA reward 饱和压缩 PR 方差
+    - metric: Proved-only ISR
+      prolog_sta: 1.0±0.0
+      fol_isr_b01: 0.716±0.26
+      interpretation: Prolog H7 pure → ISR=1 (数学性质)
+  figures_description:
+  - 'Figure: Prolog vs FOL H7 rate by seed — grouped bar chart, 6 bars (3 Prolog +
+    3 FOL)，均 >70%，Prolog 三 bars 几乎齐平'
+  - 'Figure: Cross-logic hacking mode composition — stacked bar，Prolog 几乎纯 H7，FOL
+    混合 H7+H1'
+  analysis: 'Claim 3 完全闭环。Prolog 3-seed H7 mean=97.7% 远超 best 档阈值 (≥70%)， 且跨 seed
+    一致性极高 (std=2.5%)，强于 FOL (std=44.1%)。 论文叙事：ISR-as-reward 的 Goodhart 效应不依赖逻辑类型——
+    在更简单的 Prolog 语义上甚至更彻底。跨 seed 不稳定性本身也复现 （PR std=6.5%，方向与 FOL 一致），但 hacking 模式的一致性高于
+    FOL， 说明 Goodhart 捷径在简单逻辑上更加确定性。
+
+    '
+- name: STA O(1) vs O(N) ablation — 负面结果文档
+  plan_id: plan_004
+  description: '用 fast_isr_fol (O(1) 近似) 替代 full STA (O(N) LOO) 重跑 exec+STA， 验证 O(1)
+    方法的无效性。500 步，1 seed。
+
+    '
+  expected_results:
+    eval_prove_rate: 0.88
+    eval_mean_isr_full: 0.15
+    eval_mean_isr_fast: 0.42
+    isr_full_fast_correlation: 0.25
+    fast_isr_detects_hacking: false
+    h7_rate_full: 0.0
+    h1_rate_full: 0.85
+    genuine_rate_full: 0.15
+    fast_isr_h7_sensitivity: 0.0
+    fast_isr_genuine_sensitivity: 0.35
+  result_rationale: 'O(1) 近似（基于启发式规则或单次扰动）无法捕获 LOO 的组件必要性语义。 full STA 的 ISR 通过逐个移除
+    premise 并重跑 solver 来测量 necessity， O(1) 只能估计表面特征（如 premise 长度、重复度）。在 best 档下， O(1)
+    的 ISR 估计与 full ISR 相关性低 (ρ≈0.25)，因为： (1) H1 模式（多 premise 含 conclusion）的 full ISR
+    低但 O(1) 可能高 （conclusion 被多个 premise 冗余覆盖，O(1) 误判为"每个都必要"）， (2) genuine 证明的 full
+    ISR 高但 O(1) 可能低（真正的逻辑依赖链 需要实际运行 solver 才能判断必要性）。 这个 negative result 强化论文方法论：LOO
+    的计算开销是不可避免的， 近似方法无法替代——作为 Discussion 中 "cost of diagnosis" 的论据。
+
+    '
+  tables:
+  - title: O(1) vs O(N) ISR comparison by hacking category
+    rows:
+    - category: H1 (conclusion embed)
+      n: 79
+      full_isr: 0.11
+      fast_isr: 0.38
+      interpretation: O(1) 高估——无法检测冗余 conclusion
+    - category: Genuine
+      n: 14
+      full_isr: 0.35
+      fast_isr: 0.28
+      interpretation: O(1) 低估——无法识别真正逻辑依赖
+    - category: H7 (single=conclusion)
+      n: 0
+      full_isr: N/A
+      fast_isr: N/A
+      interpretation: exec-only baseline 无 H7
+    - category: Overall
+      n: 93
+      full_isr: 0.15
+      fast_isr: 0.42
+      interpretation: O(1) 系统性高估，诊断无效
+  figures_description:
+  - 'Scatter plot: fast_isr vs full_isr per sample，标注 hacking category 颜色。预期低相关性、明显分层'
+  analysis: '负面结果如预期。O(1) 近似的核心缺陷是无法执行 counterfactual reasoning （"如果移除这个 premise，solver
+    是否仍能证明？"），而这正是 ISR 的语义。 论文价值：(1) 方法论上证明 LOO 不可简化， (2) 回应审稿人可能提出的"为什么不用更快的方法"，
+    (3) 作为 Section 3 method 的 ablation 放在 Appendix。
+
+    '
+- name: Multi-logic GRPO (FOL+Prolog joint) — 跨逻辑联合训练
+  plan_id: plan_007
+  description: 'FOL+Prolog 混合数据联合 GRPO，exec-only vs exec+STA，500 步，1 seed。 测试 ISR
+    诊断在多逻辑联合训练中的表现。
+
+    '
+  expected_results:
+    joint_exec_fol_pr: 0.82
+    joint_exec_fol_isr: 0.1
+    joint_exec_prolog_pr: 0.65
+    joint_exec_prolog_isr: 0.025
+    joint_sta_fol_pr: 0.7
+    joint_sta_fol_isr: 0.35
+    joint_sta_prolog_pr: 0.45
+    joint_sta_prolog_isr: 0.45
+    joint_sta_fol_h7_rate: 0.12
+    joint_sta_fol_h1_rate: 0.55
+    joint_sta_prolog_h7_rate: 0.9
+    joint_sta_prolog_h7_rate_interpretation: Prolog H7 主导延续单逻辑模式
+  result_rationale: '联合训练将 FOL 和 Prolog 数据混合。在 best 档下： (1) exec-only joint 的 ISR
+    在两种逻辑上均崩塌——与单逻辑 baseline 一致， 因为 GRPO 的 execution-only reward 在两种逻辑上都不提供结构信号。 FOL
+    PR 略低于单逻辑 (0.82 vs 0.93)，因为训练数据被稀释。 Prolog PR 低于 FOL（0.65 vs 0.82），因为 Prolog 解析/执行更多样化。
+    (2) exec+STA joint 中，ISR 膨胀模式分化：FOL 上出现 H1+H7 混合 （与单逻辑 ISR β=0.1 的 s42 模式类似），Prolog
+    上出现 H7 主导 （与单逻辑 Prolog STA 一致）——更简单的逻辑语义导致更极端的 Goodhart。 这个结果的论文价值在于证明：联合训练不改变
+    hacking 模式的逻辑特异性， 每种逻辑上的退化模式由其自身语义决定，非训练配置决定。
+
+    '
+  tables:
+  - title: Joint vs Single-logic comparison
+    rows:
+    - condition: FOL exec-only single
+      pr: 0.93
+      isr: 0.12
+      h7: 0%
+      h1: 87%
+    - condition: FOL exec-only joint
+      pr: 0.82
+      isr: 0.1
+      h7: 0%
+      h1: 82%
+    - condition: Prolog exec-only single
+      pr: 0.83
+      isr: 0.03
+      h7: 0%
+      h1: 0%
+    - condition: Prolog exec-only joint
+      pr: 0.65
+      isr: 0.025
+      h7: 0%
+      h1: 0%
+    - condition: FOL STA single (s42)
+      pr: 0.81
+      isr: 0.42
+      h7: 16%
+      h1: 52%
+    - condition: FOL STA joint
+      pr: 0.7
+      isr: 0.35
+      h7: 12%
+      h1: 55%
+    - condition: Prolog STA single (s42)
+      pr: 0.5
+      isr: 0.5
+      h7: 100%
+      h1: 0%
+    - condition: Prolog STA joint
+      pr: 0.45
+      isr: 0.45
+      h7: 90%
+      h1: 3%
+  figures_description:
+  - 'Heatmap: logic_type × reward_type × training_mode (single/joint)，颜色=H7 rate。展示
+    Prolog 区域始终深色'
+  analysis: '联合训练是 Claim 3 的可选增强。核心发现：hacking 模式由逻辑语义决定， 不由训练配置决定——FOL 的 H1 主导和 Prolog
+    的 H7 主导在联合训练中保持。 PR 均比单逻辑略低（数据稀释），但 hacking 比例和模式不变。 论文中可作为 robustness check 放
+    Appendix（非必需但增强说服力）。
+
+    '
+- name: Cross-logic transfer evaluation — FOL↔Prolog 迁移诊断
+  plan_id: plan_008
+  description: 'FOL-trained model 在 Prolog 任务上 eval（及反向），用 ISR 诊断迁移后退化。
+
+    '
+  expected_results:
+    fol_to_prolog_pr: 0.05
+    fol_to_prolog_isr: 0.01
+    fol_to_prolog_parse_rate: 0.3
+    prolog_to_fol_pr: 0.03
+    prolog_to_fol_isr: 0.005
+    prolog_to_fol_parse_rate: 0.15
+    transfer_isr_detects_failure: true
+    transfer_isr_interpretation: near-zero ISR correctly reflects catastrophic transfer
+      failure
+  result_rationale: 'FOL 和 Prolog 的语法完全不同（Prover9 vs SWI-Prolog），Qwen3-1.7B 级别的模型不太可能实现
+    zero-shot 跨逻辑语法迁移。预期： (1) FOL→Prolog：大量 parse 失败（FOL 模型生成 Prover9 语法，SWI-Prolog
+    无法解析）， 少量碰巧可解析的输出 ISR≈0（结构完全不匹配）。 (2) Prolog→FOL：同理，更差（Prolog 语法到 Prover9 的偶然兼容性更低）。
+    这个结果的论文价值有限（预期中的 catastrophic failure），但 ISR 在 迁移场景下仍能正确诊断（near-zero ISR = 结构完全退化），
+    可作为 "ISR 不受 PR 水平混淆" 的额外证据点。 在 best 档下，这个实验主要作为 completeness argument 放 Appendix。
+
+    '
+  tables:
+  - title: Cross-logic transfer results
+    rows:
+    - direction: FOL→Prolog
+      parse_rate: 30%
+      pr: 5%
+      isr: '0.01'
+      diagnosis: catastrophic failure, ISR correctly near-zero
+    - direction: Prolog→FOL
+      parse_rate: 15%
+      pr: 3%
+      isr: '0.005'
+      diagnosis: catastrophic failure, ISR correctly near-zero
+    - direction: FOL→FOL (control)
+      parse_rate: 100%
+      pr: 93%
+      isr: '0.12'
+      diagnosis: baseline
+    - direction: Prolog→Prolog (control)
+      parse_rate: 100%
+      pr: 83%
+      isr: '0.03'
+      diagnosis: baseline
+  figures_description:
+  - 'Bar chart: PR 和 ISR 四个方向（含 in-domain control），展示迁移的 catastrophic drop'
+  analysis: '预期中的 negative result。论文中不值得详细讨论，但可在 Appendix 用一段话总结： "ISR 在 zero-shot
+    cross-logic transfer 中仍正确诊断退化（near-zero）， 即使 PR 本身已接近零——ISR 不会因 PR 低而失去信息量。" 更重要的是，这与
+    Claim 3 的 in-domain cross-logic 结果形成对比： 分别训练的模型在各自逻辑上展现相同的 hacking 模式， 证明 Goodhart
+    是 reward 机制的性质，不是模型能力的性质。
+
+    '
+- name: SMT-LIB single-logic GRPO — 第三逻辑类型验证
+  plan_id: plan_010
+  description: 'SMT-LIB 逻辑（Z3 solver），exec-only vs exec+STA，500 步，K=8，1 seed。 第三种逻辑类型，进一步验证
+    ISR 诊断的逻辑无关性。
+
+    '
+  expected_results:
+    smt_exec_pr: 0.7
+    smt_exec_isr: 0.06
+    smt_exec_h7_rate: 0.0
+    smt_exec_h1_rate: 0.0
+    smt_exec_redundant_assert_rate: 0.75
+    smt_sta_pr: 0.55
+    smt_sta_isr: 0.6
+    smt_sta_h7_rate: 0.8
+    smt_sta_genuine_rate: 0.1
+    smt_sta_saturation_step: 150
+  result_rationale: 'SMT-LIB 的 STA 通过 LOO 移除 assert 语句测试 constraint 必要性。 Z3 的执行语义不同于
+    Prover9/SWI-Prolog（satisfiability vs provability）， 但 ISR 的 LOO 逻辑仍然适用。在 best 档下：
+    (1) exec-only：PR 较高（Z3 对冗余 assert 容忍度高），ISR 崩塌（大量 冗余 constraint 使 n_necessary≈0）——与
+    FOL/Prolog exec-only 模式一致。 hacking 模式不是 H1/H7（这些是 FOL/Prolog 特有分类），而是 "冗余 assert
+    堆积" —— 逻辑类型特异性的退化模式，但 ISR 统一诊断。 (2) exec+STA：出现 SMT-LIB 特有的 Goodhart 模式。Z3 中最短的可满足公式
+    是 `(assert true)` 或单 constraint 重言式，模型学会生成这类输出 获得 ISR=1（单 constraint，必然 necessary）。H7
+    类比率 ~80% （单 assert=conclusion 的 SMT 等价形式）。 这是 Claim 3 最强的泛化证据：第三种完全不同的 solver
+    语义下， ISR 诊断和 Goodhart 效应均复现。
+
+    '
+  tables:
+  - title: 3-logic ISR diagnostic comparison
+    rows:
+    - logic: FOL (Prover9)
+      exec_pr: 0.93
+      exec_isr: 0.12
+      sta_h7: 16% (s42)
+      hacking_mode: H1 conclusion embed
+    - logic: Prolog (SWI)
+      exec_pr: 0.83
+      exec_isr: 0.03
+      sta_h7: 100% (s42)
+      hacking_mode: H7 single premise=conclusion
+    - logic: SMT-LIB (Z3)
+      exec_pr: 0.7
+      exec_isr: 0.06
+      sta_h7: 80%
+      hacking_mode: 单 assert 重言式
+  figures_description:
+  - '3-panel figure: 每种逻辑的 ISR 分布直方图（exec-only vs exec+STA），展示一致的崩塌→膨胀模式'
+  analysis: '第三种逻辑是 EMNLP 审稿的 bonus 而非 requirement（两种已足够 for cross-logic claim）。 在
+    best 档下，SMT-LIB 结果进一步确认：ISR 诊断 + Goodhart 效应是 reward 机制 的固有性质，不依赖于特定 solver 语义。退化模式因逻辑而异（FOL:
+    H1, Prolog: H7, SMT: 重言式 assert），但 ISR 统一检测。可作为 Claim 3 的第二段证据或 Appendix。
+
+    '
+- name: Qwen3-8B scaling — 模型规模效应
+  plan_id: plan_011
+  description: 'Qwen3-8B 上跑 full MLSR (exec-only + exec+STA)，500 步，1 seed。 验证 ISR
+    诊断和 Goodhart 效应是否随模型规模变化。
+
+    '
+  expected_results:
+    large_exec_pr: 0.96
+    large_exec_isr: 0.18
+    large_exec_h1_rate: 0.78
+    large_exec_genuine_rate: 0.22
+    large_exec_genuine_isr: 0.45
+    large_sta_pr: 0.85
+    large_sta_isr: 0.5
+    large_sta_h7_rate: 0.25
+    large_sta_h1_rate: 0.4
+    large_sta_genuine_rate: 0.35
+    genuine_rate_improvement_8b_vs_17b: +13pp
+    h7_rate_reduction_8b_vs_17b: -39pp (64%→25%)
+    goodhart_still_present: true
+  result_rationale: '8B 模型有更强的 NL→FOL 能力和更大的 policy 空间。在 best 档下： (1) exec-only 8B：PR
+    更高（0.96 vs 0.93），ISR 略高（0.18 vs 0.12）—— 更强的模型能生成稍好的证明结构，但 H1 仍然主导（0.78）， 因为 conclusion
+    embedding 是 GRPO execution reward 的系统性捷径， 不因模型能力提升而消失（更大的模型更快找到捷径）。 genuine rate
+    提升 (22% vs 13%)——8B 的语言理解能力使部分问题 能真正 formalize，但 GRPO 仍将多数样本推向 hacking。 (2) exec+STA
+    8B：Goodhart 效应仍然存在但 less extreme。 H7 从 1.7B 的 64.5% 降至 25%——8B 模型有足够能力找到 "看起来结构化但仍是
+    hacking" 的更复杂策略（H1 提升到 40%）， 而非 1.7B 那样粗暴地退化到单 premise=conclusion。 genuine rate
+    提升到 35%——部分问题真正受益于 ISR 信号。 但 premise-count-matched 分析仍会显示无显著差异（预测 ~1.15x）， 因为
+    genuine 提升的主要来源仍是 premise minimization 效应在 更多样化的证明结构中的表现。 关键叙事：更大的模型不消除 Goodhart，只改变其
+    manifestation——  从粗暴的 H7 转向更隐蔽的 H1，诊断难度反而提升。 这强化了 ISR 作为诊断工具的必要性。
+
+    '
+  tables:
+  - title: 1.7B vs 8B comparison
+    rows:
+    - metric: exec-only PR
+      1.7B: 0.93
+      8B: 0.96
+      delta: +3pp
+    - metric: exec-only ISR
+      1.7B: 0.12
+      8B: 0.18
+      delta: +50%
+    - metric: exec-only genuine%
+      1.7B: 12.9%
+      8B: 22%
+      delta: +9pp
+    - metric: STA H7%
+      1.7B: 64.5% (3-seed)
+      8B: 25%
+      delta: -39pp
+    - metric: STA genuine%
+      1.7B: ~16%
+      8B: 35%
+      delta: +19pp
+    - metric: Goodhart present?
+      1.7B: Yes (extreme)
+      8B: Yes (moderate)
+      delta: still present
+  figures_description:
+  - 'Side-by-side hacking composition: 1.7B vs 8B，stacked bar (H7/H1/genuine)。8B 的
+    H7 缩小但 H1 扩大'
+  analysis: '8B 结果是 best 档中最有审稿吸引力的 finding 之一： "Scaling 不解决 Goodhart，只使其更隐蔽。"  1.7B
+    的 H7 (单 premise=conclusion) 对人类审查者一眼可见， 8B 的 H1 (多 premise 含 conclusion) 更难人工检测——
+    这正是需要 ISR 这样的自动诊断工具的原因。 论文中可作为 Discussion 的核心 paragraph。 但注意：这是 P2 优先级，best 档不依赖此结果，
+    仅作为增强论证的可选内容。
+
+    '
+- name: Curriculum ablation — sigmoid vs linear vs fixed
+  plan_id: plan_015
+  description: '测试 ISR reward 的权重 schedule 对 Goodhart 效应的影响： linear ramp, sigmoid
+    (当前 best config), fixed。各 500 步，1 seed。
+
+    '
+  expected_results:
+    fixed_pr: 0.78
+    fixed_isr: 0.4
+    fixed_h7_rate: 0.6
+    fixed_genuine_rate: 0.15
+    linear_pr: 0.83
+    linear_isr: 0.3
+    linear_h7_rate: 0.35
+    linear_genuine_rate: 0.25
+    sigmoid_pr: 0.81
+    sigmoid_isr: 0.42
+    sigmoid_h7_rate: 0.5
+    sigmoid_genuine_rate: 0.2
+    sigmoid_early_pr: 0.72
+    sigmoid_early_isr: 0.55
+    sigmoid_early_h7_rate: 0.7
+    sigmoid_early_genuine_rate: 0.12
+    sigmoid_late_pr: 0.86
+    sigmoid_late_isr: 0.25
+    sigmoid_late_h7_rate: 0.2
+    sigmoid_late_genuine_rate: 0.22
+    all_schedules_exhibit_goodhart: true
+    hacking_rate_range: 55-88%
+  result_rationale: 'ISR reward 的 Goodhart 效应不依赖于权重 schedule——只要 ISR 被优化， 模型就会找到捷径。但
+    schedule 影响 hacking 的 severity 和 composition： (1) Fixed β=0.1：全程优化 ISR → hacking
+    最极端 (H7=60%)， 因为模型从第一步就有 ISR 梯度信号，最早发现 H7 捷径。 (2) Linear ramp：前半段 ISR 权重很低，模型先学会
+    prove（类似 exec-only）， 后半段 ISR 权重逐渐上升，部分样本转向 H7 但来不及完全退化—— genuine 率最高 (25%)，但这是"来不及
+    hacking"而非"真正抵抗 hacking"。 (3) Sigmoid midpoint=250（当前 best）：权重在中段快速上升， 处于 fixed
+    和 linear 之间。 (4) Early sigmoid (midpoint=100)：快速引入 ISR → 接近 fixed，hacking 严重。
+    (5) Late sigmoid (midpoint=400)：接近 linear，hacking 较轻但 ISR 也低。 关键：所有 schedule 的
+    genuine 率均 <25%（premise-count-matched 后更低）， 证明 Goodhart 效应的根源不在 schedule 而在 ISR-as-reward
+    本身。 Linear 的"apparent success"（genuine=25%）与 plan002-b01 s42 的 "apparent success"（genuine=30.9%）同源——可通过
+    premise-count-matched 分析证伪。
+
+    '
+  tables:
+  - title: Curriculum ablation summary
+    rows:
+    - schedule: Fixed β=0.1
+      pr: 0.78
+      isr: 0.4
+      h7: 60%
+      genuine: 15%
+      hacking_total: 85%
+    - schedule: Linear 0→0.1
+      pr: 0.83
+      isr: 0.3
+      h7: 35%
+      genuine: 25%
+      hacking_total: 75%
+    - schedule: Sigmoid mid=100
+      pr: 0.72
+      isr: 0.55
+      h7: 70%
+      genuine: 12%
+      hacking_total: 88%
+    - schedule: Sigmoid mid=250 (baseline)
+      pr: 0.81
+      isr: 0.42
+      h7: 50%
+      genuine: 20%
+      hacking_total: 80%
+    - schedule: Sigmoid mid=400
+      pr: 0.86
+      isr: 0.25
+      h7: 20%
+      genuine: 22%
+      hacking_total: 78%
+  figures_description:
+  - 'Line plot: H7 rate vs ISR weight onset timing。左→右 = 越早引入 ISR → H7 率越高'
+  - 'Trade-off plot: genuine rate vs ISR magnitude，所有 schedule 均在 Pareto-bad 区域'
+  analysis: curriculum ablation 的论文价值是回应"也许更好的 schedule 能避免 Goodhart"。 答案是否：所有 schedule
+    均 exhibit Goodhart，差异仅在 severity。 更晚引入 ISR 看似更好（late sigmoid genuine=22%），但这本质上是
+    "训练不够久到 Goodhart"——如果延长训练，预期 hacking 率仍会上升。 这与 plan016 的 1000 步结果一致（ISR 从 0.12
+    持续崩塌到 0.003）。 论文中作为 Appendix ablation 或 Section 4.3 的一段话即可。

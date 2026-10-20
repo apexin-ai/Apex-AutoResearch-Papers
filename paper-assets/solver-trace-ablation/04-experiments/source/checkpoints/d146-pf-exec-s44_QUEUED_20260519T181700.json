@@ -1,0 +1,16 @@
+{
+  "exp_id": "d146-pf-exec-s44",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:36:59.533Z",
+    "updated_at": "2026-05-19T18:17:00.408Z",
+    "hypothesis": "D146 ProofFOL exec-only seed=44 replication for statistical power.",
+    "parent": "d146-pf-exec-s42"
+  },
+  "timestamp": "2026-05-19T18:17:00.805503+00:00",
+  "trigger": "update_registry"
+}

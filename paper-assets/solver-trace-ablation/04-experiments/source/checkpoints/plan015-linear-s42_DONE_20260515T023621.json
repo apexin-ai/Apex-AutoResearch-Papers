@@ -1,0 +1,36 @@
+{
+  "exp_id": "plan015-linear-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:05:37.944Z",
+    "updated_at": "2026-05-15T02:36:21.091Z",
+    "spec": {
+      "command": "killed-cleanup",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "60030",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-15T01:05:52.053Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 5429.0,
+      "gpu_hours": 1.51
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T02:36:21.092Z"
+  },
+  "timestamp": "2026-05-15T02:36:21.404947+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0479504a837b01e39a7",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "paper figure fig2 size controlled",
+  "task_key": "worker_paper_figure_fig2_size_controlled_20260513T160158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_size_controlled_20260513T160158_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "edba96aff08cd6c47244a77b3e8c8840a02d12697fc15acb1b03375fae59414a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册：\n\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/min_necessary_circuit_css/figures/paper/fig2_size_controlled.pdf` (25 KB)\n- **PNG**: 同目录 `fig2_size_controlled.png` (106 KB)\n- **Artifact ID**: `art_20260513_4264dd`\n\n双面板显示：(a) Zero ablation 下 CSS=1.0 与 ACDC top-16 CPR 完全一致（\"identical\" 标注），EAP-IG/EP/Random 均为负值；(b) Mean ablation 下 EP top-16 略优（\"★ best\"），CSS=1.0 与 ACDC 仍一致。Okabe-Ito 配色，300 DPI，无 top/right spines，y=0 灰色虚线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-size-controlled.md"
+}

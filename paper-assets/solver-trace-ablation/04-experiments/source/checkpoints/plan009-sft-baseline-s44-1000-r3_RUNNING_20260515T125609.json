@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan009-sft-baseline-s44-1000-r3",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:55:38.775Z",
+    "updated_at": "2026-05-15T12:56:08.906Z",
+    "hypothesis": "SFT 1000步 seed=44（第三次重试）：r1/r2 均因 --gpu 0 覆盖 CUDA_VISIBLE_DEVICES 导致 OOM。本次用 --gpu 1 直接指定物理 GPU 1。验证 SFT 在 1000 步的 genuine rate 稳定性，完成 3-seed 统计。",
+    "parent": "plan009-sft-baseline-s44-1000-r2",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 1\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "353656",
+      "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000-r3.log",
+      "submitted_at": "2026-05-15T12:56:07.307Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "353656",
+    "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000-r3.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 1\""
+    }
+  },
+  "timestamp": "2026-05-15T12:56:09.574186+00:00",
+  "trigger": "update_registry"
+}

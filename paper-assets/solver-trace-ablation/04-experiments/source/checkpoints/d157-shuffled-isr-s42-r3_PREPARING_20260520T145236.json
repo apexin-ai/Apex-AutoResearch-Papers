@@ -1,0 +1,14 @@
+{
+  "exp_id": "d157-shuffled-isr-s42-r3",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:52:35.114Z",
+    "updated_at": "2026-05-20T14:52:35.114Z"
+  },
+  "timestamp": "2026-05-20T14:52:36.049256+00:00",
+  "trigger": "update_registry"
+}

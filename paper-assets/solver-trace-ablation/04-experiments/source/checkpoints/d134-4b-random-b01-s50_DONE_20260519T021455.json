@@ -1,0 +1,31 @@
+{
+  "exp_id": "d134-4b-random-b01-s50",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:47:11.707Z",
+    "updated_at": "2026-05-19T02:14:55.537Z",
+    "hypothesis": "D134: 4B Random β=0.1 s50 — matched control for 10-seed ISR comparison (Round 11 statistical power)",
+    "spec": {
+      "command": "/root/miniconda3/bin/python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 50 --beta 0.1 --reward_mode additive_random --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/d134_4b_random_b01_s50 --no_wandb",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 50,
+      "gpu": "cuda:0",
+      "pid": 184872,
+      "output_dir": "/root/autodl-tmp/outputs/d134_4b_random_b01_s50",
+      "checkpoint_path": "/root/autodl-tmp/outputs/d134_4b_random_b01_s50",
+      "log_path": "/root/autodl-tmp/outputs/d134_4b_random_b01_s50/train.log",
+      "pipeline": "d134_random_pipeline_v2.sh"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T02:14:55.537Z"
+  },
+  "timestamp": "2026-05-19T02:14:55.900208+00:00",
+  "trigger": "update_registry"
+}

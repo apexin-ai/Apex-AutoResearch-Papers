@@ -1,0 +1,35 @@
+{
+  "exp_id": "d165-llama-exec-s43",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:52:25.912Z",
+    "updated_at": "2026-05-21T10:58:16.348Z",
+    "hypothesis": "GRPO exec-only structural degradation on LLaMA-3.2-3B seed=43: second seed verifying cross-model ISR collapse. Same config as d165-llama-exec-s42.",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/d165_llama_exec_s43.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "871391",
+      "log_path": "/tmp/d165_llama_exec_s43_r2.log",
+      "submitted_at": "2026-05-21T10:56:42.894Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "meta-llama/Llama-3.2-3B (SFT warmstart from d158)",
+      "seed": 43,
+      "checkpoint_source": "d158-llama-sft-s42",
+      "eval_data": "data/proofwriter_fol_100.jsonl"
+    },
+    "notes": "r1 crashed at step 30: ValueError(\"No left operand for ⊕\") in prover9.py _expand_xor. LLaMA generated malformed XOR formula, uncaught in reward function. Fixing + resubmitting."
+  },
+  "timestamp": "2026-05-21T10:58:16.744576+00:00",
+  "trigger": "update_registry"
+}

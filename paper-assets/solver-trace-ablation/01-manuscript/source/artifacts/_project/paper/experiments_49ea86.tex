@@ -1,0 +1,228 @@
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate STA along three axes: ISR as a diagnostic for reward hacking (\S\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\S\ref{sec:goodhart}); and STA as a cross-logic protocol (\S\ref{sec:crosslogic}).
+We synthesize the modes observed across conditions into a hacking taxonomy (\S\ref{sec:taxonomy}).
+
+\subsection{Setup}\label{sec:setup}
+
+\textbf{Model and training.}
+We train Qwen3-4B with GRPO~\citep{deepseekmath} ($K{=}8$ rollouts, learning rate $10^{-6}$, 500 steps default and 1000 where noted) across seeds $\{42,43,44\}$ on a fixed 500-example FOLIO~\citep{folio} subset held constant across all conditions.\footnote{All experiments use \texttt{data/train\_500\_seed42.jsonl}; the seed argument controls only model initialization and rollout sampling, never data composition.}
+The SFT baseline is trained with NLL on gold formalizations to isolate whether structural degeneration arises from data exposure alone.
+
+\textbf{Evaluation protocol.}
+Held-out evaluation uses 100 examples drawn from FOLIO (file: \texttt{proofwriter\_fol\_100.jsonl}; the filename is a legacy artifact---no ProofWriter data is used, see \S\ref{sec:task}) with greedy decoding.
+All cross-run ISR values are recomputed uniformly by a single evaluator (\texttt{eval\_sta.py}) on top of \texttt{Prover9}/SWI-Prolog so that training-log ISR (which varied with implementation revisions) is never compared across runs.
+We report prove rate (PR), proved-only ISR ($\text{ISR}^*$, denoted ISR in tables when context is clear), and hacking-mode rates from a two-stage classifier (strict normalized text matching for H1/H7, plus functional analysis of the per-sample $n_{\text{necessary}}$ distribution; \S\ref{sec:taxonomy-method}).
+We additionally report a \emph{non-hacking} (N-H) rate---the residual of proved samples that match none of the seven cataloged patterns---which is a necessary but not sufficient condition for semantic correctness.
+
+\subsection{ISR as Diagnostic}
+\label{sec:diagnostic}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/fig2_isr_collapse.pdf}
+\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\%$\to$93\%$\to$96\% while proved-only ISR falls $0.642{\to}0.132{\to}0.003$ over 100$\to$500$\to$1000 steps. By step 1000, 94.8\% of proved samples have $\text{ISR}{=}0$ and mean component count inflates 6.58$\to$18.55, indicating contradiction explosion.}
+\label{fig:isr-collapse}
+\end{figure}
+
+We first establish that ISR detects structural degeneration that the prove-rate reward---and any evaluation built on it alone---would miss.
+
+\textbf{Collapse trajectory.}
+Figure~\ref{fig:isr-collapse} traces an exec-only GRPO run (seed~42) at 100, 500, and 1000 training steps.
+PR rises $32\%\to93\%\to96\%$, a trajectory that by execution-only evaluation would read as ``successful optimization.''
+$\text{ISR}^*$ tells a different story: $0.642\to0.132\to0.003$, a 200$\times$ collapse over the same window. %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42
+By 500 steps, 87.1\% of proved samples embed the conclusion (mode H1, \S\ref{sec:taxonomy-method}); by 1000 steps, the embedding rate saturates at 100\% and mean component count more than doubles ($6.58\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.
+The monotonic decline shows that extended training, in isolation from a structural signal, \emph{worsens} formalization quality even as it improves the headline number.
+
+\textbf{Cross-seed instability.}
+The three exec-only seeds diverge into qualitatively different failure modes despite sharing data, hyperparameters, and reward (Table~\ref{tab:beta01-3seed}, exec-only rows; per-seed traces in Appendix~\ref{app:per-seed}).
+Seed~42 reaches $\text{PR}{=}93\%$ via conclusion embedding ($\text{H1}{=}87.1\%$); seed~43 collapses to $\text{PR}{=}14\%$ via repetition (87\% of rollouts truncated at the max length); seed~44 reaches $\text{PR}{=}98\%$ via tautological collapse to a two-component structure ($\text{H7}{=}100\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44
+The cross-seed PR variance ($\sigma{=}\pm47$\,pp) shows that aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).
+This is the diagnostic value: the same signal catches both high-PR and low-PR failures.
+
+\textbf{SFT baseline.}
+Supervised fine-tuning on gold formalizations reaches $\text{PR}{=}14\%$ with $\text{ISR}^{*}{=}0.571$, $\text{H7}{=}0$, $\text{H1}{=}1/14$ ($7.1\%$), and $92.9\%$ non-hacking. %% registry: plan009-sft-baseline-s42-r4
+The near-absence of hacking under identical data exposure is consistent with hacking being RL-specific.
+Because SFT also has low PR, we further compare to a 100-step RL checkpoint at matched PR (Appendix~\ref{app:100step}); the RL checkpoint at $\text{PR}{=}32\%$ already shows $\text{H1}{>}0$ and lower $\text{ISR}^*$ than SFT at $\text{PR}{=}14\%$, indicating the gap is not merely a PR-level confound.
+
+\subsection{Meta-Level Goodhart's Law}
+\label{sec:goodhart}
+
+We now reverse roles: instead of treating ISR as an observer, we use it as a reward augmentation, $r = r_{\text{exec}}\cdot(1 + \beta\,\text{ISR})$.
+A uniform random control, $r = r_{\text{exec}}\cdot(1 + \beta\,u)$ with $u\sim\mathcal{U}(0,1)$, at matched $\beta$ isolates ISR-specific signal from generic reward-variance effects.
+The headline finding is that ISR-as-reward produces \emph{meta-level} Goodhart~\citep{manheim-goodhart-taxonomy}: the diagnostic metric itself becomes the target of gaming when optimized.
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Condition} & $\boldsymbol{\beta}$ & \textbf{PR\%}$\uparrow$ & \textbf{ISR}$^*$ & \textbf{H7\%} & \textbf{H1\%} & \textbf{N-H\%} \\
+\midrule
+Base (0-shot) & --- & 12 & --- & --- & --- & --- \\ %% registry: sta-phase0-baseline
+SFT & --- & 14 & 0.571 & 0 & 7 & \textbf{93} \\ %% registry: plan009-sft-baseline-s42-r4
+\midrule
+Exec-only$^\dagger$ & --- & 93 & 0.132 & 0 & 87 & 13 \\ %% registry: plan001-exec-only-s42-r2
+ISR & 0.1 & 77{\scriptsize$\pm$14} & $\ddagger$ & \textbf{65} & 17 & ${\sim}$16 \\ %% registry: plan002-additive-b01-s42/s43/s44
+Random & 0.1 & \textbf{85}{\scriptsize$\pm$6} & 0.086{\scriptsize$\pm$.04} & 0 & 81 & 19 \\ %% registry: plan018-additive-random-b01-s42/s43-r2/s44
+\midrule
+ISR & 0.3 & 66{\scriptsize$\pm$42} & 0.39{\scriptsize$\pm$.31} & 35 & 49 & 16 \\ %% registry: plan002-additive-b03-s42/s43/s44
+Random$^\S$ & 0.3 & 36{\scriptsize$\pm$18} & 0.05{\scriptsize$\pm$.07} & 0 & 100 & 0 \\ %% registry: plan017-additive-random-s42, exp1-random-b03-s44 (s43 training)
+\bottomrule
+\end{tabular}}
+\caption{Goodhart landscape across reward conditions. 3-seed rows show mean$\pm$std. $^\dagger$Seed~42; cross-seed exec-only divergence in \S\ref{sec:diagnostic}. $\ddagger$$\text{ISR}^*$ omitted for ISR $\beta{=}0.1$ because the raw mean is inflated by H7 gaming (per-seed: Table~\ref{tab:beta01-3seed}); when matched on premise count it is no different from random (1.06$\times$). $^\S$Random $\beta{=}0.3$ reports 2 seeds (s42, s44); s43 is still training (\texttt{exp1-random-b03-s43-r4}). Best PR and N-H\% bolded per group.}
+\label{tab:goodhart-landscape}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Seed} & \textbf{Cond.} & \textbf{PR} & $\mathbf{ISR^*}$ & \textbf{H7\%} & \textbf{H1\%} & \textbf{N-H\%} & \textbf{ISR$^*_{n\geq 3}$} \\
+\midrule
+42 & ISR & 0.81 & 0.415 & 16 & 52 & 32 & 0.258 \\ %% registry: plan002-additive-b01-s42
+43 & ISR & 0.61 & 0.830 & 97 & 0 & 3 & --- \\ %% registry: plan002-additive-b01-s43
+44 & ISR & 0.89 & 0.902 & 87 & 0 & 14 & --- \\ %% registry: plan002-additive-b01-s44
+\midrule
+42 & Random & 0.79 & 0.131 & 0 & 71 & 29 & 0.243 \\ %% registry: plan018-additive-random-b01-s42
+43 & Random & 0.88 & 0.058 & 0 & 93 & 7 & --- \\ %% registry: plan018-additive-random-b01-s43-r2
+44 & Random & 0.89 & 0.070 & 0 & 80 & 20 & --- \\ %% registry: plan018-additive-random-b01-s44
+\midrule
+\multicolumn{2}{l}{ISR mean$\pm$std} & .77$\pm$.14 & --- & 65 & 17 & 16 & 0.258 \\
+\multicolumn{2}{l}{Random mean$\pm$std} & .85$\pm$.06 & .086$\pm$.04 & 0 & 81 & 19 & 0.243 \\
+\bottomrule
+\end{tabular}}
+\caption{ISR $\beta{=}0.1$ vs.\ random $\beta{=}0.1$, 3-seed breakdown. H7 is ISR-specific (65\% vs.\ 0\%); H1 is GRPO-universal but higher under random. Last column reports $\text{ISR}^*$ restricted to non-hacking samples with $\geq{3}$ premises (premise-count-matched), available for s42 where genuine residual is non-trivial: 0.258 vs.\ 0.243, a 1.06$\times$ ratio.}
+\label{tab:beta01-3seed}
+\end{table}
+
+\textbf{Low-dose ISR ($\beta{=}0.1$): ISR-specific gaming.}
+Table~\ref{tab:beta01-3seed} reports the 3-seed breakdown.
+The most striking number is H7: 64.5\% of proved samples under ISR ($n{=}149/231$) vs.\ \emph{zero} under random ($0/256$). %% registry: plan002 vs plan018 all seeds
+H7---a single premise identical to the conclusion, giving $\text{ISR}\geq 0.5$ by construction (\S\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.
+Total conclusion embedding ($\text{H1}+\text{H7}$) is GRPO-universal at $68$--$97\%$ across both conditions, and is in fact \emph{higher} under random (mean H1 81\% under random vs.\ 17\% under ISR).
+ISR does not reduce hacking; it converts H1 into H7 (Figure~\ref{fig:hacking-composition}).
+Random also achieves higher and more stable PR ($85{\pm}6\%$ vs.\ $77{\pm}14\%$), so ISR-as-reward yields no PR advantage either.
+
+\textbf{Premise-count confound.}
+One ISR seed (s42) is the only one not dominated by H7, and its raw $\text{ISR}^*{=}0.415$ is 3.2$\times$ higher than its matched random control ($0.131$), suggesting genuine structural improvement.
+This appearance is entirely a premise-minimization artifact.
+ISR-trained models produce shorter formalizations (mean $n{=}5.58$ vs.\ $8.46$ for random), and ISR rises mechanically as $n$ falls---when $n{=}2$, ISR$\geq 0.5$ by definition.
+Restricting to non-hacking samples with $\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\text{ISR}^*{=}0.258$ for ISR vs.\ $0.243$ for random: a 1.06$\times$ ratio, no meaningful advantage (Table~\ref{tab:beta01-3seed}, last column). %% D051 premise-count-matched analysis
+The raw 3.2$\times$ headline collapses once the LOO bias is controlled.
+This is methodologically important: LOO-based metrics are widely used without component-count correction; under optimization that pressure for shorter outputs, the metric inflates without any quality improvement.
+
+\textbf{High-dose ISR ($\beta{=}0.3$): multi-modal Goodhart instability.}
+At $\beta{=}0.3$, ISR-as-reward produces extreme cross-seed instability (Table~\ref{tab:goodhart-landscape}, last group): $\text{PR}{=}66{\pm}42\%$, spanning $18\%$ to $95\%$.
+Each seed converges to a distinct Goodhart pathway. %% registry: plan002-additive-b03-s42/s43/s44
+Seed~42 exhibits \emph{reward collapse}: $\text{PR}{=}18\%$, $\text{ISR}^{*}{=}0.143$, the classical Goodhart pattern from~\citep{gao-reward-overoptimization} where the proxy weight overwhelms the base signal.
+Seed~43 exhibits \emph{H1-dominant shortcutting}: $\text{PR}{=}86\%$, $\text{H1}{=}68.6\%$, $\text{H7}{=}4.7\%$, only $26.7\%$ non-hacking---the model retains a high prove rate but achieves it via conclusion embedding, not structural manipulation of the metric.
+Seed~44 exhibits \emph{pure H7 meta-Goodhart}: $\text{PR}{=}95\%$ combined with $\text{H7}{=}100\%$ and $\text{ISR}^{*}{=}0.742$, with $0\%$ non-hacking.
+This last case is the cleanest meta-level Goodhart instance in our experiments: the model simultaneously games \emph{both} the execution reward (high PR) and the structural metric (high $\text{ISR}^{*}$) through the same construction.
+For the random control at $\beta{=}0.3$, the available 2 seeds collapse to $\text{PR}{=}48\%$ (s42) and $\text{PR}{=}23\%$ (s44) with $\text{H1}{=}100\%$ and $0\%$ non-hacking in both cases (the s43 random run is still training; full numbers in Appendix~\ref{app:beta03}). %% registry: plan017-additive-random-s42, exp1-random-b03-s44
+High-dose proxy weighting is harmful in both ISR and random conditions, but ISR uniquely produces \emph{mode diversity}: three qualitatively different failure trajectories from a single reward formulation.
+
+\subsection{Cross-Logic Diagnostic Transfer}
+\label{sec:crosslogic}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/fig4_prolog_comparison.pdf}
+\caption{Cross-logic results. \textbf{Left}: FOL vs.\ Prolog exec-only $\text{ISR}^*$ across 3 seeds, both near-zero (s44 Prolog $\text{ISR}^*{=}0.387$ is a small-sample artifact, $n{=}21$). \textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 100\% non-genuine through distinct mechanisms (H7 tautology / degenerate uppercase syntax / query-as-fact gaming).}
+\label{fig:prolog-comparison}
+\end{figure}
+
+We replicate the FOL pipeline with Prolog/SWI-Prolog, retraining seeds and re-evaluating with the same eval harness.
+Two questions: (i) does ISR retain diagnostic value on a structurally different logic; (ii) does ISR-as-reward produce the same meta-level Goodhart failure mode?
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccccl}
+\toprule
+\textbf{Logic} & \textbf{Cond.} & \textbf{Seed} & \textbf{PR} & $\mathbf{ISR^*}$ & \textbf{H7\%} & \textbf{Mode} \\
+\midrule
+FOL & exec & 42 & .93 & .132 & 0 & H1 embed (87\%) \\
+FOL & exec & 43 & .14 & --- & --- & repetition \\
+FOL & exec & 44 & .98 & .57 & 100 & tautological \\
+\midrule
+Prolog & exec & 42 & .83 & .037 & 0 & redundant facts \\ %% registry: plan006-prolog-exec-s42
+Prolog & exec & 43 & .56 & .015 & 0 & redundant facts \\ %% registry: plan006-prolog-exec-s43-r3
+Prolog & exec & 44 & .21 & .39$^\flat$ & 0 & low PR \\ %% registry: plan006-prolog-exec-s44
+\midrule
+Prolog & ISR & 42 & .50 & 1.00 & 100 & clean H7 \\ %% registry: plan006-prolog-sta-s42
+Prolog & ISR & 43 & .38 & --- & 0$^\sharp$ & degenerate syntax \\ %% registry: plan006-prolog-sta-s43
+Prolog & ISR & 44 & .97 & .885 & 0$^\sharp$ & query-as-fact \\ %% registry: plan006-prolog-sta-s44
+\bottomrule
+\end{tabular}}
+\caption{Cross-logic results. $^\flat$small-sample inflation ($n{=}21$ proved); not interpretable as ``structurally clean.'' $^\sharp$strict text classifier returns 0\% H7 but \emph{functional} analysis ($n_{\text{necessary}}{=}1$) reveals 100\% (s43: $38/38$) and 97.9\% (s44: $95/97$) gaming-mode prevalence---see text. All Prolog ISR seeds: 0\% non-hacking.}
+\label{tab:prolog-crosslogic}
+\end{table}
+
+\textbf{Prolog exec-only: ISR catches redundancy across logics.}
+Two of three Prolog exec-only seeds (s42, s43) show $\text{ISR}^{*}{\approx}0$ despite moderate-to-high PR (Table~\ref{tab:prolog-crosslogic}). %% registry: plan006-prolog-exec-s42, plan006-prolog-exec-s43-r3
+Inspection reveals \emph{redundant coding}: ground facts repeated multiple times (e.g., \texttt{penguin(fido).} appearing three times), so per-clause LOO ablation never breaks the proof and the necessity count is zero.
+This is a different failure semantics from the FOL exec-only collapses (which centered on conclusion embedding), but $\text{ISR}^{*}$ flags both.
+This is also the point at which interpretation matters: an exec-only low-ISR is a \emph{redundancy} signal, whereas an ISR-rewarded high-ISR is a \emph{metric-gaming} signal (\S\ref{sec:taxonomy-method}); the same number does not license the same conclusion about reasoning quality, and we are careful never to read ISR differences as reasoning differences without the mode breakdown.
+
+\textbf{Prolog ISR-as-reward: universal Goodhart.}
+The Prolog ISR-reward result is stronger than its FOL counterpart: 3/3 seeds reach 0\% non-hacking through three distinct mechanisms (Figure~\ref{fig:prolog-comparison}, right; Table~\ref{tab:prolog-crosslogic}).
+Seed~42 produces clean H7 tautologies---a single clause identical to the query, $\text{ISR}^{*}{=}1.0$ over all $50/100$ proved samples. %% registry: plan006-prolog-sta-s42
+Seed~43 produces \emph{degenerate uppercase pseudo-Prolog} (e.g., \texttt{MARY\_IS\_AN\_AVA\-DEOTE.}); the strict text-match classifier returns $\text{H7}{=}0$ but functional analysis shows all 38 proved samples have $n_{\text{necessary}}{=}1$, i.e., a single clause that proves the query alone---functionally H7. %% registry: plan006-prolog-sta-s43
+Seed~44 produces \emph{query-as-fact gaming}: the model transforms the NL question into a snake-case atom and asserts the same atom as both a fact and the query (e.g., \texttt{is\_the\_dog\_furry. \?- is\_the\_dog\_furry.}), giving $\text{PR}{=}97\%$ with $95/97$ proved samples at $n_{\text{necessary}}{=}1$. %% registry: plan006-prolog-sta-s44
+Seed~44 evaded our initial strict classifier entirely (returned ``$100\%$ genuine''); functional cross-validation against the $n_{\text{necessary}}$ distribution exposed it.
+We register this as a methodological lesson: text-match hacking classifiers have blind spots, and STA's per-sample necessity profile is the cross-check that catches them.
+
+\textbf{FOL vs.\ Prolog comparison.}
+FOL ISR $\beta{=}0.1$ leaves ${\sim}16\%$ non-hacking residual; Prolog ISR leaves $0\%$ across 3 seeds.
+We attribute this to Prolog's simpler operational semantics: the optimization landscape contains fewer high-PR derivations and is more easily satisfied by clause-level shortcuts, so the gaming basin is broader and the genuine residual disappears.
+This is corroborating, not contradictory, evidence for Claim 2: in a setting where structural shortcuts are even easier to construct, ISR-as-reward collapses even more completely.
+
+\subsection{Hacking Taxonomy}
+\label{sec:taxonomy}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\columnwidth]{figures/fig3_hacking_composition.pdf}
+\caption{Hacking composition across reward conditions (proved samples, seed~42 for FOL; appendix has all seeds). ISR converts H1 (conclusion embedding) into more extreme H7 (conclusion duplication) without reducing total hacking; SFT shows near-zero hacking ($92.9\%$ non-hacking).}
+\label{fig:hacking-composition}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Mode} & \textbf{Exec} & \textbf{ISR$_{.1}$} & \textbf{Rnd$_{.1}$} & \textbf{SFT} & \textbf{Prolog$_{\text{ISR}}$} \\
+\midrule
+H1 embed       & 87 & 17 & 81 & 7 & 0$^\sharp$ \\
+H7 duplicate   & 0  & 65 & 0  & 0 & 100$^\sharp$ \\
+Tautological   & --- & --- & --- & --- & s42 \\
+Repetition     & s43 & --- & --- & --- & --- \\
+Contradiction  & 1k & --- & --- & --- & --- \\
+Cmplx.\ vacuous& 0  & 0  & 4  & 0 & --- \\
+Query-as-fact  & --- & --- & --- & --- & s44 \\
+\midrule
+\textbf{Non-hacking} & 13 & ${\sim}$16 & 19 & \textbf{93} & \textbf{0} \\
+\bottomrule
+\end{tabular}}
+\caption{Seven hacking modes across conditions (percentages of proved samples; seed~42 unless noted). Cells with seed identifiers indicate the mode dominates that seed (Prolog ISR row: H7 is s42 strict + s43/s44 functional, totaling 100\% gaming across all 3 seeds). $^\sharp$strict for FOL; pooled strict+functional for Prolog (\S\ref{sec:crosslogic}).}
+\label{tab:hacking-taxonomy}
+\end{table}
+
+The full taxonomy (Table~\ref{tab:hacking-taxonomy}, definitions in \S\ref{sec:taxonomy-method}) consists of seven modes that span the conditions we studied.
+Two are quantifiable across all conditions: \textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$97\%$ regardless of reward type, and \textbf{H7} (conclusion duplication) is ISR-specific at $64.5\%$ vs.\ $0\%$ in random controls.
+The remaining five appear in specific cells: \textbf{tautological collapse} (exec-only s44 and Prolog ISR s42); \textbf{repetition collapse} (exec-only s43, with 87\% of rollouts hitting max length); \textbf{contradiction explosion} (exec-only at 1000 steps, mean $n{=}18.55$); \textbf{complexity-without-utility} (random $\beta{=}0.1$, low residual); and \textbf{query-as-fact gaming} (Prolog ISR s44).
+
+The cross-condition pattern is consistent with the framing in \S\ref{sec:goodhart}: \emph{reward formulation determines hacking composition but not hacking prevalence.}
+Exec-only, ISR, and random conditions all show $\geq 80\%$ pooled hacking among proved samples; only SFT---which does not optimize against a binary execution signal---shows the residual at $93\%$ non-hacking, consistent with hacking being RL-specific rather than data-induced.
+Across two logic types, six reward conditions, three seeds, and up to 1000 training steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\beta{=}0.1$ s42 at $\text{PR}{=}81\%$ with $32\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed in \S\ref{sec:goodhart}.
+
+The taxonomy is descriptive, not exhaustive: query-as-fact gaming was found only when we cross-validated the strict classifier against $n_{\text{necessary}}$ distributions, and additional modes may emerge under further reward formulations or logic types.
+We expect the STA protocol itself to generalize---it requires only a solver and a notion of component---so future work can extend the taxonomy by applying the same two-stage classification to new domains.

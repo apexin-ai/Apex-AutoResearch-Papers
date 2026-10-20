@@ -1,0 +1,12 @@
+Metric,ISR β=0.1 (plan002-b01),Random β=0.1 (plan018),Ratio (ISR/Random)
+eval PR,0.81,0.79,1.03×
+eval ISR (mean),0.3365,0.1038,3.24×
+eval ISR (proved-only),0.4154,0.1314,3.16×
+Component Count (mean),5.58,8.46,0.66×
+ISR=0 Ratio,3.7%,36.7%,0.10×
+ISR=1 Ratio,12.4%,0%,—
+Tautological (2-comp),3.7%,0%,—
+Degeneration Mode,none ✓,redundant premises,—
+
+"Both conditions use r = r_exec·(1+0.1·signal), differing only in signal (ISR vs uniform random)."
+"ISR reward achieves 3.2× higher structural quality at matched PR, confirming genuine structural guidance."

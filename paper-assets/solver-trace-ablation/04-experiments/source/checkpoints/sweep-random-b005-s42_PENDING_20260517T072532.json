@@ -1,0 +1,28 @@
+{
+  "exp_id": "sweep-random-b005-s42",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:48:11.376Z",
+    "updated_at": "2026-05-17T07:25:32.595Z",
+    "hypothesis": "Random β=0.05 seed=42: matched control for ISR β=0.05 dose-response. Without this control, β=0.05 ISR results are uninterpretable (cannot distinguish ISR-specific effects from β-magnitude effects)",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b005.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/sweep_random_b005_s42 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "171259",
+      "log_path": "~/runs/solver-trace-ablation/sweep-random-b005-s42.log",
+      "submitted_at": "2026-05-17T06:24:14.757Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T07:25:32.893911+00:00",
+  "trigger": "update_registry"
+}

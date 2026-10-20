@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0726a9f06b6c9b7d33ea",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code ioi size controlled submit",
+  "task_key": "worker_code_ioi-size-controlled-submit_20260513T095804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ioi-size-controlled-submit_20260513T095804_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "0a283d85bcc71e24c55a218dff1af04e41d13e2d91b95e62f4224bd262b6dae5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。\n\n- **exp_id**: `ioi_size_controlled_baseline`\n- **tmux session**: `ioi_size_controlled_baseline`\n- **log**: `~/runs/min_necessary_circuit_css/ioi_size_controlled_baseline.log`\n- **GPU**: cuda:0, timeout 2h\n- 结果将写入 `/root/min_necessary_circuit_css/ioi_size_controlled_results.json`\n\nACDC 边级 pruning 预计 ~19 分钟，整体脚本预计 20-25 分钟完成。Cron 会自动监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ioi-size-controlled-submit.md"
+}

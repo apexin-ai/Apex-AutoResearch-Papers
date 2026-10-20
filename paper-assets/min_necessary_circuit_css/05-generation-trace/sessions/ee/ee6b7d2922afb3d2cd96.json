@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "ee6b7d2922afb3d2cd96",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code westd sva gpt2 cuda1",
+  "task_key": "worker_code_westd-sva-gpt2-cuda1_20260513T070226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-sva-gpt2-cuda1_20260513T070226.log",
+    "occurrence": 1,
+    "bytes": 1029279,
+    "sha256": "33b436e0f5b037a292f682252efb622db5da9a392a74d37c29ec50e3d33efc1e"
+  },
+  "statistics": {
+    "messages": 568,
+    "user_turns": 0,
+    "tool_calls": 207,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 150,
+      "tool_call": 207,
+      "tool_result": 207,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 568,
+      "chunks": [
+        {
+          "path": "ee6b7d2922afb3d2cd96-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee6b7d2922afb3d2cd96-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee6b7d2922afb3d2cd96-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee6b7d2922afb3d2cd96-part-0004.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-westd-sva-gpt2-cuda1.md"
+}

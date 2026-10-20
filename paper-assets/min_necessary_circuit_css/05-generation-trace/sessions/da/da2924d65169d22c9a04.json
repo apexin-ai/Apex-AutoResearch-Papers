@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "id": "da2924d65169d22c9a04",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "research edge pruning precheck",
+  "task_key": "worker_research_edge-pruning-precheck_20260513T021113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_edge-pruning-precheck_20260513T021113.log",
+    "occurrence": 1,
+    "bytes": 779663,
+    "sha256": "463af3db630f508c988d76fc560b62d652c77e46655ad7db5ecf2c567c3dbe12"
+  },
+  "statistics": {
+    "messages": 431,
+    "user_turns": 5,
+    "tool_calls": 138,
+    "roles": {
+      "log": 1,
+      "system": 140,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 138,
+      "user": 5,
+      "tool_result": 138,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "da2924d65169d22c9a04-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "da2924d65169d22c9a04-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "da2924d65169d22c9a04-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "da2924d65169d22c9a04-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "da2924d65169d22c9a04-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "da2924d65169d22c9a04-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "da2924d65169d22c9a04-part-0002.json",
+          "message_count": 152
+        },
+        {
+          "path": "da2924d65169d22c9a04-part-0003.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-edge-pruning-precheck.md"
+}

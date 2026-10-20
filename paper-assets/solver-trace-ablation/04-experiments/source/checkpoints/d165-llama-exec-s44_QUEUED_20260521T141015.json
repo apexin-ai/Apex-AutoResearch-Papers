@@ -1,0 +1,28 @@
+{
+  "exp_id": "d165-llama-exec-s44",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:52:27.874Z",
+    "updated_at": "2026-05-21T14:10:15.442Z",
+    "hypothesis": "GRPO exec-only structural degradation on LLaMA-3.2-3B seed=44: third seed completing 3-seed cross-model validation. Same config as d165-llama-exec-s42.",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python scripts/train_grpo.py --config configs/d165_llama_exec_s44.yaml 2>&1 | tee /tmp/d165_llama_exec_s44_r2.log\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "887104",
+      "log_path": "~/runs/solver-trace-ablation/d165-llama-exec-s44.log",
+      "submitted_at": "2026-05-21T14:09:10.877Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T14:10:15.832681+00:00",
+  "trigger": "update_registry"
+}

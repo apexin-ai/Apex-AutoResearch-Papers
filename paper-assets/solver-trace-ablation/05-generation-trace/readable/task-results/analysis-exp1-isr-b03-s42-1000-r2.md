@@ -1,0 +1,42 @@
+# analysis exp1 isr b03 s42 1000 r2
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900_result.json`
+- **Structured JSON:** [`1ac59f18e8e31a252b44.json`](../../sessions/1a/1ac59f18e8e31a252b44.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 结果总结
+
+**exp1-isr-b03-s42-1000-r2: NEGATIVE — Goodhart tautological collapse**
+
+| 指标 | 值 | 对比 exec-only 1000步 |
+|------|-----|---------------------|
+| eval_prove_rate | 0.95 | 0.96 |
+| eval_mean_isr | 0.734 | 0.003 |
+| genuine_rate | **0%** | 0% |
+| tautological_collapse | **YES** | NO (minimal proofs) |
+| completions_mean_length | 47 tokens | — |
+| entropy (final) | ~9e-6 | — |
+
+**核心发现：** ISR β=0.3 bonus 在 1000 步时并没有维持「结构质量」，而是诱导了与 exec-only 不同方向的退化：
+- exec-only 1000步 → ISR 数值崩塌至 ~0（最小化证明，删除所有推理步骤）
+- ISR β=0.3 1000步 → ISR 数值"高"（0.734），但通过固定重言式模板实现（`∀x(P(x)→Q(x)), ∃xR(x)` 对所有问题）
+
+这是 C006 预测的 Goodhart 效应的直接实证：ISR bonus 不能防止退化，只是将退化方向从"删除步骤"转为"模板化重言式"。两种模式下 genuine_rate 均为 0%。
+
+---

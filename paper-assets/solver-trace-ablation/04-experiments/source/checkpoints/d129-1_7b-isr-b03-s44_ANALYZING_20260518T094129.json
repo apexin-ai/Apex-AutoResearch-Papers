@@ -1,0 +1,41 @@
+{
+  "exp_id": "d129-1_7b-isr-b03-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:58:14.432Z",
+    "updated_at": "2026-05-18T09:41:29.304Z",
+    "hypothesis": "D129: 1.7B ISR β=0.3 s44 cross-scale replication — s42 showed reward collapse (PR=17% at 4B), s43 showed PR=52% with 100% CI at 1.7B; tests whether high-dose collapse pattern is consistent across seeds at 1.7B",
+    "parent": "w2-qwen3-1.7b-isr-b03",
+    "spec": {
+      "command": "python scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-1.7B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --beta 0.3 --num_steps 500 --per_device_batch_size 2 --gradient_accumulation_steps 4 --num_generations 4 --max_completion_length 512 --learning_rate 1e-6 --seed 44 --solver prover9 --no_wandb --output_dir /root/autodl-tmp/outputs/w2_1.7b_isr_b03_s44",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 44,
+      "gpu": "cuda:0",
+      "pid": 172095,
+      "checkpoint_source": "Qwen3-1.7B base model",
+      "eval_data": "data/train_500_seed42.jsonl"
+    },
+    "metrics": {
+      "PR": 0.92,
+      "ISR_star": 0.236,
+      "H1_pct": 1.1,
+      "H7_pct": 0,
+      "H8_pct": 1.1,
+      "non_hacking_pct": 97.8,
+      "content_independent_pct": 100,
+      "strict_genuine_pct": 0,
+      "total_samples": 100,
+      "proved_count": 92
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T09:41:29.645281+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp1-isr-b03-s43-r4",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:07:39.840Z",
+    "updated_at": "2026-05-15T02:36:28.581Z",
+    "spec": {
+      "command": "killed-cleanup",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "61219",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-15T01:07:48.622Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 5311.2,
+      "gpu_hours": 1.48
+    },
+    "conclusion": "killed",
+    "notes": "Duplicate of exp1-isr-b03-s43-r3 (already RUNNING on cuda:0). Created during D068 chaos, confirmed redundant at Loop #10.",
+    "completed_at": "2026-05-15T02:36:19.862Z"
+  },
+  "timestamp": "2026-05-15T02:36:28.745147+00:00",
+  "trigger": "update_registry"
+}

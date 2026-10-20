@@ -1,0 +1,53 @@
+{
+  "exp_id": "d129-1.7b-isr-b01-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:08:04.102Z",
+    "updated_at": "2026-05-17T22:14:46.825Z",
+    "hypothesis": "Qwen3-1.7B with ISR additive_bonus (β=0.1, seed=43) will show similar genuine-rate patterns as 4B, providing cross-scale evidence that ISR reward shaping generalizes beyond a single model size",
+    "spec": {
+      "command": "export CUDA_VISIBLE_DEVICES=0 && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-1.7B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --beta 0.1 --num_steps 500 --per_device_batch_size 2 --gradient_accumulation_steps 4 --num_generations 4 --max_completion_length 512 --learning_rate 1e-6 --seed 43 --solver prover9 --no_wandb --output_dir /root/autodl-tmp/outputs/d129_1.7b_isr_b01_s43",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "pid": "14701",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 43,
+      "reward_mode": "additive_bonus",
+      "beta": 0.1,
+      "num_steps": 500,
+      "checkpoint_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s43",
+      "log_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s43.log",
+      "submitted_at": "2026-05-18T05:10:55Z",
+      "submitted_via": "manual_tmux",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s43",
+    "log_path": "/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s43.log",
+    "metrics": {
+      "prove_rate": 0.6,
+      "non_hacking_rate": 0,
+      "isr_star": 0.75,
+      "H1_pct": 0,
+      "H7_pct": 100,
+      "H8_pct": 0,
+      "H9_pct": 0,
+      "genuine_pct": 0,
+      "dominant_mode": "H7a",
+      "eval_decoding": "greedy",
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "mean_isr": 0.45,
+      "proved_only_isr": 0.75
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T22:14:46.825Z"
+  },
+  "timestamp": "2026-05-17T22:14:47.128983+00:00",
+  "trigger": "update_registry"
+}

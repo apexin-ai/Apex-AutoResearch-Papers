@@ -1,0 +1,74 @@
+{
+  "exp_id": "plan001-exec-only-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:57:09.690Z",
+    "updated_at": "2026-05-14T05:14:29.593Z",
+    "hypothesis": "Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "226200",
+      "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s44.log",
+      "submitted_at": "2026-05-14T04:29:05.471Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "226200",
+    "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s44.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44\"",
+      "finished_at": "2026-05-14T05:06:39.227Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T05:06:40.707032+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.98,
+      "eval_mean_isr": 0.57,
+      "eval_isr_std": 0.2013,
+      "eval_median_isr": 0.5,
+      "eval_proved_only_isr": 0.5816,
+      "eval_n_proved": 98,
+      "eval_n_problems": 100,
+      "eval_method": "eval_sta.py full STA",
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_component_count_mean": 2.04,
+      "eval_component_count_2": 94,
+      "eval_component_count_3": 4,
+      "eval_by_type_false_pr": 1,
+      "eval_by_type_false_isr": 0.62,
+      "eval_by_type_unknown_pr": 0.976,
+      "eval_by_type_unknown_isr": 0.524,
+      "eval_by_type_true_pr": 0.971,
+      "eval_by_type_true_isr": 0.588,
+      "train_last100_pr": 0.9988,
+      "train_last100_isr": 0.5611,
+      "train_last100_loss": 0.000419,
+      "train_duration_min": 36.8,
+      "tautological_collapse": true
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan001_exec_only_s44",
+    "conclusion": "negative",
+    "notes": "TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。"
+  },
+  "timestamp": "2026-05-14T05:14:29.701638+00:00",
+  "trigger": "update_registry"
+}

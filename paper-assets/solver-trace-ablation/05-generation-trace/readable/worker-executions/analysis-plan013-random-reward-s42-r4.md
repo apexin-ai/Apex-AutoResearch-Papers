@@ -1,0 +1,1547 @@
+# analysis plan013 random reward s42 r4
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_plan013-random-reward-s42-r4_20260514T022117.log`
+- **Structured JSON:** [`57b29e0a5fab374f4026.json`](../../sessions/57/57b29e0a5fab374f4026.json)
+
+## Before a recorded user message
+
+31 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "92338fa4-8108-4088-a1ec-03a7717b028b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1778774400,
+    "rateLimitType": "seven_day",
+    "utilization": 0.75,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "6a6e4eb7-44d7-4875-b191-9ebd79d896e0",
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log file and analyzing the experiment results. I'll use SSH to connect to the server and run the analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "439d5aad-c916-478f-8d57-fc8a3ad28f93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXTUqTvjUFrAWhS9MfDacq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13301,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13301
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始分析 plan013-random-reward-s42-r4 实验结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "87a4c0e1-0b5b-4e8a-948c-55a3f0cdd18c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXTUqTvjUFrAWhS9MfDacq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13301,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13301
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Frq35enveo8PYJ28owAHvq`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "51b34412-38cd-4362-8082-04acc67a982d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXTUqTvjUFrAWhS9MfDacq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13301,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13301
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T02:21:28.742Z_
+
+<details><summary>↩ Tool result · `toolu_01Frq35enveo8PYJ28owAHvq`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "42ae3550-1e6f-4329-b597-0b17dcc49135",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fviyf7abqVtKeXLkk3GqPn`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -3 /root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "342abb34-bdf0-48c4-b6c2-043d863c85bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183A7vH5Zy4pdfFjHE18xGS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 25142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1493
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KToM5vAyM6bXd6H5NaRx39`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "2f5288ff-ac02-42e7-a8de-6010a7a37ff3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183A7vH5Zy4pdfFjHE18xGS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 25142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1493
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T02:21:33.670Z_
+
+<details><summary>↩ Tool result · `toolu_01Fviyf7abqVtKeXLkk3GqPn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 1, \\\"reward_mean\\\": 0.11547455936670303, \\\"reward_std\\\": 0.32661136984825134, \\\"prove_rate\\\": 0.125, \\\"isr_mean\\\": 0.125, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0261, \\\"lr\\\": 1e-06, \\\"timestamp\\\": \\\"2026-05-14T01:41:09.772095+00:00\\\"}\\n{\\\"step\\\": 2, \\\"reward_mean\\\": 0.0, \\\"reward_std\\\": 0.0, \\\"prove_rate\\\": 0.0, \\\"isr_mean\\\": 0.0, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0, \\\"lr\\\": 9.98e-07, \\\"timestamp\\\": \\\"2026-05-14T01:41:23.961469+00:00\\\"}\\n{\\\"step\\\": 3, \\\"reward_mean\\\": 0.36044377088546753, \\\"reward_std\\\": 0.49793297052383423, \\\"prove_rate\\\": 0.375, \\\"isr_mean\\\": 0.375, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0671, \\\"lr\\\": 9.959999999999999e-07, \\\"timestamp\\\": \\\"2026-05-14T01:41:36.952829+00:00\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "4d4f6511-5769-4905-8e39-cf8a5c4b7f8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 1, \\\\\\\"reward_mean\\\\\\\": 0.11547455936670303, \\\\\\\"reward_std\\\\\\\": 0.32661136984825134, \\\\\\\"prove_rate\\\\\\\": 0.125, \\\\\\\"isr_mean\\\\\\\": 0.125, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"loss\\\\\\\": 0.0261, \\\\\\\"lr\\\\\\\": 1e-06, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-14T01:41:09.772095+00:00\\\\\\\"}\\\\n{\\\\\\\"step\\\\\\\": 2, \\\\\\\"reward_mean\\\\\\\": 0.0, \\\\\\\"reward_std\\\\\\\": 0.0, \\\\\\\"prove_rate\\\\\\\": 0.0, \\\\\\\"isr_mean\\\\\\\": 0.0, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"loss\\\\\\\": 0.0, \\\\\\\"lr\\\\\\\": 9.98e-07, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-14T01:41:23.961469+00:00\\\\\\\"}\\\\n{\\\\\\\"step\\\\\\\": 3, \\\\\\\"reward_mean\\\\\\\": 0.36044377088546753, \\\\\\\"reward_std\\\\\\\": 0.49793297052383423, \\\\\\\"prove_rate\\\\\\\": 0.375, \\\\\\\"isr_mean\\\\\\\": 0.375, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"loss\\\\\\\": 0.0671, \\\\\\\"lr\\\\\\\": 9.959999999999999e-07, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-14T01:41:36.952829+00:00\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 1, \\\"reward_mean\\\": 0.11547455936670303, \\\"reward_std\\\": 0.32661136984825134, \\\"prove_rate\\\": 0.125, \\\"isr_mean\\\": 0.125, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0261, \\\"lr\\\": 1e-06, \\\"timestamp\\\": \\\"2026-05-14T01:41:09.772095+00:00\\\"}\\n{\\\"step\\\": 2, \\\"reward_mean\\\": 0.0, \\\"reward_std\\\": 0.0, \\\"prove_rate\\\": 0.0, \\\"isr_mean\\\": 0.0, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0, \\\"lr\\\": 9.98e-07, \\\"timestamp\\\": \\\"2026-05-14T01:41:23.961469+00:00\\\"}\\n{\\\"step\\\": 3, \\\"reward_mean\\\": 0.36044377088546753, \\\"reward_std\\\": 0.49793297052383423, \\\"prove_rate\\\": 0.375, \\\"isr_mean\\\": 0.375, \\\"parse_rate\\\": 1.0, \\\"loss\\\": 0.0671, \\\"lr\\\": 9.959999999999999e-07, \\\"timestamp\\\": \\\"2026-05-14T01:41:36.952829+00:00\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y3eqtb2aMv1YSFAx5RL2Cx`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "b51cbea2-7375-495b-9bc4-3b7b8707b543",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183A7vH5Zy4pdfFjHE18xGS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 25142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1493
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T02:21:34.191Z_
+
+<details><summary>↩ Tool result · `toolu_01KToM5vAyM6bXd6H5NaRx39`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"500 /root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "1d60170c-f6f3-44ec-8575-2796de8aa0da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"500 /root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"500 /root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T02:21:34.719Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3eqtb2aMv1YSFAx5RL2Cx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15728864\\ndrwxr-xr-x 2 root root       4096 May 14 10:18 .\\ndrwxr-xr-x 4 root root       4096 May 14 10:19 ..\\n-rw-r--r-- 1 root root        707 May 14 10:18 added_tokens.json\\n-rw-r--r-- 1 root root       4168 May 14 10:18 chat_template.jinja\\n-rw-r--r-- 1 root root       1535 May 14 10:18 config.json\\n-rw-r--r-- 1 root root        188 May 14 10:18 generation_config.json\\n-rw-r--r-- 1 root root    1671853 May 14 10:18 merges.txt\\n-rw-r--r-- 1 root root 4990095032 May 14 10:18 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4944309096 May 14 10:18 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4996758848 May 14 10:18 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root 1158754848 May 14 10:18 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      32856 May 14 10:18 model.safetensors.index.json\\n-rw-r--r-- 1 root root        613 May 14 10:18 special_tokens_map.json\\n-rw-r--r-- 1 root root   11422654 May 14 10:18 tokenizer.json\\n-rw-r--r-- 1 root root       5459 May 14 10:18 tokenizer_config.json\\n-rw-r--r-- 1 root root     470640 May 14 10:18 trainer_state.json\\n-rw-r--r-- 1 root root       7953 May 14 10:18 training_args.bin\\n-rw-r--r-- 1 root root    2776833 May 14 10:18 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "2488aea9-eedc-4fdd-b80c-f83a2e6fa906",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15728864\\\\ndrwxr-xr-x 2 root root       4096 May 14 10:18 .\\\\ndrwxr-xr-x 4 root root       4096 May 14 10:19 ..\\\\n-rw-r--r-- 1 root root        707 May 14 10:18 added_tokens.json\\\\n-rw-r--r-- 1 root root       4168 May 14 10:18 chat_template.jinja\\\\n-rw-r--r-- 1 root root       1535 May 14 10:18 config.json\\\\n-rw-r--r-- 1 root root        188 May 14 10:18 generation_config.json\\\\n-rw-r--r-- 1 root root    1671853 May 14 10:18 merges.txt\\\\n-rw-r--r-- 1 root root 4990095032 May 14 10:18 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4944309096 May 14 10:18 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4996758848 May 14 10:18 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 1158754848 May 14 10:18 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      32856 May 14 10:18 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root        613 May 14 10:18 special_tokens_map.json\\\\n-rw-r--r-- 1 root root   11422654 May 14 10:18 tokenizer.json\\\\n-rw-r--r-- 1 root root       5459 May 14 10:18 tokenizer_config.json\\\\n-rw-r--r-- 1 root root     470640 May 14 10:18 trainer_state.json\\\\n-rw-r--r-- 1 root root       7953 May 14 10:18 training_args.bin\\\\n-rw-r--r-- 1 root root    2776833 May 14 10:18 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 15728864\\ndrwxr-xr-x 2 root root       4096 May 14 10:18 .\\ndrwxr-xr-x 4 root root       4096 May 14 10:19 ..\\n-rw-r--r-- 1 root root        707 May 14 10:18 added_tokens.json\\n-rw-r--r-- 1 root root       4168 May 14 10:18 chat_template.jinja\\n-rw-r--r-- 1 root root       1535 May 14 10:18 config.json\\n-rw-r--r-- 1 root root        188 May 14 10:18 generation_config.json\\n-rw-r--r-- 1 root root    1671853 May 14 10:18 merges.txt\\n-rw-r--r-- 1 root root 4990095032 May 14 10:18 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4944309096 May 14 10:18 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4996758848 May 14 10:18 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root 1158754848 May 14 10:18 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      32856 May 14 10:18 model.safetensors.index.json\\n-rw-r--r-- 1 root root        613 May 14 10:18 special_tokens_map.json\\n-rw-r--r-- 1 root root   11422654 May 14 10:18 tokenizer.json\\n-rw-r--r-- 1 root root       5459 May 14 10:18 tokenizer_config.json\\n-rw-r--r-- 1 root root     470640 May 14 10:18 trainer_state.json\\n-rw-r--r-- 1 root root       7953 May 14 10:18 training_args.bin\\n-rw-r--r-- 1 root root    2776833 May 14 10:18 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+500 steps 完成，checkpoint 存在。字段名：`prove_rate`, `isr_mean`, `parse_rate`, `loss`。运行分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "c1cbbae9-0539-401e-bb53-737836007991",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GDFQkmehC3vPUrB11KLL8M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1779,
+      "cache_read_input_tokens": 26635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1779
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011TPznNvCJ85qjDLWRu7j7p`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\n\nlog_path = '/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl'\nrecords = [json.loads(l) for l in open(log_path)]\n\ntotal_steps = len(records)\nprove_rates = [r['prove_rate'] for r in records]\nisr_values = [r['isr_mean'] for r in records]\nlosses = [r['loss'] for r in records]\nparse_rates = [r['parse_rate'] for r in records]\n\noverall_pr = np.mean(prove_rates)\noverall_isr = np.mean(isr_values)\nlast50_pr = np.mean(prove_rates[-50:])\nlast50_isr = np.mean(isr_values[-50:])\nlast100_pr = np.mean(prove_rates[-100:])\nlast100_isr = np.mean(isr_values[-100:])\nlast100_ratio = last100_isr / last100_pr if last100_pr > 0 else float('inf')\nisr_lt_pr_count = sum(1 for i in range(-100, 0) if isr_values[i] < prove_rates[i])\n\nprint(f'total_steps={total_steps}')\nprint(f'parse_rate={np.mean(parse_rates):.4f}')\nprint(f'overall: PR={overall_pr:.4f}, ISR={overall_isr:.4f}, ratio={overall_isr/overall_pr:.3f}')\nprint(f'last50: PR={last50_pr:.4f}, ISR={last50_isr:.4f}, ratio={last50_isr/last50_pr:.3f}')\nprint(f'last100: PR={last100_pr:.4f}, ISR={last100_isr:.4f}, ratio={last100_ratio:.3f}')\nprint(f'last100_isr_lt_pr_count={isr_lt_pr_count}/100')\nprint(f'last100_loss={np.mean(losses[-100:]):.6f}')\nprint(f'overall_loss={np.mean(losses):.6f}')\nprint()\nprint('=== Windowed (100-step) ===')\nfor start in range(0, 500, 100):\n    end = min(start + 100, total_steps)\n    w_pr = np.mean(prove_rates[start:end])\n    w_isr = np.mean(isr_values[start:end])\n    ratio_str = f', ratio={w_isr/w_pr:.3f}' if w_pr > 0 else ''\n    print(f'  {start+1}-{end}: PR={w_pr:.4f}, ISR={w_isr:.4f}{ratio_str}')\n\nprint()\nprint('=== Windowed (50-step) ===')\nfor start in range(0, 500, 50):\n    end = min(start + 50, total_steps)\n    w_pr = np.mean(prove_rates[start:end])\n    w_isr = np.mean(isr_values[start:end])\n    ratio_str = f', ratio={w_isr/w_pr:.3f}' if w_pr > 0 else ''\n    print(f'  {start+1}-{end}: PR={w_pr:.4f}, ISR={w_isr:.4f}{ratio_str}')\n\n# Additional: max, min, std\nprint()\nprint(f'PR: max={max(prove_rates):.4f}, min={min(prove_rates):.4f}, std={np.std(prove_rates):.4f}')\nprint(f'ISR: max={max(isr_values):.4f}, min={min(isr_values):.4f}, std={np.std(isr_values):.4f}')\n\n# ISR-PR correlation\ncorr = np.corrcoef(prove_rates, isr_values)[0,1]\nprint(f'ISR-PR correlation={corr:.4f}')\n\n# Last 100 ISR-PR correlation\ncorr_last100 = np.corrcoef(prove_rates[-100:], isr_values[-100:])[0,1]\nprint(f'Last100 ISR-PR correlation={corr_last100:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "7f526b74-b721-4527-b6e8-1e74c7641a58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GDFQkmehC3vPUrB11KLL8M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1779,
+      "cache_read_input_tokens": 26635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1779
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T02:21:50.072Z_
+
+<details><summary>↩ Tool result · `toolu_011TPznNvCJ85qjDLWRu7j7p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total_steps=500\\nparse_rate=1.0000\\noverall: PR=0.6747, ISR=0.6705, ratio=0.994\\nlast50: PR=0.9700, ISR=0.9700, ratio=1.000\\nlast100: PR=0.9663, ISR=0.9663, ratio=1.000\\nlast100_isr_lt_pr_count=0/100\\nlast100_loss=0.001848\\noverall_loss=0.003911\\n\\n=== Windowed (100-step) ===\\n  1-100: PR=0.1363, ISR=0.1300, ratio=0.954\\n  101-200: PR=0.4150, ISR=0.4100, ratio=0.988\\n  201-300: PR=0.8988, ISR=0.8938, ratio=0.994\\n  301-400: PR=0.9575, ISR=0.9525, ratio=0.995\\n  401-500: PR=0.9663, ISR=0.9663, ratio=1.000\\n\\n=== Windowed (50-step) ===\\n  1-50: PR=0.1175, ISR=0.1175, ratio=1.000\\n  51-100: PR=0.1550, ISR=0.1425, ratio=0.919\\n  101-150: PR=0.2500, ISR=0.2400, ratio=0.960\\n  151-200: PR=0.5800, ISR=0.5800, ratio=1.000\\n  201-250: PR=0.8700, ISR=0.8700, ratio=1.000\\n  251-300: PR=0.9275, ISR=0.9175, ratio=0.989\\n  301-350: PR=0.9650, ISR=0.9650, ratio=1.000\\n  351-400: PR=0.9500, ISR=0.9400, ratio=0.989\\n  401-450: PR=0.9625, ISR=0.9625, ratio=1.000\\n  451-500: PR=0.9700, ISR=0.9700, ratio=1.000\\n\\nPR: max=1.0000, min=0.0000, std=0.4015\\nISR: max=1.0000, min=0.0000, std=0.4037\\nISR-PR correlation=0.9942\\nLast100 ISR-PR correlation=1.0000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "091fd9b5-e7c9-4bc2-bce6-9df182895c3b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total_steps=500\\\\nparse_rate=1.0000\\\\noverall: PR=0.6747, ISR=0.6705, ratio=0.994\\\\nlast50: PR=0.9700, ISR=0.9700, ratio=1.000\\\\nlast100: PR=0.9663, ISR=0.9663, ratio=1.000\\\\nlast100_isr_lt_pr_count=0/100\\\\nlast100_loss=0.001848\\\\noverall_loss=0.003911\\\\n\\\\n=== Windowed (100-step) ===\\\\n  1-100: PR=0.1363, ISR=0.1300, ratio=0.954\\\\n  101-200: PR=0.4150, ISR=0.4100, ratio=0.988\\\\n  201-300: PR=0.8988, ISR=0.8938, ratio=0.994\\\\n  301-400: PR=0.9575, ISR=0.9525, ratio=0.995\\\\n  401-500: PR=0.9663, ISR=0.9663, ratio=1.000\\\\n\\\\n=== Windowed (50-step) ===\\\\n  1-50: PR=0.1175, ISR=0.1175, ratio=1.000\\\\n  51-100: PR=0.1550, ISR=0.1425, ratio=0.919\\\\n  101-150: PR=0.2500, ISR=0.2400, ratio=0.960\\\\n  151-200: PR=0.5800, ISR=0.5800, ratio=1.000\\\\n  201-250: PR=0.8700, ISR=0.8700, ratio=1.000\\\\n  251-300: PR=0.9275, ISR=0.9175, ratio=0.989\\\\n  301-350: PR=0.9650, ISR=0.9650, ratio=1.000\\\\n  351-400: PR=0.9500, ISR=0.9400, ratio=0.989\\\\n  401-450: PR=0.9625, ISR=0.9625, ratio=1.000\\\\n  451-500: PR=0.9700, ISR=0.9700, ratio=1.000\\\\n\\\\nPR: max=1.0000, min=0.0000, std=0.4015\\\\nISR: max=1.0000, min=0.0000, std=0.4037\\\\nISR-PR correlation=0.9942\\\\nLast100 ISR-PR correlation=1.0000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total_steps=500\\nparse_rate=1.0000\\noverall: PR=0.6747, ISR=0.6705, ratio=0.994\\nlast50: PR=0.9700, ISR=0.9700, ratio=1.000\\nlast100: PR=0.9663, ISR=0.9663, ratio=1.000\\nlast100_isr_lt_pr_count=0/100\\nlast100_loss=0.001848\\noverall_loss=0.003911\\n\\n=== Windowed (100-step) ===\\n  1-100: PR=0.1363, ISR=0.1300, ratio=0.954\\n  101-200: PR=0.4150, ISR=0.4100, ratio=0.988\\n  201-300: PR=0.8988, ISR=0.8938, ratio=0.994\\n  301-400: PR=0.9575, ISR=0.9525, ratio=0.995\\n  401-500: PR=0.9663, ISR=0.9663, ratio=1.000\\n\\n=== Windowed (50-step) ===\\n  1-50: PR=0.1175, ISR=0.1175, ratio=1.000\\n  51-100: PR=0.1550, ISR=0.1425, ratio=0.919\\n  101-150: PR=0.2500, ISR=0.2400, ratio=0.960\\n  151-200: PR=0.5800, ISR=0.5800, ratio=1.000\\n  201-250: PR=0.8700, ISR=0.8700, ratio=1.000\\n  251-300: PR=0.9275, ISR=0.9175, ratio=0.989\\n  301-350: PR=0.9650, ISR=0.9650, ratio=1.000\\n  351-400: PR=0.9500, ISR=0.9400, ratio=0.989\\n  401-450: PR=0.9625, ISR=0.9625, ratio=1.000\\n  451-500: PR=0.9700, ISR=0.9700, ratio=1.000\\n\\nPR: max=1.0000, min=0.0000, std=0.4015\\nISR: max=1.0000, min=0.0000, std=0.4037\\nISR-PR correlation=0.9942\\nLast100 ISR-PR correlation=1.0000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+结果非常清晰。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "2f7d492b-34bb-4206-b33f-eabcff8dc2ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YL89p1prPAFSQ2e6wCTv1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1982,
+      "cache_read_input_tokens": 28414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1982
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EukoAg1F1KZQdHPJEQrfrL`</summary>
+
+```json
+{
+  "exp_id": "plan013-random-reward-s42-r4",
+  "field": "status",
+  "value": "DONE",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "65fda67c-f48a-40ab-977b-e0298ed1aebc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YL89p1prPAFSQ2e6wCTv1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1982,
+      "cache_read_input_tokens": 28414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1982
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T02:21:54.688Z_
+
+<details><summary>↩ Tool result · `toolu_01EukoAg1F1KZQdHPJEQrfrL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.072}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "2af2f317-c5bd-48ac-a85d-c9f44ee9eaf7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.072}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.072}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TBvjaYuT2dexJ92QtXXQLs`</summary>
+
+```json
+{
+  "exp_id": "plan013-random-reward-s42-r4",
+  "field": "conclusion",
+  "value": "success",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "3dd8c949-e45a-44d1-bb56-0892a6c4b9c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4sNiZDUSeUURFGNPAXjpp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 214,
+      "cache_read_input_tokens": 30396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 214
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T02:21:57.738Z_
+
+<details><summary>↩ Tool result · `toolu_01TBvjaYuT2dexJ92QtXXQLs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:21:57.651Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1594}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "931ecc64-9598-4ba0-8477-f5ada695019c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan013-random-reward-s42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:40:35.587Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:21:57.651Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"136261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T01:40:35.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\\\", \\\"plan_id\\\": \\\"plan013\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T02:19:57.306Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T02:19:58.514969+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1594}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:21:57.651Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1594}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BV4FLN2vCqMebY1R154Ntg`</summary>
+
+```json
+{
+  "exp_id": "plan013-random-reward-s42-r4",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "1d3e1915-137a-4493-80df-40ff378bde25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FUdS7MqFwKgpA2LdsWyRrM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 861
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T02:22:01.628Z_
+
+<details><summary>↩ Tool result · `toolu_01BV4FLN2vCqMebY1R154Ntg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:01.573Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1146}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "4f319194-23fe-439d-8c7b-75801d2be833",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan013-random-reward-s42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:40:35.587Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:22:01.573Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"136261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T01:40:35.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\\\", \\\"plan_id\\\": \\\"plan013\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T02:19:57.306Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T02:19:58.514969+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1146}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:01.573Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1146}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YMnswW8w331SmK94yE8B77`</summary>
+
+```json
+{
+  "exp_id": "plan013-random-reward-s42-r4",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "7384f9ba-b9ea-41c6-be47-236a67053135",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FUdS7MqFwKgpA2LdsWyRrM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 861
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T02:22:02.215Z_
+
+<details><summary>↩ Tool result · `toolu_01YMnswW8w331SmK94yE8B77`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:02.158Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1207}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "943636ee-f5e4-4ed9-bbbb-b03bb2187907",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan013-random-reward-s42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:40:35.587Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:22:02.158Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"136261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T01:40:35.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\\\", \\\"plan_id\\\": \\\"plan013\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T02:19:57.306Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T02:19:58.514969+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1207}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:02.158Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1207}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014cEuGdia9sMBj9sdGXyTej`</summary>
+
+```json
+{
+  "exp_id": "plan013-random-reward-s42-r4",
+  "field": "metrics",
+  "value": {
+    "total_steps": 500,
+    "parse_rate": 1,
+    "overall_prove_rate": 0.6747,
+    "overall_isr": 0.6705,
+    "last50_prove_rate": 0.97,
+    "last50_isr": 0.97,
+    "last100_prove_rate": 0.9663,
+    "last100_isr": 0.9663,
+    "last100_isr_pr_ratio": 1,
+    "last100_isr_lt_pr_count": 0,
+    "last100_loss": 0.001848,
+    "overall_loss": 0.003911,
+    "isr_pr_correlation": 0.9942
+  },
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "dfbd4e37-743f-4222-8baf-93cf2c4166d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QSwdLmSCqP3YRM1S5ZGa7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1721,
+      "cache_read_input_tokens": 31471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1721
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T02:22:07.188Z_
+
+<details><summary>↩ Tool result · `toolu_014cEuGdia9sMBj9sdGXyTej`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:07.135Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\", \"metrics\": {\"total_steps\": 500, \"parse_rate\": 1, \"overall_prove_rate\": 0.6747, \"overall_isr\": 0.6705, \"last50_prove_rate\": 0.97, \"last50_isr\": 0.97, \"last100_prove_rate\": 0.9663, \"last100_isr\": 0.9663, \"last100_isr_pr_ratio\": 1, \"last100_isr_lt_pr_count\": 0, \"last100_loss\": 0.001848, \"overall_loss\": 0.003911, \"isr_pr_correlation\": 0.9942}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.114}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "ac0fba74-a2d4-41ba-85f0-45f2d6760c71",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan013-random-reward-s42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:40:35.587Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:22:07.135Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"136261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T01:40:35.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\\\", \\\"plan_id\\\": \\\"plan013\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T02:19:57.306Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T02:19:58.514969+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"parse_rate\\\": 1, \\\"overall_prove_rate\\\": 0.6747, \\\"overall_isr\\\": 0.6705, \\\"last50_prove_rate\\\": 0.97, \\\"last50_isr\\\": 0.97, \\\"last100_prove_rate\\\": 0.9663, \\\"last100_isr\\\": 0.9663, \\\"last100_isr_pr_ratio\\\": 1, \\\"last100_isr_lt_pr_count\\\": 0, \\\"last100_loss\\\": 0.001848, \\\"overall_loss\\\": 0.003911, \\\"isr_pr_correlation\\\": 0.9942}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.114}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:07.135Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\", \"metrics\": {\"total_steps\": 500, \"parse_rate\": 1, \"overall_prove_rate\": 0.6747, \"overall_isr\": 0.6705, \"last50_prove_rate\": 0.97, \"last50_isr\": 0.97, \"last100_prove_rate\": 0.9663, \"last100_isr\": 0.9663, \"last100_isr_pr_ratio\": 1, \"last100_isr_lt_pr_count\": 0, \"last100_loss\": 0.001848, \"overall_loss\": 0.003911, \"isr_pr_correlation\": 0.9942}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.114}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LRKCNDUbYCNqYFSMEGnLfZ`</summary>
+
+```json
+{
+  "exp_id": "plan013-random-reward-s42-r4",
+  "field": "status",
+  "value": "DONE",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "d1e256f1-a170-4e13-9ad9-b7188de4061b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QSwdLmSCqP3YRM1S5ZGa7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1721,
+      "cache_read_input_tokens": 31471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1721
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T02:22:08.071Z_
+
+<details><summary>↩ Tool result · `toolu_01LRKCNDUbYCNqYFSMEGnLfZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:07.933Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\", \"wall_clock_seconds\": 2492.4, \"gpu_hours\": 0.69}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\", \"metrics\": {\"total_steps\": 500, \"parse_rate\": 1, \"overall_prove_rate\": 0.6747, \"overall_isr\": 0.6705, \"last50_prove_rate\": 0.97, \"last50_isr\": 0.97, \"last100_prove_rate\": 0.9663, \"last100_isr\": 0.9663, \"last100_isr_pr_ratio\": 1, \"last100_isr_lt_pr_count\": 0, \"last100_loss\": 0.001848, \"overall_loss\": 0.003911, \"isr_pr_correlation\": 0.9942}, \"completed_at\": \"2026-05-14T02:22:07.933Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2408}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "055034b1-ea50-4ff1-9c63-938900c2a004",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan013-random-reward-s42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:40:35.587Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:22:07.933Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"136261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T01:40:35.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\\\", \\\"plan_id\\\": \\\"plan013\\\", \\\"wall_clock_seconds\\\": 2492.4, \\\"gpu_hours\\\": 0.69}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T02:19:57.306Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T02:19:58.514969+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"parse_rate\\\": 1, \\\"overall_prove_rate\\\": 0.6747, \\\"overall_isr\\\": 0.6705, \\\"last50_prove_rate\\\": 0.97, \\\"last50_isr\\\": 0.97, \\\"last100_prove_rate\\\": 0.9663, \\\"last100_isr\\\": 0.9663, \\\"last100_isr_pr_ratio\\\": 1, \\\"last100_isr_lt_pr_count\\\": 0, \\\"last100_loss\\\": 0.001848, \\\"overall_loss\\\": 0.003911, \\\"isr_pr_correlation\\\": 0.9942}, \\\"completed_at\\\": \\\"2026-05-14T02:22:07.933Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2408}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan013-random-reward-s42-r4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T02:22:07.933Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\", \"wall_clock_seconds\": 2492.4, \"gpu_hours\": 0.69}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\", \"metrics\": {\"total_steps\": 500, \"parse_rate\": 1, \"overall_prove_rate\": 0.6747, \"overall_isr\": 0.6705, \"last50_prove_rate\": 0.97, \"last50_isr\": 0.97, \"last100_prove_rate\": 0.9663, \"last100_isr\": 0.9663, \"last100_isr_pr_ratio\": 1, \"last100_isr_lt_pr_count\": 0, \"last100_loss\": 0.001848, \"overall_loss\": 0.003911, \"isr_pr_correlation\": 0.9942}, \"completed_at\": \"2026-05-14T02:22:07.933Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2408}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Registry 更新完成。
+
+## plan013-random-reward-s42-r4 分析总结
+
+### 核心指标
+
+| 指标 | plan013 (random reward) | plan001 (exec-only) | plan005 (real STA) |
+|------|------------------------|--------------------|--------------------|
+| last100 PR | **0.9663** | 0.865 | 0.7725 |
+| last100 ISR | **0.9663** | 0.8612 | 0.2299 |
+| ISR/PR ratio | **1.000** | ~1.0 | 0.298 |
+| ISR < PR 次数 (last100) | **0/100** | — | 99/100 |
+| ISR-PR 相关性 | **0.994** | ~1.0 | 低 |
+
+### 训练趋势 (100-step windows)
+
+| 窗口 | plan013 PR | plan013 ISR | plan001 PR | plan005 PR |
+|------|-----------|-------------|-----------|-----------|
+| 1-100 | 0.136 | 0.130 | 0.185* | 0.178 |
+| 101-200 | 0.415 | 0.410 | 0.663 | 0.506 |
+| 201-300 | 0.899 | 0.894 | 0.784 | 0.671 |
+| 301-400 | 0.958 | 0.953 | 0.849 | 0.701 |
+| 401-500 | 0.966 | 0.966 | 0.865 | 0.773 |
+
+### 关键结论
+
+1. **prove_rate**：random reward (0.966) 显著高于 exec-only (0.865) 和 real-STA (0.773)。随机噪声作为第二目标反而提升了 PR，可能因为额外 exploration signal 防止了过早收敛。
+
+2. **ISR 行为**：random reward 下 ISR 完全跟随 PR（ratio=1.000，相关性 0.994），与 exec-only 一致。这与 real-STA 的持续分离（ratio=0.298）形成鲜明对比。
+
+3. **核心发现**：real STA (plan005) 是唯一导致 ISR/PR 分离的配置。random reward 不产生分离，说明 **ISR 的结构化信号是 specific 的**——不是任意第二目标的 multi-objective regularization 效果，而是 ISR 评估的结构质量确实对训练施加了有方向性的约束。plan005 中 ISR 被压低到 0.23 而 PR 仍在 0.77，说明 real STA 迫使模型在"能证对"和"结构好"之间做权衡。
+
+4. **Conclusion = success**：random reward baseline 验证了 ISR signal 的特异性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "uuid": "dceb62ca-2a72-496b-9ec6-f1630f79fe85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CR8wXaZD83SvKADszXVcf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2298,
+      "cache_read_input_tokens": 33192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2298
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 31_
+
+Registry 更新完成。
+
+## plan013-random-reward-s42-r4 分析总结
+
+### 核心指标
+
+| 指标 | plan013 (random reward) | plan001 (exec-only) | plan005 (real STA) |
+|------|------------------------|--------------------|--------------------|
+| last100 PR | **0.9663** | 0.865 | 0.7725 |
+| last100 ISR | **0.9663** | 0.8612 | 0.2299 |
+| ISR/PR ratio | **1.000** | ~1.0 | 0.298 |
+| ISR < PR 次数 (last100) | **0/100** | — | 99/100 |
+| ISR-PR 相关性 | **0.994** | ~1.0 | 低 |
+
+### 训练趋势 (100-step windows)
+
+| 窗口 | plan013 PR | plan013 ISR | plan001 PR | plan005 PR |
+|------|-----------|-------------|-----------|-----------|
+| 1-100 | 0.136 | 0.130 | 0.185* | 0.178 |
+| 101-200 | 0.415 | 0.410 | 0.663 | 0.506 |
+| 201-300 | 0.899 | 0.894 | 0.784 | 0.671 |
+| 301-400 | 0.958 | 0.953 | 0.849 | 0.701 |
+| 401-500 | 0.966 | 0.966 | 0.865 | 0.773 |
+
+### 关键结论
+
+1. **prove_rate**：random reward (0.966) 显著高于 exec-only (0.865) 和 real-STA (0.773)。随机噪声作为第二目标反而提升了 PR，可能因为额外 exploration signal 防止了过早收敛。
+
+2. **ISR 行为**：random reward 下 ISR 完全跟随 PR（ratio=1.000，相关性 0.994），与 exec-only 一致。这与 real-STA 的持续分离（ratio=0.298）形成鲜明对比。
+
+3. **核心发现**：real STA (plan005) 是唯一导致 ISR/PR 分离的配置。random reward 不产生分离，说明 **ISR 的结构化信号是 specific 的**——不是任意第二目标的 multi-objective regularization 效果，而是 ISR 评估的结构质量确实对训练施加了有方向性的约束。plan005 中 ISR 被压低到 0.23 而 PR 仍在 0.77，说明 real STA 迫使模型在"能证对"和"结构好"之间做权衡。
+
+4. **Conclusion = success**：random reward baseline 验证了 ISR signal 的特异性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 62534,
+  "duration_api_ms": 61751,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "c4c72e1d-e74b-4147-94e0-ca9a6a312d30",
+  "total_cost_usd": 0.35017475,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 23649,
+    "cache_read_input_tokens": 217701,
+    "output_tokens": 3610,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23649,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 802,
+        "cache_read_input_tokens": 33192,
+        "cache_creation_input_tokens": 2298,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2298
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3118,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003208,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 3610,
+      "cacheReadInputTokens": 217701,
+      "cacheCreationInputTokens": 23649,
+      "webSearchRequests": 0,
+      "costUSD": 0.34696675,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "69aa56c7-cf99-46d3-945a-7f9c2bcbe7f3"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,38 @@
+{
+  "exp_id": "d154-8b-exec-s42-k8",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:45:37.402Z",
+    "updated_at": "2026-05-22T06:28:38.816Z",
+    "hypothesis": "Qwen3-8B with K=8 (sufficient num_generations for gradient signal) under exec-only GRPO will exhibit same Goodhart collapse pattern as Qwen3-4B: high prove rate but structural degeneration (low ISR, hacking dominance). K=4 proven insufficient for 8B cold-start (d154-8b-exec-s42-k4v2 showed stagnation).",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/grpo_exec_only_8b_k8_s42.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "969671",
+      "log_path": "~/runs/solver-trace-ablation/d154-8b-exec-s42-k8.log",
+      "submitted_at": "2026-05-22T04:45:45.402Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_200.jsonl",
+      "data_count": 200,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen3-8B (cold-start, no prior checkpoint)",
+      "eval_data": "proofwriter_fol_100.jsonl (post-training eval)"
+    },
+    "parent": "d154-8b-exec-s42-k4v2",
+    "reproduce": {
+      "finished_at": "2026-05-22T06:28:37.540Z"
+    }
+  },
+  "timestamp": "2026-05-22T06:28:39.216268+00:00",
+  "trigger": "update_registry"
+}

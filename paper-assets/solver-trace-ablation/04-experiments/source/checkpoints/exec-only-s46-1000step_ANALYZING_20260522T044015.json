@@ -1,0 +1,65 @@
+{
+  "exp_id": "exec-only-s46-1000step",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:49:14.759Z",
+    "updated_at": "2026-05-22T04:40:15.288Z",
+    "hypothesis": "Independent from-scratch 1000-step exec-only GRPO run (K=4, seed 46, batch=4/accum=2). Not a resume from plan001-s46 checkpoint — different batch config. Demonstrates convergence stochasticity: same seed can yield different outcomes under different batch configurations.",
+    "parent": "plan001-exec-only-s46",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/exec_only_s46_1000_k4.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "947050",
+      "log_path": "/tmp/exec_only_s46_1000_k4.log",
+      "submitted_at": "2026-05-22T02:16:35.018Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 46,
+      "model_name": "Qwen3-4B",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "num_steps": 1000,
+      "num_generations": 4,
+      "checkpoint_source": "plan001-exec-only-s46",
+      "eval_data": "data/proofwriter_fol_100.jsonl"
+    },
+    "notes": "Reviewer M018: this is NOT an extended training run from plan001-s46 checkpoint. It's from-scratch with different batch config (batch=4/accum=2 vs plan001's batch=2/accum=4). Non-convergence = convergence stochasticity evidence, not extended training amplification.",
+    "reproduce": {
+      "finished_at": "2026-05-22T04:35:46.236Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T04:35:55.129228+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "prove_rate": 0.15,
+      "n_proved": 15,
+      "n_problems": 100,
+      "mean_isr": 0.084,
+      "isr_std": 0.2241,
+      "proved_only_mean_isr": 0.5597,
+      "genuine_count": 13,
+      "genuine_rate": 0.867,
+      "CE_count": 1,
+      "TS_count": 1,
+      "PG_count": 0,
+      "CI_count": 0
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T04:40:15.902954+00:00",
+  "trigger": "update_registry"
+}

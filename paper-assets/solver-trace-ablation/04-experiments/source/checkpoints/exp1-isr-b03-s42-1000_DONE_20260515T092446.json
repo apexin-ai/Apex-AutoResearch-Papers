@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp1-isr-b03-s42-1000",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:55:55.364Z",
+    "updated_at": "2026-05-15T09:24:46.558Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "219058",
+      "log_path": "~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000.log",
+      "submitted_at": "2026-05-15T09:16:01.559Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 525.0,
+      "gpu_hours": 0.15
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "219058",
+    "log_path": "~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\"",
+      "finished_at": "2026-05-15T09:24:44.644Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T09:24:46.558Z"
+  },
+  "timestamp": "2026-05-15T09:24:46.729549+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd093f224daeda0608ef",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code westd validate and qwen ioi",
+  "task_key": "worker_code_westd-validate-and-qwen-ioi_20260513T070211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-validate-and-qwen-ioi_20260513T070211_result.json",
+    "occurrence": 1,
+    "bytes": 1544,
+    "sha256": "a996da7840b3b5f977bffddf0b41af608fd6bb4dc545b3ecc58b7e18da5c73bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n### Part 1: GPT-2 E2E 验证 — **PASS**\n- 服务器：westd-pro6000, 2× RTX PRO 6000 (98GB), conda Python 3.12.3, PyTorch 2.10+cu128\n- `eap` 库因 GitHub 不可达无法安装，实现了自定义 EAP-IG (gradient × activation_diff)\n- GPT-2 从本地加载（需 monkey-patch AutoConfig 绕过 HF 离线限制）\n- EAP-IG: 32,334 edges, 0.9s\n- EP-L0: 449 active edges (50 epochs), 122.9s\n- CSS pipeline 正常输出，`E2E VALIDATION OK`\n\n### Part 2: Qwen-2.5 0.5B IOI K=3 — **完成 (negative result)**\n- **PID**: 14601 (已完成)\n- **总耗时**: 83.0s\n- **TransformerLens 不支持 Qwen2.5**，全部用 HF-native 实现\n- 三个方法均用 top-100 binarization\n\n| 指标 | 值 |\n|------|-----|\n| Baseline IO-S diff | 7.0764 |\n| EAP-IG edges | 179,388 (5.3s) |\n| EP edges | 179,388 (70.7s) |\n| IFR edges | 141,384 (1.3s) |\n| CSS-core (3/3) | **0** |\n| Off-diagonal | **100%** |\n| EAP-IG vs EP Jaccard | 0.54 |\n| EAP-IG vs IFR Jaccard | 0.00 |\n| EP vs IFR Jaccard | 0.00 |\n\n**关键发现**: IFR (proximity-based) 聚焦早期层 (m2→a3)，EAP-IG/EP (gradient-based) 聚焦深层 (a20.h9)。三方法在 Qwen2.5-0.5B 上发现完全不同的电路。所有 CPR ≈ 0 因为 top-100 对 361 组件模型太稀疏。\n\n**建议后续**:\n1. 尝试 top-500/1000 binarization\n2. IFR 用 `unique_score_rank` 处理 tied scores\n3. EP 改为 per-edge masking（当前为 per-node）\n4. 增大 EP epochs 或调 lambda 以获得更好的 sparsity-task tradeoff"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-validate-and-qwen-ioi.md"
+}

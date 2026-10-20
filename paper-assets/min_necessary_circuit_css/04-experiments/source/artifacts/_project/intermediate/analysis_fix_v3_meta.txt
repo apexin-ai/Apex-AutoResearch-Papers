@@ -1,0 +1,5 @@
+script: /root/min_necessary_circuit_css/analysis_fix_v3.py
+results: /root/min_necessary_circuit_css/analysis_fix_v3_results.json
+usage: python3 analysis_fix_v3.py [--top-n 100] [--percentile 99.0] [--css-threshold 0.67]
+K=2 preview: off-diagonal 7.1%, verdict PASS_FINDINGS, Jaccard(eap,ep)=0.3072
+Awaiting: cache_acdc.json (ACDC ~81% done)

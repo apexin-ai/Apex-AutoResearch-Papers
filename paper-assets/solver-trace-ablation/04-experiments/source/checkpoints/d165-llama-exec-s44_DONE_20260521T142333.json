@@ -1,0 +1,43 @@
+{
+  "exp_id": "d165-llama-exec-s44",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:52:27.874Z",
+    "updated_at": "2026-05-21T14:23:33.157Z",
+    "hypothesis": "GRPO exec-only structural degradation on LLaMA-3.2-3B seed=44: third seed completing 3-seed cross-model validation. Same config as d165-llama-exec-s42.",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/d165_llama_exec_s44.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "887104",
+      "log_path": "/tmp/d165_llama_exec_s44_r2.log",
+      "submitted_at": "2026-05-21T14:09:10.877Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "meta-llama/Llama-3.2-3B (SFT warmstart from d158)",
+      "seed": 44,
+      "checkpoint_source": "d158-llama-sft-s42",
+      "eval_data": "data/proofwriter_fol_100.jsonl",
+      "wall_clock_seconds": 862.3,
+      "gpu_hours": 0.24
+    },
+    "notes": "r1: disk full crash at step 50. r2: process hung at step 33 for 5.5h (tmux session dead, process orphaned). Killed, diagnosing + restarting as r3.",
+    "reproduce": {
+      "finished_at": "2026-05-21T14:23:30.121Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T14:23:33.157Z"
+  },
+  "timestamp": "2026-05-21T14:23:33.701638+00:00",
+  "trigger": "update_registry"
+}

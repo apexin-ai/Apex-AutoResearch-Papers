@@ -1,0 +1,84 @@
+{
+  "exp_id": "plan006-prolog-exec-s42",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-14T07:13:34.169Z",
+    "updated_at": "2026-05-14T11:49:25.141Z",
+    "hypothesis": "Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T09:49:36.534Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42\"",
+      "finished_at": "2026-05-14T11:29:25.346Z",
+      "training_hours": 1.66
+    },
+    "failure_reason": "",
+    "completed_at": "2026-05-14T09:47:36.390Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T09:47:38.546001+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T11:29:27.709792+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: FileNotFoundError — data/prolog/train_500_seed42.jsonl 不存在 | error_type: data | 同一原因影响所有 plan006 实验 (exec/sta × s42/s43/s44) | 建议: 需先生成 Prolog 训练数据再重试"
+      }
+    },
+    "account": "root",
+    "notes": "Eval 完成 (eval_sta.py, prolog solver, checkpoint-500)。PR=83% 远高于 plan006-prolog-sta-s42 的 50%，但 ISR=0.031 远低于 STA 版的 0.5。Exec-only 模式生成可执行 Prolog 代码能力强，但不注重 trace alignment。True 类 PR=92.5% 最高，Unknown 类 PR=80.6%，False 类 PR=72.4% 最低。ISR 中位数为 0，说明大多数 proof 不包含任何 intermediate step reasoning。",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "506020",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42
+    },
+    "metrics": {
+      "prove_rate": 0.83,
+      "mean_isr": 0.0308,
+      "isr_std": 0.0534,
+      "median_isr": 0,
+      "max_isr": 0.2,
+      "proved_only_mean_isr": 0.0371,
+      "n_proved": 83,
+      "n_problems": 100,
+      "by_type": {
+        "true": {
+          "pr": 0.925,
+          "isr": 0.0374
+        },
+        "false": {
+          "pr": 0.724,
+          "isr": 0.0376
+        },
+        "unknown": {
+          "pr": 0.806,
+          "isr": 0.016
+        }
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T11:49:25.246643+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0215f16e7d0594cd4272",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code fix phased hf offline",
+  "task_key": "worker_code_fix-phased-hf-offline_20260513T012834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-phased-hf-offline_20260513T012834_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "7f5663100895b41a35599fe72559bb5b29394cbf3835b14cf4ca511194e81225"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n### 修复\n无需额外修复。代码中已有 `_patch_hf_from_pretrained()` + `load_tl_model()` 的本地路径加载逻辑。原始错误原因是运行时环境变量 `HF_HUB_OFFLINE=1`，当前环境已无此变量。GPT-2 本地路径：`/root/autodl-tmp/gpt2-small/`。\n\n### Phase D Faithfulness Eval (CPR/CMD)\n\n| Circuit | Edges | CPR | CMD |\n|---------|------:|------:|------:|\n| method_acdc | 32491 | 1.0000 | 0.0000 |\n| css_0.33 | 32491 | 1.0000 | 0.0000 |\n| **circus_core** | **1097** | **0.9097** | **0.1001** |\n| method_eap_ig | 100 | -0.3635 | 1.5130 |\n| css_1.00 | 35 | -0.3726 | 1.5231 |\n| method_edge_pruning | 100 | -0.4692 | 1.6302 |\n| stable_core | 98 | -0.7193 | 1.9078 |\n| css_0.67 | 165 | -1.1260 | 2.3591 |\n\n### Gate Assessment\n- **Verdict: PASS_MAIN**\n- Off-diagonal: 91.1%, 95% CI [89.2%, 92.7%]\n\n关键观察：`circus_core`（1097 edges）是唯一在合理 size 下 CPR 接近 1 的 circuit（CPR=0.91, CMD=0.10）。小 circuit（eap_ig, edge_pruning, css_1.00, stable_core）CPR 全部为负，说明 ablation 后模型行为反转——可能是 binarization 阈值/top_n 选取有问题，或 node-level ablation 对稀疏 circuit 不够精确。`acdc` 和 `css_0.33` 因包含几乎全部 edge 而 CPR=1.0（trivially faithful）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-phased-hf-offline.md"
+}

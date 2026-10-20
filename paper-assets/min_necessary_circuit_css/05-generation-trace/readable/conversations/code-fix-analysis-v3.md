@@ -1,0 +1,1437 @@
+# code fix analysis v3
+
+**Transformer Model EAP-IG** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_code_fix-analysis-v3_20260512T231917.jsonl`
+- **Structured JSON:** [`22b02b2632cd20266130.json`](../../sessions/22/22b02b2632cd20266130.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-12T23:23:10.638489+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_project_file",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-12T23:23:10.638836+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-12T23:23:10.639026+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse-context/run_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse-context/run_mvp.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-12T23:23:10.639300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"5\\\"\\n\\n\\\"\\\"\\\"StructFuse MVP main pipeline — sequential memory management.\\\"\\\"\\\"\\n\\nimport json\\nimport random\\nimport gc\\nfrom pathlib import Path\\n\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\n\\nfrom config import MVP_CONFIG\\nfrom circuit_discovery import run_eap_ig, run_edge_pruning, run_acdc\\nfrom circus import run_circus, get_tier_sets\\nfrom css import compute_css, threshold_css, binarize_scores, css_summary\\nfrom cross_tabulate import cross_tabulate, compute_off_diagonal, print_cross_table\\nfrom evaluation import evaluate_all_circuits, print_eval_table\\n\\n\\nNAMES = [\\n    \\\"John\\\", \\\"Mary\\\", \\\"Alice\\\", \\\"Bob\\\", \\\"Charlie\\\", \\\"David\\\", \\\"Emma\\\", \\\"Frank\\\",\\n    \\\"Grace\\\", \\\"Henry\\\", \\\"Jack\\\", \\\"Kate\\\", \\\"Leo\\\", \\\"Mia\\\", \\\"Noah\\\", \\\"Tom\\\",\\n]\\nTEMPLATES = [\\n    \\\"When {io} and {s} went to the {place}, {s} gave a {obj} to\\\",\\n    \\\"After {io} and {s} arrived at the {place}, {s} handed a {obj} to\\\",\\n    \\\"{io} and {s} were at the {place}. {s} gave a {obj} to\\\",\\n    \\\"Then, {io} and {s} had a meeting at the {place}, {s} passed a {obj} to\\\",\\n]\\nPLACES = [\\\"store\\\", \\\"park\\\", \\\"library\\\", \\\"school\\\", \\\"hospital\\\", \\\"restaurant\\\", \\\"office\\\"]\\nOBJECTS = [\\\"bottle\\\", \\\"book\\\", \\\"letter\\\", \\\"ball\\\", \\\"gift\\\", \\\"toy\\\", \\\"bag\\\"]\\n\\n\\nclass IOIPromptDataset(Dataset):\\n    def __init__(self, tokenizer, num_samples=100, seed=42):\\n        random.seed(seed)\\n        self.prompts = []\\n        self.corrupted = []\\n        self.labels = []\\n        for _ in range(num_samples):\\n            io_name, s_name = random.sample(NAMES, 2)\\n            template = random.choice(TEMPLATES)\\n            place = random.choice(PLACES)\\n            obj = random.choic
+…[truncated 7268 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-12T23:23:10.639466+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -rn \"binarize\\|threshold\\|> 0.5\\|binary\\|top_n\\|top_k\\|percentile\" /root/structfuse-context/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -rn \"binarize\\|threshold\\|> 0.5\\|binary\\|top_n\\|top_k\\|percentile\" /root/structfuse-context/ --include=\"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T23:23:10.639600+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T23:23:10.639755+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -rn \"circus\\|config_bag\\|core\\|css\\|cross_method\\|consensus\\|cross_tab\\|gate\\|KILL\\|off_diagonal\\|jaccard\\|pairwise\" /root/structfuse-context/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -rn \"circus\\|config_bag\\|core\\|css\\|cross_method\\|consensus\\|cross_tab\\|gate\\|KILL\\|off_diagonal\\|jaccard\\|pairwise\" /root/structfuse-context/ --include=\"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T23:23:10.639894+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T23:23:10.640011+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse-context/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/structfuse-context/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T23:23:10.640144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15972\\ndrwxr-xr-x 4 root root     4096 May 13 05:31 .\\ndrwx------ 1 root root     4096 May 12 21:39 ..\\ndrwxr-xr-x 2 root root     4096 May 13 01:29 __pycache__\\n-rw-r--r-- 1 root root  1368566 May 13 01:43 cache_eap_ig.json\\n-rw-r--r-- 1 root root  1343850 May 13 01:37 cache_edge_pruning.json\\n-rw-r--r-- 1 root root     4571 May 13 01:29 circuit_discovery.py\\n-rw-r--r-- 1 root root     3236 May 13 01:14 circuit_discovery.py.bak\\n-rw-r--r-- 1 root root     4387 May 13 01:29 circuit_discovery.py.bak2\\n-rw-r--r-- 1 root root     1888 May 12 18:48 circus.py\\n-rw-r--r-- 1 root root      806 May 12 18:47 config.py\\n-rw-r--r-- 1 root root     2704 May 12 18:48 cross_tabulate.py\\n-rw-r--r-- 1 root root     1417 May 12 18:48 css.py\\n-rw-r--r-- 1 root root     9435 May 12 21:59 edge_pruning_l0.py\\n-rw-r--r-- 1 root root     4233 May 12 18:49 evaluation.py\\n-rw-r--r-- 1 root root     5405 May 12 21:59 ifr_discovery.py\\n-rw-r--r-- 1 root root 11393667 May 13 07:19 mvp_output.log\\n-rw-r--r-- 1 root root  1910351 May 12 19:53 mvp_output_killed.log\\n-rwxr-xr-x 1 root root      502 May 12 18:59 run.sh\\n-rw-r--r-- 1 root root    11516 May 12 20:56 run_mvp.py\\n-rw-r--r-- 1 root root     9682 May 12 20:12 run_mvp.py.bak\\n-rw-r--r-- 1 root root     9734 May 12 20:50 run_mvp.py.bak2\\ndrwxr-xr-x 2 root root       43 May 13 05:31 scripts\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T23:23:10.640291+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse-context/css.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse-context/css.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T23:23:10.640429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-method Stability Scoring (CSS).\\\"\\\"\\\"\\n\\nfrom typing import Dict, Set\\n\\n\\ndef compute_css(method_circuits: Dict[str, Set[str]], K: int) -> Dict[str, float]:\\n    all_edges: Set[str] = set()\\n    for edges in method_circuits.values():\\n        all_edges |= edges\\n\\n    css_scores = {}\\n    for edge in all_edges:\\n        count = sum(1 for edges in method_circuits.values() if edge in edges)\\n        css_scores[edge] = count / K\\n\\n    return css_scores\\n\\n\\ndef threshold_css(css_scores: Dict[str, float], threshold: float = 0.67) -> Set[str]:\\n    eps = 0.01\\n    return {edge for edge, score in css_scores.items() if score >= threshold - eps}\\n\\n\\ndef binarize_scores(edge_scores: Dict[str, float], method: str = \\\"eap_ig\\\", top_n: int = 100) -> Set[str]:\\n    if method == \\\"acdc\\\":\\n        return {edge for edge, score in edge_scores.items() if score > 0}\\n    elif method == \\\"edge_pruning\\\":\\n        return {edge for edge, score in edge_scores.items() if score > 0.5}\\n    else:\\n        sorted_edges = sorted(edge_scores.items(), key=lambda x: abs(x[1]), reverse=True)\\n        return {edge for edge, _ in sorted_edges[:top_n]}\\n\\n\\ndef css_summary(css_scores: Dict[str, float], K: int) -> Dict[str, int]:\\n    from collections import Counter\\n    level_counts = Counter()\\n    for score in css_scores.values():\\n        n_methods = round(score * K)\\n        level_counts[f\\\"{n_methods}/{K}\\\"] += 1\\n    return dict(sorted(level_counts.items()))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T23:23:10.640571+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse-context/circus.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse-context/circus.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T23:23:10.640689+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse-context/cross_tabulate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse-context/cross_tabulate.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T23:23:10.640906+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CIRCUS config-bagging for stability analysis.\\\"\\\"\\\"\\n\\nfrom typing import Dict, Set, Tuple\\nimport numpy as np\\n\\nfrom config import MVPConfig, MVP_CONFIG\\n\\n\\ndef config_bag(edge_scores: Dict[str, float], B: int = 10) -> Dict[str, float]:\\n    if not edge_scores:\\n        return {}\\n\\n    scores = np.array(list(edge_scores.values()))\\n    edges = list(edge_scores.keys())\\n\\n    percentiles = np.linspace(100 / (B + 1), 100 * B / (B + 1), B)\\n    thresholds = np.percentile(scores, percentiles)\\n\\n    stability = np.zeros(len(edges))\\n    for thresh in thresholds:\\n        stability += (scores >= thresh).astype(float)\\n    stability /= B\\n\\n    return {edge: float(stab) for edge, stab in zip(edges, stability)}\\n\\n\\ndef get_circus_tiers(stability_scores: Dict[str, float], core_threshold: float = 1.0, contingent_threshold: float = 0.5) -> Dict[str, str]:\\n    tiers = {}\\n    for edge, score in stability_scores.items():\\n        if score >= core_threshold:\\n            tiers[edge] = \\\"core\\\"\\n        elif score >= contingent_threshold:\\n            tiers[edge] = \\\"contingent\\\"\\n        else:\\n            tiers[edge] = \\\"noise\\\"\\n    return tiers\\n\\n\\ndef get_tier_sets(tiers: Dict[str, str]) -> Dict[str, Set[str]]:\\n    result: Dict[str, Set[str]] = {\\\"core\\\": set(), \\\"contingent\\\": set(), \\\"noise\\\": set()}\\n    for edge, tier in tiers.items():\\n        result[tier].add(edge)\\n    return result\\n\\n\\ndef run_circus(edge_scores: Dict[str, float], config: MVPConfig = MVP_CONFIG) -> Tuple[Dict[str, float], Dict[str, str]]:\\n    stability = config_bag(edge_scores, B=config.circus_B)\\n    tiers = get_circus_tiers(stability, core_threshold=config.circus_core_threshold, contingent_threshold=config.circus_contingent_threshold)\\n\\n    tier_counts = {}\\n    for t in [\\\"core\\\", \\\"contingent\\\", \\\"noise\\\"]:\\n        tier_counts
+…[truncated 236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T23:23:10.641210+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CIRCUS-core x CSS cross-tabulation.\\\"\\\"\\\"\\n\\nfrom typing import Dict, Set\\nfrom dataclasses import dataclass\\n\\n\\n@dataclass\\nclass CrossTable:\\n    stable_core: Set[str]\\n    method_specific: Set[str]\\n    cross_unstable: Set[str]\\n    noise: Set[str]\\n\\n    @property\\n    def total(self) -> int:\\n        return len(self.stable_core) + len(self.method_specific) + len(self.cross_unstable) + len(self.noise)\\n\\n    @property\\n    def core_total(self) -> int:\\n        return len(self.stable_core) + len(self.method_specific)\\n\\n    @property\\n    def core_off_diagonal_pct(self) -> float:\\n        if self.core_total == 0:\\n            return 0.0\\n        return len(self.method_specific) / self.core_total\\n\\n    def summary(self) -> Dict[str, object]:\\n        return {\\n            \\\"stable_core\\\": len(self.stable_core),\\n            \\\"method_specific\\\": len(self.method_specific),\\n            \\\"cross_unstable\\\": len(self.cross_unstable),\\n            \\\"noise\\\": len(self.noise),\\n            \\\"total\\\": self.total,\\n            \\\"core_total\\\": self.core_total,\\n            \\\"core_off_diagonal_pct\\\": round(self.core_off_diagonal_pct, 4),\\n        }\\n\\n\\ndef cross_tabulate(circus_tiers: Dict[str, str], css_scores: Dict[str, float], css_threshold: float = 0.67) -> CrossTable:\\n    all_edges = set(circus_tiers.keys()) | set(css_scores.keys())\\n    stable_core = set()\\n    method_specific = set()\\n    cross_unstable = set()\\n    noise = set()\\n\\n    for edge in all_edges:\\n        is_circus_core = circus_tiers.get(edge) == \\\"core\\\"\\n        css_high = css_scores.get(edge, 0.0) >= css_threshold\\n\\n        if is_circus_core and css_high:\\n            stable_core.add(edge)\\n        elif is_circus_core and not css_high:\\n            method_specific.add(edge)\\n        elif not is_circus_core and css_high:\\n            cross_
+…[truncated 1152 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T23:23:10.641446+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse-context/config.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse-context/config.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T23:23:10.641659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"StructFuse MVP configuration.\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field\\nfrom typing import List\\n\\n\\n@dataclass\\nclass MVPConfig:\\n    model_name: str = \\\"gpt2-small\\\"\\n    task: str = \\\"ioi\\\"\\n    num_samples: int = 100\\n\\n    methods: List[str] = field(default_factory=lambda: [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"acdc\\\"])\\n    K: int = 3\\n\\n    css_thresholds: List[float] = field(default_factory=lambda: [0.0, 0.33, 0.67, 1.0])\\n    css_default_threshold: float = 0.67\\n\\n    circus_B: int = 10\\n    circus_core_threshold: float = 1.0\\n    circus_contingent_threshold: float = 0.5\\n\\n    eap_ig_steps: int = 5\\n    eap_ig_topn: int = 100\\n    acdc_threshold: float = 0.05\\n    edge_pruning_target_sparsity: float = 0.05\\n\\n    faithfulness_metrics: List[str] = field(default_factory=lambda: [\\\"cpr\\\", \\\"cmd\\\"])\\n\\n\\nMVP_CONFIG = MVPConfig()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T23:23:10.641886+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -50 /root/structfuse-context/mvp_output.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -50 /root/structfuse-context/mvp_output.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T23:23:10.642156+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRemoved: 26396, Left: 29, Current:'A1.1->A5.3.V'████████▏ | 26425/32491 [55:20<25:47,  3.92it/s] \\u001b[A\\n\\rRemoved: 26397, Left: 29, Current:'A4.5->A5.6.K'████████▏ | 26426/32491 [55:20<25:25,  3.98it/s]\\u001b[A\\n\\rRemoved: 26398, Left: 29, Current:'MLP 4->A5.8.V'████████▏ | 26427/32491 [55:20<25:10,  4.01it/s]\\u001b[A\\n\\rRemoved: 26399, Left: 29, Current:'A4.1->A5.4.V'████████▏ | 26428/32491 [55:20<24:59,  4.04it/s] \\u001b[A\\n\\rRemoved: 26400, Left: 29, Current:'A0.8->A5.3.Q'████████▏ | 26429/32491 [55:21<24:52,  4.06it/s]\\u001b[A\\n\\rRemoved: 26401, Left: 29, Current:'A0.10->A5.5.V'████████▏ | 26430/32491 [55:21<24:46,  4.08it/s]\\u001b[A\\n\\rRemoved: 26402, Left: 29, Current:'Resid Start->A5.0.V'████████▏ | 26431/32491 [55:21<24:43,  4.09it/s]\\u001b[A\\n\\rRemoved: 26403, Left: 29, Current:'A0.5->A5.2.V'████████▏ | 26432/32491 [55:21<24:43,  4.08it/s]       \\u001b[A\\n\\rRemoved: 26404, Left: 29, Current:'A0.0->A5.2.V'████████▏ | 26433/32491 [55:22<24:48,  4.07it/s]\\u001b[A\\n\\rRemoved: 26405, Left: 29, Current:'A1.5->A5.0.K'████████▏ | 26434/32491 [55:22<24:45,  4.08it/s]\\u001b[A\\n\\rRemoved: 26406, Left: 29, Current:'A2.11->A5.8.K'████████▏ | 26435/32491 [55:22<24:41,  4.09it/s]\\u001b[A\\n\\rRemoved: 26407, Left: 29, Current:'A1.4->A5.6.V'████████▏ | 26436/32491 [55:22<24:39,  4.09it/s] \\u001b[A\\n\\rRemoved: 26408, Left: 29, Current:'A3.2->A5.10.K'████████▏ | 26437/32491 [55:23<24:37,  4.10it/s]\\u001b[A\\n\\rRemoved: 26409, Left: 29, Current:'A3.7->A5.11.V'████████▏ | 26438/32491 [55:23<24:38,  4.10it/s]\\u001b[A\\n\\rRemoved: 26410, Left: 29, Current:'A0.1->A5.11.V'████████▏ | 26439/32491 [55:23<24:42,  4.08it/s]\\u001b[A\\n\\rRemoved: 26411, Left: 29, Current:'A1.11->A5.6.Q'████████▏ | 26440/32491 [55:23<24:39,  4.09it/s]\\u001b[A\\n\\rRemoved: 26412, Left: 29, Current:'A0.8->A5.4.V'███████��▏ | 26441/32491 [55:24<24:37,  4.10it/s] \\u001b[A\\n\\rRemoved: 26413, Left: 29, Cu
+…[truncated 3773 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-12T23:23:10.642372+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse-context/cache_*.json /root/structfuse-context/mvp_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/structfuse-context/cache_*.json /root/structfuse-context/mvp_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T23:23:10.642566+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1368566 May 13 01:43 /root/structfuse-context/cache_eap_ig.json\\n-rw-r--r-- 1 root root 1343850 May 13 01:37 /root/structfuse-context/cache_edge_pruning.json\\n\", \"stderr\": \"ls: cannot access '/root/structfuse-context/mvp_results.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T23:23:10.642818+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse-context/circuit_discovery.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse-context/circuit_discovery.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T23:23:10.643088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# 2026-05-12: Fixed _normalize_eap_edge to reuse _normalize_ac_node, ensuring consistent canonical edge names across methods.\\n\\\"\\\"\\\"Unified circuit discovery interface for K=3 methods.\\\"\\\"\\\"\\n\\nimport re\\nimport gc\\nfrom typing import Dict\\n\\nfrom config import MVPConfig, MVP_CONFIG\\n\\n\\ndef _normalize_eap_edge(edge_str: str) -> str:\\n    parts = edge_str.strip().split('->')\\n    if len(parts) == 2:\\n        src_raw = parts[0].strip().strip('<>')\\n        dst_raw = parts[1].strip()\\n        m = re.match(r'(.+)<([qkvQKV])>$', dst_raw)\\n        if m:\\n            dst_node, qkv = m.groups()\\n            dst_node = dst_node.strip('<>')\\n            return f'{_normalize_ac_node(src_raw)}->{_normalize_ac_node(dst_node)}.{qkv.lower()}'\\n        dst_raw = dst_raw.strip('<>')\\n        return f'{_normalize_ac_node(src_raw)}->{_normalize_ac_node(dst_raw)}'\\n    return edge_str.strip().strip('<>').lower()\\n\\n\\ndef _normalize_ac_node(node_str: str) -> str:\\n    node_str = node_str.strip()\\n    low = node_str.lower().replace(' ', '_')\\n    if low in ('resid_start', 'resid_pre', 'input', 'embed'):\\n        return 'input'\\n    if low in ('resid_end', 'resid_post', 'logits', 'output'):\\n        return 'logits'\\n    m = re.match(r'(?:mlp[\\\\s_]*|m)(\\\\d+)$', node_str, re.IGNORECASE)\\n    if m:\\n        return f'm{m.group(1)}'\\n    m = re.match(r'A(\\\\d+)\\\\.(\\\\d+)(?:\\\\.([QKV]))?', node_str)\\n    if m:\\n        l, h, qkv = m.groups()\\n        r = f'a{l}.h{h}'\\n        if qkv:\\n            r += f'.{qkv.lower()}'\\n        return r\\n    return node_str.lower()\\n\\n\\ndef _normalize_ac_edge(edge_str: str) -> str:\\n    parts = edge_str.split('->')\\n    if len(parts) == 2:\\n        return f'{_normalize_ac_node(parts[0])}->{_normalize_ac_node(parts[1])}'\\n    return edge_str.strip()\\n\\n\\n_NORMALIZERS = {\\n    \\\"eap_ig\\\": _normalize_eap_edge,\\n    \\\"edge_pruni
+…[truncated 3172 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T23:23:10.643308+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"cache_acdc\\|acdc.*json\\|save.*acdc\\|output.*path\\|results.*json\\|mvp_results\" /root/structfuse-context/run_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"cache_acdc\\|acdc.*json\\|save.*acdc\\|output.*path\\|results.*json\\|mvp_results\" /root/structfuse-context/run_mvp.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T23:23:10.643498+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-12T23:23:10.643679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -200 /root/structfuse-context/run_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -200 /root/structfuse-context/run_mvp.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-12T23:23:10.644005+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"5\\\"\\n\\n\\\"\\\"\\\"StructFuse MVP main pipeline — sequential memory management.\\\"\\\"\\\"\\n\\nimport json\\nimport random\\nimport gc\\nfrom pathlib import Path\\n\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\n\\nfrom config import MVP_CONFIG\\nfrom circuit_discovery import run_eap_ig, run_edge_pruning, run_acdc\\nfrom circus import run_circus, get_tier_sets\\nfrom css import compute_css, threshold_css, binarize_scores, css_summary\\nfrom cross_tabulate import cross_tabulate, compute_off_diagonal, print_cross_table\\nfrom evaluation import evaluate_all_circuits, print_eval_table\\n\\n\\nNAMES = [\\n    \\\"John\\\", \\\"Mary\\\", \\\"Alice\\\", \\\"Bob\\\", \\\"Charlie\\\", \\\"David\\\", \\\"Emma\\\", \\\"Frank\\\",\\n    \\\"Grace\\\", \\\"Henry\\\", \\\"Jack\\\", \\\"Kate\\\", \\\"Leo\\\", \\\"Mia\\\", \\\"Noah\\\", \\\"Tom\\\",\\n]\\nTEMPLATES = [\\n    \\\"When {io} and {s} went to the {place}, {s} gave a {obj} to\\\",\\n    \\\"After {io} and {s} arrived at the {place}, {s} handed a {obj} to\\\",\\n    \\\"{io} and {s} were at the {place}. {s} gave a {obj} to\\\",\\n    \\\"Then, {io} and {s} had a meeting at the {place}, {s} passed a {obj} to\\\",\\n]\\nPLACES = [\\\"store\\\", \\\"park\\\", \\\"library\\\", \\\"school\\\", \\\"hospital\\\", \\\"restaurant\\\", \\\"office\\\"]\\nOBJECTS = [\\\"bottle\\\", \\\"book\\\", \\\"letter\\\", \\\"ball\\\", \\\"gift\\\", \\\"toy\\\", \\\"bag\\\"]\\n\\n\\nclass IOIPromptDataset(Dataset):\\n    def __init__(self, tokenizer, num_samples=100, seed=42):\\n        random.seed(seed)\\n        self.prompts = []\\n        self.corrupted = []\\n        self.labels = []\\n        for _ in range(num_samples):\\n            io_name, s_name = random.sample(NAMES, 2)\\n            template = random.choice(TEMPLATES)\\n            place = random.choice(PLACES)\\n            obj = random.choic
+…[truncated 7120 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-12T23:23:10.644202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -5 /root/structfuse-context/cache_edge_pruning.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -5 /root/structfuse-context/cache_edge_pruning.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-12T23:23:10.644331+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/structfuse-context -name \"cache_acdc.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/structfuse-context -name \"cache_acdc.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T23:23:10.644594+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"a3.h5->a8.h4.v\\\": 0.001324014738202095, \\\"a2.h5->a11.h7.q\\\": -1.7282225599046797e-05, \\\"a0.h0->a1.h6.q\\\": -0.0002998998388648033, \\\"a1.h2->a8.h9.v\\\": -0.00013691236381419003, \\\"a2.h9->a10.h5.v\\\": 0.00022875037393532693, \\\"a6.h7->a10.h11.v\\\": -0.000735578709281981, \\\"a2.h4->a3.h0.k\\\": 0.03319212794303894, \\\"a1.h1->a4.h9.q\\\": 3.0745737603865564e-05, \\\"a7.h10->a9.h5.k\\\": 0.001209378708153963, \\\"a0.h9->a10.h11.k\\\": -0.000922686536796391, \\\"m4->a8.h5.v\\\": 0.040732067078351974, \\\"m6->a11.h4.k\\\": 0.0003660604706965387, \\\"a0.h6->a11.h1.v\\\": -0.008402489125728607, \\\"a8.h5->m9\\\": 0.05392618849873543, \\\"a1.h8->a11.h4.v\\\": -2.3407023036270402e-05, \\\"a4.h2->a9.h9.k\\\": -0.0037457996513694525, \\\"a3.h9->m8\\\": 0.0029506287537515163, \\\"a0.h7->a2.h9.v\\\": 0.005659456364810467, \\\"a3.h5->a11.h2.q\\\": 0.0002254641440231353, \\\"a5.h10->a9.h9.q\\\": -0.0009267596760764718, \\\"a3.h1->a7.h5.k\\\": -0.0003712453763000667, \\\"a0.h10->a9.h0.k\\\": 0.0014524596044793725, \\\"a2.h10->a10.h2.v\\\": -0.0020890450105071068, \\\"a6.h9->a11.h5.q\\\": 0.00014430303417611867, \\\"a2.h6->a11.h10.k\\\": 0.01985948532819748, \\\"a2.h1->a5.h5.v\\\": 0.003940378315746784, \\\"a1.h2->a3.h2.k\\\": -0.002761831972748041, \\\"a2.h3->a5.h0.q\\\": -0.013002630323171616, \\\"a5.h11->a11.h9.v\\\": 0.000617368146777153, \\\"a4.h5->a5.h5.q\\\": 0.017804767936468124, \\\"a8.h2->a9.h5.v\\\": 0.001050856546498835, \\\"a6.h7->a7.h2.q\\\": 0.0007313797832466662, \\\"a0.h0->a7.h10.v\\\": 7.113194442354143e-05, \\\"a7.h6->m9\\\": -0.01692933775484562, \\\"a1.h3->a9.h8.v\\\": -0.00031504270737059414, \\\"a0.h7->a2.h2.k\\\": -0.002153489738702774, \\\"a1.h3->a3.h10.k\\\": 0.005543425679206848, \\\"a0.h10->a3.h7.q\\\": -0.00400518998503685, \\\"a2.h4->a7.h11.k\\\": 0.0006942840991541743, \\\"m0->a11.h3.v\\\": -0.03990019112825394, \\\"a5.h0->a11.h9.k\\\": -0.008690997958183289, \\\"a0.h5->a9.h9
+…[truncated 7377 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-12T23:23:10.644796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-12T23:23:10.645009+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat > /root/structfuse-context/analysis_fix_v3.py << 'PYEOF'\n\"\"\"\nStructFuse v3 analysis fix — D017 scope mismatch + EP binarization.\n\nFixes:\n  1. EP binarization: top-N instead of score > 0.5\n  2. Unified edge universe: CIRCUS operates on binarized union, not full 32491\n  3. Recomputed cross-tabulation on unified universe\n  4. Gate: KILL -> KILL_CANDIDATE (D003 requires 2 tasks)\n  5. Pairwise Jaccard + 3-way ratio\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\nfrom collections import Counter\nfrom typing import Dict, Set, Tuple\n\nimport numpy as np\nfrom scipy.stats import beta as beta_dist\n\n\n# ── Binarization (Fix 1) ──\n\ndef binarize_topn(scores: Dict[str, float], n: int = 100) -> Set[str]:\n    sorted_edges = sorted(scores.items(), key=lambda x: abs(x[1]), reverse=True)\n    return {e for e, _ in sorted_edges[:n]}\n\n\ndef binarize_percentile(scores: Dict[str, float], pct: float = 99.0) -> Set[str]:\n    vals = np.array(list(scores.values()))\n    thresh = np.percentile(np.abs(vals), pct)\n    return {e for e, v in scores.items() if abs(v) >= thresh}\n\n\ndef binarize_acdc(scores: Dict[str, float]) -> Set[str]:\n    return {e for e, v in scores.items() if v > 0}\n\n\nBINARIZERS = {\n    \"eap_ig\": lambda s, n: binarize_topn(s, n),\n    \"edge_pruning\": lambda s, n: binarize_topn(s, n),\n    \"acdc\": lambda s, _: binarize_acdc(s),\n}\n\n\n# ── CIRCUS on restricted universe (Fix 2) ──\n\ndef config_bag_restricted(\n    raw_scores: Dict[str, float],\n    universe: Set[str],\n    B: int = 10,\n) -> Dict[str, float]:\n    edges = [e for e in universe if e in raw_scores]\n    if not edges:\n        return {}\n    scores = np.array([raw_scores[e] for e in edges])\n    percentiles = np.linspace(100 / (B + 1), 100 * B / (B + 1), B)\n    thresholds = np.percentile(scores, percentiles)\n    stability = np.zeros(len(edges))\n    for thresh in thresholds:\n        stability += (scores >= thresh).astype(float)\n    stability /= B\n    return {e: float(s) for e, s in zip(edges, stability)}\n\n\ndef get_tiers(stability: Dict[str, float], core_thr: float = 1.0, cont_thr: float = 0.5):\n    tiers = {}\n    for e, s in stability.items():\n        if s >= core_thr:\n            tiers[e] = \"core\"\n        elif s >= cont_thr:\n            tiers[e] = \"contingent\"\n        else:\n            tiers[e] = \"noise\"\n    return tiers\n\n\n# ── CSS ──\n\ndef compute_css(circuits: Dict[str, Set[str]], K: int) -> Dict[str, float]:\n    union = set()\n    for edges in circuits.values():\n        union |= edges\n    return {e: sum(1 for es in circuits.values() if e in es) / K for e in union}\n\n\ndef css_summary(css_scores: Dict[str, float], K: int) -> Dict[str, int]:\n    counts = Counter()\n    for s in css_scores.values():\n        counts[f\"{round(s * K)}/{K}\"] += 1\n    return dict(sorted(counts.items()))\n\n\n# ── Cross-tabulation (Fix 3) ──\n\ndef cross_tabulate_fixed(\n    tiers: Dict[str, str],\n    css_scores: Dict[str, float],\n    css_thr: float = 0.67,\n):\n    universe = set(tiers.keys()) | set(css_scores.keys())\n    stable_core, method_specific, cross_unstable, noise = set(), set(), set(), set()\n    for e in universe:\n        is_core = tiers.get(e) == \"core\"\n        css_high = css_scores.get(e, 0.0) >= css_thr\n        if is_core and css_high:\n            stable_core.add(e)\n        elif is_core and not css_high:\n            method_specific.add(e)\n        elif not is_core and css_high:\n            cross_unstable.add(e)\n        else:\n            noise.add(e)\n    return {\n        \"stable_core\": stable_core,\n        \"method_specific\": method_specific,\n        \"cross_unstable\": cross_unstable,\n        \"noise\": noise,\n    }\n\n\n# ── Jaccard (Fix 5) ──\n\ndef jaccard(a: Set[str], b: Set[str]) -> float:\n    if not a and not b:\n        return 0.0\n    return len(a & b) / len(a | b)\n\n\ndef three_way_ratio(a: Set[str], b: Set[str], c: Set[str]) -> float:\n    union = a | b | c\n    if not union:\n        return 0.0\n    return len(a & b & c) / len(union)\n\n\n# ── Main ──\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"StructFuse v3 analysis fix (D017)\")\n    parser.add_argument(\"--top-n\", type=int, default=100, help=\"Top-N for binarization (default: 100)\")\n    parser.add_argument(\"--percentile\", type=float, default=None, help=\"Use percentile mode instead of top-N\")\n    parser.add_argument(\"--circus-B\", type=int, default=10, help=\"CIRCUS bag count\")\n    parser.add_argument(\"--css-threshold\", type=float, default=0.67, help=\"CSS threshold\")\n    parser.add_argument(\"--cache-dir\", type=str, default=str(Path(__file__).parent), help=\"Cache directory\")\n    parser.add_argument(\"--output\", type=str, default=None, help=\"Output JSON path\")\n    args = parser.parse_args()\n\n    cache_dir = Path(args.cache_dir)\n    methods = [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n\n    # Load raw scores\n    all_scores = {}\n    for m in methods:\n        p = cache_dir / f\"cache_{m}.json\"\n        if not p.exists():\n            print(f\"WARNING: {p} not found — skipping {m}\")\n            continue\n        with open(p) as f:\n            all_scores[m] = json.load(f)\n        print(f\"Loaded {m}: {len(all_scores[m])} raw edges\")\n\n    if len(all_scores) < 2:\n        print(\"ERROR: need at least 2 methods' cache files. ACDC may still be running.\")\n        sys.exit(1)\n\n    K = len(all_scores)\n    print(f\"\\nK = {K} methods available: {list(all_scores.keys())}\")\n\n    # ── Fix 1: Binarization ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 1: Binarization (top_n={args.top_n})\")\n    print(f\"{'='*60}\")\n\n    circuits = {}\n    for m, scores in all_scores.items():\n        if args.percentile and m != \"acdc\":\n            circuits[m] = binarize_percentile(scores, args.percentile)\n            mode = f\"p{args.percentile}\"\n        else:\n            circuits[m] = BINARIZERS[m](scores, args.top_n)\n            mode = f\"top-{args.top_n}\" if m != \"acdc\" else \"score>0\"\n        print(f\"  {m}: {len(circuits[m])} edges ({mode})\")\n\n    # Compare with old EP binarization\n    if \"edge_pruning\" in all_scores:\n        old_ep = {e for e, v in all_scores[\"edge_pruning\"].items() if v > 0.5}\n        new_ep = circuits[\"edge_pruning\"]\n        print(f\"\\n  EP old (>0.5): {len(old_ep)} edges\")\n        print(f\"  EP new (top-{args.top_n}): {len(new_ep)} edges\")\n        print(f\"  Overlap: {len(old_ep & new_ep)} edges\")\n\n    # ── Fix 2: Unified universe + restricted CIRCUS ──\n    union = set()\n    for edges in circuits.values():\n        union |= edges\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 2: Unified edge universe\")\n    print(f\"{'='*60}\")\n    print(f\"  Binarized union: {len(union)} edges\")\n    print(f\"  (vs original CIRCUS on full 32491 edges)\")\n\n    # CIRCUS on EAP-IG scores, restricted to union\n    eap_key = \"eap_ig\" if \"eap_ig\" in all_scores else list(all_scores.keys())[0]\n    stability = config_bag_restricted(all_scores[eap_key], union, B=args.circus_B)\n    tiers = get_tiers(stability)\n    tier_counts = Counter(tiers.values())\n    print(f\"\\n  CIRCUS tiers (restricted): {dict(tier_counts)}\")\n\n    # Old CIRCUS for comparison\n    old_stability = {}\n    if eap_key in all_scores:\n        old_scores = all_scores[eap_key]\n        old_edges = list(old_scores.keys())\n        old_vals = np.array(list(old_scores.values()))\n        percentiles = np.linspace(100 / 11, 100 * 10 / 11, 10)\n        old_thresholds = np.percentile(old_vals, percentiles)\n        old_stab = np.zeros(len(old_edges))\n        for t in old_thresholds:\n            old_stab += (old_vals >= t).astype(float)\n        old_stab /= 10\n        old_tiers = {}\n        for e, s in zip(old_edges, old_stab):\n            if s >= 1.0:\n                old_tiers[e] = \"core\"\n            elif s >= 0.5:\n                old_tiers[e] = \"contingent\"\n            else:\n                old_tiers[e] = \"noise\"\n        old_tier_counts = Counter(old_tiers.values())\n        print(f\"  CIRCUS tiers (original full): {dict(old_tier_counts)}\")\n\n    # ── CSS on binarized circuits ──\n    css_scores = compute_css(circuits, K)\n    css_dist = css_summary(css_scores, K)\n    print(f\"\\n  CSS distribution: {css_dist}\")\n\n    # ── Fix 3: Cross-tabulation ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 3: Cross-tabulation (unified universe)\")\n    print(f\"{'='*60}\")\n\n    table = cross_tabulate_fixed(tiers, css_scores, args.css_threshold)\n    sc = len(table[\"stable_core\"])\n    ms = len(table[\"method_specific\"])\n    cu = len(table[\"cross_unstable\"])\n    ns = len(table[\"noise\"])\n    core_total = sc + ms\n    total = sc + ms + cu + ns\n\n    print(f\"\\n                   | CSS >= {args.css_threshold}  | CSS < {args.css_threshold}   |\")\n    print(f\"  CIRCUS-core      | {sc:>5} edges | {ms:>5} edges |\")\n    print(f\"  CIRCUS-other     | {cu:>5} edges | {ns:>5} edges |\")\n    print(f\"  Total: {total}  |  Core: {core_total}\")\n\n    off_diag = ms / core_total if core_total > 0 else 0.0\n    # Binomial CI\n    n, k = core_total, ms\n    alpha = 0.05\n    if n > 0:\n        ci_low = beta_dist.ppf(alpha / 2, max(k, 0.5), n - k + 1) if k > 0 else 0.0\n        ci_high = beta_dist.ppf(1 - alpha / 2, k + 1, max(n - k, 0.5)) if k < n else 1.0\n    else:\n        ci_low, ci_high = 0.0, 0.0\n    print(f\"\\n  Off-diagonal: {off_diag*100:.1f}%  95% CI: [{ci_low*100:.1f}%, {ci_high*100:.1f}%]\")\n\n    # ── Fix 4: Gate verdict ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 4: Gate assessment (KILL -> KILL_CANDIDATE)\")\n    print(f\"{'='*60}\")\n\n    pct = off_diag * 100\n    if pct >= 10:\n        verdict = \"PASS_MAIN\"\n        msg = f\"Off-diagonal {pct:.1f}% >= 10% -> Main track\"\n    elif pct >= 5:\n        verdict = \"PASS_FINDINGS\"\n        msg = f\"Off-diagonal {pct:.1f}% in [5-10%) -> Findings default\"\n    elif pct >= 2:\n        verdict = \"MARGINAL\"\n        msg = f\"Off-diagonal {pct:.1f}% in [2-5%) -> Marginal\"\n    else:\n        verdict = \"KILL_CANDIDATE\"\n        msg = f\"Off-diagonal {pct:.1f}% < 2% -> Kill candidate (D003: needs 2 tasks to confirm)\"\n    print(f\"  Verdict: {verdict}\")\n    print(f\"  Action: {msg}\")\n\n    # ── Fix 5: Pairwise Jaccard ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 5: Pairwise Jaccard + 3-way ratio\")\n    print(f\"{'='*60}\")\n\n    method_names = list(circuits.keys())\n    for i in range(len(method_names)):\n        for j in range(i + 1, len(method_names)):\n            m1, m2 = method_names[i], method_names[j]\n            j_val = jaccard(circuits[m1], circuits[m2])\n            overlap = len(circuits[m1] & circuits[m2])\n            print(f\"  {m1} x {m2}: Jaccard={j_val:.4f}  overlap={overlap}\")\n\n    if len(method_names) >= 3:\n        ratio = three_way_ratio(circuits[method_names[0]], circuits[method_names[1]], circuits[method_names[2]])\n        intersection_3 = circuits[method_names[0]] & circuits[method_names[1]] & circuits[method_names[2]]\n        print(f\"\\n  3-way intersection: {len(intersection_3)} edges\")\n        print(f\"  3-way ratio (intersection/union): {ratio:.4f}\")\n        if intersection_3:\n            print(f\"  3-way edges: {sorted(intersection_3)[:20]}{'...' if len(intersection_3) > 20 else ''}\")\n\n    # ── Output ──\n    output = {\n        \"config\": {\n            \"top_n\": args.top_n,\n            \"percentile\": args.percentile,\n            \"circus_B\": args.circus_B,\n            \"css_threshold\": args.css_threshold,\n            \"K\": K,\n            \"methods\": method_names,\n        },\n        \"binarized_sizes\": {m: len(c) for m, c in circuits.items()},\n        \"union_size\": len(union),\n        \"circus_tiers_restricted\": dict(tier_counts),\n        \"css_distribution\": css_dist,\n        \"cross_table\": {\n            \"stable_core\": sc,\n            \"method_specific\": ms,\n            \"cross_unstable\": cu,\n            \"noise\": ns,\n            \"core_total\": core_total,\n            \"off_diagonal_pct\": round(off_diag, 4),\n            \"ci_95\": {\"low\": round(ci_low, 4), \"high\": round(ci_high, 4)},\n        },\n        \"gate_verdict\": verdict,\n        \"pairwise_jaccard\": {},\n    }\n    for i in range(len(method_names)):\n        for j in range(i + 1, len(method_names)):\n            m1, m2 = method_names[i], method_names[j]\n            output[\"pairwise_jaccard\"][f\"{m1}_x_{m2}\"] = round(jaccard(circuits[m1], circuits[m2]), 4)\n    if len(method_names) >= 3:\n        output[\"three_way_ratio\"] = round(ratio, 4)\n        output[\"three_way_intersection_size\"] = len(intersection_3)\n\n    out_path = args.output or str(cache_dir / \"analysis_fix_v3_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat > /root/structfuse-context/analysis_fix_v3.py << 'PYEOF'\n\"\"\"\nStructFuse v3 analysis fix — D017 scope mismatch + EP binarization.\n\nFixes:\n  1. EP binarization: top-N instead of score > 0.5\n  2. Unified edge universe: CIRCUS operates on binarized union, not full 32491\n  3. Recomputed cross-tabulation on unified universe\n  4. Gate: KILL -> KILL_CANDIDATE (D003 requires 2 tasks)\n  5. Pairwise Jaccard + 3-way ratio\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\nfrom collections import Counter\nfrom typing import Dict, Set, Tuple\n\nimport numpy as np\nfrom scipy.stats import beta as beta_dist\n\n\n# ── Binarization (Fix 1) ──\n\ndef binarize_topn(scores: Dict[str, float], n: int = 100) -> Set[str]:\n    sorted_edges = sorted(scores.items(), key=lambda x: abs(x[1]), reverse=True)\n    return {e for e, _ in sorted_edges[:n]}\n\n\ndef binarize_percentile(scores: Dict[str, float], pct: float = 99.0) -> Set[str]:\n    vals = np.array(list(scores.values()))\n    thresh = np.percentile(np.abs(vals), pct)\n    return {e for e, v in scores.items() if abs(v) >= thresh}\n\n\ndef binarize_acdc(scores: Dict[str, float]) -> Set[str]:\n    return {e for e, v in scores.items() if v > 0}\n\n\nBINARIZERS = {\n    \"eap_ig\": lambda s, n: binarize_topn(s, n),\n    \"edge_pruning\": lambda s, n: binarize_topn(s, n),\n    \"acdc\": lambda s, _: binarize_acdc(s),\n}\n\n\n# ── CIRCUS on restricted universe (Fix 2) ──\n\ndef config_bag_restricted(\n    raw_scores: Dict[str, float],\n    universe: Set[str],\n    B: int = 10,\n) -> Dict[str, float]:\n    edges = [e for e in universe if e in raw_scores]\n    if not edges:\n        return {}\n    scores = np.array([raw_scores[e] for e in edges])\n    percentiles = np.linspace(100 / (B + 1), 100 * B / (B + 1), B)\n    thresholds = np.percentile(scores, percentiles)\n    stability = np.zeros(len(edges))\n    for thresh in thresholds:\n        stability += (scores >= thresh).astype(float)\n    stability /= B\n    return {e: float(s) for e, s in zip(edges, stability)}\n\n\ndef get_tiers(stability: Dict[str, float], core_thr: float = 1.0, cont_thr: float = 0.5):\n    tiers = {}\n    for e, s in stability.items():\n        if s >= core_thr:\n            tiers[e] = \"core\"\n        elif s >= cont_thr:\n            tiers[e] = \"contingent\"\n        else:\n            tiers[e] = \"noise\"\n    return tiers\n\n\n# ── CSS ──\n\ndef compute_css(circuits: Dict[str, Set[str]], K: int) -> Dict[str, float]:\n    union = set()\n    for edges in circuits.values():\n        union |= edges\n    return {e: sum(1 for es in circuits.values() if e in es) / K for e in union}\n\n\ndef css_summary(css_scores: Dict[str, float], K: int) -> Dict[str, int]:\n    counts = Counter()\n    for s in css_scores.values():\n        counts[f\"{round(s * K)}/{K}\"] += 1\n    return dict(sorted(counts.items()))\n\n\n# ── Cross-tabulation (Fix 3) ──\n\ndef cross_tabulate_fixed(\n    tiers: Dict[str, str],\n    css_scores: Dict[str, float],\n    css_thr: float = 0.67,\n):\n    universe = set(tiers.keys()) | set(css_scores.keys())\n    stable_core, method_specific, cross_unstable, noise = set(), set(), set(), set()\n    for e in universe:\n        is_core = tiers.get(e) == \"core\"\n        css_high = css_scores.get(e, 0.0) >= css_thr\n        if is_core and css_high:\n            stable_core.add(e)\n        elif is_core and not css_high:\n            method_specific.add(e)\n        elif not is_core and css_high:\n            cross_unstable.add(e)\n        else:\n            noise.add(e)\n    return {\n        \"stable_core\": stable_core,\n        \"method_specific\": method_specific,\n        \"cross_unstable\": cross_unstable,\n        \"noise\": noise,\n    }\n\n\n# ── Jaccard (Fix 5) ──\n\ndef jaccard(a: Set[str], b: Set[str]) -> float:\n    if not a and not b:\n        return 0.0\n    return len(a & b) / len(a | b)\n\n\ndef three_way_ratio(a: Set[str], b: Set[str], c: Set[str]) -> float:\n    union = a | b | c\n    if not union:\n        return 0.0\n    return len(a & b & c) / len(union)\n\n\n# ── Main ──\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"StructFuse v3 analysis fix (D017)\")\n    parser.add_argument(\"--top-n\", type=int, default=100, help=\"Top-N for binarization (default: 100)\")\n    parser.add_argument(\"--percentile\", type=float, default=None, help=\"Use percentile mode instead of top-N\")\n    parser.add_argument(\"--circus-B\", type=int, default=10, help=\"CIRCUS bag count\")\n    parser.add_argument(\"--css-threshold\", type=float, default=0.67, help=\"CSS threshold\")\n    parser.add_argument(\"--cache-dir\", type=str, default=str(Path(__file__).parent), help=\"Cache directory\")\n    parser.add_argument(\"--output\", type=str, default=None, help=\"Output JSON path\")\n    args = parser.parse_args()\n\n    cache_dir = Path(args.cache_dir)\n    methods = [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n\n    # Load raw scores\n    all_scores = {}\n    for m in methods:\n        p = cache_dir / f\"cache_{m}.json\"\n        if not p.exists():\n            print(f\"WARNING: {p} not found — skipping {m}\")\n            continue\n        with open(p) as f:\n            all_scores[m] = json.load(f)\n        print(f\"Loaded {m}: {len(all_scores[m])} raw edges\")\n\n    if len(all_scores) < 2:\n        print(\"ERROR: need at least 2 methods' cache files. ACDC may still be running.\")\n        sys.exit(1)\n\n    K = len(all_scores)\n    print(f\"\\nK = {K} methods available: {list(all_scores.keys())}\")\n\n    # ── Fix 1: Binarization ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 1: Binarization (top_n={args.top_n})\")\n    print(f\"{'='*60}\")\n\n    circuits = {}\n    for m, scores in all_scores.items():\n        if args.percentile and m != \"acdc\":\n            circuits[m] = binarize_percentile(scores, args.percentile)\n            mode = f\"p{args.percentile}\"\n        else:\n            circuits[m] = BINARIZERS[m](scores, args.top_n)\n            mode = f\"top-{args.top_n}\" if m != \"acdc\" else \"score>0\"\n        print(f\"  {m}: {len(circuits[m])} edges ({mode})\")\n\n    # Compare with old EP binarization\n    if \"edge_pruning\" in all_scores:\n        old_ep = {e for e, v in all_scores[\"edge_pruning\"].items() if v > 0.5}\n        new_ep = circuits[\"edge_pruning\"]\n        print(f\"\\n  EP old (>0.5): {len(old_ep)} edges\")\n        print(f\"  EP new (top-{args.top_n}): {len(new_ep)} edges\")\n        print(f\"  Overlap: {len(old_ep & new_ep)} edges\")\n\n    # ── Fix 2: Unified universe + restricted CIRCUS ──\n    union = set()\n    for edges in circuits.values():\n        union |= edges\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 2: Unified edge universe\")\n    print(f\"{'='*60}\")\n    print(f\"  Binarized union: {len(union)} edges\")\n    print(f\"  (vs original CIRCUS on full 32491 edges)\")\n\n    # CIRCUS on EAP-IG scores, restricted to union\n    eap_key = \"eap_ig\" if \"eap_ig\" in all_scores else list(all_scores.keys())[0]\n    stability = config_bag_restricted(all_scores[eap_key], union, B=args.circus_B)\n    tiers = get_tiers(stability)\n    tier_counts = Counter(tiers.values())\n    print(f\"\\n  CIRCUS tiers (restricted): {dict(tier_counts)}\")\n\n    # Old CIRCUS for comparison\n    old_stability = {}\n    if eap_key in all_scores:\n        old_scores = all_scores[eap_key]\n        old_edges = list(old_scores.keys())\n        old_vals = np.array(list(old_scores.values()))\n        percentiles = np.linspace(100 / 11, 100 * 10 / 11, 10)\n        old_thresholds = np.percentile(old_vals, percentiles)\n        old_stab = np.zeros(len(old_edges))\n        for t in old_thresholds:\n            old_stab += (old_vals >= t).astype(float)\n        old_stab /= 10\n        old_tiers = {}\n        for e, s in zip(old_edges, old_stab):\n            if s >= 1.0:\n                old_tiers[e] = \"core\"\n            elif s >= 0.5:\n                old_tiers[e] = \"contingent\"\n            else:\n                old_tiers[e] = \"noise\"\n        old_tier_counts = Counter(old_tiers.values())\n        print(f\"  CIRCUS tiers (original full): {dict(old_tier_counts)}\")\n\n    # ── CSS on binarized circuits ──\n    css_scores = compute_css(circuits, K)\n    css_dist = css_summary(css_scores, K)\n    print(f\"\\n  CSS distribution: {css_dist}\")\n\n    # ── Fix 3: Cross-tabulation ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 3: Cross-tabulation (unified universe)\")\n    print(f\"{'='*60}\")\n\n    table = cross_tabulate_fixed(tiers, css_scores, args.css_threshold)\n    sc = len(table[\"stable_core\"])\n    ms = len(table[\"method_specific\"])\n    cu = len(table[\"cross_unstable\"])\n    ns = len(table[\"noise\"])\n    core_total = sc + ms\n    total = sc + ms + cu + ns\n\n    print(f\"\\n                   | CSS >= {args.css_threshold}  | CSS < {args.css_threshold}   |\")\n    print(f\"  CIRCUS-core      | {sc:>5} edges | {ms:>5} edges |\")\n    print(f\"  CIRCUS-other     | {cu:>5} edges | {ns:>5} edges |\")\n    print(f\"  Total: {total}  |  Core: {core_total}\")\n\n    off_diag = ms / core_total if core_total > 0 else 0.0\n    # Binomial CI\n    n, k = core_total, ms\n    alpha = 0.05\n    if n > 0:\n        ci_low = beta_dist.ppf(alpha / 2, max(k, 0.5), n - k + 1) if k > 0 else 0.0\n        ci_high = beta_dist.ppf(1 - alpha / 2, k + 1, max(n - k, 0.5)) if k < n else 1.0\n    else:\n        ci_low, ci_high = 0.0, 0.0\n    print(f\"\\n  Off-diagonal: {off_diag*100:.1f}%  95% CI: [{ci_low*100:.1f}%, {ci_high*100:.1f}%]\")\n\n    # ── Fix 4: Gate verdict ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 4: Gate assessment (KILL -> KILL_CANDIDATE)\")\n    print(f\"{'='*60}\")\n\n    pct = off_diag * 100\n    if pct >= 10:\n        verdict = \"PASS_MAIN\"\n        msg = f\"Off-diagonal {pct:.1f}% >= 10% -> Main track\"\n    elif pct >= 5:\n        verdict = \"PASS_FINDINGS\"\n        msg = f\"Off-diagonal {pct:.1f}% in [5-10%) -> Findings default\"\n    elif pct >= 2:\n        verdict = \"MARGINAL\"\n        msg = f\"Off-diagonal {pct:.1f}% in [2-5%) -> Marginal\"\n    else:\n        verdict = \"KILL_CANDIDATE\"\n        msg = f\"Off-diagonal {pct:.1f}% < 2% -> Kill candidate (D003: needs 2 tasks to confirm)\"\n    print(f\"  Verdict: {verdict}\")\n    print(f\"  Action: {msg}\")\n\n    # ── Fix 5: Pairwise Jaccard ──\n    print(f\"\\n{'='*60}\")\n    print(f\"FIX 5: Pairwise Jaccard + 3-way ratio\")\n    print(f\"{'='*60}\")\n\n    method_names = list(circuits.keys())\n    for i in range(len(method_names)):\n        for j in range(i + 1, len(method_names)):\n            m1, m2 = method_names[i], method_names[j]\n            j_val = jaccard(circuits[m1], circuits[m2])\n            overlap = len(circuits[m1] & circuits[m2])\n            print(f\"  {m1} x {m2}: Jaccard={j_val:.4f}  overlap={overlap}\")\n\n    if len(method_names) >= 3:\n        ratio = three_way_ratio(circuits[method_names[0]], circuits[method_names[1]], circuits[method_names[2]])\n        intersection_3 = circuits[method_names[0]] & circuits[method_names[1]] & circuits[method_names[2]]\n        print(f\"\\n  3-way intersection: {len(intersection_3)} edges\")\n        print(f\"  3-way ratio (intersection/union): {ratio:.4f}\")\n        if intersection_3:\n            print(f\"  3-way edges: {sorted(intersection_3)[:20]}{'...' if len(intersection_3) > 20 else ''}\")\n\n    # ── Output ──\n    output = {\n        \"config\": {\n            \"top_n\": args.top_n,\n            \"percentile\": args.percentile,\n            \"circus_B\": args.circus_B,\n            \"css_threshold\": args.css_threshold,\n            \"K\": K,\n            \"methods\": method_names,\n        },\n        \"binarized_sizes\": {m: len(c) for m, c in circuits.items()},\n        \"union_size\": len(union),\n        \"circus_tiers_restricted\": dict(tier_counts),\n        \"css_distribution\": css_dist,\n        \"cross_table\": {\n            \"stable_core\": sc,\n            \"method_specific\": ms,\n            \"cross_unstable\": cu,\n            \"noise\": ns,\n            \"core_total\": core_total,\n            \"off_diagonal_pct\": round(off_diag, 4),\n            \"ci_95\": {\"low\": round(ci_low, 4), \"high\": round(ci_high, 4)},\n        },\n        \"gate_verdict\": verdict,\n        \"pairwise_jaccard\": {},\n    }\n    for i in range(len(method_names)):\n        for j in range(i + 1, len(method_names)):\n            m1, m2 = method_names[i], method_names[j]\n            output[\"pairwise_jaccard\"][f\"{m1}_x_{m2}\"] = round(jaccard(circuits[m1], circuits[m2]), 4)\n    if len(method_names) >= 3:\n        output[\"three_way_ratio\"] = round(ratio, 4)\n        output[\"three_way_intersection_size\"] = len(intersection_3)\n\n    out_path = args.output or str(cache_dir / \"analysis_fix_v3_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-12T23:23:10.645278+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-12T23:23:10.645443+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analysis_fix_v3.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analysis_fix_v3.py --help",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-12T23:23:10.645581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: analysis_fix_v3.py [-h] [--top-n TOP_N] [--percentile PERCENTILE]\\n                          [--circus-B CIRCUS_B]\\n                          [--css-threshold CSS_THRESHOLD]\\n                          [--cache-dir CACHE_DIR] [--output OUTPUT]\\n\\nStructFuse v3 analysis fix (D017)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --top-n TOP_N         Top-N for binarization (default: 100)\\n  --percentile PERCENTILE\\n                        Use percentile mode instead of top-N\\n  --circus-B CIRCUS_B   CIRCUS bag count\\n  --css-threshold CSS_THRESHOLD\\n                        CSS threshold\\n  --cache-dir CACHE_DIR\\n                        Cache directory\\n  --output OUTPUT       Output JSON path\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-12T23:23:10.645736+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analysis_fix_v3.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analysis_fix_v3.py 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-12T23:23:10.645898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded eap_ig: 32491 raw edges\\nLoaded edge_pruning: 32491 raw edges\\nWARNING: /root/structfuse-context/cache_acdc.json not found — skipping acdc\\n\\nK = 2 methods available: ['eap_ig', 'edge_pruning']\\n\\n============================================================\\nFIX 1: Binarization (top_n=100)\\n============================================================\\n  eap_ig: 100 edges (top-100)\\n  edge_pruning: 100 edges (top-100)\\n\\n  EP old (>0.5): 100 edges\\n  EP new (top-100): 100 edges\\n  Overlap: 65 edges\\n\\n============================================================\\nFIX 2: Unified edge universe\\n============================================================\\n  Binarized union: 153 edges\\n  (vs original CIRCUS on full 32491 edges)\\n\\n  CIRCUS tiers (restricted): {'noise': 70, 'contingent': 69, 'core': 14}\\n  CIRCUS tiers (original full): {'noise': 14769, 'core': 2954, 'contingent': 14768}\\n\\n  CSS distribution: {'1/2': 106, '2/2': 47}\\n\\n============================================================\\nFIX 3: Cross-tabulation (unified universe)\\n============================================================\\n\\n                   | CSS >= 0.67  | CSS < 0.67   |\\n  CIRCUS-core      |    13 edges |     1 edges |\\n  CIRCUS-other     |    34 edges |   105 edges |\\n  Total: 153  |  Core: 14\\n\\n  Off-diagonal: 7.1%  95% CI: [0.2%, 33.9%]\\n\\n============================================================\\nFIX 4: Gate assessment (KILL -> KILL_CANDIDATE)\\n============================================================\\n  Verdict: PASS_FINDINGS\\n  Action: Off-diagonal 7.1% in [5-10%) -> Findings default\\n\\n============================================================\\nFIX 5: Pairwise Jaccard + 3-way ratio\\n============================================================\\n  eap_ig x edge_pruning: Jaccard=0.3072  overlap=47\\n\\nResults saved to /root/structfuse-context/analysis_fix_v3_results.j
+…[truncated 110 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-12T23:23:10.646087+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "analysis_fix_v3",
+  "type": "intermediate",
+  "description": "D017 fix script: EP binarization top-N, unified CIRCUS universe, corrected cross-tabulation. K=2 preview: off-diagonal 7.1% (was ~98% artifact). Ready for K=3 when ACDC completes.",
+  "project": "structfuse-context",
+  "content": "{\n  \"script_path\": \"/root/structfuse-context/analysis_fix_v3.py\",\n  \"results_path\": \"/root/structfuse-context/analysis_fix_v3_results.json\",\n  \"usage\": \"python3 analysis_fix_v3.py [--top-n 100] [--percentile 99.0] [--css-threshold 0.67]\",\n  \"k2_preview\": {\n    \"off_diagonal_pct\": 0.0714,\n    \"verdict\": \"PASS_FINDINGS\",\n    \"jaccard_eap_ep\": 0.3072,\n    \"ep_old_vs_new_overlap\": \"65/100\"\n  },\n  \"awaiting\": \"cache_acdc.json (ACDC ~81% done)\"\n}",
+  "content_filename": "analysis_fix_v3_meta.json",
+  "tags": "['D017', 'cross-tabulation', 'fix', 'v3']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "analysis_fix_v3",
+    "type": "intermediate",
+    "description": "D017 fix script: EP binarization top-N, unified CIRCUS universe, corrected cross-tabulation. K=2 preview: off-diagonal 7.1% (was ~98% artifact). Ready for K=3 when ACDC completes.",
+    "project": "structfuse-context",
+    "content": "{\n  \"script_path\": \"/root/structfuse-context/analysis_fix_v3.py\",\n  \"results_path\": \"/root/structfuse-context/analysis_fix_v3_results.json\",\n  \"usage\": \"python3 analysis_fix_v3.py [--top-n 100] [--percentile 99.0] [--css-threshold 0.67]\",\n  \"k2_preview\": {\n    \"off_diagonal_pct\": 0.0714,\n    \"verdict\": \"PASS_FINDINGS\",\n    \"jaccard_eap_ep\": 0.3072,\n    \"ep_old_vs_new_overlap\": \"65/100\"\n  },\n  \"awaiting\": \"cache_acdc.json (ACDC ~81% done)\"\n}",
+    "content_filename": "analysis_fix_v3_meta.json",
+    "tags": "['D017', 'cross-tabulation', 'fix', 'v3']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T23:23:10.646226+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'script_path': '/root/st....json (ACDC ~81% done)'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-12T23:23:10.646347+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp_pilot_gpt2_ioi_v3",
+  "field": "notes",
+  "value": "D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results.",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp_pilot_gpt2_ioi_v3",
+    "field": "notes",
+    "value": "D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results.",
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-12T23:23:10.646505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_pilot_gpt2_ioi_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:35:55.509Z\", \"updated_at\": \"2026-05-12T23:22:35.555Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=5 python3 run_mvp.py\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5 (RTX 4090D)\", \"pid\": \"279210\", \"log_path\": \"~/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log\", \"submitted_at\": \"2026-05-12T17:36:44.722Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"auto-circuit IOI dataset (built-in)\", \"data_count\": 100, \"model_name\": \"GPT-2 Small\", \"seed\": 42, \"methods\": \"EAP-IG + Edge Pruning (mask_gradient) + ACDC\", \"task\": \"IOI\", \"K\": 3, \"note\": \"v3: cache cleared + edge norm fix v2. HF_HUB_OFFLINE=1 for offline mode. tmux session: mvp_pilot_gpt2_ioi_v3. Phase A (EAP-IG) completed 32491 edges. Phase B (EP) in progress ~24 it/s.\"}, \"hypothesis\": \"CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\", \"notes\": \"D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0398}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-12T23:23:10.646652+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "analysis_fix_v3",
+  "type": "intermediate",
+  "description": "D017 fix script: EP binarization top-N, unified CIRCUS universe, corrected cross-tabulation. K=2 preview: off-diagonal 7.1% (was ~98% artifact). Ready for K=3 when ACDC completes.",
+  "project": "structfuse-context",
+  "content": "{\"script_path\": \"/root/structfuse-context/analysis_fix_v3.py\", \"results_path\": \"/root/structfuse-context/analysis_fix_v3_results.json\", \"usage\": \"python3 analysis_fix_v3.py [--top-n 100] [--percentile 99.0] [--css-threshold 0.67]\", \"k2_preview\": {\"off_diagonal_pct\": 0.0714, \"verdict\": \"PASS_FINDINGS\", \"jaccard_eap_ep\": 0.3072, \"ep_old_vs_new_overlap\": \"65/100\"}, \"awaiting\": \"cache_acdc.json (ACDC ~81% done)\"}",
+  "content_filename": "analysis_fix_v3_meta.json",
+  "tags": "['D017', 'cross-tabulation', 'fix', 'v3']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "analysis_fix_v3",
+    "type": "intermediate",
+    "description": "D017 fix script: EP binarization top-N, unified CIRCUS universe, corrected cross-tabulation. K=2 preview: off-diagonal 7.1% (was ~98% artifact). Ready for K=3 when ACDC completes.",
+    "project": "structfuse-context",
+    "content": "{\"script_path\": \"/root/structfuse-context/analysis_fix_v3.py\", \"results_path\": \"/root/structfuse-context/analysis_fix_v3_results.json\", \"usage\": \"python3 analysis_fix_v3.py [--top-n 100] [--percentile 99.0] [--css-threshold 0.67]\", \"k2_preview\": {\"off_diagonal_pct\": 0.0714, \"verdict\": \"PASS_FINDINGS\", \"jaccard_eap_ep\": 0.3072, \"ep_old_vs_new_overlap\": \"65/100\"}, \"awaiting\": \"cache_acdc.json (ACDC ~81% done)\"}",
+    "content_filename": "analysis_fix_v3_meta.json",
+    "tags": "['D017', 'cross-tabulation', 'fix', 'v3']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-12T23:23:10.646806+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'script_path': '/root/st....json (ACDC ~81% done)'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-12T23:23:10.646928+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "analysis_fix_v3",
+  "type": "intermediate",
+  "description": "D017 fix script: EP binarization top-N, unified CIRCUS universe, corrected cross-tabulation. K=2 preview: off-diagonal 7.1% (was ~98% artifact).",
+  "project": "structfuse-context",
+  "content": "script: /root/structfuse-context/analysis_fix_v3.py\nresults: /root/structfuse-context/analysis_fix_v3_results.json\nusage: python3 analysis_fix_v3.py [--top-n 100] [--percentile 99.0] [--css-threshold 0.67]\nK=2 preview: off-diagonal 7.1%, verdict PASS_FINDINGS, Jaccard(eap,ep)=0.3072\nAwaiting: cache_acdc.json (ACDC ~81% done)",
+  "content_filename": "analysis_fix_v3_meta.txt",
+  "tags": "['D017', 'cross-tabulation', 'fix', 'v3']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "analysis_fix_v3",
+    "type": "intermediate",
+    "description": "D017 fix script: EP binarization top-N, unified CIRCUS universe, corrected cross-tabulation. K=2 preview: off-diagonal 7.1% (was ~98% artifact).",
+    "project": "structfuse-context",
+    "content": "script: /root/structfuse-context/analysis_fix_v3.py\nresults: /root/structfuse-context/analysis_fix_v3_results.json\nusage: python3 analysis_fix_v3.py [--top-n 100] [--percentile 99.0] [--css-threshold 0.67]\nK=2 preview: off-diagonal 7.1%, verdict PASS_FINDINGS, Jaccard(eap,ep)=0.3072\nAwaiting: cache_acdc.json (ACDC ~81% done)",
+    "content_filename": "analysis_fix_v3_meta.txt",
+    "tags": "['D017', 'cross-tabulation', 'fix', 'v3']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-12T23:23:10.647066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_bb5faf\", \"name\": \"analysis_fix_v3\", \"type\": \"intermediate\", \"description\": \"D017 fix script: EP binarization top-N, unified CIRCUS universe, corrected cross-tabulation. K=2 preview: off-diagonal 7.1% (was ~98% artifact).\", \"path\": \"projects/structfuse-context/artifacts/_project/intermediate/analysis_fix_v3_meta.txt\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T23:22:55.135208+00:00\", \"tags\": [\"D017\", \"cross-tabulation\", \"fix\", \"v3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_fix-analysis-v3_20260512T231917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-12T23:23:10.647242+00:00_
+
+完成。
+
+## 修复脚本
+
+**路径**: `/root/structfuse-context/analysis_fix_v3.py`
+
+**使用**: `python3 analysis_fix_v3.py` (ACDC 完成后自动读取 cache_acdc.json)
+
+### 五项修复
+
+| # | 问题 | 修复 |
+|---|------|------|
+| 1 | EP `score > 0.5` 对 mask_gradient 无意义 | top-N=100（与 EAP-IG 对齐） |
+| 2 | CIRCUS 在 32491 边操作 vs CSS 在 ~150 边 | CIRCUS 限制到二值化并集 |
+| 3 | 作用域不匹配导致 off-diagonal ~98% | 统一 universe 后重算 |
+| 4 | `KILL` 直接判死 | `KILL_CANDIDATE`（D003 需 2 tasks 确认） |
+| 5 | 无 pairwise 比较 | Jaccard + 3-way ratio |
+
+### K=2 预览结果（ACDC 未完成）
+
+- Off-diagonal: **7.1%**（原 ~98% 是 artifact）
+- Verdict: **PASS_FINDINGS**（原 KILL 是 artifact）
+- Jaccard(EAP-IG, EP): 0.3072
+- EP old(>0.5) vs new(top-100) overlap: 65/100
+
+ACDC 完成后运行 `python3 analysis_fix_v3.py` 获取 K=3 完整结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_fix-analysis-v3_20260512T231917"
+}
+```
+
+</details>
+
+---

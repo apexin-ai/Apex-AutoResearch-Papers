@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf9e454a501f91308992",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "research circuit api survey",
+  "task_key": "worker_research_circuit-api-survey_20260512T095923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_circuit-api-survey_20260512T095923_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "611a7e05a9238625a9621aae2bce0eca7df3c5ec27699e18ac3d5bc1d7f4c691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已写入 `artifacts/structfuse-mvp/API_SURVEY.md`。\n\n关键发现：\n\n- **EAP-IG**（`hannamw/eap-ig` v2.0）是最成熟的 edge-level attribution 库，依赖 `transformer-lens>=2.15.0`，4 步 API（Graph → attribute → topn → evaluate）\n- **ACDC** 原始代码作者推荐用 **Auto-Circuit**（`pip install auto-circuit`）替代，同样基于 TransformerLens\n- **Edge Pruning**（`princeton-nlp/edge-pruning`）用 L0 mask 优化，原版也依赖 TransformerLens 2.15.0（**不是 nnsight**），实验版已迁移到 HuggingFace transformers\n- **AtP*** 官方未开源，社区实现（`koayon/atp_star`）不成熟且是 node-level，不推荐直接用\n- **CIRCUS** 无开源代码，但 config-bagging 逻辑简单可自行实现（~50 行）\n- **MIB Circuit Track** 基于 EAP-IG 构建，可直接作为标准化评估框架复用\n- **兼容性**: Python 3.10 + torch 2.5.x + transformer-lens 2.15.0 是所有库的安全公共基线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-circuit-api-survey.md"
+}

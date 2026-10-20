@@ -1,0 +1,37 @@
+{
+  "exp_id": "w2-qwen3-1.7b-exec-pilot",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:09:06.895Z",
+    "updated_at": "2026-05-16T12:16:34.814Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 scripts/train_grpo.py --config configs/grpo_exec_only_1.7b.yaml --seed 42 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/w2_1.7b_exec_only_s42 --no_wandb",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "806960",
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "hypothesis": "Qwen3-1.7B exec-only pilot: 跨 scale 验证 — 1.7B 模型 GRPO 训练后 genuine rate 与 4B 对比 (W2 model scale concern)",
+      "per_device_batch_size": 2,
+      "gradient_accumulation_steps": 4,
+      "num_generations": 4,
+      "optimizer": "adamw_torch"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T12:16:33.019Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T12:16:34.814Z"
+  },
+  "timestamp": "2026-05-16T12:16:35.069222+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "gated-isr-warmstart-t02-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:36:38.826Z",
+    "updated_at": "2026-05-16T16:45:24.966Z",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/grpo_isr_warmstart_v3.yaml --seed 43 --model_path /root/autodl-tmp/outputs/exec_retrain_v3_s43/checkpoint-200 --output_dir /root/autodl-tmp/outputs/gated_warmstart_v3_s43 --no_wandb",
+      "server": "westd-39279",
+      "data_path": "data/proofwriter_fol_100.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-4B (exec-retrain-v3-s43 checkpoint-200)",
+      "seed": 43,
+      "gpu_id": "cuda:1",
+      "checkpoint_source": "/root/autodl-tmp/outputs/exec_retrain_v3_s43/checkpoint-200"
+    },
+    "conclusion": "failed",
+    "failure_reason": "Reward collapsed (gate_pass=0.000, same as s42) + disk full at step 100 checkpoint save. ISR gate τ=0.2 too strict.",
+    "completed_at": "2026-05-16T16:45:24.966Z"
+  },
+  "timestamp": "2026-05-16T16:45:25.229115+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,22 @@
+\section{Related Work}
+\label{sec:related-work}
+
+\paragraph{Neurosymbolic reasoning.}
+Large language model (LLM)--solver pipelines~\citep{satlm, logic-lm, linc, fover-pei2025, lorp, nlproofs} and RL methods trained on solver feedback~\citep{mellgren-prolog-grpo, logic-rl, deepseek-prover-v15, deepseek-r1, rlsf} evaluate execution accuracy alone, with no diagnostic for component necessity.
+AlphaProof~\citep{alphaproof2025} and DeepSeek-Prover-V2~\citep{deepseek-prover-v2} apply RL-based formal verification at scale in Lean~4 for competition mathematics; STA-style diagnostics could probe whether similar structural degeneration occurs in these settings.
+We use FOLIO~\citep{folio}, the only public natural language inference (NLI) benchmark with both FOL and Prolog annotations.
+
+\paragraph{Reward hacking and Goodhart's Law.}
+Specification gaming~\citep{krakovna2020specification} and Goodhart's Law~\citep{manheim-goodhart-taxonomy, skalse-reward-hacking, karwowski-goodhart-rl} are established across RL from human feedback (RLHF)~\citep{gao-reward-overoptimization} and logical formalization~\citep{bondarenko-spec-gaming, kim-game-formalization}.
+Most closely related, \citet{kim-game-formalization} document inference-time gaming on FOLIO with frontier models; our work complements theirs by studying training-time degeneration via component necessity rather than faithfulness.
+\citet{kwa-catastrophic-goodhart} show that heavy-tailed reward misspecification causes catastrophic Goodhart where Kullback--Leibler (KL) regularization provably fails, providing a theoretical lens for why GRPO's KL penalty does not prevent our observed collapse.
+Concurrent work documents spurious signals in RLVR~\citep{spurious-rewards, yan2026spurious, dong2026probing, metr-reward-hacking, helff2026gaming, nishimura2026specgaming, khalifa2026countdown} and proposes composite rewards as mitigations~\citep{tarek2025reward, pronesti2026beyond};
+mitigation strategies include reward model ensembles~\citep{coste2023reward}, constrained optimization~\citep{moskovitz2023confronting}, and activation-level monitoring~\citep{wilhelm2026monitoring}. \citet{yue2025rl-reasoning} show RLVR redistributes probability mass rather than creating new reasoning, consistent with our finding that GRPO exploits existing shortcuts.
+Our Goodhart effect follows the regressional pattern~\citep{manheim-goodhart-taxonomy} on FOLIO; its application to a diagnostic designed to detect gaming, and the dataset-dependent asymmetry it reveals, are to our knowledge novel.
+
+\paragraph{Process rewards and reward design.}
+Process reward models~\citep{lightman-verify-step, setlur2025rewarding, cui2025prime, cobbe2021training, uesato2022solving} supervise intermediate steps; \citet{sullivan2025grpo-prm} show GRPO implicitly implements process reward. Classical reward shaping~\citep{ng1999policy, gao-effective-rl-reward} guarantees policy invariance only under potential-based transforms; ISR violates this condition.
+
+\paragraph{Mutation testing.}
+STA adapts the LOO mutation paradigm~\citep{demillo1978, jia-harman-survey} to solver inputs; novelty lies in application and findings, not in the perturbation primitive.
+Related concerns about chain-of-thought (CoT) faithfulness~\citep{lanham2023faithfulness, turpin2023unfaithful} operate at the reasoning-chain level rather than solver-input components.

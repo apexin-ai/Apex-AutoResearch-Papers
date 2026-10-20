@@ -1,0 +1,18 @@
+H7 Classification Results (classify_h7.py)
+Server path: /root/autodl-tmp/outputs/h7_classification/
+
+=== s42 ISR β=0.1 (from eval_sta_results.json) ===
+Proved: 81, H7 strict: 55/81 (67.9%), H7 relaxed: 13/81 (16.0%)
+Single premise: 15/81 (18.5%), ISR=1.0: 10/81 (12.3%)
+
+=== s43 ISR β=0.1 ===
+Proved: 61, H7 strict: 59/61 (96.7%), H7 relaxed: 57/61 (93.4%)
+Single premise: 61/61 (100.0%), ISR=1.0: 40/61 (65.6%)
+
+=== s44 ISR β=0.1 ===
+Proved: 89, H7 strict: 77/89 (86.5%), H7 relaxed: 82/89 (92.1%)
+Single premise: 89/89 (100.0%), ISR=1.0: 65/89 (73.0%)
+
+=== random β=0.1 s42 ===
+Proved: 79, H7 strict: 56/79 (70.9%), H7 relaxed: 0/79 (0.0%)
+Single premise: 0/79 (0.0%), ISR=1.0: 0/79 (0.0%)

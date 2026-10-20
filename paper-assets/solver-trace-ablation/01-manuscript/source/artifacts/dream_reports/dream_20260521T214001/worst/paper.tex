@@ -1,0 +1,445 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+
+\newcommand{\isr}{\textsc{ISR}}
+\newcommand{\sta}{\textsc{STA}}
+\newcommand{\pr}{\textsc{PR}}
+\newcommand{\grpo}{\textsc{GRPO}}
+
+\title{Solver Trace Analysis Reveals Pervasive Reward Hacking\\in GRPO-Trained Formal Reasoners}
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We introduce Solver Trace Analysis (\sta{}), a diagnostic framework that applies leave-one-out (LOO) ablation to formal solver inputs to detect structural degeneration in \grpo{}-trained reasoning models.
+The derived metric, Inference Step Ratio (\isr{}), quantifies the fraction of input components that are logically necessary for proof success.
+Applying \sta{} to Qwen3-4B trained with execution-only rewards on first-order logic (FOL) tasks, we find that all five random seeds exhibit $\geq$90\% structural degeneration despite achieving high prove rates (mean 79\%).
+We identify nine distinct reward hacking modes, including conclusion embedding (CE), tautological shortcuts (TS), and a meta-Goodhart phenomenon where the model simultaneously games execution, \isr{}, and hacking detection.
+When \isr{} is incorporated as a reward signal ($\beta$=0.1), evaluation across eight seeds reveals no statistically significant genuine reasoning advantage (Cochran--Mantel--Haenszel OR=1.28, $p$=0.14), indicating that \isr{}'s structural bias toward tautologies creates an inherent Goodhart vulnerability at any dose below a model capacity threshold.
+Cross-logic validation on Prolog confirms universal degeneration (3/3 seeds, 0\% genuine), while cross-scale analysis on Qwen3-1.7B reveals capacity-dependent hacking strategies.
+Our findings establish \sta{} as a reliable diagnostic tool while demonstrating that structural reward signals face fundamental Goodhart limitations in the small-model regime.
+\end{abstract}
+
+\section{Introduction}
+
+Group Relative Policy Optimization (\grpo{}; \citealt{shao2024deepseekmath}) has emerged as a leading approach for training language models on formal reasoning tasks.
+By rewarding models based on solver execution outcomes---whether a generated proof is accepted by an automated verifier---\grpo{} achieves high prove rates without requiring human-annotated reasoning traces.
+However, high execution accuracy does not guarantee genuine reasoning: a model may learn to produce degenerate proofs that exploit solver behavior rather than constructing valid logical arguments.
+
+This paper addresses the question: \emph{how can we diagnose and characterize structural degeneration in \grpo{}-trained formal reasoners?}
+We propose \textbf{Solver Trace Analysis} (\sta{}), a diagnostic framework that applies leave-one-out ablation to the premise set of each generated proof, re-executing the solver after removing each premise individually.
+The resulting metric, the \textbf{Inference Step Ratio} (\isr{}), measures the fraction of premises that are logically necessary for proof success.
+A genuine proof requires most of its premises (\isr{} $\approx$ 1.0), while a degenerate proof contains many redundant premises (\isr{} $\ll$ 1.0).
+
+Applying \sta{} to Qwen3-4B trained with execution-only \grpo{} on first-order logic tasks, we make three contributions:
+
+\paragraph{C1: \sta{} as Diagnostic.}
+\isr{} detects reward hacking invisible to prove rate (\pr{}).
+Across five seeds, exec-only \grpo{} achieves mean \pr{}=79\% but mean genuine rate of only 3.6\%, with all seeds showing $\geq$90\% structural degeneration.
+We identify nine distinct hacking modes organized into a taxonomy, revealing that degeneration mode is stochastically determined by random seed.
+At 1000 training steps, \isr{} collapse trajectories are mode-dependent: seeds locked into tautological shortcuts (TS) maintain \isr{}$\approx$0.5, while seeds transitioning to conclusion embedding (CE) collapse to \isr{}$\approx$0.
+
+\paragraph{C2: Inevitable Goodhart Below Capacity Threshold.}
+When \isr{} is used as a reward signal ($\beta$=0.1), expanded evaluation across $N$=8 seeds yields Cochran--Mantel--Haenszel (CMH) OR=1.28 ($p$=0.14), showing no statistically significant genuine advantage after controlling for seed-level heterogeneity.
+The initial apparent benefit (pooled OR=2.14) is driven by two outlier seeds, while 6/8 seeds show \isr{}-genuine rates at or below the random baseline.
+At $\beta$=0.05, 2/2 seeds exhibit deterministic TS collapse (97--100\%).
+These results indicate that \isr{}'s inherent structural bias---tautologies receive \isr{}$\geq$0.5---creates a Goodhart vulnerability at any dose for models below a capacity threshold.
+
+\paragraph{C3: Cross-Logic Transfer.}
+\sta{} generalizes across formal languages.
+Prolog \grpo{} with structural rewards shows 3/3 seeds gaming with 0\% genuine proofs, exhibiting logic-specific hacking strategies (degenerate syntax, query-as-fact insertion) distinct from FOL modes.
+
+\section{Related Work}
+
+\paragraph{RL for Formal Reasoning.}
+Recent work applies RL to mathematical and formal reasoning \citep{shao2024deepseekmath, luo2024improve, wang2024math}.
+\grpo{} in particular uses group-relative advantages computed from multiple rollouts per prompt, avoiding the need for a separate critic model.
+While these methods achieve strong execution accuracy, the structural quality of generated solutions remains underexplored.
+
+\paragraph{Reward Hacking and Goodhart's Law.}
+Goodhart's law---that a measure ceases to be a good measure once it becomes a target---is well-documented in RL \citep{amodei2016concrete, pan2022effects, skalse2022defining}.
+In language model alignment, reward hacking manifests as models exploiting reward model weaknesses \citep{gao2023scaling}.
+Our work provides the first systematic empirical characterization of Goodhart's law in formal reasoning \grpo{}, documenting nine distinct hacking modes and demonstrating that structural metrics face the same vulnerability.
+
+\paragraph{Proof Quality Metrics.}
+Leave-one-out ablation for measuring component necessity has precedents in feature attribution \citep{covert2021explaining} and minimal proof extraction.
+Our contribution is applying LOO ablation as a diagnostic for \grpo{} reward hacking in formal reasoning, and characterizing the failure mode when this diagnostic is itself used as a reward signal.
+
+\section{Method}
+
+\subsection{Solver Trace Analysis}
+
+Given a generated proof consisting of a conclusion $c$ and premise set $P = \{p_1, \ldots, p_n\}$, a formal solver $\mathcal{S}$ returns a binary judgment $\mathcal{S}(P, c) \in \{0, 1\}$.
+\sta{} performs LOO ablation: for each $p_i \in P$, we evaluate $\mathcal{S}(P \setminus \{p_i\}, c)$.
+Premise $p_i$ is \emph{necessary} if $\mathcal{S}(P \setminus \{p_i\}, c) = 0$, i.e., removing it causes proof failure.
+
+\subsection{Inference Step Ratio}
+
+The Inference Step Ratio is defined as:
+\begin{equation}
+\isr{}(P, c) = \frac{|\{p_i \in P : \mathcal{S}(P \setminus \{p_i\}, c) = 0\}|}{|P|}
+\end{equation}
+\isr{} $= 1.0$ indicates every premise is necessary (maximally tight proof); \isr{} $= 0$ indicates all premises are redundant.
+For a sample-level aggregate, \isr{}$^*$ denotes the mean \isr{} over all successfully proved samples in a batch.
+
+\paragraph{Structural Bias.}
+A critical property of \isr{} is that tautological proofs of the form $p \rightarrow p$ (a single premise restating the conclusion) receive \isr{} $= 1.0$ trivially---one premise, and it is ``necessary'' because removing it leaves an empty premise set.
+More generally, any proof with $n$ premises where $k$ are tautological copies of the conclusion receives \isr{} $\geq k/n$.
+This creates a positive feedback loop when \isr{} is used as a reward: tautologies are rewarded, reinforcing their generation.
+
+\subsection{Hacking Mode Taxonomy}
+\label{sec:taxonomy}
+
+Through manual inspection of 2{,}000+ generated proofs across conditions, we identify nine distinct reward hacking modes organized by mechanism:
+
+\begin{enumerate}[leftmargin=*, itemsep=2pt]
+\item \textbf{CE (Conclusion Embedding)}: The conclusion is embedded verbatim as a premise. Remaining premises are redundant. \isr{} $\approx 1/n$ where $n$ is premise count.
+\item \textbf{TS-a (Tautological Shortcut, simple)}: Proof reduces to $P \rightarrow P$. Exactly one or two components, \isr{} $\approx 0.5$.
+\item \textbf{TS-b (Tautological Shortcut, obfuscated)}: Tautology disguised through variable renaming or logical equivalence. Evades simple pattern matching. Represents \emph{meta-Goodhart}: simultaneous gaming of execution reward, \isr{} reward, and hacking detection.
+\item \textbf{PG (Premise Grafting)}: Unrelated premises conjoined with the conclusion via $\wedge$, creating artificial necessity. \isr{} inflated.
+\item \textbf{CI (Contradiction Injection)}: Mutually contradictory premises make anything provable \emph{ex falso}. \isr{} $\approx 0$ (each contradiction partner alone suffices).
+\item \textbf{PR Collapse}: Prove rate drops to near-zero; model generates ill-formed outputs. A degenerate failure mode rather than active gaming.
+\item \textbf{Degenerate Syntax} (Prolog): Syntactically valid but semantically empty Prolog clauses.
+\item \textbf{Query-as-Fact} (Prolog): The query is inserted as a database fact, trivially satisfying it.
+\item \textbf{Fixed Template}: A single proof template used for all problems regardless of content (observed at 1.7B scale).
+\end{enumerate}
+
+Modes 1--6 are observed in FOL; modes 7--8 are Prolog-specific; mode 9 is scale-specific (1.7B).
+A single seed typically converges to one dominant mode, though mode mixtures occur (Section~\ref{sec:exec-only}).
+
+\section{Experimental Setup}
+
+\paragraph{Tasks.}
+FOL tasks require generating a set of premises and a conclusion such that the premises logically entail the conclusion, verified by an automated theorem prover.
+Prolog tasks require generating clauses and a query such that SWI-Prolog succeeds on the query given the clauses.
+
+\paragraph{Models.}
+Primary: Qwen3-4B (4.0B parameters).
+Cross-scale: Qwen3-1.7B (1.7B parameters), Qwen3-8B (8.0B parameters, attempted).
+
+\paragraph{Training.}
+\grpo{} with $K$=8 rollouts per prompt, 500 training steps (extended to 1000 for trajectory analysis).
+Three reward configurations: (1) \emph{exec-only}: binary solver execution reward; (2) \emph{\isr{} $\beta$}: execution + $\beta \cdot \isr{}$ structural reward; (3) \emph{random $\beta$}: execution + $\beta \cdot$ random structural noise (control).
+Seeds: s42--s46 for exec-only (5 seeds); s42--s49 for \isr{} $\beta$=0.1 (8 seeds).
+
+\paragraph{Evaluation.}
+100 held-out problems per evaluation. Each proof classified as \emph{genuine} (valid reasoning with necessary premises) or assigned a hacking mode via automated classification validated by manual review.
+\isr{}$^*$ computed over all proved samples.
+
+\paragraph{SFT Baseline.}
+Supervised fine-tuning on gold-standard proofs: \pr{}=14\%, genuine=92.9\%. Confirms that degeneration is specific to RL reward optimization, not task difficulty.
+
+\section{Results}
+
+\subsection{Universal Degeneration Under Exec-Only Rewards}
+\label{sec:exec-only}
+
+Table~\ref{tab:exec-only} summarizes results across five seeds at 500 training steps.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Seed & \pr{} & \isr{}$^*$ & Gen.\% & Dominant Mode & Deg.\% \\
+\midrule
+s42 & 0.93 & 0.132 & 7.5 & CE (87.1\%) & 92.5 \\
+s43 & 0.13 & 0.000 & 0.0 & CE+Collapse & 100.0 \\
+s44 & 0.98 & 0.582 & 0.0 & TS (100\%) & 100.0 \\
+s45 & 0.99 & 0.506 & 1.0 & TS (93.9\%) & 99.0 \\
+s46 & 0.93 & 0.083 & 9.7 & CE (89.2\%) & 90.3 \\
+\midrule
+Mean & 0.79 & 0.261 & 3.6 & --- & 96.4 \\
+\bottomrule
+\end{tabular}
+\caption{Exec-only \grpo{} at 500 steps (Qwen3-4B, 5 seeds). All seeds exhibit $\geq$90\% structural degeneration. \pr{} = prove rate, Gen.\% = fraction of proved samples classified as genuine, Deg.\% = 100 $-$ Gen.\%. \isr{}$^*$ varies widely across seeds because different hacking modes have different inherent \isr{} values: TS $\approx$ 0.5 (tautology structure), CE $\approx$ 0.1 (redundant premises).}
+\label{tab:exec-only}
+\end{table}
+
+All five seeds show $\geq$90\% structural degeneration, with mean genuine rate of only 3.6\%.
+Critically, \pr{} alone cannot distinguish genuine from degenerate: s44 achieves \pr{}=98\% with 0\% genuine proofs (pure TS), while s46 achieves \pr{}=93\% with the highest genuine rate of 9.7\%.
+
+The five seeds exhibit four distinct hacking mode distributions: s42 and s46 are CE-dominant, s44 and s45 are TS-dominant, and s43 shows CE with prove-rate collapse.
+This \emph{stochastic bifurcation}---where the dominant hacking mode is determined by random seed---implies that single-seed evaluations of \grpo{} structural quality are unreliable.
+
+\isr{}$^*$ ranges from 0.000 (s43) to 0.582 (s44), a 50$\times$ spread driven by hacking mode: TS proofs structurally contain $\sim$1 necessary component out of 2 (\isr{} $\approx$ 0.5), while CE proofs embed the conclusion among redundant premises (\isr{} $\ll$ 0.5).
+This means \isr{}$^*$ must be interpreted jointly with hacking mode; its absolute value alone does not indicate degeneration severity.
+
+\subsection{Mode-Dependent ISR Collapse Trajectories}
+\label{sec:trajectory}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccl}
+\toprule
+Seed & \isr{}$^*_{100}$ & \isr{}$^*_{500}$ & \isr{}$^*_{1000}$ & $\Delta$\% & Mode at 1000 \\
+\midrule
+s42 & 0.642 & 0.132 & 0.003 & $-$99.6 & CE+PG \\
+s43 & --- & 0.000 & 0.082 & --- & CE (PR recovery) \\
+s44 & --- & 0.582 & 0.002 & $-$99.7 & CE+PG \\
+s45 & --- & 0.506 & 0.480 & $-$5.1 & TS (stable) \\
+s46 & --- & 0.083 & 0.065 & $-$21.7 & CE (deepening) \\
+\bottomrule
+\end{tabular}
+\caption{\isr{}$^*$ trajectories from 500 to 1000 training steps. Collapse rate depends on hacking mode: TS-locked seeds maintain \isr{}$^*$$\approx$0.5, while seeds transitioning to CE collapse $>$99\%.}
+\label{tab:trajectory}
+\end{table}
+
+Table~\ref{tab:trajectory} extends the exec-only analysis to 1000 training steps.
+The key finding is that \isr{} collapse is \emph{mode-contingent}, not universal:
+
+\begin{itemize}[leftmargin=*, itemsep=1pt]
+\item \textbf{TS-locked seeds (s45)}: \isr{}$^*$ remains at $\approx$0.5 because the tautological proof structure $P \rightarrow P$ has an inherent lower bound of 0.5 (one necessary component out of two). Additional training refines but does not escape this structural fixed point.
+\item \textbf{CE-transitioning seeds (s42, s44)}: \isr{}$^*$ collapses $>$99\% as the model converges to pure conclusion embedding with all other premises redundant.
+\item \textbf{CE-stable seeds (s46)}: \isr{}$^*$ declines slowly (0.083 $\rightarrow$ 0.065) as CE purity increases from 89\% to 94\%.
+\item \textbf{Recovering seeds (s43)}: \isr{}$^*$ increases from 0.000 to 0.082 as the model recovers from PR collapse, though into CE-dominated degeneration rather than genuine reasoning.
+\end{itemize}
+
+The trajectory for s42---\isr{}$^*$ declining from 0.642 (100 steps) to 0.132 (500 steps) to 0.003 (1000 steps), a 99.6\% collapse---provides the clearest illustration of progressive structural degeneration hidden behind stable prove rates.
+
+\subsection{ISR as Reward: No Robust Genuine Advantage}
+\label{sec:isr-reward}
+
+We evaluate \isr{} as a reward signal at $\beta$=0.1 across $N$=8 seeds (s42--s49), with matched random-noise controls.
+Table~\ref{tab:n8-stats} presents the statistical summary.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+Statistic & Value & Interpretation \\
+\midrule
+Pooled OR & 2.14 & Apparent \isr{} advantage \\
+CMH OR & 1.28 & No significant advantage \\
+CMH $p$-value & 0.14 & n.s.\ at $\alpha$=0.05 \\
+Breslow--Day $p$ & $<$0.001 & Significant heterogeneity \\
+$I^2$ & 89\% & Very high inconsistency \\
+Genuine window & 2/8 (25\%) & Minority of seeds benefit \\
+\bottomrule
+\end{tabular}
+\caption{Statistical summary for \isr{} $\beta$=0.1 vs.\ random $\beta$=0.1 across $N$=8 seeds. The apparent pooled advantage (OR=2.14) is driven by two outlier seeds (s45, s46) and disappears after seed stratification (CMH OR=1.28, $p$=0.14).}
+\label{tab:n8-stats}
+\end{table}
+
+The pooled odds ratio of 2.14 suggests an \isr{} advantage, but this is misleading.
+The Cochran--Mantel--Haenszel test, which controls for seed-level stratification, yields OR=1.28 ($p$=0.14)---not significant.
+The Breslow--Day test confirms significant heterogeneity ($p<$0.001), and $I^2$=89\% indicates that 89\% of variance is due to between-seed differences rather than sampling noise.
+
+Table~\ref{tab:n8-perseed} reveals the source of heterogeneity: seeds s45 and s46 show strong \isr{} advantages (OR=13.0 and 56.7), while the remaining six seeds show \isr{} genuine rates at or below the random baseline.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Seed & \multicolumn{2}{c}{\isr{}} & \multicolumn{2}{c}{Random} & OR & Dir. \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & $N_{\text{pv}}$ & Gen\% & $N_{\text{pv}}$ & Gen\% & & \\
+\midrule
+s42 & 81 & 17.3 & 79 & 22.8 & 0.71 & Rand$\uparrow$ \\
+s43 & 61 & 0.0 & 94 & 1.1 & 0.00 & Rand$\uparrow$ \\
+s44 & 89 & 0.0 & 89 & 6.7 & 0.00 & Rand$\uparrow$ \\
+s45 & 42 & 54.8 & 58 & 8.6 & 13.0 & \isr{}$\uparrow\uparrow$ \\
+s46 & 77 & 54.5 & 94 & 2.1 & 56.7 & \isr{}$\uparrow\uparrow$ \\
+s47 & 97 & 3.1 & 89 & 6.7 & 0.44 & Rand$\uparrow$ \\
+s48 & 66 & 0.0 & 93 & 4.3 & 0.00 & Rand$\uparrow$ \\
+s49 & 86 & 1.2 & 5 & 0.0 & --- & N/A \\
+\midrule
+Pool & 599 & 13.9 & 601 & 7.0 & 2.14 & \isr{}$\uparrow$ \\
+\bottomrule
+\end{tabular}
+\caption{Per-seed genuine rates for \isr{} $\beta$=0.1 vs.\ random $\beta$=0.1 ($N$=8). $N_{\text{pv}}$ = number of proved samples. Only 2/8 seeds (s45, s46) show \isr{} advantage; the remaining 6 show the opposite direction. s49-random collapsed to $N_{\text{pv}}$=5 (repetition failure).}
+\label{tab:n8-perseed}
+\end{table}
+
+This pattern---a small minority of ``lucky'' seeds escaping Goodhart collapse while the majority succumb---replaces the earlier bimodal narrative with a simpler characterization: \emph{\isr{} as a reward signal occasionally produces genuine reasoning by chance, but this effect is not statistically reliable.}
+
+\paragraph{No Safe Dose.}
+At $\beta$=0.05, both tested seeds (s42, s44) exhibit deterministic TS collapse (97--100\% TS), eliminating the possibility that a lower dose avoids Goodhart.
+At $\beta$=0.3, three seeds show multi-modal instability with \pr{}=66$\pm$42\%, confirming non-monotonic dose-response: $\beta$=0.05 (deterministic TS) $\rightarrow$ $\beta$=0.1 (seed-contingent) $\rightarrow$ $\beta$=0.3 (multi-modal collapse).
+The \isr{} structural bias---tautologies receiving \isr{}$\geq$0.5---is the mechanistic root: this creates an optimization attractor that dominates the reward landscape regardless of $\beta$.
+
+\paragraph{Meta-Goodhart.}
+Seed s44 under \isr{} $\beta$=0.1 produces obfuscated tautologies (TS-b): proofs that are structurally tautological but disguised through variable renaming, simultaneously gaming execution reward, \isr{} reward, and hacking detection.
+This \emph{meta-Goodhart triple gaming} represents the most sophisticated hacking mode observed, where the model optimizes against three objectives, including the diagnostic itself.
+
+\subsection{Premise-Count Confound}
+\label{sec:premise-count}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Seed & Raw \isr{}$^*$ & Matched \isr{}$^*$ & $\Delta$ & $|P|_{\text{hack}}$ \\
+\midrule
+s42 & 0.132 & 0.118 & $-$0.014 & 3.2 \\
+s43 & 0.000 & 0.000 & 0.000 & 18.9 \\
+s44 & 0.582 & 0.495 & $-$0.087 & 2.0 \\
+s45 & 0.506 & 0.492 & $-$0.014 & 2.1 \\
+s46 & 0.083 & 0.071 & $-$0.012 & 4.1 \\
+\midrule
+Mean & 0.261 & 0.235 & $-$0.025 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Effect of premise-count matching on \isr{}$^*$ (exec-only). Raw \isr{}$^*$ is corrected by $-$8.5\% on average when controlling for the number of premises. $|P|_{\text{hack}}$ = mean premise count for hacking samples.}
+\label{tab:premise-match}
+\end{table}
+
+LOO ablation metrics like \isr{} are confounded by proof complexity: proofs with more premises mechanically have more opportunities for individual premises to appear necessary.
+We quantify this by computing premise-count-matched \isr{}$^*$, comparing genuine and hacking proofs only within the same premise-count stratum.
+
+Table~\ref{tab:premise-match} shows that matching reduces \isr{}$^*$ by 8.5\% on average.
+The correction is largest for TS-dominant seeds (s44: $\Delta$=$-$0.087) where hacking proofs have very few premises ($|P|$=2.0) compared to genuine proofs (mean $|P|$=7.2).
+Genuine proofs have significantly more premises than hacking proofs overall (7.2 vs.\ 3.8, $p$=0.03), confirming the confound.
+
+This is a methodological contribution: LOO ablation metrics are widely used in interpretability and proof analysis without controlling for component count.
+Documenting this confound provides actionable guidance for future work.
+Importantly, matched \isr{}$^*$ retains diagnostic utility---genuine proofs still achieve substantially higher matched \isr{}$^*$ ($\approx$0.45) than hacking proofs ($\approx$0.08)---so the confound modulates but does not invalidate the diagnostic.
+
+\subsection{Cross-Scale and Cross-Logic Validation}
+\label{sec:cross}
+
+\paragraph{Cross-Scale.}
+Table~\ref{tab:cross-scale} presents results across model scales.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+Scale & Gen.\% & Dominant Mode & Notes \\
+\midrule
+1.7B & 0\% & CE/CI (fixed template) & Template gaming \\
+4B & 3.6\% & CE/TS (seed-dep.) & Stochastic bifurcation \\
+8B & N/A & --- & Training failure \\
+\bottomrule
+\end{tabular}
+\caption{Cross-scale exec-only results. 1.7B and 4B both show near-total degeneration but with scale-dependent hacking strategies. 8B training failed due to VRAM constraints at $K$=8 and cold-start stagnation at $K$=4.}
+\label{tab:cross-scale}
+\end{table}
+
+At 1.7B scale, Qwen3-1.7B with random $\beta$=0.1 achieves \pr{}=93\% but 100\% CI (contradiction injection) mode, generating mutually contradictory premises that make anything provable.
+With \isr{} $\beta$=0.1, the model achieves \pr{}=100\% with \isr{}=0.6 (zero variance) via a single fixed proof template (CE mode)---the simplest possible exploit of the combined reward.
+At $\beta$=0.3, learning suppression occurs (\pr{}=17\%), with the 29.4\% genuine rate attributable to the model's inability to optimize at all rather than genuine skill.
+
+These results establish \emph{capacity-dependent Goodhart basins}: 1.7B converges to the simplest exploits (fixed templates, contradictions), while 4B discovers more sophisticated strategies (TS, obfuscated tautologies).
+The hacking strategy scales with model capacity, but hacking itself is universal below a capacity threshold.
+
+Qwen3-8B training was attempted but did not yield results.
+At $K$=8, estimated VRAM requirements ($\sim$112GB) exceeded the available 98GB.
+At $K$=4, cold-start stagnation occurred (\pr{}$<$5\% after 500 steps), as the reduced rollout count provided insufficient variance for \grpo{}'s group-relative advantages.
+This limitation prevents us from determining whether a capacity threshold exists above which Goodhart collapse is avoided, a question we leave to future work with larger computational budgets.
+
+\paragraph{Cross-Logic (Prolog).}
+Prolog \grpo{} with structural rewards confirms universal Goodhart:
+\begin{itemize}[leftmargin=*, itemsep=1pt]
+\item \textbf{Exec-only} (3 seeds): \pr{}=53.3\%$\pm$31.1\%, \isr{} near-zero (2/3 seeds $<$0.04).
+\item \textbf{Structural reward} (3 seeds): 3/3 seeds gaming, 0\% genuine.
+  Seed-specific modes: s42 = clean TS (100\%), s43 = degenerate syntax (97.4\%), s44 = query-as-fact (97.9\%).
+\end{itemize}
+
+Prolog degeneration is more extreme than FOL (0\% vs.\ $\sim$3.6\% genuine residual), consistent with Prolog's simpler semantics offering more complete exploitation paths.
+The emergence of logic-specific hacking modes (degenerate syntax, query-as-fact) that have no FOL analog confirms that reward hacking is not a fixed behavioral pattern but an adaptive optimization response to the reward landscape.
+
+\section{Discussion}
+
+\paragraph{Diagnostic vs.\ Optimization.}
+Our results draw a sharp distinction between \isr{} as a diagnostic tool and \isr{} as an optimization target.
+As a diagnostic, \isr{} reliably detects structural degeneration invisible to prove rate, across logic types, model scales, and training durations.
+As a reward signal, \isr{} suffers from the same Goodhart vulnerability it aims to diagnose, because tautological proofs receive inherently high \isr{} scores.
+This asymmetry---reliable for measurement, unreliable for optimization---is the central empirical finding of this paper.
+
+\paragraph{Stochastic Bifurcation.}
+The dominant hacking mode is determined stochastically by random seed.
+Five seeds produce four distinct mode distributions; eight seeds show only 2/8 escaping Goodhart collapse.
+This has practical implications: any evaluation of \grpo{} structural quality based on fewer than five seeds risks reporting seed-specific artifacts as general phenomena.
+
+\paragraph{Mode-Dependent Diagnostics.}
+\isr{}$^*$ values must be interpreted jointly with hacking mode.
+A seed with \isr{}$^*$=0.5 may be entirely degenerate (TS mode) rather than partially genuine.
+Future diagnostics should report mode distributions alongside aggregate metrics.
+
+\paragraph{Capacity Threshold Hypothesis.}
+Our results are consistent with a capacity threshold below which Goodhart collapse is inevitable: both 1.7B and 4B exhibit near-total degeneration, while 8B results remain unknown due to training failure.
+Whether larger models can sustain genuine reasoning under execution-only rewards is an open question with significant implications for scaling formal reasoning with RL.
+
+\section{Conclusion}
+
+We introduced Solver Trace Analysis (\sta{}), a diagnostic framework for detecting reward hacking in \grpo{}-trained formal reasoners.
+Applied to Qwen3-4B on first-order logic, \sta{} reveals that high prove rates mask pervasive structural degeneration: all five exec-only seeds show $\geq$90\% degeneration across nine distinct hacking modes.
+Expanded evaluation ($N$=8) demonstrates that \isr{} as a reward signal provides no statistically robust genuine advantage (CMH OR=1.28, $p$=0.14), establishing that structural reward signals face fundamental Goodhart limitations below a model capacity threshold.
+Cross-logic validation on Prolog (3/3 gaming, 0\% genuine) and cross-scale analysis at 1.7B confirm the generality of these findings.
+The nine-mode hacking taxonomy, meta-Goodhart phenomenon, and premise-count methodology provide actionable diagnostic tools for the community.
+
+\section*{Limitations}
+
+Our study has three main limitations.
+First, the cross-scale evidence is incomplete: Qwen3-8B training failed due to computational constraints, leaving the capacity threshold hypothesis untested at larger scales.
+Second, all experiments use a single model family (Qwen3); generalization to other architectures remains unverified, though the Goodhart mechanism (\isr{}'s inherent tautology bias) is architecture-independent.
+Third, \isr{} measures syntactic necessity rather than semantic faithfulness---premises that are syntactically necessary may still be semantically vacuous---bounding \sta{}'s diagnostic scope to structural quality.
+
+\begin{thebibliography}{10}
+
+\bibitem[{Amodei et~al.(2016)}]{amodei2016concrete}
+Dario Amodei, Chris Olah, Jacob Steinhardt, Paul Christiano, John Schulman, and Dan Man\'{e}. 2016.
+Concrete problems in AI safety.
+{\em arXiv preprint arXiv:1606.06565}.
+
+\bibitem[{Covert et~al.(2021)}]{covert2021explaining}
+Ian Covert, Scott Lundberg, and Su-In Lee. 2021.
+Explaining by removing: A unified framework for model explanation.
+{\em Journal of Machine Learning Research}, 22(209):1--90.
+
+\bibitem[{Gao et~al.(2023)}]{gao2023scaling}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+Scaling laws for reward model overoptimization.
+In {\em Proceedings of ICML}.
+
+\bibitem[{Luo et~al.(2024)}]{luo2024improve}
+Haipeng Luo, Qingfeng Sun, Can Xu, Pu Zhao, Jianguang Lou, Chongyang Tao, Xiubo Geng, Qingwei Lin, Shifeng Chen, and Dongmei Zhang. 2024.
+Wizardmath: Empowering mathematical reasoning for large language models via reinforced evol-instruct.
+{\em arXiv preprint arXiv:2308.09583}.
+
+\bibitem[{Pan et~al.(2022)}]{pan2022effects}
+Alexander Pan, Kush Bhatia, and Jacob Steinhardt. 2022.
+The effects of reward misspecification: Mapping and mitigating misaligned models.
+In {\em Proceedings of ICLR}.
+
+\bibitem[{Shao et~al.(2024)}]{shao2024deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo. 2024.
+Deepseekmath: Pushing the limits of mathematical reasoning in open language models.
+{\em arXiv preprint arXiv:2402.03300}.
+
+\bibitem[{Skalse et~al.(2022)}]{skalse2022defining}
+Joar Skalse, Nikolaus Howe, Dmitrii Krasheninnikov, and David Krueger. 2022.
+Defining and characterizing reward hacking.
+In {\em Proceedings of NeurIPS}.
+
+\bibitem[{Wang et~al.(2024)}]{wang2024math}
+Peiyi Wang, Lei Li, Zhihong Shao, R.X. Xu, Damai Dai, Yifei Li, Deli Chen, Y. Wu, and Zhifang Sui. 2024.
+Math-shepherd: Verify and reinforce llms step-by-step without human annotations.
+In {\em Proceedings of ACL}.
+
+\end{thebibliography}
+
+\end{document}

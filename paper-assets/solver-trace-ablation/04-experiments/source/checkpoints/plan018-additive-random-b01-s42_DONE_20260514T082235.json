@@ -1,0 +1,84 @@
+{
+  "exp_id": "plan018-additive-random-b01-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:55:48.888Z",
+    "updated_at": "2026-05-14T08:22:35.215Z",
+    "hypothesis": "β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。",
+    "parent": "plan002-additive-b01-s42",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/plan018_additive_random_b01_s42.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "377678",
+      "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log",
+      "submitted_at": "2026-05-14T06:55:59.287Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Mistral-Small-3.1-24B-Instruct-2503",
+      "seed": 42,
+      "plan_id": "plan018",
+      "reward_formula": "r = r_exec * (1 + 0.1 * random[0,1])",
+      "num_steps": 500,
+      "checkpoint_source": "N/A (training, not eval)",
+      "eval_data": "N/A (training, not eval)",
+      "wall_clock_seconds": 5160.4,
+      "gpu_hours": 1.43,
+      "checkpoint_path": "/root/autodl-tmp/outputs/plan018_additive_random_b01_s42"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T08:09:07.662Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:09:09.188407+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "eval_prove_rate": 0.79,
+      "eval_mean_isr": 0.1038,
+      "eval_isr_std": 0.1369,
+      "eval_median_isr": 0.0357,
+      "eval_proved_only_isr": 0.1314,
+      "eval_n_proved": 79,
+      "eval_n_problems": 100,
+      "eval_component_count_mean": 8.46,
+      "eval_component_count_median": 8,
+      "eval_component_count_2_ratio": 0,
+      "eval_isr_1_ratio": 0,
+      "eval_isr_0_ratio": 0.367,
+      "eval_isr_gt0_ratio": 0.633,
+      "eval_by_type_false_pr": 0.8,
+      "eval_by_type_false_isr": 0.1318,
+      "eval_by_type_unknown_pr": 0.7317,
+      "eval_by_type_unknown_isr": 0.0944,
+      "eval_by_type_true_pr": 0.8529,
+      "eval_by_type_true_isr": 0.0945,
+      "tautological_collapse": false,
+      "train_total_steps": 500,
+      "train_duration_min": 70.5,
+      "train_last100_pr": 0.805,
+      "train_last100_isr": 0.1432,
+      "train_loss": 0.005
+    },
+    "notes": "D031紧急实验：random control β=0.1 vs ISR β=0.1对照。结果明确验证ISR信号的结构价值。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- ISR=0占比(proved): plan018=36.7%\\n\\nPR几乎相同说明β=0.1的random噪声不影响证明能力。但ISR差距3.2倍，证明ISR reward在低剂量下提供了genuine structural guidance而非variance regularization。random控制组虽然也有非零ISR（0.104），但这是baseline水平（模型自然生成的proof本身就有部分结构），ISR reward将其提升了3倍。\\n\\nEval output: /root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan018_additive_random_b01_s42",
+    "completed_at": "2026-05-14T08:21:59.737Z"
+  },
+  "timestamp": "2026-05-14T08:22:35.296392+00:00",
+  "trigger": "update_registry"
+}

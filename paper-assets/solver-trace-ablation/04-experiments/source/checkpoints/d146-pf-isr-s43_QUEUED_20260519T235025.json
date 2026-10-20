@@ -1,0 +1,16 @@
+{
+  "exp_id": "d146-pf-isr-s43",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:03.104Z",
+    "updated_at": "2026-05-19T23:50:24.412Z",
+    "hypothesis": "D146 ProofFOL ISR beta=0.1 seed=43 replication for statistical power.",
+    "parent": "d146-pf-exec-s42"
+  },
+  "timestamp": "2026-05-19T23:50:25.142976+00:00",
+  "trigger": "update_registry"
+}

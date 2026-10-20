@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp1-random-b03-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:30:55.259Z",
+    "updated_at": "2026-05-15T02:30:55.259Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "β=0.3 random s43 retrain: original checkpoint deleted (D062 invalidation). Supplement for 3-seed statistics in Table 1.",
+      "plan_id": "EXP-1",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "num_steps": 500,
+      "beta": 0.3
+    }
+  },
+  "timestamp": "2026-05-15T02:30:55.533639+00:00",
+  "trigger": "update_registry"
+}

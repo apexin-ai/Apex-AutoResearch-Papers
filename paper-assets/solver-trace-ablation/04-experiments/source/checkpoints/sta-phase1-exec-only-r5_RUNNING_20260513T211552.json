@@ -1,0 +1,32 @@
+{
+  "exp_id": "sta-phase1-exec-only-r5",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:54:27.505Z",
+    "updated_at": "2026-05-13T21:15:52.107Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "75890",
+      "log_path": "~/runs/solver-trace-ablation/sta-phase1-exec-only-r5.log",
+      "submitted_at": "2026-05-13T20:54:37.293Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_500.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "K=8 增加 within-group variance，减少全零 reward batch，使 GRPO 有更多有效梯度信号"
+    }
+  },
+  "timestamp": "2026-05-13T21:15:52.133209+00:00",
+  "trigger": "update_registry"
+}

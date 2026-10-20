@@ -1,0 +1,490 @@
+{
+  "schema_version": "1.0",
+  "id": "cc3bd4f2324803196f9d",
+  "project": "min_necessary_circuit_css",
+  "kind": "conversation",
+  "title": "knowledge literature merge fix",
+  "task_key": "worker_knowledge_literature-merge-fix_20260513T022004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_knowledge_literature-merge-fix_20260513T022004.jsonl",
+    "occurrence": 1,
+    "bytes": 24717,
+    "sha256": "254ce9baa6c0106183a76655d2ac3ff34c921cb5ec6c727f7ce06664800ea148"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T02:22:34.308470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T02:22:34.308900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T02:22:34.309139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "structfuse-context",
+              "file": "literature_map.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T02:22:34.309354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No literature_map.yaml found for 'structfuse-context'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T02:22:34.309543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T02:22:34.309951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Related Work Literature Survey for CSS (Cross-method Structural Consensus)\n2\t\n3\t> Generated: 2026-05-13 | Target: EMNLP 2026 Main (ARR deadline 2026-05-25)\n4\t\n5\t---\n6\t\n7\t## Direction 1: Cross-method Consensus / Ensemble in Mechanistic Interpretability\n8\t\n9\t### 1.1 CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\n10\t- **Authors:** Swapnil Parekh\n11\t- **Year:** 2026 (arXiv: 2603.00523)\n12\t- **Venue:** arXiv preprint (Feb 2026)\n13\t- **Core findings:** Reframes circuit discovery as an uncertainty-quantification problem. Constructs an ensemble of attribution graphs by pruning a *single* raw attribution run under multiple threshold configurations, assigns each edge a stability score (fraction of configs retaining it), and extracts a strict-consensus circuit (edges appearing in all views). On Gemma-2-2B and Llama-3.2-1B, strict consensus circuits are ~40× smaller than the union while retaining comparable explanatory power. Consensus-identified nodes beat matched non-consensus controls in causal relevance (p=0.0004).\n14\t- **Relation to CSS:** **直接竞争 (Primary competitor)**. CIRCUS varies pruning thresholds on a single attribution method to build consensus; CSS uses multiple independent discovery methods (EAP-IG, EP, ACDC/IFR). Key differentiators: (1) CSS captures cross-method agreement (different algorithms with different inductive biases), not just threshold robustness within one method; (2) CSS uses binary agreement rather than fractional stability scores; (3) CSS explicitly tests distribution-shift robustness. Must position CSS as complementary/stronger: method diversity > threshold diversity.\n15\t\n16\t### 1.2 Certified Circuits: Stability Guarantees for Mechanistic Circuits\n17\t- **Authors:** Alaa Anani, Tobias Lorenz, Bernt Schiele, et al.\n18\t- **Year:** 2026 (arXiv: 2602.22968)\n19\t- **Venue:** arXiv preprint (Feb 2026)\n20\t- **Core findings:** Wraps any black-box discovery algorithm with randomized data subsampling to certify that circuit component \n…[truncated 17691 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T02:22:34.310183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/literature_map.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T02:22:34.310317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/literature_map.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T02:22:34.310443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/literature_map.yaml"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T02:22:34.310643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Map — structfuse-context (cross-method circuit consensus)\n2\t# Last updated: 2026-05-12\n3\t\n4\t- arxiv_id: \"2603.00523\"\n5\t  title: \"CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\"\n6\t  authors: \"Unknown (arXiv 2603.00523v2)\"\n7\t  year: 2026\n8\t  category: \"direct-competitor\"\n9\t  role: \"Primary competitor — intra-method stability scoring\"\n10\t  summary: >\n11\t    Constructs ensemble of attribution graphs by pruning a single raw attribution\n12\t    run under multiple threshold configurations. Assigns per-edge stability score\n13\t    (fraction of configs retaining it). Strict-consensus circuit = edges in all views.\n14\t    ~40x smaller than union on Gemma-2-2B/Llama-3.2-1B while retaining explanatory power.\n15\t    Consensus nodes beat non-consensus controls in activation patching (p=0.0004).\n16\t  relevance_to_css: >\n17\t    CLOSEST competitor but fundamentally intra-method: varies thresholds within ONE\n18\t    attribution algorithm. Does NOT combine across algorithm families (gradient vs mask\n19\t    vs causal). CSS's cross-method consensus remains a distinct and unclaimed novelty.\n20\t    v2 update (2026-03-20) is same paper, no separate follow-up found.\n21\t  discovered_date: \"2026-05-12\"\n22\t\n23\t- arxiv_id: \"2510.06811\"\n24\t  title: \"BlackboxNLP-2025 MIB Shared Task: Exploring Ensemble Strategies for Circuit Localization Methods\"\n25\t  authors: \"Mondorf, Wang et al.\"\n26\t  year: 2025\n27\t  category: \"direct-competitor\"\n28\t  role: \"Limited cross-method ensembling (EAP-IG + Edge Pruning)\"\n29\t  summary: >\n30\t    Explores parallel ensembling (averaging/min/max of attribution scores across methods)\n31\t    and sequential ensembling (EAP-IG warm-start then Edge Pruning refinement).\n32\t    Parallel ensemble over all variants achieves best CMD=0.03, CPR=1.83 on MIB leaderboard.\n33\t    Workshop short paper at BlackboxNLP 2025.\n34\t  relevance_to_css: >\n35\t    Closest to cross-method but limited: only combines EAP-IG and Edge Pruning, both\n36\t    gradient-based e\n…[truncated 9931 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T02:22:34.310923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md",
+              "old_string": "### 1.4 Circuit Tracing: Revealing Computational Graphs in Language Models\n- **Authors:** Anthropic (Dario Amodei team)\n- **Year:** 2025\n- **Venue:** Anthropic Technical Report (March 2025)\n- **Core findings:** Uses cross-layer transcoders to build attribution graphs—graphical representations of computational steps where nodes are features and edges are causal interactions. Open-sourced circuit tracing tools supporting Gemma-2-2B, Llama-3.1-1B, Qwen3-4B.\n- **Relation to CSS:** **互补 (Complementary)**. Provides a different paradigm (feature-level circuits via transcoders vs. component-level circuits). CSS methods operate at edge/component level; circuit tracing works at feature level. Represents a parallel direction worth acknowledging.\n\n---",
+              "new_string": "### 1.4 Circuit Tracing: Revealing Computational Graphs in Language Models\n- **Authors:** Anthropic (Dario Amodei team)\n- **Year:** 2025\n- **Venue:** Anthropic Technical Report (March 2025)\n- **Core findings:** Uses cross-layer transcoders to build attribution graphs—graphical representations of computational steps where nodes are features and edges are causal interactions. Open-sourced circuit tracing tools supporting Gemma-2-2B, Llama-3.1-1B, Qwen3-4B.\n- **Relation to CSS:** **互补 (Complementary)**. Provides a different paradigm (feature-level circuits via transcoders vs. component-level circuits). CSS methods operate at edge/component level; circuit tracing works at feature level. Represents a parallel direction worth acknowledging.\n\n### 1.5 Exploring Ensemble Strategies for Circuit Localization Methods (Mondorf et al.)\n- **Authors:** Mondorf, Wang et al.\n- **Year:** 2025 (arXiv: 2510.06811)\n- **Venue:** BlackboxNLP 2025 (Workshop short paper, MIB Shared Task)\n- **Core findings:** Explores parallel ensembling (averaging/min/max of attribution scores across methods) and sequential ensembling (EAP-IG warm-start then Edge Pruning refinement) for circuit localization. Parallel ensemble over all variants achieves best CMD=0.03, CPR=1.83 on the MIB leaderboard.\n- **Relation to CSS:** **直接竞争 (Direct competitor — limited scope)**. The closest existing work to cross-method circuit ensembling, but with critical limitations: (1) **仅限 gradient 族方法**: only combines EAP-IG and Edge Pruning, both gradient-based edge attribution methods from the same algorithmic family — no causal/mask-based methods (e.g., ACDC) included; (2) **Score averaging 而非 binary consensus**: uses simple score aggregation (avg/min/max) rather than principled binary agreement, inheriting score calibration issues across methods with incomparable scales; (3) **无 consensus 理论框架**: no analysis of method agreement patterns, confidence scoring, or consensus circuit properties; (4) **Workshop short paper 规模**: limited evaluation scope compared to CSS's full pipeline. CSS goes beyond by spanning algorithm families (gradient-based vs. iterative patching vs. mask optimization), providing binary consensus with confidence scoring, and analyzing consensus circuit properties (size, faithfulness, robustness).\n\n---"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T02:22:34.311165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T02:22:34.311314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md",
+              "old_string": "### RelP: Faithful and Efficient Circuit Discovery via Relevance Patching\n- **Authors:** Farnoush Rezaei Jafari et al.\n- **Year:** 2025\n- **Venue:** NeurIPS 2025 MechInterp Workshop (Spotlight)\n- **Core findings:** Replaces gradients in attribution patching with LRP propagation coefficients. For MLP outputs in GPT-2 Large, attribution patching achieves Pearson correlation 0.006 vs. RelP's 0.956 with activation patching ground truth. Faithfulness comparable to IG at lower cost.\n- **Relation to CSS:** **互补 (Complementary)**. Another discovery method with different inductive bias. Documents dramatic differences between methods on the same components—supports CSS's premise.\n\n---",
+              "new_string": "### RelP: Faithful and Efficient Circuit Discovery via Relevance Patching\n- **Authors:** Farnoush Rezaei Jafari et al.\n- **Year:** 2025\n- **Venue:** NeurIPS 2025 MechInterp Workshop (Spotlight)\n- **Core findings:** Replaces gradients in attribution patching with LRP propagation coefficients. For MLP outputs in GPT-2 Large, attribution patching achieves Pearson correlation 0.006 vs. RelP's 0.956 with activation patching ground truth. Faithfulness comparable to IG at lower cost.\n- **Relation to CSS:** **互补 (Complementary)**. Another discovery method with different inductive bias. Documents dramatic differences between methods on the same components—supports CSS's premise.\n\n### PIE: A Cross-Layer Transcoder-Native Framework for Efficient Circuit Discovery via Feature Attribution\n- **Authors:** Qinhao Chen, Linyang He, Nima Mesgarani\n- **Year:** 2026 (arXiv: 2604.16889)\n- **Venue:** arXiv preprint (April 2026)\n- **Core findings:** First CLT-native end-to-end circuit discovery framework. Feature Attribution Patching (FAP) scores CLT features by gradient-weighted write contributions; FAP-Synergy adds synergy-aware reranking. Evaluated with KL-divergence behavior retention and FADE-style metrics.\n- **Relation to CSS:** **互补 (Complementary)**. Operates at the feature level via cross-layer transcoders rather than at the component/edge level. As CLT/transcoder methods become standard, PIE represents a potential additional discovery method for CSS's ensemble, bridging component-level and feature-level consensus.\n\n### EAP-GP: Mitigating Saturation Effect in Gradient-based Automated Circuit Identification\n- **Authors:** arXiv: 2502.06852\n- **Year:** 2025\n- **Venue:** arXiv preprint (Feb 2025)\n- **Core findings:** Addresses gradient saturation in Edge Attribution Patching by proposing a gradient propagation fix for more accurate edge importance scoring. Improves upon EAP/EAP-IG in faithfulness for circuits where saturation artifacts degrade standard gradient estimates.\n- **Relation to CSS:** **互补 (Complementary)**. Another intra-family gradient variant alongside EAP, EAP-IG. The proliferation of EAP variants (EAP → EAP-IG → EAP-GP) illustrates intra-family variation driven by specific failure modes—CSS's value lies in cross-family agreement that transcends these intra-family fixes.\n\n### GIM: Improved Interpretability for Large Language Models\n- **Authors:** Corti team\n- **Year:** 2025 (arXiv: 2505.17630)\n- **Venue:** arXiv preprint (May 2025)\n- **Core findings:** Gradient Interaction Modifications — gradient-based circuit discovery method that tops the HuggingFace Mechanistic Interpretability Benchmark. Outperforms other methods in early layers; Integrated Gradients performs better in middle/late layers, suggesting layer-dependent method strengths.\n- **Relation to CSS:** **互补 (Complementary)**. Strong single-method baseline. The finding that different gradient methods excel in different layers directly motivates cross-method consensus: no single method dominates across all model components. A potential candidate for inclusion in CSS's method ensemble.\n\n---"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T02:22:34.311551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T02:22:34.311751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md",
+              "old_string": "### 5. Distribution-shift robustness is a novel evaluation angle\nNo existing work systematically evaluates whether consensus circuits maintain faithfulness under distribution shift. CSS's off-diagonal evaluation (train on distribution A, test on distribution B) is a distinctive contribution.",
+              "new_string": "### 5. Distribution-shift robustness is a planned novel evaluation angle\nNo existing work systematically evaluates whether consensus circuits maintain faithfulness under distribution shift. CSS 计划在 Phase 2 中系统性评估 consensus circuits 在分布偏移下的鲁棒性（off-diagonal evaluation: train on distribution A, test on distribution B），这将成为一个独特的贡献方向（Phase 2 planned, cf. D015）。"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T02:22:34.312067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T02:22:34.312332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md",
+              "old_string": "### 2. CIRCUS is the primary competitor — positioning is critical\nCIRCUS (Parekh, 2026) is the closest work. Key differentiation:\n- **CIRCUS:** varies pruning thresholds within one attribution method → threshold robustness\n- **CSS:** uses multiple independent discovery methods → method robustness\n- CSS argument: method diversity captures a broader space of inductive biases than threshold variation. A threshold ensemble still inherits the blind spots of its single underlying attribution method (e.g., EAP's first-order approximation errors). CSS's methods have structurally different failure modes (gradient-based vs. iterative patching vs. similarity-based).",
+              "new_string": "### 2. CIRCUS and Mondorf et al. are the primary competitors — positioning is critical\nTwo closest works, each with distinct limitations:\n- **CIRCUS (Parekh, 2026):** varies pruning thresholds within one attribution method → threshold robustness within a single algorithm family\n- **Mondorf et al. (2510.06811):** ensembles EAP-IG + Edge Pruning via score averaging → cross-method but limited to gradient-family methods only, no binary consensus\n- **CSS:** uses multiple independent discovery methods spanning different algorithm families (gradient-based, iterative patching, mask optimization) → true cross-family method robustness with binary consensus\n- CSS argument: method diversity across algorithm families captures a broader space of inductive biases than either threshold variation (CIRCUS) or intra-family score averaging (Mondorf). CIRCUS inherits the blind spots of its single underlying method; Mondorf stays within the gradient family. CSS's methods have structurally different failure modes, and binary consensus avoids score calibration issues."
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T02:22:34.312643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T02:22:34.312890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md",
+              "old_string": "4. **Consensus/stability approaches** (CIRCUS, Certified Circuits) — position CSS against alternatives\n5. **Feature-level circuits** (Sparse Feature Circuits, Transcoders, Circuit Tracing) — acknowledge parallel direction, note CSS works at component level",
+              "new_string": "4. **Consensus/stability approaches** (CIRCUS, Mondorf et al., Certified Circuits) — position CSS against alternatives\n5. **Feature-level circuits** (Sparse Feature Circuits, Transcoders, Circuit Tracing, PIE) — acknowledge parallel direction, note CSS works at component level\n6. **Method variants and benchmarks** (EAP-GP, GIM, MIB) — contextualize method landscape diversity that motivates cross-family consensus"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T02:22:34.313176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T02:22:34.313356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T02:22:34.313604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Related Work Literature Survey for CSS (Cross-method Structural Consensus)\n2\t\n3\t> Generated: 2026-05-13 | Target: EMNLP 2026 Main (ARR deadline 2026-05-25)\n4\t\n5\t---\n6\t\n7\t## Direction 1: Cross-method Consensus / Ensemble in Mechanistic Interpretability\n8\t\n9\t### 1.1 CIRCUS: Circuit Consensus under Uncertainty via Stability Ensembles\n10\t- **Authors:** Swapnil Parekh\n11\t- **Year:** 2026 (arXiv: 2603.00523)\n12\t- **Venue:** arXiv preprint (Feb 2026)\n13\t- **Core findings:** Reframes circuit discovery as an uncertainty-quantification problem. Constructs an ensemble of attribution graphs by pruning a *single* raw attribution run under multiple threshold configurations, assigns each edge a stability score (fraction of configs retaining it), and extracts a strict-consensus circuit (edges appearing in all views). On Gemma-2-2B and Llama-3.2-1B, strict consensus circuits are ~40× smaller than the union while retaining comparable explanatory power. Consensus-identified nodes beat matched non-consensus controls in causal relevance (p=0.0004).\n14\t- **Relation to CSS:** **直接竞争 (Primary competitor)**. CIRCUS varies pruning thresholds on a single attribution method to build consensus; CSS uses multiple independent discovery methods (EAP-IG, EP, ACDC/IFR). Key differentiators: (1) CSS captures cross-method agreement (different algorithms with different inductive biases), not just threshold robustness within one method; (2) CSS uses binary agreement rather than fractional stability scores; (3) CSS explicitly tests distribution-shift robustness. Must position CSS as complementary/stronger: method diversity > threshold diversity.\n15\t\n16\t### 1.2 Certified Circuits: Stability Guarantees for Mechanistic Circuits\n17\t- **Authors:** Alaa Anani, Tobias Lorenz, Bernt Schiele, et al.\n18\t- **Year:** 2026 (arXiv: 2602.22968)\n19\t- **Venue:** arXiv preprint (Feb 2026)\n20\t- **Core findings:** Wraps any black-box discovery algorithm with randomized data subsampling to certify that circuit component \n…[truncated 22397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T02:22:34.313861+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件完整且格式正确。总结：\n\n---\n\n### 新增条目（4 篇）\n\n| 论文 | 位置 | 类型 |\n|------|------|------|\n| **Mondorf et al. (2510.06811)** | §1.5 (Direction 1) | 直接竞争，详细讨论 4 点局限 |\n| **PIE (2604.16889)** | Additional Relevant Work | 互补，CLT-native 方法 |\n| **EAP-GP (2502.06852)** | Additional Relevant Work | 互补，gradient 族变体 |\n| **GIM (2505.17630)** | Additional Relevant Work | 互补，MIB 顶分方法 |\n\n### 修改条目\n\n- **Takeaway #2**: 从仅讨论 CIRCUS 扩展为同时讨论 CIRCUS + Mondorf et al. 两个竞争者\n- **Takeaway #6**: 新增第 4 项加入 Mondorf et al.，第 5 项加入 PIE，新增第 6 项 \"Method variants and benchmarks\"\n\n### Takeaway #5 修改前后\n\n**修改前：**\n> Distribution-shift robustness is a novel evaluation angle — No existing work systematically evaluates whether consensus circuits maintain faithfulness under distribution shift. CSS's off-diagonal evaluation (train on distribution A, test on distribution B) is a distinctive contribution.\n\n**修改后：**\n> Distribution-shift robustness is a **planned** novel evaluation angle — No existing work systematically evaluates whether consensus circuits maintain faithfulness under distribution shift. CSS 计划在 Phase 2 中系统性评估 consensus circuits 在分布偏移下的鲁棒性（off-diagonal evaluation: train on distribution A, test on distribution B），这将成为一个独特的贡献方向（Phase 2 planned, cf. D015）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_literature-merge-fix_20260513T022004"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/knowledge-literature-merge-fix.md"
+}

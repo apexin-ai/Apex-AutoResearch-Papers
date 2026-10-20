@@ -1,0 +1,71 @@
+{
+  "exp_id": "plan006-prolog-sta-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:19:39.743Z",
+    "updated_at": "2026-05-14T18:24:44.311Z",
+    "hypothesis": "Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。",
+    "notes": "训练完成 (500/500 steps, 82min). 模式=s42 Goodhart 崩塌: PR=0.747, ISR=0.497 (整体均值), 但后期 (step 400+) PR≈ISR≈1.0, completion 从 127→32 tokens 暴跌, entropy 极低(0.03-0.09), frac_reward_zero_std=1.0 频繁. ISR gaming: 模型生成极短 Prolog 程序同时满足 exec+ISR. 3-seed Prolog exec+STA 结果: s42=Goodhart (H7=100%), s43=functional hacking (H1=97.4%, genuine=0%), s44=Goodhart. 3/3 seeds 出现 Goodhart（不同路径），支持 C006 constraint (exec+STA 的 high ISR = Goodhart 效应).",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T16:46:42.163Z",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s44\"",
+      "finished_at": "2026-05-14T18:17:19.877Z",
+      "training_hours": 1.51
+    },
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s44\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "908945",
+      "log_path": "~/runs/solver-trace-ablation/plan006-prolog-sta-s44.log",
+      "submitted_at": "2026-05-14T16:52:27.078Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "908945",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-sta-s44.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T18:17:22.483042+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.97,
+      "eval_mean_isr": 0.885,
+      "eval_isr_std": 0.2447,
+      "eval_proved_only_isr": 0.9124,
+      "eval_n_proved": 97,
+      "eval_n_problems": 100,
+      "eval_median_isr": 1,
+      "eval_isr_pr_ratio": 0.9124,
+      "h7_rate": 0,
+      "h7_count": 0,
+      "h1_rate": 0,
+      "h1_count": 0,
+      "genuine_rate": 1,
+      "genuine_count": 97,
+      "solver": "PrologSolver",
+      "logic_type": "prolog"
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan006_prolog_sta_s44/",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T18:24:44.432562+00:00",
+  "trigger": "update_registry"
+}

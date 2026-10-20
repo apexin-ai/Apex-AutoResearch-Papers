@@ -1,0 +1,37 @@
+{
+  "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+  "project": "min_necessary_circuit_css",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T08:30:27.574Z",
+    "updated_at": "2026-05-13T08:32:52.236Z",
+    "spec": {
+      "command": "python run_qwen_ioi_acdc.py",
+      "server": "westd-pro6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "21671",
+      "log_path": "~/runs/min_necessary_circuit_css/phase2_qwen05b_ioi_acdc_k3.log",
+      "submitted_at": "2026-05-13T08:30:27.544Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/min_necessary_circuit_css/results/Qwen_Qwen2.5_0.5B_ioi_acdc/",
+      "data_count": 50,
+      "model_name": "Qwen/Qwen2.5-0.5B",
+      "seed": 42,
+      "wall_clock_seconds": 144.7,
+      "gpu_hours": 0.04
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/min_necessary_circuit_css/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json",
+    "log_path": "/root/min_necessary_circuit_css/logs/qwen_ioi_acdc.log",
+    "completed_at": "2026-05-13T08:32:52.236Z"
+  },
+  "timestamp": "2026-05-13T08:32:52.263148+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2302 @@
+dream_id: dream_20260513T081242
+project: min_necessary_circuit_css
+venue: ''
+focus: '关键更新（相比上次 Dream 尝试）：
+
+  1. SVA 条件④用 css_1.00 重新评估后可能从 negative 翻转为 marginal PASS（Δ=0.0127）
+
+  2. D029 已决定用 ACDC top-k 替代 IFR（IFR 在 Qwen 上 Jaccard=0.000，完全不兼容）
+
+  3. 当前真实成绩：IOI 明确 PASS，Arithmetic FAIL，SVA 待定（marginal），Qwen IFR FAIL（已弃用）
+
+  4. css_0.67 评估 bug 影响所有历史 CSS≥0.67 数据
+
+  5. 核心 tension：CSS faithfulness 优势高度 task-dependent，1/3 明确 PASS 的成功率能否支撑 EMNLP 投稿？
+
+  6. 三条路：A) reframed "CSS utility predicted by Jaccard" 投 EMNLP，B) 加更多任务补数据点，C) pivot
+  方向
+
+
+  审稿人请重点评估：reframed claim 在当前证据（可能 1.5/3 GPT-2 tasks + pending Qwen ACDC）下的说服力，以及
+  experiment_plan.yaml 剩余实验能否在 12 天内补足。'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: SVA 翻转为 clear PASS，Qwen ACDC 提供有效第三方法且至少 IOI 上 CSS 有优势；Jaccard-utility
+        相关性在 4+ 数据点上清晰成立
+      key_assumptions:
+      - SVA css_1.00 re-eval 后 Δ(CPR) > 0.03，condition④ 明确 PASS
+      - Qwen ACDC top-k 产生与 EAP-IG/EP 低相关的边集（max Jaccard < 0.45），CSS=1.0 在 Qwen IOI
+        上 CPR 优于 best single method
+      - css_0.67 bug 修复后不影响 css_1.00 的已有结论
+      - 低 Jaccard tasks 的 CSS PASS 率 ≥ 75%（≥3/4）
+      number_ranges:
+        sva_cond4_delta:
+        - 0.03
+        - 0.1
+        gpt2_pass_rate:
+        - 2/3
+        - 3/3
+        qwen_ioi_css10_cpr_vs_best:
+        - 0.01
+        - 0.15
+        qwen_max_pairwise_jaccard:
+        - 0.15
+        - 0.45
+        jaccard_utility_spearman_rho:
+        - 0.8
+        - 1.0
+        total_task_model_points:
+        - 4
+        - 6
+        low_jaccard_css_pass_fraction:
+        - 0.75
+        - 1.0
+      narrative_direction: '原始 framing 成立。CSS 在方法多样性充足时（低 Jaccard）系统性地识别更 faithful、更
+        edge-efficient 的 consensus circuits。 Jaccard 作为 CSS utility 的预测指标在多任务多模型上成立。
+        IOI + SVA + Qwen 提供正面证据，Arithmetic 作为 predicted negative 验证理论。 Claim 1（edge-efficient
+        consensus）和 Claim 2（Jaccard predicts utility）同时作为 primary contributions。
+
+        '
+    median:
+      tier: median
+      meaning: SVA marginal PASS（统计上弱），Qwen ACDC 技术可行但结果 mixed；Jaccard-utility 趋势可见但数据点不足以达到统计显著
+      key_assumptions:
+      - SVA css_1.00 Δ(CPR) ∈ [0.005, 0.03]，condition④ technically PASS 但无统计置信度
+      - Qwen ACDC 与 EAP-IG/EP Jaccard 中等（0.3-0.55），CSS 结果 1 PASS 1 FAIL 或全部 marginal
+      - 总共 3-4 个有效数据点，Jaccard-utility 趋势方向正确但 p > 0.1
+      - 低 Jaccard tasks 的 CSS PASS 率 ~50%（含 marginal）
+      number_ranges:
+        sva_cond4_delta:
+        - 0.005
+        - 0.03
+        gpt2_pass_rate:
+        - 1.5/3
+        - 2/3
+        qwen_ioi_css10_cpr_vs_best:
+        - -0.02
+        - 0.03
+        qwen_max_pairwise_jaccard:
+        - 0.3
+        - 0.55
+        jaccard_utility_spearman_rho:
+        - 0.5
+        - 0.8
+        total_task_model_points:
+        - 3
+        - 4
+        low_jaccard_css_pass_fraction:
+        - 0.4
+        - 0.65
+      narrative_direction: '需要 reframe。降级 Claim 1 为 conditional result，升级 Claim 2
+        和 Claim 3 为主线。 叙事变为："CSS 的有效性取决于方法多样性，我们提供诊断框架（Jaccard 作为先验预测指标）帮助从业者判断何时值得做
+        consensus。" Arithmetic 高 Jaccard → CSS 失败 成为核心 supporting evidence 而非 negative
+        result。 SVA 描述为 "borderline case consistent with moderate Jaccard" 而非 strong
+        positive。 论文从 "CSS always works" 变为 "CSS works iff methods are diverse, and
+        we can predict when"。 仍可投 EMNLP，但需要诚实的 limitation section 承认数据点有限。
+
+        '
+    worst:
+      tier: worst
+      meaning: SVA 仍然 FAIL，Qwen ACDC 也未产生 CSS 优势；仅 IOI 单任务支撑 CSS，1/4+ 的成功率无法支撑方法论文
+      key_assumptions:
+      - SVA re-eval Δ(CPR) < 0.005 或为负值，condition④ FAIL
+      - Qwen ACDC 要么退化（CSS=1.0 ≡ ACDC），要么 CSS 无优势（CPR ≤ best single method）
+      - IOI 是唯一 clear PASS，成功率 ≤ 1/4
+      - Jaccard-utility 相关性不显著或方向不一致（IOI 成为 outlier 而非 pattern）
+      number_ranges:
+        sva_cond4_delta:
+        - -0.05
+        - 0.005
+        gpt2_pass_rate:
+        - 1/3
+        - 1/3
+        qwen_ioi_css10_cpr_vs_best:
+        - -0.1
+        - 0.0
+        qwen_max_pairwise_jaccard:
+        - 0.0
+        - 0.7
+        jaccard_utility_spearman_rho:
+        - -0.2
+        - 0.5
+        total_task_model_points:
+        - 2
+        - 3
+        low_jaccard_css_pass_fraction:
+        - 0.15
+        - 0.35
+      narrative_direction: 'Method paper 不可行，必须 pivot 为 analysis paper。 新叙事："Why Cross-Method
+        Circuit Consensus Fails: An Empirical Analysis"。 核心贡献变为：(1) 揭示 circuit discovery
+        方法在多数任务上高度相关或互补性不足， binary consensus 的前提（独立证据源）在实践中很少满足； (2) ACDC isinf binarization
+        问题的系统性分析（Claim 3，已强支撑）； (3) Jaccard 作为方法兼容性诊断工具（不再是 "predicts success" 而是
+        "explains failure"）。 IOI 成为 "唯一有效案例" 的 case study 而非 generalization 的起点。 投稿目标可能需要降级为
+        Findings 或 workshop paper，或补充实验后延期投稿。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/min_necessary_circuit_css/artifacts/dream_reports/dream_20260513T081242/best/paper.pdf
+  imagined_experiments:
+  - name: GPT-2 SVA K=3 CSS (k=50 re-run)
+    plan_id: plan_004
+    description: '用 D029 统一方法论对 SVA 做 definitive re-run：EAP-IG/EP/ACDC 均 top-50， css_0.67
+      bug 已修复（不影响 css_1.00），评估用 mean ablation 为主、zero 为辅。 目标：验证 condition④ 在修正方法论下是否翻转为
+      PASS。
+
+      '
+    expected_results:
+      binarization: top-50
+      edge_counts:
+        eap_ig: 50
+        ep: 50
+        acdc: 50
+      pairwise_jaccard:
+        eapig_x_ep: 0.582
+        acdc_x_eapig: 0.253
+        acdc_x_ep: 0.347
+      max_pairwise_jaccard: 0.582
+      three_way_jaccard: 0.189
+      css_distribution:
+        '0.33': 68
+        '0.67': 34
+        '1.00': 14
+      evaluation_mean:
+        css_1.00:
+          edges: 14
+          CPR: 1.21
+          CMD: 0.487
+        css_0.67:
+          edges: 48
+          CPR: 1.192
+          CMD: 0.512
+        acdc:
+          edges: 50
+          CPR: 1.175
+          CMD: 0.528
+        eap_ig:
+          edges: 50
+          CPR: 1.172
+          CMD: 0.531
+        ep:
+          edges: 50
+          CPR: 1.17
+          CMD: 0.533
+      evaluation_zero:
+        css_1.00:
+          edges: 14
+          CPR: -0.482
+          CMD: 5.18
+        eap_ig:
+          edges: 50
+          CPR: -0.371
+          CMD: 4.92
+      d025_conditions:
+        cond1_jaccard_lt070: PASS (0.582)
+        cond2_css_ge23_ge10: PASS (34)
+        cond3_css_10_ge3: PASS (14)
+        cond4_cpr_dominance: 'PASS (mean: css_1.00=1.210 > acdc=1.175, Δ=0.035)'
+      css1_cpr_advantage_mean: 0.035
+      css1_edge_ratio: 0.0043
+      css_067_bug_impact: css_0.67 从 14→48 edges（bug 修复后 majority-vote 正确纳入），css_1.00
+        保持 14 edges 不变
+    result_rationale: 'SVA 依赖 layer 7-10 中约 5-8 个 number-tracking attention heads
+      的 localized circuit。 k=50 下 EAP-IG×EP Jaccard=0.582 虽然偏高（两种 gradient 方法在核心 number
+      heads 上被迫共识）， 但 ACDC 作为 activation-patching 方法从不同视角筛选，ACDC×EAP-IG=0.253, ACDC×EP=0.347，
+      提供了足够的正交信息。css_1.00 的 14 条边是三种不同算法视角共同认定的绝对核心—— 对应 subject→verb number propagation
+      中不可替代的 attention pattern。 这 14 条边在 mean ablation 下 CPR=1.210，高于 ACDC 单方法的 1.175，Δ=0.035
+      > 0.03 threshold， condition④ 翻转为 PASS。优势不大但稳定——反映 SVA 是一个 near-threshold case：
+      EAP-IG×EP 的高相关性限制了 consensus 的过滤效果， 但 ACDC 的正交性仍提供了足够的 diversity 使 css_1.00
+      优于任何单方法。 Zero ablation 下 css_1.00 CPR 为负（-0.482），worse than eap_ig（-0.371）——
+      零化 14 条核心边的级联破坏超过更大 edge set 的分散破坏。 这说明 mean ablation 对 SVA 是更合适的评估方法（zero 过于
+      destructive for localized cores）。 css_0.67 bug 修复后 css_0.67 从 14 增至 48 edges（54
+      条 majority-vote 边正确纳入）， 但 css_1.00 完全不受影响——bug 仅影响 2/3 阈值判断，不影响 3/3 unanimous
+      共识。
+
+      '
+    tables:
+    - name: 'Table: SVA Circuit Discovery Summary (k=50 re-run)'
+      description: '行: EAP-IG, EP, ACDC, CSS≥2/3, CSS=1.0 列: Edges, Mean CPR, Mean
+        CMD, Δ(vs best single) CSS=1.0 的 14 edges 在 mean ablation 下 CPR=1.210 > ACDC
+        1.175
+
+        '
+    - name: 'Table: SVA Pairwise Jaccard Matrix (k=50)'
+      description: '3×3 对称矩阵：EAP-IG×EP=0.582, ACDC×EAP-IG=0.253, ACDC×EP=0.347。 与
+        IOI 并列展示，突出 SVA 的 EAP-IG×EP 高相关性 vs ACDC 的正交性
+
+        '
+    figures_description:
+    - 'Bar chart subplot (与 IOI 并列): x=方法, y=mean CPR。 CSS=1.0 bar 略高于其他方法，edge count
+      标注在 bar 上方。 视觉化 CSS 优势在 SVA 上的复现（虽然优势小于 IOI）。
+
+      '
+    analysis: 'SVA 是 best tier 中最 nuanced 的结果。max_J=0.582 高于 IOI 的 0.31， 但 CSS 仍然
+      PASS——因为 ACDC 提供了 gradient 方法无法给出的正交信号。 这表明 max pairwise Jaccard 不是唯一决定因素： 只要有至少一种方法与其他方法充分正交（ACDC×others
+      < 0.35）， consensus 就有价值。SVA 的 Δ=0.035（near threshold） 与 IOI 的 Δ=0.08（comfortable
+      PASS）形成对比， 支撑 Claim 2 的连续性——CSS utility 随 diversity 递减。 GPT-2 pass rate 达到 2/3（IOI
+      + SVA），直接削弱 R1 "仅 1 个任务" 的质疑。
+
+      '
+  - name: GPT-2 Factual Recall K=3 CSS
+    plan_id: plan_005
+    description: 'GPT-2 Small 上运行 Factual Recall（country→capital）。 分布式计算任务：知识存储在 MLP
+      layer 5-9，检索依赖多层 attention routing。 预期 Jaccard 中等（方法在 MLP 瓶颈边上被迫共识，attention
+      routing 上分歧）， CSS 优势为正但小于 IOI/SVA。
+
+      '
+    expected_results:
+      binarization: top-50
+      edge_counts:
+        eap_ig: 50
+        ep: 50
+        acdc: 50
+      pairwise_jaccard:
+        eapig_x_ep: 0.48
+        acdc_x_eapig: 0.163
+        acdc_x_ep: 0.131
+      max_pairwise_jaccard: 0.48
+      three_way_jaccard: 0.078
+      css_distribution:
+        '0.33': 72
+        '0.67': 28
+        '1.00': 12
+      evaluation_mean:
+        css_1.00:
+          edges: 12
+          CPR: 1.145
+          CMD: 0.408
+        css_0.67:
+          edges: 40
+          CPR: 1.118
+          CMD: 0.435
+        acdc:
+          edges: 50
+          CPR: 1.105
+          CMD: 0.448
+        eap_ig:
+          edges: 50
+          CPR: 1.098
+          CMD: 0.455
+        ep:
+          edges: 50
+          CPR: 1.085
+          CMD: 0.468
+      evaluation_zero:
+        css_1.00:
+          edges: 12
+          CPR: 0.035
+          CMD: 0.972
+        acdc:
+          edges: 50
+          CPR: 0.015
+          CMD: 0.988
+      d025_conditions:
+        cond1_jaccard_lt070: PASS (0.480)
+        cond2_css_ge23_ge10: PASS (28)
+        cond3_css_10_ge3: PASS (12)
+        cond4_cpr_dominance: 'PASS (mean: css_1.00=1.145 > acdc=1.105, Δ=0.040)'
+      css1_cpr_advantage_mean: 0.04
+      css1_edge_ratio: 0.0037
+    result_rationale: 'Factual recall 是 distributed computation：知识存储在 MLP layer 5-9
+      的 key-value 机制中， 检索依赖多层 attention head 将 subject token 路由到 last token position。
+      三种方法在 MLP 存储层的边上有较高共识（关键瓶颈无法绕过）， 但在 attention routing 边上存在显著分歧： EAP-IG 偏好梯度信号强的早期
+      head，EP 保留剪枝敏感的后期 head， ACDC 选中 clean-vs-corrupt activation 差异最大的边（分散在多层）。 EAP-IG×EP
+      Jaccard=0.48：高于 IOI（核心 MLP 边被迫共识）， 低于 Arithmetic（routing 部分仍有显著分歧）。 css_1.00
+      的 12 条边捕获了 MLP 存储核心 + 2-3 个最关键的 routing head， mean CPR=1.145 优于 ACDC(1.105)，Δ=0.04——
+      中等 Jaccard → 中等 CSS utility，consensus 过滤效果被部分冗余稀释。 Zero ablation 下 CPR 仍为正（0.035
+      > 0.015），确认 css_1.00 优势 robust。
+
+      '
+    tables:
+    - name: 'Table: Factual Recall Circuit Discovery Summary'
+      description: '格式同 IOI/SVA 表。CSS=1.0 的 12 edges CPR=1.145 vs ACDC 50 edges CPR=1.105。
+
+        '
+    figures_description:
+    - '与 IOI、SVA 的 CPR bar chart 并列的第三个 subplot。 CSS=1.0 bar 仅略高于 ACDC bar， 视觉化 CSS
+      优势随 Jaccard 增加而递减的趋势。
+
+      '
+    analysis: 'Factual Recall 是论文叙事的关键 interpolation 点。 max_J=0.48 落在 IOI(0.31) 和
+      SVA(0.58)/Arithmetic(0.695) 之间， Δ=0.04 相应落在 0.08 和 -0.066 之间。 这将 Claim 2 从"两点定义的趋势"升级为"有中间插值的连续关系"。
+      同时 CSS PASS 使 low-Jaccard tasks pass rate 达 3/3 (IOI+Factual+Qwen IOI)， 满足 ≥75%
+      的 threshold。
+
+      '
+  - name: Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC top-0.3%)
+    plan_id: plan_006
+    description: 'D029 统一方法论：用 ACDC top-0.3%（≈538 edges）替代 IFR， 保持方法族一致性（gradient×2
+      + activation-patching×1）。 EAP-IG/EP 也用 top-500 edges（≈top-0.28%）。 验证 CSS 跨模型架构（GQA,
+      SwiGLU, 24L/14H）泛化性。
+
+      '
+    expected_results:
+      total_model_edges: 179388
+      binarization: top-500 (≈top-0.28%)
+      edge_counts:
+        eap_ig: 500
+        ep: 500
+        acdc: 500
+      pairwise_jaccard:
+        eapig_x_ep: 0.381
+        acdc_x_eapig: 0.142
+        acdc_x_ep: 0.113
+      max_pairwise_jaccard: 0.381
+      three_way_jaccard: 0.068
+      css_distribution:
+        '0.33': 690
+        '0.67': 312
+        '1.00': 62
+      evaluation_zero:
+        css_1.00:
+          edges: 62
+          CPR: 0.142
+          CMD: 0.868
+        css_0.67:
+          edges: 374
+          CPR: 0.058
+          CMD: 0.948
+        acdc:
+          edges: 500
+          CPR: 0.072
+          CMD: 0.935
+        eap_ig:
+          edges: 500
+          CPR: -0.008
+          CMD: 1.009
+        ep:
+          edges: 500
+          CPR: -0.015
+          CMD: 1.017
+      d025_conditions:
+        cond1_jaccard_lt070: PASS (0.381)
+        cond2_css_ge23_ge10: PASS (312)
+        cond3_css_10_ge3: PASS (62)
+        cond4_cpr_dominance: 'PASS (zero: css_1.00=0.142 > acdc=0.072, Δ=0.070)'
+      css1_cpr_advantage: 0.07
+      css1_vs_gpt2_ioi: 62 edges (0.035% of model) vs GPT-2 7 edges (0.022%); CPR
+        0.142 vs 0.109
+      acdc_vs_ifr_note: ACDC top-0.3% 提供有效第三方法（vs IFR 的 Jaccard=0.000 完全退化）
+    result_rationale: 'D029 用 ACDC top-0.3% 替代 IFR 是关键决策。IFR 在 Qwen 上 Jaccard=0.000
+      （完全不与 gradient 方法重叠，选的全是 early-layer MLP edges）， 导致 css_1.00=0，实验失败。 ACDC 作为
+      activation-patching 方法在 Qwen 上正常工作： 它通过逐边替换 clean→corrupt activation 并测量 logit
+      差异来评分， 这个机制不依赖梯度，也不像 IFR 那样退化为 representation similarity proxy。 EAP-IG×EP Jaccard=0.381（低于
+      GPT-2 IOI 的 0.307？不对...GPT-2 IOI 是 0.307）—— Qwen 的 GQA（Grouped Query Attention）使得
+      head 内 key-value sharing 改变了 gradient 和 pruning 的敏感度分布，两方法在 induction head 选择上出现分歧。
+      ACDC×gradient Jaccard 极低（0.142/0.113）， 因为 activation-patching 的评分逻辑与梯度完全正交。
+      css_1.00 的 62 条边（占模型的 0.035%）是三种不同算法视角共同认定的 IOI 核心—— name mover heads + S-inhibition
+      heads 的关键 attention edges + 必要的 MLP routing。 CPR=0.142 不仅高于 best single（ACDC
+      0.072）， 而且高于 GPT-2 IOI 的 css_1.00 CPR=0.109—— method diversity 更高（max_J 0.381
+      vs 0.307），consensus 过滤更有效。 EAP-IG/EP 500 edges 在 zero ablation 下 CPR 为负（零化 500
+      条边破坏性太大）， 而 css_1.00 的 62 条精准边保持强正 CPR， 体现了 edge-efficiency 是 CSS 的核心优势。
+
+      '
+    tables:
+    - name: 'Table: Cross-Model IOI Comparison (GPT-2 vs Qwen)'
+      description: '行: GPT-2 K=3(EAP-IG, EP, ACDC isinf→k50), Qwen K=3(EAP-IG, EP,
+        ACDC top-0.3%) 列: Max Jaccard, CSS=1.0 Edges, CSS=1.0 Edge%, CSS=1.0 CPR,
+        Best-Single CPR, Δ 突出 Qwen 上 ACDC 替代 IFR 后 CSS 正常工作
+
+        '
+    - name: 'Table: Qwen IOI Pairwise Jaccard Matrix'
+      description: '3×3 矩阵。与 GPT-2 IOI 矩阵并列。 突出 ACDC×gradient Jaccard 极低（0.11-0.14），
+        证明 ACDC 是比 IFR 更有效的第三方法族
+
+        '
+    figures_description:
+    - 'Paired bar chart: GPT-2 IOI vs Qwen IOI， 每组有 css_1.00 和 best-single 两个 bar。
+      Qwen css_1.00 bar (0.142) 更高，且与 best-single gap (0.070) 大于 GPT-2 gap (0.080)。
+
+      '
+    analysis: '此实验同时服务三个目标： (1) 验证 CSS 跨模型泛化（Qwen GQA+SwiGLU ≠ GPT-2 标准 Transformer）
+      (2) 验证 ACDC 替代 IFR 后 CSS 正常工作（IFR 在 Qwen 上完全失败是 D029 的直接动因） (3) 为 plan_013 提供低
+      Jaccard、CSS-positive 的跨模型数据点 max_J=0.381 远低于 Qwen IFR 实验的退化零值（IFR Jaccard=0.000），
+      证明 ACDC 是 Qwen 上有效的 diversity source。 CSS CPR 0.142 > GPT-2 的 0.109， 与 max_J
+      从 0.307→0.381 的方向一致—— 虽然 Qwen 的 method diversity 略低于 GPT-2（0.381 > 0.307）， 但
+      Qwen 更大模型容量使 consensus core 捕获的功能比例更集中。
+
+      '
+  - name: Qwen-2.5 0.5B Arithmetic K=3 (EAP-IG + EP + ACDC top-0.3%)
+    plan_id: plan_007
+    description: 'Qwen 上运行 Arithmetic (Greaterthan)，ACDC top-0.3% 替代 IFR。 测试 ACDC
+      能否打破 EAP-IG×EP 在 Arithmetic 上的高 Jaccard，使 CSS 恢复。 预期：max Jaccard 从 GPT-2 的 0.695
+      降低但仍高于 threshold，CSS 仍 FAIL。
+
+      '
+    expected_results:
+      total_model_edges: 179388
+      binarization: top-500
+      pairwise_jaccard:
+        eapig_x_ep: 0.553
+        acdc_x_eapig: 0.198
+        acdc_x_ep: 0.172
+      max_pairwise_jaccard: 0.553
+      css_distribution:
+        '0.33': 615
+        '0.67': 295
+        '1.00': 85
+      evaluation_mean:
+        css_1.00:
+          edges: 85
+          CPR: 0.96
+          CMD: 0.185
+        eap_ig:
+          edges: 500
+          CPR: 0.985
+          CMD: 0.068
+        ep:
+          edges: 500
+          CPR: 0.97
+          CMD: 0.138
+        acdc:
+          edges: 500
+          CPR: 0.945
+          CMD: 0.252
+      d025_conditions:
+        cond4_cpr_dominance: 'FAIL (mean: css_1.00=0.960 < EAP-IG=0.985, Δ=-0.025)'
+      css1_cpr_advantage_mean: -0.025
+      vs_gpt2_arithmetic: max_J 从 0.695→0.553（ACDC 替代 ACDC-isinf+更大模型），Δ 从 -0.066→-0.025（改善但未翻转）
+    result_rationale: 'Arithmetic 的计算结构天然导致方法收敛：comparison heads 和 magnitude-encoding
+      MLPs 是任何基于性能的方法都被迫选中的瓶颈边。 EAP-IG×EP Jaccard 从 GPT-2 的 0.695 降至 Qwen 的 0.553——
+      Qwen 的更大容量和 GQA 使 comparison 计算略微分散到更多 head， 降低了 gradient-adjacent 冗余。 ACDC
+      的加入（ACDC×EAP-IG=0.198, ACDC×EP=0.172）引入了新视角， 但 max pairwise Jaccard 仍由 EAP-IG×EP=0.553
+      主导， 高于 CSS utility threshold（~0.55），consensus 退化为 两个 gradient 方法的高度共识子集 + ACDC
+      的交集过滤。 css_1.00 的 85 条边 CPR=0.960 低于 EAP-IG 的 0.985—— ACDC 的过滤移除了一些 EAP-IG/EP
+      共同选中的重要边 （这些边 ACDC 因算法差异未选中，但实际上是 true circuit edges）。 Δ=-0.025：相比 GPT-2 Arithmetic
+      的 -0.066 有改善（趋势正确）, 但未翻转为正。 这提供了一个关键的 near-threshold negative 数据点。
+
+      '
+    tables:
+    - name: 'Table: Arithmetic Cross-Model Comparison'
+      description: 'GPT-2 K=3 vs Qwen K=3(ACDC)。 突出 max_J 从 0.695→0.553, Δ 从 -0.066→-0.025（改善但未翻转）
+
+        '
+    figures_description:
+    - '在 Jaccard-CSS scatter plot 中，Qwen Arithmetic 数据点 (0.553, -0.025) 落在 GPT-2 Arithmetic
+      (0.695, -0.066) 的左上方， 方向正确但仍在 negative region。
+
+      '
+    analysis: 'Negative result 是论文叙事的资产。证明： (1) Jaccard threshold 稳健——即使 ACDC 降低 max_J
+      到 0.553（近 threshold），CSS 仍无效 (2) CSS utility bottleneck 是 max pairwise Jaccard
+      而非 average (3) 为 Claim 2 提供又一个符合预测的数据点（高 Jaccard → negative Δ） Qwen Arith (max_J=0.553,
+      Δ=-0.025) 和 SVA (max_J=0.582, Δ=+0.035) 的对比 尤其有趣：两者 Jaccard 相近但 CSS utility
+      相反， 说明 near-threshold region 还受 task structure 影响。
+
+      '
+  - name: Gemma-2 2B IOI K=3 (EAP-IG + EP + ACDC)
+    plan_id: plan_008
+    description: 'CSS 扩展到 2B 参数量级。验证 localized circuit 模式和 CSS advantage 在更大模型上是否保持。P2
+      优先级，如 deadline 紧张可推迟到 revision。
+
+      '
+    expected_results:
+      binarization: top-0.1% (~1500 edges per method)
+      pairwise_jaccard:
+        eapig_x_ep: 0.288
+        acdc_x_eapig: 0.118
+        acdc_x_ep: 0.097
+      max_pairwise_jaccard: 0.288
+      css_distribution:
+        '1.00': 55
+      evaluation_zero:
+        css_1.00:
+          edges: 55
+          CPR: 0.128
+        acdc:
+          CPR: 0.045
+        eap_ig:
+          CPR: -0.012
+        ep:
+          CPR: -0.022
+      css1_cpr_advantage: 0.083
+    result_rationale: '2B 模型 IOI 电路比 0.5B 更分散——更多候选 head 可承担 name mover 和 induction
+      功能。 方法分歧因此增加（max_J 降至 0.288），每种方法在候选 head 中做出不同排序。 css_1.00 过滤出 55 条共识核心边，CPR=0.128
+      与 Qwen 结果 (0.142) 量级一致。 这证明 CSS utility 不依赖特定模型架构或规模，由 method diversity 决定。
+
+      '
+    tables:
+    - name: 'Table: Model Scaling Summary (GPT-2 → Qwen → Gemma)'
+      description: '三行: GPT-2 Small (117M), Qwen-2.5 (0.5B), Gemma-2 (2B) 列: Params,
+        Total Edges, Max Jaccard, CSS=1.0 Edges, CSS=1.0 Edge%, CPR, Δ
+
+        '
+    figures_description:
+    - '补充到 cross-model bar chart 作为第三个 subplot。 如果资源允许，加入 model scaling 图：x=params
+      (log), y=CSS advantage，展示 flat trend。
+
+      '
+    analysis: 'P2 实验，为 camera-ready 提供额外泛化证据。 三个架构（GPT-2 Transformer, Qwen GQA+SwiGLU,
+      Gemma-2 sliding window） 的一致结果使 R1 泛化性质疑几乎不可攻击。 如果 deadline 紧张，Qwen 单点跨模型证据已足够，此实验推至
+      revision。
+
+      '
+  - name: Llama-3.1 8B IOI K=3 (EAP-IG + EP + ACDC)
+    plan_id: plan_009
+    description: '最大规模验证。P3 优先级，需 A100 80GB for EP。 Stretch goal，best tier 下可能不完成。
+
+      '
+    expected_results:
+      max_pairwise_jaccard: 0.241
+      css_1.00_edges: 48
+      css_1.00_CPR: 0.118
+      best_single_CPR: 0.043
+      css1_cpr_advantage: 0.075
+    result_rationale: '8B 模型冗余 head 更多，IOI 电路更分散但核心 name mover 功能仍由少量 head 主导。 方法分歧进一步增加（max_J=0.241），css_1.00
+      精准锁定 48 条 consensus core。 CPR=0.118 与小模型一致，说明 CSS utility 是 scale-invariant
+      的。 EP 在 8B 上计算量大（edge-level pruning），可能需近似， 近似引入的噪声可能进一步降低 Jaccard。
+
+      '
+    tables: []
+    figures_description:
+    - '如果完成，加入 model scaling 图：x=params (log), y=CSS advantage， 展示从 117M 到 8B (68x)
+      的 flat trend 证明 scale invariance。
+
+      '
+    analysis: 'Stretch goal。完成则可 claim CSS 在 117M→8B 范围内稳健有效。 未完成则 Gemma-2 2B 已提供足够
+      scaling evidence。
+
+      '
+  - name: Top-k Binarization Sensitivity Sweep
+    plan_id: plan_010
+    description: '在 IOI(GPT-2) 和 SVA(GPT-2) 上系统扫描 k=50/75/100/150， 验证 CSS=1.0 advantage
+      对 k 选择的鲁棒性。直接回应 R5。 如 Qwen/Factual 已完成，一并扫描。
+
+      '
+    expected_results:
+      ioi_gpt2_zero:
+        k50:
+          css_1.00_edges: 7
+          css_1.00_CPR: 0.109
+          best_single_CPR: 0.025
+          advantage: 0.084
+        k75:
+          css_1.00_edges: 12
+          css_1.00_CPR: 0.102
+          best_single_CPR: 0.023
+          advantage: 0.079
+        k100:
+          css_1.00_edges: 18
+          css_1.00_CPR: 0.098
+          best_single_CPR: 0.022
+          advantage: 0.076
+        k150:
+          css_1.00_edges: 24
+          css_1.00_CPR: 0.091
+          best_single_CPR: 0.02
+          advantage: 0.071
+      sva_gpt2_mean:
+        k50:
+          css_1.00_edges: 14
+          css_1.00_CPR: 1.21
+          best_single_CPR: 1.175
+          advantage: 0.035
+        k75:
+          css_1.00_edges: 22
+          css_1.00_CPR: 1.198
+          best_single_CPR: 1.177
+          advantage: 0.021
+        k100:
+          css_1.00_edges: 30
+          css_1.00_CPR: 1.19
+          best_single_CPR: 1.178
+          advantage: 0.012
+        k150:
+          css_1.00_edges: 40
+          css_1.00_CPR: 1.178
+          best_single_CPR: 1.179
+          advantage: -0.001
+      ioi_advantage_positive_all_k: true
+      sva_advantage_positive_k50_only: true
+      ioi_max_cpr_variation: 0.018
+      sva_max_cpr_variation: 0.032
+    result_rationale: '随 k 增加，每个方法保留更多边，pairwise overlap 增加，css_1.00 集合扩大。 扩大的 css_1.00
+      包含更多低置信度的 consensus 边，CPR 微降。 IOI（低 Jaccard=0.31）：CSS advantage 在全部 k 下为正（0.071-0.084），
+      说明 consensus core 的信号不依赖 k 的精确选择。 SVA（高 Jaccard=0.582）：CSS advantage 仅在 k=50
+      为正（0.035）， k≥75 时消失——反映 SVA 是 near-threshold case， 只有在最 selective 的 k 下 consensus
+      才有效。 这进一步支撑 Jaccard threshold 理论： 低 Jaccard tasks 的 CSS advantage 对 k robust，
+      高 Jaccard tasks 的 advantage 对 k sensitive。
+
+      '
+    tables:
+    - name: 'Table: Binarization Sensitivity (IOI + SVA)'
+      description: '行: k=50, 75, 100, 150（+ isinf baseline for IOI） 列: CSS=1.0 Edges,
+        CSS=1.0 CPR, Best-Single CPR, Δ, Max Jaccard 每个 task 一个 sub-table
+
+        '
+    figures_description:
+    - 'Line plot: x=k, y=Δ(advantage), 两条线 (IOI 蓝, SVA 橙)。 IOI 线始终在 y=0 以上且平坦；SVA
+      线在 k=50 处勉强为正、 k≥75 跌至零附近。灰色虚线 y=0。 视觉化 Jaccard 对 k-robustness 的影响。
+
+      '
+    analysis: '此 ablation 完整回应 R5。 核心结论：低 Jaccard tasks 的 CSS advantage 是 k-robust
+      的， 高 Jaccard tasks 需要 aggressive k 才能维持 marginal advantage。 实践推荐：k=top-N with
+      N = 50 for GPT-2 scale, top-0.3% for larger models， 作为 conservative yet sufficient
+      default。
+
+      '
+  - name: Ablation Method Comparison (Zero vs Mean vs Resample)
+    plan_id: plan_011
+    description: '在 IOI 和 SVA 上比较三种 faithfulness 评估下 CSS advantage 的稳定性。 主要用于 appendix，回应潜在
+      evaluation artifact 质疑。
+
+      '
+    expected_results:
+      ioi:
+        zero:
+          css_1.00_CPR: 0.109
+          best_single_CPR: 0.029
+          advantage: 0.08
+        mean:
+          css_1.00_CPR: 0.145
+          best_single_CPR: 0.065
+          advantage: 0.08
+        resample:
+          css_1.00_CPR_mean: 0.125
+          css_1.00_CPR_std: 0.018
+          best_single_CPR_mean: 0.045
+          advantage_mean: 0.08
+          advantage_std: 0.012
+      sva:
+        zero:
+          css_1.00_CPR: -0.482
+          best_single_CPR: -0.371
+          advantage: -0.111
+        mean:
+          css_1.00_CPR: 1.21
+          best_single_CPR: 1.175
+          advantage: 0.035
+        resample:
+          css_1.00_CPR_mean: 1.155
+          css_1.00_CPR_std: 0.032
+          best_single_CPR_mean: 1.125
+          advantage_mean: 0.03
+          advantage_std: 0.015
+      ioi_advantage_stable: true
+      sva_advantage_ablation_dependent: true
+      note: IOI advantage robust across all 3 methods; SVA positive under mean/resample
+        only, negative under zero
+    result_rationale: '三种 ablation baseline 改变绝对 CPR 水平但对相对差异影响不同。 IOI 的 css_1.00
+      advantage（Δ≈0.08）在三种评估下完全稳定—— 这 7 条 consensus 边在任何 ablation scheme 下都是 critical
+      的， 排除了 evaluation artifact 的可能。 SVA 更微妙：zero ablation 下 Δ 为负（-0.111）， 因为零化 14
+      条高度 localized 的核心边造成级联破坏， 而零化 50 条更分散的 ACDC 边破坏反而更小。 Mean ablation 保留平均激活，更精准地测量功能贡献而非破坏性，
+      Δ=0.035 为正。Resample（n=10）确认 mean 结果稳健（std=0.015）。 这说明 CSS advantage 的 evaluation
+      robustness 也与 Jaccard 相关： 低 Jaccard tasks → robust across ablation methods，
+      高 Jaccard tasks → sensitive to ablation choice。
+
+      '
+    tables:
+    - name: 'Table: Ablation Method Robustness'
+      description: '行: Zero, Mean, Resample(n=10) 列: CSS=1.0 CPR, Best-Single CPR,
+        Δ, p-value (resample) IOI 和 SVA 各一个 panel
+
+        '
+    figures_description: []
+    analysis: 'P2 实验，主要用于 appendix。 IOI 的三方法一致性是 decisive response to evaluation artifact
+      质疑。 SVA 的 zero-ablation failure 提供额外 insight： 评估方法选择本身与 circuit locality 相关，
+      这可以作为 Discussion 中的 methodological recommendation。
+
+      '
+  - name: CIRCUS vs CSS Negative Ablation
+    plan_id: plan_012
+    description: '系统对比 CIRCUS（within-method threshold diversity, Parekh 2026） 和 CSS（cross-method
+      consensus），证明 structural consensus > single-method robustness。 使用 IOI、SVA、Factual
+      三个 CSS-positive tasks 的数据。
+
+      '
+    expected_results:
+      ioi:
+        circus_core_edges: 15
+        circus_CPR_zero: -0.108
+        css_1.00_edges: 7
+        css_1.00_CPR_zero: 0.109
+        css_wins_by: 0.217
+      sva:
+        circus_core_edges: 12
+        circus_CPR_mean: 0.994
+        css_1.00_edges: 14
+        css_1.00_CPR_mean: 1.21
+        css_wins_by: 0.216
+      factual:
+        circus_core_edges: 16
+        circus_CPR_mean: 0.982
+        css_1.00_edges: 12
+        css_1.00_CPR_mean: 1.145
+        css_wins_by: 0.163
+      circus_negative_all_vs_css: true
+    result_rationale: 'CIRCUS 通过扫描 EAP-IG 的阈值范围选取始终存在的"核心"边， 这些边是 EAP-IG 得分最高且最稳定的——但仍是
+      EAP-IG 的 method-specific 视角。 当 EAP-IG 存在系统性偏差（如过度依赖 early-layer gradient signal），
+      CIRCUS 只会放大偏差而非纠正。 IOI 上 CIRCUS CPR=-0.108 说明 EAP-IG 的"最确定"边 恰恰是 zero ablation
+      下破坏性最大的 （这些边可能是 gradient artifact，不对应真正的功能电路）。 CSS=1.0 通过要求多方法共识天然过滤掉单方法的系统性偏差。
+      在 SVA 和 Factual 上（使用 mean ablation）， CIRCUS CPR 分别为 0.994 和 0.982， 而 CSS CPR
+      为 1.210 和 1.145—— CSS 在所有 tasks 上一致优于 CIRCUS， 差距在 IOI 上最大（0.217），Factual 上最小（0.163）。
+
+      '
+    tables:
+    - name: 'Table: CIRCUS vs CSS Head-to-Head'
+      description: '行: IOI, SVA, Factual Recall 列: Method, Edges, CPR, CMD, Δ(CSS-CIRCUS)
+        每个任务两行：CIRCUS core 和 CSS=1.0
+
+        '
+    figures_description:
+    - 'Grouped bar chart: 三个任务，每组两个 bar (CIRCUS 灰色, CSS 蓝色)。 CSS bar 始终高于 CIRCUS bar，视觉化
+      cross-method consensus > within-method robustness。
+
+      '
+    analysis: '对 competitor CIRCUS (Parekh 2026) 的直接回应。 核心论点：cross-method consensus
+      的价值在于纠正任何单方法的系统性偏差， 而 within-method threshold diversity（CIRCUS）只能验证偏差的稳定性。 CSS
+      vs CIRCUS 的差距在所有三个 CSS-positive tasks 上一致， 可在 Related Work 中用一段话 + 一个表展示。
+
+      '
+  - name: Jaccard-CSS Utility Correlation Analysis
+    plan_id: plan_013
+    description: '汇总所有 model×task 组合的 (max pairwise Jaccard) vs (CSS CPR advantage)，
+      计算 Spearman ρ，拟合 CSS utility threshold。Claim 2 的 definitive evidence。
+
+      '
+    expected_results:
+      data_points:
+      - label: IOI (GPT-2)
+        model: GPT-2 Small
+        methods: EAP-IG, EP, ACDC
+        max_jaccard: 0.307
+        one_minus_jaccard: 0.693
+        css_cpr_advantage: 0.08
+        css_pass: true
+      - label: IOI (Qwen)
+        model: Qwen-2.5 0.5B
+        methods: EAP-IG, EP, ACDC
+        max_jaccard: 0.381
+        one_minus_jaccard: 0.619
+        css_cpr_advantage: 0.07
+        css_pass: true
+      - label: Factual (GPT-2)
+        model: GPT-2 Small
+        methods: EAP-IG, EP, ACDC
+        max_jaccard: 0.48
+        one_minus_jaccard: 0.52
+        css_cpr_advantage: 0.04
+        css_pass: true
+      - label: Arithmetic (Qwen)
+        model: Qwen-2.5 0.5B
+        methods: EAP-IG, EP, ACDC
+        max_jaccard: 0.553
+        one_minus_jaccard: 0.447
+        css_cpr_advantage: -0.025
+        css_pass: false
+      - label: SVA (GPT-2)
+        model: GPT-2 Small
+        methods: EAP-IG, EP, ACDC
+        max_jaccard: 0.582
+        one_minus_jaccard: 0.418
+        css_cpr_advantage: 0.035
+        css_pass: true
+      - label: Arithmetic (GPT-2)
+        model: GPT-2 Small
+        methods: EAP-IG, EP, ACDC
+        max_jaccard: 0.695
+        one_minus_jaccard: 0.305
+        css_cpr_advantage: -0.066
+        css_pass: false
+      n_data_points: 6
+      spearman_rho: 0.943
+      spearman_p: 0.005
+      fitted_threshold_jaccard: 0.55
+      threshold_ci_95:
+      - 0.5
+      - 0.6
+      low_jaccard_pass_rate: 3/3 (100%)
+      high_jaccard_pass_rate: 1/3 (33%, SVA anomaly)
+      rank_analysis:
+        diversity_ranks:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        advantage_ranks:
+        - 1
+        - 2
+        - 3
+        - 5
+        - 4
+        - 6
+        only_swap: Qwen Arith (div rank 4, adv rank 5) ↔ SVA (div rank 5, adv rank
+          4)
+      gpt2_only:
+        n_points: 4
+        spearman_rho: 1.0
+        spearman_p: 0.042
+    result_rationale: '6 个数据点覆盖 Jaccard 0.307-0.695 的完整区间， 包含 2 个模型架构、4 个任务、localized→distributed
+      全谱。 Spearman ρ=0.943 (p=0.005) 证明 method diversity 是 CSS utility 的强预测因子。 机械解释清晰：当三种方法独立发现不同边集（低
+      Jaccard）， 交集代表被多种算法视角共同验证的功能核心（true circuit edges）， CSS=1.0 因此 faithful 且 edge-efficient。
+      当方法高度相关（高 Jaccard），交集趋近于最 selective 的单方法结果， 共识不再增加信息量。 fitted threshold ≈ 0.55
+      意味着：max pairwise Jaccard < 0.55 时 CSS=1.0 consensus 可预期 faithfulness 提升；> 0.55
+      时应直接使用 best single method。 唯一的 rank swap 是 SVA (max_J=0.582, Δ=+0.035) vs Qwen
+      Arith (max_J=0.553, Δ=-0.025)—— 两者 Jaccard 相近但 CSS utility 相反。 SVA 的 anomalous
+      positive result 可归因于 ACDC×gradient 的极低 Jaccard (0.25/0.35) 部分抵消了 EAP-IG×EP 的高
+      Jaccard (0.582)， 而 Qwen Arithmetic 的 ACDC×gradient Jaccard 也低 (0.20/0.17) 但
+      Arithmetic 的 distributed computation 使任何子集都不足以代表完整功能。 仅用 4 个 GPT-2 tasks 时 ρ=1.0
+      (perfect rank correlation)， 但 p=0.042（4 点的 significance marginal）。 加入 Qwen 数据（第
+      5、6 点）使 ρ 微降至 0.943 但 p 大幅降至 0.005，统计力增强。
+
+      '
+    tables:
+    - name: 'Table: Jaccard-CSS Correlation Data (main result)'
+      description: '行: 6 个 model×task 组合 列: Task, Model, Methods, Max Jaccard, CSS=1.0
+        CPR, Best-Single CPR, Δ, CSS=1.0 Edges 底部: Spearman ρ=0.943, p=0.005, threshold≈0.55
+
+        '
+    - name: 'Table: GPT-2 Only Subset (4 tasks)'
+      description: 'IOI, Factual, SVA, Arithmetic on GPT-2。ρ=1.0, p=0.042。 展示 within-model
+        的 perfect rank correlation。
+
+        '
+    figures_description:
+    - '核心 Figure (Figure 3 or 4): Scatter plot, x 轴 = 1 - max_Jaccard (method diversity),
+      y 轴 = CSS CPR advantage (Δ). 6 个点，颜色区分模型（GPT-2 蓝, Qwen 橙）， 形状区分 CSS outcome（圆=PASS,
+      ×=FAIL）。 灰色虚线 y=0 分隔 CSS-positive / CSS-negative。 正斜率回归线。右上角 ρ=0.943, p=0.005。
+      垂直虚线 x=0.45 (对应 max_J=0.55) 标注 threshold。 SVA 点标注为 near-threshold anomaly。 全文最重要的图——将整个叙事浓缩为一张可视化。
+
+      '
+    analysis: '此分析是论文的 crown jewel。 6 个数据点覆盖 localized→distributed spectrum + 两个模型架构，
+      ρ=0.943, p=0.005 统计上无争议。 Jaccard threshold ≈ 0.55 提供 actionable practitioner
+      guideline—— 这是 reviewer 最希望看到的 practical contribution。 建议论文主文放 6-point 分析（含跨模型验证），
+      appendix 放 4-point GPT-2-only 分析（within-model clean story, ρ=1.0）。 SVA anomaly（高
+      Jaccard 但 positive Δ）enriches discussion： 提出 "effective diversity" 概念—— 当至少一种方法（ACDC）与其余方法充分正交时，
+      max pairwise Jaccard 可能低估实际 diversity。 这是 future work 的自然延伸（better diversity
+      metrics）。
+
+      '
+  - name: IFR Method Divergence Analysis
+    plan_id: plan_014
+    description: 'D029 发现的 IFR 失败模式系统文档化。 分析 IFR vs ACDC vs gradient methods 的 Jaccard/faithfulness/layer
+      distribution， 论证 ACDC 替代 IFR 的合理性，作为 Discussion 中 method family 选择的实证依据。
+
+      '
+    expected_results:
+      qwen_ioi_ifr_data:
+        ifr_jaccard_eapig: 0.0
+        ifr_jaccard_ep: 0.0
+        ifr_layer_distribution: concentrated in layers 0-5 (MLP→Attn early routing)
+        gradient_layer_distribution: concentrated in layers 18-23 (deep attention
+          heads)
+        ifr_cpr: ~0.0
+        note: real data from phase2_qwen05b_ioi_k3
+      acdc_comparison:
+        acdc_jaccard_eapig: 0.142
+        acdc_jaccard_ep: 0.113
+        acdc_layer_distribution: dispersed across layers 8-22, with peaks at known
+          IOI circuit layers
+        acdc_cpr: 0.072
+      diagnosis: 'IFR 使用 intermediate representation cosine similarity 评分边， 在 Qwen-2.5
+        的 GQA 架构下退化为 early-layer MLP bias detector—— 因为 GQA 的 KV sharing 使 deep-layer
+        attention edge 的 representation 变化被掩盖。 ACDC 使用 activation patching (clean→corrupt
+        substitution)， 不受 GQA 影响，能正确识别 deep-layer functional edges。
+
+        '
+      method_family_recommendation: '对于 ≥0.5B 参数量的现代架构（GQA, SwiGLU）， 推荐 EAP-IG + EP
+        + ACDC 三方法族，避免 IFR。 IFR 可能在经典 Transformer (GPT-2 scale) 上仍有效，但未验证。
+
+        '
+    result_rationale: 'IFR 的失败不是随机的——它反映了 similarity-based scoring 在现代架构上的系统性缺陷。 IFR
+      计算每条边移除后 intermediate representation 的 cosine distance 变化。 在 Qwen 的 GQA 中，多个
+      attention head 共享 key-value projections， 移除单条 attention edge 对 representation
+      的影响被同组其他 head 的 KV buffer 吸收， 导致 deep-layer attention edges 的 IFR score 趋近于零。
+      IFR 因此只选中 early-layer MLP edges（这些边 representation 影响大但功能贡献小）。 结果是 IFR edge
+      set 与 gradient methods 零重叠， css_1.00 = 0（三方法无任何共识边），实验彻底失败。 ACDC 通过直接测量 clean→corrupt
+      activation 替换对 logit 的影响， 绕过了 GQA 的 representation 吸收问题—— 即使某条 attention edge
+      的 representation 变化被吸收， 只要它影响最终 logit，ACDC 就能检测到。 这使 ACDC 成为 Qwen 上有效的第三方法族。
+
+      '
+    tables:
+    - name: 'Table: IFR vs ACDC on Qwen IOI'
+      description: '行: IFR (deprecated), ACDC top-0.3% 列: Jaccard(EAP-IG), Jaccard(EP),
+        Layer Range, CPR, Diagnosis 简明展示 IFR 失败 vs ACDC 成功
+
+        '
+    figures_description:
+    - 'Layer distribution histogram: x=layer, y=selected edge count。 三种颜色：IFR (红,
+      集中在 layer 0-5), gradient (蓝, layer 18-23), ACDC (绿, 分散)。 视觉化 IFR 的 early-layer
+      bias。
+
+      '
+    analysis: 此分析为 Discussion section 提供实证支撑。 核心 message：method family 选择必须考虑模型架构——
+      similarity-based methods (IFR) 在 GQA 架构下退化， activation-patching methods (ACDC)
+      在所有测试架构上稳健工作。 这也间接支撑了 Claim 2：method diversity 的前提是 methods 实际有效， 无效方法（如 Qwen
+      上的 IFR）不仅不增加 diversity， 还使 css_1.00 退化为空集，彻底破坏 consensus。 实践建议：使用 CSS 前应验证每种方法独立的
+      faithfulness， 剔除退化方法后再计算 consensus。
+  review_report: '---
+
+    dream_id: dream_20260513T081242
+
+    tier: best
+
+    overall_score: Weak Reject (3/6)
+
+    timestamp: 2026-05-13T09:04:53.260406+00:00
+
+    ---
+
+
+    # Dream Review Report: Consensus Circuit Scoring
+
+
+    **Paper**: Consensus Circuit Scoring: Cross-Method Binary Consensus Identifies
+    Faithful Circuit Subsets When Discovery Methods Disagree
+
+
+    **Dream ID**: 20260513T081242
+
+    **Review Mode**: full (2 Reviewers + Roundtable)
+
+    **Date**: 2026-05-13
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    两位 Reviewer 独立给出 3/6 (Weak Reject)，在核心问题上高度一致。方法定位、统计严谨性、学术规范三个维度均存在需重大修订的问题。实证发现本身有价值，但
+    framing 和统计论证不足以支撑 top venue 接受。
+
+
+    **Consensus Score: 3/6 (Weak Reject)**
+
+
+    ---
+
+
+    ## R1 审稿意见（方法+实验）
+
+
+    ### Summary
+
+    本文提出 CSS，通过 K≥3 种 circuit discovery 方法的二元投票取共识边集。在 4 个任务、4 个模型上验证 CSS=1.0 在低 Jaccard
+    条件下优于单方法，并建立 Jaccard-utility 相关性（ρ=0.943, p=0.005）。
+
+
+    ### Strengths
+
+    1. **问题定义清晰实用**：方法分歧→共识过滤这一 framing 自然且有实际意义，CSS 的简洁性使其容易被采用。
+
+    2. **Negative controls 设计合理**：Arithmetic 作为 predicted negative 验证了理论预测，增强了 Claim
+    2 可信度。
+
+    3. **跨模型 IOI 一致性好**：4 个架构（117M→8B）上 Δ∈[+0.070, +0.084]，scale-invariance 证据有说服力。
+
+    4. **IFR 失败模式分析有价值**：Section 5.4 对 IFR 在 GQA 上退化的诊断（Jaccard=0.000）对社区方法选择有直接指导意义。
+
+    5. **Ablation 覆盖较全**：binarization sensitivity (Table 8)、ablation method robustness
+    (Table 9) 均有涉及。
+
+
+    ### Weaknesses
+
+    1. **Claim 2 统计基础薄弱**：6 个数据点的 Spearman 相关性对单点异常极度敏感。Fitted threshold CI=[0.50,
+    0.60] 过宽（覆盖 Jaccard 范围的 15%）。Near-threshold 区域（Jaccard 0.50-0.60）仅有 3 个数据点（Factual
+    0.48、Qwen Arith 0.553、SVA 0.582），其中 SVA 是 anomalous positive，移除后趋势可能显著改变。建议做 leave-one-out
+    robustness 分析，并将 Claim 2 降级为"初步观察"。
+
+
+    2. **Binary voting vs score aggregation 缺乏 ablation**：论文选择 binary consensus 而非
+    score-level fusion（如加权平均 importance scores 后取 top-k），但未提供任何对比实验证明 binary 方案更优。这是一个核心设计选择，必须有实证支撑。建议增加一组
+    score aggregation baseline（如 rank fusion、normalized score mean）。
+
+
+    3. **不同任务使用不同 ablation 方法引入事后选择偏差**：IOI 用 zero ablation，SVA/Factual 用 mean ablation。Table
+    9 显示 SVA 在 zero ablation 下 Δ=-0.111（CSS 表现更差），但论文以"zero 对 localized circuit 破坏过大"为由选择
+    mean。这一选择合理但属于事后决定——先看到结果再选择有利的评估方法。建议：(a) 预注册 ablation 选择标准；(b) 主表统一使用一种 ablation，其余放
+    appendix；(c) 至少讨论这一方法论风险。
+
+
+    4. **EAP-IG 与 EP 的独立性假设存疑**：论文将 EP 归为独立于 EAP-IG 的"edge pruning"族（Section 2.4），但
+    EP 的评分本质上仍依赖梯度信号（pruning sensitivity ≈ 反向梯度排序）。EAP-IG×EP Jaccard 在所有条件下都是最高的 pair（0.307-0.695），证实两者高度相关。K=3
+    的有效独立方法数可能仅为 ~2（两个 gradient-adjacent + 一个 ACDC），此时 CSS=1.0 本质退化为"gradient consensus
+    ∩ ACDC"。建议明确讨论这一局限，并探索 K>3 时引入更多独立方法族的可能性。
+
+
+    5. **Gemma-2 2B 和 Llama-3.1 8B 细节不足**：Abstract 和 Section 3.2 声称在 4 个模型架构上实验，但
+    Gemma-2 和 Llama-3.1 仅出现在 Table 4 的 IOI 跨模型比较中，缺少：(a) 单独的 detailed results table（如
+    GPT-2 有 Tables 2-3）；(b) Pairwise Jaccard matrix；(c) CSS distribution（0.33/0.67/1.0
+    的边数分布）；(d) Edge% 列缺失。这使得这两个模型的结果可信度低于 GPT-2 和 Qwen。
+
+
+    ### Minor Issues
+
+    - CMD = 1 - CPR，同时报告两者是冗余的。
+
+    - Table 1 中 GPT-2 Arithmetic CSS=1.0 Edges 为"—"但 Δ=-0.066，计算方式未解释。
+
+    - Section 3.3 中 binarization protocol 的 k 选择缺乏理论依据（为什么 50？为什么 0.3%？）。
+
+    - 缺少 computational cost 讨论（运行 3 种方法的总开销 vs 单方法）。
+
+
+    ### Questions for Authors
+
+    1. 如果对 6 个数据点做 leave-one-out（特别是移除 SVA），Spearman ρ 和 fitted threshold 如何变化？
+
+    2. 是否尝试过 score-level aggregation（如 normalized rank fusion）作为 CSS 的替代方案？如果有，结果如何？如果没有，为什么不做？
+
+    3. EAP-IG 和 EP 在多大程度上可以被视为独立方法？是否有量化"方法独立性"的方式（beyond Jaccard）？
+
+
+    ### Experiment Coverage Assessment
+
+    对比 review_context.yaml：
+
+    - **P1 实验全部完成**：GPT-2 SVA re-run (plan_004), Factual Recall (plan_005), Qwen IOI
+    (plan_006), Qwen Arithmetic (plan_007)
+
+    - **P2 实验全部完成**：Gemma-2 IOI (plan_008), Binarization Sweep (plan_010), Ablation
+    Comparison (plan_011), CIRCUS vs CSS (plan_012), Jaccard Correlation (plan_013),
+    IFR Analysis (plan_014)
+
+    - **P3 实验完成**：Llama-3.1 8B IOI (plan_009)
+
+    - **覆盖度评估**：实验执行覆盖度极高（11/11），但呈现深度不均——GPT-2 任务有详细 breakdown，大模型结果只有 summary row。
+
+
+    ### Scores
+
+    - Soundness: 3/5（核心框架逻辑成立但多处方法论风险未充分讨论）
+
+    - Empirical Rigor: 3/5（覆盖广但深度不均，统计论证薄弱，ablation 选择偏差）
+
+    - Clarity: 3/5（写作清晰但引用缺失严重，缺少 figures）
+
+    - Overall: 3/6
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## R2 审稿意见（新颖性+相关工作）
+
+
+    ### Summary
+
+    本文提出 CSS 框架，通过多种 circuit discovery 方法的二元投票提取共识边集，并建立 Jaccard-utility 负相关关系。核心方法是
+    K 个二元分类器的 unanimous vote，贡献主要是实证性的。
+
+
+    ### Strengths
+
+    1. **问题动机清晰且实际**：将方法间分歧从"噪声"重新定义为"信号"的 framing 转换自然且有洞察力。
+
+    2. **Negative results 的刻意纳入**：Arithmetic 作为 predicted negative control，SVA 作为
+    near-threshold case，增加了分析的细腻度和可信度。
+
+    3. **跨模型泛化广度**：GPT-2 到 Llama-3.1，覆盖多种架构，IOI 上 CSS advantage 稳定。
+
+    4. **CIRCUS 对比有价值**：Table 10 中 CIRCUS core 在 IOI 上 CPR 为负而 CSS 为正，尖锐说明 within-method
+    vs cross-method robustness 的本质差异。
+
+    5. **IFR 退化发现有实际意义**：对社区方法选择有直接指导价值。
+
+
+    ### Weaknesses
+
+    1. **方法新颖性有限**：CSS 的核心操作（公式 2-3）是 K 个二元分类器的 unanimous vote，这在 ensemble learning
+    文献中是最基础的组合策略。论文未充分论证为什么这个简单策略比更精细的 ensemble 方法更合适。Related Work 未讨论 classifier
+    combination / ensemble selection 文献。建议将论文重新定位为"实证研究"而非"方法贡献"，或增加 ensemble baseline
+    对比。
+
+
+    2. **Claim 2 统计论证的非独立性问题**：6 个数据点中 IOI 在 4 个模型上重复、Arithmetic 在 2 个模型重复。按任务去重后独立数据点可能仅
+    4 个（IOI representative、Factual、SVA、Arithmetic representative），此时统计显著性消失。缺少 leave-one-out
+    robustness 分析。建议：(a) 做 leave-one-out；(b) 讨论独立性问题；(c) 将 Claim 2 降级为初步观察。
+
+
+    3. **引用全部缺失**：10+ 处 [?] 或 [??]，覆盖 Introduction 核心引用、Related Work 全部引用、CIRCUS 等关键比较对象。这是
+    blocking issue——无法验证 novelty claims，无法确认相关工作覆盖是否充分。
+
+
+    4. **核心假设"方法错误独立"未被充分审视**：EAP-IG 和 EP 均为 gradient-adjacent，系统性偏差可能高度相关。K=3 中 2
+    个 gradient-adjacent 可能构成"伪多样性"。论文应讨论方法错误独立性假设的失败条件。
+
+
+    5. **所有规划的 figures 均未出现**：review_context.yaml 中描述了 scatter plot、bar chart、layer
+    distribution histogram 等多个 figures，但论文中一个都没有，全部以表格呈现。这在 top venue 论文中不常见，显著降低可读性。Jaccard-utility
+    scatter plot 尤其是论文的 crown jewel visualization，缺失是重大遗憾。
+
+
+    ### Minor Issues
+
+    - Table 4 中 Gemma-2 和 Llama-3.1 的 Edge% 列为 "—"，应补全。
+
+    - Section 2.4 对 EP 方法族分类为独立于 gradient 的 "edge pruning" 不够严谨。
+
+    - GPT-2 Arithmetic CSS=1.0 为空集但 Δ=-0.066 的计算方式未解释。
+
+    - "Effective diversity"概念（Section 6）仅一句话带过，值得更充分探讨。
+
+
+    ### Questions for Authors
+
+    1. 如果将同一任务在不同模型上的结果视为非独立样本，按任务聚合后 Claim 2 的统计显著性是否成立？
+
+    2. GPT-2 Arithmetic 中 CSS=1.0 为空集时，Δ 如何计算？从业者遇到空集时应如何处理？
+
+    3. K>3 时 CSS=1.0 (unanimous) 极可能退化为空集。是否考虑过 τ 随 K 调整的策略？
+
+
+    ### Novelty and Positioning Assessment
+
+    - **方法新颖性**：低（2/5）。Binary voting 是 ensemble 最基础形式，无新算法思想。
+
+    - **实证贡献价值**：中高。跨方法共识在低 Jaccard 下优于单方法的发现、Jaccard 诊断指标、CIRCUS 对比、IFR 退化发现均有价值。
+
+    - **差异化**：CIRCUS 对比有效，但引用缺失导致无法评估是否遗漏其他 cross-method comparison 工作。
+
+    - **建议**：将论文更明确地定位为"实证研究"而非"方法贡献"，降低方法新颖性的 claim 调性。
+
+
+    ### Experiment Coverage Assessment
+
+    - 实验执行覆盖度极高：P1 全部完成、P2 全部完成、P3 完成（11/11 实验）
+
+    - 但 review_context.yaml 中描述的所有 figures 均未出现在论文中，全部以表格呈现
+
+    - Claim 1 支撑充分（8 PASS + 2 predicted FAIL）
+
+    - Claim 2 支撑在数据趋势上清晰，但统计严谨性不足
+
+
+    ### Scores
+
+    - Novelty: 2/5
+
+    - Significance: 3/5
+
+    - Clarity: 3/5
+
+    - Overall: 3/6
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## Roundtable Convergence
+
+
+    ### 共识问题（两位 Reviewer 一致）
+
+
+    1. **Claim 2 统计基础是最核心的弱点**：6 个数据点、数据点非独立性（同一任务跨模型重复）、无 leave-one-out 分析、near-threshold
+    区域数据稀疏。这是论文两个 primary claims 之一，但统计论证不足以支撑"主要发现"的定位。
+
+
+    2. **EAP-IG/EP 独立性假设可疑**：两者均为 gradient-adjacent 方法，Jaccard 始终是最高 pair。K=3 中 2
+    个相关方法使 CSS=1.0 退化为"gradient consensus ∩ ACDC"，有效方法族数量可能仅为 ~2。
+
+
+    3. **引用全部缺失是 blocking issue**：10+ 处 [?]/[??]，无法验证 novelty claims 和 related work
+    覆盖。这在任何 venue 都是不可接受的。
+
+
+    4. **Figures 完全缺失**：论文全部以表格呈现结果，缺少 scatter plot、bar chart 等可视化。Jaccard-utility
+    scatter plot 是论文的核心 visualization，缺失严重影响可读性和直觉传达。
+
+
+    ### R1 独有关注点（R2 认可但未独立提出）
+
+
+    5. **Binary vs score aggregation 缺乏对比**：这是核心设计选择但无 ablation 支撑。
+
+    6. **Ablation 方法事后选择偏差**：不同任务使用不同 ablation 方法（IOI→zero, SVA→mean），选择顺序可能受结果影响。
+
+    7. **大模型结果细节不足**：Gemma-2 和 Llama-3.1 仅有 summary row，缺乏 Jaccard matrix、CSS distribution
+    等详细数据。
+
+
+    ### R2 独有关注点（R1 认可但未独立提出）
+
+
+    8. **方法新颖性不足**：CSS 本质是 unanimous vote，ensemble learning 文献中最基础的组合策略。论文应重新定位为实证研究或增加
+    ensemble baseline。
+
+    9. **GPT-2 Arithmetic 空集未解释**：CSS=1.0 Edges 为"—"但报告 Δ=-0.066，逻辑不一致。
+
+    10. **K>3 扩展性未讨论**：K 增大时 unanimous vote 极可能退化为空集。
+
+
+    ### 无分歧
+
+    两位 Reviewer 在评分（3/6）和主要问题诊断上完全一致，无需调解。
+
+
+    ---
+
+
+    ## Consolidated Recommendations
+
+
+    ### 必须修复（Blocking）
+
+    1. 补全所有引用（[?]/[??]），确保 related work 覆盖完整
+
+    2. 增加 Jaccard-utility scatter plot 等核心 figures
+
+    3. 对 Claim 2 做 leave-one-out robustness 分析，讨论数据点独立性问题
+
+    4. 解释 GPT-2 Arithmetic CSS=1.0 空集情况及 Δ 计算方式
+
+
+    ### 强烈建议（Major Revision）
+
+    5. 增加 score aggregation baseline（如 rank fusion）对比，论证 binary voting 选择
+
+    6. 统一 ablation 方法或预注册选择标准，讨论事后选择偏差风险
+
+    7. 补充 Gemma-2/Llama-3.1 的详细结果（Jaccard matrix、CSS distribution）
+
+    8. 讨论 EAP-IG/EP 独立性假设的局限和有效方法族数量问题
+
+    9. 考虑将论文重新定位为实证研究，降低方法贡献的 claim 调性
+
+
+    ### 建议改进（Minor）
+
+    10. 删除冗余 CMD 指标（= 1-CPR）
+
+    11. 讨论 K>3 扩展和 τ 的 K-dependent 调整
+
+    12. 补充 computational cost 分析
+
+    13. 更充分地探讨 "effective diversity" 概念
+
+
+    ---
+
+
+    ## Final Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness/Novelty | 3/5 | 2/5 | 2.5/5 |
+
+    | Empirical Rigor/Significance | 3/5 | 3/5 | 3/5 |
+
+    | Clarity | 3/5 | 3/5 | 3/5 |
+
+    | **Overall** | **3/6** | **3/6** | **3/6 (Weak Reject)** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+
+    **Consensus Assessment**: 论文提出的 CSS 框架虽然简单实用，实证发现（低 Jaccard 下共识优于单方法、CIRCUS 对比、IFR
+    退化分析）有价值，但存在多个互相叠加的问题：方法新颖性有限、核心统计论证（Claim 2）基础薄弱、引用和 figures 全部缺失、ablation 选择偏差风险、方法独立性假设可疑。这些问题中任何一个单独可能不构成
+    reject，但叠加在一起使论文在 top venue 25% 接受率标准下处于 below threshold。经过 major revision 解决上述
+    blocking issues 和统计问题后，有潜力提升至 borderline accept。'
+  error: ''
+- tier: median
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: "phase2: Phase 2 (median) failed: while parsing a flow sequence\n  in \"\
+    <unicode string>\", line 512, column 18:\n            columns: [Method, Edges,\
+    \ \"CPR ↑\", \"CMD ↓\" ... \n                     ^\nexpected ',' or ']', but\
+    \ got '?'\n  in \"<unicode string>\", line 512, column 64:\n     ... , \"CPR ↑\"\
+    , \"CMD ↓\", Reproducible?]\n                                         ^"
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/min_necessary_circuit_css/artifacts/dream_reports/dream_20260513T081242/worst/paper.pdf
+  imagined_experiments:
+  - name: GPT-2 SVA K=3 CSS（css_1.00 重新评估）
+    plan_id: plan_004
+    description: '已有两次运行（mvp_sva_gpt2_k3 top-100, mvp_sva_gpt2_k3_topk top-k）。 Worst
+      档下 SVA re-eval 用 css_1.00 重新评估条件④，Δ(CPR) 降至 <0.005 或为负值， condition④ FAIL。D033
+      降级为 inconclusive 在 worst 档下进一步恶化： 多 seed bootstrap 表明 Δ=0.0127 是上界，真实均值 ≤0.003。
+
+      '
+    expected_results:
+      status: done
+      conclusion: negative
+      pairwise_jaccard:
+        eapig_x_ep: 0.6529
+        eapig_x_acdc: 0.3158
+        ep_x_acdc: 0.4184
+      max_jaccard: 0.6529
+      three_way_ratio: 0.2785
+      css_distribution:
+        '0.33': 60
+        '0.67': 54
+        '1.00': 44
+      faithfulness_mean:
+        css_1.00:
+          edges: 44
+          CPR: 1.173
+          CMD: 0.558
+        css_0.67:
+          edges: 98
+          CPR: 1.1724
+          CMD: 0.503
+        eapig_k75:
+          edges: 75
+          CPR: 1.1703
+          CMD: 0.53
+        ep_k75:
+          edges: 75
+          CPR: 1.1703
+          CMD: 0.53
+        acdc_k75:
+          edges: 75
+          CPR: 1.1746
+          CMD: 0.52
+      css_1.00_delta_cpr: -0.0016
+      d025_cond4_verdict: FAIL (css_1.00 CPR=1.173 < acdc=1.175, Δ=−0.002)
+      bootstrap_analysis:
+        n_seeds: 5
+        delta_mean: 0.003
+        delta_95ci: '[-0.012, +0.019]'
+        ci_includes_zero: true
+      sva_gate_verdict: FAIL — multi-seed bootstrap CI includes zero; D033 inconclusive
+        confirmed as negative
+    result_rationale: 'D032 报告的 Δ=0.0127 来自单一 seed（seed=42）。Worst 档假设这是随机波动上界： SVA
+      的 EAP-IG×EP Jaccard=0.6529 接近 Arithmetic 的 0.695， 两种 gradient 方法在 SVA number-tracking
+      heads (layer 7-10) 上高度一致， ACDC top-k 虽然引入了名义上的 "第三视角"，但其在 GPT-2 12层模型上的 greedy
+      search 仍然优先选择与 gradient saliency 高度相关的边。在 5 个 bootstrap seeds 下， css_1.00 CPR
+      的波动范围 [1.168, 1.192]，acdc CPR 的波动范围 [1.170, 1.182]， 两者重叠区域大——Δ 的 95% CI 横跨零点。实际观测到的
+      Δ=0.0127 恰好落在 CI 上界附近， 属于统计上的 "lucky draw"。D033 的 "inconclusive" 判定在 worst 档下变为明确
+      FAIL： 无法区分 CSS=1.0 和 ACDC 单方法。SVA 从 "marginal PASS" 彻底变为 FAIL。
+
+      '
+    tables:
+    - caption: 'Table: SVA css_1.00 multi-seed bootstrap (worst tier)'
+      rows:
+      - - Seed
+        - CSS=1.0 CPR
+        - ACDC CPR
+        - Δ
+      - - 42 (original)
+        - '1.187'
+        - '1.175'
+        - '+0.013'
+      - - '123'
+        - '1.168'
+        - '1.179'
+        - −0.011
+      - - '456'
+        - '1.178'
+        - '1.182'
+        - −0.004
+      - - '789'
+        - '1.175'
+        - '1.170'
+        - '+0.005'
+      - - '1024'
+        - '1.171'
+        - '1.174'
+        - −0.003
+      - - mean ± std
+        - 1.176 ± 0.007
+        - 1.176 ± 0.005
+        - +0.000 ± 0.009
+    - caption: 'Table: SVA D025 conditions (worst tier final)'
+      rows:
+      - - Condition
+        - Result
+        - Note
+      - - ①Jaccard<0.70
+        - PASS (0.653)
+        - marginal
+      - - ②CSS≥2/3≥10
+        - PASS (54)
+        - ''
+      - - ③CSS=1.0≥3
+        - PASS (44)
+        - ''
+      - - ④CPR dominance
+        - FAIL (Δ≈0, CI includes zero)
+        - D033→negative
+    figures_description:
+    - 'Fig: SVA bootstrap Δ distribution — 正态分布以 0 为中心，原始 Δ=0.013 标记为虚线但在分布体内'
+    analysis: 'SVA 在 worst 档下确认为 FAIL。至此 GPT-2 三任务中仅 IOI 明确 PASS， 成功率 1/3。SVA 的 max_jaccard=0.653
+      过高，gradient methods 主导的 consensus 退化为 ACDC 和 gradient-pair 交集。对 Claim 2 提供了一个符合预期方向的数据点
+      （高 Jaccard → CSS 无优势），但 Δ≈0 无法区分 "marginal positive" 和 "neutral"， 这是 n=3-4 时
+      Jaccard-utility regression 的致命噪声源。
+
+      '
+  - name: GPT-2 Factual Recall K=3 CSS
+    plan_id: plan_005
+    description: 'GPT-2 Small 上的 factual recall (国家首都)。GPT-2 Small 117M 参数 对 factual
+      knowledge 能力极弱，circuit discovery 前提（clean baseline performance）不满足。
+
+      '
+    expected_results:
+      status: abandoned
+      conclusion: task_model_mismatch
+      partial_metrics:
+        baseline_accuracy: 0.52
+        baseline_accuracy_note: 几乎随机 (random=0.25, GPT-2 仅略好)
+        eapig_completed: true
+        ep_completed: true
+        acdc_completed: false
+        acdc_failure_reason: 'GPT-2 Small 对 "The capital of France is ___" 类问题准确率
+          ~52%， clean performance 波动 ±15%。ACDC patching 在 baseline 不稳定时 无法收敛——阈值过高得空电路，过低保留全图。
+
+          '
+        eapig_k50_cpr: 0.02
+        ep_k50_cpr: -0.01
+        cpr_note: faithfulness 接近零，电路无意义
+    result_rationale: 'GPT-2 Small 的 parametric knowledge 极度稀疏——factual recall 没有形成
+      dedicated retrieval circuit。信息分散在 residual stream 中，无法 localize。 这不是 CSS 方法论的失败，而是
+      task-model 根本不匹配。 ACDC 对这种 diffuse computation 最敏感：所有边的 importance 都在噪声水平。 Worst
+      档下这个实验浪费了 ~4 GPU hours 才确认失败，挤占了写作时间。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '第四 GPT-2 任务失败。论文只能报告 3 个 GPT-2 tasks。 在 Limitations 说明 GPT-2 Small
+      对 factual recall 能力不足。 Reviewer 攻击 "only 3 tasks on one tiny model" 时防守空间有限。
+
+      '
+  - name: Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC top-k)
+    plan_id: plan_006
+    description: 'D029 后用 ACDC top-k 替代 IFR。D034 已确认结果：CSS=1.0=0 边， 所有 pairwise Jaccard≈0。CSS
+      跨模型 scaling 根本性失败。 Worst 档下这是 paper 的致命打击——CSS 仅在 GPT-2 (32k edges) 上工作， 无法
+      scale 到 Qwen (179k edges)。
+
+      '
+    expected_results:
+      status: done
+      conclusion: negative
+      total_edges: 179388
+      binarization: top-0.3% (~538 edges per method)
+      pairwise_jaccard:
+        eapig_x_ep: 0.042
+        eapig_x_acdc: 0.006
+        ep_x_acdc: 0.008
+      max_jaccard: 0.042
+      css_distribution:
+        1/3: 1058
+        2/3: 66
+        3/3: 0
+      css_core_3of3: 0
+      faithfulness_mean:
+        css_0.67:
+          edges: 66
+          CPR: 0.031
+          CMD: 0.972
+        eapig_top538:
+          edges: 538
+          CPR: 0.055
+          CMD: 0.948
+        ep_top538:
+          edges: 538
+          CPR: 0.048
+          CMD: 0.955
+        acdc_top538:
+          edges: 538
+          CPR: 0.029
+          CMD: 0.974
+      d025_verdict: FAIL — CSS=1.0 = empty set
+      ifr_version_comparison:
+        ifr_jaccard_eapig: 0.0
+        ifr_jaccard_ep: 0.0
+        acdc_jaccard_eapig: 0.006
+        acdc_jaccard_ep: 0.008
+        note: ACDC 比 IFR 稍好但仍实质为零——问题不在方法选择而在模型规模
+      scaling_analysis:
+        gpt2_edge_space: 32491
+        qwen_edge_space: 179388
+        ratio: 5.52
+        gpt2_topk_pct: 0.31
+        qwen_topk_pct: 0.3
+        gpt2_max_jaccard: 0.307
+        qwen_max_jaccard: 0.042
+        jaccard_ratio: 7.3
+        conclusion: 相同比例的 top-k 在更大 edge space 中产生更低 Jaccard，这是组合稀释效应
+    result_rationale: 'D034 已确认：ACDC 在 179k-edge Qwen 图上退化为 node-level scoring， 与
+      IFR 的 block-voting 问题本质相同。核心机制是组合稀释： top-0.3% 在 32k 边的 GPT-2 上选约 100 条边，方法间有
+      meaningful overlap； 在 179k 边的 Qwen 上选约 538 条边，但 edge space 增大 5.5×， 而 circuit
+      structure 并非线性 scale——IOI circuit 在 Qwen 上分散到更多层/头， 方法各自 "看到" 不同子集。EAP-IG×EP
+      Jaccard 从 GPT-2 的 0.31 暴跌至 0.04， ACDC 与任何方法几乎零重叠。CSS=1.0 要求三方法全部同意——在 Jaccard≈0
+      时 这是空集。即使放宽到 CSS≥0.67，也只有 66 条边，CPR=0.031 远低于单方法。 这证明 CSS 的前提（方法对同一 edge 有 meaningful
+      overlap）在大模型上不成立。
+
+      '
+    tables:
+    - caption: 'Table: GPT-2 vs Qwen edge space scaling'
+      rows:
+      - - ''
+        - GPT-2 Small
+        - Qwen-2.5 0.5B
+        - Ratio
+      - - Total edges
+        - 32,491
+        - 179,388
+        - 5.5×
+      - - Top-k (0.3%)
+        - ~100
+        - ~538
+        - 5.4×
+      - - Max Jaccard (EAP-IG×EP)
+        - '0.307'
+        - '0.042'
+        - 7.3×↓
+      - - CSS=1.0 edges
+        - '7'
+        - '0'
+        - —
+      - - CSS=1.0 CPR
+        - '0.109'
+        - —
+        - —
+    - caption: 'Table: Qwen IOI method comparison — IFR vs ACDC (both fail)'
+      rows:
+      - - Third method
+        - J(×EAP-IG)
+        - J(×EP)
+        - CSS=1.0
+      - - IFR (D028)
+        - '0.000'
+        - '0.000'
+        - 0 edges
+      - - ACDC (D034)
+        - '0.006'
+        - '0.008'
+        - 0 edges
+    figures_description:
+    - 'Fig: Jaccard vs edge space size — log-log plot 显示 Jaccard 随 edge space 指数级衰减'
+    - 'Fig: CSS=1.0 edge count vs model size — 从 GPT-2 (7 edges) 到 Qwen (0 edges)
+      的断崖式下降'
+    analysis: 'D034 是 worst 档的核心证据之一。CSS 跨模型 scaling 的结构性失败 意味着论文不能 claim "CSS generalizes
+      across models"。 在 analysis paper 中重构为："CSS 的 edge-level consensus 依赖于 methods
+      在相同 edge space 中有 meaningful overlap， 这一前提在 model scale up 时因组合稀释而系统性地被违反。"
+      这是一个有价值的 negative finding，但将 CSS 定位为 "仅适用于小模型" 的方法。
+
+      '
+  - name: Qwen-2.5 0.5B Arithmetic K=3 (EAP-IG + EP + ACDC top-k)
+    plan_id: plan_007
+    description: '基于 D034 的结果，Qwen Arithmetic 预期与 Qwen IOI 相同模式： ACDC 在大 edge space
+      上退化，CSS=1.0 为空集或退化。
+
+      '
+    expected_results:
+      status: planned
+      conclusion: negative
+      total_edges: ~179000
+      pairwise_jaccard:
+        eapig_x_ep: 0.038
+        eapig_x_acdc: 0.004
+        ep_x_acdc: 0.005
+      max_jaccard: 0.038
+      css_distribution:
+        1/3: ~1080
+        2/3: ~55
+        3/3: 0
+      css_core_3of3: 0
+      faithfulness_mean:
+        css_0.67:
+          edges: ~55
+          CPR: 0.025
+          CMD: 0.978
+        eapig_top538:
+          edges: 538
+          CPR: 0.049
+          CMD: 0.954
+      d025_verdict: FAIL — CSS=1.0 = empty set, same as Qwen IOI
+      qwen_ioi_css10_cpr_vs_best: null
+      note: CSS=1.0 为空集，无法计算 CPR vs best single
+    result_rationale: 'Qwen IOI (D034) 已证明 ACDC 在 179k-edge graph 上退化。 Arithmetic
+      在 Qwen 上的 edge space 与 IOI 几乎相同（同一模型）， EAP-IG×EP 的 Jaccard 预期更低（Arithmetic 在更大模型上更分散），
+      ACDC 的退化模式完全相同（node-level scoring）。 这个实验本质上是 Qwen IOI 的重复，不产生新信息。 Worst 档建议：如果
+      Qwen IOI 已 FAIL，跳过 Qwen Arithmetic 以节省时间。
+
+      '
+    tables:
+    - caption: 'Table: Qwen tasks — all fail with same pattern'
+      rows:
+      - - Task
+        - CSS=1.0 edges
+        - Max Jaccard
+        - Verdict
+      - - IOI (IFR)
+        - '0'
+        - '0.000'
+        - FAIL
+      - - IOI (ACDC)
+        - '0'
+        - '0.042'
+        - FAIL
+      - - Arithmetic (ACDC, predicted)
+        - '0'
+        - ~0.038
+        - FAIL
+    figures_description: []
+    analysis: 'Qwen Arithmetic 是 sunk cost。D034 已证明问题是结构性的（edge space scaling）， 不因任务而异。在
+      analysis paper 中只需一句： "We verified the scaling failure extends to Arithmetic
+      (Table X)"。 不值得单独的 figure 或 detailed analysis。
+
+      '
+  - name: Gemma-2 2B IOI K=3
+    plan_id: plan_008
+    description: 'Scale 到 2B 模型。Worst 档下 Qwen 0.5B 已完全失败， Gemma-2 2B 的 edge space
+      更大（~500k+），失败是确定性的。
+
+      '
+    expected_results:
+      status: not_attempted
+      conclusion: null
+      predicted_outcome: FAIL — edge space ~500k+, Jaccard→0, CSS=1.0→empty set
+      reason_not_attempted: 'D034 已证明 CSS 在 179k-edge Qwen 上失败。Gemma-2 2B 有 26 层 16
+        头， edge space 估计 >500k，组合稀释效应更严重。 投入 ~16 GPU-hours 仅为确认一个已知结论不合理。
+
+        '
+    result_rationale: 'Gemma-2 2B 的 edge space 是 Qwen 的 ~3×，Qwen 上已观察到 Jaccard→0。
+      在更大 edge space 中，top-0.3% 选约 1500+ 条边，但三种方法各自 "看到" 的功能通路更加分散——26 层中 IOI 信息流经更多
+      intermediate heads。 CSS 的 edge-level consensus 前提在此彻底不成立。 这个实验的唯一价值是确认 "scaling
+      law"，但 GPT-2 → Qwen 的两个数据点 已足够支撑 analysis paper 的论点。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '明确建议取消。节省 16 GPU-hours 和 2 天调试时间用于论文写作。 在 paper 中用 back-of-envelope
+      计算替代实验： "At Gemma-2 2B scale (~500k edges), top-0.3% binarization yields ~1500
+      edges per method; extrapolating from GPT-2→Qwen Jaccard decay (0.31→0.04), expected
+      max Jaccard ≈ 0.01, rendering consensus trivially empty."
+
+      '
+  - name: Llama-3.1 8B IOI K=3
+    plan_id: plan_009
+    description: '最大规模实验。Worst 档下无论如何都不应运行。
+
+      '
+    expected_results:
+      status: not_attempted
+      conclusion: null
+      predicted_outcome: FAIL — edge space ~2M+, hardware insufficient (needs A100
+        80GB)
+      reason_not_attempted: P3 priority + hardware barrier (RTX 4090D 24GB insufficient
+        for EP) + D034 已证明 scaling failure
+    result_rationale: '8B 模型有 32 层 32 头，edge space 估计 ~2M。 top-0.3% ≈ 6000 条边/方法，但
+      pairwise Jaccard 在如此巨大的空间中 趋近于 random intersection baseline (~0.003)。 EP 在 8B
+      上需要 A100 80GB（edge-level pruning 内存超线性增长）， 当前 RTX 4090D 24GB 完全不够。即使有硬件，ROI
+      为负。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '明确取消。在 Future Work 中一句带过即可。
+
+      '
+  - name: Top-k Binarization Sensitivity Sweep
+    plan_id: plan_010
+    description: '系统性 top-k sweep (k=50, 75, 100, 150) 在 GPT-2 tasks 上。 Worst 档下 CSS
+      CPR 对 k 稳定——但这只证明 CSS 是 "consistently mediocre"， 优势永远不超过 single method（IOI 除外）。
+      关键发现：ACDC isinf-vs-topk 的 Jaccard 差异驱动了虚假的 Jaccard-utility 关联。
+
+      '
+    expected_results:
+      status: done
+      conclusion: stable_but_irrelevant
+      ioi_gpt2_css_cpr_by_k:
+        k50: 0.109
+        k75: 0.102
+        k100: 0.095
+        k150: 0.088
+      sva_gpt2_css_cpr_by_k:
+        k50: -0.82
+        k75: -0.82
+        k100: -0.74
+        k150: -0.71
+      arithmetic_gpt2_css_cpr_by_k:
+        k50: 0.919
+        k75: 0.919
+        k100: 0.926
+        k150: 0.933
+      sva_mean_css_cpr_by_k:
+        k50: 1.185
+        k75: 1.187
+        k100: 1.174
+        k150: 1.168
+      css_stable_across_k: true
+      but_advantage_never_positive_except_ioi: true
+      key_finding: 'CSS CPR 在 k=50-150 内稳定 (std<0.02)，但这只说明 binarization 不是 CSS 失败的原因——
+        方法相关性才是。CSS 在 SVA 和 Arithmetic 上 never beats single method， 无论 k 取什么值。
+
+        '
+      acdc_isinf_vs_topk_jaccard_gap:
+        ioi: isinf J=0.09 → topk J=0.25 (Δ=+0.16)
+        arithmetic: isinf J=0.17 → topk J=0.42 (Δ=+0.25)
+        sva: isinf J=0.37 → topk J=0.37 (Δ=0, already topk)
+      confound_implication: 'IOI 的 "low Jaccard → CSS works" 部分由 ACDC isinf 的极端 sparsity
+        (14 edges) 驱动。 ACDC isinf 人为压低了 ACDC×EAP-IG 和 ACDC×EP 的 Jaccard。 top-k 归一化后
+        IOI max Jaccard 从 0.31 上升到约 0.41 (EAP-IG×EP pair 不变， 但 ACDC pair 上升)。Jaccard-utility
+        关系中 IOI 的 "low Jaccard" 被 ACDC binarization inflated。
+
+        '
+    result_rationale: 'Top-k 归一化使三种方法在 comparable edge budget 下比较，消除了 ACDC isinf 的
+      extreme sparsity artifact。k 越大，pairwise overlap 自然增加， CSS=1.0 集合扩大但新增的边是 low-confidence
+      coincidental consensus。 IOI 在所有 k 下仍为正面是因为其 14 条核心 ACDC isinf 边（全被三方法确认） 质量极高——但这是
+      IOI 任务 + GPT-2 模型的特异性，非方法优势。 ACDC isinf-vs-topk Jaccard 差异是 worst 档 Jaccard-utility
+      confound 的核心： 在 isinf 下 ACDC 只有 14-17 条边，与 100 条边的 EAP-IG/EP 的 Jaccard 自然极低；
+      top-k 归一化后差异缩小，但 IOI 的正面结果不变—— 这说明 IOI 的 CSS 优势与 Jaccard level 关系弱于预期。
+
+      '
+    tables:
+    - caption: 'Table: CSS=1.0 CPR across k values (GPT-2 tasks, zero ablation for
+        IOI, mean for others)'
+      rows:
+      - - Task
+        - k=50
+        - k=75
+        - k=100
+        - k=150
+        - Stable?
+        - Beats single?
+      - - IOI (zero)
+        - '0.109'
+        - '0.102'
+        - '0.095'
+        - '0.088'
+        - 'Yes'
+        - Yes (all k)
+      - - SVA (mean)
+        - '1.185'
+        - '1.187'
+        - '1.174'
+        - '1.168'
+        - 'Yes'
+        - No (all k)
+      - - Arith (mean)
+        - '0.919'
+        - '0.919'
+        - '0.926'
+        - '0.933'
+        - 'Yes'
+        - No (all k)
+    - caption: 'Table: ACDC binarization effect on Jaccard'
+      rows:
+      - - Task
+        - J (isinf)
+        - J (top-k)
+        - Δ
+        - CSS outcome changes?
+      - - IOI
+        - '0.09'
+        - '0.25'
+        - '+0.16'
+        - No (still PASS)
+      - - Arithmetic
+        - '0.17'
+        - '0.42'
+        - '+0.25'
+        - No (still FAIL)
+      - - SVA
+        - 0.37 (already topk)
+        - '0.37'
+        - '0'
+        - N/A
+    figures_description:
+    - 'Fig: CPR vs k line plot — IOI 永远正面，SVA/Arithmetic 永远负面，k 只影响量级不影响方向'
+    - 'Fig: ACDC isinf vs top-k Jaccard comparison — 证明 binarization choice 是 Jaccard
+      的重要 confound'
+    analysis: 'Binarization sensitivity 是 worst 档下最有分析价值的实验之一。 两个结论：(1) CSS 对 k 稳定——方法论上
+      clean； (2) Jaccard-utility 关系的一部分方差由 ACDC binarization 解释， 而非 genuine method
+      diversity。 这为 analysis paper 提供了 "binarization pathology taxonomy" 贡献 （Claim
+      3 延伸），也是 "why consensus fails" 叙事的技术核心。
+
+      '
+  - name: Ablation Method Comparison (Zero vs Mean vs Resample)
+    plan_id: plan_011
+    description: '在 IOI 上比较 zero/mean/resample ablation 下 CSS 优势。 Worst 档揭示 IOI positive
+      result 部分由 zero ablation bias 驱动。
+
+      '
+    expected_results:
+      status: partial
+      conclusion: ioi_advantage_ablation_dependent
+      completed_tasks:
+      - IOI (GPT-2)
+      ioi_gpt2:
+        zero:
+          css_1_cpr: 0.109
+          best_single_cpr: 0.029
+          advantage: 0.08
+        mean:
+          css_1_cpr: 0.095
+          best_single_cpr: 0.088
+          advantage: 0.007
+        resample:
+          css_1_cpr: 0.082
+          best_single_cpr: 0.079
+          advantage: 0.003
+      sva_gpt2:
+        zero:
+          css_1_cpr: -0.82
+          best_single_cpr: -0.35
+          advantage: -0.47
+        mean:
+          css_1_cpr: 1.173
+          best_single_cpr: 1.175
+          advantage: -0.002
+        resample:
+          css_1_cpr: 1.05
+          best_single_cpr: 1.07
+          advantage: -0.02
+      arithmetic_gpt2:
+        zero:
+          css_1_cpr: -0.184
+          best_single_cpr: -0.131
+          advantage: -0.053
+        mean:
+          css_1_cpr: 0.919
+          best_single_cpr: 0.985
+          advantage: -0.066
+        resample:
+          css_1_cpr: 0.85
+          best_single_cpr: 0.92
+          advantage: -0.07
+      key_finding: 'IOI 的 CSS 优势从 zero (+0.080) 到 mean (+0.007) 到 resample (+0.003)
+        急剧衰减。Mean/resample 下的 Δ 在噪声水平内。 IOI positive result 高度依赖于 zero ablation 的破坏性偏差——
+        zero ablation 对 100-edge 电路的惩罚远大于 7-edge 电路。
+
+        '
+    result_rationale: 'Zero ablation 将 ablated edges 设为零，破坏性与 circuit size 成正比： 100
+      条边的 EAP-IG circuit 中有 93 条非 CSS=1.0 边被保留， 但这 93 条边在 zero ablation 下仍会因 cascade
+      effects 被部分破坏。 相比之下 CSS=1.0 的 7 条边几乎没有 cascade loss。 这给了 CSS=1.0 一个 evaluation
+      artifact 优势，而非 genuine faithfulness 优势。 Mean ablation 将 baseline 设为均值，大大减少了
+      cascade destruction， 所有方法的 CPR 趋近——CSS 优势从 0.08 缩到 0.007。 Resample ablation
+      进一步消除 OOD artifact，CSS 优势仅 0.003。 这意味着 IOI 的 "strong positive result" 是 evaluation
+      method confound： 选不同的 ablation method 就能让 CSS 优势消失。 SVA 和 Arithmetic 在所有 ablation
+      下 CSS 都不优，进一步确认 IOI 是唯一正面案例且其正面性高度 fragile。
+
+      '
+    tables:
+    - caption: 'Table: CSS advantage by ablation method × task'
+      rows:
+      - - Task
+        - Zero Δ
+        - Mean Δ
+        - Resample Δ
+      - - IOI
+        - '+0.080'
+        - '+0.007'
+        - '+0.003'
+      - - SVA
+        - −0.470
+        - −0.002
+        - −0.020
+      - - Arithmetic
+        - −0.053
+        - −0.066
+        - −0.070
+    figures_description:
+    - 'Fig: Grouped bar chart — CSS advantage by ablation × task。IOI zero ablation
+      柱高突出，其余接近零线'
+    analysis: 'IOI 的 zero ablation bias 是 worst 档对 Claim 1 的第二个打击 （第一个是 ACDC isinf
+      confound）。综合两个 confound： IOI CSS positive result = ACDC isinf extreme sparsity
+      + zero ablation size bias。 去除任一 confound（用 top-k / 用 mean ablation），CSS 优势大幅缩水。
+      两个 confound 同时存在时才产生 Δ=+0.08 的 "impressive" 结果。 Analysis paper 中这是诚实且有价值的方法论贡献：
+      "Evaluation confounds in circuit faithfulness measurement"。
+
+      '
+  - name: CIRCUS vs CSS Negative Ablation
+    plan_id: plan_012
+    description: 'D021 CIRCUS 失败数据的整理。Worst 档下 CSS 也在多数任务失败， 对比变为 "both fail, CSS
+      marginally less bad"。
+
+      '
+    expected_results:
+      status: done
+      conclusion: both_methods_limited
+      circus_ioi_cpr: -0.108
+      circus_sva_cpr: -0.15
+      circus_arithmetic_cpr: -0.12
+      css_ioi_cpr: 0.109
+      css_sva_cpr: -0.82
+      css_arithmetic_cpr: -0.184
+      circus_failure_rate: 3/3 tasks
+      css_failure_rate: 2/3 tasks (only IOI positive)
+      comparison_framing: 'CIRCUS 在所有任务上 CPR 为负（比 random 还差）。 CSS 在 IOI 上为正但在 SVA/Arithmetic
+        上也为负（zero ablation）。 两种 consensus 方法在多数场景都失败——区别仅在于 CSS 在一个 特定任务上因 ACDC isinf
+        + zero ablation 的组合而显正。
+
+        '
+    result_rationale: 'CIRCUS 使用 threshold diversity 在单一方法内构建 consensus—— 本质是 nested
+      sets (k=50 ⊂ k=100 ⊂ k=150) 的交集， 等价于最 conservative 的 cut。CSS 使用跨方法 binary agreement，
+      至少利用了方法间的信息差异。但当方法本身高度相关时（SVA, Arithmetic）， CSS 的跨方法 consensus 也退化为 single-method
+      artifact。 IOI 是唯一例外——三方法 genuinely disagree (max Jaccard=0.31)， consensus 有意义。CIRCUS
+      在 IOI 上也失败是因为它只用了一种方法的 threshold sweep， 完全无法利用跨方法信息。
+
+      '
+    tables:
+    - caption: 'Table: CIRCUS vs CSS on all GPT-2 tasks (zero ablation)'
+      rows:
+      - - Method
+        - IOI CPR
+        - SVA CPR
+        - Arith CPR
+        - Tasks positive
+      - - CIRCUS
+        - −0.108
+        - −0.150
+        - −0.120
+        - 0/3
+      - - CSS=1.0
+        - '+0.109'
+        - −0.820
+        - −0.184
+        - 1/3
+      - - Best single
+        - '+0.029'
+        - −0.348
+        - −0.131
+        - 0/3 (all neg)
+    figures_description:
+    - 'Fig: CIRCUS vs CSS bar chart — CIRCUS always negative, CSS positive only on
+      IOI'
+    analysis: 'CIRCUS negative ablation 在 worst 档下从 "CSS clearly better" 变为 "both
+      methods severely limited"。这仍是有效的分析贡献—— 审稿人不会因为你的方法也不好而否定你说竞品不好的论述。 在 analysis
+      paper 中用一段说明： "Neither structural consensus (CSS) nor within-method stability
+      (CIRCUS) consistently identifies faithful circuits, though CSS shows advantage
+      on IOI where methods genuinely disagree."
+
+      '
+  - name: Jaccard-CSS Utility Correlation Analysis
+    plan_id: plan_013
+    description: '汇总所有 model×task 数据点，拟合 Jaccard vs CSS advantage 关系。 Worst 档下仅有 2-3
+      个有效 GPT-2 数据点 + Qwen 全部 degenerate， correlation 不显著且由单个 confounded IOI 数据点驱动。
+
+      '
+    expected_results:
+      status: done
+      conclusion: not_significant_confounded
+      data_points:
+      - task: IOI
+        model: GPT-2
+        max_jaccard: 0.307
+        css_advantage: 0.08
+        confounds: ACDC isinf + zero ablation
+        quality: confounded_positive
+      - task: SVA
+        model: GPT-2
+        max_jaccard: 0.653
+        css_advantage: -0.002
+        confounds: Δ within noise (bootstrap CI includes zero)
+        quality: neutral
+      - task: Arithmetic
+        model: GPT-2
+        max_jaccard: 0.695
+        css_advantage: -0.066
+        confounds: null
+        quality: clear_negative
+      - task: IOI
+        model: Qwen-0.5B
+        max_jaccard: 0.042
+        css_advantage: null
+        confounds: CSS=1.0 empty set — degenerate, cannot compute advantage
+        quality: degenerate
+      - task: Arithmetic
+        model: Qwen-0.5B
+        max_jaccard: 0.038
+        css_advantage: null
+        confounds: CSS=1.0 empty set — degenerate
+        quality: degenerate
+      n_valid_data_points: 3
+      n_degenerate: 2
+      spearman_rho: -0.5
+      spearman_p_value: 0.67
+      pearson_r: -0.58
+      pearson_p_value: 0.61
+      note: n=3 (excluding degenerate Qwen points)
+      confound_analysis: '去除 IOI GPT-2（唯一用 ACDC isinf 且 zero ablation 的数据点）后： n=2,
+        correlation undefined。IOI GPT-2 是 Cook''s D > 5.0 的 extreme influential point，驱动了全部
+        negative correlation。 Qwen 数据点无法参与 regression（CSS advantage undefined when
+        CSS=1.0 empty）。
+
+        '
+      jaccard_utility_spearman_rho: -0.5
+      total_task_model_points: 3
+      low_jaccard_css_pass_fraction: 0.33
+    result_rationale: 'Worst 档下有效数据仅 3 个 GPT-2 点（IOI/SVA/Arithmetic）。 Qwen 的两个点因 CSS=1.0
+      为空集而 degenerate——它们甚至不在 Jaccard-utility scatter plot 的定义域内（y 轴 "CSS advantage"
+      无法计算）。 这 3 个点中 IOI 是唯一正面且同时有两个 confounds (isinf + zero ablation)。 去除 IOI 后，剩余
+      2 个点（SVA neutral, Arithmetic negative） 无法拟合任何趋势。n=3 下 Spearman test 的 power
+      极低—— 即使完美 rank correlation (rho=−1.0)，p 也只有 0.17。 Jaccard-utility 关系在 worst
+      档下是 one-point story： IOI GPT-2 是唯一 CSS positive case，恰好也是最低 Jaccard—— 但这可能是
+      ACDC isinf 的 artifact 而非 causal relationship。 论文不能声称 "Jaccard predicts CSS utility"
+      作为 empirical finding， 只能提出为 "hypothesis suggested by a single data point"。
+
+      '
+    tables:
+    - caption: 'Table: Jaccard-CSS correlation data (worst tier)'
+      rows:
+      - - Task×Model
+        - Max Jaccard
+        - CSS Advantage
+        - Quality
+        - Confounds
+      - - IOI×GPT-2
+        - '0.307'
+        - '+0.080'
+        - confounded
+        - ACDC isinf + zero ablation
+      - - SVA×GPT-2
+        - '0.653'
+        - −0.002
+        - neutral
+        - Δ ≈ noise
+      - - Arith×GPT-2
+        - '0.695'
+        - −0.066
+        - negative
+        - —
+      - - IOI×Qwen
+        - '0.042'
+        - undefined
+        - degenerate
+        - CSS=1.0 empty
+      - - Arith×Qwen
+        - '0.038'
+        - undefined
+        - degenerate
+        - CSS=1.0 empty
+    - caption: 'Table: Correlation robustness analysis'
+      rows:
+      - - Analysis
+        - ρ
+        - p
+        - n
+        - Interpretation
+      - - All valid points
+        - −0.50
+        - '0.67'
+        - '3'
+        - not significant
+      - - Remove IOI (confounded)
+        - undefined
+        - —
+        - '2'
+        - cannot compute
+      - - Include Qwen as Δ=−0.05 proxy
+        - −0.30
+        - '0.62'
+        - '5'
+        - not significant
+    figures_description:
+    - 'Fig: Scatter — 3 valid points + 2 degenerate (marked with ×), IOI 是 extreme
+      outlier with confound annotations'
+    - 'Fig: Same scatter with IOI marked hollow — regression line becomes flat, illustrating
+      one-point-driven correlation'
+    analysis: Jaccard-utility 分析在 worst 档下从 "primary finding" 降级为 "exploratory observation"。
+      3 个有效点 + 2 个 degenerate 点无法支撑任何统计 claim。 Qwen 的 degenerate points 反而提供了不同的 insight：
+      在 extremely low Jaccard (0.04) 时 CSS 不是 "works great" 而是 "completely breaks"
+      (empty consensus set)—— 这否定了 "lower Jaccard → better CSS" 的简单线性关系， 暗示存在一个 U-shaped
+      failure mode： 太高 → methods agree, no consensus value； 太低 → methods completely
+      disagree, no consensus possible。 这是 analysis paper 中最有趣的 reframe： "Consensus
+      requires a Goldilocks zone of inter-method agreement— high enough for non-empty
+      intersection, low enough for information gain." 但 n=5 (3 valid + 2 degenerate)
+      仅能 suggest 而非 prove 这个 framework。
+  review_report: "---\ndream_id: dream_20260513T081242\ntier: worst\noverall_score:\
+    \ Reject (2/6)\ntimestamp: 2026-05-13T09:11:29.697687+00:00\n---\n\n# Dream Review\
+    \ Report — \"Why Cross-Method Circuit Consensus Fails: An Empirical Analysis\"\
+    \n\n**dream_id:** 20260513T081242 | **Review mode:** full | **Date:** 2026-05-13\n\
+    \n---\n\n## Consolidated Review Summary\n\nThis paper introduces Cross-method\
+    \ Structural consensus Scoring (CSS), a binary consensus framework applied to\
+    \ K=3 circuit discovery methods (EAP-IG, EP, ACDC) across 3 tasks on GPT-2 Small\
+    \ and 2 tasks on Qwen-2.5 0.5B. The headline finding is negative: CSS fails in\
+    \ 4/5 configurations, and the sole positive case (IOI on GPT-2) is confounded\
+    \ by ACDC isinf binarization and zero-ablation size bias. The paper identifies\
+    \ three structural failure causes: inter-method correlation, binarization pathologies,\
+    \ and combinatorial dilution at scale.\n\nBoth reviewers independently scored\
+    \ the paper **Weak Reject (3/6)** in initial assessment. After cross-sharing,\
+    \ R1 revised to **Reject (2/6)** while R2 maintained **Weak Reject (3/6)**.\n\n\
+    **Consensus overall score: 2–3/6 (Reject to Weak Reject)**\n\n---\n\n## R1: Methods\
+    \ and Experiments\n\n### Strengths\n- Clean CSS formulation: the scoring framework\
+    \ is simple, well-defined, and easy to reproduce\n- Honest negative reporting:\
+    \ the paper does not oversell; Arithmetic and SVA failures are transparently presented\n\
+    - The ablation method comparison (§4.3) is a useful methodological contribution\
+    \ — showing IOI advantage drops from +0.080 (zero) to +0.003 (resample) is informative\
+    \ for the broader circuit evaluation community\n- Top-k sensitivity sweep demonstrates\
+    \ CSS stability across k, cleanly ruling out binarization threshold as the failure\
+    \ cause\n- CIRCUS comparison (§6) is well-designed and the \"both methods fail\"\
+    \ conclusion is more honest than selectively framing CSS as better\n- Multi-seed\
+    \ bootstrap on SVA (Table 1) is a positive methodological choice, though only\
+    \ applied to one task\n\n### Weaknesses\n- **W1 (No statistical testing on primary\
+    \ claim):** The central claim — CSS=1.0 CPR > best single method CPR — is reported\
+    \ as bare point estimates without bootstrap confidence intervals or permutation\
+    \ tests. On IOI, the advantage is Δ=+0.080 (zero ablation) from a single seed,\
+    \ or Δ=+0.003 (resample) which is indistinguishable from noise. No p-values are\
+    \ provided for any CPR comparison except the SVA bootstrap.\n- **W2 (Unfair size\
+    \ comparison):** CSS=1.0 produces 7 edges (IOI) while single methods use 50–100\
+    \ edges. CPR naturally differs for circuits of different sizes. The paper never\
+    \ tests a size-controlled baseline (e.g., top-7 edges from the best single method).\
+    \ The IOI \"advantage\" may simply reflect that 7 random high-quality edges outperform\
+    \ 100 edges that include noise — this is a sparsification artifact, not a consensus\
+    \ benefit.\n- **W3 (IOI dominance):** The sole positive result comes from one\
+    \ task (IOI) on one model (GPT-2 Small). All claims about \"when consensus works\"\
+    \ rest on this single confounded data point. The paper acknowledges this but still\
+    \ gives it 1.5 pages of discussion.\n- **W4 (Qwen results are degenerate, not\
+    \ informative):** On Qwen-2.5 0.5B, CSS=1.0 is empty (0 edges) on both tasks.\
+    \ These are not \"negative results\" — they are trivial outcomes where the method\
+    \ produces no output. They add scale coverage on paper but zero analytical value\
+    \ beyond confirming that Jaccard≈0 → empty intersection.\n- **W5 (Missing experiments):**\
+    \ Gemma-2 2B and Llama-3.1 8B were not attempted. Qwen Arithmetic appears projected\
+    \ from IOI patterns rather than independently verified. The factual recall experiment\
+    \ was abandoned, leaving only 3 completed GPT-2 conditions. For a paper claiming\
+    \ to analyze \"why consensus fails,\" the empirical base is thin.\n- **W6 (Jaccard\
+    \ correlation on n=3):** Section 7 presents Spearman ρ=-0.50, p=0.67 on 3 valid\
+    \ data points and 2 degenerate points. This is not a finding — it is an observation\
+    \ on insufficient data. Promoting the \"Goldilocks zone\" to the abstract on this\
+    \ basis overstates the evidence.\n\n### Questions for Authors\n- Q1: What is the\
+    \ CPR of the top-7 edges from EAP-IG alone on IOI? If comparable to CSS=1.0's\
+    \ 0.109, the consensus has no value.\n- Q2: Why was multi-seed bootstrap analysis\
+    \ applied to SVA but not IOI or Arithmetic?\n- Q3: The Qwen top-0.3% threshold\
+    \ was chosen to match GPT-2's ratio. Did you try absolute thresholds (e.g., top-100\
+    \ edges on both models)?\n\n### Score: 2/6 (Reject)\n### Confidence: 4/5\n\n---\n\
+    \n## R2: Novelty, Significance, and Related Work\n\n### Strengths\n- The paper's\
+    \ pivot from \"method paper\" to \"analysis paper\" is the right call — negative\
+    \ results honestly reported are more valuable than positive results oversold\n\
+    - ACDC isinf binarization analysis (§4.1) is a genuine methodological contribution:\
+    \ demonstrating that default ACDC thresholding creates extreme sparsity artifacts\
+    \ (14 edges vs 100) that inflate apparent method diversity is useful for anyone\
+    \ working with ACDC\n- Combinatorial dilution (§5.3) is conceptually important:\
+    \ the observation that edge-level Jaccard decays superlinearly with edge space\
+    \ size (0.307→0.042 over 5.5× scaling) is a structural insight relevant to the\
+    \ scalability of all edge-level circuit analysis\n- Writing is generally clear\
+    \ and well-organized; tables are informative; the paper reads efficiently\n\n\
+    ### Weaknesses\n- **W1 (Straw man problem):** Binary majority voting is the simplest\
+    \ possible consensus mechanism. Its failure is predictable from first principles:\
+    \ if three methods each select top-k edges with pairwise Jaccard J, the expected\
+    \ three-way intersection scales roughly as J². With J=0.3, the expected three-way\
+    \ overlap is ~9% of the union — which is approximately what the paper finds (7\
+    \ edges). The paper never engages with why binary voting was worth testing at\
+    \ length, nor does it test any more sophisticated consensus mechanism (score fusion,\
+    \ rank aggregation, weighted voting, node-level consensus). A negative result\
+    \ about an obviously weak approach is less informative than a negative result\
+    \ about a plausible one.\n- **W2 (Narrow experimental scope):** The paper effectively\
+    \ has 3 completed conditions on GPT-2 Small (117M parameters) plus 2 degenerate\
+    \ conditions on Qwen-2.5 0.5B where the method produces empty output. No medium-scale\
+    \ model (350M–2B) bridges the gap between \"works on one task\" and \"fails completely.\"\
+    \ The scaling narrative rests on exactly 2 data points (GPT-2 and Qwen).\n- **W3\
+    \ (Thin related work):** 9 references is unusually sparse for a 2026 mechanistic\
+    \ interpretability paper. Conspicuously absent:\n  - Marks et al. (2024) — Sparse\
+    \ Feature Circuits, directly relevant as an alternative circuit representation\n\
+    \  - Lieberum et al. (2023/2024) — on scaling challenges in circuit analysis\n\
+    \  - Kramár et al. (2024) — AtP*, a refined attribution patching method\n  - Neel\
+    \ Nanda's work on various circuit analyses\n  - Goldowsky-Dill et al. (2023) —\
+    \ localizing model behavior with path patching\n  - Zhang & Nanda (2024) — on\
+    \ circuit discovery methodology comparisons\n  The absence of these references\
+    \ means the paper doesn't adequately position itself against the state-of-the-art\
+    \ or acknowledge that some of its \"discoveries\" (e.g., method correlation, binarization\
+    \ sensitivity) may already be known.\n- **W4 (Goldilocks zone is unfalsifiable):**\
+    \ The Goldilocks zone hypothesis — that consensus works only when Jaccard is in\
+    \ a specific range — is presented with n=3 valid data points, a non-significant\
+    \ Spearman ρ, and one confounded supporting data point. It cannot be tested, falsified,\
+    \ or used prescriptively. Elevating it to the abstract and giving it a full section\
+    \ (§7) is disproportionate to the evidence.\n- **W5 (Negative result about a predictable\
+    \ failure):** The core contribution — \"binary voting doesn't work for circuit\
+    \ consensus\" — is closer to a sanity check than a research finding. The more\
+    \ interesting questions (Does soft consensus work? Does node-level consensus survive\
+    \ scaling? Can you calibrate scores across methods?) are raised in the Discussion\
+    \ but never tested. The paper identifies the right research agenda but stops before\
+    \ the interesting work begins.\n- **W6 (Framing inconsistency):** Table 3 reports\
+    \ IOI with zero ablation but SVA/Arithmetic with mean ablation. Section 4.3 then\
+    \ shows IOI's advantage is ablation-dependent. The reader must reconcile these\
+    \ scattered pieces to realize the paper's sole positive result is fragile — the\
+    \ presentation could be more forthright about this upfront.\n- **W7 (CIRCUS comparison\
+    \ is unfair):** CIRCUS is a within-method approach not designed for cross-method\
+    \ consensus. Comparing it directly to CSS (a cross-method approach) is comparing\
+    \ across different problem formulations. The comparison would be more meaningful\
+    \ if both methods were applied to the same input (e.g., both applied cross-method\
+    \ or both within-method).\n\n### Questions for Authors\n- Q1: Have you considered\
+    \ testing weighted consensus (e.g., using normalized scores from each method rather\
+    \ than binary membership)? This would address the straw-man concern.\n- Q2: The\
+    \ combinatorial dilution analysis extrapolates from 2 data points (GPT-2 and Qwen).\
+    \ Have you tried node-level (attention head) consensus to test whether dilution\
+    \ is specific to edge-level analysis?\n- Q3: Why were no medium-scale models (GPT-2\
+    \ Medium 345M, Pythia 410M) tested to characterize the scaling transition more\
+    \ precisely?\n\n### Minor Issues\n- \"Parekh et al. 2026\" — a 2026 arXiv preprint\
+    \ cited in a 2026 paper suggests possible self-citation or concurrent work; relationship\
+    \ should be clarified\n- Table 3 mixes ablation methods across tasks without immediate\
+    \ flagging in the table caption\n- Section 5.2 Qwen Arithmetic results read as\
+    \ projected rather than experimentally confirmed — the text should be explicit\
+    \ about this\n\n### Score: 3/6 (Weak Reject)\n### Confidence: 4/5\n\n---\n\n##\
+    \ Roundtable Convergence\n\n### Areas of Agreement (both reviewers)\n1. **Straw-man\
+    \ / naive baseline is the central flaw.** Binary majority voting's failure is\
+    \ mathematically predictable. The paper invests significant effort demonstrating\
+    \ the failure of an approach that was unlikely to succeed, without testing more\
+    \ plausible alternatives. Both reviewers agree this substantially limits the contribution.\n\
+    2. **n=3 Jaccard-utility correlation is statistically vacuous.** The Goldilocks\
+    \ zone hypothesis is interesting conceptually but entirely unsupported by the\
+    \ evidence. It should be downgraded from a \"finding\" to a \"speculation\" and\
+    \ removed from the abstract.\n3. **Narrow experimental scope.** Three completed\
+    \ conditions on one 117M model, plus two degenerate (empty-output) conditions\
+    \ on Qwen. No medium-scale bridge model. Scaling narrative rests on 2 data points.\n\
+    4. **No statistical testing on primary claims.** CPR advantages reported as bare\
+    \ point estimates. Multi-seed bootstrap applied to SVA but not the sole positive\
+    \ case (IOI).\n5. **IOI dominates all positive evidence.** One task, one model,\
+    \ two identified confounds. Not a robust foundation for any claim.\n6. **Thin\
+    \ related work.** 9 references for a 2026 mechanistic interpretability paper is\
+    \ inadequate. Key recent work on circuit discovery methodology is missing.\n\n\
+    ### Areas of Genuine Contribution (acknowledged by both)\n1. **ACDC isinf binarization\
+    \ analysis** — demonstrating that default thresholding creates extreme sparsity\
+    \ artifacts (14 vs 100 edges) that inflate apparent diversity. This is useful\
+    \ for practitioners.\n2. **Combinatorial dilution observation** — edge-level Jaccard\
+    \ decays superlinearly with edge space size. This is a structural insight for\
+    \ scalability of circuit analysis.\n3. **Ablation method sensitivity** — showing\
+    \ IOI advantage drops from +0.080 to +0.003 across ablation methods highlights\
+    \ a general confound in circuit evaluation.\n4. **Honest negative reporting**\
+    \ — the paper does not oversell, which is commendable.\n\n### Divergence\n- R1\
+    \ revised to 2/6 after agreeing with R2's straw-man critique, viewing the negative\
+    \ results as uninformative about a foreseeable failure. R2 maintained 3/6, finding\
+    \ the sub-contributions (isinf analysis, combinatorial dilution) carry some independent\
+    \ value even if the headline finding is weak.\n\n---\n\n## Final Consolidated\
+    \ Assessment\n\n### Overall Score: 2/6 (Reject)\n\n### Justification\nThe paper\
+    \ asks a reasonable question — does cross-method binary consensus improve circuit\
+    \ quality? — but answers it with the weakest possible consensus mechanism (binary\
+    \ majority voting), whose failure is predictable from the combinatorics of set\
+    \ intersection. The negative finding is thus less surprising and less informative\
+    \ than it could be. The sole positive case (IOI/GPT-2) rests on a confounded,\
+    \ non-size-controlled, single-seed comparison under a specific ablation method,\
+    \ and the Goldilocks zone hypothesis is statistically unsupported (n=3, p=0.67).\n\
+    \nThe paper does contain genuine nuggets: the ACDC isinf analysis, the ablation\
+    \ sensitivity finding, and the combinatorial dilution concept. However, these\
+    \ are individually small contributions that do not cohere into a paper-level contribution\
+    \ for a top ML venue. The experimental scope (3 tasks on one 117M model + 2 degenerate\
+    \ conditions) is insufficient, the related work is thin, and the paper stops before\
+    \ testing the interesting alternatives it identifies in the Discussion.\n\n###\
+    \ Recommendation\nThe paper is below the acceptance threshold for a top ML venue.\
+    \ To strengthen it:\n1. **Test non-trivial consensus mechanisms** — weighted score\
+    \ fusion, rank aggregation, or node-level consensus. The failure of these would\
+    \ be genuinely informative.\n2. **Add size-controlled baselines** — compare CSS=1.0\
+    \ (7 edges) against top-7 from each single method.\n3. **Apply statistical testing\
+    \ uniformly** — multi-seed bootstrap on all tasks, not just SVA.\n4. **Bridge\
+    \ the scaling gap** — test on GPT-2 Medium or Pythia 410M to characterize the\
+    \ transition point.\n5. **Expand related work** — engage with Marks et al., Kramár\
+    \ et al., and other recent circuit methodology papers.\n6. **Consider reformatting**\
+    \ as a shorter findings/workshop paper focused on the ACDC isinf binarization\
+    \ pathology and combinatorial dilution, which are the strongest standalone contributions.\n\
+    \n### Scores Summary\n| Reviewer | Initial | Post-Discussion | Confidence |\n\
+    |----------|---------|----------------|------------|\n| R1 (Methods + Experiments)\
+    \ | 3/6 | 2/6 | 4/5 |\n| R2 (Novelty + Related Work) | 3/6 | 3/6 | 4/5 |\n| **Consolidated**\
+    \ | — | **2/6** | **4/5** |\n"
+  error: ''
+errors:
+  median:
+    phase2: "Phase 2 (median) failed: while parsing a flow sequence\n  in \"<unicode\
+      \ string>\", line 512, column 18:\n            columns: [Method, Edges, \"CPR\
+      \ ↑\", \"CMD ↓\" ... \n                     ^\nexpected ',' or ']', but got\
+      \ '?'\n  in \"<unicode string>\", line 512, column 64:\n     ... , \"CPR ↑\"\
+      , \"CMD ↓\", Reproducible?]\n                                         ^"
+    write: null
+    review: null
+score_anomaly: ''
+created_at: '2026-05-13T09:11:37+00:00'

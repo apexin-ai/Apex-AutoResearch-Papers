@@ -1,0 +1,34 @@
+{
+  "exp_id": "plan018-additive-random-b01-s45",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:29:08.182Z",
+    "updated_at": "2026-05-17T07:26:04.950Z",
+    "hypothesis": "Random β=0.1 seed=45, 5-seed matched control for ISR β=0.1 comparison",
+    "notes": "PID 628171 被 b02 提交时 GPU 冲突挤掉，进程已死。回退 PREPARING 等 GPU 空出后重排。需加 --no_wandb。",
+    "completed_at": "2026-05-16T04:29:35.108Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "PID 628171 被 b02 提交时 GPU 冲突挤掉，进程已死。回退 PREPARING 等 GPU 空出后重排。需加 --no_wandb。"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 45 --per_device_batch_size 2 --gradient_accumulation_steps 4 --output_dir /root/autodl-tmp/outputs/plan018_random_b01_s45 --no_wandb\"",
+      "server": "westd-39279",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 45,
+      "reward_mode": "additive_random",
+      "beta": 0.1,
+      "num_steps": 500
+    }
+  },
+  "timestamp": "2026-05-17T07:26:05.242395+00:00",
+  "trigger": "update_registry"
+}

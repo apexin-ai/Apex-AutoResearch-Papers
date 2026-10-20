@@ -1,0 +1,32 @@
+{
+  "exp_id": "gated-isr-warmstart-t02-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:50:34.721Z",
+    "updated_at": "2026-05-16T17:35:09.432Z",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/grpo_isr_warmstart_v3.yaml --model_path /root/autodl-tmp/outputs/exec_retrain_v3_s43/checkpoint-200 --seed 43 --output_dir /root/autodl-tmp/outputs/gated_warmstart_v3_s43_r2",
+      "server": "westd-39279",
+      "data_path": "data/proofwriter_fol_100.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-4B (exec_retrain_v3_s43 checkpoint-200)",
+      "seed": 43,
+      "gpu": "cuda:0",
+      "reward_mode": "isr_gated",
+      "isr_threshold": 0.2,
+      "num_steps": 300
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T17:35:07.141Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T17:35:09.432Z"
+  },
+  "timestamp": "2026-05-16T17:35:09.744036+00:00",
+  "trigger": "update_registry"
+}

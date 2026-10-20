@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp1-random-b03-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:30:55.259Z",
+    "updated_at": "2026-05-15T02:36:22.901Z",
+    "spec": {
+      "command": "killed-cleanup",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "113288",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-15T02:31:28.051Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 294.9,
+      "gpu_hours": 0.08
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T02:36:22.901Z"
+  },
+  "timestamp": "2026-05-15T02:36:23.386582+00:00",
+  "trigger": "update_registry"
+}

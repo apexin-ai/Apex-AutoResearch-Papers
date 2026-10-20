@@ -1,0 +1,526 @@
+# research d145 fol datasets — Part 2 of 2
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+[← Part 1](part-001.md) · [Transcript overview](../research-d145-fol-datasets.md) · [Structured JSON](../../../sessions/c5/c5d2a1b48c8721b256d5.json)
+
+## Round 6
+
+### Tool result
+
+_source line 543 · 2026-05-19T13:25:13.231Z_
+
+<details><summary>↩ Tool result · `toolu_01QqCgJfUyZDV6dXgPcTQqfN`</summary>
+
+```text
+I now have comprehensive information. Let me compile the final report.
+
+---
+
+## FOL-Annotated Dataset Survey Results
+
+Below are all datasets found beyond the six already being researched (ProntoQA, LogicNLI, FOLIO, ProofWriter, LogicBench, FLD). Each is assessed for Prover9 compatibility on a 1-5 scale where 5 = directly compatible with Prover9 syntax like `all(x, (penguin(x) -> bird(x)))`.
+
+---
+
+### Tier 1: Directly Prover9-compatible or near-compatible FOL
+
+**1. PROOFFOL**
+- **Size:** 10,424 (premise, conclusion, label, FOL) tuples
+- **Format:** Derived from ProofWriter; NL premises/conclusions + Prover9-format FOL translations. Uses `all x (...)`, `exists y (...)`, `->`, `&`, `|`, `-` (negation).
+- **Example:** `all x (Athlete(x) -> -NeverExercises(x))`
+- **Source:** GPT-4o translations of ProofWriter, verified against Prover9 output.
+- **Availability:** [github.com/RamyaKeerthy/Translation-NL2FOL](https://github.com/RamyaKeerthy/Translation-NL2FOL)
+- **Compatibility: 5/5** -- Natively uses Prover9 syntax. Directly usable.
+
+**2. ProverQA (from ProverGen framework)**
+- **Size:** 6,500 (1,500 eval + 5,000 train) across easy/medium/hard splits
+- **Format:** NL context + NL-to-FOL mappings + conclusion FOL + reasoning chain. Uses predicate logic with all 7 operators (conjunction, disjunction, negation, implication, XOR, universal/existential quantification). Generated and validated via Prover9.
+- **Availability:** [huggingface.co/datasets/opendatalab/ProverQA](https://huggingface.co/datasets/opendatalab/ProverQA)
+- **Compatibility: 4/5** -- Built with Prover9 in the loop, but notation uses Unicode symbols (∧, ∨, →, ∀, ∃) rather than ASCII Prover9 syntax. Mechanical symbol substitution needed.
+
+---
+
+### Tier 2: FOL annotations requiring moderate conversion
+
+**3. text2log**
+- **Size:** 100,000 NL-FOL pairs
+- **Format:** `{clean: "sentence", trans: "FOL"}`. Lambda DCS notation via ccg2lambda. Example: `all x1.(_thing(x1) -> (_new(x1) -> _good(x1)))`
+- **Availability:** [huggingface.co/datasets/alevkov95/text2log](https://huggingface.co/datasets/alevkov95/text2log)
+- **Compatibility: 3/5** -- Uses `all x1.(...)` with `->` which is close to Prover9 but needs: remove dots after quantifiers, remove underscore prefixes on predicates, adjust variable binding syntax.
+
+**4. MALLS**
+- **Size:** 34,000 NL-FOL pairs (27K auto-verified train + 1K human-verified test)
+- **Format:** JSON with NL and FOL fields. Uses standard symbolic notation: `∀x(Tomato(x)→(Red(x)∧Round(x)))`, `∃x(Pineapple(x)∧Fruit(x))`.
+- **Availability:** [github.com/gblackout/LogicLLaMA](https://github.com/gblackout/LogicLLaMA)
+- **Compatibility: 3/5** -- Rich and diverse FOL expressions with quantifiers and nested operators. Needs Unicode-to-ASCII conversion (∀→all, ∃→exists, ∧→&, ∨→|, →→->, ¬→-) and Prover9 formatting.
+
+**5. FOL-nli**
+- **Size:** 102,774 examples (82K train / 10K val / 10K test)
+- **Format:** NL premise + hypothesis + label + TPTP-format FOL for both premise and hypothesis, plus formal proofs. Example: `!\[X\]:(room(X)=>(has_completed_a_triathlon(X)))`.
+- **Availability:** [huggingface.co/datasets/tasksource/FOL-nli](https://huggingface.co/datasets/tasksource/FOL-nli)
+- **Compatibility: 3/5** -- Uses TPTP syntax which is a well-defined standard. Systematic conversion from TPTP to Prover9 is feasible: `!\[X\]:` → `all X`, `?\[X\]:` → `exists X`, `=>` → `->`, etc. Large and well-structured.
+
+**6. FOL-Traces**
+- **Size:** 7.4M train examples, 3.5B tokens (8.8M curated + 7.5M synthetic)
+- **Format:** FOL expressions with simplification traces. Uses SymPy notation: `¬(Sunny(x) ∨ Breezy(x)) → ¬Sunny(x) ∧ ¬Breezy(x)`. Includes complexity metadata.
+- **Availability:** [huggingface.co/datasets/fol-traces/fol-traces](https://huggingface.co/datasets/fol-traces/fol-traces)
+- **Compatibility: 3/5** -- Massive scale, verified FOL traces. Not in Prover9 format (uses SymPy/Unicode) but the expressions are well-formed FOL that can be mechanically converted. Main limitation: the task is expression simplification rather than premise-conclusion deduction.
+
+**7. LogicInference**
+- **Size:** Procedurally generated (configurable; typically tens of thousands)
+- **Format:** NL + semi-formal logic notation. Covers propositional logic + subset of FOL. Includes multi-step inference chains.
+- **Availability:** [github.com/google-research/google-research/tree/master/logic_inference_dataset](https://github.com/google-research/google-research/tree/master/logic_inference_dataset)
+- **Compatibility: 3/5** -- Semi-formal notation needs parsing but the logic is well-structured with explicit inference steps.
+
+---
+
+### Tier 3: Structured logic without direct FOL annotations
+
+**8. LogiCoT**
+- **Size:** ~69K instruction-tuning instances
+- **Format:** Includes `folio2instruction.jsonl` derived from FOLIO. Mixes formal logic tasks (language-to-logic translation, single-step inference, multi-step chains) with multiple-choice reasoning.
+- **Availability:** [huggingface.co/datasets/datatune/LogiCoT](https://huggingface.co/datasets/datatune/LogiCoT)
+- **Compatibility: 2/5** -- The FOLIO-derived portion contains FOL, but most of the dataset is chain-of-thought rationales in NL. Useful as supplementary training data, not as a direct FOL source.
+
+**9. JustLogic**
+- **Size:** 4,900 examples (single train split), procedurally generated (extensible)
+- **Format:** NL premises + argument structure (Modus Ponens, Modus Tollens, Disjunctive Syllogism, etc.) + depth (1-7). Has `arg` field with formal pattern but in propositional, not predicate logic.
+- **Availability:** [huggingface.co/datasets/michaelchenkj/JustLogic](https://huggingface.co/datasets/michaelchenkj/JustLogic)
+- **Compatibility: 2/5** -- Propositional logic patterns only (no quantifiers, no predicates). Well-structured argument forms but would need significant enrichment to become FOL.
+
+**10. SLR-BENCH**
+- **Size:** 19K tasks across 20 difficulty levels
+- **Format:** Inductive logic programming (ILP) tasks with latent ground-truth rules, executable validation programs, and instruction prompts. Curriculum-based difficulty scaling.
+- **Availability:** [github.com/ml-research/ScalableLogicalReasoning](https://github.com/ml-research/ScalableLogicalReasoning)
+- **Compatibility: 2/5** -- Logic programming paradigm (closer to Prolog than Prover9). Contains structured logic rules but in ILP format, not standard FOL notation.
+
+---
+
+### Tier 4: Specific datasets requested (CLUTRR, bAbI, SimpleLogic, AR-LSAT, ReClor)
+
+**11. CLUTRR**
+- **Size:** Configurable synthetic generation (thousands of stories)
+- **Format:** Short kinship stories requiring multi-hop relational reasoning. Rules defined in `rules_store.yaml`. No explicit FOL annotations -- relations are implicit in text.
+- **Availability:** [github.com/facebookresearch/clutrr](https://github.com/facebookresearch/clutrr)
+- **Compatibility: 1/5** -- Kinship relations could theoretically be expressed as FOL (e.g., `all(x, all(y, (parent(x,y) & male(x) -> father(x,y))))`), but the dataset provides no FOL annotations. Would require full manual FOL annotation.
+
+**12. bAbI Tasks**
+- **Size:** 20 tasks x 1,000 train + 1,000 test examples each = 40,000 total
+- **Format:** Synthetic QA stories in simple templated English. Tasks include deduction, induction, spatial reasoning, path finding, etc.
+- **Availability:** [research.facebook.com/downloads/babi](https://research.facebook.com/downloads/babi/)
+- **Compatibility: 1/5** -- No FOL annotations. Simple factual statements that could be converted to ground Datalog-style facts, but the reasoning is implicit. Tasks 15-16 (basic deduction/induction) are closest to FOL but still lack formal annotations.
+
+**13. SimpleLogic**
+- **Size:** Synthetic, configurable generation
+- **Format:** Propositional logic with templated language. Binary True/False labels. Fully synthetic.
+- **Compatibility: 1/5** -- Propositional only (no quantifiers, no predicates, no functions). Templated language eliminates NL variance. Not convertible to interesting Prover9 FOL.
+
+**14. AR-LSAT**
+- **Size:** 2,064 analytical reasoning problems from LSAT 1991-2016
+- **Format:** Constraint satisfaction problems (ordering/grouping/allocation games) with 5 multiple-choice options. Rules expressed in NL constraints.
+- **Availability:** [huggingface.co/datasets/saumyamalik/lsat_logic_games-analytical_reasoning](https://huggingface.co/datasets/saumyamalik/lsat_logic_games-analytical_reasoning)
+- **Compatibility: 1/5** -- Constraint problems, not deductive FOL. Rules are NL constraints like "A must be placed before B" which are closer to constraint programming than theorem proving. No FOL annotations.
+
+**15. ReClor**
+- **Size:** 6,138 problems (4,638 train / 500 val / 1,000 test)
+- **Format:** Multiple-choice reading comprehension from GMAT/LSAT. Context passage + question + 4 answer options. Tests logical reasoning about arguments.
+- **Availability:** [whyu.me/reclor](https://whyu.me/reclor/)
+- **Compatibility: 1/5** -- NL-only. Tests informal logical reasoning (identifying assumptions, strengthening/weakening arguments). No FOL annotations. The logic is argumentative rather than formal deductive.
+
+---
+
+### Tier 5: Additional notable finds
+
+**16. LogicGraph**
+- **Size:** Not yet released (paper Feb 2025, code forthcoming)
+- **Format:** Multi-path logical reasoning with solver-verified problems. Backward logic generation + semantic instantiation. Each instance has exhaustive set of minimal proofs.
+- **Compatibility: 3/5 (estimated)** -- Solver-verified, so likely well-formed FOL. Not yet available for download.
+
+**17. FCoReBench/PuzzleBench**
+- **Size:** 40 problem types (with configurable instance generation)
+- **Format:** First-order combinatorial reasoning (sudoku, graph coloring, knapsack, cryptarithmetic). Scripts for generation + verification.
+- **Availability:** arxiv 2402.02611
+- **Compatibility: 1/5** -- NP-hard combinatorial problems, not deductive FOL reasoning. Different paradigm from Prover9-style theorem proving.
+
+**18. LogiQA 2.0**
+- **Size:** 15,708 QA instances + 39,414 NLI pairs
+- **Format:** Multiple-choice QA from Chinese civil service exams. NL only, no FOL.
+- **Compatibility: 1/5** -- No formal logic annotations despite the name.
+
+---
+
+### Summary: Top recommendations for Prover9-compatible FOL datasets
+
+| Rank | Dataset | Size | Prover9 Compat. | Conversion Effort |
+|------|---------|------|-----------------|-------------------|
+| 1 | **PROOFFOL** | 10,424 | **5/5** | None -- native Prover9 |
+| 2 | **ProverQA** | 6,500 | 4/5 | Symbol substitution only |
+| 3 | **FOL-nli** | 102,774 | 3/5 | TPTP-to-Prover9 (systematic) |
+| 4 | **text2log** | 100,000 | 3/5 | Lambda DCS cleanup |
+| 5 | **MALLS** | 34,000 | 3/5 | Unicode-to-ASCII |
+| 6 | **FOL-Traces** | 7.4M | 3/5 | SymPy-to-Prover9 (but task is simplification, not deduction) |
+| 7 | **LogicInference** | configurable | 3/5 | Semi-formal to Prover9 |
+
+PROOFFOL is the clear winner: it uses native Prover9 syntax, has premises+conclusions+labels, and is derived from ProofWriter (a well-understood benchmark). FOL-nli is the largest with explicit formal logic in TPTP format. MALLS and text2log offer large-scale NL-to-FOL pairs but require format conversion.
+
+agentId: ab186ee2b07de5e27 (use SendMessage with to: 'ab186ee2b07de5e27' to continue this agent)
+&lt;usage>total_tokens: 56668
+tool_uses: 47
+duration_ms: 550164&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "91820fa6-7a1f-4a02-8bc0-aaa4f114a9f1",
+  "uuid": "006ae3c6-580a-42c4-876e-883c5e8ff175",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Search broadly for datasets with first-order logic (FOL) annotations on HuggingFace Hub and Papers with Code. Do the following:\n\n1. Search HuggingFace Hub for datasets with keywords: \"first-order logic\", \"FOL\", \"formal logic reasoning\", \"logical reasoning FOL\"\n2. Search Papers with Code for \"first-order logic reasoning dataset\"\n3. Search the web for \"first order logic annotated dataset NLP\" and \"FOL reasoning benchmark\"\n4. For any promising datasets found (beyond ProntoQA, LogicNLI, FOLIO, ProofWriter, LogicBench, FLD which are being researched separately), check:\n   - Does it have FOL premises and conclusions?\n   - What format are they in?\n   - How large is the dataset?\n5. Also check these specific datasets if you find them:\n   - CLUTRR\n   - bAbI tasks\n   - SimpleLogic\n   - AR-LSAT\n   - ReClor\n\nReport: a list of all datasets found with FOL annotations or near-FOL structured logic, with size, format, and compatibility assessment (1-5 scale where 5 = directly compatible with Prover9 FOL format like: all(x, (penguin(x) -> bird(x))).",
+    "agentId": "ab186ee2b07de5e27",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information. Let me compile the final report.\n\n---\n\n## FOL-Annotated Dataset Survey Results\n\nBelow are all datasets found beyond the six already being researched (ProntoQA, LogicNLI, FOLIO, ProofWriter, LogicBench, FLD). Each is assessed for Prover9 compatibility on a 1-5 scale where 5 = directly compatible with Prover9 syntax like `all(x, (penguin(x) -> bird(x)))`.\n\n---\n\n### Tier 1: Directly Prover9-compatible or near-compatible FOL\n\n**1. PROOFFOL**\n- **Size:** 10,424 (premise, conclusion, label, FOL) tuples\n- **Format:** Derived from ProofWriter; NL premises/conclusions + Prover9-format FOL translations. Uses `all x (...)`, `exists y (...)`, `->`, `&`, `|`, `-` (negation).\n- **Example:** `all x (Athlete(x) -> -NeverExercises(x))`\n- **Source:** GPT-4o translations of ProofWriter, verified against Prover9 output.\n- **Availability:** [github.com/RamyaKeerthy/Translation-NL2FOL](https://github.com/RamyaKeerthy/Translation-NL2FOL)\n- **Compatibility: 5/5** -- Natively uses Prover9 syntax. Directly usable.\n\n**2. ProverQA (from ProverGen framework)**\n- **Size:** 6,500 (1,500 eval + 5,000 train) across easy/medium/hard splits\n- **Format:** NL context + NL-to-FOL mappings + conclusion FOL + reasoning chain. Uses predicate logic with all 7 operators (conjunction, disjunction, negation, implication, XOR, universal/existential quantification). Generated and validated via Prover9.\n- **Availability:** [huggingface.co/datasets/opendatalab/ProverQA](https://huggingface.co/datasets/opendatalab/ProverQA)\n- **Compatibility: 4/5** -- Built with Prover9 in the loop, but notation uses Unicode symbols (∧, ∨, →, ∀, ∃) rather than ASCII Prover9 syntax. Mechanical symbol substitution needed.\n\n---\n\n### Tier 2: FOL annotations requiring moderate conversion\n\n**3. text2log**\n- **Size:** 100,000 NL-FOL pairs\n- **Format:** `{clean: \"sentence\", trans: \"FOL\"}`. Lambda DCS notation via ccg2lambda. Example: `all x1.(_thing(x1) -> (_new(x1) -> _good(x1)))`\n- **Availability:** [huggingface.co/datasets/alevkov95/text2log](https://huggingface.co/datasets/alevkov95/text2log)\n- **Compatibility: 3/5** -- Uses `all x1.(...)` with `->` which is close to Prover9 but needs: remove dots after quantifiers, remove underscore prefixes on predicates, adjust variable binding syntax.\n\n**4. MALLS**\n- **Size:** 34,000 NL-FOL pairs (27K auto-verified train + 1K human-verified test)\n- **Format:** JSON with NL and FOL fields. Uses standard symbolic notation: `∀x(Tomato(x)→(Red(x)∧Round(x)))`, `∃x(Pineapple(x)∧Fruit(x))`.\n- **Availability:** [github.com/gblackout/LogicLLaMA](https://github.com/gblackout/LogicLLaMA)\n- **Compatibility: 3/5** -- Rich and diverse FOL expressions with quantifiers and nested operators. Needs Unicode-to-ASCII conversion (∀→all, ∃→exists, ∧→&, ∨→|, →→->, ¬→-) and Prover9 formatting.\n\n**5. FOL-nli**\n- **Size:** 102,774 examples (82K train / 10K val / 10K test)\n- **Format:** NL premise + hypothesis + label + TPTP-format FOL for both premise and hypothesis, plus formal proofs. Example: `!\\[X\\]:(room(X)=>(has_completed_a_triathlon(X)))`.\n- **Availability:** [huggingface.co/datasets/tasksource/FOL-nli](https://huggingface.co/datasets/tasksource/FOL-nli)\n- **Compatibility: 3/5** -- Uses TPTP syntax which is a well-defined standard. Systematic conversion from TPTP to Prover9 is feasible: `!\\[X\\]:` → `all X`, `?\\[X\\]:` → `exists X`, `=>` → `->`, etc. Large and well-structured.\n\n**6. FOL-Traces**\n- **Size:** 7.4M train examples, 3.5B tokens (8.8M curated + 7.5M synthetic)\n- **Format:** FOL expressions with simplification traces. Uses SymPy notation: `¬(Sunny(x) ∨ Breezy(x)) → ¬Sunny(x) ∧ ¬Breezy(x)`. Includes complexity metadata.\n- **Availability:** [huggingface.co/datasets/fol-traces/fol-traces](https://huggingface.co/datasets/fol-traces/fol-traces)\n- **Compatibility: 3/5** -- Massive scale, verified FOL traces. Not in Prover9 format (uses SymPy/Unicode) but the expressions are well-formed FOL that can be mechanically converted. Main limitation: the task is expression simplification rather than premise-conclusion deduction.\n\n**7. LogicInference**\n- **Size:** Procedurally generated (configurable; typically tens of thousands)\n- **Format:** NL + semi-formal logic notation. Covers propositional logic + subset of FOL. Includes multi-step inference chains.\n- **Availability:** [github.com/google-research/google-research/tree/master/logic_inference_dataset](https://github.com/google-research/google-research/tree/master/logic_inference_dataset)\n- **Compatibility: 3/5** -- Semi-formal notation needs parsing but the logic is well-structured with explicit inference steps.\n\n---\n\n### Tier 3: Structured logic without direct FOL annotations\n\n**8. LogiCoT**\n- **Size:** ~69K instruction-tuning instances\n- **Format:** Includes `folio2instruction.jsonl` derived from FOLIO. Mixes formal logic tasks (language-to-logic translation, single-step inference, multi-step chains) with multiple-choice reasoning.\n- **Availability:** [huggingface.co/datasets/datatune/LogiCoT](https://huggingface.co/datasets/datatune/LogiCoT)\n- **Compatibility: 2/5** -- The FOLIO-derived portion contains FOL, but most of the dataset is chain-of-thought rationales in NL. Useful as supplementary training data, not as a direct FOL source.\n\n**9. JustLogic**\n- **Size:** 4,900 examples (single train split), procedurally generated (extensible)\n- **Format:** NL premises + argument structure (Modus Ponens, Modus Tollens, Disjunctive Syllogism, etc.) + depth (1-7). Has `arg` field with formal pattern but in propositional, not predicate logic.\n- **Availability:** [huggingface.co/datasets/michaelchenkj/JustLogic](https://huggingface.co/datasets/michaelchenkj/JustLogic)\n- **Compatibility: 2/5** -- Propositional logic patterns only (no quantifiers, no predicates). Well-structured argument forms but would need significant enrichment to become FOL.\n\n**10. SLR-BENCH**\n- **Size:** 19K tasks across 20 difficulty levels\n- **Format:** Inductive logic programming (ILP) tasks with latent ground-truth rules, executable validation programs, and instruction prompts. Curriculum-based difficulty scaling.\n- **Availability:** [github.com/ml-research/ScalableLogicalReasoning](https://github.com/ml-research/ScalableLogicalReasoning)\n- **Compatibility: 2/5** -- Logic programming paradigm (closer to Prolog than Prover9). Contains structured logic rules but in ILP format, not standard FOL notation.\n\n---\n\n### Tier 4: Specific datasets requested (CLUTRR, bAbI, SimpleLogic, AR-LSAT, ReClor)\n\n**11. CLUTRR**\n- **Size:** Configurable synthetic generation (thousands of stories)\n- **Format:** Short kinship stories requiring multi-hop relational reasoning. Rules defined in `rules_store.yaml`. No explicit FOL annotations -- relations are implicit in text.\n- **Availability:** [github.com/facebookresearch/clutrr](https://github.com/facebookresearch/clutrr)\n- **Compatibility: 1/5** -- Kinship relations could theoretically be expressed as FOL (e.g., `all(x, all(y, (parent(x,y) & male(x) -> father(x,y))))`), but the dataset provides no FOL annotations. Would require full manual FOL annotation.\n\n**12. bAbI Tasks**\n- **Size:** 20 tasks x 1,000 train + 1,000 test examples each = 40,000 total\n- **Format:** Synthetic QA stories in simple templated English. Tasks include deduction, induction, spatial reasoning, path finding, etc.\n- **Availability:** [research.facebook.com/downloads/babi](https://research.facebook.com/downloads/babi/)\n- **Compatibility: 1/5** -- No FOL annotations. Simple factual statements that could be converted to ground Datalog-style facts, but the reasoning is implicit. Tasks 15-16 (basic deduction/induction) are closest to FOL but still lack formal annotations.\n\n**13. SimpleLogic**\n- **Size:** Synthetic, configurable generation\n- **Format:** Propositional logic with templated language. Binary True/False labels. Fully synthetic.\n- **Compatibility: 1/5** -- Propositional only (no quantifiers, no predicates, no functions). Templated language eliminates NL variance. Not convertible to interesting Prover9 FOL.\n\n**14. AR-LSAT**\n- **Size:** 2,064 analytical reasoning problems from LSAT 1991-2016\n- **Format:** Constraint satisfaction problems (ordering/grouping/allocation games) with 5 multiple-choice options. Rules expressed in NL constraints.\n- **Availability:** [huggingface.co/datasets/saumyamalik/lsat_logic_games-analytical_reasoning](https://huggingface.co/datasets/saumyamalik/lsat_logic_games-analytical_reasoning)\n- **Compatibility: 1/5** -- Constraint problems, not deductive FOL. Rules are NL constraints like \"A must be placed before B\" which are closer to constraint programming than theorem proving. No FOL annotations.\n\n**15. ReClor**\n- **Size:** 6,138 problems (4,638 train / 500 val / 1,000 test)\n- **Format:** Multiple-choice reading comprehension from GMAT/LSAT. Context passage + question + 4 answer options. Tests logical reasoning about arguments.\n- **Availability:** [whyu.me/reclor](https://whyu.me/reclor/)\n- **Compatibility: 1/5** -- NL-only. Tests informal logical reasoning (identifying assumptions, strengthening/weakening arguments). No FOL annotations. The logic is argumentative rather than formal deductive.\n\n---\n\n### Tier 5: Additional notable finds\n\n**16. LogicGraph**\n- **Size:** Not yet released (paper Feb 2025, code forthcoming)\n- **Format:** Multi-path logical reasoning with solver-verified problems. Backward logic generation + semantic instantiation. Each instance has exhaustive set of minimal proofs.\n- **Compatibility: 3/5 (estimated)** -- Solver-verified, so likely well-formed FOL. Not yet available for download.\n\n**17. FCoReBench/PuzzleBench**\n- **Size:** 40 problem types (with configurable instance generation)\n- **Format:** First-order combinatorial reasoning (sudoku, graph coloring, knapsack, cryptarithmetic). Scripts for generation + verification.\n- **Availability:** arxiv 2402.02611\n- **Compatibility: 1/5** -- NP-hard combinatorial problems, not deductive FOL reasoning. Different paradigm from Prover9-style theorem proving.\n\n**18. LogiQA 2.0**\n- **Size:** 15,708 QA instances + 39,414 NLI pairs\n- **Format:** Multiple-choice QA from Chinese civil service exams. NL only, no FOL.\n- **Compatibility: 1/5** -- No formal logic annotations despite the name.\n\n---\n\n### Summary: Top recommendations for Prover9-compatible FOL datasets\n\n| Rank | Dataset | Size | Prover9 Compat. | Conversion Effort |\n|------|---------|------|-----------------|-------------------|\n| 1 | **PROOFFOL** | 10,424 | **5/5** | None -- native Prover9 |\n| 2 | **ProverQA** | 6,500 | 4/5 | Symbol substitution only |\n| 3 | **FOL-nli** | 102,774 | 3/5 | TPTP-to-Prover9 (systematic) |\n| 4 | **text2log** | 100,000 | 3/5 | Lambda DCS cleanup |\n| 5 | **MALLS** | 34,000 | 3/5 | Unicode-to-ASCII |\n| 6 | **FOL-Traces** | 7.4M | 3/5 | SymPy-to-Prover9 (but task is simplification, not deduction) |\n| 7 | **LogicInference** | configurable | 3/5 | Semi-formal to Prover9 |\n\nPROOFFOL is the clear winner: it uses native Prover9 syntax, has premises+conclusions+labels, and is derived from ProofWriter (a well-understood benchmark). FOL-nli is the largest with explicit formal logic in TPTP format. MALLS and text2log offer large-scale NL-to-FOL pairs but require format conversion."
+      }
+    ],
+    "totalDurationMs": 550164,
+    "totalTokens": 56668,
+    "totalToolUseCount": 47,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 52106,
+      "output_tokens": 3636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 925
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3636,
+          "cache_read_input_tokens": 52106,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 925,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 47
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 544_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All six agents have returned. Let me compile the results into a concise report.
+
+Key findings:
+1. **FOLIO** (original) - 1,200 examples, FOL 5/5, already known
+2. **ProofFOL** - 10,424 examples, native Prover9 syntax, 5/5 - this is the big find
+3. **ProntoQA** (renma version) - 500 examples, custom DSL but trivially convertible, 4/5
+4. **FLD** (v2/FLDx2) - 40K/110K examples, custom notation but has FOL, 4/5
+
+
+5. **ProverQA** - 6,500 examples, built with Prover9, 4/5
+6. **FOL-nli** - 102K examples, TPTP format, 3/5
+7. **LogicNLI** - 20K examples, NL only, 2/5
+8. **LogicBench** - 2K examples, NL only, 1/5
+
+Now I'm ready to write up the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91820fa6-7a1f-4a02-8bc0-aaa4f114a9f1",
+  "uuid": "b07ad456-9d82-4a04-a26c-ef4c4bd0c092",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEJgW82WNCQQHVaWTeXNVY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13842,
+      "cache_read_input_tokens": 26762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13842
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 545_
+
+调研完成。以下是汇总报告。
+
+---
+
+## 自带 FOL 标注的逻辑推理数据集调研
+
+### 必查候选
+
+| 数据集 | 大小 | FOL 标注 | 兼容性 | 备注 |
+|--------|------|----------|--------|------|
+| **FOLIO** (tasksource/folio) | 1,203 | `premises-FOL` + `conclusion-FOL` | **5/5** | 已在用，人工标注，质量最高 |
+| **ProofFOL** | 10,424 | `Premise_FOL` + `Conclusion_FOL`，**原生 Prover9 语法** | **5/5** | GPT-4o 翻译 ProofWriter depth-5 + Prover9 验证，~70% 保留率。最佳新发现 |
+| **ProntoQA** (renma/ProntoQA) | 500 | `raw_logic_programs` 自定义 DSL | **4/5** | 仅一元谓词，转 Prover9 ~20 行 regex。逻辑片段太窄 |
+| **FLD v2 / FLDx2** | 40K / 110K | `hypothesis_formula` + `context_formula` + `proofs_formula` | **4/5** | 匿名谓词 `{A}x`，需 regex 重写为 Prover9 语法。规模最大 |
+| **ProverQA** | 6,500 | NL-to-FOL 映射 + 结论 FOL，Prover9 生成验证 | **4/5** | Unicode 符号 (∀∃→∧∨) 替换为 ASCII 即可 |
+| **LogicNLI** | 20,000 | 无，纯 NL 模板 | **2/5** | 模板规律可 regex 解析 ~95%，但工程量 2-3 天 |
+| **LogicBench** | ~2,000 | 无 | **1/5** | 纯 NL，需完整语义解析 |
+| **FLD** 见上 | — | — | — | — |
+| **RuleTaker/ProofWriter** 原版 | ~59K | 无原生 FOL，但生成器有双向映射 | 见 ProofFOL | 用 ProofFOL 即可 |
+
+### 额外发现
+
+| 数据集 | 大小 | FOL 标注 | 兼容性 | 备注 |
+|--------|------|----------|--------|------|
+| **FOL-nli** | 102,774 | TPTP 格式 FOL (premise + hypothesis) | **3/5** | TPTP→Prover9 系统转换，规模大 |
+| **MALLS** | 34,000 | 标准 FOL (Unicode) | **3/5** | `∀x(P(x)→Q(x))` 需 Unicode→ASCII |
+| **text2log** | 100,000 | Lambda DCS via ccg2lambda | **3/5** | 需清理前缀下划线和量词语法 |
+
+### 推荐
+
+**首选：ProofFOL**（兼容性 5/5）
+- 10K+ 条，原生 Prover9 语法，零转换成本
+- 基于 ProofWriter（与我们 pipeline 同源），有 premise/conclusion/label 结构
+- 来源：`github.com/RamyaKeerthy/Translation-NL2FOL`
+
+**次选：FLD v2/FLDx2**（兼容性 4/5）
+- 规模最大（40K-110K），含完整证明链的 FOL
+- 谓词匿名化 (`{A}`, `{B}`)，需 ~50 行转换脚本
+- 逻辑复杂度可控（depth 0-3, steps 1-8）
+
+**备选：FOL-nli**（兼容性 3/5）
+- 10 万条 TPTP 格式，覆盖面广
+- TPTP 到 Prover9 有成熟工具链
+
+**结论**：ProofFOL 是跨数据集验证的最优候选——与 FOLIO 互补（ProofWriter 域 vs WikiLogic 域），Prover9 直接兼容，无需任何格式转换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91820fa6-7a1f-4a02-8bc0-aaa4f114a9f1",
+  "uuid": "ffe99f80-2de0-4d55-8b46-1ac074e005e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEJgW82WNCQQHVaWTeXNVY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13842,
+      "cache_read_input_tokens": 26762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13842
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Task result
+
+_source line 546_
+
+调研完成。以下是汇总报告。
+
+---
+
+## 自带 FOL 标注的逻辑推理数据集调研
+
+### 必查候选
+
+| 数据集 | 大小 | FOL 标注 | 兼容性 | 备注 |
+|--------|------|----------|--------|------|
+| **FOLIO** (tasksource/folio) | 1,203 | `premises-FOL` + `conclusion-FOL` | **5/5** | 已在用，人工标注，质量最高 |
+| **ProofFOL** | 10,424 | `Premise_FOL` + `Conclusion_FOL`，**原生 Prover9 语法** | **5/5** | GPT-4o 翻译 ProofWriter depth-5 + Prover9 验证，~70% 保留率。最佳新发现 |
+| **ProntoQA** (renma/ProntoQA) | 500 | `raw_logic_programs` 自定义 DSL | **4/5** | 仅一元谓词，转 Prover9 ~20 行 regex。逻辑片段太窄 |
+| **FLD v2 / FLDx2** | 40K / 110K | `hypothesis_formula` + `context_formula` + `proofs_formula` | **4/5** | 匿名谓词 `{A}x`，需 regex 重写为 Prover9 语法。规模最大 |
+| **ProverQA** | 6,500 | NL-to-FOL 映射 + 结论 FOL，Prover9 生成验证 | **4/5** | Unicode 符号 (∀∃→∧∨) 替换为 ASCII 即可 |
+| **LogicNLI** | 20,000 | 无，纯 NL 模板 | **2/5** | 模板规律可 regex 解析 ~95%，但工程量 2-3 天 |
+| **LogicBench** | ~2,000 | 无 | **1/5** | 纯 NL，需完整语义解析 |
+| **FLD** 见上 | — | — | — | — |
+| **RuleTaker/ProofWriter** 原版 | ~59K | 无原生 FOL，但生成器有双向映射 | 见 ProofFOL | 用 ProofFOL 即可 |
+
+### 额外发现
+
+| 数据集 | 大小 | FOL 标注 | 兼容性 | 备注 |
+|--------|------|----------|--------|------|
+| **FOL-nli** | 102,774 | TPTP 格式 FOL (premise + hypothesis) | **3/5** | TPTP→Prover9 系统转换，规模大 |
+| **MALLS** | 34,000 | 标准 FOL (Unicode) | **3/5** | `∀x(P(x)→Q(x))` 需 Unicode→ASCII |
+| **text2log** | 100,000 | Lambda DCS via ccg2lambda | **3/5** | 需清理前缀下划线和量词语法 |
+
+### 推荐
+
+**首选：ProofFOL**（兼容性 5/5）
+- 10K+ 条，原生 Prover9 语法，零转换成本
+- 基于 ProofWriter（与我们 pipeline 同源），有 premise/conclusion/label 结构
+- 来源：`github.com/RamyaKeerthy/Translation-NL2FOL`
+
+**次选：FLD v2/FLDx2**（兼容性 4/5）
+- 规模最大（40K-110K），含完整证明链的 FOL
+- 谓词匿名化 (`{A}`, `{B}`)，需 ~50 行转换脚本
+- 逻辑复杂度可控（depth 0-3, steps 1-8）
+
+**备选：FOL-nli**（兼容性 3/5）
+- 10 万条 TPTP 格式，覆盖面广
+- TPTP 到 Prover9 有成熟工具链
+
+**结论**：ProofFOL 是跨数据集验证的最优候选——与 FOLIO 互补（ProofWriter 域 vs WikiLogic 域），Prover9 直接兼容，无需任何格式转换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 612682,
+  "duration_api_ms": 1605272,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "91820fa6-7a1f-4a02-8bc0-aaa4f114a9f1",
+  "total_cost_usd": 6.779921000000002,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 28763,
+    "cache_read_input_tokens": 38603,
+    "output_tokens": 3540,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28763,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1508,
+        "cache_read_input_tokens": 26762,
+        "cache_creation_input_tokens": 13842,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 13842
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1733990,
+      "outputTokens": 51498,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 71,
+      "costUSD": 2.70148,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 5589,
+      "outputTokens": 36938,
+      "cacheReadInputTokens": 3503242,
+      "cacheCreationInputTokens": 220068,
+      "webSearchRequests": 0,
+      "costUSD": 4.078441,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d37d3e5a-39a4-4582-9db1-72c30d5767d4"
+}
+```
+
+</details>
+
+---

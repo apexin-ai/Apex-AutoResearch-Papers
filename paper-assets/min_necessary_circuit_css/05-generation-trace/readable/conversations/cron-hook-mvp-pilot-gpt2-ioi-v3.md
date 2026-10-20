@@ -1,0 +1,1599 @@
+# cron hook mvp pilot gpt2 ioi v3
+
+**Transformer Model EAP-IG** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/cron_hook_mvp_pilot_gpt2_ioi_v3.jsonl`
+- **Structured JSON:** [`542eb053e87da78a66da.json`](../../sessions/54/542eb053e87da78a66da.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+52 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T01:16:28.230327+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: mvp_pilot_gpt2_ioi_v3
+- project: structfuse-context
+- server: cqa1-21977
+- log_path: /root/structfuse-context/mvp_output.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-13T01:16:41.100887+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-13T01:16:41.101385+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T01:16:45.618553+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "structfuse-context",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-13T01:16:45.619019+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T01:16:46.121226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp_pilot_gpt2_ioi_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:35:55.509Z\", \"updated_at\": \"2026-05-13T01:16:27.300Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=5 python3 run_mvp.py\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5 (RTX 4090D)\", \"pid\": \"279210\", \"log_path\": \"~/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log\", \"submitted_at\": \"2026-05-12T17:36:44.722Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"auto-circuit IOI dataset (built-in)\", \"data_count\": 100, \"model_name\": \"GPT-2 Small\", \"seed\": 42, \"methods\": \"EAP-IG + Edge Pruning (mask_gradient) + ACDC\", \"task\": \"IOI\", \"K\": 3, \"note\": \"v3: cache cleared + edge norm fix v2. HF_HUB_OFFLINE=1 for offline mode. tmux session: mvp_pilot_gpt2_ioi_v3. Phase A (EAP-IG) completed 32491 edges. Phase B (EP) in progress ~24 it/s.\", \"wall_clock_seconds\": 27582.6, \"gpu_hours\": 7.66}, \"hypothesis\": \"CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\", \"notes\": \"D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results.\", \"reproduce\": {\"finished_at\": \"2026-05-13T01:16:26.730Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T01:16:27.300Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T01:16:28.079543+00:00\"}]}}, \"mvp_pilot_gpt2_ioi_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:32:23.165Z\", \"up
+…[truncated 2320 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T01:16:46.121658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T01:16:46.121918+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "structfuse-context",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T01:16:46.573796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-13T01:16:27Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 3 个实验 — DEPLOYED 1, DONE 2\\n**DONE 分布**: failed 2\\n\\n### GPU 占用\\n- **分配**: 1 张 — cqa1-21977:cuda:5\\n- **空闲（分配了没跑）**: cqa1-21977:cuda:5\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `mvp_pilot_gpt2_ioi_v3` [failed] — 2026-05-13T01:16:27 — EXIT_CODE=1 (generic error — check log tail)\\n- `mvp_pilot_gpt2_ioi_v2` [failed] — 2026-05-12T17:37:34\\n\\n### 🔴 最近失败原因 (top 3)\\n- `mvp_pilot_gpt2_ioi_v3`: EXIT_CODE=1 (generic error — check log tail)\\n- `mvp_pilot_gpt2_ioi_v2`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_pilot_gpt2_ioi_v3** (failed): CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\\n- **mvp_pilot_gpt2_ioi_v2** (failed): CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\\n\\n## 趋势\\n成功 0 / 负向 0 / 失败 2 / 共 2\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-21977: 无 GPU 信息\\n\\n## 告警\\n- mvp_pilot_gpt2_ioi_v2: 训练失败 — unknown\\n- mvp_pilot_gpt2_ioi_v3: 训练失败 — unknown\\n\", \"total_chars\": 1206, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T01:16:46.574231+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T01:16:46.775380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md\", \"content\": \"# structfuse-context — Research Dashboard\\n\\n> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\\n\\n## 核心方向\\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\\n\\n## 当前进展\\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\\n\\n## 方法配置\\n| 模型 | K | 方法 | 算法族 |\\n|------|---|------|--------|\\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\n\\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\\n\\n## MVP Gate 规则（D001-D003）\\n| off-diagonal % | 决策 |\\n|---|---|\\n| ≥10% | → Main track |\\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\\n| 2-5% | → Findings 确认 |\\n| <2% (两组) + ΔF 无差异 | → Kill |\\n\\n## 阶段规划\\n\\n### Phase 1: MVP pilot（当前）\\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\\n\\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\\n- 全 4 模型 × 4 任务 CSS 计算\\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\\n\\n### Phase 3: OOD editing（~4天）\\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\\n\\n## 近期任务\\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\\n- [ ] MVP 结果判定 → track 决策\\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\\n\\n## GPU 预算\\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\\n\\n## 关键决策日志\\n\\n|
+…[truncated 985 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T01:16:46.775862+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T01:16:46.826353+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_code_v3-check-now_20260513T011141\", \"task\": \"code:v3-check-now\"}]}, \"summary\": \"分配 1 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T01:16:57.012809+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T01:16:57.163913+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/.claude/sessions/agent_7e74ce9e.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T01:16:57.164233+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T01:16:57.214804+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/.claude/sessions/agent_7e74ce9e.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T01:17:00.679305+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T01:17:00.880384+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T01:17:00.880744+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T01:17:00.931157+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T01:17:05.347652+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T01:17:05.799820+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T01:17:05.851887+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.md",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.md",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T01:17:06.002995+00:00_
+
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-experiment-review.skill.md
+/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md
+/home/ubuntu/agent-ml-research/skills/global/ai-time-discipline.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-research-steering.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md
+/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md
+/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md
+/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md
+/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md
+/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md
+/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md
+/home/ubuntu/agent-ml-research/skills/global/framing-reaudit.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md
+/home/ubuntu/age
+…[truncated 4100 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T01:17:10.169325+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T01:17:10.221093+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T01:17:24.070685+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "structfuse-context",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T01:17:24.974527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/memory.md\", \"content\": \"# StructFuse Memory\\n\\n## ✅ Novelty 确认：CSS cross-algorithm-family consensus 无人做过（2026-05-12 文献扫描确认）\\nCIRCUS (arXiv 2603.00523, 2026.03) 做 per-edge stability scoring + consensus extraction，数学框架与 CSS 相似。\\n- **关键区别**：CIRCUS 变化**单方法内的剪枝阈值**（intra-method variation），我们做**跨算法族**（cross-method: gradient vs mask vs causal）\\n- **Mondorf et al. (BlackboxNLP 2025)** 组合了 EAP+EP 输出（union/intersection），但用连续分数平均，workshop 短文\\n- **Certified Circuits (2602.22968)** — 数据扰动稳定性认证，单方法 + data axis，非 method axis\\n- **Nikankin et al. (2510.25786)** — 单方法 bootstrapping\\n- **2026-05-12 全面扫描结论**：**CSS 的 cross-algorithm-family consensus 在当前文献中无人做过，novelty 成立。** CIRCUS 无 v2/follow-up。\\n- **How to apply**：论文必须在 Related Work 和 Intro 正面讨论 CIRCUS，framing 不是\\\"第一个做 circuit consensus\\\"而是\\\"第一个做跨算法族的二值共识\\\"。实验需证明 CSS-core faithfulness > 单方法。\\n\\n## 📌 值得关注的新方法（2026-05-12 文献扫描）\\n- **Formal MI (ICLR 2026)** — 可用于验证 consensus circuit 的 minimality\\n- **PIE (2604.16889)** — CLT-native 新方法，可纳入 CSS ensemble\\n- **GIM** — MIB benchmark 第一，作为强 baseline 纳入\\n- **How to apply**：Phase 2+ 时评估是否将 PIE 加入方法池或将 GIM 作为 baseline。Formal MI 可在 analysis 阶段用于 minimality 验证。\\n\\n## 📊 Pairwise Jaccard 文献基准（2026-05-12 文献调研）\\n跨方法边级 Jaccard 典型范围 0.05–0.25，节点级 0.25–0.60。同方法不同超参 Jaccard 可低至 0.02–0.07。Bootstrap 重采样同方法 Jaccard 均值仅 0.561。EP 与 ACDC 在同等 faithfulness 下边数差 2.65×。\\n- **Hanna et al. (COLM 2024)**: overlap ≠ faithfulness，支持 CSS 取交集做鲁棒编辑的思路\\n- **How to apply**：v3 pairwise Jaccard 解读——若 0.05-0.25 范围内说明方法确实独立，CSS 共识有意义；若远高于此需警惕方法固有一致性。若远低于此（<0.05）则交集可能过小无实用价值。详见 `artifacts/literature_jaccard_overlap.md`。\\n\\n## 🚨 L1 教训：GPU 越界事故（2026-05-12）\\nMVP 进程跑到了 cuda:0/1（白名单仅 cuda:5），影响其他项目。\\n- **根因**：部署 Worker 启动时未显式设置 `CUDA_VISIBLE_DEVICES=5`，PyTorch 默认使用 cuda:0\\n- **修复**：run_mvp.py 最开头加 GPU 守卫（`os.environ['CUDA_VISIBLE_DEVICES'] = '5'` 在 `import torch` 之前）\\n-
+…[truncated 2825 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 903
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T01:17:25.125590+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__check_job_status",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__check_job_status",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T01:17:25.176209+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T01:17:36.948068+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "log_path": "/root/structfuse-context/mvp_output.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "log_path": "/root/structfuse-context/mvp_output.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T01:17:38.002370+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"eap_ig: 100 edges selected (binarized)\", \"edge_pruning: 100 edges selected (binarized)\", \"acdc: 32491 edges selected (binarized)\", \"\", \"--- CIRCUS (EAP-IG) ---\", \"CIRCUS tiers: {'core': 2954, 'contingent': 14768, 'noise': 14769}\", \"\", \"--- CSS (K=3) ---\", \"CSS distribution: {'1/3': 32326, '2/3': 130, '3/3': 35}\", \"CSS circuit (>= 0.67): 165 edges\", \"\", \"--- Cross-Tabulation ---\", \"\", \"==================================================\", \"CIRCUS-core x CSS Cross-Tabulation\", \"==================================================\", \"                  | CSS >= thr  | CSS < thr   |\", \"  CIRCUS-core     |     4 edges |  2950 edges |\", \"  CIRCUS-other    |    31 edges | 29506 edges |\", \"==================================================\", \"  Total edges: 32491  |  CIRCUS-core: 2954\", \"  Core off-diagonal %: 99.9% (method_specific / core_total)\", \"==================================================\", \"\", \"Off-diagonal %: 99.9%  95% CI: [99.7%, 100.0%]\", \"\", \"=== Phase D: Evaluation ===\", \"Loading GPT-2 from local: /root/autodl-tmp/gpt2-small\", \"Traceback (most recent call last):\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 479, in cached_files\", \"    hf_hub_download(\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 114, in _inner_fn\", \"    return fn(*args, **kwargs)\", \"           ^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1014, in hf_hub_download\", \"    return _hf_hub_download_to_cache_dir(\", \"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1121, in _hf_hub_download_to_cache_dir\", \"    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\", \"
+…[truncated 3751 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1054
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T01:17:38.253671+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "log_path": "/root/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "log_path": "/root/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T01:17:38.705755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"Terminated\", \"EXIT_CODE=129\", \"EXIT_CODE=1\"], \"line_count\": 3, \"log_path\": \"/root/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-13T01:18:29.943305+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp_pilot_gpt2_ioi_v3",
+  "field": "failure_reason",
+  "value": "Phase D (Evaluation) crash: HF_HUB_OFFLINE=1 prevents TransformerLens AutoConfig.from_pretrained(\"gpt2-small\") from loading config. LocalEntryNotFoundError at run_mvp.py:84. Phase A-C completed successfully (EAP-IG 100 edges, EP 100 edges, ACDC 32491 edges, CSS circuit 165 edges, off-diagonal 99.9% but likely scope mismatch per D017).",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp_pilot_gpt2_ioi_v3",
+    "field": "failure_reason",
+    "value": "Phase D (Evaluation) crash: HF_HUB_OFFLINE=1 prevents TransformerLens AutoConfig.from_pretrained(\"gpt2-small\") from loading config. LocalEntryNotFoundError at run_mvp.py:84. Phase A-C completed successfully (EAP-IG 100 edges, EP 100 edges, ACDC 32491 edges, CSS circuit 165 edges, off-diagonal 99.9% but likely scope mismatch per D017).",
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-13T01:18:32.887093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_pilot_gpt2_ioi_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:35:55.509Z\", \"updated_at\": \"2026-05-13T01:18:29.937Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=5 python3 run_mvp.py\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5 (RTX 4090D)\", \"pid\": \"279210\", \"log_path\": \"~/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log\", \"submitted_at\": \"2026-05-12T17:36:44.722Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"auto-circuit IOI dataset (built-in)\", \"data_count\": 100, \"model_name\": \"GPT-2 Small\", \"seed\": 42, \"methods\": \"EAP-IG + Edge Pruning (mask_gradient) + ACDC\", \"task\": \"IOI\", \"K\": 3, \"note\": \"v3: cache cleared + edge norm fix v2. HF_HUB_OFFLINE=1 for offline mode. tmux session: mvp_pilot_gpt2_ioi_v3. Phase A (EAP-IG) completed 32491 edges. Phase B (EP) in progress ~24 it/s.\", \"wall_clock_seconds\": 27582.6, \"gpu_hours\": 7.66}, \"hypothesis\": \"CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\", \"notes\": \"D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results.\", \"reproduce\": {\"finished_at\": \"2026-05-13T01:16:26.730Z\"}, \"failure_reason\": \"Phase D (Evaluation) crash: HF_HUB_OFFLINE=1 prevents TransformerLens AutoConfig.from_pretrained(\\\"gpt2-small\\\") from loading config. LocalEntryNotFoundError at run_mvp.py:84. Phase A-C completed successfully (EAP-IG 100 edges, EP 100 edges, ACDC 32491 edges, CSS circuit 165 edges, off-diagonal 99.9% but likely scope mismatch per D017).\", \"conclusion\": \"
+…[truncated 252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2943
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T01:18:33.088314+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp_pilot_gpt2_ioi_v3",
+  "field": "notes",
+  "value": "D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results. | FAILURE DIAGNOSIS: Phase A-C complete, Phase D crashed on HF offline config loading (LocalEntryNotFoundError). Fix: remove HF_HUB_OFFLINE=1 or pre-cache config. Off-diagonal 99.9% in run_mvp.py likely still has D017 scope mismatch — use analysis_fix_v3.py for corrected results.",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp_pilot_gpt2_ioi_v3",
+    "field": "notes",
+    "value": "D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results. | FAILURE DIAGNOSIS: Phase A-C complete, Phase D crashed on HF offline config loading (LocalEntryNotFoundError). Fix: remove HF_HUB_OFFLINE=1 or pre-cache config. Off-diagonal 99.9% in run_mvp.py likely still has D017 scope mismatch — use analysis_fix_v3.py for corrected results.",
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-13T01:18:33.139035+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_pilot_gpt2_ioi_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:35:55.509Z\", \"updated_at\": \"2026-05-13T01:18:33.052Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=5 python3 run_mvp.py\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5 (RTX 4090D)\", \"pid\": \"279210\", \"log_path\": \"~/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log\", \"submitted_at\": \"2026-05-12T17:36:44.722Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"auto-circuit IOI dataset (built-in)\", \"data_count\": 100, \"model_name\": \"GPT-2 Small\", \"seed\": 42, \"methods\": \"EAP-IG + Edge Pruning (mask_gradient) + ACDC\", \"task\": \"IOI\", \"K\": 3, \"note\": \"v3: cache cleared + edge norm fix v2. HF_HUB_OFFLINE=1 for offline mode. tmux session: mvp_pilot_gpt2_ioi_v3. Phase A (EAP-IG) completed 32491 edges. Phase B (EP) in progress ~24 it/s.\", \"wall_clock_seconds\": 27582.6, \"gpu_hours\": 7.66}, \"hypothesis\": \"CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\", \"notes\": \"D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview (ACDC still running): off-diagonal 7.1% (was ~98% artifact from scope mismatch). Verdict flips from KILL to PASS_FINDINGS. Run `python3 analysis_fix_v3.py` after ACDC completes for K=3 results. | FAILURE DIAGNOSIS: Phase A-C complete, Phase D crashed on HF offline config loading (LocalEntryNotFoundError). Fix: remove HF_HUB_OFFLINE=1 or pre-cache config. Off-diagonal 99.9% in run_mvp.py likely still has D017 scope mismatch — use analysis_fix_v3.py for corrected results.\", \"reproduce\": {\"finished_at\": \"2026-05-13T01:16:26.730Z\"}, \"failure_reason\": \"Phase D (Evaluation) crash: HF_HUB_OFFLINE=1 prevents TransformerLens AutoConfig.fr
+…[truncated 532 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T01:19:03.500299+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:mvp_pilot_gpt2_ioi_v3",
+  "project": "structfuse-context",
+  "task_prompt": "SSH 到服务器 cqa1-21977，修复 mvp_pilot_gpt2_ioi_v3 实验的 Phase D 失败并获取正确的 K=3 分析结果。\n\n## 背景\n实验 Phase A-C 已全部完成（EAP-IG 100 edges, EP 100 edges, ACDC 32491 edges），但 Phase D (Evaluation) 崩溃。原因：`HF_HUB_OFFLINE=1` 导致 TransformerLens 的 `AutoConfig.from_pretrained(\"gpt2-small\")` 无法加载 config（LocalEntryNotFoundError）。\n\n另外，run_mvp.py 输出的 off-diagonal 99.9% 受 D017 scope mismatch 影响，不可信。analysis_fix_v3.py 修复了此问题，K=2 preview 时 off-diagonal 从 ~98% 降到 7.1%。\n\n## 项目路径\n- 项目目录：`/root/structfuse-context/`\n- run_mvp.py：`/root/structfuse-context/run_mvp.py`\n- analysis_fix_v3.py：`/root/structfuse-context/analysis_fix_v3.py`\n- 日志：`/root/structfuse-context/mvp_output.log`\n- 缓存：`/root/structfuse-context/cache_eap_ig.json`, `cache_edge_pruning.json`\n- 本地 GPT-2：`/root/autodl-tmp/gpt2-small`\n- 服务器环境：conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- GPU：cuda:5（RTX 4090D），必须设 CUDA_VISIBLE_DEVICES=5\n\n## 任务（按顺序执行）\n\n### 任务 1: 运行 analysis_fix_v3.py 获取正确的 K=3 cross-tabulation\n```bash\ncd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=5 python3 analysis_fix_v3.py\n```\n记录输出中的 off-diagonal %。这是 MVP gate 的关键数字。\n\n### 任务 2: 诊断并修复 Phase D 的 HF loading 问题\n1. 读 run_mvp.py 第 80-90 行附近的 `load_tl_model` 函数\n2. 问题：`HookedTransformer.from_pretrained(\"gpt2-small\", hf_model=hf_model)` 内部调用 `AutoConfig.from_pretrained`，在 HF_HUB_OFFLINE=1 时失败\n3. 修复方案（选最简单可行的）：\n   a. 不设 HF_HUB_OFFLINE=1，改用 `source /etc/network_turbo` 启用代理 + 设置 SSL 环境变量\n   b. 或者用 `HookedTransformer.from_pretrained(\"/root/autodl-tmp/gpt2-small\")` 直接传本地路径\n   c. 或者预先将 HF config 缓存到本地\n\n### 任务 3: 重跑 Phase D（仅评估部分）\n修复后，只跑 Phase D 评估。如果 run_mvp.py 不支持只跑 Phase D，需要修改脚本添加跳过选项，或手动执行 Phase D 的逻辑。\n\n**不要重跑 Phase A-C**（已有缓存，共花了 7.6h）。\n\n## 输出要求\n最终输出 JSON 格式：\n```json\n{\n  \"k3_off_diagonal_pct\": \"analysis_fix_v3.py 输出的正确 off-diagonal %\",\n  \"k3_css_distribution\": \"CSS distribution dict\",\n  \"phase_d_fix\": \"修复方案描述\",\n  \"phase_d_result\": \"Phase D 评估结果（如果成功重跑）\",\n  \"root_cause\": \"HF_HUB_OFFLINE=1 + TransformerLens AutoConfig\",\n  \"error_type\": \"infrastructure\",\n  \"fix_steps\": [\"步骤列表\"],\n  \"can_auto_fix\": true\n}\n```",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:mvp_pilot_gpt2_ioi_v3",
+    "project": "structfuse-context",
+    "task_prompt": "SSH 到服务器 cqa1-21977，修复 mvp_pilot_gpt2_ioi_v3 实验的 Phase D 失败并获取正确的 K=3 分析结果。\n\n## 背景\n实验 Phase A-C 已全部完成（EAP-IG 100 edges, EP 100 edges, ACDC 32491 edges），但 Phase D (Evaluation) 崩溃。原因：`HF_HUB_OFFLINE=1` 导致 TransformerLens 的 `AutoConfig.from_pretrained(\"gpt2-small\")` 无法加载 config（LocalEntryNotFoundError）。\n\n另外，run_mvp.py 输出的 off-diagonal 99.9% 受 D017 scope mismatch 影响，不可信。analysis_fix_v3.py 修复了此问题，K=2 preview 时 off-diagonal 从 ~98% 降到 7.1%。\n\n## 项目路径\n- 项目目录：`/root/structfuse-context/`\n- run_mvp.py：`/root/structfuse-context/run_mvp.py`\n- analysis_fix_v3.py：`/root/structfuse-context/analysis_fix_v3.py`\n- 日志：`/root/structfuse-context/mvp_output.log`\n- 缓存：`/root/structfuse-context/cache_eap_ig.json`, `cache_edge_pruning.json`\n- 本地 GPT-2：`/root/autodl-tmp/gpt2-small`\n- 服务器环境：conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- GPU：cuda:5（RTX 4090D），必须设 CUDA_VISIBLE_DEVICES=5\n\n## 任务（按顺序执行）\n\n### 任务 1: 运行 analysis_fix_v3.py 获取正确的 K=3 cross-tabulation\n```bash\ncd /root/structfuse-context && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=5 python3 analysis_fix_v3.py\n```\n记录输出中的 off-diagonal %。这是 MVP gate 的关键数字。\n\n### 任务 2: 诊断并修复 Phase D 的 HF loading 问题\n1. 读 run_mvp.py 第 80-90 行附近的 `load_tl_model` 函数\n2. 问题：`HookedTransformer.from_pretrained(\"gpt2-small\", hf_model=hf_model)` 内部调用 `AutoConfig.from_pretrained`，在 HF_HUB_OFFLINE=1 时失败\n3. 修复方案（选最简单可行的）：\n   a. 不设 HF_HUB_OFFLINE=1，改用 `source /etc/network_turbo` 启用代理 + 设置 SSL 环境变量\n   b. 或者用 `HookedTransformer.from_pretrained(\"/root/autodl-tmp/gpt2-small\")` 直接传本地路径\n   c. 或者预先将 HF config 缓存到本地\n\n### 任务 3: 重跑 Phase D（仅评估部分）\n修复后，只跑 Phase D 评估。如果 run_mvp.py 不支持只跑 Phase D，需要修改脚本添加跳过选项，或手动执行 Phase D 的逻辑。\n\n**不要重跑 Phase A-C**（已有缓存，共花了 7.6h）。\n\n## 输出要求\n最终输出 JSON 格式：\n```json\n{\n  \"k3_off_diagonal_pct\": \"analysis_fix_v3.py 输出的正确 off-diagonal %\",\n  \"k3_css_distribution\": \"CSS distribution dict\",\n  \"phase_d_fix\": \"修复方案描述\",\n  \"phase_d_result\": \"Phase D 评估结果（如果成功重跑）\",\n  \"root_cause\": \"HF_HUB_OFFLINE=1 + TransformerLens AutoConfig\",\n  \"error_type\": \"infrastructure\",\n  \"fix_steps\": [\"步骤列表\"],\n  \"can_auto_fix\": true\n}\n```",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T01:19:07.470865+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/logs/workers/worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903 started. Use get_worker_status('worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3970
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-13T01:19:07.523644+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "mvp_pilot_gpt2_ioi_v3",
+  "conclusion": "failed",
+  "key_metrics": "{'wall_clock_hours': 7.66, 'eap_ig_edges': 100, 'ep_edges': 100, 'acdc_edges': 32491, 'css_circuit_edges': 165, 'raw_off_diagonal_pct': '99.9% (scope mismatch, uncorrected)', 'k2_corrected_off_diagonal_pct': '7.1% (D017 fix)'}",
+  "baseline_comparison": "Phase A-C 全部完成，Phase D (Evaluation) 在加载 GPT-2 时崩溃。原因：HF_HUB_OFFLINE=1 阻止 TransformerLens 加载 config (LocalEntryNotFoundError)。已派 Worker 修复。注意：run_mvp.py 输出的 off-diagonal 99.9% 受 D017 scope mismatch 影响，corrected K=2 为 7.1%，K=3 结果待 analysis_fix_v3.py 输出。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "mvp_pilot_gpt2_ioi_v3",
+    "conclusion": "failed",
+    "key_metrics": "{'wall_clock_hours': 7.66, 'eap_ig_edges': 100, 'ep_edges': 100, 'acdc_edges': 32491, 'css_circuit_edges': 165, 'raw_off_diagonal_pct': '99.9% (scope mismatch, uncorrected)', 'k2_corrected_off_diagonal_pct': '7.1% (D017 fix)'}",
+    "baseline_comparison": "Phase A-C 全部完成，Phase D (Evaluation) 在加载 GPT-2 时崩溃。原因：HF_HUB_OFFLINE=1 阻止 TransformerLens 加载 config (LocalEntryNotFoundError)。已派 Worker 修复。注意：run_mvp.py 输出的 off-diagonal 99.9% 受 D017 scope mismatch 影响，corrected K=2 为 7.1%，K=3 结果待 analysis_fix_v3.py 输出。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T01:19:11.894631+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f09563a4880b3eed453655d4f4\", \"chat_id\": \"oc_fde8ba5e95b6c6af458dd6d4bf74a233\", \"msg_type\": \"interactive\", \"next_required_steps\": \"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "elapsed_ms": 4370
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-13T01:19:21.328847+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp_pilot_gpt2_ioi_v3",
+  "field": "notes",
+  "value": "D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview: off-diagonal 7.1%. | FAILURE: Phase D crashed on HF offline config loading. fix_worker_id: worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903. Worker 正在修复并运行 analysis_fix_v3.py 获取 K=3 corrected results。",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp_pilot_gpt2_ioi_v3",
+    "field": "notes",
+    "value": "D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview: off-diagonal 7.1%. | FAILURE: Phase D crashed on HF offline config loading. fix_worker_id: worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903. Worker 正在修复并运行 analysis_fix_v3.py 获取 K=3 corrected results。",
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T01:19:21.831277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_pilot_gpt2_ioi_v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:35:55.509Z\", \"updated_at\": \"2026-05-13T01:19:21.320Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=5 python3 run_mvp.py\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5 (RTX 4090D)\", \"pid\": \"279210\", \"log_path\": \"~/runs/structfuse-context/mvp_pilot_gpt2_ioi_v3.log\", \"submitted_at\": \"2026-05-12T17:36:44.722Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"auto-circuit IOI dataset (built-in)\", \"data_count\": 100, \"model_name\": \"GPT-2 Small\", \"seed\": 42, \"methods\": \"EAP-IG + Edge Pruning (mask_gradient) + ACDC\", \"task\": \"IOI\", \"K\": 3, \"note\": \"v3: cache cleared + edge norm fix v2. HF_HUB_OFFLINE=1 for offline mode. tmux session: mvp_pilot_gpt2_ioi_v3. Phase A (EAP-IG) completed 32491 edges. Phase B (EP) in progress ~24 it/s.\", \"wall_clock_seconds\": 27582.6, \"gpu_hours\": 7.66}, \"hypothesis\": \"CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\", \"notes\": \"D017 fix script ready at /root/structfuse-context/analysis_fix_v3.py. K=2 preview: off-diagonal 7.1%. | FAILURE: Phase D crashed on HF offline config loading. fix_worker_id: worker_diagnose_mvp_pilot_gpt2_ioi_v3_20260513T011903. Worker 正在修复并运行 analysis_fix_v3.py 获取 K=3 corrected results。\", \"reproduce\": {\"finished_at\": \"2026-05-13T01:16:26.730Z\"}, \"failure_reason\": \"Phase D (Evaluation) crash: HF_HUB_OFFLINE=1 prevents TransformerLens AutoConfig.from_pretrained(\\\"gpt2-small\\\") from loading config. LocalEntryNotFoundError at run_mvp.py:84. Phase A-C completed successfully (EAP-IG 100 edges, EP 100 edges, ACDC 32491 edges, CSS circuit 165 edges, off-diagonal 99.9% but likely scope mismatch per D017).\", \"con
+…[truncated 265 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-13T01:19:21.982163+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "structfuse-context",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-13T01:19:22.083109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/memory.md\", \"content\": \"# StructFuse Memory\\n\\n## ✅ Novelty 确认：CSS cross-algorithm-family consensus 无人做过（2026-05-12 文献扫描确认）\\nCIRCUS (arXiv 2603.00523, 2026.03) 做 per-edge stability scoring + consensus extraction，数学框架与 CSS 相似。\\n- **关键区别**：CIRCUS 变化**单方法内的剪枝阈值**（intra-method variation），我们做**跨算法族**（cross-method: gradient vs mask vs causal）\\n- **Mondorf et al. (BlackboxNLP 2025)** 组合了 EAP+EP 输出（union/intersection），但用连续分数平均，workshop 短文\\n- **Certified Circuits (2602.22968)** — 数据扰动稳定性认证，单方法 + data axis，非 method axis\\n- **Nikankin et al. (2510.25786)** — 单方法 bootstrapping\\n- **2026-05-12 全面扫描结论**：**CSS 的 cross-algorithm-family consensus 在当前文献中无人做过，novelty 成立。** CIRCUS 无 v2/follow-up。\\n- **How to apply**：论文必须在 Related Work 和 Intro 正面讨论 CIRCUS，framing 不是\\\"第一个做 circuit consensus\\\"而是\\\"第一个做跨算法族的二值共识\\\"。实验需证明 CSS-core faithfulness > 单方法。\\n\\n## 📌 值得关注的新方法（2026-05-12 文献扫描）\\n- **Formal MI (ICLR 2026)** — 可用于验证 consensus circuit 的 minimality\\n- **PIE (2604.16889)** — CLT-native 新方法，可纳入 CSS ensemble\\n- **GIM** — MIB benchmark 第一，作为强 baseline 纳入\\n- **How to apply**：Phase 2+ 时评估是否将 PIE 加入方法池或将 GIM 作为 baseline。Formal MI 可在 analysis 阶段用于 minimality 验证。\\n\\n## 📊 Pairwise Jaccard 文献基准（2026-05-12 文献调研）\\n跨方法边级 Jaccard 典型范围 0.05–0.25，节点级 0.25–0.60。同方法不同超参 Jaccard 可低至 0.02–0.07。Bootstrap 重采样同方法 Jaccard 均值仅 0.561。EP 与 ACDC 在同等 faithfulness 下边数差 2.65×。\\n- **Hanna et al. (COLM 2024)**: overlap ≠ faithfulness，支持 CSS 取交集做鲁棒编辑的思路\\n- **How to apply**：v3 pairwise Jaccard 解读——若 0.05-0.25 范围内说明方法确实独立，CSS 共识有意义；若远高于此需警惕方法固有一致性。若远低于此（<0.05）则交集可能过小无实用价值。详见 `artifacts/literature_jaccard_overlap.md`。\\n\\n## 🚨 L1 教训：GPU 越界事故（2026-05-12）\\nMVP 进程跑到了 cuda:0/1（白名单仅 cuda:5），影响其他项目。\\n- **根因**：部署 Worker 启动时未显式设置 `CUDA_VISIBLE_DEVICES=5`，PyTorch 默认使用 cuda:0\\n- **修复**：run_mvp.py 最开头加 GPU 守卫（`os.environ['CUDA_VISIBLE_DEVICES'] = '5'` 在 `import torch` 之前）\\n-
+…[truncated 2825 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-13T01:19:53.928268+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "memory.md",
+  "content": "# StructFuse Memory\n\n## ✅ Novelty 确认：CSS cross-algorithm-family consensus 无人做过（2026-05-12 文献扫描确认）\nCIRCUS (arXiv 2603.00523, 2026.03) 做 per-edge stability scoring + consensus extraction，数学框架与 CSS 相似。\n- **关键区别**：CIRCUS 变化**单方法内的剪枝阈值**（intra-method variation），我们做**跨算法族**（cross-method: gradient vs mask vs causal）\n- **Mondorf et al. (BlackboxNLP 2025)** 组合了 EAP+EP 输出（union/intersection），但用连续分数平均，workshop 短文\n- **Certified Circuits (2602.22968)** — 数据扰动稳定性认证，单方法 + data axis，非 method axis\n- **Nikankin et al. (2510.25786)** — 单方法 bootstrapping\n- **2026-05-12 全面扫描结论**：**CSS 的 cross-algorithm-family consensus 在当前文献中无人做过，novelty 成立。** CIRCUS 无 v2/follow-up。\n- **How to apply**：论文必须在 Related Work 和 Intro 正面讨论 CIRCUS，framing 不是\"第一个做 circuit consensus\"而是\"第一个做跨算法族的二值共识\"。实验需证明 CSS-core faithfulness > 单方法。\n\n## 📌 值得关注的新方法（2026-05-12 文献扫描）\n- **Formal MI (ICLR 2026)** — 可用于验证 consensus circuit 的 minimality\n- **PIE (2604.16889)** — CLT-native 新方法，可纳入 CSS ensemble\n- **GIM** — MIB benchmark 第一，作为强 baseline 纳入\n- **How to apply**：Phase 2+ 时评估是否将 PIE 加入方法池或将 GIM 作为 baseline。Formal MI 可在 analysis 阶段用于 minimality 验证。\n\n## 📊 Pairwise Jaccard 文献基准（2026-05-12 文献调研）\n跨方法边级 Jaccard 典型范围 0.05–0.25，节点级 0.25–0.60。同方法不同超参 Jaccard 可低至 0.02–0.07。Bootstrap 重采样同方法 Jaccard 均值仅 0.561。EP 与 ACDC 在同等 faithfulness 下边数差 2.65×。\n- **Hanna et al. (COLM 2024)**: overlap ≠ faithfulness，支持 CSS 取交集做鲁棒编辑的思路\n- **How to apply**：v3 pairwise Jaccard 解读——若 0.05-0.25 范围内说明方法确实独立，CSS 共识有意义；若远高于此需警惕方法固有一致性。若远低于此（<0.05）则交集可能过小无实用价值。详见 `artifacts/literature_jaccard_overlap.md`。\n\n## 🚨 L1 教训：GPU 越界事故（2026-05-12）\nMVP 进程跑到了 cuda:0/1（白名单仅 cuda:5），影响其他项目。\n- **根因**：部署 Worker 启动时未显式设置 `CUDA_VISIBLE_DEVICES=5`，PyTorch 默认使用 cuda:0\n- **修复**：run_mvp.py 最开头加 GPU 守卫（`os.environ['CUDA_VISIBLE_DEVICES'] = '5'` 在 `import torch` 之前）\n- **How to apply**：后续所有实验脚本必须在第一行设置 `os.environ['CUDA_VISIBLE_DEVICES']`，且启动命令也要带 `CUDA_VISIBLE_DEVICES=X`。双重保险。submit_training_job 会自动注入，但手动启动的脚本必须自己加。\n\n## 🚨 教训：Kill 进程前必须确认 PID 对应的进度（2026-05-12）\n发现两个 run_mvp.py 进程 (PID 98300 + 98594) 时，误杀了进度更快的 98300 (91.4%)，保留了落后的 98594。ACDC 无缓存机制，重启后从头开始，浪费 ~2h。\n- **Why**: 没有在 kill 前检查每个 PID 的实际进度（如 `/proc/&lt;pid>/fd` 或日志关联）\n- **How to apply**: 多个同名进程时，先用 `ls -l /proc/&lt;pid>/fd/1` 或 `strace -p &lt;pid>` 确认哪个是活跃的/进度更快的，再决定 kill 哪个。绝不靠猜测。\n\n## 🚨 教训：代码修复后必须清除相关缓存（2026-05-12）\n边名归一化修复后未清 cache_eap_ig.json / cache_edge_pruning.json，v2 加载旧缓存导致三路边名仍不一致，浪费一次完整运行。\n- **Why**: per-method JSON 缓存存的是归一化前的旧格式边名。代码改了 normalizer 但缓存里的数据不受影响。\n- **How to apply**: 任何影响数据格式/命名的代码修复后，**必须删除所有相关缓存文件再重跑**。检查清单：`cache_*.json`、`*.pkl`、`__pycache__/`、HF cache（如果改了 tokenizer/model loading）。宁可多删导致重算，不可漏删导致格式不一致。\n\n## 🚨 教训：submit_training_job 命令不要内部重定向 stdout（2026-05-12）\nv3 标准日志 `~/runs/.../mvp_pilot_gpt2_ioi_v3.log` 只有 \"Terminated\"，实际输出在 mvp_output.log。\n- **Why**: 命令内 `> mvp_output.log 2>&1` 覆盖了 tmux pipe-pane 的标准捕获\n- **How to apply**: 后续提交命令不含重定向，需要副本时用 `| tee`\n\n## 🚨 教训：HF_HUB_OFFLINE=1 与 TransformerLens 不兼容（2026-05-13）\nv3 Phase D 崩溃：`HookedTransformer.from_pretrained(\"gpt2-small\", hf_model=hf_model)` 内部调用 `AutoConfig.from_pretrained`，即使传了 hf_model 也会尝试从 HF Hub 下载 config。HF_HUB_OFFLINE=1 时触发 LocalEntryNotFoundError。\n- **Why**: TransformerLens 的 `from_pretrained` 不完全支持离线模式——它用 model name 而非 local path 调 AutoConfig\n- **How to apply**: 不要对需要 TransformerLens 的实验设 HF_HUB_OFFLINE=1。替代方案：(1) 用 `source /etc/network_turbo` 启用网络代理 + SSL 环境变量；(2) 或预先将 config.json 缓存到 HF cache 目录。\n\n## Edge Pruning 实现差异（2026-05-12）\nMVP 阶段 Edge Pruning 用的是 auto-circuit 的 `mask_gradient_prune_scores()`（IG over masks），不是 princeton-nlp/edge-pruning 的 L0 连续松弛优化。两者同属 mask-based 族但实现路径不同。\n- **MVP**：auto-circuit 代理够用，标注 preliminary\n- **论文**：需切换到 princeton-nlp L0 实现，否则审稿人可能质疑与 EAP-IG 的独立性（两者都用 gradient）\n- **Phase 2 修复已完成（2026-05-12）**：edge_pruning_l0.py _build_edge_index() 已下沉到 (src, dst_layer, head, qkv_idx) per-edge 粒度，31320 条注意力边各自独立 mask\n\n## ACDC 在 GPT-2 Small 上的实际耗时（2026-05-12）\nACDC 在 GPT-2 Small / IOI 上需 ~2.5h（32491 edges, 速度随深度波动 1.5-24 it/s）。远超最初预估，直接证明大模型上 ACDC 不可行→改用 IFR 的合理性。可作为论文 empirical evidence。\n- ACDC 无中间结果缓存，进程中断后必须从头重跑\n- `tao_exps=[-2]` 是单个 threshold（τ=0.01），不是多轮扫描\n\n## 大模型第三方法选择（2026-05-12）\n评估了 AtP*自实现 / PAHQ加速ACDC / MIB所有方法后，选定 IFR（Information Flow Routes）作为大模型第三方法。\n- **Why**: 唯一满足\"非 gradient、非 mask optimization、edge-level、可扩展到 8B\"全部条件\n- **算法族**: activation decomposition（proximity-based），与 EAP-IG/EP 完全不同\n- **How to apply**: 大模型 K=3 = EAP-IG + Edge Pruning + IFR\n\n## MVP 崩溃修复经验（2026-05-12）\n- 前台 `tee` 进程会被 SSH 断连杀死 → 必须用 `nohup ... 2>&1 &` 后台执行\n- per-method JSON 缓存（cache_eap_ig.json 等）可在崩溃后跳过已完成步骤，但 ACDC 本身无增量缓存\n\n## 路径确认（2026-05-12）\n- run_mvp.py: `/root/structfuse-context/run_mvp.py`\n- mvp_output.log: `/root/structfuse-context/mvp_output.log`\n- mvp_results.json: `/root/structfuse-context/mvp_results.json`\n- 缓存: `/root/structfuse-context/cache_eap_ig.json`, `cache_edge_pruning.json`\n- ⚠️ collect_results.py 在 `/root/structfuse-mvp/` 但读 `Path(__file__).parent` 下的 mvp_results.json，路径不匹配。执行前 cp 到 `/root/structfuse-context/`。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "structfuse-context",
+    "file": "memory.md",
+    "content": "# StructFuse Memory\n\n## ✅ Novelty 确认：CSS cross-algorithm-family consensus 无人做过（2026-05-12 文献扫描确认）\nCIRCUS (arXiv 2603.00523, 2026.03) 做 per-edge stability scoring + consensus extraction，数学框架与 CSS 相似。\n- **关键区别**：CIRCUS 变化**单方法内的剪枝阈值**（intra-method variation），我们做**跨算法族**（cross-method: gradient vs mask vs causal）\n- **Mondorf et al. (BlackboxNLP 2025)** 组合了 EAP+EP 输出（union/intersection），但用连续分数平均，workshop 短文\n- **Certified Circuits (2602.22968)** — 数据扰动稳定性认证，单方法 + data axis，非 method axis\n- **Nikankin et al. (2510.25786)** — 单方法 bootstrapping\n- **2026-05-12 全面扫描结论**：**CSS 的 cross-algorithm-family consensus 在当前文献中无人做过，novelty 成立。** CIRCUS 无 v2/follow-up。\n- **How to apply**：论文必须在 Related Work 和 Intro 正面讨论 CIRCUS，framing 不是\"第一个做 circuit consensus\"而是\"第一个做跨算法族的二值共识\"。实验需证明 CSS-core faithfulness > 单方法。\n\n## 📌 值得关注的新方法（2026-05-12 文献扫描）\n- **Formal MI (ICLR 2026)** — 可用于验证 consensus circuit 的 minimality\n- **PIE (2604.16889)** — CLT-native 新方法，可纳入 CSS ensemble\n- **GIM** — MIB benchmark 第一，作为强 baseline 纳入\n- **How to apply**：Phase 2+ 时评估是否将 PIE 加入方法池或将 GIM 作为 baseline。Formal MI 可在 analysis 阶段用于 minimality 验证。\n\n## 📊 Pairwise Jaccard 文献基准（2026-05-12 文献调研）\n跨方法边级 Jaccard 典型范围 0.05–0.25，节点级 0.25–0.60。同方法不同超参 Jaccard 可低至 0.02–0.07。Bootstrap 重采样同方法 Jaccard 均值仅 0.561。EP 与 ACDC 在同等 faithfulness 下边数差 2.65×。\n- **Hanna et al. (COLM 2024)**: overlap ≠ faithfulness，支持 CSS 取交集做鲁棒编辑的思路\n- **How to apply**：v3 pairwise Jaccard 解读——若 0.05-0.25 范围内说明方法确实独立，CSS 共识有意义；若远高于此需警惕方法固有一致性。若远低于此（<0.05）则交集可能过小无实用价值。详见 `artifacts/literature_jaccard_overlap.md`。\n\n## 🚨 L1 教训：GPU 越界事故（2026-05-12）\nMVP 进程跑到了 cuda:0/1（白名单仅 cuda:5），影响其他项目。\n- **根因**：部署 Worker 启动时未显式设置 `CUDA_VISIBLE_DEVICES=5`，PyTorch 默认使用 cuda:0\n- **修复**：run_mvp.py 最开头加 GPU 守卫（`os.environ['CUDA_VISIBLE_DEVICES'] = '5'` 在 `import torch` 之前）\n- **How to apply**：后续所有实验脚本必须在第一行设置 `os.environ['CUDA_VISIBLE_DEVICES']`，且启动命令也要带 `CUDA_VISIBLE_DEVICES=X`。双重保险。submit_training_job 会自动注入，但手动启动的脚本必须自己加。\n\n## 🚨 教训：Kill 进程前必须确认 PID 对应的进度（2026-05-12）\n发现两个 run_mvp.py 进程 (PID 98300 + 98594) 时，误杀了进度更快的 98300 (91.4%)，保留了落后的 98594。ACDC 无缓存机制，重启后从头开始，浪费 ~2h。\n- **Why**: 没有在 kill 前检查每个 PID 的实际进度（如 `/proc/&lt;pid>/fd` 或日志关联）\n- **How to apply**: 多个同名进程时，先用 `ls -l /proc/&lt;pid>/fd/1` 或 `strace -p &lt;pid>` 确认哪个是活跃的/进度更快的，再决定 kill 哪个。绝不靠猜测。\n\n## 🚨 教训：代码修复后必须清除相关缓存（2026-05-12）\n边名归一化修复后未清 cache_eap_ig.json / cache_edge_pruning.json，v2 加载旧缓存导致三路边名仍不一致，浪费一次完整运行。\n- **Why**: per-method JSON 缓存存的是归一化前的旧格式边名。代码改了 normalizer 但缓存里的数据不受影响。\n- **How to apply**: 任何影响数据格式/命名的代码修复后，**必须删除所有相关缓存文件再重跑**。检查清单：`cache_*.json`、`*.pkl`、`__pycache__/`、HF cache（如果改了 tokenizer/model loading）。宁可多删导致重算，不可漏删导致格式不一致。\n\n## 🚨 教训：submit_training_job 命令不要内部重定向 stdout（2026-05-12）\nv3 标准日志 `~/runs/.../mvp_pilot_gpt2_ioi_v3.log` 只有 \"Terminated\"，实际输出在 mvp_output.log。\n- **Why**: 命令内 `> mvp_output.log 2>&1` 覆盖了 tmux pipe-pane 的标准捕获\n- **How to apply**: 后续提交命令不含重定向，需要副本时用 `| tee`\n\n## 🚨 教训：HF_HUB_OFFLINE=1 与 TransformerLens 不兼容（2026-05-13）\nv3 Phase D 崩溃：`HookedTransformer.from_pretrained(\"gpt2-small\", hf_model=hf_model)` 内部调用 `AutoConfig.from_pretrained`，即使传了 hf_model 也会尝试从 HF Hub 下载 config。HF_HUB_OFFLINE=1 时触发 LocalEntryNotFoundError。\n- **Why**: TransformerLens 的 `from_pretrained` 不完全支持离线模式——它用 model name 而非 local path 调 AutoConfig\n- **How to apply**: 不要对需要 TransformerLens 的实验设 HF_HUB_OFFLINE=1。替代方案：(1) 用 `source /etc/network_turbo` 启用网络代理 + SSL 环境变量；(2) 或预先将 config.json 缓存到 HF cache 目录。\n\n## Edge Pruning 实现差异（2026-05-12）\nMVP 阶段 Edge Pruning 用的是 auto-circuit 的 `mask_gradient_prune_scores()`（IG over masks），不是 princeton-nlp/edge-pruning 的 L0 连续松弛优化。两者同属 mask-based 族但实现路径不同。\n- **MVP**：auto-circuit 代理够用，标注 preliminary\n- **论文**：需切换到 princeton-nlp L0 实现，否则审稿人可能质疑与 EAP-IG 的独立性（两者都用 gradient）\n- **Phase 2 修复已完成（2026-05-12）**：edge_pruning_l0.py _build_edge_index() 已下沉到 (src, dst_layer, head, qkv_idx) per-edge 粒度，31320 条注意力边各自独立 mask\n\n## ACDC 在 GPT-2 Small 上的实际耗时（2026-05-12）\nACDC 在 GPT-2 Small / IOI 上需 ~2.5h（32491 edges, 速度随深度波动 1.5-24 it/s）。远超最初预估，直接证明大模型上 ACDC 不可行→改用 IFR 的合理性。可作为论文 empirical evidence。\n- ACDC 无中间结果缓存，进程中断后必须从头重跑\n- `tao_exps=[-2]` 是单个 threshold（τ=0.01），不是多轮扫描\n\n## 大模型第三方法选择（2026-05-12）\n评估了 AtP*自实现 / PAHQ加速ACDC / MIB所有方法后，选定 IFR（Information Flow Routes）作为大模型第三方法。\n- **Why**: 唯一满足\"非 gradient、非 mask optimization、edge-level、可扩展到 8B\"全部条件\n- **算法族**: activation decomposition（proximity-based），与 EAP-IG/EP 完全不同\n- **How to apply**: 大模型 K=3 = EAP-IG + Edge Pruning + IFR\n\n## MVP 崩溃修复经验（2026-05-12）\n- 前台 `tee` 进程会被 SSH 断连杀死 → 必须用 `nohup ... 2>&1 &` 后台执行\n- per-method JSON 缓存（cache_eap_ig.json 等）可在崩溃后跳过已完成步骤，但 ACDC 本身无增量缓存\n\n## 路径确认（2026-05-12）\n- run_mvp.py: `/root/structfuse-context/run_mvp.py`\n- mvp_output.log: `/root/structfuse-context/mvp_output.log`\n- mvp_results.json: `/root/structfuse-context/mvp_results.json`\n- 缓存: `/root/structfuse-context/cache_eap_ig.json`, `cache_edge_pruning.json`\n- ⚠️ collect_results.py 在 `/root/structfuse-mvp/` 但读 `Path(__file__).parent` 下的 mvp_results.json，路径不匹配。执行前 cp 到 `/root/structfuse-context/`。\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-13T01:20:04.635878+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 10707
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-13T01:20:04.786621+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 1 / 实际跑 0 (⚠️ cuda:5 空闲) | Worker 池 2 (GPU 0 / CPU 2)\n\n## mvp_pilot_gpt2_ioi_v3 失败诊断\n\n**失败原因**: Phase D (Evaluation) 在加载 GPT-2 时崩溃。`HF_HUB_OFFLINE=1` 阻止 TransformerLens `AutoConfig.from_pretrained` 从 HF Hub 下载 config → `LocalEntryNotFoundError`。\n\n**Phase A-C 已全部完成**（7.66 GPU hours）：\n- EAP-IG: 100 edges | EP: 100 edges | ACDC: 32491 edges\n- CSS distribution: 1/3=32326, 2/3=130, 3/3=35\n- CSS circuit (≥0.67): 165 edges\n\n**⚠️ off-diagonal 数字需注意**: run_mvp.py 输出 99.9%，但 D017 已确认这是 scope mismatch artifact。analysis_fix_v3.py K=2 preview 为 7.1%。K=3 corrected 结果待 Worker 运行。\n\n**已采取行动**:\n1. 派 Worker (`diagnose:mvp_pilot_gpt2_ioi_v3`) 修复 HF loading 问题 + 运行 analysis_fix_v3.py 获取正确 K=3 off-diagonal\n2. 已更新 registry (failure_reason + fix_worker_id)\n3. 已发飞书结果卡片\n\n**下一步**: Worker 返回后根据 K=3 corrected off-diagonal 做 MVP gate 判定（≥10% → Main track, 5-10% → Findings）。",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 1 / 实际跑 0 (⚠️ cuda:5 空闲) | Worker 池 2 (GPU 0 / CPU 2)\n\n## mvp_pilot_gpt2_ioi_v3 失败诊断\n\n**失败原因**: Phase D (Evaluation) 在加载 GPT-2 时崩溃。`HF_HUB_OFFLINE=1` 阻止 TransformerLens `AutoConfig.from_pretrained` 从 HF Hub 下载 config → `LocalEntryNotFoundError`。\n\n**Phase A-C 已全部完成**（7.66 GPU hours）：\n- EAP-IG: 100 edges | EP: 100 edges | ACDC: 32491 edges\n- CSS distribution: 1/3=32326, 2/3=130, 3/3=35\n- CSS circuit (≥0.67): 165 edges\n\n**⚠️ off-diagonal 数字需注意**: run_mvp.py 输出 99.9%，但 D017 已确认这是 scope mismatch artifact。analysis_fix_v3.py K=2 preview 为 7.1%。K=3 corrected 结果待 Worker 运行。\n\n**已采取行动**:\n1. 派 Worker (`diagnose:mvp_pilot_gpt2_ioi_v3`) 修复 HF loading 问题 + 运行 analysis_fix_v3.py 获取正确 K=3 off-diagonal\n2. 已更新 registry (failure_reason + fix_worker_id)\n3. 已发飞书结果卡片\n\n**下一步**: Worker 返回后根据 K=3 corrected off-diagonal 做 MVP gate 判定（≥10% → Main track, 5-10% → Findings）。",
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-13T01:20:06.242675+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1456
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-13T01:20:12.019241+00:00_
+
+全部完成。总结：
+
+- **诊断**: `mvp_pilot_gpt2_ioi_v3` Phase A-C（7.66h）全部成功，Phase D 因 `HF_HUB_OFFLINE=1` + TransformerLens 离线不兼容崩溃（infrastructure 类错误）
+- **已执行**: registry 更新 failure_reason + notes、飞书结果卡片已发、memory.md 追加新失败模式、向 Director 汇报
+- **进行中**: Worker `diagnose:mvp_pilot_gpt2_ioi_v3` 正在修复 HF loading 并运行 analysis_fix_v3.py 获取 K=3 corrected off-diagonal 结果
+- **待 Worker 回调**: 根据 K=3 off-diagonal 做 MVP gate 判定
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_pilot_gpt2_ioi_v3"
+}
+```
+
+</details>
+
+---

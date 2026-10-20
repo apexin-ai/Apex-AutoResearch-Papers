@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan009-sft-baseline-s42",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:51:58.328Z",
+    "updated_at": "2026-05-14T10:56:15.573Z",
+    "hypothesis": "SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen2.5-1.5B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T10:56:15.739802+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp1-isr-b03-s43-r3",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:02:10.292Z",
+    "updated_at": "2026-05-15T01:06:34.455Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s43_r3\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "58046",
+      "log_path": "~/runs/solver-trace-ablation/exp1-isr-b03-s43-r3.log",
+      "submitted_at": "2026-05-15T01:02:18.804Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed",
+    "notes": "D064: β=0.3 作为 single-seed observation 保留，不补训 s43。取消此实验。"
+  },
+  "timestamp": "2026-05-15T01:06:35.434196+00:00",
+  "trigger": "update_registry"
+}

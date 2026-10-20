@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan006-prolog-exec-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:13:35.078Z",
+    "updated_at": "2026-05-14T12:32:11.136Z",
+    "hypothesis": "Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.",
+    "notes": "QUEUED for cuda:1 (waiting for plan009-sft-r4 to finish). Data: data/train_500_seed42.jsonl (shared, 500 rows). Config: configs/grpo_prolog_exec_only.yaml + seed=43. Model: Qwen3-4B (/root/autodl-tmp/models/Qwen3-4B). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43. Director-approved priority: highest (Claim 3 三 seed).",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43 --warmup_ratio 0.1\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "587155",
+      "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s43.log",
+      "submitted_at": "2026-05-14T12:22:08.915Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "wall_clock_seconds": 602.2,
+      "gpu_hours": 0.17
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "587155",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s43.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43 --warmup_ratio 0.1\""
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T12:32:11.136Z"
+  },
+  "timestamp": "2026-05-14T12:32:11.267264+00:00",
+  "trigger": "update_registry"
+}

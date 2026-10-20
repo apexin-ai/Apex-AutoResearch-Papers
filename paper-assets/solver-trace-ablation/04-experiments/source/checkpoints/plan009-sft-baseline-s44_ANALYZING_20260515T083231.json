@@ -1,0 +1,89 @@
+{
+  "exp_id": "plan009-sft-baseline-s44",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:32:29.554Z",
+    "updated_at": "2026-05-15T08:32:30.886Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44 --num_steps 500 --seed 44 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "188375",
+      "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44.log",
+      "submitted_at": "2026-05-15T08:12:28.884Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "188375",
+    "log_path": "~/runs/solver-trace-ablation/plan009-sft-baseline-s44.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44 --num_steps 500 --seed 44 --no_wandb\"",
+      "finished_at": "2026-05-15T08:25:36.539Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T08:25:40.098764+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_final_loss": 0.2397,
+      "train_last_step_loss": 0.0328,
+      "train_token_accuracy": 0.9928,
+      "train_epochs": 7.94,
+      "train_runtime_sec": 729.05,
+      "train_steps": 500,
+      "eval_prove_rate": 0.14,
+      "eval_mean_isr": 0.0784,
+      "eval_isr_std": 0.2454,
+      "eval_median_isr": 0,
+      "eval_proved_only_isr": 0.56,
+      "eval_isr_pr_ratio": 0.56,
+      "eval_h7_count": 0,
+      "eval_h7_rate": 0,
+      "eval_h1_count": 2,
+      "eval_h1_rate": 0.02,
+      "eval_genuine_count": 12,
+      "eval_genuine_rate": 0.8571,
+      "eval_tautological_collapse": false,
+      "eval_by_answer_type": {
+        "True": {
+          "total": 50,
+          "proved": 10,
+          "prove_rate": 0.2
+        },
+        "False": {
+          "total": 44,
+          "proved": 4,
+          "prove_rate": 0.0909
+        },
+        "Unknown": {
+          "total": 6,
+          "proved": 0,
+          "prove_rate": 0
+        }
+      },
+      "eval_total": 100,
+      "eval_proved": 14,
+      "eval_failed": 86,
+      "eval_elapsed_sec": 400.56
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan009_sft_baseline_s44",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T08:32:31.065383+00:00",
+  "trigger": "update_registry"
+}

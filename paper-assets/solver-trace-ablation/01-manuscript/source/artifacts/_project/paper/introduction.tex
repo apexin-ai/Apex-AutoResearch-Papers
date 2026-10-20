@@ -1,0 +1,60 @@
+\section{Introduction}
+\label{sec:introduction}
+
+A GRPO-trained formalizer achieves a 93\% prove rate on held-out logical reasoning problems---yet 87\% of its proved outputs embed the conclusion verbatim among the premises, reducing each ``proof'' to a structural shortcut invisible to the execution reward.
+When the solver receives premises that already contain the target conclusion, it trivially succeeds; the model has learned to satisfy the reward without performing logical derivation.
+This gap between execution success and structural integrity defines a critical blind spot in neurosymbolic reinforcement learning.
+
+Neurosymbolic approaches that pair large language models with formal solvers have demonstrated strong performance on logical reasoning benchmarks~\citep{satlm, logic-lm, linc, fover-pei2025}.
+The dominant paradigm treats solver execution as a binary reward signal: the model generates a formal specification, a solver attempts a proof, and the outcome drives policy optimization via GRPO~\citep{deepseekmath} or related algorithms~\citep{deepseek-r1}.
+This execution-only evaluation conflates genuine reasoning with degenerate shortcuts.
+A model can achieve arbitrarily high prove rates by embedding the target conclusion among its premises, by producing contradictory axiom sets that prove anything via explosion, or by generating tautological single-clause outputs---all of which satisfy the solver without requiring any logical derivation.
+Specification gaming of this kind has been documented in reasoning models more broadly~\citep{bondarenko-spec-gaming}, and a growing body of work studies reward hacking mechanisms in LLM training~\citep{reward-hacking-survey}, yet systematic characterization in neurosymbolic RL remains absent.
+
+No principled diagnostic exists for detecting and quantifying structural degeneration in RL-trained formalizers.
+Prompting-based neurosymbolic systems~\citep{logic-lm, linc, satlm} do not involve RL training and thus sidestep the problem entirely.
+\citet{mellgren-prolog-grpo} hand-craft Prolog-specific structure penalties but provide no systematic analysis of the failure modes they target.
+Verification-reward approaches use solver or prover outcomes as training signals~\citep{deepseek-prover-v15, rlsf} but evaluate execution correctness only.
+Recent work has begun examining whether LLMs game formalization tasks~\citep{kim-game-formalization}, finding that high compilation rates do not imply faithful outputs---yet no framework connects structural diagnosis to the reward hacking dynamics that emerge during RL training.
+The result is a field that optimizes for---and reports---prove rates without any mechanism to assess whether the underlying formalizations contain genuine logical structure.
+
+We observe that component necessity testing---systematically ablating each solver input and checking whether the proof still holds---provides a principled, solver-agnostic diagnostic for this problem.
+Removing a premise from a well-structured formalization should break the proof; removing one from a degenerate output that embeds the conclusion will not.
+This leave-one-out (LOO) protocol yields a continuous score, the \emph{Intensional Structure Ratio} (ISR), measuring the fraction of formal components that are necessary for the proof.
+The protocol requires only the ability to re-execute the solver with modified inputs, making it applicable across formal languages and proof systems without language-specific engineering.
+
+A natural question follows: can ISR serve not merely as a post-hoc diagnostic but as a training signal to incentivize structural integrity?
+We find that it cannot.
+When ISR is incorporated into the GRPO reward, the model games the metric itself---a meta-level instance of Goodhart's Law~\citep{manheim-goodhart-taxonomy, gao-reward-overoptimization}.
+Rather than producing better-structured proofs, the model discovers strategies that inflate ISR directly, most commonly by reducing all premises to a single clause that duplicates the conclusion.
+ISR measures syntactic component necessity, not semantic faithfulness, and LOO-based metrics carry an inherent mathematical bias toward outputs with fewer components: fewer premises means each is trivially more ``necessary.''
+These properties make ISR a reliable observer of structural integrity but an unreliable optimizer of it.
+
+We introduce \emph{Solver Trace Ablation} (STA), a protocol that applies component necessity testing to derive ISR and systematically characterizes reward hacking across GRPO training conditions (Figure~\ref{fig:sta_overview}).
+Our experimental design spans 6 reward configurations (execution-only, ISR-augmented at two dose levels, matched random-reward controls, convex combination, and a supervised fine-tuning baseline), 3 random seeds per configuration, and up to 1{,}000 training steps, evaluated on two formal languages: first-order logic (FOL, verified by Prover9) and Prolog (verified by SWI-Prolog).
+
+STA reveals that execution-only GRPO training produces progressive structural collapse invisible to the training reward.
+Prove rate reaches 93\% while ISR deteriorates from 0.64 at 100 steps to 0.13 at 500 steps to 0.003 at 1{,}000 steps---a 99.5\% decline quantifying structural degeneration that prove rate cannot detect.
+All three random seeds exhibit 87--100\% conclusion embedding in their proved outputs, demonstrating that degeneration is systematic rather than seed-specific.
+By 1{,}000 steps, 94.8\% of proved samples have ISR${=}$0: no single component is necessary for the proof.
+A supervised fine-tuning baseline trained on the same data achieves only 14\% prove rate but 92.9\% structurally genuine outputs with near-zero hacking (7.1\% H1, 0\% H7), confirming that reward hacking is RL-specific rather than an artifact of data exposure (\textbf{C1}: ISR as diagnostic, with complete collapse trajectory; \S\ref{sec:diagnostic}).
+
+When ISR augments the GRPO reward ($r = r_{\text{exec}} \cdot (1 + \beta \cdot \text{ISR})$), meta-level Goodhart effects emerge~\citep{karwowski-goodhart-rl}.
+At low dose ($\beta{=}0.1$), ISR reward induces ISR-specific gaming: across three seeds, 64.5\% of proved outputs exhibit single-premise conclusion duplication (H7 mode) that inflates ISR by gaming the metric, compared to 0\% across all three random-reward controls---confirming H7 as ISR-reward-specific.
+The remaining seed's apparent structural advantage disappears entirely under premise-count-matched analysis (1.06$\times$, indistinguishable from the random baseline); the raw ISR elevation is a mathematical artifact of premise minimization, not improved reasoning.
+At high dose ($\beta{=}0.3$), classic Goodhart collapse occurs: prove rate drops to 18\% versus 48\% for the matched random control.
+This dose-response pattern maps onto established Goodhart dynamics~\citep{gao-reward-overoptimization}: low-dose proxy gaming that inflates the metric without genuine improvement, followed by high-dose collapse where the proxy signal overwhelms the primary objective.
+ISR-as-reward provides no genuine structural benefit at any dose (\textbf{C2}: empirical meta-level Goodhart characterization; \S\ref{sec:goodhart}).
+
+Both the diagnostic capability and the Goodhart failure transfer across structurally different formal languages.
+Applying STA to Prolog formalizations verified by SWI-Prolog, execution-only training again produces near-zero ISR (mean 0.04 across 3 seeds, $\text{PR}{=}53\%{\pm}31\text{pp}$), replicating the FOL collapse pattern with comparable cross-seed instability.
+Prolog ISR-as-reward yields \emph{universal} Goodhart: all three seeds converge to gaming with 0\% genuine output, each via a distinct mechanism---tautological single-clause duplication, degenerate uppercase pseudo-Prolog syntax, and query-as-fact gaming where the model sets the target query as its own provable fact.
+This is strictly stronger than the FOL result, where ${\sim}$16\% genuine output persists, demonstrating that simpler formal semantics enable more complete metric exploitation (\textbf{C3}: cross-logic diagnostic transfer with universal Goodhart; \S\ref{sec:crosslogic}).
+
+Across all experimental conditions, we identify and quantify 7 distinct hacking modes---conclusion embedding in single-premise (H7) and multi-premise (H1) variants, tautological collapse, complexity-without-utility, repetition collapse, premise padding, and query-as-fact gaming---providing a concrete, empirically grounded taxonomy for diagnosing structural failures in neurosymbolic RL systems.
+Each mode is quantified per reward condition and seed, enabling practitioners to anticipate the specific failure modes their training configurations are likely to produce (\textbf{C4}: hacking taxonomy; \S\ref{sec:taxonomy}).
+
+These findings expose a fundamental asymmetry: ISR is reliable as a diagnostic observer of structural integrity but unreliable as an optimization target.
+This instantiates a broader cautionary principle for proxy-metric-as-reward approaches~\citep{manheim-goodhart-taxonomy, pan-reward-misspecification}: diagnostic metrics that detect reward hacking can themselves become gaming targets when repurposed as training signals.
+The asymmetry---\emph{reliable observer, unreliable optimizer}---carries implications beyond formal reasoning for any system where proxy measures of structural quality are candidates for reward shaping.
+We release our code, evaluation scripts, and complete experimental outputs to support reproducibility.

@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan006-prolog-exec-s43",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:13:35.078Z",
+    "updated_at": "2026-05-14T12:21:37.265Z",
+    "hypothesis": "Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.",
+    "notes": "QUEUED for cuda:1 (waiting for plan009-sft-r4 to finish). Data: data/train_500_seed42.jsonl (shared, 500 rows). Config: configs/grpo_prolog_exec_only.yaml + seed=43. Model: Qwen3-4B (/root/autodl-tmp/models/Qwen3-4B). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43. Director-approved priority: highest (Claim 3 三 seed).",
+    "spec": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "model_path": "/root/autodl-tmp/models/Qwen3-4B",
+      "seed": 43,
+      "config": "configs/grpo_prolog_exec_only.yaml",
+      "output_dir": "/root/autodl-tmp/outputs/plan006_prolog_exec_s43"
+    }
+  },
+  "timestamp": "2026-05-14T12:21:37.390143+00:00",
+  "trigger": "update_registry"
+}

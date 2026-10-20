@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "53774a7e198d88fed993",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "paper figure fig4 isinf shift",
+  "task_key": "worker_paper_figure_fig4_isinf_shift_20260513T162317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_isinf_shift_20260513T162317.log",
+    "occurrence": 1,
+    "bytes": 608296,
+    "sha256": "89a6b65f9874ddda859f6ae18f48ea7d888e0d5bf69c3cfc1c4ab11b63da9c92"
+  },
+  "statistics": {
+    "messages": 190,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "53774a7e198d88fed993-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "53774a7e198d88fed993-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig4-isinf-shift.md"
+}

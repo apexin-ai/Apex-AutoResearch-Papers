@@ -1,0 +1,2 @@
+2026-05-13 22:26:18,839 INFO    core.tools.feishu  create_chat: name='审稿-solver-trace-ablation' → chat_id=oc_5abafbb382eb7c81e8a38090e46323e7
+2026-05-13 22:26:18,841 INFO    core.tools.dream  [dream] auto-created Group C for project=solver-trace-ablation: oc_5abafbb382eb7c81e8a38090e46323e7

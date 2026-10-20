@@ -1,0 +1,462 @@
+{
+  "schema_version": "1.0",
+  "id": "526b3454d98cf3e01d6d",
+  "project": "min_necessary_circuit_css",
+  "kind": "conversation",
+  "title": "Director coordination",
+  "task_key": "feishu_group_oc_fde8ba5e95b6c6af458dd6d4bf74a233_director",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_fde8ba5e95b6c6af458dd6d4bf74a233_director.jsonl",
+    "occurrence": 1,
+    "bytes": 1009812,
+    "sha256": "45953020a1dfc0e11bdba350930b98c190e75223be41530ae32a18db44ef97d8"
+  },
+  "readable_path": "readable/conversations/director-coordination.md",
+  "paper_title": "Transformer Model EAP-IG",
+  "preview_selection": {
+    "round": 1,
+    "total_source_events": 1169,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T20:51:49.128098+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Director，这是 Loop #3。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:5**@cqa1-21977（D007 GPU 越界事故后硬约束，其他卡是别的项目的）\n- `run_circus.py` 入口已加 `os.environ.setdefault(\"CUDA_VISIBLE_DEVICES\", cfg.get(\"gpu_id\", \"5\"))`，部署任何新脚本必须保留此守卫\n- Qwen 模型路径必须用本地路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/`（ModelScope 下载，非 HF cache 标准结构）\n- IFR binarization 必须用 `unique_score_rank` 或 `percentile_threshold`，不能用 `topn`（D010）\n- EP HF 后端必须用 v2（4 submodule hooks），不能回退到 v1 的单 layer pre-hook（D011）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977 (connect.cqa1.seetacloud.com)，用户 root\n- 工作目录：`/root/structfuse-context`\n- Python：系统 Python（非 conda，非 venv）\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/` (943MB, 已缓存)\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- GPU：1× RTX 4090D (cuda:5)，24GB\n- 活跃进程：mvp_pilot_gpt2_ioi_v3 (PID 279220, cuda:5)，ACDC 多 threshold 扫描中\n- Phase 2 代码：全部在本地 `artifacts/` 目录，含部署脚本 `deploy_phase2.sh`\n- W&B / Git：均未配置\n\n### 3. 📊 当前状态\n**等待 MVP v3 结果**。v3 是 GPT-2 Small / IOI 上 K=3 (EAP-IG + EP + ACDC) 的 CSS pilot，测 off-diagonal ≥10% 假设。ACDC 多 threshold 扫描进行中，ETA ~1h。\n\nPhase 2 代码全部完成并通过 Reviewer 审查：IFR / EAP-IG HF / EP v2 / CSS binarization / model_adapter / run_circus.py，所有 Reviewer warning 已修复。\n\nRegistry: `mvp_pilot_gpt2_ioi_v3` RUNNING；`v2` DONE(failed)；`v1` DEPLOYED(killed)。\n\n无待处理 Worker 回调。无活跃 Cron。\n\n### 4. 📋 待办\n- **v3 完成回调到达** → 立即提交 Reviewer 严格审查（ACDC circuit 合理性 + off-diagonal 比率 + MVP gate 判定）\n- **off-diagonal ≥10%** → MVP 通过，调 `complete_mvp()`，部署 Phase 2 代码跑 Qwen K=3 checkpoint（~11-21 min），启动 post-mvp-kickoff skill\n- **off-diagonal 5-10%** → Findings track + 追加 Arithmetic 任务验证（D002）\n- **off-diagonal 2-5%** → Findings 确认（D002）\n- **off-diagonal <2% 且 ΔF 无差异** → Kill 项目（D003）\n- **v3 又 failed** → 诊断原因，v2 failed 是代码 bug（边名格式不匹配，D009 已修复），检查是否有新问题\n\n### 5. 🎯 战略上下文\n- **核心假设**：跨方法二值共识（CSS）能发现单方法遗漏的电路边（off-diagonal cells）\n- **决策链**：D001(MVP 定义) → D002(灰区规则) → D003(kill criteria) → D005(AtP* 无 edge-level，改 K=3) → D006(大模型第三方法=IFR) → D009(边名格式 bug 修复) → D010(IFR binarization 策略) → D011(EP HF v2 架构重构)\n- **v3 是项目第一个有效数据点**（v1 被 kill，v2 代码 bug failed），结果决定整个项目方向，必须仔细审查\n- **易错点**：(1) EP HF 后端有 residual leak 近似（Reviewer 已确认可接受，但论文需披露）；(2) IFR destination 端仍是 layer-block 粒度，CSS 中 2/3 方法 per-head 但 IFR 不是——论文叙事需区分；(3) EMNLP ARR deadline 5月25日，剩 13 天，v3 结果必须快速判定不能拖\n- **目标**：EMNLP 2026 Main（不 fallback 到其他会议）\n\n## 项目硬约束 (memory.md 节选)\n\n## 🚨 L1 教训：GPU 越界事故（2026-05-12）\nMVP 进程跑到了 cuda:0/1（白名单仅 cuda:5），影响其他项目。\n- **根因**：部署 Worker 启动时未显式设置 `CUDA_VISIBLE_DEVICES=5`，PyTorch 默认使用 cuda:0\n- **修复**：run_mvp.py 最开头加 GPU 守卫（`os.environ['CUDA_VISIBLE_DEVICES'] = '5'` 在 `import torch` 之前）\n- **How to apply**：后续所有实验脚本必须在第一行设置 `os.environ['CUDA_VISIBLE_DEVICES']`，且启动命令也要带 `CUDA_VISIBLE_DEVICES=X`。双重保险。submit_training_job 会自动注入，但手动启动的脚本必须自己加。\n\n## 可查的历史\n前 1 轮 handoff 在 `task_context/history/director/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T20:51:59.617893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T20:51:59.718795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T20:52:03.483378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T20:52:03.483802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T20:52:03.534427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `structfuse-context`\\n**阶段**: 🧪 MVP（验证阶段）\\n\\n── 📋 项目配置 ──\\n✓ 服务器    cqa1-21977 (connect.cqa1.seetacloud.com) [root]\\n✓ 代码路径  /root/structfuse-context\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 11 条记录\\n\\n── 📊 研究进度 ──\\n实验: 3 个 (运行中 1 | 完成 1)\\n\\n  mvp_pilot_gpt2_ioi_v3  RUNNING\\n  mvp_pilot_gpt2_ioi_v2  DONE (failed)\\n  mvp_pilot_gpt2_ioi     DEPLOYED (killed)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-12\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_pilot_gpt2_ioi_v3 | CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed) | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_pilot_gpt2_ioi_v2** (failed): CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)\\n\\n## 趋势\\n成功 0 / 负向 0 / 失败 1 / 共 1\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T20:52:03.534970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":1407}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T20:52:10.914125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_gpu_health",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T20:52:11.014993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T20:52:14.178513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "cqa1-21977"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T20:52:14.229105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"cqa1-21977\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 50
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T20:52:21.055210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T20:52:21.156092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T20:52:29.810867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "检查 mvp_pilot_gpt2_ioi_v3 实验状态：\n\n1. `ssh_read_only` 到 cqa1-21977，检查：\n   - `ps aux | grep -E \"run_circus|mvp_pilot|python\" | grep -v grep` — 进程是否还活着\n   - `ls -lt /root/structfuse-context/results/ | head -20` — 结果文件是否已生成\n   - 如果有 log 文件，`tail -50` 查看最新输出，特别关注 ACDC 扫描是否完成\n\n2. 如果实验已完成：\n   - 汇报完整结果（CSS matrix、off-diagonal 比率、每个方法的 circuit size、faithfulness scores）\n   - 标记 registry 为 DONE\n\n3. 如果仍在运行：\n   - 汇报进度（ACDC 跑到哪个 threshold 了）、预估剩余时间\n\n4. 如果进程已死（无进程但无结果）：\n   - 检查 stderr/log 找到 crash 原因，汇报\n\n不要做任何修改，纯读取。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T20:52:33.760906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f0d7fc628a0b3752b3ad0a4831\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3950
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T20:52:38.033558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T20:52:38.084199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T20:52:41.344994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T20:52:41.596666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md\\\", \\\"content\\\": \\\"# structfuse-context — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\\\\n\\\\n## 核心方向\\\\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\\\\n\\\\n## 当前进展\\\\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\\\\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\\\\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\\\\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\\\\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\\\\n\\\\n## 方法配置\\\\n| 模型 | K | 方法 | 算法族 |\\\\n|------|---|------|--------|\\\\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\\\\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n\\\\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\\\\n\\\\n## MVP Gate 规则（D001-D003）\\\\n| off-diagonal % | 决策 |\\\\n|---|---|\\\\n| ≥10% | → Main track |\\\\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\\\\n| 2-5% | → Findings 确认 |\\\\n| <2% (两组) + ΔF 无差异 | → Kill |\\\\n\\\\n## 阶段规划\\\\n\\\\n### Phase 1: MVP pilot（当前）\\\\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\\\\n\\\\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\\\\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\\\\n- 全 4 模型 × 4 任务 CSS 计算\\\\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\\\\n\\\\n### Phase 3: OOD editing（~4天）\\\\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\\\\n\\\\n## 近期任务\\\\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\\\\n- [ ] MVP 结果判定 → track 决策\\\\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\\\\n\\\\n## GPU 预算\\\\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\\\\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\\\\n\\\\n## 关键决策日志\\\\n\\\\n|\n…[truncated 937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 251
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T20:52:41.597196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "structfuse-context",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T20:52:41.647918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/memory.md\\\", \\\"content\\\": \\\"# StructFuse Memory\\\\n\\\\n## 🚨 L1 教训：GPU 越界事故（2026-05-12）\\\\nMVP 进程跑到了 cuda:0/1（白名单仅 cuda:5），影响其他项目。\\\\n- **根因**：部署 Worker 启动时未显式设置 `CUDA_VISIBLE_DEVICES=5`，PyTorch 默认使用 cuda:0\\\\n- **修复**：run_mvp.py 最开头加 GPU 守卫（`os.environ['CUDA_VISIBLE_DEVICES'] = '5'` 在 `import torch` 之前）\\\\n- **How to apply**：后续所有实验脚本必须在第一行设置 `os.environ['CUDA_VISIBLE_DEVICES']`，且启动命令也要带 `CUDA_VISIBLE_DEVICES=X`。双重保险。submit_training_job 会自动注入，但手动启动的脚本必须自己加。\\\\n\\\\n## 🚨 教训：Kill 进程前必须确认 PID 对应的进度（2026-05-12）\\\\n发现两个 run_mvp.py 进程 (PID 98300 + 98594) 时，误杀了进度更快的 98300 (91.4%)，保留了落后的 98594。ACDC 无缓存机制，重启后从头开始，浪费 ~2h。\\\\n- **Why**: 没有在 kill 前检查每个 PID 的实际进度（如 `/proc/<pid>/fd` 或日志关联）\\\\n- **How to apply**: 多个同名进程时，先用 `ls -l /proc/<pid>/fd/1` 或 `strace -p <pid>` 确认哪个是活跃的/进度更快的，再决定 kill 哪个。绝不靠猜测。\\\\n\\\\n## 🚨 教训：代码修复后必须清除相关缓存（2026-05-12）\\\\n边名归一化修复后未清 cache_eap_ig.json / cache_edge_pruning.json，v2 加载旧缓存导致三路边名仍不一致，浪费一次完整运行。\\\\n- **Why**: per-method JSON 缓存存的是归一化前的旧格式边名。代码改了 normalizer 但缓存里的数据不受影响。\\\\n- **How to apply**: 任何影响数据格式/命名的代码修复后，**必须删除所有相关缓存文件再重跑**。检查清单：`cache_*.json`、`*.pkl`、`__pycache__/`、HF cache（如果改了 tokenizer/model loading）。宁可多删导致重算，不可漏删导致格式不一致。\\\\n\\\\n## Edge Pruning 实现差异（2026-05-12）\\\\nMVP 阶段 Edge Pruning 用的是 auto-circuit 的 `mask_gradient_prune_scores()`（IG over masks），不是 princeton-nlp/edge-pruning 的 L0 连续松弛优化。两者同属 mask-based 族但实现路径不同。\\\\n- **MVP**：auto-circuit 代理够用，标注 preliminary\\\\n- **论文**：需切换到 princeton-nlp L0 实现，否则审稿人可能质疑与 EAP-IG 的独立性（两者都用 gradient）\\\\n- **Why**: mask_gradient 本质是 gradient-based mask scoring，与 L0 mask optimization 在算法原理上有根本区别\\\\n\\\\n## ACDC 在 GPT-2 Small 上的实际耗时（2026-05-12）\\\\nACDC 在 GPT-2 Small / IOI 上需 ~2.5h（32491 edges, 速度随深度波动 1.5-24 it/s）。远超最初预估，直接证明大模型上 ACDC 不可行→改用 IFR 的合理性。可作为论文 empirical evidence。\\\\n- ACDC 无中间结果缓存，进程中断后必须从头重跑\\\\n- `tao_exps=[-2]` 是单个 threshold（τ=0.01），不是多轮扫描\\\\n\\\\n## 大模型第三方法选择（2026-05-12）\\\\n评估了 AtP*自实现 / PAHQ加速ACDC / \n…[truncated 1478 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T20:52:50.915413+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态确认完毕。等待 Agent 回报 v3 进程状态（PID 279220，ACDC 扫描，预估总时长 ~2.5h）。v3 是项目首个有效数据点，结果直接决定 MVP 走向。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_fde8ba5e95b6c6af458dd6d4bf74a233:director"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ]
+}

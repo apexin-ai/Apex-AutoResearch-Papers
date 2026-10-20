@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "578fffaa655f604f398a",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code mvp k3 framework",
+  "task_key": "worker_code_mvp-k3-framework_20260512T101924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-k3-framework_20260512T101924_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "f945031c4bb76dd290874d14875ab9139b7b76b3b36fdebd09d49ea706d98d46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个文件已创建，导入验证通过。\n\n文件清单：\n\n| 文件 | 功能 |\n|------|------|\n| `config.py` | MVP 配置（K=3, CSS 阈值, CIRCUS B=10） |\n| `circuit_discovery.py` | 三种方法统一接口 + edge name 归一化 |\n| `circus.py` | config-bagging + core/contingent/noise 分层 |\n| `css.py` | 跨方法二值共识计算 + 阈值筛选 |\n| `cross_tabulate.py` | 2×2 交叉表 + off-diagonal % 计算 |\n| `evaluation.py` | 电路 faithfulness 评估（CPR/CMD） |\n| `run_mvp.py` | 完整 pipeline（8 步 + gate 判定） |\n\n核心设计点：\n- 所有方法统一输出 `Dict[str, float]`，edge name 归一化到 TransformerLens 格式\n- CSS 逻辑完整可运行（compute_css / threshold_css / binarize_scores）\n- CIRCUS config-bagging 用 percentile-based 阈值，B=10 bin\n- 交叉表数据结构用 `CrossTable` dataclass，off-diagonal % 是属性直接读取\n- 需要 GPU 验证的库调用（EAP-IG/ACDC/Edge Pruning/evaluation ablation）标记了 TODO"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-k3-framework.md"
+}

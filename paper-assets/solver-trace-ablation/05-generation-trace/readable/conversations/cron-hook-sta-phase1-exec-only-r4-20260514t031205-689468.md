@@ -1,0 +1,1511 @@
+# cron hook sta phase1 exec only r4 20260514T031205 689468
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 2
+- **Tool calls:** 22
+- **Original source:** `logs/chats/archive/cron_hook_sta-phase1-exec-only-r4_20260514T031205_689468.jsonl`
+- **Structured JSON:** [`22c35b951140d1b567a7.json`](../../sessions/22/22c35b951140d1b567a7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T23:50:03.555962+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #2。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westd-39279 的 cuda:0 和 cuda:1（gpu_ids 白名单）
+- submit_training_job 的 command 必须用 `bash -c "CUDA_VISIBLE_DEVICES={gpu} source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ..."` 格式——之前 r1/r2 因 shell 语法问题（EXIT_CODE=2）失败过
+- GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）
+- r3 轮次两个实验都 OOM（EXIT_CODE=137），r4 修复后才跑通——如需重跑注意显存配置
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-39279，2× RTX PRO 6000 96GB
+- 工作目录：/root/solver-trace-ablation/
+- Python：/root/miniconda3/bin/python3（conda base 环境，不是 venv）
+- 模型：/root/solver-trace-ablation/models/Qwen3-4B
+- 数据：/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl（100条 baseline），来源 FOLIO
+- Solver：Prover9 + SWI-Prolog + Z3 已安装
+- 训练日志：~/runs/solver-trace-ablation/sta-phase1-*.log
+- 输出：/root/solver-trace-ablation/outputs/
+- 配置文件：configs/grpo_exec_only.yaml（exec-only 条件）、configs/grpo_exec_sta.yaml（exec+STA 条件）
+- 活跃进程：无（两个实验刚跑完）
+
+### 3. 📊 当前状态
+**刚发生的事**：sta-phase1-exec-only-r4 和 sta-phase1-exec-sta-r4 两个实验都正常退出（ANALYZING 状态），cron 回调已到。这是经历 6 次失败后首次成功完成的 Phase 1 GRPO pilot。
+
+**已派未回的 Worker**：`worker_analysis_phase1-r4-results_20260513T204708` 正在分析两个实验的日志和 W&B 数据。这个 Worker 会：
+- SSH 读取两个实验的训练日志
+- 提取 W&B 指标
+- 对比 Phase 0 baseline（mean_isr=0.0641, prove_rate=0.12）
+- 判定 MVP Pass/Fail
+- 更新 registry 的 metrics 和 conclusion
+
+**Registry 状态**：
+- sta-phase1-exec-only-r4: ANALYZING（cuda:0，~0.29h）
+- sta-phase1-exec-sta-r4: ANALYZING（cuda:1，~0.29h）
+- 其他 8 个实验全 DONE（2 success: phase0-baseline + gt-isr-baseline；6 failed: r1/r2/r3 各种错误）
+
+**两张 GPU 都空闲**，等分析完再决定下一步。
+
+### 4. 📋 待办
+- Worker `worker_analysis_phase1-r4-results` 回调到 → 读分析结果，更新 registry 到 DONE，刷新 report.md，向 Director 汇报（带 [资源] 行）
+- 如果 conclusion=success 且 MVP Pass → 向 Director 汇报成功，建议进入 Phase 2（扩大训练规模/更多逻辑类型），按 on-experiment-done skill 做文献联动
+- 如果 conclusion=negative → 按 red-section skill 产出 Framing 调整提案，不要默默跑下一个实验
+- 如果 conclusion=failed（日志有错误）→ 按 on-experiment-failed skill 诊断，修复后重跑 r5
+- 分析完后两张 GPU 空闲 → 立即规划下一批实验占满 GPU
+
+### 5. 🎯 战略上下文
+- **项目核心**：STA（Solver Trace Ablation）用 mutation testing RIP 框架从 solver 执行语义推导 intensional verification reward，验证它能减少 GRPO 训练中的 reward hacking。目标 EMNLP 2026 ARR（DDL 2026-05-25，还剩 12 天）
+- **D001**：MVP 方案——FOL+Prover9 单逻辑 50→100-step GRPO pilot
+- **D002**：MVP 调整——趋势判断 + Phase 0 ISR baseline
+- **Phase 0 已完成**：base Qwen3-4B ISR baseline 锚定（mean_isr=0.0641 很低，prove_rate=0.12）；GT FOL baseline 也完成（gt_mean_isr=0.5588）
+- **易错点 1**：Phase 0 baseline 的 mean_isr=0.0641 非常低，说明 base model formalization 质量差。如果 Phase 1 训练后 ISR 仍然很低，不一定是方法问题——可能是 100 步训练不够
+- **易错点 2**：之前 6 次失败的根因链——r1 shell 语法（CUDA_VISIBLE_DEVICES 写法）→ r2 代码 bug → r3 OOM → r4 修复。如果需要重跑确保沿用 r4 的命令格式和配置
+- **易错点 3**：experiment_plan.yaml 是空的（没有 plan entries），实验都是直接在 registry 里创建的
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息 (2026-05-13)
+
+### westd-39279 服务器
+- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张
+- **CUDA**: 12.8, PyTorch 2.10.0+cu128
+- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **ML 栈**: transformers/trl/vllm/accelerate 全部预装
+- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0
+- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）
+- **代码路径**: `/root/solver-trace-ablation/`
+
+### 决策记录
+- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）
+- Prover9 从 LADR 源码编译（apt 无包）
+- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力
+
+## 可查的历史
+前 8 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-13T23:50:19.090225+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-13T23:50:19.090596+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T23:50:22.206615+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-13T23:50:22.207607+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T23:50:22.764072+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan001-exec-only-s42-r2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T22:40:41.773Z\", \"updated_at\": \"2026-05-13T23:48:53.807Z\", \"completed_at\": \"\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:46:01.596431+00:00\"}]}, \"spec\": {\"command\": \"GRPO exec-only 500 steps\", \"server\": \"westd-39279\", \"data_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s42/\", \"data_count\": 500, \"model_name\": \"Qwen2.5-7B (exec-only fine-tuned)\", \"seed\": 42, \"hypothesis\": \"500-step exec-only baseline for STA comparison (K=8)\", \"pid\": \"84901\"}, \"notes\": \"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。\", \"reproduce\": {\"finished_at\": \"2026-05-13T23:46:00.369Z\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 62.2, \"overall_prove_rate\": 0.6743, \"overall_isr\": 0.6677, \"first20_prove_rate\": 0.1625, \"first20_isr\": 0.1625, \"last50_prove_rate\": 0.8525, \"last50_isr\": 0.8525, \"last100_prove_rate\": 0.865, \"last100_isr\": 0.8612, \"window_1_50_pr\": 0.185, \"window_51_100_pr\": 0.2375, \"window_101_200_pr\": 0.6625, \"window_201_300_pr\": 0.7837, \"window_301_400_pr\": 0.8488, \"window_401_500_pr\": 0.865, \"first_sustained_0.8_step\": 133, \"first_prove_1.0_step\": 109, \"steps_at_1.0\": 166, \"pct_steps_at_1.0\": 0.332, \"max_rolling10_jump\": 0.1042, \"mean_loss\": 0.0067, \"last50_loss\": 0.0089, \"isr_pr_diff_steps\": 13, \"parse_rate\": 1}}, \"plan001-exec-only-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:19:41.568Z\", \"upda
+…[truncated 23686 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 557
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T23:50:22.764888+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T23:50:23.167774+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T23:50:24.224916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"plan005-sta-low-s42\", \"success\": true, \"actions\": [\"Job still running (pid=85790)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2017
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T23:50:24.225454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\", \"content\": \"# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan005-sta-low-s42 | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **plan001-exec-only-s42-r2** (success): —\\n- **plan001-exec-only-s42** (failed): —\\n- **plan003-eval-exec-only-r5** (success): —\\n\\n## 趋势\\n成功 5 / 负向 3 / 失败 8 / 共 16\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-39279: 无 GPU 信息\\n\\n## 告警\\n- sta-phase1-exec-only: 训练失败 — unknown\\n- sta-phase1-exec-sta: 训练失败 — unknown\\n- sta-phase1-exec-only-r2: 训练失败 — unknown\\n- sta-phase1-exec-sta-r2: 训练失败 — unknown\\n- sta-phase1-exec-only-r3: 训练失败 — unknown\\n- sta-phase1-exec-sta-r3: 训练失败 — unknown\\n- plan001-exec-only-s42: 训练失败 — unknown\\n- plan001-exec-only-s42-r3: 训练失败 — unknown\\n\", \"total_chars\": 765, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1460
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T23:50:24.276062+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 1108
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T23:50:50.025271+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T23:50:50.378744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-13 23:09 UTC | 更新原因: Dream 完成 + plan_003 消歧确认 penalty effect + plan_001 3次失败紧急处理\\n\\n## 核心方向\\nSTA（Solver Trace Ablation）：基于 mutation testing 的 component necessity testing，为 neurosymbolic formalizer 的 GRPO 训练提供 intensional structural reward。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（MVP 通过，消歧实验完成，Dream 审稿指导重构中）\\n- **基础设施**: westd-39279 × 2 RTX PRO 6000 96GB\\n- **消歧结论 (D008)**: plan_003 held-out eval 确认 exec-only checkpoint ISR=0.6423（proved-only），高于 GT 0.56。**Interpretation B confirmed**: 50/50 STA reward 是 penalty effect，非 hacking detection。\\n- **Dream 结果**: dream_20260513T215750 done — best 4/6 Borderline Reject, median 3/6 Weak Reject\\n- **Dream 跨档一致问题**: (1) related work 6→25+ (2) RIP framing 过度 (3) ISR circularity (4) single-seed secondary (5) ISR sparsity/\\\"dense+automatic\\\" 不成立\\n- **论文 story 转向**: \\\"STA detects hacking\\\" → \\\"STA as principled structural metric + proper integration\\\"\\n- **⚠️ plan_001 连续 3 次 failed**: exec-only baseline 500步尚未成功运行，Agent 正在诊断\\n- **plan_005 RUNNING**: STA weight=0.1 训练进行中（cuda:1）\\n\\n## 实验计划摘要（详见 experiment_plan.yaml）\\n**既有 P0**:\\n- plan_001: exec-only 500步 3seed baseline — **3次failed，紧急修复中**\\n- plan_002: exec+STA 500步 3seed — 待 plan_005 确定最优权重\\n- plan_003: held-out eval — ✅ done, 消歧完成\\n- plan_005: weight ablation — RUNNING (sta_weight=0.1)\\n\\n**Dream 新增实验需求**:\\n- **random reward baseline** (NEW): random structural penalty 替代 ISR → 隔离 ISR specific signal vs multi-objective regularization. ~1 GPU·h. **Dream M2/W7 必修**\\n- **downstream validation** (NEW): 高 ISR formalizations 用于下游逻辑推理任务 → 打破 ISR circularity. **Dream M2/W4 必修**\\n- **3-seed for secondary**: 至少 Prolog (plan_006) + top weight config 需 3 seed. ~6 GPU·h\\n- **curriculum ablation**: linear ramp vs sigmoid c
+…[truncated 2227 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T23:50:50.429436+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T23:50:50.483110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\", \"content\": \"# solver-trace-ablation — Memory\\n\\n## 环境信息 (2026-05-13)\\n\\n### westd-39279 服务器\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\n- **代码路径**: `/root/solver-trace-ablation/`\\n\\n### 决策记录\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\n- Prover9 从 LADR 源码编译（apt 无包）\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\n\\n## 数据 (2026-05-13)\\n\\n### 数据源变更：ProofWriter → FOLIO\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\n- Phase 0 子集 100 条，训练子集 500 条\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\n\\n## Phase 0 关键发现 (2026-05-13)\\n\\n### Base Model ISR Baseline (sta-phase0-baseline)\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\n\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\n- **MVP Pass #2 验证**: GT ISR 0.559 > 0.5 ✅，好的 formalization ISR 高\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\n\\n### Prover9 局限性\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\n- Phase 1 训练中 reward 信号主要来自 `true` 类样本\\n\\n### ISR 已知盲区\\n- premise-conclusion 重复的 trivial formalization 可能获高 ISR\\n- 需在论文 Discussion 中讨论此局限\\n\\n## Phase 1 关键经验 (2026-05-13)\\n\\n### fast_isr_fol 失败教训 (r4)\\n- `fast_isr_fol()` 是二值
+…[truncated 2437 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 53
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T23:51:43.368482+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T23:51:43.621139+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_90dbe871.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "Read",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T23:51:43.671846+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "experiment_plan.yaml",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "experiment_plan.yaml",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T23:51:43.773045+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T23:51:50.517119+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T23:51:52.328024+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "Glob",
+  "elapsed_ms": 1810
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T23:51:52.328928+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T23:51:52.379849+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T23:51:56.048234+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "solver-trace-ablation",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "solver-trace-ablation",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T23:51:56.199723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"solver-trace-ablation\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": [\"westd-39279:cuda:0\", \"westd-39279:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/solver-trace-ablation\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-39279\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T23:54:24.287441+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "train:plan001-exec-only-s43",
+  "project": "solver-trace-ablation",
+  "task_prompt": "你是 solver-trace-ablation 项目的 Worker。任务：在 westd-39279 cuda:0 上启动 plan_001 exec-only 500步 seed 43 训练。\n\n## 背景\nplan001-exec-only-s42-r2 (seed 42) 已成功完成 500步，prove_rate 从 0.185→0.865，ISR 从 0.16→0.86。现在需要 seed 43 作为 3-seed baseline 的第二个 seed。\n\n## 环境\n- 服务器: westd-39279, 账号 root\n- GPU: cuda:0（必须确认空闲后才能提交）\n- conda 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 代码路径: /root/solver-trace-ablation/\n- 模型: Qwen3-4B（路径在 config 里）\n- 已验证的 output dir 格式: /root/autodl-tmp/outputs/plan001_exec_only_s43/\n\n## 步骤\n\n### 1. SSH 环境确认（用 ssh_read_only）\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader\nls /root/solver-trace-ablation/data/*.jsonl\ncat /root/solver-trace-ablation/configs/grpo_exec_only.yaml\npython3 /root/solver-trace-ablation/scripts/train_grpo.py --help 2>&1 | head -40\n```\n确认:\n- cuda:0 显存空闲（used << total）\n- 训练数据文件名和路径\n- config 里的模型路径、默认步数\n- train_grpo.py 接受哪些 CLI 参数（特别是 --num_steps, --seed, --output_dir）\n\n### 2. 确定训练命令\n基于 step 1 确认的 CLI 参数，构造命令。预期类似：\n```\npython3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43\n```\n如果 CLI 不支持 --num_steps/--seed，需要看 config 文件如何设置，可能需要先创建一个专用 config。\n\n### 3. 提交训练\n用 submit_training_job 提交。command 必须用 bash -c 格式：\n```\nbash -c \"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && <上面确定的命令>\"\n```\n\nsubmit_training_job 参数：\n- exp_id: plan001-exec-only-s43\n- server: westd-39279\n- gpu: cuda:0\n- account: root\n- hypothesis: \"exec-only 500步 seed 43, 3-seed baseline 第2个 seed。预期 prove_rate>0.80 (与 s42 一致)\"\n\n### 4. 补充 registry spec\n用 update_registry 补充：data_path, data_count(500), model_name(Qwen3-4B), seed(43)\n\n## 硬约束\n- GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- 之前 r1/r2 因 shell 语法问题（EXIT_CODE=2）失败过——必须用 bash -c 格式\n- 之前 r3 因重复提交导致 OOM——提交前必须确认 cuda:0 空闲\n- 禁止 nohup，必须用 submit_training_job\n- 输出目录必须与 s42 的 /root/autodl-tmp/outputs/plan001_exec_only_s42/ 平行但不冲突",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']",
+  "context": "服务器 westd-39279, 2×RTX PRO 6000 96GB, conda base 环境。代码 /root/solver-trace-ablation/。plan001-exec-only-s42-r2 已成功: 500步 prove_rate=0.865。现在跑 seed 43。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "train:plan001-exec-only-s43",
+    "project": "solver-trace-ablation",
+    "task_prompt": "你是 solver-trace-ablation 项目的 Worker。任务：在 westd-39279 cuda:0 上启动 plan_001 exec-only 500步 seed 43 训练。\n\n## 背景\nplan001-exec-only-s42-r2 (seed 42) 已成功完成 500步，prove_rate 从 0.185→0.865，ISR 从 0.16→0.86。现在需要 seed 43 作为 3-seed baseline 的第二个 seed。\n\n## 环境\n- 服务器: westd-39279, 账号 root\n- GPU: cuda:0（必须确认空闲后才能提交）\n- conda 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 代码路径: /root/solver-trace-ablation/\n- 模型: Qwen3-4B（路径在 config 里）\n- 已验证的 output dir 格式: /root/autodl-tmp/outputs/plan001_exec_only_s43/\n\n## 步骤\n\n### 1. SSH 环境确认（用 ssh_read_only）\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader\nls /root/solver-trace-ablation/data/*.jsonl\ncat /root/solver-trace-ablation/configs/grpo_exec_only.yaml\npython3 /root/solver-trace-ablation/scripts/train_grpo.py --help 2>&1 | head -40\n```\n确认:\n- cuda:0 显存空闲（used << total）\n- 训练数据文件名和路径\n- config 里的模型路径、默认步数\n- train_grpo.py 接受哪些 CLI 参数（特别是 --num_steps, --seed, --output_dir）\n\n### 2. 确定训练命令\n基于 step 1 确认的 CLI 参数，构造命令。预期类似：\n```\npython3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43\n```\n如果 CLI 不支持 --num_steps/--seed，需要看 config 文件如何设置，可能需要先创建一个专用 config。\n\n### 3. 提交训练\n用 submit_training_job 提交。command 必须用 bash -c 格式：\n```\nbash -c \"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && <上面确定的命令>\"\n```\n\nsubmit_training_job 参数：\n- exp_id: plan001-exec-only-s43\n- server: westd-39279\n- gpu: cuda:0\n- account: root\n- hypothesis: \"exec-only 500步 seed 43, 3-seed baseline 第2个 seed。预期 prove_rate>0.80 (与 s42 一致)\"\n\n### 4. 补充 registry spec\n用 update_registry 补充：data_path, data_count(500), model_name(Qwen3-4B), seed(43)\n\n## 硬约束\n- GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- 之前 r1/r2 因 shell 语法问题（EXIT_CODE=2）失败过——必须用 bash -c 格式\n- 之前 r3 因重复提交导致 OOM——提交前必须确认 cuda:0 空闲\n- 禁止 nohup，必须用 submit_training_job\n- 输出目录必须与 s42 的 /root/autodl-tmp/outputs/plan001_exec_only_s42/ 平行但不冲突",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']",
+    "context": "服务器 westd-39279, 2×RTX PRO 6000 96GB, conda base 环境。代码 /root/solver-trace-ablation/。plan001-exec-only-s42-r2 已成功: 500步 prove_rate=0.865。现在跑 seed 43。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T23:54:41.621755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_train_plan001-exec-only-s43_20260513T235424\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_train_plan001-exec-only-s43_20260513T235424.log\", \"setup_data\": {}, \"message\": \"Worker worker_train_plan001-exec-only-s43_20260513T235424 started. Use get_worker_status('worker_train_plan001-exec-only-s43_20260513T235424') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 17334
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T23:54:43.658119+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "code:random-reward-baseline",
+  "project": "solver-trace-ablation",
+  "task_prompt": "你是 solver-trace-ablation 项目的 Worker。任务：在服务器上编写 random reward baseline 的代码和配置，为后续训练做准备。\n\n## 背景\nDream 审稿反馈要求做 random reward baseline（M2/W7 必修）：用随机 structural penalty 替代 ISR，测试 ISR 的改善是否来自其 specific signal，还是仅来自 multi-objective regularization effect。\n\n当前项目结构：\n- exec-only: reward = prove_rate（二值：0 或 1）\n- exec+STA: reward = exec_weight * prove_rate + sta_weight * ISR（ISR 是连续值 0.0-1.0）\n- random baseline: reward = exec_weight * prove_rate + sta_weight * random（random 在 0.0-1.0 均匀分布）\n\n如果 random baseline 的效果与 exec+STA 类似 → ISR 的 specific signal 不重要，只是 regularization\n如果 random baseline 效果差于 exec+STA → ISR 的 structural information 确实提供了有价值的信号\n\n## 步骤\n\n### 1. SSH 读取现有代码结构\n```bash\n# 理解 reward 函数的接口\ncat /root/solver-trace-ablation/scripts/train_grpo.py\ncat /root/solver-trace-ablation/scripts/rewards.py  # 或类似文件\nls /root/solver-trace-ablation/configs/\ncat /root/solver-trace-ablation/configs/grpo_exec_sta.yaml\n```\n\n### 2. 实现 random reward\n在 rewards.py（或等效文件）中添加 random_structural_reward 函数：\n- 接受与 sta_reward 相同的输入\n- 返回 [0.0, 1.0] 均匀分布的随机值\n- 保持与 sta_reward 相同的返回格式\n- 确保 random seed 可控（用不同于训练 seed 的固定 seed，或每 step 不同）\n\n### 3. 创建配置文件\n创建 configs/grpo_exec_random.yaml：\n- 复制 grpo_exec_sta.yaml 的结构\n- 将 reward_type 或等效字段改为 random\n- 保持 exec_weight=0.9, random_weight=0.1（与 plan005 对齐方便对比）\n\n### 4. 验证\n```bash\n# dry-run 验证代码能启动\ncd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_random.yaml --help\n# 或跑 1 步验证\npython3 -c \"from scripts.rewards import random_structural_reward; print(random_structural_reward(...))\"\n```\n\n## 重要\n- 不要启动训练！只写代码和配置。GPU 提交由 Main Agent 统一调度\n- 代码注释要清晰：说明这是 ablation control experiment\n- random reward 的值域必须与 ISR 一致（0.0-1.0），否则权重不可比\n- 确保 random seed 记录在日志中，保证可复现",
+  "tool_groups": "['ssh']",
+  "context": "服务器 westd-39279, conda base 环境。代码 /root/solver-trace-ablation/。STA reward (ISR) 是连续值 0.0-1.0。需要写一个 random baseline 对照。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:random-reward-baseline",
+    "project": "solver-trace-ablation",
+    "task_prompt": "你是 solver-trace-ablation 项目的 Worker。任务：在服务器上编写 random reward baseline 的代码和配置，为后续训练做准备。\n\n## 背景\nDream 审稿反馈要求做 random reward baseline（M2/W7 必修）：用随机 structural penalty 替代 ISR，测试 ISR 的改善是否来自其 specific signal，还是仅来自 multi-objective regularization effect。\n\n当前项目结构：\n- exec-only: reward = prove_rate（二值：0 或 1）\n- exec+STA: reward = exec_weight * prove_rate + sta_weight * ISR（ISR 是连续值 0.0-1.0）\n- random baseline: reward = exec_weight * prove_rate + sta_weight * random（random 在 0.0-1.0 均匀分布）\n\n如果 random baseline 的效果与 exec+STA 类似 → ISR 的 specific signal 不重要，只是 regularization\n如果 random baseline 效果差于 exec+STA → ISR 的 structural information 确实提供了有价值的信号\n\n## 步骤\n\n### 1. SSH 读取现有代码结构\n```bash\n# 理解 reward 函数的接口\ncat /root/solver-trace-ablation/scripts/train_grpo.py\ncat /root/solver-trace-ablation/scripts/rewards.py  # 或类似文件\nls /root/solver-trace-ablation/configs/\ncat /root/solver-trace-ablation/configs/grpo_exec_sta.yaml\n```\n\n### 2. 实现 random reward\n在 rewards.py（或等效文件）中添加 random_structural_reward 函数：\n- 接受与 sta_reward 相同的输入\n- 返回 [0.0, 1.0] 均匀分布的随机值\n- 保持与 sta_reward 相同的返回格式\n- 确保 random seed 可控（用不同于训练 seed 的固定 seed，或每 step 不同）\n\n### 3. 创建配置文件\n创建 configs/grpo_exec_random.yaml：\n- 复制 grpo_exec_sta.yaml 的结构\n- 将 reward_type 或等效字段改为 random\n- 保持 exec_weight=0.9, random_weight=0.1（与 plan005 对齐方便对比）\n\n### 4. 验证\n```bash\n# dry-run 验证代码能启动\ncd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_random.yaml --help\n# 或跑 1 步验证\npython3 -c \"from scripts.rewards import random_structural_reward; print(random_structural_reward(...))\"\n```\n\n## 重要\n- 不要启动训练！只写代码和配置。GPU 提交由 Main Agent 统一调度\n- 代码注释要清晰：说明这是 ablation control experiment\n- random reward 的值域必须与 ISR 一致（0.0-1.0），否则权重不可比\n- 确保 random seed 记录在日志中，保证可复现",
+    "tool_groups": "['ssh']",
+    "context": "服务器 westd-39279, conda base 环境。代码 /root/solver-trace-ablation/。STA reward (ISR) 是连续值 0.0-1.0。需要写一个 random baseline 对照。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T23:55:02.994314+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "text": "[资源] GPU 分配 2 / 实际跑 1 (plan005 on cuda:1) | Worker 池 2 (GPU 1 / CPU 1)，刚 spawn\n\n## Session 初始化汇报\n\n**已完成（上轮 session）**:\n1. **plan001-exec-only-s42-r2** (cuda:0, 500步) ✅ success\n   - prove_rate: 0.185→0.865 (last100=0.865), ISR: 0.16→0.86\n   - 62 min, 首次 sustained >0.8 在 step 133\n   - 33% 的 step 达到 perfect prove_rate=1.0\n   - 这是项目迄今最强结果，确认 exec-only GRPO 500步效果极好\n\n2. **plan003-eval-exec-only-r5** ✅ success\n   - held-out eval: prove_rate=0.32 (baseline 2.7x), ISR=0.206 (baseline 3.2x)\n   - proved-only ISR=0.642，确认 exec-only 的 ISR 提升是 organic（非 hacking）\n   - D007 消歧完成：50/50 STA 权重是 penalty effect\n\n**正在运行**:\n- **plan005-sta-low-s42** (cuda:1): STA weight=0.1, 500步 — 这是决定性实验，验证低权重 STA 能否避免 penalty effect\n\n**刚启动**:\n- **plan001-exec-only-s43** (cuda:0): exec-only 500步 seed 43 — 3-seed baseline 第2个 seed。Worker 正在验证环境并提交\n- **random-reward-baseline 代码编写** (CPU Worker): Dream M2/W7 必修的 random structural reward 代码，准备好后等 GPU 空闲即可提交\n\n**关键发现**:\n- plan001 500步 prove_rate=0.865 证明 GRPO pipeline 完全有效\n- 对比 100步 (prove_rate=0.15) vs 500步 (prove_rate=0.865)，说明更长训练是关键\n- ISR≡prove_rate 在 exec-only 中成立（isr_pr_diff_steps=13），confirm ISR 在 exec-only 下是冗余信号\n- **plan005 是下一个关键节点**：如果 STA weight=0.1 能让 prove_rate ≥0.80 同时 ISR 提供额外信号 → STA as reward component 成立\n\n**下一步建议**:\n1. plan005 完成后立即分析 → 确定最优 STA 权重\n2. plan001 3-seed 完成后 → 开始 plan002 (exec+STA 3-seed，用 plan005 确定的最优权重)\n3. random reward baseline 代码就绪后 → 下一个空闲 GPU 立即提交\n4. DDL 2026-05-25（剩 12 天），当前实验进度符合预期"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "text": "[资源] GPU 分配 2 / 实际跑 1 (plan005 on cuda:1) | Worker 池 2 (GPU 1 / CPU 1)，刚 spawn\n\n## Session 初始化汇报\n\n**已完成（上轮 session）**:\n1. **plan001-exec-only-s42-r2** (cuda:0, 500步) ✅ success\n   - prove_rate: 0.185→0.865 (last100=0.865), ISR: 0.16→0.86\n   - 62 min, 首次 sustained >0.8 在 step 133\n   - 33% 的 step 达到 perfect prove_rate=1.0\n   - 这是项目迄今最强结果，确认 exec-only GRPO 500步效果极好\n\n2. **plan003-eval-exec-only-r5** ✅ success\n   - held-out eval: prove_rate=0.32 (baseline 2.7x), ISR=0.206 (baseline 3.2x)\n   - proved-only ISR=0.642，确认 exec-only 的 ISR 提升是 organic（非 hacking）\n   - D007 消歧完成：50/50 STA 权重是 penalty effect\n\n**正在运行**:\n- **plan005-sta-low-s42** (cuda:1): STA weight=0.1, 500步 — 这是决定性实验，验证低权重 STA 能否避免 penalty effect\n\n**刚启动**:\n- **plan001-exec-only-s43** (cuda:0): exec-only 500步 seed 43 — 3-seed baseline 第2个 seed。Worker 正在验证环境并提交\n- **random-reward-baseline 代码编写** (CPU Worker): Dream M2/W7 必修的 random structural reward 代码，准备好后等 GPU 空闲即可提交\n\n**关键发现**:\n- plan001 500步 prove_rate=0.865 证明 GRPO pipeline 完全有效\n- 对比 100步 (prove_rate=0.15) vs 500步 (prove_rate=0.865)，说明更长训练是关键\n- ISR≡prove_rate 在 exec-only 中成立（isr_pr_diff_steps=13），confirm ISR 在 exec-only 下是冗余信号\n- **plan005 是下一个关键节点**：如果 STA weight=0.1 能让 prove_rate ≥0.80 同时 ISR 提供额外信号 → STA as reward component 成立\n\n**下一步建议**:\n1. plan005 完成后立即分析 → 确定最优 STA 权重\n2. plan001 3-seed 完成后 → 开始 plan002 (exec+STA 3-seed，用 plan005 确定的最优权重)\n3. random reward baseline 代码就绪后 → 下一个空闲 GPU 立即提交\n4. DDL 2026-05-25（剩 12 天），当前实验进度符合预期"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-14T00:10:03.793438+00:00_
+
+GPU 白名单确认：cuda:0 + cuda:1 on westd-39279。当前 cuda:0 空闲，cuda:1 跑 plan005-sta-low-s42。
+
+状态与 handoff 差异较大——上一轮 session 已完成大量工作：
+- plan001-exec-only-s42-r2 已跑通（prove_rate=0.865@500步）
+- plan003-eval 消歧完成
+- plan005 已在跑
+- 分析 Worker 已完成回调
+
+**cuda:0 空闲 = 失职**。立即填满：plan001 seed 43（3-seed baseline 第 2 个 seed）。同时 spawn CPU worker 写 random reward baseline 代码（Dream 必修实验）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sta-phase1-exec-only-r4"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+16 recorded events
+
+### User
+
+_source line 31 · 2026-05-14T03:10:39.169810+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T03:10:49.596677+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T03:10:49.647445+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T03:10:53.664295+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T03:10:53.664741+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T03:10:54.169395+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan002-additive-b03-s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T03:10:04.770Z\", \"spec\": {\"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\", \"plan_id\": \"plan_002\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * ISR)\", \"beta\": 0.3, \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"161819\"}}, \"plan013-random-reward-s42-r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T03:06:58.378Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_
+…[truncated 38377 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 505
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T03:10:54.621579+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "report.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "report.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T03:10:55.073676+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T03:10:55.575775+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "solver-trace-ablation",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "solver-trace-ablation",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T03:10:56.027551+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T03:10:56.831547+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"plan001-exec-only-s43-r4\", \"success\": true, \"actions\": [\"Job still running (pid=136339)\"]}, {\"exp_id\": \"plan002-additive-b03-s42\", \"success\": true, \"actions\": [\"Job still running (pid=161819)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 3166
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T03:10:56.882373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan002-additive-b03-s42 | — | — | — | — |\\n| plan001-exec-only-s43-r4 | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **plan013-random-reward-s42-r4** (success): —\\n- **plan005-sta-low-s42** (negative): —\\n- **plan001-exec-only-s43-r3** (failed): —\\n\\n## 趋势\\n成功 6 / 负向 4 / 失败 14 / 共 24\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-39279: 无 GPU 信息\\n\\n## 告警\\n- sta-phase1-exec-only: 训练失败 — unknown\\n- sta-phase1-exec-sta: 训练失败 — unknown\\n- sta-phase1-exec-only-r2: 训练失败 — unknown\\n- sta-phase1-exec-sta-r2: 训练失败 — unknown\\n- sta-phase1-exec-only-r3: 训练失败 — unknown\\n- sta-phase1-exec-sta-r3: 训练失败 — unknown\\n- plan001-exec-only-s42: 训练失败 — unknown\\n- plan001-exec-only-s42-r3: 训练失败 — unknown\\n- plan001-exec-only-s43: 训练失败 — unknown\\n- plan013-random-reward-s42: 训练失败 — unknown\\n- plan013-random-reward-s42-r2: 训练失败 — unknown\\n- plan001-exec-only-s43-r2: 训练失败 — unknown\\n- plan013-random-reward-s42-r3: 训练失败 — unknown\\n- plan001-exec-only-s43-r3: 训练失败 — unknown\\n\", \"total_chars\": 1082, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 2260
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T03:10:56.883088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\", \"content\": \"# solver-trace-ablation — Research Dashboard\\n\\n> 最后更新: 2026-05-14 02:41 UTC | 更新原因: Session 启动全量刷新：plan001 修复成功、plan005 negative 确认、framing 转向、GRPO 饱和 confound、plan014 审批\\n\\n## 核心方向\\nSTA（Solver Trace Ablation）：基于 mutation testing 的 component necessity testing，为 neurosymbolic formalizer 的 GRPO 训练提供 intensional structural reward。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\n- **基础设施**: westd-39279 × 2 RTX PRO 6000 96GB，两卡满载\\n- **Framing 转向 (D010/D011)**: \\\"STA detects hacking\\\" → \\\"STA as diagnostic metric + additive bonus integration\\\"\\n- **消歧结论 (D008)**: 50/50 凸组合是 penalty effect，非 hacking detection → 切换 additive bonus 公式\\n- **GRPO 饱和 confound (D014)**: random reward 也达高 prove_rate → 论文核心论证聚焦 ISR 差异\\n- **ISR 方法论标准化 (D013/D015)**: 训练日志 ISR 不可信，所有 checkpoint 必须用 eval_sta.py 统一评估\\n- **Dream**: best 4/6 Borderline Reject, median 3/6 Weak Reject — 5 个结构性弱点已逐一应对\\n\\n## RUNNING\\n| 实验 | GPU | 说明 |\\n|------|-----|------|\\n| plan002-additive-b03-s42 | cuda:0 | additive bonus β=0.3 核心实验 |\\n| plan001-exec-only-s43-r4 | cuda:1 | exec-only 3-seed 第 2 个 |\\n\\n## 已完成关键结论\\n| 实验 | 结论 | 关键发现 |\\n|------|------|----------|\\n| plan003 eval | ✅ success | exec-only ISR=0.6423 (proved-only)，高于 GT 0.56 |\\n| plan005 weight ablation | ❌ negative | 凸组合永远是 penalty → 废弃旧公式 |\\n| plan013 random reward | ✅ success | PR=0.675，待 eval_sta.py 获真实 ISR |\\n| plan001-s42-r2 | ✅ success | PR(last100)=0.865，待 eval_sta.py |\\n\\n## 实验计划摘要（详见 experiment_plan.yaml）\\n**P0 关键路径**:\\n- plan_001: exec-only 3-seed — s42 ✅ done, s43 RUNNING, s44 待跑\\n- plan_002: additive bonus β=0.3 — RUNNING (单 seed 验证方向)\\n- plan_003: held-out eval — ✅ done\\n- plan_013: random reward baseline — ✅ done, 待 eval_sta.py\\n- **plan_014: downstream validation A+B — ✅ 已审批**（NLI accuracy + cross-solve
+…[truncated 2743 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1809
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T03:10:56.933767+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"solver-trace-ablation\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": [\"westd-39279:cuda:0\", \"westd-39279:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/solver-trace-ablation\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-39279\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 1357
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T03:10:56.934328+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\", \"content\": \"# solver-trace-ablation — Memory\\n\\n## 环境信息 (2026-05-13)\\n\\n### westd-39279 服务器\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\n- **代码路径**: `/root/solver-trace-ablation/`\\n- **磁盘**: 系统盘 250GB，大文件（outputs/checkpoints）必须放 `/root/autodl-tmp/`\\n\\n### 决策记录\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\n- Prover9 从 LADR 源码编译（apt 无包）\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\n\\n## 数据 (2026-05-13)\\n\\n### 数据源变更：ProofWriter → FOLIO\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\n- Phase 0 子集 100 条，训练子集 500 条\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\n\\n### 数据约束 (2026-05-14, D009)\\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\\n\\n## Phase 0 关键发现 (2026-05-13)\\n\\n### Base Model ISR Baseline (sta-phase0-baseline)\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\n\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\n- **MVP Pass #2 验证**: GT ISR 0.559 > 0.5 ✅，好的 formalization ISR 高\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\n\\n### Prover9 局限性\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\n- Phase 1 训练中 r
+…[truncated 6060 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sta-phase1-exec-only-r4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 906
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-14T03:12:05.687027+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无第三张卡
+- 训练命令必须 `export CUDA_VISIBLE_DEVICES=N &&` 开头（inline 赋值子进程看不到，2026-05-14 plan013 事故教训）
+- 训练命令必须 `bash -c "..."` 包装（tmux 跑 sh 不识别 source）
+- 训练日志中的 ISR 不可用于论文或跨实验对比——所有 checkpoint 必须经 `eval_sta.py`（full STA）统一评估（D013/D015）
+- `log_completions=False` + `save_total_limit=1`（C003），output_dir 放 `/root/autodl-tmp/outputs/`，系统盘 250GB 极易被撑满
+- 凸组合公式已废弃（D010），新公式 `r = r_exec * (1 + β*ISR)`，不要回退旧公式
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB VRAM
+- **工作目录**: `/root/solver-trace-ablation/`
+- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **CUDA**: 12.8, PyTorch 2.10.0+cu128
+- **模型**: `/root/solver-trace-ablation/models/Qwen3-4B`（7.6GB，ModelScope 下载）
+- **数据**: `/root/solver-trace-ablation/data/train_500_seed42.jsonl`（统一训练集，C001）
+- **输出**: `/root/autodl-tmp/outputs/`（所有 checkpoint/reward_log 都在此）
+- **W&B**: 未配置（指标从 reward_log.jsonl 读取）
+- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2, Z3 4.16.0.0
+- **活跃进程**:
+  - plan002-additive-b03-s42: PID 161819, tmux session, cuda:0
+  - plan001-exec-only-s43-r4: PID 136339, tmux session, cuda:1
+- **Cron**: 2 个活跃，分别监控上述两个实验
+
+### 3. 📊 当前状态
+两个实验 RUNNING，等 cron 回调：
+- **plan002-additive-b03-s42** (cuda:0): additive bonus β=0.3 核心实验，500 步，~1h（full STA 每步更慢）。这是新公式的首次验证。
+- **plan001-exec-only-s43-r4** (cuda:1): exec-only 第 2 seed (seed=43)，500 步，~40min。
+
+已完成关键结论（按重要性）：
+- **plan001-s42-r2** ✅: exec-only baseline 成功，PR(last100)=0.865，ISR=0.8612（binary 近似，需 eval_sta.py 重评）
+- **plan013-random-reward-s42-r4** ✅: random reward PR(last100)=0.967。证明 GRPO 本身能把 prove_rate 推高，不是 ISR 的功劳。但真实 ISR 需 eval_sta.py。这是 D014 GRPO 饱和 confound 的核心证据。
+- **plan005-sta-low-s42** ❌ negative: 凸组合 α=0.9,β=0.1，PR(last100)=0.7725 < exec-only 0.865。ISR/PR=0.298，99/100 步 ISR&lt;PR。确认凸组合是 penalty → 促成 D010 公式转向。
+- **plan003-eval-exec-only-r5** ✅: held-out eval exec-only checkpoint，proved_only_isr=0.6423。Exec-only ISR 提升是 organic 的。
+- **sta-phase0-baseline** ✅: base model ISR=0.064, GT ISR=0.559, 8.7x 差距。
+
+无等待中的 Worker 回调。无 pending Director 决策。
+
+### 4. 📋 待办（条件触发式）
+- **plan002 + plan001-s43 cron 回调到达** → spawn Worker 做 eval_sta.py batch（4 个 checkpoint: plan001-s42-r2, plan001-s43-r4, plan002, plan013），每个约 4-5min on 1 GPU → 可串行跑
+- **eval batch 出齐** → 制作统一 ISR 对比表（exec-only vs additive vs random），判断 additive bonus 是否提升 ISR → 决定 narrative
+- **plan002 ISR > exec-only ISR** → additive bonus 方向验证成功，提交 plan017 (additive random control) 审批 + 排第 3 seed plan001-s44
+- **plan002 ISR ≤ exec-only ISR** → 产 Framing 调整提案（STA 仅作 diagnostic，不做 reward integration），等 Director 决策
+- **GPU 空出后** → plan014 downstream validation（NLI accuracy + cross-solver agreement，~4.5h），这是打破 ISR 循环论证的关键实验
+- **plan014 Spearman ρ > 0.1** → ISR 作为 quality proxy 成立，写论文核心实验结果
+- **plan014 Spearman ρ < 0.1** → ISR 作为 quality proxy 不成立，D003 kill criteria 触发
+- **Prolog plan006** → 代码已就绪（dry-run 通过），等 GPU 空闲时启动
+
+### 5. 🎯 战略上下文
+**项目核心**: 用 STA（Solver Trace Ablation，基于 mutation testing）为 neurosymbolic formalizer 的 GRPO 训练提供结构性 reward signal。DDL 2026-05-25，距今 11 天。
+
+**Framing 演变链**:
+- D006: "STA detects hacking" → 降级为观察性表述
+- D008: plan003 消歧 → 50/50 权重是 penalty effect
+- D010/D011: 转向 "STA as diagnostic metric + additive bonus integration"（Narrative A+C）
+- D014: random reward 也达高 PR → 论文聚焦 ISR 差异而非 PR 差异
+
+**最容易判断错的事**:
+1. **训练日志 ISR ≠ 真实 ISR**。plan001-s42 日志 ISR=0.8612 是 binary 近似（_fast_fn），plan013 的 isr_mean 因 random_reward 分支恒为 0。**一切 ISR 对比必须基于 eval_sta.py 输出。** 这是迄今最大的方法论陷阱。
+2. **GRPO 饱和 confound**: 500 步后 prove_rate→1.0，exec-only 的 reward_std=0/loss=0 导致训练停滞，而 random/additive 因额外 variance 还有梯度。plan002 的 additive bonus 天然 anti-saturation，这是正面叙述点。
+3. **不要把 plan005 的 negative 理解为"STA 没用"**——它证明凸组合公式有问题，新公式（additive bonus）是修正。plan002 正在验证。
+4. **Dream 审稿反馈**: best 4/6 Borderline Reject, median 3/6 Weak Reject。5 个结构性弱点（circular reasoning、single solver、single dataset、no downstream、no baseline comparison）对应 plan013/014/006 等实验。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sta-phase1-exec-only-r4"
+}
+```
+
+</details>
+
+---

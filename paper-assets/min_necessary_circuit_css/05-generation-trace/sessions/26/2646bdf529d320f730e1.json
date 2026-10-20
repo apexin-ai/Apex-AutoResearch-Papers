@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2646bdf529d320f730e1",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "ops model download westd",
+  "task_key": "worker_ops_model-download-westd_20260513T062348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_model-download-westd_20260513T062348_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "c4b198b29459443a388e3ffb1f7979a63459efe21c46b71f0a1d22292deaae7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both models downloaded and verified. Summary:\n\n---\n\n### GPT-2 Small\n- **Path**: `/root/autodl-tmp/.hf_cache/openai-community/gpt2/`\n- **Size**: 1.1GB (包含 pytorch_model.bin + model.safetensors 各 523MB)\n- **TransformerLens 验证**: 加载至 CUDA 成功\n  - Layers: 12, Heads: 12, d_model: 768\n  - Vocab: 50257\n  - GPU 显存占用: 635.5 MB\n- **加载方式**: 需要用本地路径加载 HF model 后传入 TransformerLens（直接 `from_pretrained('gpt2-small')` 会尝试从 HF 下载，在 AutoDL 环境下容易失败）\n  ```python\n  hf_model = AutoModelForCausalLM.from_pretrained('/root/autodl-tmp/.hf_cache/openai-community/gpt2')\n  tokenizer = AutoTokenizer.from_pretrained('/root/autodl-tmp/.hf_cache/openai-community/gpt2')\n  model = HookedTransformer.from_pretrained('gpt2-small', hf_model=hf_model, tokenizer=tokenizer, device='cuda')\n  ```\n\n### Qwen-2.5 0.5B\n- **Path**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/`\n- **Size**: 1.4GB (model.safetensors 942MB)\n- **Tokenizer 验证**: Qwen2TokenizerFast, vocab_size = 151643"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-model-download-westd.md"
+}

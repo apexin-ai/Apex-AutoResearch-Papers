@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d7db1abd4b08636bc5a6",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "code phase2 qwen ioi acdc k3",
+  "task_key": "worker_code_phase2-qwen-ioi-acdc-k3_20260513T081516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2-qwen-ioi-acdc-k3_20260513T081516.log",
+    "occurrence": 1,
+    "bytes": 670336,
+    "sha256": "392cfe80fe1d1c03ac34cc2307fef5568fef78026d4258291cc8a981c89f8b39"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "d7db1abd4b08636bc5a6-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "d7db1abd4b08636bc5a6-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phase2-qwen-ioi-acdc-k3.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_pilot_gpt2_ioi",
+  "project": "min_necessary_circuit_css",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T16:53:10.907Z",
+    "updated_at": "2026-05-12T16:53:13.795Z",
+    "hypothesis": "CIRCUS-core edges中≥10%落入off-diagonal cell (method-specific but not CSS-confirmed)"
+  },
+  "timestamp": "2026-05-12T16:53:13.830535+00:00",
+  "trigger": "update_registry"
+}

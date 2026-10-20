@@ -1,0 +1,34 @@
+{
+  "exp_id": "d146-pf-isr-s43",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:03.104Z",
+    "updated_at": "2026-05-20T00:32:37.507Z",
+    "hypothesis": "D146 ProofFOL ISR beta=0.1 seed=43 replication for statistical power.",
+    "parent": "d146-pf-exec-s42",
+    "spec": {
+      "command": "PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python3 scripts/train_grpo.py --config configs/grpo_prooffol_isr_b01.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/d146_pf_isr_s43 --no_wandb",
+      "server": "westd-39279",
+      "data_path": "/root/solver-trace-ablation/data/prooffol_train_500.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "599223",
+      "tmux_session": "d146-pipeline",
+      "batch_size": 2,
+      "gradient_accumulation": 4,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "/root/solver-trace-ablation/data/prooffol_eval_100.jsonl"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T00:32:38.205107+00:00",
+  "trigger": "update_registry"
+}

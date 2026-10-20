@@ -1,0 +1,97 @@
+{
+  "exp_id": "plan002-additive-b01-s44",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:36:17.298Z",
+    "updated_at": "2026-05-14T09:41:52.224Z",
+    "hypothesis": "ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。",
+    "parent": "plan002-additive-b01-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T08:45:11.826Z",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s44\"",
+      "finished_at": "2026-05-14T09:28:10.836Z",
+      "training_hours": 0.72
+    },
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --mode additive_bonus --isr_beta 0.1 --seed 44",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "466540",
+      "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s44.log",
+      "submitted_at": "2026-05-14T08:46:23.037Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "wall_clock_seconds": 2950.3,
+      "gpu_hours": 0.82
+    },
+    "pid": "466540",
+    "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s44.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T09:28:12.416418+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.89,
+      "eval_mean_isr": 0.803,
+      "eval_isr_std": 0.3418,
+      "eval_median_isr": 1,
+      "component_count_mean": 4.33,
+      "component_count_2_ratio": 0.022,
+      "tautological_collapse": false,
+      "isr_0_ratio": 0.12,
+      "isr_1_ratio": 0.65,
+      "component_dist": {
+        "2": 2,
+        "4": 54,
+        "5": 33
+      },
+      "by_answer_type": {
+        "false": {
+          "n": 25,
+          "proved": 22,
+          "PR": 0.88,
+          "ISR": 0.824
+        },
+        "unknown": {
+          "n": 41,
+          "proved": 38,
+          "PR": 0.927,
+          "ISR": 0.837
+        },
+        "true": {
+          "n": 34,
+          "proved": 29,
+          "PR": 0.853,
+          "ISR": 0.747
+        }
+      }
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s44",
+    "notes": "ISR β=0.1 additive bonus seed=44 成功防止了 tautological collapse。exec-only s44 出现严重 collapse（PR=98%但94%样本仅2 components，ISR≈0.5为假象），而 ISR β=0.1 s44 的 component_count_2_ratio 仅 2.25%（mean=4.33），证明 ISR bonus 有效。与 parent s42 对比：PR 0.89 vs 0.81 (+0.08)，mean_isr 0.803 vs 0.337 (+0.466)，proved_only_isr 0.902 vs 0.415 (+0.487）。s44 显著优于 s42，存在较大 seed 间方差——训练曲线显示 s44 在 step 200+ 即达 PR>0.93 且 ISR 持续攀升至 0.90，而 s42 last100 仅 PR=0.69/ISR=0.20。3-seed 统计需结合 s43 数据。",
+    "completed_at": "2026-05-14T09:35:33.310Z"
+  },
+  "timestamp": "2026-05-14T09:41:52.489610+00:00",
+  "trigger": "update_registry"
+}

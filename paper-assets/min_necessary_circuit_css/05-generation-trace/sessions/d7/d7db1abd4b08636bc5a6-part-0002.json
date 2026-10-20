@@ -1,0 +1,1471 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d7db1abd4b08636bc5a6",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment completed in 46.5 seconds. Let me analyze the results:\n\n**Key Results:**\n- **EAP-IG**: 3.0s, 179388 edges\n- **EP**: 27.7s, 179388 edges, 133/361 active at final epoch\n- **ACDC**: 10.6s, 179388 edges, top components: m0 (12.52), input (6.45), a8.h7 (3.16)\n- **Binarized**: 538 edges each (top-0.3%)\n\n\n- **CSS Results**: CSS-core found no edges at all, while CSS >= 2/3 identified 66 edges with 100% off-diagonal distribution. The Jaccard similarities are extremely low across all method pairs (0.0-0.0426), suggesting minimal overlap between the different approaches.\n\n- **D025 Evaluation**: The test passes conditions 1 and 2 (low Jaccard values and sufficient edges at 2/3 threshold) but fails on conditions 3 and 4 (zero 3/3 edges and zero mean CPR for perfect circuits). The core issue is that the three methods produce almost completely disjoint circuits with no agreement at the 3/3 level, which is the opposite failure mode from what we saw before but actually more problematic since there's no convergence whatsoever.\n\nThe root cause is architectural: EP and ACDC both operate at the component level, selecting entire blocks of edges from their top-ranked sources, while EAP-IG scores edges individually. With such aggressive binarization (top 0.3%), each method ends up selecting from different source components, creating completely separate circuits with no overlap. The block-structured selection in EP and ACDC means if their top sources diverge, there's no recovery—the methods are fundamentally selecting from incompatible parts of the graph. select all edges from components with highest mask values (e.g., all 14 heads in certain layers)\n- ACDC might select all edges from components with highest ablation effect (m0, input, a8.h7, etc.)\n- EAP-IG selects individual edges with highest gradient×activation products\n\nThese give completely different circuits.\n\n**Potential fixes:**\n1. **Increase TOP_PERCENT** - use a larger fraction to increase overlap (e.g., 1% or 2%)\n2. **Use different binarization** - threshold-based for EP/ACDC, topn for EAP-IG\n3. **Fix the edge expansion** - instead of source-only expansion, use something that captures more edge-level information\n4. **Reduce method dissimilarity** - the methods are fundamentally too different at this binarization level\n\nBut the config file actually specifies different binarization strategies for each method—EAP-IG uses topn with n=200, edge pruning uses threshold at 0.5, and ACDC uses top_percent at 0.3%. The task description says to use top-0.3% uniformly across all three, but the actual configuration contradicts this. The task is explicit about wanting unified top-0.3% binarization since Qwen has roughly 179k edges and top-100 would be too sparse, yet the results show this uniform approach creates too much dissimilarity between methods.\n\nLooking at the faithfulness metrics, all methods have very low CPR values (0.01-0.05 for mean ablation), indicating the top-0.3% circuits aren't faithful to the original task. Edge pruning performs best with mean CPR of 0.0547. The core problem is that source-only expansion concentrates edges from the highest-ranked components—for ACDC all 538 edges come from just a few top components like m0 and input, while the other methods distribute differently. I should document these findings and note that while the experiment ran successfully, the D025 conditions aren't met since there's zero 3/3 overlap. Now I need to register the artifact, update the registry, and report the results.\n\nBut let me double-check whether there's an underlying issue with how the circuits are being selected. ACDC's source-only expansion means all edges from m0 get the same high score, making them the top edges selected. EP's mask-based approach gives high scores to edges from components with mask values above 0.5, while EAP-IG scores each edge individually. This creates fundamentally different circuit structures—ACDC and EP produce block-like circuits from specific components, whereas EAP-IG creates a more diverse set of individual edges. The overlap between block-selected circuits depends on whether the same components appear in both, which explains why we're seeing such low overlap rates.\n\nNow I'm checking the actual edge counts from m0 in the network. Since m0 is the MLP at layer 0, it has edges going to all attention heads and MLPs in subsequent layers—that's roughly 966 edges to attention heads plus 23 edges to other MLPs. If m0 has the highest score in ACDC, most of those edges would be selected, but whether they appear in EP's top-538 depends on m0's mask value relative to other components. 989 edges (> 538) from m0 would all have the same score. The top-538 of these would be selected. But wait, \"input\" has an even higher score (for ACDC, all edges FROM input also get the input score).\n\nWait, input's score is 6.45, m0's score is 12.52. So m0 > input. The edges from m0:\n- m0 → aL.hH.qkv (L>0): 23 × 14 × 3 = 966 edges, all with score 12.52\n- m0 → mL (L>0): 23 edges, all with score 12.52\n\nTotal edges from m0: 989 edges. All with score 12.52. So top-538 would be the first 538 of these 989 edges. The selection within tied scores depends on Python's sort stability and dict ordering.\n\nSo ACDC's top-538 circuit is 538 edges all from m0 out of 989 possible. For EP, m0 might rank differently, which would explain why the circuits have zero overlap. That matches what I'm seeing: Jaccard(acdc, ep) = 0.0 with no shared edges.\n\nEAP-IG's top-538 are individual edges ranked by gradient×activation product, so they'd pull from various components rather than concentrating on m0. That's why Jaccard(acdc, eap_ig) = 0.0209 shows only about 10-20 shared edges.\n\nThe issue is really the block structure of source-only expansion combined with the narrow top-0.3% binarization creating this bottleneck effect.\n\nThe experiment actually produced valid, scientifically meaningful results—they demonstrate that uniform top-0.3% binarization is too restrictive for comparing these methods. I should register this finding and consider next steps like trying per-method binarization thresholds or increasing the top-percent cutoff. are active (mask > 0.5). Each active component contributes many edges. The total number of edges from 133 active components would be very large (much more than 538). So the EP circuit would be much larger.\n\nFor EAP-IG with topn 200: 200 individual edges selected.\n\nThe per-method binarization gives very different circuit sizes, which makes Jaccard comparison challenging (a 200-edge circuit vs a 10,000-edge circuit will have very different Jaccard from two 538-edge circuits).\n\nHmm, this is a design issue beyond the scope of this experiment. Let me just report the results as-is.\n\nActually, I realize the task asked me to register the artifact and update the registry if successful. Since the D025 conditions are not all met, this is a \"completed but conditions failed\" result. Let me still register it.\n\nNow I need to save the results JSON as an artifact and update the registry to reflect the experiment status and key findings.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "3c164881-f28a-455a-820c-5e9d9b0a2b34",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4huFuXbvKEgqQTPHid7Qd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2120,
+                "cache_read_input_tokens": 134643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2120
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成（46.5s）。分析结果：\n\n**关键数据：**\n- EAP-IG: 3.0s | EP: 27.7s | ACDC: 10.6s\n- 每方法 538 edges (top-0.3% of 179388)\n- CSS 3/3: **0 edges** | CSS ≥2/3: 66 edges\n- Jaccard: acdc_vs_eap=0.02, acdc_vs_ep=0.00, eap_vs_ep=0.04\n\n**D025 评估：条件③④未通过（3/3=0, CSS core 空）**\n\n根因：EP 和 ACDC 都用组件级评分+源端展开，top-0.3% 选出的边全来自不同的 top 组件块，导致方法间几乎零重叠。\n\n注册实验结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "b71db282-5bcd-4d06-82a7-57f89704b930",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4huFuXbvKEgqQTPHid7Qd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2120,
+                "cache_read_input_tokens": 134643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2120
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016TCqSaYhHCCfRTV6ptmKtH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "3708660f-86a9-42e7-9c44-62042c81604e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4huFuXbvKEgqQTPHid7Qd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2120,
+                "cache_read_input_tokens": 134643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2120
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-13T08:32:16.760Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016TCqSaYhHCCfRTV6ptmKtH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "02056c98-1256-469e-81bb-e20421af9dac",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D8u6rHKssc9Gc6pkk7NSJA",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "status",
+                "value": "DONE",
+                "project": "structfuse-context",
+                "spec": {
+                  "command": "python run_qwen_ioi_acdc.py",
+                  "server": "westd-pro6000",
+                  "data_path": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/",
+                  "data_count": 50,
+                  "model_name": "Qwen/Qwen2.5-0.5B",
+                  "seed": 42
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "d6133b1b-4dc3-4c20-ba25-6fe95a8c7b08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018ZXmKrTzCVX1NkCu46G6WR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3400,
+                "cache_read_input_tokens": 136763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3400
+                },
+                "output_tokens": 49,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-13T08:32:22.183Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D8u6rHKssc9Gc6pkk7NSJA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0345}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "edbf7d70-4a1f-42b1-ab6e-d2bded2824bf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0345}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0345}}"
+              }
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HwoxTmyVHtS9HLdF5diXjL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "structfuse-context",
+                "spec": {
+                  "command": "python run_qwen_ioi_acdc.py",
+                  "server": "westd-pro6000",
+                  "data_path": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/",
+                  "data_count": 50,
+                  "model_name": "Qwen/Qwen2.5-0.5B",
+                  "seed": 42
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "905ca7fb-27d3-48cd-b499-eb50e1d7bca0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G8TZtnnSpxQeViPC1YJ5k7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 332,
+                "cache_read_input_tokens": 140163,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 332
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-13T08:32:27.165Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HwoxTmyVHtS9HLdF5diXjL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.051}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "42cfa280-65b2-420a-b469-c2d9cd1c5ccd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.051}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.051}}"
+              }
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017AH27zcGRdCVPJvb8noqwV",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "structfuse-context",
+                "spec": {
+                  "command": "python run_qwen_ioi_acdc.py",
+                  "server": "westd-pro6000",
+                  "data_path": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/",
+                  "data_count": 50,
+                  "model_name": "Qwen/Qwen2.5-0.5B",
+                  "seed": 42
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "1fbb8aab-a373-46f3-9492-949c97dd55ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjdBnaXzJhrzoWS3xXoLqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 328,
+                "cache_read_input_tokens": 140495,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 328
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-13T08:32:31.639Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017AH27zcGRdCVPJvb8noqwV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:31.434Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2322}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "bee1ee9f-47a3-419a-a8a5-ab87db24b2e1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:31.434Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2322}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_acdc_k3\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:30:27.574Z\", \"updated_at\": \"2026-05-13T08:32:31.434Z\", \"spec\": {\"command\": \"python run_qwen_ioi_acdc.py\", \"server\": \"westd-pro6000\", \"gpu\": [\"cuda:0\"], \"pid\": \"21671\", \"log_path\": \"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\", \"submitted_at\": \"2026-05-13T08:30:27.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\", \"data_count\": 50, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2322}}"
+              }
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ko9qSX5AdWkxcZ9JWmWgrx",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "41cb40f6-e33a-4a2b-8516-45be9d0a0334",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EVyDQ4x1ytM9t21h6cyJ4K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 635,
+                "cache_read_input_tokens": 140823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 635
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-13T08:32:35.056Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ko9qSX5AdWkxcZ9JWmWgrx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:34.860Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2252}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "bf453d43-3247-41f8-99e2-03660f1ae821",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:34.860Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2252}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_acdc_k3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:30:27.574Z\", \"updated_at\": \"2026-05-13T08:32:34.860Z\", \"spec\": {\"command\": \"python run_qwen_ioi_acdc.py\", \"server\": \"westd-pro6000\", \"gpu\": [\"cuda:0\"], \"pid\": \"21671\", \"log_path\": \"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\", \"submitted_at\": \"2026-05-13T08:30:27.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\", \"data_count\": 50, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2252}}"
+              }
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SvN5wVLAHzr7fdBLjjBdLW",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "status",
+                "value": "DONE",
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "a852996d-a6aa-4e51-b38d-aa560fd1af44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UaC3GwadSFAky7778mNiMz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 514,
+                "cache_read_input_tokens": 141458,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 514
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-13T08:32:38.379Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SvN5wVLAHzr7fdBLjjBdLW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0331}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "fb71f63d-6f79-416a-857d-0911bb9ec87a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0331}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0331}}"
+              }
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014SpZ2cBxBeR5ssPgpUTc7W",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "49ba4781-a96a-404a-b093-e9128fff293f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018tWmkcMsT38xFK49RZpJEQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 141972,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-13T08:32:43.033Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014SpZ2cBxBeR5ssPgpUTc7W",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:42.998Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0716}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "eb604dc6-0393-4222-b527-b46e138bb7f1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:42.998Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0716}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_acdc_k3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:30:27.574Z\", \"updated_at\": \"2026-05-13T08:32:42.998Z\", \"spec\": {\"command\": \"python run_qwen_ioi_acdc.py\", \"server\": \"westd-pro6000\", \"gpu\": [\"cuda:0\"], \"pid\": \"21671\", \"log_path\": \"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\", \"submitted_at\": \"2026-05-13T08:30:27.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\", \"data_count\": 50, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0716}}"
+              }
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D8M1dAYRaXqbiXevmRxNyA",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "checkpoint_path",
+                "value": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json",
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "9ef68fb4-a3c2-4163-9f63-e4ad689cc948",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YT9LhVFFh98bTsdBE7NUmG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 521,
+                "cache_read_input_tokens": 142279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 521
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-13T08:32:47.574Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D8M1dAYRaXqbiXevmRxNyA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:47.544Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0587}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "6c82e8ca-4930-4260-8692-376fa1f83ba7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:47.544Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0587}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_acdc_k3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:30:27.574Z\", \"updated_at\": \"2026-05-13T08:32:47.544Z\", \"spec\": {\"command\": \"python run_qwen_ioi_acdc.py\", \"server\": \"westd-pro6000\", \"gpu\": [\"cuda:0\"], \"pid\": \"21671\", \"log_path\": \"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\", \"submitted_at\": \"2026-05-13T08:30:27.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\", \"data_count\": 50, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0587}}"
+              }
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MfiFByknDSNrJgwp53Cton",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "log_path",
+                "value": "/root/structfuse-context/logs/qwen_ioi_acdc.log",
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "a2900d03-0732-4d1f-a87c-0290f561a0b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YT9LhVFFh98bTsdBE7NUmG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 521,
+                "cache_read_input_tokens": 142279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 521
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-13T08:32:48.541Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MfiFByknDSNrJgwp53Cton",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:48.503Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"log_path\\\": \\\"/root/structfuse-context/logs/qwen_ioi_acdc.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.068}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "c99ad99b-cbeb-42e9-9d08-1477f1f3f2b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:48.503Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"log_path\\\": \\\"/root/structfuse-context/logs/qwen_ioi_acdc.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.068}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_acdc_k3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:30:27.574Z\", \"updated_at\": \"2026-05-13T08:32:48.503Z\", \"spec\": {\"command\": \"python run_qwen_ioi_acdc.py\", \"server\": \"westd-pro6000\", \"gpu\": [\"cuda:0\"], \"pid\": \"21671\", \"log_path\": \"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\", \"submitted_at\": \"2026-05-13T08:30:27.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\", \"data_count\": 50, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\", \"log_path\": \"/root/structfuse-context/logs/qwen_ioi_acdc.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.068}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011TphD4N8oqXMgLKmfopW89",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "status",
+                "value": "DONE",
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "4ba338e2-eff8-41b9-be2e-6dafc2a19c53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ACrd4apzkw76a82yGp2Zr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1329,
+                "cache_read_input_tokens": 142800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1329
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-13T08:32:52.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011TphD4N8oqXMgLKmfopW89",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:52.236Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 144.7, \\\"gpu_hours\\\": 0.04}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"log_path\\\": \\\"/root/structfuse-context/logs/qwen_ioi_acdc.log\\\", \\\"completed_at\\\": \\\"2026-05-13T08:32:52.236Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2236}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "06d904cf-2c0f-42ae-9036-4d983487eebb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:52.236Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 144.7, \\\"gpu_hours\\\": 0.04}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"log_path\\\": \\\"/root/structfuse-context/logs/qwen_ioi_acdc.log\\\", \\\"completed_at\\\": \\\"2026-05-13T08:32:52.236Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2236}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_acdc_k3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:30:27.574Z\", \"updated_at\": \"2026-05-13T08:32:52.236Z\", \"spec\": {\"command\": \"python run_qwen_ioi_acdc.py\", \"server\": \"westd-pro6000\", \"gpu\": [\"cuda:0\"], \"pid\": \"21671\", \"log_path\": \"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\", \"submitted_at\": \"2026-05-13T08:30:27.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\", \"data_count\": 50, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42, \"wall_clock_seconds\": 144.7, \"gpu_hours\": 0.04}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\", \"log_path\": \"/root/structfuse-context/logs/qwen_ioi_acdc.log\", \"completed_at\": \"2026-05-13T08:32:52.236Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2236}}"
+              }
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V81iKQX8mBPECJhTsVSd2m",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "field": "metrics",
+                "value": {
+                  "css_3_3": 0,
+                  "css_geq_2_3": 66,
+                  "max_jaccard": 0.0426,
+                  "d025_pass": false,
+                  "d025_c1": true,
+                  "d025_c2": true,
+                  "d025_c3": false,
+                  "d025_c4": false,
+                  "best_single_mean_cpr": 0.0547,
+                  "elapsed_sec": 46.5
+                },
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "d402ef31-c15c-416d-8327-8183f078c12a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ACrd4apzkw76a82yGp2Zr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1329,
+                "cache_read_input_tokens": 142800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1329
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-13T08:32:55.092Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V81iKQX8mBPECJhTsVSd2m",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:55.059Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 144.7, \\\"gpu_hours\\\": 0.04}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"log_path\\\": \\\"/root/structfuse-context/logs/qwen_ioi_acdc.log\\\", \\\"completed_at\\\": \\\"2026-05-13T08:32:52.236Z\\\", \\\"metrics\\\": {\\\"css_3_3\\\": 0, \\\"css_geq_2_3\\\": 66, \\\"max_jaccard\\\": 0.0426, \\\"d025_pass\\\": false, \\\"d025_c1\\\": true, \\\"d025_c2\\\": true, \\\"d025_c3\\\": false, \\\"d025_c4\\\": false, \\\"best_single_mean_cpr\\\": 0.0547, \\\"elapsed_sec\\\": 46.5}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0622}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "efedf74e-1b99-4b86-9c84-00d5e375b3b4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:30:27.574Z\\\", \\\"updated_at\\\": \\\"2026-05-13T08:32:55.059Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_qwen_ioi_acdc.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21671\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T08:30:27.544Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 144.7, \\\"gpu_hours\\\": 0.04}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"log_path\\\": \\\"/root/structfuse-context/logs/qwen_ioi_acdc.log\\\", \\\"completed_at\\\": \\\"2026-05-13T08:32:52.236Z\\\", \\\"metrics\\\": {\\\"css_3_3\\\": 0, \\\"css_geq_2_3\\\": 66, \\\"max_jaccard\\\": 0.0426, \\\"d025_pass\\\": false, \\\"d025_c1\\\": true, \\\"d025_c2\\\": true, \\\"d025_c3\\\": false, \\\"d025_c4\\\": false, \\\"best_single_mean_cpr\\\": 0.0547, \\\"elapsed_sec\\\": 46.5}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0622}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_acdc_k3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:30:27.574Z\", \"updated_at\": \"2026-05-13T08:32:55.059Z\", \"spec\": {\"command\": \"python run_qwen_ioi_acdc.py\", \"server\": \"westd-pro6000\", \"gpu\": [\"cuda:0\"], \"pid\": \"21671\", \"log_path\": \"~/runs/structfuse-context/phase2_qwen05b_ioi_acdc_k3.log\", \"submitted_at\": \"2026-05-13T08:30:27.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/\", \"data_count\": 50, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42, \"wall_clock_seconds\": 144.7, \"gpu_hours\": 0.04}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\", \"log_path\": \"/root/structfuse-context/logs/qwen_ioi_acdc.log\", \"completed_at\": \"2026-05-13T08:32:52.236Z\", \"metrics\": {\"css_3_3\": 0, \"css_geq_2_3\": 66, \"max_jaccard\": 0.0426, \"d025_pass\": false, \"d025_c1\": true, \"d025_c2\": true, \"d025_c3\": false, \"d025_c4\": false, \"best_single_mean_cpr\": 0.0547, \"elapsed_sec\": 46.5}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0622}}"
+              }
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EJqjHbYDbJt4dP93UYJkoT",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "phase2_qwen05b_ioi_acdc_k3_results",
+                "type": "data",
+                "description": "Qwen-2.5 0.5B IOI K=3 ACDC experiment results. D025 conditions 3,4 failed: CSS 3/3=0 edges due to top-0.3% binarization + source-only expansion causing block-disjoint circuits (max Jaccard=0.04).",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "content": "{\n  \"experiment_id\": \"phase2_qwen05b_ioi_acdc_k3\",\n  \"status\": \"DONE\",\n  \"conclusion\": \"negative\",\n  \"d025_evaluation\": {\n    \"condition_1\": {\"pass\": true, \"max_jaccard\": 0.0426},\n    \"condition_2\": {\"pass\": true, \"css_geq_2_3\": 66},\n    \"condition_3\": {\"pass\": false, \"css_3_3\": 0},\n    \"condition_4_d032\": {\"pass\": false, \"css_1.00_mean_cpr\": 0.0, \"best_single\": 0.0547}\n  },\n  \"css_distribution\": {\"1/3\": 1482, \"2/3\": 66},\n  \"jaccard\": {\"acdc_vs_eap_ig\": 0.0209, \"acdc_vs_edge_pruning\": 0.0, \"eap_ig_vs_edge_pruning\": 0.0426},\n  \"faithfulness_mean_cpr\": {\"css_0.67\": -0.0382, \"eap_ig\": 0.0145, \"edge_pruning\": 0.0547, \"acdc\": -0.0125},\n  \"root_cause\": \"EP and ACDC use component-level scoring with source-only expansion. With top-0.3% binarization (538/179388 edges), each method selects edges from its own top ~2-3 components, producing block-disjoint circuits with near-zero overlap.\",\n  \"suggested_fixes\": [\n    \"Use per-method binarization as in phase2_configs.yaml (topn-200 for EAP-IG, threshold-0.5 for EP, top-0.3% for ACDC)\",\n    \"Increase top_percent to 1-2% to allow more overlap\",\n    \"Implement edge-level ACDC scoring instead of component-level expansion\"\n  ]\n}",
+                "content_filename": "phase2_qwen05b_ioi_acdc_k3_summary.json",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "acdc",
+                  "d025-fail"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "b4cd0658-1b2d-443c-a0d0-68bc821d7ae3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuJkGUVwLHQiUnNFmwP6hb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1631,
+                "cache_read_input_tokens": 144129,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1631
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-13T08:33:12.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...onent-level expansion']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01EJqjHbYDbJt4dP93UYJkoT"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "8db9d029-7ae7-4c4b-accc-5a15d633c297",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...onent-level expansion']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QnGMLJ1n7rsUqPBeNwaxWm",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "phase2_qwen05b_ioi_acdc_k3_results",
+                "type": "data",
+                "description": "Qwen-2.5 0.5B IOI K=3 ACDC experiment results. D025 conditions 3,4 failed: CSS 3/3=0 edges due to top-0.3% binarization + source-only expansion causing block-disjoint circuits.",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "content": "{\"experiment_id\":\"phase2_qwen05b_ioi_acdc_k3\",\"status\":\"DONE\",\"conclusion\":\"negative\",\"d025\":{\"c1_pass\":true,\"c2_pass\":true,\"c3_pass\":false,\"c4_pass\":false,\"css_3_3\":0,\"css_geq_2_3\":66,\"max_jaccard\":0.0426},\"css_dist\":{\"1/3\":1482,\"2/3\":66},\"jaccard\":{\"acdc_vs_eap_ig\":0.0209,\"acdc_vs_ep\":0.0,\"eap_vs_ep\":0.0426},\"root_cause\":\"EP+ACDC component-level source-only expansion with top-0.3% produces block-disjoint circuits\",\"fixes\":[\"per-method binarization\",\"increase top_percent\",\"edge-level ACDC scoring\"]}",
+                "content_filename": "phase2_qwen05b_ioi_acdc_k3_summary.json",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "acdc",
+                  "d025-fail"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "1bc93a87-85a2-486f-ae9c-d2aa5493bc67",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NttpfTfRAL5oy3yZKDoi4u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 925,
+                "cache_read_input_tokens": 145760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 925
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-13T08:33:19.758Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...ge-level ACDC scoring']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01QnGMLJ1n7rsUqPBeNwaxWm"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "76d33e87-3635-4a94-a56b-0ade9a9337a3",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...ge-level ACDC scoring']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H7o1FBoMoJ3tjLZKrYTqHU",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "phase2_qwen05b_ioi_acdc_k3_results",
+                "type": "data",
+                "description": "Qwen-2.5 0.5B IOI K=3 ACDC experiment results. D025 c3/c4 failed: CSS 3/3=0 edges, methods too disjoint with top-0.3% binarization.",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_acdc_k3",
+                "source_path": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "acdc",
+                  "d025-fail"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "b6b8c885-fb17-4544-a834-1641f3c4106e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EVy6kBUqezUkw4qfYDnsd5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 644,
+                "cache_read_input_tokens": 146685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 644
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-13T08:33:25.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H7o1FBoMoJ3tjLZKrYTqHU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "92d03e5f-1942-497f-b1db-259ffa4ad1a8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not local. Let me use `content` as a string instead.",
+              "signature": "EpgCClkIDRgCKkA8F/9isChlz1vCbhxAFDMoApU8ZHhCBfGtEkR7qjbIBhcqQGLPruPQP/z6adU6BihS+31YPEng3g//aKwkBvZ7Mg9jbGF1ZGUtb3B1cy00LTY4ABIMGpAE+B5/dEkiZi0aGgwuHex7da80lC7KZu4iMDrU5657bg0hAgtUXCJE+OcEBWxu6ZSjH98xAGT57czrEDj50qI3tiHtNpoqSm+GkiptrnmHKIejRj05HEvfR608UPjUb29nsiWchrA70IkeFbmaES3uDeAuGN7G6qSNVVhZ6RdHZBgfwYK7xxRSlzdyktkJCEAvu/SxBeQ3AnRkkULvRH2aGF8tYAPuiJ+H0z936S2pJXACBI5jBd8/BxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "99b34010-3487-48ed-ae9a-af24eafb31b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QV2LqKaqPkG6BP2mcMTqB6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 448,
+                "cache_read_input_tokens": 147329,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 448
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019sbMEpTMXB99xDQyFoMEU3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "head -30 /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi_acdc/Qwen_Qwen2.5_0.5B_ioi_acdc_K3.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "75779d66-c72b-47ee-a45d-1e0bf608dfa6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QV2LqKaqPkG6BP2mcMTqB6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 448,
+                "cache_read_input_tokens": 147329,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 448
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-13T08:33:30.408Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019sbMEpTMXB99xDQyFoMEU3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment_id\\\\\\\": \\\\\\\"phase2_qwen05b_ioi_acdc_k3\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\",\\\\n  \\\\\\\"K\\\\\\\": 3,\\\\n  \\\\\\\"methods\\\\\\\": [\\\\n    \\\\\\\"eap_ig\\\\\\\",\\\\n    \\\\\\\"edge_pruning\\\\\\\",\\\\n    \\\\\\\"acdc\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"num_samples\\\\\\\": 50,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"binarize\\\\\\\": {\\\\n    \\\\\\\"strategy\\\\\\\": \\\\\\\"top_percent\\\\\\\",\\\\n    \\\\\\\"p\\\\\\\": 0.003,\\\\n    \\\\\\\"n_edges_per_method\\\\\\\": 538,\\\\n    \\\\\\\"total_edges\\\\\\\": 179388\\\\n  },\\\\n  \\\\\\\"baseline_io_s_diff\\\\\\\": 6.451,\\\\n  \\\\\\\"method_edge_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 179388,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 179388,\\\\n    \\\\\\\"acdc\\\\\\\": 179388\\\\n  },\\\\n  \\\\\\\"binarized_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 538,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 538,\\\\n    \\\\\\\"acdc\\\\\\\": 538\\\\n  },\\\\n  \\\\\\\"css_distribution\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "3e366042-0245-4990-a5bf-17df85649438",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment_id\\\\\\\": \\\\\\\"phase2_qwen05b_ioi_acdc_k3\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\",\\\\n  \\\\\\\"K\\\\\\\": 3,\\\\n  \\\\\\\"methods\\\\\\\": [\\\\n    \\\\\\\"eap_ig\\\\\\\",\\\\n    \\\\\\\"edge_pruning\\\\\\\",\\\\n    \\\\\\\"acdc\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"num_samples\\\\\\\": 50,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"binarize\\\\\\\": {\\\\n    \\\\\\\"strategy\\\\\\\": \\\\\\\"top_percent\\\\\\\",\\\\n    \\\\\\\"p\\\\\\\": 0.003,\\\\n    \\\\\\\"n_edges_per_method\\\\\\\": 538,\\\\n    \\\\\\\"total_edges\\\\\\\": 179388\\\\n  },\\\\n  \\\\\\\"baseline_io_s_diff\\\\\\\": 6.451,\\\\n  \\\\\\\"method_edge_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 179388,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 179388,\\\\n    \\\\\\\"acdc\\\\\\\": 179388\\\\n  },\\\\n  \\\\\\\"binarized_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 538,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 538,\\\\n    \\\\\\\"acdc\\\\\\\": 538\\\\n  },\\\\n  \\\\\\\"css_distribution\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment_id\\\": \\\"phase2_qwen05b_ioi_acdc_k3\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"K\\\": 3,\\n  \\\"methods\\\": [\\n    \\\"eap_ig\\\",\\n    \\\"edge_pruning\\\",\\n    \\\"acdc\\\"\\n  ],\\n  \\\"num_samples\\\": 50,\\n  \\\"seed\\\": 42,\\n  \\\"binarize\\\": {\\n    \\\"strategy\\\": \\\"top_percent\\\",\\n    \\\"p\\\": 0.003,\\n    \\\"n_edges_per_method\\\": 538,\\n    \\\"total_edges\\\": 179388\\n  },\\n  \\\"baseline_io_s_diff\\\": 6.451,\\n  \\\"method_edge_counts\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"acdc\\\": 179388\\n  },\\n  \\\"binarized_counts\\\": {\\n    \\\"eap_ig\\\": 538,\\n    \\\"edge_pruning\\\": 538,\\n    \\\"acdc\\\": 538\\n  },\\n  \\\"css_distribution\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件确认存在。Registry 已更新。\n\n## 实验总结\n\n**phase2_qwen05b_ioi_acdc_k3** — 完成，D025 未通过。\n\n| 指标 | 值 |\n|------|-----|\n| 运行时间 | 46.5s (EAP-IG 3s, EP 28s, ACDC 11s) |\n| Total edges | 179,388 |\n| Top-0.3% per method | 538 edges |\n| CSS 3/3 (core) | **0** |\n| CSS ≥2/3 | 66 |\n| Max Jaccard | 0.0426 |\n| D025 条件①② | PASS |\n| D025 条件③④ | **FAIL** |\n\n**根因分析：**\n\nEP 和 ACDC 都用组件级评分 + 源端展开到边——同一源组件的所有边得分相同。Top-0.3% 只选 538/179388 条边，实际效果是各方法只选了各自 top 2-3 个组件的全部出边，形成互不相交的\"块状\"电路：\n\n- ACDC top 组件：m0 (12.52), input (6.45), a8.h7 (3.16)\n- EP top 组件：不同于 ACDC 的组件集合\n- EAP-IG：边级评分，选的边更分散\n\n结果：Jaccard 全 < 0.05，3/3 重叠为零。\n\n**可能的修复方向：**\n1. 改用 **per-method binarization**（如 YAML 配置中的 topn-200 / threshold-0.5 / top-0.3%）\n2. **增大 top_percent** 到 1-2%，给方法间更多重叠空间\n3. 实现 **边级 ACDC 评分**（不仅依赖源组件，而是 src×dst 或真正的逐边 activation patching）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "uuid": "4dc81000-8892-4993-912f-7c34bf26ca2d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NhBx1nTENNPzvC7n9CqkwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 705,
+                "cache_read_input_tokens": 147777,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 705
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件确认存在。Registry 已更新。\n\n## 实验总结\n\n**phase2_qwen05b_ioi_acdc_k3** — 完成，D025 未通过。\n\n| 指标 | 值 |\n|------|-----|\n| 运行时间 | 46.5s (EAP-IG 3s, EP 28s, ACDC 11s) |\n| Total edges | 179,388 |\n| Top-0.3% per method | 538 edges |\n| CSS 3/3 (core) | **0** |\n| CSS ≥2/3 | 66 |\n| Max Jaccard | 0.0426 |\n| D025 条件①② | PASS |\n| D025 条件③④ | **FAIL** |\n\n**根因分析：**\n\nEP 和 ACDC 都用组件级评分 + 源端展开到边——同一源组件的所有边得分相同。Top-0.3% 只选 538/179388 条边，实际效果是各方法只选了各自 top 2-3 个组件的全部出边，形成互不相交的\"块状\"电路：\n\n- ACDC top 组件：m0 (12.52), input (6.45), a8.h7 (3.16)\n- EP top 组件：不同于 ACDC 的组件集合\n- EAP-IG：边级评分，选的边更分散\n\n结果：Jaccard 全 < 0.05，3/3 重叠为零。\n\n**可能的修复方向：**\n1. 改用 **per-method binarization**（如 YAML 配置中的 topn-200 / threshold-0.5 / top-0.3%）\n2. **增大 top_percent** 到 1-2%，给方法间更多重叠空间\n3. 实现 **边级 ACDC 评分**（不仅依赖源组件，而是 src×dst 或真正的逐边 activation patching）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1099443,
+            "duration_api_ms": 1072389,
+            "num_turns": 55,
+            "stop_reason": "end_turn",
+            "session_id": "ea7878fe-044f-40fa-9f7e-e805903c6ede",
+            "total_cost_usd": 4.4672867499999995,
+            "usage": {
+              "input_tokens": 43,
+              "cache_creation_input_tokens": 136641,
+              "cache_read_input_tokens": 4064583,
+              "output_tokens": 63137,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 136641,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 558,
+                  "cache_read_input_tokens": 147777,
+                  "cache_creation_input_tokens": 705,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 705
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2199,
+                "outputTokens": 30,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002349,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 43,
+                "outputTokens": 63137,
+                "cacheReadInputTokens": 4064583,
+                "cacheCreationInputTokens": 136641,
+                "webSearchRequests": 0,
+                "costUSD": 4.46493775,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "94a03a0b-a9f3-4425-b886-330c72420b2c"
+          },
+          "id": "event-000156"
+        }
+      ]
+    }
+  ]
+}

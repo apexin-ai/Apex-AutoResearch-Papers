@@ -1,0 +1,16 @@
+{
+  "exp_id": "d158-llama-grpo-s42",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:34:53.468Z",
+    "updated_at": "2026-05-20T15:11:47.852Z",
+    "hypothesis": "D158 LLaMA-3.2-3B GRPO exec-only: if SFT warmstart achieves PR≥10%, test whether GRPO on LLaMA shows same Goodhart collapse as Qwen. Parent: d158-llama-sft-s42. Addresses cross-family generalization.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T15:11:48.240771+00:00",
+  "trigger": "update_registry"
+}

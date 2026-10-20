@@ -1,0 +1,368 @@
+{
+  "schema_version": "1.0",
+  "id": "8e37d1a66811b596abd7",
+  "project": "min_necessary_circuit_css",
+  "kind": "conversation",
+  "title": "code upload l0 ifr",
+  "task_key": "worker_code_upload-l0-ifr_20260512T133832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_upload-l0-ifr_20260512T133832.jsonl",
+    "occurrence": 1,
+    "bytes": 26978,
+    "sha256": "5d971916000232cab19dac7feb61a556d2b71cc24a75b10de3c6bcd8518d5d86"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T13:40:43.166894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/structfuse-mvp/edge_pruning_l0.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T13:40:43.167288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"L0 Edge Pruning: circuit discovery via differentiable mask optimization.\n2\t\n3\tOptimizes continuous edge masks using Hard Concrete relaxation (Louizos et al. 2018)\n4\twith L0 regularization. Minimizes -task_metric + lambda * L0(masks) to find the\n5\tminimal circuit preserving task performance.\n6\t\n7\tvs auto-circuit mask_gradient (gradient-based attribution):\n8\t  mask_gradient: one-pass importance scoring via integrated gradients over masks\n9\t  L0 pruning: multi-epoch iterative optimization producing genuinely optimized masks\n10\t\n11\tRef: Bhaskar et al. 2024 \"Finding Transformer Circuits with Edge Pruning\"\n12\t\"\"\"\n13\t\n14\timport math\n15\timport torch\n16\timport torch.nn as nn\n17\tfrom typing import Dict, List, Tuple\n18\t\n19\t\n20\tclass HardConcreteMask(nn.Module):\n21\t    \"\"\"Hard Concrete distribution for differentiable L0 regularization.\n22\t    Ref: Louizos et al. 2018 \"Learning Sparse Neural Networks through L0 Regularization\"\n23\t    \"\"\"\n24\t\n25\t    def __init__(self, n_edges: int, init_value: float = 0.0,\n26\t                 beta: float = 2/3, zeta: float = 1.1, gamma: float = -0.1):\n27\t        super().__init__()\n28\t        self.log_alpha = nn.Parameter(torch.full((n_edges,), init_value))\n29\t        self.beta = beta\n30\t        self.zeta = zeta\n31\t        self.gamma = gamma\n32\t\n33\t    def forward(self, training: bool = True) -> torch.Tensor:\n34\t        if training:\n35\t            u = torch.rand_like(self.log_alpha).clamp(1e-8, 1 - 1e-8)\n36\t            s = torch.sigmoid((torch.log(u / (1 - u)) + self.log_alpha) / self.beta)\n37\t            s_bar = s * (self.zeta - self.gamma) + self.gamma\n38\t            return s_bar.clamp(0, 1)\n39\t        z = torch.sigmoid(self.log_alpha) * (self.zeta - self.gamma) + self.gamma\n40\t        return z.clamp(0, 1)\n41\t\n42\t    def l0_loss(self) -> torch.Tensor:\n43\t        \"\"\"Expected L0 norm under the hard concrete distribution.\"\"\"\n44\t        return torch.sigmoid(\n45\t            self.log_alpha - self.beta * math.log(-self.gamma / self.zeta)\n46\t      \n…[truncated 8403 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T13:40:43.167480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/structfuse-mvp/ifr_discovery.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T13:40:43.167662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"IFR (Information Flow Routes) circuit discovery.\n2\t\n3\tActivation decomposition method based on ALTI (Ferrando & Voita, EMNLP 2024).\n4\tScores edges by residual-stream proximity between source output and destination input:\n5\t\n6\t    score(u->v) = max(||x_v||_1 - ||y_u - x_v||_1, 0)\n7\t\n8\twhere y_u is component u's output and x_v is the residual stream input to component v.\n9\t\n10\tProperties:\n11\t- Single forward pass + activation cache (no backprop, no optimization loop)\n12\t- Complementary to gradient-based (EAP-IG) and mask optimization (Edge Pruning)\n13\t- Scales to 0.5B-8B models, replacing ACDC in the large-model K=3 ensemble\n14\t\"\"\"\n15\t\n16\timport torch\n17\tfrom typing import Dict, List, Tuple, Optional\n18\t\n19\t\n20\tdef _proximity(y_u: torch.Tensor, x_v: torch.Tensor) -> float:\n21\t    \"\"\"max(||x_v||_1 - ||y_u - x_v||_1, 0), averaged over batch and sequence.\"\"\"\n22\t    diff_norm = (y_u - x_v).abs().sum(dim=-1)\n23\t    base_norm = x_v.abs().sum(dim=-1)\n24\t    return (base_norm - diff_norm).clamp(min=0).mean().item()\n25\t\n26\t\n27\tdef _src_layer(name: str) -> int:\n28\t    if name == \"hook_embed\":\n29\t        return -1\n30\t    return int(name.split(\".\")[1])\n31\t\n32\t\n33\tdef _before_attn(src: str, dst_layer: int) -> bool:\n34\t    \"\"\"Source must come from a strictly earlier layer to feed into attention.\"\"\"\n35\t    return _src_layer(src) < dst_layer\n36\t\n37\t\n38\tdef _before_mlp(src: str, dst_layer: int) -> bool:\n39\t    \"\"\"Source can be from earlier layers, or same-layer attention heads (not MLP).\"\"\"\n40\t    sl = _src_layer(src)\n41\t    if sl < dst_layer:\n42\t        return True\n43\t    return sl == dst_layer and \"hook_result\" in src\n44\t\n45\t\n46\tdef _extract_tokens(dataset):\n47\t    if isinstance(dataset, torch.Tensor):\n48\t        return dataset\n49\t    if hasattr(dataset, \"toks\"):\n50\t        return dataset.toks\n51\t    if isinstance(dataset, dict) and \"input_ids\" in dataset:\n52\t        return dataset[\"input_ids\"]\n53\t    return dataset\n54\t\n55\t\n56\tdef _enumerate_edges(n_layers: int, n_heads: int) -\n…[truncated 3905 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T13:40:43.167870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T13:40:43.167997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T13:40:43.168159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "account": "root",
+              "command": "mkdir -p /root/structfuse-mvp && cat > /root/structfuse-mvp/edge_pruning_l0.py << 'PYEOF'\n\"\"\"L0 Edge Pruning: circuit discovery via differentiable mask optimization.\n\nOptimizes continuous edge masks using Hard Concrete relaxation (Louizos et al. 2018)\nwith L0 regularization. Minimizes -task_metric + lambda * L0(masks) to find the\nminimal circuit preserving task performance.\n\nvs auto-circuit mask_gradient (gradient-based attribution):\n  mask_gradient: one-pass importance scoring via integrated gradients over masks\n  L0 pruning: multi-epoch iterative optimization producing genuinely optimized masks\n\nRef: Bhaskar et al. 2024 \"Finding Transformer Circuits with Edge Pruning\"\n\"\"\"\n\nimport math\nimport torch\nimport torch.nn as nn\nfrom typing import Dict, List, Tuple\n\n\nclass HardConcreteMask(nn.Module):\n    \"\"\"Hard Concrete distribution for differentiable L0 regularization.\n    Ref: Louizos et al. 2018 \"Learning Sparse Neural Networks through L0 Regularization\"\n    \"\"\"\n\n    def __init__(self, n_edges: int, init_value: float = 0.0,\n                 beta: float = 2/3, zeta: float = 1.1, gamma: float = -0.1):\n        super().__init__()\n        self.log_alpha = nn.Parameter(torch.full((n_edges,), init_value))\n        self.beta = beta\n        self.zeta = zeta\n        self.gamma = gamma\n\n    def forward(self, training: bool = True) -> torch.Tensor:\n        if training:\n            u = torch.rand_like(self.log_alpha).clamp(1e-8, 1 - 1e-8)\n            s = torch.sigmoid((torch.log(u / (1 - u)) + self.log_alpha) / self.beta)\n            s_bar = s * (self.zeta - self.gamma) + self.gamma\n            return s_bar.clamp(0, 1)\n        z = torch.sigmoid(self.log_alpha) * (self.zeta - self.gamma) + self.gamma\n        return z.clamp(0, 1)\n\n    def l0_loss(self) -> torch.Tensor:\n        \"\"\"Expected L0 norm under the hard concrete distribution.\"\"\"\n        return torch.sigmoid(\n            self.log_alpha - self.beta * math.log(-self.gamma / self.zeta)\n        ).sum()\n\n\n# --- Edge topology helpers (mirrored from ifr_discovery.py) ---\n\ndef _src_layer(name: str) -> int:\n    if name == \"hook_embed\":\n        return -1\n    return int(name.split(\".\")[1])\n\n\ndef _before_attn(src: str, dst_layer: int) -> bool:\n    return _src_layer(src) < dst_layer\n\n\ndef _before_mlp(src: str, dst_layer: int) -> bool:\n    sl = _src_layer(src)\n    if sl < dst_layer:\n        return True\n    return sl == dst_layer and \"hook_result\" in src\n\n\ndef _extract_tokens(dataset):\n    if isinstance(dataset, torch.Tensor):\n        return dataset\n    if hasattr(dataset, \"toks\"):\n        return dataset.toks\n    if isinstance(dataset, dict) and \"input_ids\" in dataset:\n        return dataset[\"input_ids\"]\n    return dataset\n\n\ndef _build_edge_index(n_layers: int, n_heads: int):\n    \"\"\"Build internal edge lists grouped by destination layer.\n\n    Attention edges use per-layer granularity (shared across heads at each layer).\n    MLP edges are per (source, destination_layer).\n    Output is expanded to per-Q/K/V/head format for CSS compatibility.\n    \"\"\"\n    sources: List[str] = [\"hook_embed\"]\n    attn_edges: List[Tuple[str, int]] = []\n    mlp_edges: List[Tuple[str, int]] = []\n\n    for L in range(n_layers):\n        for src in sources:\n            if _before_attn(src, L):\n                attn_edges.append((src, L))\n\n        for src in sources:\n            if _before_mlp(src, L):\n                mlp_edges.append((src, L))\n        for H in range(n_heads):\n            mlp_edges.append((f\"blocks.{L}.attn.hook_result[{H}]\", L))\n\n        for H in range(n_heads):\n            sources.append(f\"blocks.{L}.attn.hook_result[{H}]\")\n        sources.append(f\"blocks.{L}.hook_mlp_out\")\n\n    attn_lookup: Dict[int, List[Tuple[str, int]]] = {}\n    for i, (src, dst) in enumerate(attn_edges):\n        attn_lookup.setdefault(dst, []).append((src, i))\n\n    mlp_lookup: Dict[int, List[Tuple[str, int]]] = {}\n    for i, (src, dst) in enumerate(mlp_edges):\n        mlp_lookup.setdefault(dst, []).append((src, i))\n\n    return attn_edges, mlp_edges, attn_lookup, mlp_lookup\n\n\ndef _masked_forward(model, embed, z_attn, z_mlp, attn_lookup, mlp_lookup):\n    \"\"\"Cascading forward pass with L0 edge masks.\n\n    Each component's input is reconstructed as a masked weighted sum of upstream\n    outputs. Later layers see masked outputs from earlier layers.\n    \"\"\"\n    n_layers = model.cfg.n_layers\n    n_heads = model.cfg.n_heads\n    d_head = model.cfg.d_head\n    device = embed.device\n    B, S, D = embed.shape\n\n    src_acts: Dict[str, torch.Tensor] = {\"hook_embed\": embed}\n    # Accumulated attention output biases (b_O per layer, always included)\n    bias_acc = torch.zeros(1, 1, D, device=device)\n\n    for L in range(n_layers):\n        block = model.blocks[L]\n\n        # --- Attention: reconstruct masked residual input ---\n        resid_attn = bias_acc.expand(B, S, D) + torch.zeros(B, S, D, device=device)\n        for src_name, idx in attn_lookup.get(L, []):\n            resid_attn = resid_attn + z_attn[idx] * src_acts[src_name]\n\n        normed = block.ln1(resid_attn)\n        q = torch.einsum('bsd,ndh->bsnh', normed, block.attn.W_Q) + block.attn.b_Q\n        k = torch.einsum('bsd,ndh->bsnh', normed, block.attn.W_K) + block.attn.b_K\n        v = torch.einsum('bsd,ndh->bsnh', normed, block.attn.W_V) + block.attn.b_V\n\n        attn_scores = torch.einsum('bqnh,bknh->bnqk', q, k) / math.sqrt(d_head)\n        causal = torch.triu(\n            torch.ones(S, S, device=device, dtype=torch.bool), diagonal=1\n        )\n        attn_scores = attn_scores.masked_fill(causal[None, None], float('-inf'))\n        pattern = torch.softmax(attn_scores, dim=-1)\n        z_out = torch.einsum('bnqk,bknh->bqnh', pattern, v)\n        result = torch.einsum('bsnh,nhd->bsnd', z_out, block.attn.W_O)\n\n        for H in range(n_heads):\n            src_acts[f\"blocks.{L}.attn.hook_result[{H}]\"] = result[:, :, H, :]\n\n        bias_acc = bias_acc + block.attn.b_O\n\n        # --- MLP: reconstruct masked residual input ---\n        resid_mlp = bias_acc.expand(B, S, D) + torch.zeros(B, S, D, device=device)\n        for src_name, idx in mlp_lookup.get(L, []):\n            resid_mlp = resid_mlp + z_mlp[idx] * src_acts[src_name]\n\n        mlp_out = block.mlp(block.ln2(resid_mlp))\n        src_acts[f\"blocks.{L}.hook_mlp_out\"] = mlp_out\n\n    # Final residual = all component outputs + accumulated biases\n    final_resid = bias_acc.expand(B, S, D) + torch.zeros(B, S, D, device=device)\n    for act in src_acts.values():\n        final_resid = final_resid + act\n\n    normed_final = model.ln_final(final_resid)\n    logits = normed_final @ model.W_U + model.b_U\n    return logits\n\n\ndef run_edge_pruning_l0(\n    model,\n    dataset,\n    metric,\n    target_sparsity: float = 0.05,\n    n_epochs: int = 100,\n    lr: float = 0.01,\n    lambda_l0: float = 1e-2,\n) -> Dict[str, float]:\n    \"\"\"Run Edge Pruning with L0 regularization.\n\n    Args:\n        model: HookedTransformer instance\n        dataset: tokenized input data (tensor, .toks, or dict with input_ids)\n        metric: callable(logits) -> scalar, higher = better task performance\n        target_sparsity: informational; actual sparsity controlled by lambda_l0\n        n_epochs: optimization epochs\n        lr: learning rate for mask parameters\n        lambda_l0: L0 regularization coefficient\n\n    Returns:\n        Dict mapping edge names (TransformerLens format) to mask values [0, 1].\n        Mask > 0.5 indicates edge is in the circuit.\n    \"\"\"\n    n_layers = model.cfg.n_layers\n    n_heads = model.cfg.n_heads\n    device = next(model.parameters()).device\n\n    tokens = _extract_tokens(dataset).to(device)\n\n    with torch.no_grad():\n        embed = model.embed(tokens)\n        if hasattr(model, 'pos_embed'):\n            embed = embed + model.pos_embed(tokens)\n        embed = embed.detach()\n\n    attn_edges, mlp_edges, attn_lookup, mlp_lookup = _build_edge_index(\n        n_layers, n_heads\n    )\n    n_attn = len(attn_edges)\n    n_mlp = len(mlp_edges)\n\n    mask = HardConcreteMask(n_attn + n_mlp).to(device)\n    optimizer = torch.optim.Adam([mask.log_alpha], lr=lr)\n\n    model.eval()\n    for p in model.parameters():\n        p.requires_grad_(False)\n\n    for epoch in range(n_epochs):\n        z = mask(training=True)\n\n        logits = _masked_forward(\n            model, embed, z[:n_attn], z[n_attn:], attn_lookup, mlp_lookup\n        )\n\n        task_loss = -metric(logits)\n        l0_loss = mask.l0_loss()\n        total_loss = task_loss + lambda_l0 * l0_loss\n\n        optimizer.zero_grad()\n        total_loss.backward()\n        optimizer.step()\n\n        if (epoch + 1) % 20 == 0:\n            with torch.no_grad():\n                z_eval = mask(training=False)\n                n_active = (z_eval > 0.5).sum().item()\n            print(\n                f\"  [L0] epoch {epoch+1}/{n_epochs}: \"\n                f\"loss={total_loss.item():.4f} task={task_loss.item():.4f} \"\n                f\"l0={l0_loss.item():.1f} active={n_active}/{n_attn+n_mlp}\"\n            )\n\n    with torch.no_grad():\n        z_final = mask(training=False)\n\n    edge_scores: Dict[str, float] = {}\n\n    for i, (src, dst_layer) in enumerate(attn_edges):\n        val = z_final[i].item()\n        for H in range(n_heads):\n            for hook in (\"hook_q\", \"hook_k\", \"hook_v\"):\n                edge_scores[\n                    f\"{src} -> blocks.{dst_layer}.attn.{hook}[{H}]\"\n                ] = val\n\n    for i, (src, dst_layer) in enumerate(mlp_edges):\n        edge_scores[\n            f\"{src} -> blocks.{dst_layer}.hook_mlp_in\"\n        ] = z_final[n_attn + i].item()\n\n    return edge_scores\nPYEOF"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T13:40:43.168370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T13:40:43.168509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "account": "root",
+              "command": "cat > /root/structfuse-mvp/ifr_discovery.py << 'PYEOF'\n\"\"\"IFR (Information Flow Routes) circuit discovery.\n\nActivation decomposition method based on ALTI (Ferrando & Voita, EMNLP 2024).\nScores edges by residual-stream proximity between source output and destination input:\n\n    score(u->v) = max(||x_v||_1 - ||y_u - x_v||_1, 0)\n\nwhere y_u is component u's output and x_v is the residual stream input to component v.\n\nProperties:\n- Single forward pass + activation cache (no backprop, no optimization loop)\n- Complementary to gradient-based (EAP-IG) and mask optimization (Edge Pruning)\n- Scales to 0.5B-8B models, replacing ACDC in the large-model K=3 ensemble\n\"\"\"\n\nimport torch\nfrom typing import Dict, List, Tuple, Optional\n\n\ndef _proximity(y_u: torch.Tensor, x_v: torch.Tensor) -> float:\n    \"\"\"max(||x_v||_1 - ||y_u - x_v||_1, 0), averaged over batch and sequence.\"\"\"\n    diff_norm = (y_u - x_v).abs().sum(dim=-1)\n    base_norm = x_v.abs().sum(dim=-1)\n    return (base_norm - diff_norm).clamp(min=0).mean().item()\n\n\ndef _src_layer(name: str) -> int:\n    if name == \"hook_embed\":\n        return -1\n    return int(name.split(\".\")[1])\n\n\ndef _before_attn(src: str, dst_layer: int) -> bool:\n    \"\"\"Source must come from a strictly earlier layer to feed into attention.\"\"\"\n    return _src_layer(src) < dst_layer\n\n\ndef _before_mlp(src: str, dst_layer: int) -> bool:\n    \"\"\"Source can be from earlier layers, or same-layer attention heads (not MLP).\"\"\"\n    sl = _src_layer(src)\n    if sl < dst_layer:\n        return True\n    return sl == dst_layer and \"hook_result\" in src\n\n\ndef _extract_tokens(dataset):\n    if isinstance(dataset, torch.Tensor):\n        return dataset\n    if hasattr(dataset, \"toks\"):\n        return dataset.toks\n    if isinstance(dataset, dict) and \"input_ids\" in dataset:\n        return dataset[\"input_ids\"]\n    return dataset\n\n\ndef _enumerate_edges(n_layers: int, n_heads: int) -> List[Tuple[str, str]]:\n    \"\"\"List all (src_name, dst_name) edge pairs in TransformerLens format.\"\"\"\n    sources = [\"hook_embed\"]\n    for L in range(n_layers):\n        for H in range(n_heads):\n            sources.append(f\"blocks.{L}.attn.hook_result[{H}]\")\n        sources.append(f\"blocks.{L}.hook_mlp_out\")\n\n    edges = []\n    for L_dst in range(n_layers):\n        for H_dst in range(n_heads):\n            for hook in (\"hook_q\", \"hook_k\", \"hook_v\"):\n                dst = f\"blocks.{L_dst}.attn.{hook}[{H_dst}]\"\n                for src in sources:\n                    if _before_attn(src, L_dst):\n                        edges.append((src, dst))\n        mlp_dst = f\"blocks.{L_dst}.hook_mlp_in\"\n        for src in sources:\n            if _before_mlp(src, L_dst):\n                edges.append((src, mlp_dst))\n    return edges\n\n\ndef run_ifr(\n    model,\n    dataset,\n    metric=None,\n) -> Dict[str, float]:\n    \"\"\"Run IFR (Information Flow Routes) and return edge scores.\n\n    Args:\n        model: HookedTransformer instance\n        dataset: tokenized input (tensor, dict with 'input_ids', or object with .toks)\n        metric: unused (IFR is non-causal), kept for interface compatibility\n\n    Returns:\n        Dict mapping edge names to IFR proximity scores (>=0).\n        Edge names use TransformerLens format:\n        \"blocks.{L}.attn.hook_result[{H}] -> blocks.{L'}.attn.hook_q[{H'}]\"\n    \"\"\"\n    n_layers = model.cfg.n_layers\n    n_heads = model.cfg.n_heads\n\n    required = set()\n    for L in range(n_layers):\n        required.update([\n            f\"blocks.{L}.attn.hook_result\",\n            f\"blocks.{L}.hook_mlp_out\",\n            f\"blocks.{L}.hook_resid_pre\",\n            f\"blocks.{L}.hook_resid_mid\",\n        ])\n\n    tokens = _extract_tokens(dataset)\n\n    with torch.no_grad():\n        _, cache = model.run_with_cache(\n            tokens, names_filter=lambda n: n in required\n        )\n\n    # Source activations: embed (= resid_pre[0]), per-head attn outputs, MLP outputs\n    src_act = {}\n    src_act[\"hook_embed\"] = cache[\"blocks.0.hook_resid_pre\"]\n    for L in range(n_layers):\n        result = cache[f\"blocks.{L}.attn.hook_result\"]  # [batch, seq, n_heads, d_model]\n        for H in range(n_heads):\n            src_act[f\"blocks.{L}.attn.hook_result[{H}]\"] = result[:, :, H, :]\n        src_act[f\"blocks.{L}.hook_mlp_out\"] = cache[f\"blocks.{L}.hook_mlp_out\"]\n\n    edge_scores: Dict[str, float] = {}\n\n    for L_dst in range(n_layers):\n        resid_pre = cache[f\"blocks.{L_dst}.hook_resid_pre\"]   # input to attention\n        resid_mid = cache[f\"blocks.{L_dst}.hook_resid_mid\"]   # input to MLP\n\n        # Compute proximity once per (source, destination_layer) pair;\n        # all heads at the same layer share resid_pre, so their scores are identical\n        attn_prox: Dict[str, float] = {}\n        mlp_prox: Dict[str, float] = {}\n\n        for src_name, y_u in src_act.items():\n            if _before_attn(src_name, L_dst):\n                attn_prox[src_name] = _proximity(y_u, resid_pre)\n            if _before_mlp(src_name, L_dst):\n                mlp_prox[src_name] = _proximity(y_u, resid_mid)\n\n        # Expand to per-head Q/K/V edges\n        for src_name, score in attn_prox.items():\n            for H_dst in range(n_heads):\n                for hook in (\"hook_q\", \"hook_k\", \"hook_v\"):\n                    edge_scores[f\"{src_name} -> blocks.{L_dst}.attn.{hook}[{H_dst}]\"] = score\n\n        # MLP edges\n        for src_name, score in mlp_prox.items():\n            edge_scores[f\"{src_name} -> blocks.{L_dst}.hook_mlp_in\"] = score\n\n    return edge_scores\nPYEOF"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T13:40:43.168680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T13:40:43.168844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "account": "root",
+              "command": "cd /root/structfuse-mvp && python3 -c \"\nfrom edge_pruning_l0 import HardConcreteMask, run_edge_pruning_l0\nfrom ifr_discovery import run_ifr, _proximity, _enumerate_edges\nprint('Import OK')\nprint(f'HardConcreteMask: {HardConcreteMask}')\nprint(f'run_edge_pruning_l0: {run_edge_pruning_l0}')\nprint(f'run_ifr: {run_ifr}')\n\" 2>&1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T13:40:43.168979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/structfuse-mvp && python3 -c \\\\\\\"\\\\\\\\nfrom edge_pruning_l0 import HardConcreteMask, run_edge_pruning_l0\\\\\\\\nfrom ifr_discovery import run_ifr, _proximity, _enumerate_edges\\\\\\\\nprint(\\\\\\\\'Import OK\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'HardConcreteMask: {HardConcreteMask}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'run_edge_pruning_l0: {run_edge_pruning_l0}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'run_ifr: {run_ifr}\\\\\\\\')\\\\\\\\n\\\\\\\" 2>&1'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T13:40:43.169098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "account": "root",
+              "command": "wc -l /root/structfuse-mvp/edge_pruning_l0.py /root/structfuse-mvp/ifr_discovery.py && md5sum /root/structfuse-mvp/edge_pruning_l0.py /root/structfuse-mvp/ifr_discovery.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T13:40:43.169224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  268 /root/structfuse-mvp/edge_pruning_l0.py\\\\n  151 /root/structfuse-mvp/ifr_discovery.py\\\\n  419 total\\\\n58360d3eeebd79d1810136110a4795c9  /root/structfuse-mvp/edge_pruning_l0.py\\\\n9f92af49a08bcea0658485b885dc2f93  /root/structfuse-mvp/ifr_discovery.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T13:40:43.169403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse-mvp && python -c \"\nfrom edge_pruning_l0 import HardConcreteMask, run_edge_pruning_l0\nfrom ifr_discovery import run_ifr, _proximity, _enumerate_edges\nprint('Import OK')\nprint(f'HardConcreteMask: {HardConcreteMask}')\nprint(f'run_edge_pruning_l0: {run_edge_pruning_l0}')\nprint(f'run_ifr: {run_ifr}')\n\" 2>&1"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T13:40:43.169530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Import OK\\\\nHardConcreteMask: <class 'edge_pruning_l0.HardConcreteMask'>\\\\nrun_edge_pruning_l0: <function run_edge_pruning_l0 at 0x7f6e5ba03240>\\\\nrun_ifr: <function run_ifr at 0x7f6e5ba036a0>\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T13:40:43.169746+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**文件完整性：**\n| 文件 | 行数 | md5 |\n|------|------|-----|\n| `edge_pruning_l0.py` | 268 | `58360d3eeebd79d1810136110a4795c9` |\n| `ifr_discovery.py` | 151 | `9f92af49a08bcea0658485b885dc2f93` |\n\n**Import 验证：** OK — `HardConcreteMask`, `run_edge_pruning_l0`, `run_ifr`, `_proximity`, `_enumerate_edges` 全部正常导入。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_upload-l0-ifr_20260512T133832"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/code-upload-l0-ifr.md"
+}

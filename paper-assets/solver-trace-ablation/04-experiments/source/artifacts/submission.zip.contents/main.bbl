@@ -1,0 +1,229 @@
+\begin{thebibliography}{30}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bhattarai et~al.(2026)Bhattarai, Boureima, Ranasinghe, Pakin, and
+  O'Malley}]{rubric-grpo}
+Manish Bhattarai, Ismael Boureima, Nishath~Rajiv Ranasinghe, Scott Pakin, and
+  Dan O'Malley. 2026.
+\newblock \href {https://arxiv.org/abs/2605.08061} {{Rubric-Grounded
+  Reinforcement Learning: Structured Judge Rewards for Generalizable
+  Reasoning}}.
+\newblock \emph{arXiv preprint arXiv:2605.08061}.
+
+\bibitem[{Bondarenko et~al.(2025)Bondarenko, Volk, Volkov, and
+  Ladish}]{bondarenko-spec-gaming}
+Alexander Bondarenko, Denis Volk, Dmitrii Volkov, and Jeffrey Ladish. 2025.
+\newblock \href {https://arxiv.org/abs/2502.13295} {{Demonstrating
+  Specification Gaming in Reasoning Models}}.
+\newblock \emph{arXiv preprint arXiv:2502.13295}.
+
+\bibitem[{{DeepSeek AI}(2024)}]{deepseek-prover-v15}
+{DeepSeek AI}. 2024.
+\newblock \href {https://arxiv.org/abs/2408.08152} {{DeepSeek-Prover-V1.5:
+  Harnessing Proof Assistant Feedback for Reinforcement Learning and
+  Monte-Carlo Tree Search}}.
+\newblock \emph{arXiv preprint arXiv:2408.08152}.
+
+\bibitem[{DeMillo et~al.(1978)DeMillo, Lipton, and Sayward}]{demillo1978}
+Richard~A. DeMillo, Richard~J. Lipton, and Frederick~G. Sayward. 1978.
+\newblock {Hints on Test Data Selection: Help for the Practicing Programmer}.
+\newblock \emph{Computer}, 11(4):34--41.
+
+\bibitem[{Di et~al.(2025)Di, Zhang, Lv, Cui, and Liu}]{lorp}
+Zhengkun Di, Chaoli Zhang, Hongtao Lv, Lizhen Cui, and Lei Liu. 2025.
+\newblock {LoRP: LLM-based Logical Reasoning via Prolog}.
+\newblock \emph{Knowledge-Based Systems}.
+
+\bibitem[{Gao et~al.(2024)Gao, Xu, Ye, Liu, He, Fu, Mei, Wang, and
+  Wu}]{gao-effective-rl-reward}
+Jiaxuan Gao, Shusheng Xu, Wenjie Ye, Weilin Liu, Chuyi He, Wei Fu, Zhiyu Mei,
+  Guangju Wang, and Yi~Wu. 2024.
+\newblock \href {https://arxiv.org/abs/2410.15115} {{On Designing Effective RL
+  Reward at Training Time for LLM Reasoning}}.
+\newblock \emph{arXiv preprint arXiv:2410.15115}.
+
+\bibitem[{Gao et~al.(2023)Gao, Schulman, and
+  Hilton}]{gao-reward-overoptimization}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+\newblock {Scaling Laws for Reward Model Overoptimization}.
+\newblock In \emph{Proceedings of the International Conference on Machine
+  Learning (ICML)}.
+\newblock ArXiv:2210.10760.
+
+\bibitem[{Han et~al.(2024)Han, Schoelkopf, Zhao, Qi, Riddell, Benson, Sun,
+  Zubova, Qiao, Burtell, Peng, Fan, Liu, Wong, Sailor, Ni, Nan, Kasai, Yu,
+  Zhang, Joty, Fabbri, Kryscinski, Lin, Xiong, and Radev}]{folio}
+Simeng Han, Hailey Schoelkopf, Yilun Zhao, Zhenting Qi, Martin Riddell, Luke
+  Benson, Lucy Sun, Ekaterina Zubova, Yujie Qiao, Matthew Burtell, David Peng,
+  Jonathan Fan, Yixin Liu, Brian Wong, Malcolm Sailor, Ansong Ni, Linyong Nan,
+  Jungo Kasai, Tao Yu, and 7 others. 2024.
+\newblock {FOLIO: Natural Language Reasoning with First-Order Logic}.
+\newblock In \emph{Proceedings of the Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+\newblock ArXiv:2209.00840.
+
+\bibitem[{Jha et~al.(2024)Jha, Jana, Suresh, Arora, and Ganesh}]{rlsf}
+Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, and Vijay
+  Ganesh. 2024.
+\newblock \href {https://arxiv.org/abs/2405.16661} {{RLSF: Reinforcement
+  Learning via Symbolic Feedback}}.
+\newblock \emph{arXiv preprint arXiv:2405.16661}.
+
+\bibitem[{Jia and Harman(2011)}]{jia-harman-survey}
+Yue Jia and Mark Harman. 2011.
+\newblock {An Analysis and Survey of the Development of Mutation Testing}.
+\newblock \emph{IEEE Transactions on Software Engineering}, 37(5):649--678.
+
+\bibitem[{Karwowski et~al.(2024)Karwowski, Hayman, Bai, Kiendlhofer, Griffin,
+  and Skalse}]{karwowski-goodhart-rl}
+Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie
+  Griffin, and Joar Skalse. 2024.
+\newblock {Goodhart's Law in Reinforcement Learning}.
+\newblock In \emph{Proceedings of the International Conference on Learning
+  Representations (ICLR)}.
+\newblock ArXiv:2310.09144.
+
+\bibitem[{Kim et~al.(2026)Kim, Poiroux, and Bosselut}]{kim-game-formalization}
+Kyuhee Kim, Auguste Poiroux, and Antoine Bosselut. 2026.
+\newblock {Do LLMs Game Formalization? Evaluating Faithfulness in Logical
+  Reasoning}.
+\newblock In \emph{VerifAI-2 Workshop at the International Conference on
+  Learning Representations (ICLR)}.
+\newblock ArXiv:2604.19459.
+
+\bibitem[{Kwa et~al.(2024)Kwa, Thomas, and
+  Garriga-Alonso}]{kwa-catastrophic-goodhart}
+Thomas Kwa, Drake Thomas, and Adri\`{a} Garriga-Alonso. 2024.
+\newblock {Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not
+  Mitigate Heavy-Tailed Reward Misspecification}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+\newblock ArXiv:2407.14503.
+
+\bibitem[{Lightman et~al.(2024)Lightman, Kosaraju, Burda
+  et~al.}]{lightman-verify-step}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, and 1 others. 2024.
+\newblock {Let's Verify Step by Step}.
+\newblock In \emph{Proceedings of the International Conference on Learning
+  Representations (ICLR)}.
+\newblock ArXiv:2305.20050.
+
+\bibitem[{Manheim and Garrabrant(2019)}]{manheim-goodhart-taxonomy}
+David Manheim and Scott Garrabrant. 2019.
+\newblock \href {https://arxiv.org/abs/1803.04585} {{Categorizing Variants of
+  Goodhart's Law}}.
+\newblock \emph{arXiv preprint arXiv:1803.04585}.
+
+\bibitem[{Mellgren et~al.(2025)Mellgren, Schneider-Kamp, and
+  Galke}]{mellgren-prolog-grpo}
+Niklas Mellgren, Peter Schneider-Kamp, and Lukas Galke. 2025.
+\newblock \href {https://arxiv.org/abs/2512.07407} {{Training Language Models
+  to Use Prolog as a Tool}}.
+\newblock \emph{arXiv preprint arXiv:2512.07407}.
+
+\bibitem[{{METR}(2025)}]{metr-reward-hacking}
+{METR}. 2025.
+\newblock {Recent Frontier Models Are Reward Hacking}.
+\newblock METR blog post.
+\newblock \url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}.
+
+\bibitem[{Olausson et~al.(2023)Olausson, Gu, Lipkin, Zhang, Solar-Lezama,
+  Tenenbaum, and Levy}]{linc}
+Theo~X. Olausson, Alex Gu, Ben Lipkin, Cedegao~E. Zhang, Armando Solar-Lezama,
+  Joshua~B. Tenenbaum, and Roger Levy. 2023.
+\newblock {LINC: A Neurosymbolic Approach for Logical Reasoning by Combining
+  Language Models with First-Order Logic Provers}.
+\newblock In \emph{Proceedings of the Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Pan et~al.(2023)Pan, Albalak, Wang, and Wang}]{logic-lm}
+Liangming Pan, Alon Albalak, Xinyi Wang, and William~Yang Wang. 2023.
+\newblock {Logic-LM: Empowering Large Language Models with Symbolic Solvers for
+  Faithful Logical Reasoning}.
+\newblock In \emph{Findings of the Conference on Empirical Methods in Natural
+  Language Processing (EMNLP)}.
+
+\bibitem[{Pei et~al.(2025)Pei, Du, and Jin}]{fover-pei2025}
+Yu~Pei, Yongping Du, and Xingnan Jin. 2025.
+\newblock {FoVer: First-Order Logic Verification for Natural Language
+  Reasoning}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  13:1340--1359.
+
+\bibitem[{{Qwen Team}(2025)}]{qwen3}
+{Qwen Team}. 2025.
+\newblock \href {https://arxiv.org/abs/2505.09388} {{Qwen3 Technical Report}}.
+\newblock \emph{arXiv preprint arXiv:2505.09388}.
+
+\bibitem[{Shao et~al.(2025)Shao, Li, Xin, Geng, Wang, Oh, Du, Lambert, Min,
+  Krishna, Tsvetkov, Hajishirzi, Koh, and Zettlemoyer}]{spurious-rewards}
+Rulin Shao, Shuyue~Stella Li, Rui Xin, Scott Geng, Yiping Wang, Sewoong Oh,
+  Simon~Shaolei Du, Nathan Lambert, Sewon Min, Ranjay Krishna, Yulia Tsvetkov,
+  Hannaneh Hajishirzi, Pang~Wei Koh, and Luke Zettlemoyer. 2025.
+\newblock \href {https://arxiv.org/abs/2506.10947} {{Spurious Rewards:
+  Rethinking Training Signals in RLVR}}.
+\newblock \emph{arXiv preprint arXiv:2506.10947}.
+
+\bibitem[{Shao et~al.(2024)Shao, Wang, Zhu, Xu et~al.}]{deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, and 1 others. 2024.
+\newblock \href {https://arxiv.org/abs/2402.03300} {{DeepSeekMath: Pushing the
+  Limits of Mathematical Reasoning in Open Language Models}}.
+\newblock \emph{arXiv preprint arXiv:2402.03300}.
+
+\bibitem[{Skalse et~al.(2022)Skalse, Howe, Krasheninnikov, and
+  Krueger}]{skalse-reward-hacking}
+Joar Skalse, Nikolaus H.~R. Howe, Dmitrii Krasheninnikov, and David Krueger.
+  2022.
+\newblock {Defining and Characterizing Reward Hacking}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+\newblock ArXiv:2209.13085.
+
+\bibitem[{Tafjord et~al.(2021)Tafjord, Dalvi, and Clark}]{proofwriter}
+Oyvind Tafjord, Bhavana Dalvi, and Peter Clark. 2021.
+\newblock {ProofWriter: Generating Implications, Proofs, and Abductive
+  Statements over Natural Language}.
+\newblock In \emph{Findings of the Association for Computational Linguistics
+  (ACL)}.
+\newblock ArXiv:2012.13048.
+
+\bibitem[{Wang et~al.(2024)Wang, Li, Shao, Xu et~al.}]{math-shepherd}
+Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, and 1 others. 2024.
+\newblock {Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human
+  Annotations}.
+\newblock In \emph{Proceedings of the Association for Computational Linguistics
+  (ACL)}.
+\newblock ArXiv:2312.08935.
+
+\bibitem[{Wang et~al.(2026)Wang, Tian, Zeng, Huang
+  et~al.}]{reward-hacking-survey}
+Xiaohua Wang, Muzhao Tian, Yuqi Zeng, Zisu Huang, and 1 others. 2026.
+\newblock \href {https://arxiv.org/abs/2604.13602} {{Reward Hacking in the Era
+  of Large Models: Mechanisms, Emergent Misalignment, Challenges}}.
+\newblock \emph{arXiv preprint arXiv:2604.13602}.
+
+\bibitem[{Xie et~al.(2025)Xie, Gao, Ren, Luo, Hong, Dai, Zhou, Qiu, Wu, and
+  Luo}]{logic-rl}
+Tian Xie, Zitian Gao, Qingnan Ren, Haoming Luo, Yuqian Hong, Bryan Dai, Joey
+  Zhou, Kai Qiu, Zhirong Wu, and Chong Luo. 2025.
+\newblock \href {https://arxiv.org/abs/2502.14768} {{Logic-RL: Unleashing LLM
+  Reasoning with Rule-Based Reinforcement Learning}}.
+\newblock \emph{arXiv preprint arXiv:2502.14768}.
+
+\bibitem[{Ye et~al.(2023)Ye, Chen, Dillig, and Durrett}]{satlm}
+Xi~Ye, Qiaochu Chen, Isil Dillig, and Greg Durrett. 2023.
+\newblock {SatLM: Satisfiability-Aided Language Models Using Declarative
+  Prompting}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Zheng et~al.(2025)Zheng, Zhang, Zhang, Lin, Lu, Yu, Liu, Zhou, and
+  Lin}]{processbench}
+Chujie Zheng, Zhenru Zhang, Beichen Zhang, Runji Lin, Keming Lu, Bowen Yu,
+  Dayiheng Liu, Jingren Zhou, and Junyang Lin. 2025.
+\newblock {ProcessBench: Identifying Process Errors in Mathematical Reasoning}.
+\newblock In \emph{Proceedings of the Association for Computational Linguistics
+  (ACL)}.
+\newblock ArXiv:2412.06559.
+
+\end{thebibliography}

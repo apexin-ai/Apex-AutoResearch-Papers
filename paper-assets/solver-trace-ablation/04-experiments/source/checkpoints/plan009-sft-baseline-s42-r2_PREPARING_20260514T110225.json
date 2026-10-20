@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan009-sft-baseline-s42-r2",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:02:25.369Z",
+    "updated_at": "2026-05-14T11:02:25.369Z"
+  },
+  "timestamp": "2026-05-14T11:02:25.486252+00:00",
+  "trigger": "update_registry"
+}

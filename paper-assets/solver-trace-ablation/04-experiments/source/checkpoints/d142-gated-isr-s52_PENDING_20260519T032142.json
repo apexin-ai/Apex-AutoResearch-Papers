@@ -1,0 +1,15 @@
+{
+  "exp_id": "d142-gated-isr-s52",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:08:28.357Z",
+    "updated_at": "2026-05-19T03:21:42.091Z",
+    "hypothesis": "Component-count gating (ISR bonus zeroed when n_components < 2) will reduce H7 tautological collapse rate while preserving genuine proof learning, because H7 proofs are single-component (conclusion duplicated as sole premise). Gate removes ISR reward signal for these degenerate proofs, breaking the H7 attractor."
+  },
+  "timestamp": "2026-05-19T03:21:42.558082+00:00",
+  "trigger": "update_registry"
+}

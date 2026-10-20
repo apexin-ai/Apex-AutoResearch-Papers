@@ -1,0 +1,23 @@
+{
+  "exp_id": "gpt2_factual_recall_k3_v2",
+  "project": "min_necessary_circuit_css",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T08:57:42.586Z",
+    "updated_at": "2026-05-13T08:57:42.586Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python /root/min_necessary_circuit_css/run_factual_recall.py",
+      "server": "westd-pro6000",
+      "model_name": "gpt2-small",
+      "data_path": "/root/miniconda3/lib/python3.12/site-packages/datasets/factual_recall_gpt2-small_prompts.json",
+      "data_count": 100,
+      "seed": 42,
+      "hypothesis": "GPT-2 Small factual recall (country capitals) with K=3 methods (EAP-IG + Edge Pruning + ACDC). Fixed run_edge_pruning/run_acdc parameter mismatch by constructing proper auto_circuit ac_task. EAP-IG cache reused from v1."
+    }
+  },
+  "timestamp": "2026-05-13T08:57:42.634289+00:00",
+  "trigger": "update_registry"
+}

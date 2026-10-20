@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp1-random-b03-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:30:55.259Z",
+    "updated_at": "2026-05-15T02:34:11.855Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.3 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/exp1_random_b03_s43_r2\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "113288",
+      "log_path": "~/runs/solver-trace-ablation/exp1-random-b03-s43-r2.log",
+      "submitted_at": "2026-05-15T02:31:28.051Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T02:34:12.160129+00:00",
+  "trigger": "update_registry"
+}

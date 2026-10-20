@@ -1,0 +1,1448 @@
+# eval plan002 b03 s42 h7
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_eval_plan002-b03-s42-h7_20260515T004256.jsonl`
+- **Structured JSON:** [`bf5ffc562522f1b4727e.json`](../../sessions/bf/bf5ffc562522f1b4727e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T00:44:49.778233+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T00:44:49.778667+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T00:44:49.778954+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'plan002-additive-b03-s42'}",
+  "project": "solver-trace-ablation",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'plan002-additive-b03-s42'}",
+    "project": "solver-trace-ablation",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T00:44:49.779200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2588}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T00:44:49.779379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls -la /root/autodl-tmp/outputs/plan002_additive_beta03_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls -la /root/autodl-tmp/outputs/plan002_additive_beta03_s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T00:44:49.779510+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T00:44:49.779633+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/outputs/plan002_additive_beta03_s42/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T00:44:49.779810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB\\n1, 64873 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T00:44:49.779961+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*plan002*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*plan002*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T00:44:49.780082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T00:44:49.780196+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*b03*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*b03*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T00:44:49.780330+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2\\n/root/autodl-tmp/outputs/exp1_random_b03_s44\\n/root/autodl-tmp/outputs/exp1_isr_b03_s43_eval\\n/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2_eval\\n/root/autodl-tmp/outputs/exp1_random_b03_s43_eval\\n/root/autodl-tmp/outputs/exp1_random_b03_s44_r2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T00:44:49.780451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*beta03*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*beta03*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T00:44:49.780565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T00:44:49.780677+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "fields": "['exp_id', 'status', 'metrics']",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "fields": "['exp_id', 'status', 'metrics']",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T00:44:49.781163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp1-random-b03-s44-r2\": {\"status\": \"PREPARING\"}, \"exp1-random-b03-s43\": {\"status\": \"DONE\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.79, \"mean_isr\": 0.1745, \"isr_std\": 0.1628, \"median_isr\": 0.1667, \"proved_only_mean_isr\": 0.2209, \"hacking_rate_strict_h7\": 0, \"hacking_rate_functional\": 0.1013, \"genuine_rate\": 0.8987, \"genuine_count\": 71, \"n_proved\": 79, \"n_problems\": 100, \"h1_conclusion_in_premise\": 0.759, \"eval_data\": \"test_100.jsonl\", \"eval_output\": \"/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\"}}, \"exp1-random-b03-s44\": {\"status\": \"DONE\"}, \"exp1-isr-b03-s44-r2\": {\"status\": \"DONE\", \"metrics\": {\"prove_rate\": 0.98, \"mean_isr\": 0.7275, \"isr_std\": 0.1184, \"proved_only_isr\": 0.7423, \"n_proved\": 98, \"n_problems\": 100, \"h7_rate\": 1, \"h7_count\": 98, \"h1_rate\": 0, \"h1_count\": 0, \"genuine_rate\": 0, \"genuine_count\": 0, \"single_premise_rate\": 1, \"eval_data\": \"test_100.jsonl\", \"train_final_prove_rate\": 0.71, \"train_final_mean_isr\": 0.452}}, \"exp1-isr-b03-s43\": {\"status\": \"DONE\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.91, \"mean_isr\": 0.2575, \"isr_std\": 0.2363, \"median_isr\": 0.3333, \"proved_only_mean_isr\": 0.283, \"hacking_rate_strict_h7\": 0.022, \"hacking_rate_functional\": 0.3297, \"genuine_rate\": 0.6703, \"genuine_count\": 61, \"n_proved\": 91, \"n_problems\": 100, \"h1_conclusion_in_premise\": 0.747, \"eval_data\": \"test_100.jsonl\", \"eval_output\": \"/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\"}}, \"exp1-isr-b03-s44\": {\"status\": \"DONE\"}, \"exp1-isr-b03-s43-r2\": {\"status\": \"DONE\"}, \"exp2-exec-s43-greedy\": {\"status\": \"DONE\"}, \"exp4-100step-h1h7\": {\"status\": \"DONE\"}, \"plan001-exec-only-s43-r4\": {\"status\": \"DONE\", \"metrics\": {\"eval_sampling_prove_rate\": 0.14, \"eval_sampling_mean_isr\": 0, \"eval_sampling_n_proved\": 14, \"eval_sampl
+…[truncated 18353 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T00:44:49.781364+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*plan002*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*plan002*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T00:44:49.781498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T00:44:49.781615+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*additive*s42*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*additive*s42*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T00:44:49.781761+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T00:44:49.781881+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/ -maxdepth 2 -type d -name \"*b03*s42*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/ -maxdepth 2 -type d -name \"*b03*s42*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T00:44:49.781999+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T00:44:49.782134+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'plan002-additive-b03-s42'}",
+  "project": "solver-trace-ablation",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'plan002-additive-b03-s42'}",
+    "project": "solver-trace-ablation",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T00:44:49.782255+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2275}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T00:44:49.782367+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -name \"*plan002*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -name \"*plan002*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T00:44:49.782478+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/ -maxdepth 2 -name \"*eval*plan002*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/ -maxdepth 2 -name \"*eval*plan002*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T00:44:49.782601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/eval_sta_plan002.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T00:44:49.782739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/eval_sta_plan002.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T00:44:49.782894+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/autodl-tmp/outputs/eval_sta_plan002.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/autodl-tmp/outputs/eval_sta_plan002.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T00:44:49.783110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"The tokenizer you are loading from '/root/autodl-tmp/outputs/plan002_additive_beta03_s42/checkpoint-500' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n`torch_dtype` is deprecated! Use `dtype` instead!\\nLoading data from data/proofwriter_fol_100.jsonl...\\n  100 problems loaded.\\nLoading model from /root/autodl-tmp/outputs/plan002_additive_beta03_s42/checkpoint-500...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.30it/s]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.28it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.21it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.69it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.50it/s]\\n  Model loaded.\\n  Solver: Prover9Solver\\n[1/100] id=folio_765 ... The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\nproved  ISR=0.000  gen=3.0s  eval=0.0s\\n[2/100] id=folio_1179 ... FAILED  ISR=0.000  gen=4.7s  eval=0.0s\\n[3/100] id=folio_66 ... FAILED  ISR=0.000  gen=11.2s  eval=0.0s\\n[4/100] id=folio_1378 ... FAILED  ISR=0.000  gen=5.2s  eval=0.0s\\n[5/100] id=folio_592 ... FAILED  ISR=0.000  gen=11.0s  eval=0.0s\\n[6/100] id=folio_71 ... FAILED  ISR=0.000  gen=2.6s  eval=0.0s\\n[7/100] id=folio_556 ... proved  ISR=0.375  gen=2.7s  eval=0.1s\\n[8/100] id=folio_938 ... FAILED  ISR=0.000  gen=11.1s  eval=0.0s\\n[9/100] id=folio_833 ... FAILED  ISR=0.000  gen=2.8s  eval=0.0s\\n[10/100] id=folio_1312 ... FAILED  ISR=0.000  gen=2.8s  eval=0.0s\\n[11/100] id=folio_1119 ... FAILED  ISR=0
+…[truncated 6452 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T00:44:49.783260+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -name \"*eval*b03*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -name \"*eval*b03*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T00:44:49.783397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\\n/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T00:44:49.783515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -name \"*eval*additive*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -name \"*eval*additive*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T00:44:49.783634+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/outputs/eval_sta_plan017_additive_random_s42.json\\n/root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T00:44:49.783806+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/outputs/ -name \"*plan002*b03*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/solver-trace-ablation/outputs/ -name \"*plan002*b03*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T00:44:49.783931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T00:44:49.784047+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/outputs/ -name \"*plan002*b03*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/outputs/ -name \"*plan002*b03*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T00:44:49.784162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T00:44:49.784271+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T00:44:49.784388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nclassify_h7.py\\neval_cross_solver.py\\neval_downstream.py\\neval_o1_vs_on.py\\neval_sta.py\\ngenerate_figures.py\\ngenerate_figures.py.bak\\ngt_isr_baseline.py\\nlaunch_phase1.sh\\nphase0_baseline.py\\nprepare_data.py\\nrun_eval_after_training.sh\\nsta_prolog.py\\ntrain_grpo.py\\ntrain_sft.py\\nverify_xor.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T00:44:49.784533+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -100 /root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -100 /root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T00:44:49.784774+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 18,\\n    \\\"prove_rate\\\": 0.18,\\n    \\\"mean_isr\\\": 0.0257,\\n    \\\"isr_std\\\": 0.0742,\\n    \\\"median_isr\\\": 0.0,\\n    \\\"isr_pr_ratio\\\": 0.1427,\\n    \\\"proved_only_mean_isr\\\": 0.1427,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 0.375,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 3,\\n        \\\"prove_rate\\\": 0.12,\\n        \\\"mean_isr\\\": 0.010158730158730159\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 8,\\n        \\\"prove_rate\\\": 0.1951219512195122,\\n        \\\"mean_isr\\\": 0.04218227571886108\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 7,\\n        \\\"prove_rate\\\": 0.20588235294117646,\\n        \\\"mean_isr\\\": 0.01719187675070028\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 588.6,\\n    \\\"avg_time_per_sample\\\": 5.9,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42/checkpoint-500\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"id\\\": \\\"folio_765\\\",\\n      \\\"context\\\": \\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\nAll lawyers are white-collar workers.\\\\nEvery advocate is a lawyer.\\\\nMary is not a lawyer or a tipped employee.\\\",\\n      \\\"question\\\": \\\"Mary is an advocate.\\\",\\n      \\\"answer\\\": \\\"false\\\",\\n      \\\"formalization\\\": \\\"Premises:\\\\n1. ∀x (T(x) → ¬F(x))\\\\n2. ∀x (W(x) → F(x))\\\\n3. ∀x (L(x) → W(x))\\\\n4. ∃x (L(x) ∧ T(x) → ¬F(x))\\\\n5. ∃x (L(x) ∧ T(x))\\\\n6. ∃x (L(x) ∧ T(x))\\\\n7. 
+…[truncated 2085 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T00:44:49.784937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/scripts/classify_h7.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/scripts/classify_h7.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T00:44:49.785160+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nClassify H7 (Conclusion Duplication with ISR Inflation) in eval results.\\n\\nH7 strict: single premise AND premise == conclusion (normalized)\\nH1: multi-premise but at least one premise == conclusion (conclusion embedding)\\n\\nUsage:\\n    python scripts/classify_h7.py --eval_path /path/to/eval_results.json\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --out /path/to/output.txt\\n\\\"\\\"\\\"\\nimport json\\nimport argparse\\nimport re\\nimport sys\\n\\n\\ndef normalize_fol(s):\\n    s = s.strip()\\n    s = re.sub(r'\\\\s+', ' ', s)\\n    return s\\n\\n\\ndef is_h7_strict(premises, conclusion):\\n    \\\"\\\"\\\"H7: single premise AND premise == conclusion (normalized)\\\"\\\"\\\"\\n    if len(premises) != 1:\\n        return False\\n    return normalize_fol(premises[0]) == normalize_fol(conclusion)\\n\\n\\ndef has_conclusion_in_premises(premises, conclusion):\\n    \\\"\\\"\\\"Any premise == conclusion (normalized). Superset of H7.\\\"\\\"\\\"\\n    norm_conclusion = normalize_fol(conclusion)\\n    return any(normalize_fol(p) == norm_conclusion for p in premises)\\n\\n\\ndef is_h1_strict(premises, conclusion):\\n    \\\"\\\"\\\"H1: multi-premise AND at least one premise == conclusion.\\\"\\\"\\\"\\n    if len(premises) <= 1:\\n        return False\\n    return has_conclusion_in_premises(premises, conclusion)\\n\\n\\ndef is_h7_relaxed(premises, conclusion, isr):\\n    return len(premises) == 1 and isr >= 0.5\\n\\n\\ndef classify_file(eval_path):\\n    with open(eval_path) as f:\\n        data = json.load(f)\\n\\n    results = data.get('results', data.get('samples', []))\\n    proved = [r for r in results if r.get('execution_reward', 0) == 1.0]\\n\\n    h7_strict = 0\\n    h1_strict = 0\\n    h7_relaxed = 0\\n    conclusion_in_premise = 0\\n    isr_1_count = 0\\n    single_premise_count = 0\\n    h7_examples = []\\n    h1_examples = []\\n\\n    for r i
+…[truncated 6061 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T00:44:49.785342+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/classify_h7.py --eval_path outputs/eval_sta_plan002_additive_b03.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/classify_h7.py --eval_path outputs/eval_sta_plan002_additive_b03.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T00:44:49.785486+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  outputs\\n============================================================\\nTotal samples: 100, Proved: 18\\nH7 strict  (single premise == conclusion):  0/18 = 0.0%\\nH1 strict  (multi-prem, concl in premises): 14/18 = 77.8%\\nAny conclusion-in-premise (H7+H1):          14/18 = 77.8%\\nH7 relaxed (single_premise + ISR>=0.5):     0/18 = 0.0%\\nSingle premise: 0/18 = 0.0%\\nISR = 1.0:      0/18 = 0.0%\\n\\n  H1 examples (first 3):\\n    folio_765: 7 premises, isr=0.0\\n    folio_1076: 8 premises, isr=0.0\\n    folio_491: 6 premises, isr=0.2222222222222222\\n\\n\\n============================================================\\n  SUMMARY TABLE\\n============================================================\\nRun                                       H7       H1    H7+H1   Proved\\n------------------------------------------------------------\\noutputs                               0/18   14/18   14/18        18\\n------------------------------------------------------------\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T00:44:49.785663+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan002-additive-b03-s42",
+  "field": "metrics",
+  "value": "{'total_steps': 500, 'duration_min': 56.7, 'overall_prove_rate': 0.34025, 'overall_isr': 0.11527, 'last100_prove_rate': 0.5525, 'eval_prove_rate': 0.18, 'eval_mean_isr': 0.0257, 'eval_isr_std': 0.0742, 'eval_median_isr': 0, 'eval_proved_only_isr': 0.1427, 'eval_n_proved': 18, 'eval_n_problems': 100, 'eval_method': 'eval_sta.py full STA', 'eval_data': 'proofwriter_fol_100.jsonl', 'eval_output': '/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json', 'h7_rate': 0, 'h7_count': 0, 'h1_rate': 0.778, 'h1_count': 14, 'genuine_rate': 0.222, 'genuine_count': 4, 'eval_by_type_false_pr': 0.12, 'eval_by_type_false_isr': 0.0102, 'eval_by_type_unknown_pr': 0.195, 'eval_by_type_unknown_isr': 0.0422, 'eval_by_type_true_pr': 0.206, 'eval_by_type_true_isr': 0.0172}",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan002-additive-b03-s42",
+    "field": "metrics",
+    "value": "{'total_steps': 500, 'duration_min': 56.7, 'overall_prove_rate': 0.34025, 'overall_isr': 0.11527, 'last100_prove_rate': 0.5525, 'eval_prove_rate': 0.18, 'eval_mean_isr': 0.0257, 'eval_isr_std': 0.0742, 'eval_median_isr': 0, 'eval_proved_only_isr': 0.1427, 'eval_n_proved': 18, 'eval_n_problems': 100, 'eval_method': 'eval_sta.py full STA', 'eval_data': 'proofwriter_fol_100.jsonl', 'eval_output': '/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json', 'h7_rate': 0, 'h7_count': 0, 'h1_rate': 0.778, 'h1_count': 14, 'genuine_rate': 0.222, 'genuine_count': 4, 'eval_by_type_false_pr': 0.12, 'eval_by_type_false_isr': 0.0102, 'eval_by_type_unknown_pr': 0.195, 'eval_by_type_unknown_isr': 0.0422, 'eval_by_type_true_pr': 0.206, 'eval_by_type_true_isr': 0.0172}",
+    "project": "solver-trace-ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T00:44:49.785910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan002-additive-b03-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-15T00:44:42.030Z\", \"spec\": {\"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\", \"plan_id\": \"plan_002\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * ISR)\", \"beta\": 0.3, \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"161819\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T03:24:44.110Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:24:48.666027+00:00\"}]}, \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"last100_prove_rate\": 0.5525, \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.1427, \"eval_n_proved\": 18, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_output\": \"/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\", \"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 0.778, \"h1_count\": 14, \"genuine_rate\
+…[truncated 905 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-15T00:44:49.786100+00:00_
+
+Registry 已更新。plan002-additive-b03-s42 eval 结果：
+
+| 指标 | 值 |
+|------|-----|
+| PR | 18/100 (18%) |
+| Mean ISR | 0.0257 ± 0.0742 |
+| Proved-only ISR | 0.1427 |
+| H7 | 0/18 (0%) |
+| H1 | 14/18 (77.8%) |
+| Genuine | 4/18 (22.2%) |
+
+Checkpoint 已被清理但 eval 结果此前已产出（`outputs/eval_sta_plan002_additive_b03.json`），H7 分类通过 `classify_h7.py` 完成。注意该实验 conclusion=negative，eval PR 从训练末期的 55% 大幅下降至 18%，泛化能力弱。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_plan002-b03-s42-h7_20260515T004256"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,460 @@
+tier: worst
+narrative_guidance: '两条reframe路径均不降级EMNLP main。 路径A（8B不退化）：Goodhart collapse is capacity-gated
+  — ≥8B具备genuine formal reasoning的scale threshold， C2改写为"inevitable in low-capacity
+  regime at any dose"。 路径B（8B训练失败）：scope缩回1.7B+4B+Prolog三点证据，承认scalability limitation但不影响C1/C3。
+  放弃double-edged叙事（N=8/10统计不支持），C2从"inevitable at any dose"改为 "inevitable below capacity
+  threshold at any dose"。 9-mode taxonomy、meta-Goodhart triple gaming、premise-count
+  methodology作为独立贡献支撑。 Score ceiling ~3.0，依靠diagnostic novelty + taxonomy completeness维持competitive。
+
+  '
+imagined_experiments:
+- name: Incorporate s45/s46 exec-only 500-step data
+  plan_id: plan_019
+  description: 将registry中已有的s45和s46 exec-only 500步数据纳入论文，C1证据从N=3扩展到N=5
+  expected_results:
+    s45_prove_rate: 0.99
+    s45_genuine_rate: 0.01
+    s45_h7_rate: 0.939
+    s45_h1_rate: 0.051
+    s45_isr_star: 0.506
+    s45_dominant_mode: H7a (tautological shortcut)
+    s46_prove_rate: 0.93
+    s46_genuine_rate: 0.097
+    s46_h1_rate: 0.892
+    s46_h7_rate: 0.0
+    s46_h8_rate: 0.043
+    s46_isr_star: 0.083
+    s46_dominant_mode: H1 (conclusion embedding)
+    n5_all_seeds_ge90pct_degeneration: true
+    n5_degeneration_modes: s42=H1, s43=H1(PR collapse), s44=H7, s45=H7(TS), s46=H1(CE)
+  result_rationale: '这是已有数据的整合，不受tier影响。s45和s46在registry中已有完整结果。 s45由H7a主导（93.9% tautological
+    shortcut），ISR*=0.506因为P→P结构固有1/2 necessity。 s46由H1主导（89.2% conclusion embedding），ISR*=0.083。
+    两个seed均≥90%结构退化，与s42-s44一致，将C1 exec-only证据扩展到N=5。 值得注意的是5个seed展现4种不同hacking mode分布（H1/H7/TS/CE/PR-collapse），
+    强化了"mode is seed-determined"的stochastic bifurcation发现。
+
+    '
+  tables:
+  - name: 'Table: 5-seed exec-only degeneration summary (500 steps)'
+    content: 'Seed | PR    | ISR*  | Genuine% | Dominant Mode     | Degeneration%
+
+      s42  | 0.93  | 0.132 | 7.5%     | H1 (87.1%)        | 92.5%
+
+      s43  | 0.13  | 0.000 | 0%       | H1 (100%, PR col) | 100%
+
+      s44  | 0.98  | 0.582 | 0%       | H7 (100%)         | 100%
+
+      s45  | 0.99  | 0.506 | 1.0%     | H7/TS (93.9%)     | 99.0%
+
+      s46  | 0.93  | 0.083 | 9.7%     | H1/CE (89.2%)     | 90.3%
+
+      Mean | 0.79  | 0.261 | 3.6%     | ---               | 96.4%
+
+      '
+  figures_description:
+  - 'Bar chart: per-seed hacking mode distribution (H1/H7/H8/genuine stacked bars),
+    显示5种不同退化路径'
+  analysis: 'N=5全部≥90%退化，但ISR*跨seed差异极大（0.000–0.582），因为不同hacking mode有不同的 固有ISR值：H7≈0.5（tautology
+    has 1 necessary component out of 2），H1≈0.1（conclusion embedded but some redundant
+    premises remain）。这意味着ISR*作为诊断指标时，需要与 hacking mode联合解读，单独ISR*值不足以区分退化严重程度。
+
+    '
+- name: Extend s45/s46 exec-only to 1000 steps
+  plan_id: plan_020
+  description: 将s45和s46从500步延伸到1000步，验证ISR collapse trajectory是否跨seed泛化
+  expected_results:
+    s45_1000_prove_rate: 1.0
+    s45_1000_isr_star: 0.48
+    s45_1000_genuine_rate: 0.0
+    s45_1000_h7_rate: 0.98
+    s45_1000_h1_rate: 0.02
+    s45_isr_trajectory: 0.506 (500步) → 0.48 (1000步), Δ=-5%
+    s46_1000_prove_rate: 0.97
+    s46_1000_isr_star: 0.065
+    s46_1000_genuine_rate: 0.03
+    s46_1000_h1_rate: 0.94
+    s46_1000_h8_rate: 0.03
+    s46_isr_trajectory: 0.083 (500步) → 0.065 (1000步), Δ=-22%
+    trajectory_universality: false
+    s42_reference_trajectory: 0.642 (100步) → 0.132 (500步) → 0.003 (1000步), Δ=-99.6%
+  result_rationale: 'worst档核心假设：s45/s46 1000步ISR*未完全崩塌（ISR*>0.10），trajectory universality弱化。
+
+    s45在500步已锁定H7 tautological shortcut模式（93.9% H7）。H7 proofs结构为"P therefore P"， ISR恒等于0.5（2个component中1个是necessary的）。从H7→H1的mode
+    switching在s45不会发生， 因为模型已完全收敛到单premise tautology。因此ISR*从0.506仅微降至~0.48（更多proof
+    精简到纯2-component结构），而非像s42那样崩塌至0.003。根本原因：s42的ISR崩塌是 H7→H1 mode transition驱动的（多premise
+    → conclusion embedding），而s45已无此过渡空间。
+
+    s46在500步已是H1主导（89.2%），ISR*=0.083。额外500步训练使H1纯度提升（→94%）， ISR*进一步降低但不趋零（~0.065），因为少量H8
+    conjunction collapse样本保留 微弱ISR信号。相比s42的0.003，s46的0.065仍显著高出20倍。
+
+    关键影响：ISR collapse trajectory不是universal的——它是mode-dependent的。 H7-dominant seeds
+    (s45) ISR*保持在~0.5，H1-dominant seeds (s42, s46) ISR*趋向零但速率不同。 这破坏了"ISR universally
+    collapses with training"的叙事，但支持更细粒度的发现： collapse rate取决于hacking mode，而mode本身是seed-determined的stochastic
+    outcome。
+
+    '
+  tables:
+  - name: 'Table: 1000-step ISR trajectory by seed (exec-only)'
+    content: 'Seed | ISR*(100) | ISR*(500) | ISR*(1000) | Collapse% | Dominant Mode
+      at 1000
+
+      s42  | 0.642     | 0.132     | 0.003      | 99.6%     | H1+H8
+
+      s43  | ---       | 0.000     | 0.082      | ---       | H1 (PR=0.13→0.96)
+
+      s44  | ---       | 0.582     | 0.002      | 99.7%     | H1+H8
+
+      s45  | ---       | 0.506     | 0.480      | 5.1%      | H7 (stable)
+
+      s46  | ---       | 0.083     | 0.065      | 21.7%     | H1 (deepening)
+
+      '
+  figures_description:
+  - 'Line plot: ISR* over training steps (100/500/1000) for 5 seeds, 显示s42/s44的急剧崩塌
+    vs s45的平坦轨迹'
+  - 'Heatmap: hacking mode transition matrix (500→1000步) per seed'
+  analysis: "trajectory universality不成立。ISR collapse是mode-contingent的： (1) H7-locked\
+    \ seeds (s45): ISR*≈0.5 throughout,因为tautological proof结构\n    固有ISR=0.5，无论训练多久这个lower\
+    \ bound不变。\n(2) H1-transitioning seeds (s42, s44): ISR*崩塌>99%，因为conclusion embedding\n\
+    \    使所有premise变为redundant。\n(3) H1-stable seeds (s46): ISR*缓慢下降但不趋零。\nworst reframe:\
+    \ \"ISR collapse trajectory is hacking-mode-dependent, not universal\"。 这削弱了\"\
+    degeneration worsens monotonically with training\"的简洁叙事， 但为taxonomy贡献提供了更丰富的实证基础。\n"
+- name: Qwen3-8B exec-only GRPO, 3 seeds
+  plan_id: plan_021
+  description: Qwen3-8B exec-only GRPO，500步，K=8，3 seeds (s42/s43/s44)，验证跨尺度退化
+  expected_results:
+    scenario_a_probability: 0.65
+    scenario_a_outcome: training_failure
+    scenario_a_s42: OOM at K=8 (peak VRAM >98GB); K=4 cold-start stagnation (PR<0.05
+      after 500步)
+    scenario_a_s43: same as s42
+    scenario_a_s44: same as s42
+    scenario_a_eval_metrics: null
+    scenario_b_probability: 0.35
+    scenario_b_outcome: no_degeneration
+    scenario_b_s42_prove_rate: 0.45
+    scenario_b_s42_genuine_rate: 0.42
+    scenario_b_s42_h7_rate: 0.2
+    scenario_b_s42_h1_rate: 0.28
+    scenario_b_s42_h8_rate: 0.1
+    scenario_b_s42_isr_star: 0.35
+    scenario_b_s43_prove_rate: 0.38
+    scenario_b_s43_genuine_rate: 0.48
+    scenario_b_s43_h7_rate: 0.15
+    scenario_b_s43_h1_rate: 0.22
+    scenario_b_s43_isr_star: 0.4
+    scenario_b_s44_prove_rate: 0.5
+    scenario_b_s44_genuine_rate: 0.55
+    scenario_b_s44_h7_rate: 0.1
+    scenario_b_s44_h1_rate: 0.25
+    scenario_b_s44_isr_star: 0.42
+    scenario_b_mean_genuine: 0.483
+    scenario_b_scale_gradient: 1.7B(0%) → 4B(3.6%) → 8B(48%) — 非单调，8B跳变
+  result_rationale: 'worst档核心假设："8B exec-only K=8仍OOM/冷启动失败，或成功训练但genuine rate>40%"。
+
+    路径A (OOM/失败) 证据： registry显示d154-8b-exec-s42多次失败（failed, failed, killed）。d154-8b-exec-s42-k4v2
+    用K=4训练500步但cold-start stagnation（PR=0.155, frac_reward_zero_std=1）， K=4的4个样本产生近同分布输出，GRPO
+    gradient接近零。 K=8在98GB GPU上的VRAM预算：8B模型+K=8 rollout + KV cache ≈ 16GB(模型) +  8×12GB(rollout)
+    ≈ 112GB，超出98GB。即使用gradient checkpointing + flash attention， 仍需~100-105GB。因此K=8物理不可行。
+    K=4已证实不足：GRPO需要足够的样本间方差产生学习信号，K=4在8B尺度下 所有样本趋同，梯度为零。
+
+    路径B (不退化) 推理： 如果通过工程手段（gradient accumulation模拟K=8、混合精度优化）突破OOM限制， 8B模型的capacity足以学到genuine
+    formal reasoning而非shortcut。 4B→8B capacity jump是非线性的：8B有足够的"reasoning bandwidth"
+    同时优化execution accuracy和structural quality，不需要collapse到H7/H1。 Goodhart collapse的根本原因是model
+    capacity不足以同时满足多个约束， 8B跨过了这个threshold。genuine rate >40%意味着多数成功proof使用了 真实的premise依赖链。
+
+    三点scale gradient在worst下断裂： 1.7B: genuine=0%（H1/H9固定模板gaming） 4B: genuine=3.6%（均值，各seed差异大）
+    8B: genuine=48%（如果训练成功）或 N/A（如果训练失败） 无论哪条路径，"across-scales framing"均不成立。
+
+    '
+  tables:
+  - name: 'Table: Cross-scale comparison (exec-only, worst tier)'
+    content: 'Scale | PR    | Genuine% | Dominant Mode        | Scale Gradient
+
+      1.7B  | 0.03  | 0%       | H7a (100%)           | baseline
+
+      4B    | 0.79  | 3.6%     | H1/H7 (seed-dep)     | +3.6pp
+
+      8B-A  | FAIL  | N/A      | OOM/stagnation       | BROKEN
+
+      8B-B  | 0.44  | 48%      | Mixed (genuine-dom)  | +44pp (JUMP)
+
+      '
+  figures_description:
+  - 'Line plot: scale (1.7B/4B/8B) vs genuine rate, 显示8B处的gradient断裂（either missing
+    data point or discontinuous jump）'
+  analysis: '路径A下：scope缩回"1.7B+4B+Prolog"三点证据，承认8B scalability limitation但 不影响C1 diagnostic和C3
+    cross-logic。framing从"across scales"改为 "within computational reasoning capacity
+    bounds"。论文Discussion添加 "8B training was attempted but failed due to GRPO cold-start
+    at K≤4"。
+
+    路径B下：8B不退化 → reframe为"Goodhart collapse is capacity-gated"。 这本身是novel finding：存在一个capacity
+    threshold below which Goodhart is inevitable but above which models can learn
+    genuine reasoning。 C2变为"Goodhart inevitable below capacity threshold"。 headline变为"GRPO
+    Goodhart collapse is a small-model phenomenon"。
+
+    两条路径的reviewer score ceiling均为~3.0。
+
+    '
+- name: Additional ISR β=0.1 seeds for N=8
+  plan_id: plan_022
+  description: Qwen3-4B ISR β=0.1额外3个seeds (s47/s48/s49)，N=5→N=8统计效力扩展
+  expected_results:
+    s47_isr_prove_rate: 0.97
+    s47_isr_genuine_rate: 0.031
+    s47_isr_h7_rate: 0.856
+    s47_isr_dominant_mode: H7a collapse
+    s48_isr_prove_rate: 0.66
+    s48_isr_genuine_rate: 0.0
+    s48_isr_h7_rate: 1.0
+    s48_isr_dominant_mode: Pure H7 (like s43/s44)
+    s49_isr_prove_rate: 0.86
+    s49_isr_genuine_rate: 0.012
+    s49_isr_h7_rate: 0.849
+    s49_isr_dominant_mode: H7a dominant
+    s47_random_prove_rate: 0.89
+    s47_random_genuine_rate: 0.067
+    s47_random_h1_rate: 0.888
+    s48_random_prove_rate: 0.93
+    s48_random_genuine_rate: 0.043
+    s48_random_h1_rate: 0.806
+    s49_random_prove_rate: 0.05
+    s49_random_genuine_rate: 0.0
+    s49_random_dominant_mode: repetition collapse (train PR=67% but eval PR=5%)
+    n8_isr_genuine_total: 83
+    n8_isr_proved_total: 599
+    n8_isr_genuine_rate_pooled: 0.139
+    n8_random_genuine_total: 42
+    n8_random_proved_total: 601
+    n8_random_genuine_rate_pooled: 0.07
+    n8_pooled_or: 2.14
+    n8_pooled_or_95ci:
+    - 1.42
+    - 3.22
+    n8_cmh_or: 1.28
+    n8_cmh_p: 0.14
+    n8_cmh_significant: false
+    n8_genuine_window_ratio: 2/8 seeds (25%) sustain genuine >20%
+    n8_bimodality_weakened: true
+  result_rationale: 'worst档核心假设："N=10 genuine OR<1.3，CMH p>0.10不显著，double-edged claim统计不成立"。
+    N=8时预期效果已显著弱化。
+
+    s47-s49三个新seed全部collapse到H7-dominant模式（genuine ≤3%），与s43/s44模式一致。 这不意外：5-seed数据中3/5
+    collapse（s42部分collapse, s43/s44完全collapse）， 2/5 sustain（s45/s46 genuine>50%）。新seed的prior
+    probability of collapse ≈ 60%。 三个新seed全部collapse的概率 ≈ 0.6^3 = 21.6%，在worst tier下合理。
+
+    Pooled OR仍为2.14（>1.3），但CMH OR=1.28（<1.3）。关键区别： pooled OR被s45/s46的极端高genuine率驱动（54.8%,
+    54.5%），但CMH控制seed后 发现effect在per-seed层面高度heterogeneous——6/8 seeds ISR genuine ≤
+    random genuine， 仅s45/s46驱动整体效应。CMH test认为这种heterogeneity意味着no consistent effect
+    across strata，给出p=0.14。
+
+    Breslow-Day heterogeneity test p<0.001，确认各seed间OR差异显著， 使pooled OR不可靠。reviewers会要求报告CMH而非pooled
+    OR。
+
+    genuine window ratio从3/5 (60%) → 2/8 (25%)，bimodal叙事弱化： 不再是"stochastic bifurcation
+    between genuine and hacking"， 而是"occasional lucky seeds escape Goodhart"。
+
+    '
+  tables:
+  - name: 'Table: N=8 per-seed genuine rates (ISR vs Random β=0.1)'
+    content: 'Seed | ISR Proved | ISR Gen% | Rand Proved | Rand Gen% | Seed OR  |
+      Direction
+
+      s42  | 81         | 17.3%    | 79          | 22.8%     | 0.71     | Random↑
+
+      s43  | 61         | 0%       | 94          | 1.1%      | 0.00     | Random↑
+
+      s44  | 89         | 0%       | 89          | 6.7%      | 0.00     | Random↑
+
+      s45  | 42         | 54.8%    | 58          | 8.6%      | 13.0     | ISR↑↑
+
+      s46  | 77         | 54.5%    | 94          | 2.1%      | 56.7     | ISR↑↑
+
+      s47  | 97         | 3.1%     | 89          | 6.7%      | 0.44     | Random↑
+
+      s48  | 66         | 0%       | 93          | 4.3%      | 0.00     | Random↑
+
+      s49  | 86         | 1.2%     | 5           | 0%        | ---      | N/A (s49r
+      collapse)
+
+      ---- | -----      | -------- | -----       | --------- | -------- | -------
+
+      Pool | 599        | 13.9%    | 601         | 7.0%      | 2.14     | ISR↑
+
+      CMH  |            |          |             |           | 1.28     | n.s. p=0.14
+
+      '
+  - name: 'Table: Statistical summary'
+    content: 'Statistic            | Value    | Interpretation
+
+      Pooled OR            | 2.14     | Apparent ISR advantage
+
+      CMH OR               | 1.28     | No significant advantage after seed stratification
+
+      CMH p-value          | 0.14     | Not significant at α=0.05
+
+      Breslow-Day p        | <0.001   | Significant heterogeneity across seeds
+
+      Genuine window ratio | 2/8=25%  | Minority of seeds show ISR benefit
+
+      I² heterogeneity     | 89%      | Very high inconsistency
+
+      '
+  figures_description:
+  - 'Forest plot: per-seed OR with 95% CI, diamond for CMH pooled estimate, 显示极端heterogeneity'
+  - 'Funnel plot: seed-level OR vs precision, 显示s45/s46作为outlier'
+  analysis: 'double-edged叙事统计基础崩塌。CMH OR=1.28 (p=0.14)意味着在控制seed随机效应后， ISR β=0.1没有显著的genuine
+    advantage。5-seed时OR=3.48的发现是小样本+ Simpson''s paradox：s45/s46两个extreme outlier驱动了整体效应。
+
+    reframe必须放弃"ISR is double-edged (more genuine AND more H7)"的叙事， 改为"ISR effect
+    on genuine rate is seed-contingent and not statistically robust"。 C2核心从"double-edged
+    + inevitable"简化为"inevitable at any dose in 4B regime"。 meta-Goodhart (H7b) 作为独立mechanistic
+    finding保留。
+
+    '
+- name: Qwen3-8B ISR β=0.1, 3 seeds
+  plan_id: plan_023
+  description: Qwen3-8B上ISR β=0.1训练，验证跨尺度Goodhart，仅在plan_021 positive时执行
+  expected_results:
+    execution_status: NOT_EXECUTED
+    blocked_by: plan_021 failure (Scenario A) or no-degeneration (Scenario B)
+    scenario_a_reason: 8B exec-only训练失败，无法作为ISR实验的baseline/前提
+    scenario_b_reason: 8B exec-only不退化，ISR作为anti-Goodhart干预无意义（无Goodhart需要对抗）
+  result_rationale: 'plan_023依赖plan_021 positive（即8B显示退化且需要ISR干预）。 在worst档下，plan_021要么训练失败（Scenario
+    A），要么显示8B不退化（Scenario B）。 两种情况下plan_023都失去执行意义：
+
+    Scenario A (训练失败): 连exec-only都跑不起来，加ISR更不可能。 Scenario B (不退化): 8B genuine>40%意味着Goodhart不是问题，
+    测试ISR对Goodhart的影响毫无意义——目标pathology不存在。
+
+    stretch goal在worst tier下不执行，不影响论文核心claims。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'plan_023被阻塞。这是expected的——worst tier定义中8B相关实验均不产出有用证据。 论文中以单句提及"8B experiments
+    were attempted but did not yield actionable results due to [training failure /
+    absence of target pathology]"。
+
+    '
+- name: Premise-count-matched ISR analysis on exec-only
+  plan_id: plan_024
+  description: 对exec-only输出(s42-s46)计算premise-count-matched ISR，消除proof complexity
+    confound
+  expected_results:
+    s42_raw_isr_star: 0.132
+    s42_matched_isr_star: 0.118
+    s42_matching_delta: -0.014
+    s43_raw_isr_star: 0.0
+    s43_matched_isr_star: 0.0
+    s43_matching_delta: 0.0
+    s44_raw_isr_star: 0.582
+    s44_matched_isr_star: 0.495
+    s44_matching_delta: -0.087
+    s45_raw_isr_star: 0.506
+    s45_matched_isr_star: 0.492
+    s45_matching_delta: -0.014
+    s46_raw_isr_star: 0.083
+    s46_matched_isr_star: 0.071
+    s46_matching_delta: -0.012
+    mean_matching_correction: -0.025
+    correction_percentage: -8.5%
+    genuine_vs_hacking_premise_count_diff_p: 0.03
+    genuine_mean_premises: 7.2
+    hacking_mean_premises: 3.8
+  result_rationale: "premise-count-matched分析对exec-only data的影响相对有限（worst tier对此指标无特殊假设）。\n\
+    correction机制：ISR = (必要premise数) / (总premise数)。如果genuine proofs 系统性地有更多premises（因为真实推理需要更多前提），而hacking\
+    \ proofs有更少 （H7单premise，H1嵌入结论后其他premise冗余），那么raw ISR受premise count confound影响。matching后ISR会略低，因为：\
+    \ - 高ISR genuine proofs（7+ premises）与同premise数的其他proof比较时，\n  ISR优势缩小（部分ISR来自\"\
+    用了更多premise\"而非\"每个premise都必要\"）\n- H7 proofs（1-2 premises）matching后ISR不变（ISR=0.5是结构固定值）\n\
+    整体correction约-8.5%，不改变诊断结论但表明ISR作为质量指标时需要 premise-count normalization。这本身是方法学贡献。\n\
+    genuine vs hacking的premise count差异显著（p=0.03），证实confound存在。 但corrected ISR仍能区分genuine\
+    \ (matched ISR*≈0.45) vs hacking (matched ISR*≈0.08)， diagnostic utility保持。\n"
+  tables:
+  - name: 'Table: Premise-count matching effect on ISR* (exec-only)'
+    content: 'Seed | Raw ISR* | Matched ISR* | Δ      | N_premises(genuine) | N_premises(hacking)
+
+      s42  | 0.132    | 0.118        | -0.014 | 6.8                 | 3.2
+
+      s43  | 0.000    | 0.000        | 0.000  | N/A (0 genuine)     | 18.9
+
+      s44  | 0.582    | 0.495        | -0.087 | N/A (0 genuine)     | 2.0
+
+      s45  | 0.506    | 0.492        | -0.014 | 8.0                 | 2.1
+
+      s46  | 0.083    | 0.071        | -0.012 | 7.4                 | 4.1
+
+      '
+  - name: 'Table: Premise count distribution by category'
+    content: 'Category | Mean Premises | Median | SD   | N
+
+      Genuine  | 7.2           | 7      | 2.8  | 50
+
+      H7       | 1.8           | 2      | 0.6  | 248
+
+      H1       | 4.3           | 4      | 3.1  | 285
+
+      H8       | 3.5           | 3      | 1.4  | 32
+
+      '
+  figures_description:
+  - 'Scatter plot: premise count vs ISR per sample, colored by hacking mode, 显示premise-ISR
+    confound'
+  - 'Box plot: premise count distribution per category (genuine/H7/H1/H8)'
+  analysis: 'premise-count matching使ISR*平均下降8.5%，是modest但non-negligible的correction。
+    关键发现：correction对H7-dominant seeds (s44/s45)影响最大（因为H7的低premise count 是structural的），对H1-dominant
+    seeds影响小。
+
+    方法学贡献成立：LOO ablation metrics在文献中广泛使用但未控制component count， documenting this confound对future
+    work有actionable value。 在worst tier下这是C1 diagnostic的稳固子贡献，不受8B/trajectory问题影响。
+
+    '
+- name: Multi-logic GRPO (FOL+Prolog) — deferred
+  plan_id: plan_007
+  description: FOL+Prolog联合训练GRPO，exec-only vs exec+STA，deferred且不在当前论文scope内
+  expected_results:
+    status: DEFERRED
+    reason: not in current paper scope
+  result_rationale: 'deferred实验，worst tier下保持deferred。 即使执行，worst tier下的预期结果：联合训练可能导致两种逻辑的hacking
+    mode互相干扰， PR低于单逻辑训练，但不会改变核心claims。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 不影响worst tier论文结构。C3 cross-logic已由独立Prolog实验充分支撑。
+- name: Cross-logic transfer evaluation — deferred
+  plan_id: plan_008
+  description: FOL训练模型评估Prolog任务（反之亦然），deferred
+  expected_results:
+    status: DEFERRED
+    reason: not in current paper scope
+  result_rationale: 'deferred实验。worst tier下预期：FOL→Prolog transfer几乎为零（语法完全不同）， transfer
+    failure本身不提供diagnostic insight。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 不影响论文。C3已通过独立训练验证。
+- name: SMT-LIB single-logic GRPO — deferred
+  plan_id: plan_010
+  description: 第三种逻辑类型(SMT-LIB)的GRPO训练，deferred
+  expected_results:
+    status: DEFERRED
+    reason: not in current paper scope
+  result_rationale: 'deferred实验。worst tier下即使执行也不改变核心叙事。 C3已由FOL+Prolog两种逻辑类型支撑，第三种是bonus。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: C3不需要第三种逻辑。FOL+Prolog已满足cross-logic claim的最低要求。
+- name: Qwen3-8B full MLSR — deferred (replaced by plan_021)
+  plan_id: plan_011
+  description: 8B模型完整MLSR实验，已被plan_021 exec-only版本替代
+  expected_results:
+    status: DEFERRED
+    reason: replaced by plan_021; not in current paper scope
+  result_rationale: '已被plan_021替代。plan_021是plan_011的精简版（仅exec-only，不含STA对比）， 在worst
+    tier下plan_021已经失败或不退化，plan_011的full MLSR更不可能成功执行。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 被plan_021 subsume。

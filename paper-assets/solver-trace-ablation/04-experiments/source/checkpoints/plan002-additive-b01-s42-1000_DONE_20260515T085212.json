@@ -1,0 +1,67 @@
+{
+  "exp_id": "plan002-additive-b01-s42-1000",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:08:50.639Z",
+    "updated_at": "2026-05-15T08:52:12.385Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode execution_sta --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42_1000 --num_steps 1000 --beta 0.1 --seed 42 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "171076",
+      "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s42-1000.log",
+      "submitted_at": "2026-05-15T07:29:48.253Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4944.1,
+      "gpu_hours": 1.37
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "171076",
+    "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s42-1000.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode execution_sta --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42_1000 --num_steps 1000 --beta 0.1 --seed 42 --no_wandb\"",
+      "finished_at": "2026-05-15T08:44:46.526Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T08:44:51.343174+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000",
+    "metrics": {
+      "eval_prove_rate": 0.9,
+      "eval_mean_isr": 0.7892,
+      "eval_isr_std": 0.3424,
+      "eval_proved_only_isr": 0.8769,
+      "eval_median_isr": 1,
+      "h7_strict_count": 83,
+      "h7_strict_rate": 0.922,
+      "h1_strict_count": 4,
+      "h1_strict_rate": 0.044,
+      "genuine_count": 3,
+      "genuine_rate": 0.03,
+      "eval_component_count_mean": 2.889,
+      "tautological_collapse": true,
+      "train_final_prove_rate": 0.855,
+      "train_final_mean_isr": 0.532
+    },
+    "completed_at": "2026-05-15T08:52:12.385Z"
+  },
+  "timestamp": "2026-05-15T08:52:12.558543+00:00",
+  "trigger": "update_registry"
+}

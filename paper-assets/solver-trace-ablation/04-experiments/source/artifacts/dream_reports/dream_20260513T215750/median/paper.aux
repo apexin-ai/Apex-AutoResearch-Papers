@@ -1,0 +1,91 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{xie2025logic,wu2025agentic}
+\citation{shao2024deepseekmath}
+\citation{mellgren2025prolog}
+\citation{wang2026evom}
+\citation{jia2011mutation}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{xie2025logic}
+\citation{wu2025agentic}
+\citation{lightman2024lets}
+\citation{jia2011mutation}
+\citation{skalse2022defining}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for formal reasoning.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural rewards.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mutation testing.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward hacking in RL.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Solver Trace Ablation (STA)}{2}{subsection.3.2}\protected@file@percent }
+\citation{han2022folio}
+\@writefile{toc}{\contentsline {paragraph}{5-step derivation protocol.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ISR computation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Combined reward.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Logic-Specific Instantiations}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FOL/Prover9.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prolog/SWI-Prolog.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SMT-LIB/Z3.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces FOL exec-only training trajectory (3-seed mean). Prove rate rises while ISR/PR ratio declines, indicating progressive structural degeneracy.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:fol_trajectory}{{1}{4}{FOL exec-only training trajectory (3-seed mean). Prove rate rises while ISR/PR ratio declines, indicating progressive structural degeneracy}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces FOL exec+STA training trajectory (3-seed mean). STA slows ISR/PR decline but does not prevent it.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:sta_trajectory}{{2}{4}{FOL exec+STA training trajectory (3-seed mean). STA slows ISR/PR decline but does not prevent it}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments and Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}FOL Baseline: Structural Degeneracy Under Execution-Only Reward}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}STA as Training Signal: Detection and Partial Prevention}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Held-Out Evaluation}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:heldout}{{5.3}{4}{Held-Out Evaluation}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Held-out evaluation with full STA metrics. SFT serves as the structural quality ceiling.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:heldout}{{3}{5}{Held-out evaluation with full STA metrics. SFT serves as the structural quality ceiling}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces O(1) tautology-only check provides negligible structural benefit over exec-only, validating the necessity of full component ablation.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:o1_on}{{4}{5}{O(1) tautology-only check provides negligible structural benefit over exec-only, validating the necessity of full component ablation}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Ablation: O(1) vs.\ O(N) STA Granularity}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Reward Weight Ablation and Curriculum}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Logic Generalization}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:crosslogic}{{5.6}{5}{Cross-Logic Generalization}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces STA reward weight ablation. Higher $\beta $ (STA weight) improves structural quality at the cost of accuracy. Curriculum scheduling achieves a favorable tradeoff.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:weight_ablation}{{5}{6}{STA reward weight ablation. Higher $\beta $ (STA weight) improves structural quality at the cost of accuracy. Curriculum scheduling achieves a favorable tradeoff}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Three-logic comparison. STA consistently improves ISR/PR across all logic types, with varying discriminability reflecting instantiation-specific signal strength.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:three_logic}{{6}{6}{Three-logic comparison. STA consistently improves ISR/PR across all logic types, with varying discriminability reflecting instantiation-specific signal strength}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Logic Transfer}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Multi-Logic Joint Training}{6}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Model Scale Analysis}{6}{subsection.5.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-logic transfer matrix. Training induces strong logic-type specialization with near-zero cross-logic transfer.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:transfer}{{7}{7}{Cross-logic transfer matrix. Training induces strong logic-type specialization with near-zero cross-logic transfer}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Multi-logic vs.\ single-logic training. Joint training shows no positive transfer; FOL accuracy drops 5pp from training budget dilution.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:multi_logic}{{8}{7}{Multi-logic vs.\ single-logic training. Joint training shows no positive transfer; FOL accuracy drops 5pp from training budget dilution}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis: Reward Hacking Taxonomy}{7}{section.6}\protected@file@percent }
+\newlabel{sec:taxonomy}{{6}{7}{Analysis: Reward Hacking Taxonomy}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{STA effectively suppresses detectable hacking.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models exhibit adversarial adaptation.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Genuine structural outputs triple.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{STA as monitoring vs.\ prevention.}{7}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Model scale comparison (FOL, 500 steps). Larger models hack more aggressively, but STA detection scales correspondingly.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:scale}{{9}{8}{Model scale comparison (FOL, 500 steps). Larger models hack more aggressively, but STA detection scales correspondingly}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Hacking taxonomy distribution. STA suppresses surface-level modes it can directly detect (tautology padding, redundant clauses) but models shift toward semantic-level shortcuts (trivial implication, minimal axiom gaming).}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:taxonomy}{{10}{8}{Hacking taxonomy distribution. STA suppresses surface-level modes it can directly detect (tautology padding, redundant clauses) but models shift toward semantic-level shortcuts (trivial implication, minimal axiom gaming)}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{The accuracy--structure tradeoff.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Logic-type specificity.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scaling implications.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{han2022folio}{{1}{2022}{{Han et al.}}{{}}}
+\bibcite{jia2011mutation}{{2}{2011}{{Jia and Harman}}{{}}}
+\bibcite{lightman2024lets}{{3}{2024}{{Lightman et al.}}{{}}}
+\bibcite{mellgren2025prolog}{{4}{2025}{{Mellgren et al.}}{{}}}
+\bibcite{shao2024deepseekmath}{{5}{2024}{{Shao et al.}}{{}}}
+\bibcite{skalse2022defining}{{6}{2022}{{Skalse et al.}}{{}}}
+\bibcite{wang2026evom}{{7}{2026}{{Wang et al.}}{{}}}
+\bibcite{wu2025agentic}{{8}{2025}{{Wu et al.}}{{}}}
+\bibcite{xie2025logic}{{9}{2025}{{Xie et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.22}\protected@file@percent }
+\gdef \@abspage@last{9}

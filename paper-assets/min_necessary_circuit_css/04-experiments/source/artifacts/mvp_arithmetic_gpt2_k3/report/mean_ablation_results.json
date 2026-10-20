@@ -1,0 +1,25 @@
+{
+  "zero_ablation": {
+    "method_eap_ig": {"num_edges": 100, "cpr": -0.131, "cmd": 4.966},
+    "method_edge_pruning": {"num_edges": 100, "cpr": -0.1628, "cmd": 5.1058},
+    "method_acdc": {"num_edges": 17, "cpr": -0.1836, "cmd": 5.197},
+    "css_0.33": {"num_edges": 118, "cpr": -0.1929, "cmd": 5.238},
+    "css_0.67": {"num_edges": 82, "cpr": -0.1756, "cmd": 5.1618},
+    "css_1.00": {"num_edges": 17, "cpr": -0.1836, "cmd": 5.197},
+    "circus_core": {"num_edges": 915, "cpr": 0.9258, "cmd": 0.3257},
+    "stable_core": {"num_edges": 65, "cpr": -0.097, "cmd": 4.8169}
+  },
+  "mean_ablation": {
+    "method_eap_ig": {"num_edges": 100, "cpr": 0.9598, "cmd": 0.1767},
+    "method_edge_pruning": {"num_edges": 100, "cpr": 0.9177, "cmd": 0.3614},
+    "method_acdc": {"num_edges": 17, "cpr": 0.9845, "cmd": 0.0679},
+    "css_0.33": {"num_edges": 118, "cpr": 0.9541, "cmd": 0.2016},
+    "css_0.67": {"num_edges": 82, "cpr": 0.9577, "cmd": 0.1859},
+    "css_1.00": {"num_edges": 17, "cpr": 0.9845, "cmd": 0.0679},
+    "circus_core": {"num_edges": 915, "cpr": 0.9993, "cmd": 0.0033},
+    "stable_core": {"num_edges": 65, "cpr": 0.9563, "cmd": 0.192}
+  },
+  "zero_cpr_ranking": ["circus_core", "stable_core", "method_eap_ig", "method_edge_pruning", "css_0.67", "method_acdc", "css_1.00", "css_0.33"],
+  "mean_cpr_ranking": ["circus_core", "method_acdc", "css_1.00", "method_eap_ig", "css_0.67", "stable_core", "css_0.33", "method_edge_pruning"],
+  "ranking_changed": true
+}

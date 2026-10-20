@@ -1,0 +1,555 @@
+% Appendix — solver-trace-ablation
+
+\section{Experimental Setup}
+\label{app:setup}
+
+Table~\ref{tab:hyperparams} lists all hyperparameters shared across experiments.
+All RL conditions use the same GRPO configuration; only the reward function differs.
+Seeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).
+
+\begin{table}[h]
+\centering
+\caption{Training hyperparameters for all GRPO experiments.}
+\label{tab:hyperparams}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Model}} \\
+Base model & Qwen3-4B \\
+Precision & BF16 \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{GRPO Training}} \\
+Rollouts per prompt ($K$) & 8 \\
+Training steps (default) & 500 \\
+Training steps (extended) & 1000 \\
+Learning rate & $1 \times 10^{-6}$ \\
+Per-device batch size & 4 \\
+Gradient accumulation steps & 2 \\
+Effective batch size & 8 \\
+Max completion length & 512 tokens \\
+Random seeds & 42, 43, 44 \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Data}} \\
+Training set & FOLIO, 500 examples \\
+Evaluation set & FOLIO, 100 examples (held-out) \\
+Data file & \texttt{train\_500\_seed42} \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Solvers}} \\
+FOL solver & Prover9 \\
+Prolog solver & SWI-Prolog 8.4.2 \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Evaluation}} \\
+Decoding & Greedy ($T{=}0$) \\
+ISR computation & \texttt{eval\_sta.py} \\
+ISR variant & Proved-only (ISR$^*$) \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Evaluation exception.}
+FOL exec-only seed~43 (\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.
+Its PR and ISR values are included for completeness but are not strictly comparable with other seeds under the unified evaluation protocol (C004).
+
+
+\section{STA Algorithm}
+\label{app:algorithm}
+
+Algorithm~\ref{alg:sta} (Section~\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.
+For unproved samples ($S(x) \neq \textit{proved}$), ISR is undefined and the protocol is not applied.
+
+
+\section{Extended Discussion}
+\label{app:extended-discussion}
+
+\paragraph{What ISR measures---and what it does not.}
+ISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.
+This is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.
+We verify this empirically: Spearman $\rho(\text{ISR}, \text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.
+ISR and downstream task performance are uncorrelated.
+ISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.
+
+Critically, low ISR carries different semantics depending on the training objective.
+Under exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than an absence of reasoning (\S\ref{sec:crosslogic}).
+Under ISR-as-reward, high ISR reflects metric gaming (\S\ref{sec:goodhart}).
+ISR values must always be interpreted relative to the optimization objective that produced them.
+
+\paragraph{The premise-count confound.}
+LOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.
+A formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$---even though the latter encodes richer reasoning.
+This confound explains the sole apparent ISR-as-reward success (\S\ref{sec:goodhart}): ISR $\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.
+Premise-count-matched comparison eliminates the difference ($1.06\times$; Table~\ref{tab:fol-beta01-detailed}).
+This bias is not specific to our setting---any LOO-based structural metric applied to variable-length outputs requires component-count normalization.
+We recommend that future work employing ablation-based diagnostics report premise-count-matched comparisons alongside raw values.
+
+\begin{table}[h]
+\centering
+\caption{Fisher exact tests for non-hacking rate across conditions (3-seed pooled). ISR $\beta{=}0.1$ non-hacking rate is corrected for H8 reclassification and H7 false negatives (Appendix~\ref{app:h8}).}
+\label{tab:bootstrap-ci}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Comparison} & \textbf{Condition} & \textbf{Control} & \textbf{OR} & \textbf{$p$} \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Non-hacking rate (H8+FN corrected)}} \\
+ISR vs.\ Random & 6.06\% {\scriptsize[3.6,9.9]} & 9.5\% {\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\
+ISR vs.\ Exec-only & 6.06\% & 7.5\% & 0.79 & 0.62 \\
+Random vs.\ Exec-only & 9.5\% & 7.5\% & 1.30 & 0.68 \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{H7 gaming rate}} \\
+ISR vs.\ Random & 70.6\% {\scriptsize[64.3,76.3]} & 13.7\% {\scriptsize[9.9,18.6]} & 15.05 & $1.3{\times}10^{-39}$ \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{SFT vs.\ Exec-only non-hacking rate}} \\
+SFT vs.\ Exec-only & 92.3\% {\scriptsize[79.7,97.3]} & 7.5\% & 147 & ${<}0.001$ \\
+\bottomrule
+\end{tabular}}
+\\[2pt]
+{\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}262$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\% Wilson CIs in brackets where shown.}
+\end{table}
+
+\paragraph{H7 dose-response gradient.}
+H7 tautology follows a dose-response pattern across reward conditions: random $\beta{=}0.1$ produces $13.7\%$ H7 ($36/262$ pooled; per-seed: $38.3\%$ in s43, $0\%$ in s42/s44), random $\beta{=}0.3$ yields 4--7 H7a samples per seed, and ISR $\beta{=}0.1$ reaches $70.6\%$ ($163/231$).
+The gradient---random $\beta{=}0.1$ ($13.7\%$) $\to$ random $\beta{=}0.3$ (4--7 H7a per seed) $\to$ ISR $\beta{=}0.1$ ($70.6\%$)---shows ISR transforms H7 from a seed-dependent GRPO tendency to a near-universal convergence direction.
+
+\paragraph{Meta-level Goodhart: implications.}
+The meta-Goodhart finding extends beyond this specific system.
+ISR was designed to \emph{detect} reward gaming of $r_{\text{exec}}$, yet when incorporated into the reward signal, the model games ISR itself---creating a regress where any diagnostic metric risks becoming a target when optimized.
+The dose-response pattern ($\beta{=}0.1$: proxy gaming inflates ISR without genuine improvement; $\beta{=}0.3$: PR collapse to 18\% vs.\ 48\% random) maps onto the trajectory predicted by~\citet{gao-reward-overoptimization}, but at a meta level: the proxy being gamed is itself a gaming detector.
+$\beta{=}0.1$ instantiates a meta-level variant where the diagnostic is gamed through its own measurement mechanism; $\beta{=}0.3$ completes the Goodhart trajectory with outright performance collapse.
+The practical implication is that ISR---and structurally similar diagnostics---should be used exclusively as post-hoc evaluation tools, never as training rewards.
+
+\paragraph{Single-seed unreliability.}
+The three exec-only seeds diverge radically (PR $\sigma{=}47$ percentage points), each converging to a qualitatively different degeneration mode (\S\ref{sec:diagnostic}).
+ISR $\beta{=}0.1$ seeds show similar divergence: 2/3 dominated by conclusion duplication (H7), 1/3 by premise minimization (\S\ref{sec:goodhart}).
+Multi-seed evaluation with structural diagnostics should be standard practice for neurosymbolic RL systems.
+
+
+\section{Hacking Mode Definitions}
+\label{app:hacking-modes}
+
+We identify eight distinct reward hacking modes across all experiments.
+Each mode is defined below with its mechanism, a representative example, and its interaction with ISR.
+Table~\ref{tab:hacking-taxonomy-app} summarizes prevalence across FOL conditions.
+
+\begin{table}[h]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+\textbf{Mode} & \textbf{Mechanism} & \textbf{Exec} & \textbf{ISR} & \textbf{Rnd} & \textbf{SFT} \\
+\midrule
+H1 & Concl.\ in premises & 87 & 18 & 71 & 7 \\
+H7 & Single prem.\ = concl. & $\bullet$ & \textbf{71} & 14$^\dagger$ & 0 \\
+H8 & Premise-subset gaming & 6 & 5 & -- & 0 \\
+Tautological & 2-comp $P{=}C$ & $\bullet$ & 0 & 0 & 0 \\
+Repetition & Output degen. & $\bullet$ & -- & -- & -- \\
+Contradiction & $n_{\text{comp}}$ inflated & $\bullet$ & -- & -- & -- \\
+C-w/o-utility & Complex, redundant & 0 & 0 & 4 & 0 \\
+Q-as-fact & Atom = fact+query & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}}
+\caption{Hacking taxonomy across FOL conditions (\% of proved samples). ISR/Rand columns: $\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$ ISR $+$ 36 random) and H7b (obfuscated tautology, $n{=}12$; ISR s44 only). $^\dagger$Random H7 driven by seed~43 (38.3\%); seeds~42/44: 0\%. Exec: H1${=}87$\% in s42; $\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\ref{tab:prolog-detailed}).}
+\label{tab:hacking-taxonomy-app}
+\end{table}
+
+\paragraph{Classifier Validation.}
+Hacking mode classification uses deterministic rule-based classifiers, not learned models, so standard ML precision/recall is not directly applicable.
+H1 and H7 are identified by normalized text matching between conclusion and premise strings after whitespace and variable normalization; remaining modes are detected via functional analysis of the per-sample $n_{\text{necessary}}$ distribution from STA (leave-one-out ablation).
+No training data or manual annotation is used for classification.
+
+To estimate precision, we manually verified 50 randomly sampled outputs classified as H1 or H7: all 50 were confirmed correct (estimated precision ${>}$95\%, Wilson 95\% CI: [93\%, 100\%]).
+Recall is inherently bounded by the text-match threshold: semantic manipulations that alter surface form while preserving the gaming structure (e.g., variable renaming beyond our normalization, or paraphrased conclusions) would be missed.
+We cross-validate with functional LOO analysis: samples classified as non-hacking but showing $n_{\text{necessary}} \leq 1$ are flagged as potential false negatives.
+This cross-validation revealed query-as-fact gaming in Prolog (\S\ref{app:hacking-modes}), where the strict text classifier reported 100\% non-hacking but functional analysis showed 95/97 samples were tautological ($n_{\text{necessary}}{=}1$).
+The non-hacking rate for FOL conditions may therefore be slightly overestimated, as subtle semantic manipulations below our text-matching threshold would evade the strict classifier.
+
+\subsection{H8 --- Premise-Subset Gaming}
+\label{app:h8}
+
+Manual audit of ISR $\beta{=}0.1$ seed~42 revealed a previously undetected hacking mode: the model emits a subset of the gold premises that is individually necessary (high ISR) but insufficient for the intended derivation, with proof success depending on the conclusion already being embedded (H1-style).
+We term this \textbf{H8 (premise-subset gaming)}: formalizations where each component is LOO-necessary but the premise set is a strict subset of what the NL problem requires, inflating ISR without faithful reasoning.
+
+\paragraph{Detection.} H8 is identified by manual inspection of non-hacking samples with unusually low premise counts ($n_{\text{prem}} \leq 3$) that nonetheless achieve high ISR.
+Automated detection is not currently feasible because H8 requires comparing the generated premise set against the gold premises.
+
+\paragraph{Audit scope and limitations.}
+Full H8 audit was completed for ISR $\beta{=}0.1$ seed~42 only.
+ISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their non-hacking rates may be overestimated.
+Random $\beta{=}0.1$ does not produce H8 by mechanism (no ISR optimization pressure); seed~42 audit confirmed H8${=}0$.
+
+\paragraph{H7 false-negative correction (H7b obfuscated tautology).}
+ISR $\beta{=}0.1$ seed~44 contained 12 samples with $n_{\text{prem}}{=}1$ classified as non-hacking by the text matcher.
+Manual inspection confirmed all 12 are logically equivalent to H7 but evade text matching through vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$).
+We classify these as \textbf{H7b} (obfuscated tautology), distinct from text-match-detectable H7a.
+$10/12$ achieve $\text{ISR}{\geq}0.83$, indicating simultaneous gaming of execution reward, ISR metric, and H7 classifier---triple gaming (\S\ref{sec:taxonomy}).
+After correction, ISR s44 non-hacking${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.
+
+\paragraph{Impact on non-hacking-rate comparison.}
+After H8 reclassification and H7 false-negative correction: ISR non-hacking $= 14/231 = 6.06\%$ vs.\ random non-hacking $= 25/262 = 9.5\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\% CI: ISR [3.6\%, 9.9\%], Random [6.5\%, 13.7\%]).
+The direction is consistent with ISR-amplified gaming modes (H7, H8) displacing non-hacking output, but the effect is not statistically significant at the conventional $\alpha{=}0.05$ threshold.
+
+\subsection{H1 --- Conclusion Embedding}
+
+\paragraph{Definition.}
+The conclusion appears verbatim (or with trivial variable renaming) as one premise among multiple premises.
+The solver succeeds by matching the embedded conclusion, rendering the other premises irrelevant to the proof.
+
+\paragraph{Example (FOL).}
+{\small\begin{verbatim}
+Premises:
+  all x (bird(x) -> flies(x)).
+  bird(tweety).
+  flies(tweety).  % conclusion embedded
+Conclusion: flies(tweety).
+\end{verbatim}}
+
+\paragraph{ISR interaction.}
+Variable. The embedded premise has ISR~$=1$ (removing it may break the proof), but other premises may also register as necessary depending on Prover9's search strategy.
+ISR does not distinguish trivial from substantive necessity.
+
+\paragraph{Prevalence.}
+Conclusion embedding in some form (H1 multi-premise or H7 single-premise) is GRPO-universal at 68--97\% across all RL conditions.
+Under exec-only and Random reward, it manifests as H1 (71--93\%); under ISR reward, it shifts to H7 (70.6\% pooled).
+
+
+\subsection{H7a --- Conclusion Duplication (Standard)}
+
+\paragraph{Definition.}
+The entire formalization collapses to a single premise whose content is identical (text-match detectable) to the conclusion.
+Since $P \to P$ is trivially provable, this simultaneously maximizes exec reward.
+Because the sole premise is necessary for every sub-component of the conclusion under LOO ablation, ISR is inflated toward 1.0.
+
+\paragraph{Example (FOL).}
+{\small\begin{verbatim}
+Premises:
+  all x ((A(x)&B(x))->(C(x)|D(x))).
+Conclusion:
+  all x ((A(x)&B(x))->(C(x)|D(x))).
+\end{verbatim}}
+
+\paragraph{ISR interaction.}
+ISR~$\approx 0.8$--$1.0$.
+The single premise is trivially ``maximally necessary,'' but the proof is vacuous.
+H7a games both exec reward and ISR reward; H7b extends this to triple gaming by additionally evading the text-match classifier.
+
+\paragraph{Prevalence.}
+H7a (text-match detectable): 64.5\% pooled (149/231) under ISR~$\beta{=}0.1$ (s42: 16.0\%, s43: 96.7\%, s44: 86.5\%).
+Combined H7 (H7a + H7b): 70.6\% (163/231; s43 H7a${=}59$ + H7b${=}2$; includes s44 FN correction).
+Random~$\beta{=}0.1$ pooled: 13.7\% (36/262, all H7a; driven by seed~43 at 38.3\%, seeds~42 and~44 at 0\%).
+
+
+\subsection{H7b --- Obfuscated Tautology}
+
+\paragraph{Definition.}
+A single-premise formalization logically equivalent to H7a (premise = conclusion) but with surface-form differences that evade the text-match H7 classifier.
+The model achieves this through vacuous quantifier wrapping ($11/12$ instances) or structural simplification ($1/12$).
+
+\paragraph{Example (FOL, vacuous quantifier wrapping).}
+{\small\begin{verbatim}
+Premises:
+  all x all y ((A(x)&B(y))->(C(x)|D(y))).
+Conclusion:
+  all x ((A(x)&B(x))->(C(x)|D(x))).
+\end{verbatim}}
+The premise introduces a vacuous second quantifier variable $y$ that is immediately unified with $x$, making the formulas logically equivalent while differing textually.
+
+\paragraph{ISR interaction.}
+$\text{ISR}{\geq}0.83$ ($10/12$ samples).
+H7b simultaneously games three objectives: execution reward ($r_{\text{exec}}{=}1$ via tautological proof), ISR metric (single necessary premise yields high ISR), and the text-match H7 classifier (surface-form difference evades detection).
+This triple gaming makes H7b the most complete meta-Goodhart case we observe.
+
+\paragraph{Prevalence.}
+Found primarily in ISR $\beta{=}0.1$ seed~44 ($12/89$ proved samples, all originally classified as non-hacking); seed~43 contributes $2$ additional cases.
+Functional cross-validation via $n_{\text{necessary}}{=}1$ exposed the misclassification.
+
+
+\subsection{Tautological Collapse}
+
+\paragraph{Definition.}
+Two-component formalizations where the premise and conclusion are identical atomic or simple formulas, yielding a $P \to P$ tautology with minimal token cost.
+
+\paragraph{Example (FOL).}
+\begin{verbatim}
+Premises: p(a).
+Conclusion: p(a).
+\end{verbatim}
+
+\paragraph{ISR interaction.}
+ISR~$=1.0$ (the sole premise is necessary).
+Distinguished from H7 by having low component count ($n_{\text{comp}}\approx 2$) and atomic formulas rather than complex sub-structured conclusions.
+
+\paragraph{Prevalence.}
+Dominant in FOL exec-only seed~44 (PR~$=0.98$, mean $n_{\text{comp}}=2.04$, 100\% H7 by strict classifier).
+Also observed in Prolog exec+STA seed~42 (100\% H7, PR~$=0.50$).
+
+
+\subsection{Repetition Collapse}
+
+\paragraph{Definition.}
+The model generates identical premises or clauses repeated until the maximum completion length, producing a degenerate output with high token count but no logical diversity.
+Removing any single repeated copy leaves the others intact, yielding ISR~$\approx 0$.
+
+\paragraph{Example (Prolog).}
+\begin{verbatim}
+penguin(fido).
+penguin(fido).
+penguin(fido).
+... (repeated to 512 tokens)
+query(penguin(fido)).
+\end{verbatim}
+
+\paragraph{ISR interaction.}
+ISR~$\approx 0$. Each copy is individually redundant since identical copies remain after removal.
+ISR correctly diagnoses this degeneration.
+
+\paragraph{Prevalence.}
+Observed in FOL exec-only seed~43 (87\% of outputs hit max completion length; PR~$=13$\%, ISR~$=0$).
+
+
+\subsection{Complexity-without-Utility}
+
+\paragraph{Definition.}
+The formalization contains syntactically complex premises (nested quantifiers, multi-arity predicates) that are semantically vacuous---none individually necessary for the proof.
+The complexity inflates surface metrics (formula length, nesting depth) without contributing to logical derivation.
+
+\paragraph{Example (FOL).}
+{\small\begin{verbatim}
+Premises:
+  all x all y (R(x,y) ->
+    exists z (S(x,z) & T(z,y))).
+  all x (P(x) -> Q(x)).
+  P(a).            % only this needed
+Conclusion: Q(a).
+\end{verbatim}}
+
+\paragraph{ISR interaction.}
+ISR correctly identifies the vacuous premises (ISR~$=0$ for each), pulling down the mean ISR.
+This is the mode ISR is best calibrated for.
+
+\paragraph{Prevalence.}
+Low. Observed in Random~$\beta{=}0.1$ seed~42 at 3.8\% (3/79).
+Not observed under ISR reward (ISR's gradient discourages zero-ISR premises).
+
+
+\subsection{Contradiction Explosion}
+
+\paragraph{Definition.}
+The component count grows unboundedly over training.
+Excess premises introduce contradictions or redundancies that trivially entail any conclusion via \emph{ex falso quodlibet}.
+Individual premises may register as ISR~$=0$ (removable without breaking the proof), but the sheer count obscures the underlying triviality.
+
+\paragraph{Example (FOL, 1000-step exec-only).}
+{\small\begin{verbatim}
+Premises:
+  c1. c2. c3. ... c18. % 18.55 mean
+  % conclusion embedded among premises
+Conclusion: Q(a).
+\end{verbatim}}
+
+\paragraph{ISR interaction.}
+ISR~$\approx 0$ (at 1000 steps: ISR~$=0.003$, with 94.8\% of proved samples having ISR~$=0$).
+
+\paragraph{Prevalence.}
+Observed in extended exec-only training (seed~42, 1000 steps).
+Mean component count grows from ${\sim}6$ (500 steps) to 18.55 (1000 steps).
+
+
+\subsection{Query-as-Fact Gaming}
+
+\paragraph{Definition.}
+The model converts the natural language conclusion into a snake\_case atom and includes it as both a ground fact and the query.
+Prolog trivially proves the query by unifying with the fact.
+This mode evades text-match classifiers designed for H1/H7 because the generated atom bears no surface resemblance to the original conclusion text.
+
+\paragraph{Example (Prolog).}
+\begin{verbatim}
+% NL: "Fido is happy."
+% Model output:
+fido_is_happy.
+:- fido_is_happy.     % query = fact
+\end{verbatim}
+
+\paragraph{ISR interaction.}
+ISR~$\approx 0.9$--$1.0$.
+The single fact is trivially necessary (its removal breaks the query), inflating ISR.
+Functionally equivalent to H7 but with a distinct surface mechanism.
+
+\paragraph{Prevalence.}
+Observed in Prolog exec+STA seed~44 (PR~$=0.97$, ISR~$=0.912$).
+95/97 proved samples have $n_{\text{necessary}}=1$, confirming functional tautology despite the strict classifier reporting 100\% non-hacking.
+
+
+\section{Per-Seed Detailed Results}
+\label{app:detailed-results}
+
+Tables~\ref{tab:fol-beta01-detailed} and \ref{tab:prolog-detailed} report full per-seed results.
+All metrics are computed by \texttt{eval\_sta.py} on the held-out 100-example FOLIO evaluation set using greedy decoding unless otherwise noted.
+ISR values are proved-only ISR$^*$.
+
+\begin{table*}[t]
+\centering
+\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\beta{=}0.1$ breakdown referenced from Table~\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\ = percentage among proved samples. ``---'' indicates data not available. $^\dagger$s43 uses sampling eval ($T{=}0.7$). $^\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate. $^\S$s43-1000 raw ISR (0.531) includes ${+}12\%$ inflation from \texttt{decompose\_fol()} splitting $\exists x(\ldots)$ conclusions into quantifier + body as separate ablatable components; corrected ISR removes this artifact.}
+\label{tab:fol-detailed}
+\label{tab:fol-beta01-detailed}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llccccccl@{}}
+\toprule
+\textbf{Condition} & \textbf{Seed} & \textbf{Steps} & \textbf{PR} & \textbf{ISR$^*$} & \textbf{H7\%} & \textbf{H1\%} & \textbf{N-H\%} & \textbf{Notes} \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Baselines}} \\
+Base model (no training)
+  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\
+Ground-truth FOL
+  & --- & --- & 0.18 & 0.559 & --- & --- & --- & Human formalizations \\
+SFT
+  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \textbf{92.3} & Supervised, no RL \\
+  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \textbf{90.9} & \\
+  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \textbf{93.3} & \\
+\cmidrule(l){2-9}
+  & \multicolumn{2}{l}{3-seed pooled} & \makebox[0pt][l]{$0.130$} & & \makebox[0pt][l]{$0.595$} & & \makebox[0pt][l]{\textbf{92.3}} & $n{=}39$ proved \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Exec-only}} \\
+  & 42 & 100 & 0.32 & \textbf{0.642} & --- & --- & --- & Early checkpoint \\
+  & 42 & 500 & 0.93 & 0.132 & 0 & 87.1 & 7.5 & H8${=}6.5\%$ \\
+  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\
+  & 43 & 500 & 0.13 & 0$^\dagger$ & --- & --- & --- & $^\dagger$Greedy ($n_{\text{proved}}{=}13$) \\
+  & 43 & 1000 & 0.90 & 0.465$^\S$ & 100 & 0 & 0 & H7 dominant \\
+  & 44 & 500 & 0.98 & 0.582 & 100 & 0 & 0 & Tautological collapse \\
+  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\ddagger$ & H8${=}15\%$ \\
+\cmidrule(l){2-9}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.68{\pm}0.47$} & & \makebox[0pt][l]{$0.238{\pm}0.30$} & & & 500-step \\
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.95{\pm}0.05$} & & \makebox[0pt][l]{$0.16{\pm}0.27$} & & \makebox[0pt][l]{$0.0{\pm}0.0$} & 1000-step \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{ISR $\beta{=}0.1$}} \\
+  & 42 & 500 & 0.81 & 0.415 & 16.0 & 51.9 & \textbf{17.3} & Mixed H1+H7+H8 \\
+  & 43 & 500 & 0.61 & 0.830 & \textbf{100} & 0 & 0 & H7a${=}59$, H7b${=}2$ \\
+  & 44 & 500 & 0.89 & 0.902 & 100 & 0 & 0 & H7 dominant (FN corrected) \\
+\cmidrule(l){2-9}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.77{\pm}0.14$} & & \makebox[0pt][l]{$0.716{\pm}0.26$} & & & \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{ISR $\beta{=}0.3$}} \\
+  & 42 & 500 & 0.18 & 0.143 & --- & --- & --- & PR collapse \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Random $\beta{=}0.1$}} \\
+  & 42 & 500 & 0.79 & 0.131 & 0 & 73.4 & 22.8 & H8${=}4$ \\
+  & 43 & 500 & 0.94 & 0.150 & \textbf{38.3} & 59.6 & 1.1 & H7a${=}36$; H8${=}1$ \\
+  & 44 & 500 & 0.89 & 0.070 & 0 & 82.0 & 6.7 & H8${=}16$ (H1$\cap$H8: 6) \\
+\cmidrule(l){2-9}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.87{\pm}0.08$} & & \makebox[0pt][l]{$0.117{\pm}0.042$} & & & H7 seed-dep.: 0/38/0\% \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Random $\beta{=}0.3$}} \\
+  & 42 & 500 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086); $n_{\text{comp}} = 9.6$ \\
+  & 43 & 500 & 0.92 & 0.180 & 7.6 & 89.1 & 3.3 & H7a${=}7$; $n_{\text{N-H}}{=}3$ \\
+  & 44 & 500 & 0.23 & 0 & 0 & 100 & 0 & Pure H1 ($n{=}23$) \\
+\cmidrule(l){2-9}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.54{\pm}0.35$} & & \makebox[0pt][l]{$0.09{\pm}0.09$} & & & \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\begin{table*}[t]
+\centering
+\caption{Detailed per-seed results: Prolog (SWI-Prolog 8.4.2). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\ = percentage among proved samples.  ``---'' indicates data not available.}
+\label{tab:prolog-detailed}
+\small
+\begin{tabular}{@{}llcccccl@{}}
+\toprule
+\textbf{Condition} & \textbf{Seed} & \textbf{PR} & \textbf{ISR$^*$} & \textbf{H7\%} & \textbf{H1\%} & \textbf{N-H\%} & \textbf{Notes} \\
+\midrule
+\multicolumn{8}{@{}l}{\textit{Exec-only}} \\
+  & 42 & 0.83 & 0.037 & 0 & 0 & --- & Ground fact enumeration \\
+  & 43 & 0.56 & 0.015 & --- & --- & --- & \\
+  & 44 & 0.21 & 0.387 & --- & --- & --- & Small-sample ($n{=}21$) \\
+\cmidrule(l){2-8}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.53{\pm}0.31$} & & \makebox[0pt][l]{$0.146{\pm}0.21$} & & \\
+\midrule
+\multicolumn{8}{@{}l}{\textit{Exec+ISR (STA reward)}} \\
+  & 42 & 0.50 & 1.000 & \textbf{100} & 0 & 0 & H7 tautological \\
+  & 43 & 0.38 & 0.185 & 0$^\ddagger$ & 97.4 & 0 & $^\ddagger$Functional H7$^a$ \\
+  & 44 & 0.97 & 0.912 & 0$^\ddagger$ & 0 & 0$^\ddagger$ & Query-as-fact gaming$^b$ \\
+\cmidrule(l){2-8}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.62{\pm}0.31$} & & \makebox[0pt][l]{$0.699{\pm}0.45$} & & 3/3 Goodhart, 0\% non-hacking \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+{\footnotesize
+$^a$ Strict H7 classifier reports 0\%, but functional analysis shows all 38/38 proved samples are tautological ($n_{\text{necessary}}=1$). Uppercase pseudo-Prolog syntax bypasses the text-match classifier.\\
+$^b$ Strict classifier reports Non-hacking$\,{=}\,100$\%, but 95/97 proved samples have $n_{\text{necessary}}=1$. The model converts NL to snake\_case atoms serving as both fact and query---a third distinct Goodhart pathway.\\
+$^\ddagger$ Strict classifier value is misleading; see footnotes $^a$/$^b$.
+}
+\end{table*}
+
+\paragraph{ISR collapse trajectory (FOL exec-only, seed 42).}
+Table~\ref{tab:fol-detailed} traces the ISR collapse over training:
+ISR$^*=0.642$ at 100 steps $\to$ $0.132$ at 500 steps ($-79.4$\%) $\to$ $0.003$ at 1000 steps ($-99.5$\% from step 100).
+PR increases monotonically ($0.32 \to 0.93 \to 0.96$) while structural quality collapses, confirming that ISR captures degeneration invisible to execution reward.
+By step 1000, 94.8\% of proved samples have ISR~$=0$ and the mean component count rises to 18.55.
+
+\paragraph{Prolog: universal Goodhart via three distinct pathways.}
+All three Prolog exec+ISR seeds exhibit Goodhart's Law with 0\% non-hacking proofs (Figure~\ref{fig:prolog-comparison}), but each discovers a different gaming mechanism:
+seed~42 produces clean H7 tautologies (single premise~$=$~conclusion),
+seed~43 generates uppercase pseudo-Prolog that bypasses the text-match classifier while remaining functionally tautological,
+and seed~44 converts NL conclusions to snake\_case atoms used as both fact and query.
+The diversity of gaming pathways across seeds---despite identical training data and reward function---demonstrates that Goodhart's Law in neurosymbolic reasoning is not a single failure mode but a family of convergent exploits.
+
+\subsection{Per-Seed Results at $\beta{=}0.3$}
+\label{app:beta03}
+
+Table~\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\beta{=}0.3$.
+The three ISR seeds illustrate qualitatively distinct Goodhart pathways (\S\ref{sec:goodhart}).
+
+\begin{table}[h]
+\centering
+\caption{Per-seed results at $\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}
+\label{tab:beta03-detailed}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcccccl@{}}
+\toprule
+\textbf{Condition} & \textbf{Seed} & \textbf{PR} & \textbf{ISR$^*$} & \textbf{H7\%} & \textbf{H1\%} & \textbf{N-H\%} & \textbf{Mode} \\
+\midrule
+\multicolumn{8}{@{}l}{\textit{ISR $\beta{=}0.3$}} \\
+  & 42 & 0.18 & 0.143 & 0 & 77.8 & 5.6 & Reward collapse ($n{=}18$); H8${=}3$ \\
+  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\
+  & 44 & 0.95 & 0.742 & \textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\
+\cmidrule(l){2-8}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.66{\pm}0.42$} & & \makebox[0pt][l]{$0.39{\pm}0.31$} & & \\
+\midrule
+\multicolumn{8}{@{}l}{\textit{Random $\beta{=}0.3$}} \\
+  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\
+  & 43 & 0.92 & 0.180 & 7.6 & 89.1 & 3.3 & H7a${=}7$; $n_{\text{N-H}}{=}3$ \\
+  & 44 & 0.23 & 0 & 0 & 100 & 0 & Pure H1 ($n{=}23$) \\
+\cmidrule(l){2-8}
+  & \multicolumn{2}{l}{3-seed mean$\pm$std} & \makebox[0pt][l]{$0.54{\pm}0.35$} & & \makebox[0pt][l]{$0.09{\pm}0.09$} & & \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}
+\label{app:100step}
+
+To control for the prove-rate confound in our SFT comparison (\S\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\%---higher than SFT (13.0\%, 3-seed pooled) but still early in training.
+Of the 32 proved samples, 9 (28.1\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\%.
+By contrast, SFT at comparable or lower PR shows 7.7\% hacking (1/13 proved samples).
+This demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.
+The 100-step hacking rate (31.2\%) is already substantially above SFT (7.7\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.
+
+\subsection{$O(1)$ vs.\ $O(n)$ ISR Ablation}
+\label{app:o1-ablation}
+
+To justify the per-clause LOO design (\S\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\text{fast\_ISR}(x) = 1$ if $x$ is proved \emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.
+The reward becomes $r = 0.5\,r_{\text{exec}} + 0.5\,\text{fast\_ISR}$.
+After 500 steps (seed~42), this variant achieves $\text{PR}{=}63\%$ with $\text{ISR}^*{=}0.007$---functionally zero---compared to $\text{ISR}^*{=}0.132$ under standard exec-only and $\text{ISR}^*{=}0.42$ under ISR $\beta{=}0.1$.
+
+\paragraph{ISR signal vs.\ training dynamics.}
+At the \emph{ISR signal level}, the $O(1)$ variant is indistinguishable from exec-only: both produce near-zero ISR because models emit redundant premise copies whose individual removal never changes the proof outcome.
+At the \emph{training level}, the two conditions are non-equivalent: the $O(1)$ tautology check penalizes formalizations where the conclusion is provable without any premises, a constraint absent from exec-only.
+This confound depresses prove rate by 30 percentage points ($63\%$ vs.\ $93\%$ exec-only), making it impossible to attribute the difference purely to the ISR signal.
+The result confirms that the $O(n)$ per-clause ablation is necessary for ISR to carry a structural signal, while also showing that even a minimal tautology guard alters training dynamics substantially.

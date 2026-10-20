@@ -1,0 +1,7 @@
+Training Steps,Experiment,eval PR,eval ISR (proved-only),Component Count,ISR=0 Ratio,Notes
+100,plan003 (100-step checkpoint),0.32,0.6423,—,—,Early training: low PR but structurally sound proofs
+500,plan001-s42 (exec-only baseline),0.93,0.1324,—,—,Median ISR=0; conclusion embedding dominant
+1000,plan016 (extended training),0.96,0.0028,18.55,94.8%,Near-total ISR collapse; contradiction explosion
+
+"ISR collapse: 0.6423 → 0.1324 → 0.0028 (−79.4% at 500 steps, −97.8% at 1000 steps relative to 100-step baseline)."
+PR trajectory: 0.32 → 0.93 → 0.96 (PR rises monotonically as ISR collapses).

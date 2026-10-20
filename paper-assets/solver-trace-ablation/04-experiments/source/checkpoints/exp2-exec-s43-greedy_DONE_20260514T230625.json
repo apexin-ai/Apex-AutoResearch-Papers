@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp2-exec-s43-greedy",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:46:57.466Z",
+    "updated_at": "2026-05-14T23:06:25.776Z",
+    "spec": {
+      "command": "eval_sta.py --greedy on plan001-exec-only-s43-r4 checkpoint",
+      "server": "westd-39279",
+      "data_path": "data/eval_100.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "hypothesis": "EXP-2: Greedy re-eval of exec-only s43 to verify decoding invariance",
+      "checkpoint_source": "plan001-exec-only-s43-r4",
+      "eval_data": "data/eval_100.jsonl",
+      "parent": "plan001-exec-only-s43-r4",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "N/A (eval only)",
+      "metrics": {
+        "greedy_pr": 0.13,
+        "greedy_isr_star": 0,
+        "greedy_h1_pct": 100,
+        "greedy_h7_pct": 0,
+        "greedy_genuine_pct": 0,
+        "sampling_pr": 0.14,
+        "sampling_isr_star": 0,
+        "conclusion_text": "s43 collapse is decoding-invariant. Both greedy and sampling show ISR*=0, H1=100%, genuine=0%"
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T23:06:15.509Z"
+  },
+  "timestamp": "2026-05-14T23:06:25.918472+00:00",
+  "trigger": "update_registry"
+}

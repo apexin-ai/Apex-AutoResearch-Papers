@@ -1,0 +1,74 @@
+{
+  "exp_id": "plan006-prolog-exec-s43-r3",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:38:23.818Z",
+    "updated_at": "2026-05-14T16:16:35.814Z",
+    "hypothesis": "Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T13:44:06.728Z",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3\"",
+      "finished_at": "2026-05-14T15:54:25.754Z",
+      "training_hours": 2.17
+    },
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "483820",
+      "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s43-r3.log",
+      "submitted_at": "2026-05-14T13:44:08.516Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "483820",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s43-r3.log",
+    "notes": "RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T15:54:27.521808+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.56,
+      "eval_mean_isr": 0.0084,
+      "eval_isr_std": 0.0221,
+      "eval_median_isr": 0,
+      "eval_proved_only_isr": 0.015,
+      "eval_min_isr": 0,
+      "eval_max_isr": 0.1,
+      "eval_n_proved": 56,
+      "eval_n_problems": 100,
+      "eval_method": "eval_sta.py full STA",
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_elapsed_seconds": 868.2,
+      "eval_by_type_false_pr": 0.48,
+      "eval_by_type_false_isr": 0.0043,
+      "eval_by_type_unknown_pr": 0.6585,
+      "eval_by_type_unknown_isr": 0.0114,
+      "eval_by_type_true_pr": 0.5,
+      "eval_by_type_true_isr": 0.0078,
+      "solver": "PrologSolver",
+      "logic_type": "prolog"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T16:16:35.927625+00:00",
+  "trigger": "update_registry"
+}

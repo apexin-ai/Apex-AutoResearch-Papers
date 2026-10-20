@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a10d1ea2268e34a9afe3",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "research large model third method",
+  "task_key": "worker_research_large-model-third-method_20260512T101957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_large-model-third-method_20260512T101957_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "85050736084bcbf81a1132dac8cf73c599f9022d0f4272ff6dd1aa9a94213e31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `LARGE_MODEL_THIRD_METHOD.md`。\n\n核心结论：\n\n**首选 IFR**——唯一满足全部条件（edge-level、非 gradient/非 mask optimization、可扩展到 8B）的方法。算法族为 activation decomposition，与 EAP-IG（gradient）和 Edge Pruning（mask optimization）形成三族独立投票。MIB 已有现成实现，仅需 1 次 forward pass。\n\n**PAHQ 不可行**——5x 加速不够弥补 ACDC 在大模型上的数量级瓶颈。**UGS 不可行**——内存爆炸且与 Edge Pruning 同族。**AtP* 可作为备选**但与 EAP-IG 同属 gradient 族，审稿人可能质疑独立性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-large-model-third-method.md"
+}

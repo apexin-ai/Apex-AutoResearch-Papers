@@ -1,0 +1,1406 @@
+{
+  "schema_version": "1.0",
+  "id": "3771ba9084b2186e6eeb",
+  "project": "min_necessary_circuit_css",
+  "kind": "worker",
+  "title": "knowledge update roadmap tasks",
+  "task_key": "worker_knowledge_update-roadmap-tasks_20260513T031304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update-roadmap-tasks_20260513T031304.log",
+    "occurrence": 1,
+    "bytes": 62244,
+    "sha256": "ebb6b7ec690bd1cf9b600b8c703707c1627522d5af04d0115c9db17341231b81"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+                "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b28f4345-4f58-42bf-9b57-c5807e32b4a6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778655000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a263e4b9-719a-49fa-987b-72ea0f54ade4",
+                "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the current ROADMAP using the MCP tool.",
+              "signature": "EvoBClkIDRgCKkASu4lktKR+txvjFd0OUoEHLlyzyOuGEKC5oWpn38eO9PAuavVpY/I3VLTZ12H+7QSWK+YZ3yBhe/PFwCLXetITMg9jbGF1ZGUtb3B1cy00LTY4ABIMjISnSYxsgFMUK6qHGgy4/Kd5rZ4YwmPNVlAiMOS/G6VRUKeDpGiUxUphBh7UgEMLd7yGuibK2vZhuMbkdkajZn6ghyVxB4RVpDTkwSpPei8evwGhNTEl3Uwn6Ljhev81S9dLwc4PklR1gishQvxEMkWpkNMo7kxw6vvaKmeotV2xUY/x2fPqBsMPtQyLn18a4GhC+l4mnImq3/aYbhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "c80581f5-90cf-4e57-829f-bbb8c1935b72",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KDWj2D7d4buiL8X5xgAV4L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11120,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11120
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Rt4JqBXKsJPz4FRgd1PsP",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "27594d08-83a7-45ac-8e76-95b1c4f56233",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KDWj2D7d4buiL8X5xgAV4L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11120,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11120
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T03:13:14.019Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011Rt4JqBXKsJPz4FRgd1PsP",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "a4ab56ae-94d6-4b3c-a34a-4801d6d6ed6e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M99qcHaHNXwLpDYr2ZGtiC",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "ROADMAP.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "225abdec-dd1c-409c-a54f-4bea0b1de37a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bt1HUmCT6WkHto5c9BtwwF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 466,
+                "cache_read_input_tokens": 22961,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 466
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T03:13:17.044Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M99qcHaHNXwLpDYr2ZGtiC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md\\\", \\\"content\\\": \\\"# structfuse-context — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\\\\n\\\\n## 核心方向\\\\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\\\\n\\\\n## 当前进展\\\\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\\\\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\\\\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\\\\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\\\\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\\\\n\\\\n## 方法配置\\\\n| 模型 | K | 方法 | 算法族 |\\\\n|------|---|------|--------|\\\\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\\\\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n\\\\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\\\\n\\\\n## MVP Gate 规则（D001-D003）\\\\n| off-diagonal % | 决策 |\\\\n|---|---|\\\\n| ≥10% | → Main track |\\\\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\\\\n| 2-5% | → Findings 确认 |\\\\n| <2% (两组) + ΔF 无差异 | → Kill |\\\\n\\\\n## 阶段规划\\\\n\\\\n### Phase 1: MVP pilot（当前）\\\\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\\\\n\\\\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\\\\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\\\\n- 全 4 模型 × 4 任务 CSS 计算\\\\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\\\\n\\\\n### Phase 3: OOD editing（~4天）\\\\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\\\\n\\\\n## 近期任务\\\\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\\\\n- [ ] MVP 结果判定 → track 决策\\\\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\\\\n\\\\n## GPU 预算\\\\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\\\\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\\\\n| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\\\\n| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\\\\n| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\\\\n| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\\\\n| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\\\\n| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\\\\n| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\\\\n| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\\\\n| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\\\\n\\\\n\\\", \\\"total_chars\\\": 2765, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "90ddc637-294f-40d7-84f1-5d5e4d2cf853",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md\\\", \\\"content\\\": \\\"# structfuse-context — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\\\\n\\\\n## 核心方向\\\\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\\\\n\\\\n## 当前进展\\\\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\\\\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\\\\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\\\\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\\\\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\\\\n\\\\n## 方法配置\\\\n| 模型 | K | 方法 | 算法族 |\\\\n|------|---|------|--------|\\\\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\\\\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\\\n\\\\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\\\\n\\\\n## MVP Gate 规则（D001-D003）\\\\n| off-diagonal % | 决策 |\\\\n|---|---|\\\\n| ≥10% | → Main track |\\\\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\\\\n| 2-5% | → Findings 确认 |\\\\n| <2% (两组) + ΔF 无差异 | → Kill |\\\\n\\\\n## 阶段规划\\\\n\\\\n### Phase 1: MVP pilot（当前）\\\\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\\\\n\\\\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\\\\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\\\\n- 全 4 模型 × 4 任务 CSS 计算\\\\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\\\\n\\\\n### Phase 3: OOD editing（~4天）\\\\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\\\\n\\\\n## 近期任务\\\\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\\\\n- [ ] MVP 结果判定 → track 决策\\\\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\\\\n\\\\n## GPU 预算\\\\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\\\\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\\\\n| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\\\\n| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\\\\n| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\\\\n| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\\\\n| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\\\\n| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\\\\n| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\\\\n| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\\\\n| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\\\\n\\\\n\\\", \\\"total_chars\\\": 2765, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md\", \"content\": \"# structfuse-context — Research Dashboard\\n\\n> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\\n\\n## 核心方向\\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\\n\\n## 当前进展\\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\\n\\n## 方法配置\\n| 模型 | K | 方法 | 算法族 |\\n|------|---|------|--------|\\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\\n\\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\\n\\n## MVP Gate 规则（D001-D003）\\n| off-diagonal % | 决策 |\\n|---|---|\\n| ≥10% | → Main track |\\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\\n| 2-5% | → Findings 确认 |\\n| <2% (两组) + ΔF 无差异 | → Kill |\\n\\n## 阶段规划\\n\\n### Phase 1: MVP pilot（当前）\\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\\n\\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\\n- 全 4 模型 × 4 任务 CSS 计算\\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\\n\\n### Phase 3: OOD editing（~4天）\\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\\n\\n## 近期任务\\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\\n- [ ] MVP 结果判定 → track 决策\\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\\n\\n## GPU 预算\\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\\n| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\\n| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\\n| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\\n| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\\n| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\\n| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\\n| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\\n| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\\n| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\\n\\n\", \"total_chars\": 2765, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the current ROADMAP content. I need to update two sections:\n\n1. **当前进展** - Update to reflect latest status\n2. **近期任务** - Replace with new content\n\nLet me now use `update_roadmap` to make the changes. Let me first find that tool.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "6a535800-8163-4b03-845f-27725c2b2d27",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G6Y6hkbzoHTXRQLZYrxUJM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1937,
+                "cache_read_input_tokens": 23427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1937
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在加载 `update_roadmap` 工具。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "484c6799-81f0-474d-9f14-c2c9de6a6737",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G6Y6hkbzoHTXRQLZYrxUJM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1937,
+                "cache_read_input_tokens": 23427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1937
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LJeKL4UKudWCifa1yRN22S",
+              "name": "ToolSearch",
+              "input": {
+                "query": "update_roadmap",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "e25259eb-644c-4280-a791-bb22f1b332d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G6Y6hkbzoHTXRQLZYrxUJM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1937,
+                "cache_read_input_tokens": 23427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1937
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T03:13:23.717Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LJeKL4UKudWCifa1yRN22S",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "1bb99770-43f7-4301-a5c8-67f323d47caf",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "update_roadmap",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `save_project_file` tool says ROADMAP.md should use `update_roadmap`. Let me search for that specific tool.",
+              "signature": "EqoCClkIDRgCKkBGGBNBt8JZQiCVOwOFQDubP6cWAYdO3KQCRRwcjG8M/2JL+l7BWNVMdhU/7Rq6APFVenQq+A/eXFi9/eSrnqX5Mg9jbGF1ZGUtb3B1cy00LTY4ABIMIBKzlDm8g5E/hyvVGgx8EWr1MdQyZWoboM8iMLKv5dNWfxgqakx/mkp+J+FrZdO3wN1jzZhSKupXU83tSevI8VxRCBH5rwbEnJdBUCp/EpGOtXpmBQWVJnL887eswjmekoo6RMREawheeYxQEbkh+VIhd789XpI//qS9qzstrcQFFi4l94fP0SytK7fgHjgwRI1BYJVqKMv6iHluKBD2FkNmWfFPGcUR0VPt1eN48coAYvLRKXi6J+kOi7qR/Kd2ETTJ8egzUNxZExpO/RgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "e11ce5a5-9010-4c51-a898-79400892c0be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019n46crGLXnMxgrFRqxCGJr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 25364,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GvEkmmpFDbLdtNW9h6Y3GV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "+roadmap update",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "4cfcc48b-f9e1-4681-bf95-fdd4464b6b16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019n46crGLXnMxgrFRqxCGJr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 25364,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T03:13:26.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GvEkmmpFDbLdtNW9h6Y3GV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "fb7cd4af-e2a0-4a8f-bce6-d1e9b46f5d5d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "+roadmap update",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The tool search didn't find a dedicated `update_roadmap` tool - it only found `read_project_file` and `save_project_file`. The `save_project_file` description mentions that ROADMAP.md should use `update_roadmap`, but that tool doesn't seem to exist in the MCP server's available tools. Let me check if there's a different naming convention.\n\nLet me try searching more specifically.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "002c0f97-7b34-43da-9ec4-f9c199ea88a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VTxrCQxC5asbMzgSWnRbJm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 718,
+                "cache_read_input_tokens": 25815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 718
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015FtFqhwBrAuvt8krdsfC8J",
+              "name": "ToolSearch",
+              "input": {
+                "query": "mcp agent-ml-research roadmap",
+                "max_results": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "77bf98c1-76fd-4fa5-ad65-bfd3a4fdc727",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VTxrCQxC5asbMzgSWnRbJm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 718,
+                "cache_read_input_tokens": 25815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 718
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T03:13:31.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015FtFqhwBrAuvt8krdsfC8J",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__append_idea"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "ListMcpResourcesTool"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "ReadMcpResourceTool"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "a14a682f-c22c-4eef-83f9-f01016900122",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__save_project_file",
+                "mcp__agent-ml-research__append_idea",
+                "ListMcpResourcesTool",
+                "ReadMcpResourceTool",
+                "WebFetch"
+              ],
+              "query": "mcp agent-ml-research roadmap",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There's no dedicated `update_roadmap` MCP tool available. The `save_project_file` description mentions it exists but it's not showing up in the tool search. I'll directly edit the ROADMAP.md file on disk instead, since I know the path: `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md`.\n\nLet me read the file and then edit it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "d281f2a0-8c66-4525-8fda-327044baf4b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEykaUkedmAqYNqZvtsDTg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1801,
+                "cache_read_input_tokens": 26533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1801
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有找到专用的 `update_roadmap` 工具，直接编辑文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "139f73da-ad96-42e2-a4b0-9247ae59e0bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEykaUkedmAqYNqZvtsDTg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1801,
+                "cache_read_input_tokens": 26533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1801
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012xhcy72SsJZe7ooiQ5qSTH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "776896ee-8df1-4525-ba8a-1379861d0d42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEykaUkedmAqYNqZvtsDTg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1801,
+                "cache_read_input_tokens": 26533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1801
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T03:13:38.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012xhcy72SsJZe7ooiQ5qSTH",
+              "type": "tool_result",
+              "content": "1\t# structfuse-context — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\n4\t\n5\t## 核心方向\n6\t跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\n7\t\n8\t## 当前进展\n9\t- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\n10\t- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\n11\t- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n12\t- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n13\t- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\n14\t\n15\t## 方法配置\n16\t| 模型 | K | 方法 | 算法族 |\n17\t|------|---|------|--------|\n18\t| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\n19\t| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n20\t| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n21\t| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n22\t\n23\t论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\n24\t\n25\t## MVP Gate 规则（D001-D003）\n26\t| off-diagonal % | 决策 |\n27\t|---|---|\n28\t| ≥10% | → Main track |\n29\t| 5-10% | → Findings + 追加 Arithmetic 验证 |\n30\t| 2-5% | → Findings 确认 |\n31\t| <2% (两组) + ΔF 无差异 | → Kill |\n32\t\n33\t## 阶段规划\n34\t\n35\t### Phase 1: MVP pilot（当前）\n36\t- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\n37\t\n38\t### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\n39\t- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\n40\t- 全 4 模型 × 4 任务 CSS 计算\n41\t- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\n42\t\n43\t### Phase 3: OOD editing（~4天）\n44\t### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\n45\t\n46\t## 近期任务\n47\t- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\n48\t- [ ] MVP 结果判定 → track 决策\n49\t- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\n50\t\n51\t## GPU 预算\n52\t- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\n53\t- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\n54\t\n55\t## 关键决策日志\n56\t\n57\t| ID | 日期 | 摘要 | 关联实验 |\n58\t|----|------|------|----------|\n59\t| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\n60\t| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\n61\t| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\n62\t| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n63\t| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\n64\t| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n65\t| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\n66\t| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\n67\t| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\n68\t| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\n69\t\n70\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "20293b76-d6bb-4a44-aa76-5acce1995a84",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md",
+                "content": "# structfuse-context — Research Dashboard\n\n> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\n\n## 核心方向\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\n\n## 当前进展\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\n\n## 方法配置\n| 模型 | K | 方法 | 算法族 |\n|------|---|------|--------|\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\n\n## MVP Gate 规则（D001-D003）\n| off-diagonal % | 决策 |\n|---|---|\n| ≥10% | → Main track |\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\n| 2-5% | → Findings 确认 |\n| <2% (两组) + ΔF 无差异 | → Kill |\n\n## 阶段规划\n\n### Phase 1: MVP pilot（当前）\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\n\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\n- 全 4 模型 × 4 任务 CSS 计算\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\n\n### Phase 3: OOD editing（~4天）\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\n\n## 近期任务\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\n- [ ] MVP 结果判定 → track 决策\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\n\n## GPU 预算\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\n| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\n| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\n| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\n| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\n| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\n| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\n| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\n\n",
+                "numLines": 70,
+                "startLine": 1,
+                "totalLines": 70
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G3gb7ZSco67ckgGXFTCAm3",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md",
+                "old_string": "> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新",
+                "new_string": "> 最后更新: 2026-05-13 UTC | 更新原因: 更新当前进展与近期任务（IOI PASS_MAIN, Arithmetic 运行中）"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "7954faee-a3eb-4640-b9a4-e6a2438b72b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017nxj9KWbtzzHvZf4AqLP7p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2039,
+                "cache_read_input_tokens": 28334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2039
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T03:13:46.243Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G3gb7ZSco67ckgGXFTCAm3",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "bf4ea1a2-b7de-41d7-9f6e-a74b156f4d79",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md",
+              "oldString": "> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新",
+              "newString": "> 最后更新: 2026-05-13 UTC | 更新原因: 更新当前进展与近期任务（IOI PASS_MAIN, Arithmetic 运行中）",
+              "originalFile": "# structfuse-context — Research Dashboard\n\n> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新\n\n## 核心方向\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\n\n## 当前进展\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\n\n## 方法配置\n| 模型 | K | 方法 | 算法族 |\n|------|---|------|--------|\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\n\n## MVP Gate 规则（D001-D003）\n| off-diagonal % | 决策 |\n|---|---|\n| ≥10% | → Main track |\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\n| 2-5% | → Findings 确认 |\n| <2% (两组) + ΔF 无差异 | → Kill |\n\n## 阶段规划\n\n### Phase 1: MVP pilot（当前）\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\n\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\n- 全 4 模型 × 4 任务 CSS 计算\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\n\n### Phase 3: OOD editing（~4天）\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\n\n## 近期任务\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\n- [ ] MVP 结果判定 → track 决策\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\n\n## GPU 预算\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\n| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\n| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\n| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\n| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\n| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\n| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\n| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 6,
+                  "newStart": 1,
+                  "newLines": 6,
+                  "lines": [
+                    " # structfuse-context — Research Dashboard",
+                    " ",
+                    "-> 最后更新: 2026-05-12 10:28 UTC | 更新原因: D006: 大模型第三方法确定为 IFR + 方法配置表更新",
+                    "+> 最后更新: 2026-05-13 UTC | 更新原因: 更新当前进展与近期任务（IOI PASS_MAIN, Arithmetic 运行中）",
+                    " ",
+                    " ## 核心方向",
+                    " 跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Skg1nda7J1DA6ZWxSRoNag",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md",
+                "old_string": "## 当前进展\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）",
+                "new_string": "## 当前进展\n- **阶段**: MVP 验证 — IOI 已 PASS_MAIN（off-diagonal 13.3%），Arithmetic 确认实验运行中\n- **核心假设**: CSS off-diagonal ≥5%（D021 CSS-only gate，D024 覆盖 D002）\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 12 天）"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "1f186c2c-2911-4697-9c19-a57a5e1d5034",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BXKvRYNDo2HdsP9TFnzeuC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 296,
+                "cache_read_input_tokens": 30373,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 296
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T03:13:56.616Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Skg1nda7J1DA6ZWxSRoNag",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "60db9847-82ef-496b-8e56-ce3b545794f6",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md",
+              "oldString": "## 当前进展\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）",
+              "newString": "## 当前进展\n- **阶段**: MVP 验证 — IOI 已 PASS_MAIN（off-diagonal 13.3%），Arithmetic 确认实验运行中\n- **核心假设**: CSS off-diagonal ≥5%（D021 CSS-only gate，D024 覆盖 D002）\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 12 天）",
+              "originalFile": "# structfuse-context — Research Dashboard\n\n> 最后更新: 2026-05-13 UTC | 更新原因: 更新当前进展与近期任务（IOI PASS_MAIN, Arithmetic 运行中）\n\n## 核心方向\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\n\n## 当前进展\n- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977\n- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）\n\n## 方法配置\n| 模型 | K | 方法 | 算法族 |\n|------|---|------|--------|\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\n\n## MVP Gate 规则（D001-D003）\n| off-diagonal % | 决策 |\n|---|---|\n| ≥10% | → Main track |\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\n| 2-5% | → Findings 确认 |\n| <2% (两组) + ΔF 无差异 | → Kill |\n\n## 阶段规划\n\n### Phase 1: MVP pilot（当前）\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\n\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\n- 全 4 模型 × 4 任务 CSS 计算\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\n\n### Phase 3: OOD editing（~4天）\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\n\n## 近期任务\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\n- [ ] MVP 结果判定 → track 决策\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\n\n## GPU 预算\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\n| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\n| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\n| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\n| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\n| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\n| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\n| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 6,
+                  "oldLines": 11,
+                  "newStart": 6,
+                  "newLines": 11,
+                  "lines": [
+                    " 跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。",
+                    " ",
+                    " ## 当前进展",
+                    "-- **阶段**: MVP 验证 — 代码已修复就绪，Agent 正在部署到 cqa1-21977",
+                    "-- **核心假设待验**: CIRCUS-core 边中 ≥10% 落入 off-diagonal cell",
+                    "+- **阶段**: MVP 验证 — IOI 已 PASS_MAIN（off-diagonal 13.3%），Arithmetic 确认实验运行中",
+                    "+- **核心假设**: CSS off-diagonal ≥5%（D021 CSS-only gate，D024 覆盖 D002）",
+                    " - **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置",
+                    " - **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位",
+                    "-- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 13 天）",
+                    "+- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 12 天）",
+                    " ",
+                    " ## 方法配置",
+                    " | 模型 | K | 方法 | 算法族 |"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FcBF4KjJmhzxEhu11E6iuL",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md",
+                "old_string": "## 近期任务\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\n- [ ] MVP 结果判定 → track 决策\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B",
+                "new_string": "## 近期任务\n- [ ] 等待 mvp_arithmetic_gpt2_k3 完成 → gate 判定\n- [ ] Gate PASS 后 complete_mvp → 进入 research\n- [ ] 写 paper_framing.md + experiment_plan.yaml\n- [ ] 部署 IFR + Phase 2 实验脚本到服务器\n- [ ] 下载目标模型（Qwen-2.5 0.5B 优先）"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "dee010cb-6f72-41c4-8877-f486c9f4f7bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0165XABTFPFfcLSi9BRsFTu7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 657,
+                "cache_read_input_tokens": 30669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 657
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T03:14:05.970Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FcBF4KjJmhzxEhu11E6iuL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "bfe62bcd-d3bd-4675-a192-f188c7643094",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/ROADMAP.md",
+              "oldString": "## 近期任务\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\n- [ ] MVP 结果判定 → track 决策\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B",
+              "newString": "## 近期任务\n- [ ] 等待 mvp_arithmetic_gpt2_k3 完成 → gate 判定\n- [ ] Gate PASS 后 complete_mvp → 进入 research\n- [ ] 写 paper_framing.md + experiment_plan.yaml\n- [ ] 部署 IFR + Phase 2 实验脚本到服务器\n- [ ] 下载目标模型（Qwen-2.5 0.5B 优先）",
+              "originalFile": "# structfuse-context — Research Dashboard\n\n> 最后更新: 2026-05-13 UTC | 更新原因: 更新当前进展与近期任务（IOI PASS_MAIN, Arithmetic 运行中）\n\n## 核心方向\n跨方法二值共识（CSS）用于鲁棒电路编辑：证明 binary stability scoring + family-agreement constraint 在分布偏移下优于 score averaging 和单方法电路。\n\n## 当前进展\n- **阶段**: MVP 验证 — IOI 已 PASS_MAIN（off-diagonal 13.3%），Arithmetic 确认实验运行中\n- **核心假设**: CSS off-diagonal ≥5%（D021 CSS-only gate，D024 覆盖 D002）\n- **基础设施**: cqa1-21977 (cuda:5, RTX 4090D) 已配置\n- **大模型方案已定 (D006)**: IFR 作为第三方法，triangulation 框架定位\n- **目标**: EMNLP 2026 Main（ARR deadline 2026-05-25，剩余 12 天）\n\n## 方法配置\n| 模型 | K | 方法 | 算法族 |\n|------|---|------|--------|\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n\n论文需披露：GPT-2 Small CSS = 3 因果方法共识；大模型 CSS = 2 因果 + 1 相似度方法共识（triangulation）。\n\n## MVP Gate 规则（D001-D003）\n| off-diagonal % | 决策 |\n|---|---|\n| ≥10% | → Main track |\n| 5-10% | → Findings + 追加 Arithmetic 验证 |\n| 2-5% | → Findings 确认 |\n| <2% (两组) + ΔF 无差异 | → Kill |\n\n## 阶段规划\n\n### Phase 1: MVP pilot（当前）\n- GPT-2 Small / IOI，K=3（3 因果族），~2h → off-diagonal 判定\n\n### Phase 2: K=3 checkpoint + 全量 CSS（MVP 后 ~3天）\n- Qwen-2.5 0.5B / IOI K=3（含 IFR）快速检查\n- 全 4 模型 × 4 任务 CSS 计算\n- 确认 Edge Pruning 实现：princeton-nlp/edge-pruning（非 auto-circuit mask gradient）\n\n### Phase 3: OOD editing（~4天）\n### Phase 4: 分析 + 写作（~3天，最迟 5月22日）\n\n## 近期任务\n- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot\n- [ ] MVP 结果判定 → track 决策\n- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B\n\n## GPU 预算\n- 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)\n- MVP: ~2h | 全量: ~290h A100（需后续扩卡）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D024 | 2026-05-13 | D021 覆盖 D002 灰区定义：arithmetic CSS off-diagonal ≥5%  | — |\n| D023 | 2026-05-13 | 澄清 D021 与 D002 灰区关系：Arithmetic 实验 gate 统一为 CSS off | mvp_arithmetic_gpt2_k3 |\n| D022 | 2026-05-13 | 紧急处理第三次 GPU 越界事件：杀 PID 897752 + 根因排查 + 强制 CUDA_VIS | mvp_arithmetic_gpt2_k3 |\n| D021 | 2026-05-13 | 放弃 CIRCUS 作为独立 claim，转 CSS-only 叙事。CIRCUS 三次修复均失败， | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D020 | 2026-05-13 | CRITICAL: stable_core faithfulness 三重 FAIL，暂停 MVP  | mvp_pilot_gpt2_ioi_v3 |\n| D019 | 2026-05-13 | 补充 gate criterion：Arithmetic 不仅看 off-diagonal %，还需 | mvp_pilot_gpt2_ioi_v3, mvp_arithmetic_gpt2_k3 |\n| D018 | 2026-05-13 | MVP gate 条件性 PASS_MAIN：off-diagonal 13.3% ≥ 10%，但  | mvp_pilot_gpt2_ioi_v3 |\n| D017 | 2026-05-12 | CRITICAL：CIRCUS-CSS 作用域不匹配导致 off-diagonal 结构性膨胀 ~9 | mvp_pilot_gpt2_ioi_v3 |\n| D016 | 2026-05-12 | 更正：D013 CIRCUS config_bag nonnesting 修复未实际完成。Agent | — |\n| D015 | 2026-05-12 | Framing 调整：claim 降级删除全称量词和 OOD claim；Phase D 必须增加  | — |\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 44,
+                  "oldLines": 9,
+                  "newStart": 44,
+                  "newLines": 11,
+                  "lines": [
+                    " ### Phase 4: 分析 + 写作（~3天，最迟 5月22日）",
+                    " ",
+                    " ## 近期任务",
+                    "-- [ ] Agent 部署代码到 cqa1-21977 + 执行 MVP pilot",
+                    "-- [ ] MVP 结果判定 → track 决策",
+                    "-- [ ] （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B",
+                    "+- [ ] 等待 mvp_arithmetic_gpt2_k3 完成 → gate 判定",
+                    "+- [ ] Gate PASS 后 complete_mvp → 进入 research",
+                    "+- [ ] 写 paper_framing.md + experiment_plan.yaml",
+                    "+- [ ] 部署 IFR + Phase 2 实验脚本到服务器",
+                    "+- [ ] 下载目标模型（Qwen-2.5 0.5B 优先）",
+                    " ",
+                    " ## GPU 预算",
+                    " - 已分配: 1× RTX 4090D (cuda:5@cqa1-21977)"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 已更新。修改对比：\n\n**当前进展（3 处变更）**：\n| 字段 | 修改前 | 修改后 |\n|------|--------|--------|\n| 阶段 | 代码已修复就绪，Agent 正在部署到 cqa1-21977 | IOI 已 PASS_MAIN（off-diagonal 13.3%），Arithmetic 确认实验运行中 |\n| 核心假设 | CIRCUS-core 边中 ≥10% 落入 off-diagonal cell | CSS off-diagonal ≥5%（D021 CSS-only gate，D024 覆盖 D002） |\n| 剩余天数 | 13 天 | 12 天 |\n\n**近期任务（全部替换）**：\n| 修改前 | 修改后 |\n|--------|--------|\n| Agent 部署代码到 cqa1-21977 + 执行 MVP pilot | 等待 mvp_arithmetic_gpt2_k3 完成 → gate 判定 |\n| MVP 结果判定 → track 决策 | Gate PASS 后 complete_mvp → 进入 research |\n| （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B | 写 paper_framing.md + experiment_plan.yaml |\n| — | 部署 IFR + Phase 2 实验脚本到服务器 |\n| — | 下载目标模型（Qwen-2.5 0.5B 优先） |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "uuid": "f73cfccd-11ae-435f-ab46-365960b9dcaf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WfYtGW2jid7P8fLW79kqQ1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 396,
+                "cache_read_input_tokens": 31326,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 396
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 已更新。修改对比：\n\n**当前进展（3 处变更）**：\n| 字段 | 修改前 | 修改后 |\n|------|--------|--------|\n| 阶段 | 代码已修复就绪，Agent 正在部署到 cqa1-21977 | IOI 已 PASS_MAIN（off-diagonal 13.3%），Arithmetic 确认实验运行中 |\n| 核心假设 | CIRCUS-core 边中 ≥10% 落入 off-diagonal cell | CSS off-diagonal ≥5%（D021 CSS-only gate，D024 覆盖 D002） |\n| 剩余天数 | 13 天 | 12 天 |\n\n**近期任务（全部替换）**：\n| 修改前 | 修改后 |\n|--------|--------|\n| Agent 部署代码到 cqa1-21977 + 执行 MVP pilot | 等待 mvp_arithmetic_gpt2_k3 完成 → gate 判定 |\n| MVP 结果判定 → track 决策 | Gate PASS 后 complete_mvp → 进入 research |\n| （MVP 后）K=3 checkpoint with IFR on Qwen-2.5 0.5B | 写 paper_framing.md + experiment_plan.yaml |\n| — | 部署 IFR + Phase 2 实验脚本到服务器 |\n| — | 下载目标模型（Qwen-2.5 0.5B 优先） |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 63475,
+            "duration_api_ms": 64288,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "e8180f4a-f3bf-4f5b-8ea0-c7b71ee5f4f5",
+            "total_cost_usd": 0.31437875,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 19881,
+              "cache_read_input_tokens": 256643,
+              "output_tokens": 2425,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19881,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 427,
+                  "cache_read_input_tokens": 31326,
+                  "cache_creation_input_tokens": 396,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 396
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 996,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001076,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 20,
+                "outputTokens": 2425,
+                "cacheReadInputTokens": 256643,
+                "cacheCreationInputTokens": 19881,
+                "webSearchRequests": 0,
+                "costUSD": 0.31330274999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f7590b0d-97e6-4381-bca1-87b92b89d0e3"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-update-roadmap-tasks.md"
+}

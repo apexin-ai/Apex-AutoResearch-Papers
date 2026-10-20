@@ -1,0 +1,35 @@
+{
+  "exp_id": "d165-llama-exec-s44",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:52:27.874Z",
+    "updated_at": "2026-05-21T15:42:32.887Z",
+    "hypothesis": "GRPO exec-only structural degradation on LLaMA-3.2-3B seed=44: third seed completing 3-seed cross-model validation. Same config as d165-llama-exec-s42.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/outputs/d165_llama_exec_s44/checkpoint-500",
+      "log_path": "/tmp/d165_llama_exec_s44_r2.log"
+    },
+    "notes": "r3: PID 887114, step 76/500 at 14:23 UTC. Log: /tmp/d165_llama_exec_s44_r2.log (reuses r2 filename). ETA ~70min from step 76. Disk tight (9.3G avail, needs ~6G peak). Cron auto-marked failed (monitoring old r2 PID 887104), manually corrected to RUNNING.",
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T15:41:33.859Z",
+    "metrics": {
+      "PR": 0.16,
+      "ISR_star": 0.5492,
+      "genuine_pct": 87.5,
+      "n_proved": 16,
+      "hacking_modes": {
+        "CE": 2,
+        "TS": 0,
+        "PG": 0,
+        "CI": 0
+      },
+      "genuine_count": 14
+    }
+  },
+  "timestamp": "2026-05-21T15:42:33.298987+00:00",
+  "trigger": "update_registry"
+}

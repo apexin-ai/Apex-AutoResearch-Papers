@@ -1,0 +1,16 @@
+{
+  "exp_id": "sweep-random-b01-s46",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:42:15.492Z",
+    "updated_at": "2026-05-16T03:37:16.594Z",
+    "hypothesis": "W4: Random β=0.1 s46 extends random control to 5-seed",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T03:37:16.824183+00:00",
+  "trigger": "update_registry"
+}

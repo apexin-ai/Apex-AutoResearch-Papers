@@ -1,0 +1,92 @@
+{
+  "exp_id": "plan006-prolog-exec-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-14T07:13:34.169Z",
+    "updated_at": "2026-05-14T11:53:00.223Z",
+    "hypothesis": "Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T09:49:36.534Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42\"",
+      "finished_at": "2026-05-14T11:29:25.346Z",
+      "training_hours": 1.66
+    },
+    "failure_reason": "",
+    "completed_at": "2026-05-14T09:47:36.390Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T09:47:38.546001+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T11:29:27.709792+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: FileNotFoundError — data/prolog/train_500_seed42.jsonl 不存在 | error_type: data | 同一原因影响所有 plan006 实验 (exec/sta × s42/s43/s44) | 建议: 需先生成 Prolog 训练数据再重试"
+      }
+    },
+    "account": "root",
+    "notes": "Eval 完成。PR=83%, ISR=0.031, H7=0%, H1=0%。与 sta-s42 (PR=50%, ISR=1.0, H7=100%) 形成鲜明对比：exec-only 完全避免 H7 hacking，但产生 shortcut proofs（可执行但不走 gold-standard 推理步骤，ISR 近零）。两种 reward 产生截然不同的失败模式——exec-only 是 \"creative shortcuts\"，STA 是 \"trivial copy\"。",
+    "spec": {
+      "command": "python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "506020",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42
+    },
+    "metrics": {
+      "prove_rate": 0.83,
+      "mean_isr": 0.0308,
+      "proved_only_isr": 0.0371,
+      "isr_std": 0.0534,
+      "median_isr": 0,
+      "max_isr": 0.2,
+      "h7_rate": 0,
+      "h1_rate": 0,
+      "by_answer_type": {
+        "true": {
+          "count": 40,
+          "proved": 37,
+          "prove_rate": 0.925,
+          "mean_isr": 0.037
+        },
+        "false": {
+          "count": 29,
+          "proved": 21,
+          "prove_rate": 0.724,
+          "mean_isr": 0.038
+        },
+        "unknown": {
+          "count": 31,
+          "proved": 25,
+          "prove_rate": 0.806,
+          "mean_isr": 0.016
+        }
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan006_prolog_exec_s42/checkpoint-500",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s42.log"
+  },
+  "timestamp": "2026-05-14T11:53:00.395915+00:00",
+  "trigger": "update_registry"
+}

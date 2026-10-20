@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf347e4c998df749d87",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code ioi size controlled check bootstrap",
+  "task_key": "worker_code_ioi-size-controlled-check-bootstrap_20260513T114919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ioi-size-controlled-check-bootstrap_20260513T114919_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "584db7b3b6357abff88168d1ed6335316847bab4b8268dbaae979dc8a3d5358d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1 — ioi_size_controlled_baseline: DONE (negative)**\n- CSS=1.0 (N=16): mean CPR=0.177, zero CPR=0.0295\n- EAP-IG top-16: mean CPR=0.182, EP top-16: mean CPR=0.1832\n- **css_vs_best_single=FAIL** — 控制边数后 CSS 融合不优于最佳单方法\n- css_vs_random=MARGINAL — 仅略优于随机\n- Registry 已更新为 DONE/negative\n\n**Step 2 — Registry 已更新**，含完整 notes\n\n**Step 3 — bootstrap_ci_ioi: 已提交**\n- PID 34588，tmux session `bootstrap_ci_ioi`，cuda:0\n- 日志: `/root/runs/min_necessary_circuit_css/bootstrap_ci_ioi.log`\n- IOI 缓存三文件齐全（cache_acdc.json / cache_eap_ig.json / cache_edge_pruning.json）\n- Registry 状态: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ioi-size-controlled-check-bootstrap.md"
+}

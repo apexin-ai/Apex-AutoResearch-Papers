@@ -1,38 +1,43 @@
 ---
-loop: 1
+loop: 11
 reason: max_messages
-updated: '2026-05-13T08:53:22+00:00'
+updated: '2026-05-25T03:39:14+00:00'
 ---
 
 ### 1. 🔴 硬约束 / 红线
-- 本项目 GPU 仅限 autodl-pgpf 的 cuda:0, cuda:1（2×RTX PRO 6000 96GB），不可用其他服务器的卡
-- 项目名 solver-trace-ablation 与实际研究方向不匹配——IDEA_BRIEF 是 PGPF（Property-Guided Per-Sample Filtering / model collapse），已按 PGPF 推进，用户被问了方向确认但**尚未回复**，不要擅自切换方向
-- AutoDL 特殊约束：pip/git 前必须 `source /etc/network_turbo`；大文件必须放 `/root/autodl-tmp/`；HF_HOME=/root/autodl-tmp/.hf_cache
+- 论文目标 EMNLP 2026 via ARR，Long paper 8 页正文限制，abstract ≤200 words
+- 论文真源在本地 `projects/solver-trace-ablation/docs/paper/`，不在远程服务器
+- 当前已进入审稿阶段（review_chat_id: `oc_5abafbb382eb7c81e8a38090e46323e7`），论文修改后需重新提交审稿
+- 用户贾瑞轩刚提出 task definition 问题，**等用户确认方向后再改论文**，不要自行修改
 
 ### 2. 🖥️ 基础设施快照
-- 服务器：autodl-pgpf，SSH: `ssh -p 17606 root@connect.bjb1.seetacloud.com`
-- 密码：`request_secret(key_id="autodl_pgpf_password")`
-- 工作目录：`/root/autodl-tmp/pgpf`
-- Python/conda：未确认（aml-train 镜像用 conda，需 Agent SSH 探测确认）
-- 模型/数据集路径：未确认（Phase 0 期间应已下载到 autodl-tmp 下）
-- 活跃进程：**不明**——Phase 0 v2 Worker 派出后 Agent session 断了，GPU 健康数据返回 "no data yet"
-- W&B/cron：未配置
+- 本项目无活跃远程服务器（实验全部完成，当前在写作/审稿阶段）
+- 论文源码：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/`
+- 编译 PDF：同目录下 `main.pdf`
+- 配色方案：3-hue palette (red/green/blue + gray)，5 个 figure gen 脚本已统一
+- 无活跃 GPU 进程 / 无 RUNNING 实验
 
 ### 3. 📊 当前状态
-- **刚做的**：API 额度恢复后重建 Agent session，派了紧急恢复指令让 Agent 检查 Phase 0 v2 状态 + 占满空卡。同时 reset 了 Reviewer（硬限到期）
-- **Phase 0 v2 Worker**（worker_exp_phase0_ortho_v2_20260513T062027）：状态完全不明，可能已完成/崩溃/仍在跑。Agent 刚收到指令去 SSH 检查
-- registry：成功 0 / 负向 0 / 失败 1 / 共 1（Phase 0 v1 失败过一次）
-- 项目配置文件（config/projects/solver-trace-ablation.yaml）**不存在**，get_project_status 显示服务器/代码路径/飞书均未配置。但 autodl-pgpf 已注册为 SSH host 且之前的 session 用过它
-- 知识文件全部未创建：ROADMAP.md / paper_framing.md / experiment_plan.yaml / report.md / ideas.md
+刚完成 Round 34 审稿报告的 14 条 issue 修复（全部 PASS），并已提交审稿。
+
+**等待中**：
+- 用户贾瑞轩的回复——他问了 FOLIO label 与 prove rate 的问题，我已回复了详细分析和建议方案，等他确认是否按此方向修改论文
+- 可能的 Round 35 审稿报告回传
+
+**已发给用户的分析要点**：
+1. FOLIO eval = 34 True / 25 False / 41 Unknown，只有 True 样本存在合法证明
+2. PR 理论上界 ~34%，exec-only PR=93% 本身就是 hacking 证据
+3. 建议在 §3.1 补充 label 说明，PR 定义处加 qualification，不需要改术语本身
+4. 这个发现 strengthens 论文而非 weakens
 
 ### 4. 📋 待办
-- Agent 回复 Phase 0 v2 结果 → PASS: 立即启动 Phase 1（3代过滤对比，5条件）; FAIL（属性高度相关）: 重新评估多属性 story 是否成立
-- 用户确认方向（PGPF vs Solver Trace Ablation）→ 如果要做 STA，当前所有 PGPF 工作停止，需要找正确的 IDEA_BRIEF 重启
-- 项目配置缺失 → 需要 `update_project_config` 绑定 autodl-pgpf 和远程路径
-- Phase 0 通过后 → 写 paper_framing.md + experiment_plan.yaml + ROADMAP.md（post-MVP-kickoff skill）
+- 贾瑞轩确认方向 → 派 Paper Agent 修改 §3.1 task definition + PR qualification
+- 修改完成 → 重新编译 → `submit_paper_to_review` 再次提交审稿
+- 收到新审稿报告 → 按 review-report-action skill 处理
 
 ### 5. 🎯 战略上下文
-- **核心假设**：PGPF 将 Kovac et al. 的 collapse 诊断属性（lexical conformity / semantic novelty / quality）转为逐样本过滤准则。Phase 0 验证这些属性是否正交（|r| < 0.7）——这是整个 story 的前提
-- **立项评审**：28% 接受概率（FAILED_below_30）。主要风险：novelty 天花板（审稿人认为 straightforward next step）、属性可能高度相关、5 代内 collapse 信号太弱
-- **投稿目标**：AAAI 2027（abstract ~Jul 25, paper ~Aug 1），约 11 周，时间充足
-- **易错点**：(1) 项目配置文件不存在，很多工具调用会报 project not found，需要先创建配置 (2) 不要因为用户没确认方向就停工——按 IDEA_BRIEF 继续 PGPF (3) GPU 健康数据可能 stale，必须让 Agent SSH 实际检查
+- 项目核心贡献：STA/ISR 作为 RLVR reward hacking 的诊断工具 + Goodhart effect 实证
+- Round 34 评分 3.5 Borderline Conference，主要弱点已修复（claim 过强、统计表述、分类器召回率论证）
+- 贾瑞轩提的 task definition 问题是真实的改进点：论文没说清楚为什么 PR>34% 本身就意味着 hacking。补上后对论文是 net positive（strengthens the diagnostic argument）
+- 易错：不要把 "prove rate" 术语改掉——它技术上正确且全文一致使用，只需在首次定义处加 qualification
+- Float 排版经验：`table*[t]` 浮动到源码遇到点的下一页顶部，改位置时从后往前移

@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan001-exec-only-s46",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:29:11.891Z",
+    "updated_at": "2026-05-16T14:16:22.691Z",
+    "hypothesis": "Exec-only seed=46, 5-seed baseline for tighter confidence intervals"
+  },
+  "timestamp": "2026-05-16T14:16:22.966490+00:00",
+  "trigger": "update_registry"
+}

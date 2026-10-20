@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ad3156d774ef550d311",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "knowledge literature merge fix",
+  "task_key": "worker_knowledge_literature-merge-fix_20260513T022004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_literature-merge-fix_20260513T022004_result.json",
+    "occurrence": 1,
+    "bytes": 1558,
+    "sha256": "01ca8ecf01bb64365138b1a1c12ff08d7ce5454904bd4bf39e5fa247c47d99b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件完整且格式正确。总结：\n\n---\n\n### 新增条目（4 篇）\n\n| 论文 | 位置 | 类型 |\n|------|------|------|\n| **Mondorf et al. (2510.06811)** | §1.5 (Direction 1) | 直接竞争，详细讨论 4 点局限 |\n| **PIE (2604.16889)** | Additional Relevant Work | 互补，CLT-native 方法 |\n| **EAP-GP (2502.06852)** | Additional Relevant Work | 互补，gradient 族变体 |\n| **GIM (2505.17630)** | Additional Relevant Work | 互补，MIB 顶分方法 |\n\n### 修改条目\n\n- **Takeaway #2**: 从仅讨论 CIRCUS 扩展为同时讨论 CIRCUS + Mondorf et al. 两个竞争者\n- **Takeaway #6**: 新增第 4 项加入 Mondorf et al.，第 5 项加入 PIE，新增第 6 项 \"Method variants and benchmarks\"\n\n### Takeaway #5 修改前后\n\n**修改前：**\n> Distribution-shift robustness is a novel evaluation angle — No existing work systematically evaluates whether consensus circuits maintain faithfulness under distribution shift. CSS's off-diagonal evaluation (train on distribution A, test on distribution B) is a distinctive contribution.\n\n**修改后：**\n> Distribution-shift robustness is a **planned** novel evaluation angle — No existing work systematically evaluates whether consensus circuits maintain faithfulness under distribution shift. CSS 计划在 Phase 2 中系统性评估 consensus circuits 在分布偏移下的鲁棒性（off-diagonal evaluation: train on distribution A, test on distribution B），这将成为一个独特的贡献方向（Phase 2 planned, cf. D015）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-literature-merge-fix.md"
+}

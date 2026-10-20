@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7c45510e1240edad63",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code v3 final capture",
+  "task_key": "worker_code_v3-final-capture_20260513T010415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v3-final-capture_20260513T010415_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "55d4e1cf61b29076dd5a85c04e816207ed1a209071338d853f22aedd6f6f4127"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ACDC 进度 30580/32491（94.1%），保留 15 边，ETA ~10 分钟。3 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v3-final-capture.md"
+}

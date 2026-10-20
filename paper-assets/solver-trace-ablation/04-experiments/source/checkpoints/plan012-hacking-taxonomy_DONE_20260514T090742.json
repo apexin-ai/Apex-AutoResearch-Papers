@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan012-hacking-taxonomy",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:06:38.613Z",
+    "updated_at": "2026-05-14T09:07:42.314Z",
+    "spec": {
+      "command": "rule-based hacking taxonomy classification on eval_sta outputs",
+      "server": "westd-39279",
+      "data_path": "eval_results.json from plan002-b01-s42 + plan018-b01-s42",
+      "data_count": 160,
+      "model_name": "N/A (rule-based analysis)",
+      "seed": "N/A"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (analysis task)",
+    "log_path": "artifacts/hacking_taxonomy_comparison.md",
+    "completed_at": "2026-05-14T09:07:12.765Z",
+    "hypothesis": "ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。",
+    "metrics": {
+      "isr_b01_genuine_rate": 0.259,
+      "random_b01_genuine_rate": 0.177,
+      "genuine_rate_delta_pp": 8.2,
+      "isr_b01_conclusion_embedding_rate": 0.728,
+      "random_b01_conclusion_embedding_rate": 0.785,
+      "isr_b01_genuine_mean_isr": 0.6723,
+      "random_b01_genuine_mean_isr": 0.3427,
+      "isr_b01_complexity_wo_utility_rate": 0,
+      "random_b01_complexity_wo_utility_rate": 0.038,
+      "isr_b01_hacking_rate": 0.741,
+      "random_b01_hacking_rate": 0.823
+    },
+    "notes": "D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。"
+  },
+  "timestamp": "2026-05-14T09:07:42.398976+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,19 @@
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+
+STA exposes structural degeneration invisible to execution-based evaluation.
+When ISR is used post-hoc, it reliably detects that prove-rate gains conceal a compositional shift toward hacking modes: across all converged exec-only seeds, non-hacking rates collapse to ${\leq}6.2\%$ by 1000 steps, despite prove rates exceeding $90\%$.
+The diagnostic holds across logic types (FOL, Prolog) and dataset families (FOLIO, ProofFOL), confirming that structural degeneration under execution-only reward is a general phenomenon rather than an artifact of a specific formalism.
+
+When repurposed as a training reward, ISR produces a seed-dependent Goodhart effect that follows the regressional pattern~\citep{manheim-goodhart-taxonomy}: optimizing ISR shifts the composition of hacking modes (from CE to TS) without reducing their aggregate prevalence.
+The effect is paradoxical in a precise sense: the same LOO structure that makes ISR informative as a diagnostic also makes it gameable as a reward, because tautological formalizations satisfy the necessity criterion by construction.
+Cross-logic replication (Prolog) confirms the compositional mode shift; cross-dataset evidence (ProofFOL, $p{=}0.10$) is exploratory (\S\ref{sec:crossdomain}).
+
+These findings yield five practical guidelines for GRPO-trained neurosymbolic systems.
+First, never evaluate by prove rate alone---use ISR and mode breakdown as joint diagnostics, applied post-hoc rather than as reward signals; any dose of ISR-as-reward induces gaming or collapse.
+Second, report multi-seed results: single-seed evaluation is unreliable when cross-seed variance exceeds the effect size (\S\ref{sec:diagnostic}).
+Third, treat LOO-based metrics as component-count-biased until premise-count-matched (\S\ref{sec:goodhart}).
+Fourth, expect conclusion embedding as a GRPO-universal baseline: reward shaping alters its composition, not its prevalence (Table~\ref{tab:goodhart-landscape}).
+Fifth, monitor convergence: structural degeneration appears contingent on successful optimization (Appendix~\ref{app:seed-convergence}), making monitoring most critical when training succeeds.
+The diagnostic--optimization asymmetry motivates targeted mitigations such as single-premise penalties or mode-aware reward shaping~\citep{tarek2025reward, pronesti2026beyond}.
+Remaining questions include extending the hacking taxonomy to process reward settings and determining whether the seed-dependent Goodhart boundary generalizes beyond the model scale examined here.

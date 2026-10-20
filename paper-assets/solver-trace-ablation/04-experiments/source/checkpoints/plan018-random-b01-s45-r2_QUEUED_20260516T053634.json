@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan018-random-b01-s45-r2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:36:20.734Z",
+    "updated_at": "2026-05-16T05:36:34.073Z"
+  },
+  "timestamp": "2026-05-16T05:36:34.590973+00:00",
+  "trigger": "update_registry"
+}

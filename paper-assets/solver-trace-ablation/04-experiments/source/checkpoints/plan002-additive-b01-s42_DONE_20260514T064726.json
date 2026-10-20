@@ -1,0 +1,79 @@
+{
+  "exp_id": "plan002-additive-b01-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:29:08.138Z",
+    "updated_at": "2026-05-14T06:47:26.358Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "262261",
+      "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s42.log",
+      "submitted_at": "2026-05-14T05:32:32.415Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4493.9,
+      "gpu_hours": 1.25
+    },
+    "parent": "plan002-additive-b03-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "262261",
+    "log_path": "~/runs/solver-trace-ablation/plan002-additive-b01-s42.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\"",
+      "finished_at": "2026-05-14T06:37:58.285Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T06:37:59.656631+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "eval_prove_rate": 0.81,
+      "eval_mean_isr": 0.3365,
+      "eval_isr_std": 0.3227,
+      "eval_proved_only_isr": 0.4154,
+      "eval_median_isr": 0.2,
+      "eval_n_proved": 81,
+      "eval_n_problems": 100,
+      "eval_method": "eval_sta.py full STA",
+      "eval_data": "proofwriter_fol_100.jsonl",
+      "eval_component_count_mean": 5.58,
+      "eval_component_count_2_ratio": 0.037,
+      "eval_isr_1_ratio": 0.124,
+      "eval_isr_0_ratio": 0.037,
+      "eval_by_type_false_pr": 0.88,
+      "eval_by_type_false_isr": 0.3515,
+      "eval_by_type_unknown_pr": 0.83,
+      "eval_by_type_unknown_isr": 0.3684,
+      "eval_by_type_true_pr": 0.74,
+      "eval_by_type_true_isr": 0.2869,
+      "tautological_collapse": false,
+      "train_total_steps": 500,
+      "train_duration_min": 63,
+      "train_last100_pr": 0.6875,
+      "train_last100_isr": 0.1954,
+      "train_last100_loss": 0.015
+    },
+    "notes": "SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。远超 random control (plan017 PR=0.48/ISR=0.045)，证明 ISR 信号非噪声驱动。",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan002_additive_b01_s42",
+    "completed_at": "2026-05-14T06:47:26.358Z"
+  },
+  "timestamp": "2026-05-14T06:47:26.430901+00:00",
+  "trigger": "update_registry"
+}

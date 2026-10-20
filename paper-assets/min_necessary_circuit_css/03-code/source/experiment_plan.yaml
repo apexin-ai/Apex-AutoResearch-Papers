@@ -1,0 +1,124 @@
+# Experiment Plan — min_necessary_circuit_css (Route A: Analysis Paper)
+# 最后更新: 2026-05-13 | 更新原因: D036 — 0/6 PASS，IOI 正例死亡，Claim 结构调整
+
+# Claims (D036 后):
+#   Claim 1: ACDC isinf binarization pathology (★★★★★)
+#   Claim 2: CSS fails universally across 6 task×model configs (★★★★★)
+#   Claim 3: Component-level scoring causes scaling failure (★★★★)
+#   Claim 4: CIRCUS negative ablation (★★★)
+#   Discussion: Jaccard diagnostic signal, method correlation / gradient-pair dominance
+
+experiments:
+  # === GPT-2 Task Coverage (Claim 2: CSS fails universally) ===
+  - id: plan_001
+    name: "GPT-2 IOI K=3 CSS"
+    claim: "Claim 2"
+    description: "GPT-2 Small / IOI, K=3 (EAP-IG + EP + ACDC isinf). Originally lone positive — D036 size-controlled baseline proved advantage was size artifact"
+    registry_id: mvp_pilot_gpt2_ioi_v3
+    priority: P0
+    status: done
+    result: "SUPERSEDED by plan_008 — original CPR=0.109 advantage was size confound (7 vs 100 edges)"
+
+  - id: plan_002
+    name: "GPT-2 Arithmetic K=3 CSS"
+    claim: "Claim 2"
+    description: "GPT-2 Small / Greaterthan, K=3. Task structure forces high Jaccard → CSS fails"
+    registry_id: mvp_arithmetic_gpt2_k3
+    priority: P0
+    status: done
+    result: "FAIL — CSS=1.0 CPR < EAP-IG; Jaccard=0.695 (methods too correlated)"
+
+  - id: plan_003
+    name: "GPT-2 SVA K=3 CSS"
+    claim: "Claim 2"
+    description: "GPT-2 Small / SVA. Inconclusive — marginal signal at noise level"
+    registry_id: mvp_sva_gpt2_k3_topk
+    priority: P0
+    status: done
+    result: "INCONCLUSIVE — D033: cross-server Δ=0.006/0.013, avg < 0.01 threshold. Bootstrap p=0.099 not significant"
+
+  - id: plan_004
+    name: "GPT-2 Factual Recall K=3 CSS"
+    claim: "Claim 2"
+    description: "GPT-2 Small / Country-Capital factual recall. EAP-IG×EP J=0.82 — gradient pair dominance, K≈2"
+    registry_id: gpt2_factual_recall_k3_v2
+    priority: P0
+    status: done
+    result: "FAIL — EAP-IG×EP J=0.8182; CSS=1.0 (9 edges) CPR < best single. Bootstrap p=0.000 significantly negative"
+
+  # === ACDC Binarization Pathology (Claim 1: strongest contribution) ===
+  - id: plan_005
+    name: "ACDC isinf→top-k binarization sweep"
+    claim: "Claim 1"
+    description: "k=50/75/100/150 on IOI and Arithmetic. Show isinf→top-k Jaccard shift and CSS degeneration break"
+    priority: P0
+    status: done
+    result: "Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; Jaccard shifts +0.16 to +0.25"
+
+  # === Cross-Model Scaling Failure (Claim 3: component-level scoring) ===
+  - id: plan_006
+    name: "Qwen-0.5B IOI K=3 with IFR"
+    claim: "Claim 3"
+    description: "First scaling attempt. IFR degenerates to block-voting (layer-level), zero CSS=1.0 edges"
+    registry_id: phase2_qwen05b_ioi_k3
+    priority: P0
+    status: done
+    result: "FAIL — IFR Jaccard=0.000 with gradient methods; block-voting granularity mismatch"
+
+  - id: plan_007
+    name: "Qwen-0.5B IOI K=3 with ACDC"
+    claim: "Claim 3"
+    description: "D029: ACDC替代IFR. ACDC also degenerates to node-level scoring on 179K-edge model"
+    registry_id: phase2_qwen05b_ioi_acdc_k3
+    priority: P0
+    status: done
+    result: "FAIL — ACDC node-level scoring; all Jaccard≈0; zero CSS=1.0 edges. Confirms scaling failure is structural"
+
+  # === Critical Controls ===
+  - id: plan_008
+    name: "IOI size-controlled baseline"
+    claim: "Claim 2"
+    description: "Compare CSS=1.0 (N=16 edges) vs top-16 of each single method + random-16. D036: killed IOI positive case. Also supports Claim 1 (CSS=1.0 = ACDC top-16)"
+    registry_id: ioi_size_controlled_baseline
+    priority: P0
+    status: done
+    depends_on: [plan_001]
+    result: "NEGATIVE — CSS=1.0 CPR(zero)=0.0295 = ACDC top-16 (identical); CPR(mean)=0.177 < EAP-IG(0.182)/EP(0.183). IOI advantage was entirely size confound"
+
+  - id: plan_009
+    name: "Bootstrap confidence intervals on CPR"
+    claim: "Claim 2"
+    description: "Bootstrap CIs (n=1000) on CPR differences. SVA+FR done; IOI failed (re-running)"
+    registry_id: bootstrap_ci_sva_fr
+    priority: P0
+    status: partial
+    depends_on: [plan_004, plan_008]
+    result: "SVA p=0.099 (not significant), FR p=0.000 (significantly negative). IOI pending re-run"
+
+  # === Comparative / Ablation ===
+  - id: plan_010
+    name: "CIRCUS negative ablation"
+    claim: "Claim 4"
+    description: "D021: CIRCUS failed 3×. Within-method threshold diversity produces negative CPR on all tasks"
+    priority: P1
+    status: done
+    result: "CIRCUS negative CPR on all tasks. Implementation caveats noted"
+
+  # === Discussion Analyses (not independent claims) ===
+  - id: plan_011
+    name: "Jaccard-CSS scatter plot + correlation"
+    claim: "Discussion"
+    description: "Across all completed experiments, plot max Jaccard vs CSS advantage. 0/6 PASS → Jaccard only predicts 'always fail'"
+    priority: P2
+    status: planned
+    depends_on: [plan_004, plan_008]
+    gpu_hours_est: 0
+
+  - id: plan_012
+    name: "IFR vs ACDC vs gradient method divergence analysis"
+    claim: "Claim 3"
+    description: "Document IFR and ACDC failure modes on Qwen as case study for component-level scoring issue. Also contributes to Discussion (method divergence)"
+    priority: P2
+    status: planned
+    depends_on: [plan_006, plan_007]
+    gpu_hours_est: 0

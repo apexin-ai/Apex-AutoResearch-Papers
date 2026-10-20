@@ -1,0 +1,66 @@
+{
+  "exp_id": "d157-shuffled-isr-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:34:47.863Z",
+    "updated_at": "2026-05-20T17:45:28.753Z",
+    "hypothesis": "D157 shuffled-ISR control seed 43: same hypothesis as d157-shuffled-isr-s42.",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python scripts/train_grpo.py --config configs/grpo_shuffled_isr_b01.yaml --seed 43 --num_steps 500 --output_dir /root/autodl-tmp/outputs/d157_shuffled_isr_s43 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "800342",
+      "log_path": "/root/autodl-tmp/outputs/d157_shuffled_isr_s43/reward_log.jsonl",
+      "submitted_at": "2026-05-20T16:20:09.460Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "checkpoint_path": "/root/autodl-tmp/outputs/d157_shuffled_isr_s43/checkpoint-500",
+      "wall_clock_seconds": 5119.3,
+      "gpu_hours": 1.42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T17:34:56.061Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T17:35:01.089286+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "prove_rate": 0.16,
+      "mean_isr": 0.0908,
+      "proved_only_mean_isr": 0.5675,
+      "n_proved": 16,
+      "genuine_count": 14,
+      "genuine_rate": 0.875,
+      "TS_count": 1,
+      "CE_count": 1,
+      "PG_count": 0,
+      "CI_count": 0,
+      "isr_std": 0.2314,
+      "median_isr": 0,
+      "max_isr": 0.8889
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/d157_shuffled_isr_s43/checkpoint-500",
+    "log_path": "~/runs/solver-trace-ablation/d157-shuffled-isr-s43.log",
+    "completed_at": "2026-05-20T17:45:28.753Z"
+  },
+  "timestamp": "2026-05-20T17:45:29.131163+00:00",
+  "trigger": "update_registry"
+}

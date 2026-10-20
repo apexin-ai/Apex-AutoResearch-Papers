@@ -1,0 +1,28 @@
+{
+  "exp_id": "w2-qwen3-1.7b-isr-b01",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:51:32.614Z",
+    "updated_at": "2026-05-16T22:15:18.627Z",
+    "spec": {
+      "hypothesis": "1.7B ISR β=0.1 full 500-step run: collect clean dose-response data. β=0.1 pilot confirmed H9 ex falso exists; this is the proper comparison point for β=0.3 (collapsed) and Random (no H9).",
+      "parent": "w2-qwen3-1.7b-isr-pilot",
+      "command": "python scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-1.7B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --beta 0.1 --num_steps 500 --per_device_batch_size 2 --gradient_accumulation_steps 4 --num_generations 4 --max_completion_length 512 --learning_rate 1e-6 --seed 42 --solver prover9 --no_wandb --output_dir /root/autodl-tmp/outputs/w2_1.7b_isr_b01_s42",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "Qwen3-1.7B base model",
+      "eval_data": "data/train_500_seed42.jsonl",
+      "gpu": "cuda:0",
+      "pid": 960894
+    }
+  },
+  "timestamp": "2026-05-16T22:15:18.925578+00:00",
+  "trigger": "update_registry"
+}

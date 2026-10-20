@@ -1,0 +1,90 @@
+{
+  "exp_id": "plan001-exec-only-s44-1000-r2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:51:03.762Z",
+    "updated_at": "2026-05-15T16:21:02.635Z",
+    "hypothesis": "Exec-only GRPO 1000步 seed=44（r2 重跑）：r1 因磁盘满被 kill。磁盘已清理（92GB 可用），从 step 0 重跑。",
+    "parent": "plan001-exec-only-s44-1000",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T13:51:35.383Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\"",
+      "finished_at": "2026-05-15T16:11:51.095Z",
+      "training_hours": 2.34
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "363840",
+      "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s44-1000-r2.log",
+      "submitted_at": "2026-05-15T13:51:37.012Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 8895.8,
+      "gpu_hours": 2.47,
+      "checkpoint_path": "/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2"
+    },
+    "pid": "363840",
+    "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s44-1000-r2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T16:11:54.943668+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_final_loss": 0.00911,
+      "train_final_prove_rate": 0.82425,
+      "train_final_mean_isr": 0.05843,
+      "train_total_steps": 1000,
+      "train_runtime_seconds": 8357.36,
+      "train_epochs": 4,
+      "eval_prove_rate": 1,
+      "eval_n_proved": 100,
+      "eval_n_problems": 100,
+      "eval_mean_isr": 0.002,
+      "eval_isr_std": 0.0146,
+      "eval_median_isr": 0,
+      "eval_proved_only_isr": 0.002,
+      "eval_min_isr": 0,
+      "eval_max_isr": 0.125,
+      "h7a_count": 0,
+      "h7a_rate": 0,
+      "h7b_count": 0,
+      "h7b_rate": 0,
+      "h7_count": 0,
+      "h7_rate": 0,
+      "h1_count": 85,
+      "h1_rate": 0.85,
+      "h8_conjunction_collapse_count": 15,
+      "h8_conjunction_collapse_rate": 0.15,
+      "genuine_count": 3,
+      "genuine_rate": 0.03,
+      "content_independent_predicates_count": 100,
+      "content_independent_predicates_rate": 1,
+      "conclusion_in_premise_count": 85,
+      "conclusion_in_premise_rate": 0.85
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T16:19:52.818Z"
+  },
+  "timestamp": "2026-05-15T16:21:02.865952+00:00",
+  "trigger": "update_registry"
+}

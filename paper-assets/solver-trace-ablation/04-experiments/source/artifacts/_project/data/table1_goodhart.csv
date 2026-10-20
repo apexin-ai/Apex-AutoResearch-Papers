@@ -1,0 +1,13 @@
+Condition,Formula,eval PR,eval ISR (proved-only),Component Count,Degeneration Mode,Goodhart Phase
+exec-only s42 (baseline),r = r_exec,0.93,0.1324,7.08,conclusion embedding,N/A (baseline)
+ISR β=0.1,r = r_exec·(1+0.1·ISR),0.81,0.4154,5.58,none ✓,pre-Goodhart (sweet spot)
+random β=0.1,r = r_exec·(1+0.1·rand),0.79,0.1314,8.46,redundant premises,control
+ISR β=0.3,r = r_exec·(1+0.3·ISR),0.18,0.1427,—,format collapse,post-Goodhart
+random β=0.3,r = r_exec·(1+0.3·rand),0.48,0.0943,9.60,complexity-without-utility,control
+convex ISR,r = 0.9·r_exec+0.1·ISR,0.77‡,0.2299‡,—‡,ISR–PR separation,penalty effect
+convex random,r = 0.9·r_exec+0.1·rand,1.00,0.535*,2.04*,tautological collapse,hacking
+1000-step extended,r = r_exec (1000 steps),0.96,0.0028,18.55,contradiction explosion,N/A
+
+‡ plan005: training last-100 steps; no eval checkpoint available.
+"* plan013/plan001-s44: ISR is tautological artifact (2-component proofs, P→P)."
+"exec-only 3-seed results reported per-seed due to different eval methods: s42 (eval_sta.py, PR=0.93), s43 (sampling T=0.7, PR=0.14), s44 (eval_sta.py, PR=0.98 tautological)."

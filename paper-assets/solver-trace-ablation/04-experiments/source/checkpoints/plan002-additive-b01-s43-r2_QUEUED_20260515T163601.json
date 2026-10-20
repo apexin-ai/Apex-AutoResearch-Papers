@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan002-additive-b01-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:21:58.445Z",
+    "updated_at": "2026-05-15T16:36:00.987Z",
+    "spec": {
+      "hypothesis": "ISR β=0.1 seed=43 重训（r2）：原始实验 checkpoint+eval 全部丢失，registry 有 genuine=2/h7=59 但缺 h1/h8。重训+完整 eval+H7/H1/H8 taxonomy，补全所有字段。",
+      "parent": "plan002-additive-b01-s43",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "reward_formula": "r = r_exec * (1 + 0.1 * ISR)",
+      "plan_id": "plan002",
+      "num_steps": 500
+    },
+    "notes": "Config file: configs/grpo_additive_bonus_b01.yaml (NOT grpo_additive_b01.yaml). Corrected command: python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43_r2"
+  },
+  "timestamp": "2026-05-15T16:36:01.191369+00:00",
+  "trigger": "update_registry"
+}

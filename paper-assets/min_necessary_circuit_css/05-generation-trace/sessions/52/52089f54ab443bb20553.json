@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52089f54ab443bb20553",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code sva topk check results",
+  "task_key": "worker_code_sva-topk-check-results_20260513T075728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sva-topk-check-results_20260513T075728_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "ae2bed96ad329e52aad83cd2d5943a4bb8ee9f0c255bcc614270c123ae23e711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已无活跃任务，无需清除。\n\n---\n\n**实验 mvp_sva_gpt2_k3_topk 已完成，结论：negative**\n\n关键发现：\n- 条件①②③全部 PASS（三方法 Jaccard 低、CSS≥2/3 有 98 条边、CSS=1.0 有 44 条边）\n- **条件④ FAIL**：zero ablation 下 CSS=1.0 的 CPR(-0.70) 劣于 eap_ig(-0.35) 和 edge_pruning(-0.65)，仅优于 acdc(-1.12)。mean ablation 下 CSS=1.0 CPR(1.18) 虽略优于所有单方法，但 zero ablation 不满足\n- 核心问题：44 条 CSS=1.0 边在 zero ablation 下 faithfulness 不足以超过单方法 top-100 电路\n\nRegistry 已更新：metrics、conclusion=negative、status=DONE、checkpoint_path、log_path。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sva-topk-check-results.md"
+}

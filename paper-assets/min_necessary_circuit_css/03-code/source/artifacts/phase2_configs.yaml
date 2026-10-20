@@ -1,0 +1,268 @@
+# Phase 2 实验矩阵
+# 每个实验 = 一个 model × task × methods 组合
+#
+# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑
+# Backend: transformerlens (GPT-2) | huggingface (其他)
+# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)
+#
+# 预估单实验耗时（基于 MVP 经验）:
+#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC TBD - 待 v3 实际数据更新  → ~20min/task
+#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task
+#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task
+#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task
+
+defaults:
+  K: 3
+  num_samples: 50
+  seed: 42
+  gpu_id: "5"
+  eap_ig_steps: 5
+  edge_pruning_epochs: 100
+  edge_pruning_lambda: 1e-2
+  ifr_threshold: 0.1
+  css_threshold: 0.67
+  circus_B: 10
+
+experiments:
+
+  # ===================================================================
+  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)
+  # 预估总耗时: ~60min (3 tasks × ~20min)
+  # ===================================================================
+
+  gpt2_ioi:
+    model: "gpt2"
+    model_path: null
+    task: "ioi"
+    methods: ["eap_ig", "edge_pruning", "acdc"]
+    backend: "transformerlens"
+    thresholds:
+      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      acdc: {strategy: "threshold", threshold: 0.05}
+    priority: 1
+    notes: "MVP baseline, 已有部分结果"
+
+  gpt2_greater_than:
+    model: "gpt2"
+    model_path: null
+    task: "greater_than"
+    methods: ["eap_ig", "edge_pruning", "acdc"]
+    backend: "transformerlens"
+    thresholds:
+      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      acdc: {strategy: "threshold", threshold: 0.05}
+    priority: 2
+    notes: "数值推理任务, 预期电路更紧凑"
+
+  gpt2_docstring:
+    model: "gpt2"
+    model_path: null
+    task: "docstring"
+    methods: ["eap_ig", "edge_pruning", "acdc"]
+    backend: "transformerlens"
+    thresholds:
+      acdc: [0.01, 0.03, 0.05, 0.1, 0.3]
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      acdc: {strategy: "threshold", threshold: 0.05}
+    priority: 2
+    notes: "代码理解任务, 验证跨领域泛化"
+
+  # ===================================================================
+  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)
+  # 预估总耗时: ~100min (4 tasks × ~25min)
+  # ===================================================================
+
+  qwen05_ioi:
+    model: "Qwen/Qwen2.5-0.5B"
+    model_path: "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/"
+    task: "ioi"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 2
+    notes: "Phase 2 首个大模型实验, MVP 后立即跑"
+
+  qwen05_greater_than:
+    model: "Qwen/Qwen2.5-0.5B"
+    model_path: "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/"
+    task: "greater_than"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 2
+    notes: "Qwen 数值推理"
+
+  qwen05_docstring:
+    model: "Qwen/Qwen2.5-0.5B"
+    model_path: "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/"
+    task: "docstring"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 2
+    notes: "Qwen 代码理解"
+
+  qwen05_ioi_variant:
+    model: "Qwen/Qwen2.5-0.5B"
+    model_path: "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/"
+    task: "ioi_variant"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "IOI 变体 (name permutation), 验证电路稳定性"
+
+  # ===================================================================
+  # Gemma-2 2B — HuggingFace, K=3 (EAP-IG + EP + IFR)
+  # 预估总耗时: ~260min (4 tasks × ~65min)
+  # ===================================================================
+
+  gemma2_ioi:
+    model: "google/gemma-2-2b"
+    model_path: "/root/autodl-tmp/.hf_cache/google/gemma-2-2b/"
+    task: "ioi"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 30
+    edge_pruning_epochs: 80
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "2B 模型, 减 samples 和 EP epochs 控制显存"
+
+  gemma2_greater_than:
+    model: "google/gemma-2-2b"
+    model_path: "/root/autodl-tmp/.hf_cache/google/gemma-2-2b/"
+    task: "greater_than"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 30
+    edge_pruning_epochs: 80
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "Gemma-2 数值推理"
+
+  gemma2_docstring:
+    model: "google/gemma-2-2b"
+    model_path: "/root/autodl-tmp/.hf_cache/google/gemma-2-2b/"
+    task: "docstring"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 30
+    edge_pruning_epochs: 80
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "Gemma-2 代码理解"
+
+  gemma2_ioi_variant:
+    model: "google/gemma-2-2b"
+    model_path: "/root/autodl-tmp/.hf_cache/google/gemma-2-2b/"
+    task: "ioi_variant"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 30
+    edge_pruning_epochs: 80
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "Gemma-2 IOI 变体"
+
+  # ===================================================================
+  # Llama-3.1 8B — HuggingFace, K=3 (EAP-IG + EP + IFR)
+  # 预估总耗时: ~600min (4 tasks × ~150min)
+  # 需要 >=24GB VRAM (A6000), EP 可能需 gradient checkpointing
+  # ===================================================================
+
+  llama31_ioi:
+    model: "meta-llama/Llama-3.1-8B"
+    model_path: "/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/"
+    task: "ioi"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 20
+    edge_pruning_epochs: 60
+    edge_pruning_lambda: 5e-3
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "8B 最大模型, 减 samples/epochs, 可能需 gradient checkpointing"
+
+  llama31_greater_than:
+    model: "meta-llama/Llama-3.1-8B"
+    model_path: "/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/"
+    task: "greater_than"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 20
+    edge_pruning_epochs: 60
+    edge_pruning_lambda: 5e-3
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "Llama-3.1 数值推理"
+
+  llama31_docstring:
+    model: "meta-llama/Llama-3.1-8B"
+    model_path: "/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/"
+    task: "docstring"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 20
+    edge_pruning_epochs: 60
+    edge_pruning_lambda: 5e-3
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "Llama-3.1 代码理解"
+
+  llama31_ioi_variant:
+    model: "meta-llama/Llama-3.1-8B"
+    model_path: "/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/"
+    task: "ioi_variant"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    num_samples: 20
+    edge_pruning_epochs: 60
+    edge_pruning_lambda: 5e-3
+    binarize:
+      eap_ig: {strategy: "topn", n: 200}
+      edge_pruning: {strategy: "threshold", t: 0.5}
+      ifr: {strategy: "unique_score_rank", n: 50}
+    priority: 3
+    notes: "Llama-3.1 IOI 变体"

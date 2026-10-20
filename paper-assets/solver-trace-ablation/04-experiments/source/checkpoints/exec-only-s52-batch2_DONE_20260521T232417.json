@@ -1,0 +1,45 @@
+{
+  "exp_id": "exec-only-s52-batch2",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:23:33.152Z",
+    "updated_at": "2026-05-21T23:24:17.337Z",
+    "hypothesis": "Exec-only GRPO seed 52: expanding statistical sample for cross-seed analysis. Same config as existing exec-only seeds (500 steps, execution_only reward, Qwen3-4B).",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/exec_only_s52.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "seed": 52,
+      "model_name": "Qwen3-4B",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/outputs/exec_only_s52/checkpoint-500",
+      "log_path": "/tmp/exec_only_s52.log",
+      "eval_data": "data/proofwriter_fol_100.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/outputs/exec_only_s52/checkpoint-500"
+    },
+    "metrics": {
+      "prove_rate": 0.14,
+      "n_proved": 14,
+      "n_problems": 100,
+      "mean_isr": 0.0799,
+      "proved_only_mean_isr": 0.5708,
+      "TS_count": 1,
+      "CE_count": 1,
+      "PG_count": 0,
+      "CI_count": 0,
+      "genuine_count": 12,
+      "genuine_pct": 85.7
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T23:24:17.337Z"
+  },
+  "timestamp": "2026-05-21T23:24:17.769845+00:00",
+  "trigger": "update_registry"
+}

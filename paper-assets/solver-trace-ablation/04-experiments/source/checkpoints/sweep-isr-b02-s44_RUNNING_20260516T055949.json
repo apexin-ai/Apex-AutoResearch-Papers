@@ -1,0 +1,55 @@
+{
+  "exp_id": "sweep-isr-b02-s44",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:42:05.473Z",
+    "updated_at": "2026-05-16T05:59:49.328Z",
+    "hypothesis": "W3: β=0.2 ISR bonus seed=44, intermediate dose replication",
+    "reproduce": {
+      "finished_at": "2026-05-16T05:50:06.491Z"
+    },
+    "failure_reason": "磁盘满: safetensors save_pretrained at step 400/500 — No space left on device (os error 28). /root/autodl-tmp/ 空间不足",
+    "completed_at": "2026-05-16T05:50:08.889Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T05:50:11.936726+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "训练正常推进到 step 400/500 (80%)，在 checkpoint save 时磁盘满崩溃。需清理 /root/autodl-tmp/outputs/ 下旧 checkpoint 后重跑。reward_log.csv 未生成（output_dir 可能只有部分 checkpoint）。"
+      }
+    },
+    "notes": "retry 1: 清理磁盘后重提交. 释放了 54GB 空间 (删除: sweep_isr_b02_s44 24G, plan018_random_b01_s45/ckpt-50 15G, sweep_isr_b01_s45/ckpt-200 15G). fix_worker_id: claude-opus-4-6",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=1 && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b02.yaml --seed 44 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_isr_b02_s44 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "688219",
+      "log_path": "~/runs/solver-trace-ablation/sweep-isr-b02-s44.log",
+      "submitted_at": "2026-05-16T05:54:38.615Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 44,
+      "reward_mode": "additive_bonus",
+      "beta": 0.2,
+      "num_steps": 500,
+      "num_generations": 4
+    }
+  },
+  "timestamp": "2026-05-16T05:59:49.588628+00:00",
+  "trigger": "update_registry"
+}

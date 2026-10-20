@@ -1,0 +1,15 @@
+{
+  "exp_id": "d143-pw-sft-s42",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:59:43.724Z",
+    "updated_at": "2026-05-19T12:54:27.971Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T12:54:28.371086+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "d142-gated-isr-s57",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:55:11.226Z",
+    "updated_at": "2026-05-19T12:11:57.668Z",
+    "hypothesis": "Expanding gated ISR (n_components >= 2 gate, beta=0.1) to 6 seeds to verify whether TS-to-PG mode migration is systematic. D142 s52-s54 showed 2/3 PG collapse after gate eliminated TS; additional seeds test if this pattern holds with statistical power for Fisher exact test. Parent: D142.",
+    "parent": "d142-gated-isr-s52",
+    "spec": {
+      "command": "part of d142 ext pipeline (serial s55→s56→s57)",
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 57,
+      "reward_mode": "additive_bonus_gated",
+      "beta": 0.1,
+      "steps": 500,
+      "checkpoint_source": "trained from base",
+      "eval_data": "data/proofwriter_fol_100.jsonl"
+    }
+  },
+  "timestamp": "2026-05-19T12:11:58.017980+00:00",
+  "trigger": "update_registry"
+}

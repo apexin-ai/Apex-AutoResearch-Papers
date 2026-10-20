@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "915763ca6aa9cf1c67b1",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code upload l0 ifr",
+  "task_key": "worker_code_upload-l0-ifr_20260512T133832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_upload-l0-ifr_20260512T133832_result.json",
+    "occurrence": 1,
+    "bytes": 382,
+    "sha256": "c5d3165d29835da69930dabf674d2323c7655881be5fd84115864c4900567ebc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**文件完整性：**\n| 文件 | 行数 | md5 |\n|------|------|-----|\n| `edge_pruning_l0.py` | 268 | `58360d3eeebd79d1810136110a4795c9` |\n| `ifr_discovery.py` | 151 | `9f92af49a08bcea0658485b885dc2f93` |\n\n**Import 验证：** OK — `HardConcreteMask`, `run_edge_pruning_l0`, `run_ifr`, `_proximity`, `_enumerate_edges` 全部正常导入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-upload-l0-ifr.md"
+}

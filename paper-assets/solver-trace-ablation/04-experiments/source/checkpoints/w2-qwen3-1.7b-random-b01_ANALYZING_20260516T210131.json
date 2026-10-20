@@ -1,0 +1,26 @@
+{
+  "exp_id": "w2-qwen3-1.7b-random-b01",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:29:36.578Z",
+    "updated_at": "2026-05-16T21:01:30.912Z",
+    "spec": {
+      "hypothesis": "1.7B Random β=0.1 control: verify H9 ex falso is ISR-specific, not a general 1.7B training artifact. Random reward should NOT trigger H9.",
+      "parent": "w2-qwen3-1.7b-isr-pilot",
+      "command": "python scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-1.7B --data_path data/train_500_seed42.jsonl --reward_mode additive_random --beta 0.1 --num_steps 500 --per_device_batch_size 2 --gradient_accumulation_steps 4 --num_generations 4 --max_completion_length 512 --learning_rate 1e-6 --seed 42 --solver prover9 --no_wandb --output_dir /root/autodl-tmp/outputs/w2_1.7b_random_b01_s42",
+      "server": "westd-39279",
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 921646
+    }
+  },
+  "timestamp": "2026-05-16T21:01:31.205185+00:00",
+  "trigger": "update_registry"
+}

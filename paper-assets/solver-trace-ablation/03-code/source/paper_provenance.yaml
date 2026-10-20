@@ -1,0 +1,752 @@
+paper:
+  title: ''
+  version: 13
+  generated_at: '2026-05-17T12:00:00.000000+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'ISR collapse: 0.642 to 0.132 to 0.003'
+  type: quantitative
+  evidence:
+  - exp_id: plan003-eval-exec-only-r5
+    metric: proved_only_isr
+  - exp_id: plan001-exec-only-s42-r2
+    metric: eval_proved_only_isr
+  - exp_id: plan016-extended-1000-s42
+    metric: isr
+  decisions: []
+  deprecated: true
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'H7 ISR-specific: 64.5% vs 0% random'
+  type: quantitative
+  evidence:
+  - exp_id: plan002-additive-b01-s42
+    metric: h7_rate
+  - exp_id: plan018-additive-random-b01-s42
+    metric: H7=0
+  decisions: []
+  deprecated: true
+- id: C006
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Premise-matched ISR 1.06x
+  type: quantitative
+  evidence:
+  - exp_id: D051-analysis
+    metric: premise_matched_ratio
+  decisions: []
+  deprecated: true
+- id: C010
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: SFT 92.9% genuine
+  type: quantitative
+  evidence:
+  - exp_id: plan009-sft-baseline-s42-r4
+    metric: genuine_rate
+  decisions: []
+  deprecated: true
+- id: C015
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Prolog STA 3/3 gaming 0% genuine
+  type: quantitative
+  evidence:
+  - exp_id: plan006-prolog-sta-s42
+    metric: eval_h7_rate
+  decisions: []
+  deprecated: true
+- id: C016
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 87% of proved outputs embed the conclusion verbatim among the premises
+  type: empirical
+  evidence:
+  - plan001 exec-only training results
+  decisions: []
+  deprecated: true
+- id: C018
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: ISR falls from 0.642 to 0.003 (99.5% degradation) over 100-1000 GRPO steps
+    while prove rate rises 32% to 96%
+  type: empirical
+  evidence:
+  - plan001 exec-only 3-seed eval_sta results
+  decisions: []
+  deprecated: true
+- id: C021
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SFT baseline achieves 92.9% genuine proofs with near-zero hacking
+  type: empirical
+  evidence:
+  - plan008 SFT baseline eval
+  decisions: []
+  deprecated: true
+- id: C025
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 64.5% of proved samples exhibit conclusion duplication (H7) at beta=0.1, vs
+    0% under random control
+  type: empirical
+  evidence:
+  - plan013 ISR-as-reward eval
+  - plan014 random control eval
+  decisions: []
+  deprecated: true
+- id: C030
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Sole apparent ISR improvement reduces to 1.06x after premise-count confound
+    control
+  type: empirical
+  evidence:
+  - plan013 premise-count analysis
+  decisions: []
+  deprecated: true
+- id: C036
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: beta=0.3 prove rate collapses to 18% vs 48% random control
+  type: empirical
+  evidence:
+  - plan013 high-dose results
+  - plan014 random control
+  decisions: []
+  deprecated: true
+- id: C043
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Prolog ISR-as-reward: 3/3 seeds gaming, 0% genuine proofs'
+  type: empirical
+  evidence:
+  - plan017 Prolog ISR-as-reward eval
+  decisions: []
+  deprecated: true
+- id: C051
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 7 distinct reward hacking modes across conditions and logic types
+  type: empirical
+  evidence:
+  - taxonomy analysis across all experiments
+  decisions: []
+  deprecated: true
+- id: C052
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: ISR definition via LOO ablation
+  type: definition
+  evidence:
+  - exp_id: sta-phase0-baseline
+    metric: isr_computation
+  decisions: []
+  deprecated: true
+- id: C054
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Additive reward formulation
+  type: definition
+  evidence:
+  - exp_id: plan002-additive-b01-s42
+    metric: reward_formula
+  decisions: []
+  deprecated: true
+- id: C055
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 93% prove rate but 87% conclusion embedding
+  type: quantitative
+  evidence:
+  - exp_id: plan001-exec-only-s42-r2
+    metric: eval_prove_rate=0.93, h1_rate=0.871
+  decisions: []
+  deprecated: false
+- id: C057
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: ISR collapse 0.642 to 0.132 to 0.003
+  type: quantitative
+  evidence:
+  - exp_id: plan003-eval-exec-only-r5
+    metric: proved_only_isr
+  - exp_id: plan001-exec-only-s42-r2
+    metric: eval_proved_only_isr
+  - exp_id: plan016-extended-1000-s42
+    metric: isr
+  decisions: []
+  deprecated: false
+- id: C060
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SFT 92.3% genuine (36/39, 3-seed 1000-step)
+  type: quantitative
+  evidence:
+  - exp_id: plan009-sft-baseline-s42-r4
+    metric: genuine_rate
+  decisions: []
+  deprecated: false
+- id: C064
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: H7=54.3% ISR (190/350) vs 29.5% random (122/414), 5-seed pooled
+  type: quantitative
+  evidence:
+  - exp_id: plan002-additive-b01-s42
+    metric: h7_rate
+  - exp_id: plan002-additive-b01-s43
+    metric: h7_rate
+  - exp_id: plan002-additive-b01-s44
+    metric: h7_rate
+  - exp_id: plan002-additive-b01-s45
+    metric: h7_rate
+  - exp_id: plan002-additive-b01-s46
+    metric: h7_rate
+  - exp_id: plan018-additive-random-b01-s42
+    metric: h7_rate
+  - exp_id: plan018-additive-random-b01-s43-r3
+    metric: h7_rate
+  - exp_id: plan018-additive-random-b01-s44-r2
+    metric: h7_rate
+  - exp_id: plan018-additive-random-b01-s45
+    metric: h7_rate
+  - exp_id: plan018-additive-random-b01-s46
+    metric: h7_rate
+  decisions:
+  - D095
+  deprecated: false
+- id: C069
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Premise-matched 1.06x
+  type: quantitative
+  evidence:
+  - exp_id: D051-analysis
+    metric: premise_matched_ratio
+  decisions: []
+  deprecated: false
+- id: C075
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'beta=0.3: ISR PR 66±42% vs Random PR 54±35% (3-seed)'
+  type: quantitative
+  evidence:
+  - exp_id: plan002-additive-b03-s42
+    metric: overall_prove_rate
+  - exp_id: plan017-additive-random-s42
+    metric: eval_prove_rate
+  decisions: []
+  deprecated: false
+- id: C082
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Prolog STA 3/3 gaming 0% genuine
+  type: quantitative
+  evidence:
+  - exp_id: plan006-prolog-sta-*
+    metric: 0% genuine all seeds
+  decisions: []
+  deprecated: false
+- id: C083
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 87% of proved outputs under exec-only GRPO embed the conclusion among the
+    premises
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-exec-only-r5
+    metric: h1_rate_step500
+  decisions: []
+  deprecated: false
+- id: C085
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: ISR reliably diagnoses structural quality yet becomes gamed when used as training
+    reward
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-exec-only-r5
+    metric: proved_only_isr
+  - exp_id: plan003-eval-isr-beta01-r5
+    metric: h7_rate
+  decisions: []
+  deprecated: false
+- id: C086
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Downstream NLI accuracy shows no correlation with ISR (Spearman rho=-0.049,
+    p=0.187, n.s.)
+  type: empirical
+  evidence:
+  - exp_id: plan014-downstream-nli-s42
+    metric: spearman_rho_isr_nli
+  decisions: []
+  deprecated: false
+- id: C088
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Controlling for premise count eliminates apparent ISR advantage (1.06x vs
+    raw 2.4x)
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-isr-beta01-r5
+    metric: premise_count_matched_isr_ratio
+  decisions: []
+  deprecated: false
+- id: C091
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Meta-level Goodhart: ISR designed to detect gaming becomes gamed when optimized'
+  type: interpretive
+  evidence:
+  - exp_id: plan003-eval-isr-beta01-r5
+    metric: h7_rate
+  - exp_id: plan003-eval-isr-beta03-r5
+    metric: prove_rate
+  decisions: []
+  deprecated: false
+- id: C092
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 93% prove rate on FOLIO with 87% conclusion embedding
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-exec-only-r5
+    metric: prove_rate_step500
+  - exp_id: plan003-eval-exec-only-r5
+    metric: h1_rate_step500
+  decisions: []
+  deprecated: false
+- id: C094
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: ISR falls from 0.642 to 0.003 over 1000 steps while PR rises 32% to 96%
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-exec-only-r5
+    metric: proved_only_isr_trajectory
+  decisions: []
+  deprecated: false
+- id: C097
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SFT baseline 92.3% genuine proofs (36/39, 3-seed 1000-step)
+  type: empirical
+  evidence:
+  - exp_id: sft-baseline
+    metric: genuine_rate
+  decisions: []
+  deprecated: false
+- id: C101
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 70.6% H7 under ISR beta=0.1 (163/231) vs 13.7% random (36/262), ISR-amplified
+    ~5x
+  type: empirical
+  evidence:
+  - exp_id: plan002-additive-b01-*
+    metric: h7_rate pooled 163/231
+  - exp_id: plan018-additive-random-b01-*
+    metric: h7_rate pooled 36/262
+  decisions:
+  - D095
+  deprecated: false
+- id: C106
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Premise-count-matched 1.06x
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-isr-beta01-r5
+    metric: premise_count_matched_ratio
+  decisions: []
+  deprecated: false
+- id: C112
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: beta=0.3 PR 18% vs random 48%
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-isr-beta03-r5
+    metric: prove_rate
+  decisions: []
+  deprecated: false
+- id: C119
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Prolog 3/3 seeds gaming, 0% genuine
+  type: empirical
+  evidence:
+  - exp_id: plan003-eval-prolog-isr-r5
+    metric: genuine_rate_3seed
+  decisions: []
+  deprecated: false
+- id: C120
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: ISR and NLI accuracy are uncorrelated (rho=-0.049, n.s.)
+  type: empirical
+  evidence:
+  - exp_id: plan014-downstream-nli-s42
+    metric: spearman_rho
+  decisions: []
+  deprecated: false
+- id: C121
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: ISR measures the fraction of necessary components via LOO ablation on solver
+    inputs
+  type: methodological
+  evidence:
+  - eq:isr
+  decisions:
+  - D010
+  deprecated: true
+- id: C123
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'ISR is subject to component-count confound: fewer components yield mechanically
+    higher ISR'
+  type: methodological
+  evidence:
+  - D051
+  decisions:
+  - D051
+  deprecated: true
+- id: C126
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Seven hacking modes identified across conditions, seeds, and logic types
+  type: methodological
+  evidence:
+  - plan001-exec-only-s42-r2
+  - plan002-additive-b01-s42
+  - plan006-prolog-sta-s44
+  decisions:
+  - D027
+  deprecated: true
+- id: C127
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: ISR collapse trajectory 0.642 to 0.132 to 0.003 over 100 to 500 to 1000 steps
+    under exec-only GRPO
+  type: empirical
+  evidence:
+  - plan003-eval-exec-only-r5
+  - plan001-exec-only-s42-r2
+  - plan016-extended-1000-s42
+  decisions: []
+  deprecated: false
+- id: C129
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: '3-seed exec-only divergence: s42 H1=87.1%, s43 repetition collapse PR=13%,
+    s44 tautological H7=100% PR=98%'
+  type: empirical
+  evidence:
+  - plan001-exec-only-s42-r2
+  - plan001-exec-only-s43-r4
+  - plan001-exec-only-s44
+  decisions: []
+  deprecated: false
+- id: C132
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'SFT baseline: PR=14%, 92.3% non-hacking (36/39, 3-seed 1000-step), near-zero
+    H7/H1, confirming hacking is RL-reward-specific'
+  type: empirical
+  evidence:
+  - plan009-sft-baseline-s42-r4
+  decisions: []
+  deprecated: false
+- id: C136
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'H7 is ISR-amplified: 54.3% (190/350) under ISR beta=0.1 vs 29.5% (122/414)
+    under random beta=0.1 (5-seed pooled)'
+  type: empirical
+  evidence:
+  - plan002-additive-b01-s42
+  - plan002-additive-b01-s43
+  - plan002-additive-b01-s44
+  - plan002-additive-b01-s45
+  - plan002-additive-b01-s46
+  - plan018-additive-random-b01-s42
+  - plan018-additive-random-b01-s43-r3
+  - plan018-additive-random-b01-s44-r2
+  - plan018-additive-random-b01-s45
+  - plan018-additive-random-b01-s46
+  decisions:
+  - D057
+  - D095
+  deprecated: false
+- id: C141
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Premise-count-matched ISR 1.06x (0.258 vs 0.243, n>=3 premises), no meaningful
+    structural advantage
+  type: empirical
+  evidence:
+  - plan002-additive-b01-s42
+  - plan018-additive-random-b01-s42
+  decisions:
+  - D051
+  deprecated: false
+- id: C147
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'beta=0.3 classic Goodhart: ISR PR=18% vs random PR=48%'
+  type: empirical
+  evidence:
+  - plan002-additive-b03-s42
+  - plan017-additive-random-s42
+  decisions: []
+  deprecated: false
+- id: C154
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Prolog exec-only: 2/3 seeds ISR* near 0 (s42=0.037, s43=0.015), diagnostic
+    transfer confirmed'
+  type: empirical
+  evidence:
+  - plan006-prolog-exec-s42
+  - plan006-prolog-exec-s43-r3
+  - plan006-prolog-exec-s44
+  decisions:
+  - D056
+  deprecated: false
+- id: C162
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Prolog ISR-reward: universal Goodhart 0% non-hacking across 185 proved, 3
+    distinct gaming mechanisms'
+  type: empirical
+  evidence:
+  - plan006-prolog-sta-s42
+  - plan006-prolog-sta-s43
+  - plan006-prolog-sta-s44
+  decisions: []
+  deprecated: false
+- id: C171
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Conclusion embedding is GRPO-universal (68-97%); ISR restructures hacking
+    composition not prevalence
+  type: empirical
+  evidence:
+  - plan002-additive-b01-s42
+  - plan018-additive-random-b01-s42
+  - plan018-additive-random-b01-s43-r2
+  decisions:
+  - D057
+  deprecated: false
+- id: C172
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: STA applies LOO ablation to solver inputs to compute ISR as a diagnostic for
+    reward hacking
+  type: methodological
+  evidence:
+  - sta-phase0-baseline
+  - plan003-eval-exec-only-r5
+  decisions:
+  - D003
+  - D007
+  deprecated: false
+- id: C174
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: ISR measures syntactic component necessity, not semantic faithfulness
+  type: scope_limitation
+  evidence:
+  - plan014-downstream-nli-s42
+  decisions:
+  - D021
+  deprecated: false
+- id: C177
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: ISR is mathematically sensitive to component count (premise count bias)
+  type: scope_limitation
+  evidence:
+  - exp_id: plan002-additive-b01-s42
+    metric: premise_count_isr_confound
+  - exp_id: plan018-additive-random-b01-s42
+    metric: premise_count_matched_isr_ratio_1.06x
+  decisions:
+  - D051
+  deprecated: false
+- id: C181
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Additive ISR bonus formulation: r = r_exec * (1 + beta * ISR)'
+  type: methodological
+  evidence:
+  - plan002-additive-b01-s42
+  decisions:
+  - D010
+  deprecated: false
+- id: C186
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Convex formulation discarded due to inherent penalty effect
+  type: negative_result
+  evidence:
+  - plan005-sta-low-s42
+  decisions:
+  - D010
+  - D011
+  deprecated: false
+- id: C192
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'H7 (conclusion duplication with ISR inflation) is ISR-amplified ~5x: 70.6%
+    (163/231) vs 13.7% (36/262) under random control (Fisher p=1.3e-39)'
+  type: empirical
+  evidence:
+  - plan002-additive-b01-s42
+  - plan002-additive-b01-s43
+  - plan002-additive-b01-s44
+  - plan018-additive-random-b01-s42
+  - plan018-additive-random-b01-s43-r3
+  - plan018-additive-random-b01-s44-r2
+  decisions:
+  - D043
+  - D057
+  - D095
+  deprecated: false
+- id: C199
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Eight distinct hacking modes identified across reward conditions and logic
+    types
+  type: empirical
+  evidence:
+  - plan012-hacking-taxonomy
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 36/36
+  claims: 36
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 36
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-15T12:00:00.000000+00:00'

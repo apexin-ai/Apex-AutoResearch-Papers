@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "712e05c6df59a7a24122",
+  "project": "min_necessary_circuit_css",
+  "kind": "result",
+  "title": "code phase2 experiment framework",
+  "task_key": "worker_code_phase2_experiment_framework_20260512T220705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_experiment_framework_20260512T220705_result.json",
+    "occurrence": 1,
+    "bytes": 2188,
+    "sha256": "7420642953dde2ecddbac5229f11457882093deae689bd66d384cb940352b396"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇报\n\n### 1. 核心接口设计\n\n| 函数 | 职责 |\n|------|------|\n| `ExperimentConfig` | dataclass，封装单实验全部参数，`to_run_circus_config()` 转换为 `run_circus.run_pipeline()` 入参 |\n| `load_experiment_matrix(yaml)` | 从 YAML 加载实验矩阵，defaults 与每个实验合并 |\n| `run_single_experiment(exp)` | 调用 `run_circus.run_pipeline()`，带缓存检查和断点续跑 |\n| `run_analysis_for_experiment(exp)` | 实验完成后调用 `analyze_mvp_results.run_analysis()` |\n| `run_batch(experiments, names, max_priority)` | 按 priority 排序批量执行，输出 `phase2_batch_summary.json` |\n| `check_cache(exp)` / `load_cached_scores()` / `save_cached_scores()` | 缓存管理，key 绑定 `CANONICAL_VERSION` + 超参哈希 |\n\n### 2. 实验矩阵\n\n**4 模型 × 4 任务 = 16 个实验**\n\n| 模型 | 任务 | 方法 | Backend |\n|------|------|------|---------|\n| GPT-2 Small | IOI, Greater-Than, Docstring | EAP-IG + EP + ACDC | TransformerLens |\n| Qwen-2.5 0.5B | IOI, Greater-Than, Docstring, IOI-variant | EAP-IG + EP + IFR | HuggingFace |\n| Gemma-2 2B | IOI, Greater-Than, Docstring, IOI-variant | EAP-IG + EP + IFR | HuggingFace |\n| Llama-3.1 8B | IOI, Greater-Than, Docstring, IOI-variant | EAP-IG + EP + IFR | HuggingFace |\n\n### 3. Priority 分布\n\n| Priority | 数量 | 说明 |\n|----------|------|------|\n| P1 | **1** | `gpt2_ioi`（MVP 已在跑） |\n| P2 | **5** | GPT-2 另外 2 task + Qwen-2.5 的 3 task |\n| P3 | **10** | Gemma-2 全部 4 task + Llama-3.1 全部 4 task + Qwen IOI-variant |\n\n### 4. 预估全量运行时间\n\n| 模型 | 单 task 耗时 | task 数 | 小计 |\n|------|-------------|---------|------|\n| GPT-2 Small | ~20min | 3 | ~60min |\n| Qwen-2.5 0.5B | ~25min | 4 | ~100min |\n| Gemma-2 2B | ~65min | 4 | ~260min |\n| Llama-3.1 8B | ~150min | 4 | ~600min |\n| **合计** | | **16** | **~1020min (~17h)** |\n\nP1+P2 子集（6 个实验）约 **2.5h**，可在 MVP 通过后当天完成。P3 的 10 个实验约 **14.5h**，需安排过夜跑。Llama-3.1 8B 需 >=24GB VRAM，config 中已降低 `num_samples=20` 和 `edge_pruning_epochs=60` 控制显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-experiment-framework.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "d144-llama-isr-s42",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:35:20.713Z",
+    "updated_at": "2026-05-19T14:20:15.717Z",
+    "hypothesis": "D144 cross-model validation: ISR β=0.1 GRPO on LLaMA-3.2-3B/FOLIO seed=42. If ISR induces same Goodhart collapse pattern (TS dominance) as on Qwen3-4B, confirms ISR-induced collapse is model-agnostic."
+  },
+  "timestamp": "2026-05-19T14:20:16.213584+00:00",
+  "trigger": "update_registry"
+}

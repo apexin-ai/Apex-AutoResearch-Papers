@@ -1,0 +1,16 @@
+{
+  "exp_id": "sweep-isr-b01-s46",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:42:14.600Z",
+    "updated_at": "2026-05-16T03:37:14.977Z",
+    "hypothesis": "W4: ISR β=0.1 s46 extends to 5-seed for tighter confidence intervals",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T03:37:15.489958+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,65 @@
+{
+  "exp_id": "d154-8b-exec-s42-k8",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:45:37.402Z",
+    "updated_at": "2026-05-22T06:34:03.345Z",
+    "hypothesis": "8B K=8 complete stagnation: all K=8 completions produce identical rewards (frac_reward_zero_std=1.0), GRPO advantage=0, zero gradient signal throughout 500 steps. 8B model too deterministic for exec-only GRPO even with K=8. Neither K=4 nor K=8 can break the zero-variance barrier at 8B scale.",
+    "spec": {
+      "command": "python scripts/train_grpo.py --config configs/grpo_exec_only_8b_k8_s42.yaml",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "969671",
+      "log_path": "/tmp/8b_exec_only_s42_k8.log",
+      "submitted_at": "2026-05-22T04:45:45.402Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/solver-trace-ablation/data/proofwriter_fol_200.jsonl",
+      "data_count": 200,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen3-8B (cold-start, no prior checkpoint)",
+      "eval_data": "proofwriter_fol_100.jsonl (post-training eval)",
+      "checkpoint_path": "/root/autodl-tmp/outputs/8b_exec_only_s42_k8/",
+      "wall_clock_seconds": 6497.9,
+      "gpu_hours": 1.8
+    },
+    "parent": "d154-8b-exec-s42-k4v2",
+    "reproduce": {
+      "finished_at": "2026-05-22T06:28:37.540Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T06:28:43.768385+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "prove_rate": 0.159,
+      "mean_isr": 0.083,
+      "parse_rate": 1,
+      "train_loss": 0.017,
+      "grad_norm": 0,
+      "frac_reward_zero_std": 1,
+      "training_steps": 500,
+      "training_time_sec": 6060,
+      "converged": false,
+      "failure_mode": "complete_stagnation_zero_gradient",
+      "note": "K=8 same stagnation as K=4: 8B model too deterministic, all completions get identical reward, GRPO advantage=0"
+    },
+    "completed_at": "2026-05-22T06:34:03.345Z"
+  },
+  "timestamp": "2026-05-22T06:34:03.780166+00:00",
+  "trigger": "update_registry"
+}

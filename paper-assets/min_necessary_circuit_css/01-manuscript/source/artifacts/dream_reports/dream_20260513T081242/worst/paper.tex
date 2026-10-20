@@ -1,0 +1,517 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{natbib}
+
+\newcommand{\css}{\textsc{CSS}}
+\newcommand{\circus}{\textsc{Circus}}
+\newcommand{\eapig}{\textsc{EAP-IG}}
+\newcommand{\ep}{\textsc{EP}}
+\newcommand{\acdc}{\textsc{ACDC}}
+\newcommand{\cpr}{\text{CPR}}
+\newcommand{\cmd}{\text{CMD}}
+
+\title{Why Cross-Method Circuit Consensus Fails:\\An Empirical Analysis}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Circuit discovery methods---such as Edge Attribution Patching (\eapig{}), Edge Pruning (\ep{}), and Automated Circuit Discovery (\acdc{})---aim to identify minimal subgraphs that faithfully explain model behavior. A natural hypothesis is that \emph{consensus} across independently derived circuits should yield higher-quality, more faithful subgraphs.
+We systematically evaluate this hypothesis through \emph{Cross-method Structural consensus Scoring} (\css{}), a binary consensus framework applied to $K \ge 3$ circuit discovery methods across multiple tasks and models.
+Our findings are predominantly negative.
+On GPT-2 Small, \css{} produces a faithful consensus circuit only on Indirect Object Identification (IOI), while failing on Subject--Verb Agreement (SVA) and Arithmetic---a 1/3 success rate.
+Moreover, the sole positive result is confounded by two evaluation artifacts: \acdc{}'s \texttt{isinf} binarization and zero-ablation size bias.
+On Qwen-2.5 0.5B (179k edges), all methods exhibit near-zero pairwise overlap (Jaccard $\approx 0.04$), rendering consensus trivially empty.
+We identify three structural causes of failure: (1) high inter-method correlation on most tasks eliminates the independent-evidence premise of consensus; (2) \acdc{} binarization pathologies inflate apparent method diversity; and (3) combinatorial dilution in larger edge spaces systematically destroys cross-method overlap.
+These results suggest that binary circuit consensus is viable only within a narrow ``Goldilocks zone'' of inter-method agreement, which rarely obtains in practice.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Mechanistic interpretability aims to understand neural network computation by identifying \emph{circuits}---subgraphs of the computational graph that are necessary and sufficient for a given behavior \citep{olah2020zoom,wang2023interpretability,conmy2023automated}.
+Multiple circuit discovery methods have been proposed, including gradient-based attribution \citep{syed2023attribution}, edge pruning \citep{hanna2024does}, and automated search \citep{conmy2023automated}.
+A persistent challenge is that different methods often identify substantially different circuits for the same task \citep{mondorf2025beyond}, raising the question: which edges are ``real''?
+
+One intuitive approach is \emph{consensus}: edges identified by multiple independent methods may constitute a more reliable circuit.
+This idea has been explored through score averaging \citep{mondorf2025beyond} and within-method threshold diversity \citep[\circus{};][]{parekh2026circus}, but systematic cross-method binary consensus remains understudied.
+
+We introduce \emph{Cross-method Structural consensus Scoring} (\css{}), which assigns each edge a score $s \in \{1/K, 2/K, \ldots, 1\}$ based on the fraction of $K$ methods that include it.
+The \css{}$= 1.0$ core---edges selected by all methods---is hypothesized to be maximally faithful and edge-efficient.
+
+Our extensive experiments reveal that this hypothesis \textbf{fails in the majority of settings}.
+Across three tasks on GPT-2 Small and two tasks on Qwen-2.5 0.5B, \css{} produces a positive result only for IOI on GPT-2, and even this case is confounded by evaluation artifacts.
+Rather than presenting \css{} as a method, we pivot to analyzing \emph{why} consensus fails, yielding three contributions:
+
+\begin{enumerate}
+    \item \textbf{Method correlation undermines consensus.} On SVA and Arithmetic, gradient-based methods (\eapig{}, \ep{}) exhibit high pairwise Jaccard ($\ge 0.65$), violating the independent-evidence assumption. The resulting consensus adds no information beyond the most selective single method (\S\ref{sec:gpt2}).
+    \item \textbf{Binarization pathologies inflate diversity.} \acdc{}'s default \texttt{isinf} threshold produces extremely sparse circuits (14--17 edges vs.\ 100 for gradient methods), artificially lowering Jaccard and inflating apparent consensus value. Top-$k$ normalization partially corrects this but does not rescue consensus on failing tasks (\S\ref{sec:binarization}).
+    \item \textbf{Combinatorial dilution destroys consensus at scale.} On Qwen-2.5 0.5B (179k edges), the same top-0.3\% binarization that works on GPT-2 (32k edges) yields near-zero Jaccard ($\le 0.042$) and an empty \css{}$= 1.0$ set, demonstrating that edge-level consensus does not scale (\S\ref{sec:scaling}).
+\end{enumerate}
+
+% ============================================================
+\section{Background and Method}
+\label{sec:method}
+
+\subsection{Circuit Discovery Methods}
+
+We employ three methods from different algorithmic families:
+
+\paragraph{\eapig{} (Edge Attribution Patching with Integrated Gradients)} computes edge importance via the integrated gradient of the patching effect along an interpolation path between clean and corrupted activations \citep{syed2023attribution}.
+
+\paragraph{\ep{} (Edge Pruning)} learns a continuous mask over edges, optimizing for faithfulness while encouraging sparsity through $L_1$ regularization \citep{hanna2024does}.
+
+\paragraph{\acdc{} (Automated Circuit Discovery)} iteratively prunes edges by testing whether each edge's removal changes model output beyond a threshold \citep{conmy2023automated}.
+
+\subsection{Cross-method Structural Consensus Scoring}
+
+Given $K$ circuit discovery methods, each producing a binary edge set $C_k \subseteq E$ over the full edge set $E$ of a transformer, we define:
+\begin{equation}
+    \css{}(e) = \frac{1}{K} \sum_{k=1}^{K} \mathbf{1}[e \in C_k]
+\end{equation}
+The \css{}$= 1.0$ core is $\{e : \css{}(e) = 1\}$, containing edges selected by all $K$ methods.
+
+\subsection{Evaluation Metrics}
+
+We evaluate circuits using:
+\begin{itemize}
+    \item \textbf{Circuit Performance Recovery (CPR)}: the fraction of clean-model performance recovered by the circuit. $\cpr = 1.0$ means perfect recovery.
+    \item \textbf{Circuit Minimality Deviation (CMD)}: a measure of circuit size relative to the full graph. Lower is better.
+    \item \textbf{Pairwise Jaccard}: $J(C_i, C_j) = |C_i \cap C_j| / |C_i \cup C_j|$, measuring overlap between two method outputs.
+\end{itemize}
+
+\subsection{Binarization}
+\label{sec:binarization_method}
+
+A critical preprocessing step is converting continuous scores (\eapig{}, \ep{}) or variable-size outputs (\acdc{}) into comparable binary edge sets.
+We use \textbf{top-$k$} binarization: select the top $k$ edges by importance score for each method.
+We also examine \acdc{}'s default \textbf{\texttt{isinf}} binarization, which retains only edges with infinite importance (those whose removal changes the output token), typically yielding 14--17 edges.
+
+% ============================================================
+\section{GPT-2 Small Experiments}
+\label{sec:gpt2}
+
+We evaluate \css{} with $K = 3$ (\eapig{}, \ep{}, \acdc{}) on three tasks using GPT-2 Small (117M parameters, 32,491 total edges).
+
+\subsection{Indirect Object Identification (IOI)}
+
+IOI requires the model to predict the indirect object in sentences like ``When Mary and John went to the store, John gave a drink to \underline{\hspace{1cm}}''.
+
+\paragraph{Results.} With top-$k$ binarization ($k = 100$), pairwise Jaccard values are moderate: $J(\text{\eapig{}}, \text{\ep{}}) = 0.307$, $J(\text{\eapig{}}, \text{\acdc{}}) = 0.093$, $J(\text{\ep{}}, \text{\acdc{}}) = 0.133$.
+The \css{}$= 1.0$ core contains 7 edges with CPR $= 0.109$ under zero ablation, exceeding all single-method baselines at $k = 75$ (best single CPR $= 0.029$).
+This is the \textbf{only positive result} across all experiments.
+
+\subsection{Subject--Verb Agreement (SVA)}
+
+SVA requires predicting the correct verb number in sentences with intervening attractors.
+
+\paragraph{Results.}
+The gradient methods are highly correlated: $J(\text{\eapig{}}, \text{\ep{}}) = 0.653$, near the failure threshold.
+The \css{}$= 1.0$ core contains 44 edges with mean CPR $= 1.173$, while the best single method (\acdc{} at $k = 75$) achieves CPR $= 1.175$.
+Multi-seed bootstrap analysis ($n = 5$ seeds) yields $\Delta\text{CPR} = 0.000 \pm 0.009$ with 95\% CI $[-0.012, +0.019]$ spanning zero.
+Table~\ref{tab:sva_bootstrap} shows per-seed results.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Seed} & \textbf{\css{}$=1.0$ CPR} & \textbf{\acdc{} CPR} & $\boldsymbol{\Delta}$ \\
+\midrule
+42 (original)   & 1.187 & 1.175 & $+0.013$ \\
+123             & 1.168 & 1.179 & $-0.011$ \\
+456             & 1.178 & 1.182 & $-0.004$ \\
+789             & 1.175 & 1.170 & $+0.005$ \\
+1024            & 1.171 & 1.174 & $-0.003$ \\
+\midrule
+Mean $\pm$ std  & $1.176 \pm 0.007$ & $1.176 \pm 0.005$ & $0.000 \pm 0.009$ \\
+\bottomrule
+\end{tabular}
+\caption{SVA multi-seed bootstrap analysis. The apparent advantage at seed 42 vanishes under replication; the 95\% CI for $\Delta$CPR includes zero.}
+\label{tab:sva_bootstrap}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Condition} & \textbf{Result} & \textbf{Note} \\
+\midrule
+$J_{\max} < 0.70$ & PASS (0.653) & marginal \\
+$|\css{} \ge 2/3| \ge 10$ & PASS (54) & \\
+$|\css{} = 1.0| \ge 3$ & PASS (44) & \\
+CPR dominance & FAIL ($\Delta \approx 0$) & CI includes zero \\
+\bottomrule
+\end{tabular}
+\caption{SVA diagnostic conditions. The high inter-method Jaccard (0.653) and absence of CPR dominance indicate consensus failure.}
+\label{tab:sva_conditions}
+\end{table}
+
+\paragraph{Verdict: FAIL.} The high $J(\text{\eapig{}}, \text{\ep{}})$ means gradient methods dominate the consensus, and \css{} reduces to a noisy version of \acdc{}.
+
+\subsection{Arithmetic (Two-Digit Addition)}
+
+The model must produce the correct sum for prompts like ``47 + 38 =''.
+
+\paragraph{Results.}
+Inter-method correlation is the highest across all tasks: $J(\text{\eapig{}}, \text{\ep{}}) = 0.695$.
+Under mean ablation, \css{}$= 1.0$ achieves CPR $= 0.919$ vs.\ best single method CPR $= 0.985$, a \emph{deficit} of $-0.066$.
+
+\paragraph{Verdict: FAIL.} When methods substantially agree, consensus merely selects the intersection---which is smaller but not more faithful.
+
+\subsection{Factual Recall (Abandoned)}
+
+We attempted factual recall (country--capital pairs) on GPT-2 Small but abandoned the experiment due to task--model mismatch: baseline accuracy was only 52\% ($\pm 15\%$), barely above the 25\% random baseline.
+\acdc{} could not converge under such unstable baselines, and gradient methods produced circuits with near-zero faithfulness (\eapig{} $k = 50$: CPR $= 0.02$; \ep{} $k = 50$: CPR $= -0.01$).
+GPT-2 Small lacks sufficient parametric knowledge for localized factual retrieval circuits.
+
+\subsection{GPT-2 Summary}
+
+Table~\ref{tab:gpt2_summary} summarizes all GPT-2 results. \css{} succeeds only on IOI (1/3 tasks), where max pairwise Jaccard is lowest (0.307).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Task} & $\boldsymbol{J_{\max}}$ & \textbf{\css{}$=1.0$ CPR} & \textbf{Best Single} & \textbf{Verdict} \\
+\midrule
+IOI        & 0.307 & $+0.109$ & $+0.029$ & PASS \\
+SVA        & 0.653 & $+1.173$ & $+1.175$ & FAIL \\
+Arithmetic & 0.695 & $+0.919$ & $+0.985$ & FAIL \\
+\bottomrule
+\end{tabular}
+\caption{GPT-2 Small results across three tasks. \css{} shows advantage only on IOI, where inter-method Jaccard is lowest. CPR values for IOI use zero ablation; SVA and Arithmetic use mean ablation.}
+\label{tab:gpt2_summary}
+\end{table}
+
+% ============================================================
+\section{Binarization and Ablation Confounds}
+\label{sec:binarization}
+
+The sole positive result (IOI) is subject to two confounds that we analyze in detail.
+
+\subsection{\acdc{} \texttt{isinf} vs.\ Top-$k$ Binarization}
+
+\acdc{}'s default \texttt{isinf} threshold retains only 14 edges on IOI, compared to 100 for gradient methods at $k = 100$.
+This extreme sparsity mismatch artificially deflates $J(\text{\acdc{}}, \cdot)$ and makes \css{}$= 1.0 \approx$ \acdc{}.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Task} & $\boldsymbol{J}$ \textbf{(isinf)} & $\boldsymbol{J}$ \textbf{(top-$k$)} & $\boldsymbol{\Delta J}$ & \textbf{Outcome change?} \\
+\midrule
+IOI        & 0.09 & 0.25 & $+0.16$ & No (still PASS) \\
+Arithmetic & 0.17 & 0.42 & $+0.25$ & No (still FAIL) \\
+SVA        & 0.37 & 0.37 & $0$ & N/A (already top-$k$) \\
+\bottomrule
+\end{tabular}
+\caption{Effect of \acdc{} binarization on Jaccard. \texttt{isinf} systematically deflates Jaccard by producing extremely sparse circuits.}
+\label{tab:acdc_binarization}
+\end{table}
+
+Top-$k$ normalization raises IOI's $J(\text{\acdc{}}, \cdot)$ from 0.09 to 0.25 (Table~\ref{tab:acdc_binarization}), but the \css{} positive result persists---indicating that while \texttt{isinf} inflates apparent diversity, it is not the sole driver.
+
+\subsection{Top-$k$ Sensitivity Sweep}
+
+We sweep $k \in \{50, 75, 100, 150\}$ across all GPT-2 tasks (Table~\ref{tab:topk_sweep}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Task} & $k{=}50$ & $k{=}75$ & $k{=}100$ & $k{=}150$ & \textbf{Stable?} & \textbf{Beats single?} \\
+\midrule
+IOI (zero)     & 0.109 & 0.102 & 0.095 & 0.088 & Yes & Yes (all $k$) \\
+SVA (mean)     & 1.185 & 1.187 & 1.174 & 1.168 & Yes & No (all $k$) \\
+Arith (mean) & 0.919 & 0.919 & 0.926 & 0.933 & Yes & No (all $k$) \\
+\bottomrule
+\end{tabular}
+\caption{\css{}$= 1.0$ CPR across top-$k$ values. \css{} is stable across $k$ ($\text{std} < 0.02$), but the failure pattern on SVA and Arithmetic is also stable---binarization is not the cause of failure.}
+\label{tab:topk_sweep}
+\end{table}
+
+\css{} CPR is stable across $k$ (std $< 0.02$ within each task), confirming that binarization threshold is not responsible for consensus failure. The failure is structural: method correlation, not $k$-sensitivity.
+
+\subsection{Ablation Method Sensitivity}
+\label{sec:ablation_confound}
+
+We compare zero, mean, and resample ablation on all three GPT-2 tasks (Table~\ref{tab:ablation}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{Zero} $\boldsymbol{\Delta}$ & \textbf{Mean} $\boldsymbol{\Delta}$ & \textbf{Resample} $\boldsymbol{\Delta}$ \\
+\midrule
+IOI        & $+0.080$ & $+0.007$ & $+0.003$ \\
+SVA        & $-0.470$ & $-0.002$ & $-0.020$ \\
+Arithmetic & $-0.053$ & $-0.066$ & $-0.070$ \\
+\bottomrule
+\end{tabular}
+\caption{\css{} advantage ($\Delta = \text{CSS}_{1.0}\text{ CPR} - \text{best single CPR}$) by ablation method. IOI's advantage shrinks from $+0.080$ (zero) to $+0.003$ (resample), entering the noise floor.}
+\label{tab:ablation}
+\end{table}
+
+IOI's \css{} advantage drops from $+0.080$ under zero ablation to $+0.007$ (mean) and $+0.003$ (resample).
+Zero ablation disproportionately penalizes larger circuits: ablating 93 non-consensus edges to zero causes cascading disruption, while the 7-edge \css{}$= 1.0$ core suffers minimal cascade loss.
+Under mean or resample ablation, which mitigate this size bias, the advantage is within noise.
+
+SVA and Arithmetic show negative $\Delta$ under all ablation methods, confirming their failure is robust.
+
+\paragraph{Implication.} IOI's positive result requires the conjunction of \acdc{} \texttt{isinf} sparsity \emph{and} zero ablation bias. Removing either confound substantially reduces or eliminates the advantage.
+
+% ============================================================
+\section{Cross-Model Scaling Failure}
+\label{sec:scaling}
+
+\subsection{Qwen-2.5 0.5B: IOI}
+
+To test generalization, we apply \css{} to Qwen-2.5 0.5B on IOI.
+The model has 179,388 total edges---5.5$\times$ larger than GPT-2 Small's 32,491.
+
+At top-0.3\% binarization ($\sim$538 edges per method), pairwise Jaccard values collapse:
+$J(\text{\eapig{}}, \text{\ep{}}) = 0.042$,
+$J(\text{\eapig{}}, \text{\acdc{}}) = 0.006$,
+$J(\text{\ep{}}, \text{\acdc{}}) = 0.008$.
+The \css{}$= 1.0$ core is \textbf{empty} (0 edges).
+Even the relaxed \css{}$\ge 2/3$ set contains only 66 edges with CPR $= 0.031$, far below single-method baselines (best: \eapig{} CPR $= 0.055$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \textbf{GPT-2 Small} & \textbf{Qwen-2.5 0.5B} & \textbf{Ratio} \\
+\midrule
+Total edges     & 32,491  & 179,388 & 5.5$\times$ \\
+Top-$k$ (0.3\%) & $\sim$100 & $\sim$538 & 5.4$\times$ \\
+Max Jaccard ($J_{\eapig{} \times \ep{}}$) & 0.307   & 0.042   & 7.3$\times\downarrow$ \\
+\css{}$= 1.0$ edges & 7 & 0 & --- \\
+\css{}$= 1.0$ CPR   & 0.109 & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{GPT-2 vs.\ Qwen-2.5 edge space scaling. Jaccard drops superlinearly with edge space size, rendering consensus empty on the larger model.}
+\label{tab:scaling}
+\end{table}
+
+\paragraph{IFR vs.\ \acdc{} as third method.}
+We tested both Iterative Feature Removal (IFR) and \acdc{} top-$k$ as the third method (Table~\ref{tab:qwen_third}).
+Both fail identically: IFR yields $J = 0.000$ with both gradient methods; \acdc{} yields $J \le 0.008$.
+The failure is not method-specific but structural.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Third method} & $\boldsymbol{J(\cdot, \text{\eapig{}})}$ & $\boldsymbol{J(\cdot, \text{\ep{}})}$ & \textbf{\css{}$= 1.0$} \\
+\midrule
+IFR   & 0.000 & 0.000 & 0 edges \\
+\acdc{} & 0.006 & 0.008 & 0 edges \\
+\bottomrule
+\end{tabular}
+\caption{Qwen-2.5 IOI: both candidate third methods produce near-zero overlap with gradient methods. The failure is independent of method choice.}
+\label{tab:qwen_third}
+\end{table}
+
+\subsection{Qwen-2.5 0.5B: Arithmetic}
+
+The pattern replicates on Arithmetic: $J_{\max} = 0.038$, \css{}$= 1.0 = 0$ edges, \css{}$\ge 2/3 = \sim 55$ edges with CPR $= 0.025$.
+Table~\ref{tab:qwen_tasks} confirms that all Qwen tasks exhibit the same degenerate pattern.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{\css{}$= 1.0$ edges} & $\boldsymbol{J_{\max}}$ & \textbf{Verdict} \\
+\midrule
+IOI (IFR)             & 0 & 0.000 & FAIL \\
+IOI (\acdc{})         & 0 & 0.042 & FAIL \\
+Arithmetic (\acdc{})  & 0 & $\sim$0.038 & FAIL \\
+\bottomrule
+\end{tabular}
+\caption{All Qwen-2.5 0.5B configurations fail with the same pattern: near-zero Jaccard and empty consensus core.}
+\label{tab:qwen_tasks}
+\end{table}
+
+\subsection{Combinatorial Dilution}
+
+The mechanism is \emph{combinatorial dilution}: when the edge space grows by $5.5\times$ but circuit structure does not scale linearly, a fixed top-$k$ percentage selects non-overlapping subsets.
+At GPT-2 scale, top-0.3\% yields $\sim$100 edges from a 32k pool; at Qwen scale, $\sim$538 edges from 179k.
+The IOI circuit distributes across more layers and heads in the larger model, and each method traces a different subset of the expanded computation paths.
+
+Extrapolating the Jaccard decay ($0.307 \to 0.042$ over $5.5\times$ edge space growth), models at Gemma-2 2B scale ($\sim$500k edges) would yield $J_{\max} \approx 0.01$, and LLaMA-3.1 8B ($\sim$2M edges) would approach random intersection baselines ($J \approx 0.003$).
+We did not run these experiments, as the scaling trend is already clear.
+
+% ============================================================
+\section{Comparison with \circus{}}
+\label{sec:circus}
+
+\circus{} \citep{parekh2026circus} constructs consensus \emph{within} a single method by varying the pruning threshold.
+We compare both consensus approaches on GPT-2 tasks (Table~\ref{tab:circus}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{IOI CPR} & \textbf{SVA CPR} & \textbf{Arith CPR} & \textbf{Tasks $+$} \\
+\midrule
+\circus{}      & $-0.108$ & $-0.150$ & $-0.120$ & 0/3 \\
+\css{}$= 1.0$  & $+0.109$ & $-0.820$ & $-0.184$ & 1/3 \\
+Best single    & $+0.029$ & $-0.348$ & $-0.131$ & 0/3 \\
+\bottomrule
+\end{tabular}
+\caption{Comparison with \circus{} (zero ablation). Both consensus methods are severely limited. \circus{} fails on all tasks; \css{} succeeds only on IOI.}
+\label{tab:circus}
+\end{table}
+
+\circus{} produces negative CPR on all three tasks, performing worse than random ablation.
+Its within-method threshold sweep constructs nested sets ($k{=}50 \subset k{=}100 \subset k{=}150$) whose intersection equals the most conservative cut---it cannot leverage cross-method information.
+\css{} outperforms \circus{} on IOI where methods genuinely disagree, but neither method provides reliable consensus on the majority of tasks.
+
+% ============================================================
+\section{Jaccard as a Diagnostic}
+\label{sec:jaccard}
+
+Given that \css{} fails when methods are too similar (high Jaccard) or too different (low Jaccard at scale), we examine whether pairwise Jaccard can serve as a \emph{diagnostic} for when consensus is viable.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccll}
+\toprule
+\textbf{Task$\times$Model} & $\boldsymbol{J_{\max}}$ & \textbf{\css{} $\Delta$} & \textbf{Quality} & \textbf{Confounds} \\
+\midrule
+IOI$\times$GPT-2     & 0.307 & $+0.080$ & confounded & isinf + zero \\
+SVA$\times$GPT-2     & 0.653 & $-0.002$ & neutral    & $\Delta \approx$ noise \\
+Arith$\times$GPT-2   & 0.695 & $-0.066$ & negative   & --- \\
+IOI$\times$Qwen      & 0.042 & undef.  & degenerate & \css{}$= 1.0$ empty \\
+Arith$\times$Qwen    & 0.038 & undef.  & degenerate & \css{}$= 1.0$ empty \\
+\bottomrule
+\end{tabular}
+\caption{Jaccard--utility relationship across all task$\times$model pairs. Only $n = 3$ valid points exist; $n = 2$ are degenerate.}
+\label{tab:jaccard_utility}
+\end{table}
+
+Table~\ref{tab:jaccard_utility} reveals that with only 3 valid data points, no statistically significant correlation exists (Spearman $\rho = -0.50$, $p = 0.67$).
+The sole positive data point (IOI$\times$GPT-2) is confounded and serves as a Cook's $D > 5.0$ influential point that drives the entire negative trend.
+The Qwen data points are degenerate---\css{} advantage is undefined when the consensus set is empty.
+
+Rather than ``Jaccard predicts consensus utility,'' the data suggest a \textbf{Goldilocks zone} hypothesis: consensus requires Jaccard high enough for non-empty intersection, yet low enough that the intersection carries information beyond any single method.
+Our experiments show that the upper bound (too-high Jaccard) manifests on GPT-2 SVA/Arithmetic, while the lower bound (too-low Jaccard) manifests on Qwen.
+The viable zone---if it exists---is narrow and task-specific.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Analysis} & $\boldsymbol{\rho}$ & $\boldsymbol{p}$ & $\boldsymbol{n}$ & \textbf{Interpretation} \\
+\midrule
+All valid points            & $-0.50$ & 0.67 & 3 & not significant \\
+Remove IOI (confounded)     & undef.  & ---  & 2 & cannot compute \\
+Include Qwen ($\Delta{=}{-}0.05$ proxy) & $-0.30$ & 0.62 & 5 & not significant \\
+\bottomrule
+\end{tabular}
+\caption{Jaccard--utility correlation is not statistically significant under any analysis.}
+\label{tab:correlation}
+\end{table}
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Why does IOI succeed?}
+IOI on GPT-2 is a well-studied task with a known ground-truth circuit \citep{wang2023interpretability}.
+The three methods discover genuinely different subsets of this circuit: \eapig{} and \ep{} favor different attention heads, and \acdc{}'s greedy search identifies a distinct sparse backbone.
+The $J_{\max} = 0.307$ reflects real algorithmic diversity, and the 7-edge consensus core captures high-confidence edges.
+However, even this success is fragile: under mean ablation, the advantage drops to $+0.007$.
+
+\paragraph{When methods are not independent.}
+\eapig{} and \ep{} are both gradient-based and share the same underlying signal (gradient of the patching effect).
+On SVA, where number-tracking heads in layers 7--10 dominate, both methods converge on the same edges ($J = 0.653$).
+True $K$-method consensus requires methods from genuinely different algorithmic families---a condition that is harder to satisfy than it appears.
+
+\paragraph{The scaling wall.}
+The combinatorial dilution effect is perhaps the most significant finding.
+Edge-level consensus fundamentally assumes that different methods can ``see'' the same edges.
+In larger models, the same behavioral circuit may be implemented through different edge-level paths, and each method discovers a different valid decomposition.
+This is not a failure of any individual method but a structural property of edge-level analysis in deep networks.
+
+\paragraph{Implications for mechanistic interpretability.}
+Our results suggest that edge-level binary consensus is not a viable path to more reliable circuit identification, at least not without addressing the independence and scaling challenges.
+Possible directions include: (1) consensus at the \emph{node} (attention head) rather than edge level, where combinatorial dilution is less severe; (2) soft consensus using calibrated scores rather than binary membership; and (3) consensus conditional on method family, explicitly accounting for inter-method correlation.
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Circuit discovery.}
+Activation patching \citep{vig2020investigating,geiger2021causal} and its automated variants \citep{conmy2023automated,syed2023attribution,hanna2024does} identify circuits by measuring the causal effect of interventions.
+\citet{wang2023interpretability} manually identified the IOI circuit in GPT-2.
+
+\paragraph{Cross-method comparison.}
+\citet{mondorf2025beyond} compared gradient-based circuit discovery methods and proposed score averaging.
+Their work focuses on methods within the gradient family; we extend to cross-family consensus.
+\citet{parekh2026circus} proposed \circus{}, a within-method consensus approach using threshold diversity.
+
+\paragraph{Circuit faithfulness evaluation.}
+\citet{hanna2024does} introduced systematic faithfulness metrics.
+Our ablation sensitivity analysis (\S\ref{sec:ablation_confound}) highlights that faithfulness measurements are sensitive to the choice of ablation method---a confound that affects all circuit evaluation, not just consensus approaches.
+
+% ============================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Limited task and model coverage.}
+We evaluate only 3 completed tasks on GPT-2 Small and 2 on Qwen-2.5 0.5B.
+The factual recall experiment was abandoned due to task--model mismatch (GPT-2 Small baseline accuracy $= 52\%$), and larger models (Gemma-2 2B, LLaMA-3.1 8B) were not attempted due to the established scaling trend and hardware constraints.
+
+\paragraph{Method family diversity.}
+Two of our three methods (\eapig{}, \ep{}) are gradient-based.
+This limits the effective diversity to $K \approx 2$ in some settings.
+A truly diverse ensemble would require methods from more distinct algorithmic families.
+
+\paragraph{Sample size for correlation analysis.}
+With $n = 3$ valid data points, we cannot establish statistical relationships between Jaccard and consensus utility.
+The Goldilocks zone hypothesis remains speculative.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We present a systematic empirical analysis of cross-method circuit consensus, evaluating \css{} across multiple tasks and model scales.
+Our central finding is negative: binary edge-level consensus fails in 4 out of 5 task--model configurations, and the sole positive case (IOI on GPT-2) is confounded by binarization artifacts and ablation method bias.
+
+Three structural factors explain the failure: (1) insufficient method independence, particularly between gradient-based approaches; (2) binarization pathologies that create misleading diversity signals; and (3) combinatorial dilution that renders edge-level consensus impossible at scale.
+
+These findings carry a constructive message: before investing in consensus-based circuit refinement, practitioners should verify that their methods produce genuinely independent evidence---measurable via pairwise Jaccard---and that the edge space is small enough for meaningful overlap.
+The Goldilocks zone for viable consensus appears narrow, task-specific, and difficult to guarantee a priori.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,1049 @@
+# code plan009 sft prep
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/chats/worker_code_plan009-sft-prep_20260514T105249.jsonl`
+- **Structured JSON:** [`6cba4f187d10d2ac1347.json`](../../sessions/6c/6cba4f187d10d2ac1347.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+35 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T10:53:50.206677+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T10:53:50.207064+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T10:53:50.207249+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/scripts/*sft* /root/solver-trace-ablation/scripts/*SFT* 2>/dev/null; echo \"---ALL_SCRIPTS---\"; ls /root/solver-trace-ablation/scripts/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/scripts/*sft* /root/solver-trace-ablation/scripts/*SFT* 2>/dev/null; echo \"---ALL_SCRIPTS---\"; ls /root/solver-trace-ablation/scripts/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T10:53:50.207394+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T10:53:50.207521+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -80 /root/solver-trace-ablation/scripts/train_grpo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -80 /root/solver-trace-ablation/scripts/train_grpo.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T10:53:50.207642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -3 /root/solver-trace-ablation/data/train_500_seed42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -3 /root/solver-trace-ablation/data/train_500_seed42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T10:53:50.207876+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. <FOL formul
+…[truncated 1107 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T10:53:50.208105+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"folio_473\\\", \\\"context\\\": \\\"Belgium, France, and Germany are European countries.\\\\nParis is the capital of France.\\\\nThe Eiffel Tower is one of the main tourist attractions located in Paris.\\\\nSome people who live in Belgium speak French.\\\\nIf John goes to Europe, he will see some tourist attractions.\\\\nJohn speaks French.\\\", \\\"question\\\": \\\"If John goes to Europe, he will see the Eiffel Tower.\\\", \\\"answer\\\": \\\"unknown\\\", \\\"fol_premises\\\": [\\\"EuropeanCountry(belgium) ∧ EuropeanCountry(france) ∧ EuropeanCountry(germany)\\\", \\\"CapitalOf(paris, france)\\\", \\\"TouristAttraction(eiffelTower) ∧ LocatedIn(eiffelTower, paris)\\\", \\\"∃x (LiveIn(x, belgium) → Speak(x, french))\\\", \\\"∃x (GoTo(john, europe) → (See(john, x) ∧ TouristAttraction(x)))\\\", \\\"Speak(john, french)\\\"], \\\"fol_conclusion\\\": \\\"GoTo(john, europe) → See(john, eiffelTower)\\\", \\\"depth\\\": 3}\\n{\\\"id\\\": \\\"folio_1181\\\", \\\"context\\\": \\\"Some employees in James's town who work in business analysis are good at math. \\\\nAll of the employees in James's town who work in business analysis are working for this company. \\\\nNone of the employees in James's town who work for this company are from China. \\\\nAll of the employees in James's town working in software engineering are from China. \\\\nLeif is an employee in James's town, and he is working in software engineering.  \\\", \\\"question\\\": \\\"Leif is good at math.\\\", \\\"answer\\\": \\\"unknown\\\", \\\"fol_premises\\\": [\\\"∃x ∃y (EmployeeIn(x, jamesSTown) ∧ WorkIn(x, businessAnalysis) ∧ GoodAt(x, math) ∧ (¬(x=y)) ∧ EmployeeIn(y, jamesSTown) ∧ WorkIn(y, businessAnalysis) ∧ GoodAt(y, math))\\\", \\\"∀x ((EmployeeIn(x, jamesSTown) ∧ WorkIn(x, businessAnalysis)) → WorkFor(x, thisCompany))\\\", \\\"∀x ((EmployeeIn(x, jamesSTown) ∧ WorkFor(x, thisCompany)) → ¬From(x, china))\\\", \\\"∀x (EmployeeIn(x, jamesS
+…[truncated 1956 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T10:53:50.208259+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"*qwen*\" -o -name \"*Qwen*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"*qwen*\" -o -name \"*Qwen*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T10:53:50.208387+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T10:53:50.208534+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/solver-trace-ablation/scripts/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/solver-trace-ablation/scripts/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T10:53:50.208672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/solver-trace-ablation/scripts/classify_h7.py\\n/root/solver-trace-ablation/scripts/eval_cross_solver.py\\n/root/solver-trace-ablation/scripts/eval_downstream.py\\n/root/solver-trace-ablation/scripts/eval_o1_vs_on.py\\n/root/solver-trace-ablation/scripts/eval_sta.py\\n/root/solver-trace-ablation/scripts/gt_isr_baseline.py\\n/root/solver-trace-ablation/scripts/phase0_baseline.py\\n/root/solver-trace-ablation/scripts/prepare_data.py\\n/root/solver-trace-ablation/scripts/sta_prolog.py\\n/root/solver-trace-ablation/scripts/train_grpo.py\\n/root/solver-trace-ablation/scripts/train_sft.py\\n/root/solver-trace-ablation/scripts/verify_xor.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T10:53:50.208823+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*Qwen*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*Qwen*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T10:53:50.208949+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--Qwen--Qwen3-4B\\n/root/autodl-tmp/.hf_cache/Qwen\\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-0___5B\\n/root/autodl-tmp/.hf_cache/._____temp/Qwen\\n/root/autodl-tmp/.ms_cache/._____temp/Qwen\\n/root/autodl-tmp/.ms_cache/Qwen\\n/root/autodl-tmp/.ms_cache/Qwen/Qwen3-4B\\n/root/autodl-tmp/models/Qwen3-4B\\n/root/autodl-tmp/models/Qwen3-4B-ms\\n/root/autodl-tmp/models/Qwen3-4B-ms/Qwen\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T10:53:50.209065+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "python3 -c \"from trl import SFTTrainer; print('SFTTrainer available')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "python3 -c \"from trl import SFTTrainer; print('SFTTrainer available')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T10:53:50.209181+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T10:53:50.209319+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "python3 /root/solver-trace-ablation/scripts/eval_sta.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "python3 /root/solver-trace-ablation/scripts/eval_sta.py --help",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T10:53:50.209445+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python script execution not allowed; use -c for inline expressions only. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T10:53:50.209595+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/scripts/train_sft.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "cat /root/solver-trace-ablation/scripts/train_sft.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T10:53:50.209896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SFT baseline training on FOLIO NL→FOL (plan_009).\\n\\nSupervised fine-tuning: input = NL premises + conclusion,\\noutput = FOL formalization. Uses trl.SFTTrainer.\\n\\nInputs:\\n  --model_path   Base model (e.g. Qwen3-4B)\\n  --data_path    FOLIO JSONL with fol_premises/fol_conclusion fields\\n  --output_dir   Checkpoint output directory\\n  --max_steps    Training steps (default 200)\\n  --seed         Random seed\\n\\nData format: each JSONL line must have:\\n  context, question, fol_premises (list[str]), fol_conclusion (str)\\n\\nDependencies: transformers, trl, datasets, torch\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. &lt;FOL formula>\\\\n\\\"\\n    \\\"2. &lt;FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: &lt;FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\ndef format_fol_output(fol_premises: list[str], fol_conclusion: str) -> str:\\n    \\\"\\\"\\\"Format FOL premises + conclusion as the target output string.\\\"\\\"\\\"\\n    lines = [\\\"Premises:\\\"]\\n   
+…[truncated 5958 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T10:53:50.210099+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -type d -name \"*1.5*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/ -maxdepth 4 -type d -name \"*1.5*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T10:53:50.210237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T10:53:50.210356+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -type d -name \"*1___5*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "find /root/autodl-tmp/ -maxdepth 4 -type d -name \"*1___5*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T10:53:50.210484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T10:53:50.210601+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -r \"eval_sta\" /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -r \"eval_sta\" /root/solver-trace-ablation/scripts/eval_sta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T10:53:50.210765+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T10:53:50.210899+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -30 /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "head -30 /root/solver-trace-ablation/scripts/eval_sta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T10:53:50.211035+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate a checkpoint with full STA (Solver Trace Ablation) metrics.\\n\\nSupports both FOL (Prover9) and Prolog (swipl) logic types.\\n\\nLoads a fine-tuned model, generates formalizations on a test set,\\nruns solver + STA ablation to compute ISR, and outputs a JSON report.\\n\\nInputs:\\n  --model_path   Path to HF checkpoint directory\\n  --data_path    JSONL file\\n  --logic_type   \\\"fol\\\" or \\\"prolog\\\"\\n  --output_path  Where to write the JSON report\\n\\nOutput JSON keys:\\n  summary.prove_rate, summary.mean_isr, summary.isr_std, summary.median_isr,\\n  summary.isr_pr_ratio (mean_isr / prove_rate), per-sample details in results[].\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport re\\nimport statistics\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T10:53:50.211189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/eval_sta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "grep -n \"add_argument\" /root/solver-trace-ablation/scripts/eval_sta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T10:53:50.211326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"159:    parser.add_argument(\\\"--model_path\\\", type=str, required=True)\\n160:    parser.add_argument(\\\"--data_path\\\", type=str, required=True)\\n161:    parser.add_argument(\\\"--output_path\\\", type=str, required=True)\\n162:    parser.add_argument(\\\"--logic_type\\\", type=str, default=\\\"fol\\\", choices=[\\\"fol\\\", \\\"prolog\\\"],\\n164:    parser.add_argument(\\\"--solver\\\", type=str, default=None,\\n166:    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=512)\\n167:    parser.add_argument(\\\"--timeout\\\", type=int, default=5)\\n168:    parser.add_argument(\\\"--max_samples\\\", type=int, default=None,\\n170:    parser.add_argument(\\\"--do_sample\\\", action=\\\"store_true\\\", help=\\\"Use sampling instead of greedy decoding\\\")\\n171:    parser.add_argument(\\\"--temperature\\\", type=float, default=1.0, help=\\\"Sampling temperature\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T10:53:50.211456+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "ls /root/autodl-tmp/.hf_cache/Qwen/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "ls /root/autodl-tmp/.hf_cache/Qwen/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T10:53:50.211581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B\\nQwen2___5-0___5B\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T10:53:50.211720+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-39279",
+    "command": "df -h /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T10:53:50.211913+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  214G   37G  86% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan009-sft-prep_20260514T105249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-14T10:53:50.212083+00:00_
+
+检查 `save_total_limit` 问题——当前 train_sft.py 设了 `save_total_limit=3`，按 C003 约束应改为 1。
+
+汇总报告：
+
+### Plan009 SFT Baseline 准备状态
+
+| 项目 | 状态 | 详情 |
+|------|------|------|
+| **SFT 训练脚本** | 已存在 | `/root/solver-trace-ablation/scripts/train_sft.py`，使用 TRL `SFTTrainer`，chat 格式 |
+| **训练数据 GT 字段** | 有 | `fol_premises`（list[str]）+ `fol_conclusion`（str）字段齐全，脚本已实现格式化 |
+| **Qwen2.5-1.5B** | **未下载** | 只有 Qwen3-4B 和 Qwen2.5-0.5B，需要下载 1.5B |
+| **TRL SFTTrainer** | 可用 | 脚本中 `from trl import SFTConfig, SFTTrainer`，环境已装 TRL |
+| **eval_sta.py 兼容性** | 兼容 | 接受 `--model_path` 指向任意 HF checkpoint，与模型无关 |
+
+### 需要的准备工作
+
+1. **下载 Qwen2.5-1.5B 模型** — 磁盘剩余 37GB，模型约 3GB，空间充足。建议用 ModelScope 下载到 `/root/autodl-tmp/models/Qwen2.5-1.5B`
+
+2. **修复 train_sft.py 的 `save_total_limit`** — 当前设为 3，按 C003 约束必须改为 1，防止磁盘耗尽
+
+3. **其他** — 数据格式无需转换，eval 管线直接兼容，无其他阻塞项
+
+是否现在执行模型下载和脚本修复？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_plan009-sft-prep_20260514T105249"
+}
+```
+
+</details>
+
+---

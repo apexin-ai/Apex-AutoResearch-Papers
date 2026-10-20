@@ -1,0 +1,19 @@
+{
+  "exp_id": "plan001-exec-only-s44-1000",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:22:45.226Z",
+    "updated_at": "2026-05-15T13:27:54.581Z",
+    "hypothesis": "Exec-only GRPO 1000步 seed=44：与 plan016(s42) 相同配置的第三个 seed。完成 3-seed exec-only 1000步统计，与 SFT 1000步 3-seed 对照，统计支撑 Goodhart collapse 是 RL 特有现象的 claim。",
+    "parent": "plan016-extended-1000-s42",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root"
+  },
+  "timestamp": "2026-05-15T13:27:54.845756+00:00",
+  "trigger": "update_registry"
+}

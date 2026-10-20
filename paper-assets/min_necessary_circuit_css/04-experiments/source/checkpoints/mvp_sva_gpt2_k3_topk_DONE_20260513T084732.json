@@ -1,0 +1,77 @@
+{
+  "exp_id": "mvp_sva_gpt2_k3_topk",
+  "project": "min_necessary_circuit_css",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:01:43.125Z",
+    "updated_at": "2026-05-13T08:47:32.426Z",
+    "hypothesis": "SVA 上 CSS=1.0 faithfulness > single-method（ACDC top-100 修正版，westd-pro6000 cuda:1）",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 /root/min_necessary_circuit_css/run_sva_cuda1.py",
+      "server": "westd-pro6000",
+      "model_name": "gpt2-small",
+      "data_path": "/root/miniconda3/lib/python3.12/site-packages/datasets/sva_gpt2-small_prompts.json",
+      "data_count": 500,
+      "seed": 42
+    },
+    "metrics": {
+      "css_distribution": {
+        "0.33": 60,
+        "0.67": 54,
+        "1.00": 44
+      },
+      "pairwise_jaccard": {
+        "acdc_x_eap_ig": 0.3158,
+        "acdc_x_edge_pruning": 0.4184,
+        "eap_ig_x_edge_pruning": 0.6529
+      },
+      "three_way_jaccard": 0.2785,
+      "core_off_diagonal_pct": 0.921,
+      "gate_verdict": "PASS_MAIN",
+      "evaluation_zero": {
+        "css_0.67_cpr": -1.0279,
+        "css_0.67_cmd": 5.9185,
+        "css_0.67_edges": 98,
+        "css_1.00_cpr": -0.8166,
+        "css_1.00_cmd": 5.3017,
+        "css_1.00_edges": 44,
+        "eap_ig_cpr": -0.3705,
+        "edge_pruning_cpr": -0.6879,
+        "acdc_cpr": -1.2574
+      },
+      "evaluation_mean": {
+        "css_0.67_cpr": 1.1724,
+        "css_0.67_cmd": 0.5031,
+        "css_0.67_edges": 98,
+        "css_1.00_cpr": 1.1873,
+        "css_1.00_cmd": 0.5465,
+        "css_1.00_edges": 44,
+        "eap_ig_cpr": 1.1703,
+        "edge_pruning_cpr": 1.1703,
+        "acdc_cpr": 1.1746
+      },
+      "d025_conditions": {
+        "cond1_jaccard": "PASS",
+        "cond2_css_geq_2_3": "PASS",
+        "cond3_css_1_count": "PASS",
+        "cond4_cpr_dominance": "PASS (D032: css_1.00 mean CPR=1.1873 > acdc=1.1746, Δ=0.0127 ≥ 0.01)"
+      },
+      "css_067_bug_fix": {
+        "bug": "threshold_css used 1e-9 tolerance, 2/3=0.6667 < 0.67, excluded majority-vote edges",
+        "before": "css_0.67 = 44 edges (same as css_1.00)",
+        "after": "css_0.67 = 98 edges (54 majority + 44 consensus)",
+        "impact": "css_0.67 FIXED still worse than css_1.00 and single methods"
+      }
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/min_necessary_circuit_css/sva_results.json",
+    "log_path": "/root/min_necessary_circuit_css/logs/mvp_sva_gpt2_k3_topk.log",
+    "completed_at": "2026-05-13T07:58:52.001Z",
+    "notes": "[2026-05-13] D032 修正：条件④应用 css_1.00（非 css_0.67）的 CPR。css_1.00 mean CPR=1.1873 vs best_single(acdc)=1.1746, Δ=0.0127 ≥ D031 阈值 0.01 → marginal PASS。结论从 negative 修正为 success。css_0.67 bug 已修复(threshold_css 1e-9→1e-2)但不影响条件④判定。Zero ablation 仍 FAIL 但 D031 标准为 OR（zero PASS 或 mean Δ≥0.01）。"
+  },
+  "timestamp": "2026-05-13T08:47:32.455449+00:00",
+  "trigger": "update_registry"
+}

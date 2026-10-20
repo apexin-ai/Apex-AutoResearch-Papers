@@ -1,0 +1,72 @@
+{
+  "exp_id": "plan017-additive-random-s42",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:11:14.694Z",
+    "updated_at": "2026-05-14T05:30:46.783Z",
+    "hypothesis": "Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。",
+    "parent": "plan013-random-reward-s42-r4",
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "/root/solver-trace-ablation/data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Additive random control: r = r_exec·(1+0.3·random)",
+      "plan_id": "plan017",
+      "reward_formula": "r = r_exec * (1 + 0.3 * random[0,1])",
+      "beta": 0.3
+    },
+    "pid": "207116",
+    "log_path": "~/runs/solver-trace-ablation/plan017-additive-random-s42.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\"",
+      "finished_at": "2026-05-14T05:17:13.920Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T05:17:18.376399+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan017_additive_random_s42",
+    "notes": "Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.",
+    "metrics": {
+      "eval_prove_rate": 0.48,
+      "eval_mean_isr": 0.0453,
+      "eval_isr_std": 0.0759,
+      "eval_median_isr": 0,
+      "eval_proved_only_isr": 0.0943,
+      "eval_max_isr": 0.2857,
+      "eval_mean_components": 9.56,
+      "eval_2comp_ratio": 0,
+      "eval_3plus_ratio": 1,
+      "eval_isr_zero_ratio": 0.333,
+      "eval_mean_necessary": 0.85,
+      "eval_by_true_pr": 0.559,
+      "eval_by_true_isr": 0.052,
+      "eval_by_false_pr": 0.32,
+      "eval_by_false_isr": 0.025,
+      "eval_by_unknown_pr": 0.512,
+      "eval_by_unknown_isr": 0.052
+    },
+    "completed_at": "2026-05-14T05:30:46.783Z"
+  },
+  "timestamp": "2026-05-14T05:30:46.947502+00:00",
+  "trigger": "update_registry"
+}

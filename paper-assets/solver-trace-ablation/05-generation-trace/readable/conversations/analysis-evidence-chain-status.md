@@ -1,0 +1,421 @@
+# analysis evidence chain status
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/chats/worker_analysis_evidence-chain-status_20260514T150201.jsonl`
+- **Structured JSON:** [`3e12d92075880a4e799e.json`](../../sessions/3e/3e12d92075880a4e799e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+14 recorded events
+
+### Assistant
+
+_source line 1 · 2026-05-14T15:02:08.125775+00:00_
+
+You've hit your limit · resets 4pm (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T15:04:13.712812+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T15:04:13.713057+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T15:04:13.713193+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "solver-trace-ablation",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T15:04:13.713852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s43-r2\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-14T14:01:24.111Z\", \"updated_at\": \"2026-05-14T15:00:35.829Z\", \"hypothesis\": \"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\", \"parent\": \"plan018-additive-random-b01-s43\"}, \"plan018-additive-random-b01-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:36:18.722Z\", \"updated_at\": \"2026-05-14T15:00:09.178Z\", \"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\", \"parent\": \"plan018-additive-random-b01-s42\", \"metrics\": {\"prove_rate\": 0.89, \"mean_isr\": 0.0619, \"isr_std\": 0.1756, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0695, \"n_proved\": 89, \"n_problems\": 100, \"max_isr\": 1, \"min_isr\": 0, \"isr_pr_ratio\": 0.0695, \"isr_zero_count\": 72, \"isr_one_count\": 2, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 21, \"prove_rate\": 0.84, \"mean_isr\": 0.0533}, \"unknown\": {\"count\": 41, \"proved\": 40, \"prove_rate\": 0.976, \"mean_isr\": 0.0892}, \"true\": {\"count\": 34, \"proved\": 28, \"prove_rate\": 0.824, \"mean_isr\": 0.0353}}, \"elapsed_seconds\": 1012.7, \"eval_method\": \"eval_sta.py with Prover9Solver, FOL\"}, \"conclusion\": \"success\", \"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"}, \"plan009-sft-baseline-s42-r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:40:28.142Z\", \"updated_at\": \"2026-05-14T14:22:57.766Z\", \"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all
+…[truncated 37133 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T15:04:13.714117+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md",
+  "content": "# Evidence Chain Status — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Source**: registry (50 experiments total, filtered to evidence-bearing runs)\n**Eval standard**: eval_sta.py full STA on proofwriter_fol_100.jsonl (FOL) / Prolog eval (Prolog)\n\n---\n\n## Claim 1 — Exec-only GRPO causes ISR collapse / reward hacking\n\n**Status: COMPLETE (3-seed FOL evidence + extended-horizon confirmation)**\n\n| Exp ID | Seed | Steps | Eval PR | Eval ISR | Components | Failure Mode | Status |\n|--------|------|-------|---------|----------|------------|--------------|--------|\n| plan001-exec-only-s42-r2 | 42 | 500 | 0.93 | 0.123 | 6.58 | partial-genuine (best seed) | ✅ DONE |\n| plan001-exec-only-s43-r4 | 43 | 500 | 0.14 | 0.00 | n/a | degraded (87% hit max_tokens) | ✅ DONE† |\n| plan001-exec-only-s44   | 44 | 500 | 0.98 | 0.57 | 2.04 | tautological collapse (94% 2-comp) | ✅ DONE |\n| plan016-extended-1000-s42 | 42 | 1000 | 0.96 | 0.0027 | 18.55 | contradiction explosion (94.8% ISR=0) | ✅ DONE |\n\n**3-seed result**: 1/3 partial-genuine (s42), 1/3 degraded (s43), 1/3 tautological (s44). PR mean=0.683 std=0.467; ISR mean=0.231 std=0.314 — extreme cross-seed variance.\n\n**Extended-horizon finding**: At 1000 steps, PR keeps climbing (+3pp) while ISR collapses 97.8% (0.123→0.0027). Windowed ISR is monotonically decreasing (0.1115→0.0144). 500-step ISR was not a floor, it was mid-collapse.\n\n†Note: plan001-s43-r4 used sampling eval (T=0.7), not eval_sta.py. PR=14% is unambiguous failure regardless of eval method (D029). **Mark in paper.**\n\n---\n\n## Claim 2 — ISR β=0.1 additive bonus + Goodhart risk\n\n**Status: NEAR-COMPLETE (1 cell remaining: random β=0.1 s43)**\n\n### ISR β=0.1 additive (r = r_exec·(1+0.1·ISR))\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Component mean | Hacking mode | Status |\n|--------|------|---------|----------|-----|----------------|--------------|--------|\n| plan002-additive-b01-s42 | 42 | 0.81 | 0.337 | n/a | 5.58 | partial-genuine (best) | ✅ DONE |\n| plan002-additive-b01-s43 | 43 | 0.61 | 0.506 | 96.7% | 4.03 | conclusion duplication | ✅ DONE |\n| plan002-additive-b01-s44 | 44 | 0.89 | 0.803 | 86.5% | 4.33 | conclusion duplication | ✅ DONE |\n\n**3-seed status**: ✅ all three eval'd. 2/3 hacking via conclusion duplication (premise≈conclusion, single-premise inflates ISR).\n\n### Random β=0.1 control (variance regularization baseline)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Component mean | Status |\n|--------|------|---------|----------|----------------|--------|\n| plan018-random-b01-s42 | 42 | 0.79 | 0.104 | 8.46 | ✅ DONE |\n| plan018-random-b01-s43 | 43 | — | — | — | ⏳ ALLOCATED (r2 retry; r1 disk-full @ step 200) |\n| plan018-random-b01-s44 | 44 | 0.89 | 0.062 | n/a | ✅ DONE |\n\n**ISR vs Random @ β=0.1 contrast (s42)**: PR 0.81 vs 0.79 (≈match); ISR 0.337 vs 0.104 (**3.2× higher**). Same PR, very different ISR → ISR signal is structural, not variance-noise. Replicated at s44 (0.803 vs 0.062 = 13×, but s44 ISR inflated by hacking).\n\n### Higher-dose collapse (β=0.3)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Status | Notes |\n|--------|------|---------|----------|--------|-------|\n| plan002-additive-b03-s42 | 42 | 0.340 (overall) / 0.553 (last100) | 0.309 (final) | ✅ DONE | not saturated; PR collapse |\n| plan017-random-b03-s42 | 42 | 0.48 | 0.045 | ✅ DONE | complexity-without-utility |\n\n### Supporting cells\n\n| Exp ID | Result | Role | Status |\n|--------|--------|------|--------|\n| plan012-hacking-taxonomy | ISR genuine +8.2pp, ISR conclusion-embedding 72.8% vs Random 78.5%, ISR eliminates complexity-w/o-utility hacking | hacking taxonomy quantification | ✅ DONE |\n| plan009-sft-baseline-s42-r4 | PR=0.14, ISR=0.08, proved-only ISR=0.571, hacking=none | confirms hacking is GRPO-specific not finetuning artifact | ✅ DONE |\n\n**Remaining gap**: plan018-random-b01-s43 (ALLOCATED → run). Needed for 3-seed mean±std on random control. Without it, single-seed random comparisons at s43 not possible.\n\n---\n\n## Claim 3 — Cross-logic generalization (Prolog)\n\n**Status: PARTIAL (s42 complete; s43/s44 in progress)**\n\n### Prolog exec-only\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-exec-s42 | 42 | 0.83 | 0.031 | 0% | ground-fact enumeration (C006 redundancy) | ✅ DONE |\n| plan006-prolog-exec-s43-r3 | 43 | — | — | — | — | ⏳ RUNNING (cuda:1, PID 483820) |\n| plan006-prolog-exec-s44 | 44 | — | — | — | — | ⏳ RUNNING (cuda:0, PID 479357) |\n\n### Prolog exec+STA (ISR-as-reward)\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-sta-s42 | 42 | 0.50 | 1.0 (proved-only) | 100% | single-clause query (Goodhart) | ✅ DONE |\n| plan006-prolog-sta-s43 | 43 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n| plan006-prolog-sta-s44 | 44 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n\n**s42 cross-type finding**: exec-only Prolog (PR=0.83, ISR=0.031) vs exec-only FOL (PR=0.93, ISR=0.12) — Prolog ISR even lower, but via different mechanism (C006: ground-fact redundancy n_necessary=0, not contradiction explosion). exec+STA Prolog (ISR=1.0, H7=100%) vs exec+STA FOL — Prolog Goodhart is more extreme (100% single-clause vs FOL ~65–97% conclusion duplication).\n\n**Gap**: 4 of 6 Prolog runs incomplete. Cannot claim 3-seed cross-logic generalization until s43/s44 land for both conditions.\n\n---\n\n## Overall evidence chain summary\n\n| Claim | FOL 3-seed | Prolog 3-seed | Confirmatory | Verdict |\n|-------|-----------|---------------|--------------|---------|\n| C1: Exec-only ISR collapse | ✅ complete | ⏳ 1/3 (s42 only) | ✅ Extended-1000 confirms worsening | **FOL: ready** / Prolog: waiting |\n| C2: ISR β=0.1 + Goodhart | ✅ ISR 3/3, ⏳ Random 2/3 | n/a (single Prolog STA seed) | ✅ Hacking taxonomy, ✅ SFT control, ✅ β=0.3 dose-response | **Near-ready** (1 cell) |\n| C3: Cross-logic | n/a | ⏳ 1/3 exec, 1/3 STA | s42 contrast solid | **Partial** (4 runs pending) |\n\n## Blocking items\n\n1. **plan018-random-b01-s43-r2** — ALLOCATED, needs execution. Required for 3-seed random control mean±std.\n2. **plan006-prolog-exec-s43-r3** — RUNNING. Monitor for completion + eval_sta.py.\n3. **plan006-prolog-exec-s44** — RUNNING. Monitor for completion + eval_sta.py.\n4. **plan006-prolog-sta-s43 / s44** — PREPARING, blocked on GPU. Queue once exec runs finish.\n\n## Non-blocking notes for paper\n\n- All cross-run ISR comparisons must use eval_sta.py numbers (C004). Training-log ISR for plan001-s42-r2, plan002-b03-s42, plan013 was `_fast_fn` binary approximation — DO NOT cite.\n- Prolog ISR semantics differ from FOL ISR (C006). Paper must distinguish: exec-only low ISR (Prolog) = redundancy; exec+STA high ISR (Prolog) = Goodhart. Reviewer flagged this explicitly.\n- plan001-s43-r4 eval used sampling (T=0.7), not eval_sta.py (D029). Footnote in Table 1.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md",
+    "content": "# Evidence Chain Status — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Source**: registry (50 experiments total, filtered to evidence-bearing runs)\n**Eval standard**: eval_sta.py full STA on proofwriter_fol_100.jsonl (FOL) / Prolog eval (Prolog)\n\n---\n\n## Claim 1 — Exec-only GRPO causes ISR collapse / reward hacking\n\n**Status: COMPLETE (3-seed FOL evidence + extended-horizon confirmation)**\n\n| Exp ID | Seed | Steps | Eval PR | Eval ISR | Components | Failure Mode | Status |\n|--------|------|-------|---------|----------|------------|--------------|--------|\n| plan001-exec-only-s42-r2 | 42 | 500 | 0.93 | 0.123 | 6.58 | partial-genuine (best seed) | ✅ DONE |\n| plan001-exec-only-s43-r4 | 43 | 500 | 0.14 | 0.00 | n/a | degraded (87% hit max_tokens) | ✅ DONE† |\n| plan001-exec-only-s44   | 44 | 500 | 0.98 | 0.57 | 2.04 | tautological collapse (94% 2-comp) | ✅ DONE |\n| plan016-extended-1000-s42 | 42 | 1000 | 0.96 | 0.0027 | 18.55 | contradiction explosion (94.8% ISR=0) | ✅ DONE |\n\n**3-seed result**: 1/3 partial-genuine (s42), 1/3 degraded (s43), 1/3 tautological (s44). PR mean=0.683 std=0.467; ISR mean=0.231 std=0.314 — extreme cross-seed variance.\n\n**Extended-horizon finding**: At 1000 steps, PR keeps climbing (+3pp) while ISR collapses 97.8% (0.123→0.0027). Windowed ISR is monotonically decreasing (0.1115→0.0144). 500-step ISR was not a floor, it was mid-collapse.\n\n†Note: plan001-s43-r4 used sampling eval (T=0.7), not eval_sta.py. PR=14% is unambiguous failure regardless of eval method (D029). **Mark in paper.**\n\n---\n\n## Claim 2 — ISR β=0.1 additive bonus + Goodhart risk\n\n**Status: NEAR-COMPLETE (1 cell remaining: random β=0.1 s43)**\n\n### ISR β=0.1 additive (r = r_exec·(1+0.1·ISR))\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Component mean | Hacking mode | Status |\n|--------|------|---------|----------|-----|----------------|--------------|--------|\n| plan002-additive-b01-s42 | 42 | 0.81 | 0.337 | n/a | 5.58 | partial-genuine (best) | ✅ DONE |\n| plan002-additive-b01-s43 | 43 | 0.61 | 0.506 | 96.7% | 4.03 | conclusion duplication | ✅ DONE |\n| plan002-additive-b01-s44 | 44 | 0.89 | 0.803 | 86.5% | 4.33 | conclusion duplication | ✅ DONE |\n\n**3-seed status**: ✅ all three eval'd. 2/3 hacking via conclusion duplication (premise≈conclusion, single-premise inflates ISR).\n\n### Random β=0.1 control (variance regularization baseline)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Component mean | Status |\n|--------|------|---------|----------|----------------|--------|\n| plan018-random-b01-s42 | 42 | 0.79 | 0.104 | 8.46 | ✅ DONE |\n| plan018-random-b01-s43 | 43 | — | — | — | ⏳ ALLOCATED (r2 retry; r1 disk-full @ step 200) |\n| plan018-random-b01-s44 | 44 | 0.89 | 0.062 | n/a | ✅ DONE |\n\n**ISR vs Random @ β=0.1 contrast (s42)**: PR 0.81 vs 0.79 (≈match); ISR 0.337 vs 0.104 (**3.2× higher**). Same PR, very different ISR → ISR signal is structural, not variance-noise. Replicated at s44 (0.803 vs 0.062 = 13×, but s44 ISR inflated by hacking).\n\n### Higher-dose collapse (β=0.3)\n\n| Exp ID | Seed | Eval PR | Eval ISR | Status | Notes |\n|--------|------|---------|----------|--------|-------|\n| plan002-additive-b03-s42 | 42 | 0.340 (overall) / 0.553 (last100) | 0.309 (final) | ✅ DONE | not saturated; PR collapse |\n| plan017-random-b03-s42 | 42 | 0.48 | 0.045 | ✅ DONE | complexity-without-utility |\n\n### Supporting cells\n\n| Exp ID | Result | Role | Status |\n|--------|--------|------|--------|\n| plan012-hacking-taxonomy | ISR genuine +8.2pp, ISR conclusion-embedding 72.8% vs Random 78.5%, ISR eliminates complexity-w/o-utility hacking | hacking taxonomy quantification | ✅ DONE |\n| plan009-sft-baseline-s42-r4 | PR=0.14, ISR=0.08, proved-only ISR=0.571, hacking=none | confirms hacking is GRPO-specific not finetuning artifact | ✅ DONE |\n\n**Remaining gap**: plan018-random-b01-s43 (ALLOCATED → run). Needed for 3-seed mean±std on random control. Without it, single-seed random comparisons at s43 not possible.\n\n---\n\n## Claim 3 — Cross-logic generalization (Prolog)\n\n**Status: PARTIAL (s42 complete; s43/s44 in progress)**\n\n### Prolog exec-only\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-exec-s42 | 42 | 0.83 | 0.031 | 0% | ground-fact enumeration (C006 redundancy) | ✅ DONE |\n| plan006-prolog-exec-s43-r3 | 43 | — | — | — | — | ⏳ RUNNING (cuda:1, PID 483820) |\n| plan006-prolog-exec-s44 | 44 | — | — | — | — | ⏳ RUNNING (cuda:0, PID 479357) |\n\n### Prolog exec+STA (ISR-as-reward)\n\n| Exp ID | Seed | Eval PR | Eval ISR | H7% | Failure Mode | Status |\n|--------|------|---------|----------|-----|--------------|--------|\n| plan006-prolog-sta-s42 | 42 | 0.50 | 1.0 (proved-only) | 100% | single-clause query (Goodhart) | ✅ DONE |\n| plan006-prolog-sta-s43 | 43 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n| plan006-prolog-sta-s44 | 44 | — | — | — | — | 🔜 PREPARING (waiting GPU) |\n\n**s42 cross-type finding**: exec-only Prolog (PR=0.83, ISR=0.031) vs exec-only FOL (PR=0.93, ISR=0.12) — Prolog ISR even lower, but via different mechanism (C006: ground-fact redundancy n_necessary=0, not contradiction explosion). exec+STA Prolog (ISR=1.0, H7=100%) vs exec+STA FOL — Prolog Goodhart is more extreme (100% single-clause vs FOL ~65–97% conclusion duplication).\n\n**Gap**: 4 of 6 Prolog runs incomplete. Cannot claim 3-seed cross-logic generalization until s43/s44 land for both conditions.\n\n---\n\n## Overall evidence chain summary\n\n| Claim | FOL 3-seed | Prolog 3-seed | Confirmatory | Verdict |\n|-------|-----------|---------------|--------------|---------|\n| C1: Exec-only ISR collapse | ✅ complete | ⏳ 1/3 (s42 only) | ✅ Extended-1000 confirms worsening | **FOL: ready** / Prolog: waiting |\n| C2: ISR β=0.1 + Goodhart | ✅ ISR 3/3, ⏳ Random 2/3 | n/a (single Prolog STA seed) | ✅ Hacking taxonomy, ✅ SFT control, ✅ β=0.3 dose-response | **Near-ready** (1 cell) |\n| C3: Cross-logic | n/a | ⏳ 1/3 exec, 1/3 STA | s42 contrast solid | **Partial** (4 runs pending) |\n\n## Blocking items\n\n1. **plan018-random-b01-s43-r2** — ALLOCATED, needs execution. Required for 3-seed random control mean±std.\n2. **plan006-prolog-exec-s43-r3** — RUNNING. Monitor for completion + eval_sta.py.\n3. **plan006-prolog-exec-s44** — RUNNING. Monitor for completion + eval_sta.py.\n4. **plan006-prolog-sta-s43 / s44** — PREPARING, blocked on GPU. Queue once exec runs finish.\n\n## Non-blocking notes for paper\n\n- All cross-run ISR comparisons must use eval_sta.py numbers (C004). Training-log ISR for plan001-s42-r2, plan002-b03-s42, plan013 was `_fast_fn` binary approximation — DO NOT cite.\n- Prolog ISR semantics differ from FOL ISR (C006). Paper must distinguish: exec-only low ISR (Prolog) = redundancy; exec+STA high ISR (Prolog) = Goodhart. Reviewer flagged this explicitly.\n- plan001-s43-r4 eval used sampling (T=0.7), not eval_sta.py (D029). Footnote in Table 1.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T15:04:13.714392+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T15:04:13.714549+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md",
+  "content": "# Paper Table Drafts v2 — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Eval standard**: all ISR/PR from eval_sta.py full STA on proofwriter_fol_100.jsonl unless noted\n**Training data**: data/train_500_seed42.jsonl (FOLIO; C001 unified)\n**Model**: Qwen3-4B for all conditions\n\n---\n\n## Table 1 — FOL Experiments\n\n| # | Condition | Seed | Eval PR | Eval ISR (mean) | Proved-only ISR | H7% | Component mean | Hacking mode | Notes |\n|---|-----------|------|---------|-----------------|-----------------|-----|----------------|--------------|-------|\n|  | **Exec-only GRPO (500 steps)** | | | | | | | | |\n| 1 | exec-only | 42 | 0.93 | 0.123 | 0.132 | — | 6.58 | partial-genuine | plan001-s42-r2 (anchor) |\n| 2 | exec-only | 43 | 0.14† | 0.000 | 0.000 | — | n/a | degraded (87% max-tok) | plan001-s43-r4 (†sampling eval, T=0.7) |\n| 3 | exec-only | 44 | 0.98 | 0.570 | 0.582 | — | 2.04 | tautological collapse (94% 2-comp) | plan001-s44 |\n|  | **Exec-only extended (1000 steps)** | | | | | | | | |\n| 4 | exec-only-1000 | 42 | 0.96 | 0.0027 | 0.0028 | — | 18.55 | contradiction explosion (94.8% ISR=0) | plan016 |\n|  | **ISR β=0.1 additive (r·(1+0.1·ISR))** | | | | | | | | |\n| 5 | ISR β=0.1 | 42 | 0.81 | 0.337 | 0.415 | — | 5.58 | partial-genuine | plan002-b01-s42 (best ISR cell) |\n| 6 | ISR β=0.1 | 43 | 0.61 | 0.506 | 0.830 | 96.7% | 4.03 | conclusion duplication | plan002-b01-s43 |\n| 7 | ISR β=0.1 | 44 | 0.89 | 0.803 | — | 86.5% | 4.33 | conclusion duplication (Goodhart) | plan002-b01-s44 |\n|  | **ISR β=0.3 additive** | | | | | | | | |\n| 8 | ISR β=0.3 | 42 | 0.34‡ | 0.115‡ | — | — | — | training collapse, not saturated | plan002-b03-s42 (‡training overall, not eval_sta.py) |\n|  | **Random β=0.1 control (variance regularization)** | | | | | | | | |\n| 9 | Random β=0.1 | 42 | 0.79 | 0.104 | 0.131 | — | 8.46 | no tautological collapse; low structure | plan018-random-b01-s42 |\n| 10 | Random β=0.1 | 43 | PENDING | PENDING | — | — | — | — | plan018-s43-r2 ALLOCATED |\n| 11 | Random β=0.1 | 44 | 0.89 | 0.062 | 0.070 | — | n/a | clean baseline | plan018-random-b01-s44 |\n|  | **Random β=0.3 control** | | | | | | | | |\n| 12 | Random β=0.3 | 42 | 0.48 | 0.045 | 0.094 | — | 9.60 | complexity-without-utility | plan017-random-s42 |\n|  | **SFT baseline (supervised, no RL)** | | | | | | | | |\n| 13 | SFT | 42 | 0.14 | 0.080 | 0.571 | — | — | none (no hacking patterns) | plan009-sft-r4 |\n\n### Key contrasts for paper narrative\n\n- **C1 (exec-only collapse)**: rows 1–3 show 3-seed instability (PR span 0.14–0.98, ISR span 0–0.57). Row 4 (1000-step) confirms ongoing collapse: PR↑3pp but ISR↓97.8% from 500-step.\n- **C2a (ISR β=0.1 lifts ISR)**: row 5 vs row 1 at s42: same data, ISR 0.337 vs 0.123 (2.73×); PR 0.81 vs 0.93 (-12pp).\n- **C2b (Goodhart at β=0.1)**: rows 6 & 7: 2/3 seeds collapse to conclusion-duplication, ISR=0.5+0.8 are inflation artifacts (H7 = 96.7%/86.5%).\n- **C2c (ISR signal ≠ noise)**: row 5 vs row 9 (β=0.1 same dose): PR 0.81 vs 0.79; ISR 0.337 vs 0.104 (**3.2×**). ISR is structural, not variance regularization.\n- **C2d (dose response)**: rows 5 → 8: β=0.1 keeps PR; β=0.3 collapses training (PR overall=0.34).\n- **C2e (GRPO specificity)**: row 13 SFT shows no hacking. Confirms hacking is GRPO-specific, not finetuning generic.\n\n### Aggregate (3-seed mean±std, eval_sta.py only)\n\n| Condition | PR mean±std | ISR mean±std | N seeds | Note |\n|-----------|-------------|--------------|---------|------|\n| exec-only | 0.683 ± 0.467 | 0.231 ± 0.314 | 3 | s43 sampling eval; high variance |\n| ISR β=0.1 | 0.770 ± 0.146 | 0.549 ± 0.234 | 3 | ISR inflated by hacking in 2/3 |\n| Random β=0.1 | 0.840 ± 0.071 | 0.083 ± 0.030 | **2** | s43 PENDING; will recompute |\n\n---\n\n## Table 2 — Prolog Experiments (cross-logic generalization)\n\n| # | Condition | Seed | Eval PR | Eval ISR | Proved-only ISR | H7% | Hacking mode | Notes |\n|---|-----------|------|---------|----------|-----------------|-----|--------------|-------|\n|  | **Prolog exec-only GRPO (500 steps)** | | | | | | | |\n| 1 | Prolog exec-only | 42 | 0.83 | 0.031 | 0.037 | 0% | ground-fact enumeration (n_necessary=0, redundancy) | plan006-prolog-exec-s42 |\n| 2 | Prolog exec-only | 43 | PENDING | PENDING | — | — | — | plan006-s43-r3 RUNNING (cuda:1) |\n| 3 | Prolog exec-only | 44 | PENDING | PENDING | — | — | — | plan006-s44 RUNNING (cuda:0) |\n|  | **Prolog exec+STA GRPO (ISR-as-reward, 500 steps)** | | | | | | | |\n| 4 | Prolog exec+STA | 42 | 0.50 | 0.50 | 1.000 | 100% | single-clause query (extreme Goodhart) | plan006-prolog-sta-s42 |\n| 5 | Prolog exec+STA | 43 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s43 PREPARING |\n| 6 | Prolog exec+STA | 44 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s44 PREPARING |\n\n### Prolog s42 narrative (single-seed snapshot)\n\n- **exec-only** (row 1): PR=0.83 with ISR=0.031. Per C006, this **low ISR = redundancy** (model dumps ground facts e.g. `penguin(fido).` 3× — per-clause ablation cannot identify necessary clauses since removing any one duplicate leaves proof intact). NOT no-reasoning; redundant-encoding.\n- **exec+STA** (row 4): PR=0.50, but proved-only ISR=1.000 and H7=100%. Every proved sample is single-clause where the clause IS the query — extreme Goodhart collapse. 50% PR is from format-parse failures, not strategy difference.\n- **FOL vs Prolog at s42**: FOL exec-only (PR 0.93, ISR 0.12) → Prolog exec-only (PR 0.83, ISR 0.03). FOL exec+STA (saturated training) → Prolog exec+STA (H7=100% vs FOL ~65-97%). Prolog hacking is **more extreme** under both reward signals.\n\n### Gaps preventing Table 2 finalization\n\n- 4/6 Prolog cells PENDING. Cannot publish 3-seed mean±std for Prolog yet.\n- s42 single-seed is suggestive, but the FOL evidence (s42 best, s43 degraded, s44 tautological) shows seed variance is large in this regime; Prolog s43/s44 may differ from s42.\n- Until rows 2,3,5,6 land, Claim 3 statement in paper should be: \"preliminary single-seed evidence that hacking generalizes to Prolog with mode-specific (redundancy / single-clause) variants, full 3-seed evidence pending.\"\n\n---\n\n## Footnotes for paper\n\n- † plan001-exec-only-s43-r4 used sampling eval (do_sample=True, T=0.7), other rows use eval_sta.py greedy on identical 100-sample FOL set (D029). PR=0.14 is unambiguous failure regardless of decoding.\n- ‡ plan002-b03-s42 (β=0.3) did not converge at 500 steps; reported numbers are training-overall, not held-out eval. Used qualitatively for dose-response only.\n- All training-log ISR values are excluded — `_fast_fn` binary approximation, not comparable across runs (C004).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md",
+    "content": "# Paper Table Drafts v2 — solver-trace-ablation\n\n**Generated**: 2026-05-14\n**Eval standard**: all ISR/PR from eval_sta.py full STA on proofwriter_fol_100.jsonl unless noted\n**Training data**: data/train_500_seed42.jsonl (FOLIO; C001 unified)\n**Model**: Qwen3-4B for all conditions\n\n---\n\n## Table 1 — FOL Experiments\n\n| # | Condition | Seed | Eval PR | Eval ISR (mean) | Proved-only ISR | H7% | Component mean | Hacking mode | Notes |\n|---|-----------|------|---------|-----------------|-----------------|-----|----------------|--------------|-------|\n|  | **Exec-only GRPO (500 steps)** | | | | | | | | |\n| 1 | exec-only | 42 | 0.93 | 0.123 | 0.132 | — | 6.58 | partial-genuine | plan001-s42-r2 (anchor) |\n| 2 | exec-only | 43 | 0.14† | 0.000 | 0.000 | — | n/a | degraded (87% max-tok) | plan001-s43-r4 (†sampling eval, T=0.7) |\n| 3 | exec-only | 44 | 0.98 | 0.570 | 0.582 | — | 2.04 | tautological collapse (94% 2-comp) | plan001-s44 |\n|  | **Exec-only extended (1000 steps)** | | | | | | | | |\n| 4 | exec-only-1000 | 42 | 0.96 | 0.0027 | 0.0028 | — | 18.55 | contradiction explosion (94.8% ISR=0) | plan016 |\n|  | **ISR β=0.1 additive (r·(1+0.1·ISR))** | | | | | | | | |\n| 5 | ISR β=0.1 | 42 | 0.81 | 0.337 | 0.415 | — | 5.58 | partial-genuine | plan002-b01-s42 (best ISR cell) |\n| 6 | ISR β=0.1 | 43 | 0.61 | 0.506 | 0.830 | 96.7% | 4.03 | conclusion duplication | plan002-b01-s43 |\n| 7 | ISR β=0.1 | 44 | 0.89 | 0.803 | — | 86.5% | 4.33 | conclusion duplication (Goodhart) | plan002-b01-s44 |\n|  | **ISR β=0.3 additive** | | | | | | | | |\n| 8 | ISR β=0.3 | 42 | 0.34‡ | 0.115‡ | — | — | — | training collapse, not saturated | plan002-b03-s42 (‡training overall, not eval_sta.py) |\n|  | **Random β=0.1 control (variance regularization)** | | | | | | | | |\n| 9 | Random β=0.1 | 42 | 0.79 | 0.104 | 0.131 | — | 8.46 | no tautological collapse; low structure | plan018-random-b01-s42 |\n| 10 | Random β=0.1 | 43 | PENDING | PENDING | — | — | — | — | plan018-s43-r2 ALLOCATED |\n| 11 | Random β=0.1 | 44 | 0.89 | 0.062 | 0.070 | — | n/a | clean baseline | plan018-random-b01-s44 |\n|  | **Random β=0.3 control** | | | | | | | | |\n| 12 | Random β=0.3 | 42 | 0.48 | 0.045 | 0.094 | — | 9.60 | complexity-without-utility | plan017-random-s42 |\n|  | **SFT baseline (supervised, no RL)** | | | | | | | | |\n| 13 | SFT | 42 | 0.14 | 0.080 | 0.571 | — | — | none (no hacking patterns) | plan009-sft-r4 |\n\n### Key contrasts for paper narrative\n\n- **C1 (exec-only collapse)**: rows 1–3 show 3-seed instability (PR span 0.14–0.98, ISR span 0–0.57). Row 4 (1000-step) confirms ongoing collapse: PR↑3pp but ISR↓97.8% from 500-step.\n- **C2a (ISR β=0.1 lifts ISR)**: row 5 vs row 1 at s42: same data, ISR 0.337 vs 0.123 (2.73×); PR 0.81 vs 0.93 (-12pp).\n- **C2b (Goodhart at β=0.1)**: rows 6 & 7: 2/3 seeds collapse to conclusion-duplication, ISR=0.5+0.8 are inflation artifacts (H7 = 96.7%/86.5%).\n- **C2c (ISR signal ≠ noise)**: row 5 vs row 9 (β=0.1 same dose): PR 0.81 vs 0.79; ISR 0.337 vs 0.104 (**3.2×**). ISR is structural, not variance regularization.\n- **C2d (dose response)**: rows 5 → 8: β=0.1 keeps PR; β=0.3 collapses training (PR overall=0.34).\n- **C2e (GRPO specificity)**: row 13 SFT shows no hacking. Confirms hacking is GRPO-specific, not finetuning generic.\n\n### Aggregate (3-seed mean±std, eval_sta.py only)\n\n| Condition | PR mean±std | ISR mean±std | N seeds | Note |\n|-----------|-------------|--------------|---------|------|\n| exec-only | 0.683 ± 0.467 | 0.231 ± 0.314 | 3 | s43 sampling eval; high variance |\n| ISR β=0.1 | 0.770 ± 0.146 | 0.549 ± 0.234 | 3 | ISR inflated by hacking in 2/3 |\n| Random β=0.1 | 0.840 ± 0.071 | 0.083 ± 0.030 | **2** | s43 PENDING; will recompute |\n\n---\n\n## Table 2 — Prolog Experiments (cross-logic generalization)\n\n| # | Condition | Seed | Eval PR | Eval ISR | Proved-only ISR | H7% | Hacking mode | Notes |\n|---|-----------|------|---------|----------|-----------------|-----|--------------|-------|\n|  | **Prolog exec-only GRPO (500 steps)** | | | | | | | |\n| 1 | Prolog exec-only | 42 | 0.83 | 0.031 | 0.037 | 0% | ground-fact enumeration (n_necessary=0, redundancy) | plan006-prolog-exec-s42 |\n| 2 | Prolog exec-only | 43 | PENDING | PENDING | — | — | — | plan006-s43-r3 RUNNING (cuda:1) |\n| 3 | Prolog exec-only | 44 | PENDING | PENDING | — | — | — | plan006-s44 RUNNING (cuda:0) |\n|  | **Prolog exec+STA GRPO (ISR-as-reward, 500 steps)** | | | | | | | |\n| 4 | Prolog exec+STA | 42 | 0.50 | 0.50 | 1.000 | 100% | single-clause query (extreme Goodhart) | plan006-prolog-sta-s42 |\n| 5 | Prolog exec+STA | 43 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s43 PREPARING |\n| 6 | Prolog exec+STA | 44 | PENDING | PENDING | — | — | — | plan006-prolog-sta-s44 PREPARING |\n\n### Prolog s42 narrative (single-seed snapshot)\n\n- **exec-only** (row 1): PR=0.83 with ISR=0.031. Per C006, this **low ISR = redundancy** (model dumps ground facts e.g. `penguin(fido).` 3× — per-clause ablation cannot identify necessary clauses since removing any one duplicate leaves proof intact). NOT no-reasoning; redundant-encoding.\n- **exec+STA** (row 4): PR=0.50, but proved-only ISR=1.000 and H7=100%. Every proved sample is single-clause where the clause IS the query — extreme Goodhart collapse. 50% PR is from format-parse failures, not strategy difference.\n- **FOL vs Prolog at s42**: FOL exec-only (PR 0.93, ISR 0.12) → Prolog exec-only (PR 0.83, ISR 0.03). FOL exec+STA (saturated training) → Prolog exec+STA (H7=100% vs FOL ~65-97%). Prolog hacking is **more extreme** under both reward signals.\n\n### Gaps preventing Table 2 finalization\n\n- 4/6 Prolog cells PENDING. Cannot publish 3-seed mean±std for Prolog yet.\n- s42 single-seed is suggestive, but the FOL evidence (s42 best, s43 degraded, s44 tautological) shows seed variance is large in this regime; Prolog s43/s44 may differ from s42.\n- Until rows 2,3,5,6 land, Claim 3 statement in paper should be: \"preliminary single-seed evidence that hacking generalizes to Prolog with mode-specific (redundancy / single-clause) variants, full 3-seed evidence pending.\"\n\n---\n\n## Footnotes for paper\n\n- † plan001-exec-only-s43-r4 used sampling eval (do_sample=True, T=0.7), other rows use eval_sta.py greedy on identical 100-sample FOL set (D029). PR=0.14 is unambiguous failure regardless of decoding.\n- ‡ plan002-b03-s42 (β=0.3) did not converge at 500 steps; reported numbers are training-overall, not held-out eval. Used qualitatively for dose-response only.\n- All training-log ISR values are excluded — `_fast_fn` binary approximation, not comparable across runs (C004).\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T15:04:13.714785+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T15:04:13.714921+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "Evidence Chain Status (2026-05-14)",
+  "type": "report",
+  "description": "Evidence chain completeness check across Claims 1-3. Tabulates per-seed status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended 1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED, prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.",
+  "project": "solver-trace-ablation",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md",
+  "tags": "['evidence-chain', 'paper-prep', 'registry-audit']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "Evidence Chain Status (2026-05-14)",
+    "type": "report",
+    "description": "Evidence chain completeness check across Claims 1-3. Tabulates per-seed status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended 1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED, prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.",
+    "project": "solver-trace-ablation",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md",
+    "tags": "['evidence-chain', 'paper-prep', 'registry-audit']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T15:04:13.715074+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_8cc22c\", \"name\": \"Evidence Chain Status (2026-05-14)\", \"type\": \"report\", \"description\": \"Evidence chain completeness check across Claims 1-3. Tabulates per-seed status of exec-only, ISR β=0.1/0.3, random control β=0.1/0.3, SFT baseline, extended 1000-step, and Prolog runs. Identifies blocking items: random-b01-s43 ALLOCATED, prolog-exec-s43-r3/s44 RUNNING, prolog-sta-s43/s44 PREPARING.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/evidence_chain_status.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T15:04:02.335072+00:00\", \"tags\": [\"evidence-chain\", \"paper-prep\", \"registry-audit\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T15:04:13.715217+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "Paper Table Drafts v2 (FOL + Prolog)",
+  "type": "report",
+  "description": "Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary approximation. Includes aggregate 3-seed mean±std and key contrast narrative for Claims 1-3.",
+  "project": "solver-trace-ablation",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md",
+  "tags": "['paper-table', 'draft', 'fol', 'prolog']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "Paper Table Drafts v2 (FOL + Prolog)",
+    "type": "report",
+    "description": "Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary approximation. Includes aggregate 3-seed mean±std and key contrast narrative for Claims 1-3.",
+    "project": "solver-trace-ablation",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table_drafts_v2.md",
+    "tags": "['paper-table', 'draft', 'fol', 'prolog']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T15:04:13.715377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_552b2e\", \"name\": \"Paper Table Drafts v2 (FOL + Prolog)\", \"type\": \"report\", \"description\": \"Draft of Table 1 (FOL: 13 rows across exec-only, ISR β=0.1/0.3, random β=0.1/0.3, SFT, extended-1000) and Table 2 (Prolog: 6 rows, 4 PENDING). All eval numbers from eval_sta.py full STA (C004); training-log ISR excluded as binary approximation. Includes aggregate 3-seed mean±std and key contrast narrative for Claims 1-3.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/table_drafts_v2.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T15:04:05.524752+00:00\", \"tags\": [\"paper-table\", \"draft\", \"fol\", \"prolog\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-14T15:04:13.715536+00:00_
+
+两个产出已写入并注册。
+
+**证据链状态摘要**
+- **Claim 1** (exec-only ISR 崩塌): ✅ 完整 — FOL 3-seed (s42 partial-genuine, s43 degraded, s44 tautological) + 1000-step 单调恶化确认
+- **Claim 2** (ISR β=0.1 + Goodhart): 近完整 — ISR 3/3 ✓, Random 2/3（s43 ALLOCATED 待跑），β=0.3 剂量响应 ✓, hacking taxonomy ✓, SFT 对照 ✓
+- **Claim 3** (跨逻辑泛化): 进行中 — Prolog s42 双 condition 完成，s43/s44 共 4 个 cell 运行/排队中
+
+**阻塞项**: 1 个 ALLOCATED (random-b01-s43-r2) + 2 个 RUNNING (prolog-exec s43/s44) + 2 个 PREPARING (prolog-sta s43/s44)
+
+**Artifact IDs**: `art_20260514_8cc22c` (evidence chain), `art_20260514_552b2e` (table drafts)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_evidence-chain-status_20260514T150201"
+}
+```
+
+</details>
+
+---

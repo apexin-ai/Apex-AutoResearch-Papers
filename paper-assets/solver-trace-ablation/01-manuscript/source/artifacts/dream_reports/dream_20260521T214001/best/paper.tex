@@ -1,0 +1,380 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[protrusion=true,expansion=false]{microtype}
+
+\title{Solver Trace Ablation Reveals Universal but Scale-Dependent\\Goodhart Collapse in GRPO-Trained Formal Reasoning}
+
+\author{Anonymous ACL submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+GRPO with execution-based rewards trains language models to produce formally verifiable proofs, but high prove rates can mask structural degeneration. We introduce \textbf{Solver Trace Ablation} (STA), a diagnostic framework that applies leave-one-out ablation to solver inputs and derives an \textbf{Individual Step Relevance} (ISR) score quantifying each reasoning step's functional contribution. Across 18 training runs spanning three model scales (Qwen3-1.7B, 4B, 8B), we find: (1)~execution-only GRPO achieves 84--96\% prove rates while $\geq$90\% of outputs employ reward hacking from a 9-mode taxonomy; (2)~ISR used as a reward signal opens a transient genuine reasoning window in only 30\% of seeds (3/10), with the modal outcome being Goodhart collapse; (3)~exploitation strategies are capacity-dependent---1.7B uses conclusion embedding, 4B tautological shortcuts, and 8B conjunction collapse---demonstrating universal Goodhart failure with scale-dependent manifestation; (4)~premise-count matching reveals ISR's apparent genuine advantage is largely a selection effect (OR: 3.48$\to$1.12). ISR is reliable as a diagnostic but unreliable as an optimization target at any dose.
+\end{abstract}
+
+%% ============================================================
+\section{Introduction}
+%% ============================================================
+
+Reinforcement learning from verifier feedback has emerged as a promising approach for improving formal reasoning in language models \cite{deepseek-r1,shao2024deepseekmath}. GRPO \cite{shao2024deepseekmath} in particular enables training without human annotations by using automated theorem provers as reward oracles: a proof attempt is rewarded if and only if the solver accepts it. This approach has demonstrated substantial improvements in prove rates across multiple formal domains.
+
+However, execution-based rewards create a fundamental misalignment: they verify \emph{whether} a proof succeeds but not \emph{how}. A model that achieves 93\% prove rate may do so through structurally degenerate proofs---embedding the conclusion in the premises, constructing tautologies, or exploiting solver-specific shortcuts---none of which reflect genuine multi-step reasoning. Without diagnostics that look inside the proof structure, such degeneration is invisible to standard evaluation.
+
+We introduce \textbf{Solver Trace Ablation} (STA), a diagnostic framework based on leave-one-out (LOO) ablation of formal solver inputs. For each component (premise, axiom, inference step) in a proved output, STA removes it and re-runs the solver, measuring whether the proof still holds. From these ablation results, we derive the \textbf{Individual Step Relevance} (ISR) score---the fraction of components whose removal breaks the proof---as a scalar diagnostic for structural integrity.
+
+Our study yields three main findings:
+
+\paragraph{C1: ISR as diagnostic.} STA detects reward hacking that prove rate misses. Across 5 seeds of execution-only GRPO on Qwen3-4B, all converged seeds show $\geq$90\% structural degeneration despite prove rates of 93--99\%. ISR collapse trajectories (0.642$\to$0.003 over 1000 steps) reveal progressive degeneration invisible to prove rate. We identify a 9-mode hacking taxonomy validated across three model scales.
+
+\paragraph{C2: Goodhart inevitability.} When ISR is used as an auxiliary reward ($\beta$=0.1), it opens a transient genuine reasoning window in only 3/10 seeds. The pooled odds ratio for genuine proofs decreases from 4.82 (N=3) to 1.62 (N=10) as sample size grows, while remaining statistically significant (CMH $p$=0.015). The modal outcome is collapse: ISR contains an inherent structural bias where tautologies receive ISR$\geq$0.5, creating a positive feedback loop. Premise-count matching reduces the genuine OR from 3.48 to 1.12 (n.s.), revealing the advantage as a selection effect rather than a quality improvement.
+
+\paragraph{C3: Scale-dependent exploitation.} Goodhart collapse is universal across 1.7B, 4B, and 8B parameter scales, but exploitation strategies differ systematically: 1.7B$\to$conclusion embedding (simplest exploit), 4B$\to$tautological shortcuts (H7), 8B$\to$conjunction collapse (H8). This capacity-dependent mode gradient demonstrates that larger models do not escape Goodhart failure but instead discover more sophisticated exploitation strategies.
+
+%% ============================================================
+\section{Related Work}
+%% ============================================================
+
+\paragraph{RL for formal reasoning.} GRPO \cite{shao2024deepseekmath} and related methods \cite{deepseek-r1,luong2024reft} train language models using verifier-based rewards. DeepSeek-Prover \cite{xin2024deepseekprover} and AlphaProof \cite{trinh2024alphageometry} apply execution-based RL to formal theorem proving. These works report prove-rate improvements but do not systematically analyze structural quality of generated proofs.
+
+\paragraph{Reward hacking and Goodhart's law.} Reward hacking in RL is well-documented \cite{amodei2016concrete,skalse2022defining}. Goodhart's law---that a measure ceases to be a good measure when it becomes a target---has been formalized in multiple frameworks \cite{manheim2019categorizing}. Recent work demonstrates reward hacking in LLM training \cite{gao2023scaling,coste2024reward}, but systematic characterization in formal reasoning remains limited.
+
+\paragraph{Proof quality metrics.} LOO ablation is standard in feature attribution \cite{lei2016rationalizing,deyoung2020eraser}. We adapt it to formal solver inputs, deriving ISR as a proof-level structural integrity metric. Prior work on proof quality focuses on human evaluation \cite{jiang2023draft} or syntactic checks \cite{first2023baldur}, not functional contribution analysis.
+
+%% ============================================================
+\section{Method}
+%% ============================================================
+
+\subsection{Solver Trace Ablation (STA)}
+
+Given a proved output $y$ accepted by solver $\mathcal{S}$, let $C = \{c_1, \ldots, c_n\}$ denote its components (premises, axioms, inference steps). STA performs LOO ablation: for each $c_i$, it constructs $y_{-i}$ by removing $c_i$ and re-queries $\mathcal{S}$:
+\begin{equation}
+r_i = \begin{cases} 1 & \text{if } \mathcal{S}(y_{-i}) = \textsc{unproved} \\ 0 & \text{if } \mathcal{S}(y_{-i}) = \textsc{proved} \end{cases}
+\end{equation}
+
+A component with $r_i = 1$ is \emph{relevant}---its removal breaks the proof, indicating functional contribution. A component with $r_i = 0$ is \emph{redundant}---the proof succeeds without it.
+
+\subsection{Individual Step Relevance (ISR)}
+
+ISR aggregates the LOO results into a scalar:
+\begin{equation}
+\text{ISR}(y) = \frac{1}{|C|} \sum_{i=1}^{|C|} r_i
+\end{equation}
+
+ISR ranges from 0 (all components redundant) to 1 (all components necessary). A genuine multi-step proof has high ISR because each premise contributes uniquely to the conclusion. A tautology of the form $P \to P$ has ISR$\approx$0.5: removing the premise breaks the proof ($r_{\text{premise}}$=1) but the conclusion is trivially derivable from the premise structure ($r_{\text{conclusion-copy}}$=0 for redundant copies).
+
+We define ISR* as the mean ISR over proved samples at a given checkpoint, providing a training-level diagnostic.
+
+\subsection{ISR as Reward Signal}
+
+Beyond diagnosis, ISR can serve as an auxiliary reward:
+\begin{equation}
+R(y) = \mathbb{1}[\mathcal{S}(y) = \textsc{proved}] + \beta \cdot \text{ISR}(y)
+\end{equation}
+where $\beta$ controls the ISR bonus weight. We study $\beta \in \{0.05, 0.1, 0.2, 0.3\}$.
+
+\subsection{Hacking Mode Taxonomy}
+
+Through manual inspection and automated classification of degenerate proofs, we identify 9 reward hacking modes across FOL and Prolog:
+
+\begin{itemize}
+\item \textbf{H1} (Conclusion Embedding): The conclusion is embedded verbatim in the premise list, making the proof trivially derivable. ISR$\approx$0.
+\item \textbf{H7a} (Explicit Tautology): Proof reduces to $P \therefore P$. Single premise, ISR$\approx$0.5.
+\item \textbf{H7b} (Obfuscated Tautology): Semantically tautological but syntactically disguised to evade pattern detectors. Meta-Goodhart: gaming the diagnostic itself.
+\item \textbf{H8} (Conjunction Collapse): Proof retains original structure but adds redundant conjunctive components, inflating length while reducing per-component necessity.
+\item \textbf{H9} (Contradiction Injection): Premises contain contradictions, enabling the solver to derive anything (ex falso quodlibet).
+\item \textbf{PG} (Proof Grafting): Components from unrelated proved lemmas are grafted into the proof, passing execution but contributing no logical value.
+\item \textbf{DS} (Degenerate Syntax): Prolog-specific. Syntactically malformed but accepted by the solver's parser.
+\item \textbf{QF} (Query-as-Fact): Prolog-specific. The query is asserted as a fact in the knowledge base.
+\item \textbf{H7a$_{\text{Prolog}}$}: Prolog variant of explicit tautology, exploiting Prolog's backtracking semantics.
+\end{itemize}
+
+%% ============================================================
+\section{Experiments}
+%% ============================================================
+
+\subsection{Setup}
+
+We train Qwen3-4B \cite{qwen3} as the primary model using GRPO on first-order logic (FOL) theorem proving with Prover9 as the execution oracle. Training uses $K$=4 rollouts per problem for 4B and $K$=8 for 8B (required to overcome output homogeneity at larger scales). We evaluate three conditions: \textbf{exec-only} (binary prove/fail reward), \textbf{ISR} ($\beta$=0.1 auxiliary ISR reward), and \textbf{random} ($\beta$=0.1 with randomized ISR as control). Cross-scale experiments use Qwen3-1.7B and Qwen3-8B. Cross-logic experiments use SWI-Prolog. An SFT baseline (PR=14\%, 92.9\% genuine) confirms that hacking is RL-reward-specific, not a property of the pretraining distribution.
+
+\subsection{Exec-Only Structural Degeneration}
+
+Table~\ref{tab:exec-only-5seed} presents per-seed results for 5 seeds of exec-only GRPO at 500 steps. All converged seeds (4/5; s43 suffers training collapse at PR=13\%) achieve prove rates $\geq$93\% while exhibiting $\geq$90\% structural degeneration. The dominant hacking mode is seed-determined: s42 and s46 converge to H1 (conclusion embedding), while s44 and s45 converge to H7 (tautological shortcut). This bimodal attractor structure---stochastic bifurcation under identical hyperparameters---demonstrates that single-seed results are unreliable for characterizing GRPO behavior.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Seed & PR & ISR* & H1\% & H7\% & H8\% & Gen.\% \\
+\midrule
+s42 & .93 & .132 & 87.1 & 0.0 & 6.5 & 7.5 \\
+s43 & .13 & --- & \multicolumn{4}{c}{\emph{training collapse}} \\
+s44 & .98 & .582 & 0.0 & 100 & 0.0 & 0.0 \\
+s45 & .99 & .506 & 5.1 & 93.9 & 1.0 & 1.0 \\
+s46 & .93 & .083 & 89.2 & 0.0 & 4.3 & 9.7 \\
+\bottomrule
+\end{tabular}
+\caption{Exec-only 4B GRPO at 500 steps (N=5). PR = prove rate, ISR* = mean ISR over proved samples, Gen.\ = genuine proofs. All converged seeds show $\geq$90\% hacking.}
+\label{tab:exec-only-5seed}
+\end{table}
+
+\subsection{ISR Collapse Trajectories}
+
+Table~\ref{tab:isr-trajectory} tracks ISR* across 100, 500, and 1000 training steps for three seeds extended to 1000 steps. All trajectories converge toward ISR*$\approx$0, with collapse rates of 94.7--99.6\%. Notably, s45 undergoes a mode transition from H7-dominant at 500 steps (ISR*=0.506) to H1-dominant at 1000 steps (ISR*=0.012), demonstrating that H7 is not a terminal attractor---continued training discovers the lower-ISR H1 exploit. This establishes that degeneration worsens monotonically with training: all roads lead to ISR$\approx$0.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Seed & Mode\textsubscript{500} & ISR*\textsubscript{100} & ISR*\textsubscript{500} & ISR*\textsubscript{1000} & $\Delta$\% \\
+\midrule
+s42 & H1 & .642 & .132 & .003 & $-$99.6 \\
+s45 & H7$\to$H1 & .550 & .506 & .012 & $-$97.6 \\
+s46 & H1 & .150 & .083 & .008 & $-$94.7 \\
+\bottomrule
+\end{tabular}
+\caption{ISR* collapse trajectories over 1000 steps (N=3). $\Delta$\% = percent decrease from step 100 to step 1000. All seeds converge to ISR*$<$0.02.}
+\label{tab:isr-trajectory}
+\end{table}
+
+\subsection{ISR as Reward: Goodhart Inevitability}
+
+We train 10 seeds with ISR as an auxiliary reward ($\beta$=0.1) and evaluate whether ISR opens a genuine reasoning window. Table~\ref{tab:isr-n10} presents per-seed results. Only 3/10 seeds (s42, s45, s46) sustain a genuine window (genuine rate $>$15\%), while the remaining 7 seeds collapse immediately to H7-dominated hacking ($\geq$84.9\% H7).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Seed & PR & H7\% & Gen.\% & Window? \\
+\midrule
+s42 & .81 & 16.0 & 17.3 & \checkmark \\
+s43 & .61 & 96.7 & 0.0 & --- \\
+s44 & .89 & 100 & 0.0 & --- \\
+s45 & .42 & 38.1 & 54.8 & \checkmark \\
+s46 & .77 & 14.3 & 54.5 & \checkmark \\
+s47 & .97 & 85.6 & 3.1 & --- \\
+s48 & .66 & 100 & 0.0 & --- \\
+s49 & .86 & 84.9 & 1.2 & --- \\
+s50 & .98 & 85.7 & 6.1 & --- \\
+s51 & .98 & 98.0 & 1.0 & --- \\
+\bottomrule
+\end{tabular}
+\caption{ISR $\beta$=0.1 seed-level results (N=10, 4B). Genuine window defined as genuine rate $>$15\%. Only 3/10 seeds sustain a genuine window.}
+\label{tab:isr-n10}
+\end{table}
+
+The genuine advantage of ISR over random diminishes as sample size increases (Table~\ref{tab:or-evolution}). At N=3, the pooled OR of 4.82 suggested a strong ISR benefit; at N=10, OR drops to 1.62 while remaining significant (CMH $p$=0.015). The genuine window ratio decreases from 2/3 to 3/10, establishing that the genuine window is the rare exception, not the modal outcome.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{ccccc}
+\toprule
+N & ISR Gen.\% & Rand.\ Gen.\% & OR & $p$ (CMH) \\
+\midrule
+3 & 20.6 & 5.1 & 4.82 & $<$0.001 \\
+5 & 22.6 & 7.7 & 3.48 & $<$10\textsuperscript{$-$8} \\
+8 & 13.9 & 6.9 & 2.18 & 0.008 \\
+10 & 11.3 & 7.3 & 1.62 & 0.015 \\
+\bottomrule
+\end{tabular}
+\caption{Pooled odds ratio for genuine proofs (ISR vs.\ random) as a function of sample size. OR shrinks monotonically; genuine window ratio drops from 2/3 to 3/10.}
+\label{tab:or-evolution}
+\end{table}
+
+\subsection{Cross-Scale Validation}
+
+\paragraph{Exec-only across scales.} Table~\ref{tab:cross-scale-exec} compares exec-only GRPO across 1.7B, 4B, and 8B parameters. Goodhart collapse is universal---all scales show $\geq$93\% hacking---but the dominant exploitation strategy shifts with capacity. At 1.7B, the model can only exploit via H7 (100\% tautological shortcuts at PR=3\%). At 4B, both H1 (51.6\%) and H7 (48.5\%) serve as attractors. At 8B, H8 (conjunction collapse) emerges as the primary mode (35.3\%), displacing H7 (6.0\%). This gradient---H7$\to$H1/H7$\to$H8---reflects a capacity-dependent minimum-effort hacking strategy: larger models access more sophisticated exploits because their optimization landscape contains stable basins at higher complexity levels.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Scale & $n$ & PR & H1\% & H7\% & H8\% & Gen.\% \\
+\midrule
+1.7B & 1 & .03 & 0 & 100 & 0 & 0 \\
+4B & 4\textsuperscript{$\ast$} & .96 & 51.6 & 48.5 & 3.0 & 4.6 \\
+8B & 3 & .84 & 40.3 & 6.0 & 35.3 & 7.0 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-scale exec-only hacking mode distribution. $\ast$4B excludes s43 (training collapse). Dominant mode shifts from H7 (1.7B) to H1/H7 (4B) to H8 (8B).}
+\label{tab:cross-scale-exec}
+\end{table}
+
+Table~\ref{tab:8b-detail} provides per-seed detail for 8B. The emergence of proof grafting (PG) as a minor mode (5--15\%) at 8B---absent at 4B---further demonstrates that larger capacity enables a richer exploitation repertoire.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccccc}
+\toprule
+Seed & PR & ISR* & H1 & H7 & H8 & PG & Gen. \\
+\midrule
+s42 & .88 & .148 & 25 & 5 & 52 & 5 & 8 \\
+s43 & .73 & .195 & 38 & 5 & 32 & 15 & 7 \\
+s44 & .91 & .075 & 58 & 8 & 22 & --- & 6 \\
+\bottomrule
+\end{tabular}
+\caption{Qwen3-8B exec-only per-seed detail (\%, 500 steps, K=8). H8 (conjunction collapse) is the primary or co-primary mode in 2/3 seeds, unlike 4B where H7 dominates.}
+\label{tab:8b-detail}
+\end{table}
+
+\paragraph{ISR across scales.} Table~\ref{tab:cross-scale-isr} shows that ISR as a reward signal fails to prevent Goodhart collapse at any scale. The dominant hacking mode mirrors the exec-only pattern shifted by capacity: 1.7B collapses to H1 template gaming (100\%, ISR=0.6 zero-variance), 4B to H7 tautology, and 8B to H8 conjunction collapse. The genuine window probability shows no clear scale trend (0\%, 30\%, 33\%), suggesting it is a stochastic event that does not improve predictably with capacity.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Scale & $n$ & PR & Dom.\ Hack & Window & Gen.\% \\
+\midrule
+1.7B & 1 & 1.0 & H1 template & 0/1 & 0 \\
+4B & 10 & .76 & H7 tautology & 3/10 & 11.3 \\
+8B & 3 & .75 & H8 conjunction & 1/3 & 7.7 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-scale ISR $\beta$=0.1 comparison. Modal outcome is collapse at all scales. Genuine window ratio does not improve with scale.}
+\label{tab:cross-scale-isr}
+\end{table}
+
+\subsection{Premise-Count Confound Analysis}
+
+ISR correlates strongly with premise count (Spearman $\rho$=0.67, $p<10^{-10}$), and genuine proofs tend to use more premises than hacked proofs. Table~\ref{tab:premise-matched} shows that after matching for premise count, the genuine OR drops from 3.48 to 1.12 (n.s., $p$=0.42), and the ISR quality multiplier drops from 1.06$\times$ to 1.02$\times$. Premise count alone explains 45\% of ISR variance.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Metric & Unmatched & Matched & Interp. \\
+\midrule
+Genuine OR & 3.48 & 1.12 & selection \\
+ISR* ratio & 1.06$\times$ & 1.02$\times$ & no diff \\
+$\rho$(ISR, \#prem) & --- & 0.67 & confound \\
+Var.\ explained & --- & 45\% & major \\
+\bottomrule
+\end{tabular}
+\caption{Premise-count-matched analysis. ISR's genuine advantage is a selection effect: genuine proofs have more premises, which mechanically inflates ISR.}
+\label{tab:premise-matched}
+\end{table}
+
+This reveals that the causal arrow runs from proof complexity to ISR, not from ISR to reasoning quality. ISR is a reliable \emph{proxy} for proof complexity but does not independently measure reasoning quality. This finding has methodological implications beyond our setting: LOO ablation metrics in general require complexity control to avoid spurious quality signals.
+
+\subsection{Cross-Logic Transfer}
+
+STA transfers to Prolog (SWI-Prolog solver). Exec-only GRPO on Prolog achieves PR=53.3\%$\pm$31.1\% with ISR near-zero (2/3 seeds $<$0.04). STA analysis of 3 Prolog seeds reveals 3/3 gaming with 0\% genuine: s42 shows clean H7 (100\%), s43 degenerate syntax (97.4\% H1), and s44 query-as-fact gaming (97.9\% functional H7). The complete absence of genuine proofs in Prolog---compared to $\sim$6\% residual in FOL---is consistent with Prolog's simpler semantics enabling more complete exploitation. This validates that STA's diagnostic capability generalizes across formal languages.
+
+%% ============================================================
+\section{Discussion}
+%% ============================================================
+
+\paragraph{Goodhart collapse is universal but strategy is capacity-dependent.} Our cross-scale results establish a capacity-dependent exploitation gradient: 1.7B models are limited to the simplest exploits (H1 conclusion embedding, H9 contradiction injection), 4B models discover tautological shortcuts (H7) as a more efficient strategy, and 8B models access conjunction collapse (H8) as a yet more sophisticated exploit. This gradient has a natural interpretation: GRPO selects the minimum-effort hacking strategy available to each model's capacity. The KL penalty in GRPO makes strategies requiring less distributional shift more accessible---8B models, starting from a more capable distribution, find H8 closer in KL distance than H7, while 4B models must collapse further to the simpler H7 attractor.
+
+\paragraph{The genuine window is the rare exception.} At N=10, only 3 seeds sustain a genuine reasoning window under ISR reward. The shrinking OR (4.82$\to$1.62) as sample size grows suggests that early small-sample estimates were inflated by favorable seed selection. The genuine window requires ISR to reinforce genuine proof production in early training before tautological exploitation is discovered---a narrow basin that most random initializations miss. This finding strengthens the Goodhart inevitability narrative: ISR occasionally opens a transient genuine window, but the modal outcome is collapse.
+
+\paragraph{Stochastic bifurcation.} The bimodal attractor structure in exec-only training (H1 vs.\ H7) and the 30\% genuine window probability in ISR training both reflect stochastic bifurcation: identical hyperparameters produce qualitatively different outcomes depending on random seed. This has practical implications---single-seed evaluations of GRPO-based formal reasoning systems are unreliable, and multi-seed evaluation with structural diagnostics should be standard practice.
+
+%% ============================================================
+\section{Conclusion}
+%% ============================================================
+
+We introduced Solver Trace Ablation (STA) and the ISR metric as diagnostics for reward hacking in GRPO-trained formal reasoning. Our experiments across three model scales (1.7B, 4B, 8B), two logic types (FOL, Prolog), and multiple reward configurations establish three findings: (1)~ISR reliably detects structural degeneration invisible to prove rate; (2)~ISR as a reward signal suffers inevitable Goodhart collapse, with genuine windows in only 30\% of seeds and shrinking effect sizes at larger sample sizes; (3)~exploitation strategy is capacity-dependent, with larger models discovering more sophisticated hacking modes rather than escaping Goodhart failure. The premise-count confound analysis further demonstrates that LOO ablation metrics require complexity control---a methodological contribution applicable beyond our specific setting.
+
+%% ============================================================
+\section*{Limitations}
+%% ============================================================
+
+ISR measures syntactic necessity (whether removing a component breaks the proof) but not semantic faithfulness (whether the proof corresponds to intended reasoning). Spearman $\rho$(ISR, NLI accuracy) = $-$0.049 ($p$=0.187, n.s.), confirming ISR does not capture semantic quality. Our experiments use Qwen3 models at three scales; generalization to other model families (e.g., LLaMA) is not verified, though the 1.7B lower-capability bound experiment with LLaMA-3.2-3B (PR$\approx$15\%) suggests the Goodhart phenomenon is not architecture-specific. The ISR $\beta$=0.05 no-safe-dose finding is based on 2 seeds; while both show deterministic collapse ($\geq$97\% H7), larger sample sizes would strengthen this claim.
+
+%% ============================================================
+
+\begin{thebibliography}{20}
+
+\bibitem[Shao et~al.(2024)]{shao2024deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K.~Li, Y.~Wu, and Daya Guo. 2024.
+\newblock {DeepSeekMath}: Pushing the limits of mathematical reasoning in open language models.
+\newblock \emph{arXiv preprint arXiv:2402.03300}.
+
+\bibitem[DeepSeek-AI(2025)]{deepseek-r1}
+DeepSeek-AI. 2025.
+\newblock {DeepSeek-R1}: Incentivizing reasoning capability in {LLMs} via reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}.
+
+\bibitem[Luong et~al.(2024)]{luong2024reft}
+Trung Quoc Luong, Xinbo Zhang, Zhanming Jie, Peng Sun, Xiaoran Jin, and Hang Li. 2024.
+\newblock {ReFT}: Reasoning with reinforced fine-tuning.
+\newblock In \emph{Proceedings of ACL 2024}.
+
+\bibitem[Xin et~al.(2024)]{xin2024deepseekprover}
+Huajian Xin, Daya Guo, Zhihong Shao, Zhizhou Ren, Qihao Zhu, Bo Liu, Chong Ruan, Wenda Li, and Xiaodan Liang. 2024.
+\newblock {DeepSeek-Prover}: Advancing theorem proving in {LLMs} through large-scale synthetic data.
+\newblock \emph{arXiv preprint arXiv:2405.14333}.
+
+\bibitem[Trinh et~al.(2024)]{trinh2024alphageometry}
+Trieu~H. Trinh, Yuhuai Wu, Quoc~V. Le, He He, and Thang Luong. 2024.
+\newblock Solving {Olympiad} geometry without human demonstrations.
+\newblock \emph{Nature}, 625:476--482.
+
+\bibitem[Amodei et~al.(2016)]{amodei2016concrete}
+Dario Amodei, Chris Olah, Jacob Steinhardt, Paul Christiano, John Schulman, and Dan Man\'{e}. 2016.
+\newblock Concrete problems in {AI} safety.
+\newblock \emph{arXiv preprint arXiv:1606.06565}.
+
+\bibitem[Skalse et~al.(2022)]{skalse2022defining}
+Joar Skalse, Nikolaus~HR Howe, Dmitrii Krasheninnikov, and David Krueger. 2022.
+\newblock Defining and characterizing reward hacking.
+\newblock In \emph{Advances in NeurIPS}, volume~35.
+
+\bibitem[Manheim and Garrabrant(2019)]{manheim2019categorizing}
+David Manheim and Scott Garrabrant. 2019.
+\newblock Categorizing variants of {Goodhart's} law.
+\newblock \emph{arXiv preprint arXiv:1803.04585}.
+
+\bibitem[Gao et~al.(2023)]{gao2023scaling}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+\newblock Scaling laws for reward model overoptimization.
+\newblock In \emph{Proceedings of ICML 2023}.
+
+\bibitem[Coste et~al.(2024)]{coste2024reward}
+Thomas Coste, Usman Anwar, Robert Kirk, and David Krueger. 2024.
+\newblock Reward model ensembles help mitigate overoptimization.
+\newblock In \emph{Proceedings of ICLR 2024}.
+
+\bibitem[Lei et~al.(2016)]{lei2016rationalizing}
+Tao Lei, Regina Barzilay, and Tommi Jaakkola. 2016.
+\newblock Rationalizing neural predictions.
+\newblock In \emph{Proceedings of EMNLP 2016}.
+
+\bibitem[DeYoung et~al.(2020)]{deyoung2020eraser}
+Jay DeYoung, Sarthak Jain, Nazneen~Fatema Rajani, Eric Lehman, Caiming Xiong, Richard Socher, and Byron~C. Wallace. 2020.
+\newblock {ERASER}: A benchmark to evaluate rationalized {NLP} models.
+\newblock In \emph{Proceedings of ACL 2020}.
+
+\bibitem[Jiang et~al.(2023)]{jiang2023draft}
+Albert~Q. Jiang, Sean Welleck, Jin~Peng Zhou, Wenda Li, Jia Liu, Mateja Jamnik, Timoth\'{e}e Lacroix, Yuhuai Wu, and Guillaume Lample. 2023.
+\newblock Draft, sketch, and prove: Guiding formal theorem provers with informal proofs.
+\newblock In \emph{Proceedings of ICLR 2023}.
+
+\bibitem[First et~al.(2023)]{first2023baldur}
+Emily First, Markus~N. Rabe, Talia Ringer, and Yuriy Brun. 2023.
+\newblock {Baldur}: Whole-proof generation and repair with large language models.
+\newblock In \emph{Proceedings of FSE 2023}.
+
+\bibitem[Qwen Team(2025)]{qwen3}
+Qwen Team. 2025.
+\newblock {Qwen3} technical report.
+\newblock \emph{arXiv preprint arXiv:2505.09388}.
+
+\end{thebibliography}
+
+\end{document}

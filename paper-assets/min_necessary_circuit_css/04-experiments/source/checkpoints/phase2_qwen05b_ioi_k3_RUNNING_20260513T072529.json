@@ -1,0 +1,35 @@
+{
+  "exp_id": "phase2_qwen05b_ioi_k3",
+  "project": "min_necessary_circuit_css",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:01:39.691Z",
+    "updated_at": "2026-05-13T07:25:29.075Z",
+    "hypothesis": "Qwen-2.5 0.5B 上 CSS=1.0 (EAP-IG+EP+IFR) faithfulness > single-method，验证 CSS 跨模型泛化（Phase 2 首个实验，plan_006）",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_qwen_ioi.py",
+      "server": "westd-pro6000",
+      "data_path": "/root/min_necessary_circuit_css/",
+      "data_count": 100,
+      "model_name": "Qwen/Qwen2.5-0.5B",
+      "seed": 42,
+      "methods": [
+        "eap_ig",
+        "edge_pruning",
+        "ifr"
+      ],
+      "task": "ioi",
+      "K": 3,
+      "binarize": "top-100",
+      "pid": 14601,
+      "gpu_ids": [
+        0
+      ]
+    }
+  },
+  "timestamp": "2026-05-13T07:25:29.093325+00:00",
+  "trigger": "update_registry"
+}
